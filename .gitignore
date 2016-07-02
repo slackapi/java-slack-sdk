@@ -1,0 +1,15 @@
+.checkstyle
+.classpath
+.externalToolBuilders/
+.project
+.gradle
+.settings/
+.idea/
+artifacts/
+src/main/webapp/WEB-INF/classes/
+src/main/webapp/WEB-INF/lib/
+target/
+*.iml
+*.ipr
+*.iws
+build/
