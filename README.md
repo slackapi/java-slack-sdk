@@ -7,7 +7,7 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
 
 ### Getting Started
 
-Check the latest version on [the Maven Central repository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22jslack%22) or [GitHub releases](https://github.com/seratch/jslack/releases).
+Check the latest version on [the Maven Central repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.seratch%22%20a%3A%22jslack%22) or [GitHub releases](https://github.com/seratch/jslack/releases).
 
 The following is a Maven example. Of course, it's also possible to grab the library via Gradle, sbt and any other build tools.
 
