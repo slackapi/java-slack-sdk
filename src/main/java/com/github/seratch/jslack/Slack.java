@@ -3,7 +3,7 @@ package com.github.seratch.jslack;
 import com.github.seratch.jslack.http.SlackHttpClient;
 import com.github.seratch.jslack.rtm.RTMClient;
 import com.github.seratch.jslack.rtm.RTMStart;
-import com.github.seratch.jslack.webhook.Payload;
+import com.github.seratch.jslack.webhook.WebhookPayload;
 import okhttp3.Response;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class Slack {
     /**
      * Constructor to build a bot client.
      *
-     * @param apiToken
+     * @param apiToken api token
      */
     public Slack(String apiToken) {
         this.apiToken = Optional.of(apiToken);
@@ -39,11 +39,11 @@ public class Slack {
     // public APIs
     // -----------------------------------------------------------------------------------------------
 
-    public Response send(String url, Payload payload) throws IOException {
-        return new SlackHttpClient().postJsonPostRequest(url, payload);
+    public Response send(String url, WebhookPayload webhookPayload) throws IOException {
+        return new SlackHttpClient().postJsonPostRequest(url, webhookPayload);
     }
 
-    public Optional<String> fetchWebSocketUrl() throws IOException {
+    public Optional<String> fetchRTMWebSocketUrl() throws IOException {
         if (apiToken.isPresent()) {
             RTMStart start = new RTMStart();
             return start.fetchWebSocketUrl(apiToken.get());
@@ -53,9 +53,9 @@ public class Slack {
     }
 
     public RTMClient createRTMClient() throws IOException, URISyntaxException {
-        Optional<String> wssUrl = fetchWebSocketUrl();
+        Optional<String> wssUrl = fetchRTMWebSocketUrl();
         if (wssUrl.isPresent()) {
-            return new RTMClient(fetchWebSocketUrl().get());
+            return new RTMClient(fetchRTMWebSocketUrl().get());
         } else {
             throw new IllegalStateException("Couldn't fetch RTM API WebSocket endpoint. Ensure the apiToken value.");
         }

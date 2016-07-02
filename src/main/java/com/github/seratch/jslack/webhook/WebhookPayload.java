@@ -9,7 +9,7 @@ import java.util.List;
  * https://api.slack.com/incoming-webhooks
  */
 @Data
-public class Payload {
+public class WebhookPayload {
 
     /**
      * The first step is to prepare this message as a key/value pair in JSON.

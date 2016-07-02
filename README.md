@@ -28,7 +28,7 @@ import com.github.seratch.jslack.webhook.*;
 String url = System.getenv("SLACK_WEBHOOK_URL");
 
 Slack slack = new Slack();
-Payload payload = new Payload();
+WebhookPayload payload = new WebhookPayload();
 payload.setChannel("#random");
 payload.setUsername("jSlack Bot");
 payload.setIconEmoji(":smile_cat:");
@@ -38,6 +38,22 @@ slack.send(url, payload);
 ```
 
 #### Real Time Messaging
+
+Additionally, WebSocket libraries are required:
+
+
+```xml
+<dependency>
+    <groupId>javax.websocket</groupId>
+    <artifactId>javax.websocket-api</artifactId>
+    <version>1.1</version>
+</dependency>
+<dependency>
+    <groupId>org.glassfish.tyrus.bundles</groupId>
+    <artifactId>tyrus-standalone-client</artifactId>
+    <version>1.13</version>
+</dependency>
+```
 
 ```java
 import com.github.seratch.jslack.*;

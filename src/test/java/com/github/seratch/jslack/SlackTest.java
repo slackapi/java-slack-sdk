@@ -4,7 +4,7 @@ import com.github.seratch.jslack.rtm.RTMClient;
 import com.github.seratch.jslack.rtm.RTMMessageHandler;
 import com.github.seratch.jslack.webhook.Attachment;
 import com.github.seratch.jslack.webhook.Field;
-import com.github.seratch.jslack.webhook.Payload;
+import com.github.seratch.jslack.webhook.WebhookPayload;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +22,12 @@ public class SlackTest {
         String url = System.getenv("SLACK_WEBHOOK_TEST_URL");
 
         Slack slack = new Slack();
-        Payload payload = new Payload();
-        payload.setText("Hello World!");
-        payload.setIconEmoji(":smile_cat:");
-        payload.setUsername("jSlack");
+        WebhookPayload webhookPayload = new WebhookPayload();
+        webhookPayload.setText("Hello World!");
+        webhookPayload.setIconEmoji(":smile_cat:");
+        webhookPayload.setUsername("jSlack");
         // payload.setChannel("@seratch");
-        payload.setChannel("#random");
+        webhookPayload.setChannel("#random");
         Attachment attachment = new Attachment();
         attachment.setText("This is an attachment.");
         attachment.setAuthorName("Smiling Imp");
@@ -53,9 +53,9 @@ public class SlackTest {
             attachment.getFields().add(field);
             attachment.getFields().add(field);
         }
-        payload.getAttachments().add(attachment);
+        webhookPayload.getAttachments().add(attachment);
 
-        Response response = slack.send(url, payload);
+        Response response = slack.send(url, webhookPayload);
         log.info(response.toString());
     }
 
