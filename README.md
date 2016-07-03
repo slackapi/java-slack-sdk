@@ -1,5 +1,7 @@
 ## jSlack
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/jslack/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/jslack)
+
 jSlack is a Java library to easily integrate your operations with [Slack](https://slack.com/). Currently, this library supports the following APIs.
 
 - Incoming Webhook
