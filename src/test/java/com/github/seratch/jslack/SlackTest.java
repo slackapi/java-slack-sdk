@@ -231,6 +231,15 @@ public class SlackTest {
                         .build());
                 assertThat(postResponse.isOk(), is(true));
 
+                ChatUpdateResponse updateResponse = slack.methods().chatUpdate(ChatUpdateRequest.builder()
+                        .channel(channel.getId())
+                        .token(token)
+                        .ts(postResponse.getTs())
+                        .text("Updated text")
+                        .linkNames(0)
+                        .build());
+                assertThat(updateResponse.isOk(), is(true));
+
                 ChatDeleteResponse deleteResponse = slack.methods().chatDelete(ChatDeleteRequest.builder()
                         .token(token)
                         .channel(channel.getId())
@@ -271,5 +280,17 @@ public class SlackTest {
             }
         }
     }
+
+    @Test
+    public void emoji() throws IOException, SlackApiException {
+        {
+            Slack slack = new Slack();
+            String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+            EmojiListResponse response = slack.methods().emojiList(EmojiListRequest.builder().token(token).build());
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getEmoji(), is(notNullValue()));
+        }
+    }
+
 
 }

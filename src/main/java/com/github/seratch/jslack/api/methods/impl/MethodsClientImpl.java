@@ -180,6 +180,30 @@ public class MethodsClientImpl implements MethodsClient {
         return doPostForm(form, Methods.CHAT_POST_MESSAGE, ChatPostMessageResponse.class);
     }
 
+    @Override
+    public ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getToken() != null) form.add("token", req.getToken());
+        if (req.getTs() != null) form.add("ts", req.getTs());
+        if (req.getChannel() != null) form.add("channel", req.getChannel());
+        if (req.getText() != null) form.add("text", req.getText());
+        if (req.getParse() != null) form.add("parse", req.getParse());
+        if (req.getLinkNames() != null) form.add("link_names", String.valueOf(req.getLinkNames()));
+        if (req.getAttachments() != null) {
+            String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
+            form.add("attachments", json);
+        }
+        form.add("as_user", String.valueOf(req.isAsUser()));
+        return doPostForm(form, Methods.CHAT_UPDATE, ChatUpdateResponse.class);
+    }
+
+    @Override
+    public EmojiListResponse emojiList(EmojiListRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getToken() != null) form.add("token", req.getToken());
+        return doPostForm(form, Methods.EMOJI_LIST, EmojiListResponse.class);
+    }
+
     // ----------------------------------------------------------------------------------
     // private methods
     // ----------------------------------------------------------------------------------

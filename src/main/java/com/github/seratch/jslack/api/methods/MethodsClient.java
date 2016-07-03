@@ -65,4 +65,12 @@ public interface MethodsClient {
 
     ChatPostMessageResponse chatPostMessage(ChatPostMessageRequest req) throws IOException, SlackApiException;
 
+    ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // emoji
+    // ------------------------------
+
+    EmojiListResponse emojiList(EmojiListRequest req) throws IOException, SlackApiException;
+
 }

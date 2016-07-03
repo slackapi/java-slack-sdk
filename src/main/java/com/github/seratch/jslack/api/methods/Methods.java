@@ -46,6 +46,8 @@ public class Methods {
 
     // emoji
 
+    public static final String EMOJI_LIST = "emoji.list";
+
     // files.comments
 
     // files
