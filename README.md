@@ -15,7 +15,14 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - channels.create
   - channels.history
   - channels.info
+  - channels.invite
+  - channels.join
+  - channels.kick
+  - channels.leave
   - channels.list
+  - chat.delete
+  - chat.meMessage
+  - chat.postMessage
 
 ### Getting Started
 
