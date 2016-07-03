@@ -1,5 +1,6 @@
-package com.github.seratch.jslack.webhook;
+package com.github.seratch.jslack.api.webhook;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -9,7 +10,8 @@ import java.util.List;
  * https://api.slack.com/incoming-webhooks
  */
 @Data
-public class WebhookPayload {
+@Builder
+public class Payload {
 
     /**
      * The first step is to prepare this message as a key/value pair in JSON.

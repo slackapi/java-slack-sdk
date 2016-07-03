@@ -1,5 +1,6 @@
-package com.github.seratch.jslack.webhook;
+package com.github.seratch.jslack.api.webhook;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
  * https://api.slack.com/docs/message-attachments
  */
 @Data
+@Builder
 public class Attachment {
 
     /**

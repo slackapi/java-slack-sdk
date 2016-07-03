@@ -1,6 +1,6 @@
-package com.github.seratch.jslack.http;
+package com.github.seratch.jslack.common.http;
 
-import com.github.seratch.jslack.json.GsonFactory;
+import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.Gson;
 import okhttp3.*;
 

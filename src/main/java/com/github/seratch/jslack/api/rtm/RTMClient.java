@@ -1,4 +1,4 @@
-package com.github.seratch.jslack.rtm;
+package com.github.seratch.jslack.api.rtm;
 
 import lombok.extern.slf4j.Slf4j;
 

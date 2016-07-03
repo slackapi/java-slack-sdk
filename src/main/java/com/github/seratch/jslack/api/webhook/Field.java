@@ -1,12 +1,14 @@
-package com.github.seratch.jslack.webhook;
+package com.github.seratch.jslack.api.webhook;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Builder;
 import lombok.Data;
 
 /**
  * https://api.slack.com/docs/message-attachments
  */
 @Data
+@Builder
 public class Field {
 
     /**

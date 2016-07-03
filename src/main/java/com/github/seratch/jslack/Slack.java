@@ -1,14 +1,16 @@
 package com.github.seratch.jslack;
 
-import com.github.seratch.jslack.http.SlackHttpClient;
-import com.github.seratch.jslack.rtm.RTMClient;
-import com.github.seratch.jslack.rtm.RTMStart;
-import com.github.seratch.jslack.webhook.WebhookPayload;
+import com.github.seratch.jslack.api.methods.MethodsClient;
+import com.github.seratch.jslack.api.methods.request.RTMStartRequest;
+import com.github.seratch.jslack.api.methods.SlackApiException;
+import com.github.seratch.jslack.api.methods.impl.MethodsClientImpl;
+import com.github.seratch.jslack.api.rtm.RTMClient;
+import com.github.seratch.jslack.api.webhook.Payload;
+import com.github.seratch.jslack.common.http.SlackHttpClient;
 import okhttp3.Response;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Optional;
 
 /**
  * Slack Integrations
@@ -17,48 +19,31 @@ import java.util.Optional;
  */
 public class Slack {
 
-    private final Optional<String> apiToken;
-
     /**
-     * Constructor to build a simple incoming webhook client.
+     * Send a data to Incoming Webhook endpoint.
      */
-    public Slack() {
-        apiToken = Optional.empty();
+    public Response send(String url, Payload payload) throws IOException {
+        return new SlackHttpClient().postJsonPostRequest(url, payload);
     }
 
     /**
-     * Constructor to build a bot client.
-     *
-     * @param apiToken api token
+     * Creates an RTM API client.
      */
-    public Slack(String apiToken) {
-        this.apiToken = Optional.of(apiToken);
-    }
-
-    // -----------------------------------------------------------------------------------------------
-    // public APIs
-    // -----------------------------------------------------------------------------------------------
-
-    public Response send(String url, WebhookPayload webhookPayload) throws IOException {
-        return new SlackHttpClient().postJsonPostRequest(url, webhookPayload);
-    }
-
-    public Optional<String> fetchRTMWebSocketUrl() throws IOException {
-        if (apiToken.isPresent()) {
-            RTMStart start = new RTMStart();
-            return start.fetchWebSocketUrl(apiToken.get());
-        } else {
-            throw new IllegalStateException("apiToken is absent. Use constructor which accepts apiToken.");
-        }
-    }
-
-    public RTMClient createRTMClient() throws IOException, URISyntaxException {
-        Optional<String> wssUrl = fetchRTMWebSocketUrl();
-        if (wssUrl.isPresent()) {
-            return new RTMClient(fetchRTMWebSocketUrl().get());
-        } else {
+    public RTMClient rtm(String apiToken) throws IOException {
+        try {
+            return new RTMClient(methods()
+                    .rtmStart(RTMStartRequest.builder().token(apiToken).build())
+                    .getUrl());
+        } catch (SlackApiException | URISyntaxException e) {
             throw new IllegalStateException("Couldn't fetch RTM API WebSocket endpoint. Ensure the apiToken value.");
         }
+    }
+
+    /**
+     * Creates a Methods API client.
+     */
+    public MethodsClient methods() {
+        return new MethodsClientImpl();
     }
 
 }

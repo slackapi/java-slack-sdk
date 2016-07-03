@@ -1,4 +1,4 @@
-package com.github.seratch.jslack.json;
+package com.github.seratch.jslack.common.json;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
