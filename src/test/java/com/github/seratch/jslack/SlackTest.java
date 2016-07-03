@@ -1,12 +1,13 @@
 package com.github.seratch.jslack;
 
-import com.github.seratch.jslack.api.methods.*;
+import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.*;
 import com.github.seratch.jslack.api.methods.response.*;
+import com.github.seratch.jslack.api.model.Attachment;
+import com.github.seratch.jslack.api.model.Channel;
+import com.github.seratch.jslack.api.model.Field;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.rtm.RTMMessageHandler;
-import com.github.seratch.jslack.api.webhook.Attachment;
-import com.github.seratch.jslack.api.webhook.Field;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -69,7 +70,7 @@ public class SlackTest {
         log.info(response.toString());
     }
 
-//    private static int SLEEP_MILLIS = 10000;
+    //    private static int SLEEP_MILLIS = 10000;
     private static int SLEEP_MILLIS = 100;
 
     @Test
@@ -175,14 +176,81 @@ public class SlackTest {
             Channel channel = creationResponse.getChannel();
 
             {
+                ChannelsInfoResponse response = slack.methods().channelsInfo(
+                        ChannelsInfoRequest.builder().token(token).channel(channel.getId()).build());
+                assertThat(response.isOk(), is(true));
+                Channel fetchedChannel = response.getChannel();
+                assertThat(fetchedChannel.isMember(), is(true));
+                assertThat(fetchedChannel.isGeneral(), is(false));
+                assertThat(fetchedChannel.isArchived(), is(false));
+            }
+
+            {
                 ChannelsHistoryResponse response = slack.methods().channelsHistory(
                         ChannelsHistoryRequest.builder().token(token).channel(channel.getId()).count(10).build());
                 assertThat(response.isOk(), is(true));
             }
 
             {
-                ChannelsInfoResponse response = slack.methods().channelsInfo(
-                        ChannelsInfoRequest.builder().token(token).channel(channel.getId()).build());
+                ChannelsKickResponse response = slack.methods().channelsKick(ChannelsKickRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .user(channel.getMembers().get(0))
+                        .build());
+                // TODO: valid test
+                assertThat(response.isOk(), is(false));
+                assertThat(response.getError(), is("cant_kick_self"));
+            }
+
+            {
+                ChannelsInviteResponse response = slack.methods().channelsInvite(ChannelsInviteRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .user(channel.getMembers().get(0))
+                        .build());
+                // TODO: valid test
+                assertThat(response.isOk(), is(false));
+                assertThat(response.getError(), is("cant_invite_self"));
+            }
+
+            {
+                ChatMeMessageResponse response = slack.methods().chatMeMessage(ChatMeMessageRequest.builder()
+                        .channel(channel.getId())
+                        .token(token)
+                        .text("Hello World! via chat.meMessage API")
+                        .build());
+                assertThat(response.isOk(), is(true));
+            }
+
+            {
+                ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                        .channel(channel.getId())
+                        .token(token)
+                        .text("@seratch Hello World! via chat.postMessage API")
+                        .linkNames(1)
+                        .build());
+                assertThat(postResponse.isOk(), is(true));
+
+                ChatDeleteResponse deleteResponse = slack.methods().chatDelete(ChatDeleteRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .ts(postResponse.getMessage().getTs())
+                        .build());
+                assertThat(deleteResponse.isOk(), is(true));
+            }
+
+            {
+                ChannelsLeaveResponse response = slack.methods().channelsLeave(ChannelsLeaveRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .build());
+                assertThat(response.isOk(), is(true));
+            }
+            {
+                ChannelsJoinResponse response = slack.methods().channelsJoin(ChannelsJoinRequest.builder()
+                        .token(token)
+                        .name(channel.getName())
+                        .build());
                 assertThat(response.isOk(), is(true));
             }
 
@@ -190,6 +258,16 @@ public class SlackTest {
                 ChannelsArchiveResponse response = slack.methods().channelsArchive(
                         ChannelsArchiveRequest.builder().token(token).channel(channel.getId()).build());
                 assertThat(response.isOk(), is(true));
+            }
+
+            {
+                ChannelsInfoResponse response = slack.methods().channelsInfo(
+                        ChannelsInfoRequest.builder().token(token).channel(channel.getId()).build());
+                assertThat(response.isOk(), is(true));
+                Channel fetchedChannel = response.getChannel();
+                assertThat(fetchedChannel.isMember(), is(false));
+                assertThat(fetchedChannel.isGeneral(), is(false));
+                assertThat(fetchedChannel.isArchived(), is(true));
             }
         }
     }

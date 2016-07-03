@@ -1,9 +1,9 @@
 package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.methods.MethodsClient;
-import com.github.seratch.jslack.api.methods.request.RTMStartRequest;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.impl.MethodsClientImpl;
+import com.github.seratch.jslack.api.methods.request.RTMStartRequest;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.common.http.SlackHttpClient;

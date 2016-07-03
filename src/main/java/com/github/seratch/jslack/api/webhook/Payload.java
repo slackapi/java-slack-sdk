@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.webhook;
 
+import com.github.seratch.jslack.api.model.Attachment;
 import lombok.Builder;
 import lombok.Data;
 

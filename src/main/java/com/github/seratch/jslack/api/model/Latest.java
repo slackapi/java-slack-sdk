@@ -1,4 +1,4 @@
-package com.github.seratch.jslack.api.methods.response;
+package com.github.seratch.jslack.api.model;
 
 import lombok.Data;
 

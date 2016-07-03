@@ -5,7 +5,7 @@ import com.github.seratch.jslack.api.model.Channel;
 import lombok.Data;
 
 @Data
-public class ChannelsInfoResponse implements SlackApiResponse {
+public class ChannelsJoinResponse implements SlackApiResponse {
 
     private boolean ok;
     private String error;

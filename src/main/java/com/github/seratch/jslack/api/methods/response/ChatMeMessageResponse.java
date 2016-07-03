@@ -1,14 +1,14 @@
 package com.github.seratch.jslack.api.methods.response;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Channel;
 import lombok.Data;
 
 @Data
-public class ChannelsInfoResponse implements SlackApiResponse {
+public class ChatMeMessageResponse implements SlackApiResponse {
 
     private boolean ok;
     private String error;
 
-    private Channel channel;
+    private String channel;
+    private String ts;
 }
