@@ -44,13 +44,30 @@ public class Methods {
 
     // dnd
 
+    public static final String DND_END_DND = "dnd.endDnd";
+    public static final String DND_END_SNOOZE = "dnd.endSnooze";
+    public static final String DND_INFO = "dnd.info";
+    public static final String DND_SET_SNOOZE = "dnd.setSnooze";
+    public static final String DND_TEAM_INFO = "dnd.teamInfo";
+
     // emoji
 
     public static final String EMOJI_LIST = "emoji.list";
 
     // files.comments
 
+    public static final String FILES_COMMENTS_ADD = "files.comments.add";
+    public static final String FILES_COMMENTS_DELETE = "files.comments.delete";
+    public static final String FILES_COMMENTS_EDIT = "files.comments.edit";
+
     // files
+
+    public static final String FILES_DELETE = "files.delete";
+    public static final String FILES_INFO = "files.info";
+    public static final String FILES_LIST = "files.list";
+    public static final String FILES_REVOKE_PUBLIC_URL = "files.revokePublicURL";
+    public static final String FILES_SHARED_PUBLIC_URL = "files.sharedPublicURL";
+    public static final String FILES_UPLOAD = "files.upload";
 
     // groups
 

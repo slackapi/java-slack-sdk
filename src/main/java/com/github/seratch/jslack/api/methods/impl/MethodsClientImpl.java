@@ -27,186 +27,236 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ApiTestResponse apiTest(ApiTestRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getFoo() != null) form.add("foo", req.getFoo());
-        if (req.getError() != null) form.add("error", req.getError());
+        setIfNotNull("foo", req.getFoo(), form);
+        setIfNotNull("error", req.getError(), form);
         return doPostForm(form, Methods.API_TEST, ApiTestResponse.class);
     }
 
     @Override
     public RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
+        setIfNotNull("token", req.getToken(), form);
         return doPostForm(form, Methods.RTM_START, RTMStartResponse.class);
     }
 
     @Override
     public AuthRevokeResponse authRevoke(AuthRevokeRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getTest() != null) form.add("test", req.getTest());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("test", req.getTest(), form);
         return doPostForm(form, Methods.AUTH_REVOKE, AuthRevokeResponse.class);
     }
 
     @Override
     public AuthTestResponse authTest(AuthTestRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
+        setIfNotNull("token", req.getToken(), form);
         return doPostForm(form, Methods.AUTH_TEST, AuthTestResponse.class);
     }
 
     @Override
     public BotsInfoResponse botsInfo(BotsInfoRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getBot() != null) form.add("bot", req.getBot());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("bot", req.getBot(), form);
         return doPostForm(form, Methods.BOTS_INFO, BotsInfoResponse.class);
     }
 
     @Override
     public ChannelsArchiveResponse channelsArchive(ChannelsArchiveRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
         return doPostForm(form, Methods.CHANNELS_ARCHIVE, ChannelsArchiveResponse.class);
     }
 
     @Override
     public ChannelsCreateResponse channelsCreate(ChannelsCreateRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getName() != null) form.add("name", req.getName());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("name", req.getName(), form);
         return doPostForm(form, Methods.CHANNELS_CREATE, ChannelsCreateResponse.class);
     }
 
     @Override
     public ChannelsHistoryResponse channelsHistory(ChannelsHistoryRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
-        if (req.getLatest() != null) form.add("latest", req.getLatest());
-        if (req.getOldest() != null) form.add("oldest", req.getOldest());
-        if (req.getInclusive() != null) form.add("inclusive", String.valueOf(req.getInclusive()));
-        if (req.getCount() != null) form.add("count", String.valueOf(req.getCount()));
-        if (req.getUnreads() != null) form.add("unreads", String.valueOf(req.getUnreads()));
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("latest", req.getLatest(), form);
+        setIfNotNull("oldest", req.getOldest(), form);
+        setIfNotNull("inclusive", req.getInclusive(), form);
+        setIfNotNull("count", req.getCount(), form);
+        setIfNotNull("unreads", req.getUnreads(), form);
         return doPostForm(form, Methods.CHANNELS_HISTORY, ChannelsHistoryResponse.class);
     }
 
     @Override
     public ChannelsInfoResponse channelsInfo(ChannelsInfoRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
         return doPostForm(form, Methods.CHANNELS_INFO, ChannelsInfoResponse.class);
     }
 
     @Override
     public ChannelsListResponse channelsList(ChannelsListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getExcludeArchived() != null) form.add("exclude_archived", String.valueOf(req.getExcludeArchived()));
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("exclude_archived", req.getExcludeArchived(), form);
         return doPostForm(form, Methods.CHANNELS_LIST, ChannelsListResponse.class);
     }
 
     @Override
     public ChannelsInviteResponse channelsInvite(ChannelsInviteRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
-        if (req.getUser() != null) form.add("user", req.getUser());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("user", req.getUser(), form);
         return doPostForm(form, Methods.CHANNELS_INVITE, ChannelsInviteResponse.class);
     }
 
     @Override
     public ChannelsJoinResponse channelsJoin(ChannelsJoinRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getName() != null) form.add("name", req.getName());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("name", req.getName(), form);
         return doPostForm(form, Methods.CHANNELS_JOIN, ChannelsJoinResponse.class);
     }
 
     @Override
     public ChannelsKickResponse channelsKick(ChannelsKickRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
-        if (req.getUser() != null) form.add("user", req.getUser());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("user", req.getUser(), form);
         return doPostForm(form, Methods.CHANNELS_KICK, ChannelsKickResponse.class);
     }
 
     @Override
     public ChannelsLeaveResponse channelsLeave(ChannelsLeaveRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
         return doPostForm(form, Methods.CHANNELS_LEAVE, ChannelsLeaveResponse.class);
+    }
+
+    @Override
+    public ChannelsMarkResponse channelsMark(ChannelsMarkRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("ts", req.getTs(), form);
+        return doPostForm(form, Methods.CHANNELS_MARK, ChannelsMarkResponse.class);
+    }
+
+    @Override
+    public ChannelsRenameResponse channelsRename(ChannelsRenameRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("name", req.getName(), form);
+        return doPostForm(form, Methods.CHANNELS_RENAME, ChannelsRenameResponse.class);
+    }
+
+    @Override
+    public ChannelsSetPurposeResponse channelsSetPurpose(ChannelsSetPurposeRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("purpose", req.getPurpose(), form);
+        return doPostForm(form, Methods.CHANNELS_SET_PURPOSE, ChannelsSetPurposeResponse.class);
+    }
+
+    @Override
+    public ChannelsSetTopicResponse channelsSetTopic(ChannelsSetTopicRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("topic", req.getTopic(), form);
+        return doPostForm(form, Methods.CHANNELS_SET_TOPIC, ChannelsSetTopicResponse.class);
+    }
+
+    @Override
+    public ChannelsUnarchiveResponse channelsUnarchive(ChannelsUnarchiveRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CHANNELS_UNARCHIVE, ChannelsUnarchiveResponse.class);
     }
 
     @Override
     public ChatDeleteResponse chatDelete(ChatDeleteRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
-        if (req.getTs() != null) form.add("ts", req.getTs());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("ts", req.getTs(), form);
         return doPostForm(form, Methods.CHAT_DELETE, ChatDeleteResponse.class);
     }
 
     @Override
     public ChatMeMessageResponse chatMeMessage(ChatMeMessageRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
-        if (req.getText() != null) form.add("text", req.getText());
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("text", req.getText(), form);
         return doPostForm(form, Methods.CHAT_ME_MESSAGE, ChatMeMessageResponse.class);
     }
 
     @Override
     public ChatPostMessageResponse chatPostMessage(ChatPostMessageRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
-        if (req.getText() != null) form.add("text", req.getText());
-        if (req.getParse() != null) form.add("parse", req.getParse());
-        if (req.getLinkNames() != null) form.add("link_names", String.valueOf(req.getLinkNames()));
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("text", req.getText(), form);
+        setIfNotNull("parse", req.getParse(), form);
+        setIfNotNull("link_names", req.getLinkNames(), form);
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
         }
-        form.add("unfurl_links", String.valueOf(req.isUnfurlLinks()));
-        form.add("unfurl_media", String.valueOf(req.isUnfurlMedia()));
-        if (req.getUsername() != null) form.add("username", req.getUsername());
-        form.add("as_user", String.valueOf(req.isAsUser()));
-        if (req.getIconUrl() != null) form.add("icon_url", req.getIconUrl());
-        if (req.getIconEmoji() != null) form.add("icon_emoji", req.getIconEmoji());
+        setIfNotNull("unfurl_links", req.isUnfurlLinks(), form);
+        setIfNotNull("unfurl_media", req.isUnfurlMedia(), form);
+        setIfNotNull("username", req.getUsername(), form);
+        setIfNotNull("as_user", req.isAsUser(), form);
+        setIfNotNull("icon_url", req.getIconUrl(), form);
+        setIfNotNull("icon_emoji", req.getIconEmoji(), form);
         return doPostForm(form, Methods.CHAT_POST_MESSAGE, ChatPostMessageResponse.class);
     }
 
     @Override
     public ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
-        if (req.getTs() != null) form.add("ts", req.getTs());
-        if (req.getChannel() != null) form.add("channel", req.getChannel());
-        if (req.getText() != null) form.add("text", req.getText());
-        if (req.getParse() != null) form.add("parse", req.getParse());
-        if (req.getLinkNames() != null) form.add("link_names", String.valueOf(req.getLinkNames()));
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("ts", req.getTs(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("text", req.getText(), form);
+        setIfNotNull("parse", req.getParse(), form);
+        setIfNotNull("link_names", req.getLinkNames(), form);
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
         }
-        form.add("as_user", String.valueOf(req.isAsUser()));
+        setIfNotNull("as_user", req.isAsUser(), form);
         return doPostForm(form, Methods.CHAT_UPDATE, ChatUpdateResponse.class);
     }
 
     @Override
     public EmojiListResponse emojiList(EmojiListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        if (req.getToken() != null) form.add("token", req.getToken());
+        setIfNotNull("token", req.getToken(), form);
         return doPostForm(form, Methods.EMOJI_LIST, EmojiListResponse.class);
     }
 
     // ----------------------------------------------------------------------------------
     // private methods
     // ----------------------------------------------------------------------------------
+
+    private static void setIfNotNull(String name, Object value, FormBody.Builder form) {
+        if (value != null) {
+            form.add(name, String.valueOf(value));
+        }
+    }
 
     private <T> T doPostForm(FormBody.Builder form, String endpoint, Class<T> clazz) throws IOException, SlackApiException {
         Response response = slackHttpClient.postForm(ENDPOINT_URL_PREFIX + endpoint, form.build());

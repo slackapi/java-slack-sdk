@@ -5,7 +5,7 @@
 jSlack is a Java library to easily integrate your operations with [Slack](https://slack.com/). Currently, this library supports the following APIs.
 
 - Incoming Webhook
-- Real Time Messaging API
+- Real Time Messaging
 - Methods
   - api.test
   - auth.revoke
@@ -20,9 +20,16 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - channels.kick
   - channels.leave
   - channels.list
+  - channels.mark
+  - channels.rename
+  - channels.setPurpose
+  - channels.setTopic
+  - channels.unarchive
   - chat.delete
   - chat.meMessage
   - chat.postMessage
+  - chat.update
+  - emoji.list
 
 ### Getting Started
 

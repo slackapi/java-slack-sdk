@@ -156,7 +156,7 @@ public class SlackTest {
     }
 
     @Test
-    public void channelsCreateAndOperations() throws IOException, SlackApiException {
+    public void channels_chat() throws IOException, SlackApiException {
         {
             Slack slack = new Slack();
             String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
@@ -183,6 +183,18 @@ public class SlackTest {
                 assertThat(fetchedChannel.isMember(), is(true));
                 assertThat(fetchedChannel.isGeneral(), is(false));
                 assertThat(fetchedChannel.isArchived(), is(false));
+            }
+
+            {
+                ChannelsSetPurposeResponse response = slack.methods().channelsSetPurpose(
+                        ChannelsSetPurposeRequest.builder().token(token).channel(channel.getId()).purpose("purpose").build());
+                assertThat(response.isOk(), is(true));
+            }
+
+            {
+                ChannelsSetTopicResponse response = slack.methods().channelsSetTopic(
+                        ChannelsSetTopicRequest.builder().token(token).channel(channel.getId()).topic("topic").build());
+                assertThat(response.isOk(), is(true));
             }
 
             {
@@ -259,6 +271,15 @@ public class SlackTest {
                 ChannelsJoinResponse response = slack.methods().channelsJoin(ChannelsJoinRequest.builder()
                         .token(token)
                         .name(channel.getName())
+                        .build());
+                assertThat(response.isOk(), is(true));
+            }
+
+            {
+                ChannelsRenameResponse response = slack.methods().channelsRename(ChannelsRenameRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .name(channel.getName() + "-1")
                         .build());
                 assertThat(response.isOk(), is(true));
             }

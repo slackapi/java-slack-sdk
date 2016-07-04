@@ -55,6 +55,16 @@ public interface MethodsClient {
 
     ChannelsLeaveResponse channelsLeave(ChannelsLeaveRequest req) throws IOException, SlackApiException;
 
+    ChannelsMarkResponse channelsMark(ChannelsMarkRequest req) throws IOException, SlackApiException;
+
+    ChannelsRenameResponse channelsRename(ChannelsRenameRequest req) throws IOException, SlackApiException;
+
+    ChannelsSetPurposeResponse channelsSetPurpose(ChannelsSetPurposeRequest req) throws IOException, SlackApiException;
+
+    ChannelsSetTopicResponse channelsSetTopic(ChannelsSetTopicRequest req) throws IOException, SlackApiException;
+
+    ChannelsUnarchiveResponse channelsUnarchive(ChannelsUnarchiveRequest req) throws IOException, SlackApiException;
+
     // ------------------------------
     // chat
     // ------------------------------
