@@ -13,6 +13,8 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
+import static java.util.stream.Collectors.joining;
+
 @Slf4j
 public class MethodsClientImpl implements MethodsClient {
 
@@ -30,13 +32,6 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("foo", req.getFoo(), form);
         setIfNotNull("error", req.getError(), form);
         return doPostForm(form, Methods.API_TEST, ApiTestResponse.class);
-    }
-
-    @Override
-    public RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException {
-        FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("token", req.getToken(), form);
-        return doPostForm(form, Methods.RTM_START, RTMStartResponse.class);
     }
 
     @Override
@@ -242,10 +237,103 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public DndEndDndResponse dndEndDnd(DndEndDndRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        return doPostForm(form, Methods.DND_END_DND, DndEndDndResponse.class);
+    }
+
+    @Override
+    public DndEndSnoozeResponse dndEndSnooze(DndEndSnoozeRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        return doPostForm(form, Methods.DND_END_SNOOZE, DndEndSnoozeResponse.class);
+    }
+
+    @Override
+    public DndInfoResponse dndInfo(DndInfoRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("user", req.getUser(), form);
+        return doPostForm(form, Methods.DND_INFO, DndInfoResponse.class);
+    }
+
+    @Override
+    public DndSetSnoozeResponse dndSetSnooze(DndSetSnoozeRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("num_minutes", req.getNumMinutes(), form);
+        return doPostForm(form, Methods.DND_SET_SNOOZE, DndSetSnoozeResponse.class);
+    }
+
+    @Override
+    public DndTeamInfoResponse dndTeamInfo(DndTeamInfoRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        if (req.getUsers() != null) {
+            setIfNotNull("user", req.getUsers().stream().collect(joining(",")), form);
+        }
+        return doPostForm(form, Methods.DND_TEAM_INFO, DndTeamInfoResponse.class);
+    }
+
+    @Override
     public EmojiListResponse emojiList(EmojiListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         return doPostForm(form, Methods.EMOJI_LIST, EmojiListResponse.class);
+    }
+
+    @Override
+    public RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        return doPostForm(form, Methods.RTM_START, RTMStartResponse.class);
+    }
+
+    @Override
+    public UsersGetPresenceResponse usersGetPresence(UsersGetPresenceRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("user", req.getUser(), form);
+        return doPostForm(form, Methods.USERS_GET_PRESENCE, UsersGetPresenceResponse.class);
+    }
+
+    @Override
+    public UsersIdentityResponse usersIdentity(UsersIdentityRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        return doPostForm(form, Methods.USERS_IDENTITY, UsersIdentityResponse.class);
+    }
+
+    @Override
+    public UsersInfoResponse usersInfo(UsersInfoRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("user", req.getUser(), form);
+        return doPostForm(form, Methods.USERS_INFO, UsersInfoResponse.class);
+    }
+
+    @Override
+    public UsersListResponse usersList(UsersListRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("presence", req.getPresence(), form);
+        return doPostForm(form, Methods.USERS_LIST, UsersListResponse.class);
+    }
+
+    @Override
+    public UsersSetActiveResponse usersSetActive(UsersSetActiveRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        return doPostForm(form, Methods.USERS_SET_ACTIVE, UsersSetActiveResponse.class);
+    }
+
+    @Override
+    public UsersSetPresenceResponse usersSetPresence(UsersSetPresenceRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("presence", req.getPresence(), form);
+        return doPostForm(form, Methods.USERS_SET_PRESENCE, UsersSetPresenceResponse.class);
     }
 
     // ----------------------------------------------------------------------------------

@@ -11,13 +11,11 @@ import java.io.IOException;
  */
 public interface MethodsClient {
 
+    // ------------------------------
+    // api
+    // ------------------------------
+
     ApiTestResponse apiTest(ApiTestRequest req) throws IOException, SlackApiException;
-
-    // ------------------------------
-    // RTM
-    // ------------------------------
-
-    RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
     // auth
@@ -78,9 +76,45 @@ public interface MethodsClient {
     ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
+    // dnd
+    // ------------------------------
+
+    DndEndDndResponse dndEndDnd(DndEndDndRequest req) throws IOException, SlackApiException;
+
+    DndEndSnoozeResponse dndEndSnooze(DndEndSnoozeRequest req) throws IOException, SlackApiException;
+
+    DndInfoResponse dndInfo(DndInfoRequest req) throws IOException, SlackApiException;
+
+    DndSetSnoozeResponse dndSetSnooze(DndSetSnoozeRequest req) throws IOException, SlackApiException;
+
+    DndTeamInfoResponse dndTeamInfo(DndTeamInfoRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
     // emoji
     // ------------------------------
 
     EmojiListResponse emojiList(EmojiListRequest req) throws IOException, SlackApiException;
 
+    // ------------------------------
+    // rtm
+    // ------------------------------
+
+    RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // users
+    // ------------------------------
+
+    UsersGetPresenceResponse usersGetPresence(UsersGetPresenceRequest req) throws IOException, SlackApiException;
+
+    UsersIdentityResponse usersIdentity(UsersIdentityRequest req) throws IOException, SlackApiException;
+
+    UsersInfoResponse usersInfo(UsersInfoRequest req) throws IOException, SlackApiException;
+
+    UsersListResponse usersList(UsersListRequest req) throws IOException, SlackApiException;
+
+    UsersSetActiveResponse usersSetActive(UsersSetActiveRequest req) throws IOException, SlackApiException;
+
+    UsersSetPresenceResponse usersSetPresence(UsersSetPresenceRequest req) throws IOException, SlackApiException;
+    
 }
