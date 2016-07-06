@@ -13,6 +13,7 @@ public class ApiTestResponse implements SlackApiResponse {
 
     private boolean ok;
     private Args args;
+    private String warning;
     private String error;
 
 }

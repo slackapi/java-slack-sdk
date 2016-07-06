@@ -7,5 +7,6 @@ import lombok.Data;
 public class UsersSetPresenceResponse implements SlackApiResponse {
 
     private boolean ok;
+    private String warning;
     private String error;
 }

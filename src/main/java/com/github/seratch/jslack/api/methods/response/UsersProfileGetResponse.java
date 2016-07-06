@@ -1,14 +1,15 @@
 package com.github.seratch.jslack.api.methods.response;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
+import com.github.seratch.jslack.api.model.User;
 import lombok.Data;
 
 @Data
-public class ChannelsLeaveResponse implements SlackApiResponse {
+public class UsersProfileGetResponse implements SlackApiResponse {
 
     private boolean ok;
     private String warning;
     private String error;
 
-    private boolean notInChannel;
+    private User.Profile profile;
 }

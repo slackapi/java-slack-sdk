@@ -394,4 +394,32 @@ public class SlackTest {
         }
     }
 
+    @Test
+    public void usersProfile() throws IOException, SlackApiException {
+        Slack slack = new Slack();
+        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+
+        {
+            UsersProfileGetResponse response = slack.methods().usersProfileGet(UsersProfileGetRequest.builder().token(token).build());
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getProfile(), is(notNullValue()));
+        }
+
+        {
+            UsersProfileSetResponse response = slack.methods().usersProfileSet(
+                    UsersProfileSetRequest.builder().token(token).name("skype").value("skype-" + System.currentTimeMillis()).build());
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getProfile(), is(notNullValue()));
+        }
+
+        {
+            User.Profile profile = new User.Profile();
+            profile.setSkype("skype-" + System.currentTimeMillis());
+            UsersProfileSetResponse response = slack.methods().usersProfileSet(
+                    UsersProfileSetRequest.builder().token(token).profile(profile).build());
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getProfile(), is(notNullValue()));
+        }
+    }
+
 }

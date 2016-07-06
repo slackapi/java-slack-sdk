@@ -336,6 +336,29 @@ public class MethodsClientImpl implements MethodsClient {
         return doPostForm(form, Methods.USERS_SET_PRESENCE, UsersSetPresenceResponse.class);
     }
 
+    @Override
+    public UsersProfileGetResponse usersProfileGet(UsersProfileGetRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("user", req.getUser(), form);
+        setIfNotNull("include_labels", req.getIncludeLabels(), form);
+        return doPostForm(form, Methods.USERS_PROFILE_GET, UsersProfileGetResponse.class);
+    }
+
+    @Override
+    public UsersProfileSetResponse usersProfileSet(UsersProfileSetRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("user", req.getUser(), form);
+        if (req.getProfile() != null) {
+            setIfNotNull("profile", GsonFactory.createSnakeCase().toJson(req.getProfile()), form);
+        } else {
+            setIfNotNull("name", req.getName(), form);
+            setIfNotNull("value", req.getValue(), form);
+        }
+        return doPostForm(form, Methods.USERS_PROFILE_SET, UsersProfileSetResponse.class);
+    }
+
     // ----------------------------------------------------------------------------------
     // private methods
     // ----------------------------------------------------------------------------------

@@ -9,6 +9,7 @@ import java.util.Map;
 public class EmojiListResponse implements SlackApiResponse {
 
     private boolean ok;
+    private String warning;
     private String error;
 
     private Map<String, String> emoji;

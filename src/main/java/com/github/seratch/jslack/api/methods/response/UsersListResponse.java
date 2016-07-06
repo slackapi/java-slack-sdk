@@ -10,6 +10,7 @@ import java.util.List;
 public class UsersListResponse implements SlackApiResponse {
 
     private boolean ok;
+    private String warning;
     private String error;
 
     private List<User> members;

@@ -9,6 +9,7 @@ import java.util.Map;
 public class DndTeamInfoResponse implements SlackApiResponse {
 
     private boolean ok;
+    private String warning;
     private String error;
 
     // user.id -> info

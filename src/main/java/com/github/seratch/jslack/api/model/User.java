@@ -3,6 +3,8 @@ package com.github.seratch.jslack.api.model;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
+import java.util.Map;
+
 /**
  * https://api.slack.com/types/user
  */
@@ -48,5 +50,15 @@ public class User {
         private String image192;
         @SerializedName("image_512")
         private String image512;
+        private String imageOriginal;
+
+        private Map<String, Field> fields;
+
+        @Data
+        public static class Field {
+            private String value;
+            private String alt;
+            private String label;
+        }
     }
 }

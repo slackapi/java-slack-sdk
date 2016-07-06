@@ -4,32 +4,17 @@
 
 jSlack is a Java library to easily integrate your operations with [Slack](https://slack.com/). Currently, this library supports the following APIs.
 
-- Incoming Webhook
-- Real Time Messaging
-- Methods
+- [Incoming Webhook](https://api.slack.com/incoming-webhooks)
+- [Real Time Messaging API](https://api.slack.com/rtm)
+- [API Methods](https://api.slack.com/methods)
   - api.test
-  - auth.revoke
-  - auth.test
-  - bots.info
-  - channels.archive
-  - channels.create
-  - channels.history
-  - channels.info
-  - channels.invite
-  - channels.join
-  - channels.kick
-  - channels.leave
-  - channels.list
-  - channels.mark
-  - channels.rename
-  - channels.setPurpose
-  - channels.setTopic
-  - channels.unarchive
-  - chat.delete
-  - chat.meMessage
-  - chat.postMessage
-  - chat.update
-  - emoji.list
+  - auth.*
+  - bots.*
+  - channels.*
+  - chat.*
+  - emoji.*
+  - users.*
+  - users.profile.*
 
 ### Getting Started
 
@@ -47,6 +32,12 @@ The following is a Maven example. Of course, it's also possible to grab the libr
 
 #### Incoming Webhoook
 
+Incoming Webhook is a simple way to post messages from external sources into Slack via normal HTTP requests.
+
+https://api.slack.com/incoming-webhooks
+
+jSlack naturally wraps its interface in Java. After lightly reading the official guide, you should be able to use it immediately.
+
 ```java
 import com.github.seratch.jslack.*;
 import com.github.seratch.jslack.api.webhook.*;
@@ -62,10 +53,13 @@ Payload payload = Payload.builder()
 new Slack().send(url, payload);
 ```
 
-#### Real Time Messaging
+#### Real Time Messaging API
 
-Additionally, WebSocket libraries are required:
+Real Time Messaging API is a WebSocket-based API that allows you to receive events from Slack in real time and send messages as user.
 
+https://api.slack.com/rtm
+
+When you use this API through jSlack library, you need adding additional WebSocket libraries:
 
 ```xml
 <dependency>
@@ -79,6 +73,8 @@ Additionally, WebSocket libraries are required:
     <version>1.13</version>
 </dependency>
 ```
+
+The following example shows you a simple usage of RTM API. 
 
 ```java
 import com.github.seratch.jslack.*;
@@ -111,7 +107,45 @@ try (RTMClient rtm = new Slack().rtm(token)) {
 } // #close method does #disconnect
 ```
 
-#### Methods
+The `message`, argument of messageHandler, is a string value (it's JSON data). You need to deserialize it with your favorite JSON library.
+
+jSlack already depends on [google-gson](https://github.com/google/gson) library. So you can use Gson as above example shows. If you prefer Jackson or other libraries, it's also possible.
+
+#### API Methods
+
+There are lots of APIs to integrate external sources into Slack. They follow HTTP RPC-style methods.
+
+- https://api.slack.com/methods
+- https://api.slack.com/web#basics
+
+When the API call has been completed successfully, its response contains `"ok": true` and other specific fields.
+
+```json
+{
+    "ok": true
+}
+```
+
+In some cases, it may contain `warning` field too.
+
+```
+{
+    "ok": true,
+    "warning": "something_problematic"
+}
+```
+
+When the API call failed or had some warnings, its response contains `"ok": false'` and also have the `error` field which holds a string error code.
+
+```json
+{
+    "ok": false,
+    "error": "something_bad"
+}
+```
+
+
+jSlack simply wrap API interface. Find more examples in this library's test code.
 
 ```java
 import com.github.seratch.jslack.*;

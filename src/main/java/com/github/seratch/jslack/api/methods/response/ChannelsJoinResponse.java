@@ -8,6 +8,7 @@ import lombok.Data;
 public class ChannelsJoinResponse implements SlackApiResponse {
 
     private boolean ok;
+    private String warning;
     private String error;
 
     private Channel channel;

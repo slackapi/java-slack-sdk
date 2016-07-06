@@ -6,6 +6,10 @@ public interface SlackApiResponse {
 
     void setOk(boolean isOk);
 
+    String getWarning();
+
+    void setWarning(String warning);
+
     String getError();
 
     void setError(String error);

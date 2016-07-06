@@ -7,6 +7,7 @@ import lombok.Data;
 public class DndSetSnoozeResponse implements SlackApiResponse {
 
     private boolean ok;
+    private String warning;
     private String error;
 
     private boolean snoozeEnabled;

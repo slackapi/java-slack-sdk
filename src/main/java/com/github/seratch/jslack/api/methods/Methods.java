@@ -160,4 +160,7 @@ public class Methods {
     // users.profile
     // ------------------------------
 
+    public static final String USERS_PROFILE_GET = "users.profile.get";
+    public static final String USERS_PROFILE_SET = "users.profile.set";
+
 }

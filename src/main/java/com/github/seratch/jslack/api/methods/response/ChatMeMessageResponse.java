@@ -7,6 +7,7 @@ import lombok.Data;
 public class ChatMeMessageResponse implements SlackApiResponse {
 
     private boolean ok;
+    private String warning;
     private String error;
 
     private String channel;
