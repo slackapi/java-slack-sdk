@@ -91,6 +91,23 @@ public class Methods {
     // groups
     // ------------------------------
 
+    public static final String GROUPS_ARCHIVE = "groups.archive";
+    public static final String GROUPS_CLOSE = "groups.close";
+    public static final String GROUPS_CREATE = "groups.create";
+    public static final String GROUPS_CREATE_CHILD = "groups.createChild";
+    public static final String GROUPS_HISTORY = "groups.history";
+    public static final String GROUPS_INFO = "groups.info";
+    public static final String GROUPS_INVITE = "groups.invite";
+    public static final String GROUPS_KICK = "groups.kick";
+    public static final String GROUPS_LEAVE = "groups.leave";
+    public static final String GROUPS_LIST = "groups.list";
+    public static final String GROUPS_MARK = "groups.mark";
+    public static final String GROUPS_OPEN = "groups.open";
+    public static final String GROUPS_RENAME = "groups.rename";
+    public static final String GROUPS_SET_PURPOSE = "groups.setPurpose";
+    public static final String GROUPS_SET_TOPIC = "groups.setTopic";
+    public static final String GROUPS_UNARCHIVE = "groups.unarchive";
+
     // ------------------------------
     // im
     // ------------------------------

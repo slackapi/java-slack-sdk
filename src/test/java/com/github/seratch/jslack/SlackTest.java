@@ -3,10 +3,7 @@ package com.github.seratch.jslack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.*;
 import com.github.seratch.jslack.api.methods.response.*;
-import com.github.seratch.jslack.api.model.Attachment;
-import com.github.seratch.jslack.api.model.Channel;
-import com.github.seratch.jslack.api.model.Field;
-import com.github.seratch.jslack.api.model.User;
+import com.github.seratch.jslack.api.model.*;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.rtm.RTMMessageHandler;
 import com.github.seratch.jslack.api.webhook.Payload;
@@ -335,6 +332,50 @@ public class SlackTest {
             EmojiListResponse response = slack.methods().emojiList(EmojiListRequest.builder().token(token).build());
             assertThat(response.isOk(), is(true));
             assertThat(response.getEmoji(), is(notNullValue()));
+        }
+    }
+
+    @Test
+    public void groups() throws IOException, SlackApiException {
+        Slack slack = new Slack();
+        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+
+        GroupsCreateResponse creationResponse = slack.methods().groupsCreate(
+                GroupsCreateRequest.builder().token(token).name("secret-" + System.currentTimeMillis()).build());
+        Group group = creationResponse.getGroup();
+        {
+            assertThat(creationResponse.isOk(), is(true));
+            assertThat(creationResponse.getGroup(), is(notNullValue()));
+        }
+
+        {
+            GroupsHistoryResponse response = slack.methods().groupsHistory(
+                    GroupsHistoryRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.isOk(), is(true));
+        }
+        {
+            GroupsInfoResponse response = slack.methods().groupsInfo(
+                    GroupsInfoRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        GroupsCreateChildResponse childCreationResponse = slack.methods().groupsCreateChild(
+                GroupsCreateChildRequest.builder().token(token).channel(group.getId()).build());
+        group = childCreationResponse.getGroup();
+        {
+            assertThat(childCreationResponse.isOk(), is(true));
+        }
+
+        {
+            GroupsArchiveResponse response = slack.methods().groupsArchive(
+                    GroupsArchiveRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
+            GroupsCloseResponse response = slack.methods().groupsClose(
+                    GroupsCloseRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.isOk(), is(true));
         }
     }
 

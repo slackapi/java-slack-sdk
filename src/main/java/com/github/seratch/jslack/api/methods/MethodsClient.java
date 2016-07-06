@@ -96,6 +96,22 @@ public interface MethodsClient {
     EmojiListResponse emojiList(EmojiListRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
+    // groups
+    // ------------------------------
+
+    GroupsArchiveResponse groupsArchive(GroupsArchiveRequest req) throws IOException, SlackApiException;
+
+    GroupsCloseResponse groupsClose(GroupsCloseRequest req) throws IOException, SlackApiException;
+
+    GroupsCreateChildResponse groupsCreateChild(GroupsCreateChildRequest req) throws IOException, SlackApiException;
+
+    GroupsCreateResponse groupsCreate(GroupsCreateRequest req) throws IOException, SlackApiException;
+
+    GroupsHistoryResponse groupsHistory(GroupsHistoryRequest req) throws IOException, SlackApiException;
+
+    GroupsInfoResponse groupsInfo(GroupsInfoRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
     // rtm
     // ------------------------------
 
