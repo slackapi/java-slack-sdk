@@ -337,6 +337,40 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsInviteResponse groupsInvite(GroupsInviteRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("user", req.getUser(), form);
+        return doPostForm(form, Methods.GROUPS_INVITE, GroupsInviteResponse.class);
+    }
+
+    @Override
+    public GroupsKickResponse groupsKick(GroupsKickRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("user", req.getUser(), form);
+        return doPostForm(form, Methods.GROUPS_KICK, GroupsKickResponse.class);
+    }
+
+    @Override
+    public GroupsLeaveResponse groupsLeave(GroupsLeaveRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.GROUPS_LEAVE, GroupsLeaveResponse.class);
+    }
+
+    @Override
+    public GroupsListResponse groupsList(GroupsListRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("exclude_archived", req.getExcludeArchived(), form);
+        return doPostForm(form, Methods.GROUPS_LIST, GroupsListResponse.class);
+    }
+
+    @Override
     public RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);

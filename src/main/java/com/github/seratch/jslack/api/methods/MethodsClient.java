@@ -111,6 +111,14 @@ public interface MethodsClient {
 
     GroupsInfoResponse groupsInfo(GroupsInfoRequest req) throws IOException, SlackApiException;
 
+    GroupsInviteResponse groupsInvite(GroupsInviteRequest req) throws IOException, SlackApiException;
+
+    GroupsKickResponse groupsKick(GroupsKickRequest req) throws IOException, SlackApiException;
+
+    GroupsLeaveResponse groupsLeave(GroupsLeaveRequest req) throws IOException, SlackApiException;
+
+    GroupsListResponse groupsList(GroupsListRequest req) throws IOException, SlackApiException;
+
     // ------------------------------
     // rtm
     // ------------------------------

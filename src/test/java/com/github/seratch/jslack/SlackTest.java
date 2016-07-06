@@ -349,10 +349,22 @@ public class SlackTest {
         }
 
         {
+            GroupsListResponse response = slack.methods().groupsList(
+                    GroupsListRequest.builder().token(token).build());
+            assertThat(response.isOk(), is(true));
+        }
+        {
+            GroupsListResponse response = slack.methods().groupsList(
+                    GroupsListRequest.builder().token(token).excludeArchived(1).build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
             GroupsHistoryResponse response = slack.methods().groupsHistory(
                     GroupsHistoryRequest.builder().token(token).channel(group.getId()).build());
             assertThat(response.isOk(), is(true));
         }
+
         {
             GroupsInfoResponse response = slack.methods().groupsInfo(
                     GroupsInfoRequest.builder().token(token).channel(group.getId()).build());
