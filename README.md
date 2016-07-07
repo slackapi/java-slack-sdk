@@ -12,7 +12,10 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - bots.*
   - channels.*
   - chat.*
+  - dnd.*
   - emoji.*
+  - groups.*
+  - rtm.*
   - users.*
   - users.profile.*
 
@@ -128,7 +131,7 @@ When the API call has been completed successfully, its response contains `"ok": 
 
 In some cases, it may contain `warning` field too.
 
-```
+```json
 {
     "ok": true,
     "warning": "something_problematic"
@@ -149,7 +152,8 @@ jSlack simply wrap API interface. Find more examples in this library's test code
 
 ```java
 import com.github.seratch.jslack.*;
-import com.github.seratch.jslack.api.methods.*;
+import com.github.seratch.jslack.api.methods.request.channels.*;
+import com.github.seratch.jslack.api.methods.response.channels.*;
 
 Slack slack = new Slack();
 

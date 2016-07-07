@@ -1,8 +1,38 @@
 package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.*;
-import com.github.seratch.jslack.api.methods.response.*;
+import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
+import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
+import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
+import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
+import com.github.seratch.jslack.api.methods.request.channels.*;
+import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
+import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
+import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
+import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.dnd.DndInfoRequest;
+import com.github.seratch.jslack.api.methods.request.dnd.DndTeamInfoRequest;
+import com.github.seratch.jslack.api.methods.request.emoji.EmojiListRequest;
+import com.github.seratch.jslack.api.methods.request.groups.*;
+import com.github.seratch.jslack.api.methods.request.users.*;
+import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
+import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
+import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
+import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
+import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
+import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
+import com.github.seratch.jslack.api.methods.response.channels.*;
+import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
+import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
+import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
+import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.dnd.DndInfoResponse;
+import com.github.seratch.jslack.api.methods.response.dnd.DndTeamInfoResponse;
+import com.github.seratch.jslack.api.methods.response.emoji.EmojiListResponse;
+import com.github.seratch.jslack.api.methods.response.groups.*;
+import com.github.seratch.jslack.api.methods.response.users.*;
+import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
+import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.github.seratch.jslack.api.model.*;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.rtm.RTMMessageHandler;
@@ -379,8 +409,36 @@ public class SlackTest {
         }
 
         {
+            ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(
+                    ChatPostMessageRequest.builder().text("hello").channel(childCreationResponse.getGroup().getId()).build());
+
+            String ts = postResponse.getTs();
+            GroupsMarkResponse response = slack.methods().groupsMark(
+                    GroupsMarkRequest.builder().token(token).channel(group.getId()).ts(ts).build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
+            GroupsSetPurposeResponse response = slack.methods().groupsSetPurpose(
+                    GroupsSetPurposeRequest.builder().token(token).channel(group.getId()).purpose("purpose").build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
+            GroupsSetTopicResponse response = slack.methods().groupsSetTopic(
+                    GroupsSetTopicRequest.builder().token(token).channel(group.getId()).topic("topic").build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
             GroupsArchiveResponse response = slack.methods().groupsArchive(
                     GroupsArchiveRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
+            GroupsUnarchiveResponse response = slack.methods().groupsUnarchive(
+                    GroupsUnarchiveRequest.builder().token(token).channel(group.getId()).build());
             assertThat(response.isOk(), is(true));
         }
 

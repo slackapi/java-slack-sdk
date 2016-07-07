@@ -3,8 +3,38 @@ package com.github.seratch.jslack.api.methods.impl;
 import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.*;
-import com.github.seratch.jslack.api.methods.response.*;
+import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
+import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
+import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
+import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
+import com.github.seratch.jslack.api.methods.request.channels.*;
+import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
+import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
+import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
+import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.dnd.*;
+import com.github.seratch.jslack.api.methods.request.emoji.EmojiListRequest;
+import com.github.seratch.jslack.api.methods.request.groups.*;
+import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
+import com.github.seratch.jslack.api.methods.request.users.*;
+import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
+import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
+import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
+import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
+import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
+import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
+import com.github.seratch.jslack.api.methods.response.channels.*;
+import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
+import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
+import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
+import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.dnd.*;
+import com.github.seratch.jslack.api.methods.response.emoji.EmojiListResponse;
+import com.github.seratch.jslack.api.methods.response.groups.*;
+import com.github.seratch.jslack.api.methods.response.rtm.RTMStartResponse;
+import com.github.seratch.jslack.api.methods.response.users.*;
+import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
+import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -368,6 +398,58 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("exclude_archived", req.getExcludeArchived(), form);
         return doPostForm(form, Methods.GROUPS_LIST, GroupsListResponse.class);
+    }
+
+    @Override
+    public GroupsMarkResponse groupsMark(GroupsMarkRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("ts", req.getTs(), form);
+        return doPostForm(form, Methods.GROUPS_MARK, GroupsMarkResponse.class);
+    }
+
+    @Override
+    public GroupsOpenResponse groupsOpen(GroupsOpenRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.GROUPS_OPEN, GroupsOpenResponse.class);
+    }
+
+    @Override
+    public GroupsRenameResponse groupsRename(GroupsRenameRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("name", req.getName(), form);
+        return doPostForm(form, Methods.GROUPS_RENAME, GroupsRenameResponse.class);
+    }
+
+    @Override
+    public GroupsSetPurposeResponse groupsSetPurpose(GroupsSetPurposeRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("purpose", req.getPurpose(), form);
+        return doPostForm(form, Methods.GROUPS_SET_PURPOSE, GroupsSetPurposeResponse.class);
+    }
+
+    @Override
+    public GroupsSetTopicResponse groupsSetTopic(GroupsSetTopicRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("topic", req.getTopic(), form);
+        return doPostForm(form, Methods.GROUPS_SET_TOPIC, GroupsSetTopicResponse.class);
+    }
+
+    @Override
+    public GroupsUnarchiveResponse groupsUnarchive(GroupsUnarchiveRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.GROUPS_UNARCHIVE, GroupsUnarchiveResponse.class);
     }
 
     @Override
