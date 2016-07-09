@@ -112,25 +112,54 @@ public class Methods {
     // im
     // ------------------------------
 
+    public static final String IM_CLOSE = "im.close";
+    public static final String IM_HISTORY = "im.history";
+    public static final String IM_LIST = "im.list";
+    public static final String IM_MARK = "im.mark";
+    public static final String IM_OPEN = "im.open";
+
     // ------------------------------
     // mpim
     // ------------------------------
+
+    public static final String MPIM_CLOSE = "mpim.close";
+    public static final String MPIM_HISTORY = "mpim.history";
+    public static final String MPIM_LIST = "mpim.list";
+    public static final String MPIM_MARK = "mpim.mark";
+    public static final String MPIM_OPEN = "mpim.open";
 
     // ------------------------------
     // oauth
     // ------------------------------
 
+    public static final String OAUTH_ACCESS = "oauth.access";
+
     // ------------------------------
     // pins
     // ------------------------------
+
+    public static final String PINS_ADD = "pins.add";
+    public static final String PINS_LIST = "pins.list";
+    public static final String PINS_REMOVE = "pins.remove";
 
     // ------------------------------
     // reactions
     // ------------------------------
 
+    public static final String REACTIONS_ADD = "reactions.add";
+    public static final String REACTIONS_GET = "reactions.get";
+    public static final String REACTIONS_LIST = "reactions.list";
+    public static final String REACTIONS_REMOVE = "reactions.remove";
+
     // ------------------------------
     // reminders
     // ------------------------------
+
+    public static final String REMINDERS_ADD = "reminders.add";
+    public static final String REMINDERS_COMPLETE = "reminders.complete";
+    public static final String REMINDERS_DELETE = "reminders.delete";
+    public static final String REMINDERS_INFO = "reminders.info";
+    public static final String REMINDERS_LIST = "reminders.list";
 
     // ------------------------------
     // rtm
@@ -142,25 +171,49 @@ public class Methods {
     // search
     // ------------------------------
 
+    public static final String SEARCH_ALL = "search.all";
+    public static final String SEARCH_FILES = "search.files";
+    public static final String SEARCH_MESSAGES = "search.messages";
+
     // ------------------------------
     // stars
     // ------------------------------
+
+    public static final String STARS_ADD = "stars.add";
+    public static final String STARS_LIST = "stars.list";
+    public static final String STARS_REMOVE = "stars.remove";
 
     // ------------------------------
     // team
     // ------------------------------
 
+    public static final String TEAM_ACCESS_LOGS = "team.accessLogs";
+    public static final String TEAM_BILLABLE_INFO = "team.billableInfo";
+    public static final String TEAM_INFO = "team.info";
+    public static final String TEAM_INTEGRATION_LOGS = "team.integrationLogs";
+
     // ------------------------------
     // team.profile
     // ------------------------------
+
+    public static final String TEAM_PROFILE_GET = "team.profile.get";
 
     // ------------------------------
     // usergroups
     // ------------------------------
 
+    public static final String USERGROUPS_CREATE = "usergroups.create";
+    public static final String USERGROUPS_DISABLE = "usergroups.disable";
+    public static final String USERGROUPS_ENABLE = "usergroups.enable";
+    public static final String USERGROUPS_LIST = "usergroups.list";
+    public static final String USERGROUPS_UPDATE = "usergroups.update";
+
     // ------------------------------
     // usergroups.users
     // ------------------------------
+
+    public static final String USERGROUPS_USERS_LIST = "usergroups.users.list";
+    public static final String USERGROUPS_USERS_UPDATE = "usergroups.users.update";
 
     // ------------------------------
     // users

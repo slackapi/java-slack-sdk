@@ -19,6 +19,12 @@ import java.net.URISyntaxException;
  */
 public class Slack {
 
+    private static final Slack SINGLETON = new Slack();
+
+    public static Slack getInstance() {
+        return SINGLETON;
+    }
+
     /**
      * Send a data to Incoming Webhook endpoint.
      */

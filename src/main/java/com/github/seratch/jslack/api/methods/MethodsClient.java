@@ -11,7 +11,22 @@ import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest
 import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
 import com.github.seratch.jslack.api.methods.request.emoji.EmojiListRequest;
+import com.github.seratch.jslack.api.methods.request.files.*;
+import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsAddRequest;
+import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
+import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
 import com.github.seratch.jslack.api.methods.request.groups.*;
+import com.github.seratch.jslack.api.methods.request.im.*;
+import com.github.seratch.jslack.api.methods.request.mpim.*;
+import com.github.seratch.jslack.api.methods.request.oauth.OAuthAccessRequest;
+import com.github.seratch.jslack.api.methods.request.pins.PinsAddRequest;
+import com.github.seratch.jslack.api.methods.request.pins.PinsListRequest;
+import com.github.seratch.jslack.api.methods.request.pins.PinsRemoveRequest;
+import com.github.seratch.jslack.api.methods.request.reactions.ReactionsAddRequest;
+import com.github.seratch.jslack.api.methods.request.reactions.ReactionsGetRequest;
+import com.github.seratch.jslack.api.methods.request.reactions.ReactionsListRequest;
+import com.github.seratch.jslack.api.methods.request.reactions.ReactionsRemoveRequest;
+import com.github.seratch.jslack.api.methods.request.reminders.*;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
@@ -27,7 +42,22 @@ import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageRespon
 import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
 import com.github.seratch.jslack.api.methods.response.emoji.EmojiListResponse;
+import com.github.seratch.jslack.api.methods.response.files.*;
+import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsAddResponse;
+import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
+import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsEditResponse;
 import com.github.seratch.jslack.api.methods.response.groups.*;
+import com.github.seratch.jslack.api.methods.response.im.*;
+import com.github.seratch.jslack.api.methods.response.mpim.*;
+import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
+import com.github.seratch.jslack.api.methods.response.pins.PinsAddResponse;
+import com.github.seratch.jslack.api.methods.response.pins.PinsListResponse;
+import com.github.seratch.jslack.api.methods.response.pins.PinsRemoveResponse;
+import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
+import com.github.seratch.jslack.api.methods.response.reactions.ReactionsGetResponse;
+import com.github.seratch.jslack.api.methods.response.reactions.ReactionsListResponse;
+import com.github.seratch.jslack.api.methods.response.reactions.ReactionsRemoveResponse;
+import com.github.seratch.jslack.api.methods.response.reminders.*;
 import com.github.seratch.jslack.api.methods.response.rtm.RTMStartResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
@@ -126,6 +156,32 @@ public interface MethodsClient {
     EmojiListResponse emojiList(EmojiListRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
+    // files
+    // ------------------------------
+
+    FilesDeleteResponse filesDelete(FilesDeleteRequest req) throws IOException, SlackApiException;
+
+    FilesInfoResponse filesInfo(FilesInfoRequest req) throws IOException, SlackApiException;
+
+    FilesListResponse filesList(FilesListRequest req) throws IOException, SlackApiException;
+
+    FilesRevokePublicURLResponse filesRevokePublicURL(FilesRevokePublicURLRequest req) throws IOException, SlackApiException;
+
+    FilesSharedPublicURLResponse filesSharedPublicURL(FilesSharedPublicURLRequest req) throws IOException, SlackApiException;
+
+    FilesUploadResponse filesUpload(FilesUploadRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // files.comments
+    // ------------------------------
+
+    FilesCommentsAddResponse filesCommentsAdd(FilesCommentsAddRequest req) throws IOException, SlackApiException;
+
+    FilesCommentsDeleteResponse filesCommentsDelete(FilesCommentsDeleteRequest req) throws IOException, SlackApiException;
+
+    FilesCommentsEditResponse filesCommentEdit(FilesCommentsEditRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
     // groups
     // ------------------------------
 
@@ -160,6 +216,76 @@ public interface MethodsClient {
     GroupsSetTopicResponse groupsSetTopic(GroupsSetTopicRequest req) throws IOException, SlackApiException;
 
     GroupsUnarchiveResponse groupsUnarchive(GroupsUnarchiveRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // im
+    // ------------------------------
+
+    ImCloseResponse imClose(ImCloseRequest req) throws IOException, SlackApiException;
+
+    ImHistoryResponse imHistory(ImHistoryRequest req) throws IOException, SlackApiException;
+
+    ImListResponse imList(ImListRequest req) throws IOException, SlackApiException;
+
+    ImMarkResponse imMark(ImMarkRequest req) throws IOException, SlackApiException;
+
+    ImOpenResponse imOpen(ImOpenRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // mpim
+    // ------------------------------
+
+    MpimCloseResponse mpimClose(MpimCloseRequest req) throws IOException, SlackApiException;
+
+    MpimHistoryResponse mpimHistory(MpimHistoryRequest req) throws IOException, SlackApiException;
+
+    MpimListResponse mpimList(MpimListRequest req) throws IOException, SlackApiException;
+
+    MpimMarkResponse mpimMark(MpimMarkRequest req) throws IOException, SlackApiException;
+
+    MpimOpenResponse mpimOpen(MpimOpenRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // oauth
+    // ------------------------------
+
+    OAuthAccessResponse oauthAccess(OAuthAccessRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // pins
+    // ------------------------------
+
+    PinsAddResponse pinsAdd(PinsAddRequest req) throws IOException, SlackApiException;
+
+    PinsListResponse pinsList(PinsListRequest req) throws IOException, SlackApiException;
+
+    PinsRemoveResponse pinsRemove(PinsRemoveRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // reactions
+    // ------------------------------
+
+    ReactionsAddResponse reactionsAdd(ReactionsAddRequest req) throws IOException, SlackApiException;
+
+    ReactionsGetResponse reactionsGet(ReactionsGetRequest req) throws IOException, SlackApiException;
+
+    ReactionsListResponse reactionsList(ReactionsListRequest req) throws IOException, SlackApiException;
+
+    ReactionsRemoveResponse reactionsRemove(ReactionsRemoveRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // reminders
+    // ------------------------------
+
+    RemindersAddResponse remindersAdd(RemindersAddRequest req) throws IOException, SlackApiException;
+
+    RemindersCompleteResponse remindersComplete(RemindersCompleteRequest req) throws IOException, SlackApiException;
+
+    RemindersDeleteResponse remindersDelete(RemindersDeleteRequest req) throws IOException, SlackApiException;
+
+    RemindersInfoResponse remindersInfo(RemindersInfoRequest req) throws IOException, SlackApiException;
+
+    RemindersListResponse remindersList(RemindersListRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
     // rtm

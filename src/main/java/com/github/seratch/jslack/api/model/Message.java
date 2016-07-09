@@ -15,13 +15,7 @@ public class Message {
     private String ts;
     @SerializedName("is_starred")
     private boolean starred;
+    private boolean wibblr;
     private List<String> pinnedTo;
     private List<Reaction> reactions;
-
-    @Data
-    public static class Reaction {
-        private String name;
-        private Integer count;
-        private List<String> users;
-    }
 }
