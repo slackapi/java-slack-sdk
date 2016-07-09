@@ -37,6 +37,11 @@ import com.github.seratch.jslack.api.methods.request.search.SearchMessagesReques
 import com.github.seratch.jslack.api.methods.request.stars.StarsAddRequest;
 import com.github.seratch.jslack.api.methods.request.stars.StarsListRequest;
 import com.github.seratch.jslack.api.methods.request.stars.StarsRemoveRequest;
+import com.github.seratch.jslack.api.methods.request.team.TeamAccessLogsRequest;
+import com.github.seratch.jslack.api.methods.request.team.TeamBillableInfoRequest;
+import com.github.seratch.jslack.api.methods.request.team.TeamInfoRequest;
+import com.github.seratch.jslack.api.methods.request.team.TeamIntegrationLogsRequest;
+import com.github.seratch.jslack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -74,6 +79,11 @@ import com.github.seratch.jslack.api.methods.response.search.SearchMessagesRespo
 import com.github.seratch.jslack.api.methods.response.stars.StarsAddResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsListResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsRemoveResponse;
+import com.github.seratch.jslack.api.methods.response.team.TeamAccessLogsResponse;
+import com.github.seratch.jslack.api.methods.response.team.TeamBillableInfoResponse;
+import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
+import com.github.seratch.jslack.api.methods.response.team.TeamIntegrationLogsResponse;
+import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -904,6 +914,50 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("file_comment", req.getFileComment(), form);
         setIfNotNull("timestamp", req.getTimestamp(), form);
         return doPostForm(form, Methods.STARS_REMOVE, StarsRemoveResponse.class);
+    }
+
+    @Override
+    public TeamAccessLogsResponse teamAccessLogs(TeamAccessLogsRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("count", req.getCount(), form);
+        setIfNotNull("page", req.getPage(), form);
+        return doPostForm(form, Methods.TEAM_ACCESS_LOGS, TeamAccessLogsResponse.class);
+    }
+
+    @Override
+    public TeamBillableInfoResponse teamBillableInfo(TeamBillableInfoRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("user", req.getUser(), form);
+        return doPostForm(form, Methods.TEAM_BILLABLE_INFO, TeamBillableInfoResponse.class);
+    }
+
+    @Override
+    public TeamInfoResponse teamInfo(TeamInfoRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        return doPostForm(form, Methods.TEAM_INFO, TeamInfoResponse.class);
+    }
+
+    @Override
+    public TeamIntegrationLogsResponse teamIntegrationLogs(TeamIntegrationLogsRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("service_id", req.getServiceId(), form);
+        setIfNotNull("user", req.getUser(), form);
+        setIfNotNull("change_type", req.getChangeType(), form);
+        setIfNotNull("count", req.getCount(), form);
+        setIfNotNull("page", req.getPage(), form);
+        return doPostForm(form, Methods.TEAM_INTEGRATION_LOGS, TeamIntegrationLogsResponse.class);
+    }
+
+    @Override
+    public TeamProfileGetResponse teamProfileGet(TeamProfileGetRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("visibility", req.getVisibility(), form);
+        return doPostForm(form, Methods.TEAM_PROFILE_GET, TeamProfileGetResponse.class);
     }
 
     @Override

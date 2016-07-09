@@ -34,6 +34,11 @@ import com.github.seratch.jslack.api.methods.request.search.SearchMessagesReques
 import com.github.seratch.jslack.api.methods.request.stars.StarsAddRequest;
 import com.github.seratch.jslack.api.methods.request.stars.StarsListRequest;
 import com.github.seratch.jslack.api.methods.request.stars.StarsRemoveRequest;
+import com.github.seratch.jslack.api.methods.request.team.TeamAccessLogsRequest;
+import com.github.seratch.jslack.api.methods.request.team.TeamBillableInfoRequest;
+import com.github.seratch.jslack.api.methods.request.team.TeamInfoRequest;
+import com.github.seratch.jslack.api.methods.request.team.TeamIntegrationLogsRequest;
+import com.github.seratch.jslack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -71,6 +76,11 @@ import com.github.seratch.jslack.api.methods.response.search.SearchMessagesRespo
 import com.github.seratch.jslack.api.methods.response.stars.StarsAddResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsListResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsRemoveResponse;
+import com.github.seratch.jslack.api.methods.response.team.TeamAccessLogsResponse;
+import com.github.seratch.jslack.api.methods.response.team.TeamBillableInfoResponse;
+import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
+import com.github.seratch.jslack.api.methods.response.team.TeamIntegrationLogsResponse;
+import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -324,6 +334,20 @@ public interface MethodsClient {
     StarsListResponse starsList(StarsListRequest req) throws IOException, SlackApiException;
 
     StarsRemoveResponse starsRemove(StarsRemoveRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // team
+    // ------------------------------
+
+    TeamAccessLogsResponse teamAccessLogs(TeamAccessLogsRequest req) throws IOException, SlackApiException;
+
+    TeamBillableInfoResponse teamBillableInfo(TeamBillableInfoRequest req) throws IOException, SlackApiException;
+
+    TeamInfoResponse teamInfo(TeamInfoRequest req) throws IOException, SlackApiException;
+
+    TeamIntegrationLogsResponse teamIntegrationLogs(TeamIntegrationLogsRequest req) throws IOException, SlackApiException;
+
+    TeamProfileGetResponse teamProfileGet(TeamProfileGetRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
     // users

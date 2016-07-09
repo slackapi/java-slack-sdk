@@ -30,7 +30,6 @@ public class Slack_reactions_Test {
 
     @Test
     public void test() throws IOException, SlackApiException {
-        String user = slack.methods().usersList(UsersListRequest.builder().token(token).build()).getMembers().get(0).getId();
         String channel = slack.methods().channelsList(ChannelsListRequest.builder().token(token).excludeArchived(1).build())
                 .getChannels().get(0).getId();
 
