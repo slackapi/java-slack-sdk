@@ -28,6 +28,12 @@ import com.github.seratch.jslack.api.methods.request.reactions.ReactionsListRequ
 import com.github.seratch.jslack.api.methods.request.reactions.ReactionsRemoveRequest;
 import com.github.seratch.jslack.api.methods.request.reminders.*;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
+import com.github.seratch.jslack.api.methods.request.search.SearchAllRequest;
+import com.github.seratch.jslack.api.methods.request.search.SearchFilesRequest;
+import com.github.seratch.jslack.api.methods.request.search.SearchMessagesRequest;
+import com.github.seratch.jslack.api.methods.request.stars.StarsAddRequest;
+import com.github.seratch.jslack.api.methods.request.stars.StarsListRequest;
+import com.github.seratch.jslack.api.methods.request.stars.StarsRemoveRequest;
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -59,6 +65,12 @@ import com.github.seratch.jslack.api.methods.response.reactions.ReactionsListRes
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsRemoveResponse;
 import com.github.seratch.jslack.api.methods.response.reminders.*;
 import com.github.seratch.jslack.api.methods.response.rtm.RTMStartResponse;
+import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
+import com.github.seratch.jslack.api.methods.response.search.SearchFilesResponse;
+import com.github.seratch.jslack.api.methods.response.search.SearchMessagesResponse;
+import com.github.seratch.jslack.api.methods.response.stars.StarsAddResponse;
+import com.github.seratch.jslack.api.methods.response.stars.StarsListResponse;
+import com.github.seratch.jslack.api.methods.response.stars.StarsRemoveResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -292,6 +304,26 @@ public interface MethodsClient {
     // ------------------------------
 
     RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // search
+    // ------------------------------
+
+    SearchAllResponse searchAll(SearchAllRequest req) throws IOException, SlackApiException;
+
+    SearchMessagesResponse searchMessages(SearchMessagesRequest req) throws IOException, SlackApiException;
+
+    SearchFilesResponse searchFiles(SearchFilesRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // stars
+    // ------------------------------
+
+    StarsAddResponse starsAdd(StarsAddRequest req) throws IOException, SlackApiException;
+
+    StarsListResponse starsList(StarsListRequest req) throws IOException, SlackApiException;
+
+    StarsRemoveResponse starsRemove(StarsRemoveRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
     // users

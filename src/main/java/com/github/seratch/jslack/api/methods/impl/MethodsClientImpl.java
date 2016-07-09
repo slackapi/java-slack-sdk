@@ -31,6 +31,12 @@ import com.github.seratch.jslack.api.methods.request.reactions.ReactionsListRequ
 import com.github.seratch.jslack.api.methods.request.reactions.ReactionsRemoveRequest;
 import com.github.seratch.jslack.api.methods.request.reminders.*;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
+import com.github.seratch.jslack.api.methods.request.search.SearchAllRequest;
+import com.github.seratch.jslack.api.methods.request.search.SearchFilesRequest;
+import com.github.seratch.jslack.api.methods.request.search.SearchMessagesRequest;
+import com.github.seratch.jslack.api.methods.request.stars.StarsAddRequest;
+import com.github.seratch.jslack.api.methods.request.stars.StarsListRequest;
+import com.github.seratch.jslack.api.methods.request.stars.StarsRemoveRequest;
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -62,6 +68,12 @@ import com.github.seratch.jslack.api.methods.response.reactions.ReactionsListRes
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsRemoveResponse;
 import com.github.seratch.jslack.api.methods.response.reminders.*;
 import com.github.seratch.jslack.api.methods.response.rtm.RTMStartResponse;
+import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
+import com.github.seratch.jslack.api.methods.response.search.SearchFilesResponse;
+import com.github.seratch.jslack.api.methods.response.search.SearchMessagesResponse;
+import com.github.seratch.jslack.api.methods.response.stars.StarsAddResponse;
+import com.github.seratch.jslack.api.methods.response.stars.StarsListResponse;
+import com.github.seratch.jslack.api.methods.response.stars.StarsRemoveResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -822,6 +834,76 @@ public class MethodsClientImpl implements MethodsClient {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         return doPostForm(form, Methods.RTM_START, RTMStartResponse.class);
+    }
+
+    @Override
+    public SearchAllResponse searchAll(SearchAllRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("query", req.getQuery(), form);
+        setIfNotNull("sort", req.getSort(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
+        setIfNotNull("highlight", req.getHighlight(), form);
+        setIfNotNull("count", req.getCount(), form);
+        setIfNotNull("page", req.getPage(), form);
+        return doPostForm(form, Methods.SEARCH_ALL, SearchAllResponse.class);
+    }
+
+    @Override
+    public SearchMessagesResponse searchMessages(SearchMessagesRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("query", req.getQuery(), form);
+        setIfNotNull("sort", req.getSort(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
+        setIfNotNull("highlight", req.getHighlight(), form);
+        setIfNotNull("count", req.getCount(), form);
+        setIfNotNull("page", req.getPage(), form);
+        return doPostForm(form, Methods.SEARCH_MESSAGES, SearchMessagesResponse.class);
+    }
+
+    @Override
+    public SearchFilesResponse searchFiles(SearchFilesRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("query", req.getQuery(), form);
+        setIfNotNull("sort", req.getSort(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
+        setIfNotNull("highlight", req.getHighlight(), form);
+        setIfNotNull("count", req.getCount(), form);
+        setIfNotNull("page", req.getPage(), form);
+        return doPostForm(form, Methods.SEARCH_FILES, SearchFilesResponse.class);
+    }
+
+    @Override
+    public StarsAddResponse starsAdd(StarsAddRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("file", req.getFile(), form);
+        setIfNotNull("file_comment", req.getFileComment(), form);
+        setIfNotNull("timestamp", req.getTimestamp(), form);
+        return doPostForm(form, Methods.STARS_ADD, StarsAddResponse.class);
+    }
+
+    @Override
+    public StarsListResponse starsList(StarsListRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("count", req.getCount(), form);
+        setIfNotNull("page", req.getPage(), form);
+        return doPostForm(form, Methods.STARS_LIST, StarsListResponse.class);
+    }
+
+    @Override
+    public StarsRemoveResponse starsRemove(StarsRemoveRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("file", req.getFile(), form);
+        setIfNotNull("file_comment", req.getFileComment(), form);
+        setIfNotNull("timestamp", req.getTimestamp(), form);
+        return doPostForm(form, Methods.STARS_REMOVE, StarsRemoveResponse.class);
     }
 
     @Override
