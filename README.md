@@ -15,7 +15,6 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - dnd.*
   - emoji.*
   - files.*
-  - files.comments.*
   - groups.*
   - im.*
   - mpim.*
@@ -24,8 +23,9 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - rtm.*
   - search.*
   - stars.*
+  - team.*
+  - usergroups.*
   - users.*
-  - users.profile.*
 
 ### Getting Started
 
@@ -41,7 +41,7 @@ The following is a Maven example. Of course, it's also possible to grab the libr
 
 ### Examples
 
-#### Incoming Webhoook
+#### Incoming Webhook
 
 Incoming Webhook is a simple way to post messages from external sources into Slack via normal HTTP requests.
 
@@ -53,7 +53,9 @@ jSlack naturally wraps its interface in Java. After lightly reading the official
 import com.github.seratch.jslack.*;
 import com.github.seratch.jslack.api.webhook.*;
 
+// https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 String url = System.getenv("SLACK_WEBHOOK_URL");
+
 Payload payload = Payload.builder()
   .channel("#random")
   .username("jSlack Bot")
@@ -61,7 +63,9 @@ Payload payload = Payload.builder()
   .text("Hello World!")
   .build();
 
-new Slack().send(url, payload);
+Slack slack = Slack.getInstance();
+WebhookResponse response = slack.send(url, payload);
+// response.code, response.message, response.body
 ```
 
 #### Real Time Messaging API
@@ -163,12 +167,54 @@ import com.github.seratch.jslack.*;
 import com.github.seratch.jslack.api.methods.request.channels.*;
 import com.github.seratch.jslack.api.methods.response.channels.*;
 
-Slack slack = new Slack();
+Slack slack = Slack.getInstance();
 
 String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
 ChannelsCreateRequest channelCreation = ChannelsCreateRequest.builder().token(token).name(channelName).build();
 ChannelsCreateResponse response = slack.methods().channelsCreate(channelCreation);
 ```
+
+#### API Methods Examples
+
+You can find more examples here: https://github.com/seratch/jslack/tree/master/src/test/java/com/github/seratch/jslack
+
+##### Post a message to a channel
+
+```java
+String token = "api-token";
+Slack slack = Slack.getInstance();
+
+// find all channels in the team
+ChannelsListResponse channelsResponse = slack.methods().channelsList(
+  ChannelsListRequest.builder().token(token).build());
+assertThat(channelsResponse.isOk(), is(true));
+// find #general
+Channel general = channelsResponse.getChannels().stream()
+        .filter(c -> c.getName().equals("general")).findFirst().get();
+
+// https://slack.com/api/chat.postMessage
+ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(
+  ChatPostMessageRequest.builder()
+    .token(token)
+    .channel(general.getId())
+    .text("Hello World!")
+    .build());
+assertThat(postResponse.isOk(), is(true));
+
+// timestamp of the posted message
+String messageTimestamp = postResponse.getMessage().getTs();
+
+Thread.sleep(1000L);
+
+ChatDeleteResponse deleteResponse = slack.methods().chatDelete(
+  ChatDeleteRequest.builder()
+    .token(token)
+    .channel(general.getId())
+    .ts(messageTimestamp)
+    .build());
+assertThat(deleteResponse.isOk(), is(true));
+```
+
 
 ### License
 

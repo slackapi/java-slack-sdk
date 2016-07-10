@@ -13,3 +13,4 @@ target/
 *.ipr
 *.iws
 build/
+downloaded_files/

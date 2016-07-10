@@ -2,9 +2,9 @@ package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Field;
+import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.api.webhook.Payload;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.Response;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -56,7 +56,7 @@ public class Slack_incomingWebhooks_Test {
         }
         payload.getAttachments().add(attachment);
 
-        Response response = slack.send(url, payload);
+        WebhookResponse response = slack.send(url, payload);
         log.info(response.toString());
     }
 

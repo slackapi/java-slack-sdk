@@ -1,12 +1,8 @@
 package com.github.seratch.jslack.api.methods.response.search;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.MatchedItem;
-import com.github.seratch.jslack.api.model.Paging;
 import com.github.seratch.jslack.api.model.SearchResult;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class SearchAllResponse implements SlackApiResponse {

@@ -39,6 +39,9 @@ import com.github.seratch.jslack.api.methods.request.team.TeamBillableInfoReques
 import com.github.seratch.jslack.api.methods.request.team.TeamInfoRequest;
 import com.github.seratch.jslack.api.methods.request.team.TeamIntegrationLogsRequest;
 import com.github.seratch.jslack.api.methods.request.team.profile.TeamProfileGetRequest;
+import com.github.seratch.jslack.api.methods.request.usergroups.*;
+import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
+import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupUsersUpdateRequest;
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -81,6 +84,9 @@ import com.github.seratch.jslack.api.methods.response.team.TeamBillableInfoRespo
 import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
 import com.github.seratch.jslack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGetResponse;
+import com.github.seratch.jslack.api.methods.response.usergroups.*;
+import com.github.seratch.jslack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
+import com.github.seratch.jslack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -348,6 +354,24 @@ public interface MethodsClient {
     TeamIntegrationLogsResponse teamIntegrationLogs(TeamIntegrationLogsRequest req) throws IOException, SlackApiException;
 
     TeamProfileGetResponse teamProfileGet(TeamProfileGetRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // usergroups
+    // ------------------------------
+
+    UsergroupsCreateResponse usergroupsCreate(UsergroupsCreateRequest req) throws IOException, SlackApiException;
+
+    UsergroupsDisableResponse usergroupsDisable(UsergroupsDisableRequest req) throws IOException, SlackApiException;
+
+    UsergroupsEnableResponse usergroupsEnable(UsergroupsEnableRequest req) throws IOException, SlackApiException;
+
+    UsergroupsListResponse usergroupsList(UsergroupsListRequest req) throws IOException, SlackApiException;
+
+    UsergroupsUpdateResponse usergroupsUpdate(UsergroupsUpdateRequest req) throws IOException, SlackApiException;
+
+    UsergroupUsersListResponse usergroupUsersList(UsergroupUsersListRequest req) throws IOException, SlackApiException;
+
+    UsergroupUsersUpdateResponse usergroupUsersUpdate(UsergroupUsersUpdateRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
     // users

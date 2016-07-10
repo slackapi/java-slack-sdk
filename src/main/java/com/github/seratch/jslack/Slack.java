@@ -5,6 +5,7 @@ import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.impl.MethodsClientImpl;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
 import com.github.seratch.jslack.api.rtm.RTMClient;
+import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
 import okhttp3.Response;
@@ -28,8 +29,16 @@ public class Slack {
     /**
      * Send a data to Incoming Webhook endpoint.
      */
-    public Response send(String url, Payload payload) throws IOException {
-        return new SlackHttpClient().postJsonPostRequest(url, payload);
+    public WebhookResponse send(String url, Payload payload) throws IOException {
+        Response httpResponse = new SlackHttpClient().postJsonPostRequest(url, payload);
+        String body = httpResponse.body().string();
+        SlackHttpClient.debugLog(httpResponse, body);
+
+        return WebhookResponse.builder()
+                .code(httpResponse.code())
+                .message(httpResponse.message())
+                .body(body)
+                .build();
     }
 
     /**

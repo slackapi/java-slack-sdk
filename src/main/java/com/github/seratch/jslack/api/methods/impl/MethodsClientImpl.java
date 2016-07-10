@@ -42,6 +42,9 @@ import com.github.seratch.jslack.api.methods.request.team.TeamBillableInfoReques
 import com.github.seratch.jslack.api.methods.request.team.TeamInfoRequest;
 import com.github.seratch.jslack.api.methods.request.team.TeamIntegrationLogsRequest;
 import com.github.seratch.jslack.api.methods.request.team.profile.TeamProfileGetRequest;
+import com.github.seratch.jslack.api.methods.request.usergroups.*;
+import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
+import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupUsersUpdateRequest;
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -84,6 +87,9 @@ import com.github.seratch.jslack.api.methods.response.team.TeamBillableInfoRespo
 import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
 import com.github.seratch.jslack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGetResponse;
+import com.github.seratch.jslack.api.methods.response.usergroups.*;
+import com.github.seratch.jslack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
+import com.github.seratch.jslack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -94,7 +100,6 @@ import okhttp3.FormBody;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okio.Buffer;
 
 import java.io.IOException;
 
@@ -961,6 +966,82 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsergroupsCreateResponse usergroupsCreate(UsergroupsCreateRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("name", req.getName(), form);
+        setIfNotNull("handle", req.getHandle(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        if (req.getChannels() != null) {
+            setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("include_count", req.getIncludeCount(), form);
+        return doPostForm(form, Methods.USERGROUPS_CREATE, UsergroupsCreateResponse.class);
+    }
+
+    @Override
+    public UsergroupsDisableResponse usergroupsDisable(UsergroupsDisableRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("include_count", req.getIncludeCount(), form);
+        return doPostForm(form, Methods.USERGROUPS_DISABLE, UsergroupsDisableResponse.class);
+    }
+
+    @Override
+    public UsergroupsEnableResponse usergroupsEnable(UsergroupsEnableRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("include_count", req.getIncludeCount(), form);
+        return doPostForm(form, Methods.USERGROUPS_ENABLE, UsergroupsEnableResponse.class);
+    }
+
+    @Override
+    public UsergroupsListResponse usergroupsList(UsergroupsListRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("include_disabled", req.getIncludeDisabled(), form);
+        setIfNotNull("include_count", req.getIncludeCount(), form);
+        setIfNotNull("include_users", req.getIncludeUsers(), form);
+        return doPostForm(form, Methods.USERGROUPS_LIST, UsergroupsListResponse.class);
+    }
+
+    @Override
+    public UsergroupsUpdateResponse usergroupsUpdate(UsergroupsUpdateRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("usergroup", req.getUsergroup(), form);
+        setIfNotNull("name", req.getName(), form);
+        setIfNotNull("handle", req.getHandle(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        if (req.getChannels() != null) {
+            setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("include_count", req.getIncludeCount(), form);
+        return doPostForm(form, Methods.USERGROUPS_UPDATE, UsergroupsUpdateResponse.class);
+    }
+
+    @Override
+    public UsergroupUsersListResponse usergroupUsersList(UsergroupUsersListRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("usergroup", req.getUsergroup(), form);
+        setIfNotNull("include_disabled", req.getIncludeDisabled(), form);
+        return doPostForm(form, Methods.USERGROUPS_USERS_LIST, UsergroupUsersListResponse.class);
+    }
+
+    @Override
+    public UsergroupUsersUpdateResponse usergroupUsersUpdate(UsergroupUsersUpdateRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("usergroup", req.getUsergroup(), form);
+        if (req.getUsers() != null) {
+            setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("include_count", req.getIncludeCount(), form);
+        return doPostForm(form, Methods.USERGROUPS_USERS_UPDATE, UsergroupUsersUpdateResponse.class);
+    }
+
+    @Override
     public UsersGetPresenceResponse usersGetPresence(UsersGetPresenceRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
@@ -1047,50 +1128,14 @@ public class MethodsClientImpl implements MethodsClient {
 
     private <T> T doPostForm(FormBody.Builder form, String endpoint, Class<T> clazz) throws IOException, SlackApiException {
         Response response = slackHttpClient.postForm(ENDPOINT_URL_PREFIX + endpoint, form.build());
-        return buildResponse(response, clazz);
+        return SlackHttpClient.buildJsonResponse(response, clazz);
     }
 
     private <T> T doPostMultipart(MultipartBody.Builder form, String endpoint, Class<T> clazz) throws IOException, SlackApiException {
         form.setType(MultipartBody.FORM);
         Response response = slackHttpClient.postMultipart(ENDPOINT_URL_PREFIX + endpoint, form.build());
-        return buildResponse(response, clazz);
+        return SlackHttpClient.buildJsonResponse(response, clazz);
     }
 
-    private <T> T buildResponse(Response response, Class<T> clazz) throws IOException, SlackApiException {
-        if (response.code() == 200) {
-            String json = response.body().string();
-            if (log.isDebugEnabled()) {
-                Buffer requestBody = new Buffer();
-                response.request().body().writeTo(requestBody);
-                String textRequestBody = null;
-                try {
-                    textRequestBody = requestBody.buffer().readUtf8();
-                } catch (Exception e) {
-                    log.debug("Failed to read request body because {}, error: {}", e.getMessage(), e.getClass().getCanonicalName());
-                }
-
-                log.debug("\n[Request URL]\n{} {}\n" +
-                                "[Specified Request Headers]\n{}" +
-                                "[Request Body]\n{}\n" +
-                                "Content-Type: {}\n" +
-                                "Content Length: {}\n" +
-                                "\n" +
-                                "[Response Headers]\n{}" +
-                                "[Response Body]\n{}\n",
-                        response.request().method(),
-                        response.request().url(),
-                        response.request().headers(),
-                        textRequestBody,
-                        response.request().body().contentType(),
-                        response.request().body().contentLength(),
-                        response.headers(),
-                        json);
-            }
-            return GsonFactory.createSnakeCase().fromJson(json, clazz);
-        } else {
-            String json = response.body().string();
-            throw new SlackApiException(response, json);
-        }
-    }
 
 }
