@@ -39,6 +39,8 @@ The following is a Maven example. Of course, it's also possible to grab the libr
 <version>{latest version}</version>
 ```
 
+See also: [Getting started with groovysh](https://github.com/seratch/jslack/wiki/Getting-Started-with-groovysh)
+
 ### Examples
 
 #### Incoming Webhook
