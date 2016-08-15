@@ -1,5 +1,8 @@
 package com.github.seratch.jslack;
 
+import com.github.seratch.jslack.shortcut.Shortcut;
+import com.github.seratch.jslack.shortcut.impl.ShortcutImpl;
+import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.impl.MethodsClientImpl;
@@ -59,6 +62,14 @@ public class Slack {
      */
     public MethodsClient methods() {
         return new MethodsClientImpl();
+    }
+
+    public Shortcut shortcut() {
+        return new ShortcutImpl();
+    }
+
+    public Shortcut shortcut(ApiToken apiToken) {
+        return new ShortcutImpl(apiToken);
     }
 
 }

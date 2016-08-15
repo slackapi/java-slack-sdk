@@ -218,6 +218,24 @@ assertThat(deleteResponse.isOk(), is(true));
 ```
 
 
+#### (Original) Shortcut APIs
+
+```java
+Slack slack = Slack.getInstance();
+ApiToken token = ApiToken.of(System.getenv("SLACK_BOT_TEST_API_TOKEN"));
+
+Shortcut shortcut = slack.shortcut(token);
+
+List<Message> messages = shortcut.findRecentMessagesByName(ChannelName.of("general"));
+ReactionsAddResponse addReaction = shortcut.addReaction(messages.get(0), ReactionName.of("smile"));
+
+ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"), "hello, hello!");
+
+Attachment attachment = Attachment.builder().text("text").footer("footer").build();
+List<Attachment> attachments = Arrays.asList(attachment);
+ChatPostMessageResponse response = shortcut.postAsBot(ChannelName.of("general"), "hello, hello!");
+```
+
 ### License
 
 (The MIT License)
