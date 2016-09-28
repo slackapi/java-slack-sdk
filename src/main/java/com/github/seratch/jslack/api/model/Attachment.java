@@ -124,4 +124,12 @@ public class Attachment {
      */
     private Integer ts;
 
+    /**
+     * By default,
+     * <a href="https://api.slack.com/docs/message-formatting#message_formatting>message text
+     * in attachments</a> are not formatted. To enable formatting on attachment fields, add the
+     * name of the field (as defined in the API) in this list.
+     */
+    private List<String> mrkdwnIn = new ArrayList<>();
+
 }
