@@ -110,7 +110,11 @@ public class MethodsClientImpl implements MethodsClient {
 
     public static final String ENDPOINT_URL_PREFIX = "https://slack.com/api/";
 
-    private final SlackHttpClient slackHttpClient = new SlackHttpClient();
+    private final SlackHttpClient slackHttpClient;
+
+    public MethodsClientImpl(SlackHttpClient slackHttpClient) {
+        this.slackHttpClient = slackHttpClient;
+    }
 
     // ----------------------------------------------------------------------------------
     // public methods

@@ -1,16 +1,16 @@
 package com.github.seratch.jslack;
 
-import com.github.seratch.jslack.shortcut.Shortcut;
-import com.github.seratch.jslack.shortcut.impl.ShortcutImpl;
-import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.impl.MethodsClientImpl;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
 import com.github.seratch.jslack.api.rtm.RTMClient;
-import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.api.webhook.Payload;
+import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
+import com.github.seratch.jslack.shortcut.Shortcut;
+import com.github.seratch.jslack.shortcut.impl.ShortcutImpl;
+import com.github.seratch.jslack.shortcut.model.ApiToken;
 import okhttp3.Response;
 
 import java.io.IOException;
@@ -23,10 +23,24 @@ import java.net.URISyntaxException;
  */
 public class Slack {
 
-    private static final Slack SINGLETON = new Slack();
+    private static final Slack SINGLETON = new Slack(new SlackHttpClient());
+
+    private final SlackHttpClient httpClient;
+
+    public Slack() {
+        this.httpClient = new SlackHttpClient();
+    }
+
+    private Slack(SlackHttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
 
     public static Slack getInstance() {
         return SINGLETON;
+    }
+
+    public static Slack getInstance(SlackHttpClient httpClient) {
+        return new Slack(httpClient);
     }
 
     /**
@@ -61,15 +75,15 @@ public class Slack {
      * Creates a Methods API client.
      */
     public MethodsClient methods() {
-        return new MethodsClientImpl();
+        return new MethodsClientImpl(httpClient);
     }
 
     public Shortcut shortcut() {
-        return new ShortcutImpl();
+        return new ShortcutImpl(this);
     }
 
     public Shortcut shortcut(ApiToken apiToken) {
-        return new ShortcutImpl(apiToken);
+        return new ShortcutImpl(this, apiToken);
     }
 
 }

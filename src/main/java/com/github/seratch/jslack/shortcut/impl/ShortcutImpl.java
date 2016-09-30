@@ -31,16 +31,18 @@ public class ShortcutImpl implements Shortcut {
 
     private final Optional<ApiToken> apiToken;
 
-    private final Slack slack = Slack.getInstance();
+    private final Slack slack;
 
     private List<Channel> channels = new ArrayList<>();
 
-    public ShortcutImpl(ApiToken apiToken) {
-        this.apiToken = Optional.ofNullable(apiToken);
+    public ShortcutImpl(Slack slack) {
+        this.apiToken = Optional.empty();
+        this.slack = slack;
     }
 
-    public ShortcutImpl() {
-        this.apiToken = Optional.empty();
+    public ShortcutImpl(Slack slack, ApiToken apiToken) {
+        this.apiToken = Optional.ofNullable(apiToken);
+        this.slack = slack;
     }
 
     @Override
