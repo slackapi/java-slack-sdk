@@ -119,7 +119,7 @@ public class ShortcutImpl implements Shortcut {
 
     @Override
     public ChatPostMessageResponse post(ChannelName channel, String text) throws IOException, SlackApiException {
-        return _post(channel, text, Collections.emptyList(), false);
+        return _post(channel, text, Collections.emptyList(), true);
     }
 
     @Override
