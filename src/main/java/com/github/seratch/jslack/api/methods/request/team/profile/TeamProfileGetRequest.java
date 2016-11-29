@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.api.methods.request.team.profile;
 
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
-
 import lombok.Builder;
 import lombok.Data;
 
