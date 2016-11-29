@@ -5,9 +5,11 @@ import lombok.Data;
 
 import java.util.List;
 
+import com.github.seratch.jslack.api.methods.SlackApiRequest;
+
 @Data
 @Builder
-public class FilesListRequest {
+public class FilesListRequest implements SlackApiRequest {
 
     private String token;
     private String user;

@@ -1,12 +1,13 @@
 package com.github.seratch.jslack.api.methods.request.users.profile;
 
+import com.github.seratch.jslack.api.methods.SlackApiRequest;
 import com.github.seratch.jslack.api.model.User;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class UsersProfileSetRequest {
+public class UsersProfileSetRequest implements SlackApiRequest {
 
     private String token;
     private String user;
