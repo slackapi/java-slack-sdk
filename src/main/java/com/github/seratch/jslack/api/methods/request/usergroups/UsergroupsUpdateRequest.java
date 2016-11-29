@@ -5,9 +5,11 @@ import lombok.Data;
 
 import java.util.List;
 
+import com.github.seratch.jslack.api.methods.SlackApiRequest;
+
 @Data
 @Builder
-public class UsergroupsUpdateRequest {
+public class UsergroupsUpdateRequest implements SlackApiRequest {
 
     private String token;
     private String usergroup;

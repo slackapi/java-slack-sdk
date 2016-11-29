@@ -6,9 +6,11 @@ import lombok.Data;
 import java.io.File;
 import java.util.List;
 
+import com.github.seratch.jslack.api.methods.SlackApiRequest;
+
 @Data
 @Builder
-public class FilesUploadRequest {
+public class FilesUploadRequest implements SlackApiRequest {
 
     private String token;
     private File file;
