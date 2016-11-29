@@ -852,6 +852,8 @@ public class MethodsClientImpl implements MethodsClient {
     public RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("no_unreads", req.getNoUnreads(), form);
+        setIfNotNull("mpim_aware", req.getMpimAware(), form);
         return doPostForm(form, Methods.RTM_START, RTMStartResponse.class);
     }
 
