@@ -1,12 +1,11 @@
 package com.github.seratch.jslack.api.methods.request.files;
 
+import com.github.seratch.jslack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
 import java.io.File;
 import java.util.List;
-
-import com.github.seratch.jslack.api.methods.SlackApiRequest;
 
 @Data
 @Builder

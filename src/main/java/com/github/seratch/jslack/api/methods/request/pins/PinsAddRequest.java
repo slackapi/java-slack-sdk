@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.api.methods.request.pins;
 
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
-
 import lombok.Builder;
 import lombok.Data;
 
