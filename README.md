@@ -31,7 +31,7 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - usergroups.*
   - usergroups.users.*
   - users.*
-  - users.profile*
+  - users.profile.*
 
 ### Getting Started
 
