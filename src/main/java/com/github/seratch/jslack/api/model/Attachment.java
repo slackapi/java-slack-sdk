@@ -19,6 +19,12 @@ public class Attachment {
      */
     private String fallback;
 
+
+    /**
+     * This is optional value that specifies callback id when there are buttons.
+     */
+    private String callbackId;
+
     /**
      * Like traffic signals, color-coding messages can quickly communicate intent
      * and help separate them from the flow of other messages in the timeline.
@@ -132,4 +138,8 @@ public class Attachment {
      */
     private List<String> mrkdwnIn = new ArrayList<>();
 
+    /**
+     * Actions are defined as an array, and hashes contained within it will be displayed in as buttons in the message attachment.
+     */
+    private List<Action> actions = new ArrayList<>();
 }
