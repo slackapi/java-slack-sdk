@@ -12,4 +12,21 @@ public class OAuthAccessResponse implements SlackApiResponse {
 
     private String accessToken;
     private String scope;
+    private String teamName;
+    private String teamId;
+    private IncomingWebhook incomingWebhook;
+    private Bot bot;
+
+    @Data
+    public static class IncomingWebhook {
+        private String url;
+        private String channel;
+        private String configurationUrl;
+    }
+
+    @Data
+    public static class Bot {
+        private String botUserId;
+        private String botAccessToken;
+    }
 }
