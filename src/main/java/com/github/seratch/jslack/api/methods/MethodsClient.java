@@ -129,6 +129,8 @@ public interface MethodsClient {
 
     ChannelsHistoryResponse channelsHistory(ChannelsHistoryRequest req) throws IOException, SlackApiException;
 
+    ChannelsRepliesResponse channelsReplies(ChannelsRepliesRequest req) throws IOException, SlackApiException;
+
     ChannelsInfoResponse channelsInfo(ChannelsInfoRequest req) throws IOException, SlackApiException;
 
     ChannelsListResponse channelsList(ChannelsListRequest req) throws IOException, SlackApiException;

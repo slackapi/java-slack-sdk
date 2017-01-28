@@ -73,6 +73,15 @@ public class Slack_channels_chat_Test {
         }
 
         {
+            ChannelsHistoryResponse history = slack.methods().channelsHistory(
+                    ChannelsHistoryRequest.builder().token(token).channel(channel.getId()).count(1).build());
+            String threadTs = history.getMessages().get(0).getTs();
+            ChannelsRepliesResponse response = slack.methods().channelsReplies(
+                    ChannelsRepliesRequest.builder().token(token).channel(channel.getId()).threadTs(threadTs).build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
             ChannelsKickResponse response = slack.methods().channelsKick(ChannelsKickRequest.builder()
                     .token(token)
                     .channel(channel.getId())
@@ -111,6 +120,26 @@ public class Slack_channels_chat_Test {
                     .linkNames(1)
                     .build());
             assertThat(postResponse.isOk(), is(true));
+
+            ChatPostMessageResponse replyResponse1 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                    .channel(channel.getId())
+                    .token(token)
+                    .text("@seratch Replied via chat.postMessage API")
+                    .linkNames(1)
+                    .threadTs(postResponse.getTs())
+                    //.replyBroadcast(false)
+                    .build());
+            assertThat(replyResponse1.isOk(), is(true));
+
+            ChatPostMessageResponse replyResponse2 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                    .channel(channel.getId())
+                    .token(token)
+                    .text("@seratch Replied via chat.postMessage API")
+                    .linkNames(1)
+                    .threadTs(postResponse.getTs())
+                    .replyBroadcast(true)
+                    .build());
+            assertThat(replyResponse2.isOk(), is(true));
 
             ChatUpdateResponse updateResponse = slack.methods().chatUpdate(ChatUpdateRequest.builder()
                     .channel(channel.getId())
