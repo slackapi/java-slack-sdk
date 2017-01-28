@@ -39,6 +39,7 @@ public class Methods {
     public static final String CHANNELS_LIST = "channels.list";
     public static final String CHANNELS_MARK = "channels.mark";
     public static final String CHANNELS_RENAME = "channels.rename";
+    public static final String CHANNELS_REPLIES = "channels.replies";
     public static final String CHANNELS_SET_PURPOSE = "channels.setPurpose";
     public static final String CHANNELS_SET_TOPIC = "channels.setTopic";
     public static final String CHANNELS_UNARCHIVE = "channels.unarchive";

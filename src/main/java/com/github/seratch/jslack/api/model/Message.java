@@ -13,6 +13,7 @@ public class Message {
     private String user;
     private String text;
     private String ts;
+    private String threadTs;
     @SerializedName("is_starred")
     private boolean starred;
     private boolean wibblr;

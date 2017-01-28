@@ -23,4 +23,6 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     private boolean asUser;
     private String iconUrl;
     private String iconEmoji;
+    private String threadTs;
+    private boolean replyBroadcast;
 }
