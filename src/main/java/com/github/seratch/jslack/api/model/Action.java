@@ -16,6 +16,6 @@ public class Action {
     private String style;
     @Builder.Default private String type = BUTTON;
     private String value;
-    private ConfirmationMessage confirmationMessage;
+    private Confirmation confirmation;
     private List<Option> options = new ArrayList<>();
 }

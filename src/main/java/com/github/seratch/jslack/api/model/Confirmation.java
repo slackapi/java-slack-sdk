@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ConfirmationMessage {
+public class Confirmation {
     public static final String OKAY = "Okay";
     public static final String DISMISS = "Cancel";
     private String title;
