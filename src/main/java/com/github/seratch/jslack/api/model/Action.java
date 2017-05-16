@@ -3,6 +3,9 @@ package com.github.seratch.jslack.api.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
 public class Action {
@@ -11,7 +14,8 @@ public class Action {
     private String name;
     private String text;
     private String style;
-    private final String type = BUTTON;
+    @Builder.Default private String type = BUTTON;
     private String value;
     private ConfirmationMessage confirmationMessage;
+    private List<Option> options = new ArrayList<>();
 }
