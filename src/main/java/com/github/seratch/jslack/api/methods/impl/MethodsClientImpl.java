@@ -97,6 +97,7 @@ import com.github.seratch.jslack.common.http.SlackHttpClient;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -1057,6 +1058,13 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsersDeletePhotoResponse usersDeletePhoto(UsersDeletePhotoRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        return doPostForm(form, Methods.USERS_DELETE_PHOTO, UsersDeletePhotoResponse.class);
+    }
+
+    @Override
     public UsersGetPresenceResponse usersGetPresence(UsersGetPresenceRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
@@ -1092,6 +1100,20 @@ public class MethodsClientImpl implements MethodsClient {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         return doPostForm(form, Methods.USERS_SET_ACTIVE, UsersSetActiveResponse.class);
+    }
+
+    @Override
+    public UsersSetPhotoResponse usersSetPhoto(UsersSetPhotoRequest req) throws IOException, SlackApiException {
+        MultipartBody.Builder form = new MultipartBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+
+        RequestBody image = RequestBody.create(MediaType.parse("image/*"), req.getImage());
+        form.addFormDataPart("image", "image", image);
+
+        setIfNotNull("crop_x", req.getCropX(), form);
+        setIfNotNull("crop_y", req.getCropY(), form);
+        setIfNotNull("crop_w", req.getCropW(), form);
+        return doPostMultipart(form, Methods.USERS_SET_PHOTO, UsersSetPhotoResponse.class);
     }
 
     @Override

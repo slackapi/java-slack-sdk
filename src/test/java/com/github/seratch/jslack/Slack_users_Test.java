@@ -7,6 +7,7 @@ import com.github.seratch.jslack.api.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -71,6 +72,22 @@ public class Slack_users_Test {
                     UsersGetPresenceRequest.builder().token(token).user(userId).build());
             assertThat(response.isOk(), is(true));
             assertThat(response.getPresence(), is(notNullValue()));
+        }
+
+
+        {
+            UsersDeletePhotoResponse response = slack.methods().usersDeletePhoto(
+                UsersDeletePhotoRequest.builder().token(token).build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        File image = new File("src/test/resources/user_photo.jpg");
+        {
+            UsersSetPhotoResponse response = slack.methods().usersSetPhoto(UsersSetPhotoRequest.builder()
+                .token(token)
+                .image(image)
+                .build());
+            assertThat(response.isOk(), is(true));
         }
     }
 
