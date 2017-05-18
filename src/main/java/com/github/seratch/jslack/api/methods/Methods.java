@@ -220,11 +220,13 @@ public class Methods {
     // users
     // ------------------------------
 
+    public static final String USERS_DELETE_PHOTO = "users.deletePhoto";
     public static final String USERS_GET_PRESENCE = "users.getPresence";
     public static final String USERS_IDENTITY = "users.identity";
     public static final String USERS_INFO = "users.info";
     public static final String USERS_LIST = "users.list";
     public static final String USERS_SET_ACTIVE = "users.setActive";
+    public static final String USERS_SET_PHOTO = "users.setPhoto";
     public static final String USERS_SET_PRESENCE = "users.setPresence";
 
     // ------------------------------

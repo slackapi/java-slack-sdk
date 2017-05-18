@@ -379,6 +379,8 @@ public interface MethodsClient {
     // users
     // ------------------------------
 
+    UsersDeletePhotoResponse usersDeletePhoto(UsersDeletePhotoRequest req) throws IOException, SlackApiException;
+
     UsersGetPresenceResponse usersGetPresence(UsersGetPresenceRequest req) throws IOException, SlackApiException;
 
     UsersIdentityResponse usersIdentity(UsersIdentityRequest req) throws IOException, SlackApiException;
@@ -388,6 +390,8 @@ public interface MethodsClient {
     UsersListResponse usersList(UsersListRequest req) throws IOException, SlackApiException;
 
     UsersSetActiveResponse usersSetActive(UsersSetActiveRequest req) throws IOException, SlackApiException;
+
+    UsersSetPhotoResponse usersSetPhoto(UsersSetPhotoRequest req) throws IOException, SlackApiException;
 
     UsersSetPresenceResponse usersSetPresence(UsersSetPresenceRequest req) throws IOException, SlackApiException;
 
