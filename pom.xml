@@ -5,7 +5,7 @@
 
     <groupId>com.github.seratch</groupId>
     <artifactId>jslack</artifactId>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
     <packaging>jar</packaging>
 
     <name>jSlack</name>
@@ -89,7 +89,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.2</version>
+            <version>1.2.3</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
