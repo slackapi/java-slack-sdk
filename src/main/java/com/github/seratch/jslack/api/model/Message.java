@@ -12,6 +12,7 @@ public class Message {
     private String channel;
     private String user;
     private String text;
+    private List<Attachment> attachments;
     private String ts;
     private String threadTs;
     @SerializedName("is_starred")
