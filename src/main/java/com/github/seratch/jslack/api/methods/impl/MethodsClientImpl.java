@@ -307,6 +307,7 @@ public class MethodsClientImpl implements MethodsClient {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.getLinkNames(), form);
