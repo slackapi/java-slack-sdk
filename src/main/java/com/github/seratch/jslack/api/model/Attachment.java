@@ -128,7 +128,7 @@ public class Attachment {
      * <p>
      * Use ts when referencing articles or happenings. Your message will have its own timestamp when published.
      */
-    private Integer ts;
+    private String ts;
 
     /**
      * By default,
