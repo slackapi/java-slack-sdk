@@ -52,6 +52,12 @@ public class Methods {
     public static final String CHAT_ME_MESSAGE = "chat.meMessage";
     public static final String CHAT_POST_MESSAGE = "chat.postMessage";
     public static final String CHAT_UPDATE = "chat.update";
+    
+    // ------------------------------
+    // dialog
+    // ------------------------------
+
+    public static final String DIALOG_OPEN = "dialog.open";
 
     // ------------------------------
     // dnd
