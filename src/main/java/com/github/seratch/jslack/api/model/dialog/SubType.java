@@ -7,15 +7,15 @@ import com.google.gson.annotations.SerializedName;
  * In some form factors, optimized input is provided for this subtype.
  */
 public enum SubType {
-  @SerializedName("email") EMAIL ("email"),
-  @SerializedName("number") NUMBER ("number"),
-  @SerializedName("tel") TEL ("tel"),
-  @SerializedName("url") URL ("url");
-  
-  private final String value;
-  SubType(String value) {
-    this.value = value;
-  }
-  
-  public String value() { return value; }
+    @SerializedName("email") EMAIL ("email"),
+    @SerializedName("number") NUMBER ("number"),
+    @SerializedName("tel") TEL ("tel"),
+    @SerializedName("url") URL ("url");
+
+    private final String value;
+    SubType(String value) {
+	this.value = value;
+    }
+
+    public String value() { return value; }
 }

@@ -345,16 +345,16 @@ public class MethodsClientImpl implements MethodsClient {
     
     @Override
     public DialogOpenResponse dialogOpen(DialogOpenRequest req)
-        throws IOException, SlackApiException {
-      FormBody.Builder form = new FormBody.Builder();
-      setIfNotNull("token", req.getToken(), form);
-      setIfNotNull("trigger_id", req.getTriggerId(), form);
-      if(req.getDialog() != null) {
-        String json = GsonFactory.createSnakeCase().toJson(req.getDialog());
-        form.add("dialog", json);
-      }
-      
-      return doPostForm(form, Methods.DIALOG_OPEN, DialogOpenResponse.class);
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+	setIfNotNull("token", req.getToken(), form);
+	setIfNotNull("trigger_id", req.getTriggerId(), form);
+	if(req.getDialog() != null) {
+	    String json = GsonFactory.createSnakeCase().toJson(req.getDialog());
+	    form.add("dialog", json);
+	}
+
+	return doPostForm(form, Methods.DIALOG_OPEN, DialogOpenResponse.class);
     }
 
     @Override

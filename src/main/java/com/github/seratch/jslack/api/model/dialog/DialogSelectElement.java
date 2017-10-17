@@ -17,46 +17,45 @@ import lombok.Data;
 @Data
 @Builder
 public class DialogSelectElement implements Element {
-  
-  /**
-   * Label displayed to user. Required. No more than 24 characters.
-   */
-  private String label;
-  
-  /**
-   * Name of form element. Required. No more than 300 characters.
-   */
-  private String name;
-  
-  /**
-   * Type of element.  For a dropdown (select), the type is always
-   * {@code select} . It's required.
-   * 
-   * @see <a href="https://api.slack.com/dialogs#elements">Dialog form elements</a>
-   * 
-   */
-  private final String type = "select";
-  
-  /**
-   * A default value for this field.  Must match a value presented in {@link Option}s.
-   */
-  String value;
-  
-  /**
-   * A string displayed as needed to help guide users in completing the element.
-   * 150 character maximum.
-   */
-  private String placeholder;
-  
-  /**
-   * Provide true when the form element is not required. By default, form elements are
-   * required.
-   */
-  private boolean optional;
-  
-  /**
-   * Provide up to 100 option element attributes. Required for this type.
-   */
-  private List<Option> options;
-  
+
+    /**
+     * Label displayed to user. Required. No more than 24 characters.
+     */
+    private String label;
+
+    /**
+     * Name of form element. Required. No more than 300 characters.
+     */
+    private String name;
+
+    /**
+     * Type of element.  For a dropdown (select), the type is always
+     * {@code select} . It's required.
+     * 
+     * @see <a href="https://api.slack.com/dialogs#elements">Dialog form elements</a>
+     * 
+     */
+    private final String type = "select";
+
+    /**
+     * A default value for this field.  Must match a value presented in {@link Option}s.
+     */
+    String value;
+
+    /**
+     * A string displayed as needed to help guide users in completing the element.
+     * 150 character maximum.
+     */
+    private String placeholder;
+
+    /**
+     * Provide true when the form element is not required. By default, form elements are
+     * required.
+     */
+    private boolean optional;
+
+    /**
+     * Provide up to 100 option element attributes. Required for this type.
+     */
+    private List<Option> options;
 }

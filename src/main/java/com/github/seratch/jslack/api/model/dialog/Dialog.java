@@ -13,27 +13,28 @@ import lombok.Data;
 @Data
 @Builder
 public class Dialog {
-  /**
-   * User-facing title of this entire dialog. 24 characters to work with and it's required.
-   */
-  private String title;
-  
-  /**
-   * An identifier strictly for you to recognize submissions of this particular instance of
-   * a dialog. Use something meaningful to your app. 255 characters maximum. 
-   * Absolutely required.
-   */
-  private String callbackId;
-  
-  /**
-   * Up to 5 form elements are allowed per dialog. Required.
-   */
-  private List<Element> elements;
-  
-  /**
-   * User-facing string for whichever button-like thing submits the form, depending on
-   * form factor. Defaults to {@code Submit}, localized in whichever language the end user
-   * prefers. 24 characters maximum, and may contain only a single word.
-   */
-  private String submitLabel;
+    
+    /**
+     * User-facing title of this entire dialog. 24 characters to work with and it's required.
+     */
+    private String title;
+
+    /**
+     * An identifier strictly for you to recognize submissions of this particular instance of
+     * a dialog. Use something meaningful to your app. 255 characters maximum. 
+     * Absolutely required.
+     */
+    private String callbackId;
+
+    /**
+     * Up to 5 form elements are allowed per dialog. Required.
+     */
+    private List<Element> elements;
+
+    /**
+     * User-facing string for whichever button-like thing submits the form, depending on
+     * form factor. Defaults to {@code Submit}, localized in whichever language the end user
+     * prefers. 24 characters maximum, and may contain only a single word.
+     */
+    private String submitLabel;
 }
