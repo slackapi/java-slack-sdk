@@ -229,49 +229,49 @@ assertThat(deleteResponse.isOk(), is(true));
 ```java
 String token = "api-token";
     
-    // Required.  See https://api.slack.com/dialogs#implementation
-    String triggerId = "trigger-id";
-    
-    Slack slack = Slack.getInstance();
-    
-    DialogTextElement quanityTextElement = DialogTextElement.builder()
-        .subtype(SubType.NUMBER)
-        .label("Quantity")
-        .name("quantity")
-        .hint("The number you need")
-        .maxLength(3)
-        .minLength(1)
-        .placeholder("Required quantity")
-        .value("1")
-        .build();
-    
-    DialogSelectElement colourSelectElement = DialogSelectElement.builder()
-        .name("colour")
-        .label("Colour")
-        .placeholder("Choose your preferred colour")
-        .options(Arrays.asList(
-            Option.builder().label("Red").value("#FF0000").build(),
-            Option.builder().label("Green").value("#00FF00").build(),
-            Option.builder().label("Blue").value("#0000FF").build(),
-            Option.builder().label("Black").value("#000000").build(),
-            Option.builder().label("White").value("#FFFFFF").build()
-         ))
-        .build();
-        
-    
-    Dialog dialog = Dialog.builder()
-        .title("Request pens")
-        .callbackId("pens-1122")
-        .elements(Arrays.asList(quanityTextElement, colourSelectElement))
-        .submitLabel("")
-        .build();
+// Required.  See https://api.slack.com/dialogs#implementation
+String triggerId = "trigger-id";
 
-    DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(
-        DialogOpenRequest.builder()
-        .token(token)
-        .triggerId(triggerId)
-        .dialog(dialog)
-        .build());
+Slack slack = Slack.getInstance();
+
+DialogTextElement quanityTextElement = DialogTextElement.builder()
+    .subtype(SubType.NUMBER)
+    .label("Quantity")
+    .name("quantity")
+    .hint("The number you need")
+    .maxLength(3)
+    .minLength(1)
+    .placeholder("Required quantity")
+    .value("1")
+    .build();
+
+DialogSelectElement colourSelectElement = DialogSelectElement.builder()
+    .name("colour")
+    .label("Colour")
+    .placeholder("Choose your preferred colour")
+    .options(Arrays.asList(
+        Option.builder().label("Red").value("#FF0000").build(),
+        Option.builder().label("Green").value("#00FF00").build(),
+        Option.builder().label("Blue").value("#0000FF").build(),
+        Option.builder().label("Black").value("#000000").build(),
+        Option.builder().label("White").value("#FFFFFF").build()
+     ))
+    .build();
+    
+
+Dialog dialog = Dialog.builder()
+    .title("Request pens")
+    .callbackId("pens-1122")
+    .elements(Arrays.asList(quanityTextElement, colourSelectElement))
+    .submitLabel("")
+    .build();
+
+DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(
+    DialogOpenRequest.builder()
+    .token(token)
+    .triggerId(triggerId)
+    .dialog(dialog)
+    .build());
 ```
 
 
