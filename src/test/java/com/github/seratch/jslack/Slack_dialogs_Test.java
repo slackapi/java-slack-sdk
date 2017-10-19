@@ -51,6 +51,6 @@ public class Slack_dialogs_Test {
         		.dialog(dialog)
         		.build());
         assertThat(dialogOpenResponse.isOk(), is(false));
-        	assertThat(dialogOpenResponse.getError(), is("invalid_trigger"));
+        assertThat(dialogOpenResponse.getError(), is("invalid_trigger"));
     }
 }
