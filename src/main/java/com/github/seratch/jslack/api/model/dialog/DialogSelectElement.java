@@ -16,7 +16,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class DialogSelectElement implements Element {
+public class DialogSelectElement implements DialogElement {
 
     /**
      * Label displayed to user. Required. No more than 24 characters.
@@ -38,7 +38,7 @@ public class DialogSelectElement implements Element {
     private final String type = "select";
 
     /**
-     * A default value for this field.  Must match a value presented in {@link Option}s.
+     * A default value for this field.  Must match a value presented in {@link DialogOption}s.
      */
     String value;
 
@@ -57,5 +57,5 @@ public class DialogSelectElement implements Element {
     /**
      * Provide up to 100 option element attributes. Required for this type.
      */
-    private List<Option> options;
+    private List<DialogOption> options;
 }

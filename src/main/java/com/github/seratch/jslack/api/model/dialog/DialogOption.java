@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class Option {
+public class DialogOption {
     private String label;
     private String value;
 }

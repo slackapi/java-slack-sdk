@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName;
  * Represents the subtype for an {@link DialogTextElement} or {@link DialogTextAreaElement} 
  * In some form factors, optimized input is provided for this subtype.
  */
-public enum SubType {
+public enum DialogSubType {
     @SerializedName("email") EMAIL ("email"),
     @SerializedName("number") NUMBER ("number"),
     @SerializedName("tel") TEL ("tel"),
     @SerializedName("url") URL ("url");
 
     private final String value;
-    SubType(String value) {
+    DialogSubType(String value) {
 	this.value = value;
     }
 

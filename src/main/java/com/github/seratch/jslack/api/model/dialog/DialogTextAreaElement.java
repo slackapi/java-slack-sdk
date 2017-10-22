@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class DialogTextAreaElement implements Element {
+public class DialogTextAreaElement implements DialogElement {
   
   /**
    * Label displayed to user. Required. No more than 24 characters.
@@ -67,5 +67,5 @@ public class DialogTextAreaElement implements Element {
   /**
    * Subtype for this text type element (e.g. Number)
    */
-  SubType subtype;
+  DialogSubType subtype;
 }

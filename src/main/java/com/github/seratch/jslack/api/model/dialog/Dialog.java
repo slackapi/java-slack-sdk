@@ -29,7 +29,7 @@ public class Dialog {
     /**
      * Up to 5 form elements are allowed per dialog. Required.
      */
-    private List<Element> elements;
+    private List<DialogElement> elements;
 
     /**
      * User-facing string for whichever button-like thing submits the form, depending on
