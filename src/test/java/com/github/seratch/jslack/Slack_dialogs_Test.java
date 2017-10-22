@@ -14,7 +14,7 @@ import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.model.dialog.Dialog;
 import com.github.seratch.jslack.api.model.dialog.DialogTextElement;
-import com.github.seratch.jslack.api.model.dialog.SubType;
+import com.github.seratch.jslack.api.model.dialog.DialogSubType;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +28,7 @@ public class Slack_dialogs_Test {
     public void open() throws IOException, SlackApiException {
         
         DialogTextElement quanityTextElement = DialogTextElement.builder()
-        		.subtype(SubType.NUMBER)
+        		.subtype(DialogSubType.NUMBER)
         		.label("Quantity")
         		.name("quantity")
         		.hint("The number you need")
@@ -45,6 +45,12 @@ public class Slack_dialogs_Test {
         		.submitLabel("")
         		.build();
         
+        /*
+         * A dialog in Slack can only be opened in response to a user action such as a slash command or
+         * button click (which now include trigger_ids in callbacks). A dialog.open request has to include
+         * that same trigger_id in order to succeed. The dialog.open request must also be made within 3
+         * seconds of the user action.  Therefore, only an 'invalid trigger' ID response can be tested.
+         */
         DialogOpenResponse dialogOpenResponse = slack.methods().dialogOpen(DialogOpenRequest.builder()
         		.token(token)
         		.triggerId("FAKE_TRIGGER_ID")
