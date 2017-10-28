@@ -9,6 +9,7 @@ import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
 import com.github.seratch.jslack.api.methods.request.emoji.EmojiListRequest;
 import com.github.seratch.jslack.api.methods.request.files.*;
@@ -54,6 +55,7 @@ import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
 import com.github.seratch.jslack.api.methods.response.emoji.EmojiListResponse;
 import com.github.seratch.jslack.api.methods.response.files.*;
@@ -164,6 +166,12 @@ public interface MethodsClient {
     ChatPostMessageResponse chatPostMessage(ChatPostMessageRequest req) throws IOException, SlackApiException;
 
     ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException;
+    
+    // ------------------------------
+    // dialog
+    // ------------------------------
+    
+    DialogOpenResponse dialogOpen(DialogOpenRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
     // dnd

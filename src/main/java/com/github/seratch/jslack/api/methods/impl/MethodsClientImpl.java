@@ -12,6 +12,7 @@ import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
 import com.github.seratch.jslack.api.methods.request.emoji.EmojiListRequest;
 import com.github.seratch.jslack.api.methods.request.files.*;
@@ -57,6 +58,7 @@ import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
 import com.github.seratch.jslack.api.methods.response.emoji.EmojiListResponse;
 import com.github.seratch.jslack.api.methods.response.files.*;
@@ -339,6 +341,20 @@ public class MethodsClientImpl implements MethodsClient {
         }
         setIfNotNull("as_user", req.isAsUser(), form);
         return doPostForm(form, Methods.CHAT_UPDATE, ChatUpdateResponse.class);
+    }
+    
+    @Override
+    public DialogOpenResponse dialogOpen(DialogOpenRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+	setIfNotNull("token", req.getToken(), form);
+	setIfNotNull("trigger_id", req.getTriggerId(), form);
+	if(req.getDialog() != null) {
+	    String json = GsonFactory.createSnakeCase().toJson(req.getDialog());
+	    form.add("dialog", json);
+	}
+
+	return doPostForm(form, Methods.DIALOG_OPEN, DialogOpenResponse.class);
     }
 
     @Override
