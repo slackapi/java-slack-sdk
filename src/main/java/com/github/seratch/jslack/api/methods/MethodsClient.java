@@ -101,6 +101,8 @@ import java.io.IOException;
  */
 public interface MethodsClient {
 
+    void setEndpointUrlPrefix(String endpointUrlPrefix);
+
     // ------------------------------
     // api
     // ------------------------------
