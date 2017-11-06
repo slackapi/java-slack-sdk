@@ -1,5 +1,11 @@
 package com.github.seratch.jslack.api.methods.impl;
 
+import static java.util.stream.Collectors.joining;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
@@ -7,21 +13,84 @@ import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
-import com.github.seratch.jslack.api.methods.request.channels.*;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsArchiveRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsCreateRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsHistoryRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsInfoRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsInviteRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsJoinRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsKickRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsLeaveRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsMarkRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsRenameRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsRepliesRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsSetPurposeRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsSetTopicRequest;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsUnarchiveRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsArchiveRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCloseRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCreateRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsHistoryRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsInfoRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsInviteRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsJoinRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsKickRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsLeaveRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsListRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsMembersRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsOpenRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsRenameRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsRepliesRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsSetPurposeRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsSetTopicRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsUnarchiveRequest;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
-import com.github.seratch.jslack.api.methods.request.dnd.*;
+import com.github.seratch.jslack.api.methods.request.dnd.DndEndDndRequest;
+import com.github.seratch.jslack.api.methods.request.dnd.DndEndSnoozeRequest;
+import com.github.seratch.jslack.api.methods.request.dnd.DndInfoRequest;
+import com.github.seratch.jslack.api.methods.request.dnd.DndSetSnoozeRequest;
+import com.github.seratch.jslack.api.methods.request.dnd.DndTeamInfoRequest;
 import com.github.seratch.jslack.api.methods.request.emoji.EmojiListRequest;
-import com.github.seratch.jslack.api.methods.request.files.*;
+import com.github.seratch.jslack.api.methods.request.files.FilesDeleteRequest;
+import com.github.seratch.jslack.api.methods.request.files.FilesInfoRequest;
+import com.github.seratch.jslack.api.methods.request.files.FilesListRequest;
+import com.github.seratch.jslack.api.methods.request.files.FilesRevokePublicURLRequest;
+import com.github.seratch.jslack.api.methods.request.files.FilesSharedPublicURLRequest;
+import com.github.seratch.jslack.api.methods.request.files.FilesUploadRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
-import com.github.seratch.jslack.api.methods.request.groups.*;
-import com.github.seratch.jslack.api.methods.request.im.*;
-import com.github.seratch.jslack.api.methods.request.mpim.*;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsArchiveRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsCloseRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsCreateChildRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsCreateRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsHistoryRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsInfoRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsInviteRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsKickRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsLeaveRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsListRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsMarkRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsOpenRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsRenameRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsSetPurposeRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsSetTopicRequest;
+import com.github.seratch.jslack.api.methods.request.groups.GroupsUnarchiveRequest;
+import com.github.seratch.jslack.api.methods.request.im.ImCloseRequest;
+import com.github.seratch.jslack.api.methods.request.im.ImHistoryRequest;
+import com.github.seratch.jslack.api.methods.request.im.ImListRequest;
+import com.github.seratch.jslack.api.methods.request.im.ImMarkRequest;
+import com.github.seratch.jslack.api.methods.request.im.ImOpenRequest;
+import com.github.seratch.jslack.api.methods.request.mpim.MpimCloseRequest;
+import com.github.seratch.jslack.api.methods.request.mpim.MpimHistoryRequest;
+import com.github.seratch.jslack.api.methods.request.mpim.MpimListRequest;
+import com.github.seratch.jslack.api.methods.request.mpim.MpimMarkRequest;
+import com.github.seratch.jslack.api.methods.request.mpim.MpimOpenRequest;
 import com.github.seratch.jslack.api.methods.request.oauth.OAuthAccessRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsAddRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsListRequest;
@@ -30,7 +99,11 @@ import com.github.seratch.jslack.api.methods.request.reactions.ReactionsAddReque
 import com.github.seratch.jslack.api.methods.request.reactions.ReactionsGetRequest;
 import com.github.seratch.jslack.api.methods.request.reactions.ReactionsListRequest;
 import com.github.seratch.jslack.api.methods.request.reactions.ReactionsRemoveRequest;
-import com.github.seratch.jslack.api.methods.request.reminders.*;
+import com.github.seratch.jslack.api.methods.request.reminders.RemindersAddRequest;
+import com.github.seratch.jslack.api.methods.request.reminders.RemindersCompleteRequest;
+import com.github.seratch.jslack.api.methods.request.reminders.RemindersDeleteRequest;
+import com.github.seratch.jslack.api.methods.request.reminders.RemindersInfoRequest;
+import com.github.seratch.jslack.api.methods.request.reminders.RemindersListRequest;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
 import com.github.seratch.jslack.api.methods.request.search.SearchAllRequest;
 import com.github.seratch.jslack.api.methods.request.search.SearchFilesRequest;
@@ -43,31 +116,105 @@ import com.github.seratch.jslack.api.methods.request.team.TeamBillableInfoReques
 import com.github.seratch.jslack.api.methods.request.team.TeamInfoRequest;
 import com.github.seratch.jslack.api.methods.request.team.TeamIntegrationLogsRequest;
 import com.github.seratch.jslack.api.methods.request.team.profile.TeamProfileGetRequest;
-import com.github.seratch.jslack.api.methods.request.usergroups.*;
+import com.github.seratch.jslack.api.methods.request.usergroups.UsergroupsCreateRequest;
+import com.github.seratch.jslack.api.methods.request.usergroups.UsergroupsDisableRequest;
+import com.github.seratch.jslack.api.methods.request.usergroups.UsergroupsEnableRequest;
+import com.github.seratch.jslack.api.methods.request.usergroups.UsergroupsListRequest;
+import com.github.seratch.jslack.api.methods.request.usergroups.UsergroupsUpdateRequest;
 import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
 import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupUsersUpdateRequest;
-import com.github.seratch.jslack.api.methods.request.users.*;
+import com.github.seratch.jslack.api.methods.request.users.UsersDeletePhotoRequest;
+import com.github.seratch.jslack.api.methods.request.users.UsersGetPresenceRequest;
+import com.github.seratch.jslack.api.methods.request.users.UsersIdentityRequest;
+import com.github.seratch.jslack.api.methods.request.users.UsersInfoRequest;
+import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
+import com.github.seratch.jslack.api.methods.request.users.UsersSetActiveRequest;
+import com.github.seratch.jslack.api.methods.request.users.UsersSetPhotoRequest;
+import com.github.seratch.jslack.api.methods.request.users.UsersSetPresenceRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
-import com.github.seratch.jslack.api.methods.response.channels.*;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsArchiveResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsCreateResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsHistoryResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsInfoResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsInviteResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsJoinResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsKickResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsLeaveResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsListResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsMarkResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsRenameResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsRepliesResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsSetPurposeResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsSetTopicResponse;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsUnarchiveResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsArchiveResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsCloseResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsCreateResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsHistoryResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsInfoResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsInviteResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsJoinResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsKickResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsLeaveResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsListResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsMembersResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsOpenResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsRenameResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsRepliesResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsSetPurposeResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsSetTopicResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsUnarchiveResponse;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
-import com.github.seratch.jslack.api.methods.response.dnd.*;
+import com.github.seratch.jslack.api.methods.response.dnd.DndEndDndResponse;
+import com.github.seratch.jslack.api.methods.response.dnd.DndEndSnoozeResponse;
+import com.github.seratch.jslack.api.methods.response.dnd.DndInfoResponse;
+import com.github.seratch.jslack.api.methods.response.dnd.DndSetSnoozeResponse;
+import com.github.seratch.jslack.api.methods.response.dnd.DndTeamInfoResponse;
 import com.github.seratch.jslack.api.methods.response.emoji.EmojiListResponse;
-import com.github.seratch.jslack.api.methods.response.files.*;
+import com.github.seratch.jslack.api.methods.response.files.FilesDeleteResponse;
+import com.github.seratch.jslack.api.methods.response.files.FilesInfoResponse;
+import com.github.seratch.jslack.api.methods.response.files.FilesListResponse;
+import com.github.seratch.jslack.api.methods.response.files.FilesRevokePublicURLResponse;
+import com.github.seratch.jslack.api.methods.response.files.FilesSharedPublicURLResponse;
+import com.github.seratch.jslack.api.methods.response.files.FilesUploadResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsAddResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsEditResponse;
-import com.github.seratch.jslack.api.methods.response.groups.*;
-import com.github.seratch.jslack.api.methods.response.im.*;
-import com.github.seratch.jslack.api.methods.response.mpim.*;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsArchiveResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsCloseResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsCreateChildResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsCreateResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsHistoryResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsInfoResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsInviteResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsKickResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsLeaveResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsListResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsMarkResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsOpenResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsRenameResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsSetPurposeResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsSetTopicResponse;
+import com.github.seratch.jslack.api.methods.response.groups.GroupsUnarchiveResponse;
+import com.github.seratch.jslack.api.methods.response.im.ImCloseResponse;
+import com.github.seratch.jslack.api.methods.response.im.ImHistoryResponse;
+import com.github.seratch.jslack.api.methods.response.im.ImListResponse;
+import com.github.seratch.jslack.api.methods.response.im.ImMarkResponse;
+import com.github.seratch.jslack.api.methods.response.im.ImOpenResponse;
+import com.github.seratch.jslack.api.methods.response.mpim.MpimCloseResponse;
+import com.github.seratch.jslack.api.methods.response.mpim.MpimHistoryResponse;
+import com.github.seratch.jslack.api.methods.response.mpim.MpimListResponse;
+import com.github.seratch.jslack.api.methods.response.mpim.MpimMarkResponse;
+import com.github.seratch.jslack.api.methods.response.mpim.MpimOpenResponse;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsAddResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsListResponse;
@@ -76,7 +223,11 @@ import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResp
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsGetResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsListResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsRemoveResponse;
-import com.github.seratch.jslack.api.methods.response.reminders.*;
+import com.github.seratch.jslack.api.methods.response.reminders.RemindersAddResponse;
+import com.github.seratch.jslack.api.methods.response.reminders.RemindersCompleteResponse;
+import com.github.seratch.jslack.api.methods.response.reminders.RemindersDeleteResponse;
+import com.github.seratch.jslack.api.methods.response.reminders.RemindersInfoResponse;
+import com.github.seratch.jslack.api.methods.response.reminders.RemindersListResponse;
 import com.github.seratch.jslack.api.methods.response.rtm.RTMStartResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchFilesResponse;
@@ -89,24 +240,33 @@ import com.github.seratch.jslack.api.methods.response.team.TeamBillableInfoRespo
 import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
 import com.github.seratch.jslack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGetResponse;
-import com.github.seratch.jslack.api.methods.response.usergroups.*;
+import com.github.seratch.jslack.api.methods.response.usergroups.UsergroupsCreateResponse;
+import com.github.seratch.jslack.api.methods.response.usergroups.UsergroupsDisableResponse;
+import com.github.seratch.jslack.api.methods.response.usergroups.UsergroupsEnableResponse;
+import com.github.seratch.jslack.api.methods.response.usergroups.UsergroupsListResponse;
+import com.github.seratch.jslack.api.methods.response.usergroups.UsergroupsUpdateResponse;
 import com.github.seratch.jslack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
 import com.github.seratch.jslack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
-import com.github.seratch.jslack.api.methods.response.users.*;
+import com.github.seratch.jslack.api.methods.response.users.UsersDeletePhotoResponse;
+import com.github.seratch.jslack.api.methods.response.users.UsersGetPresenceResponse;
+import com.github.seratch.jslack.api.methods.response.users.UsersIdentityResponse;
+import com.github.seratch.jslack.api.methods.response.users.UsersInfoResponse;
+import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
+import com.github.seratch.jslack.api.methods.response.users.UsersSetActiveResponse;
+import com.github.seratch.jslack.api.methods.response.users.UsersSetPhotoResponse;
+import com.github.seratch.jslack.api.methods.response.users.UsersSetPresenceResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
+import com.github.seratch.jslack.api.model.ConversationType;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
 import com.github.seratch.jslack.common.json.GsonFactory;
+
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-import java.io.IOException;
-
-import static java.util.stream.Collectors.joining;
 
 @Slf4j
 public class MethodsClientImpl implements MethodsClient {
@@ -341,6 +501,191 @@ public class MethodsClientImpl implements MethodsClient {
         }
         setIfNotNull("as_user", req.isAsUser(), form);
         return doPostForm(form, Methods.CHAT_UPDATE, ChatUpdateResponse.class);
+    }
+    
+    @Override
+    public ConversationsArchiveResponse conversationsArchive(ConversationsArchiveRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_ARCHIVE, ConversationsArchiveResponse.class);
+    }
+
+    @Override
+    public ConversationsCloseResponse conversationsClose(ConversationsCloseRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_CLOSE, ConversationsCloseResponse.class);
+    }
+
+    @Override
+    public ConversationsCreateResponse conversationsCreate(ConversationsCreateRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("name", req.getName(), form);
+        setIfNotNull("is_private", req.isPrivate(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_CREATE, ConversationsCreateResponse.class);
+    }
+
+    @Override
+    public ConversationsHistoryResponse conversationsHistory(ConversationsHistoryRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("latest", req.getLatest(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("oldest", req.getOldest(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_HISTORY, ConversationsHistoryResponse.class);
+    }
+
+    @Override
+    public ConversationsInfoResponse conversationsInfo(ConversationsInfoRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("include_locale", req.isIncludeLocale(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_INFO, ConversationsInfoResponse.class);
+    }
+
+    @Override
+    public ConversationsInviteResponse conversationsInvite(ConversationsInviteRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        if (req.getUsers() != null) {
+            setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
+        }
+        return doPostForm(form, Methods.CONVERSATIONS_INVITE, ConversationsInviteResponse.class);
+    }
+
+    @Override
+    public ConversationsJoinResponse conversationsJoin(ConversationsJoinRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_JOIN, ConversationsJoinResponse.class);
+    }
+
+    @Override
+    public ConversationsKickResponse conversationsKick(ConversationsKickRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("user", req.getUser(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_KICK, ConversationsKickResponse.class);
+    }
+
+    @Override
+    public ConversationsLeaveResponse conversationsLeave(ConversationsLeaveRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_LEAVE, ConversationsLeaveResponse.class);
+    }
+
+    @Override
+    public ConversationsListResponse conversationsList(ConversationsListRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("exclude_archived", req.isExcludeArchived(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        
+        if (req.getTypes() != null) {
+            List<String> typeValues = new ArrayList<>();
+            for(ConversationType type : req.getTypes()) {
+        		typeValues.add(type.value());
+            }
+            setIfNotNull("types", typeValues.stream().collect(joining(",")), form);
+        }
+        return doPostForm(form, Methods.CONVERSATIONS_LIST, ConversationsListResponse.class);
+    }
+
+    @Override
+    public ConversationsMembersResponse conversationsMembers(ConversationsMembersRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_MEMBERS, ConversationsMembersResponse.class);
+    }
+
+    @Override
+    public ConversationsOpenResponse conversationsOpen(ConversationsOpenRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("return_im", req.isReturnIm(), form);
+        if (req.getUsers() != null) {
+            setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
+        }
+        return doPostForm(form, Methods.CONVERSATIONS_OPEN, ConversationsOpenResponse.class);
+    }
+
+    @Override
+    public ConversationsRenameResponse conversationsRename(ConversationsRenameRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("name", req.getName(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_RENAME, ConversationsRenameResponse.class);
+    }
+
+    @Override
+    public ConversationsRepliesResponse conversationsReplies(ConversationsRepliesRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("ts", req.getTs(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_REPLIES, ConversationsRepliesResponse.class);
+    }
+
+    @Override
+    public ConversationsSetPurposeResponse conversationsSetPurpose(ConversationsSetPurposeRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("purpose", req.getPurpose(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_SET_PURPOSE, ConversationsSetPurposeResponse.class);
+    }
+
+    @Override
+    public ConversationsSetTopicResponse conversationsSetTopic(ConversationsSetTopicRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("topic", req.getTopic(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_SET_TOPIC, ConversationsSetTopicResponse.class);
+    }
+
+    @Override
+    public ConversationsUnarchiveResponse conversationsUnarchive(ConversationsUnarchiveRequest req)
+	    throws IOException, SlackApiException {
+	FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_UNARCHIVE, ConversationsUnarchiveResponse.class);
     }
     
     @Override

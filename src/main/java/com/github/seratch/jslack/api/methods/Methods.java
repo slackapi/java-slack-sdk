@@ -54,6 +54,28 @@ public class Methods {
     public static final String CHAT_UPDATE = "chat.update";
     
     // ------------------------------
+    // conversations
+    // ------------------------------
+    
+    public static final String CONVERSATIONS_ARCHIVE = "conversations.archive";
+    public static final String CONVERSATIONS_CLOSE = "conversations.close";
+    public static final String CONVERSATIONS_CREATE = "conversations.create";
+    public static final String CONVERSATIONS_HISTORY = "conversations.history";
+    public static final String CONVERSATIONS_INFO = "conversations.info";
+    public static final String CONVERSATIONS_INVITE = "conversations.invite";
+    public static final String CONVERSATIONS_JOIN = "conversations.join";
+    public static final String CONVERSATIONS_KICK = "conversations.kick";
+    public static final String CONVERSATIONS_LEAVE = "conversations.leave";
+    public static final String CONVERSATIONS_LIST = "conversations.list";
+    public static final String CONVERSATIONS_MEMBERS = "conversations.members";
+    public static final String CONVERSATIONS_OPEN = "conversations.open";
+    public static final String CONVERSATIONS_RENAME = "conversations.rename";
+    public static final String CONVERSATIONS_REPLIES = "conversations.replies";
+    public static final String CONVERSATIONS_SET_PURPOSE = "conversations.setPurpose";
+    public static final String CONVERSATIONS_SET_TOPIC = "conversations.setTopic";
+    public static final String CONVERSATIONS_UNARCHIVE = "conversations.unarchive";
+    
+    // ------------------------------
     // dialog
     // ------------------------------
 
