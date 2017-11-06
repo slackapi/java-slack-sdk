@@ -12,6 +12,7 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - bots.*
   - channels.*
   - chat.*
+  - conversations.*
   - dialog.open
   - dnd.*
   - emoji.*
