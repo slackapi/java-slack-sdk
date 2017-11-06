@@ -348,7 +348,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsArchiveResponse conversationsArchive(ConversationsArchiveRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         return doPostForm(form, Methods.CONVERSATIONS_ARCHIVE, ConversationsArchiveResponse.class);
@@ -357,7 +357,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsCloseResponse conversationsClose(ConversationsCloseRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         return doPostForm(form, Methods.CONVERSATIONS_CLOSE, ConversationsCloseResponse.class);
@@ -366,7 +366,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsCreateResponse conversationsCreate(ConversationsCreateRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("name", req.getName(), form);
         setIfNotNull("is_private", req.isPrivate(), form);
@@ -376,7 +376,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsHistoryResponse conversationsHistory(ConversationsHistoryRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("cursor", req.getCursor(), form);
@@ -400,9 +400,9 @@ public class MethodsClientImpl implements MethodsClient {
     public ConversationsInviteResponse conversationsInvite(ConversationsInviteRequest req)
 	    throws IOException, SlackApiException {
 	FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("token", req.getToken(), form);
-        setIfNotNull("channel", req.getChannel(), form);
-        if (req.getUsers() != null) {
+	setIfNotNull("token", req.getToken(), form);
+	setIfNotNull("channel", req.getChannel(), form);
+	if (req.getUsers() != null) {
             setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
         }
         return doPostForm(form, Methods.CONVERSATIONS_INVITE, ConversationsInviteResponse.class);
@@ -411,7 +411,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsJoinResponse conversationsJoin(ConversationsJoinRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         return doPostForm(form, Methods.CONVERSATIONS_JOIN, ConversationsJoinResponse.class);
@@ -420,7 +420,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsKickResponse conversationsKick(ConversationsKickRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("user", req.getUser(), form);
@@ -430,7 +430,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsLeaveResponse conversationsLeave(ConversationsLeaveRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         return doPostForm(form, Methods.CONVERSATIONS_LEAVE, ConversationsLeaveResponse.class);
@@ -439,7 +439,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsListResponse conversationsList(ConversationsListRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("exclude_archived", req.isExcludeArchived(), form);
@@ -448,7 +448,7 @@ public class MethodsClientImpl implements MethodsClient {
         if (req.getTypes() != null) {
             List<String> typeValues = new ArrayList<>();
             for(ConversationType type : req.getTypes()) {
-        		typeValues.add(type.value());
+                typeValues.add(type.value());
             }
             setIfNotNull("types", typeValues.stream().collect(joining(",")), form);
         }
@@ -458,7 +458,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsMembersResponse conversationsMembers(ConversationsMembersRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("cursor", req.getCursor(), form);
@@ -469,7 +469,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsOpenResponse conversationsOpen(ConversationsOpenRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("return_im", req.isReturnIm(), form);
@@ -482,7 +482,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsRenameResponse conversationsRename(ConversationsRenameRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("name", req.getName(), form);
@@ -492,7 +492,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsRepliesResponse conversationsReplies(ConversationsRepliesRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("ts", req.getTs(), form);
@@ -504,7 +504,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsSetPurposeResponse conversationsSetPurpose(ConversationsSetPurposeRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("purpose", req.getPurpose(), form);
@@ -514,7 +514,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsSetTopicResponse conversationsSetTopic(ConversationsSetTopicRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("topic", req.getTopic(), form);
@@ -524,7 +524,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsUnarchiveResponse conversationsUnarchive(ConversationsUnarchiveRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
+        FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("channel", req.getChannel(), form);
         return doPostForm(form, Methods.CONVERSATIONS_UNARCHIVE, ConversationsUnarchiveResponse.class);
@@ -533,15 +533,15 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public DialogOpenResponse dialogOpen(DialogOpenRequest req)
 	    throws IOException, SlackApiException {
-	FormBody.Builder form = new FormBody.Builder();
-	setIfNotNull("token", req.getToken(), form);
-	setIfNotNull("trigger_id", req.getTriggerId(), form);
-	if(req.getDialog() != null) {
-	    String json = GsonFactory.createSnakeCase().toJson(req.getDialog());
-	    form.add("dialog", json);
-	}
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        if(req.getDialog() != null) {
+            String json = GsonFactory.createSnakeCase().toJson(req.getDialog());
+            form.add("dialog", json);
+        }
 
-	return doPostForm(form, Methods.DIALOG_OPEN, DialogOpenResponse.class);
+        return doPostForm(form, Methods.DIALOG_OPEN, DialogOpenResponse.class);
     }
 
     @Override
