@@ -116,7 +116,7 @@ public class Conversations_Test {
         	    		.purpose("purpose")
         	    		.build());
             assertThat(setPurposeResponse.isOk(), is(true));
-            assertThat(setPurposeResponse.getPurpose(), is("purpose"));
+            assertThat(setPurposeResponse.getChannel().getPurpose().getValue(), is("purpose"));
         }
 
         {
@@ -127,7 +127,7 @@ public class Conversations_Test {
         	    		.topic("topic")
         	    		.build());
             assertThat(setTopicResponse.isOk(), is(true));
-            assertThat(setTopicResponse.getTopic(), is("topic"));
+            assertThat(setTopicResponse.getChannel().getTopic().getValue(), is("topic"));
         }
 
         {
@@ -141,29 +141,41 @@ public class Conversations_Test {
             assertThat(historyResponse.isHasMore(), is(false));
         }
 
-
         {
-            ConversationsKickResponse kickResponse = slack.methods().conversationsKick(
-        	    	ConversationsKickRequest.builder()
-                    .token(token)
-                    .channel(channel.getId())
-                    .user(channel.getMembers().get(0))
-                    .build());
-            // TODO: valid test
-            assertThat(kickResponse.isOk(), is(false));
-            assertThat(kickResponse.getError(), is("cant_kick_self"));
-        }
-
-        {
+            ConversationsMembersResponse membersResponse = slack.methods().conversationsMembers(
+    		ConversationsMembersRequest.builder()
+    			.token(token)
+    			.channel(channel.getId())
+    			.build());
+            assertThat(membersResponse.isOk(), is(true));
+            assertThat(membersResponse.getMembers(), is(notNullValue()));
+            assertThat(membersResponse.getMembers().isEmpty(), is(false));
+            
+            UsersListResponse usersListResponse = slack.methods().usersList(
+    		UsersListRequest.builder().token(token).build());
+            String invitee = null;
+            for(User user : usersListResponse.getMembers()) {
+        		if( ! membersResponse.getMembers().contains(user.getId())) {
+        		    invitee = user.getId();
+        		    break;
+        		}
+            }
+    
             ConversationsInviteResponse inviteResponse = slack.methods().conversationsInvite(
         	    	ConversationsInviteRequest.builder()
         	    		.token(token)
     	    		.channel(channel.getId())
-    	    		.users( Arrays.asList(channel.getMembers().get(0)) )
+    	    		.users( Arrays.asList(invitee) )
     	    		.build());
-            // TODO: valid test
-            assertThat(inviteResponse.isOk(), is(false));
-            assertThat(inviteResponse.getError(), is("cant_invite_self"));
+            assertThat(inviteResponse.isOk(), is(true));
+            
+            ConversationsKickResponse kickResponse = slack.methods().conversationsKick(
+    	    	ConversationsKickRequest.builder()
+                .token(token)
+                .channel(channel.getId())
+                .user(invitee)
+                .build());
+            assertThat(kickResponse.isOk(), is(true));
         }
 
         {
@@ -221,21 +233,24 @@ public class Conversations_Test {
     public void imConversation() throws IOException, SlackApiException {
 
         UsersListResponse usersListResponse = slack.methods().usersList(
-        		UsersListRequest.builder().token(token).presence(1).build());
+        		UsersListRequest.builder().token(token).build());
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 
         ConversationsOpenResponse openResponse = slack.methods().conversationsOpen(
-        		ConversationsOpenRequest.builder().token(token).users(Arrays.asList(userId))
-        		.returnIm(true).build());
-        assertThat(openResponse.isOk(), is(true));
+        		ConversationsOpenRequest.builder()
+        			.token(token)
+        			.users(Arrays.asList(userId))
+        			.returnIm(true)
+        			.build());
+        	assertThat(openResponse.isOk(), is(true));
         
         ConversationsMembersResponse membersResponse = slack.methods().conversationsMembers(
         		ConversationsMembersRequest.builder()
         			.token(token)
         			.channel(openResponse.getChannel().getId())
         			.build());
-        assertThat(openResponse.isOk(), is(true));
+        assertThat(membersResponse.isOk(), is(true));
         assertThat(membersResponse.getMembers(), is(notNullValue()));
         assertThat(membersResponse.getMembers().isEmpty(), is(false));
 
@@ -243,5 +258,4 @@ public class Conversations_Test {
         		ConversationsCloseRequest.builder().token(token).channel(openResponse.getChannel().getId()).build());
         assertThat(closeResponse.isOk(), is(true));
     }
-
 }

@@ -1,5 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.conversations;
 
+import com.github.seratch.jslack.api.model.Conversation;
+
 import lombok.Data;
 
 @Data
@@ -9,5 +11,5 @@ public class ConversationsSetTopicResponse {
     private String warning;
     private String error;
 
-    private String topic;
+    private Conversation channel;
 }
