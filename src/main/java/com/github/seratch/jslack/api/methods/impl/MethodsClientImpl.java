@@ -111,12 +111,17 @@ import static java.util.stream.Collectors.joining;
 @Slf4j
 public class MethodsClientImpl implements MethodsClient {
 
-    public static final String ENDPOINT_URL_PREFIX = "https://slack.com/api/";
+    private String endpointUrlPrefix = "https://slack.com/api/";
 
     private final SlackHttpClient slackHttpClient;
 
     public MethodsClientImpl(SlackHttpClient slackHttpClient) {
         this.slackHttpClient = slackHttpClient;
+    }
+
+    @Override
+    public void setEndpointUrlPrefix(String endpointUrlPrefix) {
+        this.endpointUrlPrefix = endpointUrlPrefix;
     }
 
     // ----------------------------------------------------------------------------------
@@ -342,7 +347,7 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("as_user", req.isAsUser(), form);
         return doPostForm(form, Methods.CHAT_UPDATE, ChatUpdateResponse.class);
     }
-    
+
     @Override
     public DialogOpenResponse dialogOpen(DialogOpenRequest req)
 	    throws IOException, SlackApiException {
@@ -1181,13 +1186,13 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     private <T> T doPostForm(FormBody.Builder form, String endpoint, Class<T> clazz) throws IOException, SlackApiException {
-        Response response = slackHttpClient.postForm(ENDPOINT_URL_PREFIX + endpoint, form.build());
+        Response response = slackHttpClient.postForm(endpointUrlPrefix + endpoint, form.build());
         return SlackHttpClient.buildJsonResponse(response, clazz);
     }
 
     private <T> T doPostMultipart(MultipartBody.Builder form, String endpoint, Class<T> clazz) throws IOException, SlackApiException {
         form.setType(MultipartBody.FORM);
-        Response response = slackHttpClient.postMultipart(ENDPOINT_URL_PREFIX + endpoint, form.build());
+        Response response = slackHttpClient.postMultipart(endpointUrlPrefix + endpoint, form.build());
         return SlackHttpClient.buildJsonResponse(response, clazz);
     }
 
