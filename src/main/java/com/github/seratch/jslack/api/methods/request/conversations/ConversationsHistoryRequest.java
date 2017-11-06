@@ -12,6 +12,6 @@ public class ConversationsHistoryRequest implements SlackApiRequest {
     private String channel;
     private String cursor;
     private String latest;
-    private String limit;
+    private Integer limit;
     private String oldest;
 }
