@@ -50,7 +50,7 @@ import com.github.seratch.jslack.api.model.User;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Conversations_Test {
+public class Slack_conversations_Test {
 
     Slack slack = Slack.getInstance();
     String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
@@ -71,10 +71,10 @@ public class Conversations_Test {
         }
 
         ConversationsCreateResponse createPublicResponse = slack.methods().conversationsCreate(
-        		ConversationsCreateRequest.builder()
-        			.token(token).name("test" + System.currentTimeMillis())
-        			.isPrivate(false)
-        			.build());
+                ConversationsCreateRequest.builder()
+                		.token(token).name("test" + System.currentTimeMillis())
+                		.isPrivate(false)
+                		.build());
         assertThat(createPublicResponse.isOk(), is(true));
         assertThat(createPublicResponse.getChannel(), is(notNullValue()));
         assertThat(createPublicResponse.getChannel().isPrivate(), is(false));
