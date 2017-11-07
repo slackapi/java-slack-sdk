@@ -1,5 +1,11 @@
 package com.github.seratch.jslack.api.methods.impl;
 
+import static java.util.stream.Collectors.joining;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
@@ -12,6 +18,7 @@ import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.*;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
 import com.github.seratch.jslack.api.methods.request.emoji.EmojiListRequest;
@@ -58,6 +65,7 @@ import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.*;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
 import com.github.seratch.jslack.api.methods.response.emoji.EmojiListResponse;
@@ -95,18 +103,12 @@ import com.github.seratch.jslack.api.methods.response.usergroups.users.Usergroup
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
+import com.github.seratch.jslack.api.model.ConversationType;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
 import com.github.seratch.jslack.common.json.GsonFactory;
+
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.FormBody;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
-import java.io.IOException;
-
-import static java.util.stream.Collectors.joining;
+import okhttp3.*;
 
 @Slf4j
 public class MethodsClientImpl implements MethodsClient {
@@ -349,17 +351,202 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public DialogOpenResponse dialogOpen(DialogOpenRequest req)
+    public ConversationsArchiveResponse conversationsArchive(ConversationsArchiveRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_ARCHIVE, ConversationsArchiveResponse.class);
+    }
+
+    @Override
+    public ConversationsCloseResponse conversationsClose(ConversationsCloseRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_CLOSE, ConversationsCloseResponse.class);
+    }
+
+    @Override
+    public ConversationsCreateResponse conversationsCreate(ConversationsCreateRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("name", req.getName(), form);
+        setIfNotNull("is_private", req.isPrivate(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_CREATE, ConversationsCreateResponse.class);
+    }
+
+    @Override
+    public ConversationsHistoryResponse conversationsHistory(ConversationsHistoryRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("latest", req.getLatest(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("oldest", req.getOldest(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_HISTORY, ConversationsHistoryResponse.class);
+    }
+
+    @Override
+    public ConversationsInfoResponse conversationsInfo(ConversationsInfoRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("include_locale", req.isIncludeLocale(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_INFO, ConversationsInfoResponse.class);
+    }
+
+    @Override
+    public ConversationsInviteResponse conversationsInvite(ConversationsInviteRequest req)
 	    throws IOException, SlackApiException {
 	FormBody.Builder form = new FormBody.Builder();
 	setIfNotNull("token", req.getToken(), form);
-	setIfNotNull("trigger_id", req.getTriggerId(), form);
-	if(req.getDialog() != null) {
-	    String json = GsonFactory.createSnakeCase().toJson(req.getDialog());
-	    form.add("dialog", json);
-	}
+	setIfNotNull("channel", req.getChannel(), form);
+	if (req.getUsers() != null) {
+            setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
+        }
+        return doPostForm(form, Methods.CONVERSATIONS_INVITE, ConversationsInviteResponse.class);
+    }
 
-	return doPostForm(form, Methods.DIALOG_OPEN, DialogOpenResponse.class);
+    @Override
+    public ConversationsJoinResponse conversationsJoin(ConversationsJoinRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_JOIN, ConversationsJoinResponse.class);
+    }
+
+    @Override
+    public ConversationsKickResponse conversationsKick(ConversationsKickRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("user", req.getUser(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_KICK, ConversationsKickResponse.class);
+    }
+
+    @Override
+    public ConversationsLeaveResponse conversationsLeave(ConversationsLeaveRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_LEAVE, ConversationsLeaveResponse.class);
+    }
+
+    @Override
+    public ConversationsListResponse conversationsList(ConversationsListRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("exclude_archived", req.isExcludeArchived(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        
+        if (req.getTypes() != null) {
+            List<String> typeValues = new ArrayList<>();
+            for(ConversationType type : req.getTypes()) {
+                typeValues.add(type.value());
+            }
+            setIfNotNull("types", typeValues.stream().collect(joining(",")), form);
+        }
+        return doPostForm(form, Methods.CONVERSATIONS_LIST, ConversationsListResponse.class);
+    }
+
+    @Override
+    public ConversationsMembersResponse conversationsMembers(ConversationsMembersRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_MEMBERS, ConversationsMembersResponse.class);
+    }
+
+    @Override
+    public ConversationsOpenResponse conversationsOpen(ConversationsOpenRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("return_im", req.isReturnIm(), form);
+        if (req.getUsers() != null) {
+            setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
+        }
+        return doPostForm(form, Methods.CONVERSATIONS_OPEN, ConversationsOpenResponse.class);
+    }
+
+    @Override
+    public ConversationsRenameResponse conversationsRename(ConversationsRenameRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("name", req.getName(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_RENAME, ConversationsRenameResponse.class);
+    }
+
+    @Override
+    public ConversationsRepliesResponse conversationsReplies(ConversationsRepliesRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("ts", req.getTs(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_REPLIES, ConversationsRepliesResponse.class);
+    }
+
+    @Override
+    public ConversationsSetPurposeResponse conversationsSetPurpose(ConversationsSetPurposeRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("purpose", req.getPurpose(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_SET_PURPOSE, ConversationsSetPurposeResponse.class);
+    }
+
+    @Override
+    public ConversationsSetTopicResponse conversationsSetTopic(ConversationsSetTopicRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("topic", req.getTopic(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_SET_TOPIC, ConversationsSetTopicResponse.class);
+    }
+
+    @Override
+    public ConversationsUnarchiveResponse conversationsUnarchive(ConversationsUnarchiveRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        return doPostForm(form, Methods.CONVERSATIONS_UNARCHIVE, ConversationsUnarchiveResponse.class);
+    }
+    
+    @Override
+    public DialogOpenResponse dialogOpen(DialogOpenRequest req)
+	    throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        if(req.getDialog() != null) {
+            String json = GsonFactory.createSnakeCase().toJson(req.getDialog());
+            form.add("dialog", json);
+        }
+
+        return doPostForm(form, Methods.DIALOG_OPEN, DialogOpenResponse.class);
     }
 
     @Override
