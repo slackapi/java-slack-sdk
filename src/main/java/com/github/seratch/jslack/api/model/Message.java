@@ -21,6 +21,6 @@ public class Message {
     private List<String> pinnedTo;
     private List<Reaction> reactions;
     private String username;
-    private String subType;
+    private String subtype;
     private String botId;
 }
