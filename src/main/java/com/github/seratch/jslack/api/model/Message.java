@@ -23,4 +23,7 @@ public class Message {
     private String username;
     private String subtype;
     private String botId;
+    private Icon icons;
+    private File file;
+    
 }
