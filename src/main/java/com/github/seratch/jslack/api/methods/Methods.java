@@ -136,6 +136,7 @@ public class Methods {
     public static final String GROUPS_SET_PURPOSE = "groups.setPurpose";
     public static final String GROUPS_SET_TOPIC = "groups.setTopic";
     public static final String GROUPS_UNARCHIVE = "groups.unarchive";
+    public static final String GROUPS_REPLIES = "groups.replies";
 
     // ------------------------------
     // im
