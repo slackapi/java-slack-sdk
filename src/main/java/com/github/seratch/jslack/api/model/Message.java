@@ -20,4 +20,10 @@ public class Message {
     private boolean wibblr;
     private List<String> pinnedTo;
     private List<Reaction> reactions;
+    private String username;
+    private String subtype;
+    private String botId;
+    private Icon icons;
+    private File file;
+    
 }

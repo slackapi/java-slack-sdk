@@ -751,6 +751,15 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("unreads", req.getUnreads(), form);
         return doPostForm(form, Methods.GROUPS_HISTORY, GroupsHistoryResponse.class);
     }
+    
+    @Override
+    public GroupsRepliesResponse groupsReplies(GroupsRepliesRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        return doPostForm(form, Methods.GROUPS_REPLIES, GroupsRepliesResponse.class);
+    }
 
     @Override
     public GroupsInfoResponse groupsInfo(GroupsInfoRequest req) throws IOException, SlackApiException {
