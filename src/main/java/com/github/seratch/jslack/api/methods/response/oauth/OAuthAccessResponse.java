@@ -14,6 +14,7 @@ public class OAuthAccessResponse implements SlackApiResponse {
     private String scope;
     private String teamName;
     private String teamId;
+    private String userId;
     private IncomingWebhook incomingWebhook;
     private Bot bot;
 
