@@ -22,6 +22,7 @@ public class OAuthAccessResponse implements SlackApiResponse {
     public static class IncomingWebhook {
         private String url;
         private String channel;
+        private String channelId;
         private String configurationUrl;
     }
 
