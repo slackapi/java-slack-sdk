@@ -13,6 +13,13 @@ public class MatchedItem {
     private String ts;
     private String text;
     private String permalink;
+    private String name;
+    private String preview;
+    private String timestamp;
+    @SerializedName("thumb_360")
+    private String thumb360;
+    @SerializedName("url_private")
+    private String urlprivate;
 
     @SerializedName("previous_2")
     private OtherItem previous2;
@@ -35,4 +42,5 @@ public class MatchedItem {
         private String text;
         private String type;
     }
+
 }
