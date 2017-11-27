@@ -5,6 +5,8 @@ import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.impl.MethodsClientImpl;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
 import com.github.seratch.jslack.api.rtm.RTMClient;
+import com.github.seratch.jslack.api.scim.ScimClient;
+import com.github.seratch.jslack.api.scim.ScimClientImpl;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
@@ -69,6 +71,13 @@ public class Slack {
         } catch (SlackApiException | URISyntaxException e) {
             throw new IllegalStateException("Couldn't fetch RTM API WebSocket endpoint. Ensure the apiToken value.");
         }
+    }
+
+    /**
+     * Creates a SCIM api client.
+     */
+    public ScimClient scim() {
+        return new ScimClientImpl(httpClient);
     }
 
     /**
