@@ -26,12 +26,8 @@ public class SCIMClientImpl implements SCIMClient {
     @Override
     public UsersDeleteResponse delete(UsersDeleteRequest req) throws IOException, SlackApiException {
         Request.Builder request = new Request.Builder().url(endpointUrlPrefix + "/" + req.getId()).addHeader("Authorization", "Bearer " + req.getToken());
-        return doDeleteRequest(request, UsersDeleteResponse.class);
-    }
-
-    private <T> T doDeleteRequest(Request.Builder requestBuilder, Class<T> clazz) throws IOException, SlackApiException {
-        Response response = slackHttpClient.delete(requestBuilder.method("DELETE", null).build());
-        return SlackHttpClient.buildJsonResponse(response, clazz);
+        Response response = slackHttpClient.delete(request.method("DELETE", null).build());
+        return SlackHttpClient.buildJsonResponse(response, UsersDeleteResponse.class);
     }
 
 }
