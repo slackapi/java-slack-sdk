@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 @Builder
 public class UsersDeleteRequest implements SlackApiRequest {
-  private String token;
-  private String id;
+    private String token;
+    private String id;
 }

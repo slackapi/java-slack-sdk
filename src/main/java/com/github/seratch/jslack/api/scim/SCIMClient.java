@@ -6,8 +6,13 @@ import com.github.seratch.jslack.api.scim.response.UsersDeleteResponse;
 
 import java.io.IOException;
 
-public interface ScimClient {
-  void setEndpointUrlPrefix(String endpointUrlPrefix);
+/**
+ * <a href="https://api.slack.com/scim">API Methods</a>
+ *
+ */
+public interface SCIMClient {
 
-  UsersDeleteResponse delete(UsersDeleteRequest req) throws IOException, SlackApiException;
+    void setEndpointUrlPrefix(String endpointUrlPrefix);
+
+    UsersDeleteResponse delete(UsersDeleteRequest req) throws IOException, SlackApiException;
 }
