@@ -8,7 +8,6 @@ import java.io.IOException;
 
 /**
  * <a href="https://api.slack.com/scim">API Methods</a>
- *
  */
 public interface SCIMClient {
 

@@ -10,6 +10,7 @@ import okhttp3.Response;
 import java.io.IOException;
 
 public class SCIMClientImpl implements SCIMClient {
+
     private String endpointUrlPrefix = "https://api.slack.com/scim/v1/Users";
 
     private final SlackHttpClient slackHttpClient;
@@ -31,7 +32,11 @@ public class SCIMClientImpl implements SCIMClient {
 
     private <T> T doDeleteRequest(Request.Builder requestBuilder, Class<T> clazz) throws IOException, SlackApiException {
         Response response = slackHttpClient.delete(requestBuilder);
-        return SlackHttpClient.buildJsonResponse(response, clazz);
+        if (response.isSuccessful()) {
+            return SlackHttpClient.buildJsonResponse(response, clazz);
+        } else {
+            throw new SlackApiException(response, response.body().string());
+        }
     }
 
 }

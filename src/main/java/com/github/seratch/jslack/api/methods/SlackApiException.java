@@ -16,7 +16,15 @@ public class SlackApiException extends Exception {
     public SlackApiException(Response response, String responseBody) {
         this.response = response;
         this.responseBody = responseBody;
-        this.error = GsonFactory.createSnakeCase().fromJson(responseBody, SlackApiErrorResponse.class);
+        SlackApiErrorResponse parsedErrorResponse = null;
+        try {
+            parsedErrorResponse = GsonFactory.createSnakeCase().fromJson(responseBody, SlackApiErrorResponse.class);
+        } catch (Exception e) {
+            if (log.isDebugEnabled()) {
+                log.debug("Failed to parse the error response body: {}", responseBody.subSequence(0, 1000) + " ...");
+            }
+        }
+        this.error = parsedErrorResponse;
     }
 
 }
