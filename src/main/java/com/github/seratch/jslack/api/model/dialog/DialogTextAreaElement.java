@@ -4,11 +4,11 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * Represents a <a href="https://api.slack.com/dialogs#textarea_elements">textarea</a> 
+ * Represents a <a href="https://api.slack.com/dialogs#textarea_elements">textarea</a>
  * dialog element<p>
- * 
+ * <p>
  * A {@code textarea} is a multi-line plain text editing control. You've likely encountered
- * these on the world wide web. Use this element if you want a relatively long answer from 
+ * these on the world wide web. Use this element if you want a relatively long answer from
  * users.
  */
 @Data
@@ -27,7 +27,7 @@ public class DialogTextAreaElement implements DialogElement {
 
     /**
      * Type of element.  For a textarea, the type is always {@code textarea} . It's required.
-     * 
+     *
      * @see <a href="https://api.slack.com/dialogs#elements">Dialog form elements</a>
      */
     private final String type = "textarea";
@@ -44,7 +44,7 @@ public class DialogTextAreaElement implements DialogElement {
     private String placeholder;
 
     /**
-     * Provide {@code true} when the form element is not required. By default, 
+     * Provide {@code true} when the form element is not required. By default,
      * form elements are required.
      */
     boolean optional;

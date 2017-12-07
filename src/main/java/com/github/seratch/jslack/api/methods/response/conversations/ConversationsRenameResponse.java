@@ -6,11 +6,11 @@ import lombok.Data;
 
 @Data
 public class ConversationsRenameResponse {
-    
+
     private boolean ok;
     private String warning;
     private String error;
-    
+
     private Conversation channel;
 
 }

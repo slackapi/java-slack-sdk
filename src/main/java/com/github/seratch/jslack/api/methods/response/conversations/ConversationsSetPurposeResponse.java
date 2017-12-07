@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class ConversationsSetPurposeResponse {
-    
+
     private boolean ok;
     private String warning;
     private String error;

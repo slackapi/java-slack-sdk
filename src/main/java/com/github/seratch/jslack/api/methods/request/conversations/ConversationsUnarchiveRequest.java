@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ConversationsUnarchiveRequest {
-    
+
     private String token;
     private String channel;
 }

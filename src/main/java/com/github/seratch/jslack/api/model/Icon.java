@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class Icon {
 
-	@SerializedName("image_48")
-	public String image48;
+    @SerializedName("image_48")
+    public String image48;
 }

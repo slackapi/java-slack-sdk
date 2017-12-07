@@ -52,11 +52,11 @@ public class Methods {
     public static final String CHAT_ME_MESSAGE = "chat.meMessage";
     public static final String CHAT_POST_MESSAGE = "chat.postMessage";
     public static final String CHAT_UPDATE = "chat.update";
-    
+
     // ------------------------------
     // conversations
     // ------------------------------
-    
+
     public static final String CONVERSATIONS_ARCHIVE = "conversations.archive";
     public static final String CONVERSATIONS_CLOSE = "conversations.close";
     public static final String CONVERSATIONS_CREATE = "conversations.create";
@@ -74,7 +74,7 @@ public class Methods {
     public static final String CONVERSATIONS_SET_PURPOSE = "conversations.setPurpose";
     public static final String CONVERSATIONS_SET_TOPIC = "conversations.setTopic";
     public static final String CONVERSATIONS_UNARCHIVE = "conversations.unarchive";
-    
+
     // ------------------------------
     // dialog
     // ------------------------------

@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ConversationsOpenRequest {
-    
+
     private String token;
     private String channel;
     private boolean returnIm;

@@ -6,13 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * Represents a <a href="https://api.slack.com/dialogs#select_elements">select</a> 
+ * Represents a <a href="https://api.slack.com/dialogs#select_elements">select</a>
  * dialog element<p>
- * 
+ * <p>
  * Use the {@code select} element for multiple choice selections allowing users to pick a
  * single item from a list. True to web roots, this selection is displayed as a dropdown
  * menu.
- *
  */
 @Data
 @Builder
@@ -31,9 +30,8 @@ public class DialogSelectElement implements DialogElement {
     /**
      * Type of element.  For a dropdown (select), the type is always
      * {@code select} . It's required.
-     * 
+     *
      * @see <a href="https://api.slack.com/dialogs#elements">Dialog form elements</a>
-     * 
      */
     private final String type = "select";
 

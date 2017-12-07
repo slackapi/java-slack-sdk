@@ -7,13 +7,13 @@ import lombok.Data;
 
 /**
  * Represents a Slack Modal Dialog
- * 
+ *
  * @see <a href="https://api.slack.com/dialogs">Slack Modal Dialog</a>
  */
 @Data
 @Builder
 public class Dialog {
-    
+
     /**
      * User-facing title of this entire dialog. 24 characters to work with and it's required.
      */
@@ -21,7 +21,7 @@ public class Dialog {
 
     /**
      * An identifier strictly for you to recognize submissions of this particular instance of
-     * a dialog. Use something meaningful to your app. 255 characters maximum. 
+     * a dialog. Use something meaningful to your app. 255 characters maximum.
      * Absolutely required.
      */
     private String callbackId;

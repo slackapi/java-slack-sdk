@@ -8,16 +8,15 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * Represents a <a href="https://api.slack.com/types/conversation">conversation</a> 
+ * Represents a <a href="https://api.slack.com/types/conversation">conversation</a>
  * as used with the {@code conversations} API<p>
- * 
- * @see https://api.slack.com/docs/conversations-api
  *
+ * @see https://api.slack.com/docs/conversations-api
  */
 @Data
 @Builder
 public class Conversation {
-    
+
     private String id;
     private String name;
     private String created;
@@ -42,7 +41,7 @@ public class Conversation {
     private Integer unreadCount;
     @SerializedName("unreadCountDisplay")
     private Integer unreadCountDisplay;
-    
+
     @SerializedName("is_channel")
     private boolean isChannel;
     @SerializedName("is_group")

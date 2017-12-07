@@ -170,49 +170,49 @@ public interface MethodsClient {
     ChatPostMessageResponse chatPostMessage(ChatPostMessageRequest req) throws IOException, SlackApiException;
 
     ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException;
-    
+
     // ------------------------------
     // conversations
     // ------------------------------
-    
+
     ConversationsArchiveResponse conversationsArchive(ConversationsArchiveRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsCloseResponse conversationsClose(ConversationsCloseRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsCreateResponse conversationsCreate(ConversationsCreateRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsHistoryResponse conversationsHistory(ConversationsHistoryRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsInfoResponse conversationsInfo(ConversationsInfoRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsInviteResponse conversationsInvite(ConversationsInviteRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsJoinResponse conversationsJoin(ConversationsJoinRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsKickResponse conversationsKick(ConversationsKickRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsLeaveResponse conversationsLeave(ConversationsLeaveRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsListResponse conversationsList(ConversationsListRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsMembersResponse conversationsMembers(ConversationsMembersRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsOpenResponse conversationsOpen(ConversationsOpenRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsRenameResponse conversationsRename(ConversationsRenameRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsRepliesResponse conversationsReplies(ConversationsRepliesRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsSetPurposeResponse conversationsSetPurpose(ConversationsSetPurposeRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsSetTopicResponse conversationsSetTopic(ConversationsSetTopicRequest req) throws IOException, SlackApiException;
-    
+
     ConversationsUnarchiveResponse conversationsUnarchive(ConversationsUnarchiveRequest req) throws IOException, SlackApiException;
-    
+
     // ------------------------------
     // dialog
     // ------------------------------
-    
+
     DialogOpenResponse dialogOpen(DialogOpenRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
@@ -296,7 +296,7 @@ public interface MethodsClient {
     GroupsSetTopicResponse groupsSetTopic(GroupsSetTopicRequest req) throws IOException, SlackApiException;
 
     GroupsUnarchiveResponse groupsUnarchive(GroupsUnarchiveRequest req) throws IOException, SlackApiException;
-    
+
     GroupsRepliesResponse groupsReplies(GroupsRepliesRequest req) throws IOException, SlackApiException;
 
     // ------------------------------

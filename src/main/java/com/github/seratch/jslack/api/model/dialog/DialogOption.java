@@ -5,7 +5,6 @@ import lombok.Data;
 
 /**
  * A dialog element option used with {@link DialogSelectElement}s
- *
  */
 @Data
 @Builder

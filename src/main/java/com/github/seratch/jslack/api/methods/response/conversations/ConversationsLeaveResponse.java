@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ConversationsLeaveResponse {
-    
+
     private boolean ok;
     private String warning;
     private String error;

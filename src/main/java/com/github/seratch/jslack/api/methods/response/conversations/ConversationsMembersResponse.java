@@ -8,11 +8,11 @@ import lombok.Data;
 
 @Data
 public class ConversationsMembersResponse {
-    
+
     private boolean ok;
     private String warning;
     private String error;
-    
+
     private List<String> members;
     private ResponseMetadata responseMetadata;
 }

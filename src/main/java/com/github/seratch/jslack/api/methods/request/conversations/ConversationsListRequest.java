@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ConversationsListRequest implements SlackApiRequest {
-    
+
     private String token;
     private String cursor;
     private boolean excludeArchived;

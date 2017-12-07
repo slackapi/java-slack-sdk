@@ -25,5 +25,5 @@ public class Message {
     private String botId;
     private Icon icons;
     private File file;
-    
+
 }

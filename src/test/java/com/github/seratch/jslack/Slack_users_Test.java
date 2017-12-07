@@ -77,16 +77,16 @@ public class Slack_users_Test {
 
         {
             UsersDeletePhotoResponse response = slack.methods().usersDeletePhoto(
-                UsersDeletePhotoRequest.builder().token(token).build());
+                    UsersDeletePhotoRequest.builder().token(token).build());
             assertThat(response.isOk(), is(true));
         }
 
         File image = new File("src/test/resources/user_photo.jpg");
         {
             UsersSetPhotoResponse response = slack.methods().usersSetPhoto(UsersSetPhotoRequest.builder()
-                .token(token)
-                .image(image)
-                .build());
+                    .token(token)
+                    .image(image)
+                    .build());
             assertThat(response.isOk(), is(true));
         }
     }

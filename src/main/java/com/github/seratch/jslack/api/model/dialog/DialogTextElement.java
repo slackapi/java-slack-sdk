@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * Represents a <a href="https://api.slack.com/dialogs#text_elements">text</a>
  * dialog element<p>
- * 
+ * <p>
  * {@code Text} elements are single-line plain text fields.
  */
 @Data
@@ -26,9 +26,8 @@ public class DialogTextElement implements DialogElement {
     /**
      * Type of element.  For a text element, the type is always
      * {@code text} . It's required.
-     * 
+     *
      * @see <a href="https://api.slack.com/dialogs#elements">Dialog form elements</a>
-     * 
      */
     private final String type = "text";
 
@@ -44,7 +43,7 @@ public class DialogTextElement implements DialogElement {
     private String placeholder;
 
     /**
-     * Provide {@code true} when the form element is not required. By default, 
+     * Provide {@code true} when the form element is not required. By default,
      * form elements are required.
      */
     boolean optional;
