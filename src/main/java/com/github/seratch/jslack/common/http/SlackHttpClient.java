@@ -38,6 +38,10 @@ public class SlackHttpClient {
         return okHttpClient.newCall(request).execute();
     }
 
+    public Response delete(Request.Builder requestBuilder) throws IOException {
+        return okHttpClient.newCall(requestBuilder.method("DELETE", null).build()).execute();
+    }
+
     private String toJsonString(Object obj) {
         Gson gson = GsonFactory.createSnakeCase();
         return gson.toJson(obj);
