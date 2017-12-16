@@ -49,4 +49,8 @@ public class Action {
     private String value;
     private Confirmation confirm;
     private List<Option> options = new ArrayList<>();
+    private List<Option> selectedOptions = new ArrayList<>();
+    private String dataSource;
+    private Integer minQueryLength;
+
 }
