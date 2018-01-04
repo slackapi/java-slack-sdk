@@ -14,10 +14,7 @@ import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.channels.*;
-import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.chat.*;
 import com.github.seratch.jslack.api.methods.request.conversations.*;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
@@ -61,10 +58,7 @@ import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
 import com.github.seratch.jslack.api.methods.response.channels.*;
-import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.chat.*;
 import com.github.seratch.jslack.api.methods.response.conversations.*;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
@@ -309,6 +303,23 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("text", req.getText(), form);
         return doPostForm(form, Methods.CHAT_ME_MESSAGE, ChatMeMessageResponse.class);
+    }
+
+    @Override
+    public ChatPostEphemeralResponse chatPostEphemeral(ChatPostEphemeralRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("text", req.getText(), form);
+        setIfNotNull("user", req.getUser(), form);
+        setIfNotNull("as_user", req.isAsUser(), form);
+        if (req.getAttachments() != null) {
+            String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
+            form.add("attachments", json);
+        }
+        setIfNotNull("link_names", req.isLinkNames(), form);
+        setIfNotNull("parse", req.getParse(), form);
+        return doPostForm(form, Methods.CHAT_POST_EPHEMERAL, ChatPostEphemeralResponse.class);
     }
 
     @Override
@@ -1311,6 +1322,14 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("token", req.getToken(), form);
         setIfNotNull("presence", req.getPresence(), form);
         return doPostForm(form, Methods.USERS_LIST, UsersListResponse.class);
+    }
+
+    @Override
+    public UsersLookupByEmailResponse usersLookupByEmail(UsersLookupByEmailRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("email", req.getEmail(), form);
+        return doPostForm(form, Methods.USERS_LOOKUP_BY_EMAIL, UsersLookupByEmailResponse.class);
     }
 
     @Override

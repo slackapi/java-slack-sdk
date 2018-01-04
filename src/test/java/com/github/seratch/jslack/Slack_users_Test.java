@@ -2,9 +2,11 @@ package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.users.*;
+import com.github.seratch.jslack.api.methods.response.channels.UsersLookupByEmailResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.model.User;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -91,4 +93,17 @@ public class Slack_users_Test {
         }
     }
 
+    @Test
+    public void lookupByEMailSupported() throws IOException, SlackApiException {
+        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder().token(token).presence(1).build());
+        List<User> users = usersListResponse.getMembers();
+        User randomUser = users.get(0);
+        String email = randomUser.getProfile().getEmail();
+
+        UsersLookupByEmailResponse response = slack.methods().usersLookupByEmail(UsersLookupByEmailRequest.builder().token(token).email(email).build());
+
+        Assert.assertTrue(response.isOk());
+        Assert.assertEquals(randomUser.getId(), response.getUser().getId());
+    }
 }

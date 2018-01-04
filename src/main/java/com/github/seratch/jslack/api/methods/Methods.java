@@ -2,6 +2,9 @@ package com.github.seratch.jslack.api.methods;
 
 public class Methods {
 
+
+
+
     private Methods() {
     }
 
@@ -50,6 +53,7 @@ public class Methods {
 
     public static final String CHAT_DELETE = "chat.delete";
     public static final String CHAT_ME_MESSAGE = "chat.meMessage";
+    public static final String CHAT_POST_EPHEMERAL = "chat.postEphemeral";
     public static final String CHAT_POST_MESSAGE = "chat.postMessage";
     public static final String CHAT_UPDATE = "chat.update";
 
@@ -254,6 +258,7 @@ public class Methods {
     public static final String USERS_IDENTITY = "users.identity";
     public static final String USERS_INFO = "users.info";
     public static final String USERS_LIST = "users.list";
+    public static final String USERS_LOOKUP_BY_EMAIL = "users.lookupByEmail";
     public static final String USERS_SET_ACTIVE = "users.setActive";
     public static final String USERS_SET_PHOTO = "users.setPhoto";
     public static final String USERS_SET_PRESENCE = "users.setPresence";
