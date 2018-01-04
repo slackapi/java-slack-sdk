@@ -21,8 +21,8 @@ public class Group {
     private String creator;
     @SerializedName("is_archived")
     private boolean archived;
-    @SerializedName("is_npim")
-    private boolean npim;
+    @SerializedName("is_mpim")
+    private boolean mpim;
     private List<String> members;
     private Topic topic;
     private Purpose purpose;
