@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.math.BigInteger;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -192,6 +191,4 @@ public class Slack_channels_chat_Test {
             assertThat(fetchedChannel.isArchived(), is(true));
         }
     }
-
-
 }

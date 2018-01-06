@@ -2,9 +2,6 @@ package com.github.seratch.jslack.api.methods;
 
 public class Methods {
 
-
-
-
     private Methods() {
     }
 
