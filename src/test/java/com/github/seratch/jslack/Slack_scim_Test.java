@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 public class Slack_scim_Test {
 
     Slack slack = Slack.getInstance();
-    String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test
     public void deleteUserTest() throws IOException {

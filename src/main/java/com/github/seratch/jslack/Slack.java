@@ -4,6 +4,7 @@ import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.impl.MethodsClientImpl;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
+import com.github.seratch.jslack.api.methods.response.rtm.RTMStartResponse;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.scim.SCIMClient;
 import com.github.seratch.jslack.api.scim.SCIMClientImpl;
@@ -65,9 +66,12 @@ public class Slack {
      */
     public RTMClient rtm(String apiToken) throws IOException {
         try {
-            return new RTMClient(methods()
-                    .rtmStart(RTMStartRequest.builder().token(apiToken).build())
-                    .getUrl());
+            RTMStartResponse rtmStartResponse = methods().rtmStart(RTMStartRequest.builder().token(apiToken).build());
+            if (rtmStartResponse.isOk()) {
+                return new RTMClient(rtmStartResponse.getUrl());
+            } else {
+                throw new IllegalStateException("Failed to the RTM endpoint URL (error: " + rtmStartResponse.getError() + ")");
+            }
         } catch (SlackApiException | URISyntaxException e) {
             throw new IllegalStateException("Couldn't fetch RTM API WebSocket endpoint. Ensure the apiToken value.");
         }

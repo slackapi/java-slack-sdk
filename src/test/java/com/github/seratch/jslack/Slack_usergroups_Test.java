@@ -9,14 +9,14 @@ import com.github.seratch.jslack.api.methods.response.usergroups.users.Usergroup
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
 public class Slack_usergroups_Test {
 
     Slack slack = Slack.getInstance();
-    String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test
     public void create() throws Exception {
@@ -25,7 +25,12 @@ public class Slack_usergroups_Test {
                 .name("usergroup-" + System.currentTimeMillis())
                 .build());
         assertThat(response.isOk(), is(false));
-        assertThat(response.getError(), is("paid_teams_only"));
+        assertThat(response.getError(), is(anyOf(
+                // For a good old token, "paid_teams_only" can be returned as the error
+                equalTo("paid_teams_only"),
+                // As of 2018, this code is generally returned for newly created token
+                equalTo("missing_scope")
+        )));
     }
 
     @Test

@@ -29,7 +29,7 @@ public class Slack_auth_Test {
 
     @Test
     public void authTest() throws IOException, SlackApiException {
-        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         AuthTestResponse response = slack.methods().authTest(AuthTestRequest.builder().token(token).build());
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));

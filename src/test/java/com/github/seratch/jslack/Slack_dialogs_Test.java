@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Slack_dialogs_Test {
 
     Slack slack = new Slack();
-    String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test
     public void open() throws IOException, SlackApiException {

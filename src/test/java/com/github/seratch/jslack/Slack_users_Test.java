@@ -6,16 +6,14 @@ import com.github.seratch.jslack.api.methods.response.channels.UsersLookupByEmai
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.model.User;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class Slack_users_Test {
@@ -24,7 +22,7 @@ public class Slack_users_Test {
 
     @Test
     public void users() throws IOException, SlackApiException {
-        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         {
             UsersSetPresenceResponse response = slack.methods().usersSetPresence(
@@ -95,15 +93,30 @@ public class Slack_users_Test {
 
     @Test
     public void lookupByEMailSupported() throws IOException, SlackApiException {
-        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
-        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder().token(token).presence(1).build());
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder()
+                .token(token)
+                .presence(1)
+                .build());
+
         List<User> users = usersListResponse.getMembers();
-        User randomUser = users.get(0);
-        String email = randomUser.getProfile().getEmail();
+        User randomUserWhoHasEmail = null;
+        for (User user : users) {
+            if (user.getProfile() != null && user.getProfile().getEmail() != null) {
+                randomUserWhoHasEmail = user;
+                break;
+            }
+        }
+        if (randomUserWhoHasEmail == null) {
+            throw new IllegalStateException("Create a non-bot user for this test case in advance.");
+        }
 
-        UsersLookupByEmailResponse response = slack.methods().usersLookupByEmail(UsersLookupByEmailRequest.builder().token(token).email(email).build());
+        UsersLookupByEmailResponse response = slack.methods().usersLookupByEmail(UsersLookupByEmailRequest.builder()
+                .token(token)
+                .email(randomUserWhoHasEmail.getProfile().getEmail())
+                .build());
 
-        Assert.assertTrue(response.isOk());
-        Assert.assertEquals(randomUser.getId(), response.getUser().getId());
+        assertTrue(response.isOk());
+        assertEquals(randomUserWhoHasEmail.getId(), response.getUser().getId());
     }
 }

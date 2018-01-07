@@ -22,7 +22,7 @@ public class Slack_channels_chat_Test {
 
     @Test
     public void channels_chat() throws IOException, SlackApiException {
-        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         {
             ChannelsListResponse response = slack.methods().channelsList(

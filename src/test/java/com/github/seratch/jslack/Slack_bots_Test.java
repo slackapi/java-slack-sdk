@@ -19,7 +19,7 @@ public class Slack_bots_Test {
 
     @Test
     public void botsInfo() throws IOException, SlackApiException {
-        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         String bot = "B03E94MLG"; // hard coded
         BotsInfoResponse response = slack.methods().botsInfo(BotsInfoRequest.builder().token(token).bot(bot).build());
         assertThat(response.isOk(), is(true));

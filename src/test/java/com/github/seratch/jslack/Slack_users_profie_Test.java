@@ -22,7 +22,7 @@ public class Slack_users_profie_Test {
 
     @Test
     public void usersProfile() throws IOException, SlackApiException {
-        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         {
             UsersProfileGetResponse response = slack.methods().usersProfileGet(UsersProfileGetRequest.builder().token(token).build());

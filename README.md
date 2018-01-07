@@ -280,7 +280,7 @@ DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(
 
 ```java
 Slack slack = Slack.getInstance();
-ApiToken token = ApiToken.of(System.getenv("SLACK_BOT_TEST_API_TOKEN"));
+ApiToken token = ApiToken.of(System.getenv("SLACK_OAUTH_ACCESS_TOKEN"));
 
 Shortcut shortcut = slack.shortcut(token);
 
@@ -293,6 +293,32 @@ Attachment attachment = Attachment.builder().text("text").footer("footer").build
 List<Attachment> attachments = Arrays.asList(attachment);
 ChatPostMessageResponse response = shortcut.postAsBot(ChannelName.of("general"), "hello, hello!");
 ```
+
+### Preparations for running this library's unit tests.
+
+### Creating a Slack app
+
+https://api.slack.com/apps
+
+### Setting up "OAuth & Permissions" for it
+
+You need to select all permission scopes except for `identity.*`. After that, you also need to run "Reinstall App".
+
+#### Setting up OAuth access tokens (both the normal one and the one as a bot)
+
+<img src="https://user-images.githubusercontent.com/19658/34647360-38a7bc9e-f3c4-11e7-8c68-64c9be5b6fc3.png">
+
+Set the OAuth access tokens as env variables.
+
+```bash
+export SLACK_TEST_OAUTH_ACCESS_TOKEN=xoxp-*******************************************************
+export SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN=xoxb-************************************
+```
+
+#### Creating at least one Slack user who has its email
+
+Manually create a Slack user which has an email address for a unit test.
+
 
 ### License
 

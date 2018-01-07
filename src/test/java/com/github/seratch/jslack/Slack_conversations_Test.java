@@ -53,7 +53,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Slack_conversations_Test {
 
     Slack slack = Slack.getInstance();
-    String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test
     public void channelConversation() throws IOException, SlackApiException {

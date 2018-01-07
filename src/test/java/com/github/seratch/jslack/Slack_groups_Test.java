@@ -22,7 +22,7 @@ public class Slack_groups_Test {
 
     @Test
     public void groups() throws IOException, SlackApiException {
-        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         GroupsCreateResponse creationResponse = slack.methods().groupsCreate(
                 GroupsCreateRequest.builder().token(token).name("secret-" + System.currentTimeMillis()).build());

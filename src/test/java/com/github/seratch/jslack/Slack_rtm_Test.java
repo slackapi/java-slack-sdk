@@ -18,7 +18,7 @@ public class Slack_rtm_Test {
     @Test
     public void rtm() throws Exception {
         JsonParser jsonParser = new JsonParser();
-        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+        String token = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
         try (RTMClient rtm = slack.rtm(token)) {
             RTMMessageHandler handler1 = (message) -> {
                 JsonObject json = jsonParser.parse(message).getAsJsonObject();

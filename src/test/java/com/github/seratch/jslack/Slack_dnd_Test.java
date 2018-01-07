@@ -25,7 +25,7 @@ public class Slack_dnd_Test {
 
     @Test
     public void dnd() throws IOException, SlackApiException {
-        String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         List<User> members = slack.methods().usersList(UsersListRequest.builder().token(token).presence(1).build()).getMembers();
         {
