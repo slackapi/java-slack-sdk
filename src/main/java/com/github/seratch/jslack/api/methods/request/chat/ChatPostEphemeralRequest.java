@@ -15,7 +15,7 @@ public class ChatPostEphemeralRequest implements SlackApiRequest {
     private String channel;
     private String text;
     private String user;
-    private boolean asUser=true;
+    private boolean asUser = true;
     private List<Attachment> attachments;
     private boolean linkNames = true;
     private String parse = "full";

@@ -1,11 +1,10 @@
 package com.github.seratch.jslack.api.model;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
-
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * Represents a <a href="https://api.slack.com/types/conversation">conversation</a>

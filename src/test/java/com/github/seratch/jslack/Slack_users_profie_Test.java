@@ -11,9 +11,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class Slack_users_profie_Test {

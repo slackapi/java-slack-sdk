@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.api.methods.response.conversations;
 
 import com.github.seratch.jslack.api.model.Conversation;
-
 import lombok.Data;
 
 @Data

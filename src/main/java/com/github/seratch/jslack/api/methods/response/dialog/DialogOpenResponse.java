@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.api.methods.response.dialog;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-
 import lombok.Data;
 
 @Data

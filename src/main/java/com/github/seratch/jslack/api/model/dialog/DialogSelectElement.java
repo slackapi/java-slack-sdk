@@ -1,9 +1,9 @@
 package com.github.seratch.jslack.api.model.dialog;
 
-import java.util.List;
-
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * Represents a <a href="https://api.slack.com/dialogs#select_elements">select</a>

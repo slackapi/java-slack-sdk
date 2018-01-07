@@ -1,11 +1,5 @@
 package com.github.seratch.jslack.api.methods.impl;
 
-import static java.util.stream.Collectors.joining;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
@@ -100,9 +94,14 @@ import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfile
 import com.github.seratch.jslack.api.model.ConversationType;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
 import com.github.seratch.jslack.common.json.GsonFactory;
-
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.stream.Collectors.*;
 
 @Slf4j
 public class MethodsClientImpl implements MethodsClient {

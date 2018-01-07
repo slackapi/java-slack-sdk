@@ -13,10 +13,9 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static java.util.stream.Collectors.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class Slack_dnd_Test {

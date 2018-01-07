@@ -14,8 +14,8 @@ import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGe
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class Slack_team_Test {

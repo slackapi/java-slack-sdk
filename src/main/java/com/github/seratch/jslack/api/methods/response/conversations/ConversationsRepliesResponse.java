@@ -1,11 +1,10 @@
 package com.github.seratch.jslack.api.methods.response.conversations;
 
-import java.util.List;
-
 import com.github.seratch.jslack.api.model.Message;
 import com.github.seratch.jslack.api.model.ResponseMetadata;
-
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class ConversationsRepliesResponse {

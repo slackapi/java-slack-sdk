@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.api.model;
 
 import com.google.gson.annotations.SerializedName;
-
 import lombok.Data;
 
 /**

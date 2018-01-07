@@ -1,7 +1,5 @@
 package com.github.seratch.jslack.api.methods;
 
-import java.io.IOException;
-
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
@@ -90,6 +88,8 @@ import com.github.seratch.jslack.api.methods.response.usergroups.users.Usergroup
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
+
+import java.io.IOException;
 
 /**
  * API Methods.

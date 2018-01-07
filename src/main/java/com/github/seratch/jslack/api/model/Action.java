@@ -1,12 +1,11 @@
 package com.github.seratch.jslack.api.model;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.annotations.SerializedName;
 
 @Data
 @Builder

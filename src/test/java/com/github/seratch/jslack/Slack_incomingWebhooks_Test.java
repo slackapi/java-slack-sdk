@@ -2,8 +2,8 @@ package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Field;
-import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.api.webhook.Payload;
+import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

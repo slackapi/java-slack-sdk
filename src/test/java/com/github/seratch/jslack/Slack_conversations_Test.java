@@ -1,53 +1,22 @@
 package com.github.seratch.jslack;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import com.github.seratch.jslack.api.methods.SlackApiException;
+import com.github.seratch.jslack.api.methods.request.conversations.*;
+import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
+import com.github.seratch.jslack.api.methods.response.conversations.*;
+import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
+import com.github.seratch.jslack.api.model.Conversation;
+import com.github.seratch.jslack.api.model.ConversationType;
+import com.github.seratch.jslack.api.model.User;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
-
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsArchiveRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCloseRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCreateRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsHistoryRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsInfoRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsInviteRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsJoinRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsKickRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsLeaveRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsListRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsMembersRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsOpenRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsRenameRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsSetPurposeRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsSetTopicRequest;
-import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsArchiveResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsCloseResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsCreateResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsHistoryResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsInfoResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsInviteResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsJoinResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsKickResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsLeaveResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsListResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsMembersResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsOpenResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsRenameResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsSetPurposeResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsSetTopicResponse;
-import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
-import com.github.seratch.jslack.api.model.Conversation;
-import com.github.seratch.jslack.api.model.ConversationType;
-import com.github.seratch.jslack.api.model.User;
-
-import lombok.extern.slf4j.Slf4j;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class Slack_conversations_Test {

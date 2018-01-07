@@ -1,22 +1,19 @@
-
 package com.github.seratch.jslack;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
-import java.io.IOException;
-import java.util.Arrays;
-
-import org.junit.Test;
 
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.model.dialog.Dialog;
-import com.github.seratch.jslack.api.model.dialog.DialogTextElement;
 import com.github.seratch.jslack.api.model.dialog.DialogSubType;
-
+import com.github.seratch.jslack.api.model.dialog.DialogTextElement;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class Slack_dialogs_Test {
@@ -44,7 +41,7 @@ public class Slack_dialogs_Test {
                 .elements(Arrays.asList(quanityTextElement))
                 .submitLabel("")
                 .build();
-        
+
         /*
          * A dialog in Slack can only be opened in response to a user action such as a slash command or
          * button click (which now include trigger_ids in callbacks). A dialog.open request has to include
