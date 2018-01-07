@@ -2,15 +2,9 @@ package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.channels.*;
-import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.chat.*;
 import com.github.seratch.jslack.api.methods.response.channels.*;
-import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.chat.*;
 import com.github.seratch.jslack.api.model.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -157,7 +151,6 @@ public class Slack_channels_chat_Test {
                     .build());
             assertThat(deleteResponse.isOk(), is(true));
         }
-
         {
             ChannelsLeaveResponse response = slack.methods().channelsLeave(ChannelsLeaveRequest.builder()
                     .token(token)
@@ -198,5 +191,4 @@ public class Slack_channels_chat_Test {
             assertThat(fetchedChannel.isArchived(), is(true));
         }
     }
-
 }

@@ -7,10 +7,7 @@ import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.channels.*;
-import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.chat.*;
 import com.github.seratch.jslack.api.methods.request.conversations.*;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
@@ -54,10 +51,7 @@ import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
 import com.github.seratch.jslack.api.methods.response.channels.*;
-import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.chat.*;
 import com.github.seratch.jslack.api.methods.response.conversations.*;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
@@ -166,6 +160,8 @@ public interface MethodsClient {
     ChatDeleteResponse chatDelete(ChatDeleteRequest req) throws IOException, SlackApiException;
 
     ChatMeMessageResponse chatMeMessage(ChatMeMessageRequest req) throws IOException, SlackApiException;
+
+    ChatPostEphemeralResponse chatPostEphemeral(ChatPostEphemeralRequest req) throws IOException, SlackApiException;
 
     ChatPostMessageResponse chatPostMessage(ChatPostMessageRequest req) throws IOException, SlackApiException;
 
@@ -440,6 +436,8 @@ public interface MethodsClient {
     UsersInfoResponse usersInfo(UsersInfoRequest req) throws IOException, SlackApiException;
 
     UsersListResponse usersList(UsersListRequest req) throws IOException, SlackApiException;
+
+    UsersLookupByEmailResponse usersLookupByEmail(UsersLookupByEmailRequest req) throws IOException, SlackApiException;
 
     UsersSetActiveResponse usersSetActive(UsersSetActiveRequest req) throws IOException, SlackApiException;
 
