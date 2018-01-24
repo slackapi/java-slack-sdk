@@ -19,6 +19,7 @@ public class RTMClient implements Closeable {
 
     private final List<RTMMessageHandler> messageHandlers = new ArrayList<>();
     private final List<RTMErrorHandler> errorHandlers = new ArrayList<>();
+    private final List<RTMCloseHandler> closeHandlers = new ArrayList<>();
 
     public RTMClient(String wssUrl) throws URISyntaxException {
         if (wssUrl == null) {
@@ -54,6 +55,10 @@ public class RTMClient implements Closeable {
     public void onClose(Session session, CloseReason reason) {
         log.debug("session closed: {}, reason: {}", session.getId(), reason.getReasonPhrase());
         this.currentSession = null;
+
+        closeHandlers.forEach(closeHandler -> {
+            closeHandler.handle(reason);
+        });
     }
 
     @OnError
@@ -88,6 +93,14 @@ public class RTMClient implements Closeable {
 
     public void removeErrorHandler(RTMErrorHandler errorHandler) {
         errorHandlers.remove(errorHandler);
+    }
+
+    public void addCloseHandler(RTMCloseHandler closeHandler) {
+        closeHandlers.add(closeHandler);
+    }
+
+    public void removeCloseHandler(RTMCloseHandler closeHandler) {
+        closeHandlers.remove(closeHandler);
     }
 
     public void sendMessage(String message) {
