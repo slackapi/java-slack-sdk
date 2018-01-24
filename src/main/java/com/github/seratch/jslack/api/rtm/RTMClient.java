@@ -55,6 +55,12 @@ public class RTMClient implements Closeable {
         this.currentSession = null;
     }
 
+    @OnError
+    public void onError(Session session, Throwable reason) {
+        log.error("session errored, exception is below", reason);
+        this.currentSession = null;
+    }
+
     @OnMessage
     public void onMessage(String message) {
         log.debug("message: {}", message);
