@@ -51,5 +51,5 @@ public class Action {
     private List<Option> selectedOptions = new ArrayList<>();
     private String dataSource;
     private Integer minQueryLength;
-
+    private String url;
 }
