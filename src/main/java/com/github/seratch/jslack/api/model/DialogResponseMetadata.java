@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ErrorMetadata {
+public class DialogResponseMetadata {
 
     private List<String> messages;
 

@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.dialog;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.ErrorMetadata;
+import com.github.seratch.jslack.api.model.DialogResponseMetadata;
 import lombok.Data;
 
 @Data
@@ -10,5 +10,5 @@ public class DialogOpenResponse implements SlackApiResponse {
     private boolean ok;
     private String warning;
     private String error;
-    private ErrorMetadata responseMetadata;
+    private DialogResponseMetadata responseMetadata;
 }
