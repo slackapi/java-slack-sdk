@@ -2,7 +2,7 @@
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/jslack/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/jslack)
 
-jSlack is a Java library to easily integrate your operations with [Slack](https://slack.com/). Currently, this library supports the following APIs.
+jSlack is a Java library to easily integrate your operations with [Slack](https://slack.com/). The library currently supports the following APIs.
 
 - [Incoming Webhook](https://api.slack.com/incoming-webhooks)
 - [Real Time Messaging API](https://api.slack.com/rtm)
@@ -37,9 +37,9 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
 
 ### Getting Started
 
-Check the latest version on [the Maven Central repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.seratch%22%20a%3A%22jslack%22).
+Check the latest version on [the Maven Central repository](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.seratch%22%20AND%20a%3A%22jslack%22).
 
-The following is a Maven example. Of course, it's also possible to grab the library via Gradle, sbt and any other build tools.
+The following is an example using Maven. Of course, it's also possible to grab the library via Gradle, sbt and any other build tools.
 
 ```xml
 <groupId>com.github.seratch</groupId>
@@ -53,7 +53,7 @@ See also: [Getting started with groovysh](https://github.com/seratch/jslack/wiki
 
 #### Incoming Webhook
 
-Incoming Webhook is a simple way to post messages from external sources into Slack via normal HTTP requests.
+Incoming Webhook is a simple way to post messages from external sources into Slack via ordinary HTTP requests.
 
 https://api.slack.com/incoming-webhooks
 
@@ -132,7 +132,7 @@ try (RTMClient rtm = new Slack().rtm(token)) {
 } // #close method does #disconnect
 ```
 
-The `message`, argument of messageHandler, is a string value (it's JSON data). You need to deserialize it with your favorite JSON library.
+The `message`, argument of messageHandler, is a string value in JSON format. You need to deserialize it with your favorite JSON library.
 
 jSlack already depends on [google-gson](https://github.com/google/gson) library. So you can use Gson as above example shows. If you prefer Jackson or other libraries, it's also possible.
 
@@ -276,7 +276,7 @@ DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(
 ```
 
 
-#### (Original) Shortcut APIs
+#### (jSlack's Original) Shortcut APIs
 
 ```java
 Slack slack = Slack.getInstance();
