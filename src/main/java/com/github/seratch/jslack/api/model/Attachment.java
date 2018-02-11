@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.model;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
 
@@ -18,7 +19,6 @@ public class Attachment {
      * (eg. IRC, mobile notifications) and should not contain any markup.
      */
     private String fallback;
-
 
     /**
      * This is optional value that specifies callback id when there are buttons.
@@ -39,6 +39,7 @@ public class Attachment {
      */
     private String pretext;
 
+    // -----------------------------------------
     // The author parameters will display a small section at the top of a message attachment that can contain the following fields:
 
     /**
@@ -55,6 +56,35 @@ public class Attachment {
      * A valid URL that displays a small 16x16px image to the left of the author_name text. Will only work if author_name is present.
      */
     private String authorIcon;
+
+    // -----------------------------------------
+    // Attributes for reply_broadcast message (showing a posted message as an attachment)
+    // https://api.slack.com/events/message/reply_broadcast
+
+    // "from_url": "https://lost-generation-authors.slack.com/archives/general/p1482960137003543",
+    private String fromUrl;
+    // "author_subname": "confused",
+    private String authorSubname;
+    // "channel_id": "C061EG9SL",
+    private String channelId;
+    // "channel_name": "general",
+    private String channelName;
+    //"id": 1,
+    private String id;
+
+    // # already exists > "fallback": "[December 28th, 2016 1:22 PM] confused: what was there?",
+    // # already exists > "ts": "1482960137.003543",
+    // # already exists > "author_link": "https://lost-generation-authors.slack.com/team/confused",
+    // # already exists > "author_icon": "https://...png",
+    // # already exists > "mrkdwn_in": ["text"],
+    // # already exists > "text": "island",
+    // # already exists > "footer": "5 replies"
+
+    @SerializedName("is_msg_unfurl")
+    private boolean msgUnfurl;
+
+    @SerializedName("is_reply_unfurl")
+    private boolean replyUnfurl;
 
     /**
      * The title is displayed as larger, bold text near the top of a message attachment.
@@ -142,4 +172,5 @@ public class Attachment {
      * Actions are defined as an array, and hashes contained within it will be displayed in as buttons in the message attachment.
      */
     private List<Action> actions = new ArrayList<>();
+
 }
