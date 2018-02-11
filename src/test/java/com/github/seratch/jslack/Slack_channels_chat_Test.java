@@ -6,12 +6,15 @@ import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatMeMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsHistoryRequest;
 import com.github.seratch.jslack.api.methods.response.channels.*;
 import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatMeMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsHistoryResponse;
 import com.github.seratch.jslack.api.model.Channel;
+import com.github.seratch.jslack.api.model.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -24,6 +27,90 @@ import static org.junit.Assert.*;
 public class Slack_channels_chat_Test {
 
     Slack slack = Slack.getInstance();
+
+    @Test
+    public void channels_threading() throws IOException, SlackApiException {
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        ChannelsListResponse channels = slack.methods().channelsList(ChannelsListRequest.builder()
+                .token(token)
+                .excludeArchived(1)
+                .build());
+        assertThat(channels.isOk(), is(true));
+
+        String channelId = channels.getChannels().get(0).getId();
+
+        ChatPostMessageResponse firstMessageCreation = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .channel(channelId)
+                .token(token)
+                .text("[thread] This is a test message posted by unit tests for jslack library")
+                .replyBroadcast(false)
+                .build());
+        assertThat(firstMessageCreation.isOk(), is(true));
+
+        ChatPostMessageResponse reply1 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .channel(channelId)
+                .token(token)
+                .asUser(false)
+                .text("replied")
+                .threadTs(firstMessageCreation.getTs())
+                //.replyBroadcast(true)
+                .build());
+        assertThat(reply1.isOk(), is(true));
+
+        ChatPostMessageResponse reply2 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .channel(channelId)
+                .token(token)
+                .asUser(true)
+                .text("replied again")
+                .threadTs(reply1.getTs())
+                .replyBroadcast(true)
+                .build());
+        assertThat(reply2.isOk(), is(true));
+
+        // via channels.history
+        {
+            ChannelsHistoryResponse history = slack.methods().channelsHistory(ChannelsHistoryRequest.builder()
+                    .token(token)
+                    .channel(channelId)
+                    .build());
+            assertThat(history.isOk(), is(true));
+
+            Message firstReply = history.getMessages().get(1);
+            assertThat(firstReply.getType(), is("message"));
+            assertThat(firstReply.getSubtype(), is("bot_message"));
+            assertThat(firstReply.getAttachments(), is(nullValue()));
+            assertThat(firstReply.getRoot(), is(nullValue()));
+
+            Message latestMessage = history.getMessages().get(0);
+            assertThat(latestMessage.getType(), is("message"));
+            assertThat(latestMessage.getSubtype(), is("thread_broadcast"));
+            assertThat(latestMessage.getAttachments(), is(nullValue()));
+            assertThat(latestMessage.getRoot().getReplies().size(), is(2));
+            assertThat(latestMessage.getRoot().getReplyCount(), is(2));
+        }
+
+        // via conversations.history
+        {
+            ConversationsHistoryResponse history = slack.methods().conversationsHistory(ConversationsHistoryRequest.builder()
+                    .token(token)
+                    .channel(channelId)
+                    .build());
+            assertThat(history.isOk(), is(true));
+
+            Message firstReply = history.getMessages().get(1);
+            assertThat(firstReply.getType(), is("message"));
+            assertThat(firstReply.getSubtype(), is("bot_message"));
+            assertThat(firstReply.getAttachments(), is(nullValue()));
+            assertThat(firstReply.getRoot(), is(nullValue()));
+
+            Message latestMessage = history.getMessages().get(0);
+            assertThat(latestMessage.getType(), is("message"));
+            assertThat(latestMessage.getSubtype(), is("thread_broadcast"));
+            assertThat(latestMessage.getAttachments(), is(nullValue()));
+            assertThat(latestMessage.getRoot().getReplies().size(), is(2));
+            assertThat(latestMessage.getRoot().getReplyCount(), is(2));
+        }
+    }
 
     @Test
     public void channels_chat() throws IOException, SlackApiException {

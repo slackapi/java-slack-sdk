@@ -9,5 +9,6 @@ import lombok.Data;
 public class ChannelsListRequest implements SlackApiRequest {
 
     private String token;
+    // 1: true
     private Integer excludeArchived;
 }

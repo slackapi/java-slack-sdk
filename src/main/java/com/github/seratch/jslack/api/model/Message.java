@@ -26,4 +26,41 @@ public class Message {
     private Icon icons;
     private File file;
 
+    // https://api.slack.com/docs/message-link-unfurling
+    private boolean unfurlLinks;
+    private boolean unfurlMedia;
+
+    @SerializedName("is_thread_broadcast")
+    private boolean threadBroadcast;
+
+    // this field exists only when posting the message with "reply_broadcast": true
+    private MessageRoot root;
+
+    /**
+     * The root message information of a "thread_broadcast" message.
+     */
+    @Data
+    public static class MessageRoot {
+        private String text;
+        private String username;
+        private String botId;
+        private String type;
+        private String subtype;
+        private String threadTs;
+        private Integer replyCount;
+        private List<MessageRootReply> replies;
+        private boolean subscribed;
+        private Integer unreadCount;
+        private String ts;
+    }
+
+    /**
+     * A reply message information in a MessageRoot.
+     */
+    @Data
+    public static class MessageRootReply {
+        private String user;
+        private String ts;
+    }
+
 }

@@ -340,6 +340,8 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("as_user", req.isAsUser(), form);
         setIfNotNull("icon_url", req.getIconUrl(), form);
         setIfNotNull("icon_emoji", req.getIconEmoji(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("reply_broadcast", req.isReplyBroadcast(), form);
         return doPostForm(form, Methods.CHAT_POST_MESSAGE, ChatPostMessageResponse.class);
     }
 
