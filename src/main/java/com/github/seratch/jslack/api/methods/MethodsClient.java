@@ -158,7 +158,7 @@ public interface MethodsClient {
     // ------------------------------
 
     ChatGetPermalinkResponse chatGetPermalink(ChatGetPermalinkRequest req) throws IOException, SlackApiException;
-    
+
     ChatDeleteResponse chatDelete(ChatDeleteRequest req) throws IOException, SlackApiException;
 
     ChatMeMessageResponse chatMeMessage(ChatMeMessageRequest req) throws IOException, SlackApiException;
