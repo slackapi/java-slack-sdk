@@ -51,22 +51,28 @@ public class Slack_channels_chat_Test {
                 .build());
         assertThat(reply1.isOk(), is(true));
 
+        ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(ChatGetPermalinkRequest.builder()
+                .token(token)
+                .channel(channelId)
+                .messageTs(reply1.getTs())
+                .build());
+        assertThat(permalink.isOk(), is(true));
+        assertThat(permalink.getPermalink(), is(notNullValue()));
+
         ChatPostMessageResponse reply2 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
                 .channel(channelId)
                 .token(token)
                 .asUser(true)
-                .text("replied again")
+                .text("replied to " + permalink.getPermalink())
                 .threadTs(reply1.getTs())
+                .unfurlLinks(true)
                 .replyBroadcast(true)
                 .build());
         assertThat(reply2.isOk(), is(true));
 
-        ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(ChatGetPermalinkRequest.builder()
-                .token(token)
-                .channel(channelId)
-                .messageTs(reply2.getTs())
-                .build());
-        assertThat(permalink.isOk(), is(true));
+        // Ideally, this message must contain an attachment which shows the preview for reply1
+        // however, in this timing, Slack API doesn't return any attachments.
+        assertThat(reply2.getMessage().getAttachments(), is(nullValue()));
 
         // via channels.history
         {
@@ -85,7 +91,12 @@ public class Slack_channels_chat_Test {
             Message latestMessage = history.getMessages().get(0);
             assertThat(latestMessage.getType(), is("message"));
             assertThat(latestMessage.getSubtype(), is("thread_broadcast"));
-            assertThat(latestMessage.getAttachments(), is(nullValue()));
+
+            // NOTE: the following assertions can fail due to Slack API's unstable response
+            // this message must contain an attachment which shows the preview for reply1
+            assertThat(latestMessage.getAttachments(), is(notNullValue()));
+            assertThat(latestMessage.getAttachments().size(), is(1));
+            assertThat(latestMessage.getRoot(), is(notNullValue()));
             assertThat(latestMessage.getRoot().getReplies().size(), is(2));
             assertThat(latestMessage.getRoot().getReplyCount(), is(2));
         }
@@ -107,10 +118,43 @@ public class Slack_channels_chat_Test {
             Message latestMessage = history.getMessages().get(0);
             assertThat(latestMessage.getType(), is("message"));
             assertThat(latestMessage.getSubtype(), is("thread_broadcast"));
-            assertThat(latestMessage.getAttachments(), is(nullValue()));
+
+            // NOTE: the following assertions can fail due to Slack API's unstable response
+            // this message must contain an attachment which shows the preview for reply1
+            assertThat(latestMessage.getAttachments(), is(notNullValue()));
+            assertThat(latestMessage.getAttachments().size(), is(1));
+            assertThat(latestMessage.getRoot(), is(notNullValue()));
             assertThat(latestMessage.getRoot().getReplies().size(), is(2));
             assertThat(latestMessage.getRoot().getReplyCount(), is(2));
         }
+    }
+
+    @Test
+    public void chat_getPermalink() throws IOException, SlackApiException {
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        ChannelsListResponse channels = slack.methods().channelsList(ChannelsListRequest.builder()
+                .token(token)
+                .excludeArchived(1)
+                .build());
+        assertThat(channels.isOk(), is(true));
+
+        String channelId = channels.getChannels().get(0).getId();
+
+        ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .channel(channelId)
+                .token(token)
+                .text("Hi, this is a test message from jSlack library's unit tests")
+                .linkNames(1)
+                .build());
+        assertThat(postResponse.isOk(), is(true));
+
+        ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(ChatGetPermalinkRequest.builder()
+                .token(token)
+                .channel(channelId)
+                .messageTs(postResponse.getTs())
+                .build());
+        assertThat(permalink.isOk(), is(true));
+        assertThat(permalink.getPermalink(), is(notNullValue()));
     }
 
     @Test
