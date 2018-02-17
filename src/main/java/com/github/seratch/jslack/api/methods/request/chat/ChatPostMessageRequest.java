@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * https://api.slack.com/methods/chat.postMessage
+ */
 @Data
 @Builder
 public class ChatPostMessageRequest implements SlackApiRequest {
@@ -21,6 +24,7 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     private boolean unfurlMedia;
     private String username;
     private boolean asUser;
+    private boolean mrkdwn;
     private String iconUrl;
     private String iconEmoji;
     private String threadTs;
