@@ -48,6 +48,7 @@ public class Methods {
     // chat
     // ------------------------------
 
+    public static final String CHAT_GET_PERMALINK = "chat.getPermalink";
     public static final String CHAT_DELETE = "chat.delete";
     public static final String CHAT_ME_MESSAGE = "chat.meMessage";
     public static final String CHAT_POST_EPHEMERAL = "chat.postEphemeral";

@@ -285,6 +285,15 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("channel", req.getChannel(), form);
         return doPostForm(form, Methods.CHANNELS_UNARCHIVE, ChannelsUnarchiveResponse.class);
     }
+    
+    @Override
+    public ChatGetPermalinkResponse chatGetPermalink(ChatGetPermalinkRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("token", req.getToken(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("message_ts", req.getMessageTs(), form);
+        return doPostForm(form, Methods.CHAT_GET_PERMALINK, ChatGetPermalinkResponse.class);
+    }
 
     @Override
     public ChatDeleteResponse chatDelete(ChatDeleteRequest req) throws IOException, SlackApiException {
