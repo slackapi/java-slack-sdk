@@ -53,6 +53,15 @@ public class Slack_users_Test {
             User user = users.get(0);
             assertThat(user.getId(), is(notNullValue()));
             assertThat(user.getName(), is(notNullValue()));
+            assertThat(user.getRealName(), is(notNullValue()));
+
+            assertThat(user.getProfile().getFirstName(), is(nullValue()));
+            assertThat(user.getProfile().getLastName(), is(nullValue()));
+            assertThat(user.getProfile().getDisplayName(), is(notNullValue()));
+            assertThat(user.getProfile().getDisplayNameNormalized(), is(notNullValue()));
+            assertThat(user.getProfile().getRealName(), is(notNullValue()));
+            assertThat(user.getProfile().getRealNameNormalized(), is(notNullValue()));
+
             assertThat(user.getProfile().getImage24(), is(notNullValue()));
             assertThat(user.getProfile().getImage32(), is(notNullValue()));
             assertThat(user.getProfile().getImage48(), is(notNullValue()));
