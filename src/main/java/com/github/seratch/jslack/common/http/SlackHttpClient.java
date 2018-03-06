@@ -22,13 +22,20 @@ public class SlackHttpClient {
         this.okHttpClient = okHttpClient;
     }
 
-    public Response postMultipart(String url, MultipartBody multipartBody) throws IOException {
-        Request request = new Request.Builder().url(url).post(multipartBody).build();
+    public Response postMultipart(String url, String token, MultipartBody multipartBody) throws IOException {
+        String bearerHeaderValue = "Bearer " + token;
+        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).post(multipartBody).build();
         return okHttpClient.newCall(request).execute();
     }
 
     public Response postForm(String url, FormBody formBody) throws IOException {
         Request request = new Request.Builder().url(url).post(formBody).build();
+        return okHttpClient.newCall(request).execute();
+    }
+
+    public Response postFormWithBeearerHeader(String url, String token, FormBody formBody) throws IOException {
+        String bearerHeaderValue = "Bearer " + token;
+        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).post(formBody).build();
         return okHttpClient.newCall(request).execute();
     }
 
