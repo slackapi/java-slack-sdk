@@ -8,8 +8,18 @@ import lombok.Data;
 @Builder
 public class FilesInfoRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `files:read`
+     */
     private String token;
+
+    /**
+     * Specify a file by providing its ID.
+     */
     private String file;
+
     private Integer count;
+
     private Integer page;
+
 }

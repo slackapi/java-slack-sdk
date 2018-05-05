@@ -14,19 +14,86 @@ import java.util.List;
 @Builder
 public class ChatPostMessageRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `chat:write`
+     */
     private String token;
-    private String channel;
-    private String text;
-    private String parse;
-    private Integer linkNames;
-    private List<Attachment> attachments;
-    private boolean unfurlLinks;
-    private boolean unfurlMedia;
+
+    /**
+     * aSet your bot's user name.
+     * Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below.
+     */
     private String username;
-    private boolean asUser;
-    private boolean mrkdwn;
-    private String iconUrl;
-    private String iconEmoji;
+
+    /**
+     * Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead.
+     */
     private String threadTs;
+
+    /**
+     * Channel, private group, or IM channel to send message to.
+     * Can be an encoded ID, or a name. See [below](#channels) for more details.
+     */
+    private String channel;
+
+    /**
+     * Text of the message to send. See below for an explanation of [formatting](#formatting).
+     * This field is usually required, unless you're providing only `attachments` instead.
+     */
+    private String text;
+
+    /**
+     * Change how messages are treated. Defaults to `none`. See [below](#formatting).
+     */
+    private String parse;
+
+    /**
+     * Find and link channel names and usernames.
+     */
+    private boolean linkNames;
+
+    /**
+     * A JSON-based array of structured attachments, presented as a URL-encoded string.
+     */
+    private List<Attachment> attachments;
+
+    /**
+     * Pass true to enable unfurling of primarily text-based content.
+     */
+    private boolean unfurlLinks;
+
+    /**
+     * Pass false to disable unfurling of media content.
+     */
+    private boolean unfurlMedia;
+
+    /**
+     * Pass true to post the message as the authed user, instead of as a bot.
+     * Defaults to false. See [authorship](#authorship) below.
+     */
+    private boolean asUser;
+
+    /**
+     * Disable Slack markup parsing by setting to `false`. Enabled by default.
+     */
+    private boolean mrkdwn;
+
+    /**
+     * URL to an image to use as the icon for this message.
+     * Must be used in conjunction with `as_user` set to false, otherwise ignored. See [authorship](#authorship) below.
+     */
+    private String iconUrl;
+
+    /**
+     * Emoji to use as the icon for this message. Overrides `icon_url`.
+     * Must be used in conjunction with `as_user` set to `false`, otherwise ignored. See [authorship](#authorship) below.
+     */
+    private String iconEmoji;
+
+    /**
+     * Used in conjunction with `thread_ts` and indicates whether reply should be made visible to
+     * everyone in the channel or conversation. Defaults to `false`.
+     */
     private boolean replyBroadcast;
+
 }

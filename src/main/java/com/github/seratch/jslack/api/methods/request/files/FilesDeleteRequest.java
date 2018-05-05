@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class FilesDeleteRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `files:write:user`
+     */
     private String token;
+
+    /**
+     * ID of file to delete.
+     */
     private String file;
+
 }

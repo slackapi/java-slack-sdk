@@ -12,6 +12,12 @@ public class Methods {
     public static final String API_TEST = "api.test";
 
     // ------------------------------
+    // apps.permissions
+    // ------------------------------
+
+    public static final String APPS_PERMISSIONS_REQUEST = "apps.permissions.request";
+
+    // ------------------------------
     // auth
     // ------------------------------
 
@@ -54,6 +60,7 @@ public class Methods {
     public static final String CHAT_POST_EPHEMERAL = "chat.postEphemeral";
     public static final String CHAT_POST_MESSAGE = "chat.postMessage";
     public static final String CHAT_UPDATE = "chat.update";
+    public static final String CHAT_UNFURL = "chat.unfurl";
 
     // ------------------------------
     // conversations
@@ -157,6 +164,7 @@ public class Methods {
     public static final String MPIM_CLOSE = "mpim.close";
     public static final String MPIM_HISTORY = "mpim.history";
     public static final String MPIM_LIST = "mpim.list";
+    public static final String MPIM_REPLIES = "mpim.replies";
     public static final String MPIM_MARK = "mpim.mark";
     public static final String MPIM_OPEN = "mpim.open";
 
@@ -197,6 +205,7 @@ public class Methods {
     // rtm
     // ------------------------------
 
+    public static final String RTM_CONNECT = "rtm.connect";
     public static final String RTM_START = "rtm.start";
 
     // ------------------------------

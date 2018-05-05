@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class ConversationsLeaveRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `conversations:write`
+     */
     private String token;
+
+    /**
+     * Conversation to leave
+     */
     private String channel;
+
 }

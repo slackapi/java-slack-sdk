@@ -8,6 +8,13 @@ import lombok.Data;
 @Builder
 public class ImCloseRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `im:write`
+     */
     private String token;
+
+    /**
+     * Direct message channel to close.
+     */
     private String channel;
 }

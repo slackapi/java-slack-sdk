@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class GroupsCreateChildRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `groups:write`
+     */
     private String token;
+
+    /**
+     * Private channel to clone and archive.
+     */
     private String channel;
+
 }

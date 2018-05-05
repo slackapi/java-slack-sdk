@@ -8,7 +8,18 @@ import lombok.Data;
 @Builder
 public class UsergroupsEnableRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `usergroups:write`
+     */
     private String token;
+
+    /**
+     * The encoded ID of the User Group to enable.
+     */
     private String usergroup;
-    private Integer includeCount;
+
+    /**
+     * Include the number of users in the User Group.
+     */
+    private boolean includeCount;
 }

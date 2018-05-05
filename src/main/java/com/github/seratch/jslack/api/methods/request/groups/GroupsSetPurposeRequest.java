@@ -8,7 +8,19 @@ import lombok.Data;
 @Builder
 public class GroupsSetPurposeRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `groups:write`
+     */
     private String token;
+
+    /**
+     * Private channel to set the purpose of
+     */
     private String channel;
+
+    /**
+     * The new purpose
+     */
     private String purpose;
+
 }

@@ -8,6 +8,13 @@ import lombok.Data;
 @Builder
 public class FilesRevokePublicURLRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `files:write:user`
+     */
     private String token;
+
+    /**
+     * File to revoke
+     */
     private String file;
 }

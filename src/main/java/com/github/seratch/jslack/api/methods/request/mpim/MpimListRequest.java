@@ -8,5 +8,9 @@ import lombok.Data;
 @Builder
 public class MpimListRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `mpim:read`
+     */
     private String token;
+
 }

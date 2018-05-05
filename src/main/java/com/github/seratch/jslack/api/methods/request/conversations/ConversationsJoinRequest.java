@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class ConversationsJoinRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `channels:write`
+     */
     private String token;
+
+    /**
+     * ID of conversation to join
+     */
     private String channel;
+
 }

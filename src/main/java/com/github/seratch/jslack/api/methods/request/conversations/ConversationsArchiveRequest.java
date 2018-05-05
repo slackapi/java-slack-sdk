@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class ConversationsArchiveRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `conversations:write`
+     */
     private String token;
+
+    /**
+     * ID of conversation to archive
+     */
     private String channel;
+
 }

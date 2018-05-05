@@ -23,8 +23,9 @@ public class Slack_groups_Test {
     public void groups() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
+        String name = "secret-" + System.currentTimeMillis();
         GroupsCreateResponse creationResponse = slack.methods().groupsCreate(
-                GroupsCreateRequest.builder().token(token).name("secret-" + System.currentTimeMillis()).build());
+                GroupsCreateRequest.builder().token(token).name(name).build());
         Group group = creationResponse.getGroup();
         {
             assertThat(creationResponse.isOk(), is(true));
@@ -38,7 +39,7 @@ public class Slack_groups_Test {
         }
         {
             GroupsListResponse response = slack.methods().groupsList(
-                    GroupsListRequest.builder().token(token).excludeArchived(1).build());
+                    GroupsListRequest.builder().token(token).excludeArchived(true).build());
             assertThat(response.isOk(), is(true));
         }
 
@@ -68,6 +69,12 @@ public class Slack_groups_Test {
             String ts = postResponse.getTs();
             GroupsMarkResponse response = slack.methods().groupsMark(
                     GroupsMarkRequest.builder().token(token).channel(group.getId()).ts(ts).build());
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
+            GroupsRenameResponse response = slack.methods().groupsRename(
+                    GroupsRenameRequest.builder().token(token).channel(group.getId()).name(name + "-").build());
             assertThat(response.isOk(), is(true));
         }
 

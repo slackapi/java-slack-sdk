@@ -10,6 +10,14 @@ import java.util.List;
 @Builder
 public class DndTeamInfoRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `dnd:read`
+     */
     private String token;
+
+    /**
+     * Comma-separated list of users to fetch Do Not Disturb status for
+     */
     private List<String> users;
+
 }
