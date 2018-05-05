@@ -29,7 +29,7 @@ public class Slack_reactions_Test {
 
     @Test
     public void test() throws IOException, SlackApiException {
-        String channel = slack.methods().channelsList(ChannelsListRequest.builder().token(token).excludeArchived(1).build())
+        String channel = slack.methods().channelsList(ChannelsListRequest.builder().token(token).excludeArchived(true).build())
                 .getChannels().get(0).getId();
 
         ChatPostMessageResponse postMessage = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()

@@ -9,6 +9,9 @@ import lombok.Data;
 @Builder
 public class DialogOpenRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `none`
+     */
     private String token;
 
     /**
@@ -17,6 +20,8 @@ public class DialogOpenRequest implements SlackApiRequest {
     private Dialog dialog;
 
     /**
+     * Exchange a trigger to post to the user.
+     * <p>
      * Apps can invoke dialogs when users interact with slash commands, message buttons,
      * or message menus. Each interaction will include a trigger_id.<p>
      * <p>

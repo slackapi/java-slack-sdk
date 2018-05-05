@@ -8,7 +8,19 @@ import lombok.Data;
 @Builder
 public class ConversationsInfoRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `conversations:read`
+     */
     private String token;
+
+    /**
+     * Conversation ID to learn more about
+     */
     private String channel;
+
+    /**
+     * Set this to `true` to receive the locale for this conversation. Defaults to `false`
+     */
     private boolean includeLocale;
+
 }

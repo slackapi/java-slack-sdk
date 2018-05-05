@@ -8,5 +8,9 @@ import lombok.Data;
 @Builder
 public class UsersIdentityRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `identity.basic`
+     */
     private String token;
+
 }

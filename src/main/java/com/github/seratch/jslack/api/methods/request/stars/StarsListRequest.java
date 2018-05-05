@@ -8,7 +8,13 @@ import lombok.Data;
 @Builder
 public class StarsListRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `stars:read`
+     */
     private String token;
+
     private Integer count;
+
     private Integer page;
+
 }

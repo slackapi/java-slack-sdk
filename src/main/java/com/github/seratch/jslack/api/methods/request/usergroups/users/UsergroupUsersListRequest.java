@@ -8,7 +8,19 @@ import lombok.Data;
 @Builder
 public class UsergroupUsersListRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `usergroups:read`
+     */
     private String token;
+
+    /**
+     * The encoded ID of the User Group to update.
+     */
     private String usergroup;
-    private Integer includeDisabled;
+
+    /**
+     * Allow results that involve disabled User Groups.
+     */
+    private boolean includeDisabled;
+
 }

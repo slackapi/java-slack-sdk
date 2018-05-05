@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class RemindersDeleteRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `reminders:write`
+     */
     private String token;
+
+    /**
+     * The ID of the reminder
+     */
     private String reminder;
+
 }

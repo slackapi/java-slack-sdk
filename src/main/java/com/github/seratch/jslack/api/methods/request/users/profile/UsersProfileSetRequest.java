@@ -9,7 +9,14 @@ import lombok.Data;
 @Builder
 public class UsersProfileSetRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `users.profile:write`
+     */
     private String token;
+
+    /**
+     * ID of user to change. This argument may only be specified by team admins on paid teams.
+     */
     private String user;
 
     /**

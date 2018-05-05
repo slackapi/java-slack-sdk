@@ -26,7 +26,7 @@ public class Slack_im_Test {
         ImListResponse listResponse = slack.methods().imList(ImListRequest.builder().token(token).build());
         assertThat(listResponse.isOk(), is(true));
 
-        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder().token(token).presence(1).build());
+        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder().token(token).presence(true).build());
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 

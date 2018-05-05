@@ -8,5 +8,9 @@ import lombok.Data;
 @Builder
 public class RemindersListRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `reminders:read`
+     */
     private String token;
+
 }

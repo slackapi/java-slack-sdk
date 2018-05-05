@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class MpimCloseRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `mpim:write`
+     */
     private String token;
+
+    /**
+     * MPIM to close.
+     */
     private String channel;
+
 }

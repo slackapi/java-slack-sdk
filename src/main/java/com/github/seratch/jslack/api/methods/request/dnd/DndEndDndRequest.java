@@ -8,5 +8,9 @@ import lombok.Data;
 @Builder
 public class DndEndDndRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `dnd:write`
+     */
     private String token;
+
 }

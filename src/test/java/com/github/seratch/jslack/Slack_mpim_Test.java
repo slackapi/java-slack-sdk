@@ -30,7 +30,7 @@ public class Slack_mpim_Test {
         MpimListResponse listResponse = slack.methods().mpimList(MpimListRequest.builder().token(token).build());
         assertThat(listResponse.isOk(), is(true));
 
-        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder().token(token).presence(1).build());
+        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder().token(token).presence(true).build());
         List<User> users = usersListResponse.getMembers();
         List<String> userIds = users.stream()
                 .filter(u -> u.isDeleted() == false && u.isRestricted() == false)

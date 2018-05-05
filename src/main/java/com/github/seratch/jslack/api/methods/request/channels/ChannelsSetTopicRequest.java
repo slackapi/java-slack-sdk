@@ -8,7 +8,19 @@ import lombok.Data;
 @Builder
 public class ChannelsSetTopicRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `channels:write`
+     */
     private String token;
+
+    /**
+     * Channel to set the topic of
+     */
     private String channel;
+
+    /**
+     * The new topic
+     */
     private String topic;
+
 }

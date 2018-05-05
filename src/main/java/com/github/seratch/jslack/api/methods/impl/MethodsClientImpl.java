@@ -4,6 +4,7 @@ import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
@@ -29,6 +30,7 @@ import com.github.seratch.jslack.api.methods.request.reactions.ReactionsGetReque
 import com.github.seratch.jslack.api.methods.request.reactions.ReactionsListRequest;
 import com.github.seratch.jslack.api.methods.request.reactions.ReactionsRemoveRequest;
 import com.github.seratch.jslack.api.methods.request.reminders.*;
+import com.github.seratch.jslack.api.methods.request.rtm.RTMConnectRequest;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
 import com.github.seratch.jslack.api.methods.request.search.SearchAllRequest;
 import com.github.seratch.jslack.api.methods.request.search.SearchFilesRequest;
@@ -48,6 +50,7 @@ import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
@@ -73,6 +76,7 @@ import com.github.seratch.jslack.api.methods.response.reactions.ReactionsGetResp
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsListResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsRemoveResponse;
 import com.github.seratch.jslack.api.methods.response.reminders.*;
+import com.github.seratch.jslack.api.methods.response.rtm.RTMConnectResponse;
 import com.github.seratch.jslack.api.methods.response.rtm.RTMStartResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchFilesResponse;
@@ -132,9 +136,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AppsPermissionsRequestResponse appsPermissionsRequest(AppsPermissionsRequestRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        if (req.getScopes() != null) {
+            setIfNotNull("scopes", req.getScopes().stream().collect(joining(",")), form);
+        }
+        return doPostFormWithToken(form, Methods.APPS_PERMISSIONS_REQUEST, req.getToken(), AppsPermissionsRequestResponse.class);
+    }
+
+    @Override
     public AuthRevokeResponse authRevoke(AuthRevokeRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("test", req.getTest(), form);
+        setIfNotNull("test", req.isTest(), form);
         return doPostFormWithToken(form, Methods.AUTH_REVOKE, req.getToken(), AuthRevokeResponse.class);
     }
 
@@ -162,6 +176,7 @@ public class MethodsClientImpl implements MethodsClient {
     public ChannelsCreateResponse channelsCreate(ChannelsCreateRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("name", req.getName(), form);
+        setIfNotNull("validate", req.isValidate(), form);
         return doPostFormWithToken(form, Methods.CHANNELS_CREATE, req.getToken(), ChannelsCreateResponse.class);
     }
 
@@ -171,9 +186,9 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("latest", req.getLatest(), form);
         setIfNotNull("oldest", req.getOldest(), form);
-        setIfNotNull("inclusive", req.getInclusive(), form);
+        setIfNotNull("inclusive", req.isInclusive(), form);
         setIfNotNull("count", req.getCount(), form);
-        setIfNotNull("unreads", req.getUnreads(), form);
+        setIfNotNull("unreads", req.isUnreads(), form);
         return doPostFormWithToken(form, Methods.CHANNELS_HISTORY, req.getToken(), ChannelsHistoryResponse.class);
     }
 
@@ -189,13 +204,17 @@ public class MethodsClientImpl implements MethodsClient {
     public ChannelsInfoResponse channelsInfo(ChannelsInfoRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("include_locale", req.isIncludeLocale(), form);
         return doPostFormWithToken(form, Methods.CHANNELS_INFO, req.getToken(), ChannelsInfoResponse.class);
     }
 
     @Override
     public ChannelsListResponse channelsList(ChannelsListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("exclude_archived", req.getExcludeArchived(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("exclude_members", req.isExcludeMembers(), form);
+        setIfNotNull("exclude_archived", req.isExcludeArchived(), form);
         return doPostFormWithToken(form, Methods.CHANNELS_LIST, req.getToken(), ChannelsListResponse.class);
     }
 
@@ -211,6 +230,7 @@ public class MethodsClientImpl implements MethodsClient {
     public ChannelsJoinResponse channelsJoin(ChannelsJoinRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("name", req.getName(), form);
+        setIfNotNull("validate", req.isValidate(), form);
         return doPostFormWithToken(form, Methods.CHANNELS_JOIN, req.getToken(), ChannelsJoinResponse.class);
     }
 
@@ -242,6 +262,7 @@ public class MethodsClientImpl implements MethodsClient {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("name", req.getName(), form);
+        setIfNotNull("validate", req.isValidate(), form);
         return doPostFormWithToken(form, Methods.CHANNELS_RENAME, req.getToken(), ChannelsRenameResponse.class);
     }
 
@@ -315,7 +336,7 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("thread_ts", req.getThreadTs(), form);
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
-        setIfNotNull("link_names", req.getLinkNames(), form);
+        setIfNotNull("link_names", req.isLinkNames(), form);
         setIfNotNull("mrkdwn", req.isMrkdwn(), form);
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
@@ -339,13 +360,25 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
-        setIfNotNull("link_names", req.getLinkNames(), form);
+        setIfNotNull("link_names", req.isLinkNames(), form);
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
         }
         setIfNotNull("as_user", req.isAsUser(), form);
         return doPostFormWithToken(form, Methods.CHAT_UPDATE, req.getToken(), ChatUpdateResponse.class);
+    }
+
+    @Override
+    public ChatUnfurlResponse chatUnfurl(ChatUnfurlRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("ts", req.getTs(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("unfurls", req.getUnfurls(), form);
+        setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
+        setIfNotNull("user_auth_message", req.getUserAuthMessage(), form);
+        setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
+        return doPostFormWithToken(form, Methods.CHAT_UNFURL, req.getToken(), ChatUnfurlResponse.class);
     }
 
     @Override
@@ -382,6 +415,7 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("latest", req.getLatest(), form);
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("oldest", req.getOldest(), form);
+        setIfNotNull("inclusive", req.isInclusive(), form);
         return doPostFormWithToken(form, Methods.CONVERSATIONS_HISTORY, req.getToken(), ConversationsHistoryResponse.class);
     }
 
@@ -651,7 +685,6 @@ public class MethodsClientImpl implements MethodsClient {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("file", req.getFile(), form);
         setIfNotNull("comment", req.getComment(), form);
-        setIfNotNull("channel", req.getChannel(), form);
         return doPostFormWithToken(form, Methods.FILES_COMMENTS_ADD, req.getToken(), FilesCommentsAddResponse.class);
     }
 
@@ -697,6 +730,7 @@ public class MethodsClientImpl implements MethodsClient {
     public GroupsCreateResponse groupsCreate(GroupsCreateRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("name", req.getName(), form);
+        setIfNotNull("validate", req.isValidate(), form);
         return doPostFormWithToken(form, Methods.GROUPS_CREATE, req.getToken(), GroupsCreateResponse.class);
     }
 
@@ -706,9 +740,9 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("latest", req.getLatest(), form);
         setIfNotNull("oldest", req.getOldest(), form);
-        setIfNotNull("inclusive", req.getInclusive(), form);
+        setIfNotNull("inclusive", req.isInclusive(), form);
         setIfNotNull("count", req.getCount(), form);
-        setIfNotNull("unreads", req.getUnreads(), form);
+        setIfNotNull("unreads", req.isUnreads(), form);
         return doPostFormWithToken(form, Methods.GROUPS_HISTORY, req.getToken(), GroupsHistoryResponse.class);
     }
 
@@ -724,6 +758,7 @@ public class MethodsClientImpl implements MethodsClient {
     public GroupsInfoResponse groupsInfo(GroupsInfoRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("include_locale", req.isIncludeLocale(), form);
         return doPostFormWithToken(form, Methods.GROUPS_INFO, req.getToken(), GroupsInfoResponse.class);
     }
 
@@ -753,7 +788,8 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public GroupsListResponse groupsList(GroupsListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("exclude_archived", req.getExcludeArchived(), form);
+        setIfNotNull("exclude_archived", req.isExcludeArchived(), form);
+        setIfNotNull("exclude_members", req.isExcludeMembers(), form);
         return doPostFormWithToken(form, Methods.GROUPS_LIST, req.getToken(), GroupsListResponse.class);
     }
 
@@ -817,15 +853,17 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("latest", req.getLatest(), form);
         setIfNotNull("oldest", req.getOldest(), form);
-        setIfNotNull("inclusive", req.getInclusive(), form);
+        setIfNotNull("inclusive", req.isInclusive(), form);
         setIfNotNull("count", req.getCount(), form);
-        setIfNotNull("unreads", req.getUnreads(), form);
+        setIfNotNull("unreads", req.isUnreads(), form);
         return doPostFormWithToken(form, Methods.IM_HISTORY, req.getToken(), ImHistoryResponse.class);
     }
 
     @Override
     public ImListResponse imList(ImListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
         return doPostFormWithToken(form, Methods.IM_LIST, req.getToken(), ImListResponse.class);
     }
 
@@ -842,6 +880,7 @@ public class MethodsClientImpl implements MethodsClient {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("user", req.getUser(), form);
         setIfNotNull("return_im", req.isReturnIm(), form);
+        setIfNotNull("include_locale", req.isIncludeLocale(), form);
         return doPostFormWithToken(form, Methods.IM_OPEN, req.getToken(), ImOpenResponse.class);
     }
 
@@ -858,9 +897,9 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("latest", req.getLatest(), form);
         setIfNotNull("oldest", req.getOldest(), form);
-        setIfNotNull("inclusive", req.getInclusive(), form);
+        setIfNotNull("inclusive", req.isInclusive(), form);
         setIfNotNull("count", req.getCount(), form);
-        setIfNotNull("unreads", req.getUnreads(), form);
+        setIfNotNull("unreads", req.isUnreads(), form);
         return doPostFormWithToken(form, Methods.MPIM_HISTORY, req.getToken(), MpimHistoryResponse.class);
     }
 
@@ -868,6 +907,14 @@ public class MethodsClientImpl implements MethodsClient {
     public MpimListResponse mpimList(MpimListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         return doPostFormWithToken(form, Methods.MPIM_LIST, req.getToken(), MpimListResponse.class);
+    }
+
+    @Override
+    public MpimRepliesResponse mpimReplies(MpimRepliesRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        return doPostFormWithToken(form, Methods.MPIM_LIST, req.getToken(), MpimRepliesResponse.class);
     }
 
     @Override
@@ -894,6 +941,7 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("client_secret", req.getClientSecret(), form);
         setIfNotNull("code", req.getCode(), form);
         setIfNotNull("redirect_uri", req.getRedirectUri(), form);
+        setIfNotNull("single_channel", req.isSingleChannel(), form);
         return doPostForm(form, Methods.OAUTH_ACCESS, OAuthAccessResponse.class);
     }
 
@@ -1004,10 +1052,23 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public RTMConnectResponse rtmConnect(RTMConnectRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("batch_presence_aware", req.isBatchPresenceAware(), form);
+        setIfNotNull("presence_sub", req.isPresenceSub(), form);
+        return doPostFormWithToken(form, Methods.RTM_CONNECT, req.getToken(), RTMConnectResponse.class);
+    }
+
+    @Override
     public RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("no_unreads", req.getNoUnreads(), form);
-        setIfNotNull("mpim_aware", req.getMpimAware(), form);
+        setIfNotNull("include_locale", req.isIncludeLocale(), form);
+        setIfNotNull("batch_presence_aware", req.isBatchPresenceAware(), form);
+        setIfNotNull("no_latest", req.isNoLatest(), form);
+        setIfNotNull("no_unreads", req.isNoUnreads(), form);
+        setIfNotNull("presence_sub", req.isPresenceSub(), form);
+        setIfNotNull("simple_latest", req.isSimpleLatest(), form);
+        setIfNotNull("mpim_aware", req.isMpimAware(), form);
         return doPostFormWithToken(form, Methods.RTM_START, req.getToken(), RTMStartResponse.class);
     }
 
@@ -1017,7 +1078,7 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("query", req.getQuery(), form);
         setIfNotNull("sort", req.getSort(), form);
         setIfNotNull("sort_dir", req.getSortDir(), form);
-        setIfNotNull("highlight", req.getHighlight(), form);
+        setIfNotNull("highlight", req.isHighlight(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
         return doPostFormWithToken(form, Methods.SEARCH_ALL, req.getToken(), SearchAllResponse.class);
@@ -1029,7 +1090,7 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("query", req.getQuery(), form);
         setIfNotNull("sort", req.getSort(), form);
         setIfNotNull("sort_dir", req.getSortDir(), form);
-        setIfNotNull("highlight", req.getHighlight(), form);
+        setIfNotNull("highlight", req.isHighlight(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
         return doPostFormWithToken(form, Methods.SEARCH_MESSAGES, req.getToken(), SearchMessagesResponse.class);
@@ -1041,7 +1102,7 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("query", req.getQuery(), form);
         setIfNotNull("sort", req.getSort(), form);
         setIfNotNull("sort_dir", req.getSortDir(), form);
-        setIfNotNull("highlight", req.getHighlight(), form);
+        setIfNotNull("highlight", req.isHighlight(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
         return doPostFormWithToken(form, Methods.SEARCH_FILES, req.getToken(), SearchFilesResponse.class);
@@ -1078,6 +1139,7 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public TeamAccessLogsResponse teamAccessLogs(TeamAccessLogsRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("before", req.getBefore(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
         return doPostFormWithToken(form, Methods.TEAM_ACCESS_LOGS, req.getToken(), TeamAccessLogsResponse.class);
@@ -1123,30 +1185,32 @@ public class MethodsClientImpl implements MethodsClient {
         if (req.getChannels() != null) {
             setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
         }
-        setIfNotNull("include_count", req.getIncludeCount(), form);
+        setIfNotNull("include_count", req.isIncludeCount(), form);
         return doPostFormWithToken(form, Methods.USERGROUPS_CREATE, req.getToken(), UsergroupsCreateResponse.class);
     }
 
     @Override
     public UsergroupsDisableResponse usergroupsDisable(UsergroupsDisableRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("include_count", req.getIncludeCount(), form);
+        setIfNotNull("usergroup", req.getUsergroup(), form);
+        setIfNotNull("include_count", req.isIncludeCount(), form);
         return doPostFormWithToken(form, Methods.USERGROUPS_DISABLE, req.getToken(), UsergroupsDisableResponse.class);
     }
 
     @Override
     public UsergroupsEnableResponse usergroupsEnable(UsergroupsEnableRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("include_count", req.getIncludeCount(), form);
+        setIfNotNull("usergroup", req.getUsergroup(), form);
+        setIfNotNull("include_count", req.isIncludeCount(), form);
         return doPostFormWithToken(form, Methods.USERGROUPS_ENABLE, req.getToken(), UsergroupsEnableResponse.class);
     }
 
     @Override
     public UsergroupsListResponse usergroupsList(UsergroupsListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("include_disabled", req.getIncludeDisabled(), form);
-        setIfNotNull("include_count", req.getIncludeCount(), form);
-        setIfNotNull("include_users", req.getIncludeUsers(), form);
+        setIfNotNull("include_disabled", req.isIncludeDisabled(), form);
+        setIfNotNull("include_count", req.isIncludeCount(), form);
+        setIfNotNull("include_users", req.isIncludeUsers(), form);
         return doPostFormWithToken(form, Methods.USERGROUPS_LIST, req.getToken(), UsergroupsListResponse.class);
     }
 
@@ -1160,7 +1224,7 @@ public class MethodsClientImpl implements MethodsClient {
         if (req.getChannels() != null) {
             setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
         }
-        setIfNotNull("include_count", req.getIncludeCount(), form);
+        setIfNotNull("include_count", req.isIncludeCount(), form);
         return doPostFormWithToken(form, Methods.USERGROUPS_UPDATE, req.getToken(), UsergroupsUpdateResponse.class);
     }
 
@@ -1168,7 +1232,7 @@ public class MethodsClientImpl implements MethodsClient {
     public UsergroupUsersListResponse usergroupUsersList(UsergroupUsersListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("usergroup", req.getUsergroup(), form);
-        setIfNotNull("include_disabled", req.getIncludeDisabled(), form);
+        setIfNotNull("include_disabled", req.isIncludeDisabled(), form);
         return doPostFormWithToken(form, Methods.USERGROUPS_USERS_LIST, req.getToken(), UsergroupUsersListResponse.class);
     }
 
@@ -1179,7 +1243,7 @@ public class MethodsClientImpl implements MethodsClient {
         if (req.getUsers() != null) {
             setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
         }
-        setIfNotNull("include_count", req.getIncludeCount(), form);
+        setIfNotNull("include_count", req.isIncludeCount(), form);
         return doPostFormWithToken(form, Methods.USERGROUPS_USERS_UPDATE, req.getToken(), UsergroupUsersUpdateResponse.class);
     }
 
@@ -1206,13 +1270,17 @@ public class MethodsClientImpl implements MethodsClient {
     public UsersInfoResponse usersInfo(UsersInfoRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("user", req.getUser(), form);
+        setIfNotNull("include_locale", req.isIncludeLocale(), form);
         return doPostFormWithToken(form, Methods.USERS_INFO, req.getToken(), UsersInfoResponse.class);
     }
 
     @Override
     public UsersListResponse usersList(UsersListRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("presence", req.getPresence(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("include_locale", req.isIncludeLocale(), form);
+        setIfNotNull("presence", req.isPresence(), form);
         return doPostFormWithToken(form, Methods.USERS_LIST, req.getToken(), UsersListResponse.class);
     }
 
@@ -1253,7 +1321,7 @@ public class MethodsClientImpl implements MethodsClient {
     public UsersProfileGetResponse usersProfileGet(UsersProfileGetRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("user", req.getUser(), form);
-        setIfNotNull("include_labels", req.getIncludeLabels(), form);
+        setIfNotNull("include_labels", req.isIncludeLabels(), form);
         return doPostFormWithToken(form, Methods.USERS_PROFILE_GET, req.getToken(), UsersProfileGetResponse.class);
     }
 
@@ -1276,13 +1344,23 @@ public class MethodsClientImpl implements MethodsClient {
 
     private static void setIfNotNull(String name, Object value, FormBody.Builder form) {
         if (value != null) {
-            form.add(name, String.valueOf(value));
+            if (value instanceof Boolean) {
+                String numValue = ((Boolean) value) ? "1" : "0";
+                form.add(name, numValue);
+            } else {
+                form.add(name, String.valueOf(value));
+            }
         }
     }
 
     private static void setIfNotNull(String name, Object value, MultipartBody.Builder form) {
         if (value != null) {
-            form.addFormDataPart(name, String.valueOf(value));
+            if (value instanceof Boolean) {
+                String numValue = ((Boolean) value) ? "1" : "0";
+                form.addFormDataPart(name, numValue);
+            } else {
+                form.addFormDataPart(name, String.valueOf(value));
+            }
         }
     }
 

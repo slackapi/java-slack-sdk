@@ -8,7 +8,19 @@ import lombok.Data;
 @Builder
 public class ChannelsRepliesRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `channels:history`
+     */
     private String token;
+
+    /**
+     * Channel to fetch thread from
+     */
     private String channel;
+
+    /**
+     * Unique identifier of a thread's parent message
+     */
     private String threadTs;
+
 }
