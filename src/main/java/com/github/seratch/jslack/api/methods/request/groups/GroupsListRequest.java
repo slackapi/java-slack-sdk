@@ -8,6 +8,19 @@ import lombok.Data;
 @Builder
 public class GroupsListRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `groups:read`
+     */
     private String token;
-    private Integer excludeArchived;
+
+    /**
+     * Exclude the `members` from each `group`
+     */
+    private boolean excludeMembers;
+
+    /**
+     * Don't return archived private channels.
+     */
+    private boolean excludeArchived;
+
 }

@@ -8,7 +8,19 @@ import lombok.Data;
 @Builder
 public class ChannelsInviteRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `channels:write`
+     */
     private String token;
+
+    /**
+     * Channel to invite user to.
+     */
     private String channel;
+
+    /**
+     * User to invite to channel.
+     */
     private String user;
+
 }

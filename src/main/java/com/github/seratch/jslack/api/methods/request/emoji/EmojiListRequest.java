@@ -8,5 +8,9 @@ import lombok.Data;
 @Builder
 public class EmojiListRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `emoji:read`
+     */
     private String token;
+
 }

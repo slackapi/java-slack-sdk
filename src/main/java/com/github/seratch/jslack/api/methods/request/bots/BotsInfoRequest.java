@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class BotsInfoRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `users:read`
+     */
     private String token;
+
+    /**
+     * Bot user to get info on
+     */
     private String bot;
+
 }

@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class ApiTestRequest implements SlackApiRequest {
 
+    /**
+     * example property to return
+     */
     private String foo;
+
+    /**
+     * Error response to return
+     */
     private String error;
+
 }

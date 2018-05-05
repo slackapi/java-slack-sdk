@@ -8,7 +8,18 @@ import lombok.Data;
 @Builder
 public class FilesCommentsDeleteRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `files:write:user`
+     */
     private String token;
+
+    /**
+     * File to delete a comment from.
+     */
     private String file;
+
+    /**
+     * The comment to delete.
+     */
     private String id;
 }

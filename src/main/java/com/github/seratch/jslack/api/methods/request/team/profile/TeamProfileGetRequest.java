@@ -8,6 +8,14 @@ import lombok.Data;
 @Builder
 public class TeamProfileGetRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `users.profile:read`
+     */
     private String token;
+
+    /**
+     * Filter by visibility.
+     */
     private String visibility;
+
 }

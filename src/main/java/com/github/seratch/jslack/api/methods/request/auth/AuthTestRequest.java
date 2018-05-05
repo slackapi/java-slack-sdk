@@ -8,5 +8,9 @@ import lombok.Data;
 @Builder
 public class AuthTestRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `none`
+     */
     private String token;
+
 }

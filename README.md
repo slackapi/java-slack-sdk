@@ -8,6 +8,7 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
 - [Real Time Messaging API](https://api.slack.com/rtm)
 - [API Methods](https://api.slack.com/methods)
   - api.test
+  - apps.permissions.*
   - auth.*
   - bots.*
   - channels.*

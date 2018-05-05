@@ -8,5 +8,9 @@ import lombok.Data;
 @Builder
 public class TeamInfoRequest implements SlackApiRequest {
 
+    /**
+     * Authentication token. Requires scope: `team:read`
+     */
     private String token;
+
 }

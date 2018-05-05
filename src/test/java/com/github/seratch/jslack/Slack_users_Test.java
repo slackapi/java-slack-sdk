@@ -43,7 +43,7 @@ public class Slack_users_Test {
             assertThat(response.isOk(), is(false));
         }
 
-        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder().token(token).presence(1).build());
+        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder().token(token).presence(true).build());
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 
@@ -105,7 +105,7 @@ public class Slack_users_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder()
                 .token(token)
-                .presence(1)
+                .presence(true)
                 .build());
 
         List<User> users = usersListResponse.getMembers();

@@ -41,13 +41,33 @@ public class Slack_usergroups_Test {
 
     @Test
     public void users() throws Exception {
+        UsergroupsListResponse usergroups = slack.methods().usergroupsList(UsergroupsListRequest.builder().token(token).build());
+        if (usergroups.isOk() && usergroups.getUsergroups().size() > 0) {
+            UsergroupUsersListResponse response = slack.methods().usergroupUsersList(
+                    UsergroupUsersListRequest.builder()
+                            .token(token)
+                            .includeDisabled(false)
+                            .usergroup(usergroups.getUsergroups().get(0).getId())
+                            .build());
+            assertThat(response.isOk(), is(false));
+//            assertThat(response.getError(), is("missing_required_argument"));
+            // As of 2018/05, the error message has been changed
+            assertThat(response.getError(), is("no_such_subteam"));
+        }
+    }
+
+    @Test
+    public void users_failure() throws Exception {
         UsergroupUsersListResponse response = slack.methods().usergroupUsersList(
                 UsergroupUsersListRequest.builder()
                         .token(token)
+                        .includeDisabled(false)
                         .usergroup("dummy")
                         .build());
         assertThat(response.isOk(), is(false));
-        assertThat(response.getError(), is("missing_required_argument"));
+//            assertThat(response.getError(), is("missing_required_argument"));
+        // As of 2018/05, the error message has been changed
+        assertThat(response.getError(), is("no_such_subteam"));
     }
 
 }
