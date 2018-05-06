@@ -14,4 +14,3 @@ target/
 *.iws
 build/
 downloaded_files/
-slack-api-specs/

@@ -3,4 +3,4 @@ language: java
 jdk:
   - oraclejdk8
   - oraclejdk9
-install: git submodule sync && git submodule update --init && ./mvnw test-compile
+install: ./mvnw test-compile
