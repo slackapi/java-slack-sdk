@@ -15,6 +15,7 @@ public class Methods {
     // apps.permissions
     // ------------------------------
 
+    public static final String APPS_PERMISSIONS_INFO = "apps.permissions.info";
     public static final String APPS_PERMISSIONS_REQUEST = "apps.permissions.request";
 
     // ------------------------------
@@ -54,13 +55,13 @@ public class Methods {
     // chat
     // ------------------------------
 
-    public static final String CHAT_GET_PERMALINK = "chat.getPermalink";
     public static final String CHAT_DELETE = "chat.delete";
+    public static final String CHAT_GET_PERMALINK = "chat.getPermalink";
     public static final String CHAT_ME_MESSAGE = "chat.meMessage";
     public static final String CHAT_POST_EPHEMERAL = "chat.postEphemeral";
     public static final String CHAT_POST_MESSAGE = "chat.postMessage";
-    public static final String CHAT_UPDATE = "chat.update";
     public static final String CHAT_UNFURL = "chat.unfurl";
+    public static final String CHAT_UPDATE = "chat.update";
 
     // ------------------------------
     // conversations
@@ -156,6 +157,13 @@ public class Methods {
     public static final String IM_LIST = "im.list";
     public static final String IM_MARK = "im.mark";
     public static final String IM_OPEN = "im.open";
+    public static final String IM_REPLIES = "im.replies";
+
+    // ------------------------------
+    // migration
+    // ------------------------------
+
+    public static final String MIGRATION_EXCHANGE = "migration.exchange";
 
     // ------------------------------
     // mpim
@@ -164,15 +172,16 @@ public class Methods {
     public static final String MPIM_CLOSE = "mpim.close";
     public static final String MPIM_HISTORY = "mpim.history";
     public static final String MPIM_LIST = "mpim.list";
-    public static final String MPIM_REPLIES = "mpim.replies";
     public static final String MPIM_MARK = "mpim.mark";
     public static final String MPIM_OPEN = "mpim.open";
+    public static final String MPIM_REPLIES = "mpim.replies";
 
     // ------------------------------
     // oauth
     // ------------------------------
 
     public static final String OAUTH_ACCESS = "oauth.access";
+    public static final String OAUTH_TOKEN = "oauth.token";
 
     // ------------------------------
     // pins
@@ -260,6 +269,7 @@ public class Methods {
     // users
     // ------------------------------
 
+    public static final String USERS_CONVERSATIONS = "users.conversations";
     public static final String USERS_DELETE_PHOTO = "users.deletePhoto";
     public static final String USERS_GET_PRESENCE = "users.getPresence";
     public static final String USERS_IDENTITY = "users.identity";

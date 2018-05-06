@@ -83,6 +83,12 @@ public class Slack_users_Test {
             assertThat(response.getPresence(), is(notNullValue()));
         }
 
+        {
+            UsersConversationsResponse response = slack.methods().usersConversations(UsersConversationsRequest.builder()
+                    .token(token)
+                    .user(userId).build());
+            assertThat(response.isOk(), is(true));
+        }
 
         {
             UsersDeletePhotoResponse response = slack.methods().usersDeletePhoto(

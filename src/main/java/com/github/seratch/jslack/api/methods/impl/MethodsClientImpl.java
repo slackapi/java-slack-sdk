@@ -4,6 +4,7 @@ import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
@@ -20,8 +21,10 @@ import com.github.seratch.jslack.api.methods.request.files.comments.FilesComment
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
 import com.github.seratch.jslack.api.methods.request.groups.*;
 import com.github.seratch.jslack.api.methods.request.im.*;
+import com.github.seratch.jslack.api.methods.request.migration.MigrationExchangeRequest;
 import com.github.seratch.jslack.api.methods.request.mpim.*;
 import com.github.seratch.jslack.api.methods.request.oauth.OAuthAccessRequest;
+import com.github.seratch.jslack.api.methods.request.oauth.OAuthTokenRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsAddRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsListRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsRemoveRequest;
@@ -50,6 +53,7 @@ import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
@@ -66,8 +70,10 @@ import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommen
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsEditResponse;
 import com.github.seratch.jslack.api.methods.response.groups.*;
 import com.github.seratch.jslack.api.methods.response.im.*;
+import com.github.seratch.jslack.api.methods.response.migration.MigrationExchangeResponse;
 import com.github.seratch.jslack.api.methods.response.mpim.*;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
+import com.github.seratch.jslack.api.methods.response.oauth.OAuthTokenResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsAddResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsListResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsRemoveResponse;
@@ -133,6 +139,12 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("foo", req.getFoo(), form);
         setIfNotNull("error", req.getError(), form);
         return doPostForm(form, Methods.API_TEST, ApiTestResponse.class);
+    }
+
+    @Override
+    public AppsPermissionsInfoResponse appsPermissionsInfo(AppsPermissionsInfoRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        return doPostFormWithToken(form, Methods.APPS_PERMISSIONS_INFO, req.getToken(), AppsPermissionsInfoResponse.class);
     }
 
     @Override
@@ -885,6 +897,24 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ImRepliesResponse imReplies(ImRepliesRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        return doPostFormWithToken(form, Methods.IM_REPLIES, req.getToken(), ImRepliesResponse.class);
+    }
+
+    @Override
+    public MigrationExchangeResponse migrationExchange(MigrationExchangeRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("to_old", req.isToOld(), form);
+        if (req.getUsers() != null) {
+            setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
+        }
+        return doPostFormWithToken(form, Methods.MIGRATION_EXCHANGE, req.getToken(), MigrationExchangeResponse.class);
+    }
+
+    @Override
     public MpimCloseResponse mpimClose(MpimCloseRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
@@ -943,6 +973,17 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("redirect_uri", req.getRedirectUri(), form);
         setIfNotNull("single_channel", req.isSingleChannel(), form);
         return doPostForm(form, Methods.OAUTH_ACCESS, OAuthAccessResponse.class);
+    }
+
+    @Override
+    public OAuthTokenResponse oauthToken(OAuthTokenRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("client_id", req.getClientId(), form);
+        setIfNotNull("client_secret", req.getClientSecret(), form);
+        setIfNotNull("code", req.getCode(), form);
+        setIfNotNull("redirect_uri", req.getRedirectUri(), form);
+        setIfNotNull("single_channel", req.isSingleChannel(), form);
+        return doPostForm(form, Methods.OAUTH_TOKEN, OAuthTokenResponse.class);
     }
 
     @Override
@@ -1248,6 +1289,24 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsersConversationsResponse usersConversations(UsersConversationsRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("user", req.getUser(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("exclude_archived", req.isExcludeArchived(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+
+        if (req.getTypes() != null) {
+            List<String> typeValues = new ArrayList<>();
+            for (ConversationType type : req.getTypes()) {
+                typeValues.add(type.value());
+            }
+            setIfNotNull("types", typeValues.stream().collect(joining(",")), form);
+        }
+        return doPostFormWithToken(form, Methods.USERS_CONVERSATIONS, req.getToken(), UsersConversationsResponse.class);
+    }
+
+    @Override
     public UsersDeletePhotoResponse usersDeletePhoto(UsersDeletePhotoRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         return doPostFormWithToken(form, Methods.USERS_DELETE_PHOTO, req.getToken(), UsersDeletePhotoResponse.class);
@@ -1300,10 +1359,8 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public UsersSetPhotoResponse usersSetPhoto(UsersSetPhotoRequest req) throws IOException, SlackApiException {
         MultipartBody.Builder form = new MultipartBody.Builder();
-
         RequestBody image = RequestBody.create(MediaType.parse("image/*"), req.getImage());
         form.addFormDataPart("image", "image", image);
-
         setIfNotNull("crop_x", req.getCropX(), form);
         setIfNotNull("crop_y", req.getCropY(), form);
         setIfNotNull("crop_w", req.getCropW(), form);
