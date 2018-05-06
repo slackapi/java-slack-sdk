@@ -67,7 +67,7 @@ public class SlackHttpClient {
 
             log.debug("\n[Request URL]\n{} {}\n" +
                             "[Specified Request Headers]\n{}" +
-                            "[Request Body]\n{}\n" +
+                            "[Request Body]\n{}\n\n" +
                             "Content-Type: {}\n" +
                             "Content Length: {}\n" +
                             "\n" +

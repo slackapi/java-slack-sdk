@@ -21,6 +21,7 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - files.comments.*
   - groups.*
   - im.*
+  - migration.*
   - mpim.*
   - oauth.*
   - pins.*
@@ -35,6 +36,8 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - usergroups.users.*
   - users.*
   - users.profile.*
+
+As per API Methods, this library supports all the APIs listed in [github.com/slackapi/slack-api-specs](https://github.com/slackapi/slack-api-specs) as of May 2018.
 
 ### Getting Started
 

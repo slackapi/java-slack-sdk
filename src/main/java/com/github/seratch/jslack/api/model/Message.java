@@ -44,6 +44,7 @@ public class Message {
         private String text;
         private String username;
         private String botId;
+        private boolean mrkdwn;
         private String type;
         private String subtype;
         private String threadTs;

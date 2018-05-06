@@ -1,6 +1,7 @@
 package com.github.seratch.jslack.api.methods;
 
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
@@ -17,8 +18,10 @@ import com.github.seratch.jslack.api.methods.request.files.comments.FilesComment
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
 import com.github.seratch.jslack.api.methods.request.groups.*;
 import com.github.seratch.jslack.api.methods.request.im.*;
+import com.github.seratch.jslack.api.methods.request.migration.MigrationExchangeRequest;
 import com.github.seratch.jslack.api.methods.request.mpim.*;
 import com.github.seratch.jslack.api.methods.request.oauth.OAuthAccessRequest;
+import com.github.seratch.jslack.api.methods.request.oauth.OAuthTokenRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsAddRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsListRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsRemoveRequest;
@@ -47,6 +50,7 @@ import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
@@ -63,8 +67,10 @@ import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommen
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsEditResponse;
 import com.github.seratch.jslack.api.methods.response.groups.*;
 import com.github.seratch.jslack.api.methods.response.im.*;
+import com.github.seratch.jslack.api.methods.response.migration.MigrationExchangeResponse;
 import com.github.seratch.jslack.api.methods.response.mpim.*;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
+import com.github.seratch.jslack.api.methods.response.oauth.OAuthTokenResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsAddResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsListResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsRemoveResponse;
@@ -112,6 +118,8 @@ public interface MethodsClient {
     // ------------------------------
     // apps.permissions
     // ------------------------------
+
+    AppsPermissionsInfoResponse appsPermissionsInfo(AppsPermissionsInfoRequest req) throws IOException, SlackApiException;
 
     AppsPermissionsRequestResponse appsPermissionsRequest(AppsPermissionsRequestRequest req) throws IOException, SlackApiException;
 
@@ -323,6 +331,14 @@ public interface MethodsClient {
 
     ImOpenResponse imOpen(ImOpenRequest req) throws IOException, SlackApiException;
 
+    ImRepliesResponse imReplies(ImRepliesRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // migration
+    // ------------------------------
+
+    MigrationExchangeResponse migrationExchange(MigrationExchangeRequest req) throws IOException, SlackApiException;
+
     // ------------------------------
     // mpim
     // ------------------------------
@@ -344,6 +360,8 @@ public interface MethodsClient {
     // ------------------------------
 
     OAuthAccessResponse oauthAccess(OAuthAccessRequest req) throws IOException, SlackApiException;
+
+    OAuthTokenResponse oauthToken(OAuthTokenRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
     // pins
@@ -444,6 +462,8 @@ public interface MethodsClient {
     // ------------------------------
     // users
     // ------------------------------
+
+    UsersConversationsResponse usersConversations(UsersConversationsRequest req) throws IOException, SlackApiException;
 
     UsersDeletePhotoResponse usersDeletePhoto(UsersDeletePhotoRequest req) throws IOException, SlackApiException;
 
