@@ -1377,7 +1377,7 @@ public class MethodsClientImpl implements MethodsClient {
             String endpoint,
             String token,
             Class<T> clazz) throws IOException, SlackApiException {
-        Response response = slackHttpClient.postFormWithBeearerHeader(endpointUrlPrefix + endpoint, token, form.build());
+        Response response = slackHttpClient.postFormWithBearerHeader(endpointUrlPrefix + endpoint, token, form.build());
         return SlackHttpClient.buildJsonResponse(response, clazz);
     }
 
