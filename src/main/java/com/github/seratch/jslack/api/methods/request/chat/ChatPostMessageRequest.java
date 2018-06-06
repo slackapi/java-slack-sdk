@@ -76,7 +76,7 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     /**
      * Disable Slack markup parsing by setting to `false`. Enabled by default.
      */
-    private boolean mrkdwn;
+    private boolean mrkdwn = true;
 
     /**
      * URL to an image to use as the icon for this message.
