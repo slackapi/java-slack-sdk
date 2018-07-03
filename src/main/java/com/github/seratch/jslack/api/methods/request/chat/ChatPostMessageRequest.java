@@ -2,8 +2,7 @@ package com.github.seratch.jslack.api.methods.request.chat;
 
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
 import com.github.seratch.jslack.api.model.Attachment;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
@@ -70,8 +69,22 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     /**
      * Pass true to post the message as the authed user, instead of as a bot.
      * Defaults to false. See [authorship](#authorship) below.
+     * <p>
+     * NOTE: The default value is intentionally null to support workplace apps.
      */
-    private boolean asUser;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Boolean asUser;
+
+    // NOTE: The default value is intentionally null to support workplace apps.
+    public Boolean isAsUser() {
+        return this.asUser;
+    }
+
+    // NOTE: The default value is intentionally null to support workplace apps.
+    public void setAsUser(Boolean asUser) {
+        this.asUser = asUser;
+    }
 
     /**
      * Disable Slack markup parsing by setting to `false`. Enabled by default.
