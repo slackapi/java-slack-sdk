@@ -1,11 +1,13 @@
 package com.github.seratch.jslack.api.methods.request.conversations;
 
+import com.github.seratch.jslack.api.methods.SlackApiRequest;
+
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class ConversationsMembersRequest {
+public class ConversationsMembersRequest implements SlackApiRequest {
 
     /**
      * Authentication token. Requires scope: `conversations:read`

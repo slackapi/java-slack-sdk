@@ -5,9 +5,11 @@ import lombok.Data;
 
 import java.util.List;
 
+import com.github.seratch.jslack.api.methods.SlackApiRequest;
+
 @Data
 @Builder
-public class ConversationsOpenRequest {
+public class ConversationsOpenRequest implements SlackApiRequest {
 
     /**
      * Authentication token. Requires scope: `conversations:write`
