@@ -1421,7 +1421,7 @@ public class MethodsClientImpl implements MethodsClient {
         }
     }
 
-    private <T> T doPostForm(
+    protected <T> T doPostForm(
             FormBody.Builder form,
             String endpoint,
             Class<T> clazz) throws IOException, SlackApiException {
@@ -1429,7 +1429,7 @@ public class MethodsClientImpl implements MethodsClient {
         return SlackHttpClient.buildJsonResponse(response, clazz);
     }
 
-    private <T> T doPostFormWithToken(
+    protected <T> T doPostFormWithToken(
             FormBody.Builder form,
             String endpoint,
             String token,
@@ -1438,7 +1438,7 @@ public class MethodsClientImpl implements MethodsClient {
         return SlackHttpClient.buildJsonResponse(response, clazz);
     }
 
-    private <T> T doPostMultipart(
+    protected <T> T doPostMultipart(
             MultipartBody.Builder form,
             String endpoint,
             String token,
