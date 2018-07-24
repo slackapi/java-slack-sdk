@@ -43,12 +43,18 @@ public class Slack_users_Test {
             assertThat(response.isOk(), is(false));
         }
 
-        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder().token(token).presence(true).build());
+        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder()
+        	        	.token(token)
+        	        	.limit(2)
+        	        	.presence(true)
+        	        	.build());
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 
         {
             assertThat(usersListResponse.isOk(), is(true));
+            assertThat(usersListResponse.getResponseMetadata(), is(notNullValue()));
+            
             assertThat(users, is(notNullValue()));
             User user = users.get(0);
             assertThat(user.getId(), is(notNullValue()));

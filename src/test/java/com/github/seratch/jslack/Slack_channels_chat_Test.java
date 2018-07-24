@@ -27,9 +27,11 @@ public class Slack_channels_chat_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         ChannelsListResponse channels = slack.methods().channelsList(ChannelsListRequest.builder()
                 .token(token)
+                .limit(2)
                 .excludeArchived(true)
                 .build());
         assertThat(channels.isOk(), is(true));
+        assertThat(channels.getResponseMetadata(), is(notNullValue()));
 
         String channelId = channels.getChannels().get(0).getId();
 

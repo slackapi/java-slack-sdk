@@ -25,8 +25,10 @@ public class Slack_im_Test {
     public void operations() throws Exception {
         ImListResponse listResponse = slack.methods().imList(ImListRequest.builder()
                 .token(token)
+                .limit(2)
                 .build());
         assertThat(listResponse.isOk(), is(true));
+        assertThat(listResponse.getResponseMetadata(), is(notNullValue()));
 
         UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder()
                 .token(token)
