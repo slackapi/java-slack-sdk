@@ -153,7 +153,8 @@ public class Slack_conversations_Test {
                             .limit(2)
                             .build());
             assertThat(historyResponse.isOk(), is(true));
-            assertThat(historyResponse.isHasMore(), is(false));
+            // The outcome depends on data
+            // assertThat(historyResponse.isHasMore(), is(false));
             assertThat(historyResponse.getResponseMetadata(), is(notNullValue()));
         }
 

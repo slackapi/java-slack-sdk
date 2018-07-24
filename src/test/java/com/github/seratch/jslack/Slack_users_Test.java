@@ -61,8 +61,9 @@ public class Slack_users_Test {
             assertThat(user.getName(), is(notNullValue()));
             assertThat(user.getRealName(), is(notNullValue()));
 
-            assertThat(user.getProfile().getFirstName(), is(nullValue()));
-            assertThat(user.getProfile().getLastName(), is(nullValue()));
+            // As of 2018/07, these APIs are no longer supported
+            // assertThat(user.getProfile().getFirstName(), is(nullValue()));
+            // assertThat(user.getProfile().getLastName(), is(nullValue()));
             assertThat(user.getProfile().getDisplayName(), is(notNullValue()));
             assertThat(user.getProfile().getDisplayNameNormalized(), is(notNullValue()));
             assertThat(user.getProfile().getRealName(), is(notNullValue()));
