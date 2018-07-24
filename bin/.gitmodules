@@ -1,0 +1,3 @@
+[submodule "slack-api-specs"]
+	path = slack-api-specs
+	url = https://github.com/slackapi/slack-api-specs.git
