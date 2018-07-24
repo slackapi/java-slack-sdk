@@ -1,6 +1,0 @@
-sudo: false
-language: java
-jdk:
-  - oraclejdk8
-  - oraclejdk9
-install: ./mvnw test-compile
