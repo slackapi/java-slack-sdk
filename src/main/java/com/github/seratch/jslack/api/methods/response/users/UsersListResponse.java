@@ -1,6 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.users;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
+import com.github.seratch.jslack.api.model.ResponseMetadata;
 import com.github.seratch.jslack.api.model.User;
 import lombok.Data;
 
@@ -14,4 +15,5 @@ public class UsersListResponse implements SlackApiResponse {
     private String error;
 
     private List<User> members;
+    private ResponseMetadata responseMetadata;
 }

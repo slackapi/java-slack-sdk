@@ -2,6 +2,8 @@ package com.github.seratch.jslack.api.methods.response.im;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import com.github.seratch.jslack.api.model.Im;
+import com.github.seratch.jslack.api.model.ResponseMetadata;
+
 import lombok.Data;
 
 import java.util.List;
@@ -14,4 +16,5 @@ public class ImListResponse implements SlackApiResponse {
     private String error;
 
     private List<Im> ims;
+    private ResponseMetadata responseMetadata;
 }
