@@ -1,41 +1,12 @@
 ## jSlack
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/jslack/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/jslack)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.seratch/jslack.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.seratch%22%20a%3A%22jslack%22)
 
 jSlack is a Java library to easily integrate your operations with [Slack](https://slack.com/). The library currently supports the following APIs.
 
 - [Incoming Webhook](https://api.slack.com/incoming-webhooks)
 - [Real Time Messaging API](https://api.slack.com/rtm)
 - [API Methods](https://api.slack.com/methods)
-  - api.test
-  - apps.permissions.*
-  - auth.*
-  - bots.*
-  - channels.*
-  - chat.*
-  - conversations.*
-  - dialog.open
-  - dnd.*
-  - emoji.*
-  - files.*
-  - files.comments.*
-  - groups.*
-  - im.*
-  - migration.*
-  - mpim.*
-  - oauth.*
-  - pins.*
-  - reactions.*
-  - reminders.*
-  - rtm.*
-  - search.*
-  - stars.*
-  - team.*
-  - team.profile.*
-  - usergroups.*
-  - usergroups.users.*
-  - users.*
-  - users.profile.*
 
 As per API Methods, this library supports all the APIs listed in [github.com/slackapi/slack-api-specs](https://github.com/slackapi/slack-api-specs) as of May 2018.
 
