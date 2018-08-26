@@ -80,12 +80,15 @@ public class Slack_pins_Test {
         }
 
         {
-            PinsAddResponse response = slack.methods().pinsAdd(PinsAddRequest.builder()
-                    .token(token)
-                    .channel(channels.get(0))
-                    .fileComment(fileObj.getInitialComment().getId())
-                    .build());
-            assertThat(response.isOk(), is(true));
+            // as of August 2018, File object no longer contains initialComment.
+            if (fileObj.getInitialComment() != null) {
+                PinsAddResponse response = slack.methods().pinsAdd(PinsAddRequest.builder()
+                        .token(token)
+                        .channel(channels.get(0))
+                        .fileComment(fileObj.getInitialComment().getId())
+                        .build());
+                assertThat(response.isOk(), is(true));
+            }
         }
 
     }

@@ -74,12 +74,15 @@ public class Slack_stars_Test {
         }
 
         {
-            StarsAddResponse response = slack.methods().starsAdd(StarsAddRequest.builder()
-                    .token(token)
-                    .channel(channels.get(0))
-                    .fileComment(fileObj.getInitialComment().getId())
-                    .build());
-            assertThat(response.isOk(), is(true));
+            // as of August 2018, File object no longer contains initialComment.
+            if (fileObj.getInitialComment() != null) {
+                StarsAddResponse response = slack.methods().starsAdd(StarsAddRequest.builder()
+                        .token(token)
+                        .channel(channels.get(0))
+                        .fileComment(fileObj.getInitialComment().getId())
+                        .build());
+                assertThat(response.isOk(), is(true));
+            }
         }
 
     }
