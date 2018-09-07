@@ -49,17 +49,24 @@ public class User {
 
         private String avatarHash;
         private String statusText;
+        private String statusTextCanonical;
         private String statusEmoji;
+        private Long statusExpiration;
 
         private String displayName;
         private String displayNameNormalized;
         private String realName;
         private String realNameNormalized;
+        private String botId;
 
+        private String title;
         private String email;
         private String skype;
         private String phone;
         private String team;
+
+        private String apiAppId;
+        private boolean alwaysActive;
 
         @SerializedName("image_24")
         private String image24;
@@ -73,7 +80,11 @@ public class User {
         private String image192;
         @SerializedName("image_512")
         private String image512;
+        @SerializedName("image_1024")
+        private String image1024;
         private String imageOriginal;
+        @SerializedName("is_custom_image")
+        private boolean customImage;
 
         private Map<String, Field> fields;
 

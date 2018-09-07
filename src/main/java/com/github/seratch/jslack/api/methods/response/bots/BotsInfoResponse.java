@@ -10,6 +10,7 @@ public class BotsInfoResponse implements SlackApiResponse {
     public static class Bot {
         private String id;
         private String appId;
+        private String userId;
         private String name;
         private boolean deleted;
         private Integer updated;
