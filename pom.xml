@@ -76,7 +76,7 @@
         <dependency>
             <groupId>org.glassfish.tyrus.bundles</groupId>
             <artifactId>tyrus-standalone-client</artifactId>
-            <version>1.13.1</version>
+            <version>1.14</version>
             <scope>provided</scope>
         </dependency>
 
