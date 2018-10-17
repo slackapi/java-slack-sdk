@@ -3,6 +3,9 @@ language: java
 jdk:
   - oraclejdk8
   - oraclejdk9
-  - oraclejdk10
+#  - oraclejdk10
+cache:
+  directories:
+  - $HOME/.m2
 install: echo 'skipped'
 script: ./mvnw test-compile
