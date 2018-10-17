@@ -4,5 +4,9 @@ jdk:
   - oraclejdk8
   - oraclejdk9
   - oraclejdk10
+cache:
+  directories:
+  # cache maven directory for faster and more reliable build
+  - $HOME/.m2
 install: echo 'skipped'
 script: ./mvnw test-compile
