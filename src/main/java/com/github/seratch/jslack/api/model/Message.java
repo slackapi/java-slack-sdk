@@ -26,6 +26,8 @@ public class Message {
     private Icon icons;
     private File file;
 
+    private Edited edited;
+
     // https://api.slack.com/docs/message-link-unfurling
     private boolean unfurlLinks;
     private boolean unfurlMedia;
@@ -39,6 +41,12 @@ public class Message {
     /**
      * The root message information of a "thread_broadcast" message.
      */
+    @Data
+    public static class Edited {
+        private String user;
+        private String ts;
+    }
+
     @Data
     public static class MessageRoot {
         private String text;

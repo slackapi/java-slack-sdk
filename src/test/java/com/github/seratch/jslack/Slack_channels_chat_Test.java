@@ -258,6 +258,35 @@ public class Slack_channels_chat_Test {
             assertThat(response.isOk(), is(true));
         }
 
+        //--------------Edited test---------
+        Message lastMessage = slack.methods().conversationsHistory(
+                ConversationsHistoryRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .limit(1)
+                        .build()
+        ).getMessages().get(0);
+
+        ChatUpdateResponse updateMessage = slack.methods().chatUpdate(ChatUpdateRequest.builder()
+                .channel(channel.getId())
+                .token(token)
+                .ts(lastMessage.getTs())
+                .text("Updated text" + lastMessage.getText())
+                .build());
+        assertThat(updateMessage.isOk(), is(true));
+
+        ConversationsHistoryResponse conversationsHistoryResponse = slack.methods().conversationsHistory(
+                ConversationsHistoryRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .limit(1)
+                        .build()
+        );
+        assertFalse(conversationsHistoryResponse.getMessages().isEmpty());
+        assertNotNull(conversationsHistoryResponse.getMessages().get(0).getEdited());
+        assertNotEquals(conversationsHistoryResponse.getMessages().get(0).getEdited().getTs(), lastMessage.getTs());
+        //--------------------
+
         {
             ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
                     .channel(channel.getId())
