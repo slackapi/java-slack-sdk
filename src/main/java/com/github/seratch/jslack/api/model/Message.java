@@ -26,6 +26,7 @@ public class Message {
     private Icon icons;
     private File file;
 
+    // field exists only if the message was edited
     private Edited edited;
 
     // https://api.slack.com/docs/message-link-unfurling
@@ -38,14 +39,15 @@ public class Message {
     // this field exists only when posting the message with "reply_broadcast": true
     private MessageRoot root;
 
-    /**
-     * The root message information of a "thread_broadcast" message.
-     */
     @Data
     public static class Edited {
         private String user;
         private String ts;
     }
+
+    /**
+     * The root message information of a "thread_broadcast" message.
+     */
 
     @Data
     public static class MessageRoot {
