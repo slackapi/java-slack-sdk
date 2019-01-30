@@ -2,10 +2,14 @@ package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
+import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCreateRequest;
 import com.github.seratch.jslack.api.methods.request.files.*;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
+import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsCreateResponse;
 import com.github.seratch.jslack.api.methods.response.files.*;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsAddResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
@@ -105,6 +109,61 @@ public class Slack_files_Test {
 
         {
             FilesDeleteResponse response = slack.methods().filesDelete(FilesDeleteRequest.builder()
+                    .token(token)
+                    .file(fileObj.getId())
+                    .build());
+            assertThat(response.isOk(), is(true));
+        }
+    }
+
+    @Test
+    public void createFileForAThread() throws IOException, SlackApiException {
+        ConversationsCreateResponse createPublicResponse = slack.methods().conversationsCreate(
+                ConversationsCreateRequest.builder()
+                        .token(token)
+                        .name("test" + System.currentTimeMillis())
+                        .isPrivate(false)
+                        .build());
+        assertThat(createPublicResponse.isOk(), is(true));
+        assertThat(createPublicResponse.getChannel(), is(notNullValue()));
+        assertThat(createPublicResponse.getChannel().isPrivate(), is(false));
+
+        ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
+                ChatPostMessageRequest.builder()
+                        .token(token)
+                        .channel(createPublicResponse.getChannel().getId())
+                        .text("This is a test message posted by unit tests for jslack library")
+                        .replyBroadcast(false)
+                        .build());
+        assertThat(postMessageResponse.isOk(), is(true));
+
+        ChatPostMessageResponse postThread1Response = slack.methods().chatPostMessage(
+                ChatPostMessageRequest.builder()
+                        .token(token)
+                        .channel(createPublicResponse.getChannel().getId())
+                        .threadTs(postMessageResponse.getTs())
+                        .text("[thread 1] This is a test message posted by unit tests for jslack library")
+                        .replyBroadcast(false)
+                        .build());
+        assertThat(postThread1Response.isOk(), is(true));
+
+        File file = new File("src/test/resources/sample.txt");
+        com.github.seratch.jslack.api.model.File fileObj;
+        {
+            FilesUploadResponse response = slack.methods().filesUpload(FilesUploadRequest.builder()
+                    .token(token)
+                    .file(file)
+                    .filename("sample.txt")
+                    .initialComment("initial comment")
+                    .title("file title")
+                    .threadTs(postThread1Response.getTs())
+                    .build());
+            assertThat(response.isOk(), is(true));
+            fileObj = response.getFile();
+        }
+
+        {
+            FilesInfoResponse response = slack.methods().filesInfo(FilesInfoRequest.builder()
                     .token(token)
                     .file(fileObj.getId())
                     .build());
