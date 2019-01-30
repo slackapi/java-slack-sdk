@@ -45,17 +45,31 @@ public class Slack_im_Test {
 
         String channelId = openResponse.getChannel().getId();
 
-        ImMarkResponse markResponse = slack.methods().imMark(ImMarkRequest.builder()
-                .token(token)
-                .channel(channelId)
-                .build());
-        assertThat(markResponse.isOk(), is(true));
+        // without ts (worked before but it gets to fail because ts is required as of Jan 2019)
+        {
+            ImMarkResponse markResponse = slack.methods().imMark(ImMarkRequest.builder()
+                    .token(token)
+                    .channel(channelId)
+                    .build());
+            assertThat(markResponse.isOk(), is(false));
+            assertThat(markResponse.getError(), is("invalid_timestamp"));
+        }
 
         ChatPostMessageResponse firstMessageResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
                 .token(token)
                 .channel(channelId)
                 .text("Hi!").build());
         assertThat(firstMessageResponse.isOk(), is(true));
+
+        // with ts
+        {
+            ImMarkResponse markResponse = slack.methods().imMark(ImMarkRequest.builder()
+                    .token(token)
+                    .channel(channelId)
+                    .ts(firstMessageResponse.getTs())
+                    .build());
+            assertThat(markResponse.isOk(), is(true));
+        }
 
         ChatPostMessageResponse threadReplyResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
                 .token(token)
