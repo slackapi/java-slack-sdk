@@ -51,4 +51,9 @@ public class FilesUploadRequest implements SlackApiRequest {
      */
     private List<String> channels;
 
+    /**
+     * Provide another message's ts value to upload this file as a reply. Never use a reply's ts value; use its parent instead.
+     */
+    private String threadTs;
+
 }

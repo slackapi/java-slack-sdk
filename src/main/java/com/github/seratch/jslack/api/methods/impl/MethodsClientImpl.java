@@ -676,6 +676,7 @@ public class MethodsClientImpl implements MethodsClient {
             if (req.getChannels() != null) {
                 setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
             }
+            setIfNotNull("thread_ts", req.getThreadTs(), form);
             return doPostMultipart(form, Methods.FILES_UPLOAD, req.getToken(), FilesUploadResponse.class);
         } else {
             FormBody.Builder form = new FormBody.Builder();
