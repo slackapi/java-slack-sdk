@@ -48,7 +48,6 @@ public class Message {
     /**
      * The root message information of a "thread_broadcast" message.
      */
-
     @Data
     public static class MessageRoot {
         private String text;
