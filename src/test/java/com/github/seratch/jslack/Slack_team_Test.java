@@ -28,8 +28,15 @@ public class Slack_team_Test {
         TeamAccessLogsResponse response = slack.methods().teamAccessLogs(TeamAccessLogsRequest.builder()
                 .token(token)
                 .build());
-        assertThat(response.isOk(), is(false));
-        assertThat(response.getError(), is("paid_only"));
+        if (response.isOk()) {
+            // when you pay for this team
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getError(), is(nullValue()));
+        } else {
+            // when you don't pay for this team
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("paid_only"));
+        }
     }
 
     @Test
