@@ -350,6 +350,10 @@ public class MethodsClientImpl implements MethodsClient {
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
         setIfNotNull("mrkdwn", req.isMrkdwn(), form);
+        if (req.getBlocks() != null) {
+            String json = GsonFactory.createSnakeCase().toJson(req.getBlocks());
+            form.add("blocks", json);
+        }
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
