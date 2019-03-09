@@ -1,14 +1,17 @@
 package com.github.seratch.jslack.api.webhook;
 
+import java.util.List;
+
 import com.github.seratch.jslack.api.model.Attachment;
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
+
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * https://api.slack.com/incoming-webhooks
+ * 
+ * Implementation of <a href="https://api.slack.com/reference/messaging/payload">Message Payloads</a>
  */
 @Data
 @Builder
@@ -44,9 +47,13 @@ public class Payload {
     private String iconEmoji;
 
     /**
-     * You can use Slack's standard message markup to add simple formatting to your messages.
-     * You can also use message attachments to display richly-formatted message blocks.
+     * An array of {@link LayoutBlock layout blocks} in the same format as described in the 
+     * <a href="https://api.slack.com/messaging/composing/layouts#getting-started">layout block guide</a>.
      */
-    private List<Attachment> attachments = new ArrayList<>();
-
+    private List<LayoutBlock> blocks;
+    
+    /**
+     * An array of legacy secondary attachments. We recommend you use {@link #blocks} instead.
+     */
+    private List<Attachment> attachments;
 }

@@ -2,6 +2,8 @@ package com.github.seratch.jslack.api.methods.request.chat;
 
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
 import com.github.seratch.jslack.api.model.Attachment;
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
+
 import lombok.*;
 
 import java.util.List;
@@ -50,6 +52,11 @@ public class ChatPostMessageRequest implements SlackApiRequest {
      * Find and link channel names and usernames.
      */
     private boolean linkNames;
+
+    /**
+     * A JSON-based array of structured blocks, presented as a URL-encoded string.
+     */
+    private List<LayoutBlock> blocks;
 
     /**
      * A JSON-based array of structured attachments, presented as a URL-encoded string.
