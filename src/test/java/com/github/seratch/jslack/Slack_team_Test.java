@@ -11,11 +11,15 @@ import com.github.seratch.jslack.api.methods.response.team.TeamBillableInfoRespo
 import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
 import com.github.seratch.jslack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGetResponse;
+import com.github.seratch.jslack.api.model.User;
+
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+
+import java.util.List;
 
 @Slf4j
 public class Slack_team_Test {
@@ -41,11 +45,14 @@ public class Slack_team_Test {
 
     @Test
     public void teamBillableInfo() throws Exception {
-        String user = slack.methods().usersList(UsersListRequest.builder().token(token).build()).getMembers().get(0).getId();
+        List<User> users = slack.methods().usersList(UsersListRequest.builder().token(token).build()).getMembers();
+        User user = users.stream().filter(u -> !u.isBot() && !"USLACKBOT".equals(u.getId())).findFirst().get();
+        String userId = user.getId();
         TeamBillableInfoResponse response = slack.methods().teamBillableInfo(TeamBillableInfoRequest.builder()
                 .token(token)
-                .user(user)
+                .user(userId)
                 .build());
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
