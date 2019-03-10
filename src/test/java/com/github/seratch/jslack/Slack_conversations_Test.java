@@ -170,15 +170,18 @@ public class Slack_conversations_Test {
             assertThat(membersResponse.getMembers().isEmpty(), is(false));
             assertThat(membersResponse.getResponseMetadata(), is(notNullValue()));
 
-            UsersListResponse usersListResponse = slack.methods().usersList(
-                    UsersListRequest.builder().token(token).build());
-            String invitee = null;
-            for (User user : usersListResponse.getMembers()) {
-                if (!membersResponse.getMembers().contains(user.getId())) {
-                    invitee = user.getId();
-                    break;
-                }
-            }
+            UsersListResponse usersListResponse = slack.methods()
+                    .usersList(UsersListRequest.builder()
+                            .token(token)
+                            .build());
+            String invitee = usersListResponse.getMembers()
+                    .stream()
+                    .filter(u -> !"USLACKBOT".equals(u.getId())
+                            && !membersResponse.getMembers()
+                                    .contains(u.getId()))
+                    .findFirst()
+                    .map(User::getId)
+                    .get();
 
             ConversationsInviteResponse inviteResponse = slack.methods().conversationsInvite(
                     ConversationsInviteRequest.builder()
