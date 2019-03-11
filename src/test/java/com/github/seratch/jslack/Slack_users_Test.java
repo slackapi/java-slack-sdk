@@ -12,8 +12,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 @Slf4j
 public class Slack_users_Test {
@@ -44,17 +47,17 @@ public class Slack_users_Test {
         }
 
         UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder()
-        	        	.token(token)
-        	        	.limit(2)
-        	        	.presence(true)
-        	        	.build());
+                .token(token)
+                .limit(2)
+                .presence(true)
+                .build());
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 
         {
             assertThat(usersListResponse.isOk(), is(true));
             assertThat(usersListResponse.getResponseMetadata(), is(notNullValue()));
-            
+
             assertThat(users, is(notNullValue()));
             User user = users.get(0);
             assertThat(user.getId(), is(notNullValue()));

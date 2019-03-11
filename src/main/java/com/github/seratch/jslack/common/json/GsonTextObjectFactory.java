@@ -1,26 +1,19 @@
 package com.github.seratch.jslack.common.json;
 
-import java.lang.reflect.Type;
-
 import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import com.github.seratch.jslack.api.model.block.composition.TextObject;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
+import com.google.gson.*;
+
+import java.lang.reflect.Type;
 
 /**
  * Factory for deserializing BlockKit 'text object' elements from a
  * {@link com.github.seratch.jslack.api.model.Message chat message response}.
- * 
+ *
  * @see <a href=
- *      "https://api.slack.com/reference/messaging/composition-objects#text">Text
- *      Composition Objects documentation</a>
+ * "https://api.slack.com/reference/messaging/composition-objects#text">Text
+ * Composition Objects documentation</a>
  */
 public class GsonTextObjectFactory implements JsonDeserializer<TextObject>, JsonSerializer<TextObject> {
     @Override
@@ -40,12 +33,12 @@ public class GsonTextObjectFactory implements JsonDeserializer<TextObject>, Json
 
     private Class<? extends TextObject> getTextObjectClassInstance(String className) {
         switch (className) {
-        case "plain_text":
-            return PlainTextObject.class;
-        case "mrkdwn":
-            return MarkdownTextObject.class;
-        default:
-            throw new JsonParseException("Unknown text object type: " + className);
+            case "plain_text":
+                return PlainTextObject.class;
+            case "mrkdwn":
+                return MarkdownTextObject.class;
+            default:
+                throw new JsonParseException("Unknown text object type: " + className);
         }
     }
 }

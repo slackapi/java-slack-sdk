@@ -5,7 +5,7 @@ package com.github.seratch.jslack.api.model.block;
  * when building messages for Slack. Comprised of "blocks," stackable bits of
  * message UI, you can customize the order and appearance of information
  * delivered by your app in Slack.
- * 
+ *
  * @see <a href="https://api.slack.com/block-kit">Block Kit Guide</a>
  * @see <a href="https://api.slack.com/reference/messaging/blocks">Block Kit Reference</a>
  */

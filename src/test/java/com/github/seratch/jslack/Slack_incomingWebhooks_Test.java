@@ -9,7 +9,6 @@ import com.github.seratch.jslack.api.model.block.element.ButtonElement;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;

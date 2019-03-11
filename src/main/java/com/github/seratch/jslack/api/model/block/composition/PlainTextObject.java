@@ -1,17 +1,13 @@
 package com.github.seratch.jslack.api.model.block.composition;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * https://api.slack.com/reference/messaging/composition-objects#text
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Builder(toBuilder=true)
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class PlainTextObject extends TextObject {

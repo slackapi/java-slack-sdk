@@ -1,14 +1,5 @@
 package com.github.seratch.jslack;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.io.IOException;
-import java.util.Arrays;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
@@ -19,6 +10,14 @@ import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import com.github.seratch.jslack.api.model.block.element.ButtonElement;
 import com.github.seratch.jslack.api.model.block.element.ImageElement;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 
 public class Slack_blockkit_Test {
     Slack slack = Slack.getInstance();
@@ -31,10 +30,10 @@ public class Slack_blockkit_Test {
                 .token(token)
                 .text("Example message")
                 .blocks(Arrays.asList(SectionBlock.builder()
-                        .text(MarkdownTextObject.builder()
-                                .text("Hello, Assistant to the Regional Manager Dwight! *Michael Scott* wants to know where you'd like to take the Paper Company investors to dinner tonight.\n\n*Please select a restaurant:*")
-                                .build())
-                        .build(),
+                                .text(MarkdownTextObject.builder()
+                                        .text("Hello, Assistant to the Regional Manager Dwight! *Michael Scott* wants to know where you'd like to take the Paper Company investors to dinner tonight.\n\n*Please select a restaurant:*")
+                                        .build())
+                                .build(),
                         new DividerBlock(),
                         SectionBlock.builder()
                                 .text(MarkdownTextObject.builder()
@@ -69,12 +68,12 @@ public class Slack_blockkit_Test {
                         new DividerBlock(),
                         ActionsBlock.builder()
                                 .elements(Arrays.asList(ButtonElement.builder()
-                                        .text(PlainTextObject.builder()
-                                                .emoji(true)
-                                                .text("Farmhouse")
-                                                .build())
-                                        .value("click_me_123")
-                                        .build(),
+                                                .text(PlainTextObject.builder()
+                                                        .emoji(true)
+                                                        .text("Farmhouse")
+                                                        .build())
+                                                .value("click_me_123")
+                                                .build(),
                                         ButtonElement.builder()
                                                 .text(PlainTextObject.builder()
                                                         .emoji(true)

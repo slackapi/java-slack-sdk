@@ -1,21 +1,9 @@
 package com.github.seratch.jslack.common.json;
 
-import java.lang.reflect.Type;
+import com.github.seratch.jslack.api.model.block.*;
+import com.google.gson.*;
 
-import com.github.seratch.jslack.api.model.block.ActionsBlock;
-import com.github.seratch.jslack.api.model.block.ContextBlock;
-import com.github.seratch.jslack.api.model.block.DividerBlock;
-import com.github.seratch.jslack.api.model.block.ImageBlock;
-import com.github.seratch.jslack.api.model.block.LayoutBlock;
-import com.github.seratch.jslack.api.model.block.SectionBlock;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
+import java.lang.reflect.Type;
 
 /**
  * Factory for deserializing BlockKit elements from a
@@ -34,18 +22,18 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
 
     private Class<? extends LayoutBlock> getLayoutClassInstance(String className) {
         switch (className) {
-        case "section":
-            return SectionBlock.class;
-        case "divider":
-            return DividerBlock.class;
-        case "image":
-            return ImageBlock.class;
-        case "context":
-            return ContextBlock.class;
-        case "actions":
-            return ActionsBlock.class;
-        default:
-            throw new JsonParseException("Unsupported layout block type: " + className);
+            case "section":
+                return SectionBlock.class;
+            case "divider":
+                return DividerBlock.class;
+            case "image":
+                return ImageBlock.class;
+            case "context":
+                return ContextBlock.class;
+            case "actions":
+                return ActionsBlock.class;
+            default:
+                throw new JsonParseException("Unsupported layout block type: " + className);
         }
     }
 

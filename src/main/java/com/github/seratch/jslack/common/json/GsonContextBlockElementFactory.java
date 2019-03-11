@@ -1,29 +1,22 @@
 package com.github.seratch.jslack.common.json;
 
-import java.lang.reflect.Type;
-
 import com.github.seratch.jslack.api.model.block.ContextBlockElement;
 import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import com.github.seratch.jslack.api.model.block.element.ImageElement;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
+import com.google.gson.*;
+
+import java.lang.reflect.Type;
 
 /**
  * Factory for deserializing BlockKit 'context block' elements from a
  * {@link com.github.seratch.jslack.api.model.Message chat message response}.
- * 
+ *
  * @see <a href=
- *      "https://api.slack.com/reference/messaging/blocks#context">Context Block
- *      documentation</a>
+ * "https://api.slack.com/reference/messaging/blocks#context">Context Block
+ * documentation</a>
  */
-public class GsonContextBlockElementFactory implements JsonDeserializer<ContextBlockElement> , JsonSerializer<ContextBlockElement>{
+public class GsonContextBlockElementFactory implements JsonDeserializer<ContextBlockElement>, JsonSerializer<ContextBlockElement> {
     @Override
     public ContextBlockElement deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
@@ -41,19 +34,19 @@ public class GsonContextBlockElementFactory implements JsonDeserializer<ContextB
 
     private Class<? extends ContextBlockElement> getContextBlockElementClassInstance(String className) {
         switch (className) {
-        case "image":
-            return ImageElement.class;
+            case "image":
+                return ImageElement.class;
 
-        // does not defer to GsonTextObjectFactory as not to loose the specific context
-        // in which the
-        // type needs to be parsed (gives a better error message to the consumer).
+            // does not defer to GsonTextObjectFactory as not to loose the specific context
+            // in which the
+            // type needs to be parsed (gives a better error message to the consumer).
 
-        case "plain_text":
-            return PlainTextObject.class;
-        case "mrkdwn":
-            return MarkdownTextObject.class;
-        default:
-            throw new JsonParseException("Unknown context block element type: " + className);
+            case "plain_text":
+                return PlainTextObject.class;
+            case "mrkdwn":
+                return MarkdownTextObject.class;
+            default:
+                throw new JsonParseException("Unknown context block element type: " + className);
         }
     }
 }

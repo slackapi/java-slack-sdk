@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 @Slf4j
 public class Slack_api_test_Test {

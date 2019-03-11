@@ -1,11 +1,10 @@
 package com.github.seratch.jslack.api.model;
 
-import java.util.List;
-
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.google.gson.annotations.SerializedName;
-
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Message {

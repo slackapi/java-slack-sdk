@@ -111,7 +111,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.joining;
 
 @Slf4j
 public class MethodsClientImpl implements MethodsClient {

@@ -12,14 +12,14 @@ import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
 import com.github.seratch.jslack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.github.seratch.jslack.api.model.User;
-
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertThat;
 
 @Slf4j
 public class Slack_team_Test {

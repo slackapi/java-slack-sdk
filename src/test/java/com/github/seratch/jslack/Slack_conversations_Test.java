@@ -17,8 +17,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 @Slf4j
 public class Slack_conversations_Test {
@@ -41,7 +42,7 @@ public class Slack_conversations_Test {
             assertThat(listResponse.getChannels(), is(notNullValue()));
             assertThat(listResponse.getResponseMetadata(), is(notNullValue()));
         }
-        
+
         ConversationsCreateResponse createPublicResponse = slack.methods().conversationsCreate(
                 ConversationsCreateRequest.builder()
                         .token(token)
@@ -63,44 +64,44 @@ public class Slack_conversations_Test {
         assertThat(createPrivateResponse.isOk(), is(true));
         assertThat(createPrivateResponse.getChannel(), is(notNullValue()));
         assertThat(createPrivateResponse.getChannel().isPrivate(), is(true));
-        
+
         {
             ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
-        	        ChatPostMessageRequest.builder()
-        	                .token(token)
-        	                .channel(createPublicResponse.getChannel().getId())
-        	                .text("This is a test message posted by unit tests for jslack library")
-        	                .replyBroadcast(false)
-        	                .build());
+                    ChatPostMessageRequest.builder()
+                            .token(token)
+                            .channel(createPublicResponse.getChannel().getId())
+                            .text("This is a test message posted by unit tests for jslack library")
+                            .replyBroadcast(false)
+                            .build());
             assertThat(postMessageResponse.isOk(), is(true));
-            
+
             ChatPostMessageResponse postThread1Response = slack.methods().chatPostMessage(
-    	        ChatPostMessageRequest.builder()
-    	                .token(token)
-    	                .channel(createPublicResponse.getChannel().getId())
-    	                .threadTs(postMessageResponse.getTs())
-    	                .text("[thread 1] This is a test message posted by unit tests for jslack library")
-    	                .replyBroadcast(false)
-    	                .build());
+                    ChatPostMessageRequest.builder()
+                            .token(token)
+                            .channel(createPublicResponse.getChannel().getId())
+                            .threadTs(postMessageResponse.getTs())
+                            .text("[thread 1] This is a test message posted by unit tests for jslack library")
+                            .replyBroadcast(false)
+                            .build());
             assertThat(postThread1Response.isOk(), is(true));
-            
+
             ChatPostMessageResponse postThread2Response = slack.methods().chatPostMessage(
-        	        ChatPostMessageRequest.builder()
-        	                .token(token)
-        	                .channel(createPublicResponse.getChannel().getId())
-        	                .threadTs(postMessageResponse.getTs())
-        	                .text("[thread 2] This is a test message posted by unit tests for jslack library")
-        	                .replyBroadcast(false)
-        	                .build());
+                    ChatPostMessageRequest.builder()
+                            .token(token)
+                            .channel(createPublicResponse.getChannel().getId())
+                            .threadTs(postMessageResponse.getTs())
+                            .text("[thread 2] This is a test message posted by unit tests for jslack library")
+                            .replyBroadcast(false)
+                            .build());
             assertThat(postThread2Response.isOk(), is(true));
-            
+
             ConversationsRepliesResponse repliesResponse = slack.methods().conversationsReplies(
-                ConversationsRepliesRequest.builder()
-                        .token(token)
-                        .channel(createPublicResponse.getChannel().getId())
-                        .ts(postMessageResponse.getTs())
-                        .limit(1)
-                        .build());
+                    ConversationsRepliesRequest.builder()
+                            .token(token)
+                            .channel(createPublicResponse.getChannel().getId())
+                            .ts(postMessageResponse.getTs())
+                            .limit(1)
+                            .build());
             assertThat(repliesResponse.isOk(), is(true));
             assertThat(repliesResponse.getResponseMetadata(), is(notNullValue()));
         }
@@ -178,7 +179,7 @@ public class Slack_conversations_Test {
                     .stream()
                     .filter(u -> !"USLACKBOT".equals(u.getId())
                             && !membersResponse.getMembers()
-                                    .contains(u.getId()))
+                            .contains(u.getId()))
                     .findFirst()
                     .map(User::getId)
                     .get();

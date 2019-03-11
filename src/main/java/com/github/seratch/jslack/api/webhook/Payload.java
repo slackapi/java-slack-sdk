@@ -1,16 +1,15 @@
 package com.github.seratch.jslack.api.webhook;
 
-import java.util.List;
-
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
-
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * https://api.slack.com/incoming-webhooks
- * 
+ * <p>
  * Implementation of <a href="https://api.slack.com/reference/messaging/payload">Message Payloads</a>
  */
 @Data
@@ -47,11 +46,11 @@ public class Payload {
     private String iconEmoji;
 
     /**
-     * An array of {@link LayoutBlock layout blocks} in the same format as described in the 
+     * An array of {@link LayoutBlock layout blocks} in the same format as described in the
      * <a href="https://api.slack.com/messaging/composing/layouts#getting-started">layout block guide</a>.
      */
     private List<LayoutBlock> blocks;
-    
+
     /**
      * An array of legacy secondary attachments. We recommend you use {@link #blocks} instead.
      */

@@ -3,7 +3,6 @@ package com.github.seratch.jslack.api.methods.request.chat;
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
-
 import lombok.*;
 
 import java.util.List;

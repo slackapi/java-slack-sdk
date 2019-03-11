@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.api.model.block;
 
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

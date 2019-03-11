@@ -9,8 +9,10 @@ import com.github.seratch.jslack.api.methods.response.usergroups.users.Usergroup
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 @Slf4j
 public class Slack_usergroups_Test {

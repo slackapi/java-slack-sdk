@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OptionGroupObject {
-	private PlainTextObject label;
-	private OptionObject[] options;
+    private PlainTextObject label;
+    private OptionObject[] options;
 }
