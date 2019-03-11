@@ -2,13 +2,22 @@ package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Field;
+import com.github.seratch.jslack.api.model.block.ActionsBlock;
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
+import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
+import com.github.seratch.jslack.api.model.block.element.ButtonElement;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 @Slf4j
 public class Slack_incomingWebhooks_Test {
@@ -65,6 +74,39 @@ public class Slack_incomingWebhooks_Test {
 
         WebhookResponse response = slack.send(url, payload);
         log.info(response.toString());
+
+        assertThat(response.getCode(), is(200));
+    }
+
+    @Test
+    public void incomingWebhook_BlockKit() throws IOException {
+        // String url = "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX";
+        String url = System.getenv("SLACK_WEBHOOK_TEST_URL");
+        if (url == null) {
+            throw new IllegalStateException("Environment variable SLACK_WEBHOOK_TEST_URL must be defined");
+        }
+
+        Payload payload = Payload.builder()
+                .channel("#random")
+                .text("Hello World!")
+                .iconEmoji(":smile_cat:")
+                .username("jSlack")
+                .blocks(new ArrayList<>())
+                .build();
+
+        ButtonElement button = ButtonElement.builder()
+                .text(PlainTextObject.builder().emoji(true).text("Farmhouse").build())
+                .value("click_me_123")
+                .build();
+
+        LayoutBlock block = ActionsBlock.builder().elements(Arrays.asList(button)).build();
+
+        payload.getBlocks().add(block);
+
+        WebhookResponse response = slack.send(url, payload);
+        log.info(response.toString());
+
+        assertThat(response.getCode(), is(200));
     }
 
 }
