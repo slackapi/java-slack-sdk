@@ -1,9 +1,11 @@
 package com.github.seratch.jslack.api.model;
 
-import com.google.gson.annotations.SerializedName;
-import lombok.Data;
-
 import java.util.List;
+
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
+import com.google.gson.annotations.SerializedName;
+
+import lombok.Data;
 
 @Data
 public class Message {
@@ -12,6 +14,7 @@ public class Message {
     private String channel;
     private String user;
     private String text;
+    private List<LayoutBlock> blocks;
     private List<Attachment> attachments;
     private String ts;
     private String threadTs;
