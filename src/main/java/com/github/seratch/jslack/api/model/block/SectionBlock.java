@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +20,6 @@ public class SectionBlock implements LayoutBlock {
     private final String type = "section";
     private TextObject text;
     private String blockId;
-    @Builder.Default
-    private List<TextObject> fields = new ArrayList<>();
+    private List<TextObject> fields;
     private BlockElement accessory;
 }
