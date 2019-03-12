@@ -4,6 +4,9 @@ import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogO
 import com.github.seratch.jslack.api.model.block.composition.OptionObject;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * https://api.slack.com/reference/messaging/block-elements#overflow
  */
@@ -15,6 +18,7 @@ import lombok.*;
 public class OverflowMenuElement extends BlockElement {
     private final String type = "overflow";
     private String actionId;
-    private OptionObject[] options;
+    @Builder.Default
+    private List<OptionObject> options = new ArrayList<>();
     private ConfirmationDialogObject confirm;
 }

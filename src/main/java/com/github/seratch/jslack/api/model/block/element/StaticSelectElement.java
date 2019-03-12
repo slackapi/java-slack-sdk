@@ -6,6 +6,9 @@ import com.github.seratch.jslack.api.model.block.composition.OptionObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * https://api.slack.com/reference/messaging/block-elements#static-select
  */
@@ -18,8 +21,10 @@ public class StaticSelectElement extends BlockElement {
     private final String type = "static_select";
     private PlainTextObject placeholder;
     private String actionId;
-    private OptionObject[] options;
-    private OptionGroupObject[] optionGroups;
+    @Builder.Default
+    private List<OptionObject> options = new ArrayList<>();
+    @Builder.Default
+    private List<OptionGroupObject> optionGroups = new ArrayList<>();
     private OptionObject initialOption;
     private ConfirmationDialogObject confirm;
 }

@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * https://api.slack.com/reference/messaging/composition-objects#option-group
  */
@@ -14,5 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OptionGroupObject {
     private PlainTextObject label;
-    private OptionObject[] options;
+    @Builder.Default
+    private List<OptionObject> options = new ArrayList<>();
 }

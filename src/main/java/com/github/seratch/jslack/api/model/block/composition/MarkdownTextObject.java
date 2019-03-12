@@ -13,5 +13,5 @@ import lombok.*;
 public class MarkdownTextObject extends TextObject {
     private final String type = "mrkdwn";
     private String text;
-    private Boolean verbatim;
+    private boolean verbatim;
 }

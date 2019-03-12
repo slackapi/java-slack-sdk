@@ -10,9 +10,10 @@ package com.github.seratch.jslack.api.model.block;
  * @see <a href="https://api.slack.com/reference/messaging/blocks">Block Kit Reference</a>
  */
 public interface LayoutBlock {
+
     /**
      * Determines the type of layout block, e.g. section, divider, context, actions
      * and image.
      */
-    public String getType();
+    String getType();
 }

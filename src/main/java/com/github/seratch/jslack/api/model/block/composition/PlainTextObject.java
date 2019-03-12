@@ -13,5 +13,5 @@ import lombok.*;
 public class PlainTextObject extends TextObject {
     private final String type = "plain_text";
     private String text;
-    private Boolean emoji;
+    private boolean emoji;
 }
