@@ -1,5 +1,6 @@
 <configuration>
-    <appender name="default" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="default" class="ch.qos.logback.core.FileAppender">
+        <file>logs/console.log</file>
         <encoder>
             <pattern>%date %level [%thread] %logger{64} %msg%n</pattern>
         </encoder>

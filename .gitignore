@@ -14,3 +14,5 @@ target/
 *.iws
 build/
 downloaded_files/
+
+logs/
