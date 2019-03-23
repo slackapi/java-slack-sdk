@@ -14,6 +14,7 @@ import com.github.seratch.jslack.api.methods.response.files.*;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsAddResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsEditResponse;
+import com.github.seratch.jslack.api.model.Conversation;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -119,56 +120,53 @@ public class Slack_files_Test {
 
     @Test
     public void createFileForAThread() throws IOException, SlackApiException {
-        ConversationsCreateResponse createPublicResponse = slack.methods().conversationsCreate(
-                ConversationsCreateRequest.builder()
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(token);
+        Conversation channel = channelGenerator.createNewPublicChannel("test" + System.currentTimeMillis());
+
+        try {
+            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
+                    ChatPostMessageRequest.builder()
+                            .token(token)
+                            .channel(channel.getId())
+                            .text("This is a test message posted by unit tests for jslack library")
+                            .replyBroadcast(false)
+                            .build());
+            assertThat(postMessageResponse.isOk(), is(true));
+
+            ChatPostMessageResponse postThread1Response = slack.methods().chatPostMessage(
+                    ChatPostMessageRequest.builder()
+                            .token(token)
+                            .channel(channel.getId())
+                            .threadTs(postMessageResponse.getTs())
+                            .text("[thread 1] This is a test message posted by unit tests for jslack library")
+                            .replyBroadcast(false)
+                            .build());
+            assertThat(postThread1Response.isOk(), is(true));
+
+            File file = new File("src/test/resources/sample.txt");
+            com.github.seratch.jslack.api.model.File fileObj;
+            {
+                FilesUploadResponse response = slack.methods().filesUpload(FilesUploadRequest.builder()
                         .token(token)
-                        .name("test" + System.currentTimeMillis())
-                        .isPrivate(false)
+                        .file(file)
+                        .filename("sample.txt")
+                        .initialComment("initial comment")
+                        .title("file title")
+                        .threadTs(postThread1Response.getTs())
                         .build());
-        assertThat(createPublicResponse.isOk(), is(true));
-        assertThat(createPublicResponse.getChannel(), is(notNullValue()));
-        assertThat(createPublicResponse.getChannel().isPrivate(), is(false));
+                assertThat(response.isOk(), is(true));
+                fileObj = response.getFile();
+            }
 
-        ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
-                ChatPostMessageRequest.builder()
+            {
+                FilesInfoResponse response = slack.methods().filesInfo(FilesInfoRequest.builder()
                         .token(token)
-                        .channel(createPublicResponse.getChannel().getId())
-                        .text("This is a test message posted by unit tests for jslack library")
-                        .replyBroadcast(false)
+                        .file(fileObj.getId())
                         .build());
-        assertThat(postMessageResponse.isOk(), is(true));
-
-        ChatPostMessageResponse postThread1Response = slack.methods().chatPostMessage(
-                ChatPostMessageRequest.builder()
-                        .token(token)
-                        .channel(createPublicResponse.getChannel().getId())
-                        .threadTs(postMessageResponse.getTs())
-                        .text("[thread 1] This is a test message posted by unit tests for jslack library")
-                        .replyBroadcast(false)
-                        .build());
-        assertThat(postThread1Response.isOk(), is(true));
-
-        File file = new File("src/test/resources/sample.txt");
-        com.github.seratch.jslack.api.model.File fileObj;
-        {
-            FilesUploadResponse response = slack.methods().filesUpload(FilesUploadRequest.builder()
-                    .token(token)
-                    .file(file)
-                    .filename("sample.txt")
-                    .initialComment("initial comment")
-                    .title("file title")
-                    .threadTs(postThread1Response.getTs())
-                    .build());
-            assertThat(response.isOk(), is(true));
-            fileObj = response.getFile();
-        }
-
-        {
-            FilesInfoResponse response = slack.methods().filesInfo(FilesInfoRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .build());
-            assertThat(response.isOk(), is(true));
+                assertThat(response.isOk(), is(true));
+            }
+        } finally {
+            channelGenerator.archiveChannel(channel);
         }
     }
 
