@@ -104,8 +104,16 @@ public class Slack_groups_Test {
         }
 
         {
+            // NOTE: https://github.com/slackapi/slack-api-specs/issues/12
             GroupsCloseResponse response = slack.methods().groupsClose(
                     GroupsCloseRequest.builder().token(token).channel(group.getId()).build());
+            // No error is returned but this API seems to be useless.
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
+            GroupsArchiveResponse response = slack.methods().groupsArchive(
+                    GroupsArchiveRequest.builder().token(token).channel(group.getId()).build());
             assertThat(response.isOk(), is(true));
         }
     }
