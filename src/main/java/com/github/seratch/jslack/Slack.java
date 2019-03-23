@@ -65,6 +65,8 @@ public class Slack {
 
     /**
      * Creates an RTM API client.
+     *
+     * @see "https://api.slack.com/docs/rate-limits#rtm"
      */
     public RTMClient rtm(String apiToken) throws IOException {
         return rtmConnect(apiToken);
@@ -72,12 +74,14 @@ public class Slack {
 
     /**
      * Creates an RTM API client using `/rtm.connect`.
+     *
+     * @see "https://api.slack.com/docs/rate-limits#rtm"
      */
     public RTMClient rtmConnect(String apiToken) throws IOException {
         try {
             RTMConnectResponse response = methods().rtmConnect(RTMConnectRequest.builder().token(apiToken).build());
             if (response.isOk()) {
-                return new RTMClient(response.getUrl());
+                return new RTMClient(this, apiToken, response.getUrl(), response.getSelf());
             } else {
                 throw new IllegalStateException("Failed to the RTM endpoint URL (error: " + response.getError() + ")");
             }
@@ -88,12 +92,14 @@ public class Slack {
 
     /**
      * Creates an RTM API client using `/rtm.start`.
+     *
+     * @see "https://api.slack.com/docs/rate-limits#rtm"
      */
     public RTMClient rtmStart(String apiToken) throws IOException {
         try {
             RTMStartResponse response = methods().rtmStart(RTMStartRequest.builder().token(apiToken).build());
             if (response.isOk()) {
-                return new RTMClient(response.getUrl());
+                return new RTMClient(this, apiToken, response.getUrl(), response.getSelf());
             } else {
                 throw new IllegalStateException("Failed to the RTM endpoint URL (error: " + response.getError() + ")");
             }
