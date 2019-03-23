@@ -7,9 +7,13 @@ import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.*;
 import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
+import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Conversation;
 import com.github.seratch.jslack.api.model.ConversationType;
 import com.github.seratch.jslack.api.model.User;
+import com.github.seratch.jslack.api.model.block.ContextBlock;
+import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
+import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -19,6 +23,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -280,5 +285,72 @@ public class Slack_conversations_Test {
         ConversationsCloseResponse closeResponse = slack.methods().conversationsClose(
                 ConversationsCloseRequest.builder().token(token).channel(openResponse.getChannel().getId()).build());
         assertThat(closeResponse.isOk(), is(true));
+    }
+
+    String longText = "Slack was launched in August 2013. " +
+            "In January 2015, Slack announced the acquisition of Screenhero.\n" +
+            "\n" +
+            "In March 2015, Slack announced that it had been hacked over the course of four days in February 2015, and that some number of users' data was compromised. " +
+            "That data included email addresses, usernames, hashed passwords, and, in some cases, phone numbers and Skype IDs that users had associated with their accounts. " +
+            "In response, Slack added two-factor authentication to their service.\n" +
+            "\n" +
+            "Slack used to offer compatibility with the non-proprietary IRC and XMPP messaging protocols, but announced in March 2018 that it would close the corresponding gateways by May 2018.\n" +
+            "\n" +
+            "In August 2018, Slack bought IP assets of Atlassian's two enterprise communications tools, HipChat and Stride.";
+
+    @Test
+    public void postLongText() throws IOException, SlackApiException {
+
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(token);
+
+        Conversation channel = channelGenerator.createNewPublicChannel("test" + System.currentTimeMillis());
+
+        // text
+        {
+            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
+                    ChatPostMessageRequest.builder()
+                            .token(token)
+                            .channel(channel.getId())
+                            .text(longText)
+                            .replyBroadcast(false)
+                            .build());
+            assertThat(postMessageResponse.getError(), is(nullValue()));
+            assertThat(postMessageResponse.isOk(), is(true));
+        }
+
+        // attachments
+        {
+            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
+                    ChatPostMessageRequest.builder()
+                            .token(token)
+                            .channel(channel.getId())
+                            .attachments(Arrays.asList(Attachment.builder().text(longText).build()))
+                            .replyBroadcast(false)
+                            .build());
+            assertThat(postMessageResponse.getError(), is(nullValue()));
+            assertThat(postMessageResponse.isOk(), is(true));
+        }
+
+        // blocks
+        {
+            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
+                    ChatPostMessageRequest.builder()
+                            .token(token)
+                            .channel(channel.getId())
+                            .blocks(Arrays.asList(
+                                    ContextBlock.builder().elements(Arrays.asList(
+                                            PlainTextObject.builder().text(longText).build()
+                                    )).build(),
+                                    ContextBlock.builder().elements(Arrays.asList(
+                                            MarkdownTextObject.builder().text(longText).build()
+                                    )).build()
+                            ))
+                            .replyBroadcast(false)
+                            .build());
+            assertThat(postMessageResponse.getError(), is(nullValue()));
+            assertThat(postMessageResponse.isOk(), is(true));
+        }
+
+        channelGenerator.archiveChannel(channel);
     }
 }
