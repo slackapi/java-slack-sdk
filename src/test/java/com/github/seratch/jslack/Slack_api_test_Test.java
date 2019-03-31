@@ -14,6 +14,7 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -24,6 +25,7 @@ public class Slack_api_test_Test {
     @Test
     public void ok() throws IOException, SlackApiException {
         ApiTestResponse response = slack.methods().apiTest(ApiTestRequest.builder().foo("fine").build());
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getArgs().getFoo(), is("fine"));
     }
@@ -45,6 +47,7 @@ public class Slack_api_test_Test {
         Slack slack = Slack.getInstance(slackHttpClient);
 
         ApiTestResponse response = slack.methods().apiTest(ApiTestRequest.builder().foo("proxy?").build());
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getArgs().getFoo(), is("proxy?"));
     }

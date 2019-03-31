@@ -34,8 +34,8 @@ public class Slack_team_Test {
                 .build());
         if (response.isOk()) {
             // when you pay for this team
-            assertThat(response.isOk(), is(true));
             assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
         } else {
             // when you don't pay for this team
             assertThat(response.isOk(), is(false));
@@ -61,6 +61,7 @@ public class Slack_team_Test {
         TeamInfoResponse response = slack.methods().teamInfo(TeamInfoRequest.builder()
                 .token(token)
                 .build());
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
@@ -71,12 +72,14 @@ public class Slack_team_Test {
                 .token(token)
                 .user(user)
                 .build());
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
     @Test
     public void teamProfileGet() throws Exception {
         TeamProfileGetResponse response = slack.methods().teamProfileGet(TeamProfileGetRequest.builder().token(token).build());
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 

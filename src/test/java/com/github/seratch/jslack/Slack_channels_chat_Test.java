@@ -35,6 +35,7 @@ public class Slack_channels_chat_Test {
                 .limit(2)
                 .excludeArchived(true)
                 .build());
+        assertThat(channels.getError(), is(nullValue()));
         assertThat(channels.isOk(), is(true));
         assertThat(channels.getResponseMetadata(), is(notNullValue()));
 
@@ -46,6 +47,7 @@ public class Slack_channels_chat_Test {
                 .text("[thread] This is a test message posted by unit tests for jslack library")
                 .replyBroadcast(false)
                 .build());
+        assertThat(firstMessageCreation.getError(), is(nullValue()));
         assertThat(firstMessageCreation.isOk(), is(true));
 
         ChatPostMessageResponse reply1 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
@@ -56,6 +58,7 @@ public class Slack_channels_chat_Test {
                 .threadTs(firstMessageCreation.getTs())
                 //.replyBroadcast(true)
                 .build());
+        assertThat(reply1.getError(), is(nullValue()));
         assertThat(reply1.isOk(), is(true));
 
         ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(ChatGetPermalinkRequest.builder()
@@ -63,6 +66,7 @@ public class Slack_channels_chat_Test {
                 .channel(channelId)
                 .messageTs(reply1.getTs())
                 .build());
+        assertThat(permalink.getError(), is(nullValue()));
         assertThat(permalink.isOk(), is(true));
         assertThat(permalink.getPermalink(), is(notNullValue()));
 
@@ -145,6 +149,7 @@ public class Slack_channels_chat_Test {
                 .token(token)
                 .excludeArchived(true)
                 .build());
+        assertThat(channels.getError(), is(nullValue()));
         assertThat(channels.isOk(), is(true));
 
         String channelId = channels.getChannels().get(0).getId();
@@ -155,6 +160,7 @@ public class Slack_channels_chat_Test {
                 .text("Hi, this is a test message from jSlack library's unit tests")
                 .linkNames(true)
                 .build());
+        assertThat(postResponse.getError(), is(nullValue()));
         assertThat(postResponse.isOk(), is(true));
 
         ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(ChatGetPermalinkRequest.builder()
@@ -162,6 +168,7 @@ public class Slack_channels_chat_Test {
                 .channel(channelId)
                 .messageTs(postResponse.getTs())
                 .build());
+        assertThat(permalink.getError(), is(nullValue()));
         assertThat(permalink.isOk(), is(true));
         assertThat(permalink.getPermalink(), is(notNullValue()));
     }
@@ -179,6 +186,7 @@ public class Slack_channels_chat_Test {
 
         ChannelsCreateResponse creationResponse = slack.methods().channelsCreate(
                 ChannelsCreateRequest.builder().token(token).name("test" + System.currentTimeMillis()).build());
+        assertThat(creationResponse.getError(), is(nullValue()));
         assertThat(creationResponse.isOk(), is(true));
         assertThat(creationResponse.getChannel(), is(notNullValue()));
 
@@ -198,18 +206,21 @@ public class Slack_channels_chat_Test {
             {
                 ChannelsSetPurposeResponse response = slack.methods().channelsSetPurpose(
                         ChannelsSetPurposeRequest.builder().token(token).channel(channel.getId()).purpose("purpose").build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
             {
                 ChannelsSetTopicResponse response = slack.methods().channelsSetTopic(
                         ChannelsSetTopicRequest.builder().token(token).channel(channel.getId()).topic("topic").build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
             {
                 ChannelsHistoryResponse response = slack.methods().channelsHistory(
                         ChannelsHistoryRequest.builder().token(token).channel(channel.getId()).count(10).build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
@@ -219,6 +230,7 @@ public class Slack_channels_chat_Test {
                 String threadTs = history.getMessages().get(0).getTs();
                 ChannelsRepliesResponse response = slack.methods().channelsReplies(
                         ChannelsRepliesRequest.builder().token(token).channel(channel.getId()).threadTs(threadTs).build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
@@ -261,6 +273,7 @@ public class Slack_channels_chat_Test {
                         .token(token)
                         .text("Hello World! via chat.meMessage API")
                         .build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
@@ -279,6 +292,7 @@ public class Slack_channels_chat_Test {
                     .ts(lastMessage.getTs())
                     .text("Updated text" + lastMessage.getText())
                     .build());
+            assertThat(updateMessage.getError(), is(nullValue()));
             assertThat(updateMessage.isOk(), is(true));
 
             ConversationsHistoryResponse conversationsHistoryResponse = slack.methods().conversationsHistory(
@@ -300,6 +314,7 @@ public class Slack_channels_chat_Test {
                         .text("@seratch Hello World! via chat.postMessage API")
                         .linkNames(true)
                         .build());
+                assertThat(postResponse.getError(), is(nullValue()));
                 assertThat(postResponse.isOk(), is(true));
 
                 ChatPostMessageResponse replyResponse1 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
@@ -310,6 +325,7 @@ public class Slack_channels_chat_Test {
                         .threadTs(postResponse.getTs())
                         //.replyBroadcast(false)
                         .build());
+                assertThat(replyResponse1.getError(), is(nullValue()));
                 assertThat(replyResponse1.isOk(), is(true));
 
                 ChatPostMessageResponse replyResponse2 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
@@ -320,6 +336,7 @@ public class Slack_channels_chat_Test {
                         .threadTs(postResponse.getTs())
                         .replyBroadcast(true)
                         .build());
+                assertThat(replyResponse2.getError(), is(nullValue()));
                 assertThat(replyResponse2.isOk(), is(true));
 
                 ChatUpdateResponse updateResponse = slack.methods().chatUpdate(ChatUpdateRequest.builder()
@@ -329,6 +346,7 @@ public class Slack_channels_chat_Test {
                         .text("Updated text")
                         .linkNames(false)
                         .build());
+                assertThat(updateResponse.getError(), is(nullValue()));
                 assertThat(updateResponse.isOk(), is(true));
 
                 ChatDeleteResponse deleteResponse = slack.methods().chatDelete(ChatDeleteRequest.builder()
@@ -336,6 +354,7 @@ public class Slack_channels_chat_Test {
                         .channel(channel.getId())
                         .ts(postResponse.getMessage().getTs())
                         .build());
+                assertThat(deleteResponse.getError(), is(nullValue()));
                 assertThat(deleteResponse.isOk(), is(true));
             }
             {
@@ -343,6 +362,7 @@ public class Slack_channels_chat_Test {
                         .token(token)
                         .channel(channel.getId())
                         .build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
             {
@@ -350,6 +370,7 @@ public class Slack_channels_chat_Test {
                         .token(token)
                         .name(channel.getName())
                         .build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
@@ -359,6 +380,7 @@ public class Slack_channels_chat_Test {
                         .channel(channel.getId())
                         .name(channel.getName() + "-1")
                         .build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
@@ -366,6 +388,7 @@ public class Slack_channels_chat_Test {
             {
                 ChannelsArchiveResponse response = slack.methods().channelsArchive(
                         ChannelsArchiveRequest.builder().token(token).channel(channel.getId()).build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 

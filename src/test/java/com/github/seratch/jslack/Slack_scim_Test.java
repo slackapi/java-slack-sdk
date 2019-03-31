@@ -28,6 +28,7 @@ public class Slack_scim_Test {
                             .build());
 
             // testing with an SCIM activated account
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
 
         } catch (SlackApiException apiError) {

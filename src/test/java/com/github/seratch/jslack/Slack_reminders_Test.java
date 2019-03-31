@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -27,6 +28,7 @@ public class Slack_reminders_Test {
                 .text("Don't forget it!")
                 .time("10")
                 .build());
+        assertThat(addResponse.getError(), is(nullValue()));
         assertThat(addResponse.isOk(), is(true));
 
         String reminderId = addResponse.getReminder().getId();
@@ -35,18 +37,21 @@ public class Slack_reminders_Test {
                 .token(token)
                 .reminder(reminderId)
                 .build());
+        assertThat(infoResponse.getError(), is(nullValue()));
         assertThat(infoResponse.isOk(), is(true));
 
         RemindersCompleteResponse completeResponse = slack.methods().remindersComplete(RemindersCompleteRequest.builder()
                 .token(token)
                 .reminder(reminderId)
                 .build());
+        assertThat(completeResponse.getError(), is(nullValue()));
         assertThat(completeResponse.isOk(), is(true));
 
         RemindersDeleteResponse deleteResponse = slack.methods().remindersDelete(RemindersDeleteRequest.builder()
                 .token(token)
                 .reminder(reminderId)
                 .build());
+        assertThat(deleteResponse.getError(), is(nullValue()));
         assertThat(deleteResponse.isOk(), is(true));
     }
 

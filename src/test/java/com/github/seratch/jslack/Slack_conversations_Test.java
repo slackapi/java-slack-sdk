@@ -296,6 +296,7 @@ public class Slack_conversations_Test {
                         .users(Arrays.asList(userId))
                         .returnIm(true)
                         .build());
+        assertThat(openResponse.getError(), is(nullValue()));
         assertThat(openResponse.isOk(), is(true));
 
         ConversationsMembersResponse membersResponse = slack.methods().conversationsMembers(
@@ -303,6 +304,7 @@ public class Slack_conversations_Test {
                         .token(token)
                         .channel(openResponse.getChannel().getId())
                         .build());
+        assertThat(membersResponse.getError(), is(nullValue()));
         assertThat(membersResponse.isOk(), is(true));
         assertThat(membersResponse.getMembers(), is(notNullValue()));
         assertThat(membersResponse.getMembers().isEmpty(), is(false));

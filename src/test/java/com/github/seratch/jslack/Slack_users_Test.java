@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -30,12 +31,14 @@ public class Slack_users_Test {
         {
             UsersSetPresenceResponse response = slack.methods().usersSetPresence(
                     UsersSetPresenceRequest.builder().token(token).presence("away").build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             UsersSetActiveResponse response = slack.methods().usersSetActive(
                     UsersSetActiveRequest.builder().token(token).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
@@ -43,6 +46,7 @@ public class Slack_users_Test {
             UsersIdentityResponse response = slack.methods().usersIdentity(UsersIdentityRequest.builder().token(token).build());
             // TODO: test preparation?
             // {"ok":false,"error":"missing_scope","needed":"identity.basic","provided":"identify,read,post,client,apps,admin"}
+            assertThat(response.getError(), is("missing_scope"));
             assertThat(response.isOk(), is(false));
         }
 
@@ -55,6 +59,7 @@ public class Slack_users_Test {
         String userId = users.get(0).getId();
 
         {
+            assertThat(usersListResponse.getError(), is(nullValue()));
             assertThat(usersListResponse.isOk(), is(true));
             assertThat(usersListResponse.getResponseMetadata(), is(notNullValue()));
 
@@ -82,6 +87,7 @@ public class Slack_users_Test {
 
         {
             UsersInfoResponse response = slack.methods().usersInfo(UsersInfoRequest.builder().token(token).user(userId).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getUser(), is(notNullValue()));
         }
@@ -89,6 +95,7 @@ public class Slack_users_Test {
         {
             UsersGetPresenceResponse response = slack.methods().usersGetPresence(
                     UsersGetPresenceRequest.builder().token(token).user(userId).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getPresence(), is(notNullValue()));
         }
@@ -97,12 +104,14 @@ public class Slack_users_Test {
             UsersConversationsResponse response = slack.methods().usersConversations(UsersConversationsRequest.builder()
                     .token(token)
                     .user(userId).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             UsersDeletePhotoResponse response = slack.methods().usersDeletePhoto(
                     UsersDeletePhotoRequest.builder().token(token).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
@@ -112,6 +121,7 @@ public class Slack_users_Test {
                     .token(token)
                     .image(image)
                     .build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
     }
@@ -141,6 +151,7 @@ public class Slack_users_Test {
                 .email(randomUserWhoHasEmail.getProfile().getEmail())
                 .build());
 
+        assertThat(response.getError(), is(nullValue()));
         assertTrue(response.isOk());
         assertEquals(randomUserWhoHasEmail.getId(), response.getUser().getId());
     }

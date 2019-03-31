@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -29,6 +30,7 @@ public class Slack_groups_Test {
                 GroupsCreateRequest.builder().token(token).name(name).build());
         Group group = creationResponse.getGroup();
         {
+            assertThat(creationResponse.getError(), is(nullValue()));
             assertThat(creationResponse.isOk(), is(true));
             assertThat(creationResponse.getGroup(), is(notNullValue()));
         }
@@ -36,23 +38,27 @@ public class Slack_groups_Test {
         {
             GroupsListResponse response = slack.methods().groupsList(
                     GroupsListRequest.builder().token(token).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
         {
             GroupsListResponse response = slack.methods().groupsList(
                     GroupsListRequest.builder().token(token).excludeArchived(true).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             GroupsHistoryResponse response = slack.methods().groupsHistory(
                     GroupsHistoryRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             GroupsInfoResponse response = slack.methods().groupsInfo(
                     GroupsInfoRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
@@ -60,6 +66,7 @@ public class Slack_groups_Test {
                 GroupsCreateChildRequest.builder().token(token).channel(group.getId()).build());
         group = childCreationResponse.getGroup();
         {
+            assertThat(childCreationResponse.getError(), is(nullValue()));
             assertThat(childCreationResponse.isOk(), is(true));
         }
 
@@ -70,36 +77,42 @@ public class Slack_groups_Test {
             String ts = postResponse.getTs();
             GroupsMarkResponse response = slack.methods().groupsMark(
                     GroupsMarkRequest.builder().token(token).channel(group.getId()).ts(ts).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             GroupsRenameResponse response = slack.methods().groupsRename(
                     GroupsRenameRequest.builder().token(token).channel(group.getId()).name(name + "-").build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             GroupsSetPurposeResponse response = slack.methods().groupsSetPurpose(
                     GroupsSetPurposeRequest.builder().token(token).channel(group.getId()).purpose("purpose").build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             GroupsSetTopicResponse response = slack.methods().groupsSetTopic(
                     GroupsSetTopicRequest.builder().token(token).channel(group.getId()).topic("topic").build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             GroupsArchiveResponse response = slack.methods().groupsArchive(
                     GroupsArchiveRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             GroupsUnarchiveResponse response = slack.methods().groupsUnarchive(
                     GroupsUnarchiveRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
@@ -108,12 +121,14 @@ public class Slack_groups_Test {
             GroupsCloseResponse response = slack.methods().groupsClose(
                     GroupsCloseRequest.builder().token(token).channel(group.getId()).build());
             // No error is returned but this API seems to be useless.
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             GroupsArchiveResponse response = slack.methods().groupsArchive(
                     GroupsArchiveRequest.builder().token(token).channel(group.getId()).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
     }

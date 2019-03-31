@@ -15,6 +15,7 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -28,6 +29,7 @@ public class Slack_search_Test {
         SearchAllResponse response = slack.methods().searchAll(
                 SearchAllRequest.builder().token(token).query("test").build());
 
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
@@ -35,6 +37,8 @@ public class Slack_search_Test {
     public void messages() throws IOException, SlackApiException {
         SearchMessagesResponse response = slack.methods().searchMessages(
                 SearchMessagesRequest.builder().token(token).query("test").build());
+
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
 
         MatchedItem match = response.getMessages().getMatches().get(0);
@@ -46,6 +50,8 @@ public class Slack_search_Test {
     public void files() throws IOException, SlackApiException {
         SearchFilesResponse response = slack.methods().searchFiles(
                 SearchFilesRequest.builder().token(token).query("test").build());
+
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
 
         MatchedItem match = response.getFiles().getMatches().get(0);

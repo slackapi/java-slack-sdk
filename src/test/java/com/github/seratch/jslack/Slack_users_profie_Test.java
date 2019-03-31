@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -26,6 +27,7 @@ public class Slack_users_profie_Test {
 
         {
             UsersProfileGetResponse response = slack.methods().usersProfileGet(UsersProfileGetRequest.builder().token(token).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));
         }
@@ -33,6 +35,7 @@ public class Slack_users_profie_Test {
         {
             UsersProfileSetResponse response = slack.methods().usersProfileSet(
                     UsersProfileSetRequest.builder().token(token).name("skype").value("skype-" + System.currentTimeMillis()).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));
         }
@@ -42,6 +45,7 @@ public class Slack_users_profie_Test {
             profile.setSkype("skype-" + System.currentTimeMillis());
             UsersProfileSetResponse response = slack.methods().usersProfileSet(
                     UsersProfileSetRequest.builder().token(token).profile(profile).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));
         }
