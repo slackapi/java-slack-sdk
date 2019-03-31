@@ -16,6 +16,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -31,6 +32,7 @@ public class Slack_dnd_Test {
         {
             String user = members.get(0).getId();
             DndInfoResponse response = slack.methods().dndInfo(DndInfoRequest.builder().token(token).user(user).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getNextDndStartTs(), is(notNullValue()));
         }
@@ -38,6 +40,7 @@ public class Slack_dnd_Test {
         {
             List<String> users = members.stream().map(m -> m.getId()).collect(toList());
             DndTeamInfoResponse response = slack.methods().dndTeamInfo(DndTeamInfoRequest.builder().token(token).users(users).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getUsers(), is(notNullValue()));
         }

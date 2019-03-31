@@ -14,6 +14,7 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -38,6 +39,7 @@ public class ExamplesTest {
                 .channel(general.getId())
                 .text("Hello World!")
                 .build());
+        assertThat(postResponse.getError(), is(nullValue()));
         assertThat(postResponse.isOk(), is(true));
 
         // timestamp of the posted message
@@ -50,6 +52,7 @@ public class ExamplesTest {
                 .channel(general.getId())
                 .ts(messageTimestamp)
                 .build());
+        assertThat(deleteResponse.getError(), is(nullValue()));
         assertThat(deleteResponse.isOk(), is(true));
     }
 

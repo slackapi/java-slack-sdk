@@ -18,7 +18,7 @@ public class Slack_oauth_Test {
 
     Slack slack = Slack.getInstance();
 
-    // TODO: valid test
+    // TODO: valid test; currently just checking the API access
     @Test
     public void access() throws IOException, SlackApiException {
         {
@@ -28,11 +28,12 @@ public class Slack_oauth_Test {
                     .code("")
                     .redirectUri("http://seratch.net/foo")
                     .build());
+            assertThat(response.getError(), is("invalid_code"));
             assertThat(response.isOk(), is(false));
         }
     }
 
-    // TODO: valid test
+    // TODO: valid test; currently just checking the API access
     @Test
     public void token() throws IOException, SlackApiException {
         {
@@ -42,6 +43,7 @@ public class Slack_oauth_Test {
                     .code("")
                     .redirectUri("http://seratch.net/foo")
                     .build());
+            assertThat(response.getError(), is("invalid_code"));
             assertThat(response.isOk(), is(false));
         }
     }

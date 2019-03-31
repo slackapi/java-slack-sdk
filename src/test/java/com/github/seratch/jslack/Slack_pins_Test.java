@@ -20,6 +20,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -37,6 +38,7 @@ public class Slack_pins_Test {
 
         PinsListResponse response = slack.methods().pinsList(
                 PinsListRequest.builder().token(token).channel(channels.get(0)).build());
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getItems(), is(notNullValue()));
     }
@@ -59,6 +61,7 @@ public class Slack_pins_Test {
                     .initialComment("initial comment")
                     .title("file title")
                     .build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
         }
@@ -69,6 +72,7 @@ public class Slack_pins_Test {
                     .channel(channels.get(0))
                     .file(fileObj.getId())
                     .build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
         {
@@ -77,6 +81,7 @@ public class Slack_pins_Test {
                     .channel(channels.get(0))
                     .file(fileObj.getId())
                     .build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
@@ -88,6 +93,7 @@ public class Slack_pins_Test {
                         .channel(channels.get(0))
                         .fileComment(fileObj.getInitialComment().getId())
                         .build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
         }

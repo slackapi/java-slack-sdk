@@ -12,6 +12,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -38,6 +39,7 @@ public class Slack_usergroups_Test {
     @Test
     public void list() throws Exception {
         UsergroupsListResponse response = slack.methods().usergroupsList(UsergroupsListRequest.builder().token(token).build());
+        assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 

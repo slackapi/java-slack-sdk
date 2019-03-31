@@ -74,6 +74,8 @@ public class Slack_incomingWebhooks_Test {
         WebhookResponse response = slack.send(url, payload);
         log.info(response.toString());
 
+        assertThat(response.getBody(), is("ok"));
+        assertThat(response.getMessage(), is("OK"));
         assertThat(response.getCode(), is(200));
     }
 
@@ -105,6 +107,8 @@ public class Slack_incomingWebhooks_Test {
         WebhookResponse response = slack.send(url, payload);
         log.info(response.toString());
 
+        assertThat(response.getBody(), is("ok"));
+        assertThat(response.getMessage(), is("OK"));
         assertThat(response.getCode(), is(200));
     }
 

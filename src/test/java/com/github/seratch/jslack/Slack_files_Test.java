@@ -3,13 +3,11 @@ package com.github.seratch.jslack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCreateRequest;
 import com.github.seratch.jslack.api.methods.request.files.*;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsCreateResponse;
 import com.github.seratch.jslack.api.methods.response.files.*;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsAddResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
@@ -25,6 +23,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -37,6 +36,7 @@ public class Slack_files_Test {
     public void describe() throws IOException, SlackApiException {
         {
             FilesListResponse response = slack.methods().filesList(FilesListRequest.builder().token(token).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getFiles(), is(notNullValue()));
         }
@@ -60,6 +60,7 @@ public class Slack_files_Test {
                     .initialComment("initial comment")
                     .title("file title")
                     .build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
         }
@@ -69,18 +70,21 @@ public class Slack_files_Test {
                     .token(token)
                     .file(fileObj.getId())
                     .build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             FilesSharedPublicURLResponse response = slack.methods().filesSharedPublicURL(
                     FilesSharedPublicURLRequest.builder().token(token).file(fileObj.getId()).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             FilesRevokePublicURLResponse response = slack.methods().filesRevokePublicURL(
                     FilesRevokePublicURLRequest.builder().token(token).file(fileObj.getId()).build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
@@ -91,6 +95,7 @@ public class Slack_files_Test {
                     .file(fileObj.getId())
                     .comment("test comment")
                     .build());
+            assertThat(addResponse.getError(), is(nullValue()));
             assertThat(addResponse.isOk(), is(true));
 
             FilesCommentsEditResponse editResponse = slack.methods().filesCommentEdit(FilesCommentsEditRequest.builder()
@@ -99,6 +104,7 @@ public class Slack_files_Test {
                     .id(addResponse.getComment().getId())
                     .comment("modified comment")
                     .build());
+            assertThat(editResponse.getError(), is(nullValue()));
             assertThat(editResponse.isOk(), is(true));
 
             FilesCommentsDeleteResponse deleteResponse = slack.methods().filesCommentsDelete(FilesCommentsDeleteRequest.builder()
@@ -106,6 +112,7 @@ public class Slack_files_Test {
                     .file(fileObj.getId())
                     .id(addResponse.getComment().getId()).build()
             );
+            assertThat(deleteResponse.getError(), is(nullValue()));
             assertThat(deleteResponse.isOk(), is(true));
         }
 
@@ -114,6 +121,7 @@ public class Slack_files_Test {
                     .token(token)
                     .file(fileObj.getId())
                     .build());
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
     }
@@ -131,6 +139,7 @@ public class Slack_files_Test {
                             .text("This is a test message posted by unit tests for jslack library")
                             .replyBroadcast(false)
                             .build());
+            assertThat(postMessageResponse.getError(), is(nullValue()));
             assertThat(postMessageResponse.isOk(), is(true));
 
             ChatPostMessageResponse postThread1Response = slack.methods().chatPostMessage(
@@ -141,6 +150,7 @@ public class Slack_files_Test {
                             .text("[thread 1] This is a test message posted by unit tests for jslack library")
                             .replyBroadcast(false)
                             .build());
+            assertThat(postThread1Response.getError(), is(nullValue()));
             assertThat(postThread1Response.isOk(), is(true));
 
             File file = new File("src/test/resources/sample.txt");
@@ -154,6 +164,7 @@ public class Slack_files_Test {
                         .title("file title")
                         .threadTs(postThread1Response.getTs())
                         .build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
                 fileObj = response.getFile();
             }
@@ -163,6 +174,7 @@ public class Slack_files_Test {
                         .token(token)
                         .file(fileObj.getId())
                         .build());
+                assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
         } finally {

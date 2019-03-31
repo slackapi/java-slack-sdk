@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -28,6 +29,7 @@ public class Slack_im_Test {
                 .token(token)
                 .limit(2)
                 .build());
+        assertThat(listResponse.getError(), is(nullValue()));
         assertThat(listResponse.isOk(), is(true));
         assertThat(listResponse.getResponseMetadata(), is(notNullValue()));
 
@@ -42,6 +44,7 @@ public class Slack_im_Test {
                 .token(token)
                 .user(userId)
                 .build());
+        assertThat(openResponse.getError(), is(nullValue()));
         assertThat(openResponse.isOk(), is(true));
 
         String channelId = openResponse.getChannel().getId();
@@ -60,6 +63,7 @@ public class Slack_im_Test {
                 .token(token)
                 .channel(channelId)
                 .text("Hi!").build());
+        assertThat(firstMessageResponse.getError(), is(nullValue()));
         assertThat(firstMessageResponse.isOk(), is(true));
 
         // with ts
@@ -69,6 +73,7 @@ public class Slack_im_Test {
                     .channel(channelId)
                     .ts(firstMessageResponse.getTs())
                     .build());
+            assertThat(markResponse.getError(), is(nullValue()));
             assertThat(markResponse.isOk(), is(true));
         }
 
@@ -77,6 +82,7 @@ public class Slack_im_Test {
                 .channel(channelId)
                 .threadTs(firstMessageResponse.getTs())
                 .text("Hi!").build());
+        assertThat(threadReplyResponse.getError(), is(nullValue()));
         assertThat(threadReplyResponse.isOk(), is(true));
 
         ImRepliesResponse repliesResponse = slack.methods().imReplies(ImRepliesRequest.builder()
@@ -84,18 +90,21 @@ public class Slack_im_Test {
                 .channel(channelId)
                 .threadTs(threadReplyResponse.getMessage().getThreadTs())
                 .build());
+        assertThat(repliesResponse.getError(), is(nullValue()));
         assertThat(repliesResponse.isOk(), is(true));
 
         ImHistoryResponse historyResponse = slack.methods().imHistory(ImHistoryRequest.builder()
                 .token(token)
                 .channel(channelId)
                 .build());
+        assertThat(historyResponse.getError(), is(nullValue()));
         assertThat(historyResponse.isOk(), is(true));
 
         ImCloseResponse closeResponse = slack.methods().imClose(ImCloseRequest.builder()
                 .token(token)
                 .channel(channelId)
                 .build());
+        assertThat(closeResponse.getError(), is(nullValue()));
         assertThat(closeResponse.isOk(), is(true));
     }
 

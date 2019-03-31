@@ -21,6 +21,7 @@ import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -49,6 +50,7 @@ public class Slack_shortcut_Test {
 
         ReactionName reactionName = ReactionName.of("smile");
         ReactionsAddResponse addReaction = shortcut.addReaction(messages.get(0), reactionName);
+        assertThat(addReaction.getError(), is(nullValue()));
         assertThat(addReaction.isOk(), is(true));
     }
 
@@ -60,21 +62,25 @@ public class Slack_shortcut_Test {
 
         {
             ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"), "hello, hello!");
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             ChatPostMessageResponse response = shortcut.postAsBot(ChannelName.of("general"), "hello, hello!");
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"), "Hi, these are my attachments!", attachments);
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             ChatPostMessageResponse response = shortcut.postAsBot(ChannelName.of("general"), "Hi, these are my attachments!", attachments);
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
     }
