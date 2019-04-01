@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * https://api.slack.com/types/file
@@ -55,16 +56,29 @@ public class File {
     @SerializedName("thumb_160")
     private String thumb160;
 
+    private Integer imageExifRotation;
+
+    @SerializedName("original_w")
+    private String originalWidth;
+    @SerializedName("original_h")
+    private String originalHeight;
+
+    private String deanimateGif;
+    private String pjpeg;
+
     private String permalink;
     private String permalinkPublic;
 
     private String editLink;
 
+    private boolean hasRichPreview;
+    @SerializedName("preview_is_truncated")
+    private boolean previewTruncated;
     private String preview;
     private String previewHighlight;
 
     private Integer lines;
-    private Integer linesMoe;
+    private Integer linesMore;
 
     @SerializedName("is_public")
     @Getter(AccessLevel.NONE)
@@ -94,4 +108,36 @@ public class File {
     private List<String> pinnedTo;
     private List<Reaction> reactions;
     private Integer commentsCount;
+
+    private Shares shares;
+
+    @Data
+    public static class Shares {
+
+        /**
+         * The key of the Map: channel ID
+         */
+        @SerializedName("public")
+        private Map<String, List<ShareDetail>> publicChannels;
+
+        /**
+         * The key of the Map: channel ID
+         */
+        @SerializedName("private")
+        private Map<String, List<ShareDetail>> privateChannels;
+
+    }
+
+    @Data
+    public static class ShareDetail {
+        private List<String> replyUsers;
+        private Integer replyUsersCount;
+        private Integer replyCount;
+        private String ts;
+        private String threadTs;
+        private String latestReply;
+        private String channelName;
+        private String teamId;
+    }
+
 }

@@ -1,0 +1,182 @@
+This article is about the software. For company that produces this software, see Slack Technologies. Not to be confused with Slackware.
+Slack
+Slack Technologies Logo.svg
+Original author(s)	Stewart Butterfield, Eric Costello, Cal Henderson, and Serguei Mourachov[1]
+Developer(s)	Slack Technologies
+Initial release	August 2013; 5 years ago[2]
+Stable release(s) [±]
+iOS	3.60 / January 16, 2019; 2 months ago[3]
+Android	2.75.0 / January 16, 2019; 2 months ago[4]
+Windows	3.3.7 / January 16, 2019; 2 months ago[5]
+macOS	3.3.7 / January 16, 2019; 2 months ago[6]
+Linux	3.3.7 / January 16, 2019; 2 months ago[7]
+Chrome OS (Discontinued)	1.0.3 / December 6, 2013; 5 years ago[8]
+Windows Phone (Discontinued)	2016.913.0.0 / September 13, 2016; 2 years ago[9]
+Written in	Electron (C++, JavaScript, ECMAScript, etc.)[10]
+Operating system	Windows, macOS, Linux, iOS, Android, Windows Phone,[11] Commodore 64[12]
+Type	Collaborative software[13]
+License	Proprietary
+Website	slack.com
+Slack is an American cloud-based set of proprietary team collaboration tools and services, founded by Stewart Butterfield.[1] Slack began as an internal tool used by his company, Tiny Speck, in the development of Glitch, a now defunct online game.[14][15] The name is an acronym for "Searchable Log of All Conversation and Knowledge".[16]
+
+
+Contents
+1	History
+2	Features
+2.1	Teams
+2.2	Messaging
+2.3	Integrations
+2.4	API
+3	Platforms
+4	Business model
+4.1	Funding
+5	Reception
+6	Criticism
+7	Alternatives
+7.1	Open source
+7.2	Proprietary
+8	See also
+9	References
+10	External links
+History
+
+Slack logo used between August 2013 and January 2019
+Slack was launched in August 2013.[17] In January 2015, Slack announced the acquisition of Screenhero.[18]
+
+In March 2015, Slack announced that it had been hacked over the course of four days in February 2015, and that some number of users' data was compromised. That data included email addresses, usernames, hashed passwords, and, in some cases, phone numbers and Skype IDs that users had associated with their accounts. In response, Slack added two-factor authentication to their service.[19]
+
+Slack used to offer compatibility with the non-proprietary IRC and XMPP messaging protocols, but announced in March 2018 that it would close the corresponding gateways by May 2018.[20]
+
+In August 2018, Slack bought IP assets of Atlassian's two enterprise communications tools, HipChat and Stride.[21]
+
+Features
+While no longer using an IRC backend, Slack offers many IRC-like features, including persistent chat rooms (channels) organized by topic, private groups and direct messaging.[15] All content inside Slack is searchable, including files, conversations, and people. On the free plan, only the 10,000 most recent messages can be viewed and searched.[22] Users can add emoji buttons to their messages, which other users can then click on to express their reactions to messages.[23]
+
+Teams
+Slack teams allow communities, groups, or teams to join through a specific URL or invitation sent by a team admin or owner. Although Slack was meant for organizational communication, it has been slowly turning into a community platform, a function for which users had previously used message boards or social media such as Facebook or LinkedIn groups.[24] Many of these communities are categorized by topics which a group of people may be interested in discussing.
+
+Messaging
+Public channels allow team members to communicate without the use of email or group SMS (texting). They are open to everyone in the chat, provided they have first been invited to join the client. Private channels allow for private conversation between smaller sects of the overall group. These can be used to break up large teams into their own respective projects. Direct messages allow users to send private messages to a specific user rather than a group of people.[25] Direct messages can include up to nine people (the originator plus eight people). Once started this direct message group can be converted to a private channel.
+
+Integrations
+Slack integrates with a large number of third-party services and supports community-built integrations. Major integrations include services such as Google Drive, Trello, Dropbox, Box, Heroku, IBM Bluemix, Crashlytics, GitHub, Runscope, Zendesk,[26][27] and Zapier.[28] In December 2015, Slack announced their app directory, consisting of over 150 integrations that users can install.[29] In March 2018, Slack announced its partnership with the financial and human capital management firm Workday; Adding to Slack's list of plugins. This integration allows Workday customers to access features from directly within the Slack interface.[30][31]
+
+API
+Slack provides API to users to create applications and to automate processes, such as sending automatic notifications based on human input,[32] sending alerts on specified conditions, and automatically creating internal support tickets.[33] The Slack API has been noted for its compatibility with many types of applications, frameworks, and services.[32]
+
+Platforms
+Slack provides mobile apps for iOS, Android, and Windows Phone (beta),[34] in addition to their web browser client and desktop clients for macOS, Windows, and Linux (beta). Slack is also available for the Apple Watch, allowing users to send direct messages, see mentions, and make simple replies.[35] It was featured on the home screen of the Apple Watch in a 2015 promotional video.[36] Slack has been made to run on a Super Nintendo Entertainment System via Satellaview.[37][38]
+
+Business model
+Slack is a freemium product, whose main paid features are the ability to search more than 10,000 archived messages and add unlimited apps and integrations. They claim support for an unlimited number of users. When freeCodeCamp attempted to switch its community of over 8,000 users to Slack in 2015, however, they experienced many technical issues and were advised by Slack support to limit their channels to "no more than 1,000 users (ideally more like 500)".[39][40] That specific limit no longer applied by January 2017.[41]
+
+Funding
+The company originally raised nearly $43 million in April 2014.[42] In October 2014, the company raised $120 million in venture capital with a $1.2 billion valuation led by Kleiner Perkins Caufield & Byers and Google Ventures. Earlier investors Andreessen Horowitz, Accel Partners and The Social+Capital Partnership also participated in this round.[43]
+
+In March 2015, Slack signed a deal with investors to raise up to $160 million in a funding round that valued the company at $2.76 billion. New investors included Institutional Venture Partners, Horizons Ventures, Index Ventures and DST Global.[44] In April 2015, the company raised another $160 million.[45] In April 2016, the company announced that it had raised an additional $200 million in funding.[46]
+
+On July 26, 2018, Atlassian announced the shutdown of its competing HipChat and Stride effective February 11, 2019, and the sale of their intellectual property to Slack. Slack will pay an undisclosed amount over three years to assume the user bases of the services, and Atlassian will take a minority investment in Slack. The companies also announced a commitment to work on integration of Slack with Atlassian services.[47][48]
+
+On February 4, 2019, several media news outlets reported that Slack has filed for taking the company public. According to The Wall Street Journal, sourced indicate the company will pursue a Direct Listing Process (DLP) instead of the traditional IPO.[49][50]
+
+Reception
+8,000 customers signed up for the service within 24 hours of its launch in August 2013.[17][51] In February 2015, the company wrote that around 10,000 new daily active users were signing up each week, and had more than 135,000 paying customers spread across 60,000 teams.[52][53] By April 2015, those numbers had grown to 200,000 paid subscribers and a total of 750,000 daily active users.[54] Late in 2015, Slack passed more than a million daily active users.[55][56] As of May 2018, Slack had over 8 million daily users, 3 million of whom had paid accounts.[57]
+
+The Financial Times wrote in March 2015 that Slack was the first business technology to have crossed from business into personal use since Microsoft Office and the BlackBerry.[58] In 2017 a writer at New York magazine described it as "a compulsion, a distraction[, a] burden ... another utility we both rely on and resent".[59]
+
+Slack was recognized as the best startup of the year 2017 at the 10th Crunchies Awards, organized by TechCrunch.[60]
+
+The digital rights group Electronic Frontier Foundation (EFF) has cautioned that "Slack stores and is able to read all of your communications, as well as identifying information for everyone in your workspace".[61] While commending the company for "follow[ing] several best practices in standing up for users" concerning government data requests, such as requiring a warrant for content stored on its server, and awarding it four out of five stars in its 2017 "Who has your back" report,[62] the EFF also criticized Slack for "a broad set of exceptions" to its promise to notify users of such requests, and for other privacy shortcomings.[61]
+
+Criticism
+Slack has been criticized by users[63] because the data is stored exclusively on cloud servers under Slack control.[64][65]
+
+This is found to be a particular issue for users with large teams, who experienced issues with connectivity within the app, access to archived messages, and the number of users for a given ‘workspace.’[66] Slack has additionally been criticized for a recent change to their privacy policy allowing for access to all public and private channels by workspace administrators, without the need of consent from any parties using the app.[67] According to the policy, slack users would not be notified of the fact that their information is being accessed either.[68] Other notable issues include being criticized as addictive[69], an inhibitor to productivity[70], and showing personal information such as email to other users by default.[71]
+
+Additionally, Slack has received criticism for their lack of a dark theme for the duration of their product.[72]
+
+Alternatives
+Open source
+There are a number of free and open source software alternatives to Slack that can be self-hosted, such as Mattermost, Zulip, Riot and Rocket.Chat. Beside these applications, which are mainly Web-based, there are also several protocols which can be used as Slack alternatives, such as matrix and IRC.[64]
+
+Proprietary
+Other alternatives having a similar business model to Slack are Flock, Microsoft Teams,[73] Hangout Chats,[74] Trillian, Workplace by Facebook, Discord, Glip, and Yahoo Together.
+
+See also
+List of collaborative software
+Discord (software)
+References
+ Kumparak, Greg (February 5, 2015). "Slack's Co-Founders Take Home The Crunchie For Founder Of The Year". TechCrunch.com. Retrieved October 13, 2018.
+ Zax, David. "Flickr Cofounders Launch Slack, An Email Killer". Retrieved October 13, 2018.
+ "Slack - Team Communication". App Store. Apple Inc. Retrieved 25 January 2019.
+ "Slack for Android - Release Notes". Slack. Retrieved 25 January 2019.
+ "Slack for Windows & Linux". Slack. Retrieved 25 January 2019.
+ "Slack". Mac App Store. Apple Inc. Retrieved 25 January 2019.
+ "Download Slack for Linux". Retrieved 25 January 2019.
+ "Slack". Chrome Web Store. Google. Retrieved 28 September 2016.
+ "Slack". Windows Store. Microsoft. Retrieved 28 July 2016.
+ "Desktop Application Engineer". slack.com. Archived from the original on September 13, 2018. Retrieved October 13, 2018.
+ Slack. "Slack apps for computers, phones & tablets". Retrieved October 13, 2018.
+ Harris, Jeffrey (November 27, 2016). "Slack client for Commodore 64". Retrieved October 13, 2018.
+ "Crunchbase - Slack Technologies". CrunchBase. Retrieved October 13, 2018.
+ Tam, Donna. "Flickr founder plans to kill company e-mails with Slack". Retrieved October 13, 2018.
+ Thomas, Owen (August 14, 2013). "Die, Email, Die! A Flickr Cofounder Aims To Cut Us All Some Slack". Retrieved October 13, 2018.
+ Kim, Eugene (September 27, 2016). "Slack, the red hot $3.8 billion startup, has a hidden meaning behind its name". UK Business Insider. Retrieved October 13, 2018.
+ Koetsier, John (August 15, 2013). "Flickr founder Stewart Butterfield's new Slack signed up 8,000 companies in 24 hours". VentureBeat. Retrieved October 13, 2018.
+ "Screenhero joins Slack". The Screenhero Blog. January 28, 2015. Retrieved October 13, 2018.
+ Greenberg, Andy (March 27, 2015). "Slack Says It Was Hacked, Enables Two-Factor Authentication". Wired.com. Condé Nast. Retrieved October 13, 2018.
+ Sharwood, Simon (March 9, 2018). "Slack cuts ties to IRC and XMPP, cos they don't speak Emoji". Retrieved October 13, 2018.
+ Miller, Ron (July 26, 2018). "Slack forms key alliance as Atlassian throws in the towel on enterprise chat". TechCrunch. Retrieved October 13, 2018.
+ "Message and storage limits on the Free plan". Slack Help Center. Retrieved October 13, 2018.
+ Crook, Jordan (July 9, 2015). "Slack Adds Emoji Reactions". Retrieved October 13, 2018.
+ Diederichs, Matt (July 8, 2015). "Why Slack is Exploding (as a Community-Building Platform)". hootsuite.com. Retrieved October 13, 2018.
+ Slack. "Features - Slack". Slack.com. Retrieved October 13, 2018.
+ Gannes, Liz (August 14, 2013). "Flickr Co-Founder Stewart Butterfield Turns to Workplace Communication Tools With Slack". Retrieved October 13, 2018.
+ Augustine, Ann (May 19, 2018). "A Review of the Slack Communication Service". Retrieved October 13, 2018.
+ "Zapier | The easiest way to automate your work". Zapier.com. Retrieved October 13, 2018.
+ Newton, Casey (December 15, 2015). "Slack launches an app store and an $80 million fund to invest in new integrations". TheVerge.com. Retrieved October 13, 2018.
+ Coop, Alex (March 26, 2018). "Workday and Slack announce partnership; Google, Microsoft and Facebook on the horizon". IT Business. Retrieved October 13, 2018.
+ News Desk, The HRT (May 27, 2018). "Industry Leaders Slack & Workday are Now Partners". Retrieved October 13, 2018.
+ Hotson, Dennis. "Building an Intelligent Bot Using the Slack API". Nordic APIs. Retrieved 28 December 2018.
+ "Slack API". Slack. Slack. Retrieved 28 December 2018.
+ Callaham, John (August 19, 2015). "Slack for Windows Phone app beta appears to be available for everyone". Windows Central. Retrieved October 13, 2018.
+ Novet, Jordan (April 20, 2015). "Slack brings its app to the Apple Watch (video)". VentureBeat. Retrieved October 13, 2018.
+ Bort, Julie (March 9, 2015). "5 Apple Watch apps that will help you do your job". Business Insider. Retrieved October 13, 2018.
+ Birnbaum, Ian (October 22, 2018). "You Can Now Receive Slack Messages Inside a Super Nintendo Game". Vice Media.
+ Fan, Bertrand (October 18, 2018). "Slack on a SNES".
+ "So Yeah We Tried Slack… and We Deeply Regretted It". FreeCodeCamp.com. June 21, 2015. Retrieved October 13, 2018.
+ Kim, Eugene (June 22, 2015). "Startup founder claims $2.8 billion startup Slack is misleading people about its free 'unlimited' plan". BusinessInsider.com. Retrieved October 13, 2018.
+ Chen, Dave (January 20, 2017). "Despite its marketing, Slack's free tier limits your total number of users". DaveChen.net. Retrieved October 13, 2018.
+ Lunden, Ingrid (April 25, 2014). "Slack, Stewart Butterfield's Collaboration Software Startup, Has Raised $42.75M". TechCrunch. Retrieved October 13, 2018.
+ Hern, Alex (November 3, 2014). "Why Slack is worth $1bn: it's trying to change how we work". The Guardian. Retrieved October 13, 2018.
+ MacMillan, Douglas (March 26, 2015). "Slack's Valuation More Than Doubles to $2.8 Billion in Five Months". The Wall Street Journal. Retrieved October 13, 2018.
+ Lunden, Ingrid (April 15, 2015). "Used Daily By 750K Workers, Slack Raises $160M, Valuing Collaboration Startup At $2.8B". Techcrunch. Retrieved October 13, 2018.
+ Roof, Katie; Constine, Josh (April 1, 2016). "Slack is work chat's runaway train, raises $200M at $3.8B". Techcrunch. Retrieved October 13, 2018.
+ Etienne, Stefan (July 26, 2018). "Slack buys HipChat with plans to shut it down and migrate users to its chat service". The Verge. Retrieved October 13, 2018.
+ Kumparak, Greg (July 26, 2018). "Atlassian's HipChat and Stride to be discontinued, with Slack buying up the IP". TechCrunch. Retrieved October 13, 2018.
+ Farrell, Maureen (2019-02-04). "Slack Files Confidentially to Go Public With Direct Listing". Wall Street Journal. ISSN 0099-9660. Retrieved 2019-02-04.
+ Feiner, Lauren (2019-02-04). "Slack confidentially files to go public". www.cnbc.com. Retrieved 2019-02-04.
+ Fingas, Jon (August 14, 2013). "Flickr creator takes sign-ups for Slack, an office collaboration tool with universal search". Retrieved October 13, 2018.
+ Griffith, Erin (February 12, 2015). "Slack growth skyrockets: 10,000 new active users each week". Fortune.com. Retrieved October 13, 2018.
+ Kim, Eugene (February 12, 2015). "Billion-dollar startup Slack says it's adding $1 million in new contracts every 11 days". BusinessInsider.com. Retrieved October 13, 2018.
+ Welch, Chris (April 16, 2015). "Slack continues huge growth, is now valued at $2.8 billion". TheVerge.com. Retrieved October 13, 2018.
+ Metz, Rachel (June 25, 2015). "Slack Keeps On Growing". MIT Technology Review. Retrieved October 13, 2018.
+ Novet, Jordan (October 29, 2015). "Slack launches user groups, hits 1.7M daily active users and 470K paid seats". VentureBeat.com. Retrieved October 13, 2018.
+ Newton, Casey (May 22, 2018). "Slack adds action buttons to become a true workplace communication hub". The Verge. Retrieved October 13, 2018.
+ "Slack: workplace message app so cute you want to use it at home". Financial Times. March 25, 2015. Retrieved October 13, 2018.(subscription required)
+ Fischer, Molly (May 17, 2017). "What Happens When Work Becomes a Nonstop Chat Room". New York Magazine. Retrieved October 13, 2018.
+ Lardinois, Frederic (February 6, 2017). "And the winners of the 10th Annual Crunchies are…". TechCrunch. Retrieved October 13, 2018.
+ Cohn, Cindy; Gebhart, Gennie (February 14, 2018). "The Revolution and Slack". Electronic Frontier Foundation. Retrieved October 13, 2018.
+ Reitman, Rainey (July 10, 2017). "Who Has Your Back? Government Data Requests 2017". Electronic Frontier Foundation. Retrieved October 13, 2018.
+ https://thebaffler.com/salvos/big-bother-slack-silverman
+ Finley, Klint (March 16, 2016). "Open sourcers race to build better versions of Slack". Wired. Retrieved October 13, 2018.
+ Peterson, Becky (July 26, 2017). "Uber didn't like Silicon Valley's biggest chat apps — so it was forced to make its own". Business Insider. Retrieved October 13, 2018.
+ "We Tried Slack and Deeply Regretted it". June 21, 2015. Retrieved February 10, 2019.
+ "Slacks new policy lets bosses read employees dms without consent". March 22, 2018. Retrieved February 10, 2019.
+ "Slacks new policy lets bosses read employees dms without consent". March 22, 2018. Retrieved February 10, 2019.
+ "Slack it's not the drug, its the user". February 23, 2016. Retrieved February 10, 2019.
+ "slack productivity". October 23, 2018. Retrieved February 10, 2019.
+ "why slack is bad for teamwork and why you should never try it". July 21, 2018. Retrieved February 10, 2019.
+ "Slack HQ on Twitter". November 10, 2014. Retrieved January 28, 2019.
+ Finnegan, Matthew (June 5, 2018). "Microsoft Teams: Its features, how it compares to Slack and other rivals". Computerworld. Retrieved October 13, 2018.
+ "Google's Slack alternative is available starting today". Engadget. February 28, 2018. Retrieved October 13, 2018.
