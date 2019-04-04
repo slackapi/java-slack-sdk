@@ -273,10 +273,16 @@ public interface MethodsClient {
     // files.comments
     // ------------------------------
 
+    @Deprecated
+        // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     FilesCommentsAddResponse filesCommentsAdd(FilesCommentsAddRequest req) throws IOException, SlackApiException;
 
+    @Deprecated
+        // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     FilesCommentsDeleteResponse filesCommentsDelete(FilesCommentsDeleteRequest req) throws IOException, SlackApiException;
 
+    @Deprecated
+        // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     FilesCommentsEditResponse filesCommentEdit(FilesCommentsEditRequest req) throws IOException, SlackApiException;
 
     // ------------------------------

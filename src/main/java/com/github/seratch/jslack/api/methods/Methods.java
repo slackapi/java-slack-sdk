@@ -111,8 +111,11 @@ public class Methods {
     // files.comments
     // ------------------------------
 
+    @Deprecated // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     public static final String FILES_COMMENTS_ADD = "files.comments.add";
+    @Deprecated // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     public static final String FILES_COMMENTS_DELETE = "files.comments.delete";
+    @Deprecated // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     public static final String FILES_COMMENTS_EDIT = "files.comments.edit";
 
     // ------------------------------

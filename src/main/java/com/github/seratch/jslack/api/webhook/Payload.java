@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * https://api.slack.com/incoming-webhooks
  * <p>
- * Implementation of <a href="https://api.slack.com/reference/messaging/payload">Message Payloads</a>
+ * Implementation of <a href="https://api.slack.com/reference/messaging/payload">RTMMessage Payloads</a>
  */
 @Data
 @Builder

@@ -1,6 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.bots;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
+import com.github.seratch.jslack.api.model.BotIcons;
 import lombok.Data;
 
 @Data
@@ -14,14 +15,7 @@ public class BotsInfoResponse implements SlackApiResponse {
         private String name;
         private boolean deleted;
         private Integer updated;
-        private Icons icons;
-
-        @Data
-        public static class Icons {
-            private String image36;
-            private String image48;
-            private String image72;
-        }
+        private BotIcons icons;
     }
 
     private boolean ok;
