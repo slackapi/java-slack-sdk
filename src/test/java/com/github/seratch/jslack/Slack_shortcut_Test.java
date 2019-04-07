@@ -6,6 +6,10 @@ import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResp
 import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.api.model.block.DividerBlock;
+import com.github.seratch.jslack.api.model.block.SectionBlock;
+import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
+import com.github.seratch.jslack.api.model.block.element.ImageElement;
 import com.github.seratch.jslack.shortcut.Shortcut;
 import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.shortcut.model.ChannelId;
@@ -85,4 +89,29 @@ public class Slack_shortcut_Test {
         }
     }
 
+    @Test
+    public void postMessage_blocks() throws IOException, SlackApiException {
+        Shortcut shortcut = slack.shortcut(token);
+
+        {
+            MarkdownTextObject text = MarkdownTextObject.builder()
+                    .text("*Ler Ros*\n:star::star::star::star: 2082 reviews\n I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder.")
+                    .build();
+            ImageElement accessory = ImageElement.builder()
+                    .imageUrl("https://s3-media2.fl.yelpcdn.com/bphoto/DawwNigKJ2ckPeDeDM7jAg/o.jpg")
+                    .altText("alt text for image")
+                    .build();
+
+            SectionBlock section = SectionBlock.builder()
+                    .text(text)
+                    .accessory(accessory)
+                    .build();
+
+            DividerBlock divider = new DividerBlock();
+
+            ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"), Arrays.asList(section, divider));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+    }
 }

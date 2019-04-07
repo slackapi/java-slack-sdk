@@ -15,6 +15,7 @@ import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Channel;
 import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.shortcut.Shortcut;
 import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.shortcut.model.ChannelId;
@@ -137,6 +138,16 @@ public class ShortcutImpl implements Shortcut {
         return _post(channel, text, attachments, false);
     }
 
+    @Override
+    public ChatPostMessageResponse post(ChannelName channel, List<LayoutBlock> blocks) throws IOException, SlackApiException {
+        return _post(channel, blocks, true);
+    }
+
+    @Override
+    public ChatPostMessageResponse postAsBot(ChannelName channel, List<LayoutBlock> blocks) throws IOException, SlackApiException {
+        return _post(channel, blocks, true);
+    }
+
     private ChatPostMessageResponse _post(ChannelName channel, String text, List<Attachment> attachments, boolean asUser) throws IOException, SlackApiException {
         if (apiToken.isPresent()) {
             Optional<ChannelId> channelId = findChannelIdByName(channel);
@@ -147,6 +158,24 @@ public class ShortcutImpl implements Shortcut {
                         .channel(channelId.get().getValue())
                         .text(text)
                         .attachments(attachments)
+                        .build());
+            } else {
+                throw new IllegalStateException("Unknown channel: " + channel.getValue());
+            }
+        } else {
+            throw new IllegalStateException("apiToken is absent.");
+        }
+    }
+
+    private ChatPostMessageResponse _post(ChannelName channel, List<LayoutBlock> blocks, boolean asUser) throws IOException, SlackApiException {
+        if (apiToken.isPresent()) {
+            Optional<ChannelId> channelId = findChannelIdByName(channel);
+            if (channelId.isPresent()) {
+                return slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                        .token(apiToken.get().getValue())
+                        .asUser(asUser)
+                        .channel(channelId.get().getValue())
+                        .blocks(blocks)
                         .build());
             } else {
                 throw new IllegalStateException("Unknown channel: " + channel.getValue());

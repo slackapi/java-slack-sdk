@@ -301,9 +301,21 @@ ReactionsAddResponse addReaction = shortcut.addReaction(messages.get(0), Reactio
 
 ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"), "hello, hello!");
 
+// Good old attachments
 Attachment attachment = Attachment.builder().text("text").footer("footer").build();
 List<Attachment> attachments = Arrays.asList(attachment);
 ChatPostMessageResponse response = shortcut.postAsBot(ChannelName.of("general"), "hello, hello!");
+
+// Block Kit
+SectionBlock section = SectionBlock.builder()
+  .text(MarkdownTextObject.builder().text("Some rich text").build())
+  .accessory(ImageElement.builder().imageUrl("https://example.com/foo.jpg").altText("This is an image").build())
+  .build();
+
+DividerBlock divider = new DividerBlock();
+
+ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"),
+  Arrays.asList(section, divider));
 ```
 
 ### Preparations for running this library's unit tests.
