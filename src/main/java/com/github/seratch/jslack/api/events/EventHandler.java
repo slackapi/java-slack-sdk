@@ -5,12 +5,22 @@ import com.github.seratch.jslack.api.events.payload.EventsApiPayload;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ * Events API handler base class.
+ * @param <E> The type of an events API Payload
+ */
 public abstract class EventHandler<E extends EventsApiPayload<?>> {
 
     private Class<E> cachedPayloadClazz = null;
 
+    /**
+     * Returns the type value of the event (e.g., MessageEvent.TYPE_NAME)
+     */
     public abstract String getEventType();
 
+    /**
+     * Returns the Class object of the EventApiPayload implementation.
+     */
     public Class<E> getEventPayloadClass() {
         if (cachedPayloadClazz != null) {
             return cachedPayloadClazz;
@@ -29,8 +39,16 @@ public abstract class EventHandler<E extends EventsApiPayload<?>> {
         throw new IllegalStateException("Failed to load payload class for " + this.getClass().getCanonicalName());
     }
 
+    /**
+     * Implement your logic in this method.
+     * @param payload Events API payload
+     */
     public abstract void handle(E payload);
 
+    /**
+     * Used only internally.
+     * @param payload Events API payload
+     */
     public void acceptUntypedObject(Object payload) {
         handle((E) payload);
     }

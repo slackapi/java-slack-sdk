@@ -6,11 +6,18 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ * Real Time Messaging API event handler base class.
+ * @param <E> The type of an events API Payload
+ */
 public abstract class RTMEventHandler<E extends Event> {
 
     private String cachedEventName;
     private Class<E> cachedClazz;
 
+    /**
+     * Returns the type value of the event (e.g., MessageEvent.TYPE_NAME)
+     */
     public String getEventType() {
         if (cachedEventName != null) {
             return cachedEventName;
@@ -22,10 +29,13 @@ public abstract class RTMEventHandler<E extends Event> {
             cachedEventName = (String) field.get(null);
             return cachedEventName;
         } catch (Exception e) {
-            throw new IllegalStateException("Static field TYPE_NAME is required in " + clazz.getCanonicalName());
+            throw new IllegalStateException("A static field TYPE_NAME in " + clazz.getCanonicalName() + " is required");
         }
     }
 
+    /**
+     * Returns the Class object of the Event implementation.
+     */
     public Class<E> getEventClass() {
         if (cachedClazz != null) {
             return cachedClazz;
@@ -40,8 +50,16 @@ public abstract class RTMEventHandler<E extends Event> {
         }
     }
 
+    /**
+     * Implement your logic in this method.
+     * @param event event data
+     */
     public abstract void handle(E event);
 
+    /**
+     * Used only internally.
+     * @param event event data
+     */
     public void acceptUntypedObject(Object event) {
         handle((E) event);
     }
