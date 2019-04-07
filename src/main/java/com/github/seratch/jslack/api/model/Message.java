@@ -25,7 +25,7 @@ public class Message {
     private String username;
     private String subtype;
     private String botId;
-    private Icon icons;
+    private Icons icons;
     private File file;
 
     // field exists only if the message was edited
@@ -73,6 +73,20 @@ public class Message {
     public static class MessageRootReply {
         private String user;
         private String ts;
+    }
+
+    // https://raw.githubusercontent.com/slackapi/slack-api-specs/master/web-api/slack_web_openapi_v2.json
+    // TODO: confirm the actual behavior
+    @Data
+    public static class Icons {
+        private String emoji;
+
+        @SerializedName("image_36")
+        private String image36;
+        @SerializedName("image_48")
+        private String image48;
+        @SerializedName("image_72")
+        private String image72;
     }
 
 }

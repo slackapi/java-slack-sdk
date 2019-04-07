@@ -192,6 +192,7 @@ public class RTMClient implements Closeable {
 
     /**
      * Overwrites the underlying WebSocket session.
+     *
      * @param newSession new session
      */
     private void updateSession(Session newSession) {

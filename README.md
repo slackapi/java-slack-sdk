@@ -5,8 +5,9 @@
 jSlack is a Java library to easily integrate your operations with [Slack](https://slack.com/). The library currently supports the following APIs.
 
 - [Incoming Webhook](https://api.slack.com/incoming-webhooks)
-- [Real Time Messaging API](https://api.slack.com/rtm)
 - [API Methods](https://api.slack.com/methods)
+- [Real Time Messaging API](https://api.slack.com/rtm)
+- [Events API](https://api.slack.com/events-api)
 
 As per API Methods, this library supports all the APIs listed in [github.com/slackapi/slack-api-specs](https://github.com/slackapi/slack-api-specs) as of May 2018.
 
@@ -102,6 +103,17 @@ try (RTMClient rtm = new Slack().rtm(token)) {
   // must connect within 30 seconds after issuing wss endpoint
   rtm.connect();
 
+  rtm.sendMessage(Typing.builder()
+    .id(System.currentTimeMillis())
+    .channel(channelId)
+    .build().toJSONString());
+
+  rtm.sendMessage(Message.builder()
+    .id(System.currentTimeMillis())
+    .channel(channelId)
+    .text("Hi!")
+    .build().toJSONString());
+
   rtm.removeMessageHandler(handler2);
 
 } // #close method does #disconnect
@@ -110,6 +122,31 @@ try (RTMClient rtm = new Slack().rtm(token)) {
 The `message`, argument of messageHandler, is a string value in JSON format. You need to deserialize it with your favorite JSON library.
 
 jSlack already depends on [google-gson](https://github.com/google/gson) library. So you can use Gson as above example shows. If you prefer Jackson or other libraries, it's also possible.
+
+#### Events API
+
+The Events API is a streamlined, easy way to build apps and bots that respond to activities in Slack.
+All you need is a Slack app and a secure place for us to send your events.
+
+https://api.slack.com/events-api
+
+```java
+AppUninstalledHandler appUninstalledEventHandler = new AppUninstalledHandler {
+
+  @Override
+  public void handle(AppUninstalledPayload event) {
+    // do something here
+  }
+};
+
+public class SampleServlet extends SlackEventsApiServlet {
+
+  @Override
+  protected void setupDispatcher(EventsDispatcher dispatcher) {
+    dispatcher.register(appUninstalledEventHandler);
+  }
+}
+```
 
 #### API Methods
 

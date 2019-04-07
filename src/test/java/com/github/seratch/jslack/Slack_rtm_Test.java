@@ -7,6 +7,10 @@ import com.github.seratch.jslack.api.model.Conversation;
 import com.github.seratch.jslack.api.model.User;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.rtm.RTMMessageHandler;
+import com.github.seratch.jslack.api.rtm.message.Message;
+import com.github.seratch.jslack.api.rtm.message.PresenceQuery;
+import com.github.seratch.jslack.api.rtm.message.PresenceSub;
+import com.github.seratch.jslack.api.rtm.message.Typing;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +20,7 @@ import org.junit.Test;
 import javax.websocket.DeploymentException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -112,32 +117,28 @@ public class Slack_rtm_Test {
         rtm.connect();
 
         // won't be captured by onMessage
-        rtm.sendMessage("{" +
-                "\"id\": " + System.currentTimeMillis() + "," +
-                "\"type\": \"typing\"," +
-                "\"channel\": \"" + channelId + "\"" +
-                "}");
+        rtm.sendMessage(Typing.builder()
+                .id(System.currentTimeMillis())
+                .channel(channelId)
+                .build().toJSONString());
 
-        rtm.sendMessage("{" +
-                "\"id\": " + System.currentTimeMillis() + "," +
-                "\"type\": \"message\"," +
-                "\"channel\": \"" + channelId + "\"," +
-                "\"text\": \"Hi!\"" +
-                "}");
+        rtm.sendMessage(Message.builder()
+                .id(System.currentTimeMillis())
+                .channel(channelId)
+                .text("Hi!")
+                .build().toJSONString());
 
         // won't be captured by onMessage
-        rtm.sendMessage("{" +
-                "\"id\": " + System.currentTimeMillis() + "," +
-                "\"type\": \"typing\"," +
-                "\"channel\": \"" + channelId + "\"" +
-                "}");
+        rtm.sendMessage(Typing.builder()
+                .id(System.currentTimeMillis())
+                .channel(channelId)
+                .build().toJSONString());
 
-        rtm.sendMessage("{" +
-                "\"id\": " + System.currentTimeMillis() + "," +
-                "\"type\": \"message\"," +
-                "\"channel\": \"" + channelId + "\"," +
-                "\"text\": \"Hi!!\"" +
-                "}");
+        rtm.sendMessage(Message.builder()
+                .id(System.currentTimeMillis())
+                .channel(channelId)
+                .text("Hi!!")
+                .build().toJSONString());
 
         rtm.removeMessageHandler(handler2);
 
@@ -160,12 +161,15 @@ public class Slack_rtm_Test {
         // refresh wss endpoint and start a new session
         rtm.reconnect();
 
-        rtm.sendMessage("{" +
-                "\"id\": " + System.currentTimeMillis() + "," +
-                "\"type\": \"message\"," +
-                "\"channel\": \"" + channelId + "\"," +
-                "\"text\": \"Hi!!!\"" +
-                "}");
+        // returns {"type":"presence_change","presence":"active","user":"U8P5K4***"}
+        rtm.sendMessage(PresenceQuery.builder().ids(Arrays.asList(currentUser.getId())).build().toJSONString());
+        rtm.sendMessage(PresenceSub.builder().ids(Arrays.asList(currentUser.getId())).build().toJSONString());
+
+        rtm.sendMessage(Message.builder()
+                .id(System.currentTimeMillis())
+                .channel(channelId)
+                .text("Hi!!!")
+                .build().toJSONString());
 
         Thread.sleep(3000);
 
