@@ -6,6 +6,7 @@ import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResp
 import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.shortcut.model.ChannelId;
 import com.github.seratch.jslack.shortcut.model.ChannelName;
 import com.github.seratch.jslack.shortcut.model.ReactionName;
@@ -63,5 +64,12 @@ public interface Shortcut {
     ChatPostMessageResponse post(ChannelName channel, String text, List<Attachment> attachments) throws IOException, SlackApiException;
 
     ChatPostMessageResponse postAsBot(ChannelName channel, String text, List<Attachment> attachments) throws IOException, SlackApiException;
+
+    /**
+     * Posts a message to a given channel.
+     */
+    ChatPostMessageResponse post(ChannelName channel, List<LayoutBlock> blocks) throws IOException, SlackApiException;
+
+    ChatPostMessageResponse postAsBot(ChannelName channel, List<LayoutBlock> blocks) throws IOException, SlackApiException;
 
 }
