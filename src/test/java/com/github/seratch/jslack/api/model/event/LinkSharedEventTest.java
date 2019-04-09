@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class LinkSharedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(LinkSharedEvent.TYPE_NAME, is("link_shared"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "        \"type\": \"link_shared\",\n" +

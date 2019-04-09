@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ScopeGrantedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ScopeGrantedEvent.TYPE_NAME, is("scope_granted"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "        \"type\": \"scope_granted\",\n" +

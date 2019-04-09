@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ImCloseEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ImCloseEvent.TYPE_NAME, is("im_close"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"im_close\",\n" +

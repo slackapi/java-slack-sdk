@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class GroupUnarchiveEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(GroupUnarchiveEvent.TYPE_NAME, is("group_unarchive"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"group_unarchive\",\n" +

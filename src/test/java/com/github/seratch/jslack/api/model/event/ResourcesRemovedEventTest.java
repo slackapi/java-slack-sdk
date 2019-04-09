@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ResourcesRemovedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ResourcesRemovedEvent.TYPE_NAME, is("resources_removed"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "                \"type\": \"resources_removed\",\n" +

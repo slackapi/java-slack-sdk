@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class AppUninstalledEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(AppUninstalledEvent.TYPE_NAME, is("app_uninstalled"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"app_uninstalled\"\n" +

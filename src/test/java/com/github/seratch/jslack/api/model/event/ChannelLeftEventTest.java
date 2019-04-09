@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ChannelLeftEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ChannelLeftEvent.TYPE_NAME, is("channel_left"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"channel_left\",\n" +

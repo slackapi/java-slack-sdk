@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class MemberJoinedChannelEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(MemberJoinedChannelEvent.TYPE_NAME, is("member_joined_channel"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"member_joined_channel\",\n" +

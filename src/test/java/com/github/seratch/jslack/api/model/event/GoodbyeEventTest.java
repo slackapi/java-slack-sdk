@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class GoodbyeEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(GoodbyeEvent.TYPE_NAME, is("goodbye"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"goodbye\"\n" +

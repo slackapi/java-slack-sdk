@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class FileCommentDeletedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(FileCommentDeletedEvent.TYPE_NAME, is("file_comment_deleted"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"file_comment_deleted\",\n" +

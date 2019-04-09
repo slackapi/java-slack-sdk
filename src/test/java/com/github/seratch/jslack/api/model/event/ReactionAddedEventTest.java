@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ReactionAddedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ReactionAddedEvent.TYPE_NAME, is("reaction_added"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"reaction_added\",\n" +

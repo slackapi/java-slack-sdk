@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ReconnectUrlEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ReconnectUrlEvent.TYPE_NAME, is("reconnect_url"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"reconnect_url\"\n" +

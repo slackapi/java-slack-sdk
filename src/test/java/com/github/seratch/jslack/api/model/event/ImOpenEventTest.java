@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ImOpenEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ImOpenEvent.TYPE_NAME, is("im_open"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"im_open\",\n" +

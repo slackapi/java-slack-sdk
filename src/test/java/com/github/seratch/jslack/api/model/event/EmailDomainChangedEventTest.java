@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class EmailDomainChangedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(EmailDomainChangedEvent.TYPE_NAME, is("email_domain_changed"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"email_domain_changed\",\n" +

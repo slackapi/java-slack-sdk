@@ -11,6 +11,11 @@ import static org.junit.Assert.assertThat;
 public class PinAddedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(PinAddedEvent.TYPE_NAME, is("pin_added"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"pin_added\",\n" +

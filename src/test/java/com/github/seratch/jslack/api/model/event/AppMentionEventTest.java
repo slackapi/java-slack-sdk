@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class AppMentionEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(AppMentionEvent.TYPE_NAME, is("app_mention"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"app_mention\",\n" +

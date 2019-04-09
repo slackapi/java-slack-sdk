@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ImHistoryChangedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ImHistoryChangedEvent.TYPE_NAME, is("im_history_changed"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"im_history_changed\",\n" +

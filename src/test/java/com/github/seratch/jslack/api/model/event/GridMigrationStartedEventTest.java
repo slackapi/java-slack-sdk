@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class GridMigrationStartedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(GridMigrationStartedEvent.TYPE_NAME, is("grid_migration_started"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "        \"type\": \"grid_migration_started\",\n" +

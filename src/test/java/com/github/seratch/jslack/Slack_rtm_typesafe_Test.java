@@ -1,6 +1,7 @@
 package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.model.event.HelloEvent;
+import com.github.seratch.jslack.api.model.event.UserTypingEvent;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.rtm.RTMEventHandler;
 import com.github.seratch.jslack.api.rtm.RTMEventsDispatcher;
@@ -25,6 +26,13 @@ public class Slack_rtm_typesafe_Test {
     }
 
     public static class SubHelloHandler extends HelloHandler {
+    }
+
+    @Slf4j
+    public static class UserTypingHandler extends RTMEventHandler<UserTypingEvent> {
+        @Override
+        public void handle(UserTypingEvent event) {
+        }
     }
 
     @Test
@@ -78,6 +86,22 @@ public class Slack_rtm_typesafe_Test {
             rtm.reconnect();
             Thread.sleep(300L);
             assertThat(hello.counter.get(), is(2));
+        }
+    }
+
+    @Test
+    public void userTyping() throws Exception {
+
+        Slack slack = Slack.getInstance();
+
+        String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
+
+        RTMEventsDispatcher dispatcher = RTMEventsDispatcherFactory.getInstance();
+        dispatcher.register(new UserTypingHandler());
+
+        try (RTMClient rtm = slack.rtmStart(botToken)) {
+            rtm.addMessageHandler(dispatcher.toMessageHandler());
+            rtm.connect();
         }
     }
 

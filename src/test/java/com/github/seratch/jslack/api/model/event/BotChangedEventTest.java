@@ -13,6 +13,11 @@ import static org.junit.Assert.assertThat;
 public class BotChangedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(BotChangedEvent.TYPE_NAME, is("bot_changed"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"bot_changed\",\n" +

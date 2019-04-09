@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class FileChangeEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(FileChangeEvent.TYPE_NAME, is("file_change"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"file_change\",\n" +

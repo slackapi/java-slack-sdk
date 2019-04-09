@@ -12,6 +12,11 @@ import static org.junit.Assert.assertThat;
 public class TeamPlanChangeEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(TeamPlanChangeEvent.TYPE_NAME, is("team_plan_change"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"team_plan_change\",\n" +

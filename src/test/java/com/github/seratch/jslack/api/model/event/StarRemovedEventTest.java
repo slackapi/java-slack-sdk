@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class StarRemovedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(StarRemovedEvent.TYPE_NAME, is("star_removed"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"star_removed\",\n" +

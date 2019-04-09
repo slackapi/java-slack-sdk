@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class GroupMarkedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(GroupMarkedEvent.TYPE_NAME, is("group_marked"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"group_marked\",\n" +

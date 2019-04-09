@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class GroupLeftEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(GroupLeftEvent.TYPE_NAME, is("group_left"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"group_left\",\n" +

@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class FileSharedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(FileSharedEvent.TYPE_NAME, is("file_shared"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"file_shared\",\n" +

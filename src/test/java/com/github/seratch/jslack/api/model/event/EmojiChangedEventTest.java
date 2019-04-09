@@ -12,6 +12,11 @@ import static org.junit.Assert.assertThat;
 public class EmojiChangedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(EmojiChangedEvent.TYPE_NAME, is("emoji_changed"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"emoji_changed\",\n" +

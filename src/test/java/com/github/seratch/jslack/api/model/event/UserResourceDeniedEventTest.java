@@ -12,6 +12,11 @@ import static org.junit.Assert.assertThat;
 public class UserResourceDeniedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(UserResourceDeniedEvent.TYPE_NAME, is("user_resource_denied"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "        \"type\": \"user_resource_denied\",\n" +

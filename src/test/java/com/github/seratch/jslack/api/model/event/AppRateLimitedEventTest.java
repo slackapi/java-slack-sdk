@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class AppRateLimitedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(AppRateLimitedEvent.TYPE_NAME, is("app_rate_limited"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"token\": \"Jhj5dZrVaK7ZwHHjRyZWjbDl\",\n" +

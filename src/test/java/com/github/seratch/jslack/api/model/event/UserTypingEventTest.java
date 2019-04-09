@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class UserTypingEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(UserTypingEvent.TYPE_NAME, is("user_typing"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"user_typing\",\n" +

@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class SubteamSelfRemovedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(SubteamSelfRemovedEvent.TYPE_NAME, is("subteam_self_removed"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"subteam_self_removed\",\n" +

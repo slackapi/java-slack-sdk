@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 
 public class ChannelJoinedEventTest {
 
+    @Test
+    public void typeName() {
+        assertThat(ChannelJoinedEvent.TYPE_NAME, is("channel_joined"));
+    }
+
     // TODO: check the data in channel attribute
     @Test
     public void deserialize() {

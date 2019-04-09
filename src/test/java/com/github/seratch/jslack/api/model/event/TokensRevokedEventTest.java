@@ -12,6 +12,11 @@ import static org.junit.Assert.assertThat;
 public class TokensRevokedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(TokensRevokedEvent.TYPE_NAME, is("tokens_revoked"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "        \"type\": \"tokens_revoked\",\n" +

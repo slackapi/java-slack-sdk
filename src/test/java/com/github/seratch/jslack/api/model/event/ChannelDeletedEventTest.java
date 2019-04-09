@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ChannelDeletedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ChannelDeletedEvent.TYPE_NAME, is("channel_deleted"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"channel_deleted\",\n" +

@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ScopeDeniedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ScopeDeniedEvent.TYPE_NAME, is("scope_denied"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "        \"type\": \"scope_denied\",\n" +

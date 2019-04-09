@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ManualPresenceChangeEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ManualPresenceChangeEvent.TYPE_NAME, is("manual_presence_change"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"manual_presence_change\",\n" +

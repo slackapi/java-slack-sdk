@@ -11,6 +11,11 @@ import static org.junit.Assert.assertThat;
 public class DndUpdatedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(DndUpdatedEvent.TYPE_NAME, is("dnd_updated"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"dnd_updated\",\n" +

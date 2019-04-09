@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class GroupDeletedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(GroupDeletedEvent.TYPE_NAME, is("group_deleted"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"group_deleted\",\n" +

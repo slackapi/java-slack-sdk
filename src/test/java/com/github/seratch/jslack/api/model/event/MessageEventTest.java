@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class MessageEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(MessageEvent.TYPE_NAME, is("message"));
+    }
+
+    @Test
     public void deserialize_simple() {
         String json = "{\n" +
                 "    \"type\": \"message\",\n" +

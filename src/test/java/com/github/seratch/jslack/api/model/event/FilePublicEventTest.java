@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class FilePublicEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(FilePublicEvent.TYPE_NAME, is("file_public"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"file_public\",\n" +

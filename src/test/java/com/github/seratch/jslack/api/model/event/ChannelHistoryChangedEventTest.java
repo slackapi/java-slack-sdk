@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ChannelHistoryChangedEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(ChannelHistoryChangedEvent.TYPE_NAME, is("channel_history_changed"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"channel_history_changed\",\n" +

@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
 public class GroupCloseEventTest {
 
     @Test
+    public void typeName() {
+        assertThat(GroupCloseEvent.TYPE_NAME, is("group_close"));
+    }
+
+    @Test
     public void deserialize() {
         String json = "{\n" +
                 "    \"type\": \"group_close\",\n" +

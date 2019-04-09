@@ -10,7 +10,9 @@ import lombok.Data;
 @Data
 public class UserTypingEvent implements Event {
 
-    private final String type = "user_typing";
+    public static final String TYPE_NAME = "user_typing";
+
+    private final String type = TYPE_NAME;
     private String channel;
     private String user;
 }
