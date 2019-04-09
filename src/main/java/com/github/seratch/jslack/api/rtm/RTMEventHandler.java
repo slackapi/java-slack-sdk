@@ -40,14 +40,18 @@ public abstract class RTMEventHandler<E extends Event> {
         if (cachedClazz != null) {
             return cachedClazz;
         }
-        Type mySuperclass = this.getClass().getGenericSuperclass();
-        Type tType = ((ParameterizedType)mySuperclass).getActualTypeArguments()[0];
-        try {
-            cachedClazz = (Class<E>) Class.forName(tType.getTypeName());
-            return cachedClazz;
-        } catch (Exception e) {
-            throw new IllegalStateException("Failed to load event class - " + e.getMessage());
+        Class<?> clazz = this.getClass();
+        while (clazz != Object.class) {
+            try {
+                Type mySuperclass = clazz.getGenericSuperclass();
+                Type tType = ((ParameterizedType)mySuperclass).getActualTypeArguments()[0];
+                cachedClazz = (Class<E>) Class.forName(tType.getTypeName());
+                return cachedClazz;
+            } catch (Exception e) {
+            }
+            clazz = clazz.getSuperclass();
         }
+        throw new IllegalStateException("Failed to load event class - " + this.getClass().getCanonicalName());
     }
 
     /**

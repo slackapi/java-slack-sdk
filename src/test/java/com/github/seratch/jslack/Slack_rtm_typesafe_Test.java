@@ -24,6 +24,9 @@ public class Slack_rtm_typesafe_Test {
         }
     }
 
+    public static class SubHelloHandler extends HelloHandler {
+    }
+
     @Test
     public void test() throws Exception {
 
@@ -39,11 +42,41 @@ public class Slack_rtm_typesafe_Test {
             rtm.addMessageHandler(dispatcher.toMessageHandler());
 
             rtm.connect();
-            Thread.sleep(2000L);
+            Thread.sleep(300L);
             assertThat(hello.counter.get(), is(1));
 
             rtm.reconnect();
-            Thread.sleep(2000L);
+            Thread.sleep(300L);
+            assertThat(hello.counter.get(), is(2));
+
+            dispatcher.deregister(hello);
+
+            rtm.reconnect();
+            Thread.sleep(300L);
+            assertThat(hello.counter.get(), is(2)); // should not be incremented
+        }
+    }
+
+    @Test
+    public void test_with_subclass() throws Exception {
+
+        Slack slack = Slack.getInstance();
+
+        String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
+
+        RTMEventsDispatcher dispatcher = RTMEventsDispatcherFactory.getInstance();
+        SubHelloHandler hello = new SubHelloHandler();
+        dispatcher.register(hello);
+
+        try (RTMClient rtm = slack.rtmStart(botToken)) {
+            rtm.addMessageHandler(dispatcher.toMessageHandler());
+
+            rtm.connect();
+            Thread.sleep(300L);
+            assertThat(hello.counter.get(), is(1));
+
+            rtm.reconnect();
+            Thread.sleep(300L);
             assertThat(hello.counter.get(), is(2));
         }
     }
