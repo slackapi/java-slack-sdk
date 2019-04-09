@@ -42,6 +42,10 @@ public class EventsDispatcherTest {
         dispatcher.dispatch(payload);
         dispatcher.dispatch(payload);
         assertThat(handler.getCurrentCount(), is(4));
+
+        dispatcher.deregister(handler);
+        dispatcher.dispatch(payload);
+        assertThat(handler.getCurrentCount(), is(4));
     }
 
     @Slf4j
