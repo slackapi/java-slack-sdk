@@ -18,5 +18,6 @@ public class ButtonElement extends BlockElement {
     private String actionId;
     private String url;
     private String value;
+    private String style; // possible values: primary, danger
     private ConfirmationDialogObject confirm;
 }
