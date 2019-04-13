@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertThat;
@@ -61,6 +62,14 @@ public class Slack_rtm_Test {
 
         try {
             try (RTMClient rtm = slack.rtmStart(botToken)) {
+                User user = rtm.getConnectedBotUser();
+
+                assertThat(user.getId(), is(notNullValue()));
+                assertThat(user.getTeamId(), is(notNullValue()));
+                assertThat(user.getName(), is(notNullValue()));
+                assertThat(user.getProfile(), is(notNullValue()));
+                assertThat(user.getProfile().getBotId(), is(notNullValue()));
+
                 verifyRTMClientBehavior(channelId, rtm);
             }
         } finally {
@@ -82,10 +91,30 @@ public class Slack_rtm_Test {
 
         try {
             try (RTMClient rtm = slack.rtmConnect(botToken)) {
+                User user = rtm.getConnectedBotUser();
+
+                assertThat(user.getId(), is(notNullValue()));
+                assertThat(user.getTeamId(), is(notNullValue()));
+                assertThat(user.getName(), is(notNullValue()));
+                assertThat(user.getProfile(), is(notNullValue()));
+                assertThat(user.getProfile().getBotId(), is(notNullValue()));
+
                 verifyRTMClientBehavior(channelId, rtm);
             }
         } finally {
             channelGenerator.archiveChannel(channel);
+        }
+    }
+
+    @Test
+    public void rtmConnect_withoutFullConnectedUserInfo() throws Exception {
+        try (RTMClient rtm = slack.rtmConnect(botToken, false)) {
+            User user = rtm.getConnectedBotUser();
+            assertThat(user.getId(), is(notNullValue()));
+            assertThat(user.getName(), is(notNullValue()));
+
+            assertThat(user.getTeamId(), is(nullValue()));
+            assertThat(user.getProfile(), is(nullValue()));
         }
     }
 

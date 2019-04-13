@@ -5,8 +5,11 @@ import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.impl.MethodsClientImpl;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMConnectRequest;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMStartRequest;
+import com.github.seratch.jslack.api.methods.request.users.UsersInfoRequest;
 import com.github.seratch.jslack.api.methods.response.rtm.RTMConnectResponse;
 import com.github.seratch.jslack.api.methods.response.rtm.RTMStartResponse;
+import com.github.seratch.jslack.api.methods.response.users.UsersInfoResponse;
+import com.github.seratch.jslack.api.model.User;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.scim.SCIMClient;
 import com.github.seratch.jslack.api.scim.SCIMClientImpl;
@@ -78,15 +81,42 @@ public class Slack {
      * @see "https://api.slack.com/docs/rate-limits#rtm"
      */
     public RTMClient rtmConnect(String apiToken) throws IOException {
+        return rtmConnect(apiToken, true);
+    }
+
+    /**
+     * Creates an RTM API client using `/rtm.connect`.
+     *
+     * @see "https://api.slack.com/docs/rate-limits#rtm"
+     */
+    public RTMClient rtmConnect(String apiToken, boolean fullUserInfoRequired) throws IOException {
         try {
             RTMConnectResponse response = methods().rtmConnect(RTMConnectRequest.builder().token(apiToken).build());
             if (response.isOk()) {
-                return new RTMClient(this, apiToken, response.getUrl(), response.getSelf());
+                User connectedBotUser = response.getSelf();
+                if (fullUserInfoRequired) {
+                    String userId = response.getSelf().getId();
+                    UsersInfoResponse resp = this.methods().usersInfo(UsersInfoRequest.builder().token(apiToken).user(userId).build());
+                    if (resp.isOk()) {
+                        connectedBotUser = resp.getUser();
+                    } else {
+                        String errorMessage = "Failed to get fill user info (user id: " + response.getSelf().getId() + ", error: " + resp.getError() + ")";
+                        throw new IllegalStateException(errorMessage);
+                    }
+                }
+                return new RTMClient(this, apiToken, response.getUrl(), connectedBotUser);
             } else {
                 throw new IllegalStateException("Failed to the RTM endpoint URL (error: " + response.getError() + ")");
             }
-        } catch (SlackApiException | URISyntaxException e) {
-            throw new IllegalStateException("Couldn't fetch RTM API WebSocket endpoint. Ensure the apiToken value.");
+        } catch (SlackApiException e) {
+            throw new IllegalStateException(
+                    "Failed to connect to the RTM API endpoint. (" +
+                            "status: " + e.getResponse().code() + ", " +
+                            "error: " + e.getError().getError() +
+                            ")", e);
+        } catch (URISyntaxException e) {
+            throw new IllegalStateException(
+                    "Failed to connect to the RTM API endpoint. (message: " + e.getMessage() + ")", e);
         }
     }
 
@@ -96,15 +126,42 @@ public class Slack {
      * @see "https://api.slack.com/docs/rate-limits#rtm"
      */
     public RTMClient rtmStart(String apiToken) throws IOException {
+        return rtmStart(apiToken, true);
+    }
+
+    /**
+     * Creates an RTM API client using `/rtm.start`.
+     *
+     * @see "https://api.slack.com/docs/rate-limits#rtm"
+     */
+    public RTMClient rtmStart(String apiToken, boolean fullUserInfoRequired) throws IOException {
         try {
             RTMStartResponse response = methods().rtmStart(RTMStartRequest.builder().token(apiToken).build());
             if (response.isOk()) {
-                return new RTMClient(this, apiToken, response.getUrl(), response.getSelf());
+                User connectedBotUser = response.getSelf();
+                if (fullUserInfoRequired) {
+                    String userId = response.getSelf().getId();
+                    UsersInfoResponse resp = this.methods().usersInfo(UsersInfoRequest.builder().token(apiToken).user(userId).build());
+                    if (resp.isOk()) {
+                        connectedBotUser = resp.getUser();
+                    } else {
+                        String errorMessage = "Failed to get fill user info (user id: " + response.getSelf().getId() + ", error: " + resp.getError() + ")";
+                        throw new IllegalStateException(errorMessage);
+                    }
+                }
+                return new RTMClient(this, apiToken, response.getUrl(), connectedBotUser);
             } else {
                 throw new IllegalStateException("Failed to the RTM endpoint URL (error: " + response.getError() + ")");
             }
-        } catch (SlackApiException | URISyntaxException e) {
-            throw new IllegalStateException("Couldn't fetch RTM API WebSocket endpoint. Ensure the apiToken value.");
+        } catch (SlackApiException e) {
+            throw new IllegalStateException(
+                    "Failed to connect to the RTM API endpoint. (" +
+                            "status: " + e.getResponse().code() + ", " +
+                            "error: " + e.getError().getError() +
+                            ")", e);
+        } catch (URISyntaxException e) {
+            throw new IllegalStateException(
+                    "Failed to connect to the RTM API endpoint. (message: " + e.getMessage() + ")", e);
         }
     }
 
