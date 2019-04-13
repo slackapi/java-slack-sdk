@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class EventsServletTest {
+public class Slack_events_Test {
 
     @WebServlet(urlPatterns = "/")
     public static class SampleServlet extends SlackEventsApiServlet {
