@@ -19,5 +19,7 @@ public class ButtonElement extends BlockElement {
     private String url;
     private String value;
     private String style; // possible values: primary, danger
+    private String replaceOriginal;
+    private String deleteOriginal;
     private ConfirmationDialogObject confirm;
 }
