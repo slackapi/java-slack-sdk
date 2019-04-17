@@ -1,11 +1,14 @@
 package com.github.seratch.jslack;
 
+import com.github.seratch.jslack.api.methods.Methods;
+import com.github.seratch.jslack.api.methods.RequestFormBuilder;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -50,6 +53,15 @@ public class Slack_api_test_Test {
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getArgs().getFoo(), is("proxy?"));
+    }
+
+    @Test
+    public void rawResponse() throws IOException {
+        ApiTestRequest request = ApiTestRequest.builder().foo("fine").build();
+        Response response = slack.methods().runPostForm(RequestFormBuilder.toForm(request), Methods.API_TEST);
+        assertThat(response.code(), is(200));
+        String body = response.body().string();
+        assertThat(body, is("{\"ok\":true,\"args\":{\"foo\":\"fine\"}}"));
     }
 
 }
