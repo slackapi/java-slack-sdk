@@ -1,14 +1,14 @@
 package com.github.seratch.jslack;
 
-import com.github.seratch.jslack.api.events.EventsDispatcher;
-import com.github.seratch.jslack.api.events.handler.AppUninstalledHandler;
-import com.github.seratch.jslack.api.events.handler.GoodbyeHandler;
-import com.github.seratch.jslack.api.events.handler.MessageHandler;
-import com.github.seratch.jslack.api.events.payload.AppUninstalledPayload;
-import com.github.seratch.jslack.api.events.payload.GoodbyePayload;
-import com.github.seratch.jslack.api.events.payload.MessagePayload;
-import com.github.seratch.jslack.api.events.payload.UrlVerificationPayload;
-import com.github.seratch.jslack.api.events.servlet.SlackEventsApiServlet;
+import com.github.seratch.jslack.app_backend.events.EventsDispatcher;
+import com.github.seratch.jslack.app_backend.events.handler.AppUninstalledHandler;
+import com.github.seratch.jslack.app_backend.events.handler.GoodbyeHandler;
+import com.github.seratch.jslack.app_backend.events.handler.MessageHandler;
+import com.github.seratch.jslack.app_backend.events.payload.AppUninstalledPayload;
+import com.github.seratch.jslack.app_backend.events.payload.GoodbyePayload;
+import com.github.seratch.jslack.app_backend.events.payload.MessagePayload;
+import com.github.seratch.jslack.app_backend.events.payload.UrlVerificationPayload;
+import com.github.seratch.jslack.app_backend.events.servlet.SlackEventsApiServlet;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import org.eclipse.jetty.http.HttpTester;
 import org.eclipse.jetty.servlet.ServletTester;

@@ -1,0 +1,13 @@
+package com.github.seratch.jslack.app_backend.events.handler;
+
+import com.github.seratch.jslack.app_backend.events.EventHandler;
+import com.github.seratch.jslack.app_backend.events.payload.ChannelDeletedPayload;
+import com.github.seratch.jslack.api.model.event.ChannelDeletedEvent;
+
+public abstract class ChannelDeletedHandler extends EventHandler<ChannelDeletedPayload> {
+
+    @Override
+    public String getEventType() {
+        return ChannelDeletedEvent.TYPE_NAME;
+    }
+}
