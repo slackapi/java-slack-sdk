@@ -7,6 +7,7 @@ import java.lang.reflect.Type;
 
 /**
  * Events API handler base class.
+ *
  * @param <E> The type of an events API Payload
  */
 public abstract class EventHandler<E extends EventsApiPayload<?>> {
@@ -29,7 +30,7 @@ public abstract class EventHandler<E extends EventsApiPayload<?>> {
         while (clazz != Object.class) {
             try {
                 Type mySuperclass = clazz.getGenericSuperclass();
-                Type tType = ((ParameterizedType)mySuperclass).getActualTypeArguments()[0];
+                Type tType = ((ParameterizedType) mySuperclass).getActualTypeArguments()[0];
                 cachedPayloadClazz = (Class<E>) Class.forName(tType.getTypeName());
                 return cachedPayloadClazz;
             } catch (Exception e) {
@@ -41,12 +42,14 @@ public abstract class EventHandler<E extends EventsApiPayload<?>> {
 
     /**
      * Implement your logic in this method.
+     *
      * @param payload Events API payload
      */
     public abstract void handle(E payload);
 
     /**
      * Used only internally.
+     *
      * @param payload Events API payload
      */
     public void acceptUntypedObject(Object payload) {

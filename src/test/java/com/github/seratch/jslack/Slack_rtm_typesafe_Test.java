@@ -19,6 +19,7 @@ public class Slack_rtm_typesafe_Test {
     @Slf4j
     public static class HelloHandler extends RTMEventHandler<HelloEvent> {
         public final AtomicInteger counter = new AtomicInteger(0);
+
         @Override
         public void handle(HelloEvent event) {
             counter.incrementAndGet();
