@@ -1,16 +1,15 @@
 package com.github.seratch.jslack;
 
 import com.github.seratch.jslack.api.methods.SlackApiException;
+import com.github.seratch.jslack.api.methods.request.channels.ChannelsRepliesRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.*;
 import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
+import com.github.seratch.jslack.api.methods.response.channels.ChannelsRepliesResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.*;
 import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
-import com.github.seratch.jslack.api.model.Attachment;
-import com.github.seratch.jslack.api.model.Conversation;
-import com.github.seratch.jslack.api.model.ConversationType;
-import com.github.seratch.jslack.api.model.User;
+import com.github.seratch.jslack.api.model.*;
 import com.github.seratch.jslack.api.model.block.ContextBlock;
 import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
@@ -18,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -380,4 +380,83 @@ public class Slack_conversations_Test {
 
         channelGenerator.archiveChannel(channel);
     }
+
+    @Test
+    public void replies() throws IOException, SlackApiException {
+
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(token);
+        Conversation channel = channelGenerator.createNewPublicChannel("test" + System.currentTimeMillis());
+
+        try {
+            String threadTs;
+            // first message
+            {
+                ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
+                        ChatPostMessageRequest.builder()
+                                .token(token)
+                                .channel(channel.getId())
+                                .text(longText)
+                                .replyBroadcast(false)
+                                .build());
+                assertThat(postMessageResponse.getError(), is(nullValue()));
+                assertThat(postMessageResponse.isOk(), is(true));
+                threadTs = postMessageResponse.getMessage().getTs();
+            }
+
+            {
+                for (int idx = 0; idx < 5; idx++) {
+                    ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
+                            ChatPostMessageRequest.builder()
+                                    .token(token)
+                                    .channel(channel.getId())
+                                    .threadTs(threadTs)
+                                    .text("Say something at " + ZonedDateTime.now())
+                                    .replyBroadcast(false)
+                                    .build());
+                    assertThat(postMessageResponse.getError(), is(nullValue()));
+                    assertThat(postMessageResponse.isOk(), is(true));
+                }
+            }
+
+            // channels.replies
+            {
+                ChannelsRepliesResponse response = slack.methods().channelsReplies(ChannelsRepliesRequest.builder()
+                        .token(token)
+                        .threadTs(threadTs)
+                        .channel(channel.getId())
+                        .build());
+                assertThat(response.getError(), is(nullValue()));
+                assertThat(response.isOk(), is(true));
+
+                List<Message> messages = response.getMessages();
+                Message firstMessage = messages.get(0);
+                assertThat(firstMessage.getReplyUsersCount(), is(1));
+                assertThat(firstMessage.getReplies().size(), is(5));
+                assertThat(firstMessage.getReplyCount(), is(5));
+                assertThat(firstMessage.getLatestReply(), is(messages.get(5).getTs()));
+            }
+
+            // conversations.replies
+            {
+                ConversationsRepliesResponse response = slack.methods().conversationsReplies(ConversationsRepliesRequest.builder()
+                        .token(token)
+                        .ts(threadTs)
+                        .channel(channel.getId())
+                        .build());
+                assertThat(response.getError(), is(nullValue()));
+                assertThat(response.isOk(), is(true));
+
+                List<Message> messages = response.getMessages();
+                Message firstMessage = messages.get(0);
+                assertThat(firstMessage.getReplyUsersCount(), is(1));
+                assertThat(firstMessage.getReplies().size(), is(5));
+                assertThat(firstMessage.getReplyCount(), is(5));
+                assertThat(firstMessage.getLatestReply(), is(messages.get(5).getTs()));
+            }
+
+        } finally {
+            channelGenerator.archiveChannel(channel);
+        }
+    }
+
 }
