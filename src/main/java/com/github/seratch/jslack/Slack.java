@@ -51,11 +51,15 @@ public class Slack {
         return new Slack(httpClient);
     }
 
+    public SlackHttpClient getHttpClient() {
+        return  this.httpClient;
+    }
+
     /**
      * Send a data to Incoming Webhook endpoint.
      */
     public WebhookResponse send(String url, Payload payload) throws IOException {
-        Response httpResponse = this.httpClient.postJsonPostRequest(url, payload);
+        Response httpResponse = getHttpClient().postJsonPostRequest(url, payload);
         String body = httpResponse.body().string();
         SlackHttpClient.debugLog(httpResponse, body);
 

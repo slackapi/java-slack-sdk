@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 
 /**
  * Real Time Messaging API event handler base class.
+ *
  * @param <E> The type of an events API Payload
  */
 public abstract class RTMEventHandler<E extends Event> {
@@ -44,7 +45,7 @@ public abstract class RTMEventHandler<E extends Event> {
         while (clazz != Object.class) {
             try {
                 Type mySuperclass = clazz.getGenericSuperclass();
-                Type tType = ((ParameterizedType)mySuperclass).getActualTypeArguments()[0];
+                Type tType = ((ParameterizedType) mySuperclass).getActualTypeArguments()[0];
                 cachedClazz = (Class<E>) Class.forName(tType.getTypeName());
                 return cachedClazz;
             } catch (Exception e) {
@@ -56,12 +57,14 @@ public abstract class RTMEventHandler<E extends Event> {
 
     /**
      * Implement your logic in this method.
+     *
      * @param event event data
      */
     public abstract void handle(E event);
 
     /**
      * Used only internally.
+     *
      * @param event event data
      */
     public void acceptUntypedObject(Object event) {
