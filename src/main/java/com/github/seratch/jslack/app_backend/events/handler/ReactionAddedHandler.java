@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.app_backend.events.handler;
 
+import com.github.seratch.jslack.api.model.event.ReactionAddedEvent;
 import com.github.seratch.jslack.app_backend.events.EventHandler;
 import com.github.seratch.jslack.app_backend.events.payload.ReactionAddedPayload;
-import com.github.seratch.jslack.api.model.event.ReactionAddedEvent;
 
 public abstract class ReactionAddedHandler extends EventHandler<ReactionAddedPayload> {
 

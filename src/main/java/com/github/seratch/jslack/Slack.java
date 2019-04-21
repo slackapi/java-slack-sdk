@@ -31,28 +31,39 @@ import java.net.URISyntaxException;
  */
 public class Slack {
 
-    private static final Slack SINGLETON = new Slack(new SlackHttpClient());
+    private static final Slack SINGLETON = new Slack(SlackConfig.DEFAULT, new SlackHttpClient());
 
     private final SlackHttpClient httpClient;
+    private final SlackConfig config;
 
     public Slack() {
-        this.httpClient = new SlackHttpClient();
+        this(SlackConfig.DEFAULT, new SlackHttpClient());
     }
 
-    private Slack(SlackHttpClient httpClient) {
+    private Slack(SlackConfig config, SlackHttpClient httpClient) {
+        this.config = config;
         this.httpClient = httpClient;
+        this.httpClient.setConfig(config);
     }
 
     public static Slack getInstance() {
         return SINGLETON;
     }
 
+    public static Slack getInstance(SlackConfig config) {
+        return new Slack(config, new SlackHttpClient());
+    }
+
+    public static Slack getInstance(SlackConfig config, SlackHttpClient httpClient) {
+        return new Slack(config, httpClient);
+    }
+
     public static Slack getInstance(SlackHttpClient httpClient) {
-        return new Slack(httpClient);
+        return new Slack(SlackConfig.DEFAULT, httpClient);
     }
 
     public SlackHttpClient getHttpClient() {
-        return  this.httpClient;
+        return this.httpClient;
     }
 
     /**
@@ -61,7 +72,7 @@ public class Slack {
     public WebhookResponse send(String url, Payload payload) throws IOException {
         Response httpResponse = getHttpClient().postJsonPostRequest(url, payload);
         String body = httpResponse.body().string();
-        SlackHttpClient.debugLog(httpResponse, body);
+        SlackHttpClient.debugLog(httpResponse, body, SlackConfig.DEFAULT);
 
         return WebhookResponse.builder()
                 .code(httpResponse.code())

@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 
 public class Slack_scim_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
     String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test

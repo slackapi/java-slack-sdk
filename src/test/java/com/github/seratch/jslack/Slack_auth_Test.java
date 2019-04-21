@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class Slack_auth_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Test
     public void authRevoke() throws IOException, SlackApiException {

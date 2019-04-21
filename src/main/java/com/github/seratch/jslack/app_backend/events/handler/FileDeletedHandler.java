@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.app_backend.events.handler;
 
+import com.github.seratch.jslack.api.model.event.FileDeletedEvent;
 import com.github.seratch.jslack.app_backend.events.EventHandler;
 import com.github.seratch.jslack.app_backend.events.payload.FileDeletedPayload;
-import com.github.seratch.jslack.api.model.event.FileDeletedEvent;
 
 public abstract class FileDeletedHandler extends EventHandler<FileDeletedPayload> {
 

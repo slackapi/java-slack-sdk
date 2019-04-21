@@ -14,4 +14,14 @@ public interface SlackApiResponse {
 
     void setError(String error);
 
+    // only when having a permission error
+
+    String getNeeded();
+
+    void setNeeded(String needed);
+
+    String getProvided();
+
+    void setProvided(String provided);
+
 }

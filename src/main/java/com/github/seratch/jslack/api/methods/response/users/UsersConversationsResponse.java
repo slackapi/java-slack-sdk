@@ -13,6 +13,8 @@ public class UsersConversationsResponse implements SlackApiResponse {
     private boolean ok;
     private String warning;
     private String error;
+    private String needed;
+    private String provided;
 
     private List<Conversation> channels;
     private ResponseMetadata responseMetadata;

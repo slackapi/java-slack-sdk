@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.app_backend.events.handler;
 
+import com.github.seratch.jslack.api.model.event.GroupDeletedEvent;
 import com.github.seratch.jslack.app_backend.events.EventHandler;
 import com.github.seratch.jslack.app_backend.events.payload.GroupDeletedPayload;
-import com.github.seratch.jslack.api.model.event.GroupDeletedEvent;
 
 public abstract class GroupDeletedHandler extends EventHandler<GroupDeletedPayload> {
 

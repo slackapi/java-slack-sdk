@@ -596,7 +596,7 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public MpimRepliesResponse mpimReplies(MpimRepliesRequest req) throws IOException, SlackApiException {
-        return doPostFormWithToken(toForm(req), Methods.MPIM_LIST, req.getToken(), MpimRepliesResponse.class);
+        return doPostFormWithToken(toForm(req), Methods.MPIM_REPLIES, req.getToken(), MpimRepliesResponse.class);
     }
 
     @Override
@@ -844,7 +844,7 @@ public class MethodsClientImpl implements MethodsClient {
             String endpoint,
             Class<T> clazz) throws IOException, SlackApiException {
         Response response = runPostForm(form, endpoint);
-        return SlackHttpClient.buildJsonResponse(response, clazz);
+        return slackHttpClient.parseJsonResponse(response, clazz);
     }
 
     @Override
@@ -858,7 +858,7 @@ public class MethodsClientImpl implements MethodsClient {
             String token,
             Class<T> clazz) throws IOException, SlackApiException {
         Response response = runPostFormWithToken(form, endpoint, token);
-        return SlackHttpClient.buildJsonResponse(response, clazz);
+        return slackHttpClient.parseJsonResponse(response, clazz);
     }
 
     @Override
@@ -873,7 +873,7 @@ public class MethodsClientImpl implements MethodsClient {
             Class<T> clazz) throws IOException, SlackApiException {
         form.setType(MultipartBody.FORM);
         Response response = runPostMultipart(form, endpoint, token);
-        return SlackHttpClient.buildJsonResponse(response, clazz);
+        return slackHttpClient.parseJsonResponse(response, clazz);
     }
 
     @Override

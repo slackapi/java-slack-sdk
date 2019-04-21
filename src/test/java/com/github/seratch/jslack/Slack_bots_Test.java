@@ -19,7 +19,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class Slack_bots_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Test
     public void botsInfo() throws IOException, SlackApiException {

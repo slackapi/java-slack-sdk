@@ -21,7 +21,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class Slack_search_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
     String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test

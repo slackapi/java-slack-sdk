@@ -33,7 +33,7 @@ public class SCIMClientImpl implements SCIMClient {
     private <T> T doDeleteRequest(Request.Builder requestBuilder, Class<T> clazz) throws IOException, SlackApiException {
         Response response = slackHttpClient.delete(requestBuilder);
         if (response.isSuccessful()) {
-            return SlackHttpClient.buildJsonResponse(response, clazz);
+            return slackHttpClient.parseJsonResponse(response, clazz);
         } else {
             throw new SlackApiException(response, response.body().string());
         }

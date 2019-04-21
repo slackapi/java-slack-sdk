@@ -12,6 +12,8 @@ public class MigrationExchangeResponse implements SlackApiResponse {
     private boolean ok;
     private String warning;
     private String error;
+    private String needed;
+    private String provided;
 
     /**
      * The workspace/team ID containing the mapped users

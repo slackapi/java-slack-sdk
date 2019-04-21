@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class Slack_oauth_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     // TODO: valid test; currently just checking the API access
     @Test

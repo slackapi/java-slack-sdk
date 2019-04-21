@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Paging {
 
+    private String iid; // search
     private Integer count;
     private Integer total;
     private Integer page;

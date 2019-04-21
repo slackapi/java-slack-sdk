@@ -13,7 +13,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsersSelectElement extends BlockElement {
-    private final String type = "users_select";
+    private static final String TYPE = "users_select";
+    private final String type = TYPE;
+    private String fallback;
+
     private PlainTextObject placeholder;
     private String actionId;
     private String initialUser;

@@ -11,6 +11,8 @@ public class DndTeamInfoResponse implements SlackApiResponse {
     private boolean ok;
     private String warning;
     private String error;
+    private String needed;
+    private String provided;
 
     // user.id -> info
     private Map<String, DndTeamMemberInfo> users;

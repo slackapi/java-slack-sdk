@@ -23,7 +23,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class Slack_api_test_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Test
     public void ok() throws IOException, SlackApiException {
@@ -47,7 +47,7 @@ public class Slack_api_test_Test {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8888));
         OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).build();
         SlackHttpClient slackHttpClient = new SlackHttpClient(okHttpClient);
-        Slack slack = Slack.getInstance(slackHttpClient);
+        Slack slack = Slack.getInstance(SlackTestConfig.get(), slackHttpClient);
 
         ApiTestResponse response = slack.methods().apiTest(ApiTestRequest.builder().foo("proxy?").build());
         assertThat(response.getError(), is(nullValue()));

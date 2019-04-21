@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.app_backend.events.handler;
 
+import com.github.seratch.jslack.api.model.event.MemberJoinedChannelEvent;
 import com.github.seratch.jslack.app_backend.events.EventHandler;
 import com.github.seratch.jslack.app_backend.events.payload.MemberJoinedChannelPayload;
-import com.github.seratch.jslack.api.model.event.MemberJoinedChannelEvent;
 
 public abstract class MemberJoinedChannelHandler extends EventHandler<MemberJoinedChannelPayload> {
 

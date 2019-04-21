@@ -13,7 +13,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DatePickerElement extends BlockElement {
-    private final String type = "datepicker";
+    private static final String TYPE = "datepicker";
+    private final String type = TYPE;
+    private String fallback;
     private String actionId;
     private PlainTextObject placeholder;
     private String initialDate;

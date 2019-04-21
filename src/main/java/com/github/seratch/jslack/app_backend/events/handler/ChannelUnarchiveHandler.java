@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.app_backend.events.handler;
 
+import com.github.seratch.jslack.api.model.event.ChannelUnarchiveEvent;
 import com.github.seratch.jslack.app_backend.events.EventHandler;
 import com.github.seratch.jslack.app_backend.events.payload.ChannelUnarchivePayload;
-import com.github.seratch.jslack.api.model.event.ChannelUnarchiveEvent;
 
 public abstract class ChannelUnarchiveHandler extends EventHandler<ChannelUnarchivePayload> {
 

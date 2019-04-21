@@ -14,6 +14,9 @@ public class Im {
     private boolean im;
     private String user;
     private Integer created;
+    @SerializedName("is_org_shared")
+    private boolean orgShared;
     @SerializedName("is_user_deleted")
     private boolean user_deleted;
+    private Double priority;
 }

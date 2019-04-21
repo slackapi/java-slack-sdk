@@ -40,6 +40,7 @@ public class Action {
         }
     }
 
+    private String id;
     private String name;
     private String text;
     private String style;

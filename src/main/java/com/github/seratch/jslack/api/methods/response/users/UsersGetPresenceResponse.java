@@ -9,6 +9,8 @@ public class UsersGetPresenceResponse implements SlackApiResponse {
     private boolean ok;
     private String warning;
     private String error;
+    private String needed;
+    private String provided;
 
     private String presence;
     private boolean online;

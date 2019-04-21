@@ -5,8 +5,9 @@ import com.github.seratch.jslack.api.methods.request.channels.ChannelsInviteRequ
 import com.github.seratch.jslack.api.methods.response.channels.ChannelsInviteResponse;
 import com.github.seratch.jslack.api.model.Conversation;
 import com.github.seratch.jslack.api.model.User;
-import com.github.seratch.jslack.api.rtm.RTMClient;
-import com.github.seratch.jslack.api.rtm.RTMMessageHandler;
+import com.github.seratch.jslack.api.model.event.HelloEvent;
+import com.github.seratch.jslack.api.model.event.UserTypingEvent;
+import com.github.seratch.jslack.api.rtm.*;
 import com.github.seratch.jslack.api.rtm.message.Message;
 import com.github.seratch.jslack.api.rtm.message.PresenceQuery;
 import com.github.seratch.jslack.api.rtm.message.PresenceSub;
@@ -15,6 +16,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.websocket.DeploymentException;
@@ -32,7 +34,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class Slack_rtm_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
     String channelCreationToken = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
@@ -48,8 +50,79 @@ public class Slack_rtm_Test {
         }
     }
 
+    @Slf4j
+    public static class HelloHandler extends RTMEventHandler<HelloEvent> {
+        public final AtomicInteger counter = new AtomicInteger(0);
+
+        @Override
+        public void handle(HelloEvent event) {
+            counter.incrementAndGet();
+        }
+    }
+
+    public static class SubHelloHandler extends HelloHandler {
+    }
+
+    @Slf4j
+    public static class UserTypingHandler extends RTMEventHandler<UserTypingEvent> {
+        @Override
+        public void handle(UserTypingEvent event) {
+        }
+    }
+
+    @Test
+    public void test() throws Exception {
+
+        String channelName = "test" + System.currentTimeMillis();
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(channelCreationToken);
+        Conversation channel = channelGenerator.createNewPublicChannel(channelName);
+        String channelId = channel.getId();
+
+        // need to invite the bot user to the created channel before starting an RTM session
+        inviteBotUser(channelId);
+        
+        String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
+
+        RTMEventsDispatcher dispatcher = RTMEventsDispatcherFactory.getInstance();
+        HelloHandler hello = new HelloHandler();
+        dispatcher.register(hello);
+
+        SubHelloHandler hello2 = new SubHelloHandler();
+        dispatcher.register(hello2);
+
+        dispatcher.register(new UserTypingHandler());
+
+        Slack slack = Slack.getInstance(SlackTestConfig.get());
+
+        try (RTMClient rtm = slack.rtmConnect(botToken)) {
+            rtm.addMessageHandler(dispatcher.toMessageHandler());
+
+            rtm.connect();
+            Thread.sleep(300L);
+            assertThat(hello.counter.get(), is(1));
+            assertThat(hello2.counter.get(), is(1));
+
+            rtm.reconnect();
+            Thread.sleep(300L);
+            assertThat(hello.counter.get(), is(2));
+            assertThat(hello2.counter.get(), is(2));
+
+            dispatcher.deregister(hello);
+
+            rtm.reconnect();
+            Thread.sleep(300L);
+            assertThat(hello.counter.get(), is(2)); // should not be incremented
+            assertThat(hello2.counter.get(), is(3));
+        }
+    }
+    
     @Test
     public void rtmStart() throws Exception {
+        // TODO: "prefs" support
+        SlackConfig config = new SlackConfig();
+        config.setLibraryMaintainerMode(false);
+        Slack slack = Slack.getInstance(config);
+
         String channelName = "test" + System.currentTimeMillis();
         TestChannelGenerator channelGenerator = new TestChannelGenerator(channelCreationToken);
         Conversation channel = channelGenerator.createNewPublicChannel(channelName);
@@ -76,36 +149,8 @@ public class Slack_rtm_Test {
             channelGenerator.archiveChannel(channel);
         }
     }
-
-    @Test
-    public void rtmConnect() throws Exception {
-        String channelName = "test" + System.currentTimeMillis();
-        TestChannelGenerator channelGenerator = new TestChannelGenerator(channelCreationToken);
-        Conversation channel = channelGenerator.createNewPublicChannel(channelName);
-        String channelId = channel.getId();
-
-        // need to invite the bot user to the created channel before starting an RTM session
-        inviteBotUser(channelId);
-
-        Thread.sleep(3000);
-
-        try {
-            try (RTMClient rtm = slack.rtmConnect(botToken)) {
-                User user = rtm.getConnectedBotUser();
-
-                assertThat(user.getId(), is(notNullValue()));
-                assertThat(user.getTeamId(), is(notNullValue()));
-                assertThat(user.getName(), is(notNullValue()));
-                assertThat(user.getProfile(), is(notNullValue()));
-                assertThat(user.getProfile().getBotId(), is(notNullValue()));
-
-                verifyRTMClientBehavior(channelId, rtm);
-            }
-        } finally {
-            channelGenerator.archiveChannel(channel);
-        }
-    }
-
+    
+    @Ignore
     @Test
     public void rtmConnect_withoutFullConnectedUserInfo() throws Exception {
         try (RTMClient rtm = slack.rtmConnect(botToken, false)) {

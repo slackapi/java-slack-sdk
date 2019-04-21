@@ -15,5 +15,7 @@ public class ApiTestResponse implements SlackApiResponse {
     private Args args;
     private String warning;
     private String error;
+    private String needed;
+    private String provided;
 
 }

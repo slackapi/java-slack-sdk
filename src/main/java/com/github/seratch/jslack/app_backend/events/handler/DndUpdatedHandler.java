@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.app_backend.events.handler;
 
+import com.github.seratch.jslack.api.model.event.DndUpdatedEvent;
 import com.github.seratch.jslack.app_backend.events.EventHandler;
 import com.github.seratch.jslack.app_backend.events.payload.DndUpdatedPayload;
-import com.github.seratch.jslack.api.model.event.DndUpdatedEvent;
 
 public abstract class DndUpdatedHandler extends EventHandler<DndUpdatedPayload> {
 

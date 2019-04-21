@@ -14,6 +14,8 @@ import java.util.List;
 @Builder
 public class Attachment {
 
+    private String msgSubtype; // "bot_message"
+
     /**
      * A plain-text summary of the attachment. This text will be used in clients that don't show formatted text
      * (eg. IRC, mobile notifications) and should not contain any markup.
@@ -39,6 +41,10 @@ public class Attachment {
      */
     private String pretext;
 
+    private String serviceName;
+
+    private String serviceIcon;
+
     // -----------------------------------------
     // The author parameters will display a small section at the top of a message attachment that can contain the following fields:
 
@@ -63,6 +69,9 @@ public class Attachment {
 
     // "from_url": "https://lost-generation-authors.slack.com/archives/general/p1482960137003543",
     private String fromUrl;
+
+    private String originalUrl;
+
     // "author_subname": "confused",
     private String authorSubname;
     // "channel_id": "C061EG9SL",
@@ -70,7 +79,9 @@ public class Attachment {
     // "channel_name": "general",
     private String channelName;
     //"id": 1,
-    private String id;
+    private Integer id;
+
+    private String botId;
 
     // # already exists > "fallback": "[December 28th, 2016 1:22 PM] confused: what was there?",
     // # already exists > "ts": "1482960137.003543",
@@ -85,6 +96,14 @@ public class Attachment {
 
     @SerializedName("is_reply_unfurl")
     private boolean replyUnfurl;
+
+    @SerializedName("is_thread_root_unfurl")
+    private boolean threadRootUnfurl;
+
+    private String appUnfurlUrl;
+
+    @SerializedName("is_app_unfurl")
+    private boolean appUnfurl;
 
     /**
      * The title is displayed as larger, bold text near the top of a message attachment.
@@ -121,6 +140,10 @@ public class Attachment {
      */
     private String imageUrl;
 
+    private Integer imageWidth;
+    private Integer imageHeight;
+    private Integer imageBytes;
+
     /**
      * A valid URL to an image file that will be displayed as a thumbnail on the right side of a message attachment.
      * We currently support the following formats: GIF, JPEG, PNG, and BMP.
@@ -131,6 +154,9 @@ public class Attachment {
      * For best results, please use images that are already 75px by 75px.
      */
     private String thumbUrl;
+
+    private Integer thumbWidth;
+    private Integer thumbHeight;
 
     // Your message attachments may also contain a subtle footer,
     // which is especially useful when citing content in conjunction with author parameters.

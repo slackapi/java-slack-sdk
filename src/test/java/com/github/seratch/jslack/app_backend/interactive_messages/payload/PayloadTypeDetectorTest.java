@@ -73,6 +73,7 @@ public class PayloadTypeDetectorTest {
             "  \"response_url\": \"https://hooks.slack.com/actions/T1ABCD2E12/330361579271/0dAEyLY19ofpLwxqozy3firz\",\n" +
             "  \"trigger_id\": \"328654886736.72393107734.9a0f78bccc3c64093f4b12fe82ccd51e\"\n" +
             "}";
+
     @Test
     public void interactive_message() throws UnsupportedEncodingException {
         String encoded = URLEncoder.encode(attachmentActionPayload, "UTF-8");

@@ -3,7 +3,7 @@ package com.github.seratch.jslack.app_backend.vendor.aws.lambda.request;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class ApiGatewayRequestTest {
 
