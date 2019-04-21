@@ -14,7 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImageBlock implements LayoutBlock {
-    private final String type = "image";
+    public static final String TYPE = "image";
+    private final String type = TYPE;
     private String imageUrl;
     private String altText;
     private PlainTextObject title;

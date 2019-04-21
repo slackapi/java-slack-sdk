@@ -17,7 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ActionsBlock implements LayoutBlock {
-    private final String type = "actions";
+    public static final String TYPE = "actions";
+    private final String type = TYPE;
     @Builder.Default
     private List<BlockElement> elements = new ArrayList<>();
     private String blockId;

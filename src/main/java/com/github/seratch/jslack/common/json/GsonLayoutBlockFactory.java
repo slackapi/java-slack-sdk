@@ -22,15 +22,15 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
 
     private Class<? extends LayoutBlock> getLayoutClassInstance(String className) {
         switch (className) {
-            case "section":
+            case SectionBlock.TYPE:
                 return SectionBlock.class;
-            case "divider":
+            case DividerBlock.TYPE:
                 return DividerBlock.class;
-            case "image":
+            case ImageBlock.TYPE:
                 return ImageBlock.class;
-            case "context":
+            case ContextBlock.TYPE:
                 return ContextBlock.class;
-            case "actions":
+            case ActionsBlock.TYPE:
                 return ActionsBlock.class;
             default:
                 throw new JsonParseException("Unsupported layout block type: " + className);

@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DividerBlock implements LayoutBlock {
-    private final String type = "divider";
+    public static final String TYPE = "divider";
+    private final String type = TYPE;
     private String blockId;
 }

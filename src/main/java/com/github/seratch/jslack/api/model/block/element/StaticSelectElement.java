@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StaticSelectElement extends BlockElement {
-    private static final String TYPE = "static_select";
+    public static final String TYPE = "static_select";
     private final String type = TYPE;
     private String fallback;
 

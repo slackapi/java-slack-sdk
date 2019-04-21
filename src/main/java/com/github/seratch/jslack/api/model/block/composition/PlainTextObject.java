@@ -11,7 +11,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PlainTextObject extends TextObject {
-    private final String type = "plain_text";
+    public static final String TYPE = "plain_text";
+
+    private final String type = TYPE;
     private String text;
 
     /**

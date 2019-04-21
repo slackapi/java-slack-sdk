@@ -32,23 +32,23 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
 
     private Class<? extends BlockElement> getContextBlockElementClassInstance(String className) {
         switch (className) {
-            case "button":
+            case ButtonElement.TYPE:
                 return ButtonElement.class;
-            case "image":
+            case ImageElement.TYPE:
                 return ImageElement.class;
-            case "channels_select":
+            case ChannelsSelectElement.TYPE:
                 return ChannelsSelectElement.class;
-            case "users_select":
+            case UsersSelectElement.TYPE:
                 return UsersSelectElement.class;
-            case "external_select":
+            case ExternalSelectElement.TYPE:
                 return ExternalSelectElement.class;
-            case "conversations_select":
+            case ConversationsSelectElement.TYPE:
                 return ConversationsSelectElement.class;
-            case "static_select":
+            case StaticSelectElement.TYPE:
                 return StaticSelectElement.class;
-            case "overflow":
+            case OverflowMenuElement.TYPE:
                 return OverflowMenuElement.class;
-            case "datepicker":
+            case DatePickerElement.TYPE:
                 return DatePickerElement.class;
             default:
                 throw new JsonParseException("Unknown context block element type: " + className);

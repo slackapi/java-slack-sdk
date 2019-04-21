@@ -34,16 +34,16 @@ public class GsonContextBlockElementFactory implements JsonDeserializer<ContextB
 
     private Class<? extends ContextBlockElement> getContextBlockElementClassInstance(String className) {
         switch (className) {
-            case "image":
+            case ImageElement.TYPE:
                 return ImageElement.class;
 
             // does not defer to GsonTextObjectFactory as not to loose the specific context
             // in which the
             // type needs to be parsed (gives a better error message to the consumer).
 
-            case "plain_text":
+            case PlainTextObject.TYPE:
                 return PlainTextObject.class;
-            case "mrkdwn":
+            case MarkdownTextObject.TYPE:
                 return MarkdownTextObject.class;
             default:
                 throw new JsonParseException("Unknown context block element type: " + className);

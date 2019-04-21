@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImageElement extends BlockElement implements ContextBlockElement {
-    private static final String TYPE = "image";
+    public static final String TYPE = "image";
     private final String type = TYPE;
     private String fallback;
     private String imageUrl;
