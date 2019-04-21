@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.app_backend.events.handler;
 
+import com.github.seratch.jslack.api.model.event.FileChangeEvent;
 import com.github.seratch.jslack.app_backend.events.EventHandler;
 import com.github.seratch.jslack.app_backend.events.payload.FileChangePayload;
-import com.github.seratch.jslack.api.model.event.FileChangeEvent;
 
 public abstract class FileChangeHandler extends EventHandler<FileChangePayload> {
 

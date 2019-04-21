@@ -7,7 +7,6 @@ import lombok.Data;
 import java.util.List;
 
 /**
- *
  * https://api.slack.com/messaging/interactivity/enabling
  */
 @Data

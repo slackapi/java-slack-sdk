@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class CleanupTest {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Ignore
     @Test

@@ -13,7 +13,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ButtonElement extends BlockElement {
-    private final String type = "button";
+    private static final String TYPE = "button";
+    private final String type = TYPE;
+    private String fallback;
     private PlainTextObject text;
     private String actionId;
     private String url;

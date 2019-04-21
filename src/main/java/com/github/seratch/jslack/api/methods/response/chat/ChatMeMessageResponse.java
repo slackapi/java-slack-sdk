@@ -9,6 +9,8 @@ public class ChatMeMessageResponse implements SlackApiResponse {
     private boolean ok;
     private String warning;
     private String error;
+    private String needed;
+    private String provided;
 
     private String channel;
     private String ts;

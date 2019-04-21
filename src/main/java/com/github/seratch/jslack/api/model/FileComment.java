@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.model;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,4 +17,7 @@ public class FileComment {
     private String user;
     private String comment;
     private String channel;
+
+    @SerializedName("is_intro")
+    private boolean intro;
 }

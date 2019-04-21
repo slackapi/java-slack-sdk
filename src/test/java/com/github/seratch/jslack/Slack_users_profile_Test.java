@@ -17,9 +17,9 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class Slack_users_profie_Test {
+public class Slack_users_profile_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Test
     public void usersProfile() throws IOException, SlackApiException {

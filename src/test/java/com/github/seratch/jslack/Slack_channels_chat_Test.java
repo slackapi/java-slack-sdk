@@ -25,7 +25,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class Slack_channels_chat_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Test
     public void channels_threading() throws IOException, SlackApiException {

@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.model.block;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class DividerBlock implements LayoutBlock {
     private final String type = "divider";
+    private String blockId;
 }

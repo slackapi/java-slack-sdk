@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.app_backend.events.handler;
 
+import com.github.seratch.jslack.api.model.event.ImHistoryChangedEvent;
 import com.github.seratch.jslack.app_backend.events.EventHandler;
 import com.github.seratch.jslack.app_backend.events.payload.ImHistoryChangedPayload;
-import com.github.seratch.jslack.api.model.event.ImHistoryChangedEvent;
 
 public abstract class ImHistoryChangedHandler extends EventHandler<ImHistoryChangedPayload> {
 

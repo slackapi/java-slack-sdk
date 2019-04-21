@@ -13,6 +13,8 @@ public class ReactionsListResponse implements SlackApiResponse {
     private boolean ok;
     private String warning;
     private String error;
+    private String needed;
+    private String provided;
 
     private List<MessageItem> items;
     private Paging paging;

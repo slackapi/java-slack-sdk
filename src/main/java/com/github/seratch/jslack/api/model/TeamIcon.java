@@ -6,6 +6,8 @@ import lombok.Data;
 @Data
 public class TeamIcon {
 
+    private String imageOriginal;
+
     @SerializedName("image_34")
     private String image34;
     @SerializedName("image_44")
@@ -18,6 +20,8 @@ public class TeamIcon {
     private String image102;
     @SerializedName("image_132")
     private String image132;
+    @SerializedName("image_230")
+    private String image230;
 
     private boolean imageDefault;
 }

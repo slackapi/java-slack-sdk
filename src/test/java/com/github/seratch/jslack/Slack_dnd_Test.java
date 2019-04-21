@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class Slack_dnd_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Test
     public void dnd() throws IOException, SlackApiException {

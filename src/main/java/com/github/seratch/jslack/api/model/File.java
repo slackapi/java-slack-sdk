@@ -34,8 +34,30 @@ public class File {
 
     @SerializedName("thumb_64")
     private String thumb64;
+    @SerializedName("thumb_64_gif")
+    private String thumb64Gif;
+    @SerializedName("thumb_64_w")
+    private String thumb64Width;
+    @SerializedName("thumb_64_h")
+    private String thumb64Height;
+
     @SerializedName("thumb_80")
     private String thumb80;
+    @SerializedName("thumb_80_gif")
+    private String thumb80Gif;
+    @SerializedName("thumb_80_w")
+    private String thumb80Width;
+    @SerializedName("thumb_80_h")
+    private String thumb80Height;
+
+    @SerializedName("thumb_160")
+    private String thumb160;
+    @SerializedName("thumb_160_gif")
+    private String thumb160Gif;
+    @SerializedName("thumb_160_w")
+    private String thumb160Width;
+    @SerializedName("thumb_160_h")
+    private String thumb160Height;
 
     @SerializedName("thumb_360")
     private String thumb360;
@@ -48,13 +70,48 @@ public class File {
 
     @SerializedName("thumb_480")
     private String thumb480;
+    @SerializedName("thumb_480_gif")
+    private String thumb480Gif;
     @SerializedName("thumb_480_w")
     private String thumb480Width;
     @SerializedName("thumb_480_h")
     private String thumb480Height;
 
-    @SerializedName("thumb_160")
-    private String thumb160;
+    @SerializedName("thumb_720")
+    private String thumb720;
+    @SerializedName("thumb_720_gif")
+    private String thumb720Gif;
+    @SerializedName("thumb_720_w")
+    private String thumb720Width;
+    @SerializedName("thumb_720_h")
+    private String thumb720Height;
+
+    @SerializedName("thumb_800")
+    private String thumb800;
+    @SerializedName("thumb_800_gif")
+    private String thumb800Gif;
+    @SerializedName("thumb_800_w")
+    private String thumb800Width;
+    @SerializedName("thumb_800_h")
+    private String thumb800Height;
+
+    @SerializedName("thumb_960")
+    private String thumb960;
+    @SerializedName("thumb_960_gif")
+    private String thumb960Gif;
+    @SerializedName("thumb_960_w")
+    private String thumb960Width;
+    @SerializedName("thumb_960_h")
+    private String thumb960Height;
+
+    @SerializedName("thumb_1024")
+    private String thumb1024;
+    @SerializedName("thumb_1024_gif")
+    private String thumb1024Gif;
+    @SerializedName("thumb_1024_w")
+    private String thumb1024Width;
+    @SerializedName("thumb_1024_h")
+    private String thumb1024Height;
 
     private Integer imageExifRotation;
 

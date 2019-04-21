@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
 public class TestChannelGenerator {
 
     private final String token;
-    private final Slack slack = Slack.getInstance();
+    private final Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     public TestChannelGenerator(String token) {
         this.token = token;

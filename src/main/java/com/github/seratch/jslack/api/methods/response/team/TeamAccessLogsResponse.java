@@ -13,6 +13,8 @@ public class TeamAccessLogsResponse implements SlackApiResponse {
     private boolean ok;
     private String warning;
     private String error;
+    private String needed;
+    private String provided;
 
     private List<Login> logins;
     private Paging paging;

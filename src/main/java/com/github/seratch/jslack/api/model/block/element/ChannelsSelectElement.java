@@ -13,7 +13,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChannelsSelectElement extends BlockElement {
-    private final String type = "channels_select";
+    private static final String TYPE = "channels_select";
+    private final String type = TYPE;
+    private String fallback;
     private PlainTextObject placeholder;
     private String actionId;
     private String initialChannel;

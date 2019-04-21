@@ -31,7 +31,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class Slack_shortcut_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
     ApiToken token = ApiToken.of(System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN));
 
     @Test

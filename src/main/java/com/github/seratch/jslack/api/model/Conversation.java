@@ -36,10 +36,16 @@ public class Conversation {
     private List<String> members;
     private Latest latest;
     private String locale;
-    @SerializedName("unreadCount")
+    @SerializedName("unread_count")
     private Integer unreadCount;
-    @SerializedName("unreadCountDisplay")
+    @SerializedName("unread_count_display")
     private Integer unreadCountDisplay;
+    private String user; // conversations.open
+    private Double priority;
+
+    private List<String> sharedTeamIds;
+
+    private String parentConversation;
 
     @SerializedName("is_channel")
     private boolean isChannel;
@@ -63,6 +69,8 @@ public class Conversation {
     private boolean isPendingExtShared;
     @SerializedName("is_member")
     private boolean isMember;
+    @SerializedName("is_open")
+    private boolean open;
     @SerializedName("is_private")
     private boolean isPrivate;
     @SerializedName("is_mpim")

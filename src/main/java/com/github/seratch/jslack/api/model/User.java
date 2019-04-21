@@ -39,7 +39,9 @@ public class User {
     @SerializedName("is_app_user")
     private boolean appUser;
     private Long updated;
+    @SerializedName("has_2fa")
     private boolean has2fa;
+    private String presence; // away, etc
     private String twoFactorType;
     private boolean hasFiles;
     private String locale;
@@ -68,6 +70,8 @@ public class User {
         private String apiAppId;
         private boolean alwaysActive;
 
+        private String imageOriginal;
+
         @SerializedName("image_24")
         private String image24;
         @SerializedName("image_32")
@@ -82,7 +86,7 @@ public class User {
         private String image512;
         @SerializedName("image_1024")
         private String image1024;
-        private String imageOriginal;
+
         @SerializedName("is_custom_image")
         private boolean customImage;
 

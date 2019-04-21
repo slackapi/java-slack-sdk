@@ -13,8 +13,12 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class OAuthFlowOperatorTest {
 
@@ -29,6 +33,7 @@ public class OAuthFlowOperatorTest {
         when(httpResponse.code()).thenReturn(200);
         when(httpResponse.body()).thenReturn(httpResponseBody);
         when(httpResponseBody.string()).thenReturn("{\"ok\": true}");
+        when(httpClient.parseJsonResponse(any(Response.class), eq(OAuthAccessResponse.class))).thenReturn(new OAuthAccessResponse());
         when(httpResponse.request()).thenReturn(httpRequest);
         when(httpRequest.body()).thenReturn(httpRequestBody);
 

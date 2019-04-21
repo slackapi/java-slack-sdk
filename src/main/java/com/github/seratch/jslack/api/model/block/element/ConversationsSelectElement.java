@@ -13,7 +13,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConversationsSelectElement extends BlockElement {
-    private final String type = "conversations_select";
+    private static final String TYPE = "conversations_select";
+    private final String type = TYPE;
+    private String fallback;
     private PlainTextObject placeholder;
     private String actionId;
     private String initialConversation;

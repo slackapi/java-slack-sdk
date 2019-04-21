@@ -11,22 +11,44 @@ public class Message {
 
     private String type;
     private String subtype;
+
     private String channel;
+
     private String user;
     private String username;
+
     private String text;
     private List<LayoutBlock> blocks;
     private List<Attachment> attachments;
+
     private String ts;
     private String threadTs;
+
+    @SerializedName("is_intro")
+    private boolean intro;
     @SerializedName("is_starred")
     private boolean starred;
     private boolean wibblr;
     private List<String> pinnedTo;
     private List<Reaction> reactions;
+
     private String botId;
+    private String botLink;
+    private boolean displayAsBot;
+
     private Icons icons;
+
     private File file;
+    private List<File> files;
+    private boolean upload;
+
+    private String parentUserId;
+    private String inviter;
+    private String clientMsgId;
+
+    private MessageItem comment;
+    private String topic; // "subtype":"channel_topic"
+    private String purpose; // "subtype":"channel_topic"
 
     // field exists only if the message was edited
     private Edited edited;
@@ -55,8 +77,13 @@ public class Message {
 
     private boolean subscribed;
 
+    private String lastRead;
+
     // this field exists only when posting the message with "reply_broadcast": true
     private MessageRoot root;
+
+    private String itemType;
+    private MessageItem item;
 
     @Data
     public static class Edited {
@@ -88,7 +115,10 @@ public class Message {
         private Integer replyCount;
         private List<String> replyUsers;
         private Integer replyUsersCount;
+        private String latestReply; // ts
+
         private boolean subscribed;
+        private String lastRead;
         private Integer unreadCount;
         private String ts;
     }
@@ -114,6 +144,59 @@ public class Message {
         private String image48;
         @SerializedName("image_72")
         private String image72;
+    }
+
+    @Data
+    public static class MessageItem {
+        private String id;
+        private String name;
+        private String title;
+        private String created;
+        private String timestamp;
+        private String user;
+        private String username;
+        @SerializedName("is_intro")
+        private boolean intro;
+
+        @SerializedName("is_public")
+        private boolean _public;
+
+        public boolean isPublic() {
+            return _public;
+        }
+
+        public void setPublic(boolean isPublic) {
+            this._public = isPublic;
+        }
+
+        private boolean publicUrlShared;
+        private String urlPrivate;
+        private boolean urlPrivateDownload;
+
+        private String permalink;
+        private boolean permalinkPublic;
+
+        private String editLink;
+        private String preview;
+        private String previewHighlight;
+
+        private Integer lines;
+        private Integer linesMore;
+        @SerializedName("preview_is_truncated")
+        private boolean previewTruncated;
+        private boolean hasRichPreview;
+
+        private String mimetype;
+        private String filetype;
+        private String prettyType; // "Plain Text"
+        @SerializedName("is_external")
+        private boolean external;
+        private String externalType;
+        private boolean editable;
+        private boolean displayAsBot;
+        private Integer size;
+        private String mode;
+        private String comment;
     }
 
 }

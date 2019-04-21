@@ -2,6 +2,7 @@ package com.github.seratch.jslack.api.model;
 
 import lombok.Data;
 
+@Deprecated
 @Data
 public class MessageItem {
 

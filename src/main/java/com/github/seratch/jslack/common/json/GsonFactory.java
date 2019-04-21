@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.common.json;
 
+import com.github.seratch.jslack.SlackConfig;
 import com.github.seratch.jslack.api.model.block.ContextBlockElement;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.composition.TextObject;
@@ -20,5 +21,21 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
                 .create();
+    }
+
+    public static Gson createSnakeCase(SlackConfig config) {
+        GsonBuilder gsonBuilder = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory())
+                .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory())
+                .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
+                .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory());
+        if (config.isLibraryMaintainerMode()) {
+            gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
+        }
+        if (config.isPrettyResponseLoggingEnabled()) {
+            gsonBuilder = gsonBuilder.setPrettyPrinting();
+        }
+        return gsonBuilder.create();
     }
 }

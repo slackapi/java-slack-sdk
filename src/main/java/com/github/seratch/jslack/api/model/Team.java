@@ -17,12 +17,15 @@ public class Team {
     @Data
     public static class Profile {
         private String id;
+        private String fieldName;
         private Integer ordering;
         private String label;
         private String hint;
         private String type;
         private List<String> possibleValues;
         private ProfileOptions options;
+        @SerializedName("is_hidden")
+        private boolean hidden;
     }
 
     @Data

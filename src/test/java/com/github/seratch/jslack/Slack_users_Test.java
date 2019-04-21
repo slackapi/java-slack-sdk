@@ -22,7 +22,7 @@ import static org.junit.Assert.assertTrue;
 @Slf4j
 public class Slack_users_Test {
 
-    Slack slack = Slack.getInstance();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Test
     public void users() throws IOException, SlackApiException {
@@ -61,7 +61,6 @@ public class Slack_users_Test {
         {
             assertThat(usersListResponse.getError(), is(nullValue()));
             assertThat(usersListResponse.isOk(), is(true));
-            assertThat(usersListResponse.getResponseMetadata(), is(notNullValue()));
 
             assertThat(users, is(notNullValue()));
             User user = users.get(0);
