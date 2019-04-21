@@ -17,7 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SectionBlock implements LayoutBlock {
-    private final String type = "section";
+    public static final String TYPE = "section";
+    private final String type = TYPE;
     private TextObject text;
     private String blockId;
     private List<TextObject> fields;

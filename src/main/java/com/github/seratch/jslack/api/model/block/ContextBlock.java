@@ -16,7 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContextBlock implements LayoutBlock {
-    private final String type = "context";
+    public static final String TYPE = "context";
+    private final String type = TYPE;
     @Builder.Default
     private List<ContextBlockElement> elements = new ArrayList<>();
     private String blockId;

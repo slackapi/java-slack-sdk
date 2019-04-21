@@ -13,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ButtonElement extends BlockElement {
-    private static final String TYPE = "button";
+    public static final String TYPE = "button";
     private final String type = TYPE;
     private String fallback;
     private PlainTextObject text;

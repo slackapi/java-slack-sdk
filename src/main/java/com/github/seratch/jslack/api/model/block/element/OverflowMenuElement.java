@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OverflowMenuElement extends BlockElement {
-    private static final String TYPE = "overflow";
+    public static final String TYPE = "overflow";
     private final String type = TYPE;
     private String fallback;
 

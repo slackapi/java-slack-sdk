@@ -14,7 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExternalSelectElement extends BlockElement {
-    private static final String TYPE = "external_select";
+    public static final String TYPE = "external_select";
     private final String type = TYPE;
     private String fallback;
     private PlainTextObject placeholder;

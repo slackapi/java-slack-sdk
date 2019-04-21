@@ -13,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChannelsSelectElement extends BlockElement {
-    private static final String TYPE = "channels_select";
+    public static final String TYPE = "channels_select";
     private final String type = TYPE;
     private String fallback;
     private PlainTextObject placeholder;

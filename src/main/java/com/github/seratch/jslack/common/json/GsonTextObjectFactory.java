@@ -33,9 +33,9 @@ public class GsonTextObjectFactory implements JsonDeserializer<TextObject>, Json
 
     private Class<? extends TextObject> getTextObjectClassInstance(String className) {
         switch (className) {
-            case "plain_text":
+            case PlainTextObject.TYPE:
                 return PlainTextObject.class;
-            case "mrkdwn":
+            case MarkdownTextObject.TYPE:
                 return MarkdownTextObject.class;
             default:
                 throw new JsonParseException("Unknown text object type: " + className);

@@ -11,7 +11,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MarkdownTextObject extends TextObject {
-    private final String type = "mrkdwn";
+    public static final String TYPE = "mrkdwn";
+    private final String type = TYPE;
     private String text;
 
     /**
