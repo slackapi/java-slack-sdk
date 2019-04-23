@@ -17,6 +17,8 @@ import com.github.seratch.jslack.shortcut.model.ChannelName;
 import com.github.seratch.jslack.shortcut.model.ReactionName;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -46,7 +48,7 @@ public class Slack_shortcut_Test {
         assertThat(maybeChannelName.isPresent(), is(true));
         assertThat(maybeChannelName.get(), is(channelName));
 
-        List<Message> messages = shortcut.findRecentMessagesByName(channelName);
+        List<Message> messages = shortcut.findRecentMessagesByName(channelName, 10);
         assertThat(messages, is(notNullValue()));
 
         SearchAllResponse searchResult = shortcut.search("hello");
@@ -65,25 +67,25 @@ public class Slack_shortcut_Test {
         List<Attachment> attachments = Arrays.asList(attachment);
 
         {
-            ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"), "hello, hello!");
+            ChatPostMessageResponse response = shortcut.post(ChannelName.of("random"), "hello, hello!");
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
-            ChatPostMessageResponse response = shortcut.postAsBot(ChannelName.of("general"), "hello, hello!");
+            ChatPostMessageResponse response = shortcut.postAsBot(ChannelName.of("random"), "hello, hello!");
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
-            ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"), "Hi, these are my attachments!", attachments);
+            ChatPostMessageResponse response = shortcut.post(ChannelName.of("random"), "Hi, these are my attachments!", attachments);
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
-            ChatPostMessageResponse response = shortcut.postAsBot(ChannelName.of("general"), "Hi, these are my attachments!", attachments);
+            ChatPostMessageResponse response = shortcut.postAsBot(ChannelName.of("random"), "Hi, these are my attachments!", attachments);
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }

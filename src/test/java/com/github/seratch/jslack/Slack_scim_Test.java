@@ -4,6 +4,8 @@ import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.scim.request.UsersDeleteRequest;
 import com.github.seratch.jslack.api.scim.response.UsersDeleteResponse;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 

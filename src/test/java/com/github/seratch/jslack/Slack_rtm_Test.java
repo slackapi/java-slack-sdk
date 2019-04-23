@@ -18,6 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
+import testing.TestChannelGenerator;
 
 import javax.websocket.DeploymentException;
 import java.io.IOException;
@@ -80,7 +83,7 @@ public class Slack_rtm_Test {
 
         // need to invite the bot user to the created channel before starting an RTM session
         inviteBotUser(channelId);
-        
+
         String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
 
         RTMEventsDispatcher dispatcher = RTMEventsDispatcherFactory.getInstance();
@@ -115,7 +118,7 @@ public class Slack_rtm_Test {
             assertThat(hello2.counter.get(), is(3));
         }
     }
-    
+
     @Test
     public void rtmStart() throws Exception {
         // TODO: "prefs" support
@@ -149,7 +152,7 @@ public class Slack_rtm_Test {
             channelGenerator.archiveChannel(channel);
         }
     }
-    
+
     @Ignore
     @Test
     public void rtmConnect_withoutFullConnectedUserInfo() throws Exception {

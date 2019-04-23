@@ -10,6 +10,8 @@ import com.github.seratch.jslack.api.methods.response.search.SearchMessagesRespo
 import com.github.seratch.jslack.api.model.MatchedItem;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 

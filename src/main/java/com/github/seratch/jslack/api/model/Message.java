@@ -160,6 +160,8 @@ public class Message {
 
         @SerializedName("is_public")
         private boolean _public;
+        @SerializedName("is_starred")
+        private boolean starred;
 
         public boolean isPublic() {
             return _public;

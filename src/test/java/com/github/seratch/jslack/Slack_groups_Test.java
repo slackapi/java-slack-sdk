@@ -8,6 +8,8 @@ import com.github.seratch.jslack.api.methods.response.groups.*;
 import com.github.seratch.jslack.api.model.Group;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 
@@ -50,7 +52,7 @@ public class Slack_groups_Test {
 
         {
             GroupsHistoryResponse response = slack.methods().groupsHistory(
-                    GroupsHistoryRequest.builder().token(token).channel(group.getId()).build());
+                    GroupsHistoryRequest.builder().token(token).channel(group.getId()).count(10).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }

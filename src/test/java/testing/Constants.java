@@ -1,4 +1,4 @@
-package com.github.seratch.jslack;
+package testing;
 
 public class Constants {
     private Constants() {

@@ -41,6 +41,8 @@ public interface Shortcut {
      */
     List<Message> findRecentMessagesByName(ChannelName name) throws IOException, SlackApiException;
 
+    List<Message> findRecentMessagesByName(ChannelName name, int limit) throws IOException, SlackApiException;
+
     /**
      * Adds a reaction to a specified message.
      */

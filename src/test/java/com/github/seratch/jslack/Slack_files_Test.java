@@ -17,6 +17,9 @@ import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommen
 import com.github.seratch.jslack.api.model.Conversation;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
+import testing.TestChannelGenerator;
 
 import java.io.File;
 import java.io.IOException;

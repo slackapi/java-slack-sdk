@@ -10,6 +10,7 @@ import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 import java.util.ArrayList;

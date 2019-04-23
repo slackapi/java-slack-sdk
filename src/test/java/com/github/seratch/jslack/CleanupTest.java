@@ -12,6 +12,8 @@ import com.github.seratch.jslack.api.model.ConversationType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Ignore;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.util.Arrays;
 

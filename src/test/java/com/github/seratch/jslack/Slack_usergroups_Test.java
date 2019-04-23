@@ -8,6 +8,8 @@ import com.github.seratch.jslack.api.methods.response.usergroups.UsergroupsListR
 import com.github.seratch.jslack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.equalTo;

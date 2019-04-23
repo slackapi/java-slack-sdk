@@ -10,6 +10,7 @@ import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageRespon
 import com.github.seratch.jslack.api.model.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
 
 import java.io.IOException;
 

@@ -66,6 +66,8 @@ public class MatchedItem {
     private String prettyType;
     @SerializedName("is_external")
     private boolean external;
+    @SerializedName("is_starred")
+    private boolean starred;
     private String externalType;
     private boolean editable;
     private boolean displayAsBot;

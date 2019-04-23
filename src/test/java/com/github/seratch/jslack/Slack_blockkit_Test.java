@@ -20,6 +20,8 @@ import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.shortcut.model.ChannelId;
 import com.github.seratch.jslack.shortcut.model.ChannelName;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 import java.util.*;

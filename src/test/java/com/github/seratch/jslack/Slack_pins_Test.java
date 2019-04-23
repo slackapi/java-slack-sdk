@@ -12,6 +12,7 @@ import com.github.seratch.jslack.api.methods.response.pins.PinsListResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsRemoveResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
 
 import java.io.File;
 import java.io.IOException;

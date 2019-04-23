@@ -1,4 +1,7 @@
-package com.github.seratch.jslack;
+package testing;
+
+import com.github.seratch.jslack.SlackConfig;
+import testing.json.JsonDataRecordingListener;
 
 public class SlackTestConfig {
 
@@ -10,6 +13,7 @@ public class SlackTestConfig {
     static {
         CONFIG.setLibraryMaintainerMode(true);
         CONFIG.setPrettyResponseLoggingEnabled(true);
+        CONFIG.getHttpClientResponseHandlers().add(new JsonDataRecordingListener());
     }
 
     public static SlackConfig get() {
