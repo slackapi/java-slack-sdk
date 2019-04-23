@@ -11,6 +11,8 @@ import com.github.seratch.jslack.api.model.Channel;
 import com.github.seratch.jslack.api.model.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 
@@ -90,6 +92,7 @@ public class Slack_channels_chat_Test {
             ChannelsHistoryResponse history = slack.methods().channelsHistory(ChannelsHistoryRequest.builder()
                     .token(token)
                     .channel(channelId)
+                    .count(20)
                     .build());
             assertThat(history.isOk(), is(true));
 
@@ -118,6 +121,7 @@ public class Slack_channels_chat_Test {
             ConversationsHistoryResponse history = slack.methods().conversationsHistory(ConversationsHistoryRequest.builder()
                     .token(token)
                     .channel(channelId)
+                    .limit(20)
                     .build());
             assertThat(history.isOk(), is(true));
 

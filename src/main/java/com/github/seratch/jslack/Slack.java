@@ -43,7 +43,7 @@ public class Slack {
     private Slack(SlackConfig config, SlackHttpClient httpClient) {
         this.config = config;
         this.httpClient = httpClient;
-        this.httpClient.setConfig(config);
+        this.httpClient.setConfig(this.config);
     }
 
     public static Slack getInstance() {
@@ -70,9 +70,10 @@ public class Slack {
      * Send a data to Incoming Webhook endpoint.
      */
     public WebhookResponse send(String url, Payload payload) throws IOException {
-        Response httpResponse = getHttpClient().postJsonPostRequest(url, payload);
+        SlackHttpClient httpClient = getHttpClient();
+        Response httpResponse = httpClient.postJsonPostRequest(url, payload);
         String body = httpResponse.body().string();
-        SlackHttpClient.debugLog(httpResponse, body, SlackConfig.DEFAULT);
+        httpClient.runHttpResponseListeners(httpResponse, body);
 
         return WebhookResponse.builder()
                 .code(httpResponse.code())

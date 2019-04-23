@@ -23,4 +23,5 @@ public class Latest {
     private String botId;
     private String threadTs;
     private String ts;
+    private Message.Icons icons;
 }

@@ -8,6 +8,8 @@ import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
 import com.github.seratch.jslack.api.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +49,7 @@ public class Slack_mpim_Test {
         assertThat(markResponse.getError(), is(nullValue()));
         assertThat(markResponse.isOk(), is(true));
 
-        MpimHistoryResponse historyResponse = slack.methods().mpimHistory(MpimHistoryRequest.builder().token(token).channel(channelId).build());
+        MpimHistoryResponse historyResponse = slack.methods().mpimHistory(MpimHistoryRequest.builder().token(token).channel(channelId).count(10).build());
         assertThat(historyResponse.getError(), is(nullValue()));
         assertThat(historyResponse.isOk(), is(true));
 

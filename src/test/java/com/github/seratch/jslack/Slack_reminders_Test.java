@@ -10,6 +10,7 @@ import com.github.seratch.jslack.api.methods.response.reminders.RemindersDeleteR
 import com.github.seratch.jslack.api.methods.response.reminders.RemindersInfoResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;

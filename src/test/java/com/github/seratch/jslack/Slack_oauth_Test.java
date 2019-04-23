@@ -7,6 +7,7 @@ import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthTokenResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 

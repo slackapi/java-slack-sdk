@@ -7,6 +7,8 @@ import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermi
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 

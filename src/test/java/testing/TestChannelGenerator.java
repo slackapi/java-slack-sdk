@@ -1,5 +1,6 @@
-package com.github.seratch.jslack;
+package testing;
 
+import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.conversations.ConversationsArchiveRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCreateRequest;

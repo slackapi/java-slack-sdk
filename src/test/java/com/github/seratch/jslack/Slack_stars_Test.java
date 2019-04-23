@@ -12,6 +12,7 @@ import com.github.seratch.jslack.api.methods.response.stars.StarsListResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsRemoveResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
 
 import java.io.File;
 import java.io.IOException;

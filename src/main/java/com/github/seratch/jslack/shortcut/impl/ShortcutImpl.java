@@ -67,13 +67,18 @@ public class ShortcutImpl implements Shortcut {
 
     @Override
     public List<Message> findRecentMessagesByName(ChannelName name) throws IOException, SlackApiException {
+        return findRecentMessagesByName(name, 1000);
+    }
+
+    @Override
+    public List<Message> findRecentMessagesByName(ChannelName name, int limit) throws IOException, SlackApiException {
         Optional<ChannelId> maybeChannelId = findChannelIdByName(name);
         if (maybeChannelId.isPresent()) {
             ChannelId channelId = maybeChannelId.get();
             ChannelsHistoryResponse response = slack.methods().channelsHistory(ChannelsHistoryRequest.builder()
                     .token(apiToken.get().getValue())
                     .channel(channelId.getValue())
-                    .count(1000)
+                    .count(limit)
                     .build());
             if (response.isOk()) {
                 response.getMessages().forEach(message -> {

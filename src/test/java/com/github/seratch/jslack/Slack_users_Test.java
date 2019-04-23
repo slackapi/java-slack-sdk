@@ -7,6 +7,8 @@ import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import testing.Constants;
+import testing.SlackTestConfig;
 
 import java.io.File;
 import java.io.IOException;

@@ -23,7 +23,7 @@ public class DelayedResponseSender {
     public WebhookResponse send(SlashCommandPayload payload, SlashCommandResponse response) throws IOException {
         Response httpResponse = httpClient.postJsonPostRequest(payload.getResponseUrl(), response);
         String body = httpResponse.body().string();
-        SlackHttpClient.debugLog(httpResponse, body, httpClient.getConfig());
+        httpClient.runHttpResponseListeners(httpResponse, body);
 
         return WebhookResponse.builder()
                 .code(httpResponse.code())

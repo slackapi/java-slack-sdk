@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import org.junit.Ignore;
 import org.junit.Test;
+import testing.SlackTestConfig;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
