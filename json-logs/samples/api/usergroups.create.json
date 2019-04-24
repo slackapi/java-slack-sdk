@@ -1,0 +1,6 @@
+{
+  "ok": false,
+  "error": "missing_scope",
+  "needed": "usergroups:write",
+  "provided": "admin,identify,bot,commands,incoming-webhook,channels:history,groups:history,im:history,mpim:history,channels:read,emoji:read,files:read,groups:read,im:read,mpim:read,reactions:read,reminders:read,search:read,stars:read,team:read,users:read,users:read.email,pins:read,usergroups:read,dnd:read,users.profile:read,channels:write,chat:write:user,chat:write:bot,files:write:user,groups:write,im:write,mpim:write,reactions:write,reminders:write,stars:write,users:write,pins:write,dnd:write,users.profile:write,links:read,links:write"
+}

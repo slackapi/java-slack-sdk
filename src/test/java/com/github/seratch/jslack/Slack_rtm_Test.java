@@ -21,6 +21,7 @@ import org.junit.Test;
 import testing.Constants;
 import testing.SlackTestConfig;
 import testing.TestChannelGenerator;
+import testing.json.JsonDataRecordingListener;
 
 import javax.websocket.DeploymentException;
 import java.io.IOException;
@@ -124,6 +125,7 @@ public class Slack_rtm_Test {
         // TODO: "prefs" support
         SlackConfig config = new SlackConfig();
         config.setLibraryMaintainerMode(false);
+        config.getHttpClientResponseHandlers().add(new JsonDataRecordingListener());
         Slack slack = Slack.getInstance(config);
 
         String channelName = "test" + System.currentTimeMillis();

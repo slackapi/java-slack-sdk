@@ -1,0 +1,7 @@
+{
+  "ok": false,
+  "channels": [],
+  "response_metadata": {
+    "next_cursor": "some string"
+  }
+}

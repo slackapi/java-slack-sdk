@@ -53,9 +53,11 @@ public class MergeJsonBuilder {
                 if (leftVal.isJsonArray() && rightVal.isJsonArray()) {
                     JsonArray leftArr = leftVal.getAsJsonArray();
                     JsonArray rightArr = rightVal.getAsJsonArray();
-                    //concat the arrays -- there cannot be a conflict in an array, it's just a collection of stuff
                     for (int i = 0; i < rightArr.size(); i++) {
-                        leftArr.add(rightArr.get(i));
+                        JsonElement rightArrayElem = rightArr.get(i);
+                        if (!leftArr.contains(rightArrayElem)) {
+                            leftArr.add(rightArrayElem);
+                        }
                     }
                 } else if (leftVal.isJsonObject() && rightVal.isJsonObject()) {
                     //recursive merging

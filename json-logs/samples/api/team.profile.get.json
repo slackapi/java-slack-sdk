@@ -1,0 +1,18 @@
+{
+  "ok": false,
+  "profile": {
+    "fields": [
+      {
+        "id": "some string",
+        "ordering": 12345,
+        "field_name": "some string",
+        "label": "some string",
+        "hint": "some string",
+        "type": "text",
+        "possible_values": null,
+        "options": null,
+        "is_hidden": false
+      }
+    ]
+  }
+}

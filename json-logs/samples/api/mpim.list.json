@@ -1,0 +1,29 @@
+{
+  "ok": false,
+  "groups": [
+    {
+      "id": "G00000000",
+      "name": "some string",
+      "is_group": false,
+      "created": 12345,
+      "creator": "U00000000",
+      "is_archived": false,
+      "name_normalized": "some string",
+      "is_mpim": false,
+      "members": [
+        "U00000000"
+      ],
+      "topic": {
+        "value": "some string",
+        "creator": "U00000000",
+        "last_set": 12345
+      },
+      "purpose": {
+        "value": "some string",
+        "creator": "U00000000",
+        "last_set": 12345
+      },
+      "priority": 12345
+    }
+  ]
+}

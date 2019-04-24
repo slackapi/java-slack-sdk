@@ -1,0 +1,30 @@
+{
+  "messages": [
+    {
+      "user": "U00000000",
+      "type": "message",
+      "subtype": "channel_topic",
+      "ts": "0000000000.000000",
+      "text": "some string",
+      "topic": "some string",
+      "username": "some string",
+      "bot_id": "B00000000",
+      "thread_ts": "0000000000.000000",
+      "reply_count": 12345,
+      "reply_users_count": 12345,
+      "latest_reply": "0000000000.000000",
+      "reply_users": [
+        "B00000000"
+      ],
+      "replies": [
+        {
+          "user": "B00000000",
+          "ts": "0000000000.000000"
+        }
+      ],
+      "subscribed": false
+    }
+  ],
+  "has_more": false,
+  "ok": false
+}

@@ -1,0 +1,8 @@
+{
+  "ok": false,
+  "args": {
+    "foo": "some string",
+    "error": "error"
+  },
+  "error": "error"
+}

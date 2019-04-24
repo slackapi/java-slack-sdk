@@ -1,0 +1,48 @@
+{
+  "ok": false,
+  "query": "some string",
+  "messages": {
+    "total": 12345,
+    "pagination": {
+      "total_count": 12345,
+      "page": 12345,
+      "per_page": 12345,
+      "page_count": 12345,
+      "first": 12345,
+      "last": 12345
+    },
+    "paging": {
+      "count": 12345,
+      "total": 12345,
+      "page": 12345,
+      "pages": 12345
+    },
+    "matches": [
+      {
+        "iid": "some string",
+        "team": "T00000000",
+        "channel": {
+          "id": "C00000000",
+          "is_channel": false,
+          "is_group": false,
+          "is_im": false,
+          "name": "some string",
+          "is_shared": false,
+          "is_org_shared": false,
+          "is_ext_shared": false,
+          "is_private": false,
+          "is_mpim": false,
+          "pending_shared": [],
+          "is_pending_ext_shared": false
+        },
+        "type": "message",
+        "user": "some string",
+        "username": "some string",
+        "ts": "0000000000.000000",
+        "text": "some string",
+        "permalink": "htps://www.example.com/"
+      }
+    ],
+    "refinements": []
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "ok": false,
+  "url": "some string",
+  "team": {
+    "id": "T00000000",
+    "name": "some string",
+    "domain": "some string"
+  },
+  "self": {
+    "id": "U00000000",
+    "name": "some string"
+  }
+}
