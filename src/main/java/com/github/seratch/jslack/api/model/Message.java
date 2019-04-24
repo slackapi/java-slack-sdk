@@ -142,6 +142,8 @@ public class Message {
         private String image36;
         @SerializedName("image_48")
         private String image48;
+        @SerializedName("image_64")
+        private String image64;
         @SerializedName("image_72")
         private String image72;
     }

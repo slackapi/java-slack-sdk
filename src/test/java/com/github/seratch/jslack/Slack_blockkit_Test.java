@@ -41,7 +41,7 @@ public class Slack_blockkit_Test {
 
         // ephemeral message creation
         {
-            Optional<ChannelId> maybeChannelId = slack.shortcut(ApiToken.of(token)).findChannelIdByName(ChannelName.of("general"));
+            Optional<ChannelId> maybeChannelId = slack.shortcut(ApiToken.of(token)).findChannelIdByName(ChannelName.of("random"));
             String channelId = maybeChannelId.get().getValue();
             String userId = slack.methods().channelsInfo(ChannelsInfoRequest.builder()
                     .token(token)
@@ -67,7 +67,7 @@ public class Slack_blockkit_Test {
         ChatPostMessageResponse postResponse;
         {
             ChatPostMessageRequest request = ChatPostMessageRequest.builder()
-                    .channel("general")
+                    .channel("random")
                     .token(token)
                     .text("Example message")
                     .blocks(blocks)

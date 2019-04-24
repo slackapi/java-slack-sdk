@@ -42,7 +42,7 @@ public class Slack_stars_Test {
     public void add() throws IOException, SlackApiException {
         List<String> channels = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build())
                 .getChannels().stream()
-                .filter(c -> c.getName().equals("general"))
+                .filter(c -> c.getName().equals("random"))
                 .map(c -> c.getId()).collect(toList());
 
         File file = new File("src/test/resources/sample.txt");

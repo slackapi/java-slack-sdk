@@ -39,7 +39,7 @@ public class Slack_shortcut_Test {
     @Test
     public void chatOps() throws IOException, SlackApiException {
         Shortcut shortcut = slack.shortcut(token);
-        ChannelName channelName = ChannelName.of("general");
+        ChannelName channelName = ChannelName.of("random");
 
         Optional<ChannelId> channelId = shortcut.findChannelIdByName(channelName);
         assertThat(channelId.isPresent(), is(true));
@@ -111,7 +111,7 @@ public class Slack_shortcut_Test {
 
             DividerBlock divider = new DividerBlock();
 
-            ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"), Arrays.asList(section, divider));
+            ChatPostMessageResponse response = shortcut.post(ChannelName.of("random"), Arrays.asList(section, divider));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }

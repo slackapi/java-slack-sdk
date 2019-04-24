@@ -9,6 +9,8 @@ import com.github.seratch.jslack.api.methods.response.chat.*;
 import com.github.seratch.jslack.api.methods.response.conversations.ConversationsHistoryResponse;
 import com.github.seratch.jslack.api.model.Channel;
 import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.shortcut.model.ApiToken;
+import com.github.seratch.jslack.shortcut.model.ChannelName;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import testing.Constants;
@@ -32,16 +34,7 @@ public class Slack_channels_chat_Test {
     @Test
     public void channels_threading() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        ChannelsListResponse channels = slack.methods().channelsList(ChannelsListRequest.builder()
-                .token(token)
-                .limit(2)
-                .excludeArchived(true)
-                .build());
-        assertThat(channels.getError(), is(nullValue()));
-        assertThat(channels.isOk(), is(true));
-        assertThat(channels.getResponseMetadata(), is(notNullValue()));
-
-        String channelId = channels.getChannels().get(0).getId();
+        String channelId = slack.shortcut(ApiToken.of(token)).findChannelIdByName(ChannelName.of("random")).get().getValue();
 
         ChatPostMessageResponse firstMessageCreation = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
                 .channel(channelId)

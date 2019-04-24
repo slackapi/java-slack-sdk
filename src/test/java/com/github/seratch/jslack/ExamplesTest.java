@@ -25,19 +25,19 @@ public class ExamplesTest {
     String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test
-    public void postAMessageToGeneralChannel() throws IOException, SlackApiException, InterruptedException {
+    public void postAMessageToRandomChannel() throws IOException, SlackApiException, InterruptedException {
 
         // find all channels in the team
         ChannelsListResponse channelsResponse = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build());
         assertThat(channelsResponse.isOk(), is(true));
-        // find #general
-        Channel general = channelsResponse.getChannels().stream()
-                .filter(c -> c.getName().equals("general")).findFirst().get();
+        // find #random
+        Channel random = channelsResponse.getChannels().stream()
+                .filter(c -> c.getName().equals("random")).findFirst().get();
 
         // https://slack.com/api/chat.postMessage
         ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
                 .token(token)
-                .channel(general.getId())
+                .channel(random.getId())
                 .text("Hello World!")
                 .build());
         assertThat(postResponse.getError(), is(nullValue()));
@@ -50,7 +50,7 @@ public class ExamplesTest {
 
         ChatDeleteResponse deleteResponse = slack.methods().chatDelete(ChatDeleteRequest.builder()
                 .token(token)
-                .channel(general.getId())
+                .channel(random.getId())
                 .ts(messageTimestamp)
                 .build());
         assertThat(deleteResponse.getError(), is(nullValue()));

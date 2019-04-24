@@ -51,7 +51,7 @@ public class Slack_files_Test {
     public void createTextFileAndComments() throws IOException, SlackApiException {
         List<String> channels = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build())
                 .getChannels().stream()
-                .filter(c -> c.getName().equals("general"))
+                .filter(c -> c.getName().equals("random"))
                 .map(c -> c.getId()).collect(toList());
         String channelId = channels.get(0);
 
@@ -110,7 +110,7 @@ public class Slack_files_Test {
           "reply_users_count": 0,
           "reply_count": 0,
           "ts": "1554107549.000600",
-          "channel_name": "general",
+          "channel_name": "random",
           "team_id": "T03E9____"
         }
       ]
@@ -261,7 +261,7 @@ public class Slack_files_Test {
     public void createLongTextFile() throws IOException, SlackApiException {
         List<String> channels = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build())
                 .getChannels().stream()
-                .filter(c -> c.getName().equals("general"))
+                .filter(c -> c.getName().equals("random"))
                 .map(c -> c.getId()).collect(toList());
         String channelId = channels.get(0);
 
@@ -356,7 +356,7 @@ public class Slack_files_Test {
     public void createImageFileAndComments() throws IOException, SlackApiException {
         List<String> channels = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build())
                 .getChannels().stream()
-                .filter(c -> c.getName().equals("general"))
+                .filter(c -> c.getName().equals("random"))
                 .map(c -> c.getId()).collect(toList());
         String channelId = channels.get(0);
 
@@ -418,7 +418,7 @@ public class Slack_files_Test {
           "reply_users_count": 0,
           "reply_count": 0,
           "ts": "1554108291.001800",
-          "channel_name": "general",
+          "channel_name": "random",
           "team_id": "T03E9____"
         }
       ]
