@@ -44,7 +44,7 @@
         },
         "accessory": {
           "fallback": "some string",
-          "image_url": "htps://www.example.com/",
+          "image_url": "https://www.example.com/",
           "image_width": 12345,
           "image_height": 12345,
           "image_bytes": 12345,

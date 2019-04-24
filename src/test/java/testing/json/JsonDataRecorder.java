@@ -156,7 +156,7 @@ public class JsonDataRecorder {
         }
         // bmV4dF90czoxNTU2MDYwMTAzMDAwNDAw
         if (value.startsWith("http://") || value.startsWith("https://")) {
-            return "htps://www.example.com/";
+            return "https://www.example.com/";
         }
         if (value.matches("^[A-Z][A-Z0-9]{8}$")) {
             return value.substring(0, 1) + "00000000"; // identifier

@@ -396,19 +396,19 @@
       "invites_limit": false
     },
     "icon": {
-      "image_34": "htps://www.example.com/",
-      "image_44": "htps://www.example.com/",
-      "image_68": "htps://www.example.com/",
-      "image_88": "htps://www.example.com/",
-      "image_102": "htps://www.example.com/",
-      "image_132": "htps://www.example.com/",
-      "image_230": "htps://www.example.com/",
-      "image_original": "htps://www.example.com/"
+      "image_34": "https://www.example.com/",
+      "image_44": "https://www.example.com/",
+      "image_68": "https://www.example.com/",
+      "image_88": "https://www.example.com/",
+      "image_102": "https://www.example.com/",
+      "image_132": "https://www.example.com/",
+      "image_230": "https://www.example.com/",
+      "image_original": "https://www.example.com/"
     },
     "over_storage_limit": false,
     "messages_count": 12345,
     "plan": "some string",
-    "avatar_base_url": "htps://www.example.com/"
+    "avatar_base_url": "https://www.example.com/"
   },
   "latest_event_ts": "0000000000.000000",
   "channels": [
@@ -506,17 +506,17 @@
         "status_emoji": "some string",
         "status_expiration": 12345,
         "avatar_hash": "some string",
-        "image_original": "htps://www.example.com/",
+        "image_original": "https://www.example.com/",
         "email": "some string",
         "first_name": "some string",
         "last_name": "some string",
-        "image_24": "htps://www.example.com/",
-        "image_32": "htps://www.example.com/",
-        "image_48": "htps://www.example.com/",
-        "image_72": "htps://www.example.com/",
-        "image_192": "htps://www.example.com/",
-        "image_512": "htps://www.example.com/",
-        "image_1024": "htps://www.example.com/",
+        "image_24": "https://www.example.com/",
+        "image_32": "https://www.example.com/",
+        "image_48": "https://www.example.com/",
+        "image_72": "https://www.example.com/",
+        "image_192": "https://www.example.com/",
+        "image_512": "https://www.example.com/",
+        "image_1024": "https://www.example.com/",
         "status_text_canonical": "some string",
         "team": "T00000000",
         "is_custom_image": false,
@@ -545,9 +545,9 @@
       "updated": 12345,
       "app_id": "A00000000",
       "icons": {
-        "image_36": "htps://www.example.com/",
-        "image_48": "htps://www.example.com/",
-        "image_72": "htps://www.example.com/"
+        "image_36": "https://www.example.com/",
+        "image_48": "https://www.example.com/",
+        "image_72": "https://www.example.com/"
       }
     }
   ],

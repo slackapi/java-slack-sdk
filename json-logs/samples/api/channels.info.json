@@ -24,25 +24,26 @@
       "text": "some string",
       "username": "some string",
       "icons": {
-        "image_48": "htps://www.example.com/"
+        "image_48": "https://www.example.com/"
       },
       "bot_id": "B00000000",
       "attachments": [
         {
           "service_name": "some string",
           "title": "some string",
-          "title_link": "htps://www.example.com/",
+          "title_link": "https://www.example.com/",
           "text": "some string",
           "fallback": "some string",
-          "image_url": "htps://www.example.com/",
+          "image_url": "https://www.example.com/",
           "image_width": 12345,
           "image_height": 12345,
           "ts": 12345,
-          "from_url": "htps://www.example.com/",
+          "from_url": "https://www.example.com/",
           "image_bytes": 12345,
-          "service_icon": "htps://www.example.com/",
+          "service_icon": "https://www.example.com/",
           "id": 12345,
-          "original_url": "htps://www.example.com/"
+          "original_url": "https://www.example.com/",
+          "footer": "some string"
         }
       ],
       "files": [
@@ -65,11 +66,11 @@
           "public_url_shared": false,
           "display_as_bot": false,
           "username": "some string",
-          "url_private": "htps://www.example.com/",
-          "url_private_download": "htps://www.example.com/",
-          "permalink": "htps://www.example.com/",
-          "permalink_public": "htps://www.example.com/",
-          "edit_link": "htps://www.example.com/",
+          "url_private": "https://www.example.com/",
+          "url_private_download": "https://www.example.com/",
+          "permalink": "https://www.example.com/",
+          "permalink_public": "https://www.example.com/",
+          "edit_link": "https://www.example.com/",
           "preview": "some string",
           "preview_highlight": "some string",
           "lines": 12345,

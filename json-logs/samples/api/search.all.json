@@ -40,7 +40,7 @@
         "username": "some string",
         "ts": "0000000000.000000",
         "text": "some string",
-        "permalink": "htps://www.example.com/",
+        "permalink": "https://www.example.com/",
         "attachments": [
           {
             "author_name": "some string",
@@ -49,7 +49,7 @@
             "title": "some string",
             "footer": "some string",
             "id": 12345,
-            "title_link": "htps://www.example.com/",
+            "title_link": "https://www.example.com/",
             "color": "some string",
             "fields": [
               {
@@ -70,7 +70,7 @@
           "ts": "0000000000.000000",
           "text": "some string",
           "iid": "some string",
-          "permalink": "htps://www.example.com/",
+          "permalink": "https://www.example.com/",
           "attachments": [
             {
               "author_name": "some string",
@@ -79,7 +79,7 @@
               "title": "some string",
               "footer": "some string",
               "id": 12345,
-              "title_link": "htps://www.example.com/",
+              "title_link": "https://www.example.com/",
               "color": "some string",
               "fields": [
                 {
@@ -103,7 +103,7 @@
           "ts": "0000000000.000000",
           "text": "some string",
           "iid": "some string",
-          "permalink": "htps://www.example.com/",
+          "permalink": "https://www.example.com/",
           "blocks": [],
           "attachments": [
             {
@@ -113,7 +113,7 @@
               "title": "some string",
               "footer": "some string",
               "id": 12345,
-              "title_link": "htps://www.example.com/",
+              "title_link": "https://www.example.com/",
               "color": "some string",
               "fields": [
                 {
@@ -174,23 +174,33 @@
         "public_url_shared": false,
         "display_as_bot": false,
         "username": "some string",
-        "url_private": "htps://www.example.com/",
-        "url_private_download": "htps://www.example.com/",
-        "thumb_64": "htps://www.example.com/",
-        "thumb_80": "htps://www.example.com/",
-        "thumb_360": "htps://www.example.com/",
+        "url_private": "https://www.example.com/",
+        "url_private_download": "https://www.example.com/",
+        "thumb_64": "https://www.example.com/",
+        "thumb_80": "https://www.example.com/",
+        "thumb_360": "https://www.example.com/",
         "thumb_360_w": 12345,
         "thumb_360_h": 12345,
-        "thumb_160": "htps://www.example.com/",
+        "thumb_160": "https://www.example.com/",
         "image_exif_rotation": 12345,
         "original_w": 12345,
         "original_h": 12345,
-        "permalink": "htps://www.example.com/",
-        "permalink_public": "htps://www.example.com/",
+        "permalink": "https://www.example.com/",
+        "permalink_public": "https://www.example.com/",
         "is_starred": false,
         "shares": {
           "public": {
             "C03E94MKS": [
+              {
+                "reply_users": [],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "some string",
+                "team_id": "T00000000"
+              }
+            ],
+            "C03E94MKU": [
               {
                 "reply_users": [],
                 "reply_users_count": 12345,
@@ -223,24 +233,24 @@
         "preview": null,
         "score": "0000000000.000000",
         "top_file": false,
-        "thumb_480": "htps://www.example.com/",
+        "thumb_480": "https://www.example.com/",
         "thumb_480_w": 12345,
         "thumb_480_h": 12345,
-        "thumb_720": "htps://www.example.com/",
+        "thumb_720": "https://www.example.com/",
         "thumb_720_w": 12345,
         "thumb_720_h": 12345,
-        "thumb_800": "htps://www.example.com/",
+        "thumb_800": "https://www.example.com/",
         "thumb_800_w": 12345,
         "thumb_800_h": 12345,
-        "thumb_960": "htps://www.example.com/",
+        "thumb_960": "https://www.example.com/",
         "thumb_960_w": 12345,
         "thumb_960_h": 12345,
-        "thumb_1024": "htps://www.example.com/",
+        "thumb_1024": "https://www.example.com/",
         "thumb_1024_w": 12345,
         "thumb_1024_h": 12345,
         "external_id": "some string",
-        "external_url": "htps://www.example.com/",
-        "edit_link": "htps://www.example.com/",
+        "external_url": "https://www.example.com/",
+        "edit_link": "https://www.example.com/",
         "preview_highlight": "some string",
         "lines": 12345,
         "lines_more": 12345,

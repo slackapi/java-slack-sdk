@@ -13,7 +13,7 @@
       "rss_feed": false,
       "rss_feed_change_type": "some string",
       "rss_feed_title": "some string",
-      "rss_feed_url": "htps://www.example.com/",
+      "rss_feed_url": "https://www.example.com/",
       "service_id": "12345",
       "service_type": "some string",
       "channel": "C00000000"

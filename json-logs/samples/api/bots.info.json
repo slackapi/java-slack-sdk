@@ -8,9 +8,9 @@
     "app_id": "A00000000",
     "user_id": "U00000000",
     "icons": {
-      "image_36": "htps://www.example.com/",
-      "image_48": "htps://www.example.com/",
-      "image_72": "htps://www.example.com/"
+      "image_36": "https://www.example.com/",
+      "image_48": "https://www.example.com/",
+      "image_72": "https://www.example.com/"
     }
   },
   "error": "invalid_auth"

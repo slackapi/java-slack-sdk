@@ -40,7 +40,7 @@
         "username": "some string",
         "ts": "0000000000.000000",
         "text": "some string",
-        "permalink": "htps://www.example.com/"
+        "permalink": "https://www.example.com/"
       }
     ],
     "refinements": []

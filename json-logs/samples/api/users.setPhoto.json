@@ -1,14 +1,14 @@
 {
   "ok": false,
   "profile": {
-    "image_24": "htps://www.example.com/",
-    "image_32": "htps://www.example.com/",
-    "image_48": "htps://www.example.com/",
-    "image_72": "htps://www.example.com/",
-    "image_192": "htps://www.example.com/",
-    "image_512": "htps://www.example.com/",
-    "image_1024": "htps://www.example.com/",
-    "image_original": "htps://www.example.com/",
+    "image_24": "https://www.example.com/",
+    "image_32": "https://www.example.com/",
+    "image_48": "https://www.example.com/",
+    "image_72": "https://www.example.com/",
+    "image_192": "https://www.example.com/",
+    "image_512": "https://www.example.com/",
+    "image_1024": "https://www.example.com/",
+    "image_original": "https://www.example.com/",
     "avatar_hash": "some string"
   }
 }
