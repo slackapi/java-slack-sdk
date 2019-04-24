@@ -1,0 +1,64 @@
+{
+  "ok": false,
+  "file": {
+    "id": "F00000000",
+    "created": 12345,
+    "timestamp": 12345,
+    "name": "some string",
+    "title": "some string",
+    "mimetype": "some string",
+    "filetype": "some string",
+    "pretty_type": "some string",
+    "user": "U00000000",
+    "editable": false,
+    "size": 12345,
+    "mode": "some string",
+    "is_external": false,
+    "external_type": "some string",
+    "is_public": false,
+    "public_url_shared": false,
+    "display_as_bot": false,
+    "username": "some string",
+    "url_private": "htps://www.example.com/",
+    "url_private_download": "htps://www.example.com/",
+    "permalink": "htps://www.example.com/",
+    "permalink_public": "htps://www.example.com/",
+    "edit_link": "htps://www.example.com/",
+    "preview": "some string",
+    "preview_highlight": "some string",
+    "lines": 12345,
+    "lines_more": 12345,
+    "preview_is_truncated": false,
+    "comments_count": 12345,
+    "is_starred": false,
+    "shares": {
+      "public": {
+        "C03E94MKS": [
+          {
+            "reply_users": [],
+            "reply_users_count": 12345,
+            "reply_count": 12345,
+            "ts": "0000000000.000000",
+            "channel_name": "some string",
+            "team_id": "T00000000"
+          }
+        ]
+      }
+    },
+    "channels": [
+      "C00000000"
+    ],
+    "groups": [],
+    "ims": [],
+    "has_rich_preview": false,
+    "thumb_64": "htps://www.example.com/",
+    "thumb_80": "htps://www.example.com/",
+    "thumb_360": "htps://www.example.com/",
+    "thumb_360_w": 12345,
+    "thumb_360_h": 12345,
+    "thumb_160": "htps://www.example.com/",
+    "image_exif_rotation": 12345,
+    "original_w": 12345,
+    "original_h": 12345
+  }
+}

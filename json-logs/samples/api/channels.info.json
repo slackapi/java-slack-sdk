@@ -1,0 +1,105 @@
+{
+  "ok": false,
+  "channel": {
+    "id": "C00000000",
+    "name": "some string",
+    "is_channel": false,
+    "created": 12345,
+    "is_archived": false,
+    "is_general": false,
+    "unlinked": 12345,
+    "creator": "U00000000",
+    "name_normalized": "some string",
+    "is_shared": false,
+    "is_org_shared": false,
+    "is_member": false,
+    "is_private": false,
+    "is_mpim": false,
+    "last_read": "0000000000.000000",
+    "latest": {
+      "user": "U00000000",
+      "type": "message",
+      "subtype": "channel_join",
+      "ts": "0000000000.000000",
+      "text": "some string",
+      "username": "some string",
+      "icons": {
+        "image_48": "htps://www.example.com/"
+      },
+      "bot_id": "B00000000",
+      "attachments": [
+        {
+          "service_name": "some string",
+          "title": "some string",
+          "title_link": "htps://www.example.com/",
+          "text": "some string",
+          "fallback": "some string",
+          "image_url": "htps://www.example.com/",
+          "image_width": 12345,
+          "image_height": 12345,
+          "ts": 12345,
+          "from_url": "htps://www.example.com/",
+          "image_bytes": 12345,
+          "service_icon": "htps://www.example.com/",
+          "id": 12345,
+          "original_url": "htps://www.example.com/"
+        }
+      ],
+      "files": [
+        {
+          "id": "F00000000",
+          "created": 12345,
+          "timestamp": 12345,
+          "name": "some string",
+          "title": "some string",
+          "mimetype": "some string",
+          "filetype": "some string",
+          "pretty_type": "some string",
+          "user": "U00000000",
+          "editable": false,
+          "size": 12345,
+          "mode": "some string",
+          "is_external": false,
+          "external_type": "some string",
+          "is_public": false,
+          "public_url_shared": false,
+          "display_as_bot": false,
+          "username": "some string",
+          "url_private": "htps://www.example.com/",
+          "url_private_download": "htps://www.example.com/",
+          "permalink": "htps://www.example.com/",
+          "permalink_public": "htps://www.example.com/",
+          "edit_link": "htps://www.example.com/",
+          "preview": "some string",
+          "preview_highlight": "some string",
+          "lines": 12345,
+          "lines_more": 12345,
+          "preview_is_truncated": false,
+          "is_starred": false,
+          "has_rich_preview": false
+        }
+      ],
+      "upload": false,
+      "display_as_bot": false
+    },
+    "unread_count": 12345,
+    "unread_count_display": 12345,
+    "members": [
+      "U00000000"
+    ],
+    "topic": {
+      "value": "some string",
+      "creator": "some string",
+      "last_set": 12345
+    },
+    "purpose": {
+      "value": "some string",
+      "creator": "some string",
+      "last_set": 12345
+    },
+    "previous_names": [
+      "some string"
+    ],
+    "is_read_only": false
+  }
+}

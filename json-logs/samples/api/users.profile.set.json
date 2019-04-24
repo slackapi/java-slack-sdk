@@ -1,0 +1,35 @@
+{
+  "profile": {
+    "title": "some string",
+    "phone": "some string",
+    "skype": "some string",
+    "real_name": "some string",
+    "real_name_normalized": "some string",
+    "display_name": "some string",
+    "display_name_normalized": "some string",
+    "fields": {
+      "Xf0DAGNXHT": {
+        "value": "some string",
+        "alt": "some string"
+      }
+    },
+    "status_text": "some string",
+    "status_emoji": "some string",
+    "status_expiration": 12345,
+    "avatar_hash": "some string",
+    "image_original": "htps://www.example.com/",
+    "email": "some string",
+    "first_name": "some string",
+    "last_name": "some string",
+    "image_24": "htps://www.example.com/",
+    "image_32": "htps://www.example.com/",
+    "image_48": "htps://www.example.com/",
+    "image_72": "htps://www.example.com/",
+    "image_192": "htps://www.example.com/",
+    "image_512": "htps://www.example.com/",
+    "image_1024": "htps://www.example.com/",
+    "status_text_canonical": "some string"
+  },
+  "ok": false,
+  "username": "some string"
+}

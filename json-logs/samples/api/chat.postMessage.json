@@ -1,0 +1,89 @@
+{
+  "ok": false,
+  "channel": "C00000000",
+  "ts": "0000000000.000000",
+  "message": {
+    "type": "message",
+    "subtype": "bot_message",
+    "text": "some string",
+    "ts": "0000000000.000000",
+    "username": "some string",
+    "bot_id": "B00000000",
+    "thread_ts": "0000000000.000000",
+    "root": {
+      "type": "message",
+      "subtype": "bot_message",
+      "text": "some string",
+      "ts": "0000000000.000000",
+      "username": "some string",
+      "bot_id": "B00000000",
+      "thread_ts": "0000000000.000000",
+      "reply_count": 12345,
+      "reply_users_count": 12345,
+      "latest_reply": "0000000000.000000",
+      "reply_users": [
+        "B00000000"
+      ],
+      "replies": [
+        {
+          "user": "B00000000",
+          "ts": "0000000000.000000"
+        }
+      ],
+      "subscribed": false,
+      "last_read": "0000000000.000000"
+    },
+    "blocks": [
+      {
+        "type": "section",
+        "block_id": "some string",
+        "text": {
+          "type": "mrkdwn",
+          "text": "some string",
+          "verbatim": false
+        },
+        "accessory": {
+          "fallback": "some string",
+          "image_url": "htps://www.example.com/",
+          "image_width": 12345,
+          "image_height": 12345,
+          "image_bytes": 12345,
+          "type": "image",
+          "alt_text": "some string"
+        },
+        "elements": [
+          {
+            "type": "button",
+            "action_id": "some string",
+            "text": {
+              "type": "plain_text",
+              "text": "some string",
+              "emoji": false
+            },
+            "value": "some string"
+          },
+          {
+            "type": "plain_text",
+            "text": "some string",
+            "emoji": false
+          },
+          {
+            "type": "mrkdwn",
+            "text": "some string",
+            "verbatim": false
+          }
+        ]
+      }
+    ],
+    "attachments": [
+      {
+        "text": "some string",
+        "id": 12345,
+        "fallback": "some string",
+        "footer": "some string"
+      }
+    ],
+    "user": "U00000000"
+  },
+  "error": "invalid_auth"
+}

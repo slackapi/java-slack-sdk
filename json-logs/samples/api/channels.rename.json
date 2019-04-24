@@ -1,0 +1,33 @@
+{
+  "channel": {
+    "id": "C00000000",
+    "name": "some string",
+    "is_channel": false,
+    "created": 12345,
+    "is_archived": false,
+    "is_general": false,
+    "unlinked": 12345,
+    "creator": "U00000000",
+    "name_normalized": "some string",
+    "is_shared": false,
+    "is_org_shared": false,
+    "is_member": false,
+    "is_private": false,
+    "is_mpim": false,
+    "members": [],
+    "topic": {
+      "value": "some string",
+      "creator": "U00000000",
+      "last_set": 12345
+    },
+    "purpose": {
+      "value": "some string",
+      "creator": "U00000000",
+      "last_set": 12345
+    },
+    "previous_names": [
+      "some string"
+    ]
+  },
+  "ok": false
+}

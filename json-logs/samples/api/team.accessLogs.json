@@ -1,0 +1,23 @@
+{
+  "ok": false,
+  "logins": [
+    {
+      "user_id": "U00000000",
+      "username": "some string",
+      "date_first": 12345,
+      "date_last": 12345,
+      "count": 12345,
+      "ip": "some string",
+      "user_agent": "some string",
+      "isp": "some string",
+      "country": "some string",
+      "region": "12345"
+    }
+  ],
+  "paging": {
+    "count": 12345,
+    "total": 12345,
+    "page": 12345,
+    "pages": 12345
+  }
+}

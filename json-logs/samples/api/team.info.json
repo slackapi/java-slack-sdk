@@ -1,0 +1,19 @@
+{
+  "ok": false,
+  "team": {
+    "id": "T00000000",
+    "name": "some string",
+    "domain": "some string",
+    "email_domain": "some string",
+    "icon": {
+      "image_34": "htps://www.example.com/",
+      "image_44": "htps://www.example.com/",
+      "image_68": "htps://www.example.com/",
+      "image_88": "htps://www.example.com/",
+      "image_102": "htps://www.example.com/",
+      "image_132": "htps://www.example.com/",
+      "image_230": "htps://www.example.com/",
+      "image_original": "htps://www.example.com/"
+    }
+  }
+}

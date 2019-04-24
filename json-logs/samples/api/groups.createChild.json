@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "group": {
+    "id": "G00000000",
+    "name": "some string",
+    "is_group": false,
+    "created": 12345,
+    "creator": "U00000000",
+    "is_archived": false,
+    "name_normalized": "some string",
+    "is_mpim": false,
+    "parent_group": "G00000000",
+    "is_open": false,
+    "last_read": "0000000000.000000",
+    "latest": {
+      "user": "U00000000",
+      "type": "message",
+      "subtype": "group_join",
+      "ts": "0000000000.000000",
+      "text": "some string"
+    },
+    "unread_count": 12345,
+    "unread_count_display": 12345,
+    "members": [
+      "U00000000"
+    ],
+    "topic": {
+      "value": "some string",
+      "creator": "some string",
+      "last_set": 12345
+    },
+    "purpose": {
+      "value": "some string",
+      "creator": "some string",
+      "last_set": 12345
+    }
+  }
+}

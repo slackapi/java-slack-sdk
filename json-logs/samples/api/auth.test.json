@@ -1,0 +1,8 @@
+{
+  "ok": false,
+  "url": "htps://www.example.com/",
+  "team": "some string",
+  "user": "some string",
+  "team_id": "T00000000",
+  "user_id": "U00000000"
+}
