@@ -40,7 +40,25 @@
         "username": "some string",
         "ts": "0000000000.000000",
         "text": "some string",
-        "permalink": "https://www.example.com/"
+        "permalink": "https://www.example.com/",
+        "attachments": [
+          {
+            "fallback": "some string",
+            "ts": 12345,
+            "author_name": "some string",
+            "author_link": "https://www.example.com/",
+            "author_icon": "https://www.example.com/",
+            "author_subname": "some string",
+            "pretext": "some string",
+            "text": "some string",
+            "service_name": "some string",
+            "service_url": "https://www.example.com/",
+            "from_url": "https://www.example.com/",
+            "id": 12345,
+            "footer": "some string",
+            "footer_icon": "https://www.example.com/"
+          }
+        ]
       }
     ],
     "refinements": []

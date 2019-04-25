@@ -113,6 +113,8 @@ public class File {
     @SerializedName("thumb_1024_h")
     private String thumb1024Height;
 
+    private String thumbVideo;
+
     private Integer imageExifRotation;
 
     @SerializedName("original_w")

@@ -11,7 +11,6 @@
     "unlinked": 12345,
     "name_normalized": "some string",
     "is_shared": false,
-    "parent_conversation": null,
     "creator": "U00000000",
     "is_ext_shared": false,
     "is_org_shared": false,

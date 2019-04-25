@@ -172,7 +172,6 @@ public class JsonDataRecorder {
     private Gson gson() {
         return new GsonBuilder()
                 .setPrettyPrinting()
-                .serializeNulls()
                 .create();
     }
 

@@ -39,8 +39,7 @@
         "is_custom_image": false,
         "bot_id": "B00000000",
         "api_app_id": "some string",
-        "always_active": false,
-        "fields": null
+        "always_active": false
       },
       "is_admin": false,
       "is_owner": false,

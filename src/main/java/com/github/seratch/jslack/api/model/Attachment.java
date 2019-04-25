@@ -41,6 +41,8 @@ public class Attachment {
      */
     private String pretext;
 
+    private String serviceUrl;
+
     private String serviceName;
 
     private String serviceIcon;

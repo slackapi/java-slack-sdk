@@ -35,7 +35,8 @@
       ],
       "groups": [],
       "ims": [],
-      "comments_count": 12345
+      "comments_count": 12345,
+      "thumb_video": "https://www.example.com/"
     }
   ],
   "paging": {

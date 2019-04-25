@@ -14,6 +14,7 @@ target/
 *.iws
 build/
 downloaded_files/
+node_modules/
 
 logs/
 json-logs/raw

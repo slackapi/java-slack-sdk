@@ -9,8 +9,6 @@
         "label": "some string",
         "hint": "some string",
         "type": "text",
-        "possible_values": null,
-        "options": null,
         "is_hidden": false
       }
     ]

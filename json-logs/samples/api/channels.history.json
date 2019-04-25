@@ -120,6 +120,10 @@
               "value": "some string"
             }
           ]
+        },
+        {
+          "type": "divider",
+          "block_id": "some string"
         }
       ],
       "icons": {
@@ -236,7 +240,9 @@
           ],
           "count": 12345
         }
-      ]
+      ],
+      "client_msg_id": "some string",
+      "inviter": "U00000000"
     }
   ],
   "has_more": false

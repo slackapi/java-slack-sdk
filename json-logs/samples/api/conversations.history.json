@@ -123,6 +123,10 @@
               "value": "some string"
             }
           ]
+        },
+        {
+          "type": "divider",
+          "block_id": "some string"
         }
       ],
       "icons": {
@@ -240,7 +244,9 @@
         }
       ],
       "topic": "some string",
-      "purpose": "some string"
+      "purpose": "some string",
+      "client_msg_id": "some string",
+      "inviter": "U00000000"
     }
   ],
   "has_more": false,
