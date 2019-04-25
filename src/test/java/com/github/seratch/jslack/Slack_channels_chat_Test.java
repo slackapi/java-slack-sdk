@@ -3,12 +3,17 @@ package com.github.seratch.jslack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.channels.*;
 import com.github.seratch.jslack.api.methods.request.chat.*;
+import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduleMessagesListRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.ConversationsHistoryRequest;
 import com.github.seratch.jslack.api.methods.response.channels.*;
 import com.github.seratch.jslack.api.methods.response.chat.*;
+import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduleMessagesListResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.ConversationsHistoryResponse;
+import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Channel;
 import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.api.model.block.ImageBlock;
+import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.shortcut.model.ChannelName;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +22,8 @@ import testing.Constants;
 import testing.SlackTestConfig;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -354,6 +361,62 @@ public class Slack_channels_chat_Test {
                 assertThat(deleteResponse.getError(), is(nullValue()));
                 assertThat(deleteResponse.isOk(), is(true));
             }
+
+            // scheduled messages
+            {
+                ChatScheduleMessagesListResponse listResponse = slack.methods().chatScheduleMessagesListMessage(
+                        ChatScheduleMessagesListRequest.builder()
+                                .token(token)
+                                .limit(10)
+                                .channel(channel.getId())
+                                .build());
+                assertThat(listResponse.getError(), is(nullValue()));
+                int initialScheduledMessageCount = listResponse.getScheduledMessages().size();
+
+                int postAt = (int) (ZonedDateTime.now().toInstant().getEpochSecond() + 180);
+
+                ChatScheduleMessageResponse postResponse = slack.methods().chatScheduleMessage(
+                        ChatScheduleMessageRequest.builder()
+                                .token(token)
+                                .channel(channel.getId())
+                                .text("Something is happening!")
+                                .postAt(postAt) // will be posted in 3 minutes
+                                .build());
+                assertThat(postResponse.getError(), is(nullValue()));
+
+                assertNumOfScheduledMessages(token, channel, initialScheduledMessageCount + 1);
+                deleteScheduledMessage(token, channel, postResponse);
+
+                postResponse = slack.methods().chatScheduleMessage(
+                        ChatScheduleMessageRequest.builder()
+                                .token(token)
+                                .channel(channel.getId())
+                                .attachments(Arrays.asList(Attachment.builder().text("something is happening!").build()))
+                                .postAt(postAt) // will be posted in 3 minutes
+                                .build());
+                assertThat(postResponse.getError(), is(nullValue()));
+
+                assertNumOfScheduledMessages(token, channel, initialScheduledMessageCount + 1);
+                deleteScheduledMessage(token, channel, postResponse);
+
+                postResponse = slack.methods().chatScheduleMessage(
+                        ChatScheduleMessageRequest.builder()
+                                .token(token)
+                                .channel(channel.getId())
+                                .blocks(Arrays.asList(ImageBlock.builder()
+                                        .blockId("123")
+                                        .altText("alt")
+                                        .title(PlainTextObject.builder().text("title").build())
+                                        .imageUrl("https://a.slack-edge.com/4a5c4/marketing/img/meta/slack_hash_256.png")
+                                        .build()))
+                                .postAt(postAt) // will be posted in 3 minutes
+                                .build());
+                assertThat(postResponse.getError(), is(nullValue()));
+
+                deleteScheduledMessage(token, channel, postResponse);
+                assertNumOfScheduledMessages(token, channel, initialScheduledMessageCount);
+            }
+
             {
                 ChannelsLeaveResponse response = slack.methods().channelsLeave(ChannelsLeaveRequest.builder()
                         .token(token)
@@ -399,5 +462,28 @@ public class Slack_channels_chat_Test {
                 assertThat(fetchedChannel.isArchived(), is(true));
             }
         }
+    }
+
+    private void assertNumOfScheduledMessages(String token, Channel channel, int i) throws IOException, SlackApiException {
+        ChatScheduleMessagesListResponse listResponse;
+        listResponse = slack.methods().chatScheduleMessagesListMessage(
+                ChatScheduleMessagesListRequest.builder()
+                        .token(token)
+                        .limit(10)
+                        .channel(channel.getId())
+                        .build());
+        assertThat(listResponse.getError(), is(nullValue()));
+        assertThat(listResponse.getScheduledMessages().size(), is(i));
+    }
+
+    private ChatDeleteScheduledMessageResponse deleteScheduledMessage(String token, Channel channel, ChatScheduleMessageResponse postResponse) throws IOException, SlackApiException {
+        ChatDeleteScheduledMessageResponse deleteResponse = slack.methods().chatDeleteScheduledMessage(
+                ChatDeleteScheduledMessageRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .scheduledMessageId(postResponse.getScheduledMessageId())
+                        .build());
+        assertThat(deleteResponse.getError(), is(nullValue()));
+        return deleteResponse;
     }
 }

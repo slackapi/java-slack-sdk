@@ -1,13 +1,19 @@
 package com.github.seratch.jslack.api.methods;
 
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
+import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.resources.AppsPermissionsResourcesListRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.channels.*;
 import com.github.seratch.jslack.api.methods.request.chat.*;
+import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduleMessagesListRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.*;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
@@ -50,13 +56,19 @@ import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
+import com.github.seratch.jslack.api.methods.response.apps.AppsUninstallResponse;
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.resources.AppsPermissionsResourcesListResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.scopes.AppsPermissionsScopesListResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.users.AppsPermissionsUsersListResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.users.AppsPermissionsUsersRequestResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
 import com.github.seratch.jslack.api.methods.response.channels.*;
 import com.github.seratch.jslack.api.methods.response.chat.*;
+import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduleMessagesListResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.*;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
@@ -133,12 +145,58 @@ public interface MethodsClient {
     ApiTestResponse apiTest(ApiTestRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
+    // apps
+    // ------------------------------
+
+    AppsUninstallResponse appsUninstall(AppsUninstallRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
     // apps.permissions
     // ------------------------------
 
     AppsPermissionsInfoResponse appsPermissionsInfo(AppsPermissionsInfoRequest req) throws IOException, SlackApiException;
 
     AppsPermissionsRequestResponse appsPermissionsRequest(AppsPermissionsRequestRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // apps.permissions.resources
+    // ------------------------------
+
+    // Developer preview has ended
+    // This feature was exclusive to our workspace apps developer preview.
+    // The preview has now ended, but fan-favorite features such as token rotation
+    // and the Conversations API will become available to classic Slack apps over the coming months.
+    @Deprecated
+    AppsPermissionsResourcesListResponse appsPermissionsResourcesList(AppsPermissionsResourcesListRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // apps.permissions.scopes
+    // ------------------------------
+
+    // Developer preview has ended
+    // This feature was exclusive to our workspace apps developer preview.
+    // The preview has now ended, but fan-favorite features such as token rotation
+    // and the Conversations API will become available to classic Slack apps over the coming months.
+    @Deprecated
+    AppsPermissionsScopesListResponse appsPermissionsScopesList(AppsPermissionsScopesListRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // apps.permissions.users
+    // ------------------------------
+
+    // Developer preview has ended
+    // This feature was exclusive to our workspace apps developer preview.
+    // The preview has now ended, but fan-favorite features such as token rotation
+    // and the Conversations API will become available to classic Slack apps over the coming months.
+    @Deprecated
+    AppsPermissionsUsersListResponse appsPermissionsUsersList(AppsPermissionsUsersListRequest req) throws IOException, SlackApiException;
+
+    // Developer preview has ended
+    // This feature was exclusive to our workspace apps developer preview.
+    // The preview has now ended, but fan-favorite features such as token rotation
+    // and the Conversations API will become available to classic Slack apps over the coming months.
+    @Deprecated
+    AppsPermissionsUsersRequestResponse appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
     // auth
@@ -196,15 +254,25 @@ public interface MethodsClient {
 
     ChatDeleteResponse chatDelete(ChatDeleteRequest req) throws IOException, SlackApiException;
 
+    ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(ChatDeleteScheduledMessageRequest req) throws IOException, SlackApiException;
+
     ChatMeMessageResponse chatMeMessage(ChatMeMessageRequest req) throws IOException, SlackApiException;
 
     ChatPostEphemeralResponse chatPostEphemeral(ChatPostEphemeralRequest req) throws IOException, SlackApiException;
 
     ChatPostMessageResponse chatPostMessage(ChatPostMessageRequest req) throws IOException, SlackApiException;
 
+    ChatScheduleMessageResponse chatScheduleMessage(ChatScheduleMessageRequest req) throws IOException, SlackApiException;
+
     ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException;
 
     ChatUnfurlResponse chatUnfurl(ChatUnfurlRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // chat.scheduledMessages
+    // ------------------------------
+
+    ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(ChatScheduleMessagesListRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
     // conversations
@@ -308,6 +376,8 @@ public interface MethodsClient {
 
     GroupsArchiveResponse groupsArchive(GroupsArchiveRequest req) throws IOException, SlackApiException;
 
+    @Deprecated
+        // https://github.com/slackapi/slack-api-specs/issues/12
     GroupsCloseResponse groupsClose(GroupsCloseRequest req) throws IOException, SlackApiException;
 
     GroupsCreateChildResponse groupsCreateChild(GroupsCreateChildRequest req) throws IOException, SlackApiException;

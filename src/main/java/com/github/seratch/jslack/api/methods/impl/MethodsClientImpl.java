@@ -4,13 +4,19 @@ import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
+import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.resources.AppsPermissionsResourcesListRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.channels.*;
 import com.github.seratch.jslack.api.methods.request.chat.*;
+import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduleMessagesListRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.*;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
@@ -53,13 +59,19 @@ import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
+import com.github.seratch.jslack.api.methods.response.apps.AppsUninstallResponse;
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.resources.AppsPermissionsResourcesListResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.scopes.AppsPermissionsScopesListResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.users.AppsPermissionsUsersListResponse;
+import com.github.seratch.jslack.api.methods.response.apps.permissions.users.AppsPermissionsUsersRequestResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
 import com.github.seratch.jslack.api.methods.response.channels.*;
 import com.github.seratch.jslack.api.methods.response.chat.*;
+import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduleMessagesListResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.*;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
@@ -138,6 +150,11 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AppsUninstallResponse appsUninstall(AppsUninstallRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.APPS_UNINSTALL, req.getToken(), AppsUninstallResponse.class);
+    }
+
+    @Override
     public AppsPermissionsInfoResponse appsPermissionsInfo(AppsPermissionsInfoRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.APPS_PERMISSIONS_INFO, req.getToken(), AppsPermissionsInfoResponse.class);
     }
@@ -145,6 +162,26 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AppsPermissionsRequestResponse appsPermissionsRequest(AppsPermissionsRequestRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.APPS_PERMISSIONS_REQUEST, req.getToken(), AppsPermissionsRequestResponse.class);
+    }
+
+    @Override
+    public AppsPermissionsResourcesListResponse appsPermissionsResourcesList(AppsPermissionsResourcesListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.APPS_PERMISSIONS_RESOURCES_LIST, req.getToken(), AppsPermissionsResourcesListResponse.class);
+    }
+
+    @Override
+    public AppsPermissionsScopesListResponse appsPermissionsScopesList(AppsPermissionsScopesListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.APPS_PERMISSIONS_SCOPES_LIST, req.getToken(), AppsPermissionsScopesListResponse.class);
+    }
+
+    @Override
+    public AppsPermissionsUsersListResponse appsPermissionsUsersList(AppsPermissionsUsersListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.APPS_PERMISSIONS_USERS_LIST, req.getToken(), AppsPermissionsUsersListResponse.class);
+    }
+
+    @Override
+    public AppsPermissionsUsersRequestResponse appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.APPS_PERMISSIONS_USERS_REQUEST, req.getToken(), AppsPermissionsUsersRequestResponse.class);
     }
 
     @Override
@@ -248,6 +285,11 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(ChatDeleteScheduledMessageRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.CHAT_DELETE_SCHEDULED_MESSAGE, req.getToken(), ChatDeleteScheduledMessageResponse.class);
+    }
+
+    @Override
     public ChatMeMessageResponse chatMeMessage(ChatMeMessageRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHAT_ME_MESSAGE, req.getToken(), ChatMeMessageResponse.class);
     }
@@ -263,6 +305,11 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChatScheduleMessageResponse chatScheduleMessage(ChatScheduleMessageRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.CHAT_SCHEDULE_MESSAGE, req.getToken(), ChatScheduleMessageResponse.class);
+    }
+
+    @Override
     public ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHAT_UPDATE, req.getToken(), ChatUpdateResponse.class);
     }
@@ -270,6 +317,11 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ChatUnfurlResponse chatUnfurl(ChatUnfurlRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHAT_UNFURL, req.getToken(), ChatUnfurlResponse.class);
+    }
+
+    @Override
+    public ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(ChatScheduleMessagesListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.CHAT_SCHEDULED_MESSAGES_LIST, req.getToken(), ChatScheduleMessagesListResponse.class);
     }
 
     @Override
