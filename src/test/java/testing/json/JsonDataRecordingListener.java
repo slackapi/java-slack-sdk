@@ -9,6 +9,7 @@ import java.io.IOException;
 public class JsonDataRecordingListener extends HttpResponseListener {
 
     JsonDataRecorder recorder = new JsonDataRecorder("./json-logs");
+
     @Override
     public void accept(State state) {
         try {

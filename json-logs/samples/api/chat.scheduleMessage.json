@@ -1,0 +1,37 @@
+{
+  "ok": false,
+  "error": "time_in_past",
+  "scheduled_message_id": "Q00000000",
+  "channel": "C00000000",
+  "post_at": 12345,
+  "message": {
+    "bot_id": "B00000000",
+    "type": "message",
+    "text": "some string",
+    "user": "U00000000",
+    "attachments": [
+      {
+        "text": "some string",
+        "id": 12345,
+        "fallback": "some string"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "block_id": "12345",
+        "image_url": "https://www.example.com/",
+        "alt_text": "some string",
+        "title": {
+          "type": "plain_text",
+          "text": "some string",
+          "emoji": false
+        },
+        "fallback": "some string",
+        "image_width": 12345,
+        "image_height": 12345,
+        "image_bytes": 12345
+      }
+    ]
+  }
+}

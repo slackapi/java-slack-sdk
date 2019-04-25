@@ -12,11 +12,36 @@ public class Methods {
     public static final String API_TEST = "api.test";
 
     // ------------------------------
+    // apps
+    // ------------------------------
+
+    public static final String APPS_UNINSTALL = "apps.uninstall";
+
+    // ------------------------------
     // apps.permissions
     // ------------------------------
 
     public static final String APPS_PERMISSIONS_INFO = "apps.permissions.info";
     public static final String APPS_PERMISSIONS_REQUEST = "apps.permissions.request";
+
+    // ------------------------------
+    // apps.permissions.resources
+    // ------------------------------
+
+    public static final String APPS_PERMISSIONS_RESOURCES_LIST = "apps.permissions.resources.list";
+
+    // ------------------------------
+    // apps.permissions.scopes
+    // ------------------------------
+
+    public static final String APPS_PERMISSIONS_SCOPES_LIST = "apps.permissions.scopes.list";
+
+    // ------------------------------
+    // apps.permissions.users
+    // ------------------------------
+
+    public static final String APPS_PERMISSIONS_USERS_LIST = "apps.permissions.users.list";
+    public static final String APPS_PERMISSIONS_USERS_REQUEST = "apps.permissions.users.request";
 
     // ------------------------------
     // auth
@@ -56,12 +81,20 @@ public class Methods {
     // ------------------------------
 
     public static final String CHAT_DELETE = "chat.delete";
+    public static final String CHAT_DELETE_SCHEDULED_MESSAGE = "chat.deleteScheduledMessage";
     public static final String CHAT_GET_PERMALINK = "chat.getPermalink";
     public static final String CHAT_ME_MESSAGE = "chat.meMessage";
     public static final String CHAT_POST_EPHEMERAL = "chat.postEphemeral";
     public static final String CHAT_POST_MESSAGE = "chat.postMessage";
+    public static final String CHAT_SCHEDULE_MESSAGE = "chat.scheduleMessage";
     public static final String CHAT_UNFURL = "chat.unfurl";
     public static final String CHAT_UPDATE = "chat.update";
+
+    // ------------------------------
+    // chat.scheduledMessages
+    // ------------------------------
+
+    public static final String CHAT_SCHEDULED_MESSAGES_LIST = "chat.scheduledMessages.list";
 
     // ------------------------------
     // conversations
@@ -134,6 +167,7 @@ public class Methods {
     // ------------------------------
 
     public static final String GROUPS_ARCHIVE = "groups.archive";
+    @Deprecated // https://github.com/slackapi/slack-api-specs/issues/12
     public static final String GROUPS_CLOSE = "groups.close";
     public static final String GROUPS_CREATE = "groups.create";
     public static final String GROUPS_CREATE_CHILD = "groups.createChild";

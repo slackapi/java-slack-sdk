@@ -1,13 +1,19 @@
 package com.github.seratch.jslack.api.methods;
 
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
+import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.resources.AppsPermissionsResourcesListRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
+import com.github.seratch.jslack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
 import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.channels.*;
 import com.github.seratch.jslack.api.methods.request.chat.*;
+import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduleMessagesListRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.*;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
@@ -73,6 +79,13 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AppsUninstallRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("client_id", req.getClientId(), form);
+        setIfNotNull("client_secret", req.getClientSecret(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AppsPermissionsRequestRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("trigger_id", req.getTriggerId(), form);
@@ -84,6 +97,35 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(AppsPermissionsInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsPermissionsResourcesListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsPermissionsScopesListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsPermissionsUsersListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsPermissionsUsersRequestRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        if (req.getScopes() != null) {
+            setIfNotNull("scopes", req.getScopes().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("user", req.getUser(), form);
         return form;
     }
 
@@ -227,10 +269,50 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(ChatDeleteScheduledMessageRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("scheduled_message_id", req.getScheduledMessageId(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(ChatMeMessageRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("text", req.getText(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ChatScheduleMessageRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("post_at", req.getPostAt(), form);
+        setIfNotNull("text", req.getText(), form);
+        setIfNotNull("as_user", req.isAsUser(), form);
+        if (req.getBlocks() != null) {
+            String json = GsonFactory.createSnakeCase().toJson(req.getBlocks());
+            form.add("blocks", json);
+        }
+        if (req.getAttachments() != null) {
+            String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
+            form.add("attachments", json);
+        }
+        setIfNotNull("link_names", req.isLinkNames(), form);
+        setIfNotNull("parse", req.getParse(), form);
+        setIfNotNull("reply_broadcast", req.isReplyBroadcast(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("unfurl_links", req.isUnfurlLinks(), form);
+        setIfNotNull("unfurl_media", req.isUnfurlMedia(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ChatScheduleMessagesListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("latest", req.getLatest(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("oldest", req.getOldest(), form);
         return form;
     }
 
@@ -240,6 +322,10 @@ public class RequestFormBuilder {
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("user", req.getUser(), form);
         setIfNotNull("as_user", req.isAsUser(), form);
+        if (req.getBlocks() != null) {
+            String json = GsonFactory.createSnakeCase().toJson(req.getBlocks());
+            form.add("blocks", json);
+        }
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
@@ -283,6 +369,10 @@ public class RequestFormBuilder {
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
+        if (req.getBlocks() != null) {
+            String json = GsonFactory.createSnakeCase().toJson(req.getBlocks());
+            form.add("blocks", json);
+        }
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
