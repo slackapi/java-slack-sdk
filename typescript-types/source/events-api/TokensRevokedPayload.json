@@ -1,0 +1,12 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "tokens_revoked",
+    "tokens": {}
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

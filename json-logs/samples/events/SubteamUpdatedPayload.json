@@ -1,0 +1,29 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "subteam_updated",
+    "subteam": {
+      "id": "",
+      "team_id": "",
+      "is_usergroup": false,
+      "name": "",
+      "description": "",
+      "handle": "",
+      "is_external": false,
+      "date_create": 123,
+      "date_update": 123,
+      "date_delete": 123,
+      "auto_type": "",
+      "created_by": "",
+      "updated_by": "",
+      "deleted_by": "",
+      "prefs": {},
+      "user_count": ""
+    }
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

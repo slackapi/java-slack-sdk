@@ -1,0 +1,15 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "app_rate_limited",
+    "token": "",
+    "team_id": "",
+    "minute_rate_limited": 123,
+    "api_app_id": ""
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

@@ -1,0 +1,15 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "file_created",
+    "file_id": "",
+    "file": {
+      "id": ""
+    }
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

@@ -1,0 +1,11 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "app_uninstalled"
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

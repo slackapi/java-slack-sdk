@@ -1,0 +1,15 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "member_left_channel",
+    "user": "",
+    "channel": "",
+    "channel_type": "",
+    "team": ""
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

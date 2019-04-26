@@ -2,4 +2,5 @@
 
 cd `dirname $0`/..
 cp -a json-logs/samples/api/. typescript-types/source/web-api/
+cp -a json-logs/samples/events/. typescript-types/source/events-api/
 echo "Done!"

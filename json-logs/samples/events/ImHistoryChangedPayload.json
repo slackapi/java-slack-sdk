@@ -1,0 +1,14 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "im_history_changed",
+    "latest": "",
+    "ts": "",
+    "event_ts": ""
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

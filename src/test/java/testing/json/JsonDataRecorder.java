@@ -28,13 +28,17 @@ public class JsonDataRecorder {
     }
 
     public void writeMergedResponse(Response response, String body) throws IOException {
+        String path = response.request().url().url().getPath();
+        writeMergedJsonData(path, body);
+    }
+
+    public void writeMergedJsonData(String path, String body) throws IOException {
         if (body == null || (!body.trim().startsWith("{") && !body.trim().startsWith("["))) {
             // given body is not in JSON format
             return;
         }
         JsonParser jsonParser = new JsonParser();
         String json = null;
-        String path = response.request().url().url().getPath();
         try {
             Path jsonFilePath = new File(toRawFilePath(path)).toPath();
             json = Files.readAllLines(jsonFilePath, UTF_8).stream().collect(Collectors.joining());
@@ -89,7 +93,7 @@ public class JsonDataRecorder {
     }
 
 
-    private MergeJsonBuilder.ConflictStrategy CONFICT_STRATEGY = MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ;
+    private MergeJsonBuilder.ConflictStrategy CONFLICT_STRATEGY = MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ;
 
     private void scanToMaskStringValues(JsonElement parent, String name, JsonElement element) {
         if (element.isJsonArray()) {
@@ -117,7 +121,7 @@ public class JsonDataRecorder {
                                 }
                             } else {
                                 try {
-                                    MergeJsonBuilder.mergeJsonObjects(first.getAsJsonObject(), CONFICT_STRATEGY, elem.getAsJsonObject());
+                                    MergeJsonBuilder.mergeJsonObjects(first.getAsJsonObject(), CONFLICT_STRATEGY, elem.getAsJsonObject());
                                 } catch (MergeJsonBuilder.JsonConflictException e) {
                                     log.error("Failed to merge {} into {}", elem, first);
                                 }

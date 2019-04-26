@@ -1,0 +1,16 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "member_joined_channel",
+    "user": "",
+    "channel": "",
+    "channel_type": "",
+    "team": "",
+    "inviter": ""
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

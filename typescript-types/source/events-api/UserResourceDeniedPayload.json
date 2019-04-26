@@ -1,0 +1,13 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "user_resource_denied",
+    "user": "",
+    "trigger_id": ""
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

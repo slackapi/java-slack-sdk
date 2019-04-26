@@ -1,0 +1,13 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "im_close",
+    "user": "",
+    "channel": ""
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

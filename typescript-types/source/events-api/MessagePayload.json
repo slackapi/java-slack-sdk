@@ -1,0 +1,25 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "message",
+    "channel": "",
+    "user": "",
+    "text": "",
+    "ts": "",
+    "event_ts": "",
+    "channel_type": "",
+    "edited": {
+      "user": "",
+      "ts": ""
+    },
+    "subtype": "",
+    "hidden": false,
+    "deleted_ts": "",
+    "is_starred": false
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}

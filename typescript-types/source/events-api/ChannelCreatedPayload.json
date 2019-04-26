@@ -1,0 +1,17 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "channel_created",
+    "channel": {
+      "id": "",
+      "name": "",
+      "created": 123,
+      "creator": ""
+    }
+  },
+  "type": "",
+  "event_id": "",
+  "event_time": 123
+}
