@@ -1,0 +1,20 @@
+{
+  "type": "pin_added",
+  "user": "",
+  "channel_id": "",
+  "item": {
+    "type": "",
+    "channel": "",
+    "created_by": "",
+    "created": 123,
+    "message": {
+      "client_msg_id": "",
+      "type": "",
+      "user": "",
+      "text": "",
+      "ts": "",
+      "permalink": ""
+    }
+  },
+  "event_ts": ""
+}

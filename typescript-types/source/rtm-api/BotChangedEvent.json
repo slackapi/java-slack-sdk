@@ -1,0 +1,13 @@
+{
+  "type": "bot_changed",
+  "bot": {
+    "id": "",
+    "app_id": "",
+    "name": "",
+    "icons": {
+      "image_36": "",
+      "image_48": "",
+      "image_72": ""
+    }
+  }
+}

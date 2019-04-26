@@ -1,0 +1,17 @@
+{
+  "type": "message",
+  "channel": "",
+  "user": "",
+  "text": "",
+  "ts": "",
+  "event_ts": "",
+  "channel_type": "",
+  "edited": {
+    "user": "",
+    "ts": ""
+  },
+  "subtype": "",
+  "hidden": false,
+  "deleted_ts": "",
+  "is_starred": false
+}

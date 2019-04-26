@@ -3,7 +3,7 @@ package com.github.seratch.jslack;
 import com.github.seratch.jslack.app_backend.events.payload.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import testing.json.EventsPayloadDumper;
+import testing.json.ObjectToJsonDumper;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j
 public class EventsApiPayloadDumpTest {
 
-    EventsPayloadDumper dumper = new EventsPayloadDumper("./json-logs/samples/events");
+    ObjectToJsonDumper dumper = new ObjectToJsonDumper("./json-logs/samples/events");
 
     @Test
     public void dumpAll() throws Exception {

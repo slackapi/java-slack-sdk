@@ -12,20 +12,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Slf4j
-public class EventsPayloadDumper {
+public class ObjectToJsonDumper {
 
     private static final Charset UTF_8 = Charset.forName("UTF-8");
 
     private String outputDirectory;
 
-    public EventsPayloadDumper(String outputDirectory) {
+    public ObjectToJsonDumper(String outputDirectory) {
         this.outputDirectory = outputDirectory;
     }
 
-    public void dump(String path, EventsApiPayload<?> payload) throws IOException {
+    public void dump(String path, Object obj) throws IOException {
         SlackConfig config = new SlackConfig();
         config.setPrettyResponseLoggingEnabled(true);
-        String json = GsonFactory.createSnakeCase(config).toJson(payload);
+        String json = GsonFactory.createSnakeCase(config).toJson(obj);
         Path filePath = new File(toFilePath(path)).toPath();
         Files.createDirectories(filePath.getParent());
         Files.write(filePath, json.getBytes(UTF_8));

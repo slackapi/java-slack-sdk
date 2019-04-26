@@ -1,0 +1,9 @@
+{
+  "type": "subteam_members_changed",
+  "subteam_id": "",
+  "team_id": "",
+  "date_previous_update": 123,
+  "date_update": 123,
+  "added_users_count": 123,
+  "removed_users_count": 123
+}

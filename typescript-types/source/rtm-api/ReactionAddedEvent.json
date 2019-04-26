@@ -1,0 +1,14 @@
+{
+  "type": "reaction_added",
+  "user": "",
+  "reaction": "",
+  "item_user": "",
+  "item": {
+    "type": "",
+    "channel": "",
+    "ts": "",
+    "file": "",
+    "file_comment": ""
+  },
+  "event_ts": ""
+}
