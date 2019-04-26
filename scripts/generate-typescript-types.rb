@@ -5,10 +5,10 @@
 
 require 'open3'
 
-index_file = 'typescript-types/index.ts'
+index_file = __dir__ + '/../typescript-types/index.ts'
 File.truncate(index_file, 0)
 
-Dir.glob('json-logs/samples/api/*').each do |json_path|
+Dir.glob(__dir__ + '/../typescript-types/source/web-api/*').each do |json_path|
   File.open(json_path) do |json_file|
     root_class_name = ''
     prev_c = nil
@@ -25,7 +25,7 @@ Dir.glob('json-logs/samples/api/*').each do |json_path|
     end
     root_class_name << 'Response'
 
-    typedef_file = "typescript-types/web-api/#{root_class_name}.d.ts"
+    typedef_file = __dir__ + "/../typescript-types/web-api/#{root_class_name}.d.ts"
     cmd = "quicktype --just-types --all-properties-optional --acronym-style original -t #{root_class_name} -l ts -o #{typedef_file}"
     input_json = json_file.read
     puts "Generating #{root_class_name} from #{json_path}"

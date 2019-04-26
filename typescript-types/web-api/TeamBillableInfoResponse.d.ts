@@ -1,6 +1,9 @@
 export interface TeamBillableInfoResponse {
     ok?:            boolean;
     billable_info?: BillableInfo;
+    error?:         string;
+    needed?:        string;
+    provided?:      string;
 }
 
 export interface BillableInfo {

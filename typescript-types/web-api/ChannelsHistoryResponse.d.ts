@@ -2,6 +2,9 @@ export interface ChannelsHistoryResponse {
     ok?:       boolean;
     messages?: Message[];
     has_more?: boolean;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Message {

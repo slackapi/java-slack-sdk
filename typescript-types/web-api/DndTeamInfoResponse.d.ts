@@ -1,6 +1,9 @@
 export interface DndTeamInfoResponse {
-    ok?:    boolean;
-    users?: Users;
+    ok?:       boolean;
+    users?:    Users;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Users {

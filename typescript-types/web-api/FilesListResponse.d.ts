@@ -1,7 +1,10 @@
 export interface FilesListResponse {
-    ok?:     boolean;
-    files?:  File[];
-    paging?: Paging;
+    ok?:       boolean;
+    files?:    File[];
+    paging?:   Paging;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface File {

@@ -2,6 +2,9 @@ export interface UsersProfileSetResponse {
     profile?:  Profile;
     ok?:       boolean;
     username?: string;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Profile {

@@ -1,6 +1,9 @@
 export interface TeamInfoResponse {
-    ok?:   boolean;
-    team?: Team;
+    ok?:       boolean;
+    team?:     Team;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Team {

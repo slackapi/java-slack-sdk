@@ -1,7 +1,9 @@
 export interface BotsInfoResponse {
-    ok?:    boolean;
-    bot?:   Bot;
-    error?: string;
+    ok?:       boolean;
+    bot?:      Bot;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Bot {

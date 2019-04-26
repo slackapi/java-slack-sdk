@@ -4,6 +4,9 @@ export interface UsersListResponse {
     cache_ts?:          number;
     offset?:            string;
     response_metadata?: ResponseMetadata;
+    error?:             string;
+    needed?:            string;
+    provided?:          string;
 }
 
 export interface Member {

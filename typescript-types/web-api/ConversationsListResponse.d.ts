@@ -2,6 +2,9 @@ export interface ConversationsListResponse {
     ok?:                boolean;
     channels?:          Channel[];
     response_metadata?: ResponseMetadata;
+    error?:             string;
+    needed?:            string;
+    provided?:          string;
 }
 
 export interface Channel {

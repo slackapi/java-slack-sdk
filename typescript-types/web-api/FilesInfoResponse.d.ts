@@ -7,6 +7,9 @@ export interface FilesInfoResponse {
     content_highlight_css?:  string;
     comments?:               Comment[];
     paging?:                 Paging;
+    error?:                  string;
+    needed?:                 string;
+    provided?:               string;
 }
 
 export interface Comment {

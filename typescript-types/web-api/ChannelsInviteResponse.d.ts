@@ -1,7 +1,9 @@
 export interface ChannelsInviteResponse {
-    ok?:      boolean;
-    error?:   string;
-    channel?: Channel;
+    ok?:       boolean;
+    error?:    string;
+    channel?:  Channel;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Channel {

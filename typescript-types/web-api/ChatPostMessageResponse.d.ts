@@ -1,9 +1,11 @@
 export interface ChatPostMessageResponse {
-    ok?:      boolean;
-    channel?: string;
-    ts?:      string;
-    message?: Message;
-    error?:   string;
+    ok?:       boolean;
+    channel?:  string;
+    ts?:       string;
+    message?:  Message;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Message {

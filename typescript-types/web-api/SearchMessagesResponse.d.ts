@@ -2,6 +2,9 @@ export interface SearchMessagesResponse {
     ok?:       boolean;
     query?:    string;
     messages?: Messages;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Messages {

@@ -5,4 +5,6 @@ export interface DndEndSnoozeResponse {
     next_dnd_start_ts?: number;
     next_dnd_end_ts?:   number;
     snooze_enabled?:    boolean;
+    needed?:            string;
+    provided?:          string;
 }

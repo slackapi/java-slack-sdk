@@ -1,8 +1,11 @@
 export interface RtmConnectResponse {
-    ok?:   boolean;
-    url?:  string;
-    team?: Team;
-    self?: Self;
+    ok?:       boolean;
+    url?:      string;
+    team?:     Team;
+    self?:     Self;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Self {

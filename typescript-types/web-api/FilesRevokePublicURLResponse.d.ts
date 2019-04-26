@@ -1,6 +1,9 @@
 export interface FilesRevokePublicURLResponse {
-    ok?:   boolean;
-    file?: File;
+    ok?:       boolean;
+    file?:     File;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface File {

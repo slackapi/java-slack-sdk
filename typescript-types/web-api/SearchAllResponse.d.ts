@@ -4,6 +4,9 @@ export interface SearchAllResponse {
     messages?: Messages;
     files?:    Files;
     posts?:    Posts;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Files {

@@ -10,6 +10,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -58,11 +59,33 @@ public class JsonDataRecorder {
         for (Map.Entry<String, JsonElement> entry : result.entrySet()) {
             scanToMaskStringValues(result, entry.getKey(), entry.getValue());
         }
+        addCommonPropertiesAtTopLevel(result);
 
         json = gson().toJson(result);
         Path filePath = new File(toMaskedFilePath(path)).toPath();
         Files.createDirectories(filePath.getParent());
         Files.write(filePath, json.getBytes(UTF_8));
+    }
+
+    private static final List<String> COMMON_TOP_LEVEL_PROPERTY_NAMES = Arrays.asList(
+            "ok",
+            "error",
+            "needed",
+            "provided"
+    );
+
+    private static void addCommonPropertiesAtTopLevel(JsonObject root) {
+        List<String> missingPropNames = new ArrayList<>(COMMON_TOP_LEVEL_PROPERTY_NAMES);
+        for (Map.Entry<String, JsonElement> entry : root.entrySet()) {
+            missingPropNames.remove(entry.getKey());
+        }
+        for (String missingPropName : missingPropNames) {
+            if (missingPropName.equals("ok")) {
+                root.add(missingPropName, new JsonPrimitive(false));
+            } else {
+                root.add(missingPropName, new JsonPrimitive(""));
+            }
+        }
     }
 
 
@@ -155,7 +178,7 @@ public class JsonDataRecorder {
         } else if (value.matches("^[\\d]+$")) {
             return "12345"; // other numbers
         }
-        return "some string";
+        return "";
     }
 
     private Gson gson() {

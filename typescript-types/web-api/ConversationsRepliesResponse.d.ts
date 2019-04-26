@@ -3,6 +3,9 @@ export interface ConversationsRepliesResponse {
     has_more?:          boolean;
     ok?:                boolean;
     response_metadata?: ResponseMetadata;
+    error?:             string;
+    needed?:            string;
+    provided?:          string;
 }
 
 export interface Message {

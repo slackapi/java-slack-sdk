@@ -18,6 +18,9 @@ export interface RtmStartResponse {
     cache_ts_version?:           string;
     bots?:                       Bot[];
     url?:                        string;
+    error?:                      string;
+    needed?:                     string;
+    provided?:                   string;
 }
 
 export interface Bot {
@@ -345,6 +348,9 @@ export interface LocalesEnabled {
     "es-ES"?: string;
     "fr-FR"?: string;
     "ja-JP"?: string;
+    "en-GB"?: string;
+    "es-LA"?: string;
+    "pt-BR"?: string;
 }
 
 export interface Subteams {

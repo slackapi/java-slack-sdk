@@ -1,6 +1,9 @@
 export interface FilesCommentsAddResponse {
-    ok?:      boolean;
-    comment?: Comment;
+    ok?:       boolean;
+    comment?:  Comment;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Comment {

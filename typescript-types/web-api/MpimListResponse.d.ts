@@ -1,6 +1,9 @@
 export interface MpimListResponse {
-    ok?:     boolean;
-    groups?: Group[];
+    ok?:       boolean;
+    groups?:   Group[];
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Group {

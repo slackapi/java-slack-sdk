@@ -4,6 +4,9 @@ export interface ConversationsHistoryResponse {
     has_more?:          boolean;
     pin_count?:         number;
     response_metadata?: ResponseMetadata;
+    error?:             string;
+    needed?:            string;
+    provided?:          string;
 }
 
 export interface Message {

@@ -1,4 +1,6 @@
 {
   "ok": false,
-  "error": "some string"
+  "error": "",
+  "needed": "",
+  "provided": ""
 }

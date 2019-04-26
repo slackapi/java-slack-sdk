@@ -1,3 +1,6 @@
 export interface GroupsMarkResponse {
-    ok?: boolean;
+    ok?:       boolean;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }

@@ -1,3 +1,6 @@
 export interface ChatDeleteScheduledMessageResponse {
-    ok?: boolean;
+    ok?:       boolean;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }

@@ -1,6 +1,9 @@
 export interface UsersInfoResponse {
-    ok?:   boolean;
-    user?: User;
+    ok?:       boolean;
+    user?:     User;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface User {

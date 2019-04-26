@@ -2,6 +2,9 @@ export interface ImListResponse {
     ok?:                boolean;
     ims?:               Im[];
     response_metadata?: ResponseMetadata;
+    error?:             string;
+    needed?:            string;
+    provided?:          string;
 }
 
 export interface Im {

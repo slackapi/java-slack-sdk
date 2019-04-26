@@ -1,3 +1,6 @@
 export interface FilesDeleteResponse {
-    ok?: boolean;
+    ok?:       boolean;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }

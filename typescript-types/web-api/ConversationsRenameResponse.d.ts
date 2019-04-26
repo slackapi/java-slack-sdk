@@ -1,6 +1,9 @@
 export interface ConversationsRenameResponse {
-    channel?: Channel;
-    ok?:      boolean;
+    channel?:  Channel;
+    ok?:       boolean;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Channel {

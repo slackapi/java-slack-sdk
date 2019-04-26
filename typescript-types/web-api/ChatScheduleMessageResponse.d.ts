@@ -5,6 +5,8 @@ export interface ChatScheduleMessageResponse {
     channel?:              string;
     post_at?:              number;
     message?:              Message;
+    needed?:               string;
+    provided?:             string;
 }
 
 export interface Message {

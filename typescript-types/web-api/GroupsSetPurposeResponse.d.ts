@@ -1,4 +1,7 @@
 export interface GroupsSetPurposeResponse {
-    ok?:      boolean;
-    purpose?: string;
+    ok?:       boolean;
+    purpose?:  string;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }

@@ -1,7 +1,10 @@
 export interface TeamIntegrationLogsResponse {
-    ok?:     boolean;
-    logs?:   Log[];
-    paging?: Paging;
+    ok?:       boolean;
+    logs?:     Log[];
+    paging?:   Paging;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Log {

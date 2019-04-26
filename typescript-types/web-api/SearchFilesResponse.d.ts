@@ -1,7 +1,10 @@
 export interface SearchFilesResponse {
-    ok?:    boolean;
-    query?: string;
-    files?: Files;
+    ok?:       boolean;
+    query?:    string;
+    files?:    Files;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Files {

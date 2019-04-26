@@ -1,6 +1,9 @@
 export interface UsersProfileGetResponse {
-    ok?:      boolean;
-    profile?: Profile;
+    ok?:       boolean;
+    profile?:  Profile;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Profile {

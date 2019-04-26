@@ -1,6 +1,9 @@
 export interface GroupsInfoResponse {
-    ok?:    boolean;
-    group?: Group;
+    ok?:       boolean;
+    group?:    Group;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Group {

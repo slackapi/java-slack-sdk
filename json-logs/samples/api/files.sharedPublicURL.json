@@ -4,21 +4,21 @@
     "id": "F00000000",
     "created": 12345,
     "timestamp": 12345,
-    "name": "some string",
-    "title": "some string",
-    "mimetype": "some string",
-    "filetype": "some string",
-    "pretty_type": "some string",
+    "name": "",
+    "title": "",
+    "mimetype": "",
+    "filetype": "",
+    "pretty_type": "",
     "user": "U00000000",
     "editable": false,
     "size": 12345,
-    "mode": "some string",
+    "mode": "",
     "is_external": false,
-    "external_type": "some string",
+    "external_type": "",
     "is_public": false,
     "public_url_shared": false,
     "display_as_bot": false,
-    "username": "some string",
+    "username": "",
     "url_private": "https://www.example.com/",
     "url_private_download": "https://www.example.com/",
     "thumb_64": "https://www.example.com/",
@@ -42,7 +42,7 @@
             "reply_users_count": 12345,
             "reply_count": 12345,
             "ts": "0000000000.000000",
-            "channel_name": "some string",
+            "channel_name": "",
             "team_id": "T00000000"
           }
         ],
@@ -52,7 +52,7 @@
             "reply_users_count": 12345,
             "reply_count": 12345,
             "ts": "0000000000.000000",
-            "channel_name": "some string",
+            "channel_name": "",
             "team_id": "T00000000"
           }
         ]
@@ -65,10 +65,13 @@
     "ims": [],
     "has_rich_preview": false,
     "edit_link": "https://www.example.com/",
-    "preview": "some string",
-    "preview_highlight": "some string",
+    "preview": "",
+    "preview_highlight": "",
     "lines": 12345,
     "lines_more": 12345,
     "preview_is_truncated": false
-  }
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
 }

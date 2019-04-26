@@ -1,7 +1,10 @@
 export interface TeamAccessLogsResponse {
-    ok?:     boolean;
-    logins?: Login[];
-    paging?: Paging;
+    ok?:       boolean;
+    logins?:   Login[];
+    paging?:   Paging;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Login {

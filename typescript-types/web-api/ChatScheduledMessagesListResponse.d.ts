@@ -2,6 +2,9 @@ export interface ChatScheduledMessagesListResponse {
     ok?:                 boolean;
     scheduled_messages?: ScheduledMessage[];
     response_metadata?:  ResponseMetadata;
+    error?:              string;
+    needed?:             string;
+    provided?:           string;
 }
 
 export interface ResponseMetadata {

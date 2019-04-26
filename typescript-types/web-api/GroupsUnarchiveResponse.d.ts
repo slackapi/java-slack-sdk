@@ -1,3 +1,6 @@
 export interface GroupsUnarchiveResponse {
-    ok?: boolean;
+    ok?:       boolean;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }

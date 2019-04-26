@@ -1,4 +1,7 @@
 {
-  "topic": "some string",
-  "ok": false
+  "topic": "",
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": ""
 }

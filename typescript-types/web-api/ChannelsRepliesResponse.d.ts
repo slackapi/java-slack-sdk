@@ -2,6 +2,9 @@ export interface ChannelsRepliesResponse {
     messages?: Message[];
     has_more?: boolean;
     ok?:       boolean;
+    error?:    string;
+    needed?:   string;
+    provided?: string;
 }
 
 export interface Message {

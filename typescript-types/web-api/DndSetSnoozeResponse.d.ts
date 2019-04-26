@@ -4,4 +4,6 @@ export interface DndSetSnoozeResponse {
     snooze_enabled?:   boolean;
     snooze_endtime?:   number;
     snooze_remaining?: number;
+    needed?:           string;
+    provided?:         string;
 }
