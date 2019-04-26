@@ -1,0 +1,28 @@
+{
+  "name": "seratch-slack-types",
+  "version": "0.0.1",
+  "description": "Slack API Types in TypeScript",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "ts-loader": "^5.4.3",
+    "typescript": "^3.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seratch/jslack.git"
+  },
+  "keywords": [
+    "slack",
+    "typescript"
+  ],
+  "author": "Kazuhiro Sera @seratch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seratch/jslack/issues"
+  },
+  "homepage": "https://github.com/seratch/jslack#readme"
+}

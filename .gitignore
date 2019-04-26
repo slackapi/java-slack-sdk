@@ -15,6 +15,7 @@ target/
 build/
 downloaded_files/
 node_modules/
+typescript-types/dist/
 
 logs/
 json-logs/raw
