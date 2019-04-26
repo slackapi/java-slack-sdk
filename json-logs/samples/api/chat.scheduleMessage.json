@@ -1,12 +1,12 @@
 {
   "ok": false,
-  "error": "time_in_past",
+  "error": "some string",
   "scheduled_message_id": "Q00000000",
   "channel": "C00000000",
   "post_at": 12345,
   "message": {
     "bot_id": "B00000000",
-    "type": "message",
+    "type": "some string",
     "text": "some string",
     "user": "U00000000",
     "attachments": [
@@ -18,12 +18,12 @@
     ],
     "blocks": [
       {
-        "type": "image",
+        "type": "some string",
         "block_id": "12345",
         "image_url": "https://www.example.com/",
         "alt_text": "some string",
         "title": {
-          "type": "plain_text",
+          "type": "some string",
           "text": "some string",
           "emoji": false
         },

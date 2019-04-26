@@ -2,7 +2,7 @@
   "ok": false,
   "args": {
     "foo": "some string",
-    "error": "error"
+    "error": "some string"
   },
-  "error": "error"
+  "error": "some string"
 }

@@ -252,7 +252,10 @@
         "en-US": "some string",
         "es-ES": "some string",
         "fr-FR": "some string",
-        "ja-JP": "some string"
+        "ja-JP": "some string",
+        "en-GB": "some string",
+        "es-LA": "some string",
+        "pt-BR": "some string"
       }
     },
     "created": 12345,

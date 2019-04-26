@@ -353,6 +353,22 @@ public class Slack_channels_chat_Test {
                 assertThat(updateResponse.getError(), is(nullValue()));
                 assertThat(updateResponse.isOk(), is(true));
 
+                ChannelsMarkResponse markResponse = slack.methods().channelsMark(ChannelsMarkRequest.builder()
+                        //.token(token)
+                        .channel(channel.getId())
+                        .ts(updateMessage.getTs())
+                        .build());
+                assertThat(markResponse.getError(), is("invalid_auth"));
+                assertThat(markResponse.isOk(), is(false));
+
+                markResponse = slack.methods().channelsMark(ChannelsMarkRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .ts(updateMessage.getTs())
+                        .build());
+                assertThat(markResponse.getError(), is(nullValue()));
+                assertThat(markResponse.isOk(), is(true));
+
                 ChatDeleteResponse deleteResponse = slack.methods().chatDelete(ChatDeleteRequest.builder()
                         .token(token)
                         .channel(channel.getId())
@@ -446,8 +462,34 @@ public class Slack_channels_chat_Test {
 
         } finally {
             {
-                ChannelsArchiveResponse response = slack.methods().channelsArchive(
-                        ChannelsArchiveRequest.builder().token(token).channel(channel.getId()).build());
+                ChannelsArchiveResponse response = slack.methods().channelsArchive(ChannelsArchiveRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .build());
+                assertThat(response.getError(), is(nullValue()));
+                assertThat(response.isOk(), is(true));
+            }
+
+            {
+                ChannelsUnarchiveResponse response = slack.methods().channelsUnarchive(ChannelsUnarchiveRequest.builder()
+                        .token(token)
+                        //.channel(channel.getId())
+                        .build());
+                assertThat(response.getError(), is(notNullValue()));
+
+                response = slack.methods().channelsUnarchive(ChannelsUnarchiveRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .build());
+                assertThat(response.getError(), is(nullValue()));
+                assertThat(response.isOk(), is(true));
+            }
+
+            {
+                ChannelsArchiveResponse response = slack.methods().channelsArchive(ChannelsArchiveRequest.builder()
+                        .token(token)
+                        .channel(channel.getId())
+                        .build());
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }

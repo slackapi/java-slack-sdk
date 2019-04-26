@@ -2,8 +2,8 @@
   "ok": false,
   "messages": [
     {
-      "type": "message",
-      "subtype": "me_message",
+      "type": "some string",
+      "subtype": "some string",
       "text": "some string",
       "user": "U00000000",
       "ts": "0000000000.000000",
@@ -14,8 +14,8 @@
       "bot_id": "B00000000",
       "thread_ts": "0000000000.000000",
       "root": {
-        "type": "message",
-        "subtype": "bot_message",
+        "type": "some string",
+        "subtype": "some string",
         "text": "some string",
         "ts": "0000000000.000000",
         "username": "some string",
@@ -61,10 +61,10 @@
       "last_read": "0000000000.000000",
       "blocks": [
         {
-          "type": "section",
+          "type": "some string",
           "block_id": "some string",
           "text": {
-            "type": "mrkdwn",
+            "type": "some string",
             "text": "some string",
             "verbatim": false
           },
@@ -74,15 +74,15 @@
             "image_width": 12345,
             "image_height": 12345,
             "image_bytes": 12345,
-            "type": "image",
+            "type": "some string",
             "alt_text": "some string"
           },
           "elements": [
             {
-              "type": "button",
+              "type": "some string",
               "action_id": "some string",
               "text": {
-                "type": "plain_text",
+                "type": "some string",
                 "text": "some string",
                 "emoji": false
               },
@@ -91,10 +91,10 @@
           ]
         },
         {
-          "type": "section",
+          "type": "some string",
           "block_id": "some string",
           "text": {
-            "type": "mrkdwn",
+            "type": "some string",
             "text": "some string",
             "verbatim": false
           },
@@ -104,19 +104,19 @@
             "image_width": 12345,
             "image_height": 12345,
             "image_bytes": 12345,
-            "type": "image",
+            "type": "some string",
             "alt_text": "some string"
           }
         },
         {
-          "type": "actions",
+          "type": "some string",
           "block_id": "some string",
           "elements": [
             {
-              "type": "button",
+              "type": "some string",
               "action_id": "some string",
               "text": {
-                "type": "plain_text",
+                "type": "some string",
                 "text": "some string",
                 "emoji": false
               },
@@ -125,7 +125,7 @@
           ]
         },
         {
-          "type": "divider",
+          "type": "some string",
           "block_id": "some string"
         }
       ],

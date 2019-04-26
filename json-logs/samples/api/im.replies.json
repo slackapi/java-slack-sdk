@@ -1,8 +1,8 @@
 {
   "messages": [
     {
-      "type": "message",
-      "subtype": "bot_message",
+      "type": "some string",
+      "subtype": "some string",
       "text": "some string",
       "ts": "0000000000.000000",
       "username": "some string",

@@ -83,6 +83,26 @@ public class Slack_conversations_Test {
                     .build());
             assertThat(resp.getError(), is(nullValue()));
         }
+        {
+            ConversationsUnarchiveResponse resp = slack.methods().conversationsUnarchive(ConversationsUnarchiveRequest.builder()
+                    //.token(token)
+                    .channel(createPrivateResponse.getChannel().getId())
+                    .build());
+            assertThat(resp.getError(), is(notNullValue()));
+
+            resp = slack.methods().conversationsUnarchive(ConversationsUnarchiveRequest.builder()
+                    .token(token)
+                    .channel(createPrivateResponse.getChannel().getId())
+                    .build());
+            assertThat(resp.getError(), is(nullValue()));
+        }
+        {
+            ConversationsArchiveResponse resp = slack.methods().conversationsArchive(ConversationsArchiveRequest.builder()
+                    .token(token)
+                    .channel(createPrivateResponse.getChannel().getId())
+                    .build());
+            assertThat(resp.getError(), is(nullValue()));
+        }
 
         {
             ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(

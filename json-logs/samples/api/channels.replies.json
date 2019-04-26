@@ -2,8 +2,8 @@
   "messages": [
     {
       "user": "U00000000",
-      "type": "message",
-      "subtype": "channel_topic",
+      "type": "some string",
+      "subtype": "some string",
       "ts": "0000000000.000000",
       "text": "some string",
       "topic": "some string",

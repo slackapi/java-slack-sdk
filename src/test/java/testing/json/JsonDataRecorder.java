@@ -121,14 +121,6 @@ public class JsonDataRecorder {
         }
     }
 
-    private List<String> WHITELIST_NAMES = Arrays.asList(
-            "error",
-            "needed",
-            "provided",
-            "type",
-            "subtype"
-    );
-
     private JsonElement normalize(String name, JsonPrimitive original) {
         if (original.isString()) {
             return new JsonPrimitive(normalizeString(name, original.getAsString()));
@@ -144,9 +136,6 @@ public class JsonDataRecorder {
     private String normalizeString(String name, String value) {
         if (value == null) {
             return null;
-        }
-        if (name != null && WHITELIST_NAMES.contains(name)) {
-            return value;
         }
         if (value.matches("^[\\d]+\\.[\\d]+$")) {
             return "0000000000.000000"; // ts

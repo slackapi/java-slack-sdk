@@ -1,6 +1,6 @@
 {
   "ok": false,
-  "error": "cant_invite_self",
+  "error": "some string",
   "channel": {
     "id": "C00000000",
     "name": "some string",
@@ -19,8 +19,8 @@
     "last_read": "0000000000.000000",
     "latest": {
       "user": "U00000000",
-      "type": "message",
-      "subtype": "channel_join",
+      "type": "some string",
+      "subtype": "some string",
       "ts": "0000000000.000000",
       "text": "some string"
     },

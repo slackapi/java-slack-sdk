@@ -358,16 +358,16 @@ public interface MethodsClient {
     // files.comments
     // ------------------------------
 
+    // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     @Deprecated
-        // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     FilesCommentsAddResponse filesCommentsAdd(FilesCommentsAddRequest req) throws IOException, SlackApiException;
 
+    // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     @Deprecated
-        // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     FilesCommentsDeleteResponse filesCommentsDelete(FilesCommentsDeleteRequest req) throws IOException, SlackApiException;
 
+    // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     @Deprecated
-        // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     FilesCommentsEditResponse filesCommentEdit(FilesCommentsEditRequest req) throws IOException, SlackApiException;
 
     // ------------------------------
@@ -376,8 +376,8 @@ public interface MethodsClient {
 
     GroupsArchiveResponse groupsArchive(GroupsArchiveRequest req) throws IOException, SlackApiException;
 
+    // https://github.com/slackapi/slack-api-specs/issues/12
     @Deprecated
-        // https://github.com/slackapi/slack-api-specs/issues/12
     GroupsCloseResponse groupsClose(GroupsCloseRequest req) throws IOException, SlackApiException;
 
     GroupsCreateChildResponse groupsCreateChild(GroupsCreateChildRequest req) throws IOException, SlackApiException;

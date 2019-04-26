@@ -1,0 +1,7 @@
+{
+  "ok": false,
+  "error": "some string",
+  "snooze_enabled": false,
+  "snooze_endtime": 12345,
+  "snooze_remaining": 12345
+}

@@ -36,7 +36,7 @@
           "is_pending_ext_shared": false,
           "user": "U00000000"
         },
-        "type": "message",
+        "type": "some string",
         "user": "some string",
         "username": "some string",
         "ts": "0000000000.000000",
@@ -91,7 +91,7 @@
           }
         ],
         "previous": {
-          "type": "message",
+          "type": "some string",
           "user": "U00000000",
           "username": "some string",
           "ts": "0000000000.000000",
@@ -124,7 +124,7 @@
         },
         "blocks": [],
         "previous_2": {
-          "type": "message",
+          "type": "some string",
           "user": "U00000000",
           "username": "some string",
           "ts": "0000000000.000000",

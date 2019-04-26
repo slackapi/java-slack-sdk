@@ -13,5 +13,5 @@
       "image_72": "https://www.example.com/"
     }
   },
-  "error": "invalid_auth"
+  "error": "some string"
 }

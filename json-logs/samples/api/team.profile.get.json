@@ -8,7 +8,7 @@
         "field_name": "some string",
         "label": "some string",
         "hint": "some string",
-        "type": "text",
+        "type": "some string",
         "is_hidden": false
       }
     ]

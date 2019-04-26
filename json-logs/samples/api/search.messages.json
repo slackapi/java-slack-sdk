@@ -35,7 +35,7 @@
           "pending_shared": [],
           "is_pending_ext_shared": false
         },
-        "type": "message",
+        "type": "some string",
         "user": "some string",
         "username": "some string",
         "ts": "0000000000.000000",
