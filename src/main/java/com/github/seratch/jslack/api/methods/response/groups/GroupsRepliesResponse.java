@@ -18,4 +18,5 @@ public class GroupsRepliesResponse implements SlackApiResponse {
 
     private List<Message> messages;
     private ThreadInfo threadInfo;
+    private boolean hasMore;
 }

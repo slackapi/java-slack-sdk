@@ -13,6 +13,7 @@ public class Latest {
     private String user;
     private String username;
     private String text;
+    private String topic; // groups
     private List<Attachment> attachments;
     private List<LayoutBlock> blocks;
     private List<File> files;

@@ -1,9 +1,9 @@
-export interface UsergroupsCreateResponse {
+export interface UsergroupsDisableResponse {
     ok?:        boolean;
+    usergroup?: Usergroup;
     error?:     string;
     needed?:    string;
     provided?:  string;
-    usergroup?: Usergroup;
 }
 
 export interface Usergroup {
@@ -22,6 +22,7 @@ export interface Usergroup {
     enterprise_subteam_id?: string;
     created_by?:            string;
     updated_by?:            string;
+    deleted_by?:            string;
     prefs?:                 Prefs;
 }
 

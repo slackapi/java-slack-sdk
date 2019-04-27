@@ -1,8 +1,5 @@
 {
   "ok": false,
-  "error": "",
-  "needed": "",
-  "provided": "",
   "usergroup": {
     "id": "S00000000",
     "team_id": "T00000000",
@@ -19,6 +16,7 @@
     "enterprise_subteam_id": "",
     "created_by": "U00000000",
     "updated_by": "U00000000",
+    "deleted_by": "U00000000",
     "prefs": {
       "channels": [
         ""
@@ -27,5 +25,8 @@
         ""
       ]
     }
-  }
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
 }

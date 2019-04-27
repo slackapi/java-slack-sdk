@@ -15,13 +15,17 @@ public class Usergroup {
 
     private String id;
     private String teamId;
+    private String enterpriseSubteamId;
     @SerializedName("is_usergroup")
     private boolean usergroup;
+    @SerializedName("is_subteam")
+    private boolean subteam;
     private String name;
     private String description;
     private String handle;
     @SerializedName("is_external")
     private boolean external;
+    private boolean autoProvision;
     private Integer dateCreate;
     private Integer dateUpdate;
     private Integer dateDelete;

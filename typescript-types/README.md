@@ -14,5 +14,5 @@ These types are generated from jSlack library's type definitions in Java and act
 
 https://github.com/seratch/jslack
 
-The coveraage may not be 100% and a portion of the properties may be incorrect. Let @seratch know if you find rooms to improve in this package.
+The coverage may not be 100% and a portion of the properties may be incorrect. Let @seratch know if you find rooms to improve in this package.
 

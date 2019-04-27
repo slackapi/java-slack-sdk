@@ -1,9 +1,9 @@
-export interface UsergroupsCreateResponse {
+export interface UsergroupsUsersUpdateResponse {
     ok?:        boolean;
+    usergroup?: Usergroup;
     error?:     string;
     needed?:    string;
     provided?:  string;
-    usergroup?: Usergroup;
 }
 
 export interface Usergroup {
@@ -23,6 +23,7 @@ export interface Usergroup {
     created_by?:            string;
     updated_by?:            string;
     prefs?:                 Prefs;
+    users?:                 string[];
 }
 
 export interface Prefs {

@@ -1,7 +1,6 @@
-export interface UsergroupsUsersListResponse {
+export interface GroupsKickResponse {
     ok?:       boolean;
     error?:    string;
-    users?:    string[];
     needed?:   string;
     provided?: string;
 }

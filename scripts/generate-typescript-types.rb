@@ -23,7 +23,7 @@ def append_to_index_ts(root_class_name, index_file, dir)
 end
 
 # web-api
-Dir.glob(__dir__ + '/../typescript-types/source/web-api/*').each do |json_path|
+Dir.glob(__dir__ + '/../typescript-types/source/web-api/*').sort.each do |json_path|
   File.open(json_path) do |json_file|
     root_class_name = ''
     prev_c = nil
@@ -48,7 +48,7 @@ Dir.glob(__dir__ + '/../typescript-types/source/web-api/*').each do |json_path|
 end
 
 # events-api
-Dir.glob(__dir__ + '/../typescript-types/source/events-api/*').each do |json_path|
+Dir.glob(__dir__ + '/../typescript-types/source/events-api/*').sort.each do |json_path|
   File.open(json_path) do |json_file|
     filename = json_path.split('/').last.gsub(/\.json$/, '')
     root_class_name = "Events#{filename}"
@@ -60,7 +60,7 @@ Dir.glob(__dir__ + '/../typescript-types/source/events-api/*').each do |json_pat
 end
 
 # rtm-api
-Dir.glob(__dir__ + '/../typescript-types/source/rtm-api/*').each do |json_path|
+Dir.glob(__dir__ + '/../typescript-types/source/rtm-api/*').sort.each do |json_path|
   File.open(json_path) do |json_file|
     filename = json_path.split('/').last.gsub(/\.json$/, '')
     root_class_name = "RTM#{filename}"

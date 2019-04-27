@@ -1,8 +1,5 @@
 {
   "ok": false,
-  "error": "",
-  "needed": "",
-  "provided": "",
   "usergroup": {
     "id": "S00000000",
     "team_id": "T00000000",
@@ -26,6 +23,12 @@
       "groups": [
         ""
       ]
-    }
-  }
+    },
+    "users": [
+      "U00000000"
+    ]
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
 }

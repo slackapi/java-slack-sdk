@@ -1,9 +1,9 @@
-export interface UsergroupsCreateResponse {
+export interface UsergroupsUpdateResponse {
     ok?:        boolean;
     error?:     string;
+    usergroup?: Usergroup;
     needed?:    string;
     provided?:  string;
-    usergroup?: Usergroup;
 }
 
 export interface Usergroup {
