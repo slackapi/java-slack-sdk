@@ -11,6 +11,9 @@
     "inviter": ""
   },
   "type": "",
+  "authed_users": [
+    ""
+  ],
   "event_id": "",
   "event_time": 123
 }

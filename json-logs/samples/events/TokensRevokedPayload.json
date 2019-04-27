@@ -4,9 +4,19 @@
   "api_app_id": "",
   "event": {
     "type": "tokens_revoked",
-    "tokens": {}
+    "tokens": {
+      "oauth": [
+        ""
+      ],
+      "bot": [
+        ""
+      ]
+    }
   },
   "type": "",
+  "authed_users": [
+    ""
+  ],
   "event_id": "",
   "event_time": 123
 }

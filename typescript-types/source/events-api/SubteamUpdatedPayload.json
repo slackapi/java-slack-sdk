@@ -19,11 +19,24 @@
       "created_by": "",
       "updated_by": "",
       "deleted_by": "",
-      "prefs": {},
+      "prefs": {
+        "channels": [
+          ""
+        ],
+        "groups": [
+          ""
+        ]
+      },
+      "users": [
+        ""
+      ],
       "user_count": ""
     }
   },
   "type": "",
+  "authed_users": [
+    ""
+  ],
   "event_id": "",
   "event_time": 123
 }

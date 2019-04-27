@@ -11,6 +11,8 @@ import java.util.Map;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class File {
 
     private String id;

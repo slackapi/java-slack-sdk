@@ -3,9 +3,26 @@
   "team_id": "",
   "api_app_id": "",
   "event": {
-    "type": "resources_removed"
+    "type": "resources_removed",
+    "resources": [
+      {
+        "resource": {
+          "type": "",
+          "grant": {
+            "type": "",
+            "resource_id": ""
+          }
+        },
+        "scopes": [
+          ""
+        ]
+      }
+    ]
   },
   "type": "",
+  "authed_users": [
+    ""
+  ],
   "event_id": "",
   "event_time": 123
 }

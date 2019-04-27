@@ -4,9 +4,15 @@
   "api_app_id": "",
   "event": {
     "type": "scope_granted",
+    "scopes": [
+      ""
+    ],
     "trigger_id": ""
   },
   "type": "",
+  "authed_users": [
+    ""
+  ],
   "event_id": "",
   "event_time": 123
 }

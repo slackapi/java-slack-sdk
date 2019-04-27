@@ -34,7 +34,7 @@ public class PinRemovedEvent implements Event {
         private String createdBy; // user id
         private Integer created;
 
-        private PinAddedEvent.Message message;
+        private Message message;
         private File file; // TODO: correct definition
         private FileComment comment; // TODO: correct definition
     }

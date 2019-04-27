@@ -1,9 +1,11 @@
 package com.github.seratch.jslack;
 
+import com.github.seratch.jslack.api.model.Reaction;
 import com.github.seratch.jslack.api.model.event.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import sample_json_generation.ObjectToJsonDumper;
+import sample_json_generation.SampleObjects;
 import util.ObjectInitializer;
 
 import java.util.Arrays;
@@ -36,7 +38,7 @@ public class RTMPayloadDumpTest {
                 new DndUpdatedEvent(),
                 new DndUpdatedUserEvent(),
                 new EmailDomainChangedEvent(),
-                new EmojiChangedEvent(),
+                buildEmojiChangedEvent(),
                 new FileChangeEvent(),
                 new FileCommentAddedEvent(),
                 new FileCommentDeletedEvent(),
@@ -65,42 +67,42 @@ public class RTMPayloadDumpTest {
                 new ImHistoryChangedEvent(),
                 new ImMarkedEvent(),
                 new ImOpenEvent(),
-                new LinkSharedEvent(),
+                buildLinkSharedEvent(),
                 new ManualPresenceChangeEvent(),
                 new MemberJoinedChannelEvent(),
                 new MemberLeftChannelEvent(),
-                new MessageEvent(),
-                new PinAddedEvent(),
-                new PinRemovedEvent(),
+                buildMessageEvent(),
+                buildPinAddedEvent(),
+                buildPinRemovedEvent(),
                 new PrefChangeEvent(),
-                new PresenceChangeEvent(),
+                buildPresenceChangeEvent(),
                 new ReactionAddedEvent(),
                 new ReactionRemovedEvent(),
                 new ReconnectUrlEvent(),
-                new ResourcesAddedEvent(),
-                new ResourcesRemovedEvent(),
-                new ScopeDeniedEvent(),
-                new ScopeGrantedEvent(),
-                new StarAddedEvent(),
-                new StarRemovedEvent(),
-                new SubteamCreatedEvent(),
-                new SubteamMembersChangedEvent(),
+                buildResourcesAddedEvent(),
+                buildResourcesRemovedEvent(),
+                buildScopeDeniedEvent(),
+                buildScopeGrantedEvent(),
+                buildStarAddedEvent(),
+                buildStarRemovedEvent(),
+                buildSubteamCreatedEvent(),
+                buildSubteamMembersChangedEvent(),
                 new SubteamSelfAddedEvent(),
                 new SubteamSelfRemovedEvent(),
-                new SubteamUpdatedEvent(),
+                buildSubteamUpdatedEvent(),
                 new TeamDomainChangeEvent(),
                 new TeamJoinEvent(),
                 new TeamMigrationStartedEvent(),
-                new TeamPlanChangeEvent(),
+                buildTeamPlanChangeEvent(),
                 new TeamPrefChangeEvent(),
-                new TeamProfileChangeEvent(),
-                new TeamProfileDeleteEvent(),
-                new TeamProfileReorderEvent(),
+                buildTeamProfileChangeEvent(),
+                buildTeamProfileDeleteEvent(),
+                buildTeamProfileReorderEvent(),
                 new TeamRenameEvent(),
-                new TokensRevokedEvent(),
+                buildTokensRevokedEvent(),
                 new UserChangeEvent(),
-                new UserResourceDeniedEvent(),
-                new UserResourceGrantedEvent(),
+                buildUserResourceDeniedEvent(),
+                buildUserResourceGrantedEvent(),
                 new UserResourceRemovedEvent(),
                 new UserTypingEvent()
         );
@@ -108,6 +110,171 @@ public class RTMPayloadDumpTest {
             ObjectInitializer.initProperties(payload);
             dumper.dump(payload.getClass().getSimpleName(), payload);
         }
+    }
+
+    private UserResourceGrantedEvent buildUserResourceGrantedEvent() {
+        UserResourceGrantedEvent event = new UserResourceGrantedEvent();
+        event.setScopes(Arrays.asList(""));
+        return event;
+    }
+
+    private UserResourceDeniedEvent buildUserResourceDeniedEvent() {
+        UserResourceDeniedEvent event = new UserResourceDeniedEvent();
+        event.setScopes(Arrays.asList(""));
+        return event;
+    }
+
+    private TokensRevokedEvent buildTokensRevokedEvent() {
+        TokensRevokedEvent event = new TokensRevokedEvent();
+        event.setTokens(new TokensRevokedEvent.Tokens());
+        event.getTokens().setOauth(Arrays.asList(""));
+        event.getTokens().setBot(Arrays.asList(""));
+        return event;
+    }
+
+    private TeamProfileReorderEvent buildTeamProfileReorderEvent() {
+        TeamProfileReorderEvent event = new TeamProfileReorderEvent();
+        event.setProfile(new TeamProfileReorderEvent.Profile());
+        event.getProfile().setFields(Arrays.asList(new TeamProfileReorderEvent.Field()));
+        return event;
+    }
+
+    private TeamProfileDeleteEvent buildTeamProfileDeleteEvent() {
+        TeamProfileDeleteEvent event = new TeamProfileDeleteEvent();
+        event.setProfile(new TeamProfileDeleteEvent.Profile());
+        event.getProfile().setFields(Arrays.asList(new TeamProfileDeleteEvent.Field()));
+        return event;
+    }
+
+    private TeamProfileChangeEvent buildTeamProfileChangeEvent() {
+        TeamProfileChangeEvent event = new TeamProfileChangeEvent();
+        event.setProfile(new TeamProfileChangeEvent.Profile());
+        event.getProfile().setFields(Arrays.asList(new TeamProfileChangeEvent.Field()));
+        return event;
+    }
+
+    private TeamPlanChangeEvent buildTeamPlanChangeEvent() {
+        TeamPlanChangeEvent event = new TeamPlanChangeEvent();
+        event.setPaidFeatures(Arrays.asList(""));
+        return event;
+    }
+
+    private SubteamUpdatedEvent buildSubteamUpdatedEvent() {
+        SubteamUpdatedEvent event = new SubteamUpdatedEvent();
+        event.setSubteam(new SubteamUpdatedEvent.Subteam());
+        event.getSubteam().setPrefs(new SubteamUpdatedEvent.Prefs());
+        event.getSubteam().getPrefs().setChannels(Arrays.asList(""));
+        event.getSubteam().getPrefs().setGroups(Arrays.asList(""));
+        return event;
+    }
+
+    private SubteamMembersChangedEvent buildSubteamMembersChangedEvent() {
+        SubteamMembersChangedEvent event = new SubteamMembersChangedEvent();
+        event.setAddedUsers(Arrays.asList(""));
+        event.setRemovedUsers(Arrays.asList(""));
+        return event;
+    }
+
+    private SubteamCreatedEvent buildSubteamCreatedEvent() {
+        SubteamCreatedEvent event = new SubteamCreatedEvent();
+        event.setSubteam(new SubteamCreatedEvent.Subteam());
+        event.getSubteam().setPrefs(new SubteamCreatedEvent.Prefs());
+        event.getSubteam().getPrefs().setChannels(Arrays.asList(""));
+        event.getSubteam().getPrefs().setGroups(Arrays.asList(""));
+        return event;
+    }
+
+    private StarRemovedEvent buildStarRemovedEvent() {
+        StarRemovedEvent event = new StarRemovedEvent();
+        event.setItem(new StarRemovedEvent.Item());
+        event.getItem().setMessage(new StarRemovedEvent.Message());
+        event.getItem().getMessage().setPinnedTo(Arrays.asList(""));
+        event.getItem().getMessage().setBlocks(SampleObjects.Blocks);
+        event.getItem().getMessage().setAttachments(SampleObjects.Attachments);
+        return event;
+    }
+
+    private StarAddedEvent buildStarAddedEvent() {
+        StarAddedEvent event = new StarAddedEvent();
+        event.setItem(new StarAddedEvent.Item());
+        event.getItem().setMessage(new StarAddedEvent.Message());
+        event.getItem().getMessage().setPinnedTo(Arrays.asList(""));
+        event.getItem().getMessage().setBlocks(SampleObjects.Blocks);
+        event.getItem().getMessage().setAttachments(SampleObjects.Attachments);
+        return event;
+    }
+
+    private ScopeGrantedEvent buildScopeGrantedEvent() {
+        ScopeGrantedEvent event = new ScopeGrantedEvent();
+        event.setScopes(Arrays.asList(""));
+        return event;
+    }
+
+    private ScopeDeniedEvent buildScopeDeniedEvent() {
+        ScopeDeniedEvent event = new ScopeDeniedEvent();
+        event.setScopes(Arrays.asList(""));
+        return event;
+    }
+
+    private ResourcesRemovedEvent buildResourcesRemovedEvent() {
+        ResourcesRemovedEvent event = new ResourcesRemovedEvent();
+        event.setResources(Arrays.asList(new ResourcesRemovedEvent.ResourceItem()));
+        event.getResources().get(0).setScopes(Arrays.asList(""));
+        return event;
+    }
+
+    private ResourcesAddedEvent buildResourcesAddedEvent() {
+        ResourcesAddedEvent event = new ResourcesAddedEvent();
+        event.setResources(Arrays.asList(new ResourcesAddedEvent.ResourceItem()));
+        event.getResources().get(0).setScopes(Arrays.asList(""));
+        return event;
+    }
+
+    private PresenceChangeEvent buildPresenceChangeEvent() {
+        PresenceChangeEvent event = new PresenceChangeEvent();
+        event.setUsers(Arrays.asList(""));
+        return event;
+    }
+
+    private PinRemovedEvent buildPinRemovedEvent() {
+        PinRemovedEvent event = new PinRemovedEvent();
+        event.setItem(new PinRemovedEvent.Item());
+        event.getItem().setMessage(new PinRemovedEvent.Message());
+        event.getItem().getMessage().setAttachments(SampleObjects.Attachments);
+        event.getItem().getMessage().setBlocks(SampleObjects.Blocks);
+        event.getItem().getMessage().setPinnedTo(Arrays.asList(""));
+        return event;
+    }
+
+    private PinAddedEvent buildPinAddedEvent() {
+        PinAddedEvent event = new PinAddedEvent();
+        event.setItem(new PinAddedEvent.Item());
+        event.getItem().setMessage(new PinAddedEvent.Message());
+        event.getItem().getMessage().setAttachments(SampleObjects.Attachments);
+        event.getItem().getMessage().setBlocks(SampleObjects.Blocks);
+        event.getItem().getMessage().setPinnedTo(Arrays.asList(""));
+        return event;
+    }
+
+    private MessageEvent buildMessageEvent() {
+        MessageEvent event = new MessageEvent();
+        event.setReactions(Arrays.asList(Reaction.builder().users(Arrays.asList("")).build()));
+        event.setPinnedTo(Arrays.asList(""));
+        event.setBlocks(SampleObjects.Blocks);
+        event.setAttachments(SampleObjects.Attachments);
+        return event;
+    }
+
+    private LinkSharedEvent buildLinkSharedEvent() {
+        LinkSharedEvent event = new LinkSharedEvent();
+        event.setLinks(Arrays.asList(new LinkSharedEvent.Link()));
+        return event;
+    }
+
+    private EmojiChangedEvent buildEmojiChangedEvent() {
+        EmojiChangedEvent event = new EmojiChangedEvent();
+        event.setNames(Arrays.asList(""));
+        return event;
     }
 
 }

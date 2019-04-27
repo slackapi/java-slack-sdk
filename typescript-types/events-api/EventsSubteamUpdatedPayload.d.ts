@@ -1,11 +1,12 @@
 export interface EventsSubteamUpdatedPayload {
-    token?:      string;
-    team_id?:    string;
-    api_app_id?: string;
-    event?:      Event;
-    type?:       string;
-    event_id?:   string;
-    event_time?: number;
+    token?:        string;
+    team_id?:      string;
+    api_app_id?:   string;
+    event?:        Event;
+    type?:         string;
+    authed_users?: string[];
+    event_id?:     string;
+    event_time?:   number;
 }
 
 export interface Event {
@@ -29,8 +30,11 @@ export interface Subteam {
     updated_by?:   string;
     deleted_by?:   string;
     prefs?:        Prefs;
+    users?:        string[];
     user_count?:   string;
 }
 
 export interface Prefs {
+    channels?: string[];
+    groups?:   string[];
 }

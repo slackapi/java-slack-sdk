@@ -1,15 +1,5 @@
 package sample_json_generation;
 
-import com.github.seratch.jslack.api.model.Action;
-import com.github.seratch.jslack.api.model.Attachment;
-import com.github.seratch.jslack.api.model.Field;
-import com.github.seratch.jslack.api.model.block.*;
-import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
-import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
-import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-import com.github.seratch.jslack.api.model.block.composition.TextObject;
-import com.github.seratch.jslack.api.model.block.element.*;
-import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.*;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
@@ -26,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static util.ObjectInitializer.initProperties;
+import static sample_json_generation.SampleObjects.*;
 
 @Slf4j
 public class JsonDataRecorder {
@@ -34,11 +24,9 @@ public class JsonDataRecorder {
     private static final Charset UTF_8 = Charset.forName("UTF-8");
 
     private String outputDirectory;
-    private ObjectToJsonDumper dumper;
 
     public JsonDataRecorder(String outputDirectory) {
         this.outputDirectory = outputDirectory;
-        this.dumper = new ObjectToJsonDumper(this.outputDirectory);
     }
 
     public void writeMergedResponse(Response response, String body) throws IOException {
@@ -109,45 +97,6 @@ public class JsonDataRecorder {
 
     private MergeJsonBuilder.ConflictStrategy CONFLICT_STRATEGY = MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ;
 
-    private List<JsonElement> exampleAttachments = Arrays.asList(
-            GsonFactory.createSnakeCase().toJsonTree(initProperties(Attachment.builder()
-                    .fields(Arrays.asList(initProperties(Field.builder().build())))
-                    .actions(Arrays.asList(initProperties(Action.builder().build())))
-                    .mrkdwnIn(Arrays.asList(""))
-                    .build()))
-    );
-    private TextObject exampleText = initProperties(PlainTextObject.builder().build());
-    private ConfirmationDialogObject exampleConfirm = ConfirmationDialogObject.builder().text(exampleText).build();
-    private List<BlockElement> exampleBlockElements = Arrays.asList(
-            initProperties(ButtonElement.builder().confirm(exampleConfirm).build()),
-            initProperties(ChannelsSelectElement.builder().confirm(exampleConfirm).build()),
-            initProperties(ConversationsSelectElement.builder().confirm(exampleConfirm).build()),
-            initProperties(DatePickerElement.builder().confirm(exampleConfirm).build()),
-            initProperties(ExternalSelectElement.builder().confirm(exampleConfirm).build()),
-            initProperties(ImageElement.builder().build()),
-            initProperties(OverflowMenuElement.builder().confirm(exampleConfirm).build()),
-            initProperties(StaticSelectElement.builder().confirm(exampleConfirm).build()),
-            initProperties(UsersSelectElement.builder().confirm(exampleConfirm).build())
-    );
-    private List<ContextBlockElement> exampleContextBlockElements = Arrays.asList(
-            initProperties(ImageElement.builder().build())
-    );
-    private List<TextObject> exampleSectionBlockFieldElements = Arrays.asList(
-            initProperties(PlainTextObject.builder().build()),
-            initProperties(MarkdownTextObject.builder().build())
-    );
-    private List<JsonElement> exampleBlocks = Arrays.asList(
-            GsonFactory.createSnakeCase().toJsonTree(initProperties(ActionsBlock.builder().elements(exampleBlockElements).build())),
-            GsonFactory.createSnakeCase().toJsonTree(initProperties(ContextBlock.builder().elements(exampleContextBlockElements).build())),
-            GsonFactory.createSnakeCase().toJsonTree(initProperties(DividerBlock.builder().build())),
-            GsonFactory.createSnakeCase().toJsonTree(initProperties(ImageBlock.builder().build())),
-            GsonFactory.createSnakeCase().toJsonTree(initProperties(SectionBlock.builder()
-                    .accessory(initProperties(ImageElement.builder().build()))
-                    .text(exampleText)
-                    .fields(exampleSectionBlockFieldElements)
-                    .build()))
-    );
-
     private void scanToNormalizeStringValues(JsonElement parent, String name, JsonElement element) {
         if (element.isJsonArray()) {
             JsonArray array = element.getAsJsonArray();
@@ -155,14 +104,14 @@ public class JsonDataRecorder {
                 for (int idx = 0; idx < array.size(); idx++) {
                     array.remove(idx);
                 }
-                for (JsonElement attachment : exampleAttachments) {
+                for (JsonElement attachment : Json.Attachments) {
                     array.add(attachment);
                 }
             } else if (name != null && name.equals("blocks")) {
                 for (int idx = 0; idx < array.size(); idx++) {
                     array.remove(idx);
                 }
-                for (JsonElement block : exampleBlocks) {
+                for (JsonElement block : Json.Blocks) {
                     array.add(block);
                 }
             }

@@ -7,9 +7,18 @@
     "channel": "",
     "user": "",
     "message_ts": "",
-    "thread_ts": ""
+    "thread_ts": "",
+    "links": [
+      {
+        "domain": "",
+        "url": ""
+      }
+    ]
   },
   "type": "",
+  "authed_users": [
+    ""
+  ],
   "event_id": "",
   "event_time": 123
 }

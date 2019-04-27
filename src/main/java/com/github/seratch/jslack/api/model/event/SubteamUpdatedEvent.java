@@ -45,7 +45,7 @@ public class SubteamUpdatedEvent implements Event {
         private String createdBy;
         private String updatedBy;
         private String deletedBy;
-        private SubteamCreatedEvent.Prefs prefs;
+        private Prefs prefs;
         private List<String> users;
         private String userCount;
     }

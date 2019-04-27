@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -43,9 +42,12 @@ public class ObjectInitializer {
                         for (Object o : listObj) {
                             initProperties(o);
                         }
+                    } else {
+                        log.info("null List object detected {} in {}", field.getName(), obj.getClass().getSimpleName());
                     }
                 } else {
                     if (field.get(obj) != null) {
+                        initProperties(field.get(obj));
                         continue;
                     }
                     for (Constructor<?> constructor : type.getDeclaredConstructors()) {

@@ -1,11 +1,12 @@
 export interface EventsSubteamMembersChangedPayload {
-    token?:      string;
-    team_id?:    string;
-    api_app_id?: string;
-    event?:      Event;
-    type?:       string;
-    event_id?:   string;
-    event_time?: number;
+    token?:        string;
+    team_id?:      string;
+    api_app_id?:   string;
+    event?:        Event;
+    type?:         string;
+    authed_users?: string[];
+    event_id?:     string;
+    event_time?:   number;
 }
 
 export interface Event {
@@ -14,6 +15,8 @@ export interface Event {
     team_id?:              string;
     date_previous_update?: number;
     date_update?:          number;
+    added_users?:          string[];
     added_users_count?:    number;
+    removed_users?:        string[];
     removed_users_count?:  number;
 }
