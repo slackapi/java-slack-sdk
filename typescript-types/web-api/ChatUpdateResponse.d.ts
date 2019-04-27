@@ -13,9 +13,10 @@ export interface Message {
     type?:              string;
     subtype?:           string;
     text?:              string;
-    user?:              string;
     username?:          string;
     bot_id?:            string;
+    blocks?:            Block[];
+    user?:              string;
     thread_ts?:         string;
     reply_count?:       number;
     reply_users_count?: number;
@@ -24,44 +25,71 @@ export interface Message {
     replies?:           Reply[];
     subscribed?:        boolean;
     last_read?:         string;
-    blocks?:            Block[];
 }
 
 export interface Block {
-    type?:      string;
-    block_id?:  string;
-    text?:      BlockText;
-    accessory?: Accessory;
-    elements?:  Element[];
-}
-
-export interface Accessory {
+    type?:         string;
+    block_id?:     string;
+    elements?:     Element[];
     fallback?:     string;
     image_url?:    string;
     image_width?:  number;
     image_height?: number;
     image_bytes?:  number;
+    alt_text?:     string;
+    title?:        Text;
+    text?:         Text;
+    fields?:       Text[];
+    accessory?:    Accessory;
+}
+
+export interface Accessory {
     type?:         string;
+    fallback?:     string;
+    image_url?:    string;
+    image_width?:  number;
+    image_height?: number;
+    image_bytes?:  number;
     alt_text?:     string;
 }
 
 export interface Element {
-    type?:      string;
-    action_id?: string;
-    text?:      ElementText;
-    value?:     string;
+    type?:                 string;
+    fallback?:             string;
+    text?:                 Text;
+    action_id?:            string;
+    url?:                  string;
+    value?:                string;
+    style?:                string;
+    confirm?:              Confirm;
+    placeholder?:          Text;
+    initial_channel?:      string;
+    initial_conversation?: string;
+    initial_date?:         string;
+    initial_option?:       InitialOption;
+    min_query_length?:     number;
+    image_url?:            string;
+    image_width?:          number;
+    image_height?:         number;
+    image_bytes?:          number;
+    alt_text?:             string;
+    initial_user?:         string;
 }
 
-export interface ElementText {
-    type?:  string;
-    text?:  string;
-    emoji?: boolean;
+export interface Confirm {
+    text?: Text;
 }
 
-export interface BlockText {
+export interface Text {
     type?:     string;
     text?:     string;
+    emoji?:    boolean;
     verbatim?: boolean;
+}
+
+export interface InitialOption {
+    text?:  Text;
+    value?: string;
 }
 
 export interface Reply {

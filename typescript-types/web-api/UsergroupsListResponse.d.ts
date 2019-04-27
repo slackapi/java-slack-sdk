@@ -1,6 +1,6 @@
 export interface UsergroupsListResponse {
     ok?:         boolean;
-    usergroups?: any[];
+    usergroups?: string[];
     error?:      string;
     needed?:     string;
     provided?:   string;

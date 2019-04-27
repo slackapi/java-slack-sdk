@@ -23,48 +23,70 @@ export interface Message {
     reply_users_count?: number;
     latest_reply?:      string;
     reply_users?:       string[];
-    replies?:           Reply[];
+    replies?:           Array<ReplyClass | string>;
     subscribed?:        boolean;
+    last_read?:         string;
     blocks?:            Block[];
-    icons?:             Icons;
-    attachments?:       Attachment[];
     files?:             File[];
     upload?:            boolean;
     display_as_bot?:    boolean;
-    last_read?:         string;
+    attachments?:       Attachment[];
     reactions?:         Reaction[];
-    client_msg_id?:     string;
-    inviter?:           string;
+    icons?:             Icons;
 }
 
 export interface Attachment {
-    service_name?:          string;
-    title?:                 string;
-    title_link?:            string;
-    text?:                  string;
-    fallback?:              string;
-    image_url?:             string;
-    image_width?:           number;
-    image_height?:          number;
-    ts?:                    number | string;
-    from_url?:              string;
-    image_bytes?:           number;
-    service_icon?:          string;
-    id?:                    number;
-    original_url?:          string;
     msg_subtype?:           string;
+    fallback?:              string;
+    callback_id?:           string;
+    color?:                 string;
+    pretext?:               string;
+    service_url?:           string;
+    service_name?:          string;
+    service_icon?:          string;
+    author_name?:           string;
+    author_link?:           string;
+    author_icon?:           string;
+    from_url?:              string;
+    original_url?:          string;
     author_subname?:        string;
     channel_id?:            string;
     channel_name?:          string;
+    id?:                    number;
+    bot_id?:                string;
     is_msg_unfurl?:         boolean;
+    is_reply_unfurl?:       boolean;
     is_thread_root_unfurl?: boolean;
-    author_icon?:           string;
-    author_link?:           string;
-    mrkdwn_in?:             string[];
-    footer?:                string;
-    author_name?:           string;
-    color?:                 string;
+    app_unfurl_url?:        string;
+    is_app_unfurl?:         boolean;
+    title?:                 string;
+    title_link?:            string;
+    text?:                  string;
     fields?:                Field[];
+    image_url?:             string;
+    image_width?:           number;
+    image_height?:          number;
+    image_bytes?:           number;
+    thumb_url?:             string;
+    thumb_width?:           number;
+    thumb_height?:          number;
+    footer?:                string;
+    footer_icon?:           string;
+    ts?:                    string;
+    mrkdwn_in?:             string[];
+    actions?:               Action[];
+}
+
+export interface Action {
+    id?:               string;
+    name?:             string;
+    text?:             string;
+    style?:            string;
+    type?:             string;
+    value?:            string;
+    data_source?:      string;
+    min_query_length?: number;
+    url?:              string;
 }
 
 export interface Field {
@@ -74,40 +96,68 @@ export interface Field {
 }
 
 export interface Block {
-    type?:      string;
-    block_id?:  string;
-    text?:      BlockText;
-    accessory?: Accessory;
-    elements?:  Element[];
-}
-
-export interface Accessory {
+    type?:         string;
+    elements?:     Element[];
+    block_id?:     string;
     fallback?:     string;
     image_url?:    string;
     image_width?:  number;
     image_height?: number;
     image_bytes?:  number;
+    alt_text?:     string;
+    title?:        Text;
+    text?:         Text;
+    fields?:       Text[];
+    accessory?:    Accessory;
+}
+
+export interface Accessory {
     type?:         string;
+    fallback?:     string;
+    image_url?:    string;
+    image_width?:  number;
+    image_height?: number;
+    image_bytes?:  number;
     alt_text?:     string;
 }
 
 export interface Element {
-    type?:      string;
-    action_id?: string;
-    text?:      ElementText;
-    value?:     string;
+    type?:                 string;
+    fallback?:             string;
+    text?:                 Text;
+    action_id?:            string;
+    url?:                  string;
+    value?:                string;
+    style?:                string;
+    confirm?:              Confirm;
+    placeholder?:          Text;
+    initial_channel?:      string;
+    initial_conversation?: string;
+    initial_date?:         string;
+    initial_option?:       InitialOption;
+    min_query_length?:     number;
+    image_url?:            string;
+    image_width?:          number;
+    image_height?:         number;
+    image_bytes?:          number;
+    alt_text?:             string;
+    initial_user?:         string;
 }
 
-export interface ElementText {
-    type?:  string;
-    text?:  string;
-    emoji?: boolean;
+export interface Confirm {
+    text?: Text;
 }
 
-export interface BlockText {
+export interface Text {
     type?:     string;
     text?:     string;
+    emoji?:    boolean;
     verbatim?: boolean;
+}
+
+export interface InitialOption {
+    text?:  Text;
+    value?: string;
 }
 
 export interface File {
@@ -144,7 +194,6 @@ export interface File {
 }
 
 export interface Icons {
-    image_48?: string;
     emoji?:    string;
     image_64?: string;
 }
@@ -155,7 +204,7 @@ export interface Reaction {
     count?: number;
 }
 
-export interface Reply {
+export interface ReplyClass {
     user?: string;
     ts?:   string;
 }
@@ -172,7 +221,7 @@ export interface Root {
     reply_users_count?: number;
     latest_reply?:      string;
     reply_users?:       string[];
-    replies?:           Reply[];
+    replies?:           ReplyClass[];
     subscribed?:        boolean;
     last_read?:         string;
 }

@@ -54,8 +54,8 @@ export interface File {
     is_starred?:           boolean;
     shares?:               Shares;
     channels?:             string[];
-    groups?:               any[];
-    ims?:                  any[];
+    groups?:               string[];
+    ims?:                  string[];
     has_rich_preview?:     boolean;
     thumb_64?:             string;
     thumb_80?:             string;
@@ -73,7 +73,7 @@ export interface Shares {
 }
 
 export interface Public {
-    reply_users?:       any[];
+    reply_users?:       string[];
     reply_users_count?: number;
     reply_count?:       number;
     ts?:                string;

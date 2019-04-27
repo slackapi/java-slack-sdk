@@ -1,5 +1,15 @@
-package testing.json;
+package sample_json_generation;
 
+import com.github.seratch.jslack.api.model.Action;
+import com.github.seratch.jslack.api.model.Attachment;
+import com.github.seratch.jslack.api.model.Field;
+import com.github.seratch.jslack.api.model.block.*;
+import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
+import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
+import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
+import com.github.seratch.jslack.api.model.block.composition.TextObject;
+import com.github.seratch.jslack.api.model.block.element.*;
+import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.*;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
@@ -16,15 +26,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static util.ObjectInitializer.initProperties;
+
 @Slf4j
 public class JsonDataRecorder {
 
     private static final Charset UTF_8 = Charset.forName("UTF-8");
 
     private String outputDirectory;
+    private ObjectToJsonDumper dumper;
 
     public JsonDataRecorder(String outputDirectory) {
         this.outputDirectory = outputDirectory;
+        this.dumper = new ObjectToJsonDumper(this.outputDirectory);
     }
 
     public void writeMergedResponse(Response response, String body) throws IOException {
@@ -61,7 +75,7 @@ public class JsonDataRecorder {
         Files.write(rawFilePath, json.getBytes(UTF_8));
 
         for (Map.Entry<String, JsonElement> entry : result.entrySet()) {
-            scanToMaskStringValues(result, entry.getKey(), entry.getValue());
+            scanToNormalizeStringValues(result, entry.getKey(), entry.getValue());
         }
         addCommonPropertiesAtTopLevel(result);
 
@@ -95,10 +109,66 @@ public class JsonDataRecorder {
 
     private MergeJsonBuilder.ConflictStrategy CONFLICT_STRATEGY = MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ;
 
-    private void scanToMaskStringValues(JsonElement parent, String name, JsonElement element) {
+    private List<JsonElement> exampleAttachments = Arrays.asList(
+            GsonFactory.createSnakeCase().toJsonTree(initProperties(Attachment.builder()
+                    .fields(Arrays.asList(initProperties(Field.builder().build())))
+                    .actions(Arrays.asList(initProperties(Action.builder().build())))
+                    .mrkdwnIn(Arrays.asList(""))
+                    .build()))
+    );
+    private TextObject exampleText = initProperties(PlainTextObject.builder().build());
+    private ConfirmationDialogObject exampleConfirm = ConfirmationDialogObject.builder().text(exampleText).build();
+    private List<BlockElement> exampleBlockElements = Arrays.asList(
+            initProperties(ButtonElement.builder().confirm(exampleConfirm).build()),
+            initProperties(ChannelsSelectElement.builder().confirm(exampleConfirm).build()),
+            initProperties(ConversationsSelectElement.builder().confirm(exampleConfirm).build()),
+            initProperties(DatePickerElement.builder().confirm(exampleConfirm).build()),
+            initProperties(ExternalSelectElement.builder().confirm(exampleConfirm).build()),
+            initProperties(ImageElement.builder().build()),
+            initProperties(OverflowMenuElement.builder().confirm(exampleConfirm).build()),
+            initProperties(StaticSelectElement.builder().confirm(exampleConfirm).build()),
+            initProperties(UsersSelectElement.builder().confirm(exampleConfirm).build())
+    );
+    private List<ContextBlockElement> exampleContextBlockElements = Arrays.asList(
+            initProperties(ImageElement.builder().build())
+    );
+    private List<TextObject> exampleSectionBlockFieldElements = Arrays.asList(
+            initProperties(PlainTextObject.builder().build()),
+            initProperties(MarkdownTextObject.builder().build())
+    );
+    private List<JsonElement> exampleBlocks = Arrays.asList(
+            GsonFactory.createSnakeCase().toJsonTree(initProperties(ActionsBlock.builder().elements(exampleBlockElements).build())),
+            GsonFactory.createSnakeCase().toJsonTree(initProperties(ContextBlock.builder().elements(exampleContextBlockElements).build())),
+            GsonFactory.createSnakeCase().toJsonTree(initProperties(DividerBlock.builder().build())),
+            GsonFactory.createSnakeCase().toJsonTree(initProperties(ImageBlock.builder().build())),
+            GsonFactory.createSnakeCase().toJsonTree(initProperties(SectionBlock.builder()
+                    .accessory(initProperties(ImageElement.builder().build()))
+                    .text(exampleText)
+                    .fields(exampleSectionBlockFieldElements)
+                    .build()))
+    );
+
+    private void scanToNormalizeStringValues(JsonElement parent, String name, JsonElement element) {
         if (element.isJsonArray()) {
             JsonArray array = element.getAsJsonArray();
-            if (array.size() > 0) {
+            if (name != null && name.equals("attachments")) {
+                for (int idx = 0; idx < array.size(); idx++) {
+                    array.remove(idx);
+                }
+                for (JsonElement attachment : exampleAttachments) {
+                    array.add(attachment);
+                }
+            } else if (name != null && name.equals("blocks")) {
+                for (int idx = 0; idx < array.size(); idx++) {
+                    array.remove(idx);
+                }
+                for (JsonElement block : exampleBlocks) {
+                    array.add(block);
+                }
+            }
+            if (array.size() == 0) {
+                array.add(""); // in most cases, empty array can have string values
+            } else {
                 JsonElement first = array.get(0);
                 if (first.isJsonPrimitive()) {
                     array.set(0, normalize(null, first.getAsJsonPrimitive()));
@@ -110,14 +180,14 @@ public class JsonDataRecorder {
                     }
                 } else {
                     for (JsonElement child : array) {
-                        scanToMaskStringValues(array, null, child);
+                        scanToNormalizeStringValues(array, null, child);
                     }
                     if (array.size() >= 2) {
                         for (int idx = 1; idx < array.size(); idx++) {
                             JsonElement elem = array.get(idx);
                             if (elem.isJsonArray()) {
                                 for (JsonElement child : elem.getAsJsonArray()) {
-                                    scanToMaskStringValues(elem, null, child);
+                                    scanToNormalizeStringValues(elem, null, child);
                                 }
                             } else {
                                 try {
@@ -137,8 +207,15 @@ public class JsonDataRecorder {
                 }
             }
         } else if (element.isJsonObject()) {
+            List<Map.Entry<String, JsonElement>> entries = new ArrayList<>(element.getAsJsonObject().entrySet());
+            if (entries.size() == 1 && entries.get(0).getKey().matches("^[A-Z].{8}$")) {
+                // if the child element seems to be a Map object using identifiers (e.g., channel id, user id) as keys
+                // the Map object should have 2+ elements to allow quicktype generate preferable code.
+                Map.Entry<String, JsonElement> first = entries.get(0);
+                element.getAsJsonObject().add(first.getKey() + "_", first.getValue());
+            }
             for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
-                scanToMaskStringValues(element, entry.getKey(), entry.getValue());
+                scanToNormalizeStringValues(element, entry.getKey(), entry.getValue());
             }
         } else if (element.isJsonNull()) {
             return;

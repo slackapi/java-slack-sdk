@@ -1,4 +1,4 @@
-package testing.json;
+package sample_json_generation;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

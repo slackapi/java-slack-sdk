@@ -37,8 +37,8 @@ export interface File {
     lines_more?:           number;
     preview_is_truncated?: boolean;
     channels?:             string[];
-    groups?:               any[];
-    ims?:                  any[];
+    groups?:               string[];
+    ims?:                  string[];
     comments_count?:       number;
     thumb_video?:          string;
 }

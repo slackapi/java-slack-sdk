@@ -49,7 +49,7 @@ export interface Match {
     is_starred?:           boolean;
     shares?:               Shares;
     channels?:             string[];
-    groups?:               any[];
+    groups?:               string[];
     ims?:                  string[];
     has_rich_preview?:     boolean;
     score?:                string;
@@ -80,27 +80,19 @@ export interface Match {
 }
 
 export interface Shares {
-    public?:  Public;
-    private?: Private;
+    public?:  { [key: string]: Public[] };
+    private?: { [key: string]: Private[] };
 }
 
 export interface Private {
-    DG79B5UNR?: Dg79B5Unr[];
-}
-
-export interface Dg79B5Unr {
-    reply_users?:       any[];
+    reply_users?:       string[];
     reply_users_count?: number;
     reply_count?:       number;
     ts?:                string;
 }
 
 export interface Public {
-    C03E94MKS?: C03E94Mk[];
-}
-
-export interface C03E94Mk {
-    reply_users?:       any[];
+    reply_users?:       string[];
     reply_users_count?: number;
     reply_count?:       number;
     ts?:                string;

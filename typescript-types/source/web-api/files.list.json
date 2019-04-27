@@ -31,10 +31,15 @@
       "lines_more": 12345,
       "preview_is_truncated": false,
       "channels": [
+        "",
         "C00000000"
       ],
-      "groups": [],
-      "ims": [],
+      "groups": [
+        ""
+      ],
+      "ims": [
+        ""
+      ],
       "comments_count": 12345,
       "thumb_video": "https://www.example.com/"
     }

@@ -1,6 +1,8 @@
 {
   "ok": false,
-  "channels": [],
+  "channels": [
+    ""
+  ],
   "response_metadata": {
     "next_cursor": ""
   },

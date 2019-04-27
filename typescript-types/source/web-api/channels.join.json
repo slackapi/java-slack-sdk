@@ -38,7 +38,9 @@
       "creator": "U00000000",
       "last_set": 12345
     },
-    "previous_names": [],
+    "previous_names": [
+      ""
+    ],
     "priority": 12345
   },
   "error": "",

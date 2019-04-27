@@ -55,7 +55,21 @@
           "public": {
             "C03E94MKS": [
               {
-                "reply_users": [],
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ],
+            "C03E94MKS_": [
+              {
+                "reply_users": [
+                  ""
+                ],
                 "reply_users_count": 12345,
                 "reply_count": 12345,
                 "ts": "0000000000.000000",
@@ -67,7 +81,19 @@
           "private": {
             "DG79B5UNR": [
               {
-                "reply_users": [],
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000"
+              }
+            ],
+            "DG79B5UNR_": [
+              {
+                "reply_users": [
+                  ""
+                ],
                 "reply_users_count": 12345,
                 "reply_count": 12345,
                 "ts": "0000000000.000000"
@@ -76,10 +102,14 @@
           }
         },
         "channels": [
-          "C00000000"
+          "C00000000",
+          ""
         ],
-        "groups": [],
+        "groups": [
+          ""
+        ],
         "ims": [
+          "",
           "D00000000"
         ],
         "has_rich_preview": false,

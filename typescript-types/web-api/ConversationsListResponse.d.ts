@@ -23,18 +23,19 @@ export interface Channel {
     is_ext_shared?:         boolean;
     is_org_shared?:         boolean;
     shared_team_ids?:       string[];
-    pending_shared?:        any[];
+    pending_shared?:        string[];
     is_pending_ext_shared?: boolean;
     is_member?:             boolean;
     is_private?:            boolean;
     is_mpim?:               boolean;
     topic?:                 Purpose;
     purpose?:               Purpose;
-    previous_names?:        any[];
+    previous_names?:        string[];
     num_members?:           number;
     last_read?:             string;
     is_open?:               boolean;
     priority?:              number;
+    parent_conversation?:   string;
 }
 
 export interface Purpose {

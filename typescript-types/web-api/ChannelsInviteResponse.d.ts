@@ -28,7 +28,7 @@ export interface Channel {
     members?:              string[];
     topic?:                Purpose;
     purpose?:              Purpose;
-    previous_names?:       any[];
+    previous_names?:       string[];
     priority?:             number;
 }
 

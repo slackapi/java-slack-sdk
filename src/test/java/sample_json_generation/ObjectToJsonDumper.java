@@ -1,7 +1,6 @@
-package testing.json;
+package sample_json_generation;
 
 import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 

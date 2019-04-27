@@ -249,13 +249,13 @@
       "tz": "",
       "locales_enabled": {
         "de-DE": "",
+        "en-GB": "",
         "en-US": "",
         "es-ES": "",
-        "fr-FR": "",
-        "ja-JP": "",
-        "en-GB": "",
         "es-LA": "",
-        "pt-BR": ""
+        "fr-FR": "",
+        "pt-BR": "",
+        "ja-JP": ""
       }
     },
     "created": 12345,
@@ -345,8 +345,12 @@
       },
       "onedrive_enabled_team": false,
       "can_receive_shared_channels_invites": false,
-      "enterprise_default_channels": [],
-      "enterprise_mandatory_channels": [],
+      "enterprise_default_channels": [
+        ""
+      ],
+      "enterprise_mandatory_channels": [
+        ""
+      ],
       "enterprise_mdm_disable_file_download": false,
       "mobile_passcode_timeout_in_seconds": 12345,
       "has_hipaa_compliance": false,
@@ -445,7 +449,9 @@
       "priority": 12345
     }
   ],
-  "groups": [],
+  "groups": [
+    ""
+  ],
   "ims": [
     {
       "id": "D00000000",
@@ -460,13 +466,23 @@
     }
   ],
   "cache_ts": 12345,
-  "read_only_channels": [],
-  "non_threadable_channels": [],
-  "thread_only_channels": [],
+  "read_only_channels": [
+    ""
+  ],
+  "non_threadable_channels": [
+    ""
+  ],
+  "thread_only_channels": [
+    ""
+  ],
   "can_manage_shared_channels": false,
   "subteams": {
-    "self": [],
-    "all": []
+    "self": [
+      ""
+    ],
+    "all": [
+      ""
+    ]
   },
   "dnd": {
     "dnd_enabled": false,

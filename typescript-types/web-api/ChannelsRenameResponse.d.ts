@@ -21,7 +21,7 @@ export interface Channel {
     is_member?:       boolean;
     is_private?:      boolean;
     is_mpim?:         boolean;
-    members?:         any[];
+    members?:         string[];
     topic?:           Purpose;
     purpose?:         Purpose;
     previous_names?:  string[];

@@ -1,6 +1,6 @@
 export interface UsersConversationsResponse {
     ok?:                boolean;
-    channels?:          any[];
+    channels?:          string[];
     response_metadata?: ResponseMetadata;
     error?:             string;
     needed?:            string;

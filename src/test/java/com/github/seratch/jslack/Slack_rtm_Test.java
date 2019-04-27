@@ -21,7 +21,7 @@ import org.junit.Test;
 import testing.Constants;
 import testing.SlackTestConfig;
 import testing.TestChannelGenerator;
-import testing.json.JsonDataRecordingListener;
+import sample_json_generation.JsonDataRecordingListener;
 
 import javax.websocket.DeploymentException;
 import java.io.IOException;

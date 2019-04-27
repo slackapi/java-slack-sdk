@@ -18,7 +18,9 @@
     "shared_team_ids": [
       "T00000000"
     ],
-    "pending_shared": [],
+    "pending_shared": [
+      ""
+    ],
     "is_pending_ext_shared": false,
     "is_member": false,
     "is_private": false,
@@ -34,7 +36,9 @@
       "creator": "U00000000",
       "last_set": 12345
     },
-    "previous_names": [],
+    "previous_names": [
+      ""
+    ],
     "priority": 12345
   },
   "error": "",

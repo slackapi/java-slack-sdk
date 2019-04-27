@@ -12,37 +12,19 @@ export interface Messages {
     pagination?:  Pagination;
     paging?:      Paging;
     matches?:     Match[];
-    refinements?: any[];
+    refinements?: string[];
 }
 
 export interface Match {
-    iid?:         string;
-    team?:        string;
-    channel?:     Channel;
-    type?:        string;
-    user?:        string;
-    username?:    string;
-    ts?:          string;
-    text?:        string;
-    permalink?:   string;
-    attachments?: Attachment[];
-}
-
-export interface Attachment {
-    fallback?:       string;
-    ts?:             number;
-    author_name?:    string;
-    author_link?:    string;
-    author_icon?:    string;
-    author_subname?: string;
-    pretext?:        string;
-    text?:           string;
-    service_name?:   string;
-    service_url?:    string;
-    from_url?:       string;
-    id?:             number;
-    footer?:         string;
-    footer_icon?:    string;
+    iid?:       string;
+    team?:      string;
+    channel?:   Channel;
+    type?:      string;
+    user?:      string;
+    username?:  string;
+    ts?:        string;
+    text?:      string;
+    permalink?: string;
 }
 
 export interface Channel {
@@ -56,7 +38,7 @@ export interface Channel {
     is_ext_shared?:         boolean;
     is_private?:            boolean;
     is_mpim?:               boolean;
-    pending_shared?:        any[];
+    pending_shared?:        string[];
     is_pending_ext_shared?: boolean;
 }
 

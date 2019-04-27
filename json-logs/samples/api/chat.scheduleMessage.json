@@ -1,6 +1,5 @@
 {
   "ok": false,
-  "error": "",
   "scheduled_message_id": "Q00000000",
   "channel": "C00000000",
   "post_at": 12345,
@@ -11,29 +10,162 @@
     "user": "U00000000",
     "attachments": [
       {
-        "text": "",
+        "msg_subtype": "",
+        "fallback": "",
+        "callback_id": "",
+        "color": "",
+        "pretext": "",
+        "service_url": "",
+        "service_name": "",
+        "service_icon": "",
+        "author_name": "",
+        "author_link": "",
+        "author_icon": "",
+        "from_url": "",
+        "original_url": "",
+        "author_subname": "",
+        "channel_id": "",
+        "channel_name": "",
         "id": 12345,
-        "fallback": ""
+        "bot_id": "",
+        "is_msg_unfurl": false,
+        "is_reply_unfurl": false,
+        "is_thread_root_unfurl": false,
+        "app_unfurl_url": "",
+        "is_app_unfurl": false,
+        "title": "",
+        "title_link": "",
+        "text": "",
+        "fields": [
+          {
+            "title": "",
+            "value": "",
+            "short": false
+          }
+        ],
+        "image_url": "",
+        "image_width": 12345,
+        "image_height": 12345,
+        "image_bytes": 12345,
+        "thumb_url": "",
+        "thumb_width": 12345,
+        "thumb_height": 12345,
+        "footer": "",
+        "footer_icon": "",
+        "ts": "",
+        "mrkdwn_in": [
+          ""
+        ],
+        "actions": [
+          {
+            "id": "",
+            "name": "",
+            "text": "",
+            "style": "",
+            "type": "",
+            "value": "",
+            "data_source": "",
+            "min_query_length": 12345,
+            "url": ""
+          }
+        ]
       }
     ],
     "blocks": [
       {
         "type": "",
-        "block_id": "12345",
-        "image_url": "https://www.example.com/",
+        "elements": [
+          {
+            "type": "",
+            "fallback": "",
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "url": "",
+            "value": "",
+            "style": "",
+            "confirm": {
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              }
+            },
+            "placeholder": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "initial_channel": "",
+            "initial_conversation": "",
+            "initial_date": "",
+            "initial_option": {
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "value": ""
+            },
+            "min_query_length": 12345,
+            "image_url": "",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345,
+            "alt_text": "",
+            "initial_user": ""
+          },
+          {
+            "type": "",
+            "fallback": "",
+            "image_url": "",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345,
+            "alt_text": ""
+          }
+        ],
+        "block_id": "",
+        "fallback": "",
+        "image_url": "",
+        "image_width": 12345,
+        "image_height": 12345,
+        "image_bytes": 12345,
         "alt_text": "",
         "title": {
           "type": "",
           "text": "",
           "emoji": false
         },
-        "fallback": "",
-        "image_width": 12345,
-        "image_height": 12345,
-        "image_bytes": 12345
+        "text": {
+          "type": "",
+          "text": "",
+          "emoji": false
+        },
+        "fields": [
+          {
+            "type": "",
+            "text": "",
+            "emoji": false,
+            "verbatim": false
+          }
+        ],
+        "accessory": {
+          "type": "",
+          "fallback": "",
+          "image_url": "",
+          "image_width": 12345,
+          "image_height": 12345,
+          "image_bytes": 12345,
+          "alt_text": ""
+        }
       }
     ]
   },
+  "error": "",
   "needed": "",
   "provided": ""
 }

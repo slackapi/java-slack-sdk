@@ -4,12 +4,12 @@ export interface RtmStartResponse {
     team?:                       Team;
     latest_event_ts?:            string;
     channels?:                   Channel[];
-    groups?:                     any[];
+    groups?:                     string[];
     ims?:                        Im[];
     cache_ts?:                   number;
-    read_only_channels?:         any[];
-    non_threadable_channels?:    any[];
-    thread_only_channels?:       any[];
+    read_only_channels?:         string[];
+    non_threadable_channels?:    string[];
+    thread_only_channels?:       string[];
     can_manage_shared_channels?: boolean;
     subteams?:                   Subteams;
     dnd?:                        Dnd;
@@ -344,18 +344,18 @@ export interface SelfPrefs {
 
 export interface LocalesEnabled {
     "de-DE"?: string;
+    "en-GB"?: string;
     "en-US"?: string;
     "es-ES"?: string;
-    "fr-FR"?: string;
-    "ja-JP"?: string;
-    "en-GB"?: string;
     "es-LA"?: string;
+    "fr-FR"?: string;
     "pt-BR"?: string;
+    "ja-JP"?: string;
 }
 
 export interface Subteams {
-    self?: any[];
-    all?:  any[];
+    self?: string[];
+    all?:  string[];
 }
 
 export interface Team {
@@ -441,8 +441,8 @@ export interface TeamPrefs {
     who_can_manage_ext_shared_channels?:     WhoCan;
     onedrive_enabled_team?:                  boolean;
     can_receive_shared_channels_invites?:    boolean;
-    enterprise_default_channels?:            any[];
-    enterprise_mandatory_channels?:          any[];
+    enterprise_default_channels?:            string[];
+    enterprise_mandatory_channels?:          string[];
     enterprise_mdm_disable_file_download?:   boolean;
     mobile_passcode_timeout_in_seconds?:     number;
     has_hipaa_compliance?:                   boolean;

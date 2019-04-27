@@ -1,6 +1,6 @@
 export interface MpimHistoryResponse {
     ok?:       boolean;
-    messages?: any[];
+    messages?: string[];
     has_more?: boolean;
     error?:    string;
     needed?:   string;
