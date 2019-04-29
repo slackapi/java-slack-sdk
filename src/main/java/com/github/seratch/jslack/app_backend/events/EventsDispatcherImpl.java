@@ -66,10 +66,14 @@ public class EventsDispatcherImpl implements EventsDispatcher {
         if (eventHandlers == null || eventHandlers.size() == 0) {
             log.debug("No event handler registered for type: {}", eventType);
         } else {
-            Class<?> clazz = eventHandlers.get(0).getEventPayloadClass();
-            EventsApiPayload<?> event = (EventsApiPayload) GsonFactory.createSnakeCase().fromJson(json, clazz);
-            for (EventHandler<?> handler : eventHandlers) {
-                handler.acceptUntypedObject(event);
+            try {
+                Class<?> clazz = eventHandlers.get(0).getEventPayloadClass();
+                EventsApiPayload<?> event = (EventsApiPayload) GsonFactory.createSnakeCase().fromJson(json, clazz);
+                for (EventHandler<?> handler : eventHandlers) {
+                    handler.acceptUntypedObject(event);
+                }
+            } catch (Exception ex) {
+                log.error("Exception handling event with type: {}", eventType, ex);
             }
         }
     }
