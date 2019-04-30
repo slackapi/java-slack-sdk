@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "express": "^4.16.4",
     "ts-loader": "^5.4.3",
     "typescript": "^3.4.5"
   },
