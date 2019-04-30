@@ -1,5 +1,3 @@
-import { Request, Response } from 'express';
-
 export interface EventsApiPayload {
   token?: string;
   team_id?: string;

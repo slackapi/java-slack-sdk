@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
 import { EventsApiOperationArgs } from './EventsApiOperationArgs';
+import { EventsApiPayload } from './EventsApiPayload';
 
 export class EventsApiOperation<E extends EventsApiPayload> {
   private operate: (args: EventsApiOperationArgs<E>) => void
