@@ -1,8 +1,0 @@
-{
-  "type": "channel_rename",
-  "channel": {
-    "id": "",
-    "name": "",
-    "created": 123
-  }
-}

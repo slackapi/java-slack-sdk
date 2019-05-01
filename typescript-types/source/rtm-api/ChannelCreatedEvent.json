@@ -1,9 +1,0 @@
-{
-  "type": "channel_created",
-  "channel": {
-    "id": "",
-    "name": "",
-    "created": 123,
-    "creator": ""
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "type": "channel_joined",
-  "channel": {
-    "id": "",
-    "name": "",
-    "created": 123,
-    "creator": ""
-  }
-}

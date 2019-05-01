@@ -1,7 +1,0 @@
-{
-  "type": "app_rate_limited",
-  "token": "",
-  "team_id": "",
-  "minute_rate_limited": 123,
-  "api_app_id": ""
-}
