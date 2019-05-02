@@ -28,6 +28,7 @@ import java.util.Arrays;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
@@ -37,10 +38,10 @@ import static org.junit.Assert.assertThat;
 public class Slack_channels_chat_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
+    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test
     public void channels_threading() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         String channelId = slack.shortcut(ApiToken.of(token)).findChannelIdByName(ChannelName.of("random")).get().getValue();
 
         ChatPostMessageResponse firstMessageCreation = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
@@ -528,4 +529,32 @@ public class Slack_channels_chat_Test {
         assertThat(deleteResponse.getError(), is(nullValue()));
         return deleteResponse;
     }
+
+    // It's also possible to post a message by giving the name of a channel.
+    //
+    // https://api.slack.com/methods/chat.postMessage#channels
+    // You can either pass the channel's name (#general) or encoded ID (C024BE91L),
+    // and the message will be posted to that channel.
+    // The channel's ID can be retrieved through the channels.list API method.
+    //
+    // https://github.com/slackapi/python-slackclient/blob/master/README.md#sending-a-message-to-slack
+    //  In our examples, we specify the channel name, however it is recommended to use the channel_id where possible.
+    @Test
+    public void postingWithChannelName() throws IOException, SlackApiException {
+        makeSureIfGivingChannelNameWorks("random");
+        makeSureIfGivingChannelNameWorks("#random");
+    }
+
+    private void makeSureIfGivingChannelNameWorks(String channelName) throws IOException, SlackApiException {
+        ChatPostMessageResponse response = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .token(token)
+                .channel(channelName)
+                .text("Hello!")
+                .build());
+
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getChannel(), is(startsWith("C")));
+        assertThat(response.getMessage().getText(), is(startsWith("Hello!")));
+    }
+
 }

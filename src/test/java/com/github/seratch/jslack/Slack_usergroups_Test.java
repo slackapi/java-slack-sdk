@@ -20,6 +20,7 @@ import static java.util.stream.Collectors.toList;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
@@ -31,17 +32,22 @@ public class Slack_usergroups_Test {
 
     @Test
     public void create() throws Exception {
+        String usergroupName = "usergroup-" + System.currentTimeMillis();
         UsergroupsCreateResponse response = slack.methods().usergroupsCreate(UsergroupsCreateRequest.builder()
                 .token(token)
-                .name("usergroup-" + System.currentTimeMillis())
+                .name(usergroupName)
                 .build());
-        assertThat(response.isOk(), is(false));
-        assertThat(response.getError(), is(anyOf(
-                // For a good old token, "paid_teams_only" can be returned as the error
-                equalTo("paid_teams_only"),
-                // As of 2018, this code is generally returned for newly created token
-                equalTo("missing_scope")
-        )));
+        if (response.isOk()) {
+            assertThat(response.getUsergroup(), is(notNullValue()));
+            assertThat(response.getUsergroup().getName(), is(usergroupName));
+        } else {
+            assertThat(response.getError(), is(anyOf(
+                    // For a good old token, "paid_teams_only" can be returned as the error
+                    equalTo("paid_teams_only"),
+                    // As of 2018, this code is generally returned for newly created token
+                    equalTo("missing_scope")
+            )));
+        }
     }
 
     @Test

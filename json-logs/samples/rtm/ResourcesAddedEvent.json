@@ -1,3 +1,17 @@
 {
-  "type": "resources_added"
+  "type": "resources_added",
+  "resources": [
+    {
+      "resource": {
+        "type": "",
+        "grant": {
+          "type": "",
+          "resource_id": ""
+        }
+      },
+      "scopes": [
+        ""
+      ]
+    }
+  ]
 }

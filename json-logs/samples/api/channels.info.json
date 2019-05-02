@@ -145,7 +145,8 @@
             }
           ]
         }
-      ]
+      ],
+      "username": ""
     },
     "unread_count": 12345,
     "unread_count_display": 12345,

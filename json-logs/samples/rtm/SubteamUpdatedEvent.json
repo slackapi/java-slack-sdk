@@ -15,7 +15,14 @@
     "created_by": "",
     "updated_by": "",
     "deleted_by": "",
-    "prefs": {},
+    "prefs": {
+      "channels": [
+        ""
+      ],
+      "groups": [
+        ""
+      ]
+    },
     "user_count": ""
   }
 }

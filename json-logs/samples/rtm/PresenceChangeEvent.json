@@ -1,5 +1,8 @@
 {
   "type": "presence_change",
   "user": "",
+  "users": [
+    ""
+  ],
   "presence": ""
 }

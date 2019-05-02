@@ -1,4 +1,7 @@
 {
   "type": "scope_denied",
+  "scopes": [
+    ""
+  ],
   "trigger_id": ""
 }
