@@ -7,12 +7,13 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
 - [Incoming Webhook](https://api.slack.com/incoming-webhooks)
 - [API Methods](https://api.slack.com/methods)
 - [Real Time Messaging API](https://api.slack.com/rtm)
-- [Useful modules to build Slack App Backend](https://github.com/seratch/jslack/tree/master/src/main/java/com/github/seratch/jslack/app_backend)
+- [Useful modules to build Slack App backend services](https://github.com/seratch/jslack/tree/master/src/main/java/com/github/seratch/jslack/app_backend)
   - [Events API](https://api.slack.com/events-api)
   - [Slash Commands](https://api.slack.com/slash-commands)
   - [Dialogs](https://api.slack.com/dialogs)
   - [Interactive Messages](https://api.slack.com/interactive-messages)
   - [Message Actions](https://api.slack.com/actions)
+  - [OAuth 2.0](https://api.slack.com/docs/oauth)
 
 As per API Methods, this library supports all the APIs listed in [github.com/slackapi/slack-api-specs](https://github.com/slackapi/slack-api-specs) as of May 2018.
 
