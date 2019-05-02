@@ -1,0 +1,23 @@
+{
+  "type": "dialog_suggestion",
+  "token": "",
+  "action_ts": "",
+  "team": {
+    "id": "",
+    "domain": "",
+    "enterprise_id": "",
+    "enterprise_name": ""
+  },
+  "user": {
+    "id": "",
+    "name": "",
+    "team_id": ""
+  },
+  "channel": {
+    "id": "",
+    "name": ""
+  },
+  "name": "",
+  "value": "",
+  "callback_id": ""
+}

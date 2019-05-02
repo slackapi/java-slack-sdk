@@ -1,7 +1,10 @@
 package com.github.seratch.jslack.app_backend.interactive_messages.payload;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -13,6 +16,9 @@ import java.util.List;
  * see https://api.slack.com/interactive-messages
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AttachmentActionPayload {
 
     public static final String TYPE = "interactive_message";
@@ -44,6 +50,8 @@ public class AttachmentActionPayload {
     public static class Team {
         private String id;
         private String domain;
+        private String enterpriseId; // https://github.com/slackapi/bolt/blob/dae21827c1c11720e5d6c8f23abcddb2d983b1f2/src/types/actions/interactive-message.ts#L39-L40
+        private String enterpriseName;
     }
 
     @Data
@@ -56,6 +64,7 @@ public class AttachmentActionPayload {
     public static class User {
         private String id;
         private String name;
+        private String teamId; // https://github.com/slackapi/bolt/blob/dae21827c1c11720e5d6c8f23abcddb2d983b1f2/src/types/actions/interactive-message.ts#L45
     }
 
     @Data
@@ -79,14 +88,14 @@ public class AttachmentActionPayload {
         private String color;
         private String attachmentType;
         private List<AttachmentAction> actions;
-        private List<AttachmentFiled> fields;
+        private List<AttachmentField> fields;
         private String authorName;
         private String authorIcon;
         private String imageUrl;
     }
 
     @Data
-    public static class AttachmentFiled {
+    public static class AttachmentField {
         private String title;
         private String value;
         @SerializedName("short")
