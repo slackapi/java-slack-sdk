@@ -1,4 +1,10 @@
 {
   "type": "team_profile_change",
-  "profile": {}
+  "profile": {
+    "fields": [
+      {
+        "id": ""
+      }
+    ]
+  }
 }

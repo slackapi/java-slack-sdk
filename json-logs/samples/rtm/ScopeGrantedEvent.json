@@ -1,4 +1,7 @@
 {
   "type": "scope_granted",
+  "scopes": [
+    ""
+  ],
   "trigger_id": ""
 }

@@ -1,4 +1,11 @@
 {
   "type": "team_profile_reorder",
-  "profile": {}
+  "profile": {
+    "fields": [
+      {
+        "id": "",
+        "ordering": 123
+      }
+    ]
+  }
 }

@@ -1,6 +1,9 @@
 {
   "type": "emoji_changed",
   "subtype": "",
+  "names": [
+    ""
+  ],
   "name": "",
   "value": "",
   "event_ts": ""

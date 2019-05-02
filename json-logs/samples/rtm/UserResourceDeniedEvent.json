@@ -1,5 +1,8 @@
 {
   "type": "user_resource_denied",
   "user": "",
+  "scopes": [
+    ""
+  ],
   "trigger_id": ""
 }

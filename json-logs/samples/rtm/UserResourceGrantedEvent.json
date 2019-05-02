@@ -1,5 +1,8 @@
 {
   "type": "user_resource_granted",
   "user": "",
+  "scopes": [
+    ""
+  ],
   "trigger_id": ""
 }

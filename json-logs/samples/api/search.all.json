@@ -193,7 +193,22 @@
                   "value": "",
                   "style": "",
                   "confirm": {
+                    "title": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
                     "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "confirm": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "deny": {
                       "type": "",
                       "text": "",
                       "emoji": false
@@ -355,7 +370,22 @@
                   "value": "",
                   "style": "",
                   "confirm": {
+                    "title": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
                     "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "confirm": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "deny": {
                       "type": "",
                       "text": "",
                       "emoji": false
@@ -515,7 +545,22 @@
                 "value": "",
                 "style": "",
                 "confirm": {
+                  "title": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
                   "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "confirm": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "deny": {
                     "type": "",
                     "text": "",
                     "emoji": false
