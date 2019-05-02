@@ -1,0 +1,70 @@
+{
+  "type": "interactive_message",
+  "actions": [
+    {
+      "name": "",
+      "type": "",
+      "value": ""
+    }
+  ],
+  "callback_id": "",
+  "team": {
+    "id": "",
+    "domain": "",
+    "enterprise_id": "",
+    "enterprise_name": ""
+  },
+  "channel": {
+    "id": "",
+    "name": ""
+  },
+  "user": {
+    "id": "",
+    "name": "",
+    "team_id": ""
+  },
+  "action_ts": "",
+  "message_ts": "",
+  "attachment_id": "",
+  "token": "",
+  "is_app_unfurl": false,
+  "original_message": {
+    "text": "",
+    "username": "",
+    "bot_id": "",
+    "attachments": [
+      {
+        "id": 123,
+        "callback_id": "",
+        "title": "",
+        "text": "",
+        "fallback": "",
+        "color": "",
+        "attachment_type": "",
+        "actions": [
+          {
+            "name": "",
+            "text": "",
+            "type": "",
+            "value": ""
+          }
+        ],
+        "fields": [
+          {
+            "title": "",
+            "value": "",
+            "short": false
+          }
+        ],
+        "author_name": "",
+        "author_icon": "",
+        "image_url": ""
+      }
+    ],
+    "type": "",
+    "subtype": "",
+    "ts": ""
+  },
+  "response_url": "",
+  "trigger_id": ""
+}

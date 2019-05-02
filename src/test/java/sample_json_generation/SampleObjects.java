@@ -11,7 +11,9 @@ import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.JsonElement;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static util.ObjectInitializer.initProperties;
 
@@ -89,11 +91,21 @@ public class SampleObjects {
     );
 
     public static Message Message = new Message();
+
     static {
         Message.setAttachments(Attachments);
         Message.setBlocks(Blocks);
-        Message.setFile(initProperties(new File()));
-        Message.setFiles(Arrays.asList(initProperties(new File())));
+        File.Shares shares = new File.Shares();
+        Map<String, List<File.ShareDetail>> channels = new HashMap<>();
+        File.ShareDetail shareDetail = initProperties(new File.ShareDetail());
+        shareDetail.setReplyUsers(Arrays.asList(""));
+        channels.put("C03E94MKU", Arrays.asList(shareDetail));
+        channels.put("C03E94MKU_", Arrays.asList(shareDetail));
+        shares.setPrivateChannels(channels);
+        shares.setPublicChannels(channels);
+        File file = initProperties(File.builder().shares(shares).build());
+        Message.setFile(file);
+        Message.setFiles(Arrays.asList(file));
         Message.setPinnedTo(Arrays.asList(""));
         Message.setReactions(Arrays.asList(initProperties(new Reaction())));
         Message.setReplyUsers(Arrays.asList(""));

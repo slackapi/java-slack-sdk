@@ -1,0 +1,23 @@
+{
+  "type": "dialog_cancellation",
+  "token": "",
+  "action_ts": "",
+  "team": {
+    "id": "",
+    "domain": "",
+    "enterprise_id": "",
+    "enterprise_name": ""
+  },
+  "user": {
+    "id": "",
+    "name": "",
+    "team_id": ""
+  },
+  "channel": {
+    "id": "",
+    "name": ""
+  },
+  "callback_id": "",
+  "response_url": "",
+  "state": ""
+}
