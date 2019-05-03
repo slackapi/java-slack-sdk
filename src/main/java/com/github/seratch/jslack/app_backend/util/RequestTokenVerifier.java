@@ -4,6 +4,8 @@ import com.github.seratch.jslack.app_backend.interactive_messages.payload.Attach
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
 import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayload;
 
+// Use SlackSignature instead
+@Deprecated
 public class RequestTokenVerifier {
 
     // https://api.slack.com/apps/{apiAppId}
