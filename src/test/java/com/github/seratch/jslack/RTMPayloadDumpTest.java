@@ -39,6 +39,7 @@ public class RTMPayloadDumpTest {
                 new DndUpdatedUserEvent(),
                 new EmailDomainChangedEvent(),
                 buildEmojiChangedEvent(),
+                new ErrorEvent(),
                 new FileChangeEvent(),
                 new FileCommentAddedEvent(),
                 new FileCommentDeletedEvent(),
