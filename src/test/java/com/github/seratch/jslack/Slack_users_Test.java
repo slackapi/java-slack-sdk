@@ -27,7 +27,19 @@ public class Slack_users_Test {
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Test
-    public void users() throws IOException, SlackApiException {
+    public void showUsers() throws IOException, SlackApiException {
+        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        UsersListResponse users = slack.methods().usersList(UsersListRequest.builder()
+                .token(token)
+                .limit(100)
+                .build());
+        for (User member : users.getMembers()) {
+            log.info("user id: {} , name: {}", member.getId(), member.getName());
+        }
+    }
+
+    @Test
+    public void usersScenarios() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         {

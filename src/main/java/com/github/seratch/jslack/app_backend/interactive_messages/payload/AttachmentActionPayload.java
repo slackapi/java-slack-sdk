@@ -44,6 +44,12 @@ public class AttachmentActionPayload {
         private String name;
         private String type;
         private String value;
+        private List<SelectedOption> selectedOptions;
+
+        @Data
+        public static class SelectedOption {
+            private String value;
+        }
     }
 
     @Data

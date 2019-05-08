@@ -57,31 +57,51 @@ public class ApiGatewayResponse {
         private byte[] binaryBody;
         private boolean base64Encoded;
 
-        public Builder setStatusCode(int statusCode) {
+        public Builder statusCode(int statusCode) {
             this.statusCode = statusCode;
             return this;
         }
 
-        public Builder setHeaders(Map<String, String> headers) {
+        @Deprecated
+        public Builder setStatusCode(int statusCode) {
+            return statusCode(statusCode);
+        }
+
+        public Builder headers(Map<String, String> headers) {
             this.headers = headers;
             return this;
+        }
+
+        @Deprecated
+        public Builder setHeaders(Map<String, String> headers) {
+            return headers(headers);
         }
 
         /**
          * Builds the {@link ApiGatewayResponse} using the passed raw body string.
          */
-        public Builder setRawBody(String rawBody) {
+        public Builder rawBody(String rawBody) {
             this.rawBody = rawBody;
             return this;
+        }
+
+        @Deprecated
+        public Builder setRawBody(String rawBody) {
+            return rawBody(rawBody);
         }
 
         /**
          * Builds the {@link ApiGatewayResponse} using the passed object body
          * converted to JSON.
          */
-        public Builder setObjectBody(Object objectBody) {
+        public Builder objectBody(Object objectBody) {
             this.objectBody = objectBody;
             return this;
+        }
+
+        @Deprecated
+        public Builder setObjectBody(Object objectBody) {
+            return objectBody(objectBody);
         }
 
         /**
@@ -89,10 +109,15 @@ public class ApiGatewayResponse {
          * encoded as base64. {@link #setBase64Encoded(boolean)
          * setBase64Encoded(true)} will be in invoked automatically.
          */
-        public Builder setBinaryBody(byte[] binaryBody) {
+        public Builder binaryBody(byte[] binaryBody) {
             this.binaryBody = binaryBody;
-            setBase64Encoded(true);
+            base64Encoded(true);
             return this;
+        }
+
+        @Deprecated
+        public Builder setBinaryBody(byte[] binaryBody) {
+            return binaryBody(binaryBody);
         }
 
         /**
@@ -103,9 +128,14 @@ public class ApiGatewayResponse {
          * Types"
          * </ol>
          */
-        public Builder setBase64Encoded(boolean base64Encoded) {
+        public Builder base64Encoded(boolean base64Encoded) {
             this.base64Encoded = base64Encoded;
             return this;
+        }
+
+        @Deprecated
+        public Builder setBase64Encoded(boolean base64Encoded) {
+            return base64Encoded(base64Encoded);
         }
 
         public ApiGatewayResponse build() {

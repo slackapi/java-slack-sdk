@@ -9,7 +9,7 @@ public class ApiGatewayResponseTest {
 
     @Test
     public void test() {
-        ApiGatewayResponse response = ApiGatewayResponse.builder().setRawBody("something").build();
+        ApiGatewayResponse response = ApiGatewayResponse.builder().rawBody("something").build();
         assertThat(response.getBody(), is("something"));
     }
 
