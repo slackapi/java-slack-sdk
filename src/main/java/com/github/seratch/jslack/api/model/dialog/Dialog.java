@@ -37,4 +37,10 @@ public class Dialog {
      * prefers. 24 characters maximum, and may contain only a single word.
      */
     private String submitLabel;
+
+    /**
+     * An optional string that will be echoed back to your app when a user interacts with your dialog.
+     * Use it as a pointer to reference sensitive data stored elsewhere.
+     */
+    private String state;
 }
