@@ -40,6 +40,8 @@ public class Slack_dialogs_Test {
                 .title("Request pens")
                 .callbackId("pens-1122")
                 .elements(Arrays.asList(quanityTextElement))
+                .state("some-state")
+                .notifyOnCancel(true)
                 .submitLabel("")
                 .build();
 
