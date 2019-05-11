@@ -163,6 +163,33 @@ public class MessageEventTest {
     }
 
     @Test
+    public void deserialize_botMessage() {
+        String json = "{\n" +
+                "        \"type\": \"message\",\n" +
+                "        \"subtype\": \"bot_message\",\n" +
+                "        \"channel\": \"G024BE91L\",\n" +
+                "        \"user\": \"U2147483697\",\n" +
+                "        \"text\": \"Let's make a pact.\",\n" +
+                "        \"username\": \"seanbot\",\n" +
+                "        \"bot_id\": \"ABC1234\",\n" +
+                "        \"ts\": \"1355517523.000005\",\n" +
+                "        \"event_ts\": \"1355517523.000005\",\n" +
+                "        \"channel_type\": \"mpim\"\n" +
+                "}";
+        MessageEvent event = GsonFactory.createSnakeCase().fromJson(json, MessageEvent.class);
+        assertThat(event.getType(), is("message"));
+        assertThat(event.getSubtype(), is("bot_message"));
+        assertThat(event.getChannel(), is("G024BE91L"));
+        assertThat(event.getUser(), is("U2147483697"));
+        assertThat(event.getText(), is("Let's make a pact."));
+        assertThat(event.getTs(), is("1355517523.000005"));
+        assertThat(event.getEventTs(), is("1355517523.000005"));
+        assertThat(event.getChannelType(), is("mpim"));
+        assertThat(event.getUsername(), is("seanbot"));
+        assertThat(event.getBotId(), is("ABC1234"));
+    }
+
+    @Test
     public void serialize_simple() {
         Gson gson = GsonFactory.createSnakeCase();
         MessageEvent event = new MessageEvent();

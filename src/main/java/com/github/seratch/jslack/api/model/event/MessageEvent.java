@@ -52,4 +52,6 @@ public class MessageEvent implements Event {
     private List<String> pinnedTo;
     private List<Reaction> reactions;
 
+    private String botId;
+    private String username;
 }
