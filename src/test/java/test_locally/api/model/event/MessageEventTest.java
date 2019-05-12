@@ -173,6 +173,7 @@ public class MessageEventTest {
                 "        \"text\": \"Let's make a pact.\",\n" +
                 "        \"username\": \"seanbot\",\n" +
                 "        \"bot_id\": \"ABC1234\",\n" +
+                "        \"icons\":{\"emoji\":\":smile:\",\"image_64\":\"https:\\/\\/a.slack-edge.com\\/37d58\\/img\\/emoji_2017_12_06\\/apple\\/1f604.png\"}," +
                 "        \"ts\": \"1355517523.000005\",\n" +
                 "        \"event_ts\": \"1355517523.000005\",\n" +
                 "        \"channel_type\": \"mpim\"\n" +
@@ -188,6 +189,8 @@ public class MessageEventTest {
         assertThat(event.getChannelType(), is("mpim"));
         assertThat(event.getUsername(), is("seanbot"));
         assertThat(event.getBotId(), is("ABC1234"));
+        assertThat(event.getIcons().getEmoji(), is(":smile:"));
+        assertThat(event.getIcons().getImage64(), is("https://a.slack-edge.com/37d58/img/emoji_2017_12_06/apple/1f604.png"));
     }
 
     @Test

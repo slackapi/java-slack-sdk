@@ -225,7 +225,11 @@
         ]
       }
     ],
-    "user": "U00000000"
+    "user": "U00000000",
+    "icons": {
+      "emoji": "",
+      "image_64": "https://www.example.com/"
+    }
   },
   "error": "",
   "needed": "",
