@@ -23,7 +23,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class Slack_groups_Test {
+public class groups_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 

@@ -18,7 +18,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class Slack_reminders_Test {
+public class reminders_Test {
 
     Slack slack = new Slack();
     String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);

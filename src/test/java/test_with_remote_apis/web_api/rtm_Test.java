@@ -38,7 +38,7 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class Slack_rtm_Test {
+public class rtm_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 

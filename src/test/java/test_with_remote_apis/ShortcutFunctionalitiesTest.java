@@ -1,4 +1,4 @@
-package test_with_remote_apis.web_api;
+package test_with_remote_apis;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
@@ -32,7 +32,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class Slack_shortcut_Test {
+public class ShortcutFunctionalitiesTest {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
     ApiToken token = ApiToken.of(System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN));

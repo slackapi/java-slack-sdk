@@ -23,7 +23,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @Slf4j
-public class Slack_users_Test {
+public class users_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 

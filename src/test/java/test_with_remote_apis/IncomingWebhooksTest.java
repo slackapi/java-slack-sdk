@@ -1,4 +1,4 @@
-package test_with_remote_apis.web_api;
+package test_with_remote_apis;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.model.Attachment;
@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class Slack_incomingWebhooks_Test {
+public class IncomingWebhooksTest {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 

@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class Slack_oauth_Test {
+public class oauth_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 
