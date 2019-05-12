@@ -448,7 +448,16 @@
           ""
         ]
       }
-    ]
+    ],
+    "bot_id": "",
+    "username": "",
+    "icons": {
+      "emoji": "",
+      "image_36": "",
+      "image_48": "",
+      "image_64": "",
+      "image_72": ""
+    }
   },
   "type": "",
   "authed_users": [

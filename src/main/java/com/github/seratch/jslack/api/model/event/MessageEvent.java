@@ -1,6 +1,7 @@
 package com.github.seratch.jslack.api.model.event;
 
 import com.github.seratch.jslack.api.model.Attachment;
+import com.github.seratch.jslack.api.model.Message;
 import com.github.seratch.jslack.api.model.Reaction;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.google.gson.annotations.SerializedName;
@@ -52,6 +53,8 @@ public class MessageEvent implements Event {
     private List<String> pinnedTo;
     private List<Reaction> reactions;
 
+    // bot_message
     private String botId;
     private String username;
+    private Message.Icons icons;
 }

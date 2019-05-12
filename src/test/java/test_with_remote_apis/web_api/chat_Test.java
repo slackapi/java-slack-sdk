@@ -59,6 +59,7 @@ public class chat_Test {
                 .token(token)
                 .asUser(false)
                 .text("replied")
+                .iconEmoji(":smile:")
                 .threadTs(firstMessageCreation.getTs())
                 //.replyBroadcast(true)
                 .build());
