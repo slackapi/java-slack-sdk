@@ -63,7 +63,7 @@ public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
         return messageHandler;
     }
 
-    static String detectEventType(String json) {
+    public static String detectEventType(String json) {
         StringBuilder sb = new StringBuilder();
         char[] chars = json.toCharArray();
         for (int idx = 0; idx < (chars.length - 6); idx++) {
