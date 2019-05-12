@@ -93,7 +93,7 @@ public class EventsDispatcherImpl implements EventsDispatcher {
         eventLoopThread.interrupt();
     }
 
-    static String detectEventType(String json) {
+    public static String detectEventType(String json) {
         StringBuilder sb = new StringBuilder();
         char[] chars = json.toCharArray();
         boolean isInsideEventData = false;
