@@ -10,4 +10,4 @@ cache:
   directories:
   - $HOME/.m2
 install: echo 'skipped'
-script: ./mvnw test-compile && ./mvnw '-Dtest=test_locally.**.*Test' test -DfailIfNoTests=false && ./mvnw install && ./mvnw duplicate-finder:check
+script: ./mvnw test-compile && ./mvnw '-Dtest=test_locally.**.*Test' test -DfailIfNoTests=false && ./mvnw install -Dmaven.test.skip=true && ./mvnw duplicate-finder:check
