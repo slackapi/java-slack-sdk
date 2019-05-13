@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.seratch</groupId>
+        <artifactId>jslack-modules</artifactId>
+        <version>1.6.0-M1</version>
+    </parent>
+
+    <groupId>com.github.seratch</groupId>
+    <artifactId>jslack</artifactId>
+    <version>${parent.version}</version>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.seratch</groupId>
+            <artifactId>jslack-api-model</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.seratch</groupId>
+            <artifactId>jslack-common</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.seratch</groupId>
+            <artifactId>jslack-api-client</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.seratch</groupId>
+            <artifactId>jslack-app-backend</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.seratch</groupId>
+            <artifactId>jslack-shortcut</artifactId>
+            <version>${version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
