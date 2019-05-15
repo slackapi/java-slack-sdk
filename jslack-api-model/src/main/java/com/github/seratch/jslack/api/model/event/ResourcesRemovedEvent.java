@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Subscribe to this event to receive deliveries as users uninstall your Slack app
- * and remove your app to channels & conversations.
+ * and remove your app to channels &amp; conversations.
  * <p>
  * See Permissions API for further detail.
  * <p>
