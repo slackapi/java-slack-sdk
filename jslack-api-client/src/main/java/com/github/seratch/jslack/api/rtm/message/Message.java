@@ -27,10 +27,4 @@ public class Message implements RTMMessage {
     private String text;
     private List<LayoutBlock> blocks;
     private List<Attachment> attachments;
-
-    // For Android compatibility, avoided to use default implementation in RTMMessage
-    @Override
-    public String toJSONString() {
-        return RTMMessageToJSONString.toJSON(this);
-    }
 }

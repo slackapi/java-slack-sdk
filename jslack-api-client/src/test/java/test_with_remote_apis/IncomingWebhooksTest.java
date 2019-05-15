@@ -39,7 +39,7 @@ public class IncomingWebhooksTest {
                 .text("Hello World!")
                 .iconEmoji(":smile_cat:")
                 .username("jSlack")
-                .attachments(new ArrayList<Attachment>())
+                .attachments(new ArrayList<>())
                 .build();
 
         Attachment attachment = Attachment.builder()
@@ -50,8 +50,8 @@ public class IncomingWebhooksTest {
                 .title("Slack API Documentation")
                 .titleLink("https://api.slack.com/")
                 .footer("footer")
-                .fields(new ArrayList<Field>())
-                .mrkdwnIn(new ArrayList<String>())
+                .fields(new ArrayList<>())
+                .mrkdwnIn(new ArrayList<>())
                 .build();
 
         attachment.getMrkdwnIn().add("text");
@@ -95,7 +95,7 @@ public class IncomingWebhooksTest {
                 .text("Hello World!")
                 .iconEmoji(":smile_cat:")
                 .username("jSlack")
-                .blocks(new ArrayList<LayoutBlock>())
+                .blocks(new ArrayList<>())
                 .build();
 
         ButtonElement button = ButtonElement.builder()
@@ -103,7 +103,7 @@ public class IncomingWebhooksTest {
                 .value("click_me_123")
                 .build();
 
-        LayoutBlock block = ActionsBlock.builder().elements(Arrays.asList((BlockElement) button)).build();
+        LayoutBlock block = ActionsBlock.builder().elements(Arrays.asList(button)).build();
 
         payload.getBlocks().add(block);
 

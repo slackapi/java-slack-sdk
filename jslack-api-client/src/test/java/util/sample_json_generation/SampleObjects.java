@@ -72,7 +72,7 @@ public class SampleObjects {
             initProperties(UsersSelectElement.builder().confirm(Confirm).build())
     );
     public static List<ContextBlockElement> ContextBlockElements = Arrays.asList(
-            (ContextBlockElement) initProperties(ImageElement.builder().build())
+            initProperties(ImageElement.builder().build())
     );
     public static List<TextObject> SectionBlockFieldElements = Arrays.asList(
             initProperties(PlainTextObject.builder().build()),

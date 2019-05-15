@@ -19,10 +19,4 @@ public class Typing implements RTMMessage {
     private Long id;
     private final String type = TYPE_NAME;
     private String channel;
-
-    // For Android compatibility, avoided to use default implementation in RTMMessage
-    @Override
-    public String toJSONString() {
-        return RTMMessageToJSONString.toJSON(this);
-    }
 }

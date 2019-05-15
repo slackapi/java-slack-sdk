@@ -41,7 +41,7 @@ public class dialogs_Test {
         Dialog dialog = Dialog.builder()
                 .title("Request pens")
                 .callbackId("pens-1122")
-                .elements(Arrays.asList((DialogElement) quantityTextElement))
+                .elements(Arrays.asList(quantityTextElement))
                 .state("some-state")
                 .notifyOnCancel(true)
                 .submitLabel("")

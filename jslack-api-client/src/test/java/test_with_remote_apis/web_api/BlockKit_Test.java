@@ -18,7 +18,6 @@ import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.SectionBlock;
 import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-import com.github.seratch.jslack.api.model.block.element.BlockElement;
 import com.github.seratch.jslack.api.model.block.element.ButtonElement;
 import com.github.seratch.jslack.api.model.block.element.ImageElement;
 import config.Constants;
@@ -161,14 +160,14 @@ public class BlockKit_Test {
                 new DividerBlock(),
 
                 ActionsBlock.builder().elements(
-                        Arrays.asList((BlockElement)
-                                        ButtonElement.builder()
-                                                .text(PlainTextObject.builder()
-                                                        .emoji(true)
-                                                        .text("Farmhouse")
-                                                        .build())
-                                                .value("click_me_123")
-                                                .build(),
+                        Arrays.asList(
+                                ButtonElement.builder()
+                                        .text(PlainTextObject.builder()
+                                                .emoji(true)
+                                                .text("Farmhouse")
+                                                .build())
+                                        .value("click_me_123")
+                                        .build(),
                                 ButtonElement.builder()
                                         .text(PlainTextObject.builder()
                                                 .emoji(true)

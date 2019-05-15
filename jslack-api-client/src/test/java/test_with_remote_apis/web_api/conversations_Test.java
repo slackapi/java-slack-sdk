@@ -388,7 +388,7 @@ public class conversations_Test {
                     ChatPostMessageRequest.builder()
                             .token(token)
                             .channel(channel.getId())
-                            .blocks(Arrays.asList((LayoutBlock)
+                            .blocks(Arrays.asList(
                                             ContextBlock.builder().elements(Arrays.asList(
                                                     (ContextBlockElement) PlainTextObject.builder().text(longText).build()
                                             )).build(),
