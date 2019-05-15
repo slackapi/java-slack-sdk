@@ -2,10 +2,8 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.model.dialog.Dialog;
-import com.github.seratch.jslack.api.model.dialog.DialogElement;
 import com.github.seratch.jslack.api.model.dialog.DialogSubType;
 import com.github.seratch.jslack.api.model.dialog.DialogTextElement;
 import config.Constants;
@@ -53,7 +51,7 @@ public class dialogs_Test {
          * that same trigger_id in order to succeed. The dialog.open request must also be made within 3
          * seconds of the user action.  Therefore, only an 'invalid trigger' ID response can be tested.
          */
-        DialogOpenResponse dialogOpenResponse = slack.methods().dialogOpen(DialogOpenRequest.builder()
+        DialogOpenResponse dialogOpenResponse = slack.methods().dialogOpen(r -> r
                 .token(token)
                 .triggerId("FAKE_TRIGGER_ID")
                 .dialog(dialog)

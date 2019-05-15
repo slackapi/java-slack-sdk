@@ -2,13 +2,7 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.request.reactions.ReactionsAddRequest;
-import com.github.seratch.jslack.api.methods.request.reactions.ReactionsGetRequest;
-import com.github.seratch.jslack.api.methods.request.reactions.ReactionsListRequest;
-import com.github.seratch.jslack.api.methods.request.reactions.ReactionsRemoveRequest;
-import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsGetResponse;
@@ -33,7 +27,7 @@ public class reactions_Test {
 
     @Test
     public void test() throws IOException, SlackApiException {
-        String channel = slack.methods().channelsList(ChannelsListRequest.builder().token(token).excludeArchived(true).build())
+        String channel = slack.methods().channelsList(r -> r.token(token).excludeArchived(true).build())
                 .getChannels().get(0).getId();
 
         ChatPostMessageResponse postMessage = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
@@ -45,7 +39,7 @@ public class reactions_Test {
         assertThat(postMessage.isOk(), is(true));
 
         String timestamp = postMessage.getTs();
-        ReactionsAddResponse addResponse = slack.methods().reactionsAdd(ReactionsAddRequest.builder()
+        ReactionsAddResponse addResponse = slack.methods().reactionsAdd(r -> r
                 .token(token)
                 .name("smile")
                 .channel(channel)
@@ -54,7 +48,7 @@ public class reactions_Test {
         assertThat(addResponse.getError(), is(nullValue()));
         assertThat(addResponse.isOk(), is(true));
 
-        ReactionsGetResponse getResponse = slack.methods().reactionsGet(ReactionsGetRequest.builder()
+        ReactionsGetResponse getResponse = slack.methods().reactionsGet(r -> r
                 .token(token)
                 .channel(channel)
                 .timestamp(timestamp)
@@ -62,7 +56,7 @@ public class reactions_Test {
         assertThat(getResponse.getError(), is(nullValue()));
         assertThat(getResponse.isOk(), is(true));
 
-        ReactionsRemoveResponse removeResponse = slack.methods().reactionsRemove(ReactionsRemoveRequest.builder()
+        ReactionsRemoveResponse removeResponse = slack.methods().reactionsRemove(r -> r
                 .token(token)
                 .name("smile")
                 .channel(channel)
@@ -75,10 +69,10 @@ public class reactions_Test {
 
     @Test
     public void list() throws IOException, SlackApiException {
-        String user = slack.methods().usersList(UsersListRequest.builder().token(token).build())
+        String user = slack.methods().usersList(r -> r.token(token).build())
                 .getMembers().get(0).getId();
 
-        ReactionsListResponse response = slack.methods().reactionsList(ReactionsListRequest.builder()
+        ReactionsListResponse response = slack.methods().reactionsList(r -> r
                 .token(token)
                 .user(user)
                 .build());

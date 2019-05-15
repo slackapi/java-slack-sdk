@@ -2,8 +2,6 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
-import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.github.seratch.jslack.api.model.User;
@@ -29,7 +27,7 @@ public class users_profile_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         {
-            UsersProfileGetResponse response = slack.methods().usersProfileGet(UsersProfileGetRequest.builder().token(token).build());
+            UsersProfileGetResponse response = slack.methods().usersProfileGet(r -> r.token(token).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));
@@ -37,7 +35,7 @@ public class users_profile_Test {
 
         {
             UsersProfileSetResponse response = slack.methods().usersProfileSet(
-                    UsersProfileSetRequest.builder().token(token).name("skype").value("skype-" + System.currentTimeMillis()).build());
+                    r -> r.token(token).name("skype").value("skype-" + System.currentTimeMillis()).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));
@@ -47,7 +45,7 @@ public class users_profile_Test {
             User.Profile profile = new User.Profile();
             profile.setSkype("skype-" + System.currentTimeMillis());
             UsersProfileSetResponse response = slack.methods().usersProfileSet(
-                    UsersProfileSetRequest.builder().token(token).profile(profile).build());
+                    r -> r.token(token).profile(profile).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));

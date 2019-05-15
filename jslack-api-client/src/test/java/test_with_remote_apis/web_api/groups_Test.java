@@ -2,9 +2,7 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.request.groups.*;
-import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.groups.*;
 import com.github.seratch.jslack.api.model.Group;
@@ -33,7 +31,7 @@ public class groups_Test {
 
         String name = "secret-" + System.currentTimeMillis();
         GroupsCreateResponse creationResponse = slack.methods().groupsCreate(
-                GroupsCreateRequest.builder().token(token).name(name).build());
+                r -> r.token(token).name(name).build());
         Group group = creationResponse.getGroup();
         {
             assertThat(creationResponse.getError(), is(nullValue()));
@@ -78,14 +76,14 @@ public class groups_Test {
 
         {
             String groupId = childCreationResponse.getGroup().getId();
-            ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+            ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(r -> r
                     .token(token)
                     .text("How are you?")
                     .channel(groupId)
                     .build());
             assertThat(postResponse.getError(), is(nullValue()));
 
-            ChatPostMessageResponse replyResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+            ChatPostMessageResponse replyResponse = slack.methods().chatPostMessage(r -> r
                     .token(token)
                     .threadTs(postResponse.getTs())
                     .text("Great! How are you?")
@@ -99,7 +97,7 @@ public class groups_Test {
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
 
-            GroupsRepliesResponse repliesResponse = slack.methods().groupsReplies(GroupsRepliesRequest.builder()
+            GroupsRepliesResponse repliesResponse = slack.methods().groupsReplies(r -> r
                     .token(token)
                     .channel(groupId)
                     .threadTs(postResponse.getTs())
@@ -129,7 +127,7 @@ public class groups_Test {
             assertThat(response.isOk(), is(true));
         }
         String userIdToInvite = null;
-        List<User> users = slack.methods().usersList(UsersListRequest.builder().token(token).limit(100).build()).getMembers();
+        List<User> users = slack.methods().usersList(r -> r.token(token).limit(100).build()).getMembers();
         for (User user : users) {
             boolean alreadyInTheGroup = false;
             for (String groupMember : group.getMembers()) {

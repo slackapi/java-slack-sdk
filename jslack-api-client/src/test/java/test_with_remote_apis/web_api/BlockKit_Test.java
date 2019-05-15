@@ -3,7 +3,6 @@ package test_with_remote_apis.web_api;
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.channels.ChannelsInfoRequest;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostEphemeralRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
@@ -47,7 +46,7 @@ public class BlockKit_Test {
         // ephemeral message creation
         {
             String channelId = null;
-            ChannelsListResponse channelsListResponse = slack.methods().channelsList(ChannelsListRequest.builder()
+            ChannelsListResponse channelsListResponse = slack.methods().channelsList(req -> req
                     .token(token)
                     .excludeArchived(true)
                     .limit(100).build());

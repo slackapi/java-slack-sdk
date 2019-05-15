@@ -1,9 +1,6 @@
 package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.request.im.*;
-import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.im.*;
 import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
@@ -28,7 +25,7 @@ public class im_Test {
 
     @Test
     public void operations() throws Exception {
-        ImListResponse listResponse = slack.methods().imList(ImListRequest.builder()
+        ImListResponse listResponse = slack.methods().imList(r -> r
                 .token(token)
                 .limit(2)
                 .build());
@@ -36,14 +33,14 @@ public class im_Test {
         assertThat(listResponse.isOk(), is(true));
         assertThat(listResponse.getResponseMetadata(), is(notNullValue()));
 
-        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder()
+        UsersListResponse usersListResponse = slack.methods().usersList(r -> r
                 .token(token)
                 .presence(true)
                 .build());
         List<User> users = usersListResponse.getMembers();
-        String userId = users.get(0).getId();
+        final String userId = users.get(0).getId();
 
-        ImOpenResponse openResponse = slack.methods().imOpen(ImOpenRequest.builder()
+        ImOpenResponse openResponse = slack.methods().imOpen(r -> r
                 .token(token)
                 .user(userId)
                 .build());
@@ -54,7 +51,7 @@ public class im_Test {
 
         // without ts (worked before but it gets to fail because ts is required as of Jan 2019)
         {
-            ImMarkResponse markResponse = slack.methods().imMark(ImMarkRequest.builder()
+            ImMarkResponse markResponse = slack.methods().imMark(r -> r
                     .token(token)
                     .channel(channelId)
                     .build());
@@ -62,7 +59,7 @@ public class im_Test {
             assertThat(markResponse.getError(), is("invalid_timestamp"));
         }
 
-        ChatPostMessageResponse firstMessageResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+        ChatPostMessageResponse firstMessageResponse = slack.methods().chatPostMessage(r -> r
                 .token(token)
                 .channel(channelId)
                 .text("Hi!").build());
@@ -71,7 +68,7 @@ public class im_Test {
 
         // with ts
         {
-            ImMarkResponse markResponse = slack.methods().imMark(ImMarkRequest.builder()
+            ImMarkResponse markResponse = slack.methods().imMark(r -> r
                     .token(token)
                     .channel(channelId)
                     .ts(firstMessageResponse.getTs())
@@ -80,7 +77,7 @@ public class im_Test {
             assertThat(markResponse.isOk(), is(true));
         }
 
-        ChatPostMessageResponse threadReplyResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+        ChatPostMessageResponse threadReplyResponse = slack.methods().chatPostMessage(r -> r
                 .token(token)
                 .channel(channelId)
                 .threadTs(firstMessageResponse.getTs())
@@ -88,7 +85,7 @@ public class im_Test {
         assertThat(threadReplyResponse.getError(), is(nullValue()));
         assertThat(threadReplyResponse.isOk(), is(true));
 
-        ImRepliesResponse repliesResponse = slack.methods().imReplies(ImRepliesRequest.builder()
+        ImRepliesResponse repliesResponse = slack.methods().imReplies(r -> r
                 .token(token)
                 .channel(channelId)
                 .threadTs(threadReplyResponse.getMessage().getThreadTs())
@@ -96,7 +93,7 @@ public class im_Test {
         assertThat(repliesResponse.getError(), is(nullValue()));
         assertThat(repliesResponse.isOk(), is(true));
 
-        ImHistoryResponse historyResponse = slack.methods().imHistory(ImHistoryRequest.builder()
+        ImHistoryResponse historyResponse = slack.methods().imHistory(r -> r
                 .token(token)
                 .channel(channelId)
                 .count(10)
@@ -104,7 +101,7 @@ public class im_Test {
         assertThat(historyResponse.getError(), is(nullValue()));
         assertThat(historyResponse.isOk(), is(true));
 
-        ImCloseResponse closeResponse = slack.methods().imClose(ImCloseRequest.builder()
+        ImCloseResponse closeResponse = slack.methods().imClose(r -> r
                 .token(token)
                 .channel(channelId)
                 .build());

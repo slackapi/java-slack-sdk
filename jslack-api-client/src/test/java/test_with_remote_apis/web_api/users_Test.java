@@ -2,7 +2,8 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.users.*;
+import com.github.seratch.jslack.api.methods.request.users.UsersLookupByEmailRequest;
+import com.github.seratch.jslack.api.methods.request.users.UsersSetActiveRequest;
 import com.github.seratch.jslack.api.methods.response.channels.UsersLookupByEmailResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.model.User;
@@ -30,7 +31,7 @@ public class users_Test {
     @Test
     public void showUsers() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        UsersListResponse users = slack.methods().usersList(UsersListRequest.builder()
+        UsersListResponse users = slack.methods().usersList(r -> r
                 .token(token)
                 .limit(100)
                 .build());
@@ -44,8 +45,7 @@ public class users_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         {
-            UsersSetPresenceResponse response = slack.methods().usersSetPresence(
-                    UsersSetPresenceRequest.builder().token(token).presence("away").build());
+            UsersSetPresenceResponse response = slack.methods().usersSetPresence(r -> r.token(token).presence("away").build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -58,14 +58,14 @@ public class users_Test {
         }
 
         {
-            UsersIdentityResponse response = slack.methods().usersIdentity(UsersIdentityRequest.builder().token(token).build());
+            UsersIdentityResponse response = slack.methods().usersIdentity(r -> r.token(token).build());
             // TODO: test preparation?
             // {"ok":false,"error":"missing_scope","needed":"identity.basic","provided":"identify,read,post,client,apps,admin"}
             assertThat(response.getError(), is("missing_scope"));
             assertThat(response.isOk(), is(false));
         }
 
-        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder()
+        UsersListResponse usersListResponse = slack.methods().usersList(r -> r
                 .token(token)
                 .limit(2)
                 .presence(true)
@@ -100,22 +100,21 @@ public class users_Test {
         }
 
         {
-            UsersInfoResponse response = slack.methods().usersInfo(UsersInfoRequest.builder().token(token).user(userId).build());
+            UsersInfoResponse response = slack.methods().usersInfo(r -> r.token(token).user(userId).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getUser(), is(notNullValue()));
         }
 
         {
-            UsersGetPresenceResponse response = slack.methods().usersGetPresence(
-                    UsersGetPresenceRequest.builder().token(token).user(userId).build());
+            UsersGetPresenceResponse response = slack.methods().usersGetPresence(r -> r.token(token).user(userId).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getPresence(), is(notNullValue()));
         }
 
         {
-            UsersConversationsResponse response = slack.methods().usersConversations(UsersConversationsRequest.builder()
+            UsersConversationsResponse response = slack.methods().usersConversations(r -> r
                     .token(token)
                     .user(userId).build());
             assertThat(response.getError(), is(nullValue()));
@@ -123,15 +122,14 @@ public class users_Test {
         }
 
         {
-            UsersDeletePhotoResponse response = slack.methods().usersDeletePhoto(
-                    UsersDeletePhotoRequest.builder().token(token).build());
+            UsersDeletePhotoResponse response = slack.methods().usersDeletePhoto(r -> r.token(token).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         File image = new File("src/test/resources/user_photo.jpg");
         {
-            UsersSetPhotoResponse response = slack.methods().usersSetPhoto(UsersSetPhotoRequest.builder()
+            UsersSetPhotoResponse response = slack.methods().usersSetPhoto(r -> r
                     .token(token)
                     .image(image)
                     .build());
@@ -143,7 +141,7 @@ public class users_Test {
     @Test
     public void lookupByEMailSupported() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        UsersListResponse usersListResponse = slack.methods().usersList(UsersListRequest.builder()
+        UsersListResponse usersListResponse = slack.methods().usersList(r -> r
                 .token(token)
                 .presence(true)
                 .build());

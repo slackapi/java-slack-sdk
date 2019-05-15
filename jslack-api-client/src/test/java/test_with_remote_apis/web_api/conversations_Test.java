@@ -2,10 +2,7 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsRepliesRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.*;
-import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsListRequest;
 import com.github.seratch.jslack.api.methods.response.channels.ChannelsRepliesResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.*;
@@ -13,7 +10,6 @@ import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
 import com.github.seratch.jslack.api.model.*;
 import com.github.seratch.jslack.api.model.block.ContextBlock;
 import com.github.seratch.jslack.api.model.block.ContextBlockElement;
-import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import config.Constants;
@@ -55,12 +51,11 @@ public class conversations_Test {
             assertThat(listResponse.getResponseMetadata(), is(notNullValue()));
         }
 
-        ConversationsCreateResponse createPublicResponse = slack.methods().conversationsCreate(
-                ConversationsCreateRequest.builder()
-                        .token(token)
-                        .name("test" + System.currentTimeMillis())
-                        .isPrivate(false)
-                        .build());
+        ConversationsCreateResponse createPublicResponse = slack.methods().conversationsCreate(r -> r
+                .token(token)
+                .name("test" + System.currentTimeMillis())
+                .isPrivate(false)
+                .build());
         assertThat(createPublicResponse.getError(), is(nullValue()));
         assertThat(createPublicResponse.isOk(), is(true));
         assertThat(createPublicResponse.getChannel(), is(notNullValue()));
@@ -68,39 +63,38 @@ public class conversations_Test {
 
         Conversation channel = createPublicResponse.getChannel();
 
-        ConversationsCreateResponse createPrivateResponse = slack.methods().conversationsCreate(
-                ConversationsCreateRequest.builder()
-                        .token(token)
-                        .name("test" + System.currentTimeMillis())
-                        .isPrivate(true)
-                        .build());
+        ConversationsCreateResponse createPrivateResponse = slack.methods().conversationsCreate(r -> r
+                .token(token)
+                .name("test" + System.currentTimeMillis())
+                .isPrivate(true)
+                .build());
         assertThat(createPrivateResponse.getError(), is(nullValue()));
         assertThat(createPrivateResponse.isOk(), is(true));
         assertThat(createPrivateResponse.getChannel(), is(notNullValue()));
         assertThat(createPrivateResponse.getChannel().isPrivate(), is(true));
 
         {
-            ConversationsArchiveResponse resp = slack.methods().conversationsArchive(ConversationsArchiveRequest.builder()
+            ConversationsArchiveResponse resp = slack.methods().conversationsArchive(r -> r
                     .token(token)
                     .channel(createPrivateResponse.getChannel().getId())
                     .build());
             assertThat(resp.getError(), is(nullValue()));
         }
         {
-            ConversationsUnarchiveResponse resp = slack.methods().conversationsUnarchive(ConversationsUnarchiveRequest.builder()
+            ConversationsUnarchiveResponse resp = slack.methods().conversationsUnarchive(r -> r
                     //.token(token)
                     .channel(createPrivateResponse.getChannel().getId())
                     .build());
             assertThat(resp.getError(), is(notNullValue()));
 
-            resp = slack.methods().conversationsUnarchive(ConversationsUnarchiveRequest.builder()
+            resp = slack.methods().conversationsUnarchive(r -> r
                     .token(token)
                     .channel(createPrivateResponse.getChannel().getId())
                     .build());
             assertThat(resp.getError(), is(nullValue()));
         }
         {
-            ConversationsArchiveResponse resp = slack.methods().conversationsArchive(ConversationsArchiveRequest.builder()
+            ConversationsArchiveResponse resp = slack.methods().conversationsArchive(r -> r
                     .token(token)
                     .channel(createPrivateResponse.getChannel().getId())
                     .build());
@@ -108,57 +102,52 @@ public class conversations_Test {
         }
 
         {
-            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
-                    ChatPostMessageRequest.builder()
-                            .token(token)
-                            .channel(createPublicResponse.getChannel().getId())
-                            .text("This is a test message posted by unit tests for jslack library")
-                            .replyBroadcast(false)
-                            .build());
+            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(r -> r
+                    .token(token)
+                    .channel(createPublicResponse.getChannel().getId())
+                    .text("This is a test message posted by unit tests for jslack library")
+                    .replyBroadcast(false)
+                    .build());
             assertThat(postMessageResponse.getError(), is(nullValue()));
             assertThat(postMessageResponse.isOk(), is(true));
 
-            ChatPostMessageResponse postThread1Response = slack.methods().chatPostMessage(
-                    ChatPostMessageRequest.builder()
-                            .token(token)
-                            .channel(createPublicResponse.getChannel().getId())
-                            .threadTs(postMessageResponse.getTs())
-                            .text("[thread 1] This is a test message posted by unit tests for jslack library")
-                            .replyBroadcast(false)
-                            .build());
+            ChatPostMessageResponse postThread1Response = slack.methods().chatPostMessage(r -> r
+                    .token(token)
+                    .channel(createPublicResponse.getChannel().getId())
+                    .threadTs(postMessageResponse.getTs())
+                    .text("[thread 1] This is a test message posted by unit tests for jslack library")
+                    .replyBroadcast(false)
+                    .build());
             assertThat(postThread1Response.getError(), is(nullValue()));
             assertThat(postThread1Response.isOk(), is(true));
 
-            ChatPostMessageResponse postThread2Response = slack.methods().chatPostMessage(
-                    ChatPostMessageRequest.builder()
-                            .token(token)
-                            .channel(createPublicResponse.getChannel().getId())
-                            .threadTs(postMessageResponse.getTs())
-                            .text("[thread 2] This is a test message posted by unit tests for jslack library")
-                            .replyBroadcast(false)
-                            .build());
+            ChatPostMessageResponse postThread2Response = slack.methods().chatPostMessage(r -> r
+                    .token(token)
+                    .channel(createPublicResponse.getChannel().getId())
+                    .threadTs(postMessageResponse.getTs())
+                    .text("[thread 2] This is a test message posted by unit tests for jslack library")
+                    .replyBroadcast(false)
+                    .build());
             assertThat(postThread2Response.getError(), is(nullValue()));
             assertThat(postThread2Response.isOk(), is(true));
 
-            ConversationsRepliesResponse repliesResponse = slack.methods().conversationsReplies(
-                    ConversationsRepliesRequest.builder()
-                            .token(token)
-                            .channel(createPublicResponse.getChannel().getId())
-                            .ts(postMessageResponse.getTs())
-                            .limit(1)
-                            .build());
+            ConversationsRepliesResponse repliesResponse = slack.methods().conversationsReplies(r -> r
+                    .token(token)
+                    .channel(createPublicResponse.getChannel().getId())
+                    .ts(postMessageResponse.getTs())
+                    .limit(1)
+                    .build());
             assertThat(repliesResponse.getError(), is(nullValue()));
             assertThat(repliesResponse.isOk(), is(true));
             assertThat(repliesResponse.getResponseMetadata(), is(notNullValue()));
         }
 
         {
-            ConversationsInfoResponse infoResponse = slack.methods().conversationsInfo(
-                    ConversationsInfoRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .includeLocale(true)
-                            .build());
+            ConversationsInfoResponse infoResponse = slack.methods().conversationsInfo(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .includeLocale(true)
+                    .build());
             assertThat(infoResponse.isOk(), is(true));
             Conversation fetchedConversation = infoResponse.getChannel();
             assertThat(fetchedConversation.isMember(), is(true));
@@ -171,36 +160,33 @@ public class conversations_Test {
         }
 
         {
-            ConversationsSetPurposeResponse setPurposeResponse = slack.methods().conversationsSetPurpose(
-                    ConversationsSetPurposeRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .purpose("purpose")
-                            .build());
+            ConversationsSetPurposeResponse setPurposeResponse = slack.methods().conversationsSetPurpose(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .purpose("purpose")
+                    .build());
             assertThat(setPurposeResponse.getError(), is(nullValue()));
             assertThat(setPurposeResponse.isOk(), is(true));
             assertThat(setPurposeResponse.getChannel().getPurpose().getValue(), is("purpose"));
         }
 
         {
-            ConversationsSetTopicResponse setTopicResponse = slack.methods().conversationsSetTopic(
-                    ConversationsSetTopicRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .topic("topic")
-                            .build());
+            ConversationsSetTopicResponse setTopicResponse = slack.methods().conversationsSetTopic(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .topic("topic")
+                    .build());
             assertThat(setTopicResponse.getError(), is(nullValue()));
             assertThat(setTopicResponse.isOk(), is(true));
             assertThat(setTopicResponse.getChannel().getTopic().getValue(), is("topic"));
         }
 
         {
-            ConversationsHistoryResponse historyResponse = slack.methods().conversationsHistory(
-                    ConversationsHistoryRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .limit(2)
-                            .build());
+            ConversationsHistoryResponse historyResponse = slack.methods().conversationsHistory(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .limit(2)
+                    .build());
             assertThat(historyResponse.getError(), is(nullValue()));
             assertThat(historyResponse.isOk(), is(true));
             // The outcome depends on data
@@ -209,94 +195,86 @@ public class conversations_Test {
         }
 
         {
-            ConversationsMembersResponse membersResponse = slack.methods().conversationsMembers(
-                    ConversationsMembersRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .limit(2)
-                            .build());
+            ConversationsMembersResponse membersResponse = slack.methods().conversationsMembers(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .limit(2)
+                    .build());
             assertThat(membersResponse.isOk(), is(true));
             assertThat(membersResponse.getMembers(), is(notNullValue()));
             assertThat(membersResponse.getMembers().isEmpty(), is(false));
             assertThat(membersResponse.getResponseMetadata(), is(notNullValue()));
 
-            UsersListResponse usersListResponse = slack.methods()
-                    .usersList(UsersListRequest.builder()
-                            .token(token)
-                            .build());
-            String invitee = null;
+            UsersListResponse usersListResponse = slack.methods().usersList(r -> r
+                    .token(token)
+                    .build());
+            String invitee_ = null;
             for (User u : usersListResponse.getMembers()) {
                 if (!"USLACKBOT".equals(u.getId()) && !membersResponse.getMembers().contains(u.getId())) {
-                    invitee = u.getId();
+                    invitee_ = u.getId();
                 }
             }
+            String invitee = invitee_;
 
-            ConversationsInviteResponse inviteResponse = slack.methods().conversationsInvite(
-                    ConversationsInviteRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .users(Arrays.asList(invitee))
-                            .build());
+            ConversationsInviteResponse inviteResponse = slack.methods().conversationsInvite(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .users(Arrays.asList(invitee))
+                    .build());
             assertThat(inviteResponse.getError(), is(nullValue()));
             assertThat(inviteResponse.isOk(), is(true));
 
-            ConversationsKickResponse kickResponse = slack.methods().conversationsKick(
-                    ConversationsKickRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .user(invitee)
-                            .build());
+            ConversationsKickResponse kickResponse = slack.methods().conversationsKick(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .user(invitee)
+                    .build());
             assertThat(kickResponse.getError(), is(nullValue()));
             assertThat(kickResponse.isOk(), is(true));
         }
 
         {
-            ConversationsLeaveResponse leaveResponse = slack.methods().conversationsLeave(
-                    ConversationsLeaveRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .build());
+            ConversationsLeaveResponse leaveResponse = slack.methods().conversationsLeave(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .build());
             assertThat(leaveResponse.getError(), is(nullValue()));
             assertThat(leaveResponse.isOk(), is(true));
         }
 
         {
-            ConversationsJoinResponse joinResponse = slack.methods().conversationsJoin(
-                    ConversationsJoinRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .build());
+            ConversationsJoinResponse joinResponse = slack.methods().conversationsJoin(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .build());
             assertThat(joinResponse.getError(), is(nullValue()));
             assertThat(joinResponse.isOk(), is(true));
         }
 
         {
-            ConversationsRenameResponse renameResponse = slack.methods().conversationsRename(
-                    ConversationsRenameRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .name(channel.getName() + "-1")
-                            .build());
+            ConversationsRenameResponse renameResponse = slack.methods().conversationsRename(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .name(channel.getName() + "-1")
+                    .build());
             assertThat(renameResponse.getError(), is(nullValue()));
             assertThat(renameResponse.isOk(), is(true));
         }
 
         {
-            ConversationsArchiveResponse archiveResponse = slack.methods().conversationsArchive(
-                    ConversationsArchiveRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .build());
+            ConversationsArchiveResponse archiveResponse = slack.methods().conversationsArchive(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .build());
             assertThat(archiveResponse.getError(), is(nullValue()));
             assertThat(archiveResponse.isOk(), is(true));
         }
 
         {
-            ConversationsInfoResponse infoResponse = slack.methods().conversationsInfo(
-                    ConversationsInfoRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .build());
+            ConversationsInfoResponse infoResponse = slack.methods().conversationsInfo(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .build());
             assertThat(infoResponse.getError(), is(nullValue()));
             assertThat(infoResponse.isOk(), is(true));
             Conversation fetchedChannel = infoResponse.getChannel();
@@ -309,32 +287,29 @@ public class conversations_Test {
     @Test
     public void imConversation() throws IOException, SlackApiException {
 
-        UsersListResponse usersListResponse = slack.methods().usersList(
-                UsersListRequest.builder().token(token).build());
+        UsersListResponse usersListResponse = slack.methods().usersList(r -> r.token(token).build());
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 
-        ConversationsOpenResponse openResponse = slack.methods().conversationsOpen(
-                ConversationsOpenRequest.builder()
-                        .token(token)
-                        .users(Arrays.asList(userId))
-                        .returnIm(true)
-                        .build());
+        ConversationsOpenResponse openResponse = slack.methods().conversationsOpen(r -> r
+                .token(token)
+                .users(Arrays.asList(userId))
+                .returnIm(true)
+                .build());
         assertThat(openResponse.getError(), is(nullValue()));
         assertThat(openResponse.isOk(), is(true));
 
-        ConversationsMembersResponse membersResponse = slack.methods().conversationsMembers(
-                ConversationsMembersRequest.builder()
-                        .token(token)
-                        .channel(openResponse.getChannel().getId())
-                        .build());
+        ConversationsMembersResponse membersResponse = slack.methods().conversationsMembers(r -> r
+                .token(token)
+                .channel(openResponse.getChannel().getId())
+                .build());
         assertThat(membersResponse.getError(), is(nullValue()));
         assertThat(membersResponse.isOk(), is(true));
         assertThat(membersResponse.getMembers(), is(notNullValue()));
         assertThat(membersResponse.getMembers().isEmpty(), is(false));
 
-        ConversationsCloseResponse closeResponse = slack.methods().conversationsClose(
-                ConversationsCloseRequest.builder().token(token).channel(openResponse.getChannel().getId()).build());
+        ConversationsCloseResponse closeResponse = slack.methods().conversationsClose(r ->
+                r.token(token).channel(openResponse.getChannel().getId()).build());
         assertThat(closeResponse.isOk(), is(true));
     }
 
@@ -358,46 +333,43 @@ public class conversations_Test {
 
         // text
         {
-            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
-                    ChatPostMessageRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .text(longText)
-                            .replyBroadcast(false)
-                            .build());
+            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .text(longText)
+                    .replyBroadcast(false)
+                    .build());
             assertThat(postMessageResponse.getError(), is(nullValue()));
             assertThat(postMessageResponse.isOk(), is(true));
         }
 
         // attachments
         {
-            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
-                    ChatPostMessageRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .attachments(Arrays.asList(Attachment.builder().text(longText).build()))
-                            .replyBroadcast(false)
-                            .build());
+            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .attachments(Arrays.asList(Attachment.builder().text(longText).build()))
+                    .replyBroadcast(false)
+                    .build());
             assertThat(postMessageResponse.getError(), is(nullValue()));
             assertThat(postMessageResponse.isOk(), is(true));
         }
 
         // blocks
         {
-            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
-                    ChatPostMessageRequest.builder()
-                            .token(token)
-                            .channel(channel.getId())
-                            .blocks(Arrays.asList(
-                                            ContextBlock.builder().elements(Arrays.asList(
-                                                    (ContextBlockElement) PlainTextObject.builder().text(longText).build()
-                                            )).build(),
-                                    ContextBlock.builder().elements(Arrays.asList(
-                                            (ContextBlockElement) MarkdownTextObject.builder().text(longText).build()
-                                    )).build()
-                            ))
-                            .replyBroadcast(false)
-                            .build());
+            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .blocks(Arrays.asList(
+                            ContextBlock.builder().elements(Arrays.asList(
+                                    (ContextBlockElement) PlainTextObject.builder().text(longText).build()
+                            )).build(),
+                            ContextBlock.builder().elements(Arrays.asList(
+                                    (ContextBlockElement) MarkdownTextObject.builder().text(longText).build()
+                            )).build()
+                    ))
+                    .replyBroadcast(false)
+                    .build());
             assertThat(postMessageResponse.getError(), is(nullValue()));
             assertThat(postMessageResponse.isOk(), is(true));
         }
@@ -415,13 +387,12 @@ public class conversations_Test {
             String threadTs;
             // first message
             {
-                ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
-                        ChatPostMessageRequest.builder()
-                                .token(token)
-                                .channel(channel.getId())
-                                .text(longText)
-                                .replyBroadcast(false)
-                                .build());
+                ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(r -> r
+                        .token(token)
+                        .channel(channel.getId())
+                        .text(longText)
+                        .replyBroadcast(false)
+                        .build());
                 assertThat(postMessageResponse.getError(), is(nullValue()));
                 assertThat(postMessageResponse.isOk(), is(true));
                 threadTs = postMessageResponse.getMessage().getTs();
@@ -429,14 +400,13 @@ public class conversations_Test {
 
             {
                 for (int idx = 0; idx < 5; idx++) {
-                    ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(
-                            ChatPostMessageRequest.builder()
-                                    .token(token)
-                                    .channel(channel.getId())
-                                    .threadTs(threadTs)
-                                    .text("Say something at " + new Date())
-                                    .replyBroadcast(false)
-                                    .build());
+                    ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(r -> r
+                            .token(token)
+                            .channel(channel.getId())
+                            .threadTs(threadTs)
+                            .text("Say something at " + new Date())
+                            .replyBroadcast(false)
+                            .build());
                     assertThat(postMessageResponse.getError(), is(nullValue()));
                     assertThat(postMessageResponse.isOk(), is(true));
                 }
@@ -444,7 +414,7 @@ public class conversations_Test {
 
             // channels.replies
             {
-                ChannelsRepliesResponse response = slack.methods().channelsReplies(ChannelsRepliesRequest.builder()
+                ChannelsRepliesResponse response = slack.methods().channelsReplies(r -> r
                         .token(token)
                         .threadTs(threadTs)
                         .channel(channel.getId())
@@ -462,7 +432,7 @@ public class conversations_Test {
 
             // conversations.replies
             {
-                ConversationsRepliesResponse response = slack.methods().conversationsReplies(ConversationsRepliesRequest.builder()
+                ConversationsRepliesResponse response = slack.methods().conversationsReplies(r -> r
                         .token(token)
                         .ts(threadTs)
                         .channel(channel.getId())

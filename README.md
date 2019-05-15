@@ -202,6 +202,13 @@ ChannelsCreateRequest channelCreation = ChannelsCreateRequest.builder().token(to
 ChannelsCreateResponse response = slack.methods().channelsCreate(channelCreation);
 ```
 
+Or, using lambda function to build a request could be much simpler. You don't need to type the long class name!
+
+```java
+final String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
+ChannelsCreateResponse response =
+  slack.methods().channelsCreate(req -> req.token(token).name(channelName).build());
+```
 #### API Methods Examples
 
 You can find more examples here: https://github.com/seratch/jslack/tree/master/src/test/java/com/github/seratch/jslack
@@ -214,19 +221,18 @@ Slack slack = Slack.getInstance();
 
 // find all channels in the team
 ChannelsListResponse channelsResponse = slack.methods().channelsList(
-  ChannelsListRequest.builder().token(token).build());
+  req -> req.token(token).build());
 assertThat(channelsResponse.isOk(), is(true));
 // find #general
 Channel general = channelsResponse.getChannels().stream()
         .filter(c -> c.getName().equals("general")).findFirst().get();
 
 // https://slack.com/api/chat.postMessage
-ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(
-  ChatPostMessageRequest.builder()
-    .token(token)
-    .channel(general.getId())
-    .text("Hello World!")
-    .build());
+ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(req -> req
+  .token(token)
+  .channel(general.getId())
+  .text("Hello World!")
+  .build());
 assertThat(postResponse.isOk(), is(true));
 
 // timestamp of the posted message
@@ -234,22 +240,21 @@ String messageTimestamp = postResponse.getMessage().getTs();
 
 Thread.sleep(1000L);
 
-ChatDeleteResponse deleteResponse = slack.methods().chatDelete(
-  ChatDeleteRequest.builder()
-    .token(token)
-    .channel(general.getId())
-    .ts(messageTimestamp)
-    .build());
+ChatDeleteResponse deleteResponse = slack.methods().chatDelete(req -> req
+  .token(token)
+  .channel(general.getId())
+  .ts(messageTimestamp)
+  .build());
 assertThat(deleteResponse.isOk(), is(true));
 ```
 
 ##### Open a dialog modal
 
 ```java
-String token = "api-token";
+final String token = "api-token";
     
 // Required.  See https://api.slack.com/dialogs#implementation
-String triggerId = "trigger-id";
+final String triggerId = "trigger-id";
 
 Slack slack = Slack.getInstance();
 
@@ -284,7 +289,7 @@ Dialog dialog = Dialog.builder()
   .submitLabel("")
   .build();
 
-DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(DialogOpenRequest.builder()
+DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(req -> req
   .token(token)
   .triggerId(triggerId)
   .dialog(dialog)

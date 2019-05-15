@@ -2,11 +2,6 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
-import com.github.seratch.jslack.api.methods.request.files.FilesUploadRequest;
-import com.github.seratch.jslack.api.methods.request.pins.PinsAddRequest;
-import com.github.seratch.jslack.api.methods.request.pins.PinsListRequest;
-import com.github.seratch.jslack.api.methods.request.pins.PinsRemoveRequest;
 import com.github.seratch.jslack.api.methods.response.files.FilesUploadResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsAddResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsListResponse;
@@ -34,7 +29,7 @@ public class pins_Test {
 
     @Test
     public void list() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build()).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -44,7 +39,7 @@ public class pins_Test {
         }
 
         PinsListResponse response = slack.methods().pinsList(
-                PinsListRequest.builder().token(token).channel(channels.get(0)).build());
+                r -> r.token(token).channel(channels.get(0)).build());
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getItems(), is(notNullValue()));
@@ -52,7 +47,7 @@ public class pins_Test {
 
     @Test
     public void add() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build()).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -64,7 +59,7 @@ public class pins_Test {
         File file = new File("src/test/resources/sample.txt");
         com.github.seratch.jslack.api.model.File fileObj;
         {
-            FilesUploadResponse response = slack.methods().filesUpload(FilesUploadRequest.builder()
+            FilesUploadResponse response = slack.methods().filesUpload(r -> r
                     .token(token)
                     .channels(channels)
                     .file(file)
@@ -78,7 +73,7 @@ public class pins_Test {
         }
 
         {
-            PinsAddResponse response = slack.methods().pinsAdd(PinsAddRequest.builder()
+            PinsAddResponse response = slack.methods().pinsAdd(r -> r
                     .token(token)
                     .channel(channels.get(0))
                     .file(fileObj.getId())
@@ -87,7 +82,7 @@ public class pins_Test {
             assertThat(response.isOk(), is(true));
         }
         {
-            PinsRemoveResponse response = slack.methods().pinsRemove(PinsRemoveRequest.builder()
+            PinsRemoveResponse response = slack.methods().pinsRemove(r -> r
                     .token(token)
                     .channel(channels.get(0))
                     .file(fileObj.getId())
@@ -99,7 +94,7 @@ public class pins_Test {
         {
             // as of August 2018, File object no longer contains initialComment.
             if (fileObj.getInitialComment() != null) {
-                PinsAddResponse response = slack.methods().pinsAdd(PinsAddRequest.builder()
+                PinsAddResponse response = slack.methods().pinsAdd(r -> r
                         .token(token)
                         .channel(channels.get(0))
                         .fileComment(fileObj.getInitialComment().getId())

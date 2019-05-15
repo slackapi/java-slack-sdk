@@ -1,10 +1,6 @@
 package test_with_remote_apis;
 
 import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsArchiveRequest;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsArchiveRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsListRequest;
 import com.github.seratch.jslack.api.methods.response.channels.ChannelsArchiveResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.ConversationsArchiveResponse;
 import com.github.seratch.jslack.api.model.Channel;
@@ -31,7 +27,7 @@ public class UnnecessaryChannelsCleanerTest {
     @Test
     public void deleteUnnecessaryPublicChannels() throws Exception {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        for (Channel channel : slack.methods().channelsList(ChannelsListRequest.builder()
+        for (Channel channel : slack.methods().channelsList(r -> r
                 .token(token)
                 .excludeArchived(true)
                 .limit(1000)
@@ -40,7 +36,7 @@ public class UnnecessaryChannelsCleanerTest {
             log.info(channel.toString());
 
             if (channel.getName().startsWith("test") && !channel.isGeneral()) {
-                ChannelsArchiveResponse resp = slack.methods().channelsArchive(ChannelsArchiveRequest.builder()
+                ChannelsArchiveResponse resp = slack.methods().channelsArchive(r -> r
                         .token(token).channel(channel.getId()).build());
                 assertThat(resp.getError(), is(nullValue()));
             }
@@ -51,7 +47,7 @@ public class UnnecessaryChannelsCleanerTest {
     @Test
     public void deleteUnnecessaryPrivateChannels() throws Exception {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        for (Conversation channel : slack.methods().conversationsList(ConversationsListRequest.builder()
+        for (Conversation channel : slack.methods().conversationsList(r -> r
                 .token(token)
                 .excludeArchived(true)
                 .limit(1000)
@@ -62,7 +58,7 @@ public class UnnecessaryChannelsCleanerTest {
 
             if ((channel.getName().startsWith("test") || channel.getName().startsWith("secret-"))
                     && !channel.isGeneral()) {
-                ConversationsArchiveResponse resp = slack.methods().conversationsArchive(ConversationsArchiveRequest.builder()
+                ConversationsArchiveResponse resp = slack.methods().conversationsArchive(r -> r
                         .token(token)
                         .channel(channel.getId())
                         .build());
