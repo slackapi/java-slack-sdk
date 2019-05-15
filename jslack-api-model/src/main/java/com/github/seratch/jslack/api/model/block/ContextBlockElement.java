@@ -8,7 +8,7 @@ import com.github.seratch.jslack.api.model.block.element.ImageElement;
  * elements} type-safe, because ContextBlock can only contain
  * {@link ImageElement} and {@link TextObject} elements.
  *
- * @see Slack Block Kit Reference: <a href=
+ * Slack Block Kit Reference: <a href=
  * "https://api.slack.com/reference/messaging/blocks#context">Context
  * Block's elements</a>
  */
