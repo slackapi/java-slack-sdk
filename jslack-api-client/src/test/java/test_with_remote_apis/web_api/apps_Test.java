@@ -2,9 +2,6 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
-import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
-import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.resources.AppsPermissionsResourcesListRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
@@ -35,7 +32,7 @@ public class apps_Test {
     @Test
     public void appsPermissionsRequest() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        AppsPermissionsRequestResponse response = slack.methods().appsPermissionsRequest(AppsPermissionsRequestRequest.builder()
+        AppsPermissionsRequestResponse response = slack.methods().appsPermissionsRequest(req -> req
                 .token(token)
                 .triggerId("dummy")
                 .build());
@@ -46,7 +43,7 @@ public class apps_Test {
     @Test
     public void appsPermissionsInfo() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        AppsPermissionsInfoResponse response = slack.methods().appsPermissionsInfo(AppsPermissionsInfoRequest.builder()
+        AppsPermissionsInfoResponse response = slack.methods().appsPermissionsInfo(req -> req
                 .token(token)
                 .build());
         assertThat(response.getError(), is("not_allowed_token_type"));
@@ -56,7 +53,7 @@ public class apps_Test {
     @Test
     public void appsUninstall() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        AppsUninstallResponse response = slack.methods().appsUninstall(AppsUninstallRequest.builder()
+        AppsUninstallResponse response = slack.methods().appsUninstall(req -> req
                 .token(token)
                 .build());
         assertThat(response.getError(), is("not_allowed_token_type"));

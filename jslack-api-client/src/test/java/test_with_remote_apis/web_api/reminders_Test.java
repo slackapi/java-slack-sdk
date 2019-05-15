@@ -1,10 +1,6 @@
 package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.api.methods.request.reminders.RemindersAddRequest;
-import com.github.seratch.jslack.api.methods.request.reminders.RemindersCompleteRequest;
-import com.github.seratch.jslack.api.methods.request.reminders.RemindersDeleteRequest;
-import com.github.seratch.jslack.api.methods.request.reminders.RemindersInfoRequest;
 import com.github.seratch.jslack.api.methods.response.reminders.RemindersAddResponse;
 import com.github.seratch.jslack.api.methods.response.reminders.RemindersCompleteResponse;
 import com.github.seratch.jslack.api.methods.response.reminders.RemindersDeleteResponse;
@@ -25,7 +21,7 @@ public class reminders_Test {
 
     @Test
     public void test() throws Exception {
-        RemindersAddResponse addResponse = slack.methods().remindersAdd(RemindersAddRequest.builder()
+        RemindersAddResponse addResponse = slack.methods().remindersAdd(r -> r
                 .token(token)
                 .text("Don't forget it!")
                 .time("10")
@@ -35,21 +31,21 @@ public class reminders_Test {
 
         String reminderId = addResponse.getReminder().getId();
 
-        RemindersInfoResponse infoResponse = slack.methods().remindersInfo(RemindersInfoRequest.builder()
+        RemindersInfoResponse infoResponse = slack.methods().remindersInfo(r -> r
                 .token(token)
                 .reminder(reminderId)
                 .build());
         assertThat(infoResponse.getError(), is(nullValue()));
         assertThat(infoResponse.isOk(), is(true));
 
-        RemindersCompleteResponse completeResponse = slack.methods().remindersComplete(RemindersCompleteRequest.builder()
+        RemindersCompleteResponse completeResponse = slack.methods().remindersComplete(r -> r
                 .token(token)
                 .reminder(reminderId)
                 .build());
         assertThat(completeResponse.getError(), is(nullValue()));
         assertThat(completeResponse.isOk(), is(true));
 
-        RemindersDeleteResponse deleteResponse = slack.methods().remindersDelete(RemindersDeleteRequest.builder()
+        RemindersDeleteResponse deleteResponse = slack.methods().remindersDelete(r -> r
                 .token(token)
                 .reminder(reminderId)
                 .build());

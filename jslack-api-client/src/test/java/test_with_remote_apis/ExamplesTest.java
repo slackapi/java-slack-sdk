@@ -2,7 +2,6 @@ package test_with_remote_apis;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.response.channels.ChannelsListResponse;
@@ -30,10 +29,10 @@ public class ExamplesTest {
     public void postAMessageToRandomChannel() throws IOException, SlackApiException, InterruptedException {
 
         // find all channels in the team
-        ChannelsListResponse channelsResponse = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build());
+        ChannelsListResponse channelsResponse = slack.methods().channelsList(r -> r.token(token).build());
         assertThat(channelsResponse.isOk(), is(true));
         // find #random
-        List<Channel> channels_ = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build()).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
         Channel random = null;
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {

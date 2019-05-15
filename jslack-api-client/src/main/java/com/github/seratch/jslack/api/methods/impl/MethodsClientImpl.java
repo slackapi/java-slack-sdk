@@ -2,6 +2,7 @@ package com.github.seratch.jslack.api.methods.impl;
 
 import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.MethodsClient;
+import com.github.seratch.jslack.api.methods.RequestBuilder;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
@@ -150,8 +151,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ApiTestResponse apiTest(RequestBuilder<ApiTestRequest, ApiTestRequest.ApiTestRequestBuilder> req) throws IOException, SlackApiException {
+        return apiTest(req.build(ApiTestRequest.builder()));
+    }
+
+    @Override
     public AppsUninstallResponse appsUninstall(AppsUninstallRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.APPS_UNINSTALL, req.getToken(), AppsUninstallResponse.class);
+    }
+
+    @Override
+    public AppsUninstallResponse appsUninstall(RequestBuilder<AppsUninstallRequest, AppsUninstallRequest.AppsUninstallRequestBuilder> req) throws IOException, SlackApiException {
+        return appsUninstall(req.build(AppsUninstallRequest.builder()));
     }
 
     @Override
@@ -160,8 +171,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AppsPermissionsInfoResponse appsPermissionsInfo(RequestBuilder<AppsPermissionsInfoRequest, AppsPermissionsInfoRequest.AppsPermissionsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return appsPermissionsInfo(req.build(AppsPermissionsInfoRequest.builder()));
+    }
+
+    @Override
     public AppsPermissionsRequestResponse appsPermissionsRequest(AppsPermissionsRequestRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.APPS_PERMISSIONS_REQUEST, req.getToken(), AppsPermissionsRequestResponse.class);
+    }
+
+    @Override
+    public AppsPermissionsRequestResponse appsPermissionsRequest(RequestBuilder<AppsPermissionsRequestRequest, AppsPermissionsRequestRequest.AppsPermissionsRequestRequestBuilder> req) throws IOException, SlackApiException {
+        return appsPermissionsRequest(req.build(AppsPermissionsRequestRequest.builder()));
     }
 
     @Override
@@ -190,8 +211,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AuthRevokeResponse authRevoke(RequestBuilder<AuthRevokeRequest, AuthRevokeRequest.AuthRevokeRequestBuilder> req) throws IOException, SlackApiException {
+        return authRevoke(req.build(AuthRevokeRequest.builder()));
+    }
+
+    @Override
     public AuthTestResponse authTest(AuthTestRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.AUTH_TEST, req.getToken(), AuthTestResponse.class);
+    }
+
+    @Override
+    public AuthTestResponse authTest(RequestBuilder<AuthTestRequest, AuthTestRequest.AuthTestRequestBuilder> req) throws IOException, SlackApiException {
+        return authTest(req.build(AuthTestRequest.builder()));
     }
 
     @Override
@@ -200,8 +231,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public BotsInfoResponse botsInfo(RequestBuilder<BotsInfoRequest, BotsInfoRequest.BotsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return botsInfo(req.build(BotsInfoRequest.builder()));
+    }
+
+    @Override
     public ChannelsArchiveResponse channelsArchive(ChannelsArchiveRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHANNELS_ARCHIVE, req.getToken(), ChannelsArchiveResponse.class);
+    }
+
+    @Override
+    public ChannelsArchiveResponse channelsArchive(RequestBuilder<ChannelsArchiveRequest, ChannelsArchiveRequest.ChannelsArchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsArchive(req.build(ChannelsArchiveRequest.builder()));
     }
 
     @Override
@@ -210,8 +251,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChannelsCreateResponse channelsCreate(RequestBuilder<ChannelsCreateRequest, ChannelsCreateRequest.ChannelsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsCreate(req.build(ChannelsCreateRequest.builder()));
+    }
+
+    @Override
     public ChannelsHistoryResponse channelsHistory(ChannelsHistoryRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHANNELS_HISTORY, req.getToken(), ChannelsHistoryResponse.class);
+    }
+
+    @Override
+    public ChannelsHistoryResponse channelsHistory(RequestBuilder<ChannelsHistoryRequest, ChannelsHistoryRequest.ChannelsHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsHistory(req.build(ChannelsHistoryRequest.builder()));
     }
 
     @Override
@@ -220,8 +271,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChannelsRepliesResponse channelsReplies(RequestBuilder<ChannelsRepliesRequest, ChannelsRepliesRequest.ChannelsRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsReplies(req.build(ChannelsRepliesRequest.builder()));
+    }
+
+    @Override
     public ChannelsInfoResponse channelsInfo(ChannelsInfoRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHANNELS_INFO, req.getToken(), ChannelsInfoResponse.class);
+    }
+
+    @Override
+    public ChannelsInfoResponse channelsInfo(RequestBuilder<ChannelsInfoRequest, ChannelsInfoRequest.ChannelsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsInfo(req.build(ChannelsInfoRequest.builder()));
     }
 
     @Override
@@ -230,8 +291,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChannelsListResponse channelsList(RequestBuilder<ChannelsListRequest, ChannelsListRequest.ChannelsListRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsList(req.build(ChannelsListRequest.builder()));
+    }
+
+    @Override
     public ChannelsInviteResponse channelsInvite(ChannelsInviteRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHANNELS_INVITE, req.getToken(), ChannelsInviteResponse.class);
+    }
+
+    @Override
+    public ChannelsInviteResponse channelsInvite(RequestBuilder<ChannelsInviteRequest, ChannelsInviteRequest.ChannelsInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsInvite(req.build(ChannelsInviteRequest.builder()));
     }
 
     @Override
@@ -240,8 +311,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChannelsJoinResponse channelsJoin(RequestBuilder<ChannelsJoinRequest, ChannelsJoinRequest.ChannelsJoinRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsJoin(req.build(ChannelsJoinRequest.builder()));
+    }
+
+    @Override
     public ChannelsKickResponse channelsKick(ChannelsKickRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHANNELS_KICK, req.getToken(), ChannelsKickResponse.class);
+    }
+
+    @Override
+    public ChannelsKickResponse channelsKick(RequestBuilder<ChannelsKickRequest, ChannelsKickRequest.ChannelsKickRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsKick(req.build(ChannelsKickRequest.builder()));
     }
 
     @Override
@@ -250,8 +331,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChannelsLeaveResponse channelsLeave(RequestBuilder<ChannelsLeaveRequest, ChannelsLeaveRequest.ChannelsLeaveRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsLeave(req.build(ChannelsLeaveRequest.builder()));
+    }
+
+    @Override
     public ChannelsMarkResponse channelsMark(ChannelsMarkRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHANNELS_MARK, req.getToken(), ChannelsMarkResponse.class);
+    }
+
+    @Override
+    public ChannelsMarkResponse channelsMark(RequestBuilder<ChannelsMarkRequest, ChannelsMarkRequest.ChannelsMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsMark(req.build(ChannelsMarkRequest.builder()));
     }
 
     @Override
@@ -260,8 +351,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChannelsRenameResponse channelsRename(RequestBuilder<ChannelsRenameRequest, ChannelsRenameRequest.ChannelsRenameRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsRename(req.build(ChannelsRenameRequest.builder()));
+    }
+
+    @Override
     public ChannelsSetPurposeResponse channelsSetPurpose(ChannelsSetPurposeRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHANNELS_SET_PURPOSE, req.getToken(), ChannelsSetPurposeResponse.class);
+    }
+
+    @Override
+    public ChannelsSetPurposeResponse channelsSetPurpose(RequestBuilder<ChannelsSetPurposeRequest, ChannelsSetPurposeRequest.ChannelsSetPurposeRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsSetPurpose(req.build(ChannelsSetPurposeRequest.builder()));
     }
 
     @Override
@@ -270,8 +371,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChannelsSetTopicResponse channelsSetTopic(RequestBuilder<ChannelsSetTopicRequest, ChannelsSetTopicRequest.ChannelsSetTopicRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsSetTopic(req.build(ChannelsSetTopicRequest.builder()));
+    }
+
+    @Override
     public ChannelsUnarchiveResponse channelsUnarchive(ChannelsUnarchiveRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHANNELS_UNARCHIVE, req.getToken(), ChannelsUnarchiveResponse.class);
+    }
+
+    @Override
+    public ChannelsUnarchiveResponse channelsUnarchive(RequestBuilder<ChannelsUnarchiveRequest, ChannelsUnarchiveRequest.ChannelsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsUnarchive(req.build(ChannelsUnarchiveRequest.builder()));
     }
 
     @Override
@@ -280,8 +391,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChatGetPermalinkResponse chatGetPermalink(RequestBuilder<ChatGetPermalinkRequest, ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException {
+        return chatGetPermalink(req.build(ChatGetPermalinkRequest.builder()));
+    }
+
+    @Override
     public ChatDeleteResponse chatDelete(ChatDeleteRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHAT_DELETE, req.getToken(), ChatDeleteResponse.class);
+    }
+
+    @Override
+    public ChatDeleteResponse chatDelete(RequestBuilder<ChatDeleteRequest, ChatDeleteRequest.ChatDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return chatDelete(req.build(ChatDeleteRequest.builder()));
     }
 
     @Override
@@ -290,8 +411,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(RequestBuilder<ChatDeleteScheduledMessageRequest, ChatDeleteScheduledMessageRequest.ChatDeleteScheduledMessageRequestBuilder> req) throws IOException, SlackApiException {
+        return chatDeleteScheduledMessage(req.build(ChatDeleteScheduledMessageRequest.builder()));
+    }
+
+    @Override
     public ChatMeMessageResponse chatMeMessage(ChatMeMessageRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHAT_ME_MESSAGE, req.getToken(), ChatMeMessageResponse.class);
+    }
+
+    @Override
+    public ChatMeMessageResponse chatMeMessage(RequestBuilder<ChatMeMessageRequest, ChatMeMessageRequest.ChatMeMessageRequestBuilder> req) throws IOException, SlackApiException {
+        return chatMeMessage(req.build(ChatMeMessageRequest.builder()));
     }
 
     @Override
@@ -300,8 +431,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChatPostEphemeralResponse chatPostEphemeral(RequestBuilder<ChatPostEphemeralRequest, ChatPostEphemeralRequest.ChatPostEphemeralRequestBuilder> req) throws IOException, SlackApiException {
+        return chatPostEphemeral(req.build(ChatPostEphemeralRequest.builder()));
+    }
+
+    @Override
     public ChatPostMessageResponse chatPostMessage(ChatPostMessageRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHAT_POST_MESSAGE, req.getToken(), ChatPostMessageResponse.class);
+    }
+
+    @Override
+    public ChatPostMessageResponse chatPostMessage(RequestBuilder<ChatPostMessageRequest, ChatPostMessageRequest.ChatPostMessageRequestBuilder> req) throws IOException, SlackApiException {
+        return chatPostMessage(req.build(ChatPostMessageRequest.builder()));
     }
 
     @Override
@@ -310,8 +451,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChatScheduleMessageResponse chatScheduleMessage(RequestBuilder<ChatScheduleMessageRequest, ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req) throws IOException, SlackApiException {
+        return chatScheduleMessage(req.build(ChatScheduleMessageRequest.builder()));
+    }
+
+    @Override
     public ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHAT_UPDATE, req.getToken(), ChatUpdateResponse.class);
+    }
+
+    @Override
+    public ChatUpdateResponse chatUpdate(RequestBuilder<ChatUpdateRequest, ChatUpdateRequest.ChatUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return chatUpdate(req.build(ChatUpdateRequest.builder()));
     }
 
     @Override
@@ -320,8 +471,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ChatUnfurlResponse chatUnfurl(RequestBuilder<ChatUnfurlRequest, ChatUnfurlRequest.ChatUnfurlRequestBuilder> req) throws IOException, SlackApiException {
+        return chatUnfurl(req.build(ChatUnfurlRequest.builder()));
+    }
+
+    @Override
     public ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(ChatScheduleMessagesListRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CHAT_SCHEDULED_MESSAGES_LIST, req.getToken(), ChatScheduleMessagesListResponse.class);
+    }
+
+    @Override
+    public ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(RequestBuilder<ChatScheduleMessagesListRequest, ChatScheduleMessagesListRequest.ChatScheduleMessagesListRequestBuilder> req) throws IOException, SlackApiException {
+        return chatScheduleMessagesListMessage(req.build(ChatScheduleMessagesListRequest.builder()));
     }
 
     @Override
@@ -331,9 +492,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsArchiveResponse conversationsArchive(RequestBuilder<ConversationsArchiveRequest, ConversationsArchiveRequest.ConversationsArchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsArchive(req.build(ConversationsArchiveRequest.builder()));
+    }
+
+    @Override
     public ConversationsCloseResponse conversationsClose(ConversationsCloseRequest req)
             throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CONVERSATIONS_CLOSE, req.getToken(), ConversationsCloseResponse.class);
+    }
+
+    @Override
+    public ConversationsCloseResponse conversationsClose(RequestBuilder<ConversationsCloseRequest, ConversationsCloseRequest.ConversationsCloseRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsClose(req.build(ConversationsCloseRequest.builder()));
     }
 
     @Override
@@ -343,9 +514,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsCreateResponse conversationsCreate(RequestBuilder<ConversationsCreateRequest, ConversationsCreateRequest.ConversationsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsCreate(req.build(ConversationsCreateRequest.builder()));
+    }
+
+    @Override
     public ConversationsHistoryResponse conversationsHistory(ConversationsHistoryRequest req)
             throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CONVERSATIONS_HISTORY, req.getToken(), ConversationsHistoryResponse.class);
+    }
+
+    @Override
+    public ConversationsHistoryResponse conversationsHistory(RequestBuilder<ConversationsHistoryRequest, ConversationsHistoryRequest.ConversationsHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsHistory(req.build(ConversationsHistoryRequest.builder()));
     }
 
     @Override
@@ -355,9 +536,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsInfoResponse conversationsInfo(RequestBuilder<ConversationsInfoRequest, ConversationsInfoRequest.ConversationsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsInfo(req.build(ConversationsInfoRequest.builder()));
+    }
+
+    @Override
     public ConversationsInviteResponse conversationsInvite(ConversationsInviteRequest req)
             throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CONVERSATIONS_INVITE, req.getToken(), ConversationsInviteResponse.class);
+    }
+
+    @Override
+    public ConversationsInviteResponse conversationsInvite(RequestBuilder<ConversationsInviteRequest, ConversationsInviteRequest.ConversationsInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsInvite(req.build(ConversationsInviteRequest.builder()));
     }
 
     @Override
@@ -367,9 +558,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsJoinResponse conversationsJoin(RequestBuilder<ConversationsJoinRequest, ConversationsJoinRequest.ConversationsJoinRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsJoin(req.build(ConversationsJoinRequest.builder()));
+    }
+
+    @Override
     public ConversationsKickResponse conversationsKick(ConversationsKickRequest req)
             throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CONVERSATIONS_KICK, req.getToken(), ConversationsKickResponse.class);
+    }
+
+    @Override
+    public ConversationsKickResponse conversationsKick(RequestBuilder<ConversationsKickRequest, ConversationsKickRequest.ConversationsKickRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsKick(req.build(ConversationsKickRequest.builder()));
     }
 
     @Override
@@ -379,9 +580,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsLeaveResponse conversationsLeave(RequestBuilder<ConversationsLeaveRequest, ConversationsLeaveRequest.ConversationsLeaveRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsLeave(req.build(ConversationsLeaveRequest.builder()));
+    }
+
+    @Override
     public ConversationsListResponse conversationsList(ConversationsListRequest req)
             throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CONVERSATIONS_LIST, req.getToken(), ConversationsListResponse.class);
+    }
+
+    @Override
+    public ConversationsListResponse conversationsList(RequestBuilder<ConversationsListRequest, ConversationsListRequest.ConversationsListRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsList(req.build(ConversationsListRequest.builder()));
     }
 
     @Override
@@ -391,9 +602,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsMembersResponse conversationsMembers(RequestBuilder<ConversationsMembersRequest, ConversationsMembersRequest.ConversationsMembersRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsMembers(req.build(ConversationsMembersRequest.builder()));
+    }
+
+    @Override
     public ConversationsOpenResponse conversationsOpen(ConversationsOpenRequest req)
             throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CONVERSATIONS_OPEN, req.getToken(), ConversationsOpenResponse.class);
+    }
+
+    @Override
+    public ConversationsOpenResponse conversationsOpen(RequestBuilder<ConversationsOpenRequest, ConversationsOpenRequest.ConversationsOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsOpen(req.build(ConversationsOpenRequest.builder()));
     }
 
     @Override
@@ -403,9 +624,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsRenameResponse conversationsRename(RequestBuilder<ConversationsRenameRequest, ConversationsRenameRequest.ConversationsRenameRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsRename(req.build(ConversationsRenameRequest.builder()));
+    }
+
+    @Override
     public ConversationsRepliesResponse conversationsReplies(ConversationsRepliesRequest req)
             throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CONVERSATIONS_REPLIES, req.getToken(), ConversationsRepliesResponse.class);
+    }
+
+    @Override
+    public ConversationsRepliesResponse conversationsReplies(RequestBuilder<ConversationsRepliesRequest, ConversationsRepliesRequest.ConversationsRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsReplies(req.build(ConversationsRepliesRequest.builder()));
     }
 
     @Override
@@ -415,9 +646,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsSetPurposeResponse conversationsSetPurpose(RequestBuilder<ConversationsSetPurposeRequest, ConversationsSetPurposeRequest.ConversationsSetPurposeRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsSetPurpose(req.build(ConversationsSetPurposeRequest.builder()));
+    }
+
+    @Override
     public ConversationsSetTopicResponse conversationsSetTopic(ConversationsSetTopicRequest req)
             throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.CONVERSATIONS_SET_TOPIC, req.getToken(), ConversationsSetTopicResponse.class);
+    }
+
+    @Override
+    public ConversationsSetTopicResponse conversationsSetTopic(RequestBuilder<ConversationsSetTopicRequest, ConversationsSetTopicRequest.ConversationsSetTopicRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsSetTopic(req.build(ConversationsSetTopicRequest.builder()));
     }
 
     @Override
@@ -427,9 +668,19 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsUnarchiveResponse conversationsUnarchive(RequestBuilder<ConversationsUnarchiveRequest, ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsUnarchive(req.build(ConversationsUnarchiveRequest.builder()));
+    }
+
+    @Override
     public DialogOpenResponse dialogOpen(DialogOpenRequest req)
             throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.DIALOG_OPEN, req.getToken(), DialogOpenResponse.class);
+    }
+
+    @Override
+    public DialogOpenResponse dialogOpen(RequestBuilder<DialogOpenRequest, DialogOpenRequest.DialogOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return dialogOpen(req.build(DialogOpenRequest.builder()));
     }
 
     @Override
@@ -438,8 +689,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public DndEndDndResponse dndEndDnd(RequestBuilder<DndEndDndRequest, DndEndDndRequest.DndEndDndRequestBuilder> req) throws IOException, SlackApiException {
+        return dndEndDnd(req.build(DndEndDndRequest.builder()));
+    }
+
+    @Override
     public DndEndSnoozeResponse dndEndSnooze(DndEndSnoozeRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.DND_END_SNOOZE, req.getToken(), DndEndSnoozeResponse.class);
+    }
+
+    @Override
+    public DndEndSnoozeResponse dndEndSnooze(RequestBuilder<DndEndSnoozeRequest, DndEndSnoozeRequest.DndEndSnoozeRequestBuilder> req) throws IOException, SlackApiException {
+        return dndEndSnooze(req.build(DndEndSnoozeRequest.builder()));
     }
 
     @Override
@@ -448,8 +709,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public DndInfoResponse dndInfo(RequestBuilder<DndInfoRequest, DndInfoRequest.DndInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return dndInfo(req.build(DndInfoRequest.builder()));
+    }
+
+    @Override
     public DndSetSnoozeResponse dndSetSnooze(DndSetSnoozeRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.DND_SET_SNOOZE, req.getToken(), DndSetSnoozeResponse.class);
+    }
+
+    @Override
+    public DndSetSnoozeResponse dndSetSnooze(RequestBuilder<DndSetSnoozeRequest, DndSetSnoozeRequest.DndSetSnoozeRequestBuilder> req) throws IOException, SlackApiException {
+        return dndSetSnooze(req.build(DndSetSnoozeRequest.builder()));
     }
 
     @Override
@@ -458,8 +729,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public DndTeamInfoResponse dndTeamInfo(RequestBuilder<DndTeamInfoRequest, DndTeamInfoRequest.DndTeamInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return dndTeamInfo(req.build(DndTeamInfoRequest.builder()));
+    }
+
+    @Override
     public EmojiListResponse emojiList(EmojiListRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.EMOJI_LIST, req.getToken(), EmojiListResponse.class);
+    }
+
+    @Override
+    public EmojiListResponse emojiList(RequestBuilder<EmojiListRequest, EmojiListRequest.EmojiListRequestBuilder> req) throws IOException, SlackApiException {
+        return emojiList(req.build(EmojiListRequest.builder()));
     }
 
     @Override
@@ -468,8 +749,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public FilesDeleteResponse filesDelete(RequestBuilder<FilesDeleteRequest, FilesDeleteRequest.FilesDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return filesDelete(req.build(FilesDeleteRequest.builder()));
+    }
+
+    @Override
     public FilesInfoResponse filesInfo(FilesInfoRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.FILES_INFO, req.getToken(), FilesInfoResponse.class);
+    }
+
+    @Override
+    public FilesInfoResponse filesInfo(RequestBuilder<FilesInfoRequest, FilesInfoRequest.FilesInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return filesInfo(req.build(FilesInfoRequest.builder()));
     }
 
     @Override
@@ -478,13 +769,28 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public FilesListResponse filesList(RequestBuilder<FilesListRequest, FilesListRequest.FilesListRequestBuilder> req) throws IOException, SlackApiException {
+        return filesList(req.build(FilesListRequest.builder()));
+    }
+
+    @Override
     public FilesRevokePublicURLResponse filesRevokePublicURL(FilesRevokePublicURLRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.FILES_REVOKE_PUBLIC_URL, req.getToken(), FilesRevokePublicURLResponse.class);
     }
 
     @Override
+    public FilesRevokePublicURLResponse filesRevokePublicURL(RequestBuilder<FilesRevokePublicURLRequest, FilesRevokePublicURLRequest.FilesRevokePublicURLRequestBuilder> req) throws IOException, SlackApiException {
+        return filesRevokePublicURL(req.build(FilesRevokePublicURLRequest.builder()));
+    }
+
+    @Override
     public FilesSharedPublicURLResponse filesSharedPublicURL(FilesSharedPublicURLRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.FILES_SHARED_PUBLIC_URL, req.getToken(), FilesSharedPublicURLResponse.class);
+    }
+
+    @Override
+    public FilesSharedPublicURLResponse filesSharedPublicURL(RequestBuilder<FilesSharedPublicURLRequest, FilesSharedPublicURLRequest.FilesSharedPublicURLRequestBuilder> req) throws IOException, SlackApiException {
+        return filesSharedPublicURL(req.build(FilesSharedPublicURLRequest.builder()));
     }
 
     @Override
@@ -494,6 +800,11 @@ public class MethodsClientImpl implements MethodsClient {
         } else {
             return doPostFormWithToken(toForm(req), Methods.FILES_UPLOAD, req.getToken(), FilesUploadResponse.class);
         }
+    }
+
+    @Override
+    public FilesUploadResponse filesUpload(RequestBuilder<FilesUploadRequest, FilesUploadRequest.FilesUploadRequestBuilder> req) throws IOException, SlackApiException {
+        return filesUpload(req.build(FilesUploadRequest.builder()));
     }
 
     @Override
@@ -517,6 +828,11 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsArchiveResponse groupsArchive(RequestBuilder<GroupsArchiveRequest, GroupsArchiveRequest.GroupsArchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsArchive(req.build(GroupsArchiveRequest.builder()));
+    }
+
+    @Override
     public GroupsCloseResponse groupsClose(GroupsCloseRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.GROUPS_CLOSE, req.getToken(), GroupsCloseResponse.class);
     }
@@ -527,8 +843,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsCreateChildResponse groupsCreateChild(RequestBuilder<GroupsCreateChildRequest, GroupsCreateChildRequest.GroupsCreateChildRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsCreateChild(req.build(GroupsCreateChildRequest.builder()));
+    }
+
+    @Override
     public GroupsCreateResponse groupsCreate(GroupsCreateRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.GROUPS_CREATE, req.getToken(), GroupsCreateResponse.class);
+    }
+
+    @Override
+    public GroupsCreateResponse groupsCreate(RequestBuilder<GroupsCreateRequest, GroupsCreateRequest.GroupsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsCreate(req.build(GroupsCreateRequest.builder()));
     }
 
     @Override
@@ -537,8 +863,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsHistoryResponse groupsHistory(RequestBuilder<GroupsHistoryRequest, GroupsHistoryRequest.GroupsHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsHistory(req.build(GroupsHistoryRequest.builder()));
+    }
+
+    @Override
     public GroupsRepliesResponse groupsReplies(GroupsRepliesRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.GROUPS_REPLIES, req.getToken(), GroupsRepliesResponse.class);
+    }
+
+    @Override
+    public GroupsRepliesResponse groupsReplies(RequestBuilder<GroupsRepliesRequest, GroupsRepliesRequest.GroupsRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsReplies(req.build(GroupsRepliesRequest.builder()));
     }
 
     @Override
@@ -547,8 +883,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsInfoResponse groupsInfo(RequestBuilder<GroupsInfoRequest, GroupsInfoRequest.GroupsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsInfo(req.build(GroupsInfoRequest.builder()));
+    }
+
+    @Override
     public GroupsInviteResponse groupsInvite(GroupsInviteRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.GROUPS_INVITE, req.getToken(), GroupsInviteResponse.class);
+    }
+
+    @Override
+    public GroupsInviteResponse groupsInvite(RequestBuilder<GroupsInviteRequest, GroupsInviteRequest.GroupsInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsInvite(req.build(GroupsInviteRequest.builder()));
     }
 
     @Override
@@ -557,8 +903,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsKickResponse groupsKick(RequestBuilder<GroupsKickRequest, GroupsKickRequest.GroupsKickRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsKick(req.build(GroupsKickRequest.builder()));
+    }
+
+    @Override
     public GroupsLeaveResponse groupsLeave(GroupsLeaveRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.GROUPS_LEAVE, req.getToken(), GroupsLeaveResponse.class);
+    }
+
+    @Override
+    public GroupsLeaveResponse groupsLeave(RequestBuilder<GroupsLeaveRequest, GroupsLeaveRequest.GroupsLeaveRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsLeave(req.build(GroupsLeaveRequest.builder()));
     }
 
     @Override
@@ -567,8 +923,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsListResponse groupsList(RequestBuilder<GroupsListRequest, GroupsListRequest.GroupsListRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsList(req.build(GroupsListRequest.builder()));
+    }
+
+    @Override
     public GroupsMarkResponse groupsMark(GroupsMarkRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.GROUPS_MARK, req.getToken(), GroupsMarkResponse.class);
+    }
+
+    @Override
+    public GroupsMarkResponse groupsMark(RequestBuilder<GroupsMarkRequest, GroupsMarkRequest.GroupsMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsMark(req.build(GroupsMarkRequest.builder()));
     }
 
     @Override
@@ -577,8 +943,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsOpenResponse groupsOpen(RequestBuilder<GroupsOpenRequest, GroupsOpenRequest.GroupsOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsOpen(req.build(GroupsOpenRequest.builder()));
+    }
+
+    @Override
     public GroupsRenameResponse groupsRename(GroupsRenameRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.GROUPS_RENAME, req.getToken(), GroupsRenameResponse.class);
+    }
+
+    @Override
+    public GroupsRenameResponse groupsRename(RequestBuilder<GroupsRenameRequest, GroupsRenameRequest.GroupsRenameRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsRename(req.build(GroupsRenameRequest.builder()));
     }
 
     @Override
@@ -587,8 +963,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsSetPurposeResponse groupsSetPurpose(RequestBuilder<GroupsSetPurposeRequest, GroupsSetPurposeRequest.GroupsSetPurposeRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsSetPurpose(req.build(GroupsSetPurposeRequest.builder()));
+    }
+
+    @Override
     public GroupsSetTopicResponse groupsSetTopic(GroupsSetTopicRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.GROUPS_SET_TOPIC, req.getToken(), GroupsSetTopicResponse.class);
+    }
+
+    @Override
+    public GroupsSetTopicResponse groupsSetTopic(RequestBuilder<GroupsSetTopicRequest, GroupsSetTopicRequest.GroupsSetTopicRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsSetTopic(req.build(GroupsSetTopicRequest.builder()));
     }
 
     @Override
@@ -597,8 +983,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public GroupsUnarchiveResponse groupsUnarchive(RequestBuilder<GroupsUnarchiveRequest, GroupsUnarchiveRequest.GroupsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsUnarchive(req.build(GroupsUnarchiveRequest.builder()));
+    }
+
+    @Override
     public ImCloseResponse imClose(ImCloseRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.IM_CLOSE, req.getToken(), ImCloseResponse.class);
+    }
+
+    @Override
+    public ImCloseResponse imClose(RequestBuilder<ImCloseRequest, ImCloseRequest.ImCloseRequestBuilder> req) throws IOException, SlackApiException {
+        return imClose(req.build(ImCloseRequest.builder()));
     }
 
     @Override
@@ -607,8 +1003,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ImHistoryResponse imHistory(RequestBuilder<ImHistoryRequest, ImHistoryRequest.ImHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return imHistory(req.build(ImHistoryRequest.builder()));
+    }
+
+    @Override
     public ImListResponse imList(ImListRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.IM_LIST, req.getToken(), ImListResponse.class);
+    }
+
+    @Override
+    public ImListResponse imList(RequestBuilder<ImListRequest, ImListRequest.ImListRequestBuilder> req) throws IOException, SlackApiException {
+        return imList(req.build(ImListRequest.builder()));
     }
 
     @Override
@@ -617,8 +1023,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ImMarkResponse imMark(RequestBuilder<ImMarkRequest, ImMarkRequest.ImMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return imMark(req.build(ImMarkRequest.builder()));
+    }
+
+    @Override
     public ImOpenResponse imOpen(ImOpenRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.IM_OPEN, req.getToken(), ImOpenResponse.class);
+    }
+
+    @Override
+    public ImOpenResponse imOpen(RequestBuilder<ImOpenRequest, ImOpenRequest.ImOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return imOpen(req.build(ImOpenRequest.builder()));
     }
 
     @Override
@@ -627,8 +1043,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ImRepliesResponse imReplies(RequestBuilder<ImRepliesRequest, ImRepliesRequest.ImRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return imReplies(req.build(ImRepliesRequest.builder()));
+    }
+
+    @Override
     public MigrationExchangeResponse migrationExchange(MigrationExchangeRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.MIGRATION_EXCHANGE, req.getToken(), MigrationExchangeResponse.class);
+    }
+
+    @Override
+    public MigrationExchangeResponse migrationExchange(RequestBuilder<MigrationExchangeRequest, MigrationExchangeRequest.MigrationExchangeRequestBuilder> req) throws IOException, SlackApiException {
+        return migrationExchange(req.build(MigrationExchangeRequest.builder()));
     }
 
     @Override
@@ -637,8 +1063,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public MpimCloseResponse mpimClose(RequestBuilder<MpimCloseRequest, MpimCloseRequest.MpimCloseRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimClose(req.build(MpimCloseRequest.builder()));
+    }
+
+    @Override
     public MpimHistoryResponse mpimHistory(MpimHistoryRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.MPIM_HISTORY, req.getToken(), MpimHistoryResponse.class);
+    }
+
+    @Override
+    public MpimHistoryResponse mpimHistory(RequestBuilder<MpimHistoryRequest, MpimHistoryRequest.MpimHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimHistory(req.build(MpimHistoryRequest.builder()));
     }
 
     @Override
@@ -647,8 +1083,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public MpimListResponse mpimList(RequestBuilder<MpimListRequest, MpimListRequest.MpimListRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimList(req.build(MpimListRequest.builder()));
+    }
+
+    @Override
     public MpimRepliesResponse mpimReplies(MpimRepliesRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.MPIM_REPLIES, req.getToken(), MpimRepliesResponse.class);
+    }
+
+    @Override
+    public MpimRepliesResponse mpimReplies(RequestBuilder<MpimRepliesRequest, MpimRepliesRequest.MpimRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimReplies(req.build(MpimRepliesRequest.builder()));
     }
 
     @Override
@@ -657,8 +1103,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public MpimMarkResponse mpimMark(RequestBuilder<MpimMarkRequest, MpimMarkRequest.MpimMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimMark(req.build(MpimMarkRequest.builder()));
+    }
+
+    @Override
     public MpimOpenResponse mpimOpen(MpimOpenRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.MPIM_OPEN, req.getToken(), MpimOpenResponse.class);
+    }
+
+    @Override
+    public MpimOpenResponse mpimOpen(RequestBuilder<MpimOpenRequest, MpimOpenRequest.MpimOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimOpen(req.build(MpimOpenRequest.builder()));
     }
 
     @Override
@@ -667,8 +1123,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public OAuthAccessResponse oauthAccess(RequestBuilder<OAuthAccessRequest, OAuthAccessRequest.OAuthAccessRequestBuilder> req) throws IOException, SlackApiException {
+        return oauthAccess(req.build(OAuthAccessRequest.builder()));
+    }
+
+    @Override
     public OAuthTokenResponse oauthToken(OAuthTokenRequest req) throws IOException, SlackApiException {
         return doPostForm(toForm(req), Methods.OAUTH_TOKEN, OAuthTokenResponse.class);
+    }
+
+    @Override
+    public OAuthTokenResponse oauthToken(RequestBuilder<OAuthTokenRequest, OAuthTokenRequest.OAuthTokenRequestBuilder> req) throws IOException, SlackApiException {
+        return oauthToken(req.build(OAuthTokenRequest.builder()));
     }
 
     @Override
@@ -677,8 +1143,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public PinsAddResponse pinsAdd(RequestBuilder<PinsAddRequest, PinsAddRequest.PinsAddRequestBuilder> req) throws IOException, SlackApiException {
+        return pinsAdd(req.build(PinsAddRequest.builder()));
+    }
+
+    @Override
     public PinsListResponse pinsList(PinsListRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.PINS_LIST, req.getToken(), PinsListResponse.class);
+    }
+
+    @Override
+    public PinsListResponse pinsList(RequestBuilder<PinsListRequest, PinsListRequest.PinsListRequestBuilder> req) throws IOException, SlackApiException {
+        return pinsList(req.build(PinsListRequest.builder()));
     }
 
     @Override
@@ -687,8 +1163,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public PinsRemoveResponse pinsRemove(RequestBuilder<PinsRemoveRequest, PinsRemoveRequest.PinsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return pinsRemove(req.build(PinsRemoveRequest.builder()));
+    }
+
+    @Override
     public ReactionsAddResponse reactionsAdd(ReactionsAddRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.REACTIONS_ADD, req.getToken(), ReactionsAddResponse.class);
+    }
+
+    @Override
+    public ReactionsAddResponse reactionsAdd(RequestBuilder<ReactionsAddRequest, ReactionsAddRequest.ReactionsAddRequestBuilder> req) throws IOException, SlackApiException {
+        return reactionsAdd(req.build(ReactionsAddRequest.builder()));
     }
 
     @Override
@@ -697,8 +1183,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ReactionsGetResponse reactionsGet(RequestBuilder<ReactionsGetRequest, ReactionsGetRequest.ReactionsGetRequestBuilder> req) throws IOException, SlackApiException {
+        return reactionsGet(req.build(ReactionsGetRequest.builder()));
+    }
+
+    @Override
     public ReactionsListResponse reactionsList(ReactionsListRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.REACTIONS_LIST, req.getToken(), ReactionsListResponse.class);
+    }
+
+    @Override
+    public ReactionsListResponse reactionsList(RequestBuilder<ReactionsListRequest, ReactionsListRequest.ReactionsListRequestBuilder> req) throws IOException, SlackApiException {
+        return reactionsList(req.build(ReactionsListRequest.builder()));
     }
 
     @Override
@@ -707,8 +1203,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ReactionsRemoveResponse reactionsRemove(RequestBuilder<ReactionsRemoveRequest, ReactionsRemoveRequest.ReactionsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return reactionsRemove(req.build(ReactionsRemoveRequest.builder()));
+    }
+
+    @Override
     public RemindersAddResponse remindersAdd(RemindersAddRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.REMINDERS_ADD, req.getToken(), RemindersAddResponse.class);
+    }
+
+    @Override
+    public RemindersAddResponse remindersAdd(RequestBuilder<RemindersAddRequest, RemindersAddRequest.RemindersAddRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersAdd(req.build(RemindersAddRequest.builder()));
     }
 
     @Override
@@ -717,8 +1223,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public RemindersCompleteResponse remindersComplete(RequestBuilder<RemindersCompleteRequest, RemindersCompleteRequest.RemindersCompleteRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersComplete(req.build(RemindersCompleteRequest.builder()));
+    }
+
+    @Override
     public RemindersDeleteResponse remindersDelete(RemindersDeleteRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.REMINDERS_DELETE, req.getToken(), RemindersDeleteResponse.class);
+    }
+
+    @Override
+    public RemindersDeleteResponse remindersDelete(RequestBuilder<RemindersDeleteRequest, RemindersDeleteRequest.RemindersDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersDelete(req.build(RemindersDeleteRequest.builder()));
     }
 
     @Override
@@ -727,8 +1243,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public RemindersInfoResponse remindersInfo(RequestBuilder<RemindersInfoRequest, RemindersInfoRequest.RemindersInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersInfo(req.build(RemindersInfoRequest.builder()));
+    }
+
+    @Override
     public RemindersListResponse remindersList(RemindersListRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.REMINDERS_LIST, req.getToken(), RemindersListResponse.class);
+    }
+
+    @Override
+    public RemindersListResponse remindersList(RequestBuilder<RemindersListRequest, RemindersListRequest.RemindersListRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersList(req.build(RemindersListRequest.builder()));
     }
 
     @Override
@@ -737,8 +1263,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public RTMConnectResponse rtmConnect(RequestBuilder<RTMConnectRequest, RTMConnectRequest.RTMConnectRequestBuilder> req) throws IOException, SlackApiException {
+        return rtmConnect(req.build(RTMConnectRequest.builder()));
+    }
+
+    @Override
     public RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.RTM_START, req.getToken(), RTMStartResponse.class);
+    }
+
+    @Override
+    public RTMStartResponse rtmStart(RequestBuilder<RTMStartRequest, RTMStartRequest.RTMStartRequestBuilder> req) throws IOException, SlackApiException {
+        return rtmStart(req.build(RTMStartRequest.builder()));
     }
 
     @Override
@@ -747,8 +1283,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public SearchAllResponse searchAll(RequestBuilder<SearchAllRequest, SearchAllRequest.SearchAllRequestBuilder> req) throws IOException, SlackApiException {
+        return searchAll(req.build(SearchAllRequest.builder()));
+    }
+
+    @Override
     public SearchMessagesResponse searchMessages(SearchMessagesRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.SEARCH_MESSAGES, req.getToken(), SearchMessagesResponse.class);
+    }
+
+    @Override
+    public SearchMessagesResponse searchMessages(RequestBuilder<SearchMessagesRequest, SearchMessagesRequest.SearchMessagesRequestBuilder> req) throws IOException, SlackApiException {
+        return searchMessages(req.build(SearchMessagesRequest.builder()));
     }
 
     @Override
@@ -757,8 +1303,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public SearchFilesResponse searchFiles(RequestBuilder<SearchFilesRequest, SearchFilesRequest.SearchFilesRequestBuilder> req) throws IOException, SlackApiException {
+        return searchFiles(req.build(SearchFilesRequest.builder()));
+    }
+
+    @Override
     public StarsAddResponse starsAdd(StarsAddRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.STARS_ADD, req.getToken(), StarsAddResponse.class);
+    }
+
+    @Override
+    public StarsAddResponse starsAdd(RequestBuilder<StarsAddRequest, StarsAddRequest.StarsAddRequestBuilder> req) throws IOException, SlackApiException {
+        return starsAdd(req.build(StarsAddRequest.builder()));
     }
 
     @Override
@@ -767,8 +1323,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public StarsListResponse starsList(RequestBuilder<StarsListRequest, StarsListRequest.StarsListRequestBuilder> req) throws IOException, SlackApiException {
+        return starsList(req.build(StarsListRequest.builder()));
+    }
+
+    @Override
     public StarsRemoveResponse starsRemove(StarsRemoveRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.STARS_REMOVE, req.getToken(), StarsRemoveResponse.class);
+    }
+
+    @Override
+    public StarsRemoveResponse starsRemove(RequestBuilder<StarsRemoveRequest, StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return starsRemove(req.build(StarsRemoveRequest.builder()));
     }
 
     @Override
@@ -777,8 +1343,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public TeamAccessLogsResponse teamAccessLogs(RequestBuilder<TeamAccessLogsRequest, TeamAccessLogsRequest.TeamAccessLogsRequestBuilder> req) throws IOException, SlackApiException {
+        return teamAccessLogs(req.build(TeamAccessLogsRequest.builder()));
+    }
+
+    @Override
     public TeamBillableInfoResponse teamBillableInfo(TeamBillableInfoRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.TEAM_BILLABLE_INFO, req.getToken(), TeamBillableInfoResponse.class);
+    }
+
+    @Override
+    public TeamBillableInfoResponse teamBillableInfo(RequestBuilder<TeamBillableInfoRequest, TeamBillableInfoRequest.TeamBillableInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return teamBillableInfo(req.build(TeamBillableInfoRequest.builder()));
     }
 
     @Override
@@ -787,8 +1363,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public TeamInfoResponse teamInfo(RequestBuilder<TeamInfoRequest, TeamInfoRequest.TeamInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return teamInfo(req.build(TeamInfoRequest.builder()));
+    }
+
+    @Override
     public TeamIntegrationLogsResponse teamIntegrationLogs(TeamIntegrationLogsRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.TEAM_INTEGRATION_LOGS, req.getToken(), TeamIntegrationLogsResponse.class);
+    }
+
+    @Override
+    public TeamIntegrationLogsResponse teamIntegrationLogs(RequestBuilder<TeamIntegrationLogsRequest, TeamIntegrationLogsRequest.TeamIntegrationLogsRequestBuilder> req) throws IOException, SlackApiException {
+        return teamIntegrationLogs(req.build(TeamIntegrationLogsRequest.builder()));
     }
 
     @Override
@@ -797,8 +1383,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public TeamProfileGetResponse teamProfileGet(RequestBuilder<TeamProfileGetRequest, TeamProfileGetRequest.TeamProfileGetRequestBuilder> req) throws IOException, SlackApiException {
+        return teamProfileGet(req.build(TeamProfileGetRequest.builder()));
+    }
+
+    @Override
     public UsergroupsCreateResponse usergroupsCreate(UsergroupsCreateRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERGROUPS_CREATE, req.getToken(), UsergroupsCreateResponse.class);
+    }
+
+    @Override
+    public UsergroupsCreateResponse usergroupsCreate(RequestBuilder<UsergroupsCreateRequest, UsergroupsCreateRequest.UsergroupsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsCreate(req.build(UsergroupsCreateRequest.builder()));
     }
 
     @Override
@@ -807,8 +1403,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsergroupsDisableResponse usergroupsDisable(RequestBuilder<UsergroupsDisableRequest, UsergroupsDisableRequest.UsergroupsDisableRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsDisable(req.build(UsergroupsDisableRequest.builder()));
+    }
+
+    @Override
     public UsergroupsEnableResponse usergroupsEnable(UsergroupsEnableRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERGROUPS_ENABLE, req.getToken(), UsergroupsEnableResponse.class);
+    }
+
+    @Override
+    public UsergroupsEnableResponse usergroupsEnable(RequestBuilder<UsergroupsEnableRequest, UsergroupsEnableRequest.UsergroupsEnableRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsEnable(req.build(UsergroupsEnableRequest.builder()));
     }
 
     @Override
@@ -817,8 +1423,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsergroupsListResponse usergroupsList(RequestBuilder<UsergroupsListRequest, UsergroupsListRequest.UsergroupsListRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsList(req.build(UsergroupsListRequest.builder()));
+    }
+
+    @Override
     public UsergroupsUpdateResponse usergroupsUpdate(UsergroupsUpdateRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERGROUPS_UPDATE, req.getToken(), UsergroupsUpdateResponse.class);
+    }
+
+    @Override
+    public UsergroupsUpdateResponse usergroupsUpdate(RequestBuilder<UsergroupsUpdateRequest, UsergroupsUpdateRequest.UsergroupsUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsUpdate(req.build(UsergroupsUpdateRequest.builder()));
     }
 
     @Override
@@ -827,8 +1443,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsergroupUsersListResponse usergroupUsersList(RequestBuilder<UsergroupUsersListRequest, UsergroupUsersListRequest.UsergroupUsersListRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupUsersList(req.build(UsergroupUsersListRequest.builder()));
+    }
+
+    @Override
     public UsergroupUsersUpdateResponse usergroupUsersUpdate(UsergroupUsersUpdateRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERGROUPS_USERS_UPDATE, req.getToken(), UsergroupUsersUpdateResponse.class);
+    }
+
+    @Override
+    public UsergroupUsersUpdateResponse usergroupUsersUpdate(RequestBuilder<UsergroupUsersUpdateRequest, UsergroupUsersUpdateRequest.UsergroupUsersUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupUsersUpdate(req.build(UsergroupUsersUpdateRequest.builder()));
     }
 
     @Override
@@ -837,8 +1463,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsersConversationsResponse usersConversations(RequestBuilder<UsersConversationsRequest, UsersConversationsRequest.UsersConversationsRequestBuilder> req) throws IOException, SlackApiException {
+        return usersConversations(req.build(UsersConversationsRequest.builder()));
+    }
+
+    @Override
     public UsersDeletePhotoResponse usersDeletePhoto(UsersDeletePhotoRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERS_DELETE_PHOTO, req.getToken(), UsersDeletePhotoResponse.class);
+    }
+
+    @Override
+    public UsersDeletePhotoResponse usersDeletePhoto(RequestBuilder<UsersDeletePhotoRequest, UsersDeletePhotoRequest.UsersDeletePhotoRequestBuilder> req) throws IOException, SlackApiException {
+        return usersDeletePhoto(req.build(UsersDeletePhotoRequest.builder()));
     }
 
     @Override
@@ -847,8 +1483,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsersGetPresenceResponse usersGetPresence(RequestBuilder<UsersGetPresenceRequest, UsersGetPresenceRequest.UsersGetPresenceRequestBuilder> req) throws IOException, SlackApiException {
+        return usersGetPresence(req.build(UsersGetPresenceRequest.builder()));
+    }
+
+    @Override
     public UsersIdentityResponse usersIdentity(UsersIdentityRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERS_IDENTITY, req.getToken(), UsersIdentityResponse.class);
+    }
+
+    @Override
+    public UsersIdentityResponse usersIdentity(RequestBuilder<UsersIdentityRequest, UsersIdentityRequest.UsersIdentityRequestBuilder> req) throws IOException, SlackApiException {
+        return usersIdentity(req.build(UsersIdentityRequest.builder()));
     }
 
     @Override
@@ -857,8 +1503,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsersInfoResponse usersInfo(RequestBuilder<UsersInfoRequest, UsersInfoRequest.UsersInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return usersInfo(req.build(UsersInfoRequest.builder()));
+    }
+
+    @Override
     public UsersListResponse usersList(UsersListRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERS_LIST, req.getToken(), UsersListResponse.class);
+    }
+
+    @Override
+    public UsersListResponse usersList(RequestBuilder<UsersListRequest, UsersListRequest.UsersListRequestBuilder> req) throws IOException, SlackApiException {
+        return usersList(req.build(UsersListRequest.builder()));
     }
 
     @Override
@@ -867,8 +1523,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsersLookupByEmailResponse usersLookupByEmail(RequestBuilder<UsersLookupByEmailRequest, UsersLookupByEmailRequest.UsersLookupByEmailRequestBuilder> req) throws IOException, SlackApiException {
+        return usersLookupByEmail(req.build(UsersLookupByEmailRequest.builder()));
+    }
+
+    @Override
     public UsersSetActiveResponse usersSetActive(UsersSetActiveRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERS_SET_ACTIVE, req.getToken(), UsersSetActiveResponse.class);
+    }
+
+    @Override
+    public UsersSetActiveResponse usersSetActive(RequestBuilder<UsersSetActiveRequest, UsersSetActiveRequest.UsersSetActiveRequestBuilder> req) throws IOException, SlackApiException {
+        return usersSetActive(req.build(UsersSetActiveRequest.builder()));
     }
 
     @Override
@@ -877,8 +1543,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsersSetPhotoResponse usersSetPhoto(RequestBuilder<UsersSetPhotoRequest, UsersSetPhotoRequest.UsersSetPhotoRequestBuilder> req) throws IOException, SlackApiException {
+        return usersSetPhoto(req.build(UsersSetPhotoRequest.builder()));
+    }
+
+    @Override
     public UsersSetPresenceResponse usersSetPresence(UsersSetPresenceRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERS_SET_PRESENCE, req.getToken(), UsersSetPresenceResponse.class);
+    }
+
+    @Override
+    public UsersSetPresenceResponse usersSetPresence(RequestBuilder<UsersSetPresenceRequest, UsersSetPresenceRequest.UsersSetPresenceRequestBuilder> req) throws IOException, SlackApiException {
+        return usersSetPresence(req.build(UsersSetPresenceRequest.builder()));
     }
 
     @Override
@@ -887,8 +1563,18 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public UsersProfileGetResponse usersProfileGet(RequestBuilder<UsersProfileGetRequest, UsersProfileGetRequest.UsersProfileGetRequestBuilder> req) throws IOException, SlackApiException {
+        return usersProfileGet(req.build(UsersProfileGetRequest.builder()));
+    }
+
+    @Override
     public UsersProfileSetResponse usersProfileSet(UsersProfileSetRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.USERS_PROFILE_SET, req.getToken(), UsersProfileSetResponse.class);
+    }
+
+    @Override
+    public UsersProfileSetResponse usersProfileSet(RequestBuilder<UsersProfileSetRequest, UsersProfileSetRequest.UsersProfileSetRequestBuilder> req) throws IOException, SlackApiException {
+        return usersProfileSet(req.build(UsersProfileSetRequest.builder()));
     }
 
     protected <T> T doPostForm(

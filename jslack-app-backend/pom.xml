@@ -18,12 +18,12 @@
         <dependency>
             <groupId>com.github.seratch</groupId>
             <artifactId>jslack-api-model</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.seratch</groupId>
             <artifactId>jslack-api-client</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

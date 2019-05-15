@@ -2,11 +2,6 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
-import com.github.seratch.jslack.api.methods.request.files.FilesUploadRequest;
-import com.github.seratch.jslack.api.methods.request.stars.StarsAddRequest;
-import com.github.seratch.jslack.api.methods.request.stars.StarsListRequest;
-import com.github.seratch.jslack.api.methods.request.stars.StarsRemoveRequest;
 import com.github.seratch.jslack.api.methods.response.files.FilesUploadResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsAddResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsListResponse;
@@ -34,7 +29,7 @@ public class stars_Test {
 
     @Test
     public void list() throws IOException, SlackApiException {
-        StarsListResponse response = slack.methods().starsList(StarsListRequest.builder().token(token).build());
+        StarsListResponse response = slack.methods().starsList(r -> r.token(token).build());
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getItems(), is(notNullValue()));
@@ -42,7 +37,7 @@ public class stars_Test {
 
     @Test
     public void add() throws IOException, SlackApiException {
-        List<Channel> channels = slack.methods().channelsList(ChannelsListRequest.builder().token(token).build()).getChannels();
+        List<Channel> channels = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
         List<String> channelIds = new ArrayList<>();
         for (Channel c : channels) {
             if (c.getName().equals("random")) {
@@ -54,7 +49,7 @@ public class stars_Test {
         File file = new File("src/test/resources/sample.txt");
         com.github.seratch.jslack.api.model.File fileObj;
         {
-            FilesUploadResponse response = slack.methods().filesUpload(FilesUploadRequest.builder()
+            FilesUploadResponse response = slack.methods().filesUpload(r -> r
                     .token(token)
                     .channels(channelIds)
                     .file(file)
@@ -68,7 +63,7 @@ public class stars_Test {
         }
 
         {
-            StarsAddResponse response = slack.methods().starsAdd(StarsAddRequest.builder()
+            StarsAddResponse response = slack.methods().starsAdd(r -> r
                     .token(token)
                     .channel(channelIds.get(0))
                     .file(fileObj.getId())
@@ -77,7 +72,7 @@ public class stars_Test {
             assertThat(response.isOk(), is(true));
         }
         {
-            StarsRemoveResponse response = slack.methods().starsRemove(StarsRemoveRequest.builder()
+            StarsRemoveResponse response = slack.methods().starsRemove(r -> r
                     .token(token)
                     .channel(channelIds.get(0))
                     .file(fileObj.getId())
@@ -89,7 +84,7 @@ public class stars_Test {
         {
             // as of August 2018, File object no longer contains initialComment.
             if (fileObj.getInitialComment() != null) {
-                StarsAddResponse response = slack.methods().starsAdd(StarsAddRequest.builder()
+                StarsAddResponse response = slack.methods().starsAdd(r -> r
                         .token(token)
                         .channel(channelIds.get(0))
                         .fileComment(fileObj.getInitialComment().getId())

@@ -2,9 +2,6 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.search.SearchAllRequest;
-import com.github.seratch.jslack.api.methods.request.search.SearchFilesRequest;
-import com.github.seratch.jslack.api.methods.request.search.SearchMessagesRequest;
 import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchFilesResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchMessagesResponse;
@@ -29,8 +26,7 @@ public class search_Test {
 
     @Test
     public void all() throws IOException, SlackApiException {
-        SearchAllResponse response = slack.methods().searchAll(
-                SearchAllRequest.builder().token(token).query("test").build());
+        SearchAllResponse response = slack.methods().searchAll(r -> r.token(token).query("test").build());
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -38,8 +34,7 @@ public class search_Test {
 
     @Test
     public void messages() throws IOException, SlackApiException {
-        SearchMessagesResponse response = slack.methods().searchMessages(
-                SearchMessagesRequest.builder().token(token).query("test").build());
+        SearchMessagesResponse response = slack.methods().searchMessages(r -> r.token(token).query("test").build());
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -51,8 +46,7 @@ public class search_Test {
 
     @Test
     public void files() throws IOException, SlackApiException {
-        SearchFilesResponse response = slack.methods().searchFiles(
-                SearchFilesRequest.builder().token(token).query("test").build());
+        SearchFilesResponse response = slack.methods().searchFiles(r -> r.token(token).query("test").build());
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));

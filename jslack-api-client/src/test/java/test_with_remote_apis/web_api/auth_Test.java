@@ -2,8 +2,6 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.auth.AuthRevokeRequest;
-import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
 import config.Constants;
@@ -25,7 +23,7 @@ public class auth_Test {
 
     @Test
     public void authRevoke() throws IOException, SlackApiException {
-        AuthRevokeResponse response = slack.methods().authRevoke(AuthRevokeRequest.builder().token("dummy").test(true).build());
+        AuthRevokeResponse response = slack.methods().authRevoke(req -> req.token("dummy").test(true).build());
         assertThat(response.isOk(), is(false));
         assertThat(response.getError(), is("invalid_auth"));
         assertThat(response.isRevoked(), is(false));
@@ -34,7 +32,7 @@ public class auth_Test {
     @Test
     public void authTest() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        AuthTestResponse response = slack.methods().authTest(AuthTestRequest.builder().token(token).build());
+        AuthTestResponse response = slack.methods().authTest(req -> req.token(token).build());
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));

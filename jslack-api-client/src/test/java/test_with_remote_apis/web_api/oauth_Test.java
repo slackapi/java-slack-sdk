@@ -2,8 +2,6 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.oauth.OAuthAccessRequest;
-import com.github.seratch.jslack.api.methods.request.oauth.OAuthTokenRequest;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthTokenResponse;
 import config.SlackTestConfig;
@@ -24,7 +22,7 @@ public class oauth_Test {
     @Test
     public void access() throws IOException, SlackApiException {
         {
-            OAuthAccessResponse response = slack.methods().oauthAccess(OAuthAccessRequest.builder()
+            OAuthAccessResponse response = slack.methods().oauthAccess(r -> r
                     .clientId("3485157640.XXXX")
                     .clientSecret("XXXXX")
                     .code("")
@@ -39,7 +37,7 @@ public class oauth_Test {
     @Test
     public void token() throws IOException, SlackApiException {
         {
-            OAuthTokenResponse response = slack.methods().oauthToken(OAuthTokenRequest.builder()
+            OAuthTokenResponse response = slack.methods().oauthToken(r -> r
                     .clientId("3485157640.XXXX")
                     .clientSecret("XXXXX")
                     .code("")

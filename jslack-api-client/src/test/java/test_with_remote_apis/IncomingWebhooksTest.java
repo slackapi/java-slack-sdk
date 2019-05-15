@@ -6,7 +6,6 @@ import com.github.seratch.jslack.api.model.Field;
 import com.github.seratch.jslack.api.model.block.ActionsBlock;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-import com.github.seratch.jslack.api.model.block.element.BlockElement;
 import com.github.seratch.jslack.api.model.block.element.ButtonElement;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;

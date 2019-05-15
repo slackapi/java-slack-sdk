@@ -1,12 +1,6 @@
 package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.api.methods.request.team.TeamAccessLogsRequest;
-import com.github.seratch.jslack.api.methods.request.team.TeamBillableInfoRequest;
-import com.github.seratch.jslack.api.methods.request.team.TeamInfoRequest;
-import com.github.seratch.jslack.api.methods.request.team.TeamIntegrationLogsRequest;
-import com.github.seratch.jslack.api.methods.request.team.profile.TeamProfileGetRequest;
-import com.github.seratch.jslack.api.methods.request.users.UsersListRequest;
 import com.github.seratch.jslack.api.methods.response.team.TeamAccessLogsResponse;
 import com.github.seratch.jslack.api.methods.response.team.TeamBillableInfoResponse;
 import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
@@ -32,7 +26,7 @@ public class team_Test {
 
     @Test
     public void teamAccessLogs() throws Exception {
-        TeamAccessLogsResponse response = slack.methods().teamAccessLogs(TeamAccessLogsRequest.builder()
+        TeamAccessLogsResponse response = slack.methods().teamAccessLogs(r -> r
                 .token(token)
                 .build());
         if (response.isOk()) {
@@ -48,7 +42,7 @@ public class team_Test {
 
     @Test
     public void teamBillableInfo() throws Exception {
-        List<User> users = slack.methods().usersList(UsersListRequest.builder().token(token).build()).getMembers();
+        List<User> users = slack.methods().usersList(r -> r.token(token).build()).getMembers();
         User user = null;
         for (User u : users) {
             if (!u.isBot() && !"USLACKBOT".equals(u.getId())) {
@@ -57,7 +51,7 @@ public class team_Test {
             }
         }
         String userId = user.getId();
-        TeamBillableInfoResponse response = slack.methods().teamBillableInfo(TeamBillableInfoRequest.builder()
+        TeamBillableInfoResponse response = slack.methods().teamBillableInfo(r -> r
                 .token(token)
                 .user(userId)
                 .build());
@@ -67,7 +61,7 @@ public class team_Test {
 
     @Test
     public void teamInfo() throws Exception {
-        TeamInfoResponse response = slack.methods().teamInfo(TeamInfoRequest.builder()
+        TeamInfoResponse response = slack.methods().teamInfo(r -> r
                 .token(token)
                 .build());
         assertThat(response.getError(), is(nullValue()));
@@ -76,8 +70,8 @@ public class team_Test {
 
     @Test
     public void teamIntegrationLogs() throws Exception {
-        String user = slack.methods().usersList(UsersListRequest.builder().token(token).build()).getMembers().get(0).getId();
-        TeamIntegrationLogsResponse response = slack.methods().teamIntegrationLogs(TeamIntegrationLogsRequest.builder()
+        String user = slack.methods().usersList(r -> r.token(token).build()).getMembers().get(0).getId();
+        TeamIntegrationLogsResponse response = slack.methods().teamIntegrationLogs(r -> r
                 .token(token)
                 .user(user)
                 .build());
@@ -87,7 +81,7 @@ public class team_Test {
 
     @Test
     public void teamProfileGet() throws Exception {
-        TeamProfileGetResponse response = slack.methods().teamProfileGet(TeamProfileGetRequest.builder().token(token).build());
+        TeamProfileGetResponse response = slack.methods().teamProfileGet(r -> r.token(token).build());
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }

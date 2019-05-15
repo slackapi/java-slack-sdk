@@ -2,7 +2,6 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.scim.request.UsersDeleteRequest;
 import com.github.seratch.jslack.api.scim.response.UsersDeleteResponse;
 import config.Constants;
 import config.SlackTestConfig;
@@ -24,11 +23,10 @@ public class scim_Test {
     public void deleteUserTest() throws IOException {
         final String userId = "1";
         try {
-            UsersDeleteResponse response = slack.scim().delete(
-                    UsersDeleteRequest.builder()
-                            .token(token)
-                            .id(userId)
-                            .build());
+            UsersDeleteResponse response = slack.scim().delete(r -> r
+                    .token(token)
+                    .id(userId)
+                    .build());
 
             // testing with an SCIM activated account
             assertThat(response.getError(), is(nullValue()));
@@ -36,7 +34,7 @@ public class scim_Test {
 
         } catch (SlackApiException apiError) {
             assertThat(apiError.getResponseBody(), is(notNullValue()));
-            assertThat(apiError.getError(), is(nullValue()));
+            assertThat(apiError.getError(), is(notNullValue()));
         }
     }
 
