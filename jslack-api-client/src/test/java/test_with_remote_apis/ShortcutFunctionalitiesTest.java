@@ -1,7 +1,6 @@
 package test_with_remote_apis;
 
 import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.SlackShortcut;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
@@ -40,7 +39,7 @@ public class ShortcutFunctionalitiesTest {
 
     @Test
     public void chatOps() throws IOException, SlackApiException {
-        Shortcut shortcut = new SlackShortcut(slack).getInstance(token);
+        Shortcut shortcut = slack.shortcut(token);
         ChannelName channelName = ChannelName.of("random");
 
         Optional<ChannelId> channelId = shortcut.findChannelIdByName(channelName);
@@ -64,7 +63,7 @@ public class ShortcutFunctionalitiesTest {
 
     @Test
     public void postMessage() throws IOException, SlackApiException {
-        Shortcut shortcut = new SlackShortcut(slack).getInstance(token);
+        Shortcut shortcut = slack.shortcut(token);
         Attachment attachment = Attachment.builder().text("text").footer("footer").build();
         List<Attachment> attachments = Arrays.asList(attachment);
 
@@ -95,7 +94,7 @@ public class ShortcutFunctionalitiesTest {
 
     @Test
     public void postMessage_blocks() throws IOException, SlackApiException {
-        Shortcut shortcut = new SlackShortcut(slack).getInstance(token);
+        Shortcut shortcut = slack.shortcut(token);
 
         {
             MarkdownTextObject text = MarkdownTextObject.builder()

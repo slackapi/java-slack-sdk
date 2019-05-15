@@ -16,6 +16,9 @@ import com.github.seratch.jslack.api.scim.SCIMClientImpl;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
+import com.github.seratch.jslack.shortcut.Shortcut;
+import com.github.seratch.jslack.shortcut.impl.ShortcutImpl;
+import com.github.seratch.jslack.shortcut.model.ApiToken;
 import okhttp3.Response;
 
 import java.io.IOException;
@@ -190,6 +193,14 @@ public class Slack {
      */
     public MethodsClient methods() {
         return new MethodsClientImpl(httpClient);
+    }
+
+    public Shortcut shortcut() {
+        return new ShortcutImpl(this);
+    }
+
+    public Shortcut shortcut(ApiToken apiToken) {
+        return new ShortcutImpl(this, apiToken);
     }
 
 }

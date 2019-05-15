@@ -13,12 +13,9 @@
 
     <modules>
         <module>jslack-all</module>
-        <module>jslack-common</module>
         <module>jslack-api-client</module>
         <module>jslack-api-model</module>
         <module>jslack-app-backend</module>
-        <module>jslack-shortcut</module>
-        <module>jslack-test-utils</module>
     </modules>
 
     <parent>
@@ -116,8 +113,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

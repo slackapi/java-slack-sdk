@@ -13,7 +13,6 @@ public class JsonDataRecordingListener extends HttpResponseListener {
     @Override
     public void accept(State state) {
         try {
-
             recorder.writeMergedResponse(state.getResponse(), state.getParsedResponseBody());
         } catch (IOException e) {
             log.error("Failed to write JSON files because {}", e.getMessage(), e);

@@ -20,17 +20,6 @@
             <artifactId>jslack-api-model</artifactId>
             <version>${version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.seratch</groupId>
-            <artifactId>jslack-common</artifactId>
-            <version>${version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.seratch</groupId>
-            <artifactId>jslack-test-utils</artifactId>
-            <version>${version}</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>

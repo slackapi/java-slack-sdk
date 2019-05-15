@@ -22,22 +22,12 @@
         </dependency>
         <dependency>
             <groupId>com.github.seratch</groupId>
-            <artifactId>jslack-common</artifactId>
-            <version>${version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.seratch</groupId>
             <artifactId>jslack-api-client</artifactId>
             <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.seratch</groupId>
             <artifactId>jslack-app-backend</artifactId>
-            <version>${version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.seratch</groupId>
-            <artifactId>jslack-shortcut</artifactId>
             <version>${version}</version>
         </dependency>
     </dependencies>
