@@ -8,9 +8,9 @@ import java.util.List;
 
 /**
  * Represents a <a href="https://api.slack.com/types/conversation">conversation</a>
- * as used with the {@code conversations} API<p>
+ * as used with the {@code conversations} API
  *
- * @see https://api.slack.com/docs/conversations-api
+ * @see "https://api.slack.com/docs/conversations-api"
  */
 @Data
 @Builder
