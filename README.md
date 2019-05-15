@@ -220,12 +220,14 @@ String token = "api-token";
 Slack slack = Slack.getInstance();
 
 // find all channels in the team
-ChannelsListResponse channelsResponse = slack.methods().channelsList(
-  req -> req.token(token).build());
+ChannelsListResponse channelsResponse = slack.methods().channelsList(req -> req.token(token).build());
 assertThat(channelsResponse.isOk(), is(true));
 // find #general
-Channel general = channelsResponse.getChannels().stream()
-        .filter(c -> c.getName().equals("general")).findFirst().get();
+Channel general = channelsResponse.getChannels()
+  .stream()
+  .filter(c -> c.getName().equals("general"))
+  .findFirst()
+  .get();
 
 // https://slack.com/api/chat.postMessage
 ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(req -> req
@@ -348,12 +350,17 @@ export SLACK_TEST_OAUTH_ACCESS_TOKEN=xoxp-**************************************
 export SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN=xoxb-************************************
 ```
 
-#### Creating at least one Slack user who has its email
+### Creating at least one Slack user who has its email
 
 Manually create a Slack user which has an email address for a unit test.
 
+## Deployment
 
-### License
+```bash
+mvn deploy -P release-sign-artifacts -D maven.test.skip=true
+```
+
+## License
 
 (The MIT License)
 
