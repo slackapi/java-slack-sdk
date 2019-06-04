@@ -39,20 +39,127 @@
         "username": "",
         "url_private": "https://www.example.com/",
         "url_private_download": "https://www.example.com/",
-        "thumb_64": "https://www.example.com/",
-        "thumb_80": "https://www.example.com/",
-        "thumb_360": "https://www.example.com/",
-        "thumb_360_w": 12345,
-        "thumb_360_h": 12345,
-        "thumb_160": "https://www.example.com/",
-        "image_exif_rotation": 12345,
-        "original_w": 12345,
-        "original_h": 12345,
         "permalink": "https://www.example.com/",
         "permalink_public": "https://www.example.com/",
+        "subject": "",
+        "to": [
+          {
+            "address": "",
+            "name": "",
+            "original": ""
+          }
+        ],
+        "from": [
+          {
+            "address": "",
+            "name": "",
+            "original": ""
+          }
+        ],
+        "cc": [
+          ""
+        ],
+        "attachments": [
+          {
+            "msg_subtype": "",
+            "fallback": "",
+            "callback_id": "",
+            "color": "",
+            "pretext": "",
+            "service_url": "",
+            "service_name": "",
+            "service_icon": "",
+            "author_name": "",
+            "author_link": "",
+            "author_icon": "",
+            "from_url": "",
+            "original_url": "",
+            "author_subname": "",
+            "channel_id": "",
+            "channel_name": "",
+            "id": 12345,
+            "bot_id": "",
+            "is_msg_unfurl": false,
+            "is_reply_unfurl": false,
+            "is_thread_root_unfurl": false,
+            "app_unfurl_url": "",
+            "is_app_unfurl": false,
+            "title": "",
+            "title_link": "",
+            "text": "",
+            "fields": [
+              {
+                "title": "",
+                "value": "",
+                "short": false
+              }
+            ],
+            "image_url": "",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345,
+            "thumb_url": "",
+            "thumb_width": 12345,
+            "thumb_height": 12345,
+            "footer": "",
+            "footer_icon": "",
+            "ts": "",
+            "mrkdwn_in": [
+              ""
+            ],
+            "actions": [
+              {
+                "id": "",
+                "name": "",
+                "text": "",
+                "style": "",
+                "type": "",
+                "value": "",
+                "data_source": "",
+                "min_query_length": 12345,
+                "url": ""
+              }
+            ],
+            "filename": "",
+            "size": 12345,
+            "mimetype": "",
+            "url": "",
+            "metadata": ""
+          }
+        ],
+        "plain_text": "",
+        "preview": "",
+        "preview_plain_text": "",
+        "has_more": false,
+        "sent_to_self": false,
+        "bot_id": "B00000000",
         "is_starred": false,
         "shares": {
           "public": {
+            "CJYQE8CP3": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ],
+            "CJYQE8CP3_": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ],
             "C03E94MKS": [
               {
                 "reply_users": [
@@ -77,67 +184,28 @@
                 "team_id": "T00000000"
               }
             ]
-          },
-          "private": {
-            "DG79B5UNR": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000"
-              }
-            ],
-            "DG79B5UNR_": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000"
-              }
-            ]
           }
         },
         "channels": [
-          "C00000000",
-          ""
+          "C00000000"
         ],
         "groups": [
           ""
         ],
         "ims": [
-          "",
-          "D00000000"
+          ""
         ],
         "has_rich_preview": false,
         "score": "0000000000.000000",
-        "top_file": false,
-        "thumb_480": "https://www.example.com/",
-        "thumb_480_w": 12345,
-        "thumb_480_h": 12345,
-        "thumb_720": "https://www.example.com/",
-        "thumb_720_w": 12345,
-        "thumb_720_h": 12345,
-        "thumb_800": "https://www.example.com/",
-        "thumb_800_w": 12345,
-        "thumb_800_h": 12345,
-        "thumb_960": "https://www.example.com/",
-        "thumb_960_w": 12345,
-        "thumb_960_h": 12345,
-        "thumb_1024": "https://www.example.com/",
-        "thumb_1024_w": 12345,
-        "thumb_1024_h": 12345,
-        "external_id": "",
-        "external_url": "https://www.example.com/",
-        "edit_link": "https://www.example.com/",
-        "preview": "",
-        "preview_highlight": "",
-        "lines": 12345,
-        "lines_more": 12345,
-        "preview_is_truncated": false
+        "thumb_64": "https://www.example.com/",
+        "thumb_80": "https://www.example.com/",
+        "thumb_360": "https://www.example.com/",
+        "thumb_360_w": 12345,
+        "thumb_360_h": 12345,
+        "thumb_160": "https://www.example.com/",
+        "image_exif_rotation": 12345,
+        "original_w": 12345,
+        "original_h": 12345
       }
     ]
   },

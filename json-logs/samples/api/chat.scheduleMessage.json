@@ -68,7 +68,12 @@
             "min_query_length": 12345,
             "url": ""
           }
-        ]
+        ],
+        "filename": "",
+        "size": 12345,
+        "mimetype": "",
+        "url": "",
+        "metadata": ""
       }
     ],
     "blocks": [

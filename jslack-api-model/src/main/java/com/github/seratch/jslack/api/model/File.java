@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.model;
 
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class File {
     private Integer timestamp;
     private String name;
     private String title;
+    private String subject;
     private String mimetype;
     private String filetype;
     private String prettyType;
@@ -138,6 +140,13 @@ public class File {
     private String preview;
     private String previewHighlight;
 
+    private String plainText;
+    private String previewPlainText;
+
+    private boolean hasMore;
+    private boolean sentToSelf;
+    private String botId;
+
     private Integer lines;
     private Integer linesMore;
 
@@ -170,6 +179,9 @@ public class File {
     private List<Reaction> reactions;
     private Integer commentsCount;
 
+    private List<Attachment> attachments;
+    private List<LayoutBlock> blocks;
+
     private Shares shares;
 
     @Data
@@ -199,6 +211,17 @@ public class File {
         private String latestReply;
         private String channelName;
         private String teamId;
+    }
+
+    private List<Address> to;
+    private List<Address> from;
+    private List<Address> cc;
+
+    @Data
+    public static class Address {
+        private String address;
+        private String name;
+        private String original;
     }
 
 }

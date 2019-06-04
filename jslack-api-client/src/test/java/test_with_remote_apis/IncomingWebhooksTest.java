@@ -77,8 +77,9 @@ public class IncomingWebhooksTest {
         log.info(response.toString());
 
         assertThat(response.getBody(), is("ok"));
-        assertThat(response.getMessage(), is("OK"));
         assertThat(response.getCode(), is(200));
+        // The behavior has been change (Jun 2019)
+        // assertThat(response.getMessage(), is("OK"));
     }
 
     @Test
@@ -110,8 +111,9 @@ public class IncomingWebhooksTest {
         log.info(response.toString());
 
         assertThat(response.getBody(), is("ok"));
-        assertThat(response.getMessage(), is("OK"));
         assertThat(response.getCode(), is(200));
+        // The behavior has been change (Jun 2019)
+        // assertThat(response.getMessage(), is("OK"));
     }
 
 }

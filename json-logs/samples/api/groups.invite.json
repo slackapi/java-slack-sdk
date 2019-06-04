@@ -1,6 +1,5 @@
 {
   "ok": false,
-  "error": "",
   "group": {
     "id": "G00000000",
     "name": "",
@@ -37,6 +36,7 @@
     },
     "priority": 12345
   },
+  "error": "",
   "needed": "",
   "provided": ""
 }
