@@ -354,6 +354,18 @@ export SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN=xoxb-*****************************
 
 Manually create a Slack user which has an email address for a unit test.
 
+### Create an incoming webhook url
+
+```bash
+export SLACK_WEBHOOK_TEST_URL=https://hooks.slack.com/services/Txxxx/yyy/zzz
+```
+
+### Run the tests
+
+```bash
+mvn test
+```
+
 ## Deployment
 
 ```bash

@@ -23,7 +23,16 @@ public class MatchedItem {
     private List<LayoutBlock> blocks;
     private String permalink;
     private String name;
+    private String subject;
     private String preview;
+
+    private String plainText;
+    private String previewPlainText;
+
+    private boolean hasMore;
+    private boolean sentToSelf;
+
+    private String botId;
 
     private String externalId;
     private String externalUrl;
@@ -189,6 +198,17 @@ public class MatchedItem {
         private List<Attachment> attachments;
         private List<LayoutBlock> blocks;
         private String permalink;
+    }
+
+    private List<Address> to;
+    private List<Address> from;
+    private List<Address> cc;
+
+    @Data
+    public static class Address {
+        private String address;
+        private String name;
+        private String original;
     }
 
 }

@@ -419,7 +419,12 @@
           "min_query_length": 123,
           "url": ""
         }
-      ]
+      ],
+      "filename": "",
+      "size": 123,
+      "mimetype": "",
+      "url": "",
+      "metadata": ""
     }
   ],
   "ts": "",

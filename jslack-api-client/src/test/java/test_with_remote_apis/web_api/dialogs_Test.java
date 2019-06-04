@@ -7,6 +7,7 @@ import com.github.seratch.jslack.api.model.dialog.Dialog;
 import com.github.seratch.jslack.api.model.dialog.DialogSubType;
 import com.github.seratch.jslack.api.model.dialog.DialogTextElement;
 import config.Constants;
+import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class dialogs_Test {
 
-    Slack slack = new Slack();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
     String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test

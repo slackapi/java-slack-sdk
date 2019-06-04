@@ -9,6 +9,7 @@ import com.github.seratch.jslack.api.methods.response.reactions.ReactionsGetResp
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsListResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsRemoveResponse;
 import config.Constants;
+import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class reactions_Test {
 
-    Slack slack = new Slack();
+    Slack slack = Slack.getInstance(SlackTestConfig.get());
     String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test

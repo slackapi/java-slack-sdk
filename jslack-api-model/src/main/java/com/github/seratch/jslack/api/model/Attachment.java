@@ -201,4 +201,13 @@ public class Attachment {
      */
     private List<Action> actions = new ArrayList<>();
 
+    // --------------------------
+    // Files
+
+    private String filename;
+    private Integer size;
+    private String mimetype;
+    private String url;
+    private String metadata;
+
 }

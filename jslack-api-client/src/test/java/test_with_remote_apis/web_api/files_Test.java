@@ -196,50 +196,50 @@ public class files_Test {
         }
 
         // comments
-        {
-            FilesCommentsAddResponse addResponse = slack.methods().filesCommentsAdd(FilesCommentsAddRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .comment("test comment")
-                    .build());
-            assertThat(addResponse.getError(), is(nullValue()));
-            assertThat(addResponse.isOk(), is(true));
-
-            FilesInfoResponse filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .build());
-            assertThat(filesInfoResponse.getError(), is(nullValue()));
-            assertThat(filesInfoResponse.isOk(), is(true));
-            com.github.seratch.jslack.api.model.File file2 = filesInfoResponse.getFile();
-            assertThat(file2.getCommentsCount(), is(1));
-
-            FilesCommentsEditResponse editResponse = slack.methods().filesCommentEdit(FilesCommentsEditRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .id(addResponse.getComment().getId())
-                    .comment("modified comment")
-                    .build());
-            assertThat(editResponse.getError(), is(nullValue()));
-            assertThat(editResponse.isOk(), is(true));
-
-            FilesCommentsDeleteResponse deleteResponse = slack.methods().filesCommentsDelete(FilesCommentsDeleteRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .id(addResponse.getComment().getId()).build()
-            );
-            assertThat(deleteResponse.getError(), is(nullValue()));
-            assertThat(deleteResponse.isOk(), is(true));
-
-            filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .build());
-            assertThat(filesInfoResponse.getError(), is(nullValue()));
-            assertThat(filesInfoResponse.isOk(), is(true));
-            com.github.seratch.jslack.api.model.File fileObj2 = filesInfoResponse.getFile();
-            assertThat(fileObj2.getCommentsCount(), is(0));
-        }
+//        {
+//            FilesCommentsAddResponse addResponse = slack.methods().filesCommentsAdd(FilesCommentsAddRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .comment("test comment")
+//                    .build());
+//            assertThat(addResponse.getError(), is(nullValue()));
+//            assertThat(addResponse.isOk(), is(true));
+//
+//            FilesInfoResponse filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .build());
+//            assertThat(filesInfoResponse.getError(), is(nullValue()));
+//            assertThat(filesInfoResponse.isOk(), is(true));
+//            com.github.seratch.jslack.api.model.File file2 = filesInfoResponse.getFile();
+//            assertThat(file2.getCommentsCount(), is(1));
+//
+//            FilesCommentsEditResponse editResponse = slack.methods().filesCommentEdit(FilesCommentsEditRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .id(addResponse.getComment().getId())
+//                    .comment("modified comment")
+//                    .build());
+//            assertThat(editResponse.getError(), is(nullValue()));
+//            assertThat(editResponse.isOk(), is(true));
+//
+//            FilesCommentsDeleteResponse deleteResponse = slack.methods().filesCommentsDelete(FilesCommentsDeleteRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .id(addResponse.getComment().getId()).build()
+//            );
+//            assertThat(deleteResponse.getError(), is(nullValue()));
+//            assertThat(deleteResponse.isOk(), is(true));
+//
+//            filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .build());
+//            assertThat(filesInfoResponse.getError(), is(nullValue()));
+//            assertThat(filesInfoResponse.isOk(), is(true));
+//            com.github.seratch.jslack.api.model.File fileObj2 = filesInfoResponse.getFile();
+//            assertThat(fileObj2.getCommentsCount(), is(0));
+//        }
 
         {
             ChatDeleteResponse response = slack.methods().chatDelete(r -> r
@@ -505,50 +505,50 @@ public class files_Test {
         }
 
         // comments
-        {
-            FilesCommentsAddResponse addResponse = slack.methods().filesCommentsAdd(FilesCommentsAddRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .comment("test comment")
-                    .build());
-            assertThat(addResponse.getError(), is(nullValue()));
-            assertThat(addResponse.isOk(), is(true));
-
-            FilesInfoResponse filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .build());
-            assertThat(filesInfoResponse.getError(), is(nullValue()));
-            assertThat(filesInfoResponse.isOk(), is(true));
-            fileObj = filesInfoResponse.getFile();
-            assertThat(fileObj.getCommentsCount(), is(1));
-
-            FilesCommentsEditResponse editResponse = slack.methods().filesCommentEdit(FilesCommentsEditRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .id(addResponse.getComment().getId())
-                    .comment("modified comment")
-                    .build());
-            assertThat(editResponse.getError(), is(nullValue()));
-            assertThat(editResponse.isOk(), is(true));
-
-            FilesCommentsDeleteResponse deleteResponse = slack.methods().filesCommentsDelete(FilesCommentsDeleteRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .id(addResponse.getComment().getId()).build()
-            );
-            assertThat(deleteResponse.getError(), is(nullValue()));
-            assertThat(deleteResponse.isOk(), is(true));
-
-            filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
-                    .token(token)
-                    .file(fileObj.getId())
-                    .build());
-            assertThat(filesInfoResponse.getError(), is(nullValue()));
-            assertThat(filesInfoResponse.isOk(), is(true));
-            fileObj = filesInfoResponse.getFile();
-            assertThat(fileObj.getCommentsCount(), is(0));
-        }
+//        {
+//            FilesCommentsAddResponse addResponse = slack.methods().filesCommentsAdd(FilesCommentsAddRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .comment("test comment")
+//                    .build());
+//            assertThat(addResponse.getError(), is(nullValue()));
+//            assertThat(addResponse.isOk(), is(true));
+//
+//            FilesInfoResponse filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .build());
+//            assertThat(filesInfoResponse.getError(), is(nullValue()));
+//            assertThat(filesInfoResponse.isOk(), is(true));
+//            fileObj = filesInfoResponse.getFile();
+//            assertThat(fileObj.getCommentsCount(), is(1));
+//
+//            FilesCommentsEditResponse editResponse = slack.methods().filesCommentEdit(FilesCommentsEditRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .id(addResponse.getComment().getId())
+//                    .comment("modified comment")
+//                    .build());
+//            assertThat(editResponse.getError(), is(nullValue()));
+//            assertThat(editResponse.isOk(), is(true));
+//
+//            FilesCommentsDeleteResponse deleteResponse = slack.methods().filesCommentsDelete(FilesCommentsDeleteRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .id(addResponse.getComment().getId()).build()
+//            );
+//            assertThat(deleteResponse.getError(), is(nullValue()));
+//            assertThat(deleteResponse.isOk(), is(true));
+//
+//            filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
+//                    .token(token)
+//                    .file(fileObj.getId())
+//                    .build());
+//            assertThat(filesInfoResponse.getError(), is(nullValue()));
+//            assertThat(filesInfoResponse.isOk(), is(true));
+//            fileObj = filesInfoResponse.getFile();
+//            assertThat(fileObj.getCommentsCount(), is(0));
+//        }
 
         {
             ChatDeleteResponse response = slack.methods().chatDelete(ChatDeleteRequest.builder()

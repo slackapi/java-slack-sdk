@@ -10,4 +10,6 @@ public class Paging {
     private Integer total;
     private Integer page;
     private Integer pages;
+    private Integer perPage;
+    private Integer spill;
 }

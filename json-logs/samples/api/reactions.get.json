@@ -1,0 +1,26 @@
+{
+  "ok": false,
+  "type": "",
+  "channel": "C00000000",
+  "message": {
+    "type": "",
+    "subtype": "",
+    "text": "",
+    "ts": "0000000000.000000",
+    "username": "",
+    "bot_id": "B00000000",
+    "permalink": "https://www.example.com/",
+    "reactions": [
+      {
+        "name": "",
+        "users": [
+          "U00000000"
+        ],
+        "count": 12345
+      }
+    ]
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

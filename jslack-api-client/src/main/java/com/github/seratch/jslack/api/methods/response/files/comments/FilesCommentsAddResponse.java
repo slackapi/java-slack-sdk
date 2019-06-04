@@ -13,5 +13,7 @@ public class FilesCommentsAddResponse implements SlackApiResponse {
     private String needed;
     private String provided;
 
+    private String reqMethod;
+
     private FileComment comment;
 }

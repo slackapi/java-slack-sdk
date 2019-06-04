@@ -431,7 +431,12 @@
                 "min_query_length": 123,
                 "url": ""
               }
-            ]
+            ],
+            "filename": "",
+            "size": 123,
+            "mimetype": "",
+            "url": "",
+            "metadata": ""
           }
         ],
         "ts": "",
@@ -446,6 +451,7 @@
         "timestamp": 123,
         "name": "",
         "title": "",
+        "subject": "",
         "mimetype": "",
         "filetype": "",
         "pretty_type": "",
@@ -507,6 +513,11 @@
         "preview_is_truncated": false,
         "preview": "",
         "preview_highlight": "",
+        "plain_text": "",
+        "preview_plain_text": "",
+        "has_more": false,
+        "sent_to_self": false,
+        "bot_id": "",
         "lines": 123,
         "lines_more": 123,
         "is_public": false,
