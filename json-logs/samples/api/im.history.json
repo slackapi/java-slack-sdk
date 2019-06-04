@@ -62,7 +62,11 @@
             }
           ],
           "cc": [
-            ""
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
           ],
           "attachments": [
             {

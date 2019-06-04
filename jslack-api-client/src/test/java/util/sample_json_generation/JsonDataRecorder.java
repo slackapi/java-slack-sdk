@@ -1,6 +1,8 @@
 package util.sample_json_generation;
 
+import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.*;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 
@@ -116,7 +118,17 @@ public class JsonDataRecorder {
                 }
             }
             if (array.size() == 0) {
-                array.add(""); // in most cases, empty array can have string values
+                List<String> addressNames = Arrays.asList("from", "to", "cc");
+                if (addressNames.contains(name)) {
+                    Address address = new Address();
+                    address.setAddress("");
+                    address.setName("");
+                    address.setOriginal("");
+                    JsonElement elem = GsonFactory.createSnakeCase().toJsonTree(address);
+                    array.add(elem);
+                } else {
+                    array.add(""); // in most cases, empty array can have string values
+                }
             } else {
                 JsonElement first = array.get(0);
                 if (first.isJsonPrimitive()) {
@@ -223,6 +235,13 @@ public class JsonDataRecorder {
 
     private String toMaskedFilePath(String path) {
         return outputDirectory + "/samples/" + path + ".json";
+    }
+
+    @Data
+    public static class Address {
+        private String address;
+        private String name;
+        private String original;
     }
 
 }
