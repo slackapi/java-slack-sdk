@@ -44,26 +44,47 @@ public class chat_Test {
     Slack slack = Slack.getInstance(SlackTestConfig.get());
     String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
-    @Test
-    public void channels_threading() throws IOException, SlackApiException {
+    private String randomChannelId = null;
 
-        String channelId_ = null;
-        ChannelsListResponse channelsListResponse = slack.methods().channelsList(r -> r
-                .token(token)
-                .excludeArchived(true)
-                .limit(100).build());
-        assertThat(channelsListResponse.getError(), is(nullValue()));
-        for (Channel channel : channelsListResponse.getChannels()) {
-            if (channel.getName().equals("random")) {
-                channelId_ = channel.getId();
-                break;
+    void loadRandomChannelId() throws IOException, SlackApiException {
+        if (randomChannelId == null) {
+            ChannelsListResponse channelsListResponse = slack.methods().channelsList(r ->
+                    r.token(token).excludeArchived(true).limit(100).build());
+            assertThat(channelsListResponse.getError(), is(nullValue()));
+            for (Channel channel : channelsListResponse.getChannels()) {
+                if (channel.getName().equals("random")) {
+                    randomChannelId = channel.getId();
+                    break;
+                }
             }
         }
-        assertThat(channelId_, is(notNullValue()));
-        final String channelId = channelId_;
+    }
+
+    // https://github.com/seratch/jslack/issues/157
+    @Test
+    public void postMessage_blocksInAttachment_do_not_work() throws Exception {
+        loadRandomChannelId();
+        ChatPostMessageResponse firstMessageCreation = slack.methods().chatPostMessage(req -> req
+                .channel(randomChannelId)
+                .token(token)
+                .attachments(Arrays.asList(
+                        Attachment
+                                .builder()
+                                .id(123)
+                                .callbackId("callback")
+                                .title("hi")
+                                .blocks(Arrays.asList(DividerBlock.builder().blockId("123").build()))
+                                .build()))
+                .build());
+        assertThat(firstMessageCreation.getError(), is("invalid_attachments"));
+    }
+
+    @Test
+    public void channels_threading() throws IOException, SlackApiException {
+        loadRandomChannelId();
 
         ChatPostMessageResponse firstMessageCreation = slack.methods().chatPostMessage(req -> req
-                .channel(channelId)
+                .channel(randomChannelId)
                 .token(token)
                 .text("[thread] This is a test message posted by unit tests for jslack library")
                 .replyBroadcast(false)
@@ -72,7 +93,7 @@ public class chat_Test {
         assertThat(firstMessageCreation.isOk(), is(true));
 
         ChatPostMessageResponse reply1 = slack.methods().chatPostMessage(req -> req
-                .channel(channelId)
+                .channel(randomChannelId)
                 .token(token)
                 .asUser(false)
                 .text("replied")
@@ -85,7 +106,7 @@ public class chat_Test {
 
         ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(req -> req
                 .token(token)
-                .channel(channelId)
+                .channel(randomChannelId)
                 .messageTs(reply1.getTs())
                 .build());
         assertThat(permalink.getError(), is(nullValue()));
@@ -93,7 +114,7 @@ public class chat_Test {
         assertThat(permalink.getPermalink(), is(notNullValue()));
 
         ChatPostMessageResponse reply2 = slack.methods().chatPostMessage(req -> req
-                .channel(channelId)
+                .channel(randomChannelId)
                 .token(token)
                 .asUser(true)
                 .text("replied to " + permalink.getPermalink())
@@ -111,7 +132,7 @@ public class chat_Test {
         {
             ChannelsHistoryResponse history = slack.methods().channelsHistory(req -> req
                     .token(token)
-                    .channel(channelId)
+                    .channel(randomChannelId)
                     .count(20)
                     .build());
             assertThat(history.isOk(), is(true));
@@ -140,7 +161,7 @@ public class chat_Test {
         {
             ConversationsHistoryResponse history = slack.methods().conversationsHistory(req -> req
                     .token(token)
-                    .channel(channelId)
+                    .channel(randomChannelId)
                     .limit(20)
                     .build());
             assertThat(history.isOk(), is(true));
@@ -563,22 +584,6 @@ public class chat_Test {
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.getChannel(), is(startsWith("C")));
         assertThat(response.getMessage().getText(), is(startsWith("Hello!")));
-    }
-
-    private String randomChannelId = null;
-
-    void loadRandomChannelId() throws Exception {
-        if (randomChannelId == null) {
-            ChannelsListResponse channelsListResponse = slack.methods().channelsList(r ->
-                    r.token(token).excludeArchived(true).limit(100).build());
-            assertThat(channelsListResponse.getError(), is(nullValue()));
-            for (Channel channel : channelsListResponse.getChannels()) {
-                if (channel.getName().equals("random")) {
-                    randomChannelId = channel.getId();
-                    break;
-                }
-            }
-        }
     }
 
     // NOTE: You need to add "youtube.com" at
