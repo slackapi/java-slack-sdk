@@ -1,8 +1,13 @@
 package com.github.seratch.jslack.api.methods.request.chat;
 
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
+import com.github.seratch.jslack.api.model.Action;
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Provide custom unfurl behavior for user-posted URLs
@@ -30,7 +35,9 @@ public class ChatUnfurlRequest implements SlackApiRequest {
     /**
      * URL-encoded JSON map with keys set to URLs featured in the the message, pointing to their unfurl message attachments.
      */
-    private String unfurls;
+    private String rawUnfurls;
+
+    private Map<String, UnfurlDetail> unfurls;
 
     /**
      * Timestamp of the message to add unfurl behavior to.
@@ -48,4 +55,17 @@ public class ChatUnfurlRequest implements SlackApiRequest {
      */
     private String channel;
 
+
+    // https://api.slack.com/docs/message-link-unfurling#unfurls_parameter
+    @Data
+    public static class UnfurlDetail {
+        private String title;
+        private String text;
+        private String callbackId;
+        private String attachmentType;
+        private String fallback;
+        private List<Action> actions;
+
+        private List<LayoutBlock> blocks;
+    }
 }

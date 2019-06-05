@@ -385,7 +385,12 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("ts", req.getTs(), form);
         setIfNotNull("channel", req.getChannel(), form);
-        setIfNotNull("unfurls", req.getUnfurls(), form);
+        if (req.getRawUnfurls() != null) {
+            setIfNotNull("unfurls", req.getRawUnfurls(), form);
+        } else {
+            String json = GsonFactory.createSnakeCase().toJson(req.getUnfurls());
+            setIfNotNull("unfurls", json, form);
+        }
         setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
         setIfNotNull("user_auth_message", req.getUserAuthMessage(), form);
         setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
