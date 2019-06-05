@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.model;
 
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
@@ -160,6 +161,11 @@ public class Attachment {
     private Integer thumbWidth;
     private Integer thumbHeight;
 
+    private String videoHtml;
+
+    private Integer videoHtmlWidth;
+    private Integer videoHtmlHeight;
+
     // Your message attachments may also contain a subtle footer,
     // which is especially useful when citing content in conjunction with author parameters.
 
@@ -200,6 +206,8 @@ public class Attachment {
      * Actions are defined as an array, and hashes contained within it will be displayed in as buttons in the message attachment.
      */
     private List<Action> actions = new ArrayList<>();
+
+    private List<LayoutBlock> blocks;
 
     // --------------------------
     // Files

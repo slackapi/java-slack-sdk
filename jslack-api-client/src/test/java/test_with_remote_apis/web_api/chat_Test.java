@@ -13,9 +13,11 @@ import com.github.seratch.jslack.api.methods.response.conversations.Conversation
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Channel;
 import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.api.model.block.DividerBlock;
 import com.github.seratch.jslack.api.model.block.ImageBlock;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
+import com.github.seratch.jslack.common.json.GsonFactory;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,8 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -252,17 +256,6 @@ public class chat_Test {
                         ChannelsRepliesRequest.builder().token(token).channel(channel.getId()).threadTs(threadTs).build());
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
-            }
-
-            {
-                ChatUnfurlResponse unfurlResponse = slack.methods().chatUnfurl(ChatUnfurlRequest.builder()
-                        .token(token)
-                        .channel(channel.getId())
-                        .unfurls("http://www.example.com/")
-                        .build());
-                // TODO: valid test
-                assertThat(unfurlResponse.isOk(), is(false));
-                assertThat(unfurlResponse.getError(), is("missing_ts"));
             }
 
             {
@@ -570,6 +563,113 @@ public class chat_Test {
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.getChannel(), is(startsWith("C")));
         assertThat(response.getMessage().getText(), is(startsWith("Hello!")));
+    }
+
+    private String randomChannelId = null;
+
+    void loadRandomChannelId() throws Exception {
+        if (randomChannelId == null) {
+            ChannelsListResponse channelsListResponse = slack.methods().channelsList(r ->
+                    r.token(token).excludeArchived(true).limit(100).build());
+            assertThat(channelsListResponse.getError(), is(nullValue()));
+            for (Channel channel : channelsListResponse.getChannels()) {
+                if (channel.getName().equals("random")) {
+                    randomChannelId = channel.getId();
+                    break;
+                }
+            }
+        }
+    }
+
+    // NOTE: You need to add "youtube.com" at
+    // Features > Event Subscriptions > App Unfurl Domains
+    @Test
+    public void unfurl_raw_json() throws Exception {
+        loadRandomChannelId();
+
+        String url = "https://www.youtube.com/watch?v=wq1R93UMqlk";
+        ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .token(token)
+                .channel(randomChannelId)
+                .text(url)
+                .unfurlLinks(true)
+                .unfurlMedia(true)
+                .build());
+        assertThat(postResponse.getError(), is(nullValue()));
+
+        String ts = postResponse.getTs();
+        Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
+        ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
+        detail.setText("Every day is the test.");
+        unfurls.put(url, detail);
+
+        ChatUnfurlResponse unfurlResponse = slack.methods().chatUnfurl(ChatUnfurlRequest.builder()
+                .token(token)
+                .channel(randomChannelId)
+                .ts(ts)
+                .rawUnfurls(GsonFactory.createSnakeCase().toJson(unfurls))
+                .build());
+        assertThat(unfurlResponse.getError(), is(nullValue()));
+    }
+
+    // NOTE: You need to add "youtube.com" at
+    // Features > Event Subscriptions > App Unfurl Domains
+    @Test
+    public void unfurl_text() throws Exception {
+        loadRandomChannelId();
+
+        String url = "https://www.youtube.com/watch?v=wq1R93UMqlk";
+        ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .token(token)
+                .channel(randomChannelId)
+                .text(url)
+                .unfurlLinks(true)
+                .unfurlMedia(true)
+                .build());
+        assertThat(postResponse.getError(), is(nullValue()));
+
+        String ts = postResponse.getTs();
+        Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
+        ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
+        detail.setText("Every day is the test.");
+        unfurls.put(url, detail);
+
+        ChatUnfurlResponse unfurlResponse = slack.methods().chatUnfurl(ChatUnfurlRequest.builder()
+                .token(token)
+                .channel(randomChannelId)
+                .ts(ts)
+                .unfurls(unfurls)
+                .build());
+        assertThat(unfurlResponse.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void unfurl_blocks() throws Exception {
+        loadRandomChannelId();
+
+        String url = "https://www.youtube.com/watch?v=wq1R93UMqlk";
+        ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .token(token)
+                .channel(randomChannelId)
+                .text(url)
+                .unfurlLinks(true)
+                .unfurlMedia(true)
+                .build());
+        assertThat(postResponse.getError(), is(nullValue()));
+
+        String ts = postResponse.getTs();
+        Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
+        ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
+        detail.setBlocks(Arrays.asList(DividerBlock.builder().blockId("123").build()));
+        unfurls.put(url, detail);
+
+        ChatUnfurlResponse unfurlResponse = slack.methods().chatUnfurl(ChatUnfurlRequest.builder()
+                .token(token)
+                .channel(randomChannelId)
+                .ts(ts)
+                .unfurls(unfurls)
+                .build());
+        assertThat(unfurlResponse.getError(), is(nullValue()));
     }
 
 }

@@ -209,6 +209,9 @@
         "thumb_url": "",
         "thumb_width": 12345,
         "thumb_height": 12345,
+        "video_html": "",
+        "video_html_width": 12345,
+        "video_html_height": 12345,
         "footer_icon": "",
         "ts": "",
         "mrkdwn_in": [
