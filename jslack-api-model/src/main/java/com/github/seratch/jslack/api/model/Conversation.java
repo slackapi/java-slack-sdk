@@ -46,6 +46,7 @@ public class Conversation {
     private List<String> sharedTeamIds;
 
     private String parentConversation;
+    private List<String> pendingConnectedTeamIds;
 
     @SerializedName("is_channel")
     private boolean isChannel;

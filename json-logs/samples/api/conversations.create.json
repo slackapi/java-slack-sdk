@@ -40,7 +40,10 @@
       ""
     ],
     "priority": 12345,
-    "is_open": false
+    "is_open": false,
+    "pending_connected_team_ids": [
+      ""
+    ]
   },
   "error": "",
   "needed": "",

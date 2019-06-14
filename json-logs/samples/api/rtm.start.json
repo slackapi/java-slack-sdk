@@ -259,7 +259,11 @@
         "fr-FR": "",
         "pt-BR": "",
         "ja-JP": ""
-      }
+      },
+      "search_only_show_online": false,
+      "search_hide_deactivated_users": false,
+      "sunset_interactive_message_views": 12345,
+      "workflow_builder_coachmarks": ""
     },
     "created": 12345,
     "manual_presence": ""
@@ -399,7 +403,15 @@
         ]
       },
       "app_whitelist_enabled": false,
-      "invites_limit": false
+      "invites_limit": false,
+      "dropbox_legacy_picker": false,
+      "disable_sidebar_connect_prompts": [
+        ""
+      ],
+      "disable_sidebar_install_prompts": [
+        ""
+      ],
+      "block_file_download": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
@@ -414,7 +426,9 @@
     "over_storage_limit": false,
     "messages_count": 12345,
     "plan": "",
-    "avatar_base_url": "https://www.example.com/"
+    "avatar_base_url": "https://www.example.com/",
+    "date_create": 12345,
+    "limit_ts": 12345
   },
   "latest_event_ts": "0000000000.000000",
   "channels": [

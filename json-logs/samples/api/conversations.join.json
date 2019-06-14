@@ -39,7 +39,10 @@
     "previous_names": [
       ""
     ],
-    "priority": 12345
+    "priority": 12345,
+    "pending_connected_team_ids": [
+      ""
+    ]
   },
   "error": "",
   "needed": "",
