@@ -24,6 +24,8 @@ public class MessageEvent implements Event {
 
     public static final String TYPE_NAME = "message";
 
+    private String clientMsgId;
+
     private final String type = TYPE_NAME;
     private String channel;
     private String user;
@@ -33,6 +35,7 @@ public class MessageEvent implements Event {
     private List<Attachment> attachments;
 
     private String ts;
+    private String threadTs;
     private String eventTs;
     private String channelType;
 
