@@ -264,7 +264,6 @@
           "blocks": [
             {
               "type": "",
-              "block_id": "",
               "elements": [
                 {
                   "type": "",
@@ -334,6 +333,7 @@
                   "alt_text": ""
                 }
               ],
+              "block_id": "",
               "fallback": "",
               "image_url": "",
               "image_width": 12345,
@@ -446,13 +446,9 @@
           "user": "U00000000",
           "username": "",
           "ts": "0000000000.000000",
-          "text": "",
-          "iid": "",
-          "permalink": "https://www.example.com/",
           "blocks": [
             {
               "type": "",
-              "block_id": "",
               "elements": [
                 {
                   "type": "",
@@ -522,6 +518,7 @@
                   "alt_text": ""
                 }
               ],
+              "block_id": "",
               "fallback": "",
               "image_url": "",
               "image_width": 12345,
@@ -557,6 +554,9 @@
               }
             }
           ],
+          "text": "",
+          "iid": "",
+          "permalink": "https://www.example.com/",
           "attachments": [
             {
               "msg_subtype": "",
@@ -628,7 +628,115 @@
               "metadata": ""
             }
           ]
-        }
+        },
+        "blocks": [
+          {
+            "type": "",
+            "elements": [
+              {
+                "type": "",
+                "fallback": "",
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "action_id": "",
+                "url": "",
+                "value": "",
+                "style": "",
+                "confirm": {
+                  "title": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "confirm": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "deny": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  }
+                },
+                "placeholder": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "initial_channel": "",
+                "initial_conversation": "",
+                "initial_date": "",
+                "initial_option": {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": ""
+                },
+                "min_query_length": 12345,
+                "image_url": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345,
+                "alt_text": "",
+                "initial_user": ""
+              },
+              {
+                "type": "",
+                "fallback": "",
+                "image_url": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345,
+                "alt_text": ""
+              }
+            ],
+            "block_id": "",
+            "fallback": "",
+            "image_url": "",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345,
+            "alt_text": "",
+            "title": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "fields": [
+              {
+                "type": "",
+                "text": "",
+                "emoji": false,
+                "verbatim": false
+              }
+            ],
+            "accessory": {
+              "type": "",
+              "fallback": "",
+              "image_url": "",
+              "image_width": 12345,
+              "image_height": 12345,
+              "image_bytes": 12345,
+              "alt_text": ""
+            }
+          }
+        ]
       }
     ],
     "refinements": [
@@ -673,8 +781,153 @@
         "username": "",
         "url_private": "https://www.example.com/",
         "url_private_download": "https://www.example.com/",
+        "thumb_64": "https://www.example.com/",
+        "thumb_80": "https://www.example.com/",
+        "thumb_360": "https://www.example.com/",
+        "thumb_360_w": 12345,
+        "thumb_360_h": 12345,
+        "thumb_160": "https://www.example.com/",
+        "image_exif_rotation": 12345,
+        "original_w": 12345,
+        "original_h": 12345,
         "permalink": "https://www.example.com/",
         "permalink_public": "https://www.example.com/",
+        "is_starred": false,
+        "shares": {
+          "public": {
+            "C03E94MKS": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ],
+            "C03E94MKS_": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ],
+            "C03E94MKU": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ],
+            "C03E94MKU_": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ],
+            "CJYQE8CP3": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ],
+            "CJYQE8CP3_": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ]
+          },
+          "private": {
+            "DG79B5UNR": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000"
+              }
+            ],
+            "DG79B5UNR_": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000"
+              }
+            ]
+          }
+        },
+        "channels": [
+          "C00000000",
+          ""
+        ],
+        "groups": [
+          ""
+        ],
+        "ims": [
+          "",
+          "D00000000"
+        ],
+        "has_rich_preview": false,
+        "score": "0000000000.000000",
+        "top_file": false,
+        "thumb_480": "https://www.example.com/",
+        "thumb_480_w": 12345,
+        "thumb_480_h": 12345,
+        "thumb_720": "https://www.example.com/",
+        "thumb_720_w": 12345,
+        "thumb_720_h": 12345,
+        "thumb_800": "https://www.example.com/",
+        "thumb_800_w": 12345,
+        "thumb_800_h": 12345,
+        "thumb_960": "https://www.example.com/",
+        "thumb_960_w": 12345,
+        "thumb_960_h": 12345,
+        "thumb_1024": "https://www.example.com/",
+        "thumb_1024_w": 12345,
+        "thumb_1024_h": 12345,
+        "external_id": "",
+        "external_url": "https://www.example.com/",
+        "edit_link": "https://www.example.com/",
+        "preview": "",
+        "preview_highlight": "",
+        "lines": 12345,
+        "lines_more": 12345,
+        "preview_is_truncated": false,
         "subject": "",
         "to": [
           {
@@ -769,114 +1022,10 @@
           }
         ],
         "plain_text": "",
-        "preview": "",
         "preview_plain_text": "",
         "has_more": false,
         "sent_to_self": false,
-        "bot_id": "B00000000",
-        "is_starred": false,
-        "shares": {
-          "public": {
-            "CJYQE8CP3": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000",
-                "channel_name": "",
-                "team_id": "T00000000"
-              }
-            ],
-            "CJYQE8CP3_": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000",
-                "channel_name": "",
-                "team_id": "T00000000"
-              }
-            ],
-            "C03E94MKS": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000",
-                "channel_name": "",
-                "team_id": "T00000000"
-              }
-            ],
-            "C03E94MKS_": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000",
-                "channel_name": "",
-                "team_id": "T00000000"
-              }
-            ],
-            "C03E94MKU": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000",
-                "channel_name": "",
-                "team_id": "T00000000"
-              }
-            ],
-            "C03E94MKU_": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000",
-                "channel_name": "",
-                "team_id": "T00000000"
-              }
-            ]
-          }
-        },
-        "channels": [
-          "C00000000",
-          ""
-        ],
-        "groups": [
-          ""
-        ],
-        "ims": [
-          ""
-        ],
-        "has_rich_preview": false,
-        "score": "0000000000.000000",
-        "thumb_64": "https://www.example.com/",
-        "thumb_80": "https://www.example.com/",
-        "thumb_360": "https://www.example.com/",
-        "thumb_360_w": 12345,
-        "thumb_360_h": 12345,
-        "thumb_160": "https://www.example.com/",
-        "image_exif_rotation": 12345,
-        "original_w": 12345,
-        "original_h": 12345,
-        "edit_link": "https://www.example.com/",
-        "preview_highlight": "",
-        "lines": 12345,
-        "lines_more": 12345,
-        "preview_is_truncated": false
+        "bot_id": "B00000000"
       }
     ]
   },

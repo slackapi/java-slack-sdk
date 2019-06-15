@@ -6,17 +6,17 @@
       "user_name": "",
       "date": "1234567890",
       "change_type": "",
-      "service_id": "12345",
-      "service_type": "",
+      "app_type": "",
+      "app_id": "A00000000",
       "scope": "",
+      "reason": "",
       "rss_feed": false,
       "rss_feed_change_type": "",
       "rss_feed_title": "",
       "rss_feed_url": "https://www.example.com/",
-      "channel": "C00000000",
-      "app_type": "",
-      "app_id": "A00000000",
-      "reason": ""
+      "service_id": "12345",
+      "service_type": "",
+      "channel": "C00000000"
     }
   ],
   "paging": {
