@@ -30,7 +30,7 @@ public class pins_Test {
 
     @Test
     public void list() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -40,7 +40,7 @@ public class pins_Test {
         }
 
         PinsListResponse response = slack.methods().pinsList(
-                r -> r.token(token).channel(channels.get(0)).build());
+                r -> r.token(token).channel(channels.get(0)));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getItems(), is(notNullValue()));
@@ -48,7 +48,7 @@ public class pins_Test {
 
     @Test
     public void add() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -66,8 +66,7 @@ public class pins_Test {
                     .file(file)
                     .filename("sample.txt")
                     .initialComment("initial comment")
-                    .title("file title")
-                    .build());
+                    .title("file title"));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
@@ -77,8 +76,7 @@ public class pins_Test {
             PinsAddResponse response = slack.methods().pinsAdd(r -> r
                     .token(token)
                     .channel(channels.get(0))
-                    .file(fileObj.getId())
-                    .build());
+                    .file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -86,8 +84,7 @@ public class pins_Test {
             PinsRemoveResponse response = slack.methods().pinsRemove(r -> r
                     .token(token)
                     .channel(channels.get(0))
-                    .file(fileObj.getId())
-                    .build());
+                    .file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -98,8 +95,7 @@ public class pins_Test {
                 PinsAddResponse response = slack.methods().pinsAdd(r -> r
                         .token(token)
                         .channel(channels.get(0))
-                        .fileComment(fileObj.getInitialComment().getId())
-                        .build());
+                        .fileComment(fileObj.getInitialComment().getId()));
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }

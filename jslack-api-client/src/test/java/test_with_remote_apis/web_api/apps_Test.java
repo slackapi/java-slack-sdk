@@ -34,8 +34,7 @@ public class apps_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         AppsPermissionsRequestResponse response = slack.methods().appsPermissionsRequest(req -> req
                 .token(token)
-                .triggerId("dummy")
-                .build());
+                .triggerId("dummy"));
         assertThat(response.getError(), is("not_allowed_token_type"));
         assertThat(response.isOk(), is(false));
     }
@@ -44,8 +43,7 @@ public class apps_Test {
     public void appsPermissionsInfo() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         AppsPermissionsInfoResponse response = slack.methods().appsPermissionsInfo(req -> req
-                .token(token)
-                .build());
+                .token(token));
         assertThat(response.getError(), is("not_allowed_token_type"));
         assertThat(response.isOk(), is(false));
     }
@@ -54,8 +52,7 @@ public class apps_Test {
     public void appsUninstall() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         AppsUninstallResponse response = slack.methods().appsUninstall(req -> req
-                .token(token)
-                .build());
+                .token(token));
         assertThat(response.getError(), is("not_allowed_token_type"));
         assertThat(response.isOk(), is(false));
     }

@@ -26,7 +26,7 @@ public class search_Test {
 
     @Test
     public void all() throws IOException, SlackApiException {
-        SearchAllResponse response = slack.methods().searchAll(r -> r.token(token).query("test").build());
+        SearchAllResponse response = slack.methods().searchAll(r -> r.token(token).query("test"));
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -34,7 +34,7 @@ public class search_Test {
 
     @Test
     public void messages() throws IOException, SlackApiException {
-        SearchMessagesResponse response = slack.methods().searchMessages(r -> r.token(token).query("test").build());
+        SearchMessagesResponse response = slack.methods().searchMessages(r -> r.token(token).query("test"));
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -46,7 +46,7 @@ public class search_Test {
 
     @Test
     public void files() throws IOException, SlackApiException {
-        SearchFilesResponse response = slack.methods().searchFiles(r -> r.token(token).query("test").build());
+        SearchFilesResponse response = slack.methods().searchFiles(r -> r.token(token).query("test"));
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));

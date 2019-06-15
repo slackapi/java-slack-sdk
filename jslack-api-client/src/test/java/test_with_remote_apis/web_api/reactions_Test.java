@@ -28,7 +28,7 @@ public class reactions_Test {
 
     @Test
     public void test() throws IOException, SlackApiException {
-        String channel = slack.methods().channelsList(r -> r.token(token).excludeArchived(true).build())
+        String channel = slack.methods().channelsList(r -> r.token(token).excludeArchived(true))
                 .getChannels().get(0).getId();
 
         ChatPostMessageResponse postMessage = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
@@ -44,16 +44,14 @@ public class reactions_Test {
                 .token(token)
                 .name("smile")
                 .channel(channel)
-                .timestamp(timestamp)
-                .build());
+                .timestamp(timestamp));
         assertThat(addResponse.getError(), is(nullValue()));
         assertThat(addResponse.isOk(), is(true));
 
         ReactionsGetResponse getResponse = slack.methods().reactionsGet(r -> r
                 .token(token)
                 .channel(channel)
-                .timestamp(timestamp)
-                .build());
+                .timestamp(timestamp));
         assertThat(getResponse.getError(), is(nullValue()));
         assertThat(getResponse.isOk(), is(true));
 
@@ -61,8 +59,7 @@ public class reactions_Test {
                 .token(token)
                 .name("smile")
                 .channel(channel)
-                .timestamp(timestamp)
-                .build());
+                .timestamp(timestamp));
         assertThat(removeResponse.getError(), is(nullValue()));
         assertThat(removeResponse.isOk(), is(true));
 
@@ -70,13 +67,12 @@ public class reactions_Test {
 
     @Test
     public void list() throws IOException, SlackApiException {
-        String user = slack.methods().usersList(r -> r.token(token).build())
+        String user = slack.methods().usersList(r -> r.token(token))
                 .getMembers().get(0).getId();
 
         ReactionsListResponse response = slack.methods().reactionsList(r -> r
                 .token(token)
-                .user(user)
-                .build());
+                .user(user));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getItems(), is(notNullValue()));

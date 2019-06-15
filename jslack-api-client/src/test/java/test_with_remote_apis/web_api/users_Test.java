@@ -33,8 +33,7 @@ public class users_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         UsersListResponse users = slack.methods().usersList(r -> r
                 .token(token)
-                .limit(100)
-                .build());
+                .limit(100));
         for (User member : users.getMembers()) {
             log.info("user id: {} , name: {}", member.getId(), member.getName());
         }
@@ -45,7 +44,7 @@ public class users_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         {
-            UsersSetPresenceResponse response = slack.methods().usersSetPresence(r -> r.token(token).presence("away").build());
+            UsersSetPresenceResponse response = slack.methods().usersSetPresence(r -> r.token(token).presence("away"));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -58,7 +57,7 @@ public class users_Test {
         }
 
         {
-            UsersIdentityResponse response = slack.methods().usersIdentity(r -> r.token(token).build());
+            UsersIdentityResponse response = slack.methods().usersIdentity(r -> r.token(token));
             // TODO: test preparation?
             // {"ok":false,"error":"missing_scope","needed":"identity.basic","provided":"identify,read,post,client,apps,admin"}
             assertThat(response.getError(), is("missing_scope"));
@@ -68,8 +67,7 @@ public class users_Test {
         UsersListResponse usersListResponse = slack.methods().usersList(r -> r
                 .token(token)
                 .limit(2)
-                .presence(true)
-                .build());
+                .presence(true));
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 
@@ -100,14 +98,14 @@ public class users_Test {
         }
 
         {
-            UsersInfoResponse response = slack.methods().usersInfo(r -> r.token(token).user(userId).build());
+            UsersInfoResponse response = slack.methods().usersInfo(r -> r.token(token).user(userId));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getUser(), is(notNullValue()));
         }
 
         {
-            UsersGetPresenceResponse response = slack.methods().usersGetPresence(r -> r.token(token).user(userId).build());
+            UsersGetPresenceResponse response = slack.methods().usersGetPresence(r -> r.token(token).user(userId));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getPresence(), is(notNullValue()));
@@ -116,13 +114,13 @@ public class users_Test {
         {
             UsersConversationsResponse response = slack.methods().usersConversations(r -> r
                     .token(token)
-                    .user(userId).build());
+                    .user(userId));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
-            UsersDeletePhotoResponse response = slack.methods().usersDeletePhoto(r -> r.token(token).build());
+            UsersDeletePhotoResponse response = slack.methods().usersDeletePhoto(r -> r.token(token));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -131,8 +129,7 @@ public class users_Test {
         {
             UsersSetPhotoResponse response = slack.methods().usersSetPhoto(r -> r
                     .token(token)
-                    .image(image)
-                    .build());
+                    .image(image));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -143,8 +140,7 @@ public class users_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         UsersListResponse usersListResponse = slack.methods().usersList(r -> r
                 .token(token)
-                .presence(true)
-                .build());
+                .presence(true));
 
         List<User> users = usersListResponse.getMembers();
         User randomUserWhoHasEmail = null;

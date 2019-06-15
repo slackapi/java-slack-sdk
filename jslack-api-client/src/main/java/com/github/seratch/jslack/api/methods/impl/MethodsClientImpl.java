@@ -2,7 +2,7 @@ package com.github.seratch.jslack.api.methods.impl;
 
 import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.MethodsClient;
-import com.github.seratch.jslack.api.methods.RequestBuilder;
+import com.github.seratch.jslack.api.methods.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
@@ -151,8 +151,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ApiTestResponse apiTest(RequestBuilder<ApiTestRequest, ApiTestRequest.ApiTestRequestBuilder> req) throws IOException, SlackApiException {
-        return apiTest(req.build(ApiTestRequest.builder()));
+    public ApiTestResponse apiTest(RequestConfigurator<ApiTestRequest.ApiTestRequestBuilder> req) throws IOException, SlackApiException {
+        return apiTest(req.configure(ApiTestRequest.builder()).build());
     }
 
     @Override
@@ -161,8 +161,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AppsUninstallResponse appsUninstall(RequestBuilder<AppsUninstallRequest, AppsUninstallRequest.AppsUninstallRequestBuilder> req) throws IOException, SlackApiException {
-        return appsUninstall(req.build(AppsUninstallRequest.builder()));
+    public AppsUninstallResponse appsUninstall(RequestConfigurator<AppsUninstallRequest.AppsUninstallRequestBuilder> req) throws IOException, SlackApiException {
+        return appsUninstall(req.configure(AppsUninstallRequest.builder()).build());
     }
 
     @Override
@@ -171,8 +171,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AppsPermissionsInfoResponse appsPermissionsInfo(RequestBuilder<AppsPermissionsInfoRequest, AppsPermissionsInfoRequest.AppsPermissionsInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return appsPermissionsInfo(req.build(AppsPermissionsInfoRequest.builder()));
+    public AppsPermissionsInfoResponse appsPermissionsInfo(RequestConfigurator<AppsPermissionsInfoRequest.AppsPermissionsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return appsPermissionsInfo(req.configure(AppsPermissionsInfoRequest.builder()).build());
     }
 
     @Override
@@ -181,8 +181,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AppsPermissionsRequestResponse appsPermissionsRequest(RequestBuilder<AppsPermissionsRequestRequest, AppsPermissionsRequestRequest.AppsPermissionsRequestRequestBuilder> req) throws IOException, SlackApiException {
-        return appsPermissionsRequest(req.build(AppsPermissionsRequestRequest.builder()));
+    public AppsPermissionsRequestResponse appsPermissionsRequest(RequestConfigurator<AppsPermissionsRequestRequest.AppsPermissionsRequestRequestBuilder> req) throws IOException, SlackApiException {
+        return appsPermissionsRequest(req.configure(AppsPermissionsRequestRequest.builder()).build());
     }
 
     @Override
@@ -211,8 +211,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AuthRevokeResponse authRevoke(RequestBuilder<AuthRevokeRequest, AuthRevokeRequest.AuthRevokeRequestBuilder> req) throws IOException, SlackApiException {
-        return authRevoke(req.build(AuthRevokeRequest.builder()));
+    public AuthRevokeResponse authRevoke(RequestConfigurator<AuthRevokeRequest.AuthRevokeRequestBuilder> req) throws IOException, SlackApiException {
+        return authRevoke(req.configure(AuthRevokeRequest.builder()).build());
     }
 
     @Override
@@ -221,8 +221,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AuthTestResponse authTest(RequestBuilder<AuthTestRequest, AuthTestRequest.AuthTestRequestBuilder> req) throws IOException, SlackApiException {
-        return authTest(req.build(AuthTestRequest.builder()));
+    public AuthTestResponse authTest(RequestConfigurator<AuthTestRequest.AuthTestRequestBuilder> req) throws IOException, SlackApiException {
+        return authTest(req.configure(AuthTestRequest.builder()).build());
     }
 
     @Override
@@ -231,8 +231,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public BotsInfoResponse botsInfo(RequestBuilder<BotsInfoRequest, BotsInfoRequest.BotsInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return botsInfo(req.build(BotsInfoRequest.builder()));
+    public BotsInfoResponse botsInfo(RequestConfigurator<BotsInfoRequest.BotsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return botsInfo(req.configure(BotsInfoRequest.builder()).build());
     }
 
     @Override
@@ -241,8 +241,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsArchiveResponse channelsArchive(RequestBuilder<ChannelsArchiveRequest, ChannelsArchiveRequest.ChannelsArchiveRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsArchive(req.build(ChannelsArchiveRequest.builder()));
+    public ChannelsArchiveResponse channelsArchive(RequestConfigurator<ChannelsArchiveRequest.ChannelsArchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsArchive(req.configure(ChannelsArchiveRequest.builder()).build());
     }
 
     @Override
@@ -251,8 +251,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsCreateResponse channelsCreate(RequestBuilder<ChannelsCreateRequest, ChannelsCreateRequest.ChannelsCreateRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsCreate(req.build(ChannelsCreateRequest.builder()));
+    public ChannelsCreateResponse channelsCreate(RequestConfigurator<ChannelsCreateRequest.ChannelsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsCreate(req.configure(ChannelsCreateRequest.builder()).build());
     }
 
     @Override
@@ -261,8 +261,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsHistoryResponse channelsHistory(RequestBuilder<ChannelsHistoryRequest, ChannelsHistoryRequest.ChannelsHistoryRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsHistory(req.build(ChannelsHistoryRequest.builder()));
+    public ChannelsHistoryResponse channelsHistory(RequestConfigurator<ChannelsHistoryRequest.ChannelsHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsHistory(req.configure(ChannelsHistoryRequest.builder()).build());
     }
 
     @Override
@@ -271,8 +271,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsRepliesResponse channelsReplies(RequestBuilder<ChannelsRepliesRequest, ChannelsRepliesRequest.ChannelsRepliesRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsReplies(req.build(ChannelsRepliesRequest.builder()));
+    public ChannelsRepliesResponse channelsReplies(RequestConfigurator<ChannelsRepliesRequest.ChannelsRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsReplies(req.configure(ChannelsRepliesRequest.builder()).build());
     }
 
     @Override
@@ -281,8 +281,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsInfoResponse channelsInfo(RequestBuilder<ChannelsInfoRequest, ChannelsInfoRequest.ChannelsInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsInfo(req.build(ChannelsInfoRequest.builder()));
+    public ChannelsInfoResponse channelsInfo(RequestConfigurator<ChannelsInfoRequest.ChannelsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsInfo(req.configure(ChannelsInfoRequest.builder()).build());
     }
 
     @Override
@@ -291,8 +291,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsListResponse channelsList(RequestBuilder<ChannelsListRequest, ChannelsListRequest.ChannelsListRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsList(req.build(ChannelsListRequest.builder()));
+    public ChannelsListResponse channelsList(RequestConfigurator<ChannelsListRequest.ChannelsListRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsList(req.configure(ChannelsListRequest.builder()).build());
     }
 
     @Override
@@ -301,8 +301,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsInviteResponse channelsInvite(RequestBuilder<ChannelsInviteRequest, ChannelsInviteRequest.ChannelsInviteRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsInvite(req.build(ChannelsInviteRequest.builder()));
+    public ChannelsInviteResponse channelsInvite(RequestConfigurator<ChannelsInviteRequest.ChannelsInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsInvite(req.configure(ChannelsInviteRequest.builder()).build());
     }
 
     @Override
@@ -311,8 +311,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsJoinResponse channelsJoin(RequestBuilder<ChannelsJoinRequest, ChannelsJoinRequest.ChannelsJoinRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsJoin(req.build(ChannelsJoinRequest.builder()));
+    public ChannelsJoinResponse channelsJoin(RequestConfigurator<ChannelsJoinRequest.ChannelsJoinRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsJoin(req.configure(ChannelsJoinRequest.builder()).build());
     }
 
     @Override
@@ -321,8 +321,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsKickResponse channelsKick(RequestBuilder<ChannelsKickRequest, ChannelsKickRequest.ChannelsKickRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsKick(req.build(ChannelsKickRequest.builder()));
+    public ChannelsKickResponse channelsKick(RequestConfigurator<ChannelsKickRequest.ChannelsKickRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsKick(req.configure(ChannelsKickRequest.builder()).build());
     }
 
     @Override
@@ -331,8 +331,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsLeaveResponse channelsLeave(RequestBuilder<ChannelsLeaveRequest, ChannelsLeaveRequest.ChannelsLeaveRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsLeave(req.build(ChannelsLeaveRequest.builder()));
+    public ChannelsLeaveResponse channelsLeave(RequestConfigurator<ChannelsLeaveRequest.ChannelsLeaveRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsLeave(req.configure(ChannelsLeaveRequest.builder()).build());
     }
 
     @Override
@@ -341,8 +341,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsMarkResponse channelsMark(RequestBuilder<ChannelsMarkRequest, ChannelsMarkRequest.ChannelsMarkRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsMark(req.build(ChannelsMarkRequest.builder()));
+    public ChannelsMarkResponse channelsMark(RequestConfigurator<ChannelsMarkRequest.ChannelsMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsMark(req.configure(ChannelsMarkRequest.builder()).build());
     }
 
     @Override
@@ -351,8 +351,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsRenameResponse channelsRename(RequestBuilder<ChannelsRenameRequest, ChannelsRenameRequest.ChannelsRenameRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsRename(req.build(ChannelsRenameRequest.builder()));
+    public ChannelsRenameResponse channelsRename(RequestConfigurator<ChannelsRenameRequest.ChannelsRenameRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsRename(req.configure(ChannelsRenameRequest.builder()).build());
     }
 
     @Override
@@ -361,8 +361,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsSetPurposeResponse channelsSetPurpose(RequestBuilder<ChannelsSetPurposeRequest, ChannelsSetPurposeRequest.ChannelsSetPurposeRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsSetPurpose(req.build(ChannelsSetPurposeRequest.builder()));
+    public ChannelsSetPurposeResponse channelsSetPurpose(RequestConfigurator<ChannelsSetPurposeRequest.ChannelsSetPurposeRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsSetPurpose(req.configure(ChannelsSetPurposeRequest.builder()).build());
     }
 
     @Override
@@ -371,8 +371,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsSetTopicResponse channelsSetTopic(RequestBuilder<ChannelsSetTopicRequest, ChannelsSetTopicRequest.ChannelsSetTopicRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsSetTopic(req.build(ChannelsSetTopicRequest.builder()));
+    public ChannelsSetTopicResponse channelsSetTopic(RequestConfigurator<ChannelsSetTopicRequest.ChannelsSetTopicRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsSetTopic(req.configure(ChannelsSetTopicRequest.builder()).build());
     }
 
     @Override
@@ -381,8 +381,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChannelsUnarchiveResponse channelsUnarchive(RequestBuilder<ChannelsUnarchiveRequest, ChannelsUnarchiveRequest.ChannelsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
-        return channelsUnarchive(req.build(ChannelsUnarchiveRequest.builder()));
+    public ChannelsUnarchiveResponse channelsUnarchive(RequestConfigurator<ChannelsUnarchiveRequest.ChannelsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return channelsUnarchive(req.configure(ChannelsUnarchiveRequest.builder()).build());
     }
 
     @Override
@@ -391,8 +391,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatGetPermalinkResponse chatGetPermalink(RequestBuilder<ChatGetPermalinkRequest, ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException {
-        return chatGetPermalink(req.build(ChatGetPermalinkRequest.builder()));
+    public ChatGetPermalinkResponse chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException {
+        return chatGetPermalink(req.configure(ChatGetPermalinkRequest.builder()).build());
     }
 
     @Override
@@ -401,8 +401,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatDeleteResponse chatDelete(RequestBuilder<ChatDeleteRequest, ChatDeleteRequest.ChatDeleteRequestBuilder> req) throws IOException, SlackApiException {
-        return chatDelete(req.build(ChatDeleteRequest.builder()));
+    public ChatDeleteResponse chatDelete(RequestConfigurator<ChatDeleteRequest.ChatDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return chatDelete(req.configure(ChatDeleteRequest.builder()).build());
     }
 
     @Override
@@ -411,8 +411,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(RequestBuilder<ChatDeleteScheduledMessageRequest, ChatDeleteScheduledMessageRequest.ChatDeleteScheduledMessageRequestBuilder> req) throws IOException, SlackApiException {
-        return chatDeleteScheduledMessage(req.build(ChatDeleteScheduledMessageRequest.builder()));
+    public ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(RequestConfigurator<ChatDeleteScheduledMessageRequest.ChatDeleteScheduledMessageRequestBuilder> req) throws IOException, SlackApiException {
+        return chatDeleteScheduledMessage(req.configure(ChatDeleteScheduledMessageRequest.builder()).build());
     }
 
     @Override
@@ -421,8 +421,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatMeMessageResponse chatMeMessage(RequestBuilder<ChatMeMessageRequest, ChatMeMessageRequest.ChatMeMessageRequestBuilder> req) throws IOException, SlackApiException {
-        return chatMeMessage(req.build(ChatMeMessageRequest.builder()));
+    public ChatMeMessageResponse chatMeMessage(RequestConfigurator<ChatMeMessageRequest.ChatMeMessageRequestBuilder> req) throws IOException, SlackApiException {
+        return chatMeMessage(req.configure(ChatMeMessageRequest.builder()).build());
     }
 
     @Override
@@ -431,8 +431,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatPostEphemeralResponse chatPostEphemeral(RequestBuilder<ChatPostEphemeralRequest, ChatPostEphemeralRequest.ChatPostEphemeralRequestBuilder> req) throws IOException, SlackApiException {
-        return chatPostEphemeral(req.build(ChatPostEphemeralRequest.builder()));
+    public ChatPostEphemeralResponse chatPostEphemeral(RequestConfigurator<ChatPostEphemeralRequest.ChatPostEphemeralRequestBuilder> req) throws IOException, SlackApiException {
+        return chatPostEphemeral(req.configure(ChatPostEphemeralRequest.builder()).build());
     }
 
     @Override
@@ -441,8 +441,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatPostMessageResponse chatPostMessage(RequestBuilder<ChatPostMessageRequest, ChatPostMessageRequest.ChatPostMessageRequestBuilder> req) throws IOException, SlackApiException {
-        return chatPostMessage(req.build(ChatPostMessageRequest.builder()));
+    public ChatPostMessageResponse chatPostMessage(RequestConfigurator<ChatPostMessageRequest.ChatPostMessageRequestBuilder> req) throws IOException, SlackApiException {
+        return chatPostMessage(req.configure(ChatPostMessageRequest.builder()).build());
     }
 
     @Override
@@ -451,8 +451,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatScheduleMessageResponse chatScheduleMessage(RequestBuilder<ChatScheduleMessageRequest, ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req) throws IOException, SlackApiException {
-        return chatScheduleMessage(req.build(ChatScheduleMessageRequest.builder()));
+    public ChatScheduleMessageResponse chatScheduleMessage(RequestConfigurator<ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req) throws IOException, SlackApiException {
+        return chatScheduleMessage(req.configure(ChatScheduleMessageRequest.builder()).build());
     }
 
     @Override
@@ -461,8 +461,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatUpdateResponse chatUpdate(RequestBuilder<ChatUpdateRequest, ChatUpdateRequest.ChatUpdateRequestBuilder> req) throws IOException, SlackApiException {
-        return chatUpdate(req.build(ChatUpdateRequest.builder()));
+    public ChatUpdateResponse chatUpdate(RequestConfigurator<ChatUpdateRequest.ChatUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return chatUpdate(req.configure(ChatUpdateRequest.builder()).build());
     }
 
     @Override
@@ -471,8 +471,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatUnfurlResponse chatUnfurl(RequestBuilder<ChatUnfurlRequest, ChatUnfurlRequest.ChatUnfurlRequestBuilder> req) throws IOException, SlackApiException {
-        return chatUnfurl(req.build(ChatUnfurlRequest.builder()));
+    public ChatUnfurlResponse chatUnfurl(RequestConfigurator<ChatUnfurlRequest.ChatUnfurlRequestBuilder> req) throws IOException, SlackApiException {
+        return chatUnfurl(req.configure(ChatUnfurlRequest.builder()).build());
     }
 
     @Override
@@ -481,8 +481,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(RequestBuilder<ChatScheduleMessagesListRequest, ChatScheduleMessagesListRequest.ChatScheduleMessagesListRequestBuilder> req) throws IOException, SlackApiException {
-        return chatScheduleMessagesListMessage(req.build(ChatScheduleMessagesListRequest.builder()));
+    public ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(RequestConfigurator<ChatScheduleMessagesListRequest.ChatScheduleMessagesListRequestBuilder> req) throws IOException, SlackApiException {
+        return chatScheduleMessagesListMessage(req.configure(ChatScheduleMessagesListRequest.builder()).build());
     }
 
     @Override
@@ -492,8 +492,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsArchiveResponse conversationsArchive(RequestBuilder<ConversationsArchiveRequest, ConversationsArchiveRequest.ConversationsArchiveRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsArchive(req.build(ConversationsArchiveRequest.builder()));
+    public ConversationsArchiveResponse conversationsArchive(RequestConfigurator<ConversationsArchiveRequest.ConversationsArchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsArchive(req.configure(ConversationsArchiveRequest.builder()).build());
     }
 
     @Override
@@ -503,8 +503,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsCloseResponse conversationsClose(RequestBuilder<ConversationsCloseRequest, ConversationsCloseRequest.ConversationsCloseRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsClose(req.build(ConversationsCloseRequest.builder()));
+    public ConversationsCloseResponse conversationsClose(RequestConfigurator<ConversationsCloseRequest.ConversationsCloseRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsClose(req.configure(ConversationsCloseRequest.builder()).build());
     }
 
     @Override
@@ -514,8 +514,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsCreateResponse conversationsCreate(RequestBuilder<ConversationsCreateRequest, ConversationsCreateRequest.ConversationsCreateRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsCreate(req.build(ConversationsCreateRequest.builder()));
+    public ConversationsCreateResponse conversationsCreate(RequestConfigurator<ConversationsCreateRequest.ConversationsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsCreate(req.configure(ConversationsCreateRequest.builder()).build());
     }
 
     @Override
@@ -525,8 +525,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsHistoryResponse conversationsHistory(RequestBuilder<ConversationsHistoryRequest, ConversationsHistoryRequest.ConversationsHistoryRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsHistory(req.build(ConversationsHistoryRequest.builder()));
+    public ConversationsHistoryResponse conversationsHistory(RequestConfigurator<ConversationsHistoryRequest.ConversationsHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsHistory(req.configure(ConversationsHistoryRequest.builder()).build());
     }
 
     @Override
@@ -536,8 +536,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsInfoResponse conversationsInfo(RequestBuilder<ConversationsInfoRequest, ConversationsInfoRequest.ConversationsInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsInfo(req.build(ConversationsInfoRequest.builder()));
+    public ConversationsInfoResponse conversationsInfo(RequestConfigurator<ConversationsInfoRequest.ConversationsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsInfo(req.configure(ConversationsInfoRequest.builder()).build());
     }
 
     @Override
@@ -547,8 +547,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsInviteResponse conversationsInvite(RequestBuilder<ConversationsInviteRequest, ConversationsInviteRequest.ConversationsInviteRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsInvite(req.build(ConversationsInviteRequest.builder()));
+    public ConversationsInviteResponse conversationsInvite(RequestConfigurator<ConversationsInviteRequest.ConversationsInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsInvite(req.configure(ConversationsInviteRequest.builder()).build());
     }
 
     @Override
@@ -558,8 +558,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsJoinResponse conversationsJoin(RequestBuilder<ConversationsJoinRequest, ConversationsJoinRequest.ConversationsJoinRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsJoin(req.build(ConversationsJoinRequest.builder()));
+    public ConversationsJoinResponse conversationsJoin(RequestConfigurator<ConversationsJoinRequest.ConversationsJoinRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsJoin(req.configure(ConversationsJoinRequest.builder()).build());
     }
 
     @Override
@@ -569,8 +569,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsKickResponse conversationsKick(RequestBuilder<ConversationsKickRequest, ConversationsKickRequest.ConversationsKickRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsKick(req.build(ConversationsKickRequest.builder()));
+    public ConversationsKickResponse conversationsKick(RequestConfigurator<ConversationsKickRequest.ConversationsKickRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsKick(req.configure(ConversationsKickRequest.builder()).build());
     }
 
     @Override
@@ -580,8 +580,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsLeaveResponse conversationsLeave(RequestBuilder<ConversationsLeaveRequest, ConversationsLeaveRequest.ConversationsLeaveRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsLeave(req.build(ConversationsLeaveRequest.builder()));
+    public ConversationsLeaveResponse conversationsLeave(RequestConfigurator<ConversationsLeaveRequest.ConversationsLeaveRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsLeave(req.configure(ConversationsLeaveRequest.builder()).build());
     }
 
     @Override
@@ -591,8 +591,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsListResponse conversationsList(RequestBuilder<ConversationsListRequest, ConversationsListRequest.ConversationsListRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsList(req.build(ConversationsListRequest.builder()));
+    public ConversationsListResponse conversationsList(RequestConfigurator<ConversationsListRequest.ConversationsListRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsList(req.configure(ConversationsListRequest.builder()).build());
     }
 
     @Override
@@ -602,8 +602,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsMembersResponse conversationsMembers(RequestBuilder<ConversationsMembersRequest, ConversationsMembersRequest.ConversationsMembersRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsMembers(req.build(ConversationsMembersRequest.builder()));
+    public ConversationsMembersResponse conversationsMembers(RequestConfigurator<ConversationsMembersRequest.ConversationsMembersRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsMembers(req.configure(ConversationsMembersRequest.builder()).build());
     }
 
     @Override
@@ -613,8 +613,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsOpenResponse conversationsOpen(RequestBuilder<ConversationsOpenRequest, ConversationsOpenRequest.ConversationsOpenRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsOpen(req.build(ConversationsOpenRequest.builder()));
+    public ConversationsOpenResponse conversationsOpen(RequestConfigurator<ConversationsOpenRequest.ConversationsOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsOpen(req.configure(ConversationsOpenRequest.builder()).build());
     }
 
     @Override
@@ -624,8 +624,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsRenameResponse conversationsRename(RequestBuilder<ConversationsRenameRequest, ConversationsRenameRequest.ConversationsRenameRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsRename(req.build(ConversationsRenameRequest.builder()));
+    public ConversationsRenameResponse conversationsRename(RequestConfigurator<ConversationsRenameRequest.ConversationsRenameRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsRename(req.configure(ConversationsRenameRequest.builder()).build());
     }
 
     @Override
@@ -635,8 +635,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsRepliesResponse conversationsReplies(RequestBuilder<ConversationsRepliesRequest, ConversationsRepliesRequest.ConversationsRepliesRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsReplies(req.build(ConversationsRepliesRequest.builder()));
+    public ConversationsRepliesResponse conversationsReplies(RequestConfigurator<ConversationsRepliesRequest.ConversationsRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsReplies(req.configure(ConversationsRepliesRequest.builder()).build());
     }
 
     @Override
@@ -646,8 +646,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsSetPurposeResponse conversationsSetPurpose(RequestBuilder<ConversationsSetPurposeRequest, ConversationsSetPurposeRequest.ConversationsSetPurposeRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsSetPurpose(req.build(ConversationsSetPurposeRequest.builder()));
+    public ConversationsSetPurposeResponse conversationsSetPurpose(RequestConfigurator<ConversationsSetPurposeRequest.ConversationsSetPurposeRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsSetPurpose(req.configure(ConversationsSetPurposeRequest.builder()).build());
     }
 
     @Override
@@ -657,8 +657,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsSetTopicResponse conversationsSetTopic(RequestBuilder<ConversationsSetTopicRequest, ConversationsSetTopicRequest.ConversationsSetTopicRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsSetTopic(req.build(ConversationsSetTopicRequest.builder()));
+    public ConversationsSetTopicResponse conversationsSetTopic(RequestConfigurator<ConversationsSetTopicRequest.ConversationsSetTopicRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsSetTopic(req.configure(ConversationsSetTopicRequest.builder()).build());
     }
 
     @Override
@@ -668,8 +668,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ConversationsUnarchiveResponse conversationsUnarchive(RequestBuilder<ConversationsUnarchiveRequest, ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
-        return conversationsUnarchive(req.build(ConversationsUnarchiveRequest.builder()));
+    public ConversationsUnarchiveResponse conversationsUnarchive(RequestConfigurator<ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsUnarchive(req.configure(ConversationsUnarchiveRequest.builder()).build());
     }
 
     @Override
@@ -679,8 +679,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public DialogOpenResponse dialogOpen(RequestBuilder<DialogOpenRequest, DialogOpenRequest.DialogOpenRequestBuilder> req) throws IOException, SlackApiException {
-        return dialogOpen(req.build(DialogOpenRequest.builder()));
+    public DialogOpenResponse dialogOpen(RequestConfigurator<DialogOpenRequest.DialogOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return dialogOpen(req.configure(DialogOpenRequest.builder()).build());
     }
 
     @Override
@@ -689,8 +689,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public DndEndDndResponse dndEndDnd(RequestBuilder<DndEndDndRequest, DndEndDndRequest.DndEndDndRequestBuilder> req) throws IOException, SlackApiException {
-        return dndEndDnd(req.build(DndEndDndRequest.builder()));
+    public DndEndDndResponse dndEndDnd(RequestConfigurator<DndEndDndRequest.DndEndDndRequestBuilder> req) throws IOException, SlackApiException {
+        return dndEndDnd(req.configure(DndEndDndRequest.builder()).build());
     }
 
     @Override
@@ -699,8 +699,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public DndEndSnoozeResponse dndEndSnooze(RequestBuilder<DndEndSnoozeRequest, DndEndSnoozeRequest.DndEndSnoozeRequestBuilder> req) throws IOException, SlackApiException {
-        return dndEndSnooze(req.build(DndEndSnoozeRequest.builder()));
+    public DndEndSnoozeResponse dndEndSnooze(RequestConfigurator<DndEndSnoozeRequest.DndEndSnoozeRequestBuilder> req) throws IOException, SlackApiException {
+        return dndEndSnooze(req.configure(DndEndSnoozeRequest.builder()).build());
     }
 
     @Override
@@ -709,8 +709,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public DndInfoResponse dndInfo(RequestBuilder<DndInfoRequest, DndInfoRequest.DndInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return dndInfo(req.build(DndInfoRequest.builder()));
+    public DndInfoResponse dndInfo(RequestConfigurator<DndInfoRequest.DndInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return dndInfo(req.configure(DndInfoRequest.builder()).build());
     }
 
     @Override
@@ -719,8 +719,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public DndSetSnoozeResponse dndSetSnooze(RequestBuilder<DndSetSnoozeRequest, DndSetSnoozeRequest.DndSetSnoozeRequestBuilder> req) throws IOException, SlackApiException {
-        return dndSetSnooze(req.build(DndSetSnoozeRequest.builder()));
+    public DndSetSnoozeResponse dndSetSnooze(RequestConfigurator<DndSetSnoozeRequest.DndSetSnoozeRequestBuilder> req) throws IOException, SlackApiException {
+        return dndSetSnooze(req.configure(DndSetSnoozeRequest.builder()).build());
     }
 
     @Override
@@ -729,8 +729,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public DndTeamInfoResponse dndTeamInfo(RequestBuilder<DndTeamInfoRequest, DndTeamInfoRequest.DndTeamInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return dndTeamInfo(req.build(DndTeamInfoRequest.builder()));
+    public DndTeamInfoResponse dndTeamInfo(RequestConfigurator<DndTeamInfoRequest.DndTeamInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return dndTeamInfo(req.configure(DndTeamInfoRequest.builder()).build());
     }
 
     @Override
@@ -739,8 +739,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public EmojiListResponse emojiList(RequestBuilder<EmojiListRequest, EmojiListRequest.EmojiListRequestBuilder> req) throws IOException, SlackApiException {
-        return emojiList(req.build(EmojiListRequest.builder()));
+    public EmojiListResponse emojiList(RequestConfigurator<EmojiListRequest.EmojiListRequestBuilder> req) throws IOException, SlackApiException {
+        return emojiList(req.configure(EmojiListRequest.builder()).build());
     }
 
     @Override
@@ -749,8 +749,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public FilesDeleteResponse filesDelete(RequestBuilder<FilesDeleteRequest, FilesDeleteRequest.FilesDeleteRequestBuilder> req) throws IOException, SlackApiException {
-        return filesDelete(req.build(FilesDeleteRequest.builder()));
+    public FilesDeleteResponse filesDelete(RequestConfigurator<FilesDeleteRequest.FilesDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return filesDelete(req.configure(FilesDeleteRequest.builder()).build());
     }
 
     @Override
@@ -759,8 +759,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public FilesInfoResponse filesInfo(RequestBuilder<FilesInfoRequest, FilesInfoRequest.FilesInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return filesInfo(req.build(FilesInfoRequest.builder()));
+    public FilesInfoResponse filesInfo(RequestConfigurator<FilesInfoRequest.FilesInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return filesInfo(req.configure(FilesInfoRequest.builder()).build());
     }
 
     @Override
@@ -769,8 +769,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public FilesListResponse filesList(RequestBuilder<FilesListRequest, FilesListRequest.FilesListRequestBuilder> req) throws IOException, SlackApiException {
-        return filesList(req.build(FilesListRequest.builder()));
+    public FilesListResponse filesList(RequestConfigurator<FilesListRequest.FilesListRequestBuilder> req) throws IOException, SlackApiException {
+        return filesList(req.configure(FilesListRequest.builder()).build());
     }
 
     @Override
@@ -779,8 +779,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public FilesRevokePublicURLResponse filesRevokePublicURL(RequestBuilder<FilesRevokePublicURLRequest, FilesRevokePublicURLRequest.FilesRevokePublicURLRequestBuilder> req) throws IOException, SlackApiException {
-        return filesRevokePublicURL(req.build(FilesRevokePublicURLRequest.builder()));
+    public FilesRevokePublicURLResponse filesRevokePublicURL(RequestConfigurator<FilesRevokePublicURLRequest.FilesRevokePublicURLRequestBuilder> req) throws IOException, SlackApiException {
+        return filesRevokePublicURL(req.configure(FilesRevokePublicURLRequest.builder()).build());
     }
 
     @Override
@@ -789,8 +789,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public FilesSharedPublicURLResponse filesSharedPublicURL(RequestBuilder<FilesSharedPublicURLRequest, FilesSharedPublicURLRequest.FilesSharedPublicURLRequestBuilder> req) throws IOException, SlackApiException {
-        return filesSharedPublicURL(req.build(FilesSharedPublicURLRequest.builder()));
+    public FilesSharedPublicURLResponse filesSharedPublicURL(RequestConfigurator<FilesSharedPublicURLRequest.FilesSharedPublicURLRequestBuilder> req) throws IOException, SlackApiException {
+        return filesSharedPublicURL(req.configure(FilesSharedPublicURLRequest.builder()).build());
     }
 
     @Override
@@ -803,8 +803,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public FilesUploadResponse filesUpload(RequestBuilder<FilesUploadRequest, FilesUploadRequest.FilesUploadRequestBuilder> req) throws IOException, SlackApiException {
-        return filesUpload(req.build(FilesUploadRequest.builder()));
+    public FilesUploadResponse filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req) throws IOException, SlackApiException {
+        return filesUpload(req.configure(FilesUploadRequest.builder()).build());
     }
 
     @Override
@@ -828,8 +828,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsArchiveResponse groupsArchive(RequestBuilder<GroupsArchiveRequest, GroupsArchiveRequest.GroupsArchiveRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsArchive(req.build(GroupsArchiveRequest.builder()));
+    public GroupsArchiveResponse groupsArchive(RequestConfigurator<GroupsArchiveRequest.GroupsArchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsArchive(req.configure(GroupsArchiveRequest.builder()).build());
     }
 
     @Override
@@ -843,8 +843,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsCreateChildResponse groupsCreateChild(RequestBuilder<GroupsCreateChildRequest, GroupsCreateChildRequest.GroupsCreateChildRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsCreateChild(req.build(GroupsCreateChildRequest.builder()));
+    public GroupsCreateChildResponse groupsCreateChild(RequestConfigurator<GroupsCreateChildRequest.GroupsCreateChildRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsCreateChild(req.configure(GroupsCreateChildRequest.builder()).build());
     }
 
     @Override
@@ -853,8 +853,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsCreateResponse groupsCreate(RequestBuilder<GroupsCreateRequest, GroupsCreateRequest.GroupsCreateRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsCreate(req.build(GroupsCreateRequest.builder()));
+    public GroupsCreateResponse groupsCreate(RequestConfigurator<GroupsCreateRequest.GroupsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsCreate(req.configure(GroupsCreateRequest.builder()).build());
     }
 
     @Override
@@ -863,8 +863,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsHistoryResponse groupsHistory(RequestBuilder<GroupsHistoryRequest, GroupsHistoryRequest.GroupsHistoryRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsHistory(req.build(GroupsHistoryRequest.builder()));
+    public GroupsHistoryResponse groupsHistory(RequestConfigurator<GroupsHistoryRequest.GroupsHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsHistory(req.configure(GroupsHistoryRequest.builder()).build());
     }
 
     @Override
@@ -873,8 +873,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsRepliesResponse groupsReplies(RequestBuilder<GroupsRepliesRequest, GroupsRepliesRequest.GroupsRepliesRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsReplies(req.build(GroupsRepliesRequest.builder()));
+    public GroupsRepliesResponse groupsReplies(RequestConfigurator<GroupsRepliesRequest.GroupsRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsReplies(req.configure(GroupsRepliesRequest.builder()).build());
     }
 
     @Override
@@ -883,8 +883,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsInfoResponse groupsInfo(RequestBuilder<GroupsInfoRequest, GroupsInfoRequest.GroupsInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsInfo(req.build(GroupsInfoRequest.builder()));
+    public GroupsInfoResponse groupsInfo(RequestConfigurator<GroupsInfoRequest.GroupsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsInfo(req.configure(GroupsInfoRequest.builder()).build());
     }
 
     @Override
@@ -893,8 +893,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsInviteResponse groupsInvite(RequestBuilder<GroupsInviteRequest, GroupsInviteRequest.GroupsInviteRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsInvite(req.build(GroupsInviteRequest.builder()));
+    public GroupsInviteResponse groupsInvite(RequestConfigurator<GroupsInviteRequest.GroupsInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsInvite(req.configure(GroupsInviteRequest.builder()).build());
     }
 
     @Override
@@ -903,8 +903,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsKickResponse groupsKick(RequestBuilder<GroupsKickRequest, GroupsKickRequest.GroupsKickRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsKick(req.build(GroupsKickRequest.builder()));
+    public GroupsKickResponse groupsKick(RequestConfigurator<GroupsKickRequest.GroupsKickRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsKick(req.configure(GroupsKickRequest.builder()).build());
     }
 
     @Override
@@ -913,8 +913,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsLeaveResponse groupsLeave(RequestBuilder<GroupsLeaveRequest, GroupsLeaveRequest.GroupsLeaveRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsLeave(req.build(GroupsLeaveRequest.builder()));
+    public GroupsLeaveResponse groupsLeave(RequestConfigurator<GroupsLeaveRequest.GroupsLeaveRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsLeave(req.configure(GroupsLeaveRequest.builder()).build());
     }
 
     @Override
@@ -923,8 +923,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsListResponse groupsList(RequestBuilder<GroupsListRequest, GroupsListRequest.GroupsListRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsList(req.build(GroupsListRequest.builder()));
+    public GroupsListResponse groupsList(RequestConfigurator<GroupsListRequest.GroupsListRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsList(req.configure(GroupsListRequest.builder()).build());
     }
 
     @Override
@@ -933,8 +933,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsMarkResponse groupsMark(RequestBuilder<GroupsMarkRequest, GroupsMarkRequest.GroupsMarkRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsMark(req.build(GroupsMarkRequest.builder()));
+    public GroupsMarkResponse groupsMark(RequestConfigurator<GroupsMarkRequest.GroupsMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsMark(req.configure(GroupsMarkRequest.builder()).build());
     }
 
     @Override
@@ -943,8 +943,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsOpenResponse groupsOpen(RequestBuilder<GroupsOpenRequest, GroupsOpenRequest.GroupsOpenRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsOpen(req.build(GroupsOpenRequest.builder()));
+    public GroupsOpenResponse groupsOpen(RequestConfigurator<GroupsOpenRequest.GroupsOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsOpen(req.configure(GroupsOpenRequest.builder()).build());
     }
 
     @Override
@@ -953,8 +953,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsRenameResponse groupsRename(RequestBuilder<GroupsRenameRequest, GroupsRenameRequest.GroupsRenameRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsRename(req.build(GroupsRenameRequest.builder()));
+    public GroupsRenameResponse groupsRename(RequestConfigurator<GroupsRenameRequest.GroupsRenameRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsRename(req.configure(GroupsRenameRequest.builder()).build());
     }
 
     @Override
@@ -963,8 +963,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsSetPurposeResponse groupsSetPurpose(RequestBuilder<GroupsSetPurposeRequest, GroupsSetPurposeRequest.GroupsSetPurposeRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsSetPurpose(req.build(GroupsSetPurposeRequest.builder()));
+    public GroupsSetPurposeResponse groupsSetPurpose(RequestConfigurator<GroupsSetPurposeRequest.GroupsSetPurposeRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsSetPurpose(req.configure(GroupsSetPurposeRequest.builder()).build());
     }
 
     @Override
@@ -973,8 +973,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsSetTopicResponse groupsSetTopic(RequestBuilder<GroupsSetTopicRequest, GroupsSetTopicRequest.GroupsSetTopicRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsSetTopic(req.build(GroupsSetTopicRequest.builder()));
+    public GroupsSetTopicResponse groupsSetTopic(RequestConfigurator<GroupsSetTopicRequest.GroupsSetTopicRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsSetTopic(req.configure(GroupsSetTopicRequest.builder()).build());
     }
 
     @Override
@@ -983,8 +983,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public GroupsUnarchiveResponse groupsUnarchive(RequestBuilder<GroupsUnarchiveRequest, GroupsUnarchiveRequest.GroupsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
-        return groupsUnarchive(req.build(GroupsUnarchiveRequest.builder()));
+    public GroupsUnarchiveResponse groupsUnarchive(RequestConfigurator<GroupsUnarchiveRequest.GroupsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return groupsUnarchive(req.configure(GroupsUnarchiveRequest.builder()).build());
     }
 
     @Override
@@ -993,8 +993,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ImCloseResponse imClose(RequestBuilder<ImCloseRequest, ImCloseRequest.ImCloseRequestBuilder> req) throws IOException, SlackApiException {
-        return imClose(req.build(ImCloseRequest.builder()));
+    public ImCloseResponse imClose(RequestConfigurator<ImCloseRequest.ImCloseRequestBuilder> req) throws IOException, SlackApiException {
+        return imClose(req.configure(ImCloseRequest.builder()).build());
     }
 
     @Override
@@ -1003,8 +1003,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ImHistoryResponse imHistory(RequestBuilder<ImHistoryRequest, ImHistoryRequest.ImHistoryRequestBuilder> req) throws IOException, SlackApiException {
-        return imHistory(req.build(ImHistoryRequest.builder()));
+    public ImHistoryResponse imHistory(RequestConfigurator<ImHistoryRequest.ImHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return imHistory(req.configure(ImHistoryRequest.builder()).build());
     }
 
     @Override
@@ -1013,8 +1013,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ImListResponse imList(RequestBuilder<ImListRequest, ImListRequest.ImListRequestBuilder> req) throws IOException, SlackApiException {
-        return imList(req.build(ImListRequest.builder()));
+    public ImListResponse imList(RequestConfigurator<ImListRequest.ImListRequestBuilder> req) throws IOException, SlackApiException {
+        return imList(req.configure(ImListRequest.builder()).build());
     }
 
     @Override
@@ -1023,8 +1023,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ImMarkResponse imMark(RequestBuilder<ImMarkRequest, ImMarkRequest.ImMarkRequestBuilder> req) throws IOException, SlackApiException {
-        return imMark(req.build(ImMarkRequest.builder()));
+    public ImMarkResponse imMark(RequestConfigurator<ImMarkRequest.ImMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return imMark(req.configure(ImMarkRequest.builder()).build());
     }
 
     @Override
@@ -1033,8 +1033,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ImOpenResponse imOpen(RequestBuilder<ImOpenRequest, ImOpenRequest.ImOpenRequestBuilder> req) throws IOException, SlackApiException {
-        return imOpen(req.build(ImOpenRequest.builder()));
+    public ImOpenResponse imOpen(RequestConfigurator<ImOpenRequest.ImOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return imOpen(req.configure(ImOpenRequest.builder()).build());
     }
 
     @Override
@@ -1043,8 +1043,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ImRepliesResponse imReplies(RequestBuilder<ImRepliesRequest, ImRepliesRequest.ImRepliesRequestBuilder> req) throws IOException, SlackApiException {
-        return imReplies(req.build(ImRepliesRequest.builder()));
+    public ImRepliesResponse imReplies(RequestConfigurator<ImRepliesRequest.ImRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return imReplies(req.configure(ImRepliesRequest.builder()).build());
     }
 
     @Override
@@ -1053,8 +1053,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public MigrationExchangeResponse migrationExchange(RequestBuilder<MigrationExchangeRequest, MigrationExchangeRequest.MigrationExchangeRequestBuilder> req) throws IOException, SlackApiException {
-        return migrationExchange(req.build(MigrationExchangeRequest.builder()));
+    public MigrationExchangeResponse migrationExchange(RequestConfigurator<MigrationExchangeRequest.MigrationExchangeRequestBuilder> req) throws IOException, SlackApiException {
+        return migrationExchange(req.configure(MigrationExchangeRequest.builder()).build());
     }
 
     @Override
@@ -1063,8 +1063,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public MpimCloseResponse mpimClose(RequestBuilder<MpimCloseRequest, MpimCloseRequest.MpimCloseRequestBuilder> req) throws IOException, SlackApiException {
-        return mpimClose(req.build(MpimCloseRequest.builder()));
+    public MpimCloseResponse mpimClose(RequestConfigurator<MpimCloseRequest.MpimCloseRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimClose(req.configure(MpimCloseRequest.builder()).build());
     }
 
     @Override
@@ -1073,8 +1073,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public MpimHistoryResponse mpimHistory(RequestBuilder<MpimHistoryRequest, MpimHistoryRequest.MpimHistoryRequestBuilder> req) throws IOException, SlackApiException {
-        return mpimHistory(req.build(MpimHistoryRequest.builder()));
+    public MpimHistoryResponse mpimHistory(RequestConfigurator<MpimHistoryRequest.MpimHistoryRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimHistory(req.configure(MpimHistoryRequest.builder()).build());
     }
 
     @Override
@@ -1083,8 +1083,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public MpimListResponse mpimList(RequestBuilder<MpimListRequest, MpimListRequest.MpimListRequestBuilder> req) throws IOException, SlackApiException {
-        return mpimList(req.build(MpimListRequest.builder()));
+    public MpimListResponse mpimList(RequestConfigurator<MpimListRequest.MpimListRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimList(req.configure(MpimListRequest.builder()).build());
     }
 
     @Override
@@ -1093,8 +1093,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public MpimRepliesResponse mpimReplies(RequestBuilder<MpimRepliesRequest, MpimRepliesRequest.MpimRepliesRequestBuilder> req) throws IOException, SlackApiException {
-        return mpimReplies(req.build(MpimRepliesRequest.builder()));
+    public MpimRepliesResponse mpimReplies(RequestConfigurator<MpimRepliesRequest.MpimRepliesRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimReplies(req.configure(MpimRepliesRequest.builder()).build());
     }
 
     @Override
@@ -1103,8 +1103,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public MpimMarkResponse mpimMark(RequestBuilder<MpimMarkRequest, MpimMarkRequest.MpimMarkRequestBuilder> req) throws IOException, SlackApiException {
-        return mpimMark(req.build(MpimMarkRequest.builder()));
+    public MpimMarkResponse mpimMark(RequestConfigurator<MpimMarkRequest.MpimMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimMark(req.configure(MpimMarkRequest.builder()).build());
     }
 
     @Override
@@ -1113,8 +1113,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public MpimOpenResponse mpimOpen(RequestBuilder<MpimOpenRequest, MpimOpenRequest.MpimOpenRequestBuilder> req) throws IOException, SlackApiException {
-        return mpimOpen(req.build(MpimOpenRequest.builder()));
+    public MpimOpenResponse mpimOpen(RequestConfigurator<MpimOpenRequest.MpimOpenRequestBuilder> req) throws IOException, SlackApiException {
+        return mpimOpen(req.configure(MpimOpenRequest.builder()).build());
     }
 
     @Override
@@ -1123,8 +1123,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public OAuthAccessResponse oauthAccess(RequestBuilder<OAuthAccessRequest, OAuthAccessRequest.OAuthAccessRequestBuilder> req) throws IOException, SlackApiException {
-        return oauthAccess(req.build(OAuthAccessRequest.builder()));
+    public OAuthAccessResponse oauthAccess(RequestConfigurator<OAuthAccessRequest.OAuthAccessRequestBuilder> req) throws IOException, SlackApiException {
+        return oauthAccess(req.configure(OAuthAccessRequest.builder()).build());
     }
 
     @Override
@@ -1133,8 +1133,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public OAuthTokenResponse oauthToken(RequestBuilder<OAuthTokenRequest, OAuthTokenRequest.OAuthTokenRequestBuilder> req) throws IOException, SlackApiException {
-        return oauthToken(req.build(OAuthTokenRequest.builder()));
+    public OAuthTokenResponse oauthToken(RequestConfigurator<OAuthTokenRequest.OAuthTokenRequestBuilder> req) throws IOException, SlackApiException {
+        return oauthToken(req.configure(OAuthTokenRequest.builder()).build());
     }
 
     @Override
@@ -1143,8 +1143,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public PinsAddResponse pinsAdd(RequestBuilder<PinsAddRequest, PinsAddRequest.PinsAddRequestBuilder> req) throws IOException, SlackApiException {
-        return pinsAdd(req.build(PinsAddRequest.builder()));
+    public PinsAddResponse pinsAdd(RequestConfigurator<PinsAddRequest.PinsAddRequestBuilder> req) throws IOException, SlackApiException {
+        return pinsAdd(req.configure(PinsAddRequest.builder()).build());
     }
 
     @Override
@@ -1153,8 +1153,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public PinsListResponse pinsList(RequestBuilder<PinsListRequest, PinsListRequest.PinsListRequestBuilder> req) throws IOException, SlackApiException {
-        return pinsList(req.build(PinsListRequest.builder()));
+    public PinsListResponse pinsList(RequestConfigurator<PinsListRequest.PinsListRequestBuilder> req) throws IOException, SlackApiException {
+        return pinsList(req.configure(PinsListRequest.builder()).build());
     }
 
     @Override
@@ -1163,8 +1163,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public PinsRemoveResponse pinsRemove(RequestBuilder<PinsRemoveRequest, PinsRemoveRequest.PinsRemoveRequestBuilder> req) throws IOException, SlackApiException {
-        return pinsRemove(req.build(PinsRemoveRequest.builder()));
+    public PinsRemoveResponse pinsRemove(RequestConfigurator<PinsRemoveRequest.PinsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return pinsRemove(req.configure(PinsRemoveRequest.builder()).build());
     }
 
     @Override
@@ -1173,8 +1173,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ReactionsAddResponse reactionsAdd(RequestBuilder<ReactionsAddRequest, ReactionsAddRequest.ReactionsAddRequestBuilder> req) throws IOException, SlackApiException {
-        return reactionsAdd(req.build(ReactionsAddRequest.builder()));
+    public ReactionsAddResponse reactionsAdd(RequestConfigurator<ReactionsAddRequest.ReactionsAddRequestBuilder> req) throws IOException, SlackApiException {
+        return reactionsAdd(req.configure(ReactionsAddRequest.builder()).build());
     }
 
     @Override
@@ -1183,8 +1183,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ReactionsGetResponse reactionsGet(RequestBuilder<ReactionsGetRequest, ReactionsGetRequest.ReactionsGetRequestBuilder> req) throws IOException, SlackApiException {
-        return reactionsGet(req.build(ReactionsGetRequest.builder()));
+    public ReactionsGetResponse reactionsGet(RequestConfigurator<ReactionsGetRequest.ReactionsGetRequestBuilder> req) throws IOException, SlackApiException {
+        return reactionsGet(req.configure(ReactionsGetRequest.builder()).build());
     }
 
     @Override
@@ -1193,8 +1193,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ReactionsListResponse reactionsList(RequestBuilder<ReactionsListRequest, ReactionsListRequest.ReactionsListRequestBuilder> req) throws IOException, SlackApiException {
-        return reactionsList(req.build(ReactionsListRequest.builder()));
+    public ReactionsListResponse reactionsList(RequestConfigurator<ReactionsListRequest.ReactionsListRequestBuilder> req) throws IOException, SlackApiException {
+        return reactionsList(req.configure(ReactionsListRequest.builder()).build());
     }
 
     @Override
@@ -1203,8 +1203,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public ReactionsRemoveResponse reactionsRemove(RequestBuilder<ReactionsRemoveRequest, ReactionsRemoveRequest.ReactionsRemoveRequestBuilder> req) throws IOException, SlackApiException {
-        return reactionsRemove(req.build(ReactionsRemoveRequest.builder()));
+    public ReactionsRemoveResponse reactionsRemove(RequestConfigurator<ReactionsRemoveRequest.ReactionsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return reactionsRemove(req.configure(ReactionsRemoveRequest.builder()).build());
     }
 
     @Override
@@ -1213,8 +1213,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public RemindersAddResponse remindersAdd(RequestBuilder<RemindersAddRequest, RemindersAddRequest.RemindersAddRequestBuilder> req) throws IOException, SlackApiException {
-        return remindersAdd(req.build(RemindersAddRequest.builder()));
+    public RemindersAddResponse remindersAdd(RequestConfigurator<RemindersAddRequest.RemindersAddRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersAdd(req.configure(RemindersAddRequest.builder()).build());
     }
 
     @Override
@@ -1223,8 +1223,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public RemindersCompleteResponse remindersComplete(RequestBuilder<RemindersCompleteRequest, RemindersCompleteRequest.RemindersCompleteRequestBuilder> req) throws IOException, SlackApiException {
-        return remindersComplete(req.build(RemindersCompleteRequest.builder()));
+    public RemindersCompleteResponse remindersComplete(RequestConfigurator<RemindersCompleteRequest.RemindersCompleteRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersComplete(req.configure(RemindersCompleteRequest.builder()).build());
     }
 
     @Override
@@ -1233,8 +1233,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public RemindersDeleteResponse remindersDelete(RequestBuilder<RemindersDeleteRequest, RemindersDeleteRequest.RemindersDeleteRequestBuilder> req) throws IOException, SlackApiException {
-        return remindersDelete(req.build(RemindersDeleteRequest.builder()));
+    public RemindersDeleteResponse remindersDelete(RequestConfigurator<RemindersDeleteRequest.RemindersDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersDelete(req.configure(RemindersDeleteRequest.builder()).build());
     }
 
     @Override
@@ -1243,8 +1243,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public RemindersInfoResponse remindersInfo(RequestBuilder<RemindersInfoRequest, RemindersInfoRequest.RemindersInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return remindersInfo(req.build(RemindersInfoRequest.builder()));
+    public RemindersInfoResponse remindersInfo(RequestConfigurator<RemindersInfoRequest.RemindersInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersInfo(req.configure(RemindersInfoRequest.builder()).build());
     }
 
     @Override
@@ -1253,8 +1253,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public RemindersListResponse remindersList(RequestBuilder<RemindersListRequest, RemindersListRequest.RemindersListRequestBuilder> req) throws IOException, SlackApiException {
-        return remindersList(req.build(RemindersListRequest.builder()));
+    public RemindersListResponse remindersList(RequestConfigurator<RemindersListRequest.RemindersListRequestBuilder> req) throws IOException, SlackApiException {
+        return remindersList(req.configure(RemindersListRequest.builder()).build());
     }
 
     @Override
@@ -1263,8 +1263,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public RTMConnectResponse rtmConnect(RequestBuilder<RTMConnectRequest, RTMConnectRequest.RTMConnectRequestBuilder> req) throws IOException, SlackApiException {
-        return rtmConnect(req.build(RTMConnectRequest.builder()));
+    public RTMConnectResponse rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req) throws IOException, SlackApiException {
+        return rtmConnect(req.configure(RTMConnectRequest.builder()).build());
     }
 
     @Override
@@ -1273,8 +1273,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public RTMStartResponse rtmStart(RequestBuilder<RTMStartRequest, RTMStartRequest.RTMStartRequestBuilder> req) throws IOException, SlackApiException {
-        return rtmStart(req.build(RTMStartRequest.builder()));
+    public RTMStartResponse rtmStart(RequestConfigurator<RTMStartRequest.RTMStartRequestBuilder> req) throws IOException, SlackApiException {
+        return rtmStart(req.configure(RTMStartRequest.builder()).build());
     }
 
     @Override
@@ -1283,8 +1283,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public SearchAllResponse searchAll(RequestBuilder<SearchAllRequest, SearchAllRequest.SearchAllRequestBuilder> req) throws IOException, SlackApiException {
-        return searchAll(req.build(SearchAllRequest.builder()));
+    public SearchAllResponse searchAll(RequestConfigurator<SearchAllRequest.SearchAllRequestBuilder> req) throws IOException, SlackApiException {
+        return searchAll(req.configure(SearchAllRequest.builder()).build());
     }
 
     @Override
@@ -1293,8 +1293,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public SearchMessagesResponse searchMessages(RequestBuilder<SearchMessagesRequest, SearchMessagesRequest.SearchMessagesRequestBuilder> req) throws IOException, SlackApiException {
-        return searchMessages(req.build(SearchMessagesRequest.builder()));
+    public SearchMessagesResponse searchMessages(RequestConfigurator<SearchMessagesRequest.SearchMessagesRequestBuilder> req) throws IOException, SlackApiException {
+        return searchMessages(req.configure(SearchMessagesRequest.builder()).build());
     }
 
     @Override
@@ -1303,8 +1303,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public SearchFilesResponse searchFiles(RequestBuilder<SearchFilesRequest, SearchFilesRequest.SearchFilesRequestBuilder> req) throws IOException, SlackApiException {
-        return searchFiles(req.build(SearchFilesRequest.builder()));
+    public SearchFilesResponse searchFiles(RequestConfigurator<SearchFilesRequest.SearchFilesRequestBuilder> req) throws IOException, SlackApiException {
+        return searchFiles(req.configure(SearchFilesRequest.builder()).build());
     }
 
     @Override
@@ -1313,8 +1313,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public StarsAddResponse starsAdd(RequestBuilder<StarsAddRequest, StarsAddRequest.StarsAddRequestBuilder> req) throws IOException, SlackApiException {
-        return starsAdd(req.build(StarsAddRequest.builder()));
+    public StarsAddResponse starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req) throws IOException, SlackApiException {
+        return starsAdd(req.configure(StarsAddRequest.builder()).build());
     }
 
     @Override
@@ -1323,8 +1323,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public StarsListResponse starsList(RequestBuilder<StarsListRequest, StarsListRequest.StarsListRequestBuilder> req) throws IOException, SlackApiException {
-        return starsList(req.build(StarsListRequest.builder()));
+    public StarsListResponse starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req) throws IOException, SlackApiException {
+        return starsList(req.configure(StarsListRequest.builder()).build());
     }
 
     @Override
@@ -1333,8 +1333,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public StarsRemoveResponse starsRemove(RequestBuilder<StarsRemoveRequest, StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException {
-        return starsRemove(req.build(StarsRemoveRequest.builder()));
+    public StarsRemoveResponse starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return starsRemove(req.configure(StarsRemoveRequest.builder()).build());
     }
 
     @Override
@@ -1343,8 +1343,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public TeamAccessLogsResponse teamAccessLogs(RequestBuilder<TeamAccessLogsRequest, TeamAccessLogsRequest.TeamAccessLogsRequestBuilder> req) throws IOException, SlackApiException {
-        return teamAccessLogs(req.build(TeamAccessLogsRequest.builder()));
+    public TeamAccessLogsResponse teamAccessLogs(RequestConfigurator<TeamAccessLogsRequest.TeamAccessLogsRequestBuilder> req) throws IOException, SlackApiException {
+        return teamAccessLogs(req.configure(TeamAccessLogsRequest.builder()).build());
     }
 
     @Override
@@ -1353,8 +1353,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public TeamBillableInfoResponse teamBillableInfo(RequestBuilder<TeamBillableInfoRequest, TeamBillableInfoRequest.TeamBillableInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return teamBillableInfo(req.build(TeamBillableInfoRequest.builder()));
+    public TeamBillableInfoResponse teamBillableInfo(RequestConfigurator<TeamBillableInfoRequest.TeamBillableInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return teamBillableInfo(req.configure(TeamBillableInfoRequest.builder()).build());
     }
 
     @Override
@@ -1363,8 +1363,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public TeamInfoResponse teamInfo(RequestBuilder<TeamInfoRequest, TeamInfoRequest.TeamInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return teamInfo(req.build(TeamInfoRequest.builder()));
+    public TeamInfoResponse teamInfo(RequestConfigurator<TeamInfoRequest.TeamInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return teamInfo(req.configure(TeamInfoRequest.builder()).build());
     }
 
     @Override
@@ -1373,8 +1373,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public TeamIntegrationLogsResponse teamIntegrationLogs(RequestBuilder<TeamIntegrationLogsRequest, TeamIntegrationLogsRequest.TeamIntegrationLogsRequestBuilder> req) throws IOException, SlackApiException {
-        return teamIntegrationLogs(req.build(TeamIntegrationLogsRequest.builder()));
+    public TeamIntegrationLogsResponse teamIntegrationLogs(RequestConfigurator<TeamIntegrationLogsRequest.TeamIntegrationLogsRequestBuilder> req) throws IOException, SlackApiException {
+        return teamIntegrationLogs(req.configure(TeamIntegrationLogsRequest.builder()).build());
     }
 
     @Override
@@ -1383,8 +1383,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public TeamProfileGetResponse teamProfileGet(RequestBuilder<TeamProfileGetRequest, TeamProfileGetRequest.TeamProfileGetRequestBuilder> req) throws IOException, SlackApiException {
-        return teamProfileGet(req.build(TeamProfileGetRequest.builder()));
+    public TeamProfileGetResponse teamProfileGet(RequestConfigurator<TeamProfileGetRequest.TeamProfileGetRequestBuilder> req) throws IOException, SlackApiException {
+        return teamProfileGet(req.configure(TeamProfileGetRequest.builder()).build());
     }
 
     @Override
@@ -1393,8 +1393,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsergroupsCreateResponse usergroupsCreate(RequestBuilder<UsergroupsCreateRequest, UsergroupsCreateRequest.UsergroupsCreateRequestBuilder> req) throws IOException, SlackApiException {
-        return usergroupsCreate(req.build(UsergroupsCreateRequest.builder()));
+    public UsergroupsCreateResponse usergroupsCreate(RequestConfigurator<UsergroupsCreateRequest.UsergroupsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsCreate(req.configure(UsergroupsCreateRequest.builder()).build());
     }
 
     @Override
@@ -1403,8 +1403,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsergroupsDisableResponse usergroupsDisable(RequestBuilder<UsergroupsDisableRequest, UsergroupsDisableRequest.UsergroupsDisableRequestBuilder> req) throws IOException, SlackApiException {
-        return usergroupsDisable(req.build(UsergroupsDisableRequest.builder()));
+    public UsergroupsDisableResponse usergroupsDisable(RequestConfigurator<UsergroupsDisableRequest.UsergroupsDisableRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsDisable(req.configure(UsergroupsDisableRequest.builder()).build());
     }
 
     @Override
@@ -1413,8 +1413,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsergroupsEnableResponse usergroupsEnable(RequestBuilder<UsergroupsEnableRequest, UsergroupsEnableRequest.UsergroupsEnableRequestBuilder> req) throws IOException, SlackApiException {
-        return usergroupsEnable(req.build(UsergroupsEnableRequest.builder()));
+    public UsergroupsEnableResponse usergroupsEnable(RequestConfigurator<UsergroupsEnableRequest.UsergroupsEnableRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsEnable(req.configure(UsergroupsEnableRequest.builder()).build());
     }
 
     @Override
@@ -1423,8 +1423,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsergroupsListResponse usergroupsList(RequestBuilder<UsergroupsListRequest, UsergroupsListRequest.UsergroupsListRequestBuilder> req) throws IOException, SlackApiException {
-        return usergroupsList(req.build(UsergroupsListRequest.builder()));
+    public UsergroupsListResponse usergroupsList(RequestConfigurator<UsergroupsListRequest.UsergroupsListRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsList(req.configure(UsergroupsListRequest.builder()).build());
     }
 
     @Override
@@ -1433,8 +1433,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsergroupsUpdateResponse usergroupsUpdate(RequestBuilder<UsergroupsUpdateRequest, UsergroupsUpdateRequest.UsergroupsUpdateRequestBuilder> req) throws IOException, SlackApiException {
-        return usergroupsUpdate(req.build(UsergroupsUpdateRequest.builder()));
+    public UsergroupsUpdateResponse usergroupsUpdate(RequestConfigurator<UsergroupsUpdateRequest.UsergroupsUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsUpdate(req.configure(UsergroupsUpdateRequest.builder()).build());
     }
 
     @Override
@@ -1443,8 +1443,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsergroupUsersListResponse usergroupUsersList(RequestBuilder<UsergroupUsersListRequest, UsergroupUsersListRequest.UsergroupUsersListRequestBuilder> req) throws IOException, SlackApiException {
-        return usergroupUsersList(req.build(UsergroupUsersListRequest.builder()));
+    public UsergroupUsersListResponse usergroupUsersList(RequestConfigurator<UsergroupUsersListRequest.UsergroupUsersListRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupUsersList(req.configure(UsergroupUsersListRequest.builder()).build());
     }
 
     @Override
@@ -1453,8 +1453,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsergroupUsersUpdateResponse usergroupUsersUpdate(RequestBuilder<UsergroupUsersUpdateRequest, UsergroupUsersUpdateRequest.UsergroupUsersUpdateRequestBuilder> req) throws IOException, SlackApiException {
-        return usergroupUsersUpdate(req.build(UsergroupUsersUpdateRequest.builder()));
+    public UsergroupUsersUpdateResponse usergroupUsersUpdate(RequestConfigurator<UsergroupUsersUpdateRequest.UsergroupUsersUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupUsersUpdate(req.configure(UsergroupUsersUpdateRequest.builder()).build());
     }
 
     @Override
@@ -1463,8 +1463,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersConversationsResponse usersConversations(RequestBuilder<UsersConversationsRequest, UsersConversationsRequest.UsersConversationsRequestBuilder> req) throws IOException, SlackApiException {
-        return usersConversations(req.build(UsersConversationsRequest.builder()));
+    public UsersConversationsResponse usersConversations(RequestConfigurator<UsersConversationsRequest.UsersConversationsRequestBuilder> req) throws IOException, SlackApiException {
+        return usersConversations(req.configure(UsersConversationsRequest.builder()).build());
     }
 
     @Override
@@ -1473,8 +1473,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersDeletePhotoResponse usersDeletePhoto(RequestBuilder<UsersDeletePhotoRequest, UsersDeletePhotoRequest.UsersDeletePhotoRequestBuilder> req) throws IOException, SlackApiException {
-        return usersDeletePhoto(req.build(UsersDeletePhotoRequest.builder()));
+    public UsersDeletePhotoResponse usersDeletePhoto(RequestConfigurator<UsersDeletePhotoRequest.UsersDeletePhotoRequestBuilder> req) throws IOException, SlackApiException {
+        return usersDeletePhoto(req.configure(UsersDeletePhotoRequest.builder()).build());
     }
 
     @Override
@@ -1483,8 +1483,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersGetPresenceResponse usersGetPresence(RequestBuilder<UsersGetPresenceRequest, UsersGetPresenceRequest.UsersGetPresenceRequestBuilder> req) throws IOException, SlackApiException {
-        return usersGetPresence(req.build(UsersGetPresenceRequest.builder()));
+    public UsersGetPresenceResponse usersGetPresence(RequestConfigurator<UsersGetPresenceRequest.UsersGetPresenceRequestBuilder> req) throws IOException, SlackApiException {
+        return usersGetPresence(req.configure(UsersGetPresenceRequest.builder()).build());
     }
 
     @Override
@@ -1493,8 +1493,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersIdentityResponse usersIdentity(RequestBuilder<UsersIdentityRequest, UsersIdentityRequest.UsersIdentityRequestBuilder> req) throws IOException, SlackApiException {
-        return usersIdentity(req.build(UsersIdentityRequest.builder()));
+    public UsersIdentityResponse usersIdentity(RequestConfigurator<UsersIdentityRequest.UsersIdentityRequestBuilder> req) throws IOException, SlackApiException {
+        return usersIdentity(req.configure(UsersIdentityRequest.builder()).build());
     }
 
     @Override
@@ -1503,8 +1503,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersInfoResponse usersInfo(RequestBuilder<UsersInfoRequest, UsersInfoRequest.UsersInfoRequestBuilder> req) throws IOException, SlackApiException {
-        return usersInfo(req.build(UsersInfoRequest.builder()));
+    public UsersInfoResponse usersInfo(RequestConfigurator<UsersInfoRequest.UsersInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return usersInfo(req.configure(UsersInfoRequest.builder()).build());
     }
 
     @Override
@@ -1513,8 +1513,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersListResponse usersList(RequestBuilder<UsersListRequest, UsersListRequest.UsersListRequestBuilder> req) throws IOException, SlackApiException {
-        return usersList(req.build(UsersListRequest.builder()));
+    public UsersListResponse usersList(RequestConfigurator<UsersListRequest.UsersListRequestBuilder> req) throws IOException, SlackApiException {
+        return usersList(req.configure(UsersListRequest.builder()).build());
     }
 
     @Override
@@ -1523,8 +1523,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersLookupByEmailResponse usersLookupByEmail(RequestBuilder<UsersLookupByEmailRequest, UsersLookupByEmailRequest.UsersLookupByEmailRequestBuilder> req) throws IOException, SlackApiException {
-        return usersLookupByEmail(req.build(UsersLookupByEmailRequest.builder()));
+    public UsersLookupByEmailResponse usersLookupByEmail(RequestConfigurator<UsersLookupByEmailRequest.UsersLookupByEmailRequestBuilder> req) throws IOException, SlackApiException {
+        return usersLookupByEmail(req.configure(UsersLookupByEmailRequest.builder()).build());
     }
 
     @Override
@@ -1533,8 +1533,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersSetActiveResponse usersSetActive(RequestBuilder<UsersSetActiveRequest, UsersSetActiveRequest.UsersSetActiveRequestBuilder> req) throws IOException, SlackApiException {
-        return usersSetActive(req.build(UsersSetActiveRequest.builder()));
+    public UsersSetActiveResponse usersSetActive(RequestConfigurator<UsersSetActiveRequest.UsersSetActiveRequestBuilder> req) throws IOException, SlackApiException {
+        return usersSetActive(req.configure(UsersSetActiveRequest.builder()).build());
     }
 
     @Override
@@ -1543,8 +1543,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersSetPhotoResponse usersSetPhoto(RequestBuilder<UsersSetPhotoRequest, UsersSetPhotoRequest.UsersSetPhotoRequestBuilder> req) throws IOException, SlackApiException {
-        return usersSetPhoto(req.build(UsersSetPhotoRequest.builder()));
+    public UsersSetPhotoResponse usersSetPhoto(RequestConfigurator<UsersSetPhotoRequest.UsersSetPhotoRequestBuilder> req) throws IOException, SlackApiException {
+        return usersSetPhoto(req.configure(UsersSetPhotoRequest.builder()).build());
     }
 
     @Override
@@ -1553,8 +1553,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersSetPresenceResponse usersSetPresence(RequestBuilder<UsersSetPresenceRequest, UsersSetPresenceRequest.UsersSetPresenceRequestBuilder> req) throws IOException, SlackApiException {
-        return usersSetPresence(req.build(UsersSetPresenceRequest.builder()));
+    public UsersSetPresenceResponse usersSetPresence(RequestConfigurator<UsersSetPresenceRequest.UsersSetPresenceRequestBuilder> req) throws IOException, SlackApiException {
+        return usersSetPresence(req.configure(UsersSetPresenceRequest.builder()).build());
     }
 
     @Override
@@ -1563,8 +1563,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersProfileGetResponse usersProfileGet(RequestBuilder<UsersProfileGetRequest, UsersProfileGetRequest.UsersProfileGetRequestBuilder> req) throws IOException, SlackApiException {
-        return usersProfileGet(req.build(UsersProfileGetRequest.builder()));
+    public UsersProfileGetResponse usersProfileGet(RequestConfigurator<UsersProfileGetRequest.UsersProfileGetRequestBuilder> req) throws IOException, SlackApiException {
+        return usersProfileGet(req.configure(UsersProfileGetRequest.builder()).build());
     }
 
     @Override
@@ -1573,8 +1573,8 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsersProfileSetResponse usersProfileSet(RequestBuilder<UsersProfileSetRequest, UsersProfileSetRequest.UsersProfileSetRequestBuilder> req) throws IOException, SlackApiException {
-        return usersProfileSet(req.build(UsersProfileSetRequest.builder()));
+    public UsersProfileSetResponse usersProfileSet(RequestConfigurator<UsersProfileSetRequest.UsersProfileSetRequestBuilder> req) throws IOException, SlackApiException {
+        return usersProfileSet(req.configure(UsersProfileSetRequest.builder()).build());
     }
 
     protected <T> T doPostForm(

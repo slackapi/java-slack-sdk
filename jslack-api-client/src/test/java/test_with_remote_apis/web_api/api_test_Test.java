@@ -29,7 +29,7 @@ public class api_test_Test {
 
     @Test
     public void ok() throws IOException, SlackApiException {
-        ApiTestResponse response = slack.methods().apiTest(req -> req.foo("fine").build());
+        ApiTestResponse response = slack.methods().apiTest(req -> req.foo("fine"));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getArgs().getFoo(), is("fine"));
@@ -37,7 +37,7 @@ public class api_test_Test {
 
     @Test
     public void error() throws IOException, SlackApiException {
-        ApiTestResponse response = slack.methods().apiTest(req -> req.error("error").build());
+        ApiTestResponse response = slack.methods().apiTest(req -> req.error("error"));
         assertThat(response.isOk(), is(false));
         assertThat(response.getError(), is("error"));
         assertThat(response.getArgs().getError(), is("error"));
@@ -51,7 +51,7 @@ public class api_test_Test {
         SlackHttpClient slackHttpClient = new SlackHttpClient(okHttpClient);
         Slack slack = Slack.getInstance(SlackTestConfig.get(), slackHttpClient);
 
-        ApiTestResponse response = slack.methods().apiTest(req -> req.foo("proxy?").build());
+        ApiTestResponse response = slack.methods().apiTest(req -> req.foo("proxy?"));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getArgs().getFoo(), is("proxy?"));
