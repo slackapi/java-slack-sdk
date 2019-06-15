@@ -428,7 +428,8 @@
     "plan": "",
     "avatar_base_url": "https://www.example.com/",
     "date_create": 12345,
-    "limit_ts": 12345
+    "limit_ts": 12345,
+    "onboarding_channel_id": ""
   },
   "latest_event_ts": "0000000000.000000",
   "channels": [
