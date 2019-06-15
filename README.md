@@ -4,16 +4,17 @@
 
 jSlack is a Java library to easily integrate your operations with [Slack](https://slack.com/). The library currently supports the following APIs.
 
-- [Incoming Webhook](https://api.slack.com/incoming-webhooks)
+- [Incoming Webhooks](https://api.slack.com/incoming-webhooks)
 - [API Methods](https://api.slack.com/methods)
 - [Real Time Messaging API](https://api.slack.com/rtm)
 - [Useful modules to build Slack App backend services](https://github.com/seratch/jslack/tree/master/src/main/java/com/github/seratch/jslack/app_backend)
+  - [OAuth 2.0](https://api.slack.com/docs/oauth)
   - [Events API](https://api.slack.com/events-api)
   - [Slash Commands](https://api.slack.com/slash-commands)
   - [Dialogs](https://api.slack.com/dialogs)
   - [Interactive Messages](https://api.slack.com/interactive-messages)
   - [Message Actions](https://api.slack.com/actions)
-  - [OAuth 2.0](https://api.slack.com/docs/oauth)
+  - [Outgoing Webhooks](https://api.slack.com/custom-integrations/outgoing-webhooks)
 
 As per API Methods, this library supports all the APIs listed in [github.com/slackapi/slack-api-specs](https://github.com/slackapi/slack-api-specs) as of May 2018.
 
@@ -30,6 +31,14 @@ The following is an example using Maven. Of course, it's also possible to grab t
 ```
 
 See also: [Getting started with groovysh](https://github.com/seratch/jslack/wiki/Getting-Started-with-groovysh)
+
+If you really don't need classes for building Slack app backend (= you need only Webhook/Web API/RTM API clients), just depending on `jslack-api-client` would be enough.
+
+```xml
+<groupId>com.github.seratch</groupId>
+<artifactId>jslack-api-client</artifactId>
+<version>{latest version}</version>
+```
 
 ### Examples
 
