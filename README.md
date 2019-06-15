@@ -216,7 +216,7 @@ Or, using lambda function to build a request could be much simpler. You don't ne
 ```java
 final String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
 ChannelsCreateResponse response =
-  slack.methods().channelsCreate(req -> req.token(token).name(channelName).build());
+  slack.methods().channelsCreate(req -> req.token(token).name(channelName));
 ```
 #### API Methods Examples
 
@@ -229,7 +229,7 @@ String token = "api-token";
 Slack slack = Slack.getInstance();
 
 // find all channels in the team
-ChannelsListResponse channelsResponse = slack.methods().channelsList(req -> req.token(token).build());
+ChannelsListResponse channelsResponse = slack.methods().channelsList(req -> req.token(token));
 assertThat(channelsResponse.isOk(), is(true));
 // find #general
 Channel general = channelsResponse.getChannels()
@@ -242,8 +242,7 @@ Channel general = channelsResponse.getChannels()
 ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(req -> req
   .token(token)
   .channel(general.getId())
-  .text("Hello World!")
-  .build());
+  .text("Hello World!"));
 assertThat(postResponse.isOk(), is(true));
 
 // timestamp of the posted message
@@ -254,8 +253,7 @@ Thread.sleep(1000L);
 ChatDeleteResponse deleteResponse = slack.methods().chatDelete(req -> req
   .token(token)
   .channel(general.getId())
-  .ts(messageTimestamp)
-  .build());
+  .ts(messageTimestamp));
 assertThat(deleteResponse.isOk(), is(true));
 ```
 
@@ -303,8 +301,7 @@ Dialog dialog = Dialog.builder()
 DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(req -> req
   .token(token)
   .triggerId(triggerId)
-  .dialog(dialog)
-  .build());
+  .dialog(dialog));
 ```
 
 
