@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.api.scim;
 
-import com.github.seratch.jslack.api.methods.RequestBuilder;
+import com.github.seratch.jslack.api.methods.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.scim.request.UsersDeleteRequest;
 import com.github.seratch.jslack.api.scim.response.UsersDeleteResponse;
@@ -32,8 +32,8 @@ public class SCIMClientImpl implements SCIMClient {
     }
 
     @Override
-    public UsersDeleteResponse delete(RequestBuilder<UsersDeleteRequest, UsersDeleteRequest.UsersDeleteRequestBuilder> req) throws IOException, SlackApiException {
-        return delete(req.build(UsersDeleteRequest.builder()));
+    public UsersDeleteResponse delete(RequestConfigurator<UsersDeleteRequest.UsersDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return delete(req.configure(UsersDeleteRequest.builder()).build());
     }
 
     private <T> T doDeleteRequest(Request.Builder requestBuilder, Class<T> clazz) throws IOException, SlackApiException {

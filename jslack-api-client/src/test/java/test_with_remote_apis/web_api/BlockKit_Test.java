@@ -49,7 +49,7 @@ public class BlockKit_Test {
             ChannelsListResponse channelsListResponse = slack.methods().channelsList(req -> req
                     .token(token)
                     .excludeArchived(true)
-                    .limit(100).build());
+                    .limit(100));
             assertThat(channelsListResponse.getError(), is(nullValue()));
             for (Channel channel : channelsListResponse.getChannels()) {
                 if (channel.getName().equals("random")) {

@@ -24,7 +24,7 @@ public class bots_Test {
 
     @Test
     public void botsInfoError() throws IOException, SlackApiException {
-        BotsInfoResponse response = slack.methods().botsInfo(req -> req.build());
+        BotsInfoResponse response = slack.methods().botsInfo(req -> req);
         assertThat(response.getError(), is(notNullValue()));
         assertThat(response.isOk(), is(false));
     }
@@ -33,7 +33,7 @@ public class bots_Test {
     public void botsInfo() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
-        List<User> users = slack.methods().usersList(req -> req.token(token).build()).getMembers();
+        List<User> users = slack.methods().usersList(req -> req.token(token)).getMembers();
         User user = null;
         for (User u : users) {
             if (u.isBot() && !"USLACKBOT".equals(u.getId())) {
@@ -43,7 +43,7 @@ public class bots_Test {
         }
         String bot = user.getProfile().getBotId();
 
-        BotsInfoResponse response = slack.methods().botsInfo(req -> req.token(token).bot(bot).build());
+        BotsInfoResponse response = slack.methods().botsInfo(req -> req.token(token).bot(bot));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getBot(), is(notNullValue()));

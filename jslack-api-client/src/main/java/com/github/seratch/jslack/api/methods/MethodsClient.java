@@ -144,7 +144,7 @@ public interface MethodsClient {
 
     ApiTestResponse apiTest(ApiTestRequest req) throws IOException, SlackApiException;
 
-    ApiTestResponse apiTest(RequestBuilder<ApiTestRequest, ApiTestRequest.ApiTestRequestBuilder> req) throws IOException, SlackApiException;
+    ApiTestResponse apiTest(RequestConfigurator<ApiTestRequest.ApiTestRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // apps
@@ -152,7 +152,7 @@ public interface MethodsClient {
 
     AppsUninstallResponse appsUninstall(AppsUninstallRequest req) throws IOException, SlackApiException;
 
-    AppsUninstallResponse appsUninstall(RequestBuilder<AppsUninstallRequest, AppsUninstallRequest.AppsUninstallRequestBuilder> req) throws IOException, SlackApiException;
+    AppsUninstallResponse appsUninstall(RequestConfigurator<AppsUninstallRequest.AppsUninstallRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // apps.permissions
@@ -160,11 +160,11 @@ public interface MethodsClient {
 
     AppsPermissionsInfoResponse appsPermissionsInfo(AppsPermissionsInfoRequest req) throws IOException, SlackApiException;
 
-    AppsPermissionsInfoResponse appsPermissionsInfo(RequestBuilder<AppsPermissionsInfoRequest, AppsPermissionsInfoRequest.AppsPermissionsInfoRequestBuilder> req) throws IOException, SlackApiException;
+    AppsPermissionsInfoResponse appsPermissionsInfo(RequestConfigurator<AppsPermissionsInfoRequest.AppsPermissionsInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     AppsPermissionsRequestResponse appsPermissionsRequest(AppsPermissionsRequestRequest req) throws IOException, SlackApiException;
 
-    AppsPermissionsRequestResponse appsPermissionsRequest(RequestBuilder<AppsPermissionsRequestRequest, AppsPermissionsRequestRequest.AppsPermissionsRequestRequestBuilder> req) throws IOException, SlackApiException;
+    AppsPermissionsRequestResponse appsPermissionsRequest(RequestConfigurator<AppsPermissionsRequestRequest.AppsPermissionsRequestRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // apps.permissions.resources
@@ -212,11 +212,11 @@ public interface MethodsClient {
 
     AuthRevokeResponse authRevoke(AuthRevokeRequest req) throws IOException, SlackApiException;
 
-    AuthRevokeResponse authRevoke(RequestBuilder<AuthRevokeRequest, AuthRevokeRequest.AuthRevokeRequestBuilder> req) throws IOException, SlackApiException;
+    AuthRevokeResponse authRevoke(RequestConfigurator<AuthRevokeRequest.AuthRevokeRequestBuilder> req) throws IOException, SlackApiException;
 
     AuthTestResponse authTest(AuthTestRequest req) throws IOException, SlackApiException;
 
-    AuthTestResponse authTest(RequestBuilder<AuthTestRequest, AuthTestRequest.AuthTestRequestBuilder> req) throws IOException, SlackApiException;
+    AuthTestResponse authTest(RequestConfigurator<AuthTestRequest.AuthTestRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // bots
@@ -224,7 +224,7 @@ public interface MethodsClient {
 
     BotsInfoResponse botsInfo(BotsInfoRequest req) throws IOException, SlackApiException;
 
-    BotsInfoResponse botsInfo(RequestBuilder<BotsInfoRequest, BotsInfoRequest.BotsInfoRequestBuilder> req) throws IOException, SlackApiException;
+    BotsInfoResponse botsInfo(RequestConfigurator<BotsInfoRequest.BotsInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // channels
@@ -232,63 +232,63 @@ public interface MethodsClient {
 
     ChannelsArchiveResponse channelsArchive(ChannelsArchiveRequest req) throws IOException, SlackApiException;
 
-    ChannelsArchiveResponse channelsArchive(RequestBuilder<ChannelsArchiveRequest, ChannelsArchiveRequest.ChannelsArchiveRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsArchiveResponse channelsArchive(RequestConfigurator<ChannelsArchiveRequest.ChannelsArchiveRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsCreateResponse channelsCreate(ChannelsCreateRequest req) throws IOException, SlackApiException;
 
-    ChannelsCreateResponse channelsCreate(RequestBuilder<ChannelsCreateRequest, ChannelsCreateRequest.ChannelsCreateRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsCreateResponse channelsCreate(RequestConfigurator<ChannelsCreateRequest.ChannelsCreateRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsHistoryResponse channelsHistory(ChannelsHistoryRequest req) throws IOException, SlackApiException;
 
-    ChannelsHistoryResponse channelsHistory(RequestBuilder<ChannelsHistoryRequest, ChannelsHistoryRequest.ChannelsHistoryRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsHistoryResponse channelsHistory(RequestConfigurator<ChannelsHistoryRequest.ChannelsHistoryRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsRepliesResponse channelsReplies(ChannelsRepliesRequest req) throws IOException, SlackApiException;
 
-    ChannelsRepliesResponse channelsReplies(RequestBuilder<ChannelsRepliesRequest, ChannelsRepliesRequest.ChannelsRepliesRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsRepliesResponse channelsReplies(RequestConfigurator<ChannelsRepliesRequest.ChannelsRepliesRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsInfoResponse channelsInfo(ChannelsInfoRequest req) throws IOException, SlackApiException;
 
-    ChannelsInfoResponse channelsInfo(RequestBuilder<ChannelsInfoRequest, ChannelsInfoRequest.ChannelsInfoRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsInfoResponse channelsInfo(RequestConfigurator<ChannelsInfoRequest.ChannelsInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsListResponse channelsList(ChannelsListRequest req) throws IOException, SlackApiException;
 
-    ChannelsListResponse channelsList(RequestBuilder<ChannelsListRequest, ChannelsListRequest.ChannelsListRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsListResponse channelsList(RequestConfigurator<ChannelsListRequest.ChannelsListRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsInviteResponse channelsInvite(ChannelsInviteRequest req) throws IOException, SlackApiException;
 
-    ChannelsInviteResponse channelsInvite(RequestBuilder<ChannelsInviteRequest, ChannelsInviteRequest.ChannelsInviteRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsInviteResponse channelsInvite(RequestConfigurator<ChannelsInviteRequest.ChannelsInviteRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsJoinResponse channelsJoin(ChannelsJoinRequest req) throws IOException, SlackApiException;
 
-    ChannelsJoinResponse channelsJoin(RequestBuilder<ChannelsJoinRequest, ChannelsJoinRequest.ChannelsJoinRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsJoinResponse channelsJoin(RequestConfigurator<ChannelsJoinRequest.ChannelsJoinRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsKickResponse channelsKick(ChannelsKickRequest req) throws IOException, SlackApiException;
 
-    ChannelsKickResponse channelsKick(RequestBuilder<ChannelsKickRequest, ChannelsKickRequest.ChannelsKickRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsKickResponse channelsKick(RequestConfigurator<ChannelsKickRequest.ChannelsKickRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsLeaveResponse channelsLeave(ChannelsLeaveRequest req) throws IOException, SlackApiException;
 
-    ChannelsLeaveResponse channelsLeave(RequestBuilder<ChannelsLeaveRequest, ChannelsLeaveRequest.ChannelsLeaveRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsLeaveResponse channelsLeave(RequestConfigurator<ChannelsLeaveRequest.ChannelsLeaveRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsMarkResponse channelsMark(ChannelsMarkRequest req) throws IOException, SlackApiException;
 
-    ChannelsMarkResponse channelsMark(RequestBuilder<ChannelsMarkRequest, ChannelsMarkRequest.ChannelsMarkRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsMarkResponse channelsMark(RequestConfigurator<ChannelsMarkRequest.ChannelsMarkRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsRenameResponse channelsRename(ChannelsRenameRequest req) throws IOException, SlackApiException;
 
-    ChannelsRenameResponse channelsRename(RequestBuilder<ChannelsRenameRequest, ChannelsRenameRequest.ChannelsRenameRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsRenameResponse channelsRename(RequestConfigurator<ChannelsRenameRequest.ChannelsRenameRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsSetPurposeResponse channelsSetPurpose(ChannelsSetPurposeRequest req) throws IOException, SlackApiException;
 
-    ChannelsSetPurposeResponse channelsSetPurpose(RequestBuilder<ChannelsSetPurposeRequest, ChannelsSetPurposeRequest.ChannelsSetPurposeRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsSetPurposeResponse channelsSetPurpose(RequestConfigurator<ChannelsSetPurposeRequest.ChannelsSetPurposeRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsSetTopicResponse channelsSetTopic(ChannelsSetTopicRequest req) throws IOException, SlackApiException;
 
-    ChannelsSetTopicResponse channelsSetTopic(RequestBuilder<ChannelsSetTopicRequest, ChannelsSetTopicRequest.ChannelsSetTopicRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsSetTopicResponse channelsSetTopic(RequestConfigurator<ChannelsSetTopicRequest.ChannelsSetTopicRequestBuilder> req) throws IOException, SlackApiException;
 
     ChannelsUnarchiveResponse channelsUnarchive(ChannelsUnarchiveRequest req) throws IOException, SlackApiException;
 
-    ChannelsUnarchiveResponse channelsUnarchive(RequestBuilder<ChannelsUnarchiveRequest, ChannelsUnarchiveRequest.ChannelsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
+    ChannelsUnarchiveResponse channelsUnarchive(RequestConfigurator<ChannelsUnarchiveRequest.ChannelsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // chat
@@ -296,39 +296,39 @@ public interface MethodsClient {
 
     ChatGetPermalinkResponse chatGetPermalink(ChatGetPermalinkRequest req) throws IOException, SlackApiException;
 
-    ChatGetPermalinkResponse chatGetPermalink(RequestBuilder<ChatGetPermalinkRequest, ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException;
+    ChatGetPermalinkResponse chatGetPermalink(RequestConfigurator<ChatGetPermalinkRequest.ChatGetPermalinkRequestBuilder> req) throws IOException, SlackApiException;
 
     ChatDeleteResponse chatDelete(ChatDeleteRequest req) throws IOException, SlackApiException;
 
-    ChatDeleteResponse chatDelete(RequestBuilder<ChatDeleteRequest, ChatDeleteRequest.ChatDeleteRequestBuilder> req) throws IOException, SlackApiException;
+    ChatDeleteResponse chatDelete(RequestConfigurator<ChatDeleteRequest.ChatDeleteRequestBuilder> req) throws IOException, SlackApiException;
 
     ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(ChatDeleteScheduledMessageRequest req) throws IOException, SlackApiException;
 
-    ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(RequestBuilder<ChatDeleteScheduledMessageRequest, ChatDeleteScheduledMessageRequest.ChatDeleteScheduledMessageRequestBuilder> req) throws IOException, SlackApiException;
+    ChatDeleteScheduledMessageResponse chatDeleteScheduledMessage(RequestConfigurator<ChatDeleteScheduledMessageRequest.ChatDeleteScheduledMessageRequestBuilder> req) throws IOException, SlackApiException;
 
     ChatMeMessageResponse chatMeMessage(ChatMeMessageRequest req) throws IOException, SlackApiException;
 
-    ChatMeMessageResponse chatMeMessage(RequestBuilder<ChatMeMessageRequest, ChatMeMessageRequest.ChatMeMessageRequestBuilder> req) throws IOException, SlackApiException;
+    ChatMeMessageResponse chatMeMessage(RequestConfigurator<ChatMeMessageRequest.ChatMeMessageRequestBuilder> req) throws IOException, SlackApiException;
 
     ChatPostEphemeralResponse chatPostEphemeral(ChatPostEphemeralRequest req) throws IOException, SlackApiException;
 
-    ChatPostEphemeralResponse chatPostEphemeral(RequestBuilder<ChatPostEphemeralRequest, ChatPostEphemeralRequest.ChatPostEphemeralRequestBuilder> req) throws IOException, SlackApiException;
+    ChatPostEphemeralResponse chatPostEphemeral(RequestConfigurator<ChatPostEphemeralRequest.ChatPostEphemeralRequestBuilder> req) throws IOException, SlackApiException;
 
     ChatPostMessageResponse chatPostMessage(ChatPostMessageRequest req) throws IOException, SlackApiException;
 
-    ChatPostMessageResponse chatPostMessage(RequestBuilder<ChatPostMessageRequest, ChatPostMessageRequest.ChatPostMessageRequestBuilder> req) throws IOException, SlackApiException;
+    ChatPostMessageResponse chatPostMessage(RequestConfigurator<ChatPostMessageRequest.ChatPostMessageRequestBuilder> req) throws IOException, SlackApiException;
 
     ChatScheduleMessageResponse chatScheduleMessage(ChatScheduleMessageRequest req) throws IOException, SlackApiException;
 
-    ChatScheduleMessageResponse chatScheduleMessage(RequestBuilder<ChatScheduleMessageRequest, ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req) throws IOException, SlackApiException;
+    ChatScheduleMessageResponse chatScheduleMessage(RequestConfigurator<ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder> req) throws IOException, SlackApiException;
 
     ChatUpdateResponse chatUpdate(ChatUpdateRequest req) throws IOException, SlackApiException;
 
-    ChatUpdateResponse chatUpdate(RequestBuilder<ChatUpdateRequest, ChatUpdateRequest.ChatUpdateRequestBuilder> req) throws IOException, SlackApiException;
+    ChatUpdateResponse chatUpdate(RequestConfigurator<ChatUpdateRequest.ChatUpdateRequestBuilder> req) throws IOException, SlackApiException;
 
     ChatUnfurlResponse chatUnfurl(ChatUnfurlRequest req) throws IOException, SlackApiException;
 
-    ChatUnfurlResponse chatUnfurl(RequestBuilder<ChatUnfurlRequest, ChatUnfurlRequest.ChatUnfurlRequestBuilder> req) throws IOException, SlackApiException;
+    ChatUnfurlResponse chatUnfurl(RequestConfigurator<ChatUnfurlRequest.ChatUnfurlRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // chat.scheduledMessages
@@ -336,7 +336,7 @@ public interface MethodsClient {
 
     ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(ChatScheduleMessagesListRequest req) throws IOException, SlackApiException;
 
-    ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(RequestBuilder<ChatScheduleMessagesListRequest, ChatScheduleMessagesListRequest.ChatScheduleMessagesListRequestBuilder> req) throws IOException, SlackApiException;
+    ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(RequestConfigurator<ChatScheduleMessagesListRequest.ChatScheduleMessagesListRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // conversations
@@ -344,71 +344,71 @@ public interface MethodsClient {
 
     ConversationsArchiveResponse conversationsArchive(ConversationsArchiveRequest req) throws IOException, SlackApiException;
 
-    ConversationsArchiveResponse conversationsArchive(RequestBuilder<ConversationsArchiveRequest, ConversationsArchiveRequest.ConversationsArchiveRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsArchiveResponse conversationsArchive(RequestConfigurator<ConversationsArchiveRequest.ConversationsArchiveRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsCloseResponse conversationsClose(ConversationsCloseRequest req) throws IOException, SlackApiException;
 
-    ConversationsCloseResponse conversationsClose(RequestBuilder<ConversationsCloseRequest, ConversationsCloseRequest.ConversationsCloseRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsCloseResponse conversationsClose(RequestConfigurator<ConversationsCloseRequest.ConversationsCloseRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsCreateResponse conversationsCreate(ConversationsCreateRequest req) throws IOException, SlackApiException;
 
-    ConversationsCreateResponse conversationsCreate(RequestBuilder<ConversationsCreateRequest, ConversationsCreateRequest.ConversationsCreateRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsCreateResponse conversationsCreate(RequestConfigurator<ConversationsCreateRequest.ConversationsCreateRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsHistoryResponse conversationsHistory(ConversationsHistoryRequest req) throws IOException, SlackApiException;
 
-    ConversationsHistoryResponse conversationsHistory(RequestBuilder<ConversationsHistoryRequest, ConversationsHistoryRequest.ConversationsHistoryRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsHistoryResponse conversationsHistory(RequestConfigurator<ConversationsHistoryRequest.ConversationsHistoryRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsInfoResponse conversationsInfo(ConversationsInfoRequest req) throws IOException, SlackApiException;
 
-    ConversationsInfoResponse conversationsInfo(RequestBuilder<ConversationsInfoRequest, ConversationsInfoRequest.ConversationsInfoRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsInfoResponse conversationsInfo(RequestConfigurator<ConversationsInfoRequest.ConversationsInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsInviteResponse conversationsInvite(ConversationsInviteRequest req) throws IOException, SlackApiException;
 
-    ConversationsInviteResponse conversationsInvite(RequestBuilder<ConversationsInviteRequest, ConversationsInviteRequest.ConversationsInviteRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsInviteResponse conversationsInvite(RequestConfigurator<ConversationsInviteRequest.ConversationsInviteRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsJoinResponse conversationsJoin(ConversationsJoinRequest req) throws IOException, SlackApiException;
 
-    ConversationsJoinResponse conversationsJoin(RequestBuilder<ConversationsJoinRequest, ConversationsJoinRequest.ConversationsJoinRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsJoinResponse conversationsJoin(RequestConfigurator<ConversationsJoinRequest.ConversationsJoinRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsKickResponse conversationsKick(ConversationsKickRequest req) throws IOException, SlackApiException;
 
-    ConversationsKickResponse conversationsKick(RequestBuilder<ConversationsKickRequest, ConversationsKickRequest.ConversationsKickRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsKickResponse conversationsKick(RequestConfigurator<ConversationsKickRequest.ConversationsKickRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsLeaveResponse conversationsLeave(ConversationsLeaveRequest req) throws IOException, SlackApiException;
 
-    ConversationsLeaveResponse conversationsLeave(RequestBuilder<ConversationsLeaveRequest, ConversationsLeaveRequest.ConversationsLeaveRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsLeaveResponse conversationsLeave(RequestConfigurator<ConversationsLeaveRequest.ConversationsLeaveRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsListResponse conversationsList(ConversationsListRequest req) throws IOException, SlackApiException;
 
-    ConversationsListResponse conversationsList(RequestBuilder<ConversationsListRequest, ConversationsListRequest.ConversationsListRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsListResponse conversationsList(RequestConfigurator<ConversationsListRequest.ConversationsListRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsMembersResponse conversationsMembers(ConversationsMembersRequest req) throws IOException, SlackApiException;
 
-    ConversationsMembersResponse conversationsMembers(RequestBuilder<ConversationsMembersRequest, ConversationsMembersRequest.ConversationsMembersRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsMembersResponse conversationsMembers(RequestConfigurator<ConversationsMembersRequest.ConversationsMembersRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsOpenResponse conversationsOpen(ConversationsOpenRequest req) throws IOException, SlackApiException;
 
-    ConversationsOpenResponse conversationsOpen(RequestBuilder<ConversationsOpenRequest, ConversationsOpenRequest.ConversationsOpenRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsOpenResponse conversationsOpen(RequestConfigurator<ConversationsOpenRequest.ConversationsOpenRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsRenameResponse conversationsRename(ConversationsRenameRequest req) throws IOException, SlackApiException;
 
-    ConversationsRenameResponse conversationsRename(RequestBuilder<ConversationsRenameRequest, ConversationsRenameRequest.ConversationsRenameRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsRenameResponse conversationsRename(RequestConfigurator<ConversationsRenameRequest.ConversationsRenameRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsRepliesResponse conversationsReplies(ConversationsRepliesRequest req) throws IOException, SlackApiException;
 
-    ConversationsRepliesResponse conversationsReplies(RequestBuilder<ConversationsRepliesRequest, ConversationsRepliesRequest.ConversationsRepliesRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsRepliesResponse conversationsReplies(RequestConfigurator<ConversationsRepliesRequest.ConversationsRepliesRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsSetPurposeResponse conversationsSetPurpose(ConversationsSetPurposeRequest req) throws IOException, SlackApiException;
 
-    ConversationsSetPurposeResponse conversationsSetPurpose(RequestBuilder<ConversationsSetPurposeRequest, ConversationsSetPurposeRequest.ConversationsSetPurposeRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsSetPurposeResponse conversationsSetPurpose(RequestConfigurator<ConversationsSetPurposeRequest.ConversationsSetPurposeRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsSetTopicResponse conversationsSetTopic(ConversationsSetTopicRequest req) throws IOException, SlackApiException;
 
-    ConversationsSetTopicResponse conversationsSetTopic(RequestBuilder<ConversationsSetTopicRequest, ConversationsSetTopicRequest.ConversationsSetTopicRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsSetTopicResponse conversationsSetTopic(RequestConfigurator<ConversationsSetTopicRequest.ConversationsSetTopicRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsUnarchiveResponse conversationsUnarchive(ConversationsUnarchiveRequest req) throws IOException, SlackApiException;
 
-    ConversationsUnarchiveResponse conversationsUnarchive(RequestBuilder<ConversationsUnarchiveRequest, ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
+    ConversationsUnarchiveResponse conversationsUnarchive(RequestConfigurator<ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // dialog
@@ -416,7 +416,7 @@ public interface MethodsClient {
 
     DialogOpenResponse dialogOpen(DialogOpenRequest req) throws IOException, SlackApiException;
 
-    DialogOpenResponse dialogOpen(RequestBuilder<DialogOpenRequest, DialogOpenRequest.DialogOpenRequestBuilder> req) throws IOException, SlackApiException;
+    DialogOpenResponse dialogOpen(RequestConfigurator<DialogOpenRequest.DialogOpenRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // dnd
@@ -424,23 +424,23 @@ public interface MethodsClient {
 
     DndEndDndResponse dndEndDnd(DndEndDndRequest req) throws IOException, SlackApiException;
 
-    DndEndDndResponse dndEndDnd(RequestBuilder<DndEndDndRequest, DndEndDndRequest.DndEndDndRequestBuilder> req) throws IOException, SlackApiException;
+    DndEndDndResponse dndEndDnd(RequestConfigurator<DndEndDndRequest.DndEndDndRequestBuilder> req) throws IOException, SlackApiException;
 
     DndEndSnoozeResponse dndEndSnooze(DndEndSnoozeRequest req) throws IOException, SlackApiException;
 
-    DndEndSnoozeResponse dndEndSnooze(RequestBuilder<DndEndSnoozeRequest, DndEndSnoozeRequest.DndEndSnoozeRequestBuilder> req) throws IOException, SlackApiException;
+    DndEndSnoozeResponse dndEndSnooze(RequestConfigurator<DndEndSnoozeRequest.DndEndSnoozeRequestBuilder> req) throws IOException, SlackApiException;
 
     DndInfoResponse dndInfo(DndInfoRequest req) throws IOException, SlackApiException;
 
-    DndInfoResponse dndInfo(RequestBuilder<DndInfoRequest, DndInfoRequest.DndInfoRequestBuilder> req) throws IOException, SlackApiException;
+    DndInfoResponse dndInfo(RequestConfigurator<DndInfoRequest.DndInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     DndSetSnoozeResponse dndSetSnooze(DndSetSnoozeRequest req) throws IOException, SlackApiException;
 
-    DndSetSnoozeResponse dndSetSnooze(RequestBuilder<DndSetSnoozeRequest, DndSetSnoozeRequest.DndSetSnoozeRequestBuilder> req) throws IOException, SlackApiException;
+    DndSetSnoozeResponse dndSetSnooze(RequestConfigurator<DndSetSnoozeRequest.DndSetSnoozeRequestBuilder> req) throws IOException, SlackApiException;
 
     DndTeamInfoResponse dndTeamInfo(DndTeamInfoRequest req) throws IOException, SlackApiException;
 
-    DndTeamInfoResponse dndTeamInfo(RequestBuilder<DndTeamInfoRequest, DndTeamInfoRequest.DndTeamInfoRequestBuilder> req) throws IOException, SlackApiException;
+    DndTeamInfoResponse dndTeamInfo(RequestConfigurator<DndTeamInfoRequest.DndTeamInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // emoji
@@ -448,7 +448,7 @@ public interface MethodsClient {
 
     EmojiListResponse emojiList(EmojiListRequest req) throws IOException, SlackApiException;
 
-    EmojiListResponse emojiList(RequestBuilder<EmojiListRequest, EmojiListRequest.EmojiListRequestBuilder> req) throws IOException, SlackApiException;
+    EmojiListResponse emojiList(RequestConfigurator<EmojiListRequest.EmojiListRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // files
@@ -456,27 +456,27 @@ public interface MethodsClient {
 
     FilesDeleteResponse filesDelete(FilesDeleteRequest req) throws IOException, SlackApiException;
 
-    FilesDeleteResponse filesDelete(RequestBuilder<FilesDeleteRequest, FilesDeleteRequest.FilesDeleteRequestBuilder> req) throws IOException, SlackApiException;
+    FilesDeleteResponse filesDelete(RequestConfigurator<FilesDeleteRequest.FilesDeleteRequestBuilder> req) throws IOException, SlackApiException;
 
     FilesInfoResponse filesInfo(FilesInfoRequest req) throws IOException, SlackApiException;
 
-    FilesInfoResponse filesInfo(RequestBuilder<FilesInfoRequest, FilesInfoRequest.FilesInfoRequestBuilder> req) throws IOException, SlackApiException;
+    FilesInfoResponse filesInfo(RequestConfigurator<FilesInfoRequest.FilesInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     FilesListResponse filesList(FilesListRequest req) throws IOException, SlackApiException;
 
-    FilesListResponse filesList(RequestBuilder<FilesListRequest, FilesListRequest.FilesListRequestBuilder> req) throws IOException, SlackApiException;
+    FilesListResponse filesList(RequestConfigurator<FilesListRequest.FilesListRequestBuilder> req) throws IOException, SlackApiException;
 
     FilesRevokePublicURLResponse filesRevokePublicURL(FilesRevokePublicURLRequest req) throws IOException, SlackApiException;
 
-    FilesRevokePublicURLResponse filesRevokePublicURL(RequestBuilder<FilesRevokePublicURLRequest, FilesRevokePublicURLRequest.FilesRevokePublicURLRequestBuilder> req) throws IOException, SlackApiException;
+    FilesRevokePublicURLResponse filesRevokePublicURL(RequestConfigurator<FilesRevokePublicURLRequest.FilesRevokePublicURLRequestBuilder> req) throws IOException, SlackApiException;
 
     FilesSharedPublicURLResponse filesSharedPublicURL(FilesSharedPublicURLRequest req) throws IOException, SlackApiException;
 
-    FilesSharedPublicURLResponse filesSharedPublicURL(RequestBuilder<FilesSharedPublicURLRequest, FilesSharedPublicURLRequest.FilesSharedPublicURLRequestBuilder> req) throws IOException, SlackApiException;
+    FilesSharedPublicURLResponse filesSharedPublicURL(RequestConfigurator<FilesSharedPublicURLRequest.FilesSharedPublicURLRequestBuilder> req) throws IOException, SlackApiException;
 
     FilesUploadResponse filesUpload(FilesUploadRequest req) throws IOException, SlackApiException;
 
-    FilesUploadResponse filesUpload(RequestBuilder<FilesUploadRequest, FilesUploadRequest.FilesUploadRequestBuilder> req) throws IOException, SlackApiException;
+    FilesUploadResponse filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // files.comments
@@ -500,7 +500,7 @@ public interface MethodsClient {
 
     GroupsArchiveResponse groupsArchive(GroupsArchiveRequest req) throws IOException, SlackApiException;
 
-    GroupsArchiveResponse groupsArchive(RequestBuilder<GroupsArchiveRequest, GroupsArchiveRequest.GroupsArchiveRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsArchiveResponse groupsArchive(RequestConfigurator<GroupsArchiveRequest.GroupsArchiveRequestBuilder> req) throws IOException, SlackApiException;
 
     // https://github.com/slackapi/slack-api-specs/issues/12
     @Deprecated
@@ -508,63 +508,63 @@ public interface MethodsClient {
 
     GroupsCreateChildResponse groupsCreateChild(GroupsCreateChildRequest req) throws IOException, SlackApiException;
 
-    GroupsCreateChildResponse groupsCreateChild(RequestBuilder<GroupsCreateChildRequest, GroupsCreateChildRequest.GroupsCreateChildRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsCreateChildResponse groupsCreateChild(RequestConfigurator<GroupsCreateChildRequest.GroupsCreateChildRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsCreateResponse groupsCreate(GroupsCreateRequest req) throws IOException, SlackApiException;
 
-    GroupsCreateResponse groupsCreate(RequestBuilder<GroupsCreateRequest, GroupsCreateRequest.GroupsCreateRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsCreateResponse groupsCreate(RequestConfigurator<GroupsCreateRequest.GroupsCreateRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsHistoryResponse groupsHistory(GroupsHistoryRequest req) throws IOException, SlackApiException;
 
-    GroupsHistoryResponse groupsHistory(RequestBuilder<GroupsHistoryRequest, GroupsHistoryRequest.GroupsHistoryRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsHistoryResponse groupsHistory(RequestConfigurator<GroupsHistoryRequest.GroupsHistoryRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsInfoResponse groupsInfo(GroupsInfoRequest req) throws IOException, SlackApiException;
 
-    GroupsInfoResponse groupsInfo(RequestBuilder<GroupsInfoRequest, GroupsInfoRequest.GroupsInfoRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsInfoResponse groupsInfo(RequestConfigurator<GroupsInfoRequest.GroupsInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsInviteResponse groupsInvite(GroupsInviteRequest req) throws IOException, SlackApiException;
 
-    GroupsInviteResponse groupsInvite(RequestBuilder<GroupsInviteRequest, GroupsInviteRequest.GroupsInviteRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsInviteResponse groupsInvite(RequestConfigurator<GroupsInviteRequest.GroupsInviteRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsKickResponse groupsKick(GroupsKickRequest req) throws IOException, SlackApiException;
 
-    GroupsKickResponse groupsKick(RequestBuilder<GroupsKickRequest, GroupsKickRequest.GroupsKickRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsKickResponse groupsKick(RequestConfigurator<GroupsKickRequest.GroupsKickRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsLeaveResponse groupsLeave(GroupsLeaveRequest req) throws IOException, SlackApiException;
 
-    GroupsLeaveResponse groupsLeave(RequestBuilder<GroupsLeaveRequest, GroupsLeaveRequest.GroupsLeaveRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsLeaveResponse groupsLeave(RequestConfigurator<GroupsLeaveRequest.GroupsLeaveRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsListResponse groupsList(GroupsListRequest req) throws IOException, SlackApiException;
 
-    GroupsListResponse groupsList(RequestBuilder<GroupsListRequest, GroupsListRequest.GroupsListRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsListResponse groupsList(RequestConfigurator<GroupsListRequest.GroupsListRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsMarkResponse groupsMark(GroupsMarkRequest req) throws IOException, SlackApiException;
 
-    GroupsMarkResponse groupsMark(RequestBuilder<GroupsMarkRequest, GroupsMarkRequest.GroupsMarkRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsMarkResponse groupsMark(RequestConfigurator<GroupsMarkRequest.GroupsMarkRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsOpenResponse groupsOpen(GroupsOpenRequest req) throws IOException, SlackApiException;
 
-    GroupsOpenResponse groupsOpen(RequestBuilder<GroupsOpenRequest, GroupsOpenRequest.GroupsOpenRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsOpenResponse groupsOpen(RequestConfigurator<GroupsOpenRequest.GroupsOpenRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsRenameResponse groupsRename(GroupsRenameRequest req) throws IOException, SlackApiException;
 
-    GroupsRenameResponse groupsRename(RequestBuilder<GroupsRenameRequest, GroupsRenameRequest.GroupsRenameRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsRenameResponse groupsRename(RequestConfigurator<GroupsRenameRequest.GroupsRenameRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsSetPurposeResponse groupsSetPurpose(GroupsSetPurposeRequest req) throws IOException, SlackApiException;
 
-    GroupsSetPurposeResponse groupsSetPurpose(RequestBuilder<GroupsSetPurposeRequest, GroupsSetPurposeRequest.GroupsSetPurposeRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsSetPurposeResponse groupsSetPurpose(RequestConfigurator<GroupsSetPurposeRequest.GroupsSetPurposeRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsSetTopicResponse groupsSetTopic(GroupsSetTopicRequest req) throws IOException, SlackApiException;
 
-    GroupsSetTopicResponse groupsSetTopic(RequestBuilder<GroupsSetTopicRequest, GroupsSetTopicRequest.GroupsSetTopicRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsSetTopicResponse groupsSetTopic(RequestConfigurator<GroupsSetTopicRequest.GroupsSetTopicRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsUnarchiveResponse groupsUnarchive(GroupsUnarchiveRequest req) throws IOException, SlackApiException;
 
-    GroupsUnarchiveResponse groupsUnarchive(RequestBuilder<GroupsUnarchiveRequest, GroupsUnarchiveRequest.GroupsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsUnarchiveResponse groupsUnarchive(RequestConfigurator<GroupsUnarchiveRequest.GroupsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
 
     GroupsRepliesResponse groupsReplies(GroupsRepliesRequest req) throws IOException, SlackApiException;
 
-    GroupsRepliesResponse groupsReplies(RequestBuilder<GroupsRepliesRequest, GroupsRepliesRequest.GroupsRepliesRequestBuilder> req) throws IOException, SlackApiException;
+    GroupsRepliesResponse groupsReplies(RequestConfigurator<GroupsRepliesRequest.GroupsRepliesRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // im
@@ -572,27 +572,27 @@ public interface MethodsClient {
 
     ImCloseResponse imClose(ImCloseRequest req) throws IOException, SlackApiException;
 
-    ImCloseResponse imClose(RequestBuilder<ImCloseRequest, ImCloseRequest.ImCloseRequestBuilder> req) throws IOException, SlackApiException;
+    ImCloseResponse imClose(RequestConfigurator<ImCloseRequest.ImCloseRequestBuilder> req) throws IOException, SlackApiException;
 
     ImHistoryResponse imHistory(ImHistoryRequest req) throws IOException, SlackApiException;
 
-    ImHistoryResponse imHistory(RequestBuilder<ImHistoryRequest, ImHistoryRequest.ImHistoryRequestBuilder> req) throws IOException, SlackApiException;
+    ImHistoryResponse imHistory(RequestConfigurator<ImHistoryRequest.ImHistoryRequestBuilder> req) throws IOException, SlackApiException;
 
     ImListResponse imList(ImListRequest req) throws IOException, SlackApiException;
 
-    ImListResponse imList(RequestBuilder<ImListRequest, ImListRequest.ImListRequestBuilder> req) throws IOException, SlackApiException;
+    ImListResponse imList(RequestConfigurator<ImListRequest.ImListRequestBuilder> req) throws IOException, SlackApiException;
 
     ImMarkResponse imMark(ImMarkRequest req) throws IOException, SlackApiException;
 
-    ImMarkResponse imMark(RequestBuilder<ImMarkRequest, ImMarkRequest.ImMarkRequestBuilder> req) throws IOException, SlackApiException;
+    ImMarkResponse imMark(RequestConfigurator<ImMarkRequest.ImMarkRequestBuilder> req) throws IOException, SlackApiException;
 
     ImOpenResponse imOpen(ImOpenRequest req) throws IOException, SlackApiException;
 
-    ImOpenResponse imOpen(RequestBuilder<ImOpenRequest, ImOpenRequest.ImOpenRequestBuilder> req) throws IOException, SlackApiException;
+    ImOpenResponse imOpen(RequestConfigurator<ImOpenRequest.ImOpenRequestBuilder> req) throws IOException, SlackApiException;
 
     ImRepliesResponse imReplies(ImRepliesRequest req) throws IOException, SlackApiException;
 
-    ImRepliesResponse imReplies(RequestBuilder<ImRepliesRequest, ImRepliesRequest.ImRepliesRequestBuilder> req) throws IOException, SlackApiException;
+    ImRepliesResponse imReplies(RequestConfigurator<ImRepliesRequest.ImRepliesRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // migration
@@ -600,7 +600,7 @@ public interface MethodsClient {
 
     MigrationExchangeResponse migrationExchange(MigrationExchangeRequest req) throws IOException, SlackApiException;
 
-    MigrationExchangeResponse migrationExchange(RequestBuilder<MigrationExchangeRequest, MigrationExchangeRequest.MigrationExchangeRequestBuilder> req) throws IOException, SlackApiException;
+    MigrationExchangeResponse migrationExchange(RequestConfigurator<MigrationExchangeRequest.MigrationExchangeRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // mpim
@@ -608,27 +608,27 @@ public interface MethodsClient {
 
     MpimCloseResponse mpimClose(MpimCloseRequest req) throws IOException, SlackApiException;
 
-    MpimCloseResponse mpimClose(RequestBuilder<MpimCloseRequest, MpimCloseRequest.MpimCloseRequestBuilder> req) throws IOException, SlackApiException;
+    MpimCloseResponse mpimClose(RequestConfigurator<MpimCloseRequest.MpimCloseRequestBuilder> req) throws IOException, SlackApiException;
 
     MpimHistoryResponse mpimHistory(MpimHistoryRequest req) throws IOException, SlackApiException;
 
-    MpimHistoryResponse mpimHistory(RequestBuilder<MpimHistoryRequest, MpimHistoryRequest.MpimHistoryRequestBuilder> req) throws IOException, SlackApiException;
+    MpimHistoryResponse mpimHistory(RequestConfigurator<MpimHistoryRequest.MpimHistoryRequestBuilder> req) throws IOException, SlackApiException;
 
     MpimListResponse mpimList(MpimListRequest req) throws IOException, SlackApiException;
 
-    MpimListResponse mpimList(RequestBuilder<MpimListRequest, MpimListRequest.MpimListRequestBuilder> req) throws IOException, SlackApiException;
+    MpimListResponse mpimList(RequestConfigurator<MpimListRequest.MpimListRequestBuilder> req) throws IOException, SlackApiException;
 
     MpimRepliesResponse mpimReplies(MpimRepliesRequest req) throws IOException, SlackApiException;
 
-    MpimRepliesResponse mpimReplies(RequestBuilder<MpimRepliesRequest, MpimRepliesRequest.MpimRepliesRequestBuilder> req) throws IOException, SlackApiException;
+    MpimRepliesResponse mpimReplies(RequestConfigurator<MpimRepliesRequest.MpimRepliesRequestBuilder> req) throws IOException, SlackApiException;
 
     MpimMarkResponse mpimMark(MpimMarkRequest req) throws IOException, SlackApiException;
 
-    MpimMarkResponse mpimMark(RequestBuilder<MpimMarkRequest, MpimMarkRequest.MpimMarkRequestBuilder> req) throws IOException, SlackApiException;
+    MpimMarkResponse mpimMark(RequestConfigurator<MpimMarkRequest.MpimMarkRequestBuilder> req) throws IOException, SlackApiException;
 
     MpimOpenResponse mpimOpen(MpimOpenRequest req) throws IOException, SlackApiException;
 
-    MpimOpenResponse mpimOpen(RequestBuilder<MpimOpenRequest, MpimOpenRequest.MpimOpenRequestBuilder> req) throws IOException, SlackApiException;
+    MpimOpenResponse mpimOpen(RequestConfigurator<MpimOpenRequest.MpimOpenRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // oauth
@@ -636,11 +636,11 @@ public interface MethodsClient {
 
     OAuthAccessResponse oauthAccess(OAuthAccessRequest req) throws IOException, SlackApiException;
 
-    OAuthAccessResponse oauthAccess(RequestBuilder<OAuthAccessRequest, OAuthAccessRequest.OAuthAccessRequestBuilder> req) throws IOException, SlackApiException;
+    OAuthAccessResponse oauthAccess(RequestConfigurator<OAuthAccessRequest.OAuthAccessRequestBuilder> req) throws IOException, SlackApiException;
 
     OAuthTokenResponse oauthToken(OAuthTokenRequest req) throws IOException, SlackApiException;
 
-    OAuthTokenResponse oauthToken(RequestBuilder<OAuthTokenRequest, OAuthTokenRequest.OAuthTokenRequestBuilder> req) throws IOException, SlackApiException;
+    OAuthTokenResponse oauthToken(RequestConfigurator<OAuthTokenRequest.OAuthTokenRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // pins
@@ -648,15 +648,15 @@ public interface MethodsClient {
 
     PinsAddResponse pinsAdd(PinsAddRequest req) throws IOException, SlackApiException;
 
-    PinsAddResponse pinsAdd(RequestBuilder<PinsAddRequest, PinsAddRequest.PinsAddRequestBuilder> req) throws IOException, SlackApiException;
+    PinsAddResponse pinsAdd(RequestConfigurator<PinsAddRequest.PinsAddRequestBuilder> req) throws IOException, SlackApiException;
 
     PinsListResponse pinsList(PinsListRequest req) throws IOException, SlackApiException;
 
-    PinsListResponse pinsList(RequestBuilder<PinsListRequest, PinsListRequest.PinsListRequestBuilder> req) throws IOException, SlackApiException;
+    PinsListResponse pinsList(RequestConfigurator<PinsListRequest.PinsListRequestBuilder> req) throws IOException, SlackApiException;
 
     PinsRemoveResponse pinsRemove(PinsRemoveRequest req) throws IOException, SlackApiException;
 
-    PinsRemoveResponse pinsRemove(RequestBuilder<PinsRemoveRequest, PinsRemoveRequest.PinsRemoveRequestBuilder> req) throws IOException, SlackApiException;
+    PinsRemoveResponse pinsRemove(RequestConfigurator<PinsRemoveRequest.PinsRemoveRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // reactions
@@ -664,19 +664,19 @@ public interface MethodsClient {
 
     ReactionsAddResponse reactionsAdd(ReactionsAddRequest req) throws IOException, SlackApiException;
 
-    ReactionsAddResponse reactionsAdd(RequestBuilder<ReactionsAddRequest, ReactionsAddRequest.ReactionsAddRequestBuilder> req) throws IOException, SlackApiException;
+    ReactionsAddResponse reactionsAdd(RequestConfigurator<ReactionsAddRequest.ReactionsAddRequestBuilder> req) throws IOException, SlackApiException;
 
     ReactionsGetResponse reactionsGet(ReactionsGetRequest req) throws IOException, SlackApiException;
 
-    ReactionsGetResponse reactionsGet(RequestBuilder<ReactionsGetRequest, ReactionsGetRequest.ReactionsGetRequestBuilder> req) throws IOException, SlackApiException;
+    ReactionsGetResponse reactionsGet(RequestConfigurator<ReactionsGetRequest.ReactionsGetRequestBuilder> req) throws IOException, SlackApiException;
 
     ReactionsListResponse reactionsList(ReactionsListRequest req) throws IOException, SlackApiException;
 
-    ReactionsListResponse reactionsList(RequestBuilder<ReactionsListRequest, ReactionsListRequest.ReactionsListRequestBuilder> req) throws IOException, SlackApiException;
+    ReactionsListResponse reactionsList(RequestConfigurator<ReactionsListRequest.ReactionsListRequestBuilder> req) throws IOException, SlackApiException;
 
     ReactionsRemoveResponse reactionsRemove(ReactionsRemoveRequest req) throws IOException, SlackApiException;
 
-    ReactionsRemoveResponse reactionsRemove(RequestBuilder<ReactionsRemoveRequest, ReactionsRemoveRequest.ReactionsRemoveRequestBuilder> req) throws IOException, SlackApiException;
+    ReactionsRemoveResponse reactionsRemove(RequestConfigurator<ReactionsRemoveRequest.ReactionsRemoveRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // reminders
@@ -684,23 +684,23 @@ public interface MethodsClient {
 
     RemindersAddResponse remindersAdd(RemindersAddRequest req) throws IOException, SlackApiException;
 
-    RemindersAddResponse remindersAdd(RequestBuilder<RemindersAddRequest, RemindersAddRequest.RemindersAddRequestBuilder> req) throws IOException, SlackApiException;
+    RemindersAddResponse remindersAdd(RequestConfigurator<RemindersAddRequest.RemindersAddRequestBuilder> req) throws IOException, SlackApiException;
 
     RemindersCompleteResponse remindersComplete(RemindersCompleteRequest req) throws IOException, SlackApiException;
 
-    RemindersCompleteResponse remindersComplete(RequestBuilder<RemindersCompleteRequest, RemindersCompleteRequest.RemindersCompleteRequestBuilder> req) throws IOException, SlackApiException;
+    RemindersCompleteResponse remindersComplete(RequestConfigurator<RemindersCompleteRequest.RemindersCompleteRequestBuilder> req) throws IOException, SlackApiException;
 
     RemindersDeleteResponse remindersDelete(RemindersDeleteRequest req) throws IOException, SlackApiException;
 
-    RemindersDeleteResponse remindersDelete(RequestBuilder<RemindersDeleteRequest, RemindersDeleteRequest.RemindersDeleteRequestBuilder> req) throws IOException, SlackApiException;
+    RemindersDeleteResponse remindersDelete(RequestConfigurator<RemindersDeleteRequest.RemindersDeleteRequestBuilder> req) throws IOException, SlackApiException;
 
     RemindersInfoResponse remindersInfo(RemindersInfoRequest req) throws IOException, SlackApiException;
 
-    RemindersInfoResponse remindersInfo(RequestBuilder<RemindersInfoRequest, RemindersInfoRequest.RemindersInfoRequestBuilder> req) throws IOException, SlackApiException;
+    RemindersInfoResponse remindersInfo(RequestConfigurator<RemindersInfoRequest.RemindersInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     RemindersListResponse remindersList(RemindersListRequest req) throws IOException, SlackApiException;
 
-    RemindersListResponse remindersList(RequestBuilder<RemindersListRequest, RemindersListRequest.RemindersListRequestBuilder> req) throws IOException, SlackApiException;
+    RemindersListResponse remindersList(RequestConfigurator<RemindersListRequest.RemindersListRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // rtm
@@ -708,11 +708,11 @@ public interface MethodsClient {
 
     RTMConnectResponse rtmConnect(RTMConnectRequest req) throws IOException, SlackApiException;
 
-    RTMConnectResponse rtmConnect(RequestBuilder<RTMConnectRequest, RTMConnectRequest.RTMConnectRequestBuilder> req) throws IOException, SlackApiException;
+    RTMConnectResponse rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req) throws IOException, SlackApiException;
 
     RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException;
 
-    RTMStartResponse rtmStart(RequestBuilder<RTMStartRequest, RTMStartRequest.RTMStartRequestBuilder> req) throws IOException, SlackApiException;
+    RTMStartResponse rtmStart(RequestConfigurator<RTMStartRequest.RTMStartRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // search
@@ -720,15 +720,15 @@ public interface MethodsClient {
 
     SearchAllResponse searchAll(SearchAllRequest req) throws IOException, SlackApiException;
 
-    SearchAllResponse searchAll(RequestBuilder<SearchAllRequest, SearchAllRequest.SearchAllRequestBuilder> req) throws IOException, SlackApiException;
+    SearchAllResponse searchAll(RequestConfigurator<SearchAllRequest.SearchAllRequestBuilder> req) throws IOException, SlackApiException;
 
     SearchMessagesResponse searchMessages(SearchMessagesRequest req) throws IOException, SlackApiException;
 
-    SearchMessagesResponse searchMessages(RequestBuilder<SearchMessagesRequest, SearchMessagesRequest.SearchMessagesRequestBuilder> req) throws IOException, SlackApiException;
+    SearchMessagesResponse searchMessages(RequestConfigurator<SearchMessagesRequest.SearchMessagesRequestBuilder> req) throws IOException, SlackApiException;
 
     SearchFilesResponse searchFiles(SearchFilesRequest req) throws IOException, SlackApiException;
 
-    SearchFilesResponse searchFiles(RequestBuilder<SearchFilesRequest, SearchFilesRequest.SearchFilesRequestBuilder> req) throws IOException, SlackApiException;
+    SearchFilesResponse searchFiles(RequestConfigurator<SearchFilesRequest.SearchFilesRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // stars
@@ -736,15 +736,15 @@ public interface MethodsClient {
 
     StarsAddResponse starsAdd(StarsAddRequest req) throws IOException, SlackApiException;
 
-    StarsAddResponse starsAdd(RequestBuilder<StarsAddRequest, StarsAddRequest.StarsAddRequestBuilder> req) throws IOException, SlackApiException;
+    StarsAddResponse starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req) throws IOException, SlackApiException;
 
     StarsListResponse starsList(StarsListRequest req) throws IOException, SlackApiException;
 
-    StarsListResponse starsList(RequestBuilder<StarsListRequest, StarsListRequest.StarsListRequestBuilder> req) throws IOException, SlackApiException;
+    StarsListResponse starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req) throws IOException, SlackApiException;
 
     StarsRemoveResponse starsRemove(StarsRemoveRequest req) throws IOException, SlackApiException;
 
-    StarsRemoveResponse starsRemove(RequestBuilder<StarsRemoveRequest, StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException;
+    StarsRemoveResponse starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // team
@@ -752,23 +752,23 @@ public interface MethodsClient {
 
     TeamAccessLogsResponse teamAccessLogs(TeamAccessLogsRequest req) throws IOException, SlackApiException;
 
-    TeamAccessLogsResponse teamAccessLogs(RequestBuilder<TeamAccessLogsRequest, TeamAccessLogsRequest.TeamAccessLogsRequestBuilder> req) throws IOException, SlackApiException;
+    TeamAccessLogsResponse teamAccessLogs(RequestConfigurator<TeamAccessLogsRequest.TeamAccessLogsRequestBuilder> req) throws IOException, SlackApiException;
 
     TeamBillableInfoResponse teamBillableInfo(TeamBillableInfoRequest req) throws IOException, SlackApiException;
 
-    TeamBillableInfoResponse teamBillableInfo(RequestBuilder<TeamBillableInfoRequest, TeamBillableInfoRequest.TeamBillableInfoRequestBuilder> req) throws IOException, SlackApiException;
+    TeamBillableInfoResponse teamBillableInfo(RequestConfigurator<TeamBillableInfoRequest.TeamBillableInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     TeamInfoResponse teamInfo(TeamInfoRequest req) throws IOException, SlackApiException;
 
-    TeamInfoResponse teamInfo(RequestBuilder<TeamInfoRequest, TeamInfoRequest.TeamInfoRequestBuilder> req) throws IOException, SlackApiException;
+    TeamInfoResponse teamInfo(RequestConfigurator<TeamInfoRequest.TeamInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     TeamIntegrationLogsResponse teamIntegrationLogs(TeamIntegrationLogsRequest req) throws IOException, SlackApiException;
 
-    TeamIntegrationLogsResponse teamIntegrationLogs(RequestBuilder<TeamIntegrationLogsRequest, TeamIntegrationLogsRequest.TeamIntegrationLogsRequestBuilder> req) throws IOException, SlackApiException;
+    TeamIntegrationLogsResponse teamIntegrationLogs(RequestConfigurator<TeamIntegrationLogsRequest.TeamIntegrationLogsRequestBuilder> req) throws IOException, SlackApiException;
 
     TeamProfileGetResponse teamProfileGet(TeamProfileGetRequest req) throws IOException, SlackApiException;
 
-    TeamProfileGetResponse teamProfileGet(RequestBuilder<TeamProfileGetRequest, TeamProfileGetRequest.TeamProfileGetRequestBuilder> req) throws IOException, SlackApiException;
+    TeamProfileGetResponse teamProfileGet(RequestConfigurator<TeamProfileGetRequest.TeamProfileGetRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // usergroups
@@ -776,31 +776,31 @@ public interface MethodsClient {
 
     UsergroupsCreateResponse usergroupsCreate(UsergroupsCreateRequest req) throws IOException, SlackApiException;
 
-    UsergroupsCreateResponse usergroupsCreate(RequestBuilder<UsergroupsCreateRequest, UsergroupsCreateRequest.UsergroupsCreateRequestBuilder> req) throws IOException, SlackApiException;
+    UsergroupsCreateResponse usergroupsCreate(RequestConfigurator<UsergroupsCreateRequest.UsergroupsCreateRequestBuilder> req) throws IOException, SlackApiException;
 
     UsergroupsDisableResponse usergroupsDisable(UsergroupsDisableRequest req) throws IOException, SlackApiException;
 
-    UsergroupsDisableResponse usergroupsDisable(RequestBuilder<UsergroupsDisableRequest, UsergroupsDisableRequest.UsergroupsDisableRequestBuilder> req) throws IOException, SlackApiException;
+    UsergroupsDisableResponse usergroupsDisable(RequestConfigurator<UsergroupsDisableRequest.UsergroupsDisableRequestBuilder> req) throws IOException, SlackApiException;
 
     UsergroupsEnableResponse usergroupsEnable(UsergroupsEnableRequest req) throws IOException, SlackApiException;
 
-    UsergroupsEnableResponse usergroupsEnable(RequestBuilder<UsergroupsEnableRequest, UsergroupsEnableRequest.UsergroupsEnableRequestBuilder> req) throws IOException, SlackApiException;
+    UsergroupsEnableResponse usergroupsEnable(RequestConfigurator<UsergroupsEnableRequest.UsergroupsEnableRequestBuilder> req) throws IOException, SlackApiException;
 
     UsergroupsListResponse usergroupsList(UsergroupsListRequest req) throws IOException, SlackApiException;
 
-    UsergroupsListResponse usergroupsList(RequestBuilder<UsergroupsListRequest, UsergroupsListRequest.UsergroupsListRequestBuilder> req) throws IOException, SlackApiException;
+    UsergroupsListResponse usergroupsList(RequestConfigurator<UsergroupsListRequest.UsergroupsListRequestBuilder> req) throws IOException, SlackApiException;
 
     UsergroupsUpdateResponse usergroupsUpdate(UsergroupsUpdateRequest req) throws IOException, SlackApiException;
 
-    UsergroupsUpdateResponse usergroupsUpdate(RequestBuilder<UsergroupsUpdateRequest, UsergroupsUpdateRequest.UsergroupsUpdateRequestBuilder> req) throws IOException, SlackApiException;
+    UsergroupsUpdateResponse usergroupsUpdate(RequestConfigurator<UsergroupsUpdateRequest.UsergroupsUpdateRequestBuilder> req) throws IOException, SlackApiException;
 
     UsergroupUsersListResponse usergroupUsersList(UsergroupUsersListRequest req) throws IOException, SlackApiException;
 
-    UsergroupUsersListResponse usergroupUsersList(RequestBuilder<UsergroupUsersListRequest, UsergroupUsersListRequest.UsergroupUsersListRequestBuilder> req) throws IOException, SlackApiException;
+    UsergroupUsersListResponse usergroupUsersList(RequestConfigurator<UsergroupUsersListRequest.UsergroupUsersListRequestBuilder> req) throws IOException, SlackApiException;
 
     UsergroupUsersUpdateResponse usergroupUsersUpdate(UsergroupUsersUpdateRequest req) throws IOException, SlackApiException;
 
-    UsergroupUsersUpdateResponse usergroupUsersUpdate(RequestBuilder<UsergroupUsersUpdateRequest, UsergroupUsersUpdateRequest.UsergroupUsersUpdateRequestBuilder> req) throws IOException, SlackApiException;
+    UsergroupUsersUpdateResponse usergroupUsersUpdate(RequestConfigurator<UsergroupUsersUpdateRequest.UsergroupUsersUpdateRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // users
@@ -808,43 +808,43 @@ public interface MethodsClient {
 
     UsersConversationsResponse usersConversations(UsersConversationsRequest req) throws IOException, SlackApiException;
 
-    UsersConversationsResponse usersConversations(RequestBuilder<UsersConversationsRequest, UsersConversationsRequest.UsersConversationsRequestBuilder> req) throws IOException, SlackApiException;
+    UsersConversationsResponse usersConversations(RequestConfigurator<UsersConversationsRequest.UsersConversationsRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersDeletePhotoResponse usersDeletePhoto(UsersDeletePhotoRequest req) throws IOException, SlackApiException;
 
-    UsersDeletePhotoResponse usersDeletePhoto(RequestBuilder<UsersDeletePhotoRequest, UsersDeletePhotoRequest.UsersDeletePhotoRequestBuilder> req) throws IOException, SlackApiException;
+    UsersDeletePhotoResponse usersDeletePhoto(RequestConfigurator<UsersDeletePhotoRequest.UsersDeletePhotoRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersGetPresenceResponse usersGetPresence(UsersGetPresenceRequest req) throws IOException, SlackApiException;
 
-    UsersGetPresenceResponse usersGetPresence(RequestBuilder<UsersGetPresenceRequest, UsersGetPresenceRequest.UsersGetPresenceRequestBuilder> req) throws IOException, SlackApiException;
+    UsersGetPresenceResponse usersGetPresence(RequestConfigurator<UsersGetPresenceRequest.UsersGetPresenceRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersIdentityResponse usersIdentity(UsersIdentityRequest req) throws IOException, SlackApiException;
 
-    UsersIdentityResponse usersIdentity(RequestBuilder<UsersIdentityRequest, UsersIdentityRequest.UsersIdentityRequestBuilder> req) throws IOException, SlackApiException;
+    UsersIdentityResponse usersIdentity(RequestConfigurator<UsersIdentityRequest.UsersIdentityRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersInfoResponse usersInfo(UsersInfoRequest req) throws IOException, SlackApiException;
 
-    UsersInfoResponse usersInfo(RequestBuilder<UsersInfoRequest, UsersInfoRequest.UsersInfoRequestBuilder> req) throws IOException, SlackApiException;
+    UsersInfoResponse usersInfo(RequestConfigurator<UsersInfoRequest.UsersInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersListResponse usersList(UsersListRequest req) throws IOException, SlackApiException;
 
-    UsersListResponse usersList(RequestBuilder<UsersListRequest, UsersListRequest.UsersListRequestBuilder> req) throws IOException, SlackApiException;
+    UsersListResponse usersList(RequestConfigurator<UsersListRequest.UsersListRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersLookupByEmailResponse usersLookupByEmail(UsersLookupByEmailRequest req) throws IOException, SlackApiException;
 
-    UsersLookupByEmailResponse usersLookupByEmail(RequestBuilder<UsersLookupByEmailRequest, UsersLookupByEmailRequest.UsersLookupByEmailRequestBuilder> req) throws IOException, SlackApiException;
+    UsersLookupByEmailResponse usersLookupByEmail(RequestConfigurator<UsersLookupByEmailRequest.UsersLookupByEmailRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersSetActiveResponse usersSetActive(UsersSetActiveRequest req) throws IOException, SlackApiException;
 
-    UsersSetActiveResponse usersSetActive(RequestBuilder<UsersSetActiveRequest, UsersSetActiveRequest.UsersSetActiveRequestBuilder> req) throws IOException, SlackApiException;
+    UsersSetActiveResponse usersSetActive(RequestConfigurator<UsersSetActiveRequest.UsersSetActiveRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersSetPhotoResponse usersSetPhoto(UsersSetPhotoRequest req) throws IOException, SlackApiException;
 
-    UsersSetPhotoResponse usersSetPhoto(RequestBuilder<UsersSetPhotoRequest, UsersSetPhotoRequest.UsersSetPhotoRequestBuilder> req) throws IOException, SlackApiException;
+    UsersSetPhotoResponse usersSetPhoto(RequestConfigurator<UsersSetPhotoRequest.UsersSetPhotoRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersSetPresenceResponse usersSetPresence(UsersSetPresenceRequest req) throws IOException, SlackApiException;
 
-    UsersSetPresenceResponse usersSetPresence(RequestBuilder<UsersSetPresenceRequest, UsersSetPresenceRequest.UsersSetPresenceRequestBuilder> req) throws IOException, SlackApiException;
+    UsersSetPresenceResponse usersSetPresence(RequestConfigurator<UsersSetPresenceRequest.UsersSetPresenceRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // users.profile
@@ -852,10 +852,10 @@ public interface MethodsClient {
 
     UsersProfileGetResponse usersProfileGet(UsersProfileGetRequest req) throws IOException, SlackApiException;
 
-    UsersProfileGetResponse usersProfileGet(RequestBuilder<UsersProfileGetRequest, UsersProfileGetRequest.UsersProfileGetRequestBuilder> req) throws IOException, SlackApiException;
+    UsersProfileGetResponse usersProfileGet(RequestConfigurator<UsersProfileGetRequest.UsersProfileGetRequestBuilder> req) throws IOException, SlackApiException;
 
     UsersProfileSetResponse usersProfileSet(UsersProfileSetRequest req) throws IOException, SlackApiException;
 
-    UsersProfileSetResponse usersProfileSet(RequestBuilder<UsersProfileSetRequest, UsersProfileSetRequest.UsersProfileSetRequestBuilder> req) throws IOException, SlackApiException;
+    UsersProfileSetResponse usersProfileSet(RequestConfigurator<UsersProfileSetRequest.UsersProfileSetRequestBuilder> req) throws IOException, SlackApiException;
 
 }

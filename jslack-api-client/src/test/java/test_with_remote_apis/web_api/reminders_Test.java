@@ -25,8 +25,7 @@ public class reminders_Test {
         RemindersAddResponse addResponse = slack.methods().remindersAdd(r -> r
                 .token(token)
                 .text("Don't forget it!")
-                .time("10")
-                .build());
+                .time("10"));
         assertThat(addResponse.getError(), is(nullValue()));
         assertThat(addResponse.isOk(), is(true));
 
@@ -34,22 +33,19 @@ public class reminders_Test {
 
         RemindersInfoResponse infoResponse = slack.methods().remindersInfo(r -> r
                 .token(token)
-                .reminder(reminderId)
-                .build());
+                .reminder(reminderId));
         assertThat(infoResponse.getError(), is(nullValue()));
         assertThat(infoResponse.isOk(), is(true));
 
         RemindersCompleteResponse completeResponse = slack.methods().remindersComplete(r -> r
                 .token(token)
-                .reminder(reminderId)
-                .build());
+                .reminder(reminderId));
         assertThat(completeResponse.getError(), is(nullValue()));
         assertThat(completeResponse.isOk(), is(true));
 
         RemindersDeleteResponse deleteResponse = slack.methods().remindersDelete(r -> r
                 .token(token)
-                .reminder(reminderId)
-                .build());
+                .reminder(reminderId));
         assertThat(deleteResponse.getError(), is(nullValue()));
         assertThat(deleteResponse.isOk(), is(true));
     }

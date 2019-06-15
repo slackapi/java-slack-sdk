@@ -25,8 +25,7 @@ public class scim_Test {
         try {
             UsersDeleteResponse response = slack.scim().delete(r -> r
                     .token(token)
-                    .id(userId)
-                    .build());
+                    .id(userId));
 
             // testing with an SCIM activated account
             assertThat(response.getError(), is(nullValue()));

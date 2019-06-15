@@ -26,8 +26,7 @@ public class oauth_Test {
                     .clientId("3485157640.XXXX")
                     .clientSecret("XXXXX")
                     .code("")
-                    .redirectUri("http://seratch.net/foo")
-                    .build());
+                    .redirectUri("http://seratch.net/foo"));
             assertThat(response.getError(), is("invalid_code"));
             assertThat(response.isOk(), is(false));
         }
@@ -41,8 +40,7 @@ public class oauth_Test {
                     .clientId("3485157640.XXXX")
                     .clientSecret("XXXXX")
                     .code("")
-                    .redirectUri("http://seratch.net/foo")
-                    .build());
+                    .redirectUri("http://seratch.net/foo"));
             assertThat(response.getError(), is("invalid_code"));
             assertThat(response.isOk(), is(false));
         }

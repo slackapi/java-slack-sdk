@@ -26,9 +26,7 @@ public class team_Test {
 
     @Test
     public void teamAccessLogs() throws Exception {
-        TeamAccessLogsResponse response = slack.methods().teamAccessLogs(r -> r
-                .token(token)
-                .build());
+        TeamAccessLogsResponse response = slack.methods().teamAccessLogs(r -> r.token(token));
         if (response.isOk()) {
             // when you pay for this team
             assertThat(response.getError(), is(nullValue()));
@@ -42,7 +40,7 @@ public class team_Test {
 
     @Test
     public void teamBillableInfo() throws Exception {
-        List<User> users = slack.methods().usersList(r -> r.token(token).build()).getMembers();
+        List<User> users = slack.methods().usersList(r -> r.token(token)).getMembers();
         User user = null;
         for (User u : users) {
             if (!u.isBot() && !"USLACKBOT".equals(u.getId())) {
@@ -53,35 +51,31 @@ public class team_Test {
         String userId = user.getId();
         TeamBillableInfoResponse response = slack.methods().teamBillableInfo(r -> r
                 .token(token)
-                .user(userId)
-                .build());
+                .user(userId));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
     @Test
     public void teamInfo() throws Exception {
-        TeamInfoResponse response = slack.methods().teamInfo(r -> r
-                .token(token)
-                .build());
+        TeamInfoResponse response = slack.methods().teamInfo(r -> r.token(token));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
     @Test
     public void teamIntegrationLogs() throws Exception {
-        String user = slack.methods().usersList(r -> r.token(token).build()).getMembers().get(0).getId();
+        String user = slack.methods().usersList(r -> r.token(token)).getMembers().get(0).getId();
         TeamIntegrationLogsResponse response = slack.methods().teamIntegrationLogs(r -> r
                 .token(token)
-                .user(user)
-                .build());
+                .user(user));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
     @Test
     public void teamProfileGet() throws Exception {
-        TeamProfileGetResponse response = slack.methods().teamProfileGet(r -> r.token(token).build());
+        TeamProfileGetResponse response = slack.methods().teamProfileGet(r -> r.token(token));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }

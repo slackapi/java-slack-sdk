@@ -34,8 +34,7 @@ public class usergroups_Test {
         String usergroupName = "usergroup-" + System.currentTimeMillis();
         UsergroupsCreateResponse response = slack.methods().usergroupsCreate(r -> r
                 .token(token)
-                .name(usergroupName)
-                .build());
+                .name(usergroupName));
         if (response.isOk()) {
             assertThat(response.getUsergroup(), is(notNullValue()));
             assertThat(response.getUsergroup().getName(), is(usergroupName));
@@ -51,14 +50,14 @@ public class usergroups_Test {
 
     @Test
     public void list() throws Exception {
-        UsergroupsListResponse response = slack.methods().usergroupsList(r -> r.token(token).build());
+        UsergroupsListResponse response = slack.methods().usergroupsList(r -> r.token(token));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
     @Test
     public void usergroups() throws Exception {
-        UsergroupsListResponse usergroups = slack.methods().usergroupsList(r -> r.token(token).build());
+        UsergroupsListResponse usergroups = slack.methods().usergroupsList(r -> r.token(token));
         if (usergroups.isOk() && usergroups.getUsergroups().size() > 0) {
             UsergroupUsersListResponse response = slack.methods().usergroupUsersList(
                     UsergroupUsersListRequest.builder()
@@ -72,37 +71,32 @@ public class usergroups_Test {
         UsergroupsCreateResponse creation = slack.methods().usergroupsCreate(r -> r
                 .token(token)
                 .name("usergroup-" + System.currentTimeMillis())
-                .description("Something wrong")
-                .build());
+                .description("Something wrong"));
         assertThat(creation.getError(), is(nullValue()));
         final Usergroup usergroup = creation.getUsergroup();
         {
             UsergroupsDisableResponse response = slack.methods().usergroupsDisable(r -> r
                     .token(token)
-                    .usergroup(usergroup.getId())
-                    .build());
+                    .usergroup(usergroup.getId()));
             assertThat(response.getError(), is(nullValue()));
         }
         {
             UsergroupsEnableResponse response = slack.methods().usergroupsEnable(r -> r
                     .token(token)
-                    .usergroup(usergroup.getId())
-                    .build());
+                    .usergroup(usergroup.getId()));
             assertThat(response.getError(), is(nullValue()));
         }
         {
             UsergroupsUpdateResponse response = slack.methods().usergroupsUpdate(r -> r
                     .token(token)
                     .usergroup(usergroup.getId())
-                    .description("updated")
-                    .build());
+                    .description("updated"));
             assertThat(response.getError(), is(nullValue()));
         }
         {
             UsersListResponse usersListResponse = slack.methods().usersList(r -> r
                     .token(token)
-                    .limit(3)
-                    .build());
+                    .limit(3));
             List<String> userIds = new ArrayList<>();
             for (User member : usersListResponse.getMembers()) {
                 userIds.add(member.getId());
@@ -110,8 +104,7 @@ public class usergroups_Test {
             UsergroupUsersUpdateResponse response = slack.methods().usergroupUsersUpdate(r -> r
                     .token(token)
                     .usergroup(usergroup.getId())
-                    .users(userIds)
-                    .build());
+                    .users(userIds));
             assertThat(response.getError(), is(nullValue()));
         }
     }

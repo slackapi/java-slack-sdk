@@ -55,8 +55,7 @@ public class dialogs_Test {
         DialogOpenResponse dialogOpenResponse = slack.methods().dialogOpen(r -> r
                 .token(token)
                 .triggerId("FAKE_TRIGGER_ID")
-                .dialog(dialog)
-                .build());
+                .dialog(dialog));
         assertThat(dialogOpenResponse.isOk(), is(false));
         assertThat(dialogOpenResponse.getError(), is("invalid_trigger"));
     }

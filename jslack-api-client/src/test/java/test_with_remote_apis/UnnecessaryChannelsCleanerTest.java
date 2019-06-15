@@ -30,14 +30,13 @@ public class UnnecessaryChannelsCleanerTest {
         for (Channel channel : slack.methods().channelsList(r -> r
                 .token(token)
                 .excludeArchived(true)
-                .limit(1000)
-                .build()).getChannels()) {
+                .limit(1000)).getChannels()) {
 
             log.info(channel.toString());
 
             if (channel.getName().startsWith("test") && !channel.isGeneral()) {
                 ChannelsArchiveResponse resp = slack.methods().channelsArchive(r -> r
-                        .token(token).channel(channel.getId()).build());
+                        .token(token).channel(channel.getId()));
                 assertThat(resp.getError(), is(nullValue()));
             }
         }
@@ -51,8 +50,7 @@ public class UnnecessaryChannelsCleanerTest {
                 .token(token)
                 .excludeArchived(true)
                 .limit(1000)
-                .types(Arrays.asList(ConversationType.PRIVATE_CHANNEL))
-                .build()).getChannels()) {
+                .types(Arrays.asList(ConversationType.PRIVATE_CHANNEL))).getChannels()) {
 
             log.info(channel.toString());
 
@@ -60,8 +58,7 @@ public class UnnecessaryChannelsCleanerTest {
                     && !channel.isGeneral()) {
                 ConversationsArchiveResponse resp = slack.methods().conversationsArchive(r -> r
                         .token(token)
-                        .channel(channel.getId())
-                        .build());
+                        .channel(channel.getId()));
                 assertThat(resp.getError(), is(nullValue()));
             }
         }

@@ -30,8 +30,7 @@ public class groups_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         String name = "secret-" + System.currentTimeMillis();
-        GroupsCreateResponse creationResponse = slack.methods().groupsCreate(
-                r -> r.token(token).name(name).build());
+        GroupsCreateResponse creationResponse = slack.methods().groupsCreate(r -> r.token(token).name(name));
         Group group = creationResponse.getGroup();
         {
             assertThat(creationResponse.getError(), is(nullValue()));
@@ -79,16 +78,14 @@ public class groups_Test {
             ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(r -> r
                     .token(token)
                     .text("How are you?")
-                    .channel(groupId)
-                    .build());
+                    .channel(groupId));
             assertThat(postResponse.getError(), is(nullValue()));
 
             ChatPostMessageResponse replyResponse = slack.methods().chatPostMessage(r -> r
                     .token(token)
                     .threadTs(postResponse.getTs())
                     .text("Great! How are you?")
-                    .channel(groupId)
-                    .build());
+                    .channel(groupId));
             assertThat(replyResponse.getError(), is(nullValue()));
 
             String ts = postResponse.getTs();
@@ -100,8 +97,7 @@ public class groups_Test {
             GroupsRepliesResponse repliesResponse = slack.methods().groupsReplies(r -> r
                     .token(token)
                     .channel(groupId)
-                    .threadTs(postResponse.getTs())
-                    .build());
+                    .threadTs(postResponse.getTs()));
             assertThat(repliesResponse.getError(), is(nullValue()));
             assertThat(repliesResponse.isOk(), is(true));
         }
@@ -127,7 +123,7 @@ public class groups_Test {
             assertThat(response.isOk(), is(true));
         }
         String userIdToInvite = null;
-        List<User> users = slack.methods().usersList(r -> r.token(token).limit(100).build()).getMembers();
+        List<User> users = slack.methods().usersList(r -> r.token(token).limit(100)).getMembers();
         for (User user : users) {
             boolean alreadyInTheGroup = false;
             for (String groupMember : group.getMembers()) {

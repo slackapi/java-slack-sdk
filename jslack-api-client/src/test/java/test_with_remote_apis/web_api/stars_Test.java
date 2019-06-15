@@ -30,7 +30,7 @@ public class stars_Test {
 
     @Test
     public void list() throws IOException, SlackApiException {
-        StarsListResponse response = slack.methods().starsList(r -> r.token(token).build());
+        StarsListResponse response = slack.methods().starsList(r -> r.token(token));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getItems(), is(notNullValue()));
@@ -38,7 +38,7 @@ public class stars_Test {
 
     @Test
     public void add() throws IOException, SlackApiException {
-        List<Channel> channels = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
+        List<Channel> channels = slack.methods().channelsList(r -> r.token(token)).getChannels();
         List<String> channelIds = new ArrayList<>();
         for (Channel c : channels) {
             if (c.getName().equals("random")) {
@@ -56,8 +56,7 @@ public class stars_Test {
                     .file(file)
                     .filename("sample.txt")
                     .initialComment("initial comment")
-                    .title("file title")
-                    .build());
+                    .title("file title"));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
@@ -67,8 +66,7 @@ public class stars_Test {
             StarsAddResponse response = slack.methods().starsAdd(r -> r
                     .token(token)
                     .channel(channelIds.get(0))
-                    .file(fileObj.getId())
-                    .build());
+                    .file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -76,8 +74,7 @@ public class stars_Test {
             StarsRemoveResponse response = slack.methods().starsRemove(r -> r
                     .token(token)
                     .channel(channelIds.get(0))
-                    .file(fileObj.getId())
-                    .build());
+                    .file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -88,8 +85,7 @@ public class stars_Test {
                 StarsAddResponse response = slack.methods().starsAdd(r -> r
                         .token(token)
                         .channel(channelIds.get(0))
-                        .fileComment(fileObj.getInitialComment().getId())
-                        .build());
+                        .fileComment(fileObj.getInitialComment().getId()));
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }

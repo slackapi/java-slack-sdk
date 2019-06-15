@@ -43,7 +43,7 @@ public class files_Test {
     @Test
     public void describe() throws IOException, SlackApiException {
         {
-            FilesListResponse response = slack.methods().filesList(r -> r.token(token).build());
+            FilesListResponse response = slack.methods().filesList(r -> r.token(token));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getFiles(), is(notNullValue()));
@@ -52,7 +52,7 @@ public class files_Test {
 
     @Test
     public void createTextFileAndComments() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -71,8 +71,7 @@ public class files_Test {
                     .file(file)
                     .filename("sample.txt")
                     .initialComment("initial comment")
-                    .title("file title")
-                    .build());
+                    .title("file title"));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
@@ -175,15 +174,14 @@ public class files_Test {
         {
             FilesInfoResponse response = slack.methods().filesInfo(r -> r
                     .token(token)
-                    .file(fileObj.getId())
-                    .build());
+                    .file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             FilesSharedPublicURLResponse response = slack.methods().filesSharedPublicURL(
-                    r -> r.token(token).file(fileObj.getId()).build());
+                    r -> r.token(token).file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -249,7 +247,6 @@ public class files_Test {
                             .getShares()
                             .getPublicChannels().get(channelId).get(0)
                             .getTs())
-                    .build()
             );
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
@@ -257,8 +254,7 @@ public class files_Test {
         {
             FilesDeleteResponse response = slack.methods().filesDelete(r -> r
                     .token(token)
-                    .file(fileObj.getId())
-                    .build());
+                    .file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -266,7 +262,7 @@ public class files_Test {
 
     @Test
     public void createLongTextFile() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -285,8 +281,7 @@ public class files_Test {
                     .file(file)
                     .filename("sample.txt")
                     .initialComment("initial comment")
-                    .title("file title")
-                    .build());
+                    .title("file title"));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
@@ -347,7 +342,6 @@ public class files_Test {
                             .getShares()
                             .getPublicChannels().get(channelId).get(0)
                             .getTs())
-                    .build()
             );
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
@@ -356,8 +350,7 @@ public class files_Test {
         {
             FilesDeleteResponse response = slack.methods().filesDelete(r -> r
                     .token(token)
-                    .file(fileObj.getId())
-                    .build());
+                    .file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -365,7 +358,7 @@ public class files_Test {
 
     @Test
     public void createImageFileAndComments() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -384,8 +377,7 @@ public class files_Test {
                     .file(file)
                     .filename("seratch.jpg")
                     .initialComment("This is me!")
-                    .title("@seratch")
-                    .build());
+                    .title("@seratch"));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
@@ -584,8 +576,7 @@ public class files_Test {
                     .token(token)
                     .channel(channel.getId())
                     .text("This is a test message posted by unit tests for jslack library")
-                    .replyBroadcast(false)
-                    .build());
+                    .replyBroadcast(false));
             assertThat(postMessageResponse.getError(), is(nullValue()));
             assertThat(postMessageResponse.isOk(), is(true));
 
@@ -594,8 +585,7 @@ public class files_Test {
                     .channel(channel.getId())
                     .threadTs(postMessageResponse.getTs())
                     .text("[thread 1] This is a test message posted by unit tests for jslack library")
-                    .replyBroadcast(false)
-                    .build());
+                    .replyBroadcast(false));
             assertThat(postThread1Response.getError(), is(nullValue()));
             assertThat(postThread1Response.isOk(), is(true));
 
@@ -608,8 +598,7 @@ public class files_Test {
                         .filename("sample.txt")
                         .initialComment("initial comment")
                         .title("file title")
-                        .threadTs(postThread1Response.getTs())
-                        .build());
+                        .threadTs(postThread1Response.getTs()));
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
                 fileObj = response.getFile();
@@ -618,8 +607,7 @@ public class files_Test {
             {
                 FilesInfoResponse response = slack.methods().filesInfo(r -> r
                         .token(token)
-                        .file(fileObj.getId())
-                        .build());
+                        .file(fileObj.getId()));
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }

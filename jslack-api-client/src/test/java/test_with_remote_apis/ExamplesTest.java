@@ -30,10 +30,10 @@ public class ExamplesTest {
     public void postAMessageToRandomChannel() throws IOException, SlackApiException, InterruptedException {
 
         // find all channels in the team
-        ChannelsListResponse channelsResponse = slack.methods().channelsList(r -> r.token(token).build());
+        ChannelsListResponse channelsResponse = slack.methods().channelsList(r -> r.token(token));
         assertThat(channelsResponse.isOk(), is(true));
         // find #random
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token).build()).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
         Channel random = null;
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
