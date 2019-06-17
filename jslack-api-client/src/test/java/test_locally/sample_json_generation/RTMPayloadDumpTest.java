@@ -20,6 +20,7 @@ public class RTMPayloadDumpTest {
     public void dumpAll() throws Exception {
         List<Event> payloads = Arrays.asList(
                 new AccountChangedEvent(),
+                new AppHomeOpenedEvent(),
                 new AppMentionEvent(),
                 new AppRateLimitedEvent(),
                 new AppUninstalledEvent(),

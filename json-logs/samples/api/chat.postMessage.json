@@ -9,6 +9,7 @@
     "ts": "0000000000.000000",
     "username": "",
     "bot_id": "B00000000",
+    "thread_ts": "0000000000.000000",
     "blocks": [
       {
         "type": "",
@@ -31,11 +32,6 @@
         "elements": [
           {
             "type": "",
-            "text": "",
-            "emoji": false
-          },
-          {
-            "type": "",
             "action_id": "",
             "text": {
               "type": "",
@@ -43,6 +39,11 @@
               "emoji": false
             },
             "value": ""
+          },
+          {
+            "type": "",
+            "text": "",
+            "emoji": false
           },
           {
             "type": "",
@@ -138,7 +139,6 @@
         ]
       }
     ],
-    "thread_ts": "0000000000.000000",
     "root": {
       "type": "",
       "subtype": "",
@@ -161,6 +161,10 @@
       ],
       "subscribed": false,
       "last_read": "0000000000.000000"
+    },
+    "icons": {
+      "emoji": "",
+      "image_64": "https://www.example.com/"
     },
     "attachments": [
       {
@@ -233,11 +237,7 @@
         "metadata": ""
       }
     ],
-    "user": "U00000000",
-    "icons": {
-      "emoji": "",
-      "image_64": "https://www.example.com/"
-    }
+    "user": "U00000000"
   },
   "error": "",
   "response_metadata": {

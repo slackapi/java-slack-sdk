@@ -3,6 +3,8 @@ package com.github.seratch.jslack.api.methods.response.oauth;
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class OAuthAccessResponse implements SlackApiResponse {
 
@@ -20,6 +22,10 @@ public class OAuthAccessResponse implements SlackApiResponse {
     private IncomingWebhook incomingWebhook;
     private Bot bot;
 
+    private AuthorizingUser authorizingUser;
+    private InstallerUser installerUser;
+    private Scopes scopes;
+
     @Data
     public static class IncomingWebhook {
         private String url;
@@ -33,4 +39,28 @@ public class OAuthAccessResponse implements SlackApiResponse {
         private String botUserId;
         private String botAccessToken;
     }
+
+    @Data
+    public static class AuthorizingUser {
+        private String userId;
+        private String appHome;
+    }
+
+    @Data
+    public static class InstallerUser {
+        private String userId;
+        private String appHome;
+    }
+
+    @Data
+    public static class Scopes {
+        private List<String> appHome;
+        private List<String> team;
+        private List<String> channel;
+        private List<String> group;
+        private List<String> mpim;
+        private List<String> im;
+        private List<String> user;
+    }
+
 }
