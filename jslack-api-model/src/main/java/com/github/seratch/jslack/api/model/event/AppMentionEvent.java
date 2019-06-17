@@ -32,4 +32,6 @@ public class AppMentionEvent implements Event {
     private String channel;
     private String eventTs;
 
+    private String threadTs;
+
 }

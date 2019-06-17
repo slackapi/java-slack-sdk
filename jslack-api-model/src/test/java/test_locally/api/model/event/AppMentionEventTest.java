@@ -23,6 +23,7 @@ public class AppMentionEventTest {
                 "    \"text\": \"<@U0LAN0Z89> is it everything a river should be?\",\n" +
                 "    \"ts\": \"1515449522.000016\",\n" +
                 "    \"channel\": \"C0LAN2Q65\",\n" +
+                "    \"thread_ts\": \"1515449522000019\",\n" +
                 "    \"event_ts\": \"1515449522000016\"\n" +
                 "}";
         AppMentionEvent event = GsonFactory.createSnakeCase().fromJson(json, AppMentionEvent.class);
@@ -37,6 +38,7 @@ public class AppMentionEventTest {
         event.setText("Hi!");
         event.setTs("1515449522.000016");
         event.setChannel("C0LAN2Q65");
+        event.setThreadTs("1515449522000019");
         event.setEventTs("1515449522000016");
         String generatedJson = gson.toJson(event);
         String expectedJson = "{\"type\":\"app_mention\"," +
@@ -44,7 +46,8 @@ public class AppMentionEventTest {
                 "\"text\":\"Hi!\"," +
                 "\"ts\":\"1515449522.000016\"," +
                 "\"channel\":\"C0LAN2Q65\"," +
-                "\"event_ts\":\"1515449522000016\"" +
+                "\"event_ts\":\"1515449522000016\"," +
+                "\"thread_ts\":\"1515449522000019\"" +
                 "}";
         assertThat(generatedJson, is(expectedJson));
     }
