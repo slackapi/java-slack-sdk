@@ -54,10 +54,10 @@
     }
   ],
   "cache_ts": 12345,
-  "offset": "U00000000",
   "response_metadata": {
     "next_cursor": ""
   },
+  "offset": "U00000000",
   "error": "",
   "needed": "",
   "provided": ""

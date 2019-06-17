@@ -176,6 +176,7 @@
       "has_recently_shared_a_channel": false,
       "seen_channel_browser_admin_coachmark": false,
       "seen_administration_menu": false,
+      "seen_drafts_section_coachmark": false,
       "seen_emoji_update_overlay_coachmark": false,
       "allow_calls_to_set_current_status": false,
       "in_interactive_mas_migration_flow": false,
@@ -199,6 +200,7 @@
       "tractor_experiment_group": "",
       "opened_slackbot_dm": false,
       "newxp_suggested_channels": "",
+      "onboarding_complete": false,
       "whocanseethis_dm_mpdm_badge": false,
       "highlight_words": "",
       "threads_everything": false,
@@ -244,6 +246,7 @@
       "deprecation_modal_last_seen": 12345,
       "failover_proxy_check_completed": 12345,
       "edge_upload_proxy_check_completed": 12345,
+      "app_subdomain_check_completed": 12345,
       "channel_sidebar_hide_invite": false,
       "in_prod_surveys_enabled": false,
       "tz": "",
@@ -259,11 +262,8 @@
       },
       "search_only_show_online": false,
       "search_hide_deactivated_users": false,
-      "seen_drafts_section_coachmark": false,
       "sunset_interactive_message_views": 12345,
-      "workflow_builder_coachmarks": "",
-      "onboarding_complete": false,
-      "app_subdomain_check_completed": 12345
+      "workflow_builder_coachmarks": ""
     },
     "created": 12345,
     "manual_presence": ""
@@ -282,6 +282,8 @@
       "display_email_addresses": false,
       "gdrive_enabled_team": false,
       "all_users_can_purchase": false,
+      "enable_shared_channels": 12345,
+      "can_receive_shared_channels_invites": false,
       "slackbot_responses_disabled": false,
       "hide_referers": false,
       "msg_edit_window_mins": 12345,
@@ -351,7 +353,6 @@
         ]
       },
       "onedrive_enabled_team": false,
-      "can_receive_shared_channels_invites": false,
       "enterprise_default_channels": [
         ""
       ],
@@ -361,9 +362,10 @@
       "enterprise_mdm_disable_file_download": false,
       "mobile_passcode_timeout_in_seconds": 12345,
       "has_hipaa_compliance": false,
+      "self_serve_select": false,
       "loud_channel_mentions_limit": 12345,
       "show_join_leave": false,
-      "enable_shared_channels": 12345,
+      "enterprise_mobile_device_check": false,
       "dnd_enabled": false,
       "dnd_start_hour": "",
       "dnd_end_hour": "",
@@ -402,9 +404,7 @@
       },
       "app_whitelist_enabled": false,
       "invites_limit": false,
-      "self_serve_select": false,
       "dropbox_legacy_picker": false,
-      "enterprise_mobile_device_check": false,
       "disable_sidebar_connect_prompts": [
         ""
       ],
@@ -427,9 +427,9 @@
     "messages_count": 12345,
     "plan": "",
     "avatar_base_url": "https://www.example.com/",
-    "onboarding_channel_id": "",
     "date_create": 12345,
-    "limit_ts": 12345
+    "limit_ts": 12345,
+    "onboarding_channel_id": ""
   },
   "latest_event_ts": "0000000000.000000",
   "channels": [
