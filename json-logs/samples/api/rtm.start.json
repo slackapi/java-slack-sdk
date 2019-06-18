@@ -466,7 +466,30 @@
       "previous_names": [
         ""
       ],
-      "priority": 12345
+      "priority": 12345,
+      "is_group": false,
+      "is_im": false,
+      "is_ext_shared": false,
+      "shared_team_ids": [
+        "T00000000"
+      ],
+      "internal_team_ids": [
+        ""
+      ],
+      "connected_team_ids": [
+        "E00000000"
+      ],
+      "previously_connected_team_ids": [
+        ""
+      ],
+      "pending_shared": [
+        ""
+      ],
+      "pending_connected_team_ids": [
+        ""
+      ],
+      "is_pending_ext_shared": false,
+      "conversation_host_id": "T00000000"
     }
   ],
   "groups": [
