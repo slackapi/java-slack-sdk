@@ -48,6 +48,9 @@ public class Conversation {
     private String parentConversation;
     private List<String> pendingConnectedTeamIds;
 
+    // shared channels
+    private String conversationHostId;
+
     @SerializedName("is_channel")
     private boolean isChannel;
     @SerializedName("is_group")
@@ -68,6 +71,8 @@ public class Conversation {
     private boolean isOrgShared;
     @SerializedName("is_pending_ext_shared")
     private boolean isPendingExtShared;
+    @SerializedName("is_moved")
+    private boolean isMoved;
     @SerializedName("is_member")
     private boolean isMember;
     @SerializedName("is_open")

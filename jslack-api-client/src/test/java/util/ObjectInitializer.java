@@ -58,7 +58,7 @@ public class ObjectInitializer {
                             continue;
                         }
                     }
-                    log.info("Skipped a field which doesn't have non arg constructor");
+                    log.info("Skipped a field which doesn't have non arg constructor: {} in {}", field.getName(), obj.getClass().getSimpleName());
                 }
             }
             return obj;
