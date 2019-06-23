@@ -29,9 +29,12 @@
   "token": "",
   "is_app_unfurl": false,
   "original_message": {
-    "text": "",
-    "username": "",
     "bot_id": "",
+    "type": "",
+    "text": "",
+    "user": "",
+    "username": "",
+    "ts": "",
     "attachments": [
       {
         "id": 123,
@@ -61,9 +64,9 @@
         "image_url": ""
       }
     ],
-    "type": "",
     "subtype": "",
-    "ts": ""
+    "thread_ts": "",
+    "parent_user_id": ""
   },
   "response_url": "",
   "trigger_id": ""

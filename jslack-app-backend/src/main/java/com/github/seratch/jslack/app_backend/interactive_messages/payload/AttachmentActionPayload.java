@@ -75,13 +75,16 @@ public class AttachmentActionPayload {
 
     @Data
     public static class OriginalMessage {
-        private String text;
-        private String username;
         private String botId;
-        private List<Attachment> attachments;
-        private String type;
-        private String subtype;
+        private String type; // "message"
+        private String text;
+        private String user;
+        private String username;
         private String ts;
+        private List<Attachment> attachments;
+        private String subtype;
+        private String threadTs;
+        private String parentUserId;
     }
 
     @Data
