@@ -151,7 +151,8 @@
       ],
       "upload": false,
       "user": "U00000000",
-      "display_as_bot": false
+      "display_as_bot": false,
+      "client_msg_id": ""
     }
   ],
   "has_more": false,

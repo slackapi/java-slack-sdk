@@ -14,6 +14,7 @@ public class OAuthAccessResponse implements SlackApiResponse {
     private String needed;
     private String provided;
 
+    private String tokenType;
     private String accessToken;
     private String scope;
     private String teamName;
@@ -24,6 +25,7 @@ public class OAuthAccessResponse implements SlackApiResponse {
 
     private AuthorizingUser authorizingUser;
     private InstallerUser installerUser;
+    @Deprecated // for workspace apps
     private Scopes scopes;
 
     @Data

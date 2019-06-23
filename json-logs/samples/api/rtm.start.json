@@ -263,7 +263,8 @@
       "search_only_show_online": false,
       "search_hide_deactivated_users": false,
       "sunset_interactive_message_views": 12345,
-      "workflow_builder_coachmarks": ""
+      "workflow_builder_coachmarks": "",
+      "add_apps_prompt_dismissed": false
     },
     "created": 12345,
     "manual_presence": ""
@@ -542,7 +543,8 @@
         "updated_by": "U00000000",
         "prefs": {
           "channels": [
-            ""
+            "",
+            "C00000000"
           ],
           "groups": [
             ""
