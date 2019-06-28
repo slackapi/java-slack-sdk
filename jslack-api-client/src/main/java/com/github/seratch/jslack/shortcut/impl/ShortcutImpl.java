@@ -15,13 +15,13 @@ import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Channel;
 import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.api.model.ResponseMetadata;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.shortcut.Shortcut;
 import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.shortcut.model.ChannelId;
 import com.github.seratch.jslack.shortcut.model.ChannelName;
 import com.github.seratch.jslack.shortcut.model.ReactionName;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -194,12 +194,23 @@ public class ShortcutImpl implements Shortcut {
     public void updateChannelsCache() throws IOException, SlackApiException {
         if (apiToken.isPresent()) {
             if (channels.isEmpty()) {
-                ChannelsListResponse response = slack.methods().channelsList(ChannelsListRequest.builder().
-                        token(apiToken.get().getValue())
-                        .build());
-                if (response.isOk()) {
-                    channels = response.getChannels();
-                }
+                String cursor = null;
+                do {
+                    ChannelsListResponse response = slack.methods()
+                            .channelsList(ChannelsListRequest.builder()
+                                                  .token(apiToken.get().getValue())
+                                                  .cursor(cursor)
+                                                  .build());
+                    if (response.isOk()) {
+                        channels.addAll(response.getChannels());
+                        cursor = Optional.of(response.getResponseMetadata())
+                                .map(ResponseMetadata::getNextCursor)
+                                .orElse(null);
+                    } else {
+                        // if response isn't okay, clear the cursor otherwise it may infinite loop
+                        cursor = null;
+                    }
+                } while (cursor != null && !cursor.isEmpty());
             }
         } else {
             throw new IllegalStateException("apiToken is absent.");
