@@ -10,6 +10,7 @@ public class Latest {
 
     private String type;
     private String subtype;
+    private String team;
     private String user;
     private String username;
     private String text;

@@ -35,6 +35,7 @@ public class ReactionsListResponse implements SlackApiResponse {
             private List<Attachment> attachments;
             private List<LayoutBlock> blocks;
             private String ts;
+            private String team;
             private String user;
             private String username;
             private String botId;

@@ -12,6 +12,7 @@ public class Message {
     private String type;
     private String subtype;
 
+    private String team; // team id
     private String channel;
 
     private String user;

@@ -36,6 +36,9 @@ public class File {
     private String urlPrivate;
     private String urlPrivateDownload;
 
+    private String appId;
+    private String appName;
+
     @SerializedName("thumb_64")
     private String thumb64;
     @SerializedName("thumb_64_gif")

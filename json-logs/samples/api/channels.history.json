@@ -390,7 +390,10 @@
           ],
           "count": 12345
         }
-      ]
+      ],
+      "client_msg_id": "",
+      "team": "T00000000",
+      "inviter": "U00000000"
     }
   ],
   "has_more": false,

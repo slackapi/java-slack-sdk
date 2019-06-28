@@ -38,6 +38,7 @@ public class StarsListResponse implements SlackApiResponse {
         private String text;
         private String ts;
         private String botId;
+        private String team;
 
         private List<Attachment> attachments;
         private List<LayoutBlock> blocks;
