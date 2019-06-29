@@ -203,7 +203,7 @@ public class ShortcutImpl implements Shortcut {
                                                   .build());
                     if (response.isOk()) {
                         channels.addAll(response.getChannels());
-                        cursor = Optional.of(response.getResponseMetadata())
+                        cursor = Optional.ofNullable(response.getResponseMetadata())
                                 .map(ResponseMetadata::getNextCursor)
                                 .orElse(null);
                     } else {
