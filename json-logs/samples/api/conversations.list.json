@@ -46,7 +46,8 @@
       "parent_conversation": "G00000000",
       "pending_connected_team_ids": [
         ""
-      ]
+      ],
+      "conversation_host_id": "T00000000"
     }
   ],
   "response_metadata": {
