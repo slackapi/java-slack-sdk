@@ -49,6 +49,8 @@ public class User {
     @Data
     public static class Profile {
 
+        private String guestChannels;
+        private String guestInvitedBy;
         private String avatarHash;
         private String statusText;
         private String statusTextCanonical;
