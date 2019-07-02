@@ -16,8 +16,6 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - [Message Actions](https://api.slack.com/actions)
   - [Outgoing Webhooks](https://api.slack.com/custom-integrations/outgoing-webhooks)
 
-As per API Methods, this library supports all the APIs listed in [github.com/slackapi/slack-api-specs](https://github.com/slackapi/slack-api-specs) as of May 2018.
-
 ### Getting Started
 
 Check the latest version on [the Maven Central repository](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.seratch%22%20AND%20a%3A%22jslack%22).
@@ -390,3 +388,6 @@ mvn deploy -P release-sign-artifacts -D maven.test.skip=true
 
 Copyright (c) Kazuhiro Sera
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/seratch/jslack.svg)](https://starchart.cc/seratch/jslack)
