@@ -265,7 +265,8 @@
       "sunset_interactive_message_views": 12345,
       "workflow_builder_coachmarks": "",
       "add_apps_prompt_dismissed": false,
-      "dismissed_installed_app_dm_suggestions": ""
+      "dismissed_installed_app_dm_suggestions": "",
+      "welcome_place_state": ""
     },
     "created": 12345,
     "manual_presence": ""

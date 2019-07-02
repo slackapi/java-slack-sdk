@@ -8,6 +8,8 @@ import java.util.List;
 @Data
 public class Latest {
 
+    private String clientMsgId;
+
     private String type;
     private String subtype;
     private String team;

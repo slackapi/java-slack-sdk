@@ -175,10 +175,20 @@
           "bot_id": "B00000000",
           "app_unfurl_url": "https://www.example.com/",
           "is_app_unfurl": false,
+          "pretext": "",
+          "thumb_height": 12345,
+          "thumb_width": 12345,
+          "thumb_url": "https://www.example.com/",
+          "color": "",
+          "fields": [
+            {
+              "title": "",
+              "value": "",
+              "short": false
+            }
+          ],
           "msg_subtype": "",
           "callback_id": "",
-          "color": "",
-          "pretext": "",
           "service_url": "",
           "service_name": "",
           "service_icon": "",
@@ -196,20 +206,10 @@
           "title": "",
           "title_link": "",
           "text": "",
-          "fields": [
-            {
-              "title": "",
-              "value": "",
-              "short": false
-            }
-          ],
           "image_url": "",
           "image_width": 12345,
           "image_height": 12345,
           "image_bytes": 12345,
-          "thumb_url": "",
-          "thumb_width": 12345,
-          "thumb_height": 12345,
           "video_html": "",
           "video_html_width": 12345,
           "video_html_height": 12345,
@@ -371,7 +371,8 @@
             "alt_text": ""
           }
         }
-      ]
+      ],
+      "client_msg_id": ""
     },
     "unread_count": 12345,
     "unread_count_display": 12345,
