@@ -474,7 +474,8 @@
     "reactions": [
       {
         "name": "",
-        "count": 123
+        "count": 123,
+        "url": ""
       }
     ],
     "bot_id": "",

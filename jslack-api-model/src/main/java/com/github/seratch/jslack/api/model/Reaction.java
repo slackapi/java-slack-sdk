@@ -19,4 +19,5 @@ public class Reaction {
     private String name;
     private Integer count;
     private List<String> users;
+    private String url;
 }

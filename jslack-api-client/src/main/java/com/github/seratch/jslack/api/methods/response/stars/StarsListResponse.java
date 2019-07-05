@@ -49,6 +49,7 @@ public class StarsListResponse implements SlackApiResponse {
 
         private String clientMsgId;
         private String user;
+        private String username;
         private String threadTs;
         private Integer replyCount;
         private Integer replyUsersCount;

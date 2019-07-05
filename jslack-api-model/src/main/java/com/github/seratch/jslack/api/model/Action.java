@@ -52,5 +52,18 @@ public class Action {
     private List<Option> selectedOptions = new ArrayList<>();
     private String dataSource;
     private Integer minQueryLength;
+    private List<OptionGroup> optionGroups;
     private String url;
+
+    @Data
+    public static class OptionGroup {
+        private String text;
+        private List<Option> options;
+    }
+
+    @Data
+    public static class Option {
+        private String text;
+        private String value;
+    }
 }

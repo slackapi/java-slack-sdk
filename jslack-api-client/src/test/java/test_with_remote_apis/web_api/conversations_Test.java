@@ -194,7 +194,10 @@ public class conversations_Test {
                     .token(token));
             String invitee_ = null;
             for (User u : usersListResponse.getMembers()) {
-                if (!"USLACKBOT".equals(u.getId()) && !membersResponse.getMembers().contains(u.getId())) {
+                if (!"USLACKBOT".equals(u.getId())
+                        && !membersResponse.getMembers().contains(u.getId())
+                        && !u.isRestricted()
+                        && !u.isUltraRestricted()) {
                     invitee_ = u.getId();
                 }
             }

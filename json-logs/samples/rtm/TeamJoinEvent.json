@@ -11,6 +11,8 @@
     "tz_label": "",
     "tz_offset": 123,
     "profile": {
+      "guest_channels": "",
+      "guest_invited_by": "",
       "avatar_hash": "",
       "status_text": "",
       "status_text_canonical": "",

@@ -370,6 +370,14 @@ export SLACK_WEBHOOK_TEST_URL=https://hooks.slack.com/services/Txxxx/yyy/zzz
   * Add `youtube.com` to the domain list
   * Re-install your Slack app
 
+### (Optional) Have a shared channel
+
+```bash
+export SLACK_TEST_SHARED_CHANNEL_ID=C12345678
+```
+
+### (Optional) Have a multi-channel guest and a single-channel guest
+
 ### Run the tests
 
 ```bash

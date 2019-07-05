@@ -44,6 +44,12 @@
     ]
   },
   "error": "",
+  "errors": [
+    {
+      "ok": false,
+      "error": ""
+    }
+  ],
   "needed": "",
   "provided": ""
 }

@@ -39,7 +39,9 @@
         "is_custom_image": false,
         "bot_id": "B00000000",
         "api_app_id": "",
-        "always_active": false
+        "always_active": false,
+        "guest_channels": "",
+        "guest_invited_by": "U00000000"
       },
       "is_admin": false,
       "is_owner": false,
