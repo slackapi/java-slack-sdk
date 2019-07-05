@@ -22,6 +22,7 @@ import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.shortcut.model.ChannelId;
 import com.github.seratch.jslack.shortcut.model.ChannelName;
 import com.github.seratch.jslack.shortcut.model.ReactionName;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -198,9 +199,9 @@ public class ShortcutImpl implements Shortcut {
                 do {
                     ChannelsListResponse response = slack.methods()
                             .channelsList(ChannelsListRequest.builder()
-                                                  .token(apiToken.get().getValue())
-                                                  .cursor(cursor)
-                                                  .build());
+                                    .token(apiToken.get().getValue())
+                                    .cursor(cursor)
+                                    .build());
                     if (response.isOk()) {
                         channels.addAll(response.getChannels());
                         cursor = Optional.ofNullable(response.getResponseMetadata())

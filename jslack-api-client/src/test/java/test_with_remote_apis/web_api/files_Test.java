@@ -7,15 +7,9 @@ import com.github.seratch.jslack.api.methods.request.files.FilesDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.files.FilesInfoRequest;
 import com.github.seratch.jslack.api.methods.request.files.FilesRevokePublicURLRequest;
 import com.github.seratch.jslack.api.methods.request.files.FilesSharedPublicURLRequest;
-import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsAddRequest;
-import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
-import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
 import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.files.*;
-import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsAddResponse;
-import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
-import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsEditResponse;
 import com.github.seratch.jslack.api.model.Channel;
 import com.github.seratch.jslack.api.model.Conversation;
 import config.Constants;
@@ -29,9 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 @Slf4j

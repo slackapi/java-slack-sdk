@@ -1,7 +1,10 @@
 package com.github.seratch.jslack.api.methods.response.stars;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.*;
+import com.github.seratch.jslack.api.model.Attachment;
+import com.github.seratch.jslack.api.model.File;
+import com.github.seratch.jslack.api.model.Paging;
+import com.github.seratch.jslack.api.model.Reaction;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;

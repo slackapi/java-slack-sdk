@@ -29,14 +29,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.CoreMatchers.startsWith;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class chat_Test {
@@ -91,14 +85,14 @@ public class chat_Test {
         assertThat(firstMessageCreation.isOk(), is(true));
 
         ChatPostMessageResponse reply1 = slack.methods().chatPostMessage(req -> req
-                .channel(randomChannelId)
-                .token(token)
-                .asUser(false)
-                .text("replied")
-                .iconEmoji(":smile:")
-                .threadTs(firstMessageCreation.getTs())
+                        .channel(randomChannelId)
+                        .token(token)
+                        .asUser(false)
+                        .text("replied")
+                        .iconEmoji(":smile:")
+                        .threadTs(firstMessageCreation.getTs())
                 //.replyBroadcast(true)
-                );
+        );
         assertThat(reply1.getError(), is(nullValue()));
         assertThat(reply1.isOk(), is(true));
 

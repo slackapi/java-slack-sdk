@@ -13,9 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
@@ -52,7 +50,7 @@ public class dnd_Test {
         {
             DndEndDndResponse response = slack.methods().dndEndDnd(r -> r
                     //.token(token)
-                    );
+            );
             assertThat(response.getError(), is(notNullValue()));
             assertThat(response.isOk(), is(false));
         }
@@ -69,7 +67,7 @@ public class dnd_Test {
         {
             DndEndSnoozeResponse response = slack.methods().dndEndSnooze(r -> r
                     //.token(token)
-                    );
+            );
             assertThat(response.getError(), is(notNullValue()));
             assertThat(response.isOk(), is(false));
         }

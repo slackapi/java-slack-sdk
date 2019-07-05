@@ -1,9 +1,9 @@
 package test_locally.api.model.event;
 
 import com.github.seratch.jslack.api.model.event.ChannelRenameEvent;
-import test_locally.unit.GsonFactory;
 import com.google.gson.Gson;
 import org.junit.Test;
+import test_locally.unit.GsonFactory;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;

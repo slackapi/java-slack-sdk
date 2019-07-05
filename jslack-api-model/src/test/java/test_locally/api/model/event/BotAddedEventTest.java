@@ -2,13 +2,11 @@ package test_locally.api.model.event;
 
 import com.github.seratch.jslack.api.model.BotIcons;
 import com.github.seratch.jslack.api.model.event.BotAddedEvent;
-import test_locally.unit.GsonFactory;
 import com.google.gson.Gson;
 import org.junit.Test;
+import test_locally.unit.GsonFactory;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 public class BotAddedEventTest {
