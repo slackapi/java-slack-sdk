@@ -2,8 +2,9 @@ package com.github.seratch.jslack.app_backend.outgoing_webhooks.payload;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 public class WebhookPayloadParserTest {
 
