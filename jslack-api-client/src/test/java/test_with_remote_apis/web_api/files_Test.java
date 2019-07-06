@@ -43,6 +43,16 @@ public class files_Test {
     }
 
     @Test
+    public void describe_ShowFilesHiddenByLimit() throws IOException, SlackApiException {
+        {
+            FilesListResponse response = slack.methods().filesList(r -> r.token(token).showFilesHiddenByLimit(true));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getFiles(), is(notNullValue()));
+        }
+    }
+
+    @Test
     public void createTextFileAndComments() throws IOException, SlackApiException {
         List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
         List<String> channels = new ArrayList<>();
