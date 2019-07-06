@@ -602,6 +602,7 @@ public class RequestFormBuilder {
         }
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
+        setIfNotNull("show_files_hidden_by_limit", req.isShowFilesHiddenByLimit(), form);
         return form;
     }
 

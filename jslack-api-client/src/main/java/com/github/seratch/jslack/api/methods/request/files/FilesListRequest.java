@@ -53,4 +53,14 @@ public class FilesListRequest implements SlackApiRequest {
 
     private Integer page;
 
+    /**
+     * https://api.slack.com/changelog/2019-03-wild-west-for-files-no-more
+     *
+     * In order to gather information on tombstoned files in Free workspaces,
+     * so that you can delete or revoke them, pass the show_files_hidden_by_limit parameter.
+     * While the yielded files will still be redacted,
+     * you'll gain the id of the files so that you can delete or revoke them.
+     */
+    private boolean showFilesHiddenByLimit;
+
 }
