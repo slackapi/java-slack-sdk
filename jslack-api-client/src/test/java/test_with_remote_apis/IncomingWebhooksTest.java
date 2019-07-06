@@ -34,10 +34,10 @@ public class IncomingWebhooksTest {
         }
 
         Payload payload = Payload.builder()
-                .channel("#random")
+                .channel("#random") // still work if the webhook in part of a custom integration
+                .iconEmoji(":smile_cat:") // still work if the webhook in part of a custom integration
+                .username("jSlack") // still work if the webhook in part of a custom integration
                 .text("Hello World!")
-                .iconEmoji(":smile_cat:")
-                .username("jSlack")
                 .attachments(new ArrayList<>())
                 .build();
 
@@ -91,10 +91,10 @@ public class IncomingWebhooksTest {
         }
 
         Payload payload = Payload.builder()
-                .channel("#random")
+                .channel("#random") // still work if the webhook in part of a custom integration
+                .iconEmoji(":smile_cat:") // still work if the webhook in part of a custom integration
+                .username("jSlack") // still work if the webhook in part of a custom integration
                 .text("Hello World!")
-                .iconEmoji(":smile_cat:")
-                .username("jSlack")
                 .blocks(new ArrayList<>())
                 .build();
 
