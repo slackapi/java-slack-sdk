@@ -23,26 +23,38 @@ public class Payload {
     private String text;
 
     /**
+     * NOTE: No longer works if your webhook is managed in a Slack app
+     * <p>
      * Incoming webhooks output to a default channel and can only send messages to a single channel at a time.
      * You can override a custom integration's configured channel by specifying the channel field in your JSON payload.
      * <p>
      * Specify a Slack channel by name with "channel": "#other-channel", or send a Slackbot message to a specific user with "channel": "@username".
      */
+    @Deprecated
     private String channel;
 
     /**
+     * NOTE: No longer works if your webhook is managed in a Slack app
+     * <p>
      * Incoming webhooks originate from a default identity you configured when originally creating your webhook.
      * You can override a custom integration's configured name with the username field in your JSON payload.
      */
+    @Deprecated
     private String username;
 
     /**
+     * NOTE: No longer works if your webhook is managed in a Slack app
+     * <p>
      * You can also override the bot icon either with icon_url or icon_emoji.
      */
+    @Deprecated
     private String iconUrl;
     /**
+     * NOTE: No longer works if your webhook is managed in a Slack app
+     * <p>
      * You can also override the bot icon either with icon_url or icon_emoji.
      */
+    @Deprecated
     private String iconEmoji;
 
     /**
