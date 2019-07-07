@@ -372,7 +372,11 @@
           }
         }
       ],
-      "client_msg_id": ""
+      "client_msg_id": "",
+      "icons": {
+        "emoji": "",
+        "image_64": "https://www.example.com/"
+      }
     },
     "unread_count": 12345,
     "unread_count_display": 12345,
