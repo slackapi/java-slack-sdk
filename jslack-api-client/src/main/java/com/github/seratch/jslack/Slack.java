@@ -83,6 +83,22 @@ public class Slack {
     }
 
     /**
+     * Send a raw JSON body to Incoming Webhook endpoint.
+     */
+    public WebhookResponse send(String url, String payload) throws IOException {
+        SlackHttpClient httpClient = getHttpClient();
+        Response httpResponse = httpClient.postJsonPostRequest(url, payload);
+        String body = httpResponse.body().string();
+        httpClient.runHttpResponseListeners(httpResponse, body);
+
+        return WebhookResponse.builder()
+                .code(httpResponse.code())
+                .message(httpResponse.message())
+                .body(body)
+                .build();
+    }
+
+    /**
      * Creates an RTM API client.
      *
      * @see "https://api.slack.com/docs/rate-limits#rtm"
