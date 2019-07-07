@@ -40,9 +40,9 @@ If you really don't need classes for building Slack app backend (= you need only
 
 ### Examples
 
-#### Incoming Webhook
+#### Incoming Webhooks
 
-Incoming Webhook is a simple way to post messages from external sources into Slack via ordinary HTTP requests.
+Incoming Webhooks is a simple way to post messages from external sources into Slack via ordinary HTTP requests.
 
 https://api.slack.com/incoming-webhooks
 
@@ -64,7 +64,7 @@ WebhookResponse response = slack.send(url, payload);
 // response.code, response.message, response.body
 ```
 
-Here is an example with [Block Kit](https://api.slack.com/block-kit).
+Here is a small example using [Block Kit](https://api.slack.com/block-kit).
 
 ```java
 ButtonElement button = ButtonElement.builder()
@@ -90,99 +90,7 @@ String payload = "{\"text\": \"Hello there!\"}";
 WebhookResponse response = slack.send(url, payload);
 ```
 
-#### Real Time Messaging API
 
-Real Time Messaging API is a WebSocket-based API that allows you to receive events from Slack in real time and send messages as user.
-
-https://api.slack.com/rtm
-
-When you use this API through jSlack library, you need adding additional WebSocket libraries:
-
-```xml
-<dependency>
-    <groupId>javax.websocket</groupId>
-    <artifactId>javax.websocket-api</artifactId>
-    <version>1.1</version>
-</dependency>
-<dependency>
-    <groupId>org.glassfish.tyrus.bundles</groupId>
-    <artifactId>tyrus-standalone-client</artifactId>
-    <version>1.13</version>
-</dependency>
-```
-
-The following example shows you a simple usage of RTM API. 
-
-```java
-import com.github.seratch.jslack.*;
-import com.github.seratch.jslack.api.rtm.*;
-import com.google.gson.*;
-
-JsonParser jsonParser = new JsonParser();
-String token = System.getenv("SLACK_BOT_API_TOKEN");
-
-try (RTMClient rtm = new Slack().rtm(token)) {
-
-  rtm.addMessageHandler((message) -> {
-    JsonObject json = jsonParser.parse(message).getAsJsonObject();
-    if (json.get("type") != null) {
-      log.info("Handled type: {}", json.get("type").getAsString());
-    }
-  });
-
-  RTMMessageHandler handler2 = (message) -> {
-    log.info("Hello!");
-  };
-
-  rtm.addMessageHandler(handler2);
-
-  // must connect within 30 seconds after issuing wss endpoint
-  rtm.connect();
-
-  rtm.sendMessage(Typing.builder()
-    .id(System.currentTimeMillis())
-    .channel(channelId)
-    .build().toJSONString());
-
-  rtm.sendMessage(Message.builder()
-    .id(System.currentTimeMillis())
-    .channel(channelId)
-    .text("Hi!")
-    .build().toJSONString());
-
-  rtm.removeMessageHandler(handler2);
-
-} // #close method does #disconnect
-```
-
-The `message`, argument of messageHandler, is a string value in JSON format. You need to deserialize it with your favorite JSON library.
-
-jSlack already depends on [google-gson](https://github.com/google/gson) library. So you can use Gson as above example shows. If you prefer Jackson or other libraries, it's also possible.
-
-#### Events API
-
-The Events API is a streamlined, easy way to build apps and bots that respond to activities in Slack.
-All you need is a Slack app and a secure place for us to send your events.
-
-https://api.slack.com/events-api
-
-```java
-AppUninstalledHandler appUninstalledEventHandler = new AppUninstalledHandler {
-
-  @Override
-  public void handle(AppUninstalledPayload event) {
-    // do something here
-  }
-};
-
-public class SampleServlet extends SlackEventsApiServlet {
-
-  @Override
-  protected void setupDispatcher(EventsDispatcher dispatcher) {
-    dispatcher.register(appUninstalledEventHandler);
-  }
-}
-```
 
 #### API Methods
 
@@ -239,6 +147,7 @@ final String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
 ChannelsCreateResponse response =
   slack.methods().channelsCreate(req -> req.token(token).name(channelName));
 ```
+
 #### API Methods Examples
 
 You can find more examples here: https://github.com/seratch/jslack/tree/master/src/test/java/com/github/seratch/jslack
@@ -326,6 +235,104 @@ DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(req -> req
 ```
 
 
+#### Events API
+
+The Events API is a streamlined, easy way to build apps and bots that respond to activities in Slack.
+All you need is a Slack app and a secure place for us to send your events.
+
+https://api.slack.com/events-api
+
+```java
+AppUninstalledHandler appUninstalledEventHandler = new AppUninstalledHandler {
+
+  @Override
+  public void handle(AppUninstalledPayload event) {
+    // do something here
+  }
+};
+
+public class SampleServlet extends SlackEventsApiServlet {
+
+  @Override
+  protected void setupDispatcher(EventsDispatcher dispatcher) {
+    dispatcher.register(appUninstalledEventHandler);
+  }
+}
+```
+
+
+
+#### Real Time Messaging API
+
+Real Time Messaging API is a WebSocket-based API that allows you to receive events from Slack in real time and send messages as user.
+
+https://api.slack.com/rtm
+
+When you use this API through jSlack library, you need adding additional WebSocket libraries:
+
+```xml
+<dependency>
+    <groupId>javax.websocket</groupId>
+    <artifactId>javax.websocket-api</artifactId>
+    <version>1.1</version>
+</dependency>
+<dependency>
+    <groupId>org.glassfish.tyrus.bundles</groupId>
+    <artifactId>tyrus-standalone-client</artifactId>
+    <version>1.13</version>
+</dependency>
+```
+
+The following example shows you a simple usage of RTM API. 
+
+```java
+import com.github.seratch.jslack.*;
+import com.github.seratch.jslack.api.rtm.*;
+import com.google.gson.*;
+
+JsonParser jsonParser = new JsonParser();
+String token = System.getenv("SLACK_BOT_API_TOKEN");
+
+try (RTMClient rtm = new Slack().rtm(token)) {
+
+  rtm.addMessageHandler((message) -> {
+    JsonObject json = jsonParser.parse(message).getAsJsonObject();
+    if (json.get("type") != null) {
+      log.info("Handled type: {}", json.get("type").getAsString());
+    }
+  });
+
+  RTMMessageHandler handler2 = (message) -> {
+    log.info("Hello!");
+  };
+
+  rtm.addMessageHandler(handler2);
+
+  // must connect within 30 seconds after issuing wss endpoint
+  rtm.connect();
+
+  rtm.sendMessage(Typing.builder()
+    .id(System.currentTimeMillis())
+    .channel(channelId)
+    .build().toJSONString());
+
+  rtm.sendMessage(Message.builder()
+    .id(System.currentTimeMillis())
+    .channel(channelId)
+    .text("Hi!")
+    .build().toJSONString());
+
+  rtm.removeMessageHandler(handler2);
+
+} // #close method does #disconnect
+```
+
+The `message`, argument of messageHandler, is a string value in JSON format. You need to deserialize it with your favorite JSON library.
+
+jSlack already depends on [google-gson](https://github.com/google/gson) library. So you can use Gson as above example shows. If you prefer Jackson or other libraries, it's also possible.
+
+
+
 #### (jSlack's Original) Shortcut APIs
 
 ```java
@@ -355,6 +362,7 @@ DividerBlock divider = new DividerBlock();
 ChatPostMessageResponse response = shortcut.post(ChannelName.of("general"),
   Arrays.asList(section, divider));
 ```
+
 
 ### Preparations for running this library's unit tests.
 
