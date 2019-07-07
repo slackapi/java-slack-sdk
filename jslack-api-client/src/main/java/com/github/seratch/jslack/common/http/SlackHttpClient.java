@@ -62,8 +62,12 @@ public class SlackHttpClient {
     }
 
     private String toJsonString(Object obj) {
-        Gson gson = GsonFactory.createSnakeCase();
-        return gson.toJson(obj);
+        if (obj instanceof String) {
+            return (String) obj;
+        } else {
+            Gson gson = GsonFactory.createSnakeCase();
+            return gson.toJson(obj);
+        }
     }
 
 

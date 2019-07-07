@@ -17,6 +17,12 @@ import java.util.List;
 public class Payload {
 
     /**
+     * You can add the thread_ts parameter to your POST request
+     * in order to make your message appear as a reply in a thread.
+     */
+    private String threadTs;
+
+    /**
      * The first step is to prepare this message as a key/value pair in JSON.
      * For a simple message, your JSON payload only needs to define a text property, containing the text that will be posted to the channel.
      */

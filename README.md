@@ -362,6 +362,7 @@ Manually create a Slack user which has an email address for a unit test.
 
 ```bash
 export SLACK_WEBHOOK_TEST_URL=https://hooks.slack.com/services/Txxxx/yyy/zzz
+export SLACK_WEBHOOK_TEST_CHANNEL=C12345678 (or #random)
 ```
 
 ### Add youtube.com to App Unfurl Domains
