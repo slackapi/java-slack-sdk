@@ -56,15 +56,38 @@ import com.github.seratch.jslack.api.webhook.*;
 String url = System.getenv("SLACK_WEBHOOK_URL");
 
 Payload payload = Payload.builder()
-  .channel("#random")
-  .username("jSlack Bot")
-  .iconEmoji(":smile_cat:")
   .text("Hello World!")
   .build();
 
 Slack slack = Slack.getInstance();
 WebhookResponse response = slack.send(url, payload);
 // response.code, response.message, response.body
+```
+
+Here is an example with [Block Kit](https://api.slack.com/block-kit).
+
+```java
+ButtonElement button = ButtonElement.builder()
+  .text(PlainTextObject.builder().emoji(true).text("Farmhouse").build())
+  .value("click_me_123")
+  .build();
+
+LayoutBlock block = ActionsBlock.builder().elements(Arrays.asList(button)).build();
+
+List<LayoutBlock> blocks = Arrays.asList(block);
+
+Payload payload = Payload.builder().blocks(blocks).build();
+
+Slack slack = Slack.getInstance();
+WebhookResponse response = slack.send(url, payload);
+// response.code, response.message, response.body
+```
+
+It's also possible to directly give a raw payload.
+
+```java
+String payload = "{\"text\": \"Hello there!\"}";
+WebhookResponse response = slack.send(url, payload);
 ```
 
 #### Real Time Messaging API
