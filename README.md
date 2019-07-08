@@ -40,6 +40,8 @@ If you really don't need classes for building Slack app backend (= you need only
 
 ### Examples
 
+If you like using Kotlin, check [this repository](https://github.com/seratch/jslack-kotlin-examples) as well 🙌
+
 #### Incoming Webhooks
 
 Incoming Webhooks is a simple way to post messages from external sources into Slack via ordinary HTTP requests.
