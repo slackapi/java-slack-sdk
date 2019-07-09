@@ -388,6 +388,7 @@
           "channel_name": "",
           "id": 123,
           "bot_id": "",
+          "indent": false,
           "is_msg_unfurl": false,
           "is_reply_unfurl": false,
           "is_thread_root_unfurl": false,

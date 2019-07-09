@@ -86,6 +86,8 @@ public class Attachment {
 
     private String botId;
 
+    private boolean indent;
+
     // # already exists > "fallback": "[December 28th, 2016 1:22 PM] confused: what was there?",
     // # already exists > "ts": "1482960137.003543",
     // # already exists > "author_link": "https://lost-generation-authors.slack.com/team/confused",
