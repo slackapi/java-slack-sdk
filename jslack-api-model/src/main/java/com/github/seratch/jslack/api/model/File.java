@@ -122,6 +122,13 @@ public class File {
 
     private String thumbVideo;
 
+    @SerializedName("thumb_pdf")
+    private String thumbPdf;
+    @SerializedName("thumb_pdf_w")
+    private String thumbPdfWidth;
+    @SerializedName("thumb_pdf_h")
+    private String thumbPdfHeight;
+
     private Integer imageExifRotation;
 
     @SerializedName("original_w")

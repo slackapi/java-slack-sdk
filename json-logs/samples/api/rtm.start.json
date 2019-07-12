@@ -268,7 +268,9 @@
       "dismissed_installed_app_dm_suggestions": "",
       "welcome_place_state": "",
       "set_tz_automatically": false,
-      "app_action_picker": ""
+      "app_action_picker": "",
+      "seen_sonic_deluxe_toast": 12345,
+      "add_channel_prompt_dismissed": false
     },
     "created": 12345,
     "manual_presence": ""
@@ -667,6 +669,7 @@
     }
   ],
   "url": "",
+  "must_accept_tos": false,
   "error": "",
   "needed": "",
   "provided": ""

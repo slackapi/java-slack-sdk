@@ -69,6 +69,7 @@ public class ReactionsListResponse implements SlackApiResponse {
             private boolean subscribed;
             private String lastRead;
             private String clientMsgId;
+            private String inviter;
             private Icons icons;
 
             @Data

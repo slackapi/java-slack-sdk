@@ -151,7 +151,10 @@
       "original_w": 12345,
       "original_h": 12345,
       "app_id": "A00000000",
-      "app_name": ""
+      "app_name": "",
+      "thumb_pdf": "https://www.example.com/",
+      "thumb_pdf_w": 12345,
+      "thumb_pdf_h": 12345
     }
   ],
   "paging": {
