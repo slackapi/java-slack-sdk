@@ -102,19 +102,19 @@ public class rtm_Test {
             rtm.addMessageHandler(dispatcher.toMessageHandler());
 
             rtm.connect();
-            Thread.sleep(300L);
+            Thread.sleep(1000L);
             assertThat(hello.counter.get(), is(1));
             assertThat(hello2.counter.get(), is(1));
 
             rtm.reconnect();
-            Thread.sleep(300L);
+            Thread.sleep(1000L);
             assertThat(hello.counter.get(), is(2));
             assertThat(hello2.counter.get(), is(2));
 
             dispatcher.deregister(hello);
 
             rtm.reconnect();
-            Thread.sleep(300L);
+            Thread.sleep(1000L);
             assertThat(hello.counter.get(), is(2)); // should not be incremented
             assertThat(hello2.counter.get(), is(3));
         }
@@ -201,6 +201,8 @@ public class rtm_Test {
         rtm.addMessageHandler(handler2);
         rtm.connect();
 
+        Thread.sleep(3000);
+
         // won't be captured by onMessage
         rtm.sendMessage(Typing.builder()
                 .id(System.currentTimeMillis())
@@ -227,7 +229,7 @@ public class rtm_Test {
 
         rtm.removeMessageHandler(handler2);
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         rtm.disconnect();
 
@@ -245,6 +247,8 @@ public class rtm_Test {
 
         // refresh wss endpoint and start a new session
         rtm.reconnect();
+
+        Thread.sleep(3000);
 
         // returns {"type":"presence_change","presence":"active","user":"U8P5K4***"}
         rtm.sendMessage(PresenceQuery.builder().ids(Arrays.asList(currentUser.getId())).build().toJSONString());
