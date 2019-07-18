@@ -515,7 +515,8 @@
       "topic": "",
       "purpose": "",
       "team": "T00000000",
-      "client_msg_id": ""
+      "client_msg_id": "",
+      "inviter": "U00000000"
     }
   ],
   "has_more": false,

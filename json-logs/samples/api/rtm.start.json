@@ -538,7 +538,8 @@
       "has_pins": false,
       "last_read": "0000000000.000000",
       "is_open": false,
-      "priority": 12345
+      "priority": 12345,
+      "is_archived": false
     }
   ],
   "cache_ts": 12345,

@@ -18,5 +18,7 @@ public class Im {
     private boolean orgShared;
     @SerializedName("is_user_deleted")
     private boolean user_deleted;
+    @SerializedName("is_archived")
+    private boolean archived;
     private Double priority;
 }

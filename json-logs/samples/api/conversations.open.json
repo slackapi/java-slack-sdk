@@ -21,7 +21,8 @@
     "unread_count": 12345,
     "unread_count_display": 12345,
     "is_open": false,
-    "priority": 12345
+    "priority": 12345,
+    "is_archived": false
   },
   "error": "",
   "needed": "",
