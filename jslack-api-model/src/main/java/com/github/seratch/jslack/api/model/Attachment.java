@@ -2,8 +2,7 @@ package com.github.seratch.jslack.api.model;
 
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.google.gson.annotations.SerializedName;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,19 +95,64 @@ public class Attachment {
     // # already exists > "text": "island",
     // # already exists > "footer": "5 replies"
 
+    /**
+     * NOTE: The the following Booleans (is_msg_unfurl, is_reply_unfurl, is_thread_root_unfurl,
+     * is_app_unfurl) default to null intentionally to support block attachments.
+     */
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @SerializedName("is_msg_unfurl")
-    private boolean msgUnfurl;
+    private Boolean msgUnfurl;
 
+    public Boolean isMsgUnfurl() {
+        return this.msgUnfurl;
+    }
+
+    public void setMsgUnfurl(Boolean msgUnfurl) {
+        this.msgUnfurl = msgUnfurl;
+    }
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @SerializedName("is_reply_unfurl")
-    private boolean replyUnfurl;
+    private Boolean replyUnfurl;
 
+    public Boolean isReplyUnfurl() {
+        return this.replyUnfurl;
+    }
+
+    public void setReplyUnfurl(Boolean replyUnfurl) {
+        this.replyUnfurl = replyUnfurl;
+    }
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @SerializedName("is_thread_root_unfurl")
-    private boolean threadRootUnfurl;
+    private Boolean threadRootUnfurl;
+
+    public Boolean isThreadRootUnfurl() {
+        return this.threadRootUnfurl;
+    }
+
+    public void setThreadRootUnfurl(Boolean threadRootUnfurl) {
+        this.threadRootUnfurl = threadRootUnfurl;
+    }
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @SerializedName("is_app_unfurl")
+    private Boolean appUnfurl;
+
+    public Boolean isAppUnfurl() {
+        return this.appUnfurl;
+    }
+
+    public void setAppUnfurl(Boolean appUnfurl) {
+        this.appUnfurl = appUnfurl;
+    }
 
     private String appUnfurlUrl;
-
-    @SerializedName("is_app_unfurl")
-    private boolean appUnfurl;
 
     /**
      * The title is displayed as larger, bold text near the top of a message attachment.
