@@ -35,6 +35,11 @@ public class SlackConfig {
      */
     private boolean libraryMaintainerMode = false;
 
+    /**
+     * Slack Web API client verifies the existence of tokens before sending HTTP requests to Slack servers.
+     */
+    private boolean tokenExistenceVerificationEnabled = false;
+
     private List<HttpResponseListener> httpClientResponseHandlers = new ArrayList<>();
 
 }
