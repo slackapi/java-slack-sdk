@@ -85,7 +85,17 @@ public class Attachment {
 
     private String botId;
 
-    private boolean indent;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Boolean indent;
+    
+    public Boolean isIndent() {
+        return this.indent;
+    }
+
+    public void setIndent(Boolean indent) {
+        this.indent = indent;
+    }
 
     // # already exists > "fallback": "[December 28th, 2016 1:22 PM] confused: what was there?",
     // # already exists > "ts": "1482960137.003543",
