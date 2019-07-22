@@ -187,6 +187,8 @@ public class MatchedItem {
     private String score;
     private boolean topFile;
 
+    private String deanimateGif;
+
     @Data
     public static class OtherItem {
         private String iid;
