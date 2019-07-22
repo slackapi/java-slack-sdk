@@ -13,22 +13,24 @@
     "name_normalized": "",
     "is_shared": false,
     "creator": "U00000000",
+    "is_read_only": false,
     "is_ext_shared": false,
     "is_org_shared": false,
-    "shared_team_ids": [
-      "T00000000"
-    ],
     "pending_shared": [
-      "T00000000"
+      ""
+    ],
+    "pending_connected_team_ids": [
+      ""
     ],
     "is_pending_ext_shared": false,
+    "conversation_host_id": "T00000000",
     "is_member": false,
     "is_private": false,
     "is_mpim": false,
     "last_read": "0000000000.000000",
     "topic": {
       "value": "",
-      "creator": "",
+      "creator": "U00000000",
       "last_set": 12345
     },
     "purpose": {
@@ -39,105 +41,10 @@
     "previous_names": [
       ""
     ],
-    "locale": "",
-    "pending_connected_team_ids": [
-      "E00000000"
-    ],
-    "is_read_only": false,
-    "conversation_host_id": "T00000000",
-    "is_moved": 12345,
-    "is_global_shared": false,
-    "is_org_default": false,
-    "is_org_mandatory": false,
-    "is_open": false,
-    "user": "U00000000",
-    "latest": {
-      "type": "",
-      "subtype": "",
-      "text": "",
-      "ts": "0000000000.000000",
-      "user": "U00000000",
-      "username": "",
-      "bot_id": "",
-      "attachments": [
-        {
-          "msg_subtype": "",
-          "fallback": "",
-          "callback_id": "",
-          "color": "",
-          "pretext": "",
-          "service_url": "",
-          "service_name": "",
-          "service_icon": "",
-          "author_name": "",
-          "author_link": "",
-          "author_icon": "",
-          "from_url": "",
-          "original_url": "",
-          "author_subname": "",
-          "channel_id": "",
-          "channel_name": "",
-          "id": 12345,
-          "bot_id": "",
-          "indent": false,
-          "is_msg_unfurl": false,
-          "is_reply_unfurl": false,
-          "is_thread_root_unfurl": false,
-          "is_app_unfurl": false,
-          "app_unfurl_url": "",
-          "title": "",
-          "title_link": "",
-          "text": "",
-          "fields": [
-            {
-              "title": "",
-              "value": "",
-              "short": false
-            }
-          ],
-          "image_url": "",
-          "image_width": 12345,
-          "image_height": 12345,
-          "image_bytes": 12345,
-          "thumb_url": "",
-          "thumb_width": 12345,
-          "thumb_height": 12345,
-          "video_html": "",
-          "video_html_width": 12345,
-          "video_html_height": 12345,
-          "footer": "",
-          "footer_icon": "",
-          "ts": "",
-          "mrkdwn_in": [
-            ""
-          ],
-          "actions": [
-            {
-              "id": "",
-              "name": "",
-              "text": "",
-              "style": "",
-              "type": "",
-              "value": "",
-              "data_source": "",
-              "min_query_length": 12345,
-              "url": ""
-            }
-          ],
-          "filename": "",
-          "size": 12345,
-          "mimetype": "",
-          "url": "",
-          "metadata": ""
-        }
-      ]
-    },
-    "unread_count": 12345,
-    "unread_count_display": 12345,
-    "priority": 12345,
-    "connected_team_ids": [
+    "shared_team_ids": [
       "T00000000"
-    ]
+    ],
+    "locale": ""
   },
   "error": "",
   "needed": "",

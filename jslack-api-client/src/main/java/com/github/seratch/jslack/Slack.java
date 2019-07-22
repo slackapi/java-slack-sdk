@@ -211,6 +211,10 @@ public class Slack {
         return new MethodsClientImpl(httpClient);
     }
 
+    public MethodsClient methods(String token) {
+        return new MethodsClientImpl(httpClient, token);
+    }
+
     public Shortcut shortcut() {
         return new ShortcutImpl(this);
     }

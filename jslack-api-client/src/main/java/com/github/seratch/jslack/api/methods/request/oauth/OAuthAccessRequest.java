@@ -35,4 +35,9 @@ public class OAuthAccessRequest implements SlackApiRequest {
      * Request the user to add your app only to a single channel.
      */
     private boolean singleChannel;
+
+    @Override
+    public String getToken() {
+        return null;
+    }
 }

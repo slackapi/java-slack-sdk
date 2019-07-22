@@ -18,4 +18,8 @@ public class ApiTestRequest implements SlackApiRequest {
      */
     private String error;
 
+    @Override
+    public String getToken() {
+        return null;
+    }
 }

@@ -54,6 +54,15 @@ public class chat_Test {
         }
     }
 
+    @Test
+    public void postMessage() throws Exception {
+        loadRandomChannelId();
+        ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> req
+            .channel(randomChannelId)
+            .text("You can also do slack.methods(token)"));
+        assertThat(response.getError(), is(nullValue()));
+    }
+
     // https://github.com/seratch/jslack/issues/157
     @Test
     public void postMessage_blocksInAttachment_do_not_work() throws Exception {

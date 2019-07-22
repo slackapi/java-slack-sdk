@@ -1,10 +1,9 @@
 {
   "ok": false,
-  "no_op": false,
-  "already_open": false,
   "channel": {
     "id": "D00000000",
     "created": 12345,
+    "is_archived": false,
     "is_im": false,
     "is_org_shared": false,
     "user": "U00000000",
@@ -21,8 +20,7 @@
     "unread_count": 12345,
     "unread_count_display": 12345,
     "is_open": false,
-    "priority": 12345,
-    "is_archived": false
+    "priority": 12345
   },
   "error": "",
   "needed": "",

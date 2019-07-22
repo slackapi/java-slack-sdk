@@ -5,4 +5,6 @@ package com.github.seratch.jslack.api.methods;
  */
 public interface SlackApiRequest {
 
+    String getToken();
+
 }

@@ -1,5 +1,11 @@
 {
   "ok": false,
+  "error": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
   "channel": "C00000000",
   "ts": "0000000000.000000",
   "message": {
@@ -32,6 +38,11 @@
         "elements": [
           {
             "type": "",
+            "text": "",
+            "emoji": false
+          },
+          {
+            "type": "",
             "action_id": "",
             "text": {
               "type": "",
@@ -39,11 +50,6 @@
               "emoji": false
             },
             "value": ""
-          },
-          {
-            "type": "",
-            "text": "",
-            "emoji": false
           },
           {
             "type": "",
@@ -159,8 +165,7 @@
           "ts": "0000000000.000000"
         }
       ],
-      "subscribed": false,
-      "last_read": "0000000000.000000"
+      "subscribed": false
     },
     "icons": {
       "emoji": "",
@@ -240,12 +245,6 @@
     ],
     "user": "U00000000",
     "team": "T00000000"
-  },
-  "error": "",
-  "response_metadata": {
-    "messages": [
-      ""
-    ]
   },
   "needed": "",
   "provided": ""

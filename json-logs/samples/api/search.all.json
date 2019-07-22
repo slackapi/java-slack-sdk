@@ -116,76 +116,6 @@
             "metadata": ""
           },
           {
-            "author_name": "",
-            "fallback": "",
-            "id": 12345,
-            "author_link": "https://www.example.com/",
-            "author_icon": "https://www.example.com/",
-            "msg_subtype": "",
-            "callback_id": "",
-            "color": "",
-            "pretext": "",
-            "service_url": "",
-            "service_name": "",
-            "service_icon": "",
-            "from_url": "",
-            "original_url": "",
-            "author_subname": "",
-            "channel_id": "",
-            "channel_name": "",
-            "bot_id": "",
-            "indent": false,
-            "is_msg_unfurl": false,
-            "is_reply_unfurl": false,
-            "is_thread_root_unfurl": false,
-            "is_app_unfurl": false,
-            "app_unfurl_url": "",
-            "title": "",
-            "title_link": "",
-            "text": "",
-            "fields": [
-              {
-                "title": "",
-                "value": "",
-                "short": false
-              }
-            ],
-            "image_url": "",
-            "image_width": 12345,
-            "image_height": 12345,
-            "image_bytes": 12345,
-            "thumb_url": "",
-            "thumb_width": 12345,
-            "thumb_height": 12345,
-            "video_html": "",
-            "video_html_width": 12345,
-            "video_html_height": 12345,
-            "footer": "",
-            "footer_icon": "",
-            "ts": "",
-            "mrkdwn_in": [
-              ""
-            ],
-            "actions": [
-              {
-                "id": "",
-                "name": "",
-                "text": "",
-                "style": "",
-                "type": "",
-                "value": "",
-                "data_source": "",
-                "min_query_length": 12345,
-                "url": ""
-              }
-            ],
-            "filename": "",
-            "size": 12345,
-            "mimetype": "",
-            "url": "",
-            "metadata": ""
-          },
-          {
             "service_name": "",
             "service_url": "https://www.example.com/",
             "title": "",
@@ -256,192 +186,18 @@
             "metadata": ""
           },
           {
-            "service_name": "",
-            "title": "",
-            "title_link": "https://www.example.com/",
-            "text": "",
-            "fallback": "",
-            "image_url": "https://www.example.com/",
-            "image_width": 12345,
-            "image_height": 12345,
-            "ts": 12345,
-            "from_url": "https://www.example.com/",
-            "image_bytes": 12345,
-            "service_icon": "https://www.example.com/",
-            "id": 12345,
-            "original_url": "https://www.example.com/",
-            "msg_subtype": "",
-            "callback_id": "",
-            "color": "",
-            "pretext": "",
-            "service_url": "",
             "author_name": "",
-            "author_link": "",
-            "author_icon": "",
-            "author_subname": "",
-            "channel_id": "",
-            "channel_name": "",
-            "bot_id": "",
-            "indent": false,
-            "is_msg_unfurl": false,
-            "is_reply_unfurl": false,
-            "is_thread_root_unfurl": false,
-            "is_app_unfurl": false,
-            "app_unfurl_url": "",
-            "fields": [
-              {
-                "title": "",
-                "value": "",
-                "short": false
-              }
-            ],
-            "thumb_url": "",
-            "thumb_width": 12345,
-            "thumb_height": 12345,
-            "video_html": "",
-            "video_html_width": 12345,
-            "video_html_height": 12345,
-            "footer": "",
-            "footer_icon": "",
-            "mrkdwn_in": [
-              ""
-            ],
-            "actions": [
-              {
-                "id": "",
-                "name": "",
-                "text": "",
-                "style": "",
-                "type": "",
-                "value": "",
-                "data_source": "",
-                "min_query_length": 12345,
-                "url": ""
-              }
-            ],
-            "filename": "",
-            "size": 12345,
-            "mimetype": "",
-            "url": "",
-            "metadata": ""
-          },
-          {
-            "title": "",
-            "title_link": "https://www.example.com/",
-            "text": "",
             "fallback": "",
-            "from_url": "https://www.example.com/",
-            "service_icon": "https://www.example.com/",
-            "service_name": "",
             "id": 12345,
-            "original_url": "https://www.example.com/",
+            "author_link": "https://www.example.com/",
+            "author_icon": "https://www.example.com/",
             "msg_subtype": "",
             "callback_id": "",
             "color": "",
             "pretext": "",
-            "service_url": "",
-            "author_name": "",
-            "author_link": "",
-            "author_icon": "",
-            "author_subname": "",
-            "channel_id": "",
-            "channel_name": "",
-            "bot_id": "",
-            "indent": false,
-            "is_msg_unfurl": false,
-            "is_reply_unfurl": false,
-            "is_thread_root_unfurl": false,
-            "is_app_unfurl": false,
-            "app_unfurl_url": "",
-            "fields": [
-              {
-                "title": "",
-                "value": "",
-                "short": false
-              }
-            ],
-            "image_url": "",
-            "image_width": 12345,
-            "image_height": 12345,
-            "image_bytes": 12345,
-            "thumb_url": "",
-            "thumb_width": 12345,
-            "thumb_height": 12345,
-            "video_html": "",
-            "video_html_width": 12345,
-            "video_html_height": 12345,
-            "footer": "",
-            "footer_icon": "",
-            "ts": "",
-            "mrkdwn_in": [
-              ""
-            ],
-            "actions": [
-              {
-                "id": "",
-                "name": "",
-                "text": "",
-                "style": "",
-                "type": "",
-                "value": "",
-                "data_source": "",
-                "min_query_length": 12345,
-                "url": ""
-              }
-            ],
-            "filename": "",
-            "size": 12345,
-            "mimetype": "",
-            "url": "",
-            "metadata": ""
-          },
-          {
-            "callback_id": "",
-            "pretext": "",
-            "id": 12345,
-            "actions": [
-              {
-                "id": "0",
-                "name": "",
-                "text": "",
-                "type": "",
-                "data_source": "",
-                "option_groups": [
-                  {
-                    "text": "",
-                    "options": [
-                      {
-                        "text": "",
-                        "value": ""
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "",
-                "name": "",
-                "text": "",
-                "style": "",
-                "type": "",
-                "value": "",
-                "data_source": "",
-                "min_query_length": 12345,
-                "url": ""
-              }
-            ],
-            "mrkdwn_in": [
-              ""
-            ],
-            "msg_subtype": "",
-            "fallback": "",
-            "color": "",
             "service_url": "",
             "service_name": "",
             "service_icon": "",
-            "author_name": "",
-            "author_link": "",
-            "author_icon": "",
             "from_url": "",
             "original_url": "",
             "author_subname": "",
@@ -471,130 +227,6 @@
             "thumb_url": "",
             "thumb_width": 12345,
             "thumb_height": 12345,
-            "video_html": "",
-            "video_html_width": 12345,
-            "video_html_height": 12345,
-            "footer": "",
-            "footer_icon": "",
-            "ts": "",
-            "filename": "",
-            "size": 12345,
-            "mimetype": "",
-            "url": "",
-            "metadata": ""
-          },
-          {
-            "fallback": "",
-            "ts": 12345,
-            "author_name": "",
-            "author_link": "https://www.example.com/",
-            "author_icon": "https://www.example.com/",
-            "author_subname": "",
-            "text": "",
-            "service_name": "",
-            "service_url": "https://www.example.com/",
-            "from_url": "https://www.example.com/",
-            "indent": false,
-            "color": "",
-            "footer": "",
-            "footer_icon": "https://www.example.com/",
-            "msg_subtype": "",
-            "callback_id": "",
-            "pretext": "",
-            "service_icon": "",
-            "original_url": "",
-            "channel_id": "",
-            "channel_name": "",
-            "id": 12345,
-            "bot_id": "",
-            "is_msg_unfurl": false,
-            "is_reply_unfurl": false,
-            "is_thread_root_unfurl": false,
-            "is_app_unfurl": false,
-            "app_unfurl_url": "",
-            "title": "",
-            "title_link": "",
-            "fields": [
-              {
-                "title": "",
-                "value": "",
-                "short": false
-              }
-            ],
-            "image_url": "",
-            "image_width": 12345,
-            "image_height": 12345,
-            "image_bytes": 12345,
-            "thumb_url": "",
-            "thumb_width": 12345,
-            "thumb_height": 12345,
-            "video_html": "",
-            "video_html_width": 12345,
-            "video_html_height": 12345,
-            "mrkdwn_in": [
-              ""
-            ],
-            "actions": [
-              {
-                "id": "",
-                "name": "",
-                "text": "",
-                "style": "",
-                "type": "",
-                "value": "",
-                "data_source": "",
-                "min_query_length": 12345,
-                "url": ""
-              }
-            ],
-            "filename": "",
-            "size": 12345,
-            "mimetype": "",
-            "url": "",
-            "metadata": ""
-          },
-          {
-            "service_name": "",
-            "title": "",
-            "title_link": "https://www.example.com/",
-            "text": "",
-            "fallback": "",
-            "thumb_url": "https://www.example.com/",
-            "from_url": "https://www.example.com/",
-            "thumb_width": 12345,
-            "thumb_height": 12345,
-            "service_icon": "https://www.example.com/",
-            "id": 12345,
-            "original_url": "https://www.example.com/",
-            "msg_subtype": "",
-            "callback_id": "",
-            "color": "",
-            "pretext": "",
-            "service_url": "",
-            "author_name": "",
-            "author_link": "",
-            "author_icon": "",
-            "author_subname": "",
-            "channel_id": "",
-            "channel_name": "",
-            "bot_id": "",
-            "indent": false,
-            "is_msg_unfurl": false,
-            "is_reply_unfurl": false,
-            "is_thread_root_unfurl": false,
-            "is_app_unfurl": false,
-            "app_unfurl_url": "",
-            "fields": [
-              {
-                "title": "",
-                "value": "",
-                "short": false
-              }
-            ],
-            "image_url": "",
-            "image_width": 12345,
-            "image_height": 12345,
-            "image_bytes": 12345,
             "video_html": "",
             "video_html_width": 12345,
             "video_html_height": 12345,
@@ -818,9 +450,6 @@
           "user": "U00000000",
           "username": "",
           "ts": "0000000000.000000",
-          "text": "",
-          "iid": "",
-          "permalink": "https://www.example.com/",
           "blocks": [
             {
               "type": "",
@@ -929,6 +558,9 @@
               }
             }
           ],
+          "text": "",
+          "iid": "",
+          "permalink": "https://www.example.com/",
           "attachments": [
             {
               "msg_subtype": "",
@@ -1003,9 +635,6 @@
           ]
         }
       }
-    ],
-    "refinements": [
-      ""
     ]
   },
   "files": {
