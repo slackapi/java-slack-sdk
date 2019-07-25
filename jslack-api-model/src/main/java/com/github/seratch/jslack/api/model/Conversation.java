@@ -63,6 +63,10 @@ public class Conversation {
     private boolean isGeneral;
     @SerializedName("is_read_only")
     private boolean isReadOnly;
+    @SerializedName("is_thread_only")
+    private boolean isThreadOnly;
+    @SerializedName("is_non_threadable")
+    private boolean isNonThreadable;
     @SerializedName("is_shared")
     private boolean isShared;
     @SerializedName("is_ext_shared")

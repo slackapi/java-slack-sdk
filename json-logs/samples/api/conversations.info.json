@@ -44,7 +44,9 @@
     "shared_team_ids": [
       "T00000000"
     ],
-    "locale": ""
+    "locale": "",
+    "is_thread_only": false,
+    "is_non_threadable": false
   },
   "error": "",
   "needed": "",

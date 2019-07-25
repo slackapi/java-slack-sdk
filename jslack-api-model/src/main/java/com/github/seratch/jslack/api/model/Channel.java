@@ -16,6 +16,8 @@ public class Channel {
 
     @SerializedName("is_read_only")
     private boolean readOnly;
+    @SerializedName("is_thread_only")
+    private boolean threadOnly;
     @SerializedName("is_archived")
     private boolean archived;
     @SerializedName("is_member")

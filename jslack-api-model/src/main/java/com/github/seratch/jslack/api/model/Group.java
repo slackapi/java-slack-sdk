@@ -26,6 +26,11 @@ public class Group {
     private boolean mpim;
     @SerializedName("is_open")
     private boolean open;
+    @SerializedName("is_read_only")
+    private boolean readOnly;
+    @SerializedName("is_thread_only")
+    private boolean threadOnly;
+
     private List<String> members;
     private String parentGroup; // group id
     private Topic topic;

@@ -55,7 +55,13 @@
       "preview_highlight": "",
       "lines": 12345,
       "lines_more": 12345,
-      "preview_is_truncated": false
+      "preview_is_truncated": false,
+      "thumb_720": "https://www.example.com/",
+      "thumb_720_w": 12345,
+      "thumb_720_h": 12345,
+      "thumb_800": "https://www.example.com/",
+      "thumb_800_w": 12345,
+      "thumb_800_h": 12345
     }
   ],
   "paging": {

@@ -37,7 +37,10 @@
       "image_1024": "https://www.example.com/",
       "status_text_canonical": "",
       "team": "T00000000",
-      "is_custom_image": false
+      "is_custom_image": false,
+      "guest_channels": "",
+      "guest_invited_by": "U00000000",
+      "email": ""
     },
     "is_admin": false,
     "is_owner": false,
@@ -47,7 +50,8 @@
     "is_bot": false,
     "is_app_user": false,
     "updated": 12345,
-    "has_2fa": false
+    "has_2fa": false,
+    "is_stranger": false
   },
   "error": "",
   "needed": "",
