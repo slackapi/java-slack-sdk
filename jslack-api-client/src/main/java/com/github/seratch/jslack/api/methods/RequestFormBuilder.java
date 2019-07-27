@@ -22,6 +22,7 @@ import com.github.seratch.jslack.api.methods.request.files.*;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
+import com.github.seratch.jslack.api.methods.request.files.remote.*;
 import com.github.seratch.jslack.api.methods.request.groups.*;
 import com.github.seratch.jslack.api.methods.request.im.*;
 import com.github.seratch.jslack.api.methods.request.migration.MigrationExchangeRequest;
@@ -634,8 +635,13 @@ public class RequestFormBuilder {
     public static MultipartBody.Builder toMultipartBody(FilesUploadRequest req) {
         MultipartBody.Builder form = new MultipartBody.Builder();
 
-        RequestBody file = RequestBody.create(MultipartBody.FORM, req.getFile());
-        form.addFormDataPart("file", req.getFilename(), file);
+        if (req.getFileData() != null) {
+            RequestBody file = RequestBody.create(MultipartBody.FORM, req.getFileData());
+            form.addFormDataPart("file", req.getFilename(), file);
+        } else if (req.getFile() != null) {
+            RequestBody file = RequestBody.create(MultipartBody.FORM, req.getFile());
+            form.addFormDataPart("file", req.getFilename(), file);
+        }
 
         setIfNotNull("filetype", req.getFiletype(), form);
         setIfNotNull("filename", req.getFilename(), form);
@@ -667,6 +673,76 @@ public class RequestFormBuilder {
         setIfNotNull("file", req.getFile(), form);
         setIfNotNull("comment", req.getComment(), form);
         setIfNotNull("id", req.getId(), form);
+        return form;
+    }
+
+    public static MultipartBody.Builder toMultipartBody(FilesRemoteAddRequest req) {
+        MultipartBody.Builder form = new MultipartBody.Builder();
+        setIfNotNull("external_id", req.getExternalId(), form);
+        setIfNotNull("external_url", req.getExternalUrl(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("filetype", req.getFiletype(), form);
+        if (req.getIndexableFileContents() != null) {
+            RequestBody indexableFileContents = RequestBody.create(req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getIndexableFileContents());
+            form.addFormDataPart("indexable_file_contents", req.getTitle(), indexableFileContents);
+        }
+        if (req.getPreviewImage() != null) {
+            RequestBody previewImage = RequestBody.create(req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getPreviewImage());
+            form.addFormDataPart("preview_image", req.getTitle(), previewImage);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(FilesRemoteInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("external_id", req.getExternalId(), form);
+        setIfNotNull("file", req.getFile(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(FilesRemoteListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("ts_from", req.getTsFrom(), form);
+        setIfNotNull("ts_to", req.getTsTo(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(FilesRemoteRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("external_id", req.getExternalId(), form);
+        setIfNotNull("file", req.getFile(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(FilesRemoteShareRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("external_id", req.getExternalId(), form);
+        setIfNotNull("file", req.getFile(), form);
+        if (req.getChannels() != null) {
+            setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
+        } else {
+            throw new IllegalArgumentException("channels parameter is required for files.remote.share API");
+        }
+        return form;
+    }
+
+    public static MultipartBody.Builder toMultipartBody(FilesRemoteUpdateRequest req) {
+        MultipartBody.Builder form = new MultipartBody.Builder();
+        setIfNotNull("external_id", req.getExternalId(), form);
+        setIfNotNull("external_url", req.getExternalUrl(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("filetype", req.getFiletype(), form);
+        if (req.getIndexableFileContents() != null) {
+            RequestBody indexableFileContents = RequestBody.create(req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getIndexableFileContents());
+            form.addFormDataPart("indexable_file_contents", null, indexableFileContents);
+        }
+        if (req.getPreviewImage() != null) {
+            RequestBody previewImage = RequestBody.create(req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getPreviewImage());
+            form.addFormDataPart("preview_image", null, previewImage);
+        }
         return form;
     }
 
@@ -1238,8 +1314,13 @@ public class RequestFormBuilder {
 
     public static MultipartBody.Builder toMultipartBody(UsersSetPhotoRequest req) {
         MultipartBody.Builder form = new MultipartBody.Builder();
-        RequestBody image = RequestBody.create(MediaType.parse("image/*"), req.getImage());
-        form.addFormDataPart("image", "image", image);
+        if (req.getImageData() != null) {
+            RequestBody image = RequestBody.create(MediaType.parse("imageData/*"), req.getImageData());
+            form.addFormDataPart("image", "image", image);
+        } else if (req.getImage() != null) {
+            RequestBody image = RequestBody.create(MediaType.parse("imageData/*"), req.getImage());
+            form.addFormDataPart("image", "image", image);
+        }
         setIfNotNull("crop_x", req.getCropX(), form);
         setIfNotNull("crop_y", req.getCropY(), form);
         setIfNotNull("crop_w", req.getCropW(), form);

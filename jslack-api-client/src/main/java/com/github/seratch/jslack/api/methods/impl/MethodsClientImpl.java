@@ -23,6 +23,7 @@ import com.github.seratch.jslack.api.methods.request.files.*;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
+import com.github.seratch.jslack.api.methods.request.files.remote.*;
 import com.github.seratch.jslack.api.methods.request.groups.*;
 import com.github.seratch.jslack.api.methods.request.im.*;
 import com.github.seratch.jslack.api.methods.request.migration.MigrationExchangeRequest;
@@ -78,6 +79,7 @@ import com.github.seratch.jslack.api.methods.response.files.*;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsAddResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsEditResponse;
+import com.github.seratch.jslack.api.methods.response.files.remote.*;
 import com.github.seratch.jslack.api.methods.response.groups.*;
 import com.github.seratch.jslack.api.methods.response.im.*;
 import com.github.seratch.jslack.api.methods.response.migration.MigrationExchangeResponse;
@@ -799,7 +801,7 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public FilesUploadResponse filesUpload(FilesUploadRequest req) throws IOException, SlackApiException {
-        if (req.getFile() != null) {
+        if (req.getFile() != null || req.getFileData() != null) {
             return doPostMultipart(toMultipartBody(req), Methods.FILES_UPLOAD, getToken(req), FilesUploadResponse.class);
         } else {
             return doPostFormWithToken(toForm(req), Methods.FILES_UPLOAD, getToken(req), FilesUploadResponse.class);
@@ -824,6 +826,66 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public FilesCommentsEditResponse filesCommentEdit(FilesCommentsEditRequest req) throws IOException, SlackApiException {
         return doPostFormWithToken(toForm(req), Methods.FILES_COMMENTS_EDIT, getToken(req), FilesCommentsEditResponse.class);
+    }
+
+    @Override
+    public FilesRemoteAddResponse filesRemoteAdd(FilesRemoteAddRequest req) throws IOException, SlackApiException {
+        return doPostMultipart(RequestFormBuilder.toMultipartBody(req), Methods.FILES_REMOTE_ADD, getToken(req), FilesRemoteAddResponse.class);
+    }
+
+    @Override
+    public FilesRemoteAddResponse filesRemoteAdd(RequestConfigurator<FilesRemoteAddRequest.FilesRemoteAddRequestBuilder> req) throws IOException, SlackApiException {
+        return filesRemoteAdd(req.configure(FilesRemoteAddRequest.builder()).build());
+    }
+
+    @Override
+    public FilesRemoteInfoResponse filesRemoteInfo(FilesRemoteInfoRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.FILES_REMOTE_INFO, getToken(req), FilesRemoteInfoResponse.class);
+    }
+
+    @Override
+    public FilesRemoteInfoResponse filesRemoteInfo(RequestConfigurator<FilesRemoteInfoRequest.FilesRemoteInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return filesRemoteInfo(req.configure(FilesRemoteInfoRequest.builder()).build());
+    }
+
+    @Override
+    public FilesRemoteListResponse filesRemoteList(FilesRemoteListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.FILES_REMOTE_LIST, getToken(req), FilesRemoteListResponse.class);
+    }
+
+    @Override
+    public FilesRemoteListResponse filesRemoteList(RequestConfigurator<FilesRemoteListRequest.FilesRemoteListRequestBuilder> req) throws IOException, SlackApiException {
+        return filesRemoteList(req.configure(FilesRemoteListRequest.builder()).build());
+    }
+
+    @Override
+    public FilesRemoteRemoveResponse filesRemoteRemove(FilesRemoteRemoveRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.FILES_REMOTE_REMOVE, getToken(req), FilesRemoteRemoveResponse.class);
+    }
+
+    @Override
+    public FilesRemoteRemoveResponse filesRemoteRemove(RequestConfigurator<FilesRemoteRemoveRequest.FilesRemoteRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return filesRemoteRemove(req.configure(FilesRemoteRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public FilesRemoteShareResponse filesRemoteShare(FilesRemoteShareRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.FILES_REMOTE_SHARE, getToken(req), FilesRemoteShareResponse.class);
+    }
+
+    @Override
+    public FilesRemoteShareResponse filesRemoteShare(RequestConfigurator<FilesRemoteShareRequest.FilesRemoteShareRequestBuilder> req) throws IOException, SlackApiException {
+        return filesRemoteShare(req.configure(FilesRemoteShareRequest.builder()).build());
+    }
+
+    @Override
+    public FilesRemoteUpdateResponse filesRemoteUpdate(FilesRemoteUpdateRequest req) throws IOException, SlackApiException {
+        return doPostMultipart(toMultipartBody(req), Methods.FILES_REMOTE_UPDATE, getToken(req), FilesRemoteUpdateResponse.class);
+    }
+
+    @Override
+    public FilesRemoteUpdateResponse filesRemoteUpdate(RequestConfigurator<FilesRemoteUpdateRequest.FilesRemoteUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return filesRemoteUpdate(req.configure(FilesRemoteUpdateRequest.builder()).build());
     }
 
     @Override

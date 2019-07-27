@@ -20,6 +20,7 @@ public class FilesUploadRequest implements SlackApiRequest {
      * File contents via `multipart/form-data`. If omitting this parameter, you must submit `content`.
      */
     private File file;
+    private byte[] fileData;
 
     /**
      * File contents via a POST variable. If omitting this parameter, you must provide a `file`.

@@ -28,9 +28,13 @@ public class File {
     private String user;
     private String mode;
     private boolean editable;
+
     @SerializedName("is_external")
     private boolean external;
     private String externalType;
+    private String externalId;
+    private String externalUrl;
+
     private String username;
     private Integer size;
     private String urlPrivate;

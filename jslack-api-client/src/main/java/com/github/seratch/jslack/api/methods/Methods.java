@@ -163,6 +163,18 @@ public class Methods {
     public static final String FILES_UPLOAD = "files.upload";
 
     // ------------------------------
+    // files.remote
+    // https://api.slack.com/messaging/files/remote
+    // ------------------------------
+
+    public static final String FILES_REMOTE_ADD = "files.remote.add";
+    public static final String FILES_REMOTE_INFO = "files.remote.info";
+    public static final String FILES_REMOTE_LIST = "files.remote.list";
+    public static final String FILES_REMOTE_REMOVE = "files.remote.remove";
+    public static final String FILES_REMOTE_SHARE = "files.remote.share";
+    public static final String FILES_REMOTE_UPDATE = "files.remote.update";
+
+    // ------------------------------
     // groups
     // ------------------------------
 

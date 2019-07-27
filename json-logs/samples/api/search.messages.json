@@ -254,7 +254,25 @@
             "url": "",
             "metadata": ""
           }
-        ]
+        ],
+        "previous": {
+          "type": "",
+          "user": "U00000000",
+          "username": "",
+          "ts": "0000000000.000000",
+          "text": "",
+          "iid": "",
+          "permalink": "https://www.example.com/"
+        },
+        "previous_2": {
+          "type": "",
+          "user": "",
+          "username": "",
+          "ts": "0000000000.000000",
+          "text": "",
+          "iid": "",
+          "permalink": "https://www.example.com/"
+        }
       }
     ]
   },
