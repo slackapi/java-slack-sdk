@@ -19,3 +19,5 @@ typescript-types/dist/
 
 logs/
 json-logs/raw
+
+.DS_Store

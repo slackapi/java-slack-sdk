@@ -22,6 +22,7 @@ import com.github.seratch.jslack.api.methods.request.files.*;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.files.comments.FilesCommentsEditRequest;
+import com.github.seratch.jslack.api.methods.request.files.remote.*;
 import com.github.seratch.jslack.api.methods.request.groups.*;
 import com.github.seratch.jslack.api.methods.request.im.*;
 import com.github.seratch.jslack.api.methods.request.migration.MigrationExchangeRequest;
@@ -77,6 +78,7 @@ import com.github.seratch.jslack.api.methods.response.files.*;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsAddResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.files.comments.FilesCommentsEditResponse;
+import com.github.seratch.jslack.api.methods.response.files.remote.*;
 import com.github.seratch.jslack.api.methods.response.groups.*;
 import com.github.seratch.jslack.api.methods.response.im.*;
 import com.github.seratch.jslack.api.methods.response.migration.MigrationExchangeResponse;
@@ -493,6 +495,34 @@ public interface MethodsClient {
     // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
     @Deprecated
     FilesCommentsEditResponse filesCommentEdit(FilesCommentsEditRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // files.remote
+    // ------------------------------
+
+    FilesRemoteAddResponse filesRemoteAdd(FilesRemoteAddRequest req) throws IOException, SlackApiException;
+
+    FilesRemoteAddResponse filesRemoteAdd(RequestConfigurator<FilesRemoteAddRequest.FilesRemoteAddRequestBuilder> req) throws IOException, SlackApiException;
+
+    FilesRemoteInfoResponse filesRemoteInfo(FilesRemoteInfoRequest req) throws IOException, SlackApiException;
+
+    FilesRemoteInfoResponse filesRemoteInfo(RequestConfigurator<FilesRemoteInfoRequest.FilesRemoteInfoRequestBuilder> req) throws IOException, SlackApiException;
+
+    FilesRemoteListResponse filesRemoteList(FilesRemoteListRequest req) throws IOException, SlackApiException;
+
+    FilesRemoteListResponse filesRemoteList(RequestConfigurator<FilesRemoteListRequest.FilesRemoteListRequestBuilder> req) throws IOException, SlackApiException;
+
+    FilesRemoteRemoveResponse filesRemoteRemove(FilesRemoteRemoveRequest req) throws IOException, SlackApiException;
+
+    FilesRemoteRemoveResponse filesRemoteRemove(RequestConfigurator<FilesRemoteRemoveRequest.FilesRemoteRemoveRequestBuilder> req) throws IOException, SlackApiException;
+
+    FilesRemoteShareResponse filesRemoteShare(FilesRemoteShareRequest req) throws IOException, SlackApiException;
+
+    FilesRemoteShareResponse filesRemoteShare(RequestConfigurator<FilesRemoteShareRequest.FilesRemoteShareRequestBuilder> req) throws IOException, SlackApiException;
+
+    FilesRemoteUpdateResponse filesRemoteUpdate(FilesRemoteUpdateRequest req) throws IOException, SlackApiException;
+
+    FilesRemoteUpdateResponse filesRemoteUpdate(RequestConfigurator<FilesRemoteUpdateRequest.FilesRemoteUpdateRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // groups

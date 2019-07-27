@@ -22,6 +22,7 @@ public class UsersSetPhotoRequest implements SlackApiRequest {
      * File contents via `multipart/form-data`.
      */
     private File image;
+    private byte[] imageData;
 
     /**
      * X coordinate of top-left corner of crop box

@@ -460,6 +460,8 @@
       "editable": false,
       "is_external": false,
       "external_type": "",
+      "external_id": "",
+      "external_url": "",
       "username": "",
       "size": 123,
       "url_private": "",
