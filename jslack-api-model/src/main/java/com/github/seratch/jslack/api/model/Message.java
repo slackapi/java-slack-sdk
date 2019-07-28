@@ -78,6 +78,8 @@ public class Message {
 
     private boolean subscribed;
 
+    private List<String> xFiles; // remote file ids
+
     private String lastRead;
 
     // this field exists only when posting the message with "reply_broadcast": true

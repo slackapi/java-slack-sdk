@@ -472,7 +472,11 @@
       "upload": false,
       "display_as_bot": false,
       "last_read": "0000000000.000000",
-      "client_msg_id": ""
+      "client_msg_id": "",
+      "x_files": [
+        "F00000000"
+      ],
+      "parent_user_id": "U00000000"
     }
   ],
   "has_more": false,
