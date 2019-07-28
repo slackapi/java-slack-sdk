@@ -2,7 +2,10 @@ package com.github.seratch.jslack.api.model;
 
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -41,9 +44,13 @@ public class MatchedItem {
     private String created;
 
     @SerializedName("is_intro")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private boolean intro;
 
     @SerializedName("is_public")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private boolean _public;
 
     public boolean isPublic() {
