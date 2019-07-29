@@ -37,6 +37,7 @@ public class MatchedItem {
 
     private String botId;
 
+    private String fileId;
     private String externalId;
     private String externalUrl;
 
@@ -183,6 +184,12 @@ public class MatchedItem {
     private String thumb1024Width;
     @SerializedName("thumb_1024_h")
     private String thumb1024Height;
+
+    private String thumbPdf;
+    @SerializedName("thumb_pdf_w")
+    private String thumbPdfWidth;
+    @SerializedName("thumb_pdf_h")
+    private String thumbPdfHeight;
 
     private Integer imageExifRotation;
 
