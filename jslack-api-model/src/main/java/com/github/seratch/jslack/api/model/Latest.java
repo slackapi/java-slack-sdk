@@ -28,4 +28,5 @@ public class Latest {
     private String threadTs;
     private String ts;
     private Message.Icons icons;
+    private List<String> xFiles;
 }

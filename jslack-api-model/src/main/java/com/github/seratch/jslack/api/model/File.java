@@ -133,6 +133,8 @@ public class File {
     @SerializedName("thumb_pdf_h")
     private String thumbPdfHeight;
 
+    private String convertedPdf;
+
     private Integer imageExifRotation;
 
     @SerializedName("original_w")

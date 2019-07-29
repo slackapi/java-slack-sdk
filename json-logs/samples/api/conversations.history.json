@@ -476,7 +476,10 @@
       "display_as_bot": false,
       "topic": "",
       "purpose": "",
-      "client_msg_id": ""
+      "client_msg_id": "",
+      "x_files": [
+        "F00000000"
+      ]
     }
   ],
   "has_more": false,

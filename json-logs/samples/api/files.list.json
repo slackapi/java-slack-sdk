@@ -67,7 +67,11 @@
       "thumb_960_h": 12345,
       "thumb_1024": "https://www.example.com/",
       "thumb_1024_w": 12345,
-      "thumb_1024_h": 12345
+      "thumb_1024_h": 12345,
+      "converted_pdf": "https://www.example.com/",
+      "thumb_pdf": "https://www.example.com/",
+      "thumb_pdf_w": 12345,
+      "thumb_pdf_h": 12345
     }
   ],
   "paging": {

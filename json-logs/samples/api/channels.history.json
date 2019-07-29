@@ -476,7 +476,11 @@
       "x_files": [
         "F00000000"
       ],
-      "parent_user_id": "U00000000"
+      "parent_user_id": "U00000000",
+      "edited": {
+        "user": "U00000000",
+        "ts": "0000000000.000000"
+      }
     }
   ],
   "has_more": false,

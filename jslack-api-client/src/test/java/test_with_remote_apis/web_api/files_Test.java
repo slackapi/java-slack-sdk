@@ -1,17 +1,23 @@
 package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
+import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
+import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
+import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
 import com.github.seratch.jslack.api.methods.request.files.FilesDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.files.FilesInfoRequest;
 import com.github.seratch.jslack.api.methods.request.files.FilesRevokePublicURLRequest;
 import com.github.seratch.jslack.api.methods.request.files.FilesSharedPublicURLRequest;
 import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
+import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
 import com.github.seratch.jslack.api.methods.response.files.*;
 import com.github.seratch.jslack.api.model.Channel;
 import com.github.seratch.jslack.api.model.Conversation;
+import com.github.seratch.jslack.shortcut.model.ApiToken;
+import com.github.seratch.jslack.shortcut.model.ChannelName;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -30,12 +36,13 @@ import static org.junit.Assert.assertThat;
 public class files_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
 
     @Test
     public void describe() throws IOException, SlackApiException {
         {
-            FilesListResponse response = slack.methods().filesList(r -> r.token(token));
+            FilesListResponse response = slack.methods().filesList(r -> r.token(userToken));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getFiles(), is(notNullValue()));
@@ -45,7 +52,7 @@ public class files_Test {
     @Test
     public void describe_ShowFilesHiddenByLimit() throws IOException, SlackApiException {
         {
-            FilesListResponse response = slack.methods().filesList(r -> r.token(token).showFilesHiddenByLimit(true));
+            FilesListResponse response = slack.methods(userToken).filesList(r -> r.showFilesHiddenByLimit(true));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getFiles(), is(notNullValue()));
@@ -53,8 +60,8 @@ public class files_Test {
     }
 
     @Test
-    public void createTextFileAndComments() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
+        public void createTextFileAndComments() throws IOException, SlackApiException {
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(botToken)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -67,8 +74,7 @@ public class files_Test {
         File file = new File("src/test/resources/sample.txt");
         final com.github.seratch.jslack.api.model.File fileObj;
         {
-            FilesUploadResponse response = slack.methods().filesUpload(r -> r
-                    .token(token)
+            FilesUploadResponse response = slack.methods(botToken).filesUpload(r -> r
                     .channels(channels)
                     .file(file)
                     .filename("sample.txt")
@@ -77,61 +83,6 @@ public class files_Test {
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
-
-            /*
-{
-  "id": "FHH2J____",
-  "created": 1554107549,
-  "timestamp": 1554107549,
-  "name": "sample.txt",
-  "title": "file title",
-  "mimetype": "text/plain",
-  "filetype": "text",
-  "pretty_type": "Plain Text",
-  "user": "U03E9____",
-  "editable": true,
-  "size": 57,
-  "mode": "snippet",
-  "is_external": false,
-  "external_type": "",
-  "is_public": true,
-  "public_url_shared": false,
-  "display_as_bot": false,
-  "username": "",
-  "url_private": "https://files.slack.com/files-pri/T03E9____-FHH2J____/sample.txt",
-  "url_private_download": "https://files.slack.com/files-pri/T03E9____-FHH2J____/download/sample.txt",
-  "permalink": "https://seratch.slack.com/files/U03E9____/FHH2J____/sample.txt",
-  "permalink_public": "https://slack-files.com/T03E9____-FHH2J____-bfa09b78b0",
-  "edit_link": "https://seratch.slack.com/files/U03E9____/FHH2J____/sample.txt/edit",
-  "preview": "Hello, World!!!!!\n\nThis is a sample text file.\n\n日本語",
-  "preview_highlight": "<div class=\"CodeMirror cm-s-default CodeMirrorServer\" oncopy=\"if(event.clipboardData){event.clipboardData.setData('text/plain',window.getSelection().toString().replace(/\\u200b/g,''));event.preventDefault();event.stopPropagation();}\">\n<div class=\"CodeMirror-code\">\n<div><pre>Hello, World!!!!!</pre></div>\n<div><pre></pre></div>\n<div><pre>This is a sample text file.</pre></div>\n<div><pre></pre></div>\n<div><pre>日本語</pre></div>\n</div>\n</div>\n",
-  "lines": 5,
-  "lines_more": 0,
-  "preview_is_truncated": false,
-  "comments_count": 0,
-  "is_starred": false,
-  "shares": {
-    "public": {
-      "C03E9____": [
-        {
-          "reply_users": [],
-          "reply_users_count": 0,
-          "reply_count": 0,
-          "ts": "1554107549.000600",
-          "channel_name": "random",
-          "team_id": "T03E9____"
-        }
-      ]
-    }
-  },
-  "channels": [
-    "C03E9____"
-  ],
-  "groups": [],
-  "ims": [],
-  "has_rich_preview": false
-}
-             */
             assertThat(fileObj.getTitle(), is("file title"));
             assertThat(fileObj.getName(), is("sample.txt"));
             assertThat(fileObj.getMimetype(), is("text/plain"));
@@ -174,76 +125,25 @@ public class files_Test {
         }
 
         {
-            FilesInfoResponse response = slack.methods().filesInfo(r -> r
-                    .token(token)
-                    .file(fileObj.getId()));
+            FilesInfoResponse response = slack.methods(botToken).filesInfo(r -> r.file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
-            FilesSharedPublicURLResponse response = slack.methods().filesSharedPublicURL(
-                    r -> r.token(token).file(fileObj.getId()));
+            FilesSharedPublicURLResponse response = slack.methods(userToken).filesSharedPublicURL(r -> r.file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
-            FilesRevokePublicURLResponse response = slack.methods().filesRevokePublicURL(
-                    FilesRevokePublicURLRequest.builder().token(token).file(fileObj.getId()).build());
+            FilesRevokePublicURLResponse response = slack.methods(userToken).filesRevokePublicURL(
+                    FilesRevokePublicURLRequest.builder().file(fileObj.getId()).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
-
-        // comments
-//        {
-//            FilesCommentsAddResponse addResponse = slack.methods().filesCommentsAdd(FilesCommentsAddRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .comment("test comment")
-//                    .build());
-//            assertThat(addResponse.getError(), is(nullValue()));
-//            assertThat(addResponse.isOk(), is(true));
-//
-//            FilesInfoResponse filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .build());
-//            assertThat(filesInfoResponse.getError(), is(nullValue()));
-//            assertThat(filesInfoResponse.isOk(), is(true));
-//            com.github.seratch.jslack.api.model.File file2 = filesInfoResponse.getFile();
-//            assertThat(file2.getCommentsCount(), is(1));
-//
-//            FilesCommentsEditResponse editResponse = slack.methods().filesCommentEdit(FilesCommentsEditRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .id(addResponse.getComment().getId())
-//                    .comment("modified comment")
-//                    .build());
-//            assertThat(editResponse.getError(), is(nullValue()));
-//            assertThat(editResponse.isOk(), is(true));
-//
-//            FilesCommentsDeleteResponse deleteResponse = slack.methods().filesCommentsDelete(FilesCommentsDeleteRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .id(addResponse.getComment().getId()).build()
-//            );
-//            assertThat(deleteResponse.getError(), is(nullValue()));
-//            assertThat(deleteResponse.isOk(), is(true));
-//
-//            filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .build());
-//            assertThat(filesInfoResponse.getError(), is(nullValue()));
-//            assertThat(filesInfoResponse.isOk(), is(true));
-//            com.github.seratch.jslack.api.model.File fileObj2 = filesInfoResponse.getFile();
-//            assertThat(fileObj2.getCommentsCount(), is(0));
-//        }
-
         {
-            ChatDeleteResponse response = slack.methods().chatDelete(r -> r
-                    .token(token)
+            ChatDeleteResponse response = slack.methods(botToken).chatDelete(r -> r
                     .channel(channelId)
                     .ts(fileObj
                             .getShares()
@@ -254,9 +154,7 @@ public class files_Test {
             assertThat(response.isOk(), is(true));
         }
         {
-            FilesDeleteResponse response = slack.methods().filesDelete(r -> r
-                    .token(token)
-                    .file(fileObj.getId()));
+            FilesDeleteResponse response = slack.methods(botToken).filesDelete(r -> r.file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -264,7 +162,7 @@ public class files_Test {
 
     @Test
     public void createLongTextFile() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(botToken)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -277,8 +175,7 @@ public class files_Test {
         File file = new File("src/test/resources/sample_long.txt");
         com.github.seratch.jslack.api.model.File fileObj;
         {
-            FilesUploadResponse response = slack.methods().filesUpload(r -> r
-                    .token(token)
+            FilesUploadResponse response = slack.methods(botToken).filesUpload(r -> r
                     .channels(channels)
                     .file(file)
                     .filename("sample.txt")
@@ -287,15 +184,6 @@ public class files_Test {
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
-
-            /*
-{
-  "size": 19648,
-  "lines": 182,
-  "lines_more": 177,
-  "preview_is_truncated": true
-}
-             */
 
             assertThat(fileObj.getTitle(), is("file title"));
             assertThat(fileObj.getName(), is("sample.txt"));
@@ -337,8 +225,7 @@ public class files_Test {
         }
 
         {
-            ChatDeleteResponse response = slack.methods().chatDelete(r -> r
-                    .token(token)
+            ChatDeleteResponse response = slack.methods(botToken).chatDelete(r -> r
                     .channel(channelId)
                     .ts(fileObj
                             .getShares()
@@ -350,9 +237,7 @@ public class files_Test {
         }
 
         {
-            FilesDeleteResponse response = slack.methods().filesDelete(r -> r
-                    .token(token)
-                    .file(fileObj.getId()));
+            FilesDeleteResponse response = slack.methods(botToken).filesDelete(r -> r.file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
@@ -360,7 +245,7 @@ public class files_Test {
 
     @Test
     public void createImageFileAndComments() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(userToken)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -374,7 +259,7 @@ public class files_Test {
         com.github.seratch.jslack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods().filesUpload(r -> r
-                    .token(token)
+                    .token(userToken)
                     .channels(channels)
                     .file(file)
                     .filename("seratch.jpg")
@@ -383,64 +268,6 @@ public class files_Test {
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             fileObj = response.getFile();
-
-            /*
-{
-  "id": "FHELY____",
-  "created": 1554108289,
-  "timestamp": 1554108289,
-  "name": "seratch.jpg",
-  "title": "@seratch",
-  "mimetype": "image/jpeg",
-  "filetype": "jpg",
-  "pretty_type": "JPEG",
-  "user": "U03E9____",
-  "editable": false,
-  "size": 29720,
-  "mode": "hosted",
-  "is_external": false,
-  "external_type": "",
-  "is_public": true,
-  "public_url_shared": false,
-  "display_as_bot": false,
-  "username": "",
-  "url_private": "https://files.slack.com/files-pri/T03E9____-FHELY____/seratch.jpg",
-  "url_private_download": "https://files.slack.com/files-pri/T03E9____-FHELY____/download/seratch.jpg",
-  "thumb_64": "https://files.slack.com/files-tmb/T03E9____-FHELY____-560e2b1db6/seratch_64.jpg",
-  "thumb_80": "https://files.slack.com/files-tmb/T03E9____-FHELY____-560e2b1db6/seratch_80.jpg",
-  "thumb_360": "https://files.slack.com/files-tmb/T03E9____-FHELY____-560e2b1db6/seratch_360.jpg",
-  "thumb_360_w": 360,
-  "thumb_360_h": 360,
-  "thumb_160": "https://files.slack.com/files-tmb/T03E9____-FHELY____-560e2b1db6/seratch_160.jpg",
-  "image_exif_rotation": 1,
-  "original_w": 400,
-  "original_h": 400,
-  "permalink": "https://seratch.slack.com/files/U03E9____/FHELY____/seratch.jpg",
-  "permalink_public": "https://slack-files.com/T03E9____-FHELY____-00d7e651ee",
-  "comments_count": 0,
-  "is_starred": false,
-  "shares": {
-    "public": {
-      "C03E9____": [
-        {
-          "reply_users": [],
-          "reply_users_count": 0,
-          "reply_count": 0,
-          "ts": "1554108291.001800",
-          "channel_name": "random",
-          "team_id": "T03E9____"
-        }
-      ]
-    }
-  },
-  "channels": [
-    "C03E9____"
-  ],
-  "groups": [],
-  "ims": [],
-  "has_rich_preview": false
-}
-             */
             assertThat(fileObj.getTitle(), is("@seratch"));
             assertThat(fileObj.getName(), is("seratch.jpg"));
             assertThat(fileObj.getMimetype(), is("image/jpeg"));
@@ -477,7 +304,7 @@ public class files_Test {
 
         {
             FilesInfoResponse response = slack.methods().filesInfo(FilesInfoRequest.builder()
-                    .token(token)
+                    .token(userToken)
                     .file(fileObj.getId())
                     .build());
             assertThat(response.getError(), is(nullValue()));
@@ -486,67 +313,21 @@ public class files_Test {
 
         {
             FilesSharedPublicURLResponse response = slack.methods().filesSharedPublicURL(
-                    FilesSharedPublicURLRequest.builder().token(token).file(fileObj.getId()).build());
+                    FilesSharedPublicURLRequest.builder().token(userToken).file(fileObj.getId()).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
             FilesRevokePublicURLResponse response = slack.methods().filesRevokePublicURL(
-                    FilesRevokePublicURLRequest.builder().token(token).file(fileObj.getId()).build());
+                    FilesRevokePublicURLRequest.builder().token(userToken).file(fileObj.getId()).build());
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
-        // comments
-//        {
-//            FilesCommentsAddResponse addResponse = slack.methods().filesCommentsAdd(FilesCommentsAddRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .comment("test comment")
-//                    .build());
-//            assertThat(addResponse.getError(), is(nullValue()));
-//            assertThat(addResponse.isOk(), is(true));
-//
-//            FilesInfoResponse filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .build());
-//            assertThat(filesInfoResponse.getError(), is(nullValue()));
-//            assertThat(filesInfoResponse.isOk(), is(true));
-//            fileObj = filesInfoResponse.getFile();
-//            assertThat(fileObj.getCommentsCount(), is(1));
-//
-//            FilesCommentsEditResponse editResponse = slack.methods().filesCommentEdit(FilesCommentsEditRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .id(addResponse.getComment().getId())
-//                    .comment("modified comment")
-//                    .build());
-//            assertThat(editResponse.getError(), is(nullValue()));
-//            assertThat(editResponse.isOk(), is(true));
-//
-//            FilesCommentsDeleteResponse deleteResponse = slack.methods().filesCommentsDelete(FilesCommentsDeleteRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .id(addResponse.getComment().getId()).build()
-//            );
-//            assertThat(deleteResponse.getError(), is(nullValue()));
-//            assertThat(deleteResponse.isOk(), is(true));
-//
-//            filesInfoResponse = slack.methods().filesInfo(FilesInfoRequest.builder()
-//                    .token(token)
-//                    .file(fileObj.getId())
-//                    .build());
-//            assertThat(filesInfoResponse.getError(), is(nullValue()));
-//            assertThat(filesInfoResponse.isOk(), is(true));
-//            fileObj = filesInfoResponse.getFile();
-//            assertThat(fileObj.getCommentsCount(), is(0));
-//        }
-
         {
             ChatDeleteResponse response = slack.methods().chatDelete(ChatDeleteRequest.builder()
-                    .token(token)
+                    .token(userToken)
                     .channel(channelId)
                     .ts(fileObj
                             .getShares()
@@ -560,7 +341,7 @@ public class files_Test {
 
         {
             FilesDeleteResponse response = slack.methods().filesDelete(FilesDeleteRequest.builder()
-                    .token(token)
+                    .token(userToken)
                     .file(fileObj.getId())
                     .build());
             assertThat(response.getError(), is(nullValue()));
@@ -570,12 +351,12 @@ public class files_Test {
 
     @Test
     public void createFileForAThread() throws IOException, SlackApiException {
-        TestChannelGenerator channelGenerator = new TestChannelGenerator(token);
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(userToken);
         Conversation channel = channelGenerator.createNewPublicChannel("test" + System.currentTimeMillis());
 
         try {
             ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(r -> r
-                    .token(token)
+                    .token(userToken)
                     .channel(channel.getId())
                     .text("This is a test message posted by unit tests for jslack library")
                     .replyBroadcast(false));
@@ -583,7 +364,7 @@ public class files_Test {
             assertThat(postMessageResponse.isOk(), is(true));
 
             ChatPostMessageResponse postThread1Response = slack.methods().chatPostMessage(r -> r
-                    .token(token)
+                    .token(userToken)
                     .channel(channel.getId())
                     .threadTs(postMessageResponse.getTs())
                     .text("[thread 1] This is a test message posted by unit tests for jslack library")
@@ -595,7 +376,7 @@ public class files_Test {
             com.github.seratch.jslack.api.model.File fileObj;
             {
                 FilesUploadResponse response = slack.methods().filesUpload(r -> r
-                        .token(token)
+                        .token(userToken)
                         .file(file)
                         .filename("sample.txt")
                         .initialComment("initial comment")
@@ -608,13 +389,61 @@ public class files_Test {
 
             {
                 FilesInfoResponse response = slack.methods().filesInfo(r -> r
-                        .token(token)
+                        .token(userToken)
                         .file(fileObj.getId()));
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
         } finally {
             channelGenerator.archiveChannel(channel);
+        }
+    }
+
+    @Test
+    public void uploadAndPostMessage() throws IOException, SlackApiException {
+        String channelId = slack.shortcut(ApiToken.of(botToken))
+                .findChannelIdByName(ChannelName.of("random"))
+                .get().getValue();
+
+        MethodsClient slackMethods = slack.methods(userToken);
+
+        ChatPostMessageResponse message = slackMethods.chatPostMessage(r -> r
+                .channel(channelId)
+                .asUser(true)
+                .text("Uploading a file..."));
+        assertThat(message.getError(), is(nullValue()));
+
+        File file = new File("src/test/resources/sample.txt");
+        com.github.seratch.jslack.api.model.File fileObj;
+        {
+            FilesUploadResponse response = slackMethods.filesUpload(r -> r
+                    .file(file)
+                    .initialComment("test")
+                    .filetype("text")
+                    .filename("sample.txt")
+                    .title("file title"));
+            assertThat(response.getError(), is(nullValue()));
+            fileObj = response.getFile();
+        }
+
+        {
+            // This operation doesn't attach the uploaded files
+            ChatUpdateResponse modification = slackMethods.chatUpdate(ChatUpdateRequest.builder()
+                    .channel(channelId)
+                    .ts(message.getTs())
+                    .text(fileObj.getPermalink())
+                    .build());
+            assertThat(modification.getError(), is(nullValue()));
+        }
+
+        {
+            // This operation attaches the upload file in the message.
+            ChatPostMessageResponse newMessage = slackMethods.chatPostMessage(ChatPostMessageRequest.builder()
+                    .channel(channelId)
+                    .text(fileObj.getPermalink())
+                    .asUser(true)
+                    .build());
+            assertThat(newMessage.getError(), is(nullValue()));
         }
     }
 
