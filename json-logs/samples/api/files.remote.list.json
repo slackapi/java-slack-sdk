@@ -71,7 +71,10 @@
       "thumb_1024": "https://www.example.com/",
       "thumb_1024_w": 12345,
       "thumb_1024_h": 12345,
-      "num_stars": 12345
+      "num_stars": 12345,
+      "shares": [
+        ""
+      ]
     }
   ],
   "response_metadata": {
