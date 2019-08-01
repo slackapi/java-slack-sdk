@@ -40,20 +40,19 @@ public abstract class SlackEventsApiServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Map<String, String> headerMap = new HashMap<String, String>();
-
-        Enumeration headerNames = req.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String key = (String) headerNames.nextElement();
-            String value = req.getHeader(key);
-            headerMap.put(key, value);
-        }
         String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        doPostHeaderRequestBody(headerMap,requestBody,resp);
+        doPost(req,resp,requestBody);
     }
 
-    protected void doPostHeaderRequestBody(Map<String, String> header, String requestBody, HttpServletResponse resp) throws IOException {
-        String contentType = header.get("content-type");
+    /***
+     * This function enables the client to extract the request body and use it for signed secret validation
+     * @param req
+     * @param resp
+     * @param requestBody
+     * @throws IOException
+     */
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp,String requestBody) throws IOException {
+        String contentType = req.getHeader("Content-Type");
         if (contentType != null && contentType.toLowerCase(Locale.ENGLISH).trim().startsWith("application/json")) {
             JsonObject payload = GsonFactory.createSnakeCase().fromJson(requestBody, JsonElement.class).getAsJsonObject();
             String eventType = payload.get("type").getAsString();
