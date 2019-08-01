@@ -189,7 +189,7 @@ public class EventsApiHandlerTest {
         request.setHeader("Host", "tester"); // should be "tester"
         request.setURI("/");
         request.setVersion("HTTP/1.1");
-        request.setHeader("Content-Type", "application/json");
+        request.setHeader("content-type", "application/json");
         request.setHeader("Connection", "close");
         return request;
     }
