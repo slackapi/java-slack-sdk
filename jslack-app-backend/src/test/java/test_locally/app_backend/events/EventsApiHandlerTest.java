@@ -85,7 +85,7 @@ public class EventsApiHandlerTest {
 
         assertThat(response.getContent(), is(equalTo("cha-xxxxxx")));
         assertThat(response.getStatus(), is(equalTo(200)));
-        assertThat(response.get("Content-Type"), is(equalTo("text/plain")));
+        assertThat(response.get("content-type"), is(equalTo("text/plain")));
     }
 
     @Test
@@ -189,7 +189,7 @@ public class EventsApiHandlerTest {
         request.setHeader("Host", "tester"); // should be "tester"
         request.setURI("/");
         request.setVersion("HTTP/1.1");
-        request.setHeader("Content-Type", "application/json");
+        request.setHeader("content-type", "application/json");
         request.setHeader("Connection", "close");
         return request;
     }
