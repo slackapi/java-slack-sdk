@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -34,10 +37,24 @@ public abstract class SlackEventsApiServlet extends HttpServlet {
         dispatcher.stop();
     }
 
+
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String contentType = req.getHeader("Content-Type");
+        Map<String, String> headerMap = new HashMap<String, String>();
+
+        Enumeration headerNames = req.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String key = (String) headerNames.nextElement();
+            String value = req.getHeader(key);
+            headerMap.put(key, value);
+        }
+        String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        doPostHeaderRequestBody(headerMap,requestBody,resp);
+    }
+
+    protected void doPostHeaderRequestBody(Map<String, String> header, String requestBody, HttpServletResponse resp) throws IOException {
+        String contentType = header.get("content-type");
         if (contentType != null && contentType.toLowerCase(Locale.ENGLISH).trim().startsWith("application/json")) {
-            String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
             JsonObject payload = GsonFactory.createSnakeCase().fromJson(requestBody, JsonElement.class).getAsJsonObject();
             String eventType = payload.get("type").getAsString();
             if (eventType != null && eventType.equals("url_verification")) {
@@ -51,7 +68,7 @@ public abstract class SlackEventsApiServlet extends HttpServlet {
                 resp.setStatus(200);
             }
         } else {
-            log.warn("Unexpected request detected - Content-Type: {}", req.getHeader("Content-Type"));
+            log.warn("Unexpected request detected - Content-Type: {}", contentType);
         }
 
     }
