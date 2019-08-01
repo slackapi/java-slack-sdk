@@ -85,7 +85,7 @@ public class EventsApiHandlerTest {
 
         assertThat(response.getContent(), is(equalTo("cha-xxxxxx")));
         assertThat(response.getStatus(), is(equalTo(200)));
-        assertThat(response.get("content-type"), is(equalTo("text/plain")));
+        assertThat(response.get("Content-Type"), is(equalTo("text/plain")));
     }
 
     @Test
