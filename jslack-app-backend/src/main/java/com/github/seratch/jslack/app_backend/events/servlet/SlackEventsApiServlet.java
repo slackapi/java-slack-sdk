@@ -1,7 +1,9 @@
 package com.github.seratch.jslack.app_backend.events.servlet;
 
+import com.github.seratch.jslack.app_backend.SlackSignature;
 import com.github.seratch.jslack.app_backend.events.EventsDispatcher;
 import com.github.seratch.jslack.app_backend.events.EventsDispatcherFactory;
+import com.github.seratch.jslack.app_backend.vendor.aws.lambda.util.SlackSignatureVerifier;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public abstract class SlackEventsApiServlet extends HttpServlet {
+    public static final int MAX_TIME_TO_RETAIN_SLACK_REQUEST = 300000;
 
     private EventsDispatcher dispatcher = EventsDispatcherFactory.getInstance();
 
@@ -37,22 +40,48 @@ public abstract class SlackEventsApiServlet extends HttpServlet {
         dispatcher.stop();
     }
 
-
-
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        doPost(req,resp,requestBody);
-    }
-
     /***
-     * This function enables the client to extract the request body and use it for signed secret validation
+     * Allows the client to still use the post feature of the API even if the slack signed secreet
+     * validation is done prior. Client is responsible to send the request body separately as once the body is
+     * retrieved from the request it is no longer available in the stream.
      * @param req
      * @param resp
      * @param requestBody
      * @throws IOException
      */
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp,String requestBody) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, String requestBody) throws IOException {
         String contentType = req.getHeader("Content-Type");
+        processEvent(contentType, requestBody, resp);
+    }
+
+
+    /***
+     * Allows the client to send the secret key to perform signed secret validation
+     * @param req
+     * @param resp
+     * @param secretKey
+     * @throws Exception
+     */
+    protected void doPostWithSecretValidation(HttpServletRequest req, HttpServletResponse resp, String secretKey) throws Exception {
+        String contentType = req.getHeader("Content-Type");
+        String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+
+        SlackSignature.Generator gen = new SlackSignature.Generator(secretKey);
+        SlackSignatureVerifier slackSignatureVerifier = new SlackSignatureVerifier(gen);
+        boolean isSignedSecretVerified = slackSignatureVerifier.isValid(req, requestBody);
+        if (isSignedSecretVerified)
+            processEvent(contentType, requestBody, resp);
+        else
+            throw new Exception("Signed Secret verification failed");
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String contentType = req.getHeader("Content-Type");
+        String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        processEvent(contentType, requestBody, resp);
+    }
+
+    private void processEvent(String contentType, String requestBody, HttpServletResponse resp) throws IOException {
         if (contentType != null && contentType.toLowerCase(Locale.ENGLISH).trim().startsWith("application/json")) {
             JsonObject payload = GsonFactory.createSnakeCase().fromJson(requestBody, JsonElement.class).getAsJsonObject();
             String eventType = payload.get("type").getAsString();
@@ -69,7 +98,6 @@ public abstract class SlackEventsApiServlet extends HttpServlet {
         } else {
             log.warn("Unexpected request detected - Content-Type: {}", contentType);
         }
-
     }
 
 }
