@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.methods;
 
+import com.github.seratch.jslack.api.methods.request.admin.AdminUsersSessionResetRequest;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -56,6 +57,7 @@ import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupU
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
+import com.github.seratch.jslack.api.methods.response.admin.AdminUsersSessionResetResponse;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
 import com.github.seratch.jslack.api.methods.response.apps.AppsUninstallResponse;
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
@@ -139,6 +141,14 @@ public interface MethodsClient {
             MultipartBody.Builder form,
             String endpoint,
             String token) throws IOException;
+
+    // ------------------------------
+    // admin
+    // ------------------------------
+
+    AdminUsersSessionResetResponse adminUsersSessionReset(AdminUsersSessionResetRequest req) throws IOException, SlackApiException;
+
+    AdminUsersSessionResetResponse adminUsersSessionReset(RequestConfigurator<AdminUsersSessionResetRequest.AdminUsersSessionResetRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // api

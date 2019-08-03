@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.methods;
 
+import com.github.seratch.jslack.api.methods.request.admin.AdminUsersSessionResetRequest;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -71,6 +72,14 @@ import static java.util.stream.Collectors.joining;
 public class RequestFormBuilder {
 
     private RequestFormBuilder() {
+    }
+
+    public static FormBody.Builder toForm(AdminUsersSessionResetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("user_id", req.getUserId(), form);
+        setIfNotNull("mobile_only", req.isMobileOnly(), form);
+        setIfNotNull("web_only", req.isWebOnly(), form);
+        return form;
     }
 
     public static FormBody.Builder toForm(ApiTestRequest req) {

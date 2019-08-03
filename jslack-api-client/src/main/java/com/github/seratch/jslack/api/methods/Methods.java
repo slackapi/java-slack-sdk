@@ -6,6 +6,12 @@ public class Methods {
     }
 
     // ------------------------------
+    // admin
+    // ------------------------------
+
+    public static final String ADMIN_USERS_SESSION_RESET = "admin.users.session.reset";
+
+    // ------------------------------
     // api
     // ------------------------------
 
