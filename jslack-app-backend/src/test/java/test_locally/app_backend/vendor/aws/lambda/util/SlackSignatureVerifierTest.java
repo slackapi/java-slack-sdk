@@ -27,7 +27,7 @@ public class SlackSignatureVerifierTest {
         String validSignature = "v0=a2114d57b48eac39b9ad189dd8316235a7b4a8d21a10bd27519666489c69b503";
         request.getHeaders().put("X-Slack-Signature", validSignature);
 
-        assertThat(verifier.isValid(request), is(true));
+        assertThat(verifier.isValid(request, 1531420618 * 1000), is(true));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class SlackSignatureVerifierTest {
         String invalidSignature = "v0=a2114d57b48eac39b9ad189dd8316235a7b4a8d21a10bd27519666489c69b503";
         request.getHeaders().put("X-Slack-Signature", invalidSignature);
 
-        assertThat(verifier.isValid(request), is(false));
+        assertThat(verifier.isValid(request, 1531420618 * 1000), is(false));
     }
 
 }

@@ -35,6 +35,26 @@ public class SlackSignature {
         public static final String DEFAULT_ENV_NAME = "SLACK_SIGNING_SECRET";
     }
 
+    public static class TimestampVerifier {
+
+        public static final int TIMESTAMP_EXPIRATION_TIME_IN_MILLIS = 60 * 5 * 1000; // 5 minutes
+
+        private TimestampVerifier() {
+        }
+
+        public static boolean isValidTimestamp(String timestampValue, long nowInMillis) {
+            try {
+                long requestMillis = Long.parseLong(timestampValue) * 1000;
+                return (nowInMillis - requestMillis) < TIMESTAMP_EXPIRATION_TIME_IN_MILLIS;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+
+        public static boolean isValidTimestamp(String timestampValue) {
+            return isValidTimestamp(timestampValue, System.currentTimeMillis());
+        }
+    }
 
     @Slf4j
     public static class Generator {
@@ -83,6 +103,46 @@ public class SlackSignature {
             }
         }
 
+    }
+
+    @Slf4j
+    public static class Verifier {
+
+        private Generator signatureGenerator;
+
+        public Verifier(Generator signatureGenerator) {
+            this.signatureGenerator = signatureGenerator;
+        }
+
+        public boolean isValid(
+                String requestTimestamp,
+                String requestBody,
+                String requestSignature) {
+            return isValid(requestTimestamp, requestBody, requestSignature, System.currentTimeMillis());
+        }
+
+        public boolean isValid(
+                String requestTimestamp,
+                String requestBody,
+                String requestSignature,
+                long nowInMillis) {
+
+            if (signatureGenerator == null) {
+                throw new IllegalStateException("SlackSignature.Generator is required");
+            }
+            if (requestTimestamp == null || requestSignature == null) {
+                return false;
+            }
+            if (SlackSignature.TimestampVerifier.isValidTimestamp(requestTimestamp, nowInMillis)) {
+                String expected = signatureGenerator.generate(requestTimestamp, requestBody);
+                return requestSignature != null && expected != null && requestSignature.equals(expected);
+            } else {
+                if (log.isDebugEnabled()) {
+                    log.debug("The given X-Slack-Request-Timestamp value is expired - {}", requestTimestamp);
+                }
+                return false;
+            }
+        }
     }
 
 }

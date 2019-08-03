@@ -26,6 +26,11 @@ public class EventsApiHandlerTest {
     @WebServlet(urlPatterns = "/")
     public static class SampleServlet extends SlackEventsApiServlet {
         @Override
+        protected boolean isSignatureVerifierEnabled() {
+            return false;
+        }
+
+        @Override
         protected void setupDispatcher(EventsDispatcher dispatcher) {
             dispatcher.register(MESSAGE);
             dispatcher.register(APP_UNINSTALLED);
@@ -189,7 +194,7 @@ public class EventsApiHandlerTest {
         request.setHeader("Host", "tester"); // should be "tester"
         request.setURI("/");
         request.setVersion("HTTP/1.1");
-        request.setHeader("Content-Type", "application/json");
+        request.setHeader("content-type", "application/json");
         request.setHeader("Connection", "close");
         return request;
     }
