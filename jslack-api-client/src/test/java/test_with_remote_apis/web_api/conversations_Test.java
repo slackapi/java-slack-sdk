@@ -2,6 +2,7 @@ package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCreateRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.ConversationsListRequest;
 import com.github.seratch.jslack.api.methods.response.channels.ChannelsRepliesResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
@@ -420,6 +421,58 @@ public class conversations_Test {
         } finally {
             channelGenerator.archiveChannel(channel);
         }
+    }
+
+    @Test
+    public void longChannelName_public_ok() throws Exception {
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(token);
+        String channelName = "test" + System.currentTimeMillis();
+        while (channelName.length() < 80) {
+            channelName += "_";
+        }
+        Conversation channel = channelGenerator.createNewPublicChannel(channelName);
+        channelGenerator.archiveChannel(channel);
+    }
+
+    @Test
+    public void longChannelName_private_ok() throws Exception {
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(token);
+        String channelName = "secret-" + System.currentTimeMillis();
+        while (channelName.length() < 80) {
+            channelName += "_";
+        }
+        Conversation channel = channelGenerator.createNewPrivateChannel(channelName);
+        channelGenerator.archiveChannel(channel);
+    }
+
+    @Test
+    public void longChannelName_public_ng() throws Exception {
+        String channelName = "test-" + System.currentTimeMillis();
+        while (channelName.length() < 81) {
+            channelName += "_";
+        }
+        ConversationsCreateResponse createPublicResponse = slack.methods().conversationsCreate(
+                ConversationsCreateRequest.builder()
+                        .token(token)
+                        .name(channelName)
+                        .isPrivate(false)
+                        .build());
+        assertThat(createPublicResponse.getError(), is("invalid_name_maxlength"));
+    }
+
+    @Test
+    public void longChannelName_private_ng() throws Exception {
+        String channelName = "test-" + System.currentTimeMillis();
+        while (channelName.length() < 81) {
+            channelName += "_";
+        }
+        ConversationsCreateResponse createPublicResponse = slack.methods().conversationsCreate(
+                ConversationsCreateRequest.builder()
+                        .token(token)
+                        .name(channelName)
+                        .isPrivate(true)
+                        .build());
+        assertThat(createPublicResponse.getError(), is("invalid_name_maxlength"));
     }
 
 }

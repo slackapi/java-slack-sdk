@@ -24,16 +24,24 @@ public class TestChannelGenerator {
     }
 
     public Conversation createNewPublicChannel(String channelName) throws IOException, SlackApiException {
+        return createNewChannel(channelName, false);
+    }
+
+    public Conversation createNewPrivateChannel(String channelName) throws IOException, SlackApiException {
+        return createNewChannel(channelName, true);
+    }
+
+    public Conversation createNewChannel(String channelName, boolean isPrivate) throws IOException, SlackApiException {
         ConversationsCreateResponse createPublicResponse = slack.methods().conversationsCreate(
                 ConversationsCreateRequest.builder()
                         .token(token)
                         .name(channelName)
-                        .isPrivate(false)
+                        .isPrivate(isPrivate)
                         .build());
         assertThat(createPublicResponse.getError(), is(nullValue()));
         assertThat(createPublicResponse.isOk(), is(true));
         assertThat(createPublicResponse.getChannel(), is(notNullValue()));
-        assertThat(createPublicResponse.getChannel().isPrivate(), is(false));
+        assertThat(createPublicResponse.getChannel().isPrivate(), is(isPrivate));
 
         return createPublicResponse.getChannel();
 
