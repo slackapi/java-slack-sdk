@@ -1,0 +1,18 @@
+{
+  "token": "",
+  "team_id": "",
+  "api_app_id": "",
+  "event": {
+    "type": "channel_unshared",
+    "previously_connected_team_id": "",
+    "channel": "",
+    "is_ext_shared": false,
+    "event_ts": ""
+  },
+  "type": "",
+  "authed_users": [
+    ""
+  ],
+  "event_id": "",
+  "event_time": 123
+}
