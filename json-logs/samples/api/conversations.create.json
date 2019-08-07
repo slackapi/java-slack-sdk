@@ -46,6 +46,7 @@
     "is_open": false
   },
   "error": "",
+  "detail": "",
   "needed": "",
   "provided": ""
 }

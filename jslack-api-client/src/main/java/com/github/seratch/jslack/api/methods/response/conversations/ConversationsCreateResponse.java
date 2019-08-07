@@ -10,6 +10,14 @@ public class ConversationsCreateResponse implements SlackApiResponse {
     private boolean ok;
     private String warning;
     private String error;
+
+    // {
+    //   "ok": false,
+    //   "error": "invalid_name_maxlength",
+    //   "detail": "Value passed for `name` exceeded max length."
+    // }
+    private String detail;
+
     private String needed;
     private String provided;
 
