@@ -515,10 +515,13 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(ConversationsRepliesRequest req) {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("inclusive", req.isInclusive(), form);
         setIfNotNull("ts", req.getTs(), form);
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("oldest", req.getOldest(), form);
+        setIfNotNull("latest", req.getLatest(), form);
         return form;
     }
 
