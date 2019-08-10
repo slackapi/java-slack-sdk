@@ -1,0 +1,24 @@
+{
+  "totalResults": 12345,
+  "itemsPerPage": 12345,
+  "startIndex": 12345,
+  "schemas": [
+    ""
+  ],
+  "Resources": [
+    {
+      "schemas": [
+        ""
+      ],
+      "id": "S00000000",
+      "displayName": "",
+      "members": [
+        ""
+      ],
+      "meta": {
+        "created": "",
+        "location": "https://www.example.com/"
+      }
+    }
+  ]
+}

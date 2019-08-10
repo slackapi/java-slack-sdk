@@ -38,4 +38,19 @@ public class GsonFactory {
         }
         return gsonBuilder.create();
     }
+
+    public static Gson createCamelCase(SlackConfig config) {
+        GsonBuilder gsonBuilder = new GsonBuilder()
+                .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory())
+                .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory())
+                .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
+                .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory());
+        if (config.isLibraryMaintainerMode()) {
+            gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
+        }
+        if (config.isPrettyResponseLoggingEnabled()) {
+            gsonBuilder = gsonBuilder.setPrettyPrinting();
+        }
+        return gsonBuilder.create();
+    }
 }

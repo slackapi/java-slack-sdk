@@ -1,0 +1,96 @@
+{
+  "totalResults": 12345,
+  "itemsPerPage": 12345,
+  "startIndex": 12345,
+  "schemas": [
+    ""
+  ],
+  "Resources": [
+    {
+      "schemas": [
+        ""
+      ],
+      "id": "W00000000",
+      "externalId": "",
+      "meta": {
+        "created": "",
+        "location": "https://www.example.com/"
+      },
+      "userName": "",
+      "nickName": "",
+      "name": {
+        "givenName": "",
+        "familyName": ""
+      },
+      "displayName": "",
+      "profileUrl": "https://www.example.com/",
+      "title": "",
+      "timezone": "",
+      "active": false,
+      "emails": [
+        {
+          "value": "",
+          "primary": false
+        }
+      ],
+      "photos": [
+        {
+          "value": "https://www.example.com/",
+          "type": ""
+        }
+      ],
+      "groups": [
+        ""
+      ],
+      "addresses": [
+        {}
+      ],
+      "phoneNumbers": [
+        {
+          "type": "",
+          "primary": false
+        }
+      ],
+      "roles": [
+        {
+          "primary": false
+        }
+      ],
+      "urn:scim:schemas:extension:enterprise:1.0": {
+        "manager": {}
+      }
+    }
+  ],
+  "id": "W00000000",
+  "externalId": "",
+  "meta": {
+    "created": "",
+    "location": "https://www.example.com/"
+  },
+  "userName": "",
+  "nickName": "",
+  "name": {
+    "givenName": "",
+    "familyName": ""
+  },
+  "displayName": "",
+  "profileUrl": "https://www.example.com/",
+  "title": "",
+  "timezone": "",
+  "active": false,
+  "emails": [
+    {
+      "value": "",
+      "primary": false
+    }
+  ],
+  "photos": [
+    {
+      "value": "https://www.example.com/",
+      "type": ""
+    }
+  ],
+  "groups": [
+    ""
+  ]
+}

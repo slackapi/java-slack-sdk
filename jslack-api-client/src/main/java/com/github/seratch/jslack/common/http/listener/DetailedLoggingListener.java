@@ -1,6 +1,7 @@
 package com.github.seratch.jslack.common.http.listener;
 
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
 
@@ -16,8 +17,11 @@ public class DetailedLoggingListener extends HttpResponseListener {
             String body = state.getParsedResponseBody();
 
             Buffer requestBody = new Buffer();
+            RequestBody requestBodyObj = response.request().body();
             try {
-                response.request().body().writeTo(requestBody);
+                if (requestBodyObj != null) {
+                    requestBodyObj.writeTo(requestBody);
+                }
             } catch (IOException e) {
                 log.error("Failed to read the request body because {}", e.getMessage(), e);
             }
@@ -31,7 +35,7 @@ public class DetailedLoggingListener extends HttpResponseListener {
 
             Long contentLength = null;
             try {
-                contentLength = response.request().body().contentLength();
+                contentLength = requestBodyObj != null ? requestBodyObj.contentLength() : 0;
             } catch (IOException e) {
                 log.error("Failed to read the content length because {}", e.getMessage(), e);
             }
@@ -49,7 +53,7 @@ public class DetailedLoggingListener extends HttpResponseListener {
                     response.request().url(),
                     response.request().headers(),
                     textRequestBody,
-                    response.request().body().contentType(),
+                    requestBodyObj != null ? requestBodyObj.contentType() : null,
                     contentLength,
                     response.code(),
                     response.message(),

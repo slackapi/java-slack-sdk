@@ -18,7 +18,7 @@ public class ResponseSender {
 
     public WebhookResponse send(String responseUrl, ActionResponse response) throws IOException {
         SlackHttpClient httpClient = slack.getHttpClient();
-        Response httpResponse = httpClient.postJsonPostRequest(responseUrl, response);
+        Response httpResponse = httpClient.postJsonBody(responseUrl, response);
         String body = httpResponse.body().string();
         httpClient.runHttpResponseListeners(httpResponse, body);
 
