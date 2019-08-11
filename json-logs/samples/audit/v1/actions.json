@@ -1,0 +1,23 @@
+{
+  "actions": {
+    "workspace_or_org": [
+      ""
+    ],
+    "user": [
+      ""
+    ],
+    "file": [
+      ""
+    ],
+    "channel": [
+      ""
+    ],
+    "app": [
+      ""
+    ]
+  },
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": ""
+}
