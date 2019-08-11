@@ -22,6 +22,7 @@ public class EventsApiPayloadDumpTest {
     @Test
     public void dumpAll() throws Exception {
         List<EventsApiPayload<?>> payloads = Arrays.asList(
+                new AppHomeOpenedPayload(),
                 new AppMentionPayload(),
                 new AppRateLimitedPayload(),
                 new AppUninstalledPayload(),
