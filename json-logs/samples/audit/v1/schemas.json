@@ -1,0 +1,48 @@
+{
+  "schemas": [
+    {
+      "type": "",
+      "workspace": {
+        "id": "",
+        "name": "",
+        "domain": ""
+      },
+      "enterprise": {
+        "id": "",
+        "name": "",
+        "domain": ""
+      },
+      "user": {
+        "id": "",
+        "name": "",
+        "email": "",
+        "team": ""
+      },
+      "file": {
+        "id": "",
+        "name": "",
+        "filetype": "",
+        "title": ""
+      },
+      "channel": {
+        "id": "",
+        "name": "",
+        "privacy": "",
+        "is_shared": "",
+        "is_org_shared": "",
+        "teams_shared_with": ""
+      },
+      "app": {
+        "id": "",
+        "name": "",
+        "is_distributed": "",
+        "is_directory_approved": "",
+        "scopes": ""
+      }
+    }
+  ],
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

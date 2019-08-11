@@ -1,5 +1,7 @@
 package com.github.seratch.jslack;
 
+import com.github.seratch.jslack.api.audit.AuditClient;
+import com.github.seratch.jslack.api.audit.impl.AuditClientImpl;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.impl.MethodsClientImpl;
@@ -198,7 +200,7 @@ public class Slack {
     }
 
     /**
-     * Creates a SCIM api client.
+     * Creates a SCIM API client.
      */
     public SCIMClient scim() {
         return new SCIMClientImpl(httpClient);
@@ -206,6 +208,17 @@ public class Slack {
 
     public SCIMClient scim(String token) {
         return new SCIMClientImpl(httpClient, token);
+    }
+
+    /**
+     * Creates a Audit Logs API client.
+     */
+    public AuditClient audit() {
+        return new AuditClientImpl(httpClient);
+    }
+
+    public AuditClient audit(String token) {
+        return new AuditClientImpl(httpClient, token);
     }
 
     /**

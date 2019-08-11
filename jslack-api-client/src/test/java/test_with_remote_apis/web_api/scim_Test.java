@@ -18,10 +18,11 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+// required scope - admin
 public class scim_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String token = System.getenv(Constants.SLACK_TEST_SCIM_OAUTH_ACCESS_TOKEN);
+    String token = System.getenv(Constants.SLACK_TEST_ADMIN_OAUTH_ACCESS_TOKEN);
 
     @Test
     public void getServiceProviderConfigs() throws IOException, SlackApiException {

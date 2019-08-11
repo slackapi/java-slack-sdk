@@ -28,6 +28,17 @@ get "/" do
   {message: "Hello World"}.to_json
 end
 
+get "/oauth" do
+  client = Slack::Web::Client.new
+  response = client.oauth_access(
+    client_id: ENV['SLACK_TEST_CLIENT_ID'],
+    client_secret: ENV['SLACK_TEST_CLIENT_SECRET'],
+    code: params[:code]
+  )
+  puts response
+  {ok:true}.to_json
+end
+
 post "/slack/events" do
   content_type 'application/json'
 
