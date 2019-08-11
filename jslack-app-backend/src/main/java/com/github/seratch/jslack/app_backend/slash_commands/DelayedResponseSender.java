@@ -21,7 +21,7 @@ public class DelayedResponseSender {
     }
 
     public WebhookResponse send(SlashCommandPayload payload, SlashCommandResponse response) throws IOException {
-        Response httpResponse = httpClient.postJsonPostRequest(payload.getResponseUrl(), response);
+        Response httpResponse = httpClient.postJsonBody(payload.getResponseUrl(), response);
         String body = httpResponse.body().string();
         httpClient.runHttpResponseListeners(httpResponse, body);
 

@@ -67,12 +67,20 @@ public class JsonDataRecorder {
         for (Map.Entry<String, JsonElement> entry : result.entrySet()) {
             scanToNormalizeStringValues(result, entry.getKey(), entry.getValue());
         }
-        addCommonPropertiesAtTopLevel(result);
+        if (path.startsWith("/scim")) {
+            json = gson().toJson(result);
+            Path filePath = new File(toMaskedFilePath(path).replaceFirst("/\\w{9}.json$", "/000000000.json")).toPath();
+            Files.createDirectories(filePath.getParent());
+            Files.write(filePath, json.getBytes(UTF_8));
 
-        json = gson().toJson(result);
-        Path filePath = new File(toMaskedFilePath(path)).toPath();
-        Files.createDirectories(filePath.getParent());
-        Files.write(filePath, json.getBytes(UTF_8));
+        } else {
+            addCommonPropertiesAtTopLevel(result);
+
+            json = gson().toJson(result);
+            Path filePath = new File(toMaskedFilePath(path)).toPath();
+            Files.createDirectories(filePath.getParent());
+            Files.write(filePath, json.getBytes(UTF_8));
+        }
     }
 
     private static final List<String> COMMON_TOP_LEVEL_PROPERTY_NAMES = Arrays.asList(

@@ -12,7 +12,7 @@ import com.github.seratch.jslack.api.methods.response.users.UsersInfoResponse;
 import com.github.seratch.jslack.api.model.User;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.scim.SCIMClient;
-import com.github.seratch.jslack.api.scim.SCIMClientImpl;
+import com.github.seratch.jslack.api.scim.impl.SCIMClientImpl;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
@@ -71,7 +71,7 @@ public class Slack {
      */
     public WebhookResponse send(String url, Payload payload) throws IOException {
         SlackHttpClient httpClient = getHttpClient();
-        Response httpResponse = httpClient.postJsonPostRequest(url, payload);
+        Response httpResponse = httpClient.postJsonBody(url, payload);
         String body = httpResponse.body().string();
         httpClient.runHttpResponseListeners(httpResponse, body);
 
@@ -87,7 +87,7 @@ public class Slack {
      */
     public WebhookResponse send(String url, String payload) throws IOException {
         SlackHttpClient httpClient = getHttpClient();
-        Response httpResponse = httpClient.postJsonPostRequest(url, payload);
+        Response httpResponse = httpClient.postJsonBody(url, payload);
         String body = httpResponse.body().string();
         httpClient.runHttpResponseListeners(httpResponse, body);
 
@@ -202,6 +202,10 @@ public class Slack {
      */
     public SCIMClient scim() {
         return new SCIMClientImpl(httpClient);
+    }
+
+    public SCIMClient scim(String token) {
+        return new SCIMClientImpl(httpClient, token);
     }
 
     /**
