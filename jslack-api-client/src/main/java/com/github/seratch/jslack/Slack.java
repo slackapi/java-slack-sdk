@@ -12,7 +12,7 @@ import com.github.seratch.jslack.api.methods.response.users.UsersInfoResponse;
 import com.github.seratch.jslack.api.model.User;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.scim.SCIMClient;
-import com.github.seratch.jslack.api.scim.SCIMClientImpl;
+import com.github.seratch.jslack.api.scim.impl.SCIMClientImpl;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;

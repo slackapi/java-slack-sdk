@@ -34,10 +34,19 @@ public class scim_Test {
     @Test
     public void searchAndReadUser() throws IOException, SlackApiException {
         if (token != null) {
-            UsersSearchResponse users = slack.scim(token).searchUsers(req -> req.count(1000));
-            final String userId = users.getResources().get(0).getId();
-            UsersReadResponse read = slack.scim(token).readUser(req -> req.id(userId));
-            assertThat(read.getId(), is(userId));
+            {
+                UsersSearchResponse users = slack.scim(token).searchUsers(req -> req.count(1000));
+                final String userId = users.getResources().get(0).getId();
+                UsersReadResponse read = slack.scim(token).readUser(req -> req.id(userId));
+                assertThat(read.getId(), is(userId));
+            }
+            {
+                // pagination
+                UsersSearchResponse users = slack.scim(token).searchUsers(req -> req.count(1).startIndex(2));
+                assertThat(users.getItemsPerPage(), is(1));
+                assertThat(users.getResources().size(), is(1));
+                assertThat(users.getStartIndex(), is(2));
+            }
         }
     }
 
@@ -76,6 +85,10 @@ public class scim_Test {
                 newGroup.setDisplayName("Test Group" + System.currentTimeMillis());
                 slack.scim(token).createGroup(req -> req.group(newGroup));
             }
+
+            // pagination
+            GroupsSearchResponse pagination = slack.scim(token).searchGroups(req -> req.count(1));
+            assertThat(pagination.getResources().size(), is(1));
 
             Group group = groups.getResources().get(0);
 

@@ -1,8 +1,9 @@
-package com.github.seratch.jslack.api.scim;
+package com.github.seratch.jslack.api.scim.impl;
 
 import com.github.seratch.jslack.api.methods.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
+import com.github.seratch.jslack.api.scim.SCIMClient;
 import com.github.seratch.jslack.api.scim.request.*;
 import com.github.seratch.jslack.api.scim.response.*;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
