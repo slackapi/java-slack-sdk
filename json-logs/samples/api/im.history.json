@@ -21,10 +21,7 @@
           "ts": "0000000000.000000"
         }
       ],
-      "subscribed": false,
-      "client_msg_id": "",
-      "user": "U00000000",
-      "team": "T00000000"
+      "subscribed": false
     }
   ],
   "has_more": false,

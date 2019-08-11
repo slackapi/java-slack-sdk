@@ -10,7 +10,6 @@
         "text": "",
         "user": "U00000000",
         "ts": "0000000000.000000",
-        "team": "T00000000",
         "blocks": [
           {
             "type": "",
@@ -366,14 +365,8 @@
             "url": "https://www.example.com/"
           }
         ],
-        "client_msg_id": "",
         "subtype": "",
         "username": "",
-        "icons": {
-          "image_36": "https://www.example.com/",
-          "image_48": "https://www.example.com/",
-          "image_72": "https://www.example.com/"
-        },
         "thread_ts": "0000000000.000000",
         "reply_count": 12345,
         "reply_users_count": 12345,
@@ -388,7 +381,12 @@
           }
         ],
         "subscribed": false,
-        "last_read": "0000000000.000000",
+        "client_msg_id": "",
+        "icons": {
+          "image_48": "https://www.example.com/",
+          "image_36": "https://www.example.com/",
+          "image_72": "https://www.example.com/"
+        },
         "attachments": [
           {
             "msg_subtype": "",
@@ -461,6 +459,8 @@
             "metadata": ""
           }
         ],
+        "last_read": "0000000000.000000",
+        "team": "T00000000",
         "inviter": "U00000000"
       }
     }

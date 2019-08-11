@@ -18,126 +18,77 @@
     "last_read": "0000000000.000000",
     "latest": {
       "type": "",
-      "subtype": "",
       "text": "",
+      "files": [
+        {
+          "id": "F00000000",
+          "created": 12345,
+          "timestamp": 12345,
+          "name": "",
+          "title": "",
+          "mimetype": "",
+          "filetype": "",
+          "pretty_type": "",
+          "user": "U00000000",
+          "editable": false,
+          "size": 12345,
+          "mode": "",
+          "is_external": false,
+          "external_type": "",
+          "is_public": false,
+          "public_url_shared": false,
+          "display_as_bot": false,
+          "username": "",
+          "url_private": "https://www.example.com/",
+          "url_private_download": "https://www.example.com/",
+          "permalink": "https://www.example.com/",
+          "permalink_public": "https://www.example.com/",
+          "edit_link": "https://www.example.com/",
+          "preview": "",
+          "preview_highlight": "",
+          "lines": 12345,
+          "lines_more": 12345,
+          "preview_is_truncated": false,
+          "is_starred": false,
+          "has_rich_preview": false
+        }
+      ],
+      "upload": false,
+      "user": "U00000000",
+      "display_as_bot": false,
       "ts": "0000000000.000000",
-      "username": "",
+      "subtype": "",
       "bot_id": "B00000000",
+      "thread_ts": "0000000000.000000",
+      "root": {
+        "type": "",
+        "subtype": "",
+        "text": "",
+        "ts": "0000000000.000000",
+        "username": "",
+        "bot_id": "B00000000",
+        "thread_ts": "0000000000.000000",
+        "reply_count": 12345,
+        "reply_users_count": 12345,
+        "latest_reply": "0000000000.000000",
+        "reply_users": [
+          "U00000000"
+        ],
+        "replies": [
+          {
+            "user": "B00000000",
+            "ts": "0000000000.000000"
+          }
+        ],
+        "subscribed": false,
+        "last_read": "0000000000.000000"
+      },
       "attachments": [
         {
+          "text": "",
+          "footer": "",
           "id": 12345,
-          "blocks": [
-            {
-              "type": "",
-              "elements": [
-                {
-                  "type": "",
-                  "fallback": "",
-                  "text": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "action_id": "",
-                  "url": "",
-                  "value": "",
-                  "style": "",
-                  "confirm": {
-                    "title": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "confirm": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "deny": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    }
-                  },
-                  "placeholder": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "initial_channel": "",
-                  "initial_conversation": "",
-                  "initial_date": "",
-                  "initial_option": {
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "value": ""
-                  },
-                  "min_query_length": 12345,
-                  "image_url": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345,
-                  "alt_text": "",
-                  "initial_user": ""
-                },
-                {
-                  "type": "",
-                  "fallback": "",
-                  "image_url": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345,
-                  "alt_text": ""
-                }
-              ],
-              "block_id": "",
-              "fallback": "",
-              "image_url": "",
-              "image_width": 12345,
-              "image_height": 12345,
-              "image_bytes": 12345,
-              "alt_text": "",
-              "title": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "text": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "fields": [
-                {
-                  "type": "",
-                  "text": "",
-                  "emoji": false,
-                  "verbatim": false
-                }
-              ],
-              "accessory": {
-                "type": "",
-                "fallback": "",
-                "image_url": "",
-                "image_width": 12345,
-                "image_height": 12345,
-                "image_bytes": 12345,
-                "alt_text": ""
-              }
-            }
-          ],
           "fallback": "",
-          "bot_id": "B00000000",
-          "app_unfurl_url": "https://www.example.com/",
-          "is_app_unfurl": false,
           "msg_subtype": "",
           "callback_id": "",
           "color": "",
@@ -153,13 +104,15 @@
           "author_subname": "",
           "channel_id": "",
           "channel_name": "",
+          "bot_id": "",
           "indent": false,
           "is_msg_unfurl": false,
           "is_reply_unfurl": false,
           "is_thread_root_unfurl": false,
+          "is_app_unfurl": false,
+          "app_unfurl_url": "",
           "title": "",
           "title_link": "",
-          "text": "",
           "fields": [
             {
               "title": "",
@@ -177,7 +130,6 @@
           "video_html": "",
           "video_html_width": 12345,
           "video_html_height": 12345,
-          "footer": "",
           "footer_icon": "",
           "ts": "",
           "mrkdwn_in": [
@@ -203,96 +155,10 @@
           "metadata": ""
         }
       ],
-      "user": "U00000000",
-      "files": [
-        {
-          "id": "F00000000",
-          "created": 12345,
-          "timestamp": 12345,
-          "name": "",
-          "title": "",
-          "mimetype": "",
-          "filetype": "",
-          "pretty_type": "",
-          "user": "U00000000",
-          "editable": false,
-          "size": 12345,
-          "mode": "",
-          "is_external": false,
-          "external_type": "",
-          "is_public": false,
-          "public_url_shared": false,
-          "display_as_bot": false,
-          "username": "",
-          "url_private": "https://www.example.com/",
-          "url_private_download": "https://www.example.com/",
-          "thumb_64": "https://www.example.com/",
-          "thumb_80": "https://www.example.com/",
-          "thumb_360": "https://www.example.com/",
-          "thumb_360_w": 12345,
-          "thumb_360_h": 12345,
-          "thumb_160": "https://www.example.com/",
-          "thumb_360_gif": "https://www.example.com/",
-          "image_exif_rotation": 12345,
-          "original_w": 12345,
-          "original_h": 12345,
-          "deanimate_gif": "https://www.example.com/",
-          "permalink": "https://www.example.com/",
-          "permalink_public": "https://www.example.com/",
-          "is_starred": false,
-          "has_rich_preview": false,
-          "edit_link": "https://www.example.com/",
-          "preview": "",
-          "preview_highlight": "",
-          "lines": 12345,
-          "lines_more": 12345,
-          "preview_is_truncated": false,
-          "thumb_480": "https://www.example.com/",
-          "thumb_480_w": 12345,
-          "thumb_480_h": 12345,
-          "thumb_720": "https://www.example.com/",
-          "thumb_720_w": 12345,
-          "thumb_720_h": 12345,
-          "thumb_800": "https://www.example.com/",
-          "thumb_800_w": 12345,
-          "thumb_800_h": 12345,
-          "thumb_960": "https://www.example.com/",
-          "thumb_960_w": 12345,
-          "thumb_960_h": 12345,
-          "thumb_1024": "https://www.example.com/",
-          "thumb_1024_w": 12345,
-          "thumb_1024_h": 12345,
-          "external_id": "",
-          "external_url": "https://www.example.com/"
-        }
-      ],
-      "upload": false,
-      "display_as_bot": false,
-      "client_msg_id": "",
-      "team": "T00000000",
-      "thread_ts": "0000000000.000000",
-      "root": {
-        "type": "",
-        "subtype": "",
-        "text": "",
-        "ts": "0000000000.000000",
-        "username": "",
-        "bot_id": "B00000000",
-        "thread_ts": "0000000000.000000",
-        "reply_count": 12345,
-        "reply_users_count": 12345,
-        "latest_reply": "0000000000.000000",
-        "reply_users": [
-          "U00000000"
-        ],
-        "replies": [
-          {
-            "user": "B00000000",
-            "ts": "0000000000.000000"
-          }
-        ],
-        "subscribed": false,
-        "last_read": "0000000000.000000"
+      "username": "",
+      "icons": {
+        "emoji": "",
+        "image_64": "https://www.example.com/"
       },
       "x_files": [
         "F00000000"

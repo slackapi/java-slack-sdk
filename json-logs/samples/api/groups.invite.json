@@ -1,5 +1,6 @@
 {
   "ok": false,
+  "error": "",
   "group": {
     "id": "G00000000",
     "name": "",
@@ -38,7 +39,6 @@
     "is_read_only": false,
     "is_thread_only": false
   },
-  "error": "",
   "needed": "",
   "provided": ""
 }

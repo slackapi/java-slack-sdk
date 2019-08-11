@@ -1,6 +1,5 @@
 {
   "ok": false,
-  "error": "",
   "file": {
     "id": "F00000000",
     "created": 12345,
@@ -38,6 +37,7 @@
     "external_url": "https://www.example.com/",
     "has_rich_preview": false
   },
+  "error": "",
   "needed": "",
   "provided": ""
 }

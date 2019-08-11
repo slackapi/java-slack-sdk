@@ -8,7 +8,6 @@
     "type": "",
     "text": "",
     "user": "U00000000",
-    "team": "T00000000",
     "attachments": [
       {
         "msg_subtype": "",
@@ -188,7 +187,8 @@
           "alt_text": ""
         }
       }
-    ]
+    ],
+    "team": "T00000000"
   },
   "error": "",
   "needed": "",

@@ -21,9 +21,6 @@
     "pending_shared": [
       ""
     ],
-    "pending_connected_team_ids": [
-      ""
-    ],
     "is_pending_ext_shared": false,
     "is_member": false,
     "is_private": false,
@@ -43,7 +40,10 @@
       ""
     ],
     "priority": 12345,
-    "is_open": false
+    "is_open": false,
+    "pending_connected_team_ids": [
+      ""
+    ]
   },
   "error": "",
   "detail": "",

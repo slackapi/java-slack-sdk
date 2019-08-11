@@ -22,9 +22,6 @@
       "pending_shared": [
         ""
       ],
-      "pending_connected_team_ids": [
-        ""
-      ],
       "is_pending_ext_shared": false,
       "is_member": false,
       "is_private": false,
@@ -42,7 +39,14 @@
       "previous_names": [
         ""
       ],
-      "num_members": 12345
+      "num_members": 12345,
+      "last_read": "0000000000.000000",
+      "is_open": false,
+      "priority": 12345,
+      "parent_conversation": "G00000000",
+      "pending_connected_team_ids": [
+        ""
+      ]
     }
   ],
   "response_metadata": {

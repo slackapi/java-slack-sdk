@@ -17,8 +17,8 @@
       "is_private": false,
       "is_mpim": false,
       "members": [
-        "U00000000",
-        ""
+        "",
+        "U00000000"
       ],
       "topic": {
         "value": "",
@@ -27,7 +27,7 @@
       },
       "purpose": {
         "value": "",
-        "creator": "",
+        "creator": "U00000000",
         "last_set": 12345
       },
       "previous_names": [
