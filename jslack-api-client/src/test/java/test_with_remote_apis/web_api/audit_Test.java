@@ -23,23 +23,35 @@ public class audit_Test {
     @Test
     public void getSchemas() throws IOException, SlackApiException {
         if (token != null) {
-            SchemasResponse response = slack.audit(token).getSchemas(req -> req);
-            assertThat(response, is(notNullValue()));
+            {
+                SchemasResponse response = slack.audit(token).getSchemas();
+                assertThat(response, is(notNullValue()));
+            }
+            {
+                SchemasResponse response = slack.audit(token).getSchemas(req -> req);
+                assertThat(response, is(notNullValue()));
+            }
         }
     }
 
     @Test
     public void getActions() throws IOException, SlackApiException {
         if (token != null) {
-            ActionsResponse response = slack.audit(token).getActions(req -> req);
-            assertThat(response, is(notNullValue()));
+            {
+                ActionsResponse response = slack.audit(token).getActions();
+                assertThat(response, is(notNullValue()));
+            }
+            {
+                ActionsResponse response = slack.audit(token).getActions(req -> req);
+                assertThat(response, is(notNullValue()));
+            }
         }
     }
 
     @Test
     public void getLogs() throws IOException, SlackApiException {
         if (token != null) {
-            LogsResponse response = slack.audit(token).getLogs(req -> req);
+            LogsResponse response = slack.audit(token).getLogs(req -> req.oldest(1521214343).action("user_login").limit(10));
             assertThat(response, is(notNullValue()));
         }
     }

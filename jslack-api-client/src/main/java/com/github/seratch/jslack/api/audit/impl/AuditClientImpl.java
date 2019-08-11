@@ -34,6 +34,11 @@ public class AuditClientImpl implements AuditClient {
     }
 
     @Override
+    public SchemasResponse getSchemas() throws IOException, SlackApiException {
+        return getSchemas(SchemasRequest.builder().build());
+    }
+
+    @Override
     public SchemasResponse getSchemas(SchemasRequest req) throws IOException, SlackApiException {
         return doGet(BASE_URL + "schemas", null, getToken(req), SchemasResponse.class);
     }
@@ -41,6 +46,11 @@ public class AuditClientImpl implements AuditClient {
     @Override
     public SchemasResponse getSchemas(RequestConfigurator<SchemasRequest.SchemasRequestBuilder> req) throws IOException, SlackApiException {
         return getSchemas(req.configure(SchemasRequest.builder()).build());
+    }
+
+    @Override
+    public ActionsResponse getActions() throws IOException, SlackApiException {
+        return getActions(ActionsRequest.builder().build());
     }
 
     @Override

@@ -7,6 +7,8 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
 - [Incoming Webhooks](https://api.slack.com/incoming-webhooks)
 - [API Methods](https://api.slack.com/methods)
 - [Real Time Messaging API](https://api.slack.com/rtm)
+- [SCIM API](https://api.slack.com/scim)
+- [Audit Logs API](https://api.slack.com/docs/audit-logs-api)
 - [Useful modules to build Slack App backend services](https://github.com/seratch/jslack/tree/master/jslack-app-backend/src/main/java/com/github/seratch/jslack/app_backend)
   - [OAuth 2.0](https://api.slack.com/docs/oauth)
   - [Events API](https://api.slack.com/events-api)
@@ -334,6 +336,43 @@ The `message`, argument of messageHandler, is a string value in JSON format. You
 jSlack already depends on [google-gson](https://github.com/google/gson) library. So you can use Gson as above example shows. If you prefer Jackson or other libraries, it's also possible.
 
 
+#### SCIM API
+
+* [SCIM (System for Cross-domain Identity Management)](http://www.simplecloud.info/)
+* [RFC 7644: System for Cross-domain Identity Management: Protocol](http://www.rfc-editor.org/rfc/rfc7644.txt)
+* [SCIM API Response](https://github.com/seratch/jslack/tree/master/jslack-api-client/src/main/java/com/github/seratch/jslack/api/scim/response)
+
+```java
+// users
+User newUser = buildNewUser(); // omitted
+UsersCreateResponse creationResp = slack.scim(token).createUser(req -> req.user(newUser));
+
+// https://api.slack.com/scim#filter
+String filter = "userName eq \"" + newUser.getUserName() + "\"";
+UsersSearchResponse searchResp = slack.scim(token).searchUsers(req -> req.count(1).filter(filter));
+assertThat(searchResp.getItemsPerPage(), is(1));
+assertThat(searchResp.getResources().size(), is(1));
+
+User partialUpdate = new User();
+partialUpdate.setUserName(newUserName);
+slack.scim(token).patchUser(req -> req.id(userId).user(partialUpdate));
+
+slack.scim(token).updateUser(req -> req.id(modifiedUser.getId()).user(modifiedUser));
+
+// groups
+GroupsSearchResponse pagination = slack.scim(token).searchGroups(req -> req.count(1));
+```
+
+#### Audit Logs API
+
+* [Audit Logs API Official Document](https://api.slack.com/docs/audit-logs-api)
+* [Audit Logs API Response](https://github.com/seratch/jslack/tree/master/jslack-api-client/src/main/java/com/github/seratch/jslack/api/audit/response)
+
+```java
+SchemasResponse response = slack.audit(token).getSchemas();
+ActionsResponse response = slack.audit(token).getActions();
+LogsResponse response = slack.audit(token).getLogs(req -> req.oldest(1521214343).action("user_login").limit(10));
+```
 
 #### (jSlack's Original) Shortcut APIs
 
@@ -411,6 +450,12 @@ export SLACK_TEST_SHARED_CHANNEL_ID=C12345678
 ```
 
 ### (Optional) Have a multi-channel guest and a single-channel guest
+
+### (Optional) Have an access token to run tests with SCIM API and Audit Logs API
+
+```bash
+export SLACK_TEST_ADMIN_OAUTH_ACCESS_TOKEN=xoxp-xxxx
+```
 
 ### Run the tests
 

@@ -16,9 +16,13 @@ import java.io.IOException;
  */
 public interface AuditClient {
 
+    SchemasResponse getSchemas() throws IOException, SlackApiException;
+
     SchemasResponse getSchemas(SchemasRequest req) throws IOException, SlackApiException;
 
     SchemasResponse getSchemas(RequestConfigurator<SchemasRequest.SchemasRequestBuilder> req) throws IOException, SlackApiException;
+
+    ActionsResponse getActions() throws IOException, SlackApiException;
 
     ActionsResponse getActions(ActionsRequest req) throws IOException, SlackApiException;
 

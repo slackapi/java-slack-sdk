@@ -54,26 +54,54 @@ public class scim_Test {
     @Test
     public void createAndDeleteUser() throws Exception {
         if (token != null) {
+            String userName = "user" + System.currentTimeMillis();
             User newUser = new User();
             newUser.setName(new User.Name());
             newUser.getName().setGivenName("Kazuhiro");
             newUser.getName().setFamilyName("Sera");
-            newUser.setUserName("user" + System.currentTimeMillis());
+            newUser.setUserName(userName);
             User.Email email = new User.Email();
             email.setValue("seratch+" + System.currentTimeMillis() + "@gmail.com");
             newUser.setEmails(Arrays.asList(email));
             UsersCreateResponse creation = slack.scim(token).createUser(req -> req.user(newUser));
             assertThat(creation.getId(), is(notNullValue()));
 
-            User user = new User();
-            user.setUserName(creation.getUserName() + "_ed");
-            slack.scim(token).patchUser(req -> req.id(creation.getId()).user(user));
+            UsersReadResponse readResp = slack.scim(token).readUser(req -> req.id(creation.getId()));
+            assertThat(readResp.getId(), is(creation.getId()));
+            assertThat(readResp.getUserName(), is(creation.getUserName()));
 
-            creation.setUserName(creation.getUserName() + "_rv");
-            slack.scim(token).updateUser(req -> req.id(creation.getId()).user(creation));
+            try {
+                // https://api.slack.com/scim#filter
+                // filter query matching the created data
+                UsersSearchResponse searchResp = slack.scim(token).searchUsers(req -> req.count(1).filter("userName eq \"" + userName + "\""));
+                assertThat(searchResp.getItemsPerPage(), is(1));
+                assertThat(searchResp.getResources().size(), is(1));
+                assertThat(searchResp.getResources().get(0).getId(), is(creation.getId()));
+                assertThat(searchResp.getResources().get(0).getUserName(), is(creation.getUserName()));
 
-            UsersDeleteResponse deletion = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
-            assertThat(deletion, is(nullValue()));
+                String originalUserName = creation.getUserName();
+
+                User user = new User();
+                user.setUserName(originalUserName + "_ed");
+                slack.scim(token).patchUser(req -> req.id(creation.getId()).user(user));
+
+                readResp = slack.scim(token).readUser(req -> req.id(creation.getId()));
+                assertThat(readResp.getId(), is(creation.getId()));
+                assertThat(readResp.getUserName(), is(originalUserName + "_ed"));
+
+                User modifiedUser = readResp;
+                modifiedUser.setUserName(originalUserName + "_rv");
+                modifiedUser.setNickName(originalUserName + "_rv"); // required
+                slack.scim(token).updateUser(req -> req.id(modifiedUser.getId()).user(modifiedUser));
+
+                readResp = slack.scim(token).readUser(req -> req.id(modifiedUser.getId()));
+                assertThat(readResp.getId(), is(creation.getId()));
+                assertThat(readResp.getUserName(), is(originalUserName + "_rv"));
+
+            } finally {
+                UsersDeleteResponse deletion = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
+                assertThat(deletion, is(nullValue()));
+            }
         }
     }
 
@@ -95,11 +123,11 @@ public class scim_Test {
 
             GroupsPatchRequest.GroupOperation op = new GroupsPatchRequest.GroupOperation();
             GroupsPatchRequest.MemberOperation memberOp = new GroupsPatchRequest.MemberOperation();
-
             User user = slack.scim(token).searchUsers(req -> req.count(1)).getResources().get(0);
             memberOp.setValue(user.getId());
             memberOp.setOperation("delete");
             op.setMembers(Arrays.asList(memberOp));
+
             slack.scim(token).patchGroup(req -> req.id(group.getId()).group(op));
 
             slack.scim(token).updateGroup(req -> req.id(group.getId()).group(group));
