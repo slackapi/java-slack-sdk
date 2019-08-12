@@ -1,10 +1,13 @@
 package util.sample_json_generation;
 
+import com.github.seratch.jslack.SlackConfig;
+import com.github.seratch.jslack.api.scim.model.User;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
+import util.ObjectInitializer;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,16 +21,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static util.sample_json_generation.SampleObjects.Json;
+import static util.sample_json_generation.SampleObjects.*;
 
 @Slf4j
 public class JsonDataRecorder {
 
     private static final Charset UTF_8 = Charset.forName("UTF-8");
 
+    private SlackConfig config;
     private String outputDirectory;
 
-    public JsonDataRecorder(String outputDirectory) {
+    public JsonDataRecorder(SlackConfig config, String outputDirectory) {
+        this.config = config;
         this.outputDirectory = outputDirectory;
     }
 
@@ -68,6 +73,16 @@ public class JsonDataRecorder {
             scanToNormalizeStringValues(result, entry.getKey(), entry.getValue());
         }
         if (path.startsWith("/scim")) {
+            if (result.get("Resources") != null) {
+                for (JsonElement resource : result.get("Resources").getAsJsonArray()) {
+                    JsonObject resourceObj = resource.getAsJsonObject();
+                    if (resourceObj.get("userName") != null) {
+                        initializeSCIMUser(resourceObj);
+                    }
+                }
+            } else if (result.get("schemas") != null && result.get("userName") != null) {
+                initializeSCIMUser(result);
+            }
             json = gson().toJson(result);
             Path filePath = new File(toMaskedFilePath(path).replaceFirst("/\\w{9}.json$", "/000000000.json")).toPath();
             Files.createDirectories(filePath.getParent());
@@ -80,6 +95,60 @@ public class JsonDataRecorder {
             Path filePath = new File(toMaskedFilePath(path)).toPath();
             Files.createDirectories(filePath.getParent());
             Files.write(filePath, json.getBytes(UTF_8));
+        }
+    }
+
+    private void initializeSCIMUser(JsonObject resourceObj) {
+        if (resourceObj.get("addresses") == null) {
+            resourceObj.add("addresses", new JsonArray());
+        }
+        {
+            JsonArray objects = resourceObj.get("addresses").getAsJsonArray();
+            clearAllElements(objects);
+            User.Address sampleObject = ObjectInitializer.initProperties(new User.Address());
+            objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
+        }
+        if (resourceObj.get("emails") == null) {
+            resourceObj.add("emails", new JsonArray());
+        }
+        {
+            JsonArray objects = resourceObj.get("emails").getAsJsonArray();
+            clearAllElements(objects);
+            User.Email sampleObject = ObjectInitializer.initProperties(new User.Email());
+            objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
+        }
+        if (resourceObj.get("phoneNumbers") == null) {
+            resourceObj.add("phoneNumbers", new JsonArray());
+        }
+        {
+            JsonArray objects = resourceObj.get("phoneNumbers").getAsJsonArray();
+            clearAllElements(objects);
+            User.PhoneNumber sampleObject = ObjectInitializer.initProperties(new User.PhoneNumber());
+            objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
+        }
+        if (resourceObj.get("photos") == null) {
+            resourceObj.add("photos", new JsonArray());
+        }
+        {
+            JsonArray objects = resourceObj.get("photos").getAsJsonArray();
+            clearAllElements(objects);
+            User.Photo sampleObject = ObjectInitializer.initProperties(new User.Photo());
+            objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
+        }
+        if (resourceObj.get("roles") == null) {
+            resourceObj.add("roles", new JsonArray());
+        }
+        {
+            JsonArray objects = resourceObj.get("roles").getAsJsonArray();
+            clearAllElements(objects);
+            User.Role sampleObject = ObjectInitializer.initProperties(new User.Role());
+            objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
+        }
+    }
+
+    private static void clearAllElements(JsonArray objects) {
+        for (int i = 0; i < objects.size(); i++) {
+            objects.remove(i);
         }
     }
 

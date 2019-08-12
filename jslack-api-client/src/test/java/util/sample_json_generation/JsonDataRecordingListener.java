@@ -8,11 +8,10 @@ import java.io.IOException;
 @Slf4j
 public class JsonDataRecordingListener extends HttpResponseListener {
 
-    JsonDataRecorder recorder = new JsonDataRecorder("../json-logs");
-
     @Override
     public void accept(State state) {
         try {
+            JsonDataRecorder recorder = new JsonDataRecorder(state.getConfig(),"../json-logs");
             recorder.writeMergedResponse(state.getResponse(), state.getParsedResponseBody());
         } catch (IOException e) {
             log.error("Failed to write JSON files because {}", e.getMessage(), e);

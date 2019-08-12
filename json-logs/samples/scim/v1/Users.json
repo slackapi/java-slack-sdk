@@ -30,12 +30,13 @@
       "emails": [
         {
           "value": "",
+          "type": "",
           "primary": false
         }
       ],
       "photos": [
         {
-          "value": "https://www.example.com/",
+          "value": "",
           "type": ""
         }
       ],
@@ -43,16 +44,26 @@
         ""
       ],
       "addresses": [
-        {}
+        {
+          "streetAddress": "",
+          "locality": "",
+          "region": "",
+          "postalCode": "",
+          "country": "",
+          "primary": false
+        }
       ],
       "phoneNumbers": [
         {
+          "value": "",
           "type": "",
           "primary": false
         }
       ],
       "roles": [
         {
+          "value": "",
+          "type": "",
           "primary": false
         }
       ],
