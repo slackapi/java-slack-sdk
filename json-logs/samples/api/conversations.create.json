@@ -1,6 +1,52 @@
 {
   "ok": false,
+  "channel": {
+    "id": "C00000000",
+    "name": "",
+    "is_channel": false,
+    "is_group": false,
+    "is_im": false,
+    "created": 12345,
+    "is_archived": false,
+    "is_general": false,
+    "unlinked": 12345,
+    "name_normalized": "",
+    "is_shared": false,
+    "creator": "U00000000",
+    "is_ext_shared": false,
+    "is_org_shared": false,
+    "shared_team_ids": [
+      "T00000000"
+    ],
+    "pending_shared": [
+      ""
+    ],
+    "is_pending_ext_shared": false,
+    "is_member": false,
+    "is_private": false,
+    "is_mpim": false,
+    "last_read": "0000000000.000000",
+    "topic": {
+      "value": "",
+      "creator": "",
+      "last_set": 12345
+    },
+    "purpose": {
+      "value": "",
+      "creator": "",
+      "last_set": 12345
+    },
+    "previous_names": [
+      ""
+    ],
+    "priority": 12345,
+    "is_open": false,
+    "pending_connected_team_ids": [
+      ""
+    ]
+  },
   "error": "",
+  "detail": "",
   "needed": "",
   "provided": ""
 }

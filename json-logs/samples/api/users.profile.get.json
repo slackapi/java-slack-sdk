@@ -1,5 +1,36 @@
 {
   "ok": false,
+  "profile": {
+    "title": "",
+    "phone": "",
+    "skype": "",
+    "real_name": "",
+    "real_name_normalized": "",
+    "display_name": "",
+    "display_name_normalized": "",
+    "fields": {
+      "Xf0DAGNXHT": {
+        "value": "",
+        "alt": ""
+      }
+    },
+    "status_text": "",
+    "status_emoji": "",
+    "status_expiration": 12345,
+    "avatar_hash": "",
+    "image_original": "https://www.example.com/",
+    "email": "",
+    "first_name": "",
+    "last_name": "",
+    "image_24": "https://www.example.com/",
+    "image_32": "https://www.example.com/",
+    "image_48": "https://www.example.com/",
+    "image_72": "https://www.example.com/",
+    "image_192": "https://www.example.com/",
+    "image_512": "https://www.example.com/",
+    "image_1024": "https://www.example.com/",
+    "status_text_canonical": ""
+  },
   "error": "",
   "needed": "",
   "provided": ""

@@ -1,5 +1,42 @@
 {
   "ok": false,
+  "file": {
+    "id": "F00000000",
+    "created": 12345,
+    "timestamp": 12345,
+    "name": "",
+    "title": "",
+    "mimetype": "",
+    "filetype": "",
+    "pretty_type": "",
+    "user": "U00000000",
+    "editable": false,
+    "size": 12345,
+    "mode": "",
+    "is_external": false,
+    "external_type": "",
+    "is_public": false,
+    "public_url_shared": false,
+    "display_as_bot": false,
+    "username": "",
+    "url_private": "https://www.example.com/",
+    "permalink": "https://www.example.com/",
+    "comments_count": 12345,
+    "is_starred": false,
+    "shares": {},
+    "channels": [
+      ""
+    ],
+    "groups": [
+      ""
+    ],
+    "ims": [
+      ""
+    ],
+    "external_id": "",
+    "external_url": "https://www.example.com/",
+    "has_rich_preview": false
+  },
   "error": "",
   "needed": "",
   "provided": ""

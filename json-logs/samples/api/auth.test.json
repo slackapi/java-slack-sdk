@@ -1,5 +1,10 @@
 {
   "ok": false,
+  "url": "https://www.example.com/",
+  "team": "",
+  "user": "",
+  "team_id": "T00000000",
+  "user_id": "U00000000",
   "error": "",
   "needed": "",
   "provided": ""
