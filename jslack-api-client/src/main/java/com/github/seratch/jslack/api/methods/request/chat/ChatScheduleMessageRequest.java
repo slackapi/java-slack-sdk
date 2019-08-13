@@ -61,6 +61,11 @@ public class ChatScheduleMessageRequest implements SlackApiRequest {
     private List<LayoutBlock> blocks;
 
     /**
+     * A JSON-based array of structured blocks as a String, presented as a URL-encoded string.
+     */
+    private String blocksAsString;
+
+    /**
      * Find and link channel names and usernames.
      */
     private boolean linkNames;

@@ -54,6 +54,90 @@ public class chat_Test {
         }
     }
 
+    String blocksAsString = "[\n" +
+            "  {\n" +
+            "    \"type\": \"section\",\n" +
+            "    \"text\": {\n" +
+            "      \"type\": \"mrkdwn\",\n" +
+            "      \"text\": \"Hello, Assistant to the Regional Manager Dwight! *Michael Scott* wants to know where you'd like to take the Paper Company investors to dinner tonight.\\n\\n *Please select a restaurant:*\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"divider\"\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"section\",\n" +
+            "    \"text\": {\n" +
+            "      \"type\": \"mrkdwn\",\n" +
+            "      \"text\": \"*Farmhouse Thai Cuisine*\\n:star::star::star::star: 1528 reviews\\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here\"\n" +
+            "    },\n" +
+            "    \"accessory\": {\n" +
+            "      \"type\": \"image\",\n" +
+            "      \"image_url\": \"https://s3-media3.fl.yelpcdn.com/bphoto/c7ed05m9lC2EmA3Aruue7A/o.jpg\",\n" +
+            "      \"alt_text\": \"alt text for image\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"section\",\n" +
+            "    \"text\": {\n" +
+            "      \"type\": \"mrkdwn\",\n" +
+            "      \"text\": \"*Kin Khao*\\n:star::star::star::star: 1638 reviews\\n The sticky rice also goes wonderfully with the caramelized pork belly, which is absolutely melt-in-your-mouth and so soft.\"\n" +
+            "    },\n" +
+            "    \"accessory\": {\n" +
+            "      \"type\": \"image\",\n" +
+            "      \"image_url\": \"https://s3-media2.fl.yelpcdn.com/bphoto/korel-1YjNtFtJlMTaC26A/o.jpg\",\n" +
+            "      \"alt_text\": \"alt text for image\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"section\",\n" +
+            "    \"text\": {\n" +
+            "      \"type\": \"mrkdwn\",\n" +
+            "      \"text\": \"*Ler Ros*\\n:star::star::star::star: 2082 reviews\\n I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder.\"\n" +
+            "    },\n" +
+            "    \"accessory\": {\n" +
+            "      \"type\": \"image\",\n" +
+            "      \"image_url\": \"https://s3-media2.fl.yelpcdn.com/bphoto/DawwNigKJ2ckPeDeDM7jAg/o.jpg\",\n" +
+            "      \"alt_text\": \"alt text for image\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"divider\"\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"actions\",\n" +
+            "    \"elements\": [\n" +
+            "      {\n" +
+            "        \"type\": \"button\",\n" +
+            "        \"text\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Farmhouse\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"value\": \"click_me_123\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"type\": \"button\",\n" +
+            "        \"text\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Kin Khao\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"value\": \"click_me_123\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"type\": \"button\",\n" +
+            "        \"text\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Ler Ros\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"value\": \"click_me_123\"\n" +
+            "      }\n" +
+            "    ]\n" +
+            "  }\n" +
+            "]";
+
     @Test
     public void postMessage() throws Exception {
         loadRandomChannelId();
@@ -669,6 +753,28 @@ public class chat_Test {
                 .unfurls(unfurls)
                 .build());
         assertThat(unfurlResponse.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void postMessage_blocksAsString() throws Exception {
+        loadRandomChannelId();
+
+        ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .token(token)
+                .channel(randomChannelId)
+                .text("test")
+                .blocksAsString(blocksAsString)
+                .build());
+        assertThat(postResponse.getError(), is(nullValue()));
+
+        ChatUpdateResponse updateMessage = slack.methods().chatUpdate(ChatUpdateRequest.builder()
+                .channel(randomChannelId)
+                .token(token)
+                .ts(postResponse.getTs())
+                .text("modified")
+                .blocksAsString(blocksAsString)
+                .build());
+        assertThat(updateMessage.getError(), is(nullValue()));
     }
 
 }

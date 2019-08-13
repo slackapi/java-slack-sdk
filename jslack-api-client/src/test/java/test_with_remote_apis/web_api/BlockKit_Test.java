@@ -33,6 +33,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 public class BlockKit_Test {
+
     Slack slack = Slack.getInstance(SlackTestConfig.get());
     String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
@@ -114,6 +115,85 @@ public class BlockKit_Test {
 
     }
 
+    @Test
+    public void exampleWithBlocksAsString() throws IOException, SlackApiException {
+
+        List<LayoutBlock> blocks = exampleBlocks();
+
+        // ephemeral message creation
+        {
+            String channelId = null;
+            ChannelsListResponse channelsListResponse = slack.methods().channelsList(req -> req
+                    .token(token)
+                    .excludeArchived(true)
+                    .limit(100));
+            assertThat(channelsListResponse.getError(), is(nullValue()));
+            for (Channel channel : channelsListResponse.getChannels()) {
+                if (channel.getName().equals("random")) {
+                    channelId = channel.getId();
+                    break;
+                }
+            }
+            assertThat(channelId, is(notNullValue()));
+
+            String userId = slack.methods().channelsInfo(ChannelsInfoRequest.builder()
+                    .token(token)
+                    .channel(channelId)
+                    .build()
+            ).getChannel().getMembers().get(0);
+
+            ChatPostEphemeralRequest request = ChatPostEphemeralRequest.builder()
+                    .channel(channelId)
+                    .token(token)
+                    .user(userId)
+                    .text("Example message")
+                    .blocksAsString(blocksAsString)
+                    .build();
+
+            ChatPostEphemeralResponse response = slack.methods().chatPostEphemeral(request);
+
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+
+        // message creation
+        ChatPostMessageResponse postResponse;
+        {
+            ChatPostMessageRequest request = ChatPostMessageRequest.builder()
+                    .channel("random")
+                    .token(token)
+                    .text("Example message")
+                    .blocksAsString(blocksAsString)
+                    .build();
+
+            postResponse = slack.methods().chatPostMessage(request);
+
+            assertThat(postResponse.getError(), is(nullValue()));
+            assertThat(postResponse.isOk(), is(true));
+            assertThat(postResponse.getMessage().getBlocks().size(), is(7));
+        }
+
+        // message modification
+        List<LayoutBlock> newBlocks = new ArrayList<>();
+        Collections.copy(blocks, newBlocks);
+        newBlocks.add(new DividerBlock());
+        {
+            ChatUpdateRequest request = ChatUpdateRequest.builder()
+                    .token(token)
+                    .text("Modified text")
+                    .channel(postResponse.getChannel())
+                    .ts(postResponse.getTs())
+                    .blocksAsString(blocksAsString)
+                    .build();
+
+            ChatUpdateResponse response = slack.methods().chatUpdate(request);
+
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+
+    }
+
     private List<LayoutBlock> exampleBlocks() {
         return Arrays.asList(
                 SectionBlock.builder()
@@ -182,4 +262,89 @@ public class BlockKit_Test {
                         )).build()
         );
     }
+
+    String blocksAsString = "[\n" +
+            "  {\n" +
+            "    \"type\": \"section\",\n" +
+            "    \"text\": {\n" +
+            "      \"type\": \"mrkdwn\",\n" +
+            "      \"text\": \"Hello, Assistant to the Regional Manager Dwight! *Michael Scott* wants to know where you'd like to take the Paper Company investors to dinner tonight.\\n\\n *Please select a restaurant:*\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"divider\"\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"section\",\n" +
+            "    \"text\": {\n" +
+            "      \"type\": \"mrkdwn\",\n" +
+            "      \"text\": \"*Farmhouse Thai Cuisine*\\n:star::star::star::star: 1528 reviews\\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here\"\n" +
+            "    },\n" +
+            "    \"accessory\": {\n" +
+            "      \"type\": \"image\",\n" +
+            "      \"image_url\": \"https://s3-media3.fl.yelpcdn.com/bphoto/c7ed05m9lC2EmA3Aruue7A/o.jpg\",\n" +
+            "      \"alt_text\": \"alt text for image\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"section\",\n" +
+            "    \"text\": {\n" +
+            "      \"type\": \"mrkdwn\",\n" +
+            "      \"text\": \"*Kin Khao*\\n:star::star::star::star: 1638 reviews\\n The sticky rice also goes wonderfully with the caramelized pork belly, which is absolutely melt-in-your-mouth and so soft.\"\n" +
+            "    },\n" +
+            "    \"accessory\": {\n" +
+            "      \"type\": \"image\",\n" +
+            "      \"image_url\": \"https://s3-media2.fl.yelpcdn.com/bphoto/korel-1YjNtFtJlMTaC26A/o.jpg\",\n" +
+            "      \"alt_text\": \"alt text for image\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"section\",\n" +
+            "    \"text\": {\n" +
+            "      \"type\": \"mrkdwn\",\n" +
+            "      \"text\": \"*Ler Ros*\\n:star::star::star::star: 2082 reviews\\n I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder.\"\n" +
+            "    },\n" +
+            "    \"accessory\": {\n" +
+            "      \"type\": \"image\",\n" +
+            "      \"image_url\": \"https://s3-media2.fl.yelpcdn.com/bphoto/DawwNigKJ2ckPeDeDM7jAg/o.jpg\",\n" +
+            "      \"alt_text\": \"alt text for image\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"divider\"\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"type\": \"actions\",\n" +
+            "    \"elements\": [\n" +
+            "      {\n" +
+            "        \"type\": \"button\",\n" +
+            "        \"text\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Farmhouse\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"value\": \"click_me_123\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"type\": \"button\",\n" +
+            "        \"text\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Kin Khao\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"value\": \"click_me_123\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"type\": \"button\",\n" +
+            "        \"text\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Ler Ros\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"value\": \"click_me_123\"\n" +
+            "      }\n" +
+            "    ]\n" +
+            "  }\n" +
+            "]";
+
 }

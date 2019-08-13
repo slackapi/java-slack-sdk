@@ -4,15 +4,32 @@
   "ts": "0000000000.000000",
   "text": "",
   "message": {
-    "type": "",
-    "subtype": "",
-    "text": "",
-    "username": "",
     "bot_id": "B00000000",
+    "type": "",
+    "text": "",
+    "user": "U00000000",
+    "team": "T00000000",
+    "subtype": "",
+    "username": "",
     "blocks": [
       {
         "type": "",
         "block_id": "",
+        "text": {
+          "type": "",
+          "text": "",
+          "verbatim": false,
+          "emoji": false
+        },
+        "accessory": {
+          "fallback": "",
+          "image_url": "https://www.example.com/",
+          "image_width": 12345,
+          "image_height": 12345,
+          "image_bytes": 12345,
+          "type": "",
+          "alt_text": ""
+        },
         "elements": [
           {
             "type": "",
@@ -93,11 +110,6 @@
           "text": "",
           "emoji": false
         },
-        "text": {
-          "type": "",
-          "text": "",
-          "emoji": false
-        },
         "fields": [
           {
             "type": "",
@@ -105,19 +117,9 @@
             "emoji": false,
             "verbatim": false
           }
-        ],
-        "accessory": {
-          "type": "",
-          "fallback": "",
-          "image_url": "",
-          "image_width": 12345,
-          "image_height": 12345,
-          "image_bytes": 12345,
-          "alt_text": ""
-        }
+        ]
       }
     ],
-    "user": "U00000000",
     "thread_ts": "0000000000.000000",
     "reply_count": 12345,
     "reply_users_count": 12345,
@@ -132,8 +134,7 @@
       }
     ],
     "subscribed": false,
-    "last_read": "0000000000.000000",
-    "team": "T00000000"
+    "last_read": "0000000000.000000"
   },
   "error": "",
   "needed": "",
