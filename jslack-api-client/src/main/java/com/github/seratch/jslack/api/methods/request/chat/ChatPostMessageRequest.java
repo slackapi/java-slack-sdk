@@ -58,6 +58,11 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     private List<LayoutBlock> blocks;
 
     /**
+     * A JSON-based array of structured blocks as a String, presented as a URL-encoded string.
+     */
+    private String blocksText;
+
+    /**
      * A JSON-based array of structured attachments, presented as a URL-encoded string.
      */
     private List<Attachment> attachments;
