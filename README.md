@@ -134,14 +134,14 @@ jSlack simply wrap API interface. Find more examples in this library's test code
 
 ```java
 import com.github.seratch.jslack.*;
-import com.github.seratch.jslack.api.methods.request.channels.*;
-import com.github.seratch.jslack.api.methods.response.channels.*;
+import com.github.seratch.jslack.api.methods.request.conversations.*;
+import com.github.seratch.jslack.api.methods.response.conversations.*;
 
 Slack slack = Slack.getInstance();
 
 String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
-ChannelsCreateRequest channelCreation = ChannelsCreateRequest.builder().token(token).name(channelName).build();
-ChannelsCreateResponse response = slack.methods().channelsCreate(channelCreation);
+ConversationsCreateRequest req = ConversationsCreateRequest.builder().name(channelName).isPrivate(false).build();
+ConversationsCreateResponse resp = slack.methods(token).conversationsCreate(publicChannelCreation);
 ```
 
 Or, using lambda function to build a request could be much simpler. You don't need to type the long class name!
@@ -149,7 +149,7 @@ Or, using lambda function to build a request could be much simpler. You don't ne
 ```java
 final String token = System.getenv("SLACK_BOT_TEST_API_TOKEN");
 ChannelsCreateResponse response =
-  slack.methods().channelsCreate(req -> req.token(token).name(channelName));
+  slack.methods(token).conversationsCreate(req -> req.name(channelName).isPrivate(false));
 ```
 
 #### API Methods Examples
@@ -159,42 +159,33 @@ You can find more examples here: https://github.com/seratch/jslack/tree/master/s
 ##### Post a message to a channel
 
 ```java
-String token = "api-token";
 Slack slack = Slack.getInstance();
+String token = "xoxb-************************************";
 
 // find all channels in the team
-ChannelsListResponse channelsResponse = slack.methods().channelsList(req -> req.token(token));
-assertThat(channelsResponse.isOk(), is(true));
+ConversationsListResponse listResponse = 
+  slack.methods(token).conversationsList(req -> req.excludeArchived(true).limit(10));
+
 // find #general
-Channel general = channelsResponse.getChannels()
-  .stream()
+Conversation general = listResponse.getChannels().stream()
   .filter(c -> c.getName().equals("general"))
-  .findFirst()
-  .get();
+  .findFirst().get();
 
 // https://slack.com/api/chat.postMessage
-ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(req -> req
-  .token(token)
-  .channel(general.getId())
-  .text("Hello World!"));
-assertThat(postResponse.isOk(), is(true));
+ChatPostMessageResponse postResponse =
+  slack.methods(token).chatPostMessage(req -> req.channel(general.getId()).text("Hello World!"));
 
 // timestamp of the posted message
-String messageTimestamp = postResponse.getMessage().getTs();
+String messageTs = postResponse.getMessage().getTs();
 
-Thread.sleep(1000L);
-
-ChatDeleteResponse deleteResponse = slack.methods().chatDelete(req -> req
-  .token(token)
-  .channel(general.getId())
-  .ts(messageTimestamp));
-assertThat(deleteResponse.isOk(), is(true));
+ChatDeleteResponse deleteResponse =
+  slack.methods(token).chatDelete(req -> req.channel(general.getId()).ts(messageTs));
 ```
 
 ##### Open a dialog modal
 
 ```java
-final String token = "api-token";
+final String token = "xoxb-************************************";
     
 // Required.  See https://api.slack.com/dialogs#implementation
 final String triggerId = "trigger-id";
