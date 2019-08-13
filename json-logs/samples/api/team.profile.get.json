@@ -1,18 +1,5 @@
 {
   "ok": false,
-  "profile": {
-    "fields": [
-      {
-        "id": "",
-        "ordering": 12345,
-        "field_name": "",
-        "label": "",
-        "hint": "",
-        "type": "",
-        "is_hidden": false
-      }
-    ]
-  },
   "error": "",
   "needed": "",
   "provided": ""

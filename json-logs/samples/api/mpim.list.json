@@ -1,33 +1,5 @@
 {
   "ok": false,
-  "groups": [
-    {
-      "id": "G00000000",
-      "name": "",
-      "is_group": false,
-      "created": 12345,
-      "creator": "U00000000",
-      "is_archived": false,
-      "name_normalized": "",
-      "is_mpim": false,
-      "members": [
-        "U00000000"
-      ],
-      "topic": {
-        "value": "",
-        "creator": "U00000000",
-        "last_set": 12345
-      },
-      "purpose": {
-        "value": "",
-        "creator": "U00000000",
-        "last_set": 12345
-      },
-      "priority": 12345,
-      "is_read_only": false,
-      "is_thread_only": false
-    }
-  ],
   "error": "",
   "needed": "",
   "provided": ""

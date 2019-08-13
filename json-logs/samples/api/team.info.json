@@ -1,21 +1,5 @@
 {
   "ok": false,
-  "team": {
-    "id": "T00000000",
-    "name": "",
-    "domain": "",
-    "email_domain": "",
-    "icon": {
-      "image_34": "https://www.example.com/",
-      "image_44": "https://www.example.com/",
-      "image_68": "https://www.example.com/",
-      "image_88": "https://www.example.com/",
-      "image_102": "https://www.example.com/",
-      "image_132": "https://www.example.com/",
-      "image_230": "https://www.example.com/",
-      "image_original": "https://www.example.com/"
-    }
-  },
   "error": "",
   "needed": "",
   "provided": ""
