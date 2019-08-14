@@ -59,6 +59,7 @@ import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileG
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.model.ConversationType;
 import com.github.seratch.jslack.common.json.GsonFactory;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -69,6 +70,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
+@Slf4j
 public class RequestFormBuilder {
 
     private RequestFormBuilder() {
@@ -299,10 +301,17 @@ public class RequestFormBuilder {
         setIfNotNull("post_at", req.getPostAt(), form);
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("as_user", req.isAsUser(), form);
-        if (req.getBlocks() != null) {
+
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getBlocks());
             form.add("blocks", json);
         }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
+
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
@@ -332,10 +341,17 @@ public class RequestFormBuilder {
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("user", req.getUser(), form);
         setIfNotNull("as_user", req.isAsUser(), form);
-        if (req.getBlocks() != null) {
+
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getBlocks());
             form.add("blocks", json);
         }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
+
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
@@ -353,12 +369,16 @@ public class RequestFormBuilder {
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
         setIfNotNull("mrkdwn", req.isMrkdwn(), form);
-        if(req.getBlocksText()!=null) {
-            form.add("blocks", req.getBlocksText());
+		if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getBlocks());
             form.add("blocks", json);
         }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
+
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
@@ -381,10 +401,17 @@ public class RequestFormBuilder {
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
-        if (req.getBlocks() != null) {
+
+        if (req.getBlocksAsString() != null) {
+            form.add("blocks", req.getBlocksAsString());
+        } else if (req.getBlocks() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getBlocks());
             form.add("blocks", json);
         }
+        if (req.getBlocksAsString() != null && req.getBlocks() != null) {
+            log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
+        }
+
         if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
