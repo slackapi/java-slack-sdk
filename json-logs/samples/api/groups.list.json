@@ -9,6 +9,8 @@
       "creator": "U00000000",
       "is_archived": false,
       "name_normalized": "",
+      "is_read_only": false,
+      "is_thread_only": false,
       "is_mpim": false,
       "members": [
         "U00000000"
@@ -23,9 +25,7 @@
         "creator": "",
         "last_set": 12345
       },
-      "priority": 12345,
-      "is_read_only": false,
-      "is_thread_only": false
+      "priority": 12345
     }
   ],
   "error": "",
