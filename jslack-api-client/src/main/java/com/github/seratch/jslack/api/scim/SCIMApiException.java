@@ -1,4 +1,4 @@
-package com.github.seratch.jslack.api.methods;
+package com.github.seratch.jslack.api.scim;
 
 import com.github.seratch.jslack.SlackConfig;
 import com.github.seratch.jslack.common.json.GsonFactory;
@@ -8,22 +8,22 @@ import okhttp3.Response;
 
 @Data
 @Slf4j
-public class SlackApiException extends Exception {
+public class SCIMApiException extends Exception {
 
     private final Response response;
     private final String responseBody;
-    private final SlackApiErrorResponse error;
+    private final SCIMApiErrorResponse error;
 
-    public SlackApiException(Response response, String responseBody) {
+    public SCIMApiException(Response response, String responseBody) {
         this(SlackConfig.DEFAULT, response, responseBody);
     }
 
-    public SlackApiException(SlackConfig config, Response response, String responseBody) {
+    public SCIMApiException(SlackConfig config, Response response, String responseBody) {
         this.response = response;
         this.responseBody = responseBody;
-        SlackApiErrorResponse parsedErrorResponse = null;
+        SCIMApiErrorResponse parsedErrorResponse = null;
         try {
-            parsedErrorResponse = GsonFactory.createSnakeCase(config).fromJson(responseBody, SlackApiErrorResponse.class);
+            parsedErrorResponse = GsonFactory.createCamelCase(config).fromJson(responseBody, SCIMApiErrorResponse.class);
         } catch (Exception e) {
             if (log.isDebugEnabled()) {
                 String responseToPrint = responseBody.length() > 1000 ? responseBody.subSequence(0, 1000) + " ..." : responseBody;

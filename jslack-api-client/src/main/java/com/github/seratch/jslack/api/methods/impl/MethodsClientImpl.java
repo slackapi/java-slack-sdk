@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.methods.impl;
 
+import com.github.seratch.jslack.api.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.*;
 import com.github.seratch.jslack.api.methods.request.admin.AdminUsersSessionResetRequest;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
@@ -116,6 +117,7 @@ import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
+import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
 import okhttp3.MultipartBody;
@@ -1676,7 +1678,7 @@ public class MethodsClientImpl implements MethodsClient {
             String endpoint,
             Class<T> clazz) throws IOException, SlackApiException {
         Response response = runPostForm(form, endpoint);
-        return slackHttpClient.parseJsonResponse(response, clazz);
+        return parseJsonResponseAndRunListeners(response, clazz);
     }
 
     @Override
@@ -1690,7 +1692,7 @@ public class MethodsClientImpl implements MethodsClient {
             String token,
             Class<T> clazz) throws IOException, SlackApiException {
         Response response = runPostFormWithToken(form, endpoint, token);
-        return slackHttpClient.parseJsonResponse(response, clazz);
+        return parseJsonResponseAndRunListeners(response, clazz);
     }
 
     @Override
@@ -1705,12 +1707,22 @@ public class MethodsClientImpl implements MethodsClient {
             Class<T> clazz) throws IOException, SlackApiException {
         form.setType(MultipartBody.FORM);
         Response response = runPostMultipart(form, endpoint, token);
-        return slackHttpClient.parseJsonResponse(response, clazz);
+        return parseJsonResponseAndRunListeners(response, clazz);
     }
 
     @Override
     public Response runPostMultipart(MultipartBody.Builder form, String endpoint, String token) throws IOException {
         return slackHttpClient.postMultipart(endpointUrlPrefix + endpoint, token, form.build());
+    }
+
+    private <T> T parseJsonResponseAndRunListeners(Response response, Class<T> clazz) throws IOException, SlackApiException {
+        String body = response.body().string();
+        slackHttpClient.runHttpResponseListeners(response, body);
+        if (response.isSuccessful()) {
+            return GsonFactory.createSnakeCase(slackHttpClient.getConfig()).fromJson(body, clazz);
+        } else {
+            throw new SlackApiException(slackHttpClient.getConfig(), response, body);
+        }
     }
 
 }

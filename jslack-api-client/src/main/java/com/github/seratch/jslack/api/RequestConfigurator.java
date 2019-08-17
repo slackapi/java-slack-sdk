@@ -1,4 +1,4 @@
-package com.github.seratch.jslack.api.methods;
+package com.github.seratch.jslack.api;
 
 @FunctionalInterface
 public interface RequestConfigurator<Builder> {

@@ -1,11 +1,12 @@
 package com.github.seratch.jslack.api.scim.response;
 
+import com.github.seratch.jslack.api.scim.SCIMApiResponse;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class ServiceProviderConfigsGetResponse {
+public class ServiceProviderConfigsGetResponse implements SCIMApiResponse {
 
     private List<AuthenticationScheme> authenticationSchemes;
     private Patch patch;

@@ -1,12 +1,12 @@
 package com.github.seratch.jslack.api.scim.request;
 
-import com.github.seratch.jslack.api.methods.SlackApiRequest;
+import com.github.seratch.jslack.api.scim.SCIMApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class UsersReadRequest implements SlackApiRequest {
+public class UsersReadRequest implements SCIMApiRequest {
     private String token;
     private String id;
 }
