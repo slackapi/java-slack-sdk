@@ -1,8 +1,6 @@
 package com.github.seratch.jslack.common.http;
 
 import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.common.http.listener.DetailedLoggingListener;
 import com.github.seratch.jslack.common.http.listener.HttpResponseListener;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.Gson;
@@ -145,43 +143,6 @@ public class SlackHttpClient {
         HttpResponseListener.State state = new HttpResponseListener.State(config, response, body);
         for (HttpResponseListener responseListener : config.getHttpClientResponseHandlers()) {
             responseListener.accept(state);
-        }
-    }
-
-    public <T> T parseJsonResponse(Response response, Class<T> clazz) throws IOException, SlackApiException {
-        if (response.isSuccessful()) {
-            String body = response.body().string();
-            runHttpResponseListeners(response, body);
-            return GsonFactory.createSnakeCase(config).fromJson(body, clazz);
-        } else {
-            String body = response.body().string();
-            throw new SlackApiException(response, body);
-        }
-    }
-
-    public <T> T parseCamelCaseJsonResponse(Response response, Class<T> clazz) throws IOException, SlackApiException {
-        if (response.isSuccessful()) {
-            String body = response.body().string();
-            runHttpResponseListeners(response, body);
-            return GsonFactory.createCamelCase(config).fromJson(body, clazz);
-        } else {
-            String body = response.body().string();
-            throw new SlackApiException(response, body);
-        }
-    }
-
-    private static final DetailedLoggingListener DETAILED_LOGGER = new DetailedLoggingListener();
-
-    // use parseJsonResponse instead
-    @Deprecated
-    public static <T> T buildJsonResponse(Response response, Class<T> clazz) throws IOException, SlackApiException {
-        if (response.isSuccessful()) {
-            String body = response.body().string();
-            DETAILED_LOGGER.accept(new HttpResponseListener.State(SlackConfig.DEFAULT, response, body));
-            return GsonFactory.createSnakeCase().fromJson(body, clazz);
-        } else {
-            String body = response.body().string();
-            throw new SlackApiException(response, body);
         }
     }
 
