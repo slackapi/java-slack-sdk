@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.api.audit.response;
 
-import com.github.seratch.jslack.api.methods.SlackApiResponse;
+import com.github.seratch.jslack.api.audit.AuditApiResponse;
 import com.github.seratch.jslack.api.model.ResponseMetadata;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class LogsResponse implements SlackApiResponse {
+public class LogsResponse implements AuditApiResponse {
     private boolean ok;
     private String warning;
     private String error;

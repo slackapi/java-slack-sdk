@@ -465,7 +465,3 @@ mvn deploy -P release-sign-artifacts -D maven.test.skip=true
 (The MIT License)
 
 Copyright (c) Kazuhiro Sera
-
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/seratch/jslack.svg)](https://starchart.cc/seratch/jslack)

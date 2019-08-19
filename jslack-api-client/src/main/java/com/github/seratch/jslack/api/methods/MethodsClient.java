@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.methods;
 
+import com.github.seratch.jslack.api.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.request.admin.AdminUsersSessionResetRequest;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;

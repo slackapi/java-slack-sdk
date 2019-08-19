@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.api.scim.request;
 
-import com.github.seratch.jslack.api.methods.SlackApiRequest;
+import com.github.seratch.jslack.api.scim.SCIMApiRequest;
 import com.github.seratch.jslack.api.scim.model.Schemas;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class GroupsPatchRequest implements SlackApiRequest {
+public class GroupsPatchRequest implements SCIMApiRequest {
     private String token;
     private String id;
     private GroupOperation group;

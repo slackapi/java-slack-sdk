@@ -1,7 +1,7 @@
 package test_with_remote_apis.web_api;
 
 import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
+import com.github.seratch.jslack.api.scim.SCIMApiException;
 import com.github.seratch.jslack.api.scim.model.Group;
 import com.github.seratch.jslack.api.scim.model.User;
 import com.github.seratch.jslack.api.scim.request.GroupsPatchRequest;
@@ -25,7 +25,7 @@ public class scim_Test {
     String token = System.getenv(Constants.SLACK_TEST_ADMIN_OAUTH_ACCESS_TOKEN);
 
     @Test
-    public void getServiceProviderConfigs() throws IOException, SlackApiException {
+    public void getServiceProviderConfigs() throws IOException, SCIMApiException {
         if (token != null) {
             ServiceProviderConfigsGetResponse response = slack.scim(token).getServiceProviderConfigs(req -> req);
             assertThat(response.getAuthenticationSchemes(), is(notNullValue()));
@@ -33,7 +33,13 @@ public class scim_Test {
     }
 
     @Test
-    public void searchAndReadUser() throws IOException, SlackApiException {
+    public void getServiceProviderConfigs_dummy() throws IOException, SCIMApiException {
+        ServiceProviderConfigsGetResponse response = slack.scim("dummy").getServiceProviderConfigs(req -> req);
+        assertThat(response.getAuthenticationSchemes(), is(notNullValue()));
+    }
+
+    @Test
+    public void searchAndReadUser() throws IOException, SCIMApiException {
         if (token != null) {
             {
                 UsersSearchResponse users = slack.scim(token).searchUsers(req -> req.count(1000));
@@ -48,6 +54,28 @@ public class scim_Test {
                 assertThat(users.getResources().size(), is(1));
                 assertThat(users.getStartIndex(), is(2));
             }
+        }
+    }
+
+    @Test
+    public void searchUser_dummy() throws IOException {
+        try {
+            slack.scim("dummy").searchUsers(req -> req.count(1000));
+        } catch (SCIMApiException e) {
+            assertThat(e.getError(), is(notNullValue()));
+            assertThat(e.getError().getErrors().getCode(), is(401));
+            assertThat(e.getError().getErrors().getDescription(), is("invalid_authentication"));
+        }
+    }
+
+    @Test
+    public void readUser_dummy() throws IOException {
+        try {
+            slack.scim("dummy").readUser(req -> req.id("U12345678"));
+        } catch (SCIMApiException e) {
+            assertThat(e.getError(), is(notNullValue()));
+            assertThat(e.getError().getErrors().getCode(), is(401));
+            assertThat(e.getError().getErrors().getDescription(), is("invalid_authentication"));
         }
     }
 
@@ -101,12 +129,31 @@ public class scim_Test {
             } finally {
                 UsersDeleteResponse deletion = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
                 assertThat(deletion, is(nullValue()));
+                // can call twice
+                UsersDeleteResponse deletion2 = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
+                assertThat(deletion2, is(nullValue()));
+
+                int counter = 0;
+                UsersReadResponse supposedToBeDeleted = null;
+                while (counter < 10) {
+                    Thread.sleep(1000);
+                    supposedToBeDeleted = slack.scim(token).readUser(req -> req.id(creation.getId()));
+                    if (!supposedToBeDeleted.getActive()) {
+                        break;
+                    }
+                }
+                assertThat(supposedToBeDeleted, is(notNullValue()));
+                assertThat(supposedToBeDeleted.getActive(), is(false));
+
+                // can call again
+                UsersDeleteResponse deletion3 = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
+                assertThat(deletion3, is(nullValue()));
             }
         }
     }
 
     @Test
-    public void groups() throws IOException, SlackApiException {
+    public void groups() throws IOException, SCIMApiException {
         if (token != null) {
             GroupsSearchResponse groups = slack.scim(token).searchGroups(req -> req.count(1000));
             if (groups.getResources().size() == 0) {
@@ -134,6 +181,17 @@ public class scim_Test {
 
             GroupsReadResponse read = slack.scim(token).readGroup(req -> req.id(group.getId()));
             assertThat(read.getId(), is(group.getId()));
+        }
+    }
+
+    @Test
+    public void groups_dummy() throws IOException {
+        try {
+            slack.scim("dummy").searchGroups(req -> req.count(1000));
+        } catch (SCIMApiException e) {
+            assertThat(e.getError(), is(notNullValue()));
+            assertThat(e.getError().getErrors().getCode(), is(401));
+            assertThat(e.getError().getErrors().getDescription(), is("invalid_authentication"));
         }
     }
 

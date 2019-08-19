@@ -48,6 +48,9 @@ public class JsonDataRecorder {
         }
         JsonParser jsonParser = new JsonParser();
         String json = null;
+        if (path.startsWith("/scim")) {
+            path = path.replaceFirst("/\\w{9}$", "/000000000");
+        }
         try {
             Path jsonFilePath = new File(toRawFilePath(path)).toPath();
             json = Files.readAllLines(jsonFilePath, UTF_8).stream().collect(Collectors.joining());
@@ -81,6 +84,8 @@ public class JsonDataRecorder {
                     }
                 }
             } else if (result.get("schemas") != null && result.get("userName") != null) {
+                initializeSCIMUser(result);
+            } else if (result.get("Errors") != null) {
                 initializeSCIMUser(result);
             }
             json = gson().toJson(result);

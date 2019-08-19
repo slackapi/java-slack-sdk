@@ -20,5 +20,9 @@
         "location": "https://www.example.com/"
       }
     }
-  ]
+  ],
+  "Errors": {
+    "description": "",
+    "code": 12345
+  }
 }

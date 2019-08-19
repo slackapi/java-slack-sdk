@@ -10,155 +10,27 @@
           "id": "W00000000",
           "name": "",
           "email": "",
-          "team": "T00000000"
+          "team": "E00000000"
         }
       },
       "entity": {
         "type": "",
-        "app": {
-          "id": "A00000000",
-          "name": "",
-          "is_distributed": false,
-          "is_directory_approved": false,
-          "scopes": [
-            ""
-          ]
-        },
         "user": {
           "id": "W00000000",
           "name": "",
           "email": "",
           "team": "E00000000"
-        },
-        "usergroup": {
-          "id": "S00000000",
-          "name": ""
-        },
-        "workspace": {
-          "id": "T00000000",
-          "name": "",
-          "domain": ""
-        },
-        "enterprise": {
-          "id": "E00000000",
-          "name": "",
-          "domain": ""
-        },
-        "file": {
-          "id": "F00000000",
-          "name": "",
-          "filetype": "",
-          "title": ""
-        },
-        "channel": {
-          "id": "C00000000",
-          "privacy": "",
-          "name": "",
-          "is_shared": false,
-          "is_org_shared": false,
-          "teams_shared_with": [
-            "T00000000"
-          ]
         }
       },
       "context": {
         "location": {
           "type": "",
-          "id": "E00000000",
+          "id": "T00000000",
           "name": "",
           "domain": ""
         },
         "ua": "",
         "ip_address": ""
-      },
-      "details": {
-        "is_internal_integration": false,
-        "app_owner_id": "W00000000",
-        "new_scopes": [
-          ""
-        ],
-        "previous_scopes": [
-          ""
-        ],
-        "type": "",
-        "inviter": {
-          "type": "",
-          "user": {
-            "id": "W00000000",
-            "name": "",
-            "email": "",
-            "team": "E00000000"
-          },
-          "id": "W00000000",
-          "name": "",
-          "email": ""
-        },
-        "new_value": "",
-        "previous_value": "",
-        "kicker": {
-          "id": "U00000000",
-          "name": "",
-          "email": ""
-        },
-        "installer_user_id": "W00000000",
-        "app_previously_approved": false,
-        "old_scopes": [
-          ""
-        ],
-        "name": "",
-        "bot_id": "B00000000",
-        "permissions": [
-          {
-            "resource": {
-              "type": "",
-              "grant": {
-                "type": "",
-                "resource_id": "C00000000"
-              }
-            },
-            "scopes": [
-              ""
-            ]
-          },
-          {
-            "resource": {
-              "type": "",
-              "grant": {
-                "type": "",
-                "resource_id": "D00000000"
-              }
-            },
-            "scopes": [
-              ""
-            ]
-          },
-          {
-            "resource": {
-              "type": "",
-              "grant": {
-                "type": "",
-                "wildcard": {
-                  "type": ""
-                }
-              }
-            },
-            "scopes": [
-              ""
-            ]
-          },
-          {
-            "resource": {
-              "type": "",
-              "grant": {
-                "type": "",
-                "resource_id": "T00000000"
-              }
-            },
-            "scopes": [
-              ""
-            ]
-          }
-        ]
       }
     }
   ],

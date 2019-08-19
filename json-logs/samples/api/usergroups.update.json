@@ -1,6 +1,5 @@
 {
   "ok": false,
-  "error": "",
   "usergroup": {
     "id": "S00000000",
     "team_id": "T00000000",
@@ -26,6 +25,7 @@
       ]
     }
   },
+  "error": "",
   "needed": "",
   "provided": ""
 }

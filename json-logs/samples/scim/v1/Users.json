@@ -1,4 +1,8 @@
 {
+  "Errors": {
+    "description": "",
+    "code": 12345
+  },
   "totalResults": 12345,
   "itemsPerPage": 12345,
   "startIndex": 12345,
