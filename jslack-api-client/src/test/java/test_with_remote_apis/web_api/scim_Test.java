@@ -129,6 +129,25 @@ public class scim_Test {
             } finally {
                 UsersDeleteResponse deletion = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
                 assertThat(deletion, is(nullValue()));
+                // can call twice
+                UsersDeleteResponse deletion2 = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
+                assertThat(deletion2, is(nullValue()));
+
+                int counter = 0;
+                UsersReadResponse supposedToBeDeleted = null;
+                while (counter < 10) {
+                    Thread.sleep(1000);
+                    supposedToBeDeleted = slack.scim(token).readUser(req -> req.id(creation.getId()));
+                    if (!supposedToBeDeleted.getActive()) {
+                        break;
+                    }
+                }
+                assertThat(supposedToBeDeleted, is(notNullValue()));
+                assertThat(supposedToBeDeleted.getActive(), is(false));
+
+                // can call again
+                UsersDeleteResponse deletion3 = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
+                assertThat(deletion3, is(nullValue()));
             }
         }
     }
