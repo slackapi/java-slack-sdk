@@ -76,7 +76,7 @@ public class Conversation {
     @SerializedName("is_pending_ext_shared")
     private boolean isPendingExtShared;
     @SerializedName("is_moved")
-    private boolean isMoved;
+    private Integer isMoved;
     @SerializedName("is_member")
     private boolean isMember;
     @SerializedName("is_open")
