@@ -23,6 +23,6 @@ The following two classes have been re-packaged.
 
 ## Memo
 
-``
+```
 git log --pretty=format:'%h %s by %an' --abbrev-commit | grep -v "Merge pull request " | head -50
 ```
