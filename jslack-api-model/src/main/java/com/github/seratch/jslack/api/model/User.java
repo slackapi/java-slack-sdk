@@ -123,8 +123,10 @@ public class User {
         private String id;
         private String enterpriseId;
         private String enterpriseName;
-        private String isAdmin;
-        private String isOwner;
+        @SerializedName("is_admin")
+        private boolean isAdmin;
+        @SerializedName("is_owner")
+        private boolean isOwner;
         private List<String> teams;
     }
 

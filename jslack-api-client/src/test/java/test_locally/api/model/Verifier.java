@@ -2,6 +2,9 @@ package test_locally.api.model;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import com.github.seratch.jslack.common.json.GsonFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,13 +17,19 @@ import static org.junit.Assert.assertThat;
 
 public interface Verifier {
 
-    default void verifyParsing(String api, Class<? extends SlackApiResponse> clazz) throws IOException {
+    default Logger logger() {
+        return LoggerFactory.getLogger(this.getClass());
+    }
+
+    default <T extends SlackApiResponse> T verifyParsing(String api, Class<T> clazz) throws IOException {
         String json = Files.readAllLines(
                 new File("../json-logs/samples/api/" + api + ".json").toPath())
                 .stream()
                 .collect(joining());
-        Object resp = GsonFactory.createSnakeCase().fromJson(json, clazz);
+        T resp = GsonFactory.createSnakeCase().fromJson(json, clazz);
+        logger().info("parsed object: {}", resp);
         assertThat(resp, is(notNullValue()));
+        return resp;
     }
 
 }
