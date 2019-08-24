@@ -1,0 +1,46 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "app_requests": [
+    {
+      "id": "",
+      "app": {
+        "id": "A00000000",
+        "name": "",
+        "description": "",
+        "help_url": "https://www.example.com/",
+        "privacy_policy_url": "https://www.example.com/",
+        "app_homepage_url": "https://www.example.com/",
+        "app_directory_url": "https://www.example.com/",
+        "is_app_directory_approved": false,
+        "is_internal": false,
+        "additional_info": ""
+      },
+      "user": {
+        "id": "W00000000",
+        "name": "",
+        "email": ""
+      },
+      "team": {
+        "id": "T00000000",
+        "name": "",
+        "domain": ""
+      },
+      "scopes": [
+        {
+          "name": "",
+          "description": "",
+          "is_sensitive": false,
+          "token_type": ""
+        }
+      ],
+      "message": "",
+      "date_created": 12345
+    }
+  ],
+  "response_metadata": {
+    "next_cursor": ""
+  }
+}

@@ -1,6 +1,9 @@
 package com.github.seratch.jslack.api.methods;
 
-import com.github.seratch.jslack.api.methods.request.admin.AdminUsersSessionResetRequest;
+import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
+import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -81,6 +84,30 @@ public class RequestFormBuilder {
         setIfNotNull("user_id", req.getUserId(), form);
         setIfNotNull("mobile_only", req.isMobileOnly(), form);
         setIfNotNull("web_only", req.isWebOnly(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsApproveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        setIfNotNull("request_id", req.getRequestId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsRestrictRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        setIfNotNull("request_id", req.getRequestId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsRequestsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 

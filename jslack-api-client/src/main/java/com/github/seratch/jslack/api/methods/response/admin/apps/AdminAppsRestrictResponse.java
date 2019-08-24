@@ -1,10 +1,10 @@
-package com.github.seratch.jslack.api.methods.response.admin;
+package com.github.seratch.jslack.api.methods.response.admin.apps;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import lombok.Data;
 
 @Data
-public class AdminUsersSessionResetResponse implements SlackApiResponse {
+public class AdminAppsRestrictResponse implements SlackApiResponse {
 
     private boolean ok;
     private String warning;
