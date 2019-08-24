@@ -1,5 +1,9 @@
 # jSlack Release Notes
 
+## version 2.1.1 (2019-08-24)
+
+* 7bc8b9d Change the types of user.enterprise_user.is_admin, is_owner (string -> boolean) by Kazuhiro Sera
+
 ## version 2.1.0 (2019-08-24)
 
 * 5034343 Add admin.apps APIs to the library by Kazuhiro Sera
