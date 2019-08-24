@@ -4,6 +4,10 @@
 
 * 7bc8b9d Change the types of user.enterprise_user.is_admin, is_owner (string -> boolean) by Kazuhiro Sera
 
+`user.enterprise_user.is_admin`, `user.enterprise_user.is_owner` are added in 2.1.0. 
+We assume no one uses the version as it was released on the same day. 
+But, if you had to deal with the incompatibility in your projects, we're sorry for that inconvenience.
+
 ## version 2.1.0 (2019-08-24)
 
 * 5034343 Add admin.apps APIs to the library by Kazuhiro Sera
