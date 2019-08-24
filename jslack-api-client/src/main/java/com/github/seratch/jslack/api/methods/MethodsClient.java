@@ -1,7 +1,10 @@
 package com.github.seratch.jslack.api.methods;
 
 import com.github.seratch.jslack.api.RequestConfigurator;
-import com.github.seratch.jslack.api.methods.request.admin.AdminUsersSessionResetRequest;
+import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
+import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -58,7 +61,10 @@ import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupU
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
-import com.github.seratch.jslack.api.methods.response.admin.AdminUsersSessionResetResponse;
+import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
+import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
+import com.github.seratch.jslack.api.methods.response.admin.users.AdminUsersSessionResetResponse;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
 import com.github.seratch.jslack.api.methods.response.apps.AppsUninstallResponse;
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
@@ -143,8 +149,29 @@ public interface MethodsClient {
             String endpoint,
             String token) throws IOException;
 
+
     // ------------------------------
-    // admin
+    // admin.apps
+    // ------------------------------
+
+    AdminAppsApproveResponse adminAppsApprove(AdminAppsApproveRequest req) throws IOException, SlackApiException;
+
+    AdminAppsApproveResponse adminAppsApprove(RequestConfigurator<AdminAppsApproveRequest.AdminAppsApproveRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminAppsRestrictResponse adminAppsRestrict(AdminAppsRestrictRequest req) throws IOException, SlackApiException;
+
+    AdminAppsRestrictResponse adminAppsRestrict(RequestConfigurator<AdminAppsRestrictRequest.AdminAppsRestrictRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // admin.apps.requests
+    // ------------------------------
+
+    AdminAppsRequestsListResponse adminAppsRequestsList(AdminAppsRequestsListRequest req) throws IOException, SlackApiException;
+
+    AdminAppsRequestsListResponse adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // admin.users.session
     // ------------------------------
 
     AdminUsersSessionResetResponse adminUsersSessionReset(AdminUsersSessionResetRequest req) throws IOException, SlackApiException;

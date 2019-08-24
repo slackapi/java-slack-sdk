@@ -42,7 +42,11 @@
     },
     "previous_names": [
       ""
-    ]
+    ],
+    "shared_team_ids": [
+      "T00000000"
+    ],
+    "locale": ""
   },
   "error": "",
   "needed": "",

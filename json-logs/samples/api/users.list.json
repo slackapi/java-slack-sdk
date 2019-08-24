@@ -52,7 +52,19 @@
       "is_app_user": false,
       "updated": 12345,
       "has_2fa": false,
-      "presence": ""
+      "presence": "",
+      "enterprise_user": {
+        "id": "U00000000",
+        "enterprise_id": "E00000000",
+        "enterprise_name": "",
+        "is_admin": false,
+        "is_owner": false,
+        "teams": [
+          "",
+          "T00000000"
+        ]
+      },
+      "two_factor_type": ""
     }
   ],
   "cache_ts": 12345,

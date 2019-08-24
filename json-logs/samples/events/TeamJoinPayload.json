@@ -57,6 +57,13 @@
       "updated": 123,
       "has_2fa": false,
       "presence": "",
+      "enterprise_user": {
+        "id": "",
+        "enterprise_id": "",
+        "enterprise_name": "",
+        "is_admin": "",
+        "is_owner": ""
+      },
       "two_factor_type": "",
       "has_files": false,
       "locale": ""

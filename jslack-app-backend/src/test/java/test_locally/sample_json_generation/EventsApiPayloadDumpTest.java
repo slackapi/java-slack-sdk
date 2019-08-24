@@ -24,6 +24,7 @@ public class EventsApiPayloadDumpTest {
         List<EventsApiPayload<?>> payloads = Arrays.asList(
                 new AppHomeOpenedPayload(),
                 new AppMentionPayload(),
+                new AppRequestedPayload(),
                 new AppRateLimitedPayload(),
                 new AppUninstalledPayload(),
                 new ChannelArchivePayload(),
