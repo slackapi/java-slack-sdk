@@ -60,7 +60,7 @@ public class files_Test {
     }
 
     @Test
-        public void createTextFileAndComments() throws IOException, SlackApiException {
+    public void createTextFileAndComments() throws IOException, SlackApiException {
         List<Channel> channels_ = slack.methods().channelsList(r -> r.token(botToken)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {

@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.api.methods.response.pins;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import lombok.Data;
 
 import java.util.List;

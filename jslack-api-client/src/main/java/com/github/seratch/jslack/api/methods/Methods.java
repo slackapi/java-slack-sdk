@@ -9,14 +9,14 @@ public class Methods {
     // admin.apps
     // ------------------------------
 
-    public static final String ADMIN_APPS_APPROVE  = "admin.apps.approve";
-    public static final String ADMIN_APPS_RESTRICT  = "admin.apps.restrict";
+    public static final String ADMIN_APPS_APPROVE = "admin.apps.approve";
+    public static final String ADMIN_APPS_RESTRICT = "admin.apps.restrict";
 
     // ------------------------------
     // admin.apps.requests
     // ------------------------------
 
-    public static final String ADMIN_APPS_REQUESTS_LIST  = "admin.apps.requests.list";
+    public static final String ADMIN_APPS_REQUESTS_LIST = "admin.apps.requests.list";
 
     // ------------------------------
     // admin.users.session

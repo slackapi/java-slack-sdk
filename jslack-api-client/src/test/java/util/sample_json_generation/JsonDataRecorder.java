@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static util.sample_json_generation.SampleObjects.*;
+import static util.sample_json_generation.SampleObjects.Json;
 
 @Slf4j
 public class JsonDataRecorder {

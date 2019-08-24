@@ -88,7 +88,7 @@ public class Attachment {
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private Boolean indent;
-    
+
     public Boolean isIndent() {
         return this.indent;
     }

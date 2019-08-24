@@ -1702,7 +1702,7 @@ public class MethodsClientImpl implements MethodsClient {
         }
 
         if (slackHttpClient.getConfig().isTokenExistenceVerificationEnabled()) {
-            String error = "Slack API token is supposed to be set in " + request.getClass().getSimpleName() +  " but not found";
+            String error = "Slack API token is supposed to be set in " + request.getClass().getSimpleName() + " but not found";
             throw new IllegalStateException(error);
         } else {
             return null;

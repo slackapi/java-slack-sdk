@@ -1,10 +1,12 @@
 package com.github.seratch.jslack.api.audit;
 
 public class Actions {
-    private Actions() {}
+    private Actions() {
+    }
 
     public static class WorkspaceOrOrg {
-        private WorkspaceOrOrg() {}
+        private WorkspaceOrOrg() {
+        }
 
         public static final String workspace_created = "workspace_created";
         public static final String workspace_deleted = "workspace_deleted";
@@ -57,8 +59,10 @@ public class Actions {
         public static final String pref_dlp_access_changed = "pref.dlp_access_changed";
         public static final String pref_ent_browser_control = "pref.ent_browser_control";
     }
+
     public static class User {
-        private User() {}
+        private User() {
+        }
 
         public static final String custom_tos_accepted = "custom_tos_accepted";
         public static final String guest_created = "guest_created";
@@ -80,7 +84,8 @@ public class Actions {
     }
 
     public static class File {
-        private File() {}
+        private File() {
+        }
 
         public static final String file_downloaded = "file_downloaded";
         public static final String file_uploaded = "file_uploaded";
@@ -91,7 +96,8 @@ public class Actions {
     }
 
     public static class Channel {
-        private Channel() {}
+        private Channel() {
+        }
 
         public static final String user_channel_join = "user_channel_join";
         public static final String user_channel_leave = "user_channel_leave";
@@ -113,8 +119,10 @@ public class Actions {
         public static final String external_shared_channel_invite_expired = "external_shared_channel_invite_expired";
         public static final String external_shared_channel_invite_revoked = "external_shared_channel_invite_revoked";
     }
+
     public static class App {
-        private App() {}
+        private App() {
+        }
 
         public static final String app_installed = "app_installed";
         public static final String app_uninstalled = "app_uninstalled";

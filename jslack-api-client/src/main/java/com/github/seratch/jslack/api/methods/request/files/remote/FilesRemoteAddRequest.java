@@ -4,8 +4,6 @@ import com.github.seratch.jslack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
-import java.io.InputStream;
-
 /**
  * https://api.slack.com/methods/files.remote.add
  */
