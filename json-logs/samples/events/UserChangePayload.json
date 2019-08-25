@@ -61,8 +61,8 @@
         "id": "",
         "enterprise_id": "",
         "enterprise_name": "",
-        "is_admin": "",
-        "is_owner": ""
+        "is_admin": false,
+        "is_owner": false
       },
       "two_factor_type": "",
       "has_files": false,
