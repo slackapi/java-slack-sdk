@@ -1,0 +1,20 @@
+[
+  {
+    "id": 12345,
+    "date_created": "",
+    "date_updated": "",
+    "title": "",
+    "type": "",
+    "status": "",
+    "url": "https://www.example.com/",
+    "services": [
+      ""
+    ],
+    "notes": [
+      {
+        "date_created": "",
+        "body": ""
+      }
+    ]
+  }
+]

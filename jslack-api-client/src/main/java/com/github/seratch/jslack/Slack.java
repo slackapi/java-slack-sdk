@@ -15,6 +15,10 @@ import com.github.seratch.jslack.api.model.User;
 import com.github.seratch.jslack.api.rtm.RTMClient;
 import com.github.seratch.jslack.api.scim.SCIMClient;
 import com.github.seratch.jslack.api.scim.impl.SCIMClientImpl;
+import com.github.seratch.jslack.api.status.v1.LegacyStatusClient;
+import com.github.seratch.jslack.api.status.v1.impl.LegacyStatusClientImpl;
+import com.github.seratch.jslack.api.status.v2.StatusClient;
+import com.github.seratch.jslack.api.status.v2.impl.StatusClientImpl;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
@@ -197,6 +201,17 @@ public class Slack {
             throw new IllegalStateException(
                     "Failed to connect to the RTM API endpoint. (message: " + e.getMessage() + ")", e);
         }
+    }
+
+    /**
+     * Creates a Status API client.
+     */
+    public LegacyStatusClient statusLegacy() {
+        return new LegacyStatusClientImpl(httpClient);
+    }
+
+    public StatusClient status() {
+        return new StatusClientImpl(httpClient);
     }
 
     /**

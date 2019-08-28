@@ -34,7 +34,6 @@ public class SlackHttpClient {
     }
 
     public Response get(String url, Map<String, String> query, String token) throws IOException {
-        String bearerHeaderValue = "Bearer " + token;
         if (query != null) {
             HttpUrl.Builder u = HttpUrl.parse(url).newBuilder();
             for (Map.Entry<String, String> each : query.entrySet()) {
@@ -42,7 +41,13 @@ public class SlackHttpClient {
             }
             url = u.build().toString();
         }
-        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).get().build();
+        final Request request;
+        if (token != null) {
+            String bearerHeaderValue = "Bearer " + token;
+            request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).get().build();
+        } else {
+            request = new Request.Builder().url(url).get().build();
+        }
         return okHttpClient.newCall(request).execute();
     }
 
