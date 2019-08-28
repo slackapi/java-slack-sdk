@@ -2,6 +2,7 @@ package util.sample_json_generation;
 
 import com.github.seratch.jslack.SlackConfig;
 import com.github.seratch.jslack.api.scim.model.User;
+import com.github.seratch.jslack.api.status.v2.model.SlackIssue;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.*;
 import lombok.Data;
@@ -47,59 +48,84 @@ public class JsonDataRecorder {
             return;
         }
         JsonParser jsonParser = new JsonParser();
-        String json = null;
+        JsonElement newJson = jsonParser.parse(body);
+
+        String existingJson = null;
         if (path.startsWith("/scim")) {
             path = path.replaceFirst("/\\w{9}$", "/000000000");
         }
+        // status api
+        if (path.startsWith("/api/v1.0.0") || path.startsWith("/api/v2.0.0")) {
+            path = "/status" + path;
+        }
         try {
             Path jsonFilePath = new File(toRawFilePath(path)).toPath();
-            json = Files.readAllLines(jsonFilePath, UTF_8).stream().collect(Collectors.joining());
+            existingJson = Files.readAllLines(jsonFilePath, UTF_8).stream().collect(Collectors.joining());
         } catch (NoSuchFileException e) {
         }
-        if (json == null || json.trim().isEmpty()) {
-            json = "{}";
+        if (existingJson == null || existingJson.trim().isEmpty()) {
+            if (body.trim().startsWith("[")) {
+                existingJson = body;
+            } else {
+                existingJson = "{}";
+            }
         }
-        JsonElement obj = jsonParser.parse(json);
-        JsonObject result = obj.getAsJsonObject();
-        try {
-            JsonObject jsonObj = jsonParser.parse(body).getAsJsonObject();
-            MergeJsonBuilder.mergeJsonObjects(result, MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ, jsonObj);
-        } catch (MergeJsonBuilder.JsonConflictException e) {
-            log.warn("Failed to merge JSON objects because {}", e.getMessage(), e);
+        JsonElement jsonElem = jsonParser.parse(existingJson);
+        JsonObject jsonObj = jsonElem.isJsonObject() ? jsonElem.getAsJsonObject() : null;
+
+        if (newJson.isJsonObject()) {
+            try {
+                JsonObject newJsonObj = newJson.getAsJsonObject();
+                MergeJsonBuilder.mergeJsonObjects(jsonObj, MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ, newJsonObj);
+            } catch (MergeJsonBuilder.JsonConflictException e) {
+                log.warn("Failed to merge JSON objects because {}", e.getMessage(), e);
+            }
         }
         Path rawFilePath = new File(toRawFilePath(path)).toPath();
         Files.createDirectories(rawFilePath.getParent());
-        json = gson().toJson(result);
-        Files.write(rawFilePath, json.getBytes(UTF_8));
+        existingJson = gson().toJson(jsonElem);
+        Files.write(rawFilePath, existingJson.getBytes(UTF_8));
 
-        for (Map.Entry<String, JsonElement> entry : result.entrySet()) {
-            scanToNormalizeStringValues(result, entry.getKey(), entry.getValue());
-        }
-        if (path.startsWith("/scim")) {
-            if (result.get("Resources") != null) {
-                for (JsonElement resource : result.get("Resources").getAsJsonArray()) {
-                    JsonObject resourceObj = resource.getAsJsonObject();
-                    if (resourceObj.get("userName") != null) {
-                        initializeSCIMUser(resourceObj);
-                    }
-                }
-            } else if (result.get("schemas") != null && result.get("userName") != null) {
-                initializeSCIMUser(result);
-            } else if (result.get("Errors") != null) {
-                initializeSCIMUser(result);
+        if (jsonElem.isJsonObject() && jsonObj != null) {
+            for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+                scanToNormalizeStringValues(jsonObj, entry.getKey(), entry.getValue());
             }
-            json = gson().toJson(result);
-            Path filePath = new File(toMaskedFilePath(path).replaceFirst("/\\w{9}.json$", "/000000000.json")).toPath();
-            Files.createDirectories(filePath.getParent());
-            Files.write(filePath, json.getBytes(UTF_8));
 
-        } else {
-            addCommonPropertiesAtTopLevel(result);
+            if (path.startsWith("/scim")) {
+                if (jsonObj.get("Resources") != null) {
+                    for (JsonElement resource : jsonObj.get("Resources").getAsJsonArray()) {
+                        JsonObject resourceObj = resource.getAsJsonObject();
+                        if (resourceObj.get("userName") != null) {
+                            initializeSCIMUser(resourceObj);
+                        }
+                    }
+                } else if (jsonObj.get("schemas") != null && jsonObj.get("userName") != null) {
+                    initializeSCIMUser(jsonObj);
+                } else if (jsonObj.get("Errors") != null) {
+                    initializeSCIMUser(jsonObj);
+                }
+                existingJson = gson().toJson(jsonObj);
+                Path filePath = new File(toMaskedFilePath(path).replaceFirst("/\\w{9}.json$", "/000000000.json")).toPath();
+                Files.createDirectories(filePath.getParent());
+                Files.write(filePath, existingJson.getBytes(UTF_8));
 
-            json = gson().toJson(result);
+            } else {
+                if (!path.startsWith("/status")) {
+                    addCommonPropertiesAtTopLevel(jsonObj);
+                }
+
+                existingJson = gson().toJson(jsonObj);
+                Path filePath = new File(toMaskedFilePath(path)).toPath();
+                Files.createDirectories(filePath.getParent());
+                Files.write(filePath, existingJson.getBytes(UTF_8));
+            }
+        } else if (jsonElem.isJsonArray()) {
+            JsonArray jsonArray = jsonElem.getAsJsonArray();
+            scanToNormalizeStringValues(null, null, jsonArray);
+            existingJson = gson().toJson(jsonArray);
             Path filePath = new File(toMaskedFilePath(path)).toPath();
             Files.createDirectories(filePath.getParent());
-            Files.write(filePath, json.getBytes(UTF_8));
+            Files.write(filePath, existingJson.getBytes(UTF_8));
         }
     }
 
@@ -208,6 +234,12 @@ public class JsonDataRecorder {
                     address.setOriginal("");
                     JsonElement elem = GsonFactory.createSnakeCase().toJsonTree(address);
                     array.add(elem);
+                } else if (name.equals("active_incidents")) {
+                    SlackIssue slackIssue = new SlackIssue();
+                    slackIssue.setNotes(Arrays.asList(ObjectInitializer.initProperties(new SlackIssue.Note())));
+                    slackIssue.setServices(Arrays.asList(""));
+                    slackIssue = ObjectInitializer.initProperties(slackIssue);
+                    array.add(GsonFactory.createSnakeCase().toJsonTree(slackIssue));
                 } else {
                     array.add(""); // in most cases, empty array can have string values
                 }
