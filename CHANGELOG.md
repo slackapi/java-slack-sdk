@@ -1,5 +1,10 @@
 # jSlack Release Notes
 
+## version 2.1.2 (2019-08-28)
+
+* 1be4469 Add status API client by Kazuhiro Sera
+* 9c26259 Add pref.ent_required_browser_name to known audit actions by Kazuhiro Sera
+
 ## version 2.1.1 (2019-08-24)
 
 * 7bc8b9d Change the types of user.enterprise_user.is_admin, is_owner (string -> boolean) by Kazuhiro Sera
