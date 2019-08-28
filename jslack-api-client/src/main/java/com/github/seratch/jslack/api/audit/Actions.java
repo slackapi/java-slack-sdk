@@ -58,6 +58,7 @@ public class Actions {
         public static final String pref_mobile_secondary_auth_timeout_changed = "pref.mobile_secondary_auth_timeout_changed";
         public static final String pref_dlp_access_changed = "pref.dlp_access_changed";
         public static final String pref_ent_browser_control = "pref.ent_browser_control";
+        public static final String pref_ent_required_browser_name = "pref.ent_required_browser_name";
     }
 
     public static class User {
