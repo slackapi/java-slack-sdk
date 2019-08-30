@@ -1,5 +1,18 @@
 {
   "status": "",
   "date_created": "",
-  "date_updated": ""
+  "date_updated": "",
+  "id": 12345,
+  "title": "",
+  "type": "",
+  "url": "https://www.example.com/",
+  "services": [
+    ""
+  ],
+  "notes": [
+    {
+      "date_created": "",
+      "body": ""
+    }
+  ]
 }

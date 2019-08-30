@@ -466,15 +466,6 @@
                   "image_bytes": 12345,
                   "alt_text": "",
                   "initial_user": ""
-                },
-                {
-                  "type": "",
-                  "fallback": "",
-                  "image_url": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345,
-                  "alt_text": ""
                 }
               ],
               "fallback": "",
@@ -652,15 +643,6 @@
                   "image_bytes": 12345,
                   "alt_text": "",
                   "initial_user": ""
-                },
-                {
-                  "type": "",
-                  "fallback": "",
-                  "image_url": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345,
-                  "alt_text": ""
                 }
               ],
               "fallback": "",
@@ -968,15 +950,6 @@
                 "image_bytes": 12345,
                 "alt_text": "",
                 "initial_user": ""
-              },
-              {
-                "type": "",
-                "fallback": "",
-                "image_url": "",
-                "image_width": 12345,
-                "image_height": 12345,
-                "image_bytes": 12345,
-                "alt_text": ""
               }
             ],
             "fallback": "",

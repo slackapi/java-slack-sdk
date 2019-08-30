@@ -50,6 +50,8 @@ public class Conversation {
 
     // shared channels
     private String conversationHostId;
+    private List<String> internalTeamIds;
+    private List<String> connectedTeamIds;
 
     @SerializedName("is_channel")
     private boolean isChannel;
