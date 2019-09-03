@@ -46,7 +46,13 @@
     "shared_team_ids": [
       "T00000000"
     ],
-    "locale": ""
+    "locale": "",
+    "internal_team_ids": [
+      ""
+    ],
+    "connected_team_ids": [
+      "E00000000"
+    ]
   },
   "error": "",
   "needed": "",

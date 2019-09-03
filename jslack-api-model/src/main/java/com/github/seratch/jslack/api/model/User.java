@@ -3,6 +3,7 @@ package com.github.seratch.jslack.api.model;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,9 +51,11 @@ public class User {
     @SerializedName("has_2fa")
     private boolean has2fa;
     private String presence; // away, etc
+    private EnterpriseUser enterpriseUser;
     private String twoFactorType;
     private boolean hasFiles;
     private String locale;
+
 
     @Data
     public static class Profile {
@@ -114,4 +117,17 @@ public class User {
         @Deprecated
         private String lastName;
     }
+
+    @Data
+    public static class EnterpriseUser {
+        private String id;
+        private String enterpriseId;
+        private String enterpriseName;
+        @SerializedName("is_admin")
+        private boolean isAdmin;
+        @SerializedName("is_owner")
+        private boolean isOwner;
+        private List<String> teams;
+    }
+
 }

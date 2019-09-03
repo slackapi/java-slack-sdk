@@ -1,0 +1,25 @@
+{
+  "status": "",
+  "date_created": "",
+  "date_updated": "",
+  "active_incidents": [
+    {
+      "id": 123,
+      "date_created": "",
+      "date_updated": "",
+      "title": "",
+      "type": "",
+      "status": "",
+      "url": "",
+      "services": [
+        ""
+      ],
+      "notes": [
+        {
+          "date_created": "",
+          "body": ""
+        }
+      ]
+    }
+  ]
+}

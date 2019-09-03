@@ -6,7 +6,20 @@ public class Methods {
     }
 
     // ------------------------------
-    // admin
+    // admin.apps
+    // ------------------------------
+
+    public static final String ADMIN_APPS_APPROVE = "admin.apps.approve";
+    public static final String ADMIN_APPS_RESTRICT = "admin.apps.restrict";
+
+    // ------------------------------
+    // admin.apps.requests
+    // ------------------------------
+
+    public static final String ADMIN_APPS_REQUESTS_LIST = "admin.apps.requests.list";
+
+    // ------------------------------
+    // admin.users.session
     // ------------------------------
 
     public static final String ADMIN_USERS_SESSION_RESET = "admin.users.session.reset";

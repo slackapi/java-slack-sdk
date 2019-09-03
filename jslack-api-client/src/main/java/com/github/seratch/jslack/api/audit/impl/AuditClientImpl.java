@@ -1,9 +1,9 @@
 package com.github.seratch.jslack.api.audit.impl;
 
 import com.github.seratch.jslack.api.RequestConfigurator;
-import com.github.seratch.jslack.api.audit.AuditClient;
 import com.github.seratch.jslack.api.audit.AuditApiException;
 import com.github.seratch.jslack.api.audit.AuditApiRequest;
+import com.github.seratch.jslack.api.audit.AuditClient;
 import com.github.seratch.jslack.api.audit.request.ActionsRequest;
 import com.github.seratch.jslack.api.audit.request.LogsRequest;
 import com.github.seratch.jslack.api.audit.request.SchemasRequest;

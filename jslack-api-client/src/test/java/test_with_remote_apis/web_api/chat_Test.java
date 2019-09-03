@@ -142,8 +142,8 @@ public class chat_Test {
     public void postMessage() throws Exception {
         loadRandomChannelId();
         ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> req
-            .channel(randomChannelId)
-            .text("You can also do slack.methods(token)"));
+                .channel(randomChannelId)
+                .text("You can also do slack.methods(token)"));
         assertThat(response.getError(), is(nullValue()));
     }
 

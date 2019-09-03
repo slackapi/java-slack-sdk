@@ -1,4 +1,4 @@
-package com.github.seratch.jslack.api.methods.request.admin;
+package com.github.seratch.jslack.api.methods.request.admin.users;
 
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
 import lombok.Builder;
