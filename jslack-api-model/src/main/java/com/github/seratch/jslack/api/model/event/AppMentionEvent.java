@@ -27,6 +27,7 @@ public class AppMentionEvent implements Event {
 
     private final String type = TYPE_NAME;
     private String user;
+    private String subtype;
     private String text;
     private String ts;
     private String channel;
