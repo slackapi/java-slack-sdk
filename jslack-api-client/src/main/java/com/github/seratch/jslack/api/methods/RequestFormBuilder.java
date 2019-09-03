@@ -396,7 +396,8 @@ public class RequestFormBuilder {
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
         setIfNotNull("mrkdwn", req.isMrkdwn(), form);
-		if (req.getBlocksAsString() != null) {
+
+        if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getBlocks());
