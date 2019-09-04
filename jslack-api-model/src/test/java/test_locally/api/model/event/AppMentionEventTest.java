@@ -20,6 +20,7 @@ public class AppMentionEventTest {
         String json = "{\n" +
                 "    \"type\": \"app_mention\",\n" +
                 "    \"user\": \"U061F7AUR\",\n" +
+                "    \"subtype\": \"bot_message\",\n" +
                 "    \"text\": \"<@U0LAN0Z89> is it everything a river should be?\",\n" +
                 "    \"ts\": \"1515449522.000016\",\n" +
                 "    \"channel\": \"C0LAN2Q65\",\n" +
@@ -35,6 +36,7 @@ public class AppMentionEventTest {
         Gson gson = GsonFactory.createSnakeCase();
         AppMentionEvent event = new AppMentionEvent();
         event.setUser("U061F7AUR");
+        event.setSubtype("bot_message");
         event.setText("Hi!");
         event.setTs("1515449522.000016");
         event.setChannel("C0LAN2Q65");
@@ -43,6 +45,7 @@ public class AppMentionEventTest {
         String generatedJson = gson.toJson(event);
         String expectedJson = "{\"type\":\"app_mention\"," +
                 "\"user\":\"U061F7AUR\"," +
+                "\"subtype\":\"bot_message\"," +
                 "\"text\":\"Hi!\"," +
                 "\"ts\":\"1515449522.000016\"," +
                 "\"channel\":\"C0LAN2Q65\"," +

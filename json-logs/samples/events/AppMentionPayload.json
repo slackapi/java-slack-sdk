@@ -5,6 +5,7 @@
   "event": {
     "type": "app_mention",
     "user": "",
+    "subtype": "",
     "text": "",
     "ts": "",
     "channel": "",
