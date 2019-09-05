@@ -1,5 +1,10 @@
 # jSlack Release Notes
 
+## version 2.1.3 (2019-09-05)
+
+* ff74841 subtype property for the app_mention event (#213) by Subrahmanyam
+* 98e6dd0 Add shared-channel related attributes to conversation by Kazuhiro Sera
+
 ## version 2.1.2 (2019-08-28)
 
 * 1be4469 Add status API client by Kazuhiro Sera
