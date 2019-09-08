@@ -270,7 +270,8 @@
         "fr-FR": "",
         "pt-BR": "",
         "ja-JP": ""
-      }
+      },
+      "msg_input_sticky_composer": false
     },
     "created": 12345,
     "manual_presence": ""

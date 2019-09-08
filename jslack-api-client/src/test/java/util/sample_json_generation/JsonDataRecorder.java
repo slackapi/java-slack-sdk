@@ -283,11 +283,17 @@ public class JsonDataRecorder {
             }
         } else if (element.isJsonObject()) {
             List<Map.Entry<String, JsonElement>> entries = new ArrayList<>(element.getAsJsonObject().entrySet());
-            if (entries.size() == 1 && entries.get(0).getKey().matches("^[A-Z].{8}$")) {
-                // if the child element seems to be a Map object using identifiers (e.g., channel id, user id) as keys
-                // the Map object should have 2+ elements to allow quicktype generate preferable code.
-                Map.Entry<String, JsonElement> first = entries.get(0);
-                element.getAsJsonObject().add(first.getKey() + "_", first.getValue());
+            if (entries.size() > 0) {
+                if (entries.get(0).getKey().matches("^[A-Z].{8}$")) {
+                    Map.Entry<String, JsonElement> first = entries.get(0);
+                    for (Map.Entry<String, JsonElement> entry : entries) {
+                        element.getAsJsonObject().remove(entry.getKey());
+                    }
+                    // if the child element seems to be a Map object using identifiers (e.g., channel id, user id) as keys
+                    // the Map object should have 2+ elements to allow quicktype generate preferable code.
+                    element.getAsJsonObject().add(first.getKey().substring(0, 1) + "00000000", first.getValue());
+                    element.getAsJsonObject().add(first.getKey().substring(0, 1) + "00000001", first.getValue());
+                }
             }
             for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
                 scanToNormalizeStringValues(element, entry.getKey(), entry.getValue());

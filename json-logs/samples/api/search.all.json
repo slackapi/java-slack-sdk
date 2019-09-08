@@ -1255,7 +1255,7 @@
         "is_starred": false,
         "shares": {
           "public": {
-            "C03E94MKU": [
+            "C00000000": [
               {
                 "reply_users": [
                   ""
@@ -1267,31 +1267,7 @@
                 "team_id": "T00000000"
               }
             ],
-            "C03E94MKU_": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000",
-                "channel_name": "",
-                "team_id": "T00000000"
-              }
-            ],
-            "CLT1F93TP": [
-              {
-                "reply_users": [
-                  ""
-                ],
-                "reply_users_count": 12345,
-                "reply_count": 12345,
-                "ts": "0000000000.000000",
-                "channel_name": "",
-                "team_id": "T00000000"
-              }
-            ],
-            "CLT1F93TP_": [
+            "C00000001": [
               {
                 "reply_users": [
                   ""
@@ -1328,7 +1304,9 @@
         "preview_is_truncated": false,
         "thumb_pdf": "https://www.example.com/",
         "thumb_pdf_w": 12345,
-        "thumb_pdf_h": 12345
+        "thumb_pdf_h": 12345,
+        "thumb_360_gif": "https://www.example.com/",
+        "deanimate_gif": "https://www.example.com/"
       }
     ]
   },

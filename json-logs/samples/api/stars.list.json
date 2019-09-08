@@ -54,7 +54,7 @@
         "is_starred": false,
         "shares": {
           "public": {
-            "C03E94MKU": [
+            "C00000000": [
               {
                 "reply_users": [
                   ""
@@ -66,7 +66,7 @@
                 "team_id": "T00000000"
               }
             ],
-            "C03E94MKU_": [
+            "C00000001": [
               {
                 "reply_users": [
                   ""
