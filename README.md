@@ -31,6 +31,8 @@ The following is an example using Maven. Of course, it's also possible to grab t
 <version>{latest version}</version>
 ```
 
+The `{latest version}` is [![Maven Central](https://img.shields.io/maven-central/v/com.github.seratch/jslack.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.seratch%22%20a%3A%22jslack%22)
+
 See also: [Getting started with groovysh](https://github.com/seratch/jslack/wiki/Getting-Started-with-groovysh)
 
 If you really don't need classes for building Slack app backend (= you need only Webhook/Web API/RTM API clients), just depending on `jslack-api-client` would be enough.
@@ -40,6 +42,8 @@ If you really don't need classes for building Slack app backend (= you need only
 <artifactId>jslack-api-client</artifactId>
 <version>{latest version}</version>
 ```
+
+The `{latest version}` is [![Maven Central](https://img.shields.io/maven-central/v/com.github.seratch/jslack.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.seratch%22%20a%3A%22jslack%22)
 
 ### Examples
 
