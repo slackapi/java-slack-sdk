@@ -59,6 +59,7 @@ public class Actions {
         public static final String pref_dlp_access_changed = "pref.dlp_access_changed";
         public static final String pref_ent_browser_control = "pref.ent_browser_control";
         public static final String pref_ent_required_browser_name = "pref.ent_required_browser_name";
+        public static final String pref_ent_required_browser = "pref.ent_required_browser";
     }
 
     public static class User {

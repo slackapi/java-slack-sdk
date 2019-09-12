@@ -420,7 +420,9 @@
         ]
       },
       "app_whitelist_enabled": false,
-      "invites_limit": false
+      "invites_limit": false,
+      "onedrive_app_installed": false,
+      "workflow_builder_enabled": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
