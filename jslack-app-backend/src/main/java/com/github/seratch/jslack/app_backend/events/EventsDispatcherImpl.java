@@ -33,6 +33,16 @@ public class EventsDispatcherImpl implements EventsDispatcher {
         }
     });
 
+    private final EventTypeExtractor eventTypeExtractor;
+
+    public EventsDispatcherImpl() {
+        this(new EventTypeExtractorImpl());
+    }
+
+    public EventsDispatcherImpl(EventTypeExtractor eventTypeExtractor) {
+        this.eventTypeExtractor = eventTypeExtractor;
+    }
+
     @Override
     public void register(EventHandler<? extends EventsApiPayload<?>> handler) {
         String eventType = handler.getEventType();
@@ -56,7 +66,7 @@ public class EventsDispatcherImpl implements EventsDispatcher {
 
     @Override
     public void dispatch(String json) {
-        String eventType = detectEventType(json);
+        String eventType = eventTypeExtractor.extractEventType(json);
         if (eventType == null) {
             log.debug("Failed to detect event type from the given JSON data: {}", json);
             return;
@@ -91,51 +101,6 @@ public class EventsDispatcherImpl implements EventsDispatcher {
     @Override
     public void stop() {
         eventLoopThread.interrupt();
-    }
-
-    public static String detectEventType(String json) {
-        StringBuilder sb = new StringBuilder();
-        char[] chars = json.toCharArray();
-        boolean isInsideEventData = false;
-        for (int idx = 0; idx < (chars.length - 7); idx++) {
-            if (!isInsideEventData && chars[idx] == '"'
-                    && chars[idx + 1] == 'e'
-                    && chars[idx + 2] == 'v'
-                    && chars[idx + 3] == 'e'
-                    && chars[idx + 4] == 'n'
-                    && chars[idx + 5] == 't'
-                    && chars[idx + 6] == '"'
-                    && chars[idx + 7] == ':') {
-                idx = idx + 8;
-                isInsideEventData = true;
-            }
-
-            if (isInsideEventData && chars[idx] == '"'
-                    && chars[idx + 1] == 't'
-                    && chars[idx + 2] == 'y'
-                    && chars[idx + 3] == 'p'
-                    && chars[idx + 4] == 'e'
-                    && chars[idx + 5] == '"'
-                    && chars[idx + 6] == ':') {
-                idx = idx + 7;
-                int doubleQuoteCount = 0;
-                boolean isPreviousCharEscape = false;
-                while (doubleQuoteCount < 2 && idx < chars.length) {
-                    char c = chars[idx];
-                    if (c == '"' && !isPreviousCharEscape) {
-                        doubleQuoteCount++;
-                    } else {
-                        if (doubleQuoteCount == 1) {
-                            sb.append(c);
-                        }
-                    }
-                    isPreviousCharEscape = c == '\\';
-                    idx++;
-                }
-                break;
-            }
-        }
-        return sb.toString();
     }
 
 }

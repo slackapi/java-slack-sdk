@@ -1,12 +1,16 @@
 package test_locally.app_backend.events;
 
+import com.github.seratch.jslack.app_backend.events.EventTypeExtractor;
+import com.github.seratch.jslack.app_backend.events.EventTypeExtractorImpl;
 import com.github.seratch.jslack.app_backend.events.EventsDispatcherImpl;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class EventsDispatcherImplTest {
+public class EventTypeDetectorImplTest {
+
+    private EventTypeExtractor eventTypeExtractor = new EventTypeExtractorImpl();
 
     @Test
     public void detect_goodbye() {
@@ -25,7 +29,7 @@ public class EventsDispatcherImplTest {
                 "        \"event_id\": \"Ev08MFMKH6\",\n" +
                 "        \"event_time\": 1234567890\n" +
                 "}";
-        String eventType = EventsDispatcherImpl.detectEventType(payload);
+        String eventType = eventTypeExtractor.extractEventType(payload);
         assertThat(eventType, is("goodbye"));
     }
 
@@ -47,7 +51,7 @@ public class EventsDispatcherImplTest {
                 "        \"event_id\": \"Ev08MFMKH6\",\n" +
                 "        \"event_time\": 1234567890\n" +
                 "}";
-        String eventType = EventsDispatcherImpl.detectEventType(payload);
+        String eventType = eventTypeExtractor.extractEventType(payload);
         assertThat(eventType, is("message"));
     }
 
