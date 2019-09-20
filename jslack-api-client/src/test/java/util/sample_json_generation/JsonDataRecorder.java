@@ -294,6 +294,14 @@ public class JsonDataRecorder {
                     element.getAsJsonObject().add(first.getKey().substring(0, 1) + "00000000", first.getValue());
                     element.getAsJsonObject().add(first.getKey().substring(0, 1) + "00000001", first.getValue());
                 }
+                if (name != null && name.equals("emoji")) {
+                    Map.Entry<String, JsonElement> first = entries.get(0);
+                    for (Map.Entry<String, JsonElement> entry : entries) {
+                        element.getAsJsonObject().remove(entry.getKey());
+                    }
+                    element.getAsJsonObject().add("emoji", first.getValue());
+                    element.getAsJsonObject().add("emoji_", first.getValue());
+                }
             }
             for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
                 scanToNormalizeStringValues(element, entry.getKey(), entry.getValue());

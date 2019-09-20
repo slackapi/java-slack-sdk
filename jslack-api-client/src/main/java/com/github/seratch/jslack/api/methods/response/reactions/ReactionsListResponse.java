@@ -70,7 +70,10 @@ public class ReactionsListResponse implements SlackApiResponse {
             private String lastRead;
             private String clientMsgId;
             private String inviter;
+            private String userTeam;
+            private String sourceTeam;
             private Icons icons;
+            private UserProfile userProfile;
 
             @Data
             public static class Icons {
@@ -82,6 +85,30 @@ public class ReactionsListResponse implements SlackApiResponse {
                 private String image64;
                 @SerializedName("image_72")
                 private String image72;
+            }
+
+            @Data
+            public static class UserProfile {
+                private String avatarHash;
+                @SerializedName("image_72")
+                private String image72;
+                private String firstName;
+                private String realName;
+                private String displayName;
+                private String team;
+                private String name;
+                /**
+                 * is_restricted indicates the user is a multi-channel guest.
+                 * see also: https://get.slack.help/hc/en-us/articles/201314026-roles-and-permissions-in-slack
+                 */
+                @SerializedName("is_restricted")
+                private boolean restricted;
+                /**
+                 * is_ultra_restricted indicates they are a single channel guest.
+                 * see also: https://get.slack.help/hc/en-us/articles/201314026-roles-and-permissions-in-slack
+                 */
+                @SerializedName("is_ultra_restricted")
+                private boolean ultraRestricted;
             }
         }
     }

@@ -120,6 +120,7 @@ public class Actions {
         public static final String external_shared_channel_invite_declined = "external_shared_channel_invite_declined";
         public static final String external_shared_channel_invite_expired = "external_shared_channel_invite_expired";
         public static final String external_shared_channel_invite_revoked = "external_shared_channel_invite_revoked";
+        public static final String mpim_converted_to_private = "mpim_converted_to_private";
     }
 
     public static class App {

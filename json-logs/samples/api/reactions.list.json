@@ -364,6 +364,14 @@
             ],
             "count": 12345,
             "url": "https://www.example.com/"
+          },
+          {
+            "name": "",
+            "users": [
+              "W00000000"
+            ],
+            "count": 12345,
+            "url": "https://www.example.com/"
           }
         ],
         "subtype": "",
@@ -461,7 +469,20 @@
         ],
         "subscribed": false,
         "last_read": "0000000000.000000",
-        "inviter": "U00000000"
+        "inviter": "U00000000",
+        "user_team": "E00000000",
+        "source_team": "E00000000",
+        "user_profile": {
+          "avatar_hash": "",
+          "image_72": "https://www.example.com/",
+          "first_name": "",
+          "real_name": "",
+          "display_name": "",
+          "team": "E00000000",
+          "name": "",
+          "is_restricted": false,
+          "is_ultra_restricted": false
+        }
       }
     }
   ],

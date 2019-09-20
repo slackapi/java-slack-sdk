@@ -422,7 +422,8 @@
       "app_whitelist_enabled": false,
       "invites_limit": false,
       "onedrive_app_installed": false,
-      "workflow_builder_enabled": false
+      "workflow_builder_enabled": false,
+      "box_app_installed": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
