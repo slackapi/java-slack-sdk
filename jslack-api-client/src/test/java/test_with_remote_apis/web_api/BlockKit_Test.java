@@ -97,8 +97,9 @@ public class BlockKit_Test {
 
         // message modification
         List<LayoutBlock> newBlocks = new ArrayList<>();
-        Collections.copy(blocks, newBlocks);
+        newBlocks.addAll(blocks);
         newBlocks.add(new DividerBlock());
+        newBlocks.add(SectionBlock.builder().text(MarkdownTextObject.builder().text("Added section!").build()).build());
         {
             ChatUpdateRequest request = ChatUpdateRequest.builder()
                     .token(token)
@@ -117,9 +118,6 @@ public class BlockKit_Test {
 
     @Test
     public void exampleWithBlocksAsString() throws IOException, SlackApiException {
-
-        List<LayoutBlock> blocks = exampleBlocks();
-
         // ephemeral message creation
         {
             String channelId = null;
@@ -174,16 +172,20 @@ public class BlockKit_Test {
         }
 
         // message modification
-        List<LayoutBlock> newBlocks = new ArrayList<>();
-        Collections.copy(blocks, newBlocks);
-        newBlocks.add(new DividerBlock());
         {
             ChatUpdateRequest request = ChatUpdateRequest.builder()
                     .token(token)
                     .text("Modified text")
                     .channel(postResponse.getChannel())
                     .ts(postResponse.getTs())
-                    .blocksAsString(blocksAsString)
+                    .blocksAsString("[{\n" +
+                            "      \"type\": \"section\",\n" +
+                            "      \"text\": {\n" +
+                            "        \"type\": \"mrkdwn\",\n" +
+                            "        \"text\": \"Modified\",\n" +
+                            "        \"verbatim\": false\n" +
+                            "      }\n" +
+                            "    }]")
                     .build();
 
             ChatUpdateResponse response = slack.methods().chatUpdate(request);
