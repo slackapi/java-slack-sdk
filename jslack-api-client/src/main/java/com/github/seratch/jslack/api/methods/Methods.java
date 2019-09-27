@@ -355,4 +355,13 @@ public class Methods {
     public static final String USERS_PROFILE_GET = "users.profile.get";
     public static final String USERS_PROFILE_SET = "users.profile.set";
 
+    // ------------------------------
+    // views
+    // https://api.slack.com/block-kit/surfaces/modals
+    // ------------------------------
+
+    public static final String VIEWS_OPEN = "views.open";
+    public static final String VIEWS_PUSH = "views.push";
+    public static final String VIEWS_UPDATE = "views.update";
+
 }

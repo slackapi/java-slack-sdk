@@ -60,6 +60,9 @@ import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupU
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
+import com.github.seratch.jslack.api.methods.request.views.ViewsOpenRequest;
+import com.github.seratch.jslack.api.methods.request.views.ViewsPushRequest;
+import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.model.ConversationType;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -1418,6 +1421,29 @@ public class RequestFormBuilder {
             setIfNotNull("name", req.getName(), form);
             setIfNotNull("value", req.getValue(), form);
         }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ViewsOpenRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ViewsPushRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("trigger_id", req.getTriggerId(), form);
+        setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ViewsUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        setIfNotNull("external_id", req.getExternalId(), form);
+        setIfNotNull("hash", req.getHash(), form);
+        setIfNotNull("view_id", req.getViewId(), form);
         return form;
     }
 
