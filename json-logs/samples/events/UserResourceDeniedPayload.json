@@ -1,7 +1,17 @@
 {
   "token": "",
+  "enterprise_id": "",
   "team_id": "",
   "api_app_id": "",
+  "type": "",
+  "authed_users": [
+    ""
+  ],
+  "authed_teams": [
+    ""
+  ],
+  "event_id": "",
+  "event_time": 123,
   "event": {
     "type": "user_resource_denied",
     "user": "",
@@ -9,11 +19,5 @@
       ""
     ],
     "trigger_id": ""
-  },
-  "type": "",
-  "authed_users": [
-    ""
-  ],
-  "event_id": "",
-  "event_time": 123
+  }
 }

@@ -9,12 +9,14 @@ import java.util.List;
 public class MessagePayload implements EventsApiPayload<MessageEvent> {
 
     private String token;
+    private String enterpriseId;
     private String teamId;
     private String apiAppId;
-    private MessageEvent event;
     private String type;
     private List<String> authedUsers;
+    private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
 
+    private MessageEvent event;
 }

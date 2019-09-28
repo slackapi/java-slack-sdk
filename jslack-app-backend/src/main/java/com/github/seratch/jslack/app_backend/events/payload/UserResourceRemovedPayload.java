@@ -9,12 +9,14 @@ import java.util.List;
 public class UserResourceRemovedPayload implements EventsApiPayload<UserResourceRemovedEvent> {
 
     private String token;
+    private String enterpriseId;
     private String teamId;
     private String apiAppId;
-    private UserResourceRemovedEvent event;
     private String type;
     private List<String> authedUsers;
+    private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
 
+    private UserResourceRemovedEvent event;
 }

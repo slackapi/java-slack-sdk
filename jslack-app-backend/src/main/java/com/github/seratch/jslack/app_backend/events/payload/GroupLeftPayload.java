@@ -9,12 +9,14 @@ import java.util.List;
 public class GroupLeftPayload implements EventsApiPayload<GroupLeftEvent> {
 
     private String token;
+    private String enterpriseId;
     private String teamId;
     private String apiAppId;
-    private GroupLeftEvent event;
     private String type;
     private List<String> authedUsers;
+    private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
 
+    private GroupLeftEvent event;
 }

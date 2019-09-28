@@ -9,12 +9,14 @@ import java.util.List;
 public class FileUnsharedPayload implements EventsApiPayload<FileUnsharedEvent> {
 
     private String token;
+    private String enterpriseId;
     private String teamId;
     private String apiAppId;
-    private FileUnsharedEvent event;
     private String type;
     private List<String> authedUsers;
+    private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
 
+    private FileUnsharedEvent event;
 }

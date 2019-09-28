@@ -9,12 +9,14 @@ import java.util.List;
 public class ChannelDeletedPayload implements EventsApiPayload<ChannelDeletedEvent> {
 
     private String token;
+    private String enterpriseId;
     private String teamId;
     private String apiAppId;
-    private ChannelDeletedEvent event;
     private String type;
     private List<String> authedUsers;
+    private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
 
+    private ChannelDeletedEvent event;
 }

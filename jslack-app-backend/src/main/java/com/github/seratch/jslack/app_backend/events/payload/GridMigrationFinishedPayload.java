@@ -9,12 +9,14 @@ import java.util.List;
 public class GridMigrationFinishedPayload implements EventsApiPayload<GridMigrationFinishedEvent> {
 
     private String token;
+    private String enterpriseId;
     private String teamId;
     private String apiAppId;
-    private GridMigrationFinishedEvent event;
     private String type;
     private List<String> authedUsers;
+    private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
 
+    private GridMigrationFinishedEvent event;
 }

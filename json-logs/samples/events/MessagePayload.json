@@ -1,7 +1,17 @@
 {
   "token": "",
+  "enterprise_id": "",
   "team_id": "",
   "api_app_id": "",
+  "type": "",
+  "authed_users": [
+    ""
+  ],
+  "authed_teams": [
+    ""
+  ],
+  "event_id": "",
+  "event_time": 123,
   "event": {
     "client_msg_id": "",
     "type": "message",
@@ -470,11 +480,5 @@
       "image_64": "",
       "image_72": ""
     }
-  },
-  "type": "",
-  "authed_users": [
-    ""
-  ],
-  "event_id": "",
-  "event_time": 123
+  }
 }

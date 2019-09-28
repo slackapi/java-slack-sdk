@@ -1,7 +1,17 @@
 {
   "token": "",
+  "enterprise_id": "",
   "team_id": "",
   "api_app_id": "",
+  "type": "",
+  "authed_users": [
+    ""
+  ],
+  "authed_teams": [
+    ""
+  ],
+  "event_id": "",
+  "event_time": 123,
   "event": {
     "type": "dnd_updated",
     "user": "",
@@ -12,11 +22,5 @@
       "snooze_enabled": false,
       "snooze_endtime": 123
     }
-  },
-  "type": "",
-  "authed_users": [
-    ""
-  ],
-  "event_id": "",
-  "event_time": 123
+  }
 }
