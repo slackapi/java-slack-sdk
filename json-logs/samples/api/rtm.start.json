@@ -272,7 +272,8 @@
         "ja-JP": ""
       },
       "msg_input_sticky_composer": false,
-      "seen_workflow_builder_deluxe_toast": false
+      "seen_workflow_builder_deluxe_toast": false,
+      "workflow_builder_intro_modal_clicked_through": false
     },
     "created": 12345,
     "manual_presence": ""
