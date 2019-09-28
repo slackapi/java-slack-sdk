@@ -1,15 +1,19 @@
 {
   "token": "",
+  "enterprise_id": "",
   "team_id": "",
   "api_app_id": "",
-  "event": {
-    "type": "team_rename",
-    "name": ""
-  },
   "type": "",
   "authed_users": [
     ""
   ],
+  "authed_teams": [
+    ""
+  ],
   "event_id": "",
-  "event_time": 123
+  "event_time": 123,
+  "event": {
+    "type": "team_rename",
+    "name": ""
+  }
 }

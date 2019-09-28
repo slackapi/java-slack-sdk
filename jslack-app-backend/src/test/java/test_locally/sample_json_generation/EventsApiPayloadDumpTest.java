@@ -98,6 +98,14 @@ public class EventsApiPayloadDumpTest {
                 }
             } catch (Exception e) {
             }
+            try {
+                Field authedTeams = payload.getClass().getDeclaredField("authedTeams");
+                if (authedTeams != null) {
+                    authedTeams.setAccessible(true);
+                    authedTeams.set(payload, Arrays.asList(""));
+                }
+            } catch (Exception e) {
+            }
             initProperties(payload);
             dumper.dump(payload.getClass().getSimpleName(), payload);
         }

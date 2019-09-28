@@ -1,16 +1,20 @@
 {
   "token": "",
+  "enterprise_id": "",
   "team_id": "",
   "api_app_id": "",
-  "event": {
-    "type": "im_close",
-    "user": "",
-    "channel": ""
-  },
   "type": "",
   "authed_users": [
     ""
   ],
+  "authed_teams": [
+    ""
+  ],
   "event_id": "",
-  "event_time": 123
+  "event_time": 123,
+  "event": {
+    "type": "im_close",
+    "user": "",
+    "channel": ""
+  }
 }

@@ -9,12 +9,14 @@ import java.util.List;
 public class ImClosePayload implements EventsApiPayload<ImCloseEvent> {
 
     private String token;
+    private String enterpriseId;
     private String teamId;
     private String apiAppId;
-    private ImCloseEvent event;
     private String type;
     private List<String> authedUsers;
+    private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
 
+    private ImCloseEvent event;
 }

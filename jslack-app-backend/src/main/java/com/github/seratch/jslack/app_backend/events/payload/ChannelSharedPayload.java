@@ -9,12 +9,14 @@ import java.util.List;
 public class ChannelSharedPayload implements EventsApiPayload<ChannelSharedEvent> {
 
     private String token;
+    private String enterpriseId;
     private String teamId;
     private String apiAppId;
-    private ChannelSharedEvent event;
     private String type;
     private List<String> authedUsers;
+    private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
 
+    private ChannelSharedEvent event;
 }
