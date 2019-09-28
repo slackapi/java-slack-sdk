@@ -15,6 +15,7 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - [Events API](https://api.slack.com/events-api)
   - [Slash Commands](https://api.slack.com/slash-commands)
   - [Dialogs](https://api.slack.com/dialogs)
+  - [Block Kit in Modals](https://api.slack.com/block-kit/surfaces/modals)
   - [Interactive Messages](https://api.slack.com/interactive-messages)
   - [Message Actions](https://api.slack.com/actions)
   - [Outgoing Webhooks](https://api.slack.com/custom-integrations/outgoing-webhooks)
@@ -234,6 +235,32 @@ DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(req -> req
   .dialog(dialog));
 ```
 
+##### Use Block Kit in Modals
+
+```java
+final Slack slack = Slack.getInstance();
+final String token = "xoxb-************************************";
+final String triggerId = payload.getTriggerId(); // from command, block_actions, etc
+
+final List<LayoutBlock> blocks = Arrays.asList(InputBlock.builder()
+  .blockId("text_input")
+  .label(PlainTextObject.builder().text("text").build())
+  .element(PlainTextInputElement.builder().actionId("single").multiline(true).build())
+  .build());
+
+final View view = View.builder()
+  .type("modal")
+  .callbackId("callback_id")
+  .title(ViewTitle.builder().type("plain_text").text("Title").build())
+  .submit(ViewSubmit.builder().type("plain_text").text("Submit").build())
+  .notifyOnClose(true)
+  .blocks(blocks)
+  .build();
+
+ViewsOpenResponse apiResponse = slack.methods(token).viewsOpen(req -> req
+  .view(view)
+  .triggerId(triggerId));
+```
 
 #### Events API
 
