@@ -1,5 +1,15 @@
 # jSlack Release Notes
 
+## version 2.2.0 (2019-09-28)
+
+* ebcd160 #217 Add Block Kit in Modals support by Kazuhiro Sera
+* e867f4e Fix #218 by adding missing properties in event payloads by Kazuhiro Sera
+* a7448d9 Fix #128 chat.update test issues by Kazuhiro Sera
+
+## version 2.1.4 (2019-09-12)
+
+* 7fce724 Fix #214 by providing EventTypeExtractor interface by Kazuhiro Sera
+
 ## version 2.1.3 (2019-09-05)
 
 * ff74841 subtype property for the app_mention event (#213) by Subrahmanyam
