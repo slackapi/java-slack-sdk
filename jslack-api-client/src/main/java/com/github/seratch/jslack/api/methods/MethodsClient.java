@@ -61,6 +61,9 @@ import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupU
 import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
+import com.github.seratch.jslack.api.methods.request.views.ViewsOpenRequest;
+import com.github.seratch.jslack.api.methods.request.views.ViewsPushRequest;
+import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
@@ -121,6 +124,9 @@ import com.github.seratch.jslack.api.methods.response.usergroups.users.Usergroup
 import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
+import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
+import com.github.seratch.jslack.api.methods.response.views.ViewsPushResponse;
+import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
 import okhttp3.FormBody;
 import okhttp3.MultipartBody;
 import okhttp3.Response;
@@ -925,5 +931,21 @@ public interface MethodsClient {
     UsersProfileSetResponse usersProfileSet(UsersProfileSetRequest req) throws IOException, SlackApiException;
 
     UsersProfileSetResponse usersProfileSet(RequestConfigurator<UsersProfileSetRequest.UsersProfileSetRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // views
+    // ------------------------------
+
+    ViewsOpenResponse viewsOpen(ViewsOpenRequest req) throws IOException, SlackApiException;
+
+    ViewsOpenResponse viewsOpen(RequestConfigurator<ViewsOpenRequest.ViewsOpenRequestBuilder> req) throws IOException, SlackApiException;
+
+    ViewsPushResponse viewsPush(ViewsPushRequest req) throws IOException, SlackApiException;
+
+    ViewsPushResponse viewsPush(RequestConfigurator<ViewsPushRequest.ViewsPushRequestBuilder> req) throws IOException, SlackApiException;
+
+    ViewsUpdateResponse viewsUpdate(ViewsUpdateRequest req) throws IOException, SlackApiException;
+
+    ViewsUpdateResponse viewsUpdate(RequestConfigurator<ViewsUpdateRequest.ViewsUpdateRequestBuilder> req) throws IOException, SlackApiException;
 
 }
