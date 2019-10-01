@@ -1,5 +1,10 @@
 # jSlack Release Notes
 
+## version 2.2.2 (2019-10-01)
+
+* f6b2cde #223 Add view payload JSON samples by Kazuhiro Sera
+* 659abe9 #223 Add multi select blocks & fix input block errors by Kazuhiro Sera
+
 ## version 2.2.1 (2019-10-01)
 
 * 08ba6d4 Add view to block_actions payload (ref #217) by Kazuhiro Sera
