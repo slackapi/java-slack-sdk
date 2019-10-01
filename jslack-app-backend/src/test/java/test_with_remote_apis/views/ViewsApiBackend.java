@@ -3,9 +3,12 @@ package test_with_remote_apis.views;
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
+import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
 import com.github.seratch.jslack.api.model.block.InputBlock;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
+import com.github.seratch.jslack.api.model.block.SectionBlock;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
+import com.github.seratch.jslack.api.model.block.element.ButtonElement;
 import com.github.seratch.jslack.api.model.block.element.PlainTextInputElement;
 import com.github.seratch.jslack.api.model.view.View;
 import com.github.seratch.jslack.api.model.view.ViewSubmit;
@@ -31,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -93,10 +97,36 @@ public class ViewsApiBackend {
                     httpResp.setStatus(200);
                     return;
 
-                } else {
+                } else if (payloadType.equals("block_actions")) {
                     // extracts trigger_id for views.open
                     BlockActionPayload payload = gson.fromJson(json, BlockActionPayload.class);
-                    triggerId = payload.getTriggerId();
+                    if (payload.getView() != null) {
+                        try {
+                            View newView = View.builder()
+                                    .type("modal")
+                                    .callbackId("callback_id2")
+                                    .title(ViewTitle.builder().type("plain_text").text("Title2").build())
+                                    .submit(ViewSubmit.builder().type("plain_text").text("Submit2").build())
+                                    .blocks(Arrays.asList(InputBlock.builder()
+                                            .blockId("text_input")
+                                            .label(PlainTextObject.builder().text("text").build())
+                                            .element(PlainTextInputElement.builder().actionId("single").multiline(true).build())
+                                            .build()))
+                                    .build();
+                            ViewsUpdateResponse apiResponse = slack.methods(token).viewsUpdate(req -> req
+                                    .viewId(payload.getView().getId())
+                                    .view(newView));
+                            log.info("views.update - {}", apiResponse);
+                        } catch (SlackApiException e) {
+                            log.error(e.getResponseBody(), e);
+                        }
+                        return;
+                    } else {
+                        triggerId = payload.getTriggerId();
+                    }
+                } else {
+                    log.info("Unexpected payload - {}", payloadType);
+                    return;
                 }
             } else {
                 // extracts trigger_id for views.open
@@ -109,6 +139,10 @@ public class ViewsApiBackend {
                     .blockId("text_input")
                     .label(PlainTextObject.builder().text("text").build())
                     .element(PlainTextInputElement.builder().actionId("single").multiline(true).build())
+                    .build());
+            blocks.add(SectionBlock.builder()
+                    .text(PlainTextObject.builder().text("button").build())
+                    .accessory(ButtonElement.builder().text(PlainTextObject.builder().text("submit").build()).actionId("click").value("1").build())
                     .build());
 
             View view = View.builder()
