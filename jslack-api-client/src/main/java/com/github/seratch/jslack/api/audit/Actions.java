@@ -60,6 +60,40 @@ public class Actions {
         public static final String pref_ent_browser_control = "pref.ent_browser_control";
         public static final String pref_ent_required_browser_name = "pref.ent_required_browser_name";
         public static final String pref_ent_required_browser = "pref.ent_required_browser";
+        public static final String pref_allow_calls = "pref.allow_calls";
+        public static final String pref_custom_tos = "pref.custom_tos";
+        public static final String pref_who_can_manage_guests = "pref.who_can_manage_guests";
+        public static final String pref_allow_message_deletion = "pref.allow_message_deletion";
+        public static final String pref_msg_edit_window_mins = "pref.msg_edit_window_mins";
+        public static final String pref_disallow_public_file_urls = "pref.disallow_public_file_urls";
+        public static final String pref_who_can_create_public_channels = "pref.who_can_create_public_channels";
+        public static final String pref_who_can_archive_channels = "pref.who_can_archive_channels";
+        public static final String pref_who_can_create_private_channels = "pref.who_can_create_private_channels";
+        public static final String pref_who_can_remove_from_public_channels = "pref.who_can_remove_from_public_channels";
+        public static final String pref_who_can_remove_from_private_channels = "pref.who_can_remove_from_private_channels";
+        public static final String pref_who_can_manage_channel_posting_prefs = "pref.who_can_manage_channel_posting_prefs";
+        public static final String pref_app_whitelist_enabled = "pref.app_whitelist_enabled";
+        public static final String pref_app_dir_only = "pref.app_dir_only";
+        public static final String pref_sign_in_with_slack_disabled = "pref.sign_in_with_slack_disabled";
+        public static final String pref_commands_only_regular = "pref.commands_only_regular";
+        public static final String pref_hide_referers = "pref.hide_referers";
+        public static final String pref_can_receive_shared_channels_invites = "pref.can_receive_shared_channels_invites";
+        public static final String pref_who_can_manage_ext_shared_channels = "pref.who_can_manage_ext_shared_channels";
+        public static final String pref_who_can_manage_shared_channels = "pref.who_can_manage_shared_channels";
+        public static final String pref_enterprise_default_channels = "pref.enterprise_default_channels";
+        public static final String pref_who_can_create_delete_user_groups = "pref.who_can_create_delete_user_groups";
+        public static final String pref_who_can_edit_user_groups = "pref.who_can_edit_user_groups";
+        public static final String pref_stats_only_admins = "pref.stats_only_admins";
+        public static final String pref_emoji_only_admins = "pref.emoji_only_admins";
+        public static final String pref_slackbot_responses_disabled = "pref.slackbot_responses_disabled";
+        public static final String pref_slackbot_responses_only_admins = "pref.slackbot_responses_only_admins";
+        public static final String pref_dnd_enabled = "pref.dnd_enabled";
+        public static final String pref_dnd_start_hour = "pref.dnd_start_hour";
+        public static final String pref_dnd_end_hour = "pref.dnd_end_hour";
+        public static final String pref_username_policy = "pref.username_policy";
+        public static final String pref_enterprise_team_creation_request = "pref.enterprise_team_creation_request";
+        public static final String pref_loading_only_admins = "pref.loading_only_admins";
+        public static final String pref_display_real_names = "pref.display_real_names";
     }
 
     public static class User {
