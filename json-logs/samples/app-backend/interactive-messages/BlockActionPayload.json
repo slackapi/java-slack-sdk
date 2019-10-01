@@ -903,6 +903,37 @@
     }
   },
   "response_url": "",
+  "view": {
+    "id": "",
+    "team_id": "",
+    "type": "",
+    "title": {
+      "type": "",
+      "text": "",
+      "emoji": false
+    },
+    "submit": {
+      "type": "",
+      "text": "",
+      "emoji": false
+    },
+    "close": {
+      "type": "",
+      "text": "",
+      "emoji": false
+    },
+    "private_metadata": "",
+    "callback_id": "",
+    "external_id": "",
+    "state": {},
+    "hash": "",
+    "clear_on_close": false,
+    "notify_on_close": false,
+    "root_view_id": "",
+    "previous_view_id": "",
+    "app_id": "",
+    "bot_id": ""
+  },
   "actions": [
     {
       "action_id": "",

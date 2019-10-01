@@ -88,7 +88,7 @@ public class ViewTest {
                 "            \"element\": {\n" +
                 "                \"type\": \"plain_text_input\",\n" +
                 "                \"action_id\": \"detail_input\",\n" +
-                "                \"label\": {\n" +
+                "                \"placeholder\": {\n" + // label is invalid here
                 "                    \"type\": \"plain_text\",\n" +
                 "                    \"text\": \"Edit details\"\n" +
                 "                }\n" +
