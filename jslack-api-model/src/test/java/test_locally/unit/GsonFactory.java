@@ -4,6 +4,7 @@ import com.github.seratch.jslack.api.model.block.ContextBlockElement;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.composition.TextObject;
 import com.github.seratch.jslack.api.model.block.element.BlockElement;
+import com.github.seratch.jslack.api.model.block.element.RichTextSectionElement;
 import com.github.seratch.jslack.common.json.*;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -19,6 +20,7 @@ public class GsonFactory {
                 .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory())
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory())
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
+                .registerTypeAdapter(RichTextSectionElement.Element.class, new GsonRichTextSectionElementFactory())
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
                 .registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory())
                 .create();

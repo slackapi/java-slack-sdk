@@ -1,4 +1,4 @@
-package test_locally.api.model.views;
+package test_locally.api.model.view;
 
 import com.github.seratch.jslack.api.model.view.View;
 import org.junit.Test;

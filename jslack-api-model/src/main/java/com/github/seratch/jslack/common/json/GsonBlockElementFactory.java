@@ -52,6 +52,8 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
                 return DatePickerElement.class;
             case PlainTextInputElement.TYPE:
                 return PlainTextInputElement.class;
+            case RichTextSectionElement.TYPE:
+                return RichTextSectionElement.class;
             default:
                 throw new JsonParseException("Unknown context block element type: " + className);
         }
