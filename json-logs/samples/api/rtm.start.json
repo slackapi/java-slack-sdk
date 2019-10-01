@@ -425,7 +425,12 @@
       "invites_limit": false,
       "onedrive_app_installed": false,
       "workflow_builder_enabled": false,
-      "box_app_installed": false
+      "box_app_installed": false,
+      "who_can_approve_ext_shared_channel_invites": {
+        "type": [
+          ""
+        ]
+      }
     },
     "icon": {
       "image_34": "https://www.example.com/",
