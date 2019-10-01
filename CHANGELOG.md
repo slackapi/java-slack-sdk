@@ -1,5 +1,12 @@
 # jSlack Release Notes
 
+## version 2.2.1 (2019-10-01)
+
+* 08ba6d4 Add view to block_actions payload (ref #217) by Kazuhiro Sera
+* fe4f4d6 Update search results to be compatible with the latest test results by Kazuhiro Sera
+* f57235e Add a bunch of pref actions newly added in Audit Logs API by Kazuhiro Sera
+* 565f4a6 Fix #220 rich_text blocks support by Kazuhiro Sera
+
 ## version 2.2.0 (2019-09-28)
 
 * ebcd160 #217 Add Block Kit in Modals support by Kazuhiro Sera
