@@ -4,6 +4,7 @@ import com.github.seratch.jslack.api.model.Confirmation;
 import com.github.seratch.jslack.api.model.Message;
 import com.github.seratch.jslack.api.model.Option;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
+import com.github.seratch.jslack.api.model.view.View;
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +34,7 @@ public class BlockActionPayload {
     private Channel channel;
     private Message message;
     private String responseUrl;
+    private View view;
     private List<Action> actions;
 
     // TODO: app_unfurl
