@@ -46,6 +46,16 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
                 return ConversationsSelectElement.class;
             case StaticSelectElement.TYPE:
                 return StaticSelectElement.class;
+            case MultiChannelsSelectElement.TYPE:
+                return MultiChannelsSelectElement.class;
+            case MultiUsersSelectElement.TYPE:
+                return MultiUsersSelectElement.class;
+            case MultiExternalSelectElement.TYPE:
+                return MultiExternalSelectElement.class;
+            case MultiConversationsSelectElement.TYPE:
+                return MultiConversationsSelectElement.class;
+            case MultiStaticSelectElement.TYPE:
+                return MultiStaticSelectElement.class;
             case OverflowMenuElement.TYPE:
                 return OverflowMenuElement.class;
             case DatePickerElement.TYPE:
