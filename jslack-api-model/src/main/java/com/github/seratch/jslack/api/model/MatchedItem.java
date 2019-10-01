@@ -81,6 +81,8 @@ public class MatchedItem {
     private String mimetype;
     private String filetype;
     private String prettyType;
+    @SerializedName("is_mpim")
+    private boolean mpim;
     @SerializedName("is_external")
     private boolean external;
     @SerializedName("is_starred")

@@ -35,7 +35,8 @@
           "pending_shared": [
             ""
           ],
-          "is_pending_ext_shared": false
+          "is_pending_ext_shared": false,
+          "name_normalized": ""
         },
         "type": "",
         "user": "",
