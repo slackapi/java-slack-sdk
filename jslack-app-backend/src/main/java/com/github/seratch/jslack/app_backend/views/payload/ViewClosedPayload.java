@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ViewClosedPayload {
     public static final String TYPE = "view_closed";
-    private String type = TYPE;
+    private final String type = TYPE;
     private Team team;
     private User user;
     private String apiAppId;
