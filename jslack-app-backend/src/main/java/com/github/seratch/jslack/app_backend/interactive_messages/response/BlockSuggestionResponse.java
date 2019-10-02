@@ -1,5 +1,6 @@
-package com.github.seratch.jslack.app_backend.dialogs.response;
+package com.github.seratch.jslack.app_backend.interactive_messages.response;
 
+import com.github.seratch.jslack.api.model.block.composition.TextObject;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,14 +8,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-/**
- * Response data to react to an action where a user clicked on a dialog which has
- * "type": "select" and "data_source": "external"
- * <p>
- * see https://api.slack.com/dialogs
- */
 @Data
-public class DialogSuggestionResponse {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class BlockSuggestionResponse {
 
     private List<Option> options;
     private List<OptionGroup> optionGroups;
@@ -24,7 +22,7 @@ public class DialogSuggestionResponse {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Option {
-        private String label;
+        private TextObject text;
         private String value;
     }
 
