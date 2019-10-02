@@ -1,5 +1,10 @@
 # jSlack Release Notes
 
+## version 2.2.3 (2019-10-02)
+
+* c27dbd1 #224 Add block_suggestion support by Kazuhiro Sera
+* 4902d12 Change the type in view payloads to be immutable by Kazuhiro Sera
+
 ## version 2.2.2 (2019-10-01)
 
 * f6b2cde #223 Add view payload JSON samples by Kazuhiro Sera
