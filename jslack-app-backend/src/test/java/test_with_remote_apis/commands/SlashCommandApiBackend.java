@@ -20,7 +20,12 @@ public class SlashCommandApiBackend {
     @Slf4j
     @WebServlet(urlPatterns = "/slack/events")
     public static class SlackEventsServlet extends HttpServlet {
-        private final SlackSignatureVerifier signatureVerifier = new SlackSignatureVerifier();
+
+        // Configure this env variable to run this servlet
+        private final String slackSigningSecret = System.getenv("SLACK_TEST_SIGNING_SECRET");
+
+        private final SlackSignature.Generator signatureGenerator = new SlackSignature.Generator(slackSigningSecret);
+        private final SlackSignatureVerifier signatureVerifier = new SlackSignatureVerifier(signatureGenerator);
         private final SlashCommandPayloadParser parser = new SlashCommandPayloadParser();
 
         protected String doReadRequestBodyAsString(HttpServletRequest req) throws IOException {
@@ -29,6 +34,7 @@ public class SlashCommandApiBackend {
 
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
             String requestBody = doReadRequestBodyAsString(req);
+            log.info("request - {}", requestBody);
             boolean validSignature = this.signatureVerifier.isValid(req, requestBody);
             if (!validSignature) { // invalid signature
                 if (log.isDebugEnabled()) {
@@ -40,10 +46,13 @@ public class SlashCommandApiBackend {
             }
 
             SlashCommandPayload payload = parser.parse(requestBody);
+            log.info("payload - {}", payload);
 
             resp.setStatus(200);
             resp.setHeader("Content-Type", "text/plain");
-            resp.getWriter().write(payload.getText());
+            if (payload.getText() != null) {
+                resp.getWriter().write(payload.getText());
+            }
         }
     }
 
