@@ -23,4 +23,9 @@ public class ConversationsInfoRequest implements SlackApiRequest {
      */
     private boolean includeLocale;
 
+    /**
+     * Set to true to include the member count for the specified conversation. Defaults to false
+     */
+    private boolean includeNumMembers;
+
 }

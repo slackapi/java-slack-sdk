@@ -52,7 +52,8 @@
     ],
     "connected_team_ids": [
       "E00000000"
-    ]
+    ],
+    "num_members": 12345
   },
   "error": "",
   "needed": "",

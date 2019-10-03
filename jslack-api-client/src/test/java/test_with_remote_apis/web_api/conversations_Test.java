@@ -135,6 +135,7 @@ public class conversations_Test {
             ConversationsInfoResponse infoResponse = slack.methods().conversationsInfo(r -> r
                     .token(token)
                     .channel(channel.getId())
+                    .includeNumMembers(true)
                     .includeLocale(true));
             assertThat(infoResponse.isOk(), is(true));
             Conversation fetchedConversation = infoResponse.getChannel();
@@ -144,7 +145,20 @@ public class conversations_Test {
             assertThat(fetchedConversation.isIm(), is(false));
             assertThat(fetchedConversation.isMpim(), is(false));
             assertThat(fetchedConversation.isGroup(), is(false));
+            assertThat(fetchedConversation.getLocale(), is(notNullValue()));
+            assertThat(fetchedConversation.getNumOfMembers(), is(notNullValue()));
+        }
 
+        {
+            ConversationsInfoResponse infoResponse = slack.methods().conversationsInfo(r -> r
+                    .token(token)
+                    .channel(channel.getId())
+                    .includeNumMembers(false)
+                    .includeLocale(false));
+            assertThat(infoResponse.isOk(), is(true));
+            Conversation fetchedConversation = infoResponse.getChannel();
+            assertThat(fetchedConversation.getLocale(), is(nullValue()));
+            assertThat(fetchedConversation.getNumOfMembers(), is(nullValue()));
         }
 
         {

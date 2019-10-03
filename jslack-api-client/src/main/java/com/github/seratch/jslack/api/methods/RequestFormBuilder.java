@@ -501,6 +501,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("include_locale", req.isIncludeLocale(), form);
+        setIfNotNull("include_num_members", req.isIncludeNumMembers(), form);
         return form;
     }
 
