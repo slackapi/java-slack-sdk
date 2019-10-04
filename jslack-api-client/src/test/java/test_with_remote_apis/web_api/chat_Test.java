@@ -775,6 +775,16 @@ public class chat_Test {
                 .blocksAsString(blocksAsString)
                 .build());
         assertThat(updateMessage.getError(), is(nullValue()));
+
+        // To show the text instead of blocks
+        ChatUpdateResponse updateMessage2 = slack.methods().chatUpdate(ChatUpdateRequest.builder()
+                .channel(randomChannelId)
+                .token(token)
+                .ts(postResponse.getTs())
+                .blocksAsString("[]")
+                .text("modified2")
+                .build());
+        assertThat(updateMessage2.getError(), is(nullValue()));
     }
 
 }

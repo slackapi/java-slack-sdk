@@ -38,6 +38,11 @@
         "is_distributed": "",
         "is_directory_approved": "",
         "scopes": ""
+      },
+      "message": {
+        "team": "",
+        "channel": "",
+        "timestamp": ""
       }
     }
   ],

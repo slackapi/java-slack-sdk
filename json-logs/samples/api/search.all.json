@@ -1378,7 +1378,8 @@
         "thumb_pdf_w": 12345,
         "thumb_pdf_h": 12345,
         "thumb_360_gif": "https://www.example.com/",
-        "deanimate_gif": "https://www.example.com/"
+        "deanimate_gif": "https://www.example.com/",
+        "thumb_tiny": ""
       }
     ]
   },

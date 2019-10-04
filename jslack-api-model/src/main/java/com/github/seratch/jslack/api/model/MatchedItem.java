@@ -187,6 +187,8 @@ public class MatchedItem {
     @SerializedName("thumb_1024_h")
     private String thumb1024Height;
 
+    private String thumbTiny;
+
     private String thumbPdf;
     @SerializedName("thumb_pdf_w")
     private String thumbPdfWidth;
@@ -204,6 +206,9 @@ public class MatchedItem {
     private boolean topFile;
 
     private String deanimateGif;
+
+    private String channelActionsTs;
+    private Integer channelActionsCount;
 
     @Data
     public static class OtherItem {

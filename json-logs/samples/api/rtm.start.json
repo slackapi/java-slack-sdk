@@ -430,6 +430,11 @@
         "type": [
           ""
         ]
+      },
+      "who_can_create_workflows": {
+        "type": [
+          ""
+        ]
       }
     },
     "icon": {

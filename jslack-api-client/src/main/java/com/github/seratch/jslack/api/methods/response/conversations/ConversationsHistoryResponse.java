@@ -20,5 +20,7 @@ public class ConversationsHistoryResponse implements SlackApiResponse {
     private List<Message> messages;
     private boolean hasMore;
     private Integer pinCount;
+    private String channelActionsTs;
+    private Integer channelActionsCount;
     private ResponseMetadata responseMetadata;
 }

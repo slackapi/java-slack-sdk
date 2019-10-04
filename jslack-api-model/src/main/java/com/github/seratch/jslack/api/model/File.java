@@ -133,6 +133,8 @@ public class File {
     @SerializedName("thumb_pdf_h")
     private String thumbPdfHeight;
 
+    private String thumbTiny;
+
     private String convertedPdf;
 
     private Integer imageExifRotation;
@@ -194,6 +196,9 @@ public class File {
     private List<String> pinnedTo;
     private List<Reaction> reactions;
     private Integer commentsCount;
+
+    private String channelActionsTs;
+    private Integer channelActionsCount;
 
     private List<Attachment> attachments;
     private List<LayoutBlock> blocks;

@@ -104,7 +104,8 @@
         "external_id": "",
         "external_url": "https://www.example.com/",
         "has_rich_preview": false,
-        "preview": ""
+        "preview": "",
+        "thumb_tiny": ""
       }
     ]
   },

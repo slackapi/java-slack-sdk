@@ -18,4 +18,6 @@ public class MpimHistoryResponse implements SlackApiResponse {
     private String latest;
     private List<Message> messages;
     private boolean hasMore;
+    private String channelActionsTs;
+    private Integer channelActionsCount;
 }

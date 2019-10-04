@@ -552,6 +552,7 @@
       "thumb_pdf": "",
       "thumb_pdf_w": "",
       "thumb_pdf_h": "",
+      "thumb_tiny": "",
       "converted_pdf": "",
       "image_exif_rotation": 123,
       "original_w": "",
@@ -578,6 +579,8 @@
       "num_stars": 123,
       "is_starred": false,
       "comments_count": 123,
+      "channel_actions_ts": "",
+      "channel_actions_count": 123,
       "shares": {
         "public": {
           "C03E94MKU": [
@@ -705,6 +708,7 @@
         "thumb_pdf": "",
         "thumb_pdf_w": "",
         "thumb_pdf_h": "",
+        "thumb_tiny": "",
         "converted_pdf": "",
         "image_exif_rotation": 123,
         "original_w": "",
@@ -731,6 +735,8 @@
         "num_stars": 123,
         "is_starred": false,
         "comments_count": 123,
+        "channel_actions_ts": "",
+        "channel_actions_count": 123,
         "shares": {
           "public": {
             "C03E94MKU": [

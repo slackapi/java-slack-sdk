@@ -57,7 +57,8 @@
       "image_exif_rotation": 12345,
       "original_w": 12345,
       "original_h": 12345,
-      "num_stars": 12345
+      "num_stars": 12345,
+      "thumb_tiny": ""
     }
   ],
   "response_metadata": {

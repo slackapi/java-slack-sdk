@@ -24,6 +24,7 @@ public class SchemasResponse implements AuditApiResponse {
         private File file;
         private Channel channel;
         private App app;
+        private Message message;
     }
 
     @Data
@@ -74,4 +75,12 @@ public class SchemasResponse implements AuditApiResponse {
         private String isDirectoryApproved;
         private String scopes;
     }
+
+    @Data
+    public static class Message {
+        private String team;
+        private String channel;
+        private String timestamp;
+    }
+
 }
