@@ -56,6 +56,11 @@ public class ChatScheduleMessageRequest implements SlackApiRequest {
     private List<Attachment> attachments;
 
     /**
+     * A JSON-based array of structured attachments, presented as a URL-encoded string.
+     */
+    private String attachmentsAsString;
+
+    /**
      * A JSON-based array of structured blocks, presented as a URL-encoded string.
      */
     private List<LayoutBlock> blocks;

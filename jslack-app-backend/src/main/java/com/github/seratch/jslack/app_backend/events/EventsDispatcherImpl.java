@@ -10,11 +10,24 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
 public class EventsDispatcherImpl implements EventsDispatcher {
 
     private final ConcurrentMap<String, List<EventHandler<?>>> eventTypeAndHandlers = new ConcurrentHashMap<>();
+
+    private AtomicBoolean closed = new AtomicBoolean(false);
+
+    private long maxTerminationDelayMillis = 10000L;
+
+    public long getMaxTerminationDelayMillis() {
+        return maxTerminationDelayMillis;
+    }
+
+    public void setMaxTerminationDelayMillis(long maxTerminationDelayMillis) {
+        this.maxTerminationDelayMillis = maxTerminationDelayMillis;
+    }
 
     private final Queue<String> queue = new LinkedList<>();
 
@@ -90,17 +103,32 @@ public class EventsDispatcherImpl implements EventsDispatcher {
 
     @Override
     public void enqueue(String json) {
-        queue.add(json);
+        if (closed.get()) {
+            throw new IllegalStateException("EventDispatcher is stopping.");
+        } else {
+            queue.add(json);
+        }
     }
 
     @Override
     public void start() {
+        closed.set(false);
         eventLoopThread.start();
     }
 
     @Override
     public void stop() {
-        eventLoopThread.interrupt();
+        try {
+            closed.set(true);
+            long waitMillis = 0;
+            while (queue.size() > 1 & waitMillis < getMaxTerminationDelayMillis()) {
+                Thread.sleep(50L);
+            }
+            eventLoopThread.interrupt();
+        } catch (InterruptedException e) {
+            eventLoopThread.interrupt();
+            Thread.currentThread().interrupt();
+        }
     }
 
 }

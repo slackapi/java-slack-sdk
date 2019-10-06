@@ -9,7 +9,6 @@ import util.ObjectInitializer;
 import util.sample_json_generation.ObjectToJsonDumper;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 @Slf4j

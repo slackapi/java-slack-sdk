@@ -1,4 +1,4 @@
-package com.github.seratch.jslack.app_backend.interactive_messages.response;
+package com.github.seratch.jslack.app_backend.dialogs.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BlockSuggestionResponse {
-
+public class OptionGroup {
+    private String label;
     private List<Option> options;
-    private List<OptionGroup> optionGroups;
-
 }

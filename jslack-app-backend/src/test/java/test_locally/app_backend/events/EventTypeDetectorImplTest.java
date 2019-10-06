@@ -2,7 +2,6 @@ package test_locally.app_backend.events;
 
 import com.github.seratch.jslack.app_backend.events.EventTypeExtractor;
 import com.github.seratch.jslack.app_backend.events.EventTypeExtractorImpl;
-import com.github.seratch.jslack.app_backend.events.EventsDispatcherImpl;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

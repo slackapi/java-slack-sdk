@@ -11,4 +11,5 @@ public class ViewsOpenRequest implements SlackApiRequest {
     private String token;
     private String triggerId;
     private View view;
+    private String viewAsString;
 }

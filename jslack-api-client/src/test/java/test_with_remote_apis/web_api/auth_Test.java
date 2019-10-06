@@ -46,6 +46,15 @@ public class auth_Test {
         assertThat(response.getUrl(), is(notNullValue()));
     }
 
+    @Test
+    public void authTest_grid() throws IOException, SlackApiException {
+        String token = System.getenv(Constants.SLACK_TEST_ADMIN_WORKSPACE_USER_OAUTH_ACCESS_TOKEN);
+        AuthTestResponse response = slack.methods().authTest(req -> req.token(token));
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getUrl(), is(notNullValue()));
+    }
+
     @Test(expected = IllegalStateException.class)
     public void authTest_missingToken() throws IOException, SlackApiException {
         SlackConfig config = new SlackConfig();

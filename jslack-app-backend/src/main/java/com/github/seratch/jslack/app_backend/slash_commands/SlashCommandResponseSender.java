@@ -1,23 +1,22 @@
-package com.github.seratch.jslack.app_backend.interactive_messages;
+package com.github.seratch.jslack.app_backend.slash_commands;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
-import com.github.seratch.jslack.app_backend.interactive_messages.response.ActionResponse;
+import com.github.seratch.jslack.app_backend.slash_commands.response.SlashCommandResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
 import okhttp3.Response;
 
 import java.io.IOException;
 
-@Deprecated // Use ActionResponseSender instead
-public class ResponseSender {
+public class SlashCommandResponseSender {
 
     private final Slack slack;
 
-    public ResponseSender(Slack slack) {
+    public SlashCommandResponseSender(Slack slack) {
         this.slack = slack;
     }
 
-    public WebhookResponse send(String responseUrl, ActionResponse response) throws IOException {
+    public WebhookResponse send(String responseUrl, SlashCommandResponse response) throws IOException {
         SlackHttpClient httpClient = slack.getHttpClient();
         Response httpResponse = httpClient.postJsonBody(responseUrl, response);
         String body = httpResponse.body().string();

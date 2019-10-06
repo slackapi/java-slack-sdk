@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface EventsApiPayload<E extends Event> {
 
+    String TYPE = "event_callback";
+
     // token
 
     String getToken();

@@ -11,6 +11,7 @@ import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockA
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.PayloadTypeDetector;
 import com.github.seratch.jslack.app_backend.interactive_messages.response.ActionResponse;
 import com.github.seratch.jslack.app_backend.interactive_messages.response.BlockSuggestionResponse;
+import com.github.seratch.jslack.app_backend.interactive_messages.response.Option;
 import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayload;
 import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayloadParser;
 import com.github.seratch.jslack.app_backend.vendor.aws.lambda.request.PayloadExtractor;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
 public class BlockKitBackend {
 
     @Slf4j
-    @WebServlet(urlPatterns = "/slack/events")
+    @WebServlet
     public static class SlackEventsServlet extends HttpServlet {
 
         // Configure these two env variables to run this servlet
@@ -83,9 +84,9 @@ public class BlockKitBackend {
 
                     BlockSuggestionResponse response = BlockSuggestionResponse.builder()
                             .options(Arrays.asList(
-                                    BlockSuggestionResponse.Option.builder().text(PlainTextObject.builder().text("label1").build()).value("v1").build(),
-                                    BlockSuggestionResponse.Option.builder().text(MarkdownTextObject.builder().text("label2").build()).value("v2").build(),
-                                    BlockSuggestionResponse.Option.builder().text(PlainTextObject.builder().text("label3").build()).value("v3").build()
+                                    Option.builder().text(PlainTextObject.builder().text("label1").build()).value("v1").build(),
+                                    Option.builder().text(MarkdownTextObject.builder().text("label2").build()).value("v2").build(),
+                                    Option.builder().text(PlainTextObject.builder().text("label3").build()).value("v3").build()
                             ))
                             .build();
                     String responseBody = gson.toJson(response);
@@ -131,7 +132,7 @@ public class BlockKitBackend {
         Server server = new Server(3000);
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);
-        handler.addServletWithMapping(SlackEventsServlet.class, "/*");
+        handler.addServletWithMapping(SlackEventsServlet.class, "/slack/events");
         server.start();
         server.join();
     }

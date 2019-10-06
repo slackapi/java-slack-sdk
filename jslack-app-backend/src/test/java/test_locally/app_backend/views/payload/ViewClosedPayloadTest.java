@@ -63,7 +63,7 @@ public class ViewClosedPayloadTest {
 
     @Test
     public void test() {
-        ViewClosedPayload payload = gson.fromJson(json,  ViewClosedPayload.class);
+        ViewClosedPayload payload = gson.fromJson(json, ViewClosedPayload.class);
         assertThat(payload.getToken(), is("random value"));
     }
 }

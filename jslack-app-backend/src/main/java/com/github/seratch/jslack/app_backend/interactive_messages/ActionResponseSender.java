@@ -8,12 +8,11 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
-@Deprecated // Use ActionResponseSender instead
-public class ResponseSender {
+public class ActionResponseSender {
 
     private final Slack slack;
 
-    public ResponseSender(Slack slack) {
+    public ActionResponseSender(Slack slack) {
         this.slack = slack;
     }
 

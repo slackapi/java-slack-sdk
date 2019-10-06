@@ -342,7 +342,9 @@ public class RequestFormBuilder {
             log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
         }
 
-        if (req.getAttachments() != null) {
+        if (req.getAttachmentsAsString() != null) {
+            form.add("attachments", req.getAttachmentsAsString());
+        } else if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
         }
@@ -382,7 +384,9 @@ public class RequestFormBuilder {
             log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
         }
 
-        if (req.getAttachments() != null) {
+        if (req.getAttachmentsAsString() != null) {
+            form.add("attachments", req.getAttachmentsAsString());
+        } else if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
         }
@@ -410,7 +414,9 @@ public class RequestFormBuilder {
             log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
         }
 
-        if (req.getAttachments() != null) {
+        if (req.getAttachmentsAsString() != null) {
+            form.add("attachments", req.getAttachmentsAsString());
+        } else if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
         }
@@ -443,7 +449,9 @@ public class RequestFormBuilder {
             log.warn("Although you set both blocksAsString and blocks, only blocksAsString was used.");
         }
 
-        if (req.getAttachments() != null) {
+        if (req.getAttachmentsAsString() != null) {
+            form.add("attachments", req.getAttachmentsAsString());
+        } else if (req.getAttachments() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
         }
@@ -609,9 +617,11 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(DialogOpenRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("trigger_id", req.getTriggerId(), form);
-        if (req.getDialog() != null) {
+        if (req.getDialogAsString() != null) {
+            setIfNotNull("dialog", req.getDialogAsString(), form);
+        } else if (req.getDialog() != null) {
             String json = GsonFactory.createSnakeCase().toJson(req.getDialog());
-            form.add("dialog", json);
+            setIfNotNull("dialog", json, form);
         }
         return form;
     }
@@ -1428,20 +1438,32 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(ViewsOpenRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("trigger_id", req.getTriggerId(), form);
-        setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        if (req.getViewAsString() != null) {
+            setIfNotNull("view", req.getViewAsString(), form);
+        } else {
+            setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        }
         return form;
     }
 
     public static FormBody.Builder toForm(ViewsPushRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("trigger_id", req.getTriggerId(), form);
-        setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        if (req.getViewAsString() != null) {
+            setIfNotNull("view", req.getViewAsString(), form);
+        } else {
+            setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        }
         return form;
     }
 
     public static FormBody.Builder toForm(ViewsUpdateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
-        setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        if (req.getViewAsString() != null) {
+            setIfNotNull("view", req.getViewAsString(), form);
+        } else {
+            setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        }
         setIfNotNull("external_id", req.getExternalId(), form);
         setIfNotNull("hash", req.getHash(), form);
         setIfNotNull("view_id", req.getViewId(), form);
