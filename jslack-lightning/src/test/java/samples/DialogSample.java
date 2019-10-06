@@ -28,6 +28,7 @@ public class DialogSample {
         App app = new App(config);
 
         app.command("/dialog", (req, ctx) -> {
+            // https://github.com/seratch/jslack/blob/master/jslack-lightning/src/test/resources/dialogs/dialog.json
             String dialog = ResourceLoader.load("dialogs/dialog.json");
             DialogOpenResponse apiResponse = ctx.client().dialogOpen(r -> r
                     .triggerId(req.getPayload().getTriggerId())
@@ -41,7 +42,7 @@ public class DialogSample {
             }
         });
 
-        app.dialogSubmission("dialog", (req, ctx) -> {
+        app.dialogSubmission("dialog-callback-id", (req, ctx) -> {
             if (req.getPayload().getSubmission().get("comment").length() < 10) {
                 List<Error> errors = Arrays.asList(
                         new Error("comment", "must be longer than 10 characters"));
@@ -52,7 +53,7 @@ public class DialogSample {
             }
         });
 
-        app.dialogSuggestion("dialog", (req, ctx) -> {
+        app.dialogSuggestion("dialog-callback-id", (req, ctx) -> {
             String keyword = req.getPayload().getValue();
             List<Option> options = allOptions.stream()
                     .filter(o -> o.getLabel().contains(keyword))
@@ -60,7 +61,7 @@ public class DialogSample {
             return ctx.ack(r -> r.options(options));
         });
 
-        app.dialogCancellation("dialog", (req, ctx) -> {
+        app.dialogCancellation("dialog-callback-id", (req, ctx) -> {
             ctx.respond(r -> r.text("Next time :smile:"));
             return ctx.ack();
         });

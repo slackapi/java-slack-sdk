@@ -16,6 +16,7 @@ public class MessageActionSample {
 
         // https://api.slack.com/apps/{your apiAppId}/interactive-messages
         app.messageAction("open-view", (req, ctx) -> {
+            // https://github.com/seratch/jslack/blob/master/jslack-lightning/src/test/resources/views/view3.json
             String view = ResourceLoader.load("views/view3.json");
 
             ChatGetPermalinkResponse permalinkResponse = ctx.client().chatGetPermalink(r -> r

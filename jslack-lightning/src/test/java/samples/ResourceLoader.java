@@ -22,6 +22,7 @@ public class ResourceLoader {
     public static AppConfig loadAppConfig() {
         AppConfig config = new AppConfig();
         ClassLoader classLoader = DialogSample.class.getClassLoader();
+        // https://github.com/seratch/jslack/blob/master/jslack-lightning/src/test/resources/
         try (InputStream is = classLoader.getResourceAsStream("appConfig.json");
              InputStreamReader isr = new InputStreamReader(is)) {
             String json = new BufferedReader(isr).lines().collect(joining());

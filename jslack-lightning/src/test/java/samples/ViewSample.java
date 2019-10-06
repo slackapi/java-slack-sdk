@@ -36,6 +36,7 @@ public class ViewSample {
             return chain.next(req);
         });
 
+        // https://github.com/seratch/jslack/blob/master/jslack-lightning/src/test/resources/
         String view1 = ResourceLoader.load("views/view1.json");
         app.command("/view", (req, ctx) -> {
             ViewsOpenResponse apiResponse = ctx.client().viewsOpen(r -> r
@@ -49,6 +50,7 @@ public class ViewSample {
             }
         });
 
+        // block_id: (any) action_id: topics-input
         app.blockSuggestion("topics-input", (req, ctx) -> {
             String keyword = req.getPayload().getValue();
             List<Option> options = allOptions.stream()
@@ -61,14 +63,18 @@ public class ViewSample {
             }
         });
 
+        // block_id: (any) action_id: topics-input
         app.blockAction("topics-input", (req, ctx) -> {
             return ctx.ack();
         });
+        // block_id: (any) action_id: rating-input
         app.blockAction("rating-input", (req, ctx) -> {
             return ctx.ack();
         });
 
         String view2 = ResourceLoader.load("views/view2.json");
+
+        // callback_id: view-callback-id
         app.viewSubmission("view-callback-id", (req, ctx) -> {
             log.info("state - {}", req.getPayload().getView().getState());
             ViewState state = req.getPayload().getView().getState();
@@ -86,15 +92,18 @@ public class ViewSample {
             }
         });
 
+        // callback_id: app-satisfaction-survey (view2)
         app.viewSubmission("app-satisfaction-survey", (req, ctx) -> {
             View view = req.getPayload().getView();
             log.info("state - {}, private_metadata - {}", view.getState(), view.getPrivateMetadata());
             return ctx.ack(); // just close the view
         });
 
+        // callback_id: view-callback-id
         app.viewClosed("view-callback-id", (req, ctx) -> {
             return ctx.ack();
         });
+        // callback_id: app-satisfaction-survey (view2)
         app.viewClosed("app-satisfaction-survey", (req, ctx) -> {
             return ctx.ack();
         });

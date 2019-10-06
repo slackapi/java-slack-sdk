@@ -13,6 +13,7 @@ public class OutgoingWebhooksSample {
 
     public static void main(String[] args) throws Exception {
         AppConfig config = ResourceLoader.loadAppConfig();
+        // https://github.com/seratch/jslack/blob/master/jslack-lightning/src/test/resources/
         String verificationToken = ResourceLoader.load("verificationToken.txt");
         App app = new App(config, Arrays.asList(
                 // x-slack-signature unsupported

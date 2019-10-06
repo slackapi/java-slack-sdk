@@ -1,5 +1,5 @@
 {
-  "callback_id": "dialog",
+  "callback_id": "dialog-callback-id",
   "title": "Request a Ride",
   "submit_label": "Request",
   "notify_on_cancel": true,
