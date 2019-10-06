@@ -11,9 +11,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BlockSuggestionResponse {
-
+public class OptionGroup {
+    private String label;
     private List<Option> options;
-    private List<OptionGroup> optionGroups;
-
 }

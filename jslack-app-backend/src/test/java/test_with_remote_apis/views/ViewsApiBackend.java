@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 public class ViewsApiBackend {
 
     @Slf4j
-    @WebServlet(urlPatterns = "/slack/events")
+    @WebServlet
     public static class SlackEventsServlet extends HttpServlet {
 
         // Configure these two env variables to run this servlet
@@ -182,7 +182,7 @@ public class ViewsApiBackend {
         Server server = new Server(3000);
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);
-        handler.addServletWithMapping(SlackEventsServlet.class, "/*");
+        handler.addServletWithMapping(SlackEventsServlet.class, "/slack/events");
         server.start();
         server.join();
     }

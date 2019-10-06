@@ -68,6 +68,11 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     private List<Attachment> attachments;
 
     /**
+     * A JSON-based array of structured attachments, presented as a URL-encoded string.
+     */
+    private String attachmentsAsString;
+
+    /**
      * Pass true to enable unfurling of primarily text-based content.
      */
     private boolean unfurlLinks;

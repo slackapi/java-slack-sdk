@@ -127,6 +127,15 @@ public class SlackSignature {
                 String requestSignature,
                 long nowInMillis) {
 
+            if (log.isDebugEnabled()) {
+                log.debug("Request verification - secret: {}, timestamp: {}, body: {}, signature: {}",
+                        signatureGenerator.slackSigningSecret,
+                        requestTimestamp,
+                        requestBody,
+                        requestSignature
+                );
+            }
+
             if (signatureGenerator == null) {
                 throw new IllegalStateException("SlackSignature.Generator is required");
             }

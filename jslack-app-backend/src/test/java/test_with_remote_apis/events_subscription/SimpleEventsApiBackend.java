@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 public class SimpleEventsApiBackend {
 
     @Slf4j
-    @WebServlet(urlPatterns = "/slack/events")
+    @WebServlet
     public static class SlackEventsServlet extends SlackEventsApiServlet {
         @Override
         protected void setupDispatcher(EventsDispatcher dispatcher) {
@@ -32,7 +32,7 @@ public class SimpleEventsApiBackend {
         Server server = new Server(3000);
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);
-        handler.addServletWithMapping(SlackEventsServlet.class, "/*");
+        handler.addServletWithMapping(SlackEventsServlet.class, "/slack/events");
         server.start();
         server.join();
     }

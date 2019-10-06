@@ -19,6 +19,8 @@ public class DialogOpenRequest implements SlackApiRequest {
      */
     private Dialog dialog;
 
+    private String dialogAsString;
+
     /**
      * Exchange a trigger to post to the user.
      * <p>

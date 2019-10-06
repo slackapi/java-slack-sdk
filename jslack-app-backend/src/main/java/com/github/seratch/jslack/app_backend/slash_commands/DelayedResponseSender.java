@@ -8,6 +8,7 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
+@Deprecated // Use CommandResponseSender instead
 public class DelayedResponseSender {
 
     private final SlackHttpClient httpClient;

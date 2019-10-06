@@ -2,6 +2,7 @@ package com.github.seratch.jslack.app_backend.util;
 
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.AttachmentActionPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
+import com.github.seratch.jslack.app_backend.outgoing_webhooks.payload.WebhookPayload;
 import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayload;
 
 // Use SlackSignature instead
@@ -20,6 +21,10 @@ public class RequestTokenVerifier {
 
     public RequestTokenVerifier(String verificationToken) {
         this.verificationToken = verificationToken;
+    }
+
+    public boolean isValid(WebhookPayload payload) {
+        return payload != null && isValid(payload.getToken());
     }
 
     public boolean isValid(AttachmentActionPayload payload) {

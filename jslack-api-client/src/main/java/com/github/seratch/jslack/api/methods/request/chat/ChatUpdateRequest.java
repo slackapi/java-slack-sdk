@@ -60,6 +60,11 @@ public class ChatUpdateRequest implements SlackApiRequest {
     private List<Attachment> attachments;
 
     /**
+     * A JSON-based array of structured attachments, presented as a URL-encoded string.
+     */
+    private String attachmentsAsString;
+
+    /**
      * Find and link channel names and usernames.
      */
     private boolean linkNames;

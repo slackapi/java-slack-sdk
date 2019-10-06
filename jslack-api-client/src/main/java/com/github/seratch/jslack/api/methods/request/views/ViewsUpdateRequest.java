@@ -10,6 +10,7 @@ import lombok.Data;
 public class ViewsUpdateRequest implements SlackApiRequest {
     private String token;
     private View view;
+    private String viewAsString;
     private String externalId;
     private String hash;
     private String viewId;
