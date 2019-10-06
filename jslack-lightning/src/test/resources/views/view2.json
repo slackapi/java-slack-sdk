@@ -1,0 +1,91 @@
+{
+  "callback_id": "app-satisfaction-survey",
+  "type": "modal",
+  "notify_on_close": true,
+  "title": {
+    "type": "plain_text",
+    "text": "Meeting Arrangement",
+    "emoji": true
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit",
+    "emoji": true
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Cancel",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Thank you!*"
+      }
+    },
+    {
+      "block_id": "rating",
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Your rating of this app*"
+      },
+      "accessory": {
+        "action_id": "rating-input",
+        "type": "static_select",
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Rating (1-3)",
+          "emoji": true
+        },
+        "options": [
+          {
+            "text": {
+              "type": "plain_text",
+              "text": ":star::star::star:",
+              "emoji": true
+            },
+            "value": "3"
+          },
+          {
+            "text": {
+              "type": "plain_text",
+              "text": ":star::star:",
+              "emoji": true
+            },
+            "value": "2"
+          },
+          {
+            "text": {
+              "type": "plain_text",
+              "text": ":star:",
+              "emoji": true
+            },
+            "value": "1"
+          }
+        ]
+      }
+    },
+    {
+      "block_id": "feedback",
+      "type": "input",
+      "optional": true,
+      "element": {
+        "action_id": "feedback-input",
+        "type": "plain_text_input",
+        "multiline": true,
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Let us know of any feedback!"
+        }
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Feedback",
+        "emoji": true
+      }
+    }
+  ]
+}

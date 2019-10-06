@@ -1,0 +1,50 @@
+{
+  "callback_id": "read-it-later",
+  "type": "modal",
+  "private_metadata": "REPLACE_WITH_SOME_DATA",
+  "title": {
+    "type": "plain_text",
+    "text": "Read It Later",
+    "emoji": true
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit",
+    "emoji": true
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Cancel",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "REPLACE_WITH_THE_URL"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "REPLACE_WITH_THE_MESSAGE"
+      }
+    },
+    {
+      "block_id": "memo",
+      "type": "input",
+      "element": {
+        "action_id": "memo-input",
+        "type": "plain_text_input",
+        "multiline": true
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Memo",
+        "emoji": true
+      }
+    }
+  ]
+}

@@ -21,3 +21,6 @@ logs/
 json-logs/raw
 
 .DS_Store
+
+appConfig.json
+verificationToken.txt
