@@ -10,6 +10,8 @@ import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.util.JsonOps;
 import lombok.extern.slf4j.Slf4j;
+import samples.util.ResourceLoader;
+import samples.util.TestSlackAppServer;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,11 +32,6 @@ public class ViewSample {
     public static void main(String[] args) throws Exception {
         AppConfig config = ResourceLoader.loadAppConfig();
         App app = new App(config);
-
-        app.use((req, chain) -> {
-            log.info("request - {}", req);
-            return chain.next(req);
-        });
 
         // https://github.com/seratch/jslack/blob/master/jslack-lightning/src/test/resources/
         String view1 = ResourceLoader.load("views/view1.json");

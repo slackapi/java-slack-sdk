@@ -1,10 +1,11 @@
-package samples;
+package samples.util;
 
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
+import samples.DialogSample;
 
 import java.io.BufferedReader;
 import java.io.IOException;

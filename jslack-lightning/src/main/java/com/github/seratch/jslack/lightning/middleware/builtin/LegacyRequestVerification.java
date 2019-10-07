@@ -32,7 +32,7 @@ public class LegacyRequestVerification implements Middleware {
     }
 
     @Override
-    public Response apply(Request req, MiddlewareChain chain) throws Exception {
+    public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
         String actualToken = null;
         String body = req.getRequestBodyAsString();
         String json = jsonPayloadExtractor.extractIfExists(body);

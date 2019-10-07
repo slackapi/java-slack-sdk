@@ -6,6 +6,8 @@ import com.github.seratch.jslack.api.model.view.View;
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;
 import lombok.extern.slf4j.Slf4j;
+import samples.util.ResourceLoader;
+import samples.util.TestSlackAppServer;
 
 @Slf4j
 public class MessageActionSample {

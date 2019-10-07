@@ -5,6 +5,8 @@ import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.middleware.builtin.LegacyRequestVerification;
 import com.github.seratch.jslack.lightning.middleware.builtin.SingleTeamAuthorization;
 import lombok.extern.slf4j.Slf4j;
+import samples.util.ResourceLoader;
+import samples.util.TestSlackAppServer;
 
 import java.util.Arrays;
 
@@ -21,7 +23,7 @@ public class OutgoingWebhooksSample {
                 new SingleTeamAuthorization(config)
         ));
 
-        app.webhook("seratch", (req, ctx) -> {
+        app.webhook("something", (req, ctx) -> {
             log.info("outgoing webhook - {}", req);
             return ctx.ack(r -> r.text("Hello " + req.getPayload().getUserName()));
         });

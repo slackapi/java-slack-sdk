@@ -20,7 +20,7 @@ public abstract class MultiTeamsAuthorization implements Middleware {
     }
 
     @Override
-    public Response apply(Request req, MiddlewareChain chain) throws Exception {
+    public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
         Context context = req.getContext();
         AppInstallation appInstallation = findInstalledTeam(context.getEnterpriseId(), context.getTeamId());
         try {
