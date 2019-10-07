@@ -36,6 +36,8 @@ fun main() {
         val options = allOptions.filter { (it.text as PlainTextObject).text.contains(keyword) }
         ctx.ack { it.options(if (options.isEmpty()) allOptions else options) }
     }
+    // when a user chooses an item from the "Topics"
+    app.blockAction("topics-input") { _, ctx -> ctx.ack() }
 
     // when a user clicks "Submit"
     app.viewSubmission("meeting-arrangement") { req, ctx ->
