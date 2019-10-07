@@ -18,6 +18,7 @@
         <module>jslack-app-backend</module>
         <module>jslack-lightning</module>
         <module>jslack-lightning-jetty</module>
+        <module>jslack-lightning-kotlin-examples</module>
     </modules>
 
     <parent>
@@ -136,6 +137,14 @@
     <profiles>
         <profile>
             <id>release-sign-artifacts</id>
+            <modules>
+                <module>jslack-all</module>
+                <module>jslack-api-client</module>
+                <module>jslack-api-model</module>
+                <module>jslack-app-backend</module>
+                <module>jslack-lightning</module>
+                <module>jslack-lightning-jetty</module>
+            </modules>
             <activation>
                 <property>
                     <name>performRelease</name>

@@ -6,6 +6,8 @@ import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.util.JsonOps;
 import lombok.extern.slf4j.Slf4j;
+import samples.util.ResourceLoader;
+import samples.util.TestSlackAppServer;
 
 @Slf4j
 public class AttachmentActionSample {
@@ -13,11 +15,6 @@ public class AttachmentActionSample {
     public static void main(String[] args) throws Exception {
         AppConfig config = ResourceLoader.loadAppConfig();
         App app = new App(config);
-
-        app.use((req, chain) -> {
-            log.info("request - {}", req);
-            return chain.next(req);
-        });
 
         // https://github.com/seratch/jslack/blob/master/jslack-lightning/src/test/resources/attachments/message1.json
         String firstMessage = ResourceLoader.load("attachments/message1.json");

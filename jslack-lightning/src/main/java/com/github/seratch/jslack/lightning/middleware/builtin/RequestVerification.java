@@ -17,7 +17,7 @@ public class RequestVerification implements Middleware {
     }
 
     @Override
-    public Response apply(Request req, MiddlewareChain chain) throws Exception {
+    public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
         if (req.isValid(verifier)) {
             return chain.next(req);
         } else {

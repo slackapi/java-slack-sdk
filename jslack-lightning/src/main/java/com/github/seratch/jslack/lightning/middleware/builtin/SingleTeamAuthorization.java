@@ -17,18 +17,20 @@ public class SingleTeamAuthorization implements Middleware {
     }
 
     @Override
-    public Response apply(Request req, MiddlewareChain chain) throws Exception {
+    public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
         Context context = req.getContext();
         AuthTestResponse authResult = context.client().authTest(r -> r.token(appConfig.getSingleTeamBotToken()));
         if (authResult.isOk()) {
             if (context.getBotToken() == null) {
                 context.setBotToken(appConfig.getSingleTeamBotToken());
             }
+            context.setBotUserId(authResult.getUserId());
             context.setTeamId(authResult.getTeamId());
             context.setEnterpriseId(authResult.getEnterpriseId());
             return chain.next(req);
         } else {
-            return Response.error(500);
+            resp.setStatusCode(500);
+            return resp;
         }
     }
 }

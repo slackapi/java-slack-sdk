@@ -1,6 +1,7 @@
-package com.github.seratch.jslack.lightning.servlet;
+package com.github.seratch.jslack.lightning.jetty;
 
 import com.github.seratch.jslack.lightning.App;
+import com.github.seratch.jslack.lightning.servlet.SlackAppServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;

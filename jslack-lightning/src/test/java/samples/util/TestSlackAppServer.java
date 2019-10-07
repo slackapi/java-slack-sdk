@@ -1,4 +1,4 @@
-package samples;
+package samples.util;
 
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.servlet.SlackAppServlet;
