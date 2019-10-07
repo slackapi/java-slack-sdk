@@ -5,7 +5,7 @@
 
     <groupId>com.github.seratch</groupId>
     <artifactId>jslack-modules</artifactId>
-    <version>3.0.0-M1</version>
+    <version>3.0.0-M2</version>
     <packaging>pom</packaging>
 
     <name>jSlack project</name>
@@ -137,14 +137,6 @@
     <profiles>
         <profile>
             <id>release-sign-artifacts</id>
-            <modules>
-                <module>jslack-all</module>
-                <module>jslack-api-client</module>
-                <module>jslack-api-model</module>
-                <module>jslack-app-backend</module>
-                <module>jslack-lightning</module>
-                <module>jslack-lightning-jetty</module>
-            </modules>
             <activation>
                 <property>
                     <name>performRelease</name>

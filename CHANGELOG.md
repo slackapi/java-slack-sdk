@@ -1,5 +1,20 @@
 # jSlack Release Notes
 
+## version 3.0.0 (2019-10-XX)
+
+* 783507b Add Lightning, new module to build Slack apps quickly ⚡ by Kazuhiro Sera
+* e5deef6 Apply a bunch of improvements for Slack app dev by Kazuhiro Sera
+* 773a699 Add include_num_members to conversations.info params by Kazuhiro Sera
+
+### Incompatibility
+
+The following classes are no longer internal classes. They are in the same package as independent ones.
+ 
+* DialogSuggestionResponse.Option
+* DialogSuggestionResponse.OptionGroup
+* BlockSuggestionResponse.Option
+* BlockSuggestionResponse.OptionGroup
+
 ## version 2.2.3 (2019-10-02)
 
 * c27dbd1 #224 Add block_suggestion support by Kazuhiro Sera
