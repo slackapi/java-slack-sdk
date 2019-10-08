@@ -27,9 +27,14 @@ public class users_Test {
     @Test
     public void showUsers() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-        UsersListResponse users = slack.methods().usersList(r -> r
-                .token(token)
-                .limit(100));
+        UsersListResponse users = slack.methods(token).usersList(r -> r.includeLocale(true).limit(100));
+        assertThat(users.getError(), is(nullValue()));
+
+        UsersInfoResponse usersInfo = slack.methods(token)
+                .usersInfo(r -> r.user(users.getMembers().get(0).getId()).includeLocale(true));
+        assertThat(usersInfo.getError(), is(nullValue()));
+        assertThat(usersInfo.getUser().getLocale(), is(notNullValue()));
+
         for (User member : users.getMembers()) {
             log.info("user id: {} , name: {}", member.getId(), member.getName());
         }

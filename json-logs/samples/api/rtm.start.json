@@ -435,7 +435,8 @@
         "type": [
           ""
         ]
-      }
+      },
+      "invite_requests_admin_apis": false
     },
     "icon": {
       "image_34": "https://www.example.com/",

@@ -64,7 +64,8 @@
           "T00000000"
         ]
       },
-      "two_factor_type": ""
+      "two_factor_type": "",
+      "locale": ""
     }
   ],
   "cache_ts": 12345,
