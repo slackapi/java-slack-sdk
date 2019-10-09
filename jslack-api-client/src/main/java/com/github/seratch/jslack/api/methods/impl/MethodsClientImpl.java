@@ -131,6 +131,7 @@ import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.Credentials;
 import okhttp3.FormBody;
 import okhttp3.MultipartBody;
 import okhttp3.Response;
@@ -1241,7 +1242,12 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public OAuthAccessResponse oauthAccess(OAuthAccessRequest req) throws IOException, SlackApiException {
-        return doPostForm(toForm(req), Methods.OAUTH_ACCESS, OAuthAccessResponse.class);
+        FormBody.Builder form = new FormBody.Builder();
+        form.add("code", req.getCode());
+        form.add("redirect_uri", req.getRedirectUri());
+        form.add("single_channel", req.isSingleChannel() ? "1" : "0");
+        String authorizationHeader = Credentials.basic(req.getClientId(), req.getClientSecret());
+        return doPostFormWithAuthorizationHeader(form, endpointUrlPrefix + Methods.OAUTH_ACCESS, authorizationHeader, OAuthAccessResponse.class);
     }
 
     @Override
@@ -1750,6 +1756,15 @@ public class MethodsClientImpl implements MethodsClient {
             String endpoint,
             Class<T> clazz) throws IOException, SlackApiException {
         Response response = runPostForm(form, endpoint);
+        return parseJsonResponseAndRunListeners(response, clazz);
+    }
+
+    protected <T> T doPostFormWithAuthorizationHeader(
+            FormBody.Builder form,
+            String endpoint,
+            String authorizationHeader,
+            Class<T> clazz) throws IOException, SlackApiException {
+        Response response = slackHttpClient.postFormWithAuthorizationHeader(endpoint, authorizationHeader, form.build());
         return parseJsonResponseAndRunListeners(response, clazz);
     }
 
