@@ -22,6 +22,7 @@ public class DialogSuggestionRequest extends Request<DialogSuggestionContext> {
         this.requestBody = requestBody;
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, DialogSuggestionPayload.class);
+        getContext().setRequestUserId(payload.getUser().getId());
     }
 
     private DialogSuggestionContext context = new DialogSuggestionContext();

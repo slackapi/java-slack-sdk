@@ -23,6 +23,7 @@ public class DialogCancellationRequest extends Request<DialogCancellationContext
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, DialogCancellationPayload.class);
         getContext().setResponseUrl(payload.getResponseUrl());
+        getContext().setRequestUserId(payload.getUser().getId());
     }
 
     private DialogCancellationContext context = new DialogCancellationContext();

@@ -24,7 +24,10 @@ public abstract class Context {
 
     protected String botToken;
     protected String botId; // set by MultiTeamsAuthorization
-    protected String botUserId; // set by MultiTeamsAuthorization
+    protected String botUserId;
+
+    protected String requestUserId;
+    protected String requestUserToken;
 
     protected final Map<String, String> additionalValues = new HashMap<>();
 

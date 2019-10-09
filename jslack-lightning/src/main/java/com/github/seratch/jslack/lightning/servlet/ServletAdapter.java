@@ -8,6 +8,7 @@ import com.github.seratch.jslack.app_backend.interactive_messages.payload.Attach
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockSuggestionPayload;
 import com.github.seratch.jslack.app_backend.message_actions.payload.MessageActionPayload;
+import com.github.seratch.jslack.app_backend.oauth.payload.VerificationCodePayload;
 import com.github.seratch.jslack.app_backend.util.JsonPayloadExtractor;
 import com.github.seratch.jslack.app_backend.util.OutgoingWebhooksRequestDetector;
 import com.github.seratch.jslack.app_backend.util.SlashCommandRequestDetector;
@@ -19,6 +20,7 @@ import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.RequestHeaders;
 import com.github.seratch.jslack.lightning.request.builtin.*;
 import com.github.seratch.jslack.lightning.response.Response;
+import com.github.seratch.jslack.lightning.util.QueryStringParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -101,6 +103,11 @@ public class ServletAdapter {
                     slackRequest = new SlashCommandRequest(requestBody, headers);
                 } else if (webhookRequestDetector.isWebhook(requestBody)) {
                     slackRequest = new OutgoingWebhooksRequest(requestBody, headers);
+                } else if (appConfig.isOAuthStartEnabled() && appConfig.getOauthStartRequestURI().equals(req.getRequestURI())) {
+                    slackRequest = new OAuthStartRequest(requestBody, headers);
+                } else if (appConfig.isOAuthCallbackEnabled() && appConfig.getOauthCallbackRequestURI().equals(req.getRequestURI())) {
+                    VerificationCodePayload payload = VerificationCodePayload.from(QueryStringParser.toMap(req.getQueryString()));
+                    slackRequest = new OAuthCallbackRequest(requestBody, payload, headers);
                 } else {
                     log.warn("No request pattern detected for {}", requestBody);
                 }

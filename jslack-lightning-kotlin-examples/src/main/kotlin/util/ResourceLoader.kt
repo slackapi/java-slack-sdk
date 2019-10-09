@@ -24,6 +24,16 @@ class ResourceLoader {
                         val j = Gson().fromJson(json, JsonElement::class.java).asJsonObject
                         config.signingSecret = j.get("signingSecret").asString
                         config.singleTeamBotToken = j.get("singleTeamBotToken").asString
+                        config.clientId = j.get("clientId").asString
+                        config.clientSecret = j.get("clientSecret").asString
+                        config.redirectUri = j.get("redirectUri").asString
+                        config.scope = j.get("scope").asString
+                        config.oauthStartPath = j.get("oauthStartPath").asString
+                        config.oauthCallbackPath = j.get("oauthCallbackPath").asString
+                        config.oauthCompletionUrl = j.get("oauthCompletionUrl").asString
+                        config.oauthCancellationUrl = j.get("oauthCancellationUrl").asString
+                        config.isOAuthStartEnabled = config.oauthStartPath != null
+                        config.isOAuthCallbackEnabled = config.oauthCallbackPath != null
                     }
                 }
             } catch (e: IOException) {

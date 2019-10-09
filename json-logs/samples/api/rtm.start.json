@@ -273,7 +273,8 @@
       },
       "msg_input_sticky_composer": false,
       "seen_workflow_builder_deluxe_toast": false,
-      "workflow_builder_intro_modal_clicked_through": false
+      "workflow_builder_intro_modal_clicked_through": false,
+      "has_received_threaded_message": false
     },
     "created": 12345,
     "manual_presence": ""
@@ -436,7 +437,12 @@
           ""
         ]
       },
-      "invite_requests_admin_apis": false
+      "invite_requests_admin_apis": false,
+      "who_can_create_ext_shared_channel_invites": {
+        "type": [
+          ""
+        ]
+      }
     },
     "icon": {
       "image_34": "https://www.example.com/",

@@ -10,17 +10,26 @@ import com.github.seratch.jslack.app_backend.events.EventsDispatcherFactory;
 import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
 import com.github.seratch.jslack.common.json.GsonFactory;
-import com.github.seratch.jslack.lightning.handler.LightningEventHandler;
+import com.github.seratch.jslack.lightning.handler.*;
 import com.github.seratch.jslack.lightning.handler.builtin.*;
 import com.github.seratch.jslack.lightning.middleware.Middleware;
 import com.github.seratch.jslack.lightning.middleware.builtin.IgnoringSelfEvents;
+import com.github.seratch.jslack.lightning.middleware.builtin.MultiTeamsAuthorization;
 import com.github.seratch.jslack.lightning.middleware.builtin.RequestVerification;
 import com.github.seratch.jslack.lightning.middleware.builtin.SingleTeamAuthorization;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.builtin.*;
 import com.github.seratch.jslack.lightning.response.Response;
+import com.github.seratch.jslack.lightning.service.InstallationService;
+import com.github.seratch.jslack.lightning.service.OAuthCallbackService;
+import com.github.seratch.jslack.lightning.service.OAuthStateService;
+import com.github.seratch.jslack.lightning.service.builtin.DefaultOAuthCallbackService;
+import com.github.seratch.jslack.lightning.service.builtin.FileInstallationService;
+import com.github.seratch.jslack.lightning.service.builtin.FileOAuthStateService;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,11 +39,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 @Slf4j
+@AllArgsConstructor
+@Builder(toBuilder = true)
 public class App {
 
     private final AppConfig appConfig;
     private final Slack slack;
-    private final List<Middleware> middlewareList;
+    private List<Middleware> middlewareList;
 
     private final Map<String, SlashCommandHandler> slashCommandHandlers = new HashMap<>();
     private final Map<String, AttachmentActionHandler> attachmentActionHandlers = new HashMap<>();
@@ -50,6 +61,16 @@ public class App {
     private final Map<String, OutgoingWebhooksHandler> outgoingWebhooksHandlers = new HashMap<>();
     private final EventsDispatcher eventsDispatcher = EventsDispatcherFactory.getInstance();
 
+    private OAuthStateService oAuthStateService = new FileOAuthStateService();
+    private InstallationService installationService = new FileInstallationService();
+    private OAuthCallbackService oAuthCallbackService = null;
+
+    private OAuthSuccessHandler oAuthSuccessHandler = new OAuthDefaultSuccessHandler(installationService);
+    private OAuthErrorHandler oAuthErrorHandler = new OAuthDefaultErrorHandler();
+    private OAuthAccessErrorHandler oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
+    private OAuthStateErrorHandler oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
+    private OAuthExceptionHandler oAuthExceptionHandler = new OAuthDefaultExceptionHandler();
+
     private static final Gson gson = GsonFactory.createSnakeCase();
 
     // --------------------------------------
@@ -61,7 +82,8 @@ public class App {
     }
 
     public App(AppConfig appConfig) {
-        this(appConfig, buildDefaultMiddlewareList(appConfig));
+        this(appConfig, null);
+        asOAuthApp(false); // disabled by default as the default mode would be for single team app
     }
 
     public App(AppConfig appConfig, List<Middleware> middlewareList) {
@@ -78,26 +100,50 @@ public class App {
     // public methods
     // --------------------------------------
 
+    public AppConfig config() {
+        return this.appConfig;
+    }
+
     public App start() {
-        log.info("⚡️ Your Lightning app is running!");
+        if (middlewareList == null) {
+            middlewareList = buildDefaultMiddlewareList(appConfig);
+        }
+        initOAuthServicesIfNecessary();
+
         this.eventsDispatcher.start();
         return this;
     }
 
     public App stop() {
-        log.info("⚡️ Your Lightning app has stopped.");
         this.eventsDispatcher.stop();
         return this;
     }
 
-    public AppConfig config() {
-        return this.appConfig;
+    public Response run(Request request) throws Exception {
+        request.getContext().setSlack(this.slack); // use the properly configured API client
+
+        LinkedList<Middleware> remaining = new LinkedList<>(middlewareList);
+        if (remaining.isEmpty()) {
+            return runHandler(request);
+        } else {
+            Middleware firstMiddleware = remaining.pop();
+            return runMiddleware(request, Response.ok(), firstMiddleware, remaining);
+        }
     }
 
+    // ----------------------
+    // Middleware registration methods
+
     public App use(Middleware middleware) {
+        if (this.middlewareList == null) {
+            this.middlewareList = buildDefaultMiddlewareList(config());
+        }
         this.middlewareList.add(middleware);
         return this;
     }
+
+    // ----------------------
+    // App routing methods
 
     public <E extends Event> App event(Class<E> eventClass, LightningEventHandler<E> handler) {
         String eventType = getEventType(eventClass);
@@ -205,23 +251,74 @@ public class App {
         return this;
     }
 
-    public Response run(Request request) throws Exception {
-        request.getContext().setSlack(this.slack); // use the properly configured API client
+    // ----------------------
+    // OAuth App configuration methods
 
-        LinkedList<Middleware> remaining = new LinkedList<>(middlewareList);
-        if (remaining.isEmpty()) {
-            return runHandler(request);
-        } else {
-            Middleware firstMiddleware = remaining.pop();
-            return runMiddleware(request, Response.ok(), firstMiddleware, remaining);
-        }
+    public App asOAuthApp(boolean enabled) {
+        config().setOAuthStartEnabled(enabled);
+        config().setOAuthCallbackEnabled(enabled);
+        return this;
+    }
+
+    public App service(OAuthCallbackService oAuthCallbackService) {
+        this.oAuthCallbackService = oAuthCallbackService;
+        return this;
+    }
+
+    public App service(OAuthStateService oAuthStateService) {
+        this.oAuthStateService = oAuthStateService;
+        return this;
+    }
+
+    public App service(InstallationService installationService) {
+        this.installationService = installationService;
+        return oauthCallback(new OAuthDefaultSuccessHandler(installationService));
+    }
+
+    public App oauthCallback(OAuthSuccessHandler handler) {
+        oAuthSuccessHandler = handler;
+        return this;
+    }
+
+    public App oauthCallbackError(OAuthErrorHandler handler) {
+        oAuthErrorHandler = handler;
+        return this;
+    }
+
+    public App oauthCallbackStateError(OAuthStateErrorHandler handler) {
+        oAuthStateErrorHandler = handler;
+        return this;
+    }
+
+    public App oauthCallbackAccessError(OAuthAccessErrorHandler handler) {
+        oAuthAccessErrorHandler = handler;
+        return this;
+    }
+
+    public App oauthCallbackException(OAuthExceptionHandler handler) {
+        oAuthExceptionHandler = handler;
+        return this;
+    }
+
+    public App toOAuthStartApp() {
+        App newApp = toBuilder().appConfig(config().toBuilder().build()).build();
+        newApp.config().setOAuthStartEnabled(true);
+        newApp.config().setOAuthCallbackEnabled(false);
+        return newApp;
+    }
+
+    public App toOAuthCallbackApp() {
+        App newApp = toBuilder().appConfig(config().toBuilder().build()).build();
+        newApp.config().setOAuthStartEnabled(false);
+        newApp.config().setOAuthCallbackEnabled(true);
+        return newApp;
     }
 
     // --------------------------------------
     // internal methods
     // --------------------------------------
 
-    protected static List<Middleware> buildDefaultMiddlewareList(AppConfig appConfig) {
+    protected List<Middleware> buildDefaultMiddlewareList(AppConfig appConfig) {
         List<Middleware> middlewareList = new ArrayList<>();
 
         // request verification
@@ -231,10 +328,12 @@ public class App {
         middlewareList.add(requestVerification);
 
         // single team authorization
-        if (appConfig.getSingleTeamBotToken() != null) {
-            middlewareList.add(new SingleTeamAuthorization(appConfig));
+        if (appConfig.isDistributedApp()) {
+            middlewareList.add(new MultiTeamsAuthorization(config(), installationService));
+        } else if (appConfig.getSingleTeamBotToken() != null) {
+            middlewareList.add(new SingleTeamAuthorization(config(), installationService));
         } else {
-            log.debug("Skipped adding SingleTeamAuthorization - you need to call `app.use(new YourOwnMultiTeamsAuthorization())`");
+            log.warn("Skipped adding any authorization middleware - you need to call `app.use(new YourOwnMultiTeamsAuthorization())`");
         }
 
         // ignoring the events generated by this bot user
@@ -259,6 +358,35 @@ public class App {
 
     protected Response runHandler(Request req) throws IOException, SlackApiException {
         switch (req.getRequestType()) {
+            case OAuthStart: {
+                if (config().isDistributedApp()) {
+                    try {
+                        String state = oAuthStateService.issueNewState();
+                        String url = config().getOauthInstallationUrl(state);
+                        Map<String, String> headers = new HashMap<>();
+                        if (url == null) {
+                            headers.put("Location", config().getOauthCancellationUrl());
+                        } else {
+                            headers.put("Location", url);
+                        }
+                        return Response.builder().statusCode(302).headers(headers).build();
+                    } catch (Exception e) {
+                        log.error("Failed to run the operation (error: {})", e.getMessage(), e);
+                    }
+                }
+                log.warn("Skipped to handle an OAuth callback request as this Lightning app is not ready for it");
+                return Response.builder().statusCode(500).body("something wrong").build();
+            }
+            case OAuthCallback: {
+                if (config().isDistributedApp()) {
+                    if (oAuthCallbackService != null) {
+                        OAuthCallbackRequest request = (OAuthCallbackRequest) req;
+                        return oAuthCallbackService.handle(request);
+                    }
+                }
+                log.warn("Skipped to handle an OAuth callback request as this Lightning app is not ready for it");
+                return Response.builder().statusCode(500).body("something wrong").build();
+            }
             case Command: {
                 SlashCommandRequest request = (SlashCommandRequest) req;
                 SlashCommandHandler handler = slashCommandHandlers.get(request.getPayload().getCommand());
@@ -455,6 +583,22 @@ public class App {
         private Integer eventTime;
 
         private transient Event event;
+    }
+
+    private void initOAuthServicesIfNecessary() {
+        if (appConfig.isDistributedApp() && appConfig.isOAuthCallbackEnabled()) {
+            if (this.oAuthCallbackService == null) {
+                this.oAuthCallbackService = new DefaultOAuthCallbackService(
+                        config(),
+                        oAuthStateService,
+                        oAuthSuccessHandler,
+                        oAuthErrorHandler,
+                        oAuthStateErrorHandler,
+                        oAuthAccessErrorHandler,
+                        oAuthExceptionHandler
+                );
+            }
+        }
     }
 
 }

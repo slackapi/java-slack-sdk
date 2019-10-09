@@ -22,6 +22,7 @@ public class ViewClosedRequest extends Request<DefaultContext> {
         this.requestBody = requestBody;
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, ViewClosedPayload.class);
+        getContext().setRequestUserId(payload.getUser().getId());
     }
 
     private DefaultContext context = new DefaultContext();

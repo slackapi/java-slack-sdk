@@ -23,6 +23,7 @@ public class OutgoingWebhooksRequest extends Request<OutgoingWebhooksContext> {
         this.requestBody = requestBody;
         this.headers = headers;
         this.payload = PAYLOAD_PARSER.parse(requestBody);
+        getContext().setRequestUserId(payload.getUserId());
     }
 
     private OutgoingWebhooksContext context = new OutgoingWebhooksContext();

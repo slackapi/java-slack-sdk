@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import lombok.extern.slf4j.Slf4j;
 
+import static com.github.seratch.jslack.lightning.middleware.MiddlewareOps.isOAuthRequest;
+
 @Deprecated
 @Slf4j
 public class LegacyRequestVerification implements Middleware {
@@ -33,7 +35,10 @@ public class LegacyRequestVerification implements Middleware {
 
     @Override
     public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
-        String actualToken = null;
+        if (isOAuthRequest(req.getRequestType())) {
+            return chain.next(req);
+        }
+        String actualToken;
         String body = req.getRequestBodyAsString();
         String json = jsonPayloadExtractor.extractIfExists(body);
         if (json != null) {

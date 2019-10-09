@@ -23,6 +23,7 @@ public class DialogSubmissionRequest extends Request<DialogSubmissionContext> {
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, DialogSubmissionPayload.class);
         getContext().setResponseUrl(payload.getResponseUrl());
+        getContext().setRequestUserId(payload.getUser().getId());
     }
 
     private DialogSubmissionContext context = new DialogSubmissionContext();
