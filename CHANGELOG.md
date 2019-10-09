@@ -2,6 +2,8 @@
 
 ## version 3.0.0 (2019-10-XX)
 
+* 995c587 Add OAuth flow support in Lightning by Kazuhiro Sera
+* 162dab1 Fix oauth.access API to use basic auth by Kazuhiro Sera
 * 783507b Add Lightning, new module to build Slack apps quickly ⚡ by Kazuhiro Sera
 * e5deef6 Apply a bunch of improvements for Slack app dev by Kazuhiro Sera
 * 773a699 Add include_num_members to conversations.info params by Kazuhiro Sera
