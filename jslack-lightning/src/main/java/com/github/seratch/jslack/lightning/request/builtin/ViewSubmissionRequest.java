@@ -22,6 +22,7 @@ public class ViewSubmissionRequest extends Request<ViewSubmissionContext> {
         this.requestBody = requestBody;
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, ViewSubmissionPayload.class);
+        getContext().setRequestUserId(payload.getUser().getId());
     }
 
     private ViewSubmissionContext context = new ViewSubmissionContext();

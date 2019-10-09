@@ -64,7 +64,11 @@ public class SlackHttpClient {
 
     public Response postFormWithBearerHeader(String url, String token, FormBody formBody) throws IOException {
         String bearerHeaderValue = "Bearer " + token;
-        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).post(formBody).build();
+        return postFormWithAuthorizationHeader(url, bearerHeaderValue, formBody);
+    }
+
+    public Response postFormWithAuthorizationHeader(String url, String authorizationHeader, FormBody formBody) throws IOException {
+        Request request = new Request.Builder().url(url).header("Authorization", authorizationHeader).post(formBody).build();
         return okHttpClient.newCall(request).execute();
     }
 

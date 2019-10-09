@@ -3,6 +3,7 @@ package com.github.seratch.jslack.lightning.request;
 import com.github.seratch.jslack.app_backend.SlackSignature;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.context.Context;
+import com.github.seratch.jslack.lightning.context.builtin.OAuthCallbackContext;
 import lombok.ToString;
 
 @ToString
@@ -21,9 +22,20 @@ public abstract class Request<CTX extends Context> {
     public abstract CTX getContext();
 
     public void updateContext(AppConfig config) {
+        // To use the properly configured Web API client
         getContext().setSlack(config.getSlack());
-        if (getContext().getBotToken() == null && config.getSingleTeamBotToken() != null) {
+
+        // When the app is a distributed app, Lightning enables MultiTeamsAuthorization
+        if (config.isDistributedApp() == false
+                && getContext().getBotToken() == null
+                && config.getSingleTeamBotToken() != null) {
             getContext().setBotToken(config.getSingleTeamBotToken());
+        }
+
+        if (config.isOAuthCallbackEnabled() && getContext() instanceof OAuthCallbackContext) {
+            OAuthCallbackContext ctx = (OAuthCallbackContext) getContext();
+            ctx.setOauthCompletionUrl(config.getOauthCompletionUrl());
+            ctx.setOauthCancellationUrl(config.getOauthCancellationUrl());
         }
     }
 

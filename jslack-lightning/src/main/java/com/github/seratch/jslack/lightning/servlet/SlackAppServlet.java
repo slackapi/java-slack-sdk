@@ -25,6 +25,7 @@ public class SlackAppServlet extends HttpServlet {
         this.adapter = new ServletAdapter(app.config());
     }
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Request slackReq = adapter.buildSlackRequest(req);
         if (slackReq != null) {

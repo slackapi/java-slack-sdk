@@ -20,7 +20,7 @@ public class OutgoingWebhooksSample {
         App app = new App(config, Arrays.asList(
                 // x-slack-signature unsupported
                 new LegacyRequestVerification(verificationToken),
-                new SingleTeamAuthorization(config)
+                new SingleTeamAuthorization(config, null)
         ));
 
         app.webhook("something", (req, ctx) -> {

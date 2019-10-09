@@ -91,7 +91,9 @@ public class IgnoringSelfEvents implements Middleware {
             BotsInfoResponse botInfo = client.botsInfo(r -> r.bot(botId));
             if (botInfo.isOk()) {
                 botUserId = botInfo.getBot().getUserId();
-                botIdToBotUserId.put(botId, botUserId);
+                if (botUserId != null) {
+                    botIdToBotUserId.put(botId, botUserId);
+                }
                 return botUserId;
             } else {
                 return null;
