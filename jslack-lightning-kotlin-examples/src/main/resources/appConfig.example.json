@@ -1,0 +1,12 @@
+{
+  "singleTeamBotToken": "xoxb-1234567890-123456789012-abcbacbabc",
+  "signingSecret": "abcabcabcabcabcabcabcabcabc",
+  "clientId": "1234567890.123456789012",
+  "clientSecret": "abcabcabcabcabcabcabcabcabc",
+  "redirectUri": "https://your-domain/slack/oauth/callback",
+  "scope": "bot,something-else",
+  "oauthStartPath": "/start",
+  "oauthCallbackPath": "/callback",
+  "oauthCompletionUrl": "https://your-domain/static-page/completion",
+  "oauthCancellationUrl": "https://your-domain/static-page/cancellation"
+}
