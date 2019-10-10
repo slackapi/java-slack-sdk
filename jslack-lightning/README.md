@@ -2,13 +2,15 @@
 
 Lightning is a framework to build Slack apps on the JVM.
 
-Yes, As you noticed, Lightning is highly inspired by [Bolt ⚡](https://github.com/slackapi/bolt). The framework offers an abstraction layer on top of the web service layers (e.g., Servlet API) to enable developers to focus on the essential part of building Slack app endpoints.
+Yes, as you noticed, Lightning is highly inspired by [Bolt⚡](https://github.com/slackapi/bolt). The framework offers an abstraction layer on top of the web service infrastructure (e.g., Servlet API). The abstraction enables developers to focus on the essential parts of Slack app development.
 
-If you're already familiar with jSlack assets (jslack-api-client, jslack-app-backend, etc), you can quickly start with Lightning framework. If not, please don't be afraid of it! jSlack is a thin wrapper of Slack APIs so that it is also pretty easy to learn how to use it.
+If you're already familiar with jSlack assets (jslack-api-client, jslack-app-backend, etc), you'll quickly start with Lightning framework. If not, please don't be afraid of it! jSlack is a thin wrapper of Slack APIs so that it is also pretty easy to learn how to use it.
 
 ## Getting Started
 
 ### Download the libraries
+
+Lighning is available on the Maven Central repository.
 
 https://search.maven.org/search?q=g:com.github.seratch%20AND%20a:jslack-lightning
 
@@ -34,6 +36,8 @@ The `{latest version}` is [![Maven Central](https://img.shields.io/maven-central
 
 #### Kotlin / Gradle
 
+If you go with Kotlin, we highly recommend using Gradle to build your apps. Here is a simple example of `build.gradle.kts`.
+
 ```kotlin
 plugins {
   id("org.jetbrains.kotlin.jvm") version "1.3.50"
@@ -41,28 +45,36 @@ plugins {
 dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  implementation("com.github.seratch:jslack-lightning:3.0.0-RC1")
-  implementation("com.github.seratch:jslack-lightning-jetty:3.0.0-RC1")
+  implementation("com.github.seratch:jslack-lightning:{latest version}")
+  implementation("com.github.seratch:jslack-lightning-jetty:{latest version}")
   implementation("org.slf4j:slf4j-simple:1.7.28")
 }
 ```
 
+The `{latest version}` is [![Maven Central](https://img.shields.io/maven-central/v/com.github.seratch/jslack.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.seratch%22%20a%3A%22jslack%22)
+
 ### Your first app built with Lightning
+
+Let's start with Lightning, anyway! The thing you need to run Slack app on the JVM is only a few lines of code.
 
 #### Java
 
 ```java
 import com.github.seratch.jslack.lightning.App;
-import com.github.seratch.jslack.lightning.jetty.SlackAppServer;
 
 // export SLACK_BOT_TOKEN=xoxb-***
 // export SLACK_SIGNING_SECRET=123abc***
 App app = new App();
 
+// Handles requests triggered by /echo
 app.command("/echo", (req, ctx) -> {
+  // Context#respond sends a message using payload.responseUrl
   ctx.respond(r -> r.text(req.getPayload().getText()));
+  // Context#ack returns 200 OK response to the request
   return ctx.ack();
 });
+
+import com.github.seratch.jslack.lightning.jetty.SlackAppServer;
 
 SlackAppServer server = new SlackAppServer(app);
 server.start(); // http://localhost:3000
@@ -72,7 +84,6 @@ server.start(); // http://localhost:3000
 
 ```kotlin
 import com.github.seratch.jslack.lightning.App
-import com.github.seratch.jslack.lightning.jetty.SlackAppServer
 
 // export SLACK_BOT_TOKEN=xoxb-***
 // export SLACK_SIGNING_SECRET=123abc***
@@ -82,6 +93,9 @@ app.command("/echo") { req, ctx ->
   ctx.respond { it.text(req.payload.text) }
   ctx.ack()
 }
+
+import com.github.seratch.jslack.lightning.jetty.SlackAppServer
+
 val server = SlackAppServer(app)
 server.start()
 ```
@@ -106,11 +120,11 @@ server.start()
 ### Verifying requests from Slack
 
 Lightning offers a middleware `RequestVerification` verifying requests to your endpoints from Slack.
-Developers don't need to implement [the logic to verify the request header](https://api.slack.com/docs/verifying-requests-from-slack) on their own.
+Developers don't need to implement [the logic to verify the request header](https://api.slack.com/docs/verifying-requests-from-slack) on their own and `RequestVerification` will be automatically enabled for all the event request handlers.
 
 ### Single team authorization
 
-When you build a Slack app that runs on only a single workspace, giving the bot token you got by installing the app into your workspace would be a great way to start.
+When you build a Slack app that runs on only a single workspace, giving the bot token you got when installing the app into a workspace would be a easiest way to start. There are two ways to configure apps as below.
 
 ```kotlin
 import com.github.seratch.jslack.lightning.*
@@ -127,18 +141,22 @@ val app = App(config)
 
 ### Multiple teams authorization
 
-If a Slack app is distributed to multiple workspaces, the app should appropriately support OAuth flow, which runs when installing it into workspaces. The app needs to securely manage user tokens and bot token corresponding to each workspace.
+If a Slack app is distributed to multiple workspaces, the app must appropriately support OAuth flow, which is invoked when installing the app into a workspace. The Slack app needs to securely manage user tokens (& bot token if the app has a bot user) corresponding to each workspace.
 
 https://api.slack.com/docs/oauth
 
-Lightning offers the following storage layers at this moment. We're planning to have other implementations in future releases.
+Lightning offers the following storage implementations at this moment. We're planning to have others in future releases.
 
 * Local file system (default)
 * Amazon S3
 
+#### OAuth Flow Supported App Example
+
+Here is a simple example supporting OAuth flow. 
+
 ```kotlin
-// export SLACK_APP_CLIENT_ID=xxx
-// export SLACK_APP_CLIENT_SECRET=yyy
+// export SLACK_APP_CLIENT_ID=1234567890.123456789012
+// export SLACK_APP_CLIENT_SECRET=abcabcabcabcabcabcabcabcabc
 // export SLACK_SIGNING_SECRET=123abc***
 val mainApp = App()
 
@@ -149,6 +167,18 @@ mainApp.command("/say-something") { req, ctx ->
   ctx.ack()
 }
 
+// (For Slack app installation URL)
+// export SLACK_APP_CLIENT_ID=1234567890.123456789012
+// export SLACK_APP_CLIENT_SECRET=abcabcabcabcabcabcabcabcabc
+// export SLACK_APP_OAUTH_START_PATH=/start
+// export SLACK_APP_SCOPE=bot,something-else
+// export SLACK_APP_REDIRECT_URI=https://your-domain/slack/oauth/callback
+
+// (For OAuth call back URL)
+// export SLACK_APP_OAUTH_CALLBACK_PATH=/callback
+// export SLACK_APP_OAUTH_CANCELLATION_URL=https://your-domain/static-page/cancellation
+// export SLACK_APP_OAUTH_COMPLETION_URL=https://your-domain/static-page/completion
+
 val oauthApp = App().asOAuthApp(true)
 
 val server = SlackAppServer(mapOf(
@@ -157,6 +187,10 @@ val server = SlackAppServer(mapOf(
 ))
 server.start() // http://localhost:3000
 ```
+
+The OAuth flow (Slack app installation) starts with `https://your-domain/slack/oauth/start` and the app receives `code` at `https://your-domain/slack/oauth/callback`. If the installation successfully finishes, the end user is redirected to `https://your-domain/slack/oauth/completion`. If an error occurs or the end user canncels the process, the user is redirected to `https://your-domain/slack/oauth/cancellation`.
+
+#### Amazon S3 Support
 
 If an app uses Amazon S3 storage or any other storage layer implementations, the app can be configured as below:
 
