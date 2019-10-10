@@ -384,6 +384,21 @@ app.viewClosed("meeting-arrangement") { _, ctx ->
 }
 ```
 
+### Create your own custom middleware
+
+`Middleware` is a powerful tool to commonize some operations and run the code when receiving all the requests for sure.
+
+With `Middlware`, developers can do anything like making any modifications to `Request` and `Response`, or skipping the latter operations when an expected request is detected.
+
+```kotlin
+app.use { req, _resp, chain ->
+  logger.info("Request - $req")
+  val resp = chain.next(req)
+  logger.info("Response - $resp")
+  resp
+}
+```
+
 ### More examples
 
 If you're looking for more examples, you may find the ones under the following directories.
