@@ -100,6 +100,8 @@ val server = SlackAppServer(app)
 server.start()
 ```
 
+In the later parts of this guide, most of the code examples will be written in Kotlin for simplicity's sake.
+
 ## Supported Features
 
 * Verifying requests from Slack
@@ -229,13 +231,14 @@ https://api.slack.com/events-api
 Lightning automatically handles `url_verification` requests, which come from Slack when setting the endpoint URL in the admin screen (https://api.slack.com/apps/{app id}). Developers don't need to do anything about it.
 
 ```java
+// in Java
 app.event(MessageEvent.class, (event, ctx) -> {
   return ctx.ack();
 });
 ```
 
 ```kotlin
-val app = App()
+// in Kotlin
 app.event(MessageEvent::class.java) { event, ctx ->
   ctx.ack()
 }
