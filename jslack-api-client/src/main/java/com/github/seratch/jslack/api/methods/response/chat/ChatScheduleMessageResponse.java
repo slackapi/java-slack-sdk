@@ -2,6 +2,7 @@ package com.github.seratch.jslack.api.methods.response.chat;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import com.github.seratch.jslack.api.model.Attachment;
+import com.github.seratch.jslack.api.model.BotProfile;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import lombok.Data;
 
@@ -24,6 +25,8 @@ public class ChatScheduleMessageResponse implements SlackApiResponse {
     @Data
     public static class ScheduledMessage {
         private String botId;
+        private BotProfile botProfile;
+
         private String type;
         private String team;
         private String user;
@@ -31,5 +34,6 @@ public class ChatScheduleMessageResponse implements SlackApiResponse {
         private String text;
         private List<Attachment> attachments;
         private List<LayoutBlock> blocks;
+
     }
 }

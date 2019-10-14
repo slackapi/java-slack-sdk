@@ -245,4 +245,12 @@ public class File {
         private String original;
     }
 
+    private Map<String, PinnedInfo> pinnedInfo; // C00000000 -> {}
+
+    @Data
+    public static class PinnedInfo {
+        private String pinnedBy; // U00000000
+        private Integer pinnedTs;
+    }
+
 }

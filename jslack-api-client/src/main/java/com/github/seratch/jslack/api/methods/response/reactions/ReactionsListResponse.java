@@ -2,6 +2,7 @@ package com.github.seratch.jslack.api.methods.response.reactions;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import com.github.seratch.jslack.api.model.Attachment;
+import com.github.seratch.jslack.api.model.BotProfile;
 import com.github.seratch.jslack.api.model.Paging;
 import com.github.seratch.jslack.api.model.Reaction;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
@@ -74,6 +75,7 @@ public class ReactionsListResponse implements SlackApiResponse {
             private String sourceTeam;
             private Icons icons;
             private UserProfile userProfile;
+            private BotProfile botProfile;
 
             @Data
             public static class Icons {
