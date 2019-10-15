@@ -2,6 +2,11 @@
 
 ## version 3.0.0 (2019-10-XX)
 
+* 395a09a Mark workspace app related properties as deprecated by Kazuhiro Sera
+* 638d43a Fix #230 selectedUsers in ViewState is missing by Kazuhiro Sera
+* 7c783b3 Add bot_profile etc (added recently) by Kazuhiro Sera
+* eaf6ced Fix dnd.teamInfo has been broken by Kazuhiro Sera
+* f6b1044 Add Lightning README by Kazuhiro Sera
 * 995c587 Add OAuth flow support in Lightning by Kazuhiro Sera
 * 162dab1 Fix oauth.access API to use basic auth by Kazuhiro Sera
 * 783507b Add Lightning, new module to build Slack apps quickly ⚡ by Kazuhiro Sera
