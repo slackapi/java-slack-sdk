@@ -482,6 +482,19 @@
     "bot_id": "",
     "bot_link": "",
     "display_as_bot": false,
+    "bot_profile": {
+      "id": "",
+      "deleted": false,
+      "name": "",
+      "updated": 123,
+      "app_id": "",
+      "icons": {
+        "image_36": "",
+        "image_48": "",
+        "image_72": ""
+      },
+      "team_id": ""
+    },
     "icons": {
       "emoji": "",
       "image_36": "",
