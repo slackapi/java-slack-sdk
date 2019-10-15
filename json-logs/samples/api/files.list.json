@@ -67,7 +67,20 @@
       "original_h": 12345,
       "thumb_360_gif": "https://www.example.com/",
       "deanimate_gif": "https://www.example.com/",
-      "thumb_tiny": ""
+      "thumb_tiny": "",
+      "pinned_to": [
+        "C00000000"
+      ],
+      "pinned_info": {
+        "C00000000": {
+          "pinned_by": "U00000000",
+          "pinned_ts": 12345
+        },
+        "C00000001": {
+          "pinned_by": "U00000000",
+          "pinned_ts": 12345
+        }
+      }
     }
   ],
   "paging": {

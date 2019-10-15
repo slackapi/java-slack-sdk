@@ -797,7 +797,20 @@
         }
       ],
       "last_read": "0000000000.000000",
-      "client_msg_id": ""
+      "client_msg_id": "",
+      "bot_profile": {
+        "id": "B00000000",
+        "deleted": false,
+        "name": "",
+        "updated": 12345,
+        "app_id": "A00000000",
+        "icons": {
+          "image_36": "https://www.example.com/",
+          "image_48": "https://www.example.com/",
+          "image_72": "https://www.example.com/"
+        },
+        "team_id": "T00000000"
+      }
     }
   ],
   "has_more": false,

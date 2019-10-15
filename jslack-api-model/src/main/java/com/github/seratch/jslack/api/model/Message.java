@@ -37,6 +37,8 @@ public class Message {
     private String botLink;
     private boolean displayAsBot;
 
+    private BotProfile botProfile;
+
     private Icons icons;
 
     private File file;

@@ -1,7 +1,94 @@
 {
   "ok": false,
   "items": [
-    ""
+    {
+      "type": "",
+      "created": 12345,
+      "created_by": "U00000000",
+      "file": {
+        "id": "F00000000",
+        "created": 12345,
+        "timestamp": 12345,
+        "name": "",
+        "title": "",
+        "mimetype": "",
+        "filetype": "",
+        "pretty_type": "",
+        "user": "U00000000",
+        "editable": false,
+        "size": 12345,
+        "mode": "",
+        "is_external": false,
+        "external_type": "",
+        "is_public": false,
+        "public_url_shared": false,
+        "display_as_bot": false,
+        "username": "",
+        "url_private": "https://www.example.com/",
+        "url_private_download": "https://www.example.com/",
+        "permalink": "https://www.example.com/",
+        "permalink_public": "https://www.example.com/",
+        "edit_link": "https://www.example.com/",
+        "preview": "",
+        "preview_highlight": "",
+        "lines": 12345,
+        "lines_more": 12345,
+        "preview_is_truncated": false,
+        "comments_count": 12345,
+        "is_starred": false,
+        "pinned_to": [
+          "C00000000"
+        ],
+        "pinned_info": {
+          "C00000000": {
+            "pinned_by": "U00000000",
+            "pinned_ts": 12345
+          },
+          "C00000001": {
+            "pinned_by": "U00000000",
+            "pinned_ts": 12345
+          }
+        },
+        "shares": {
+          "public": {
+            "C00000000": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ],
+            "C00000001": [
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000"
+              }
+            ]
+          }
+        },
+        "channels": [
+          "C00000000"
+        ],
+        "groups": [
+          ""
+        ],
+        "ims": [
+          ""
+        ],
+        "has_rich_preview": false
+      }
+    }
   ],
   "error": "",
   "needed": "",

@@ -155,6 +155,9 @@ public class Actions {
         public static final String external_shared_channel_invite_expired = "external_shared_channel_invite_expired";
         public static final String external_shared_channel_invite_revoked = "external_shared_channel_invite_revoked";
         public static final String mpim_converted_to_private = "mpim_converted_to_private";
+        public static final String external_shared_channel_connected = "external_shared_channel_connected";
+        public static final String external_shared_channel_disconnected = "external_shared_channel_disconnected";
+        public static final String external_shared_channel_reconnected = "external_shared_channel_reconnected";
     }
 
     public static class App {

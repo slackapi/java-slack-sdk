@@ -72,23 +72,27 @@ public class pins_Test {
 
         {
             // https://api.slack.com/methods/pins.add
-            // We are phasing out support for pinning files and file comments only.
-            // This method will no longer accept the file and file_comment parameters beginning August 22, 2019.
             PinsAddResponse response = slack.methods().pinsAdd(r -> r
                     .token(token)
                     .channel(channels.get(0))
                     .file(fileObj.getId()));
-            assertThat(response.getError(), is("not_pinnable"));
+//            // We are phasing out support for pinning files and file comments only.
+//            // This method will no longer accept the file and file_comment parameters beginning August 22, 2019.
+//            assertThat(response.getError(), is("not_pinnable"));
+            // Since Oct 2019
+            assertThat(response.getError(), is(nullValue()));
         }
         {
             // https://api.slack.com/methods/pins.add
-            // We are phasing out support for pinning files and file comments only.
-            // This method will no longer accept the file and file_comment parameters beginning August 22, 2019.
             PinsRemoveResponse response = slack.methods().pinsRemove(r -> r
                     .token(token)
                     .channel(channels.get(0))
                     .file(fileObj.getId()));
-            assertThat(response.getError(), is("no_pin"));
+            // We are phasing out support for pinning files and file comments only.
+            // This method will no longer accept the file and file_comment parameters beginning August 22, 2019.
+//            assertThat(response.getError(), is("no_pin"));
+            // Since Oct 2019
+            assertThat(response.getError(), is(nullValue()));
         }
 
         {
