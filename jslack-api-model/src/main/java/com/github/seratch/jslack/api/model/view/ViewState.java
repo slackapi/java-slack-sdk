@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -29,6 +30,7 @@ public class ViewState {
         private String selectedChannel;
         private String selectedUser;
         private SelectedOption selectedOption;
+        private List<String> selectedUsers;
     }
 
     @Data
