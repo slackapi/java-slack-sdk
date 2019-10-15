@@ -651,7 +651,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(DndTeamInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         if (req.getUsers() != null) {
-            setIfNotNull("user", req.getUsers().stream().collect(joining(",")), form);
+            setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
         }
         return form;
     }
