@@ -24,11 +24,6 @@ public class OAuthAccessResponse implements SlackApiResponse {
     private IncomingWebhook incomingWebhook;
     private Bot bot;
 
-    private AuthorizingUser authorizingUser;
-    private InstallerUser installerUser;
-    @Deprecated // for workspace apps
-    private Scopes scopes;
-
     @Data
     public static class IncomingWebhook {
         private String url;
@@ -43,18 +38,28 @@ public class OAuthAccessResponse implements SlackApiResponse {
         private String botAccessToken;
     }
 
+    @Deprecated // for workspace apps
+    private AuthorizingUser authorizingUser;
+    @Deprecated // for workspace apps
+    private InstallerUser installerUser;
+    @Deprecated // for workspace apps
+    private Scopes scopes;
+
+    @Deprecated
     @Data
     public static class AuthorizingUser {
         private String userId;
         private String appHome;
     }
 
+    @Deprecated
     @Data
     public static class InstallerUser {
         private String userId;
         private String appHome;
     }
 
+    @Deprecated
     @Data
     public static class Scopes {
         private List<String> appHome;
