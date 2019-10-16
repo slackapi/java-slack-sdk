@@ -2,6 +2,9 @@
 
 ## version 3.0.0 (2019-10-XX)
 
+* 8851614 Add user.is_workflow_bot in response by Kazuhiro Sera
+* 9a71bc8 Add historical data support and incoming webhooks in InstallationService #234 by Kazuhiro Sera
+* 382c311 Fix #235 MultiTeamsAuthorization fails due to missing team_id / enterprise_id in ActionContext by Kazuhiro Sera
 * 395a09a Mark workspace app related properties as deprecated by Kazuhiro Sera
 * 638d43a Fix #230 selectedUsers in ViewState is missing by Kazuhiro Sera
 * 7c783b3 Add bot_profile etc (added recently) by Kazuhiro Sera
