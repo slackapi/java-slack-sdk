@@ -65,7 +65,8 @@
         ]
       },
       "two_factor_type": "",
-      "locale": ""
+      "locale": "",
+      "is_workflow_bot": false
     }
   ],
   "cache_ts": 12345,

@@ -673,7 +673,8 @@
       "is_bot": false,
       "is_app_user": false,
       "updated": 12345,
-      "presence": ""
+      "presence": "",
+      "is_workflow_bot": false
     }
   ],
   "cache_version": "",
@@ -689,7 +690,8 @@
         "image_36": "https://www.example.com/",
         "image_48": "https://www.example.com/",
         "image_72": "https://www.example.com/"
-      }
+      },
+      "is_workflow_bot": false
     }
   ],
   "url": "",

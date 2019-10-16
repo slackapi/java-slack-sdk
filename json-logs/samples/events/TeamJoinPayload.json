@@ -76,7 +76,8 @@
       },
       "two_factor_type": "",
       "has_files": false,
-      "locale": ""
+      "locale": "",
+      "is_workflow_bot": false
     }
   }
 }
