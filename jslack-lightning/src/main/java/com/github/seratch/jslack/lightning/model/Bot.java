@@ -22,4 +22,8 @@ public interface Bot {
 
     void setBotAccessToken(String botAccessToken);
 
+    Long getInstalledAt();
+
+    void setInstalledAt(Long installedAt);
+
 }

@@ -16,6 +16,14 @@ fun main() {
     val config = ResourceLoader.loadAppConfig()
     val mainApp = App(config)
 
+    // export AWS_REGION=us-east-1
+    // export AWS_ACCESS_KEY_ID=AAAA*************
+    // export AWS_SECRET_ACCESS_KEY=4o7***********************
+    val awsS3BucketName = "YOUR_OWN_BUCKET_NAME_HERE"
+    val installationService = AmazonS3InstallationService(awsS3BucketName)
+    installationService.setHistoricalDataEnabled(true)
+    mainApp.service(installationService)
+
     mainApp.command("/say-something") { req, ctx ->
         val p = req.payload
         val text = "<@${p.userId}> said ${p.text} at <#${p.channelId}|${p.channelName}>"
@@ -27,11 +35,8 @@ fun main() {
     val oauthConfig = ResourceLoader.loadAppConfig()
     val oauthApp = App(oauthConfig).asOAuthApp(true)
 
-    // export AWS_REGION=us-east-1
-    // export AWS_ACCESS_KEY_ID=AAAA*************
-    // export AWS_SECRET_ACCESS_KEY=4o7***********************
-    val awsS3BucketName = "YOUR_OWN_BUCKET_NAME_HERE"
-    oauthApp.service(AmazonS3InstallationService(awsS3BucketName))
+    oauthApp.service(installationService)
+    // for state parameter in OAuth flow
     oauthApp.service(AmazonS3OAuthStateService(awsS3BucketName))
 
     val server = SlackAppServer(mapOf(

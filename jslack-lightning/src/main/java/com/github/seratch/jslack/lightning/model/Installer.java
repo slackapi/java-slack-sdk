@@ -2,6 +2,10 @@ package com.github.seratch.jslack.lightning.model;
 
 public interface Installer {
 
+    // ---------------------------------
+    // Organization / Workspace
+    // ---------------------------------
+
     String getEnterpriseId();
 
     void setEnterpriseId(String enterpriseId);
@@ -10,6 +14,10 @@ public interface Installer {
 
     void setTeamId(String teamId);
 
+    // ---------------------------------
+    // Installer
+    // ---------------------------------
+
     String getInstallerUserId();
 
     void setInstallerUserId(String userId);
@@ -17,6 +25,10 @@ public interface Installer {
     String getInstallerUserAccessToken();
 
     void setInstallerUserAccessToken(String userAccessToken);
+
+    // ---------------------------------
+    // Bot
+    // ---------------------------------
 
     String getBotId();
 
@@ -31,5 +43,25 @@ public interface Installer {
     void setBotAccessToken(String botAccessToken);
 
     Bot toBot();
+
+    // ---------------------------------
+    // Incoming Webhooks
+    // ---------------------------------
+
+    String getIncomingWebhookUrl();
+
+    void setIncomingWebhookUrl(String incomingWebhookUrl);
+
+    String getIncomingWebhookChannelId();
+
+    void setIncomingWebhookChannelId(String incomingWebhookChannelId);
+
+    String getIncomingWebhookConfigurationUrl();
+
+    void setIncomingWebhookConfigurationUrl(String incomingWebhookConfigurationUrl);
+
+    Long getInstalledAt();
+
+    void setInstalledAt(Long installedAt);
 
 }

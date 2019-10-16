@@ -24,7 +24,12 @@ public class DefaultInstaller implements Installer {
 
     private String botId;
     private String botUserId;
+
     private String botAccessToken;
+
+    private String incomingWebhookUrl;
+    private String incomingWebhookChannelId;
+    private String incomingWebhookConfigurationUrl;
 
     private Long installedAt;
 

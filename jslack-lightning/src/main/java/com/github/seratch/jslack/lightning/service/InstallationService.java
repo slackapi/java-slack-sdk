@@ -5,6 +5,10 @@ import com.github.seratch.jslack.lightning.model.Installer;
 
 public interface InstallationService {
 
+    boolean isHistoricalDataEnabled();
+
+    void setHistoricalDataEnabled(boolean isHistoricalDataEnabled);
+
     void saveInstallerAndBot(Installer installer) throws Exception;
 
     void deleteBot(Bot bot) throws Exception;

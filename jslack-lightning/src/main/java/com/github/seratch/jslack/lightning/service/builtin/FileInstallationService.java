@@ -22,6 +22,7 @@ public class FileInstallationService implements InstallationService {
     public static final String DEFAULT_BASE_DIR = System.getProperty("user.home") + File.separator + ".jslack-lightning";
 
     private final String baseDir;
+    private boolean historicalDataEnabled;
 
     public FileInstallationService() {
         this(DEFAULT_BASE_DIR);
@@ -32,9 +33,23 @@ public class FileInstallationService implements InstallationService {
     }
 
     @Override
+    public boolean isHistoricalDataEnabled() {
+        return historicalDataEnabled;
+    }
+
+    @Override
+    public void setHistoricalDataEnabled(boolean isHistoricalDataEnabled) {
+        this.historicalDataEnabled = isHistoricalDataEnabled;
+    }
+
+    @Override
     public void saveInstallerAndBot(Installer installer) throws Exception {
-        write(getInstallerPath(installer), JsonOps.toJsonString(installer));
-        write(getBotPath(installer.getEnterpriseId(), installer.getTeamId()), JsonOps.toJsonString(installer.toBot()));
+        save(getInstallerPath(installer),
+                installer.getInstalledAt(),
+                JsonOps.toJsonString(installer));
+        save(getBotPath(installer.getEnterpriseId(), installer.getTeamId()),
+                installer.getInstalledAt(),
+                JsonOps.toJsonString(installer.toBot()));
     }
 
     @Override
@@ -57,7 +72,7 @@ public class FileInstallationService implements InstallationService {
                 if (json != null) {
                     Bot bot = JsonOps.fromJson(json, DefaultBot.class);
                     bot.setEnterpriseId(enterpriseId);
-                    write(getBotPath(enterpriseId, teamId), JsonOps.toJsonString(bot));
+                    save(getBotPath(enterpriseId, teamId), bot.getInstalledAt(), JsonOps.toJsonString(bot));
                     return bot;
                 }
             }
@@ -81,7 +96,7 @@ public class FileInstallationService implements InstallationService {
                 if (json != null) {
                     Installer i = JsonOps.fromJson(json, DefaultInstaller.class);
                     i.setEnterpriseId(enterpriseId);
-                    write(getInstallerPath(enterpriseId, teamId, userId), JsonOps.toJsonString(i));
+                    save(getInstallerPath(enterpriseId, teamId, userId), i.getInstalledAt(), JsonOps.toJsonString(i));
                     return i;
                 }
             }
@@ -107,6 +122,9 @@ public class FileInstallationService implements InstallationService {
             Files.createDirectories(dirPath);
         }
         String key = ((enterpriseId == null) ? "none" : enterpriseId) + "-" + teamId + "-" + userId;
+        if (isHistoricalDataEnabled()) {
+            key = key + "-latest";
+        }
         return dir + File.separator + key;
     }
 
@@ -117,6 +135,9 @@ public class FileInstallationService implements InstallationService {
             Files.createDirectories(dirPath);
         }
         String key = ((enterpriseId == null) ? "none" : enterpriseId) + "-" + teamId;
+        if (isHistoricalDataEnabled()) {
+            key = key + "-latest";
+        }
         return dir + File.separator + key;
     }
 
@@ -124,8 +145,13 @@ public class FileInstallationService implements InstallationService {
         return baseDir + File.separator + "installation";
     }
 
-    private void write(String path, String json) throws IOException {
+    private void save(String path, Long installedAt, String json) throws IOException {
+        // latest
         Files.write(Paths.get(path), json.getBytes());
+        if (isHistoricalDataEnabled()) {
+            // the historical data
+            Files.write(Paths.get(path.replaceFirst("-latest$", "-" + installedAt)), json.getBytes());
+        }
     }
 
     private String loadFileContent(String filepath) throws IOException {
