@@ -24,6 +24,8 @@ public class AttachmentActionRequest extends Request<ActionContext> {
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, AttachmentActionPayload.class);
         getContext().setResponseUrl(payload.getResponseUrl());
         getContext().setRequestUserId(payload.getUser().getId());
+        getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
+        getContext().setTeamId(payload.getTeam().getId());
     }
 
     private ActionContext context = new ActionContext();
