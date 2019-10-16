@@ -20,16 +20,34 @@ import java.util.Optional;
 public class AmazonS3InstallationService implements InstallationService {
 
     private final String bucketName;
+    private boolean historicalDataEnabled;
 
     public AmazonS3InstallationService(String bucketName) {
         this.bucketName = bucketName;
     }
 
     @Override
+    public boolean isHistoricalDataEnabled() {
+        return historicalDataEnabled;
+    }
+
+    @Override
+    public void setHistoricalDataEnabled(boolean isHistoricalDataEnabled) {
+        this.historicalDataEnabled = isHistoricalDataEnabled;
+    }
+
+    @Override
     public void saveInstallerAndBot(Installer i) throws Exception {
         AmazonS3 s3 = this.createS3Client();
-        save(s3, getInstallerKey(i), JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}");
-        save(s3, getBotKey(i), JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}");
+        if (isHistoricalDataEnabled()) {
+            save(s3, getInstallerKey(i) + "-latest", JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}");
+            save(s3, getBotKey(i)  + "-latest", JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}");
+            save(s3, getInstallerKey(i) + "-" + i.getInstalledAt(), JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}");
+            save(s3, getBotKey(i)  + "-" + i.getInstalledAt(), JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}");
+        } else {
+            save(s3, getInstallerKey(i), JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}");
+            save(s3, getBotKey(i), JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}");
+        }
     }
 
     private void save(AmazonS3 s3, String s3Key, String json, String logMessage) {
@@ -42,21 +60,35 @@ public class AmazonS3InstallationService implements InstallationService {
     @Override
     public void deleteBot(Bot bot) throws Exception {
         AmazonS3 s3 = this.createS3Client();
-        s3.deleteObject(bucketName, getBotKey(bot.getEnterpriseId(), bot.getTeamId()));
+        String key = getBotKey(bot.getEnterpriseId(), bot.getTeamId());
+        if (isHistoricalDataEnabled()) {
+            key = key + "-latest";
+        }
+        s3.deleteObject(bucketName, key);
     }
 
     @Override
     public void deleteInstaller(Installer installer) throws Exception {
         AmazonS3 s3 = this.createS3Client();
-        s3.deleteObject(bucketName, getInstallerKey(installer));
+        String key = getInstallerKey(installer);
+        if (isHistoricalDataEnabled()) {
+            key = key + "-latest";
+        }
+        s3.deleteObject(bucketName, key);
     }
 
     @Override
     public Bot findBot(String enterpriseId, String teamId) {
         AmazonS3 s3 = this.createS3Client();
         String fullKey = getBotKey(enterpriseId, teamId);
+        if (isHistoricalDataEnabled()) {
+            fullKey = fullKey + "-latest";
+        }
         if (s3.getObjectMetadata(bucketName, fullKey) == null && enterpriseId != null) {
             String nonGridKey = getBotKey(null, teamId);
+            if (isHistoricalDataEnabled()) {
+                nonGridKey = nonGridKey + "-latest";
+            }
             S3Object nonGridObject = s3.getObject(bucketName, nonGridKey);
             if (nonGridObject != null) {
                 try {
@@ -82,8 +114,14 @@ public class AmazonS3InstallationService implements InstallationService {
     public Installer findInstaller(String enterpriseId, String teamId, String userId) {
         AmazonS3 s3 = this.createS3Client();
         String fullKey = getInstallerKey(enterpriseId, teamId, userId);
+        if (isHistoricalDataEnabled()) {
+            fullKey = fullKey + "-latest";
+        }
         if (s3.getObjectMetadata(bucketName, fullKey) == null && enterpriseId != null) {
             String nonGridKey = getInstallerKey(null, teamId, userId);
+            if (isHistoricalDataEnabled()) {
+                nonGridKey = nonGridKey + "-latest";
+            }
             S3Object nonGridObject = s3.getObject(bucketName, nonGridKey);
             if (nonGridObject != null) {
                 try {

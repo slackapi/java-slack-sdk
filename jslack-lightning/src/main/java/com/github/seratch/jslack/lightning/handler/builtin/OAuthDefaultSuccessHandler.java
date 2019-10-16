@@ -44,6 +44,12 @@ public class OAuthDefaultSuccessHandler implements OAuthSuccessHandler {
                 .scope(o.getScope())
                 .installedAt(System.currentTimeMillis());
 
+        if (o.getIncomingWebhook() != null) {
+            i = i.incomingWebhookChannelId(o.getIncomingWebhook().getChannelId())
+                    .incomingWebhookUrl(o.getIncomingWebhook().getUrl())
+                    .incomingWebhookConfigurationUrl(o.getIncomingWebhook().getConfigurationUrl());
+        }
+
         if (o.getBot() != null) {
             i = i.botUserId(o.getBot().getBotUserId());
             i = i.botAccessToken(o.getBot().getBotAccessToken());
