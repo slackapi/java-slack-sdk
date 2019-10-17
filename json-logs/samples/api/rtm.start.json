@@ -275,7 +275,8 @@
       "seen_workflow_builder_deluxe_toast": false,
       "workflow_builder_intro_modal_clicked_through": false,
       "has_received_threaded_message": false,
-      "iap1_lab": 12345
+      "iap1_lab": 12345,
+      "seen_people_search_count": 12345
     },
     "created": 12345,
     "manual_presence": ""

@@ -1,5 +1,6 @@
-package com.github.seratch.jslack.lightning.util;
+package test_locally.util;
 
+import com.github.seratch.jslack.lightning.util.JsonOps;
 import com.google.gson.JsonElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;

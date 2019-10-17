@@ -1,4 +1,4 @@
-package servlet_test;
+package test_locally.servlet_test;
 
 import org.eclipse.jetty.http.HttpTester;
 import org.eclipse.jetty.servlet.ServletHolder;

@@ -1,4 +1,4 @@
-package servlet_test;
+package test_locally.servlet_test;
 
 import com.github.seratch.jslack.app_backend.events.handler.AppUninstalledHandler;
 import com.github.seratch.jslack.app_backend.events.handler.GoodbyeHandler;
