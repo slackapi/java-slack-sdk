@@ -197,14 +197,18 @@ The OAuth flow (Slack app installation) starts with `https://your-domain/slack/o
 If an app uses Amazon S3 storage or any other storage layer implementations, the app can be configured as below:
 
 ```kotlin
-val oauthApp = App().asOAuthApp(true)
-
 // export AWS_REGION=us-east-1
 // export AWS_ACCESS_KEY_ID=AAAA*************
 // export AWS_SECRET_ACCESS_KEY=4o7***********************
 val awsS3BucketName = "YOUR_OWN_BUCKET_NAME_HERE"
-oauthApp.service(AmazonS3InstallationService(awsS3BucketName))
-oauthApp.service(AmazonS3OAuthStateService(awsS3BucketName))
+val installationService = AmazonS3InstallationService(awsS3BucketName)
+
+val mainApp = App()
+oauthApp.service(installationService) // used by MultiTeamsAuthorization
+
+val oauthApp = App().asOAuthApp(true)
+oauthApp.service(installationService) // used when storing oauth.access response
+oauthApp.service(AmazonS3OAuthStateService(awsS3BucketName)) // used only for OAuth flow
 
 server.start() // http://localhost:3000
 ```
