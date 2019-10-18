@@ -16,7 +16,7 @@ class ResourceLoader {
 
         fun loadAppConfig(): AppConfig {
             val config = AppConfig()
-            val classLoader = this.javaClass.classLoader
+            val classLoader = ResourceLoader::class.java.classLoader
             try {
                 classLoader.getResourceAsStream("appConfig.json").use { resource ->
                     InputStreamReader(resource).use { isr ->
@@ -44,7 +44,7 @@ class ResourceLoader {
 
         fun load(filepath: String): String? {
             return try {
-                val classLoader = this.javaClass.classLoader
+                val classLoader = ResourceLoader::class.java.classLoader
                 classLoader.getResourceAsStream(filepath).use { resource ->
                     InputStreamReader(resource).use { isr ->
                         BufferedReader(isr).lines().collect(joining())
