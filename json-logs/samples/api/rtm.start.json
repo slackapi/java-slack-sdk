@@ -276,7 +276,9 @@
       "workflow_builder_intro_modal_clicked_through": false,
       "has_received_threaded_message": false,
       "iap1_lab": 12345,
-      "seen_people_search_count": 12345
+      "seen_people_search_count": 12345,
+      "dismissed_app_launcher_welcome": false,
+      "dismissed_app_launcher_limit": false
     },
     "created": 12345,
     "manual_presence": ""
