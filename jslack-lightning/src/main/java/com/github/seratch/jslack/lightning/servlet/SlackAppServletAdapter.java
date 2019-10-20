@@ -29,13 +29,10 @@ import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Slf4j
-public class ServletAdapter {
+public class SlackAppServletAdapter {
 
     private AppConfig appConfig;
     private JsonPayloadExtractor jsonPayloadExtractor = new JsonPayloadExtractor();
@@ -43,12 +40,8 @@ public class ServletAdapter {
     private OutgoingWebhooksRequestDetector webhookRequestDetector = new OutgoingWebhooksRequestDetector();
     private Gson gson = GsonFactory.createSnakeCase();
 
-    public ServletAdapter(AppConfig appConfig) {
+    public SlackAppServletAdapter(AppConfig appConfig) {
         this.appConfig = appConfig;
-    }
-
-    protected String doReadRequestBodyAsString(HttpServletRequest req) throws IOException {
-        return req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     }
 
     public Request<?> buildSlackRequest(HttpServletRequest req) throws IOException {
@@ -127,24 +120,15 @@ public class ServletAdapter {
         }
     }
 
-    private static Map<String, String> toHeaderMap(HttpServletRequest req) {
-        Map<String, String> map = new HashMap<>();
-        Enumeration<String> names = req.getHeaderNames();
-        while (names.hasMoreElements()) {
-            String name = names.nextElement();
-            map.put(name, req.getHeader(name));
-        }
-        return map;
+    protected String doReadRequestBodyAsString(HttpServletRequest req) throws IOException {
+        return ServletAdapterOps.doReadRequestBodyAsString(req);
+    }
+
+    protected Map<String, String> toHeaderMap(HttpServletRequest req) {
+        return ServletAdapterOps.toHeaderMap(req);
     }
 
     public void writeResponse(HttpServletResponse resp, Response slackResp) throws IOException {
-        resp.setStatus(slackResp.getStatusCode());
-        for (Map.Entry<String, String> header : slackResp.getHeaders().entrySet()) {
-            resp.setHeader(header.getKey(), header.getValue());
-        }
-        resp.setHeader("Content-Type", slackResp.getContentType());
-        if (slackResp.getBody() != null) {
-            resp.getWriter().write(slackResp.getBody());
-        }
+        ServletAdapterOps.writeResponse(resp, slackResp);
     }
 }
