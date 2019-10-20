@@ -41,7 +41,7 @@ public class JsonPayloadExtractor {
             JsonElement json = GsonFactory.createSnakeCase().fromJson(requestBody, JsonElement.class);
             if (json != null) {
                 JsonObject payload = json.getAsJsonObject();
-                if (payload != null) {
+                if (payload != null && payload.get("type") != null) {
                     String type = payload.get("type").getAsString();
                     if (type != null) {
                         if (EVENTS_API_TYPES.contains(type)) {
