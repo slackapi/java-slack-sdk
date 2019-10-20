@@ -71,6 +71,12 @@ public class App {
     private OAuthStateErrorHandler oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
     private OAuthExceptionHandler oAuthExceptionHandler = new OAuthDefaultExceptionHandler();
 
+    private final Map<WebEndpoint, WebEndpointHandler> webEndpointHandlers = new HashMap<>();
+
+    public Map<WebEndpoint, WebEndpointHandler> getWebEndpointHandlers() {
+        return webEndpointHandlers;
+    }
+
     private static final Gson gson = GsonFactory.createSnakeCase();
 
     // --------------------------------------
@@ -312,6 +318,22 @@ public class App {
         newApp.config().setOAuthStartEnabled(false);
         newApp.config().setOAuthCallbackEnabled(true);
         return newApp;
+    }
+
+    // ----------------------
+    // Additional endpoint support (e.g., health check endpoints)
+
+    public App endpoint(String path, WebEndpointHandler handler) {
+        return endpoint(WebEndpoint.Method.GET, path, handler);
+    }
+
+    public App endpoint(String method, String path, WebEndpointHandler handler) {
+        return endpoint(WebEndpoint.Method.valueOf(method), path, handler);
+    }
+
+    public App endpoint(WebEndpoint.Method method, String path, WebEndpointHandler handler) {
+        webEndpointHandlers.put(new WebEndpoint(method, path), handler);
+        return this;
     }
 
     // --------------------------------------

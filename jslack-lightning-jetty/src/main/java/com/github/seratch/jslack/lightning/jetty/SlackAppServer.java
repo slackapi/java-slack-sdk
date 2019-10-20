@@ -1,9 +1,15 @@
 package com.github.seratch.jslack.lightning.jetty;
 
 import com.github.seratch.jslack.lightning.App;
+import com.github.seratch.jslack.lightning.WebEndpoint;
+import com.github.seratch.jslack.lightning.handler.WebEndpointHandler;
 import com.github.seratch.jslack.lightning.servlet.SlackAppServlet;
 import com.github.seratch.jslack.lightning.servlet.SlackOAuthAppServlet;
+import com.github.seratch.jslack.lightning.servlet.WebEndpointServlet;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jetty.server.ConnectionFactory;
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ErrorHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -61,6 +67,8 @@ public class SlackAppServer {
     public SlackAppServer(Map<String, App> pathToApp, int port) {
         this.pathToApp = pathToApp;
         server = new Server(port);
+        removeServerHeader(server);
+
         ServletContextHandler handler = new ServletContextHandler();
         Map<String, App> addedOnes = new HashMap<>();
         for (Map.Entry<String, App> entry : this.pathToApp.entrySet()) {
@@ -90,6 +98,17 @@ public class SlackAppServer {
                     addedOnes.put(oAuthCallbackPath, oAuthCallbackApp);
                 } else {
                     log.warn("The app is not ready for handling OAuth callback requests. Make sure if you set all the necessary values in AppConfig.");
+                }
+            }
+
+            // Register additional web endpoints
+            if (theApp.getWebEndpointHandlers() != null && theApp.getWebEndpointHandlers().size() > 0) {
+                for (Map.Entry<WebEndpoint, WebEndpointHandler> ee : theApp.getWebEndpointHandlers().entrySet()) {
+                    WebEndpoint endpoint = ee.getKey();
+                    WebEndpointHandler endpointHandler = ee.getValue();
+                    ServletHolder servletHolder = new ServletHolder(
+                            new WebEndpointServlet(endpoint, endpointHandler, theApp.config()));
+                    handler.addServlet(servletHolder, endpoint.getPath());
                 }
             }
         }
@@ -131,6 +150,17 @@ public class SlackAppServer {
         Map<String, App> apps = new HashMap<>();
         apps.put(path, app);
         return apps;
+    }
+
+    private static void removeServerHeader(Server server) {
+        // https://stackoverflow.com/a/15675075/840108
+        for (Connector y : server.getConnectors()) {
+            for (ConnectionFactory x : y.getConnectionFactories()) {
+                if (x instanceof HttpConnectionFactory) {
+                    ((HttpConnectionFactory) x).getHttpConfiguration().setSendServerVersion(false);
+                }
+            }
+        }
     }
 
 }

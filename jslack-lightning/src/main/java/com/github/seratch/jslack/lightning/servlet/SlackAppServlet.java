@@ -14,7 +14,7 @@ import java.io.IOException;
 public class SlackAppServlet extends HttpServlet {
 
     private final App app;
-    private final ServletAdapter adapter;
+    private final SlackAppServletAdapter adapter;
 
     public App getApp() {
         return this.app;
@@ -22,7 +22,7 @@ public class SlackAppServlet extends HttpServlet {
 
     public SlackAppServlet(App app) {
         this.app = app;
-        this.adapter = new ServletAdapter(app.config());
+        this.adapter = new SlackAppServletAdapter(app.config());
     }
 
     @Override
