@@ -24,3 +24,5 @@ json-logs/raw
 
 appConfig.json
 verificationToken.txt
+
+*.hprof
