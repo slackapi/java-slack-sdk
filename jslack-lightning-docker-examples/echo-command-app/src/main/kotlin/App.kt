@@ -12,7 +12,7 @@ fun main() {
     // export SLACK_SIGNING_SECRET=123abc***
     val app = App()
 
-    app.command("/hi-google-cloud-run") { req, ctx ->
+    app.command("/echo") { req, ctx ->
         val text = "You said ${req.payload.text} at <#${req.payload.channelId}|${req.payload.channelName}>"
         val res = ctx.respond { it.text(text) }
         logger.info("respond result - {}", res)
