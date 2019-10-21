@@ -1,0 +1,9 @@
+name: build-echo-command-app-docker-image
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: cd jslack-lightning-docker-examples/echo-command-app && docker build . --file Dockerfile --tag echo-command-app:$(date +%s)
