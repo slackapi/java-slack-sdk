@@ -29,7 +29,8 @@
     "image_192": "https://www.example.com/",
     "image_512": "https://www.example.com/",
     "image_1024": "https://www.example.com/",
-    "status_text_canonical": ""
+    "status_text_canonical": "",
+    "is_custom_image": false
   },
   "error": "",
   "needed": "",
