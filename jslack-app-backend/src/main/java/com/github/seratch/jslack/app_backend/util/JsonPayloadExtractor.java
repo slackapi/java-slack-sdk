@@ -51,7 +51,6 @@ public class JsonPayloadExtractor {
                 }
             }
         } catch (JsonSyntaxException e) {
-            log.debug("Failed to parse JSON data - {}", requestBody);
             // the request body is not a JSON data
         }
         return null;
