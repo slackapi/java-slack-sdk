@@ -158,6 +158,8 @@ public class Actions {
         public static final String external_shared_channel_connected = "external_shared_channel_connected";
         public static final String external_shared_channel_disconnected = "external_shared_channel_disconnected";
         public static final String external_shared_channel_reconnected = "external_shared_channel_reconnected";
+        public static final String external_shared_channel_invite_approved = "external_shared_channel_invite_approved";
+        public static final String external_shared_channel_invite_created = "external_shared_channel_invite_created";
     }
 
     public static class App {
@@ -170,6 +172,14 @@ public class Actions {
         public static final String app_approved = "app_approved";
         public static final String app_resources_granted = "app_resources_granted";
         public static final String app_token_preserved = "app_token_preserved";
+    }
+
+    public static class Message {
+        private Message() {
+        }
+
+        public static final String message_tombstoned = "message_tombstoned";
+        public static final String message_restored = "message_restored";
     }
 
 }
