@@ -64,6 +64,7 @@ import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsOpenRequest;
+import com.github.seratch.jslack.api.methods.request.views.ViewsPublishRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPushRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
@@ -128,6 +129,7 @@ import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
+import com.github.seratch.jslack.api.methods.response.views.ViewsPublishResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsPushResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;
@@ -1749,6 +1751,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ViewsUpdateResponse viewsUpdate(RequestConfigurator<ViewsUpdateRequest.ViewsUpdateRequestBuilder> req) throws IOException, SlackApiException {
         return viewsUpdate(req.configure(ViewsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public ViewsPublishResponse viewsPublish(ViewsPublishRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.VIEWS_PUBLISH, getToken(req), ViewsPublishResponse.class);
+    }
+
+    @Override
+    public ViewsPublishResponse viewsPublish(RequestConfigurator<ViewsPublishRequest.ViewsPublishRequestBuilder> req) throws IOException, SlackApiException {
+        return viewsPublish(req.configure(ViewsPublishRequest.builder()).build());
     }
 
     protected String getToken(SlackApiRequest request) {

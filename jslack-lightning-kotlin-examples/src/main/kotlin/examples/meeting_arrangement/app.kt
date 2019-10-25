@@ -13,8 +13,8 @@ fun main() {
 
     // export SLACK_BOT_TOKEN=xoxb-***
     // export SLACK_SIGNING_SECRET=123abc***
-    val app = App()
-    // val app = App(util.ResourceLoader.loadAppConfig())
+    //val app = App()
+    val app = App(util.ResourceLoader.loadAppConfig("appConfig_MeetingArrangement.json"))
 
     app.use { req, _, chain ->
         logger.info("Request - $req")

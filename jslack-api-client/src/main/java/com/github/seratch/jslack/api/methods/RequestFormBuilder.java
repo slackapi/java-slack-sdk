@@ -61,6 +61,7 @@ import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsOpenRequest;
+import com.github.seratch.jslack.api.methods.request.views.ViewsPublishRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPushRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.model.ConversationType;
@@ -1467,6 +1468,18 @@ public class RequestFormBuilder {
         setIfNotNull("external_id", req.getExternalId(), form);
         setIfNotNull("hash", req.getHash(), form);
         setIfNotNull("view_id", req.getViewId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ViewsPublishRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("user_id", req.getUserId(), form);
+        if (req.getViewAsString() != null) {
+            setIfNotNull("view", req.getViewAsString(), form);
+        } else {
+            setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
+        }
+        setIfNotNull("hash", req.getHash(), form);
         return form;
     }
 

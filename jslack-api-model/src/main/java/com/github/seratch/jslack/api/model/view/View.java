@@ -21,7 +21,7 @@ public class View {
 
     private String id;
     private String teamId;
-    private String type;
+    private String type; // modal, home
     private ViewTitle title;
     private ViewSubmit submit;
     private ViewClose close;
