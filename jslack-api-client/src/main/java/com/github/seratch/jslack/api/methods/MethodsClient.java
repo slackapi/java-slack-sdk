@@ -63,6 +63,7 @@ import com.github.seratch.jslack.api.methods.request.users.*;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.github.seratch.jslack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsOpenRequest;
+import com.github.seratch.jslack.api.methods.request.views.ViewsPublishRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPushRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
@@ -127,6 +128,7 @@ import com.github.seratch.jslack.api.methods.response.users.*;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.github.seratch.jslack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
+import com.github.seratch.jslack.api.methods.response.views.ViewsPublishResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsPushResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
 import okhttp3.FormBody;
@@ -953,5 +955,9 @@ public interface MethodsClient {
     ViewsUpdateResponse viewsUpdate(ViewsUpdateRequest req) throws IOException, SlackApiException;
 
     ViewsUpdateResponse viewsUpdate(RequestConfigurator<ViewsUpdateRequest.ViewsUpdateRequestBuilder> req) throws IOException, SlackApiException;
+
+    ViewsPublishResponse viewsPublish(ViewsPublishRequest req) throws IOException, SlackApiException;
+
+    ViewsPublishResponse viewsPublish(RequestConfigurator<ViewsPublishRequest.ViewsPublishRequestBuilder> req) throws IOException, SlackApiException;
 
 }

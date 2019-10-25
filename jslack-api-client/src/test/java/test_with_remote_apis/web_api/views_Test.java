@@ -3,6 +3,7 @@ package test_with_remote_apis.web_api;
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
+import com.github.seratch.jslack.api.methods.response.views.ViewsPublishResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsPushResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
 import com.github.seratch.jslack.api.model.view.View;
@@ -63,4 +64,17 @@ public class views_Test {
         assertThat(response.isOk(), is(false));
         assertThat(response.getError(), is("invalid_arguments"));
     }
+
+    @Test
+    public void publish() throws IOException, SlackApiException {
+        View view = View.builder().id("FAKE_ID").build();
+        ViewsPublishResponse response = slack.methods().viewsPublish(r -> r
+                .token(token)
+                .userId("FAKE_USER_ID")
+                .view(view));
+        assertThat(response.isOk(), is(false));
+        // need to join the beta
+        assertThat(response.getError(), is("not_allowed_token_type"));
+    }
+
 }

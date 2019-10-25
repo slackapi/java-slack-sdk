@@ -4,7 +4,6 @@ import com.github.seratch.jslack.app_backend.SlackSignature;
 import com.github.seratch.jslack.lightning.middleware.Middleware;
 import com.github.seratch.jslack.lightning.middleware.MiddlewareChain;
 import com.github.seratch.jslack.lightning.request.Request;
-import com.github.seratch.jslack.lightning.request.RequestType;
 import com.github.seratch.jslack.lightning.response.Response;
 import lombok.extern.slf4j.Slf4j;
 

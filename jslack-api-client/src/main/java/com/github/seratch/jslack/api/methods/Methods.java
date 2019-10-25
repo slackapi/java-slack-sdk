@@ -365,4 +365,7 @@ public class Methods {
     public static final String VIEWS_PUSH = "views.push";
     public static final String VIEWS_UPDATE = "views.update";
 
+    // https://api.slack.com/surfaces/tabs
+    public static final String VIEWS_PUBLISH = "views.publish";
+
 }

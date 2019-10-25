@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.api.model.event;
 
+import com.github.seratch.jslack.api.model.view.View;
 import lombok.Data;
 
 /**
@@ -28,6 +29,7 @@ public class AppHomeOpenedEvent implements Event {
     private final String type = TYPE_NAME;
     private String user;
     private String channel;
+    private String tab; // home, messages
     private String eventTs;
-
+    private View view;
 }
