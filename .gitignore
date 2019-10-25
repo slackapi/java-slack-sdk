@@ -23,6 +23,7 @@ json-logs/raw
 .DS_Store
 
 appConfig.json
+appConfig_GBP.json
 verificationToken.txt
 
 *.hprof

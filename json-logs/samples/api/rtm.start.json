@@ -278,7 +278,10 @@
       "iap1_lab": 12345,
       "seen_people_search_count": 12345,
       "dismissed_app_launcher_welcome": false,
-      "dismissed_app_launcher_limit": false
+      "dismissed_app_launcher_limit": false,
+      "dismissed_scroll_search_tooltip_count": 12345,
+      "seen_contextual_message_shortcuts_modal": false,
+      "seen_message_navigation_educational_toast": false
     },
     "created": 12345,
     "manual_presence": ""
@@ -446,7 +449,8 @@
         "type": [
           ""
         ]
-      }
+      },
+      "gg_enabled": false
     },
     "icon": {
       "image_34": "https://www.example.com/",

@@ -22,6 +22,10 @@ public interface Installer {
 
     void setInstallerUserId(String userId);
 
+    String getInstallerUserScope();
+
+    void setInstallerUserScope(String scope);
+
     String getInstallerUserAccessToken();
 
     void setInstallerUserAccessToken(String userAccessToken);
@@ -37,6 +41,10 @@ public interface Installer {
     String getBotUserId();
 
     void setBotUserId(String botUserId);
+
+    String getBotScope();
+
+    void setBotScope(String scope);
 
     String getBotAccessToken();
 

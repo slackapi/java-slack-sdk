@@ -40,20 +40,20 @@ public class AmazonS3InstallationService implements InstallationService {
     public void saveInstallerAndBot(Installer i) throws Exception {
         AmazonS3 s3 = this.createS3Client();
         if (isHistoricalDataEnabled()) {
-            save(s3, getInstallerKey(i) + "-latest", JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}");
-            save(s3, getBotKey(i)  + "-latest", JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}");
-            save(s3, getInstallerKey(i) + "-" + i.getInstalledAt(), JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}");
-            save(s3, getBotKey(i)  + "-" + i.getInstalledAt(), JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}");
+            save(s3, getInstallerKey(i) + "-latest", JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}, {}");
+            save(s3, getBotKey(i)  + "-latest", JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}, {}");
+            save(s3, getInstallerKey(i) + "-" + i.getInstalledAt(), JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}, {}");
+            save(s3, getBotKey(i)  + "-" + i.getInstalledAt(), JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}, {}");
         } else {
-            save(s3, getInstallerKey(i), JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}");
-            save(s3, getBotKey(i), JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}");
+            save(s3, getInstallerKey(i), JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}, {}");
+            save(s3, getBotKey(i), JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}, {}");
         }
     }
 
     private void save(AmazonS3 s3, String s3Key, String json, String logMessage) {
         PutObjectResult botPutResult = s3.putObject(bucketName, s3Key, json);
         if (log.isDebugEnabled()) {
-            log.debug(logMessage, JsonOps.toJsonString(botPutResult));
+            log.debug(logMessage, s3Key, JsonOps.toJsonString(botPutResult));
         }
     }
 

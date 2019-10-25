@@ -18,6 +18,10 @@ public interface Bot {
 
     void setBotUserId(String botUserId);
 
+    String getBotScope();
+
+    void setBotScope(String scope);
+
     String getBotAccessToken();
 
     void setBotAccessToken(String botAccessToken);

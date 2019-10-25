@@ -14,6 +14,7 @@ public class DefaultBot implements Bot {
 
     private String botId;
     private String botUserId;
+    private String botScope;
     private String botAccessToken;
 
     private Long installedAt;
