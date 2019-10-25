@@ -4,6 +4,7 @@ import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthTokenResponse;
+import com.github.seratch.jslack.api.methods.response.oauth.OAuthV2AccessResponse;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -26,6 +27,19 @@ public class oauth_Test {
     public void access() throws IOException, SlackApiException {
         {
             OAuthAccessResponse response = slack.methods().oauthAccess(r -> r
+                    .clientId("3485157640.XXXX")
+                    .clientSecret("XXXXX")
+                    .code("")
+                    .redirectUri("http://seratch.net/foo"));
+            assertThat(response.getError(), is("invalid_code"));
+            assertThat(response.isOk(), is(false));
+        }
+    }
+
+    @Test
+    public void accessV2() throws IOException, SlackApiException {
+        {
+            OAuthV2AccessResponse response = slack.methods().oauthV2Access(r -> r
                     .clientId("3485157640.XXXX")
                     .clientSecret("XXXXX")
                     .code("")
@@ -68,6 +82,18 @@ public class oauth_Test {
         response.setInstallerUser(new OAuthAccessResponse.InstallerUser());
         ObjectInitializer.initProperties(response);
         dumper.dump("oauth.access", response);
+    }
+
+    @Test
+    public void dumpFullJsonV2() throws IOException {
+        ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/api");
+        OAuthV2AccessResponse response = new OAuthV2AccessResponse();
+        response.setAuthedUser(new OAuthV2AccessResponse.AuthedUser());
+        response.setIncomingWebhook(new OAuthV2AccessResponse.IncomingWebhook());
+        response.setEnterprise(new OAuthV2AccessResponse.Enterprise());
+        response.setTeam(new OAuthV2AccessResponse.Team());
+        ObjectInitializer.initProperties(response);
+        dumper.dump("oauth.v2.access", response);
     }
 
 }

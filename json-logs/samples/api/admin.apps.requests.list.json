@@ -16,7 +16,19 @@
         "app_directory_url": "https://www.example.com/",
         "is_app_directory_approved": false,
         "is_internal": false,
-        "additional_info": ""
+        "additional_info": "",
+        "icons": {
+          "image_32": "https://www.example.com/",
+          "image_36": "https://www.example.com/",
+          "image_48": "https://www.example.com/",
+          "image_64": "https://www.example.com/",
+          "image_72": "https://www.example.com/",
+          "image_96": "https://www.example.com/",
+          "image_128": "https://www.example.com/",
+          "image_192": "https://www.example.com/",
+          "image_512": "https://www.example.com/",
+          "image_1024": "https://www.example.com/"
+        }
       },
       "user": {
         "id": "W00000000",
@@ -37,7 +49,18 @@
         }
       ],
       "message": "",
-      "date_created": 12345
+      "date_created": 12345,
+      "previous_resolution": {
+        "status": "",
+        "scopes": [
+          {
+            "name": "",
+            "description": "",
+            "is_sensitive": false,
+            "token_type": ""
+          }
+        ]
+      }
     }
   ],
   "response_metadata": {

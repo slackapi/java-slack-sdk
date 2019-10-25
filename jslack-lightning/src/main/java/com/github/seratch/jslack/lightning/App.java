@@ -66,6 +66,7 @@ public class App {
     private OAuthCallbackService oAuthCallbackService = null;
 
     private OAuthSuccessHandler oAuthSuccessHandler = new OAuthDefaultSuccessHandler(installationService);
+    private OAuthV2SuccessHandler oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(installationService);
     private OAuthErrorHandler oAuthErrorHandler = new OAuthDefaultErrorHandler();
     private OAuthAccessErrorHandler oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
     private OAuthStateErrorHandler oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
@@ -278,11 +279,20 @@ public class App {
 
     public App service(InstallationService installationService) {
         this.installationService = installationService;
-        return oauthCallback(new OAuthDefaultSuccessHandler(installationService));
+        if (config().isGranularBotPermissionsEnabled()) {
+            return oauthCallback(new OAuthV2DefaultSuccessHandler(installationService));
+        } else {
+            return oauthCallback(new OAuthDefaultSuccessHandler(installationService));
+        }
     }
 
     public App oauthCallback(OAuthSuccessHandler handler) {
         oAuthSuccessHandler = handler;
+        return this;
+    }
+
+    public App oauthCallback(OAuthV2SuccessHandler handler) {
+        oAuthV2SuccessHandler = handler;
         return this;
     }
 
@@ -614,6 +624,7 @@ public class App {
                         config(),
                         oAuthStateService,
                         oAuthSuccessHandler,
+                        oAuthV2SuccessHandler,
                         oAuthErrorHandler,
                         oAuthStateErrorHandler,
                         oAuthAccessErrorHandler,

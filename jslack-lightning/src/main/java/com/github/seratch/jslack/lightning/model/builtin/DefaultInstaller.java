@@ -18,9 +18,12 @@ public class DefaultInstaller implements Installer {
     private String teamName;
 
     private String installerUserId;
+    private String installerUserScope;
     private String installerUserAccessToken;
 
+    @Deprecated
     private String scope;
+    private String botScope;
 
     private String botId;
     private String botUserId;
@@ -39,7 +42,7 @@ public class DefaultInstaller implements Installer {
         bot.setEnterpriseId(enterpriseId);
         bot.setTeamId(teamId);
         bot.setTeamName(teamName);
-        bot.setScope(scope);
+        bot.setScope(botScope);
         bot.setBotId(botId);
         bot.setBotUserId(botUserId);
         bot.setBotAccessToken(botAccessToken);

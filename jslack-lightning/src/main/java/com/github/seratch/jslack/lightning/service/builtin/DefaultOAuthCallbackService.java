@@ -1,6 +1,7 @@
 package com.github.seratch.jslack.lightning.service.builtin;
 
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
+import com.github.seratch.jslack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.github.seratch.jslack.app_backend.config.SlackAppConfig;
 import com.github.seratch.jslack.app_backend.oauth.OAuthFlowOperator;
 import com.github.seratch.jslack.app_backend.oauth.payload.VerificationCodePayload;
@@ -19,6 +20,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
     private final OAuthFlowOperator operator;
     private final OAuthStateService stateService;
     private final OAuthSuccessHandler successHandler;
+    private final OAuthV2SuccessHandler successV2Handler;
     private final OAuthErrorHandler errorHandler;
     private final OAuthStateErrorHandler stateErrorHandler;
     private final OAuthAccessErrorHandler accessErrorHandler;
@@ -28,6 +30,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
             AppConfig config,
             OAuthStateService stateService,
             OAuthSuccessHandler successHandler,
+            OAuthV2SuccessHandler successV2Handler,
             OAuthErrorHandler errorHandler,
             OAuthStateErrorHandler stateErrorHandler,
             OAuthAccessErrorHandler accessErrorHandler,
@@ -35,6 +38,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
         this.config = config;
         this.stateService = stateService;
         this.successHandler = successHandler;
+        this.successV2Handler = successV2Handler;
         this.errorHandler = errorHandler;
         this.stateErrorHandler = stateErrorHandler;
         this.accessErrorHandler = accessErrorHandler;
@@ -55,12 +59,22 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
                 return errorHandler.handle(request);
             }
             if (stateService.isValid(payload.getState())) {
-                OAuthAccessResponse oauthAccess = operator.callOAuthAccessMethod(payload);
-                if (oauthAccess.isOk()) {
-                    stateService.consume(payload.getState());
-                    return successHandler.handle(request, oauthAccess);
+                if (config.isGranularBotPermissionsEnabled()) {
+                    OAuthV2AccessResponse oauthAccess = operator.callOAuthV2AccessMethod(payload);
+                    if (oauthAccess.isOk()) {
+                        stateService.consume(payload.getState());
+                        return successV2Handler.handle(request, oauthAccess);
+                    } else {
+                        return successV2Handler.handle(request, oauthAccess);
+                    }
                 } else {
-                    return accessErrorHandler.handle(request, oauthAccess);
+                    OAuthAccessResponse oauthAccess = operator.callOAuthAccessMethod(payload);
+                    if (oauthAccess.isOk()) {
+                        stateService.consume(payload.getState());
+                        return successHandler.handle(request, oauthAccess);
+                    } else {
+                        return accessErrorHandler.handle(request, oauthAccess);
+                    }
                 }
             } else {
                 return stateErrorHandler.handle(request);

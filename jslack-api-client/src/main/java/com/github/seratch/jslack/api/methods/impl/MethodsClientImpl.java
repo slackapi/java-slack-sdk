@@ -35,6 +35,7 @@ import com.github.seratch.jslack.api.methods.request.migration.MigrationExchange
 import com.github.seratch.jslack.api.methods.request.mpim.*;
 import com.github.seratch.jslack.api.methods.request.oauth.OAuthAccessRequest;
 import com.github.seratch.jslack.api.methods.request.oauth.OAuthTokenRequest;
+import com.github.seratch.jslack.api.methods.request.oauth.OAuthV2AccessRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsAddRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsListRequest;
 import com.github.seratch.jslack.api.methods.request.pins.PinsRemoveRequest;
@@ -98,6 +99,7 @@ import com.github.seratch.jslack.api.methods.response.migration.MigrationExchang
 import com.github.seratch.jslack.api.methods.response.mpim.*;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthTokenResponse;
+import com.github.seratch.jslack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsAddResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsListResponse;
 import com.github.seratch.jslack.api.methods.response.pins.PinsRemoveResponse;
@@ -1253,6 +1255,20 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public OAuthAccessResponse oauthAccess(RequestConfigurator<OAuthAccessRequest.OAuthAccessRequestBuilder> req) throws IOException, SlackApiException {
         return oauthAccess(req.configure(OAuthAccessRequest.builder()).build());
+    }
+
+    @Override
+    public OAuthV2AccessResponse oauthV2Access(OAuthV2AccessRequest req) throws IOException, SlackApiException {
+        FormBody.Builder form = new FormBody.Builder();
+        form.add("code", req.getCode());
+        form.add("redirect_uri", req.getRedirectUri());
+        String authorizationHeader = Credentials.basic(req.getClientId(), req.getClientSecret());
+        return doPostFormWithAuthorizationHeader(form, endpointUrlPrefix + Methods.OAUTH_V2_ACCESS, authorizationHeader, OAuthV2AccessResponse.class);
+    }
+
+    @Override
+    public OAuthV2AccessResponse oauthV2Access(RequestConfigurator<OAuthV2AccessRequest.OAuthV2AccessRequestBuilder> req) throws IOException, SlackApiException {
+        return oauthV2Access(req.configure(OAuthV2AccessRequest.builder()).build());
     }
 
     @Override

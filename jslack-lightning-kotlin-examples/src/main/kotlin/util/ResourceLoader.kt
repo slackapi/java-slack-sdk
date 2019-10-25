@@ -14,11 +14,11 @@ class ResourceLoader {
     companion object {
         private val logger = LoggerFactory.getLogger("resource-loader")
 
-        fun loadAppConfig(): AppConfig {
+        fun loadAppConfig(name: String = "appConfig.json"): AppConfig {
             val config = AppConfig()
             val classLoader = ResourceLoader::class.java.classLoader
             try {
-                classLoader.getResourceAsStream("appConfig.json").use { resource ->
+                classLoader.getResourceAsStream(name).use { resource ->
                     InputStreamReader(resource).use { isr ->
                         val json = BufferedReader(isr).lines().collect(joining())
                         val j = Gson().fromJson(json, JsonElement::class.java).asJsonObject
@@ -28,6 +28,7 @@ class ResourceLoader {
                         config.clientSecret = j.get("clientSecret").asString
                         config.redirectUri = j.get("redirectUri").asString
                         config.scope = j.get("scope").asString
+                        config.userScope = j.get("userScope")?.asString
                         config.oauthStartPath = j.get("oauthStartPath").asString
                         config.oauthCallbackPath = j.get("oauthCallbackPath").asString
                         config.oauthCompletionUrl = j.get("oauthCompletionUrl").asString

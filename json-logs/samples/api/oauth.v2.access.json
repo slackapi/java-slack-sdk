@@ -1,0 +1,32 @@
+{
+  "ok": false,
+  "warning": "",
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "app_id": "",
+  "authed_user": {
+    "id": "",
+    "scope": "",
+    "token_type": "",
+    "access_token": ""
+  },
+  "scope": "",
+  "token_type": "",
+  "access_token": "",
+  "bot_user_id": "",
+  "team": {
+    "id": "",
+    "name": ""
+  },
+  "enterprise": {
+    "id": "",
+    "name": ""
+  },
+  "incoming_webhook": {
+    "url": "",
+    "channel": "",
+    "channel_id": "",
+    "configuration_url": ""
+  }
+}

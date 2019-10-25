@@ -24,6 +24,7 @@ public class AppConfig {
         public static final String SLACK_APP_CLIENT_SECRET = "SLACK_APP_CLIENT_SECRET";
         public static final String SLACK_APP_REDIRECT_URI = "SLACK_APP_REDIRECT_URI";
         public static final String SLACK_APP_SCOPE = "SLACK_APP_SCOPE";
+        public static final String SLACK_APP_USER_SCOPE = "SLACK_APP_USER_SCOPE";
         public static final String SLACK_APP_OAUTH_START_PATH = "SLACK_APP_OAUTH_START_PATH";
         public static final String SLACK_APP_OAUTH_CALLBACK_PATH = "SLACK_APP_OAUTH_CALLBACK_PATH";
         public static final String SLACK_APP_OAUTH_CANCELLATION_URL = "SLACK_APP_OAUTH_CANCELLATION_URL";
@@ -45,6 +46,7 @@ public class AppConfig {
 
     private boolean oAuthStartEnabled = false;
     private boolean oAuthCallbackEnabled = false;
+    private boolean granularBotPermissionsEnabled = false;
 
     public void setOauthStartPath(String oauthStartPath) {
         this.oauthStartPath = oauthStartPath;
@@ -64,12 +66,25 @@ public class AppConfig {
     private String redirectUri = System.getenv(EnvVariableName.SLACK_APP_REDIRECT_URI);
     @Builder.Default
     private String scope = System.getenv(EnvVariableName.SLACK_APP_SCOPE);
+    @Builder.Default
+    private String userScope = System.getenv(EnvVariableName.SLACK_APP_USER_SCOPE);
 
     public String getOauthInstallationUrl(String state) {
         if (clientId == null || scope == null || state == null) {
             return null;
         } else {
-            return "https://slack.com/oauth/authorize?client_id=" + clientId + "&scope=" + scope + "&state=" + state;
+            if (isGranularBotPermissionsEnabled()) {
+                return "https://slack.com/oauth/v2/authorize" +
+                        "?client_id=" + clientId +
+                        "&scope=" + scope +
+                        "&user_scope=" + userScope +
+                        "&state=" + state;
+            } else {
+                return "https://slack.com/oauth/authorize" +
+                        "?client_id=" + clientId +
+                        "&scope=" + scope +
+                        "&state=" + state;
+            }
         }
     }
 
