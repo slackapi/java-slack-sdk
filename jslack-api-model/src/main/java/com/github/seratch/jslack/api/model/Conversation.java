@@ -16,6 +16,7 @@ import java.util.List;
 @Builder
 public class Conversation {
 
+    private String enterpriseId;
     private String id;
     private String name;
     private String created;
@@ -77,6 +78,12 @@ public class Conversation {
     private boolean isOrgShared;
     @SerializedName("is_pending_ext_shared")
     private boolean isPendingExtShared;
+    @SerializedName("is_global_shared")
+    private boolean globalShared;
+    @SerializedName("is_org_default")
+    private boolean orgDefault;
+    @SerializedName("is_org_mandatory")
+    private boolean orgMandatory;
     @SerializedName("is_moved")
     private Integer isMoved;
     @SerializedName("is_member")

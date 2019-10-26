@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "owner_ids": [
+    "W00000000"
+  ],
+  "response_metadata": {
+    "next_cursor": ""
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

@@ -24,7 +24,8 @@
       "subscribed": false,
       "client_msg_id": "",
       "user": "U00000000",
-      "team": "T00000000"
+      "team": "T00000000",
+      "bot_link": ""
     }
   ],
   "has_more": false,

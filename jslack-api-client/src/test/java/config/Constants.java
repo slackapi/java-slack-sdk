@@ -13,4 +13,6 @@ public class Constants {
     public static final String SLACK_TEST_SHARED_CHANNEL_ID = "SLACK_TEST_SHARED_CHANNEL_ID";
     public static final String SLACK_WEBHOOK_TEST_URL = "SLACK_WEBHOOK_TEST_URL";
     public static final String SLACK_WEBHOOK_TEST_CHANNEL = "SLACK_WEBHOOK_TEST_CHANNEL";
+
+    public static final String SLACK_TEST_EMAIL = "SLACK_TEST_EMAIL";
 }

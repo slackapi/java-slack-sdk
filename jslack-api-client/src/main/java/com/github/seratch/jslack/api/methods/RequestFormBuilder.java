@@ -3,7 +3,10 @@ package com.github.seratch.jslack.api.methods;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
-import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsOwnersListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.users.*;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -112,6 +115,80 @@ public class RequestFormBuilder {
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminTeamsAdminsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminTeamsOwnersListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminTeamsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_domain", req.getTeamDomain(), form);
+        setIfNotNull("team_name", req.getTeamName(), form);
+        setIfNotNull("team_description", req.getTeamDescription(), form);
+        setIfNotNull("team_discoverability", req.getTeamDiscoverability(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersAssignRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersInviteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
+        setIfNotNull("email", req.getEmail(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("custom_message", req.getCustomMessage(), form);
+        setIfNotNull("guest_expiration_ts", req.getGuestExpirationTs(), form);
+        setIfNotNull("is_restricted", req.isRestricted(), form);
+        setIfNotNull("is_ultra_restricted", req.isUltraRestricted(), form);
+        setIfNotNull("real_name", req.getRealName(), form);
+        setIfNotNull("resend", req.isResend(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersSetAdminRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersSetOwnerRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersSetRegularRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
         return form;
     }
 

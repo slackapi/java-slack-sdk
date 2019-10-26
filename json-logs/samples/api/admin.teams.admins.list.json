@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "admin_ids": [
+    "W00000000"
+  ],
+  "response_metadata": {
+    "next_cursor": ""
+  }
+}

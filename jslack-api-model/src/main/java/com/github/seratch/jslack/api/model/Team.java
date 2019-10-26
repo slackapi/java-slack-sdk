@@ -14,6 +14,9 @@ public class Team {
     private String emailDomain;
     private TeamIcon icon;
 
+    private String enterpriseId;
+    private String enterpriseName;
+
     @Data
     public static class Profile {
         private String id;
