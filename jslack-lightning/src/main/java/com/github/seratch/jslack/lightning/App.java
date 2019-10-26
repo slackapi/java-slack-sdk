@@ -13,10 +13,7 @@ import com.github.seratch.jslack.common.json.GsonFactory;
 import com.github.seratch.jslack.lightning.handler.*;
 import com.github.seratch.jslack.lightning.handler.builtin.*;
 import com.github.seratch.jslack.lightning.middleware.Middleware;
-import com.github.seratch.jslack.lightning.middleware.builtin.IgnoringSelfEvents;
-import com.github.seratch.jslack.lightning.middleware.builtin.MultiTeamsAuthorization;
-import com.github.seratch.jslack.lightning.middleware.builtin.RequestVerification;
-import com.github.seratch.jslack.lightning.middleware.builtin.SingleTeamAuthorization;
+import com.github.seratch.jslack.lightning.middleware.builtin.*;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.builtin.*;
 import com.github.seratch.jslack.lightning.response.Response;
@@ -356,6 +353,9 @@ public class App {
 
     protected List<Middleware> buildDefaultMiddlewareList(AppConfig appConfig) {
         List<Middleware> middlewareList = new ArrayList<>();
+
+        // ssl_check (slash command)
+        middlewareList.add(new SSLCheck(config().getVerificationToken()));
 
         // request verification
         // https://api.slack.com/docs/verifying-requests-from-slack
