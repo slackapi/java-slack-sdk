@@ -1,4 +1,4 @@
-package examples.meeting_arrangement
+package examples.meeting_arrangement_modals
 
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject
 import com.github.seratch.jslack.app_backend.interactive_messages.response.Option

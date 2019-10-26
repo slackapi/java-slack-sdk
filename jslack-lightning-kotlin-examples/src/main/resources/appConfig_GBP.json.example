@@ -1,0 +1,13 @@
+{
+  "singleTeamBotToken": "xoxb-12345-12345-abcabc",
+  "signingSecret": "abcabc",
+  "clientId": "12345.12345",
+  "clientSecret": "abcabc",
+  "redirectUri": "https://your-domain.ngrok.io/slack/oauth/callback",
+  "scope": "bot,chat:write:bot,users:read",
+  "userScope": "search:read",
+  "oauthStartPath": "/start",
+  "oauthCallbackPath": "/callback",
+  "oauthCompletionUrl": "https://your-domain.ngrok.io/slack/oauth/completion",
+  "oauthCancellationUrl": "https://your-domain.ngrok.io/slack/oauth/cancellation"
+}
