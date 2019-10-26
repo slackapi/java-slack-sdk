@@ -27,7 +27,7 @@ fun main() {
     // export AWS_REGION=us-east-1
     // export AWS_ACCESS_KEY_ID=AAAA*************
     // export AWS_SECRET_ACCESS_KEY=4o7***********************
-    val awsS3BucketName = "jslack-lightning-test-123"
+    val awsS3BucketName = "YOUR_OWN_BUCKET_NAME_HERE"
     val installationService = AmazonS3InstallationService(awsS3BucketName)
     installationService.isHistoricalDataEnabled = true
     mainApp.service(installationService)
