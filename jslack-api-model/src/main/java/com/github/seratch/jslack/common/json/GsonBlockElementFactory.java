@@ -64,6 +64,8 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
                 return PlainTextInputElement.class;
             case RichTextSectionElement.TYPE:
                 return RichTextSectionElement.class;
+            case RadioButtonsElement.TYPE:
+                return RadioButtonsElement.class;
             default:
                 throw new JsonParseException("Unknown context block element type: " + className);
         }
