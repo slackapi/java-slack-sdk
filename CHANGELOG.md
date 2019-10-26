@@ -1,6 +1,6 @@
 # jSlack Release Notes
 
-## version 3.0.0 (2019-10-XX)
+## version 3.0.0 (2019-10-26)
 
 * 69c5589 Add admin.* apis added in Oct 2019 by Kazuhiro Sera
 * 090da30 Add App Home support by Kazuhiro Sera
