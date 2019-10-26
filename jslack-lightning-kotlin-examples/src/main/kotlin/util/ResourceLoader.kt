@@ -23,6 +23,7 @@ class ResourceLoader {
                         val json = BufferedReader(isr).lines().collect(joining())
                         val j = Gson().fromJson(json, JsonElement::class.java).asJsonObject
                         config.signingSecret = j.get("signingSecret").asString
+                        config.verificationToken = j.get("verificationToken")?.asString
                         config.singleTeamBotToken = j.get("singleTeamBotToken")?.asString
                         config.clientId = j.get("clientId")?.asString
                         config.clientSecret = j.get("clientSecret")?.asString

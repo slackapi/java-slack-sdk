@@ -11,6 +11,7 @@ import com.github.seratch.jslack.app_backend.message_actions.payload.MessageActi
 import com.github.seratch.jslack.app_backend.oauth.payload.VerificationCodePayload;
 import com.github.seratch.jslack.app_backend.util.JsonPayloadExtractor;
 import com.github.seratch.jslack.app_backend.util.OutgoingWebhooksRequestDetector;
+import com.github.seratch.jslack.app_backend.util.SSLCheckRequestDetector;
 import com.github.seratch.jslack.app_backend.util.SlashCommandRequestDetector;
 import com.github.seratch.jslack.app_backend.views.payload.ViewClosedPayload;
 import com.github.seratch.jslack.app_backend.views.payload.ViewSubmissionPayload;
@@ -37,6 +38,7 @@ public class SlackAppServletAdapter {
     private AppConfig appConfig;
     private JsonPayloadExtractor jsonPayloadExtractor = new JsonPayloadExtractor();
     private SlashCommandRequestDetector commandRequestDetector = new SlashCommandRequestDetector();
+    private SSLCheckRequestDetector sslCheckRequestDetector = new SSLCheckRequestDetector();
     private OutgoingWebhooksRequestDetector webhookRequestDetector = new OutgoingWebhooksRequestDetector();
     private Gson gson = GsonFactory.createSnakeCase();
 
@@ -94,6 +96,8 @@ public class SlackAppServletAdapter {
             } else {
                 if (commandRequestDetector.isCommand(requestBody)) {
                     slackRequest = new SlashCommandRequest(requestBody, headers);
+                } else if (sslCheckRequestDetector.isSSLCheckRequest(requestBody)) {
+                    slackRequest = new SSLCheckRequest(requestBody, headers);
                 } else if (webhookRequestDetector.isWebhook(requestBody)) {
                     slackRequest = new OutgoingWebhooksRequest(requestBody, headers);
                 } else if (appConfig.isOAuthStartEnabled() && appConfig.getOauthStartRequestURI().equals(req.getRequestURI())) {

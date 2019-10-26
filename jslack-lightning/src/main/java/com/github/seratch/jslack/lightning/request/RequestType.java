@@ -4,6 +4,7 @@ public enum RequestType {
     OAuthStart,
     OAuthCallback,
     Command,
+    SSLCheck,
     OutgoingWebhooks,
     Event,
     UrlVerification,

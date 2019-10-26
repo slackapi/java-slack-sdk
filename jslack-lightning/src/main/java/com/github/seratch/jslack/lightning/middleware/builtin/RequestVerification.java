@@ -7,7 +7,7 @@ import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.response.Response;
 import lombok.extern.slf4j.Slf4j;
 
-import static com.github.seratch.jslack.lightning.middleware.MiddlewareOps.isOAuthRequest;
+import static com.github.seratch.jslack.lightning.middleware.MiddlewareOps.isNoSlackSignatureRequest;
 
 @Slf4j
 public class RequestVerification implements Middleware {
@@ -20,7 +20,7 @@ public class RequestVerification implements Middleware {
 
     @Override
     public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
-        if (isOAuthRequest(req.getRequestType())) {
+        if (isNoSlackSignatureRequest(req.getRequestType())) {
             return chain.next(req);
         }
         if (req.isValid(verifier)) {

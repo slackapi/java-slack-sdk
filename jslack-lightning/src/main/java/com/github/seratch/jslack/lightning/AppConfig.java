@@ -20,6 +20,7 @@ public class AppConfig {
 
         public static final String SLACK_BOT_TOKEN = "SLACK_BOT_TOKEN";
         public static final String SLACK_SIGNING_SECRET = "SLACK_SIGNING_SECRET";
+        public static final String SLACK_VERIFICATION_TOKEN = "SLACK_VERIFICATION_TOKEN";
         public static final String SLACK_APP_CLIENT_ID = "SLACK_APP_CLIENT_ID";
         public static final String SLACK_APP_CLIENT_SECRET = "SLACK_APP_CLIENT_SECRET";
         public static final String SLACK_APP_REDIRECT_URI = "SLACK_APP_REDIRECT_URI";
@@ -37,6 +38,9 @@ public class AppConfig {
     private String singleTeamBotToken = System.getenv(EnvVariableName.SLACK_BOT_TOKEN);
     @Builder.Default
     private String signingSecret = System.getenv(EnvVariableName.SLACK_SIGNING_SECRET);
+    @Builder.Default
+    @Deprecated
+    private String verificationToken = System.getenv(EnvVariableName.SLACK_VERIFICATION_TOKEN);
 
     // https://api.slack.com/docs/oauth
 
