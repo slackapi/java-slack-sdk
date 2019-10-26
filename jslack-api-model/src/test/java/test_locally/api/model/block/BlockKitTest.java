@@ -3,6 +3,8 @@ package test_locally.api.model.block;
 import com.github.seratch.jslack.api.model.Message;
 import com.github.seratch.jslack.api.model.block.InputBlock;
 import com.github.seratch.jslack.api.model.block.RichTextBlock;
+import com.github.seratch.jslack.api.model.block.SectionBlock;
+import com.github.seratch.jslack.api.model.block.element.RadioButtonsElement;
 import com.github.seratch.jslack.api.model.block.element.RichTextSectionElement;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
@@ -249,4 +251,52 @@ public class BlockKitTest {
         assertThat(text.getStyle().isItalic(), is(false));
         assertThat(text.getStyle().isStrike(), is(false));
     }
+
+    @Test
+    public void parseRadioButtons() {
+        String json = "{" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"section\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Check out these rad radio buttons\"\n" +
+                "      },\n" +
+                "      \"accessory\": {\n" +
+                "        \"type\": \"radio_buttons\",\n" +
+                "        \"action_id\": \"this_is_an_action_id\",\n" +
+                "        \"initial_option\": {\n" +
+                "          \"value\": \"A1\",\n" +
+                "          \"text\": {\n" +
+                "            \"type\": \"plain_text\",\n" +
+                "            \"text\": \"Radio 1\"\n" +
+                "          }\n" +
+                "        },\n" +
+                "        \"options\": [\n" +
+                "          {\n" +
+                "            \"value\": \"A1\",\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"plain_text\",\n" +
+                "              \"text\": \"Radio 1\"\n" +
+                "            }\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"value\": \"A2\",\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"plain_text\",\n" +
+                "              \"text\": \"Radio 2\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        SectionBlock block = (SectionBlock) message.getBlocks().get(0);
+        RadioButtonsElement radioButtons = (RadioButtonsElement) block.getAccessory();
+        assertThat(radioButtons.getActionId(), is("this_is_an_action_id"));
+    }
+
 }
