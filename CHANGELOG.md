@@ -1,5 +1,9 @@
 # jSlack Release Notes
 
+## version 3.0.1 (2019-10-26)
+
+* 356b5b0 Lightning: Add ssl_check request handler by Kazuhiro Sera
+
 ## version 3.0.0 (2019-10-26)
 
 * 69c5589 Add admin.* apis added in Oct 2019 by Kazuhiro Sera
