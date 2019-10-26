@@ -16,7 +16,8 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
   - [Slash Commands](https://api.slack.com/slash-commands)
   - [Interactive Components](https://api.slack.com/messaging/interactivity)
   - [Message Actions](https://api.slack.com/actions)
-  - [Block Kit in Modals](https://api.slack.com/block-kit/surfaces/modals)
+  - [Modals](https://api.slack.com/surfaces/modals)
+  - [App Home Tabs](https://api.slack.com/surfaces/tabs)
   - [Dialogs](https://api.slack.com/dialogs)
   - [Outgoing Webhooks](https://api.slack.com/custom-integrations/outgoing-webhooks)
 

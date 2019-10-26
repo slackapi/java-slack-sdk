@@ -2,6 +2,11 @@
 
 ## version 3.0.0 (2019-10-XX)
 
+* 69c5589 Add admin.* apis added in Oct 2019 by Kazuhiro Sera
+* 090da30 Add App Home support by Kazuhiro Sera
+* c98befc Add Granular Bot Permissions support by Kazuhiro Sera
+* de175cb Add a GitHub Action to build Docker images by Kazuhiro Sera
+* 6b8a9b6 Add Docker examples (Amazon ECS, Google Cloud Run) by Kazuhiro Sera
 * 8851614 Add user.is_workflow_bot in response by Kazuhiro Sera
 * 9a71bc8 Add historical data support and incoming webhooks in InstallationService #234 by Kazuhiro Sera
 * 382c311 Fix #235 MultiTeamsAuthorization fails due to missing team_id / enterprise_id in ActionContext by Kazuhiro Sera
@@ -15,6 +20,12 @@
 * 783507b Add Lightning, new module to build Slack apps quickly ⚡ by Kazuhiro Sera
 * e5deef6 Apply a bunch of improvements for Slack app dev by Kazuhiro Sera
 * 773a699 Add include_num_members to conversations.info params by Kazuhiro Sera
+
+### Topics
+
+#### Lightning to build Slack apps easily!
+
+Check [the readme](https://github.com/seratch/jslack/tree/master/jslack-lightning) and [Kotlin examples](https://github.com/seratch/jslack/tree/master/jslack-lightning-kotlin-examples/src/main/kotlin/examples)!
 
 ### Incompatibility
 
