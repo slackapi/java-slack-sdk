@@ -19,6 +19,35 @@ public class Methods {
     public static final String ADMIN_APPS_REQUESTS_LIST = "admin.apps.requests.list";
 
     // ------------------------------
+    // admin.teams.admins
+    // ------------------------------
+
+    public static final String ADMIN_TEAMS_ADMINS_LIST = "admin.teams.admins.list";
+
+    // ------------------------------
+    // admin.teams
+    // ------------------------------
+
+    public static final String ADMIN_TEAMS_CREATE = "admin.teams.create";
+
+    // ------------------------------
+    // admin.teams.owners
+    // ------------------------------
+
+    public static final String ADMIN_TEAMS_OWNERS_LIST = "admin.teams.owners.list";
+
+    // ------------------------------
+    // admin.users
+    // ------------------------------
+
+    public static final String ADMIN_USERS_ASSIGN = "admin.users.assign";
+    public static final String ADMIN_USERS_INVITE = "admin.users.invite";
+    public static final String ADMIN_USERS_REMOVE = "admin.users.remove";
+    public static final String ADMIN_USERS_SET_ADMIN = "admin.users.setAdmin";
+    public static final String ADMIN_USERS_SET_OWNER = "admin.users.setOwner";
+    public static final String ADMIN_USERS_SET_REGULAR = "admin.users.setRegular";
+
+    // ------------------------------
     // admin.users.session
     // ------------------------------
 

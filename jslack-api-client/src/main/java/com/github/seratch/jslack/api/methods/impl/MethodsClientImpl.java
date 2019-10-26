@@ -5,7 +5,10 @@ import com.github.seratch.jslack.api.methods.*;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
-import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsOwnersListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.users.*;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
 import com.github.seratch.jslack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
@@ -70,7 +73,10 @@ import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
-import com.github.seratch.jslack.api.methods.response.admin.users.AdminUsersSessionResetResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsOwnersListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.users.*;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
 import com.github.seratch.jslack.api.methods.response.apps.AppsUninstallResponse;
 import com.github.seratch.jslack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
@@ -200,6 +206,96 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminAppsRequestsListResponse adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) throws IOException, SlackApiException {
         return adminAppsRequestsList(req.configure(AdminAppsRequestsListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminTeamsAdminsListResponse adminTeamsAdminsList(AdminTeamsAdminsListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_TEAMS_ADMINS_LIST, getToken(req), AdminTeamsAdminsListResponse.class);
+    }
+
+    @Override
+    public AdminTeamsAdminsListResponse adminTeamsAdminsList(RequestConfigurator<AdminTeamsAdminsListRequest.AdminTeamsAdminsListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsAdminsList(req.configure(AdminTeamsAdminsListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminTeamsCreateResponse adminTeamsCreate(AdminTeamsCreateRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_TEAMS_CREATE, getToken(req), AdminTeamsCreateResponse.class);
+    }
+
+    @Override
+    public AdminTeamsCreateResponse adminTeamsCreate(RequestConfigurator<AdminTeamsCreateRequest.AdminTeamsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsCreate(req.configure(AdminTeamsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public AdminTeamsOwnersListResponse adminTeamsOwnersList(AdminTeamsOwnersListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_TEAMS_OWNERS_LIST, getToken(req), AdminTeamsOwnersListResponse.class);
+    }
+
+    @Override
+    public AdminTeamsOwnersListResponse adminTeamsOwnersList(RequestConfigurator<AdminTeamsOwnersListRequest.AdminTeamsOwnersListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsOwnersList(req.configure(AdminTeamsOwnersListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersAssignResponse adminUsersAssign(AdminUsersAssignRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_USERS_ASSIGN, getToken(req), AdminUsersAssignResponse.class);
+    }
+
+    @Override
+    public AdminUsersAssignResponse adminUsersAssign(RequestConfigurator<AdminUsersAssignRequest.AdminUsersAssignRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersAssign(req.configure(AdminUsersAssignRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersInviteResponse adminUsersInvite(AdminUsersInviteRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_USERS_INVITE, getToken(req), AdminUsersInviteResponse.class);
+    }
+
+    @Override
+    public AdminUsersInviteResponse adminUsersInvite(RequestConfigurator<AdminUsersInviteRequest.AdminUsersInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersInvite(req.configure(AdminUsersInviteRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersRemoveResponse adminUsersRemove(AdminUsersRemoveRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_USERS_REMOVE, getToken(req), AdminUsersRemoveResponse.class);
+    }
+
+    @Override
+    public AdminUsersRemoveResponse adminUsersRemove(RequestConfigurator<AdminUsersRemoveRequest.AdminUsersRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersRemove(req.configure(AdminUsersRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersSetAdminResponse adminUsersSetAdmin(AdminUsersSetAdminRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_USERS_SET_ADMIN, getToken(req), AdminUsersSetAdminResponse.class);
+    }
+
+    @Override
+    public AdminUsersSetAdminResponse adminUsersSetAdmin(RequestConfigurator<AdminUsersSetAdminRequest.AdminUsersSetAdminRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersSetAdmin(req.configure(AdminUsersSetAdminRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersSetOwnerResponse adminUsersSetOwner(AdminUsersSetOwnerRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_USERS_SET_OWNER, getToken(req), AdminUsersSetOwnerResponse.class);
+    }
+
+    @Override
+    public AdminUsersSetOwnerResponse adminUsersSetOwner(RequestConfigurator<AdminUsersSetOwnerRequest.AdminUsersSetOwnerRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersSetOwner(req.configure(AdminUsersSetOwnerRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersSetRegularResponse adminUsersSetRegular(AdminUsersSetRegularRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_USERS_SET_REGULAR, getToken(req), AdminUsersSetRegularResponse.class);
+    }
+
+    @Override
+    public AdminUsersSetRegularResponse adminUsersSetRegular(RequestConfigurator<AdminUsersSetRegularRequest.AdminUsersSetRegularRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersSetRegular(req.configure(AdminUsersSetRegularRequest.builder()).build());
     }
 
     @Override

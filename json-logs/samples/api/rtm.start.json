@@ -281,7 +281,8 @@
       "dismissed_app_launcher_limit": false,
       "dismissed_scroll_search_tooltip_count": 12345,
       "seen_contextual_message_shortcuts_modal": false,
-      "seen_message_navigation_educational_toast": false
+      "seen_message_navigation_educational_toast": false,
+      "show_shared_channels_education_banner": false
     },
     "created": 12345,
     "manual_presence": ""

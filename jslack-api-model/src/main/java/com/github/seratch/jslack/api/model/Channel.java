@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 public class Channel {
 
+    private String enterpriseId;
     private String id;
     private String name;
     private String nameNormalized;
@@ -38,6 +39,14 @@ public class Channel {
     private boolean shared;
     @SerializedName("is_org_shared")
     private boolean orgShared;
+    @SerializedName("is_global_shared")
+    private boolean globalShared;
+    @SerializedName("is_org_default")
+    private boolean orgDefault;
+    @SerializedName("is_org_mandatory")
+    private boolean orgMandatory;
+    @SerializedName("is_moved")
+    private Integer isMoved;
 
     @SerializedName("is_ext_shared") // search result
     private boolean extShared;
