@@ -29,6 +29,6 @@ fun main() {
     // export SLACK_PORT=8080
     val envPort: String? = System.getenv()["SLACK_PORT"]
     val port: Int = if (envPort == null) 8080 else Integer.valueOf(envPort)
-    val server = SlackAppServer(app, "/slack/events", port)
+    val server = SlackAppServer(app, port)
     server.start()
 }
