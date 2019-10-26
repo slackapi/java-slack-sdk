@@ -7,6 +7,10 @@ import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
  */
 public interface EventsDispatcher {
 
+    boolean isRunning();
+
+    boolean isEmpty();
+
     /**
      * Registers a new EventHandler.
      */

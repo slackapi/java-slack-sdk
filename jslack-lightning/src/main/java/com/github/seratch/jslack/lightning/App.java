@@ -117,12 +117,16 @@ public class App {
         }
         initOAuthServicesIfNecessary();
 
-        this.eventsDispatcher.start();
+        if (!this.eventsDispatcher.isEmpty()) {
+            this.eventsDispatcher.start();
+        }
         return this;
     }
 
     public App stop() {
-        this.eventsDispatcher.stop();
+        if (this.eventsDispatcher.isRunning()) {
+            this.eventsDispatcher.stop();
+        }
         return this;
     }
 
@@ -440,7 +444,9 @@ public class App {
                 break;
             }
             case Event: {
-                eventsDispatcher.enqueue(req.getRequestBodyAsString());
+                if (eventsDispatcher.isRunning()) {
+                    eventsDispatcher.enqueue(req.getRequestBodyAsString());
+                }
                 EventRequest request = (EventRequest) req;
                 LightningEventHandler<Event> handler = eventHandlers.get(request.getEventType());
                 if (handler != null) {

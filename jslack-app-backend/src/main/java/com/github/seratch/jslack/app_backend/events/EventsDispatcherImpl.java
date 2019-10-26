@@ -57,6 +57,16 @@ public class EventsDispatcherImpl implements EventsDispatcher {
     }
 
     @Override
+    public boolean isRunning() {
+        return !closed.get();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return eventTypeAndHandlers.isEmpty();
+    }
+
+    @Override
     public void register(EventHandler<? extends EventsApiPayload<?>> handler) {
         String eventType = handler.getEventType();
         List<EventHandler<?>> handlers = eventTypeAndHandlers.getOrDefault(eventType, new ArrayList<>());
