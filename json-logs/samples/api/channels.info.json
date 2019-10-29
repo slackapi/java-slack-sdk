@@ -277,7 +277,16 @@
           "image_72": "https://www.example.com/"
         },
         "team_id": "T00000000"
-      }
+      },
+      "reactions": [
+        {
+          "name": "",
+          "users": [
+            "U00000000"
+          ],
+          "count": 12345
+        }
+      ]
     },
     "unread_count": 12345,
     "unread_count_display": 12345,

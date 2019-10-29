@@ -26,7 +26,19 @@
         "app_directory_url": "",
         "is_app_directory_approved": false,
         "is_internal": false,
-        "additional_info": ""
+        "additional_info": "",
+        "icons": {
+          "image_32": "",
+          "image_36": "",
+          "image_48": "",
+          "image_64": "",
+          "image_72": "",
+          "image_96": "",
+          "image_128": "",
+          "image_192": "",
+          "image_512": "",
+          "image_1024": ""
+        }
       },
       "user": {
         "id": "",
