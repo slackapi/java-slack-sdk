@@ -160,6 +160,7 @@ public class Actions {
         public static final String external_shared_channel_reconnected = "external_shared_channel_reconnected";
         public static final String external_shared_channel_invite_approved = "external_shared_channel_invite_approved";
         public static final String external_shared_channel_invite_created = "external_shared_channel_invite_created";
+        public static final String channel_moved = "channel_moved";
     }
 
     public static class App {
