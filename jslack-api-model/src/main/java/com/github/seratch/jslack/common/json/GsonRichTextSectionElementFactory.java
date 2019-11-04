@@ -28,8 +28,6 @@ public class GsonRichTextSectionElementFactory implements JsonDeserializer<RichT
         switch (className) {
             case RichTextSectionElement.Text.TYPE:
                 return RichTextSectionElement.Text.class;
-            case RichTextSectionElement.Channel.TYPE:
-                return RichTextSectionElement.Channel.class;
             case RichTextSectionElement.User.TYPE:
                 return RichTextSectionElement.User.class;
             case RichTextSectionElement.Emoji.TYPE:
@@ -42,8 +40,6 @@ public class GsonRichTextSectionElementFactory implements JsonDeserializer<RichT
                 return RichTextSectionElement.UserGroup.class;
             case RichTextSectionElement.Date.TYPE:
                 return RichTextSectionElement.Date.class;
-            case RichTextSectionElement.Broadcast.TYPE:
-                return RichTextSectionElement.Broadcast.class;
             default:
                 throw new JsonParseException("Unknown RichTextSectionElement type: " + className);
         }

@@ -43,16 +43,7 @@ public class RichTextSectionElement extends BlockElement {
         private final String type = TYPE;
         private String url;
         private String text;
-        private String style;
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Channel implements Element {
-        public static final String TYPE = "channel";
-        private final String type = TYPE;
+        private TextStyle style;
     }
 
     @Data
@@ -63,7 +54,7 @@ public class RichTextSectionElement extends BlockElement {
         public static final String TYPE = "user";
         private final String type = TYPE;
         private String user_id;
-        private String style;
+        private TextStyle style;
     }
 
     @Data
@@ -74,7 +65,7 @@ public class RichTextSectionElement extends BlockElement {
         public static final String TYPE = "team";
         private final String type = TYPE;
         private String team_id;
-        private String style;
+        private TextStyle style;
     }
 
     @Data
@@ -95,15 +86,6 @@ public class RichTextSectionElement extends BlockElement {
         public static final String TYPE = "date";
         private final String type = TYPE;
         private String timestamp;
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Broadcast implements Element {
-        public static final String TYPE = "broadcast";
-        private final String type = TYPE;
     }
 
     @Data
