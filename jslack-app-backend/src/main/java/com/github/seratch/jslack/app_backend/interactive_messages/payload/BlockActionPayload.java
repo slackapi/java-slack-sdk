@@ -2,7 +2,7 @@ package com.github.seratch.jslack.app_backend.interactive_messages.payload;
 
 import com.github.seratch.jslack.api.model.Confirmation;
 import com.github.seratch.jslack.api.model.Message;
-import com.github.seratch.jslack.api.model.Option;
+import com.github.seratch.jslack.api.model.block.composition.OptionObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import com.github.seratch.jslack.api.model.view.View;
 import com.google.gson.annotations.SerializedName;
@@ -92,7 +92,7 @@ public class BlockActionPayload {
         private Confirmation confirm;
 
         // static_select
-        private Option initialOption;
+        private OptionObject initialOption;
         private PlainTextObject placeholder;
         private SelectedOption selectedOption; // overflow
 
