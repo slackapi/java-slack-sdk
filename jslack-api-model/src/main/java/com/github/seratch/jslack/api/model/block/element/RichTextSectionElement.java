@@ -38,6 +38,60 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
+    public static class Link implements Element {
+        public static final String TYPE = "link";
+        private final String type = TYPE;
+        private String url;
+        private String text;
+        private TextStyle style;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class User implements Element {
+        public static final String TYPE = "user";
+        private final String type = TYPE;
+        private String user_id;
+        private TextStyle style;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Team implements Element {
+        public static final String TYPE = "team";
+        private final String type = TYPE;
+        private String team_id;
+        private TextStyle style;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UserGroup implements Element {
+        public static final String TYPE = "usergroup";
+        private final String type = TYPE;
+        private String usergroup_id;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Date implements Element {
+        public static final String TYPE = "date";
+        private final String type = TYPE;
+        private String timestamp;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class TextStyle {
         private boolean bold;
         private boolean italic;
