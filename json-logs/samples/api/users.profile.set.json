@@ -18,6 +18,7 @@
     "status_expiration": 12345,
     "avatar_hash": "",
     "image_original": "https://www.example.com/",
+    "is_custom_image": false,
     "email": "",
     "first_name": "",
     "last_name": "",
@@ -28,8 +29,7 @@
     "image_192": "https://www.example.com/",
     "image_512": "https://www.example.com/",
     "image_1024": "https://www.example.com/",
-    "status_text_canonical": "",
-    "is_custom_image": false
+    "status_text_canonical": ""
   },
   "ok": false,
   "username": "",

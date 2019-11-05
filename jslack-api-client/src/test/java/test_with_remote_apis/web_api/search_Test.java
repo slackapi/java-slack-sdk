@@ -38,8 +38,9 @@ public class search_Test {
         assertThat(response.isOk(), is(true));
 
         MatchedItem match = response.getMessages().getMatches().get(0);
-        assertThat(match.getUser(), is(notNullValue()));
         assertThat(match.getUsername(), is(notNullValue()));
+        // As of Nov 2019, user is not available
+        // assertThat(match.getUser(), is(notNullValue()));
     }
 
     @Test

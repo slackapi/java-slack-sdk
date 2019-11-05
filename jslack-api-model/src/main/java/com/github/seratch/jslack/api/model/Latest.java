@@ -25,6 +25,7 @@ public class Latest {
     private boolean upload;
     private boolean displayAsBot;
     private String botId;
+    private String botLink;
     private String threadTs;
     private String ts;
     private Message.Icons icons;

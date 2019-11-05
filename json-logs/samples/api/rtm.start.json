@@ -283,7 +283,8 @@
       "seen_contextual_message_shortcuts_modal": false,
       "seen_message_navigation_educational_toast": false,
       "show_shared_channels_education_banner": false,
-      "seen_wysiwyg_deluxe_toast": false
+      "seen_wysiwyg_deluxe_toast": false,
+      "last_dismissed_scroll_search_tooltip_timestamp": 12345
     },
     "created": 12345,
     "manual_presence": ""
@@ -647,6 +648,10 @@
         "display_name_normalized": "",
         "fields": {
           "Xf0DAGNXHT": {
+            "value": "",
+            "alt": ""
+          },
+          "XfPXP6GR3K": {
             "value": "",
             "alt": ""
           }

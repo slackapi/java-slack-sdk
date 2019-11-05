@@ -28,7 +28,16 @@
       "creator": "U00000000",
       "last_set": 12345
     },
-    "priority": 12345
+    "priority": 12345,
+    "latest": {
+      "type": "",
+      "subtype": "",
+      "text": "",
+      "user": "U00000000",
+      "bot_id": "B00000000",
+      "bot_link": "",
+      "ts": "0000000000.000000"
+    }
   },
   "error": "",
   "needed": "",

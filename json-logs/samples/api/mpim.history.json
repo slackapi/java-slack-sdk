@@ -1,7 +1,15 @@
 {
   "ok": false,
   "messages": [
-    ""
+    {
+      "type": "",
+      "subtype": "",
+      "text": "",
+      "user": "U00000000",
+      "bot_id": "B00000000",
+      "bot_link": "",
+      "ts": "0000000000.000000"
+    }
   ],
   "has_more": false,
   "channel_actions_count": 12345,
