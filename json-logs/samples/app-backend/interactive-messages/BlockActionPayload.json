@@ -966,6 +966,14 @@
       "type": "",
       "action_ts": "",
       "url": "",
+      "initial_option": {
+        "text": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "value": ""
+      },
       "placeholder": {
         "type": "plain_text",
         "text": "",
