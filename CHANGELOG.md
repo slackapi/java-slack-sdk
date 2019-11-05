@@ -1,5 +1,11 @@
 # jSlack Release Notes
 
+## version 3.0.2 (2019-11-06)
+
+* 6262137 Add bot_link to latest field by Kazuhiro Sera
+* b510128 Fix #249 Incorrect BlockActionPayload definition (#253) by Kazuhiro Sera
+* b7ca3d8 Add missing types of rich sections (#251) by Kostiantyn Severynov
+
 ## version 3.0.1 (2019-10-26)
 
 * 356b5b0 Lightning: Add ssl_check request handler by Kazuhiro Sera
