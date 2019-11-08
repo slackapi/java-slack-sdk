@@ -1,22 +1,28 @@
 package com.github.seratch.jslack.lightning.request.builtin;
 
+import com.github.seratch.jslack.common.json.GsonFactory;
 import com.github.seratch.jslack.lightning.context.builtin.DefaultContext;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.RequestHeaders;
 import com.github.seratch.jslack.lightning.request.RequestType;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import lombok.ToString;
 
 @ToString(callSuper = true)
 public class UrlVerificationRequest extends Request<DefaultContext> {
 
+    private final String requestBody;
     private final RequestHeaders headers;
     private final String challenge;
 
     public UrlVerificationRequest(
-            String challenge,
+            String requestBody,
             RequestHeaders headers) {
-        this.challenge = challenge;
+        this.requestBody = requestBody;
         this.headers = headers;
+        JsonObject payload = GsonFactory.createSnakeCase().fromJson(requestBody, JsonElement.class).getAsJsonObject();
+        this.challenge = payload.get("challenge").getAsString();
     }
 
     private DefaultContext context = new DefaultContext();
@@ -33,7 +39,7 @@ public class UrlVerificationRequest extends Request<DefaultContext> {
 
     @Override
     public String getRequestBodyAsString() {
-        return challenge;
+        return requestBody;
     }
 
     @Override
@@ -41,4 +47,7 @@ public class UrlVerificationRequest extends Request<DefaultContext> {
         return this.headers;
     }
 
+    public String getChallenge() {
+        return this.challenge;
+    }
 }

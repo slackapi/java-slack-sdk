@@ -4,6 +4,7 @@ import com.github.seratch.jslack.app_backend.dialogs.payload.DialogCancellationP
 import com.github.seratch.jslack.app_backend.dialogs.payload.DialogSubmissionPayload;
 import com.github.seratch.jslack.app_backend.dialogs.payload.DialogSuggestionPayload;
 import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
+import com.github.seratch.jslack.app_backend.events.payload.UrlVerificationPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.AttachmentActionPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockSuggestionPayload;
@@ -71,9 +72,8 @@ public class SlackAppServletAdapter {
                     case EventsApiPayload.TYPE:
                         slackRequest = new EventRequest(jsonPayload, headers);
                         break;
-                    case "url_verification":
-                        String challenge = payload.get("challenge").getAsString();
-                        slackRequest = new UrlVerificationRequest(challenge, headers);
+                    case UrlVerificationPayload.TYPE:
+                        slackRequest = new UrlVerificationRequest(jsonPayload, headers);
                         break;
                     case DialogCancellationPayload.TYPE:
                         slackRequest = new DialogCancellationRequest(requestBody, jsonPayload, headers);
