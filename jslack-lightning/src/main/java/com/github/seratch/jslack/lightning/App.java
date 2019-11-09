@@ -462,7 +462,7 @@ public class App {
                 return Response.builder()
                         .statusCode(200)
                         .contentType("text/plain")
-                        .body(req.getRequestBodyAsString())
+                        .body(((UrlVerificationRequest) req).getChallenge())
                         .build();
             }
             case AttachmentAction: {
