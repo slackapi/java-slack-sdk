@@ -71,6 +71,7 @@ public class SchemasResponse implements AuditApiResponse {
     public static class App {
         private String id;
         private String name;
+        private String isWorkflowApp;
         private String isDistributed;
         private String isDirectoryApproved;
         private String scopes;

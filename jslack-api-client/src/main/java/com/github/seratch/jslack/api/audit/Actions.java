@@ -161,6 +161,7 @@ public class Actions {
         public static final String external_shared_channel_invite_approved = "external_shared_channel_invite_approved";
         public static final String external_shared_channel_invite_created = "external_shared_channel_invite_created";
         public static final String channel_moved = "channel_moved";
+        public static final String group_converted_to_channel = "group_converted_to_channel";
     }
 
     public static class App {
@@ -173,6 +174,9 @@ public class Actions {
         public static final String app_approved = "app_approved";
         public static final String app_resources_granted = "app_resources_granted";
         public static final String app_token_preserved = "app_token_preserved";
+        public static final String workflow_app_token_preserved = "workflow_app_token_preserved";
+        public static final String bot_token_upgraded = "bot_token_upgraded";
+        public static final String bot_token_downgraded = "bot_token_downgraded";
     }
 
     public static class Message {
