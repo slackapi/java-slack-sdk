@@ -151,7 +151,7 @@ public class ShortcutImpl implements Shortcut {
 
     @Override
     public ChatPostMessageResponse postAsBot(ChannelName channel, List<LayoutBlock> blocks) throws IOException, SlackApiException {
-        return _post(channel, blocks, true);
+        return _post(channel, blocks, false);
     }
 
     private ChatPostMessageResponse _post(ChannelName channel, String text, List<Attachment> attachments, boolean asUser) throws IOException, SlackApiException {
