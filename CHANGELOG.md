@@ -1,5 +1,11 @@
 # jSlack Release Notes
 
+## version 3.0.3 (2019-11-09)
+
+* 55cc2c5 Fix postAsBot to actually post as bot, not as user by Antonio Tomac
+* f54633c Add new fields in Audit Logs API by Kazuhiro Sera
+* d34a372 Fix #254 by Joel McCance
+
 ## version 3.0.2 (2019-11-06)
 
 * 6262137 Add bot_link to latest field by Kazuhiro Sera
