@@ -22,6 +22,8 @@ public class BlockSuggestionRequest extends Request<BlockSuggestionContext> {
         this.requestBody = requestBody;
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, BlockSuggestionPayload.class);
+        getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
+        getContext().setTeamId(payload.getTeam().getId());
         getContext().setRequestUserId(payload.getUser().getId());
     }
 

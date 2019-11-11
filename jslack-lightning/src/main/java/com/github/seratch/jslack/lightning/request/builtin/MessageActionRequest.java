@@ -22,8 +22,11 @@ public class MessageActionRequest extends Request<ActionContext> {
         this.requestBody = requestBody;
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, MessageActionPayload.class);
+
         getContext().setResponseUrl(payload.getResponseUrl());
         getContext().setTriggerId(payload.getTriggerId());
+        getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
+        getContext().setTeamId(payload.getTeam().getId());
         getContext().setRequestUserId(payload.getUser().getId());
     }
 
