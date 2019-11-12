@@ -1,10 +1,15 @@
 # jSlack Release Notes
 
+## version 3.0.4 (2019-11-12)
+
+* 82d7a1a Add enterprise_id in event request context by Kazuhiro Sera
+* 5d06fe6 Ensure team and enterprise ids are set on requests by Joel McCance
+
 ## version 3.0.3 (2019-11-09)
 
 * 55cc2c5 Fix postAsBot to actually post as bot, not as user by Antonio Tomac
 * f54633c Add new fields in Audit Logs API by Kazuhiro Sera
-* d34a372 Fix #254 by Joel McCance
+* d34a372 Fix #254 Lightning UrlVerification fails signature validation by Joel McCance
 
 ## version 3.0.2 (2019-11-06)
 
