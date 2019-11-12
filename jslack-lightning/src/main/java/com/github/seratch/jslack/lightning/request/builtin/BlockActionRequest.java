@@ -24,6 +24,8 @@ public class BlockActionRequest extends Request<ActionContext> {
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, BlockActionPayload.class);
         getContext().setResponseUrl(payload.getResponseUrl());
         getContext().setTriggerId(payload.getTriggerId());
+        getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
+        getContext().setTeamId(payload.getTeam().getId());
         getContext().setRequestUserId(payload.getUser().getId());
     }
 
