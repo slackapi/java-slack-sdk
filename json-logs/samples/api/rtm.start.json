@@ -286,7 +286,9 @@
       "seen_wysiwyg_deluxe_toast": false,
       "last_dismissed_scroll_search_tooltip_timestamp": 12345,
       "has_used_quickswitcher_shortcut": false,
-      "seen_quickswitcher_shortcut_tip_count": 12345
+      "seen_quickswitcher_shortcut_tip_count": 12345,
+      "seen_markdown_paste_toast": 12345,
+      "seen_markdown_paste_shortcut": 12345
     },
     "created": 12345,
     "manual_presence": ""
