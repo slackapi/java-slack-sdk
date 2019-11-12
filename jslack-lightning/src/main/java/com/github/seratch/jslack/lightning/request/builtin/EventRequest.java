@@ -24,6 +24,10 @@ public class EventRequest extends Request<DefaultContext> {
         JsonObject payload = GsonFactory.createSnakeCase().fromJson(requestBody, JsonElement.class).getAsJsonObject();
         this.eventType = payload.get("event").getAsJsonObject().get("type").getAsString();
         this.getContext().setTeamId(payload.get("team_id").getAsString());
+        JsonElement enterpriseId = payload.get("enterprise_id");
+        if (enterpriseId != null) {
+            this.getContext().setTeamId(enterpriseId.getAsString());
+        }
     }
 
     private DefaultContext context = new DefaultContext();
