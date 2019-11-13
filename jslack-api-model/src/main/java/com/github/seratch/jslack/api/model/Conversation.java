@@ -26,6 +26,8 @@ public class Conversation {
     private String nameNormalized;
     @SerializedName("pending_shared")
     private List<String> pendingShared;
+    @SerializedName("pending_connected_team_ids")
+    private List<String> pendingConnectedTeamIds;
     @SerializedName("last_read")
     private String lastRead;
     private Topic topic;
@@ -44,7 +46,12 @@ public class Conversation {
     private String user; // conversations.open
     private Double priority;
 
+    @SerializedName("shared_team_ids")
     private List<String> sharedTeamIds;
+    @SerializedName("internal_team_ids")
+    private List<String> internalTeamIds;
+    @SerializedName("connected_team_ids")
+    private List<String> connectedTeamIds;
 
     private String parentConversation;
     private List<String> pendingConnectedTeamIds;
