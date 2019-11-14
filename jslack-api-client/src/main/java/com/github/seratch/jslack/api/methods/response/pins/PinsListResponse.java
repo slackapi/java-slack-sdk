@@ -4,7 +4,6 @@ import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import com.github.seratch.jslack.api.model.File;
 import com.github.seratch.jslack.api.model.FileComment;
 import com.github.seratch.jslack.api.model.Message;
-import com.github.seratch.jslack.api.model.MessageItem;
 import lombok.Data;
 
 import java.util.List;

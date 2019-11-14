@@ -38,6 +38,7 @@ public class LegacyApiTest {
 
     int port = PortProvider.getPort(LegacyApiTest.class.getName());
     Server server = new Server(port);
+
     {
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);

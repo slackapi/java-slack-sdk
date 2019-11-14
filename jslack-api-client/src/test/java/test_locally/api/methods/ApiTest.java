@@ -5,14 +5,15 @@ import com.github.seratch.jslack.SlackConfig;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import test_locally.api.util.PortProvider;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -36,6 +37,7 @@ public class ApiTest {
 
     int port = PortProvider.getPort(ApiTest.class.getName());
     Server server = new Server(port);
+
     {
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);

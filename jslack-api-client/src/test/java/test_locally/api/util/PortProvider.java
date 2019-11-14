@@ -8,7 +8,8 @@ import java.util.concurrent.ConcurrentMap;
 
 public class PortProvider {
 
-    private PortProvider() {}
+    private PortProvider() {
+    }
 
     private static final SecureRandom RANDOM = new SecureRandom();
     private static final ConcurrentMap<String, Integer> PORTS = new ConcurrentHashMap<>();
@@ -18,7 +19,7 @@ public class PortProvider {
     }
 
     private static int randomPort() {
-        while(true) {
+        while (true) {
             int randomPort = RANDOM.nextInt(9999);
             if (isAvailable(randomPort)) {
                 return randomPort;

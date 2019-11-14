@@ -2,7 +2,6 @@ package test_locally.api.scim;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.api.audit.response.LogsResponse;
 import com.github.seratch.jslack.api.scim.response.UsersSearchResponse;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
@@ -39,6 +38,7 @@ public class ApiTest {
 
     int port = PortProvider.getPort(ApiTest.class.getName());
     Server server = new Server(port);
+
     {
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);

@@ -226,7 +226,7 @@ public class Slack {
     }
 
     public SCIMClient scim(String token) {
-        SCIMClientImpl client =  new SCIMClientImpl(httpClient, token);
+        SCIMClientImpl client = new SCIMClientImpl(httpClient, token);
         client.setEndpointUrlPrefix(config.getScimEndpointUrlPrefix());
         return client;
     }
@@ -252,7 +252,7 @@ public class Slack {
     }
 
     public MethodsClient methods(String token) {
-        MethodsClientImpl client =  new MethodsClientImpl(httpClient, token);
+        MethodsClientImpl client = new MethodsClientImpl(httpClient, token);
         client.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
         return client;
     }
