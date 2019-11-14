@@ -7,4 +7,5 @@ cache:
   directories:
   - $HOME/.m2
 install: echo 'skipped'
-script: travis_retry "./mvnw test-compile && ./mvnw '-Dtest=test_locally.**.*Test' test -DfailIfNoTests=false && ./mvnw install -Dmaven.test.skip=true && ./mvnw duplicate-finder:check"
+script:
+  - travis_retry ./mvnw test-compile && ./mvnw '-Dtest=test_locally.**.*Test' test -DfailIfNoTests=false && ./mvnw install -Dmaven.test.skip=true && ./mvnw duplicate-finder:check
