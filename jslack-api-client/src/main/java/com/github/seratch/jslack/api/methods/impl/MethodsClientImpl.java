@@ -155,7 +155,7 @@ import static com.github.seratch.jslack.api.methods.RequestFormBuilder.toMultipa
 @Slf4j
 public class MethodsClientImpl implements MethodsClient {
 
-    private String endpointUrlPrefix = "https://slack.com/api/";
+    private String endpointUrlPrefix = MethodsClient.ENDPOINT_URL_PREFIX;
 
     private final SlackHttpClient slackHttpClient;
     private final Optional<String> token;
@@ -167,6 +167,11 @@ public class MethodsClientImpl implements MethodsClient {
     public MethodsClientImpl(SlackHttpClient slackHttpClient, String token) {
         this.slackHttpClient = slackHttpClient;
         this.token = Optional.ofNullable(token);
+    }
+
+    @Override
+    public String getEndpointUrlPrefix() {
+        return endpointUrlPrefix;
     }
 
     @Override

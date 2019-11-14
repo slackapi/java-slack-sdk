@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class SCIMClientImpl implements SCIMClient {
 
-    private String endpointUrlPrefix = "https://api.slack.com/scim/v1/";
+    private String endpointUrlPrefix = ENDPOINT_URL_PREFIX;
 
     private final SlackHttpClient slackHttpClient;
     private final String token;
@@ -34,6 +34,11 @@ public class SCIMClientImpl implements SCIMClient {
     // ------------------------------------------
     // public methods
     // ------------------------------------------
+
+    @Override
+    public String getEndpointUrlPrefix() {
+        return this.endpointUrlPrefix;
+    }
 
     @Override
     public void setEndpointUrlPrefix(String endpointUrlPrefix) {

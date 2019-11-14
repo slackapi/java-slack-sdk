@@ -149,6 +149,10 @@ import java.io.IOException;
  */
 public interface MethodsClient {
 
+    String ENDPOINT_URL_PREFIX = "https://slack.com/api/";
+
+    String getEndpointUrlPrefix();
+
     void setEndpointUrlPrefix(String endpointUrlPrefix);
 
     Response runPostForm(

@@ -11,6 +11,12 @@ import java.util.List;
  */
 public interface StatusClient {
 
+    String ENDPOINT_URL_PREFIX = "https://status.slack.com/api/v2.0.0/";
+
+    String getEndpointUrlPrefix();
+
+    void setEndpointUrlPrefix(String endpointUrlPrefix);
+
     CurrentStatus current() throws IOException, StatusApiException;
 
     List<SlackIssue> history() throws IOException, StatusApiException;
