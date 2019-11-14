@@ -1,4 +1,4 @@
-package test_with_remote_apis.web_api;
+package test_with_remote_apis.status;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.status.v2.StatusApiException;
@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class status_v2_Test {
+public class StatusApiV2Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 

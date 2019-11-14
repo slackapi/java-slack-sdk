@@ -1,11 +1,18 @@
-package test_with_remote_apis.web_api;
+package test_with_remote_apis.methods_admin_api;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.admin.users.*;
+import com.github.seratch.jslack.api.methods.request.admin.invite_requests.AdminInviteRequestsApprovedListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.invite_requests.AdminInviteRequestsDeniedListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.invite_requests.AdminInviteRequestsDenyRequest;
+import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersAssignRequest;
+import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersInviteRequest;
+import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersRemoveRequest;
+import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
+import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsOwnersListResponse;
@@ -20,7 +27,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +35,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class admin_Test {
+public class AdminApiTest {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
     String email = System.getenv(Constants.SLACK_TEST_EMAIL);
@@ -81,6 +87,36 @@ public class admin_Test {
                         .teamId(adminAppsTeamId));
                 assertThat(restriction.getError(), is(nullValue()));
             }
+        }
+    }
+
+    @Test
+    public void inviteRequests() throws Exception {
+        if (orgAdminToken != null) {
+            AdminInviteRequestsApproveResponse approval = slack.methods(orgAdminToken).adminInviteRequestsApprove(r -> r
+                    .teamId(adminAppsTeamId)
+                    .inviteRequestId("I12345678"));
+            assertThat(approval.getError(), is("invalid_request"));
+
+            AdminInviteRequestsDenyResponse denial = slack.methods(orgAdminToken).adminInviteRequestsDeny(r -> r
+                    .teamId(adminAppsTeamId)
+                    .inviteRequestId("I12345678"));
+            assertThat(denial.getError(), is("invalid_request"));
+
+            AdminInviteRequestsListResponse list = slack.methods(orgAdminToken).adminInviteRequestsList(r -> r
+                    .limit(1000)
+                    .teamId(adminAppsTeamId));
+            assertThat(list.getError(), is(nullValue()));
+
+            AdminInviteRequestsApprovedListResponse approvedList = slack.methods(orgAdminToken).adminInviteRequestsApprovedList(r -> r
+                    .limit(1000)
+                    .teamId(adminAppsTeamId));
+            assertThat(approvedList.getError(), is(nullValue()));
+
+            AdminInviteRequestsDeniedListResponse deniedList = slack.methods(orgAdminToken).adminInviteRequestsDeniedList(r -> r
+                    .limit(1000)
+                    .teamId(adminAppsTeamId));
+            assertThat(deniedList.getError(), is(nullValue()));
         }
     }
 

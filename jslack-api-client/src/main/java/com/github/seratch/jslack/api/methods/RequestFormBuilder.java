@@ -3,6 +3,7 @@ package com.github.seratch.jslack.api.methods;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsOwnersListRequest;
@@ -67,6 +68,7 @@ import com.github.seratch.jslack.api.methods.request.views.ViewsOpenRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPublishRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPushRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
+import com.github.seratch.jslack.api.methods.response.admin.invite_requests.AdminInviteRequestsDenyResponse;
 import com.github.seratch.jslack.api.model.ConversationType;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -111,6 +113,44 @@ public class RequestFormBuilder {
     }
 
     public static FormBody.Builder toForm(AdminAppsRequestsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminInviteRequestsApproveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("invite_request_id", req.getInviteRequestId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminInviteRequestsDenyRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("invite_request_id", req.getInviteRequestId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminInviteRequestsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminInviteRequestsApprovedListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminInviteRequestsDeniedListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
