@@ -11,6 +11,10 @@ import java.io.IOException;
  */
 public interface SCIMClient {
 
+    String ENDPOINT_URL_PREFIX = "https://api.slack.com/scim/v1/";
+
+    String getEndpointUrlPrefix();
+
     void setEndpointUrlPrefix(String endpointUrlPrefix);
 
     // --------------------

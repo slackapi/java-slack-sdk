@@ -35,6 +35,10 @@ public class ShortcutImpl implements Shortcut {
 
     private final Slack slack;
 
+    public Slack getSlack() {
+        return slack;
+    }
+
     private List<Channel> channels = new ArrayList<>();
 
     public ShortcutImpl(Slack slack) {

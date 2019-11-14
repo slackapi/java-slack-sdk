@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class AuditClientImpl implements AuditClient {
 
-    private static final String BASE_URL = "https://api.slack.com/audit/v1/";
+    private String endpointUrlPrefix = getEndpointUrlPrefix();
 
     private final SlackHttpClient slackHttpClient;
     private final String token;
@@ -34,6 +34,14 @@ public class AuditClientImpl implements AuditClient {
         this.token = token;
     }
 
+    public String getEndpointUrlPrefix() {
+        return endpointUrlPrefix;
+    }
+
+    public void setEndpointUrlPrefix(String endpointUrlPrefix) {
+        this.endpointUrlPrefix = endpointUrlPrefix;
+    }
+
     @Override
     public SchemasResponse getSchemas() throws IOException, AuditApiException {
         return getSchemas(SchemasRequest.builder().build());
@@ -41,7 +49,7 @@ public class AuditClientImpl implements AuditClient {
 
     @Override
     public SchemasResponse getSchemas(SchemasRequest req) throws IOException, AuditApiException {
-        return doGet(BASE_URL + "schemas", null, getToken(req), SchemasResponse.class);
+        return doGet(getEndpointUrlPrefix() + "schemas", null, getToken(req), SchemasResponse.class);
     }
 
     @Override
@@ -56,7 +64,7 @@ public class AuditClientImpl implements AuditClient {
 
     @Override
     public ActionsResponse getActions(ActionsRequest req) throws IOException, AuditApiException {
-        return doGet(BASE_URL + "actions", null, getToken(req), ActionsResponse.class);
+        return doGet(getEndpointUrlPrefix() + "actions", null, getToken(req), ActionsResponse.class);
     }
 
     @Override
@@ -85,7 +93,7 @@ public class AuditClientImpl implements AuditClient {
         if (req.getEntity() != null) {
             query.put("entity", req.getEntity());
         }
-        return doGet(BASE_URL + "logs", query, getToken(req), LogsResponse.class);
+        return doGet(getEndpointUrlPrefix() + "logs", query, getToken(req), LogsResponse.class);
     }
 
     @Override

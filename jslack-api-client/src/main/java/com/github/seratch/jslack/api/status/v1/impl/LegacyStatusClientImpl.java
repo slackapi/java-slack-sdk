@@ -16,8 +16,7 @@ import java.util.List;
 
 public class LegacyStatusClientImpl implements LegacyStatusClient {
 
-    private static final String BASE_URL = "https://status.slack.com/api/v1.0.0/";
-
+    private String endpointUrlPrefix = ENDPOINT_URL_PREFIX;
     private final SlackHttpClient slackHttpClient;
 
     public LegacyStatusClientImpl(SlackHttpClient slackHttpClient) {
@@ -25,8 +24,18 @@ public class LegacyStatusClientImpl implements LegacyStatusClient {
     }
 
     @Override
+    public String getEndpointUrlPrefix() {
+        return this.endpointUrlPrefix;
+    }
+
+    @Override
+    public void setEndpointUrlPrefix(String endpointUrlPrefix) {
+        this.endpointUrlPrefix = endpointUrlPrefix;
+    }
+
+    @Override
     public LegacyCurrentStatus current() throws IOException, LegacyStatusApiException {
-        Response response = slackHttpClient.get(BASE_URL + "current", null, null);
+        Response response = slackHttpClient.get(endpointUrlPrefix + "current", null, null);
         String body = response.body().string();
         slackHttpClient.runHttpResponseListeners(response, body);
         if (response.isSuccessful()) {
@@ -38,7 +47,7 @@ public class LegacyStatusClientImpl implements LegacyStatusClient {
 
     @Override
     public List<LegacySlackIssue> history() throws IOException, LegacyStatusApiException {
-        Response response = slackHttpClient.get(BASE_URL + "history", null, null);
+        Response response = slackHttpClient.get(endpointUrlPrefix + "history", null, null);
         Type listType = new TypeToken<ArrayList<LegacySlackIssue>>() {
         }.getType();
         String body = response.body().string();

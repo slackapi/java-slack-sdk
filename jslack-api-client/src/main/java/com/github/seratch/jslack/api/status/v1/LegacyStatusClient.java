@@ -11,6 +11,12 @@ import java.util.List;
  */
 public interface LegacyStatusClient {
 
+    String ENDPOINT_URL_PREFIX = "https://status.slack.com/api/v1.0.0/";
+
+    String getEndpointUrlPrefix();
+
+    void setEndpointUrlPrefix(String endpointUrlPrefix);
+
     LegacyCurrentStatus current() throws IOException, LegacyStatusApiException;
 
     List<LegacySlackIssue> history() throws IOException, LegacyStatusApiException;

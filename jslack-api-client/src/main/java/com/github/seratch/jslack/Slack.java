@@ -207,44 +207,54 @@ public class Slack {
      * Creates a Status API client.
      */
     public LegacyStatusClient statusLegacy() {
-        return new LegacyStatusClientImpl(httpClient);
+        LegacyStatusClientImpl client = new LegacyStatusClientImpl(httpClient);
+        client.setEndpointUrlPrefix(config.getLegacyStatusEndpointUrlPrefix());
+        return client;
     }
 
     public StatusClient status() {
-        return new StatusClientImpl(httpClient);
+        StatusClientImpl client = new StatusClientImpl(httpClient);
+        client.setEndpointUrlPrefix(config.getStatusEndpointUrlPrefix());
+        return client;
     }
 
     /**
      * Creates a SCIM API client.
      */
     public SCIMClient scim() {
-        return new SCIMClientImpl(httpClient);
+        return scim(null);
     }
 
     public SCIMClient scim(String token) {
-        return new SCIMClientImpl(httpClient, token);
+        SCIMClientImpl client = new SCIMClientImpl(httpClient, token);
+        client.setEndpointUrlPrefix(config.getScimEndpointUrlPrefix());
+        return client;
     }
 
     /**
      * Creates a Audit Logs API client.
      */
     public AuditClient audit() {
-        return new AuditClientImpl(httpClient);
+        return audit(null);
     }
 
     public AuditClient audit(String token) {
-        return new AuditClientImpl(httpClient, token);
+        AuditClientImpl client = new AuditClientImpl(httpClient, token);
+        client.setEndpointUrlPrefix(config.getAuditEndpointUrlPrefix());
+        return client;
     }
 
     /**
      * Creates a Methods API client.
      */
     public MethodsClient methods() {
-        return new MethodsClientImpl(httpClient);
+        return methods(null);
     }
 
     public MethodsClient methods(String token) {
-        return new MethodsClientImpl(httpClient, token);
+        MethodsClientImpl client = new MethodsClientImpl(httpClient, token);
+        client.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
+        return client;
     }
 
     public Shortcut shortcut() {
