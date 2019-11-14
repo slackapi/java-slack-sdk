@@ -5,6 +5,7 @@ import com.github.seratch.jslack.api.methods.*;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsOwnersListRequest;
@@ -73,6 +74,7 @@ import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
+import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsOwnersListResponse;
@@ -211,6 +213,56 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminAppsRequestsListResponse adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) throws IOException, SlackApiException {
         return adminAppsRequestsList(req.configure(AdminAppsRequestsListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminInviteRequestsApproveResponse adminInviteRequestsApprove(AdminInviteRequestsApproveRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_INVITE_REQUESTS_APPROVE, getToken(req), AdminInviteRequestsApproveResponse.class);
+    }
+
+    @Override
+    public AdminInviteRequestsApproveResponse adminInviteRequestsApprove(RequestConfigurator<AdminInviteRequestsApproveRequest.AdminInviteRequestsApproveRequestBuilder> req) throws IOException, SlackApiException {
+        return adminInviteRequestsApprove(req.configure(AdminInviteRequestsApproveRequest.builder()).build());
+    }
+
+    @Override
+    public AdminInviteRequestsDenyResponse adminInviteRequestsDeny(AdminInviteRequestsDenyRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_INVITE_REQUESTS_DENY, getToken(req), AdminInviteRequestsDenyResponse.class);
+    }
+
+    @Override
+    public AdminInviteRequestsDenyResponse adminInviteRequestsDeny(RequestConfigurator<AdminInviteRequestsDenyRequest.AdminInviteRequestsDenyRequestBuilder> req) throws IOException, SlackApiException {
+        return adminInviteRequestsDeny(req.configure(AdminInviteRequestsDenyRequest.builder()).build());
+    }
+
+    @Override
+    public AdminInviteRequestsListResponse adminInviteRequestsList(AdminInviteRequestsListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_INVITE_REQUESTS_LIST, getToken(req), AdminInviteRequestsListResponse.class);
+    }
+
+    @Override
+    public AdminInviteRequestsListResponse adminInviteRequestsList(RequestConfigurator<AdminInviteRequestsListRequest.AdminInviteRequestsListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminInviteRequestsList(req.configure(AdminInviteRequestsListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminInviteRequestsApprovedListResponse adminInviteRequestsApprovedList(AdminInviteRequestsApprovedListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_INVITE_REQUESTS_APPROVED_LIST, getToken(req), AdminInviteRequestsApprovedListResponse.class);
+    }
+
+    @Override
+    public AdminInviteRequestsApprovedListResponse adminInviteRequestsApprovedList(RequestConfigurator<AdminInviteRequestsApprovedListRequest.AdminInviteRequestsApprovedListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminInviteRequestsApprovedList(req.configure(AdminInviteRequestsApprovedListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminInviteRequestsDeniedListResponse adminInviteRequestsDeniedList(AdminInviteRequestsDeniedListRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_INVITE_REQUESTS_DENIED_LIST, getToken(req), AdminInviteRequestsDeniedListResponse.class);
+    }
+
+    @Override
+    public AdminInviteRequestsDeniedListResponse adminInviteRequestsDeniedList(RequestConfigurator<AdminInviteRequestsDeniedListRequest.AdminInviteRequestsDeniedListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminInviteRequestsDeniedList(req.configure(AdminInviteRequestsDeniedListRequest.builder()).build());
     }
 
     @Override

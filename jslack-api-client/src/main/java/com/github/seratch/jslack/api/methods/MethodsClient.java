@@ -4,6 +4,7 @@ import com.github.seratch.jslack.api.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsOwnersListRequest;
@@ -72,6 +73,7 @@ import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
+import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsOwnersListResponse;
@@ -191,6 +193,30 @@ public interface MethodsClient {
     AdminAppsRequestsListResponse adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
+    // admin.inviteRequests
+    // ------------------------------
+
+    AdminInviteRequestsApproveResponse adminInviteRequestsApprove(AdminInviteRequestsApproveRequest req) throws IOException, SlackApiException;
+
+    AdminInviteRequestsApproveResponse adminInviteRequestsApprove(RequestConfigurator<AdminInviteRequestsApproveRequest.AdminInviteRequestsApproveRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminInviteRequestsDenyResponse adminInviteRequestsDeny(AdminInviteRequestsDenyRequest req) throws IOException, SlackApiException;
+
+    AdminInviteRequestsDenyResponse adminInviteRequestsDeny(RequestConfigurator<AdminInviteRequestsDenyRequest.AdminInviteRequestsDenyRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminInviteRequestsListResponse adminInviteRequestsList(AdminInviteRequestsListRequest req) throws IOException, SlackApiException;
+
+    AdminInviteRequestsListResponse adminInviteRequestsList(RequestConfigurator<AdminInviteRequestsListRequest.AdminInviteRequestsListRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminInviteRequestsApprovedListResponse adminInviteRequestsApprovedList(AdminInviteRequestsApprovedListRequest req) throws IOException, SlackApiException;
+
+    AdminInviteRequestsApprovedListResponse adminInviteRequestsApprovedList(RequestConfigurator<AdminInviteRequestsApprovedListRequest.AdminInviteRequestsApprovedListRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminInviteRequestsDeniedListResponse adminInviteRequestsDeniedList(AdminInviteRequestsDeniedListRequest req) throws IOException, SlackApiException;
+
+    AdminInviteRequestsDeniedListResponse adminInviteRequestsDeniedList(RequestConfigurator<AdminInviteRequestsDeniedListRequest.AdminInviteRequestsDeniedListRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
     // admin.teams.admins
     // ------------------------------
 
@@ -270,12 +296,32 @@ public interface MethodsClient {
     // apps.permissions
     // ------------------------------
 
+    // Developer preview has ended
+    // This feature was exclusive to our workspace apps developer preview.
+    // The preview has now ended, but fan-favorite features such as token rotation
+    // and the Conversations API will become available to classic Slack apps over the coming months.
+    @Deprecated
     AppsPermissionsInfoResponse appsPermissionsInfo(AppsPermissionsInfoRequest req) throws IOException, SlackApiException;
 
+    // Developer preview has ended
+    // This feature was exclusive to our workspace apps developer preview.
+    // The preview has now ended, but fan-favorite features such as token rotation
+    // and the Conversations API will become available to classic Slack apps over the coming months.
+    @Deprecated
     AppsPermissionsInfoResponse appsPermissionsInfo(RequestConfigurator<AppsPermissionsInfoRequest.AppsPermissionsInfoRequestBuilder> req) throws IOException, SlackApiException;
 
+    // Developer preview has ended
+    // This feature was exclusive to our workspace apps developer preview.
+    // The preview has now ended, but fan-favorite features such as token rotation
+    // and the Conversations API will become available to classic Slack apps over the coming months.
+    @Deprecated
     AppsPermissionsRequestResponse appsPermissionsRequest(AppsPermissionsRequestRequest req) throws IOException, SlackApiException;
 
+    // Developer preview has ended
+    // This feature was exclusive to our workspace apps developer preview.
+    // The preview has now ended, but fan-favorite features such as token rotation
+    // and the Conversations API will become available to classic Slack apps over the coming months.
+    @Deprecated
     AppsPermissionsRequestResponse appsPermissionsRequest(RequestConfigurator<AppsPermissionsRequestRequest.AppsPermissionsRequestRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------

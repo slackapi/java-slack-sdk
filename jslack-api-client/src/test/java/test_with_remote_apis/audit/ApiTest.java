@@ -1,4 +1,4 @@
-package test_with_remote_apis.web_api;
+package test_with_remote_apis.audit;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.audit.Actions;
@@ -23,7 +23,7 @@ import static org.junit.Assert.fail;
 
 // required scope - auditlogs:read
 @Slf4j
-public class audit_Test {
+public class ApiTest {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
     String token = System.getenv(Constants.SLACK_TEST_ADMIN_OAUTH_ACCESS_TOKEN);

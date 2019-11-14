@@ -19,6 +19,16 @@ public class Methods {
     public static final String ADMIN_APPS_REQUESTS_LIST = "admin.apps.requests.list";
 
     // ------------------------------
+    // admin.inviteRequests
+    // ------------------------------
+
+    public static final String ADMIN_INVITE_REQUESTS_APPROVE = "admin.inviteRequests.approve";
+    public static final String ADMIN_INVITE_REQUESTS_DENY = "admin.inviteRequests.deny";
+    public static final String ADMIN_INVITE_REQUESTS_LIST = "admin.inviteRequests.list";
+    public static final String ADMIN_INVITE_REQUESTS_APPROVED_LIST = "admin.inviteRequests.approved.list";
+    public static final String ADMIN_INVITE_REQUESTS_DENIED_LIST = "admin.inviteRequests.denied.list";
+
+    // ------------------------------
     // admin.teams.admins
     // ------------------------------
 

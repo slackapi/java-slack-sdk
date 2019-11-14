@@ -248,7 +248,7 @@ public class IncomingWebhooksTest {
 
         Payload payload = Payload.builder()
                 .threadTs(chatPostMessageResponse.getMessage().getTs())
-                .text("Reply via Imcoming Webhook!").build();
+                .text("Reply via Incoming Webhook!").build();
 
         WebhookResponse response = slack.send(url, payload);
         log.info(response.toString());
