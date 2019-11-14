@@ -12,6 +12,7 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
 - [Status API](https://api.slack.com/docs/slack-status)
 - [Useful modules to build Slack App backend services](https://github.com/seratch/jslack/tree/master/jslack-app-backend/src/main/java/com/github/seratch/jslack/app_backend)
   - [OAuth 2.0](https://api.slack.com/docs/oauth)
+  - [OAuth 2.0 - Granular Permissions](https://api.slack.com/authentication/basics)
   - [Events API](https://api.slack.com/events-api)
   - [Slash Commands](https://api.slack.com/slash-commands)
   - [Interactive Components](https://api.slack.com/messaging/interactivity)
@@ -289,6 +290,49 @@ public class SampleServlet extends SlackEventsApiServlet {
 ```
 
 
+#### Slack App Backend Examples
+
+jSlack offers a full-stack Slack app framework named _Lightning⚡_. Check [its README](https://github.com/seratch/jslack/tree/master/jslack-lightning) to learn the basics first.
+
+```kotlin
+import com.github.seratch.jslack.lightning.App
+import com.github.seratch.jslack.lightning.jetty.SlackAppServer
+import org.slf4j.LoggerFactory
+
+fun main() {
+
+    val logger = LoggerFactory.getLogger("main")
+
+    // export SLACK_BOT_TOKEN=xoxb-***
+    // export SLACK_SIGNING_SECRET=123abc***
+    val app = App()
+
+    app.command("/echo") { req, ctx ->
+        val text = "You said ${req.payload.text} at <#${req.payload.channelId}|${req.payload.channelName}>"
+        val res = ctx.respond { it.text(text) }
+        logger.info("respond result - {}", res)
+        ctx.ack()
+    }
+
+    // Amazon Elastic Container Service - the default health check endpoint
+    // [ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]
+    // https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HealthCheck.html
+    app.endpoint("/") { _, ctx ->
+        ctx.ack()
+    }
+
+    // export SLACK_PORT=8080
+    val envPort: String? = System.getenv()["SLACK_PORT"]
+    val port: Int = if (envPort == null) 8080 else Integer.valueOf(envPort)
+    val server = SlackAppServer(app, port)
+    server.start()
+}
+```
+
+Also, there are lots of working examples:
+
+* [jslack-lightning-kotlin-examples](https://github.com/seratch/jslack/tree/master/jslack-lightning-kotlin-examples)
+* [jslack-lightning-docker-examples](https://github.com/seratch/jslack/tree/master/jslack-lightning-docker-examples)
 
 #### Real Time Messaging API
 
