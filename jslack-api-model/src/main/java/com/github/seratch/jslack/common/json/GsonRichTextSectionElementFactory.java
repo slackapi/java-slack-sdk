@@ -8,7 +8,10 @@ import java.lang.reflect.Type;
 /**
  * https://api.slack.com/changelog/2019-09-what-they-see-is-what-you-get-and-more-and-less
  */
-public class GsonRichTextSectionElementFactory implements JsonDeserializer<RichTextSectionElement.Element>, JsonSerializer<RichTextSectionElement.Element> {
+public class GsonRichTextSectionElementFactory implements
+        JsonDeserializer<RichTextSectionElement.Element>,
+        JsonSerializer<RichTextSectionElement.Element> {
+
     @Override
     public RichTextSectionElement.Element deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
@@ -28,6 +31,8 @@ public class GsonRichTextSectionElementFactory implements JsonDeserializer<RichT
         switch (className) {
             case RichTextSectionElement.Text.TYPE:
                 return RichTextSectionElement.Text.class;
+            case RichTextSectionElement.Channel.TYPE:
+                return RichTextSectionElement.Channel.class;
             case RichTextSectionElement.User.TYPE:
                 return RichTextSectionElement.User.class;
             case RichTextSectionElement.Emoji.TYPE:
@@ -40,6 +45,8 @@ public class GsonRichTextSectionElementFactory implements JsonDeserializer<RichT
                 return RichTextSectionElement.UserGroup.class;
             case RichTextSectionElement.Date.TYPE:
                 return RichTextSectionElement.Date.class;
+            case RichTextSectionElement.Broadcast.TYPE:
+                return RichTextSectionElement.Broadcast.class;
             default:
                 throw new JsonParseException("Unknown RichTextSectionElement type: " + className);
         }

@@ -19,6 +19,10 @@ public class RichTextSectionElement extends BlockElement {
     @Builder.Default
     private List<Element> elements = new ArrayList<>();
 
+    // -------------------------------
+    // Elements
+    // -------------------------------
+
     public interface Element {
         String getType();
     }
@@ -38,6 +42,38 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
+    public static class Channel implements Element {
+        public static final String TYPE = "channel";
+        private final String type = TYPE;
+        private String channelId; // C12345678
+        private TextStyle style;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class User implements Element {
+        public static final String TYPE = "user";
+        private final String type = TYPE;
+        private String userId; // W12345678
+        private TextStyle style;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Emoji implements Element {
+        public static final String TYPE = "emoji";
+        private final String type = TYPE;
+        private String name;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Link implements Element {
         public static final String TYPE = "link";
         private final String type = TYPE;
@@ -50,21 +86,10 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class User implements Element {
-        public static final String TYPE = "user";
-        private final String type = TYPE;
-        private String user_id;
-        private TextStyle style;
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
     public static class Team implements Element {
         public static final String TYPE = "team";
         private final String type = TYPE;
-        private String team_id;
+        private String teamId;
         private TextStyle style;
     }
 
@@ -92,20 +117,22 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class TextStyle {
-        private boolean bold;
-        private boolean italic;
-        private boolean strike;
+    public static class Broadcast implements Element {
+        public static final String TYPE = "broadcast";
+        private final String type = TYPE;
+        private String range; // channel, here, ..
     }
+
+    // -------------------------------
 
     @Data
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Emoji implements Element {
-        public static final String TYPE = "emoji";
-        private final String type = TYPE;
-        private String name;
+    public static class TextStyle {
+        private boolean bold;
+        private boolean italic;
+        private boolean strike;
     }
 
 }
