@@ -1,5 +1,11 @@
 # jSlack Release Notes
 
+## version 3.0.5 (2019-11-14)
+
+* a52cff8 Update README by Kazuhiro Sera
+* b714317 Add admin.inviteRequests.* APIs by Kazuhiro Sera
+* 3f150fd Fix #260 Enable jSlack users to configure API url prefix (#262) by Kazuhiro Sera
+
 ## version 3.0.4 (2019-11-12)
 
 * 82d7a1a Add enterprise_id in event request context by Kazuhiro Sera
