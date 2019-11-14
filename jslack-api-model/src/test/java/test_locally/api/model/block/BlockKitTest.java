@@ -253,6 +253,78 @@ public class BlockKitTest {
     }
 
     @Test
+    public void parseRichTextOnes2() {
+        // https://api.slack.com/changelog/2019-09-what-they-see-is-what-you-get-and-more-and-less
+        String json = "{\n" +
+                "  \"client_msg_id\": \"0e7bdef4-27a9-4bfa-bf16-c65683ff382b\",\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"text\": \"@channel test a~aa~\\n#platform-feedback\\ntest\\nhttp://www.example.com\\n@seratch\",\n" +
+                "  \"user\": \"W12345678\",\n" +
+                "  \"ts\": \"1573737632.000800\",\n" +
+                "  \"team\": \"T12345678\",\n" +
+                "  \"edited\": {\n" +
+                "    \"user\": \"W12345678\",\n" +
+                "    \"ts\": \"1573737939.000000\"\n" +
+                "  },\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"BMpCU\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"broadcast\",\n" +
+                "              \"range\": \"channel\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \" test a\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"aaa\",\n" +
+                "              \"style\": {\n" +
+                "                \"strike\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"\\n\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"channel\",\n" +
+                "              \"channel_id\": \"C123456678\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"\\ntest\\n\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"link\",\n" +
+                "              \"url\": \"http://www.example.com\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"\\n\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"user\",\n" +
+                "              \"user_id\": \"W12345678\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+
+        Message view = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(view.getBlocks().size(), is(1));
+    }
+
+    @Test
     public void parseRadioButtons() {
         String json = "{" +
                 "  \"blocks\": [\n" +
