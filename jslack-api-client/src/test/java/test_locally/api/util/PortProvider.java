@@ -21,6 +21,9 @@ public class PortProvider {
     private static int randomPort() {
         while (true) {
             int randomPort = RANDOM.nextInt(9999);
+            if (randomPort < 1000) {
+                randomPort += 1000;
+            }
             if (isAvailable(randomPort)) {
                 return randomPort;
             }
