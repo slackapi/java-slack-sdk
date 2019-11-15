@@ -272,6 +272,32 @@ public class Attachment {
     private Integer size;
     private String mimetype;
     private String url;
-    private String metadata;
+    private AttachmentMetadata metadata;
+
+    @Data
+    public static class AttachmentMetadata {
+
+        @SerializedName("thumb_64")
+        private Boolean thumb64;
+        @SerializedName("thumb_80")
+        private Boolean thumb80;
+        @SerializedName("thumb_160")
+        private Boolean thumb160;
+
+        @SerializedName("original_w")
+        private Integer originalWidth;
+        @SerializedName("original_h")
+        private Integer originalHeight;
+
+        @SerializedName("thumb_360_w")
+        private Integer thumb360Width;
+        @SerializedName("thumb_360_h")
+        private Integer thumb360Height;
+
+        private String format;
+        private String extension;
+        private Integer rotation;
+        private String thumbTiny;
+    }
 
 }
