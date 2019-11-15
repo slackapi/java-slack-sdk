@@ -64,6 +64,12 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
                 return PlainTextInputElement.class;
             case RichTextSectionElement.TYPE:
                 return RichTextSectionElement.class;
+            case RichTextListElement.TYPE:
+                return RichTextListElement.class;
+            case RichTextQuoteElement.TYPE:
+                return RichTextQuoteElement.class;
+            case RichTextPreformattedElement.TYPE:
+                return RichTextPreformattedElement.class;
             case RadioButtonsElement.TYPE:
                 return RadioButtonsElement.class;
             default:
