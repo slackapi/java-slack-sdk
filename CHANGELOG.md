@@ -1,5 +1,20 @@
 # jSlack Release Notes
 
+## version 3.1.0 (2019-11-15)
+
+* 40bd9c0 Fix #267 Wrong "metadata" property type in the jslack.api.model.Attachment by Kazuhiro Sera
+* f3f9688 Support rich_text_list, rich_text_quote, rich_text_preformatted #266 #268 by Kazuhiro Sera
+* c7647a5 Fix #264 Unknown RichTextSectionElement type: broadcast by Kazuhiro Sera
+
+### Incompatibility
+
+To support more `rich_text` block elements, we had to introduce some breaking changes to the JSON parser by https://github.com/seratch/jslack/pull/269
+
+* Rename `GsonRichTextSectionElementFactory` to `GsonRichTextElementFactory`
+* Extract `RichTextSectionElement.Element` as `RichTextElement`
+
+`Attachment#metadata` used to be string type but it was wrong. https://github.com/seratch/jslack/pull/270 changed the field to be correct.
+
 ## version 3.0.5 (2019-11-14)
 
 * a52cff8 Update README by Kazuhiro Sera
