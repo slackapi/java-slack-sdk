@@ -5,7 +5,7 @@ import com.github.seratch.jslack.api.model.block.ContextBlockElement;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.composition.TextObject;
 import com.github.seratch.jslack.api.model.block.element.BlockElement;
-import com.github.seratch.jslack.api.model.block.element.RichTextSectionElement;
+import com.github.seratch.jslack.api.model.block.element.RichTextElement;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,7 +21,7 @@ public class GsonFactory {
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory())
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
-                .registerTypeAdapter(RichTextSectionElement.Element.class, new GsonRichTextSectionElementFactory())
+                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory())
                 .create();
     }
 
@@ -32,7 +32,7 @@ public class GsonFactory {
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory())
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
-                .registerTypeAdapter(RichTextSectionElement.Element.class, new GsonRichTextSectionElementFactory());
+                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory());
         if (config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
@@ -48,7 +48,7 @@ public class GsonFactory {
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory())
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
-                .registerTypeAdapter(RichTextSectionElement.Element.class, new GsonRichTextSectionElementFactory());
+                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory());
         if (config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }

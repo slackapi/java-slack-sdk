@@ -2,9 +2,11 @@ package test_locally.api.model.block;
 
 import com.github.seratch.jslack.api.model.Message;
 import com.github.seratch.jslack.api.model.block.InputBlock;
+import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.RichTextBlock;
 import com.github.seratch.jslack.api.model.block.SectionBlock;
 import com.github.seratch.jslack.api.model.block.element.RadioButtonsElement;
+import com.github.seratch.jslack.api.model.block.element.RichTextElement;
 import com.github.seratch.jslack.api.model.block.element.RichTextSectionElement;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
@@ -258,7 +260,7 @@ public class BlockKitTest {
         String json = "{\n" +
                 "  \"client_msg_id\": \"0e7bdef4-27a9-4bfa-bf16-c65683ff382b\",\n" +
                 "  \"type\": \"message\",\n" +
-                "  \"text\": \"@channel test a~aa~\\n#platform-feedback\\ntest\\nhttp://www.example.com\\n@seratch\",\n" +
+                "  \"text\": \"dummy\"," +
                 "  \"user\": \"W12345678\",\n" +
                 "  \"ts\": \"1573737632.000800\",\n" +
                 "  \"team\": \"T12345678\",\n" +
@@ -314,6 +316,162 @@ public class BlockKitTest {
                 "              \"user_id\": \"W12345678\"\n" +
                 "            }\n" +
                 "          ]\n" +
+                "        }" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+
+        Message view = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(view.getBlocks().size(), is(1));
+        RichTextBlock block = (RichTextBlock) view.getBlocks().get(0);
+        assertThat(block.getElements().size(), is(1));
+    }
+
+    @Test
+    public void parseRichTextOnes3() {
+        // https://api.slack.com/changelog/2019-09-what-they-see-is-what-you-get-and-more-and-less
+        String json = "{\n" +
+                "  \"client_msg_id\": \"0e7bdef4-27a9-4bfa-bf16-c65683ff382b\",\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"text\": \"@channel test a~aa~\\n#platform-feedback\\ntest\\nhttp://www.example.com\\n@kaz\\n\\n• test\\n• aaaa\\n\\n\\n1. foo\\n2. bar\\n3. baz\\n\\n\\n> something important\\n\\n\\n/`/`/`package example\\n\\nclass Foo/`/`/`\\n\\n*bold* something _italic_\",\n" +
+                "  \"user\": \"W12345678\",\n" +
+                "  \"ts\": \"1573737632.000800\",\n" +
+                "  \"team\": \"T5J4Q04QG\",\n" +
+                "  \"edited\": {\n" +
+                "    \"user\": \"W12345678\",\n" +
+                "    \"ts\": \"1573776943.000000\"\n" +
+                "  },\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"nZTe+\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"user\",\n" +
+                "              \"user_id\": \"W12345678\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"\\n\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_list\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"test\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"aaaa\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"style\": \"bullet\",\n" +
+                "          \"indent\": 0\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"\\n\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_list\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"foo\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"bar\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"baz\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"style\": \"ordered\",\n" +
+                "          \"indent\": 0\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_quote\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"something important\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_preformatted\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"package example\\n\\nclass Foo\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"\\n\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"bold\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \" something \"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"italic\",\n" +
+                "              \"style\": {\n" +
+                "                \"italic\": true\n" +
+                "              }\n" +
+                "            }\n" +
+                "          ]\n" +
                 "        }\n" +
                 "      ]\n" +
                 "    }\n" +
@@ -322,6 +480,8 @@ public class BlockKitTest {
 
         Message view = GsonFactory.createSnakeCase().fromJson(json, Message.class);
         assertThat(view.getBlocks().size(), is(1));
+        RichTextBlock block = (RichTextBlock) view.getBlocks().get(0);
+        assertThat(block.getElements().size(), is(7));
     }
 
     @Test

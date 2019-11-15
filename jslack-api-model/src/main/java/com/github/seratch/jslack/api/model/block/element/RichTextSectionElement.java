@@ -13,25 +13,21 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RichTextSectionElement extends BlockElement {
+public class RichTextSectionElement extends BlockElement implements RichTextElement {
     public static final String TYPE = "rich_text_section";
     private final String type = TYPE;
     @Builder.Default
-    private List<Element> elements = new ArrayList<>();
+    private List<RichTextElement> elements = new ArrayList<>();
 
     // -------------------------------
     // Elements
     // -------------------------------
 
-    public interface Element {
-        String getType();
-    }
-
     @Data
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Text implements Element {
+    public static class Text implements RichTextElement {
         public static final String TYPE = "text";
         private final String type = TYPE;
         private String text;
@@ -42,7 +38,7 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Channel implements Element {
+    public static class Channel implements RichTextElement {
         public static final String TYPE = "channel";
         private final String type = TYPE;
         private String channelId; // C12345678
@@ -53,7 +49,7 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class User implements Element {
+    public static class User implements RichTextElement {
         public static final String TYPE = "user";
         private final String type = TYPE;
         private String userId; // W12345678
@@ -64,7 +60,7 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Emoji implements Element {
+    public static class Emoji implements RichTextElement {
         public static final String TYPE = "emoji";
         private final String type = TYPE;
         private String name;
@@ -74,7 +70,7 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Link implements Element {
+    public static class Link implements RichTextElement {
         public static final String TYPE = "link";
         private final String type = TYPE;
         private String url;
@@ -86,7 +82,7 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Team implements Element {
+    public static class Team implements RichTextElement {
         public static final String TYPE = "team";
         private final String type = TYPE;
         private String teamId;
@@ -97,17 +93,17 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class UserGroup implements Element {
+    public static class UserGroup implements RichTextElement {
         public static final String TYPE = "usergroup";
         private final String type = TYPE;
-        private String usergroup_id;
+        private String usergroupId;
     }
 
     @Data
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Date implements Element {
+    public static class Date implements RichTextElement {
         public static final String TYPE = "date";
         private final String type = TYPE;
         private String timestamp;
@@ -117,7 +113,7 @@ public class RichTextSectionElement extends BlockElement {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Broadcast implements Element {
+    public static class Broadcast implements RichTextElement {
         public static final String TYPE = "broadcast";
         private final String type = TYPE;
         private String range; // channel, here, ..
