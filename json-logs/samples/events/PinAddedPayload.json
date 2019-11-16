@@ -451,7 +451,19 @@
             "size": 123,
             "mimetype": "",
             "url": "",
-            "metadata": ""
+            "metadata": {
+              "thumb_64": false,
+              "thumb_80": false,
+              "thumb_160": false,
+              "original_w": 123,
+              "original_h": 123,
+              "thumb_360_w": 123,
+              "thumb_360_h": 123,
+              "format": "",
+              "extension": "",
+              "rotation": 123,
+              "thumb_tiny": ""
+            }
           }
         ],
         "ts": "",

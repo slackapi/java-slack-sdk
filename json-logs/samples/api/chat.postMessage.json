@@ -237,7 +237,19 @@
         "size": 12345,
         "mimetype": "",
         "url": "",
-        "metadata": ""
+        "metadata": {
+          "thumb_64": false,
+          "thumb_80": false,
+          "thumb_160": false,
+          "original_w": 12345,
+          "original_h": 12345,
+          "thumb_360_w": 12345,
+          "thumb_360_h": 12345,
+          "format": "",
+          "extension": "",
+          "rotation": 12345,
+          "thumb_tiny": ""
+        }
       }
     ],
     "bot_profile": {
