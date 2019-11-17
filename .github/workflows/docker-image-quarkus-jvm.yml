@@ -1,0 +1,9 @@
+name: build-docker-image-for-quarkus-jvm
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image using Quarkus
+      run: cd jslack-lightning-quarkus-examples && mvn package && docker build -f Dockerfile.jvm -t seratch/jslack-with-quarkus-jvm:$(date +%s) .
