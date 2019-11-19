@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 // required scope - admin
 public class scim_Test {

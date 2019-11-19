@@ -13,7 +13,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @Slf4j
 public class im_Test {
@@ -50,7 +50,7 @@ public class im_Test {
                     .token(token)
                     .channel(channelId));
             assertThat(markResponse.isOk(), is(false));
-            assertThat(markResponse.getError(), is("invalid_timestamp"));
+            assertThat(markResponse.getError(), is("internal_error"));
         }
 
         ChatPostMessageResponse firstMessageResponse = slack.methods().chatPostMessage(r -> r

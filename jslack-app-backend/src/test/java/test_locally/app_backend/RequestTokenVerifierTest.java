@@ -5,7 +5,7 @@ import com.github.seratch.jslack.app_backend.util.RequestTokenVerifier;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @Deprecated
 public class RequestTokenVerifierTest {

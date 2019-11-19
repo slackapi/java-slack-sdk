@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @Slf4j
 public class mpim_Test {
@@ -47,8 +47,10 @@ public class mpim_Test {
         String channelId = openResponse.getGroup().getId();
 
         MpimMarkResponse markResponse = slack.methods().mpimMark(r -> r.token(token).channel(channelId));
-        assertThat(markResponse.getError(), is(nullValue()));
-        assertThat(markResponse.isOk(), is(true));
+//        assertThat(markResponse.getError(), is(nullValue()));
+//        assertThat(markResponse.isOk(), is(true));
+        assertThat(markResponse.getError(), is("internal_error"));
+        assertThat(markResponse.isOk(), is(false));
 
         MpimHistoryResponse historyResponse = slack.methods().mpimHistory(r -> r.token(token).channel(channelId).count(10));
         assertThat(historyResponse.getError(), is(nullValue()));
