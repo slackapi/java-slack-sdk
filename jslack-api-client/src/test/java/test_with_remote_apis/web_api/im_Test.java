@@ -50,7 +50,7 @@ public class im_Test {
                     .token(token)
                     .channel(channelId));
             assertThat(markResponse.isOk(), is(false));
-            assertThat(markResponse.getError(), is("internal_error"));
+            assertThat(markResponse.getError(), is("invalid_timestamp"));
         }
 
         ChatPostMessageResponse firstMessageResponse = slack.methods().chatPostMessage(r -> r

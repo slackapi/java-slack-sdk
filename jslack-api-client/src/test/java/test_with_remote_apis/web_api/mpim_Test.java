@@ -47,10 +47,8 @@ public class mpim_Test {
         String channelId = openResponse.getGroup().getId();
 
         MpimMarkResponse markResponse = slack.methods().mpimMark(r -> r.token(token).channel(channelId));
-//        assertThat(markResponse.getError(), is(nullValue()));
-//        assertThat(markResponse.isOk(), is(true));
-        assertThat(markResponse.getError(), is("internal_error"));
-        assertThat(markResponse.isOk(), is(false));
+        assertThat(markResponse.getError(), is(nullValue()));
+        assertThat(markResponse.isOk(), is(true));
 
         MpimHistoryResponse historyResponse = slack.methods().mpimHistory(r -> r.token(token).channel(channelId).count(10));
         assertThat(historyResponse.getError(), is(nullValue()));
