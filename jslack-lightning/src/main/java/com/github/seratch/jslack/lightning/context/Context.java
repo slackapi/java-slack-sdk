@@ -32,7 +32,7 @@ public abstract class Context {
     protected final Map<String, String> additionalValues = new HashMap<>();
 
     public MethodsClient client() {
-        return Slack.getInstance().methods(botToken);
+        return slack.methods(botToken);
     }
 
     public Response ack() {

@@ -59,8 +59,13 @@ public class SingleTeamAuthorization implements Middleware {
 
             return chain.next(req);
         } else {
-            resp.setStatusCode(500);
-            return resp;
+            log.info("Invalid request detected - enterprise_id: {}, team_id: {}, user_id: {}",
+                    context.getEnterpriseId(), context.getTeamId(), context.getRequestUserId());
+            return Response.builder()
+                    .statusCode(401)
+                    .contentType(Response.CONTENT_TYPE_APPLICATION_JSON)
+                    .body("{\"error\":\"a request for an unknown workspace detected\"}")
+                    .build();
         }
     }
 }
