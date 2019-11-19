@@ -1,5 +1,16 @@
 # jSlack Release Notes
 
+## version 3.1.1 (2019-11-19)
+
+* 443ab0d Fix a potential parse error with some Events API payloads by Kazuhiro Sera
+* ce89db8 Add Spring Boot examples by Kazuhiro Sera
+* 436caa3 Micronaut support (#274) by Kazuhiro Sera
+* 4a327cd Fix deprecation warnings in tests by Kazuhiro Sera
+* 5253798 Fix Quarkus example by Kazuhiro Sera
+* ed840bf Add Quarkus Docker image example by Kazuhiro Sera
+* 0ad83f1 Add Quarkus app examples by Kazuhiro Sera
+* 16e0ef5 Bump the versions of okhttp, gson, lombok, slf4j-api by Kazuhiro Sera
+
 ## version 3.1.0 (2019-11-15)
 
 * 40bd9c0 Fix #267 Wrong "metadata" property type in the jslack.api.model.Attachment by Kazuhiro Sera
