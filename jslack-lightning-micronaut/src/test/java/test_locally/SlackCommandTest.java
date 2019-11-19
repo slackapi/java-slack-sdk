@@ -1,4 +1,4 @@
-package example;
+package test_locally;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.RequestConfigurator;
