@@ -1,0 +1,6 @@
+---
+micronaut:
+  application:
+    name: micronaut-slack-app
+  server:
+    port: 3000

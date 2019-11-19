@@ -91,7 +91,7 @@ public class App {
     }
 
     public App(AppConfig appConfig, List<Middleware> middlewareList) {
-        this(appConfig, Slack.getInstance(), middlewareList);
+        this(appConfig, appConfig.getSlack() != null ? appConfig.getSlack() : Slack.getInstance(), middlewareList);
     }
 
     public App(AppConfig appConfig, Slack slack, List<Middleware> middlewareList) {
