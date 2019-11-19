@@ -1,5 +1,7 @@
-package com.github.seratch.jslack.app_backend.outgoing_webhooks.payload;
+package test_locally.app_backend.outgoing_webhooks.payload;
 
+import com.github.seratch.jslack.app_backend.outgoing_webhooks.payload.WebhookPayload;
+import com.github.seratch.jslack.app_backend.outgoing_webhooks.payload.WebhookPayloadParser;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
