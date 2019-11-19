@@ -19,6 +19,7 @@
         <module>jslack-lightning</module>
         <module>jslack-lightning-jetty</module>
         <module>jslack-lightning-micronaut</module>
+        <module>jslack-lightning-spring-boot-examples</module>
         <module>jslack-lightning-kotlin-examples</module>
         <module>jslack-lightning-quarkus-examples</module>
     </modules>
