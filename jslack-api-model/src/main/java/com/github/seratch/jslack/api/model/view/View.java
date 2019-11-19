@@ -31,8 +31,8 @@ public class View {
     private String externalId;
     private ViewState state;
     private String hash;
-    private boolean clearOnClose;
-    private boolean notifyOnClose;
+    private Boolean clearOnClose; // must be nullable for App Home
+    private Boolean notifyOnClose;  // must be nullable for App Home
     private String rootViewId;
     private String previousViewId; // views.update
     private String appId;
