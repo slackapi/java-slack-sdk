@@ -1,0 +1,14 @@
+<configuration>
+    <appender name="default" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %level [%thread] %logger{64} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.hibernate" level="info"/>
+    <logger name="org.springframework" level="info"/>
+    <root level="debug">
+        <appender-ref ref="default"/>
+    </root>
+
+</configuration>
