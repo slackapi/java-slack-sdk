@@ -19,40 +19,49 @@ public class JsonPayloadExtractor {
 
     public String extractIfExists(String requestBody) {
 
+        if (requestBody == null) {
+            return null;
+        }
+
+        char firstChar = requestBody.trim().charAt(0);
         // payload={url encoded}
-        String[] pairs = requestBody.split("\\&");
-        for (String pair : pairs) {
-            String[] fields = pair.split("=");
-            if (fields.length == 2) {
-                try {
-                    String name = URLDecoder.decode(fields[0].trim().replaceAll("\\n+", ""), "UTF-8");
-                    if (name.equals("payload")) {
-                        String value = URLDecoder.decode(fields[1], "UTF-8");
-                        return value;
+        if (firstChar == '{' || firstChar == '[') {
+            // Events API
+            try {
+                JsonElement json = GsonFactory.createSnakeCase().fromJson(requestBody, JsonElement.class);
+                if (json != null) {
+                    JsonObject payload = json.getAsJsonObject();
+                    if (payload != null && payload.get("type") != null) {
+                        String type = payload.get("type").getAsString();
+                        if (type != null) {
+                            if (EVENTS_API_TYPES.contains(type)) {
+                                return requestBody;
+                            }
+                        }
                     }
-                } catch (UnsupportedEncodingException e) {
-                    log.error("Failed to decode URL-encoded string values - {}", e.getMessage(), e);
+                }
+            } catch (JsonSyntaxException e) {
+                // the request body is not a JSON data
+            }
+
+        } else {
+            String[] pairs = requestBody.split("\\&");
+            for (String pair : pairs) {
+                String[] fields = pair.split("=");
+                if (fields.length == 2) {
+                    try {
+                        String name = URLDecoder.decode(fields[0].trim().replaceAll("\\n+", ""), "UTF-8");
+                        if (name.equals("payload")) {
+                            String value = URLDecoder.decode(fields[1], "UTF-8");
+                            return value;
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        log.error("Failed to decode URL-encoded string values - {}", e.getMessage(), e);
+                    }
                 }
             }
         }
 
-        // Events API
-        try {
-            JsonElement json = GsonFactory.createSnakeCase().fromJson(requestBody, JsonElement.class);
-            if (json != null) {
-                JsonObject payload = json.getAsJsonObject();
-                if (payload != null && payload.get("type") != null) {
-                    String type = payload.get("type").getAsString();
-                    if (type != null) {
-                        if (EVENTS_API_TYPES.contains(type)) {
-                            return requestBody;
-                        }
-                    }
-                }
-            }
-        } catch (JsonSyntaxException e) {
-            // the request body is not a JSON data
-        }
         return null;
     }
 
