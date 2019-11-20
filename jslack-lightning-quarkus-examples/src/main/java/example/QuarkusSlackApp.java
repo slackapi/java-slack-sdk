@@ -27,7 +27,6 @@ public class QuarkusSlackApp extends SlackAppServlet {
         app.command("/hello", (ctx, req) -> {
             return Response.ok("Thanks!");
         });
-        app.start();
         return app;
     }
 }

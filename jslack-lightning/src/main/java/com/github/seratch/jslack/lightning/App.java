@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
 @AllArgsConstructor
@@ -41,6 +42,7 @@ import java.util.*;
 public class App {
 
     private final AppConfig appConfig;
+    private Status status = Status.Stopped;
     private final Slack slack;
     private List<Middleware> middlewareList;
 
@@ -78,6 +80,15 @@ public class App {
     private static final Gson gson = GsonFactory.createSnakeCase();
 
     // --------------------------------------
+    // status
+    // --------------------------------------
+
+    public enum Status {
+        Running,
+        Stopped
+    }
+
+    // --------------------------------------
     // constructors
     // --------------------------------------
 
@@ -108,21 +119,38 @@ public class App {
         return this.appConfig;
     }
 
-    public App start() {
-        if (middlewareList == null) {
-            middlewareList = buildDefaultMiddlewareList(appConfig);
-        }
-        initOAuthServicesIfNecessary();
+    public App.Status status() {
+        return this.status;
+    }
 
-        if (!this.eventsDispatcher.isEmpty()) {
-            this.eventsDispatcher.start();
+    private AtomicBoolean neverStarted = new AtomicBoolean(true);
+
+    public App start() {
+        synchronized (status) {
+            if (status == Status.Stopped) {
+                if (middlewareList == null) {
+                    middlewareList = buildDefaultMiddlewareList(appConfig);
+                }
+                initOAuthServicesIfNecessary();
+
+                if (!this.eventsDispatcher.isEmpty()) {
+                    this.eventsDispatcher.start();
+                }
+                neverStarted.set(false);
+            }
+            status = Status.Running;
         }
         return this;
     }
 
     public App stop() {
-        if (this.eventsDispatcher.isRunning()) {
-            this.eventsDispatcher.stop();
+        synchronized (status) {
+            if (status == Status.Running) {
+                if (this.eventsDispatcher.isRunning()) {
+                    this.eventsDispatcher.stop();
+                }
+            }
+            status = Status.Stopped;
         }
         return this;
     }
@@ -130,6 +158,9 @@ public class App {
     public Response run(Request request) throws Exception {
         request.getContext().setSlack(this.slack); // use the properly configured API client
 
+        if (neverStarted.get()) {
+            start();
+        }
         LinkedList<Middleware> remaining = new LinkedList<>(middlewareList);
         if (remaining.isEmpty()) {
             return runHandler(request);
