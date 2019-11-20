@@ -12,6 +12,7 @@ import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.server.netty.NettyHttpResponseFactory;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.inject.Singleton;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.LinkedHashMap;
@@ -20,6 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
+@Singleton
 public class SlackAppMicronautAdapter {
 
     private SlackRequestParser requestParser;
