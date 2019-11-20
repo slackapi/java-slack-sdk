@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.lightning.micronaut;
 
 import com.github.seratch.jslack.lightning.App;
-import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.request.Request;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
@@ -18,9 +17,9 @@ public class SlackAppController {
     private final App slackApp;
     private final SlackAppMicronautAdapter adapter;
 
-    public SlackAppController(App app, AppConfig config) {
-        slackApp = app;
-        adapter = new SlackAppMicronautAdapter(config);
+    public SlackAppController(App slackApp, SlackAppMicronautAdapter adapter) {
+        this.slackApp = slackApp;
+        this.adapter = adapter;
     }
 
     @Post(value = "/events", consumes = {MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
