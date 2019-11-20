@@ -1,5 +1,10 @@
 # jSlack Release Notes
 
+## version 3.1.2 (2019-11-20)
+
+* c5c3393 Add App#status() and allow skipping calling App#start() method by Kazuhiro Sera
+* 588904d Fix View object to be compatible with App Home by Kazuhiro Sera
+
 ## version 3.1.1 (2019-11-19)
 
 * 443ab0d Fix a potential parse error with some Events API payloads by Kazuhiro Sera
