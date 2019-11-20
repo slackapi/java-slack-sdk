@@ -21,7 +21,6 @@ public class AppProvider implements Provider<App> {
         app.command("/hello", (req, ctx) -> {
             return ctx.ack(r -> r.text("Thanks!"));
         });
-        app.start();
         return app;
     }
 }

@@ -48,7 +48,6 @@ public class SlackApp {
         app.command("/hello", (req, ctx) -> {
             return ctx.ack(r -> r.text("Thanks!"));
         });
-        app.start();
         return app;
     }
 
