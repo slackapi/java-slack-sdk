@@ -290,7 +290,8 @@
       "seen_markdown_paste_toast": 12345,
       "seen_markdown_paste_shortcut": 12345,
       "contextual_message_shortcuts_modal_was_seen": false,
-      "message_navigation_toast_was_seen": false
+      "message_navigation_toast_was_seen": false,
+      "show_drafts_page_sidebar": false
     },
     "created": 12345,
     "manual_presence": ""
