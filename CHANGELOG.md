@@ -1,5 +1,12 @@
 # jSlack Release Notes
 
+## version 3.1.3 (2019-11-22)
+
+* 28ea307 Add regexp routing for actions, command, etc by Kazuhiro Sera
+* 52cb675 Fix a bug where confirm in block_actions is invalid by Kazuhiro Sera
+* 96591f9 Bump the versions of dependencies by Kazuhiro Sera
+* 379a61e Lightning Micronaut - let the DI container create the adapter. by Jeff Scott Brown
+
 ## version 3.1.2 (2019-11-20)
 
 * c5c3393 Add App#status() and allow skipping calling App#start() method by Kazuhiro Sera
