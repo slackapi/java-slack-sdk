@@ -35,6 +35,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Pattern;
 
 @Slf4j
 @AllArgsConstructor
@@ -46,17 +47,17 @@ public class App {
     private final Slack slack;
     private List<Middleware> middlewareList;
 
-    private final Map<String, SlashCommandHandler> slashCommandHandlers = new HashMap<>();
-    private final Map<String, AttachmentActionHandler> attachmentActionHandlers = new HashMap<>();
+    private final Map<Pattern, SlashCommandHandler> slashCommandHandlers = new HashMap<>();
+    private final Map<Pattern, AttachmentActionHandler> attachmentActionHandlers = new HashMap<>();
     private final Map<String, LightningEventHandler<Event>> eventHandlers = new HashMap<>();
-    private final Map<String, BlockActionHandler> blockActionHandlers = new HashMap<>();
-    private final Map<String, BlockSuggestionHandler> blockSuggestionHandlers = new HashMap<>();
-    private final Map<String, DialogSubmissionHandler> dialogSubmissionHandlers = new HashMap<>();
-    private final Map<String, DialogSuggestionHandler> dialogSuggestionHandlers = new HashMap<>();
-    private final Map<String, DialogCancellationHandler> dialogCancellationHandlers = new HashMap<>();
-    private final Map<String, MessageActionHandler> messageActionHandlers = new HashMap<>();
-    private final Map<String, ViewClosedHandler> viewClosedHandlers = new HashMap<>();
-    private final Map<String, ViewSubmissionHandler> viewSubmissionHandlers = new HashMap<>();
+    private final Map<Pattern, BlockActionHandler> blockActionHandlers = new HashMap<>();
+    private final Map<Pattern, BlockSuggestionHandler> blockSuggestionHandlers = new HashMap<>();
+    private final Map<Pattern, DialogSubmissionHandler> dialogSubmissionHandlers = new HashMap<>();
+    private final Map<Pattern, DialogSuggestionHandler> dialogSuggestionHandlers = new HashMap<>();
+    private final Map<Pattern, DialogCancellationHandler> dialogCancellationHandlers = new HashMap<>();
+    private final Map<Pattern, MessageActionHandler> messageActionHandlers = new HashMap<>();
+    private final Map<Pattern, ViewClosedHandler> viewClosedHandlers = new HashMap<>();
+    private final Map<Pattern, ViewSubmissionHandler> viewSubmissionHandlers = new HashMap<>();
     private final Map<String, OutgoingWebhooksHandler> outgoingWebhooksHandlers = new HashMap<>();
     private final EventsDispatcher eventsDispatcher = EventsDispatcherFactory.getInstance();
 
@@ -202,6 +203,10 @@ public class App {
     }
 
     public App command(String command, SlashCommandHandler handler) {
+        return command(Pattern.compile("^" + command + "$"), handler);
+    }
+
+    public App command(Pattern command, SlashCommandHandler handler) {
         if (slashCommandHandlers.get(command) != null) {
             log.warn("Replaced the handler for {}", command);
         }
@@ -210,6 +215,10 @@ public class App {
     }
 
     public App attachmentAction(String callbackId, AttachmentActionHandler handler) {
+        return attachmentAction(Pattern.compile("^" + callbackId + "$"), handler);
+    }
+
+    public App attachmentAction(Pattern callbackId, AttachmentActionHandler handler) {
         if (attachmentActionHandlers.get(callbackId) != null) {
             log.warn("Replaced the handler for {}", callbackId);
         }
@@ -218,6 +227,10 @@ public class App {
     }
 
     public App blockAction(String actionId, BlockActionHandler handler) {
+        return blockAction(Pattern.compile("^" + actionId + "$"), handler);
+    }
+
+    public App blockAction(Pattern actionId, BlockActionHandler handler) {
         if (blockActionHandlers.get(actionId) != null) {
             log.warn("Replaced the handler for {}", actionId);
         }
@@ -226,6 +239,10 @@ public class App {
     }
 
     public App blockSuggestion(String actionId, BlockSuggestionHandler handler) {
+        return blockSuggestion(Pattern.compile("^" + actionId + "$"), handler);
+    }
+
+    public App blockSuggestion(Pattern actionId, BlockSuggestionHandler handler) {
         if (blockSuggestionHandlers.get(actionId) != null) {
             log.warn("Replaced the handler for {}", actionId);
         }
@@ -234,6 +251,10 @@ public class App {
     }
 
     public App messageAction(String callbackId, MessageActionHandler handler) {
+        return messageAction(Pattern.compile("^" + callbackId + "$"), handler);
+    }
+
+    public App messageAction(Pattern callbackId, MessageActionHandler handler) {
         if (messageActionHandlers.get(callbackId) != null) {
             log.warn("Replaced the handler for {}", callbackId);
         }
@@ -241,8 +262,11 @@ public class App {
         return this;
     }
 
-
     public App dialogSubmission(String callbackId, DialogSubmissionHandler handler) {
+        return dialogSubmission(Pattern.compile("^" + callbackId + "$"), handler);
+    }
+
+    public App dialogSubmission(Pattern callbackId, DialogSubmissionHandler handler) {
         if (dialogSubmissionHandlers.get(callbackId) != null) {
             log.warn("Replaced the handler for {}", callbackId);
         }
@@ -251,6 +275,10 @@ public class App {
     }
 
     public App dialogCancellation(String callbackId, DialogCancellationHandler handler) {
+        return dialogCancellation(Pattern.compile("^" + callbackId + "$"), handler);
+    }
+
+    public App dialogCancellation(Pattern callbackId, DialogCancellationHandler handler) {
         if (dialogCancellationHandlers.get(callbackId) != null) {
             log.warn("Replaced the handler for {}", callbackId);
         }
@@ -259,6 +287,10 @@ public class App {
     }
 
     public App dialogSuggestion(String callbackId, DialogSuggestionHandler handler) {
+        return dialogSuggestion(Pattern.compile("^" + callbackId + "$"), handler);
+    }
+
+    public App dialogSuggestion(Pattern callbackId, DialogSuggestionHandler handler) {
         if (dialogSuggestionHandlers.get(callbackId) != null) {
             log.warn("Replaced the handler for {}", callbackId);
         }
@@ -267,6 +299,10 @@ public class App {
     }
 
     public App viewClosed(String callbackId, ViewClosedHandler handler) {
+        return viewClosed(Pattern.compile("^" + callbackId + "$"), handler);
+    }
+
+    public App viewClosed(Pattern callbackId, ViewClosedHandler handler) {
         if (viewClosedHandlers.get(callbackId) != null) {
             log.warn("Replaced the handler for {}", callbackId);
         }
@@ -275,6 +311,10 @@ public class App {
     }
 
     public App viewSubmission(String callbackId, ViewSubmissionHandler handler) {
+        return viewSubmission(Pattern.compile("^" + callbackId + "$"), handler);
+    }
+
+    public App viewSubmission(Pattern callbackId, ViewSubmissionHandler handler) {
         if (viewSubmissionHandlers.get(callbackId) != null) {
             log.warn("Replaced the handler for {}", callbackId);
         }
@@ -456,12 +496,14 @@ public class App {
             }
             case Command: {
                 SlashCommandRequest request = (SlashCommandRequest) req;
-                SlashCommandHandler handler = slashCommandHandlers.get(request.getPayload().getCommand());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
-                } else {
-                    log.warn("No SlashCommandHandler registered for command: {}", request.getPayload().getCommand());
+                String command = request.getPayload().getCommand();
+                for (Pattern pattern : slashCommandHandlers.keySet()) {
+                    if (pattern.matcher(command).matches()) {
+                        SlashCommandHandler handler = slashCommandHandlers.get(pattern);
+                        return handler.apply(request, request.getContext());
+                    }
                 }
+                log.warn("No SlashCommandHandler registered for command: {}", request.getPayload().getCommand());
                 break;
             }
             case OutgoingWebhooks: {
@@ -498,24 +540,28 @@ public class App {
             }
             case AttachmentAction: {
                 AttachmentActionRequest request = (AttachmentActionRequest) req;
-                AttachmentActionHandler handler = attachmentActionHandlers.get(request.getPayload().getCallbackId());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
-                } else {
-                    log.warn("No AttachmentActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                String callbackId = request.getPayload().getCallbackId();
+                for (Pattern pattern : attachmentActionHandlers.keySet()) {
+                    if (pattern.matcher(callbackId).matches()) {
+                        AttachmentActionHandler handler = attachmentActionHandlers.get(pattern);
+                        return handler.apply(request, request.getContext());
+                    }
                 }
+                log.warn("No AttachmentActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
                 break;
             }
             case BlockAction: {
                 BlockActionRequest request = (BlockActionRequest) req;
                 List<BlockActionPayload.Action> actions = request.getPayload().getActions();
                 if (actions.size() == 1) {
-                    BlockActionHandler handler = blockActionHandlers.get(actions.get(0).getActionId());
-                    if (handler != null) {
-                        return handler.apply(request, request.getContext());
-                    } else {
-                        log.warn("No BlockActionHandler registered for action_id: {}", actions.get(0).getActionId());
+                    String actionId = actions.get(0).getActionId();
+                    for (Pattern pattern : blockActionHandlers.keySet()) {
+                        if (pattern.matcher(actionId).matches()) {
+                            BlockActionHandler handler = blockActionHandlers.get(pattern);
+                            return handler.apply(request, request.getContext());
+                        }
                     }
+                    log.warn("No BlockActionHandler registered for action_id: {}", actions.get(0).getActionId());
                 } else {
                     for (BlockActionPayload.Action action : request.getPayload().getActions()) {
                         // Returned response values will be ignored
@@ -526,70 +572,86 @@ public class App {
             }
             case BlockSuggestion: {
                 BlockSuggestionRequest request = (BlockSuggestionRequest) req;
-                BlockSuggestionHandler handler = blockSuggestionHandlers.get(request.getPayload().getActionId());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
+                String actionId = request.getPayload().getActionId();
+                for (Pattern pattern : blockSuggestionHandlers.keySet()) {
+                    if (pattern.matcher(actionId).matches()) {
+                        BlockSuggestionHandler handler = blockSuggestionHandlers.get(pattern);
+                        return handler.apply(request, request.getContext());
+                    }
                 }
+                log.warn("No BlockSuggestionHandler registered for action_id: {}", actionId);
                 break;
             }
             case MessageAction: {
                 MessageActionRequest request = (MessageActionRequest) req;
-                MessageActionHandler handler = messageActionHandlers.get(request.getPayload().getCallbackId());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
-                } else {
-                    log.warn("No MessageActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                String callbackId = request.getPayload().getCallbackId();
+                for (Pattern pattern : messageActionHandlers.keySet()) {
+                    if (pattern.matcher(callbackId).matches()) {
+                        MessageActionHandler handler = messageActionHandlers.get(pattern);
+                        return handler.apply(request, request.getContext());
+                    }
                 }
+                log.warn("No MessageActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
                 break;
             }
             case DialogSubmission: {
                 DialogSubmissionRequest request = (DialogSubmissionRequest) req;
-                DialogSubmissionHandler handler = dialogSubmissionHandlers.get(request.getPayload().getCallbackId());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
-                } else {
-                    log.warn("No DialogSubmissionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                String callbackId = request.getPayload().getCallbackId();
+                for (Pattern pattern : dialogSubmissionHandlers.keySet()) {
+                    if (pattern.matcher(callbackId).matches()) {
+                        DialogSubmissionHandler handler = dialogSubmissionHandlers.get(pattern);
+                        return handler.apply(request, request.getContext());
+                    }
                 }
+                log.warn("No DialogSubmissionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
                 break;
             }
             case DialogCancellation: {
                 DialogCancellationRequest request = (DialogCancellationRequest) req;
-                DialogCancellationHandler handler = dialogCancellationHandlers.get(request.getPayload().getCallbackId());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
-                } else {
-                    log.warn("No DialogCancellationHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                String callbackId = request.getPayload().getCallbackId();
+                for (Pattern pattern : dialogCancellationHandlers.keySet()) {
+                    if (pattern.matcher(callbackId).matches()) {
+                        DialogCancellationHandler handler = dialogCancellationHandlers.get(pattern);
+                        return handler.apply(request, request.getContext());
+                    }
                 }
+                log.warn("No DialogCancellationHandler registered for callback_id: {}", request.getPayload().getCallbackId());
                 break;
             }
             case DialogSuggestion: {
                 DialogSuggestionRequest request = (DialogSuggestionRequest) req;
-                DialogSuggestionHandler handler = dialogSuggestionHandlers.get(request.getPayload().getCallbackId());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
-                } else {
-                    log.warn("No DialogSuggestionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                String callbackId = request.getPayload().getCallbackId();
+                for (Pattern pattern : dialogSuggestionHandlers.keySet()) {
+                    if (pattern.matcher(callbackId).matches()) {
+                        DialogSuggestionHandler handler = dialogSuggestionHandlers.get(pattern);
+                        return handler.apply(request, request.getContext());
+                    }
                 }
+                log.warn("No DialogSuggestionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
                 break;
             }
             case ViewSubmission: {
                 ViewSubmissionRequest request = (ViewSubmissionRequest) req;
-                ViewSubmissionHandler handler = viewSubmissionHandlers.get(request.getPayload().getView().getCallbackId());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
-                } else {
-                    log.warn("No ViewSubmissionHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
+                String callbackId = request.getPayload().getView().getCallbackId();
+                for (Pattern pattern : viewSubmissionHandlers.keySet()) {
+                    if (pattern.matcher(callbackId).matches()) {
+                        ViewSubmissionHandler handler = viewSubmissionHandlers.get(pattern);
+                        return handler.apply(request, request.getContext());
+                    }
                 }
+                log.warn("No ViewSubmissionHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
                 break;
             }
             case ViewClosed: {
                 ViewClosedRequest request = (ViewClosedRequest) req;
-                ViewClosedHandler handler = viewClosedHandlers.get(request.getPayload().getView().getCallbackId());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
-                } else {
-                    log.warn("No ViewClosedHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
+                String callbackId = request.getPayload().getView().getCallbackId();
+                for (Pattern pattern : viewClosedHandlers.keySet()) {
+                    if (pattern.matcher(callbackId).matches()) {
+                        ViewClosedHandler handler = viewClosedHandlers.get(pattern);
+                        return handler.apply(request, request.getContext());
+                    }
                 }
+                log.warn("No ViewClosedHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
                 break;
             }
             default:
