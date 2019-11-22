@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.app_backend.interactive_messages.payload;
 
-import com.github.seratch.jslack.api.model.Confirmation;
 import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
 import com.github.seratch.jslack.api.model.block.composition.OptionObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import com.github.seratch.jslack.api.model.view.View;
@@ -89,7 +89,7 @@ public class BlockActionPayload {
 
         // button
         private String url;
-        private Confirmation confirm;
+        private ConfirmationDialogObject confirm;
 
         // static_select
         private OptionObject initialOption;

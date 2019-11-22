@@ -10,6 +10,8 @@ public class Confirmation {
     public static final String DISMISS = "Cancel";
     private String title;
     private String text;
-    private String ok_text = OKAY;
-    private String dismiss_text = DISMISS;
+    @Builder.Default
+    private String okText = OKAY;
+    @Builder.Default
+    private String dismissText = DISMISS;
 }
