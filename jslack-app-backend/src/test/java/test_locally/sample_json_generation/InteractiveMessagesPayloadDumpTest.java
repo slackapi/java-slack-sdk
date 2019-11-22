@@ -1,5 +1,7 @@
 package test_locally.sample_json_generation;
 
+import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
+import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.AttachmentActionPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
 import lombok.extern.slf4j.Slf4j;
@@ -47,9 +49,13 @@ public class InteractiveMessagesPayloadDumpTest {
     }
 
     private BlockActionPayload buildBlockActionPayload() {
-        List<BlockActionPayload.Action> actions = Arrays.asList(
-                new BlockActionPayload.Action()
-        );
+        BlockActionPayload.Action action = new BlockActionPayload.Action();
+        action.setConfirm(new ConfirmationDialogObject());
+        action.getConfirm().setConfirm(new PlainTextObject());
+        action.getConfirm().setDeny(new PlainTextObject());
+        action.getConfirm().setTitle(new PlainTextObject());
+        action.getConfirm().setText(new PlainTextObject());
+        List<BlockActionPayload.Action> actions = Arrays.asList(action);
         return BlockActionPayload.builder()
                 .team(new BlockActionPayload.Team())
                 .user(new BlockActionPayload.User())

@@ -978,6 +978,28 @@
       "type": "",
       "action_ts": "",
       "url": "",
+      "confirm": {
+        "title": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "text": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "confirm": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "deny": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        }
+      },
       "initial_option": {
         "text": {
           "type": "plain_text",
