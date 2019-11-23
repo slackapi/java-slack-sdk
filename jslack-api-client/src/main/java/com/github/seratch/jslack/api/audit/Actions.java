@@ -178,6 +178,8 @@ public class Actions {
         public static final String workflow_app_token_preserved = "workflow_app_token_preserved";
         public static final String bot_token_upgraded = "bot_token_upgraded";
         public static final String bot_token_downgraded = "bot_token_downgraded";
+        public static final String app_restricted = "app_restricted";
+        public static final String app_removed_from_whitelist = "app_removed_from_whitelist";
     }
 
     public static class Message {
