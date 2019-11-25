@@ -3,10 +3,10 @@ package util.sample_json_generation;
 import com.github.seratch.jslack.api.model.*;
 import com.github.seratch.jslack.api.model.block.*;
 import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
-import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import com.github.seratch.jslack.api.model.block.composition.TextObject;
-import com.github.seratch.jslack.api.model.block.element.*;
+import com.github.seratch.jslack.api.model.block.element.BlockElement;
+import com.github.seratch.jslack.api.model.block.element.ImageElement;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.JsonElement;
 
@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.github.seratch.jslack.api.model.block.Blocks.*;
+import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.*;
+import static com.github.seratch.jslack.api.model.block.element.BlockElements.*;
 import static util.ObjectInitializer.initProperties;
 
 public class SampleObjects {
@@ -60,34 +63,33 @@ public class SampleObjects {
 
     public static ConfirmationDialogObject Confirm = ConfirmationDialogObject.builder().text(TextObject).build();
 
-    public static List<BlockElement> BlockElements = Arrays.asList(
-            initProperties(ButtonElement.builder().confirm(Confirm).build()),
-            initProperties(ChannelsSelectElement.builder().confirm(Confirm).build()),
-            initProperties(ConversationsSelectElement.builder().confirm(Confirm).build()),
-            initProperties(DatePickerElement.builder().confirm(Confirm).build()),
-            initProperties(ExternalSelectElement.builder().confirm(Confirm).build()),
-            initProperties(ImageElement.builder().build()),
-            initProperties(OverflowMenuElement.builder().confirm(Confirm).build()),
-            initProperties(StaticSelectElement.builder().confirm(Confirm).build()),
-            initProperties(UsersSelectElement.builder().confirm(Confirm).build())
+    public static List<BlockElement> BlockElements = asElements(
+            initProperties(button(b -> b.confirm(Confirm))),
+            initProperties(channelsSelect(c -> c.confirm(Confirm))),
+            initProperties(conversationsSelect(c -> c.confirm(Confirm))),
+            initProperties(datePicker(d -> d.confirm(Confirm))),
+            initProperties(externalSelect(e -> e.confirm(Confirm))),
+            initProperties(com.github.seratch.jslack.api.model.block.element.BlockElements.image(i -> i)),
+            initProperties(overflowMenu(o -> o.confirm(Confirm))),
+            initProperties(staticSelect(s -> s.confirm(Confirm))),
+            initProperties(usersSelect(u -> u.confirm(Confirm)))
     );
-    public static List<ContextBlockElement> ContextBlockElements = Arrays.asList(
+    public static List<ContextBlockElement> ContextBlockElements = asContextElements(
             initProperties(ImageElement.builder().build())
     );
-    public static List<TextObject> SectionBlockFieldElements = Arrays.asList(
-            initProperties(PlainTextObject.builder().build()),
-            initProperties(MarkdownTextObject.builder().build())
+    public static List<TextObject> SectionBlockFieldElements = asSectionFields(
+            initProperties(plainText(pt -> pt)),
+            initProperties(markdownText(m -> m))
     );
-    public static List<LayoutBlock> Blocks = Arrays.asList(
-            initProperties(ActionsBlock.builder().elements(BlockElements).build()),
-            initProperties(ContextBlock.builder().elements(ContextBlockElements).build()),
-            initProperties(DividerBlock.builder().build()),
-            initProperties(ImageBlock.builder().build()),
-            initProperties(SectionBlock.builder()
+    public static List<LayoutBlock> Blocks = asBlocks(
+            initProperties(actions(a -> a.elements(BlockElements))),
+            initProperties(context(c -> c.elements(ContextBlockElements))),
+            initProperties(divider()),
+            initProperties(com.github.seratch.jslack.api.model.block.Blocks.image(i -> i)),
+            initProperties(section(s -> s
                     .accessory(initProperties(ImageElement.builder().build()))
                     .text(TextObject)
-                    .fields(SectionBlockFieldElements)
-                    .build())
+                    .fields(SectionBlockFieldElements)))
     );
 
     public static Message Message = new Message();

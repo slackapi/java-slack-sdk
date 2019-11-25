@@ -11,23 +11,25 @@ import com.github.seratch.jslack.api.methods.response.chat.ChatPostEphemeralResp
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
 import com.github.seratch.jslack.api.model.Channel;
-import com.github.seratch.jslack.api.model.block.ActionsBlock;
 import com.github.seratch.jslack.api.model.block.DividerBlock;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.SectionBlock;
 import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
-import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-import com.github.seratch.jslack.api.model.block.element.ButtonElement;
-import com.github.seratch.jslack.api.model.block.element.ImageElement;
+import com.github.seratch.jslack.api.model.block.element.BlockElements;
 import config.Constants;
 import config.SlackTestConfig;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import static com.github.seratch.jslack.api.model.block.Blocks.*;
+import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.markdownText;
+import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.plainText;
+import static com.github.seratch.jslack.api.model.block.element.BlockElements.asElements;
+import static com.github.seratch.jslack.api.model.block.element.BlockElements.button;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -36,13 +38,11 @@ public class BlockKit_Test {
     Slack slack = Slack.getInstance(SlackTestConfig.get());
     String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
-    @Test
-    public void example() throws IOException, SlackApiException {
+    String randomChannelId;
 
-        List<LayoutBlock> blocks = exampleBlocks();
-
-        // ephemeral message creation
-        {
+    @Before
+    public void loadRandomChannel() throws IOException, SlackApiException {
+        if (randomChannelId == null) {
             String channelId = null;
             ChannelsListResponse channelsListResponse = slack.methods().channelsList(req -> req
                     .token(token)
@@ -56,15 +56,25 @@ public class BlockKit_Test {
                 }
             }
             assertThat(channelId, is(notNullValue()));
+            randomChannelId = channelId;
+        }
+    }
 
+    @Test
+    public void example() throws IOException, SlackApiException {
+
+        List<LayoutBlock> blocks = exampleBlocks();
+
+        // ephemeral message creation
+        {
             String userId = slack.methods().channelsInfo(ChannelsInfoRequest.builder()
                     .token(token)
-                    .channel(channelId)
+                    .channel(randomChannelId)
                     .build()
             ).getChannel().getMembers().get(0);
 
             ChatPostEphemeralRequest request = ChatPostEphemeralRequest.builder()
-                    .channel(channelId)
+                    .channel(randomChannelId)
                     .token(token)
                     .user(userId)
                     .text("Example message")
@@ -196,71 +206,27 @@ public class BlockKit_Test {
     }
 
     private List<LayoutBlock> exampleBlocks() {
-        return Arrays.asList(
-                SectionBlock.builder()
-                        .text(MarkdownTextObject.builder()
-                                .text("Hello, Assistant to the Regional Manager Dwight! *Michael Scott* wants to know where you'd like to take the Paper Company investors to dinner tonight.\n\n*Please select a restaurant:*")
-                                .build())
-                        .build(),
-
-                new DividerBlock(),
-
-                SectionBlock.builder()
-                        .text(MarkdownTextObject.builder()
-                                .text("*Farmhouse Thai Cuisine*\n:star::star::star::star: 1528 reviews\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here")
-                                .build())
-                        .accessory(ImageElement.builder()
+        return asBlocks(
+                section(s -> s.text(markdownText("Hello, Assistant to the Regional Manager Dwight! *Michael Scott* wants to know where you'd like to take the Paper Company investors to dinner tonight.\n\n*Please select a restaurant:*"))),
+                divider(),
+                section(s -> s.text(markdownText("*Farmhouse Thai Cuisine*\n:star::star::star::star: 1528 reviews\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"))
+                        .accessory(BlockElements.image(i -> i
                                 .imageUrl("https://s3-media3.fl.yelpcdn.com/bphoto/c7ed05m9lC2EmA3Aruue7A/o.jpg")
-                                .altText("alt text for image")
-                                .build())
-                        .build(),
-
-                SectionBlock.builder()
-                        .text(MarkdownTextObject.builder()
-                                .text("*Kin Khao*\n:star::star::star::star: 1638 reviews\n The sticky rice also goes wonderfully with the caramelized pork belly, which is absolutely melt-in-your-mouth and so soft.")
-                                .build())
-                        .accessory(ImageElement.builder()
+                                .altText("alt text for image")))),
+                section(s -> s.text(markdownText("*Kin Khao*\n:star::star::star::star: 1638 reviews\n The sticky rice also goes wonderfully with the caramelized pork belly, which is absolutely melt-in-your-mouth and so soft."))
+                        .accessory(BlockElements.image(i -> i
                                 .imageUrl("https://s3-media2.fl.yelpcdn.com/bphoto/korel-1YjNtFtJlMTaC26A/o.jpg")
-                                .altText("alt text for image")
-                                .build())
-                        .build(),
-
-                SectionBlock.builder()
-                        .text(MarkdownTextObject.builder()
-                                .text("*Ler Ros*\n:star::star::star::star: 2082 reviews\n I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder.")
-                                .build())
-                        .accessory(ImageElement.builder()
+                                .altText("alt text for image")))),
+                section(s -> s.text(markdownText("*Ler Ros*\n:star::star::star::star: 2082 reviews\n I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder."))
+                        .accessory(BlockElements.image(i -> i
                                 .imageUrl("https://s3-media2.fl.yelpcdn.com/bphoto/DawwNigKJ2ckPeDeDM7jAg/o.jpg")
-                                .altText("alt text for image")
-                                .build())
-                        .build(),
-
-                new DividerBlock(),
-
-                ActionsBlock.builder().elements(
-                        Arrays.asList(
-                                ButtonElement.builder()
-                                        .text(PlainTextObject.builder()
-                                                .emoji(true)
-                                                .text("Farmhouse")
-                                                .build())
-                                        .value("click_me_123")
-                                        .build(),
-                                ButtonElement.builder()
-                                        .text(PlainTextObject.builder()
-                                                .emoji(true)
-                                                .text("Kin Khao")
-                                                .build())
-                                        .value("click_me_123")
-                                        .build(),
-                                ButtonElement.builder()
-                                        .text(PlainTextObject.builder()
-                                                .emoji(true)
-                                                .text("Ler Ros")
-                                                .build())
-                                        .value("click_me_123")
-                                        .build()
-                        )).build()
+                                .altText("alt text for image")))),
+                divider(),
+                actions(a -> a.elements(asElements(
+                        button(b -> b.text(plainText(pt -> pt.emoji(true).text("Farmhouse"))).value("click_me_123")),
+                        button(b -> b.text(plainText(pt -> pt.emoji(true).text("Kin Khao"))).value("click_me_123")),
+                        button(b -> b.text(plainText(pt -> pt.emoji(true).text("Ler Ros"))).value("click_me_123"))
+                )))
         );
     }
 
@@ -347,5 +313,14 @@ public class BlockKit_Test {
             "    ]\n" +
             "  }\n" +
             "]";
+
+    @Test
+    public void useBlockOps() throws IOException, SlackApiException {
+        List<LayoutBlock> blocks = asBlocks(actions(asElements(button(b -> b.text(plainText(pt -> pt.text("foo"))).value("v")))));
+        ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> req
+                .channel(randomChannelId)
+                .blocks(blocks));
+        assertThat(response.getError(), is(nullValue()));
+    }
 
 }
