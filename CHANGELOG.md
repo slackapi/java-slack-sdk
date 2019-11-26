@@ -1,5 +1,9 @@
 # jSlack Release Notes
 
+## version 3.1.4 (2019-11-26)
+
+* cb1411c Add handy ways to build blocks by Kazuhiro Sera
+
 ## version 3.1.3 (2019-11-22)
 
 * 28ea307 Add regexp routing for actions, command, etc by Kazuhiro Sera
