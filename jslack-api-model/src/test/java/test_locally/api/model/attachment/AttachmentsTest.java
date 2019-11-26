@@ -1,9 +1,11 @@
 package test_locally.api.model.attachment;
 
+import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Message;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
+import static com.github.seratch.jslack.api.model.Attachments.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -124,6 +126,24 @@ public class AttachmentsTest {
         assertThat(message.getFiles().size(), is(1));
         assertThat(message.getFiles().get(0).getAttachments().size(), is(3));
         assertThat(message.getFiles().get(0).getAttachments().get(0).getMetadata(), is(notNullValue()));
+    }
+
+    @Test
+    public void builder() {
+        Attachment attachment = attachment(att -> {
+            return att.text("Hello")
+                    .fields(asFields(field(f -> f)))
+                    .actions(asActions(
+                            action(a -> a.confirm(confirm(c -> c.title("Confirmation").text("Are your sure?")))),
+                            action(a -> a.optionGroups(asOptionGroups(optionGroup(og ->
+                                    og.options(asOptions(
+                                            option(o -> o.text("Option 1")),
+                                            option(o -> o.text("Option 2"))
+                                    ))))))
+                    ))
+                    .mrkdwnIn(asList("foo", "bar"));
+        });
+        assertThat(attachment, is(notNullValue()));
     }
 
 }

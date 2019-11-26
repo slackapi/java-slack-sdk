@@ -275,6 +275,7 @@ public class Attachment {
     private AttachmentMetadata metadata;
 
     @Data
+    @Builder
     public static class AttachmentMetadata {
 
         @SerializedName("thumb_64")
