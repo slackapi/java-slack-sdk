@@ -56,12 +56,14 @@ public class Action {
     private String url;
 
     @Data
+    @Builder
     public static class OptionGroup {
         private String text;
         private List<Option> options;
     }
 
     @Data
+    @Builder
     public static class Option {
         private String text;
         private String value;
