@@ -428,6 +428,12 @@
             "style": "",
             "type": "button",
             "value": "",
+            "confirm": {
+              "title": "",
+              "text": "",
+              "ok_text": "",
+              "dismiss_text": ""
+            },
             "data_source": "",
             "min_query_length": 123,
             "url": ""
@@ -577,6 +583,15 @@
       "is_public": false,
       "public_url_shared": false,
       "display_as_bot": false,
+      "initial_comment": {
+        "id": "",
+        "created": 123,
+        "timestamp": 123,
+        "user": "",
+        "comment": "",
+        "channel": "",
+        "is_intro": false
+      },
       "num_stars": 123,
       "is_starred": false,
       "comments_count": 123,
@@ -733,6 +748,15 @@
         "is_public": false,
         "public_url_shared": false,
         "display_as_bot": false,
+        "initial_comment": {
+          "id": "",
+          "created": 123,
+          "timestamp": 123,
+          "user": "",
+          "comment": "",
+          "channel": "",
+          "is_intro": false
+        },
         "num_stars": 123,
         "is_starred": false,
         "comments_count": 123,

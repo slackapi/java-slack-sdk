@@ -420,6 +420,12 @@
           "style": "",
           "type": "button",
           "value": "",
+          "confirm": {
+            "title": "",
+            "text": "",
+            "ok_text": "",
+            "dismiss_text": ""
+          },
           "data_source": "",
           "min_query_length": 123,
           "url": ""

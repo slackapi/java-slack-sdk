@@ -1,14 +1,18 @@
 package com.github.seratch.jslack.api.model;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * https://api.slack.com/docs/message-attachments
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Field {
 
     /**

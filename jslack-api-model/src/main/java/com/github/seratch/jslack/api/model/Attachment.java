@@ -12,6 +12,8 @@ import java.util.List;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Attachment {
 
     private String msgSubtype; // "bot_message"
@@ -276,6 +278,8 @@ public class Attachment {
 
     @Data
     @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class AttachmentMetadata {
 
         @SerializedName("thumb_64")

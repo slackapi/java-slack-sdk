@@ -1,7 +1,9 @@
 package com.github.seratch.jslack.api.model.dialog;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Represents a <a href="https://api.slack.com/dialogs#textarea_elements">textarea</a>
@@ -13,6 +15,8 @@ import lombok.Data;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class DialogTextAreaElement implements DialogElement {
 
     /**

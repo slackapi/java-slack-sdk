@@ -1,14 +1,18 @@
 package com.github.seratch.jslack.api.model;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Action {
     /**
      * Represents the type of action (e.g Message button or message menu)
@@ -57,6 +61,8 @@ public class Action {
 
     @Data
     @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class OptionGroup {
         private String text;
         private List<Option> options;
@@ -64,6 +70,8 @@ public class Action {
 
     @Data
     @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Option {
         private String text;
         private String value;
