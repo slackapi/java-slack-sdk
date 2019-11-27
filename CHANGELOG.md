@@ -1,5 +1,10 @@
 # jSlack Release Notes
 
+## version 3.1.5 (2019-11-27)
+
+* 4a3fb59 Add more Lombok annotations to make sample JSON generation more stable by Kazuhiro Sera
+* a01a1db Add object builders to attachments, views, dialogs, and incoming webhooks by Kazuhiro Sera
+
 ## version 3.1.4 (2019-11-26)
 
 * cb1411c Add handy ways to build blocks by Kazuhiro Sera
