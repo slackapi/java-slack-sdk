@@ -122,6 +122,12 @@
               "style": "",
               "type": "",
               "value": "",
+              "confirm": {
+                "title": "",
+                "text": "",
+                "ok_text": "",
+                "dismiss_text": ""
+              },
               "data_source": "",
               "min_query_length": 12345,
               "url": ""
@@ -204,6 +210,12 @@
               "style": "",
               "type": "",
               "value": "",
+              "confirm": {
+                "title": "",
+                "text": "",
+                "ok_text": "",
+                "dismiss_text": ""
+              },
               "data_source": "",
               "min_query_length": 12345,
               "url": ""
@@ -286,6 +298,12 @@
               "style": "",
               "type": "",
               "value": "",
+              "confirm": {
+                "title": "",
+                "text": "",
+                "ok_text": "",
+                "dismiss_text": ""
+              },
               "data_source": "",
               "min_query_length": 12345,
               "url": ""

@@ -105,6 +105,12 @@
                 "style": "",
                 "type": "",
                 "value": "",
+                "confirm": {
+                  "title": "",
+                  "text": "",
+                  "ok_text": "",
+                  "dismiss_text": ""
+                },
                 "data_source": "",
                 "min_query_length": 12345,
                 "url": ""
@@ -187,6 +193,12 @@
                 "style": "",
                 "type": "",
                 "value": "",
+                "confirm": {
+                  "title": "",
+                  "text": "",
+                  "ok_text": "",
+                  "dismiss_text": ""
+                },
                 "data_source": "",
                 "min_query_length": 12345,
                 "url": ""
@@ -269,6 +281,12 @@
                 "style": "",
                 "type": "",
                 "value": "",
+                "confirm": {
+                  "title": "",
+                  "text": "",
+                  "ok_text": "",
+                  "dismiss_text": ""
+                },
                 "data_source": "",
                 "min_query_length": 12345,
                 "url": ""
@@ -351,6 +369,12 @@
                 "style": "",
                 "type": "",
                 "value": "",
+                "confirm": {
+                  "title": "",
+                  "text": "",
+                  "ok_text": "",
+                  "dismiss_text": ""
+                },
                 "data_source": "",
                 "min_query_length": 12345,
                 "url": ""
@@ -440,6 +464,12 @@
                   "style": "",
                   "type": "",
                   "value": "",
+                  "confirm": {
+                    "title": "",
+                    "text": "",
+                    "ok_text": "",
+                    "dismiss_text": ""
+                  },
                   "data_source": "",
                   "min_query_length": 12345,
                   "url": ""
@@ -644,6 +674,12 @@
                   "style": "",
                   "type": "",
                   "value": "",
+                  "confirm": {
+                    "title": "",
+                    "text": "",
+                    "ok_text": "",
+                    "dismiss_text": ""
+                  },
                   "data_source": "",
                   "min_query_length": 12345,
                   "url": ""
@@ -776,7 +812,115 @@
               }
             }
           ]
-        }
+        },
+        "blocks": [
+          {
+            "type": "",
+            "elements": [
+              {
+                "type": "",
+                "fallback": "",
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "action_id": "",
+                "url": "",
+                "value": "",
+                "style": "",
+                "confirm": {
+                  "title": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "confirm": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "deny": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  }
+                },
+                "placeholder": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "initial_channel": "",
+                "initial_conversation": "",
+                "initial_date": "",
+                "initial_option": {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": ""
+                },
+                "min_query_length": 12345,
+                "image_url": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345,
+                "alt_text": "",
+                "initial_user": ""
+              },
+              {
+                "type": "",
+                "fallback": "",
+                "image_url": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345,
+                "alt_text": ""
+              }
+            ],
+            "block_id": "",
+            "fallback": "",
+            "image_url": "",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345,
+            "alt_text": "",
+            "title": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "fields": [
+              {
+                "type": "",
+                "text": "",
+                "emoji": false,
+                "verbatim": false
+              }
+            ],
+            "accessory": {
+              "type": "",
+              "fallback": "",
+              "image_url": "",
+              "image_width": 12345,
+              "image_height": 12345,
+              "image_bytes": 12345,
+              "alt_text": ""
+            }
+          }
+        ]
       }
     ]
   },
