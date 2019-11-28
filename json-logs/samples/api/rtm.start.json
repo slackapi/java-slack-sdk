@@ -462,7 +462,8 @@
         ]
       },
       "gg_enabled": false,
-      "external_shared_channel_requests_approval_channel": 12345
+      "external_shared_channel_requests_approval_channel": 12345,
+      "workflows_webhook_trigger_enabled": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
