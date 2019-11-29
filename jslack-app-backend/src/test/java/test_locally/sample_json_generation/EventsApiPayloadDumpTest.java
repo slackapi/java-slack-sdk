@@ -1,5 +1,6 @@
 package test_locally.sample_json_generation;
 
+import com.github.seratch.jslack.api.model.Message;
 import com.github.seratch.jslack.api.model.Reaction;
 import com.github.seratch.jslack.api.model.event.*;
 import com.github.seratch.jslack.app_backend.events.payload.*;
@@ -65,6 +66,12 @@ public class EventsApiPayloadDumpTest {
                 new MemberJoinedChannelPayload(),
                 new MemberLeftChannelPayload(),
                 buildMessagePayload(),
+                buildMessageBotPayload(),
+                buildMessageChangedPayload(),
+                buildMessageDeletedPayload(),
+                buildMessageEkmAccessDeniedPayload(),
+                buildMessageMePayload(),
+                buildMessageThreadBroadcastPayload(),
                 buildPinAddedPayload(),
                 buildPinRemovedPayload(),
                 new ReactionAddedPayload(),
@@ -255,8 +262,64 @@ public class EventsApiPayloadDumpTest {
         payload.setEvent(new MessageEvent());
         payload.getEvent().setAttachments(SampleObjects.Attachments);
         payload.getEvent().setBlocks(SampleObjects.Blocks);
-        payload.getEvent().setPinnedTo(Arrays.asList(""));
-        payload.getEvent().setReactions(Arrays.asList(initProperties(Reaction.builder().users(Arrays.asList("")).build())));
         return payload;
     }
+
+    private MessageBotPayload buildMessageBotPayload() {
+        MessageBotPayload payload = new MessageBotPayload();
+        payload.setEvent(new MessageBotEvent());
+        payload.getEvent().setAttachments(SampleObjects.Attachments);
+        payload.getEvent().setBlocks(SampleObjects.Blocks);
+        return payload;
+    }
+
+    private MessageChangedPayload buildMessageChangedPayload() {
+        MessageChangedPayload payload = new MessageChangedPayload();
+        MessageChangedEvent event = new MessageChangedEvent();
+        MessageChangedEvent.Message message = new MessageChangedEvent.Message();
+        message.setAttachments(SampleObjects.Attachments);
+        message.setBlocks(SampleObjects.Blocks);
+        event.setMessage(message);
+        event.setPreviousMessage(message);
+        payload.setEvent(event);
+        return payload;
+    }
+
+    private MessageDeletedPayload buildMessageDeletedPayload() {
+        MessageDeletedPayload payload = new MessageDeletedPayload();
+        MessageDeletedEvent event = new MessageDeletedEvent();
+        MessageDeletedEvent.Message message = new MessageDeletedEvent.Message();
+        message.setAttachments(SampleObjects.Attachments);
+        message.setBlocks(SampleObjects.Blocks);
+        event.setPreviousMessage(message);
+        payload.setEvent(event);
+        return payload;
+    }
+
+    private MessageEkmAccessDeniedPayload buildMessageEkmAccessDeniedPayload() {
+        MessageEkmAccessDeniedPayload payload = new MessageEkmAccessDeniedPayload();
+        MessageEkmAccessDeniedEvent event = new MessageEkmAccessDeniedEvent();
+        event.setAttachments(SampleObjects.Attachments);
+        event.setBlocks(SampleObjects.Blocks);
+        payload.setEvent(event);
+        return payload;
+    }
+
+    private MessageMePayload buildMessageMePayload() {
+        MessageMePayload payload = new MessageMePayload();
+        MessageMeEvent event = new MessageMeEvent();
+        payload.setEvent(event);
+        return payload;
+    }
+
+    private MessageThreadBroadcastPayload buildMessageThreadBroadcastPayload() {
+        MessageThreadBroadcastPayload payload = new MessageThreadBroadcastPayload();
+        MessageThreadBroadcastEvent event = new MessageThreadBroadcastEvent();
+        event.setRoot(new Message.MessageRoot());
+        event.setAttachments(SampleObjects.Attachments);
+        event.setBlocks(SampleObjects.Blocks);
+        payload.setEvent(event);
+        return payload;
+    }
+
 }

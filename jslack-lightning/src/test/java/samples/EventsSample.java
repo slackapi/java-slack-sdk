@@ -1,6 +1,9 @@
 package samples;
 
+import com.github.seratch.jslack.api.model.event.MessageBotEvent;
+import com.github.seratch.jslack.api.model.event.MessageDeletedEvent;
 import com.github.seratch.jslack.api.model.event.MessageEvent;
+import com.github.seratch.jslack.api.rtm.message.Message;
 import com.github.seratch.jslack.app_backend.events.handler.MessageHandler;
 import com.github.seratch.jslack.app_backend.events.payload.MessagePayload;
 import com.github.seratch.jslack.lightning.App;
@@ -17,9 +20,21 @@ public class EventsSample {
         App app = new App(config);
 
         app.event(MessageEvent.class, (event, ctx) -> {
-            log.info("message event (LightningEventHandler) - {}", event);
+            log.info("new message by a user - {}", event);
+            ctx.client().chatPostMessage(r -> r
+                    .text("Hi there!")
+                    .channel(event.getEvent().getChannel()));
             return ctx.ack();
         });
+        app.event(MessageBotEvent.class, (event, ctx) -> {
+            log.info("bot message - {}", event);
+            return ctx.ack();
+        });
+        app.event(MessageDeletedEvent.class, (event, ctx) -> {
+            log.info("message deleted - {}", event);
+            return ctx.ack();
+        });
+
         app.event(new MessageHandler() {
             @Override
             public void handle(MessagePayload payload) {

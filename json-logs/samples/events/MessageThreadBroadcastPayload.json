@@ -15,8 +15,25 @@
   "event": {
     "client_msg_id": "",
     "type": "message",
+    "subtype": "thread_broadcast",
     "channel": "",
     "user": "",
+    "root": {
+      "text": "",
+      "username": "",
+      "bot_id": "",
+      "mrkdwn": false,
+      "type": "",
+      "subtype": "",
+      "thread_ts": "",
+      "reply_count": 123,
+      "reply_users_count": 123,
+      "latest_reply": "",
+      "subscribed": false,
+      "last_read": "",
+      "unread_count": 123,
+      "ts": ""
+    },
     "text": "",
     "blocks": [
       {
@@ -465,13 +482,8 @@
       }
     ],
     "ts": "",
-    "parent_user_id": "",
     "thread_ts": "",
     "event_ts": "",
-    "channel_type": "",
-    "edited": {
-      "user": "",
-      "ts": ""
-    }
+    "channel_type": ""
   }
 }

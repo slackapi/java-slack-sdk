@@ -25,6 +25,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -199,9 +200,13 @@ public class AdminApiTest {
                     .adminTeamsSettingsSetName(r -> r.teamId(adminAppsTeamId).name("Kaz's Awesome Engineering Team"));
             assertThat(setName.getError(), is(nullValue()));
 
-            AdminTeamsSettingsSetIconResponse setIcon = slack.methods(orgAdminToken)
-                    .adminTeamsSettingsSetIcon(r -> r.teamId(adminAppsTeamId).imageUrl("https://avatars.slack-edge.com/2019-05-24/634650041250_0c70b65cdfc88ac9ef96_192.jpg"));
-            assertThat(setIcon.getError(), is(nullValue()));
+            try {
+                AdminTeamsSettingsSetIconResponse setIcon = slack.methods(orgAdminToken)
+                        .adminTeamsSettingsSetIcon(r -> r.teamId(adminAppsTeamId).imageUrl("https://avatars.slack-edge.com/2019-05-24/634650041250_0c70b65cdfc88ac9ef96_192.jpg"));
+                assertThat(setIcon.getError(), is(nullValue()));
+            } catch (SocketTimeoutException e) {
+                log.warn("timed out", e);
+            }
         }
     }
 

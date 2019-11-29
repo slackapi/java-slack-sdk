@@ -186,14 +186,14 @@ public class App {
     // App routing methods
 
     public <E extends Event> App event(Class<E> eventClass, LightningEventHandler<E> handler) {
-        String eventType = getEventType(eventClass);
-        if (eventType == null) {
+        String eventTypeAndSubtype = getEventTypeAndSubtype(eventClass);
+        if (eventTypeAndSubtype == null) {
             throw new IllegalArgumentException("Unexpectedly failed to register the handler");
         }
-        if (eventHandlers.get(eventType) != null) {
-            log.warn("Replaced the handler for {}", eventType);
+        if (eventHandlers.get(eventTypeAndSubtype) != null) {
+            log.warn("Replaced the handler for {}", eventTypeAndSubtype);
         }
-        eventHandlers.put(eventType, (LightningEventHandler<Event>) handler);
+        eventHandlers.put(eventTypeAndSubtype, (LightningEventHandler<Event>) handler);
         return this;
     }
 
@@ -521,12 +521,12 @@ public class App {
                     eventsDispatcher.enqueue(req.getRequestBodyAsString());
                 }
                 EventRequest request = (EventRequest) req;
-                LightningEventHandler<Event> handler = eventHandlers.get(request.getEventType());
+                LightningEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
                 if (handler != null) {
                     LightningEventPayload payload = buildEventPayload(request);
                     return handler.apply(payload, request.getContext());
                 } else {
-                    log.warn("No LightningEventHandler registered for event: {}", request.getEventType());
+                    log.warn("No LightningEventHandler registered for event: {}", request.getEventTypeAndSubtype());
                     return Response.ok();
                 }
             }
@@ -659,10 +659,10 @@ public class App {
         return Response.json(404, "{\"error\":\"no handler found\"}");
     }
 
-    private Map<Class<? extends Event>, String> eventTypes = new HashMap<>();
+    private Map<Class<? extends Event>, String> eventTypeAndSubtypeValues = new HashMap<>();
 
     private Class<? extends Event> getEventClass(String eventType) {
-        for (Map.Entry<Class<? extends Event>, String> entry : eventTypes.entrySet()) {
+        for (Map.Entry<Class<? extends Event>, String> entry : eventTypeAndSubtypeValues.entrySet()) {
             if (entry.getValue().equals(eventType)) {
                 return entry.getKey();
             }
@@ -670,8 +670,8 @@ public class App {
         return null;
     }
 
-    private String getEventType(Class<? extends Event> clazz) {
-        String cached = eventTypes.get(clazz);
+    private String getEventTypeAndSubtype(Class<? extends Event> clazz) {
+        String cached = eventTypeAndSubtypeValues.get(clazz);
         if (cached != null) {
             return cached;
         } else {
@@ -679,8 +679,9 @@ public class App {
                 if (constructor.getParameterCount() == 0) {
                     try {
                         Event event = (Event) constructor.newInstance();
-                        eventTypes.put(clazz, event.getType());
-                        return event.getType();
+                        String typeAndSubtype = event.getType() + ":" + event.getSubtype();
+                        eventTypeAndSubtypeValues.put(clazz, typeAndSubtype);
+                        return typeAndSubtype;
                     } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         log.error("Unexpectedly failed to load event type for the class {}", clazz.getCanonicalName());
                         break;
@@ -693,7 +694,7 @@ public class App {
 
     private LightningEventPayload buildEventPayload(EventRequest request) {
         LightningEventPayload payload = gson.fromJson(request.getRequestBodyAsString(), LightningEventPayload.class);
-        Class<? extends Event> eventClass = getEventClass(request.getEventType());
+        Class<? extends Event> eventClass = getEventClass(request.getEventTypeAndSubtype());
         if (eventClass != null) {
             Event event = gson.fromJson(gson.fromJson(request.getRequestBodyAsString(), JsonElement.class).getAsJsonObject().get("event").getAsJsonObject(), eventClass);
             payload.setEvent(event);

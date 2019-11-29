@@ -20,6 +20,13 @@ public abstract class EventHandler<E extends EventsApiPayload<?>> {
     public abstract String getEventType();
 
     /**
+     * Returns the subtype of the event (e.g., "message_changed" for type: message)
+     */
+    public String getEventSubtype() {
+        return null;
+    }
+
+    /**
      * Returns the Class object of the EventApiPayload implementation.
      */
     public Class<E> getEventPayloadClass() {

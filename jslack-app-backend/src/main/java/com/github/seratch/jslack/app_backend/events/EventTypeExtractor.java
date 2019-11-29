@@ -4,4 +4,6 @@ public interface EventTypeExtractor {
 
     String extractEventType(String json);
 
+    String extractEventSubtype(String json);
+
 }
