@@ -1,5 +1,18 @@
 # jSlack Release Notes
 
+## version 3.2.0 (2019-11-29)
+
+* 9cd119b Handle message-related events appropriately (breaking change) by Kazuhiro Sera
+* 9e89bac Add admin.teams.settings.* endpoints by Kazuhiro Sera
+* a8137f8 Run tests with the latest APIs by Kazuhiro Sera
+
+### Incompatibility
+
+* Only newly posted messages are recognized as `MessageEvent`
+* Other events having `subtype` (`bot_message`, `message_changed`, `message_deleted`, `thread_broadcast`, `ekm_access_denied`, and `me_message`) are no longer available as `MessageEvent`. They have corresponding classes (e.g., `MessageBotEvent`)
+
+For example, if you have `EventHandler`/`LightningEventHandler` handling `MessageEvent` and expect the code to receive `bot_message` events as `MessageEvent`, the code requires changes to have a `MessageBotEvent` handler for `bot_message` events.
+
 ## version 3.1.5 (2019-11-27)
 
 * 4a3fb59 Add more Lombok annotations to make sample JSON generation more stable by Kazuhiro Sera
