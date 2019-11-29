@@ -6,4 +6,8 @@ public interface Event extends Serializable {
 
     String getType();
 
+    default String getSubtype() {
+        return null;
+    }
+
 }

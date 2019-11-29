@@ -35,7 +35,10 @@ public class MessageEvent implements Event {
     private List<Attachment> attachments;
 
     private String ts;
-    private String threadTs;
+
+    private String parentUserId; // in the case of replies in thread
+    private String threadTs; // in the case of replies in thread
+
     private String eventTs;
     private String channelType; // app_home, channel, group, im, mpim
 
@@ -46,18 +49,4 @@ public class MessageEvent implements Event {
         private String user;
         private String ts;
     }
-
-    private String subtype;
-    private boolean hidden;
-    private String deletedTs;
-
-    @SerializedName("is_starred")
-    private boolean starred;
-    private List<String> pinnedTo;
-    private List<Reaction> reactions;
-
-    // bot_message
-    private String botId;
-    private String username;
-    private Message.Icons icons;
 }

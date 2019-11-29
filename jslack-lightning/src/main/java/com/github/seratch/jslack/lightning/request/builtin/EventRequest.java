@@ -15,6 +15,7 @@ public class EventRequest extends Request<DefaultContext> {
     private final String requestBody;
     private final RequestHeaders headers;
     private final String eventType;
+    private final String eventSubtype;
 
     public EventRequest(
             String requestBody,
@@ -22,7 +23,13 @@ public class EventRequest extends Request<DefaultContext> {
         this.requestBody = requestBody;
         this.headers = headers;
         JsonObject payload = GsonFactory.createSnakeCase().fromJson(requestBody, JsonElement.class).getAsJsonObject();
-        this.eventType = payload.get("event").getAsJsonObject().get("type").getAsString();
+        JsonObject event = payload.get("event").getAsJsonObject();
+        this.eventType = event.get("type").getAsString();
+        if (event.get("subtype") != null) {
+            this.eventSubtype = event.get("subtype").getAsString();
+        } else {
+            this.eventSubtype = null;
+        }
         this.getContext().setTeamId(payload.get("team_id").getAsString());
         JsonElement enterpriseId = payload.get("enterprise_id");
         if (enterpriseId != null) {
@@ -54,5 +61,9 @@ public class EventRequest extends Request<DefaultContext> {
 
     public String getEventType() {
         return eventType;
+    }
+
+    public String getEventTypeAndSubtype() {
+        return eventType + ":" + eventSubtype;
     }
 }

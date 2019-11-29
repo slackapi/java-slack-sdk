@@ -451,37 +451,12 @@
     }
   ],
   "ts": "",
+  "parent_user_id": "",
   "thread_ts": "",
   "event_ts": "",
   "channel_type": "",
   "edited": {
     "user": "",
     "ts": ""
-  },
-  "subtype": "",
-  "hidden": false,
-  "deleted_ts": "",
-  "is_starred": false,
-  "pinned_to": [
-    ""
-  ],
-  "reactions": [
-    {
-      "name": "",
-      "count": 123,
-      "users": [
-        ""
-      ],
-      "url": ""
-    }
-  ],
-  "bot_id": "",
-  "username": "",
-  "icons": {
-    "emoji": "",
-    "image_36": "",
-    "image_48": "",
-    "image_64": "",
-    "image_72": ""
   }
 }

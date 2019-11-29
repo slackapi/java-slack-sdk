@@ -1,5 +1,6 @@
 package test_locally.api.model.event;
 
+import com.github.seratch.jslack.api.model.event.MessageBotEvent;
 import com.github.seratch.jslack.api.model.event.MessageEvent;
 import com.google.gson.Gson;
 import org.junit.Test;
@@ -169,7 +170,6 @@ public class MessageEventTest {
                 "        \"type\": \"message\",\n" +
                 "        \"subtype\": \"bot_message\",\n" +
                 "        \"channel\": \"G024BE91L\",\n" +
-                "        \"user\": \"U2147483697\",\n" +
                 "        \"text\": \"Let's make a pact.\",\n" +
                 "        \"username\": \"seanbot\",\n" +
                 "        \"bot_id\": \"ABC1234\",\n" +
@@ -178,11 +178,10 @@ public class MessageEventTest {
                 "        \"event_ts\": \"1355517523.000005\",\n" +
                 "        \"channel_type\": \"mpim\"\n" +
                 "}";
-        MessageEvent event = GsonFactory.createSnakeCase().fromJson(json, MessageEvent.class);
+        MessageBotEvent event = GsonFactory.createSnakeCase().fromJson(json, MessageBotEvent.class);
         assertThat(event.getType(), is("message"));
         assertThat(event.getSubtype(), is("bot_message"));
         assertThat(event.getChannel(), is("G024BE91L"));
-        assertThat(event.getUser(), is("U2147483697"));
         assertThat(event.getText(), is("Let's make a pact."));
         assertThat(event.getTs(), is("1355517523.000005"));
         assertThat(event.getEventTs(), is("1355517523.000005"));
@@ -198,7 +197,7 @@ public class MessageEventTest {
         Gson gson = GsonFactory.createSnakeCase();
         MessageEvent event = new MessageEvent();
         String generatedJson = gson.toJson(event);
-        String expectedJson = "{\"type\":\"message\",\"hidden\":false,\"is_starred\":false}";
+        String expectedJson = "{\"type\":\"message\"}";
         assertThat(generatedJson, is(expectedJson));
     }
 

@@ -46,6 +46,16 @@ public class EventsDispatcherImpl implements EventsDispatcher {
         }
     });
 
+    private String toKey(String type, String subtype) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(type);
+        sb.append(":");
+        if (subtype == null || subtype.trim().length() == 0) {
+            sb.append("null");
+        }
+        return sb.toString();
+    }
+
     private final EventTypeExtractor eventTypeExtractor;
 
     public EventsDispatcherImpl() {
@@ -69,35 +79,41 @@ public class EventsDispatcherImpl implements EventsDispatcher {
     @Override
     public void register(EventHandler<? extends EventsApiPayload<?>> handler) {
         String eventType = handler.getEventType();
-        List<EventHandler<?>> handlers = eventTypeAndHandlers.getOrDefault(eventType, new ArrayList<>());
+        String eventSubtype = handler.getEventSubtype();
+        String handlerKey = toKey(eventType, eventSubtype);
+        List<EventHandler<?>> handlers = eventTypeAndHandlers.getOrDefault(handlerKey, new ArrayList<>());
         handlers.add(handler);
-        eventTypeAndHandlers.put(eventType, handlers);
+        eventTypeAndHandlers.put(handlerKey, handlers);
     }
 
     @Override
     public void deregister(EventHandler<? extends EventsApiPayload<?>> handler) {
         String eventType = handler.getEventType();
-        List<EventHandler<?>> handlers = eventTypeAndHandlers.getOrDefault(eventType, new ArrayList<>());
+        String eventSubtype = handler.getEventSubtype();
+        String handlerKey = toKey(eventType, eventSubtype);
+        List<EventHandler<?>> handlers = eventTypeAndHandlers.getOrDefault(handlerKey, new ArrayList<>());
         List<EventHandler<?>> newHandlers = new ArrayList<>();
         for (EventHandler<?> h : handlers) {
             if (!h.equals(handler)) {
                 newHandlers.add(h);
             }
         }
-        eventTypeAndHandlers.put(eventType, newHandlers);
+        eventTypeAndHandlers.put(handlerKey, newHandlers);
     }
 
     @Override
     public void dispatch(String json) {
         String eventType = eventTypeExtractor.extractEventType(json);
+        String eventSubtype = eventTypeExtractor.extractEventSubtype(json);
         if (eventType == null) {
             log.debug("Failed to detect event type from the given JSON data: {}", json);
             return;
         }
+        String handlerKey = toKey(eventType, eventSubtype);
 
-        List<EventHandler<?>> eventHandlers = eventTypeAndHandlers.get(eventType);
+        List<EventHandler<?>> eventHandlers = eventTypeAndHandlers.get(handlerKey);
         if (eventHandlers == null || eventHandlers.size() == 0) {
-            log.debug("No event handler registered for type: {}", eventType);
+            log.debug("No event handler registered for type: {}, subtype: {}", eventType, eventSubtype);
         } else {
             try {
                 Class<?> clazz = eventHandlers.get(0).getEventPayloadClass();
@@ -106,7 +122,7 @@ public class EventsDispatcherImpl implements EventsDispatcher {
                     handler.acceptUntypedObject(event);
                 }
             } catch (Exception ex) {
-                log.error("Exception handling event with type: {}", eventType, ex);
+                log.error("Exception handling event with type: {}, subtype: {}", eventType, eventSubtype, ex);
             }
         }
     }

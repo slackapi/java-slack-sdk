@@ -260,8 +260,6 @@ public class RTMPayloadDumpTest {
 
     private MessageEvent buildMessageEvent() {
         MessageEvent event = new MessageEvent();
-        event.setReactions(Arrays.asList(Reaction.builder().users(Arrays.asList("")).build()));
-        event.setPinnedTo(Arrays.asList(""));
         event.setBlocks(SampleObjects.Blocks);
         event.setAttachments(SampleObjects.Attachments);
         return event;

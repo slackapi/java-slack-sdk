@@ -13,10 +13,18 @@
   "event_id": "",
   "event_time": 123,
   "event": {
-    "client_msg_id": "",
     "type": "message",
+    "subtype": "bot_message",
+    "bot_id": "",
+    "username": "",
+    "icons": {
+      "emoji": "",
+      "image_36": "",
+      "image_48": "",
+      "image_64": "",
+      "image_72": ""
+    },
     "channel": "",
-    "user": "",
     "text": "",
     "blocks": [
       {
@@ -465,13 +473,7 @@
       }
     ],
     "ts": "",
-    "parent_user_id": "",
-    "thread_ts": "",
     "event_ts": "",
-    "channel_type": "",
-    "edited": {
-      "user": "",
-      "ts": ""
-    }
+    "channel_type": ""
   }
 }
