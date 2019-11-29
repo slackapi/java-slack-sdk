@@ -6,9 +6,7 @@ import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApprove
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
-import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
-import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsOwnersListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.*;
 import com.github.seratch.jslack.api.methods.request.admin.users.*;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
@@ -75,9 +73,7 @@ import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApprov
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
 import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
-import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
-import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsOwnersListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.*;
 import com.github.seratch.jslack.api.methods.response.admin.users.*;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
 import com.github.seratch.jslack.api.methods.response.apps.AppsUninstallResponse;
@@ -293,6 +289,36 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminTeamsOwnersListResponse adminTeamsOwnersList(RequestConfigurator<AdminTeamsOwnersListRequest.AdminTeamsOwnersListRequestBuilder> req) throws IOException, SlackApiException {
         return adminTeamsOwnersList(req.configure(AdminTeamsOwnersListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminTeamsSettingsSetDescriptionResponse adminTeamsSettingsSetDescription(AdminTeamsSettingsSetDescriptionRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_TEAMS_SETTINGS_SET_DESCRIPTION, getToken(req), AdminTeamsSettingsSetDescriptionResponse.class);
+    }
+
+    @Override
+    public AdminTeamsSettingsSetDescriptionResponse adminTeamsSettingsSetDescription(RequestConfigurator<AdminTeamsSettingsSetDescriptionRequest.AdminTeamsSettingsSetDescriptionRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsSettingsSetDescription(req.configure(AdminTeamsSettingsSetDescriptionRequest.builder()).build());
+    }
+
+    @Override
+    public AdminTeamsSettingsSetIconResponse adminTeamsSettingsSetIcon(AdminTeamsSettingsSetIconRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_TEAMS_SETTINGS_SET_ICON, getToken(req), AdminTeamsSettingsSetIconResponse.class);
+    }
+
+    @Override
+    public AdminTeamsSettingsSetIconResponse adminTeamsSettingsSetIcon(RequestConfigurator<AdminTeamsSettingsSetIconRequest.AdminTeamsSettingsSetIconRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsSettingsSetIcon(req.configure(AdminTeamsSettingsSetIconRequest.builder()).build());
+    }
+
+    @Override
+    public AdminTeamsSettingsSetNameResponse adminTeamsSettingsSetName(AdminTeamsSettingsSetNameRequest req) throws IOException, SlackApiException {
+        return doPostFormWithToken(toForm(req), Methods.ADMIN_TEAMS_SETTINGS_SET_NAME, getToken(req), AdminTeamsSettingsSetNameResponse.class);
+    }
+
+    @Override
+    public AdminTeamsSettingsSetNameResponse adminTeamsSettingsSetName(RequestConfigurator<AdminTeamsSettingsSetNameRequest.AdminTeamsSettingsSetNameRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsSettingsSetName(req.configure(AdminTeamsSettingsSetNameRequest.builder()).build());
     }
 
     @Override

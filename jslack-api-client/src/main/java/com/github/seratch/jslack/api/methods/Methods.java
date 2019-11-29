@@ -47,6 +47,14 @@ public class Methods {
     public static final String ADMIN_TEAMS_OWNERS_LIST = "admin.teams.owners.list";
 
     // ------------------------------
+    // admin.teams.settings
+    // ------------------------------
+
+    public static final String ADMIN_TEAMS_SETTINGS_SET_DESCRIPTION = "admin.teams.settings.setDescription";
+    public static final String ADMIN_TEAMS_SETTINGS_SET_ICON = "admin.teams.settings.setIcon";
+    public static final String ADMIN_TEAMS_SETTINGS_SET_NAME = "admin.teams.settings.setName";
+
+    // ------------------------------
     // admin.users
     // ------------------------------
 

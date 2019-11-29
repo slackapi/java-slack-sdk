@@ -4,9 +4,7 @@ import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApprove
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
-import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
-import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsOwnersListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.*;
 import com.github.seratch.jslack.api.methods.request.admin.users.*;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
@@ -180,6 +178,27 @@ public class RequestFormBuilder {
         setIfNotNull("team_name", req.getTeamName(), form);
         setIfNotNull("team_description", req.getTeamDescription(), form);
         setIfNotNull("team_discoverability", req.getTeamDiscoverability(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminTeamsSettingsSetDescriptionRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("description", req.getDescription(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminTeamsSettingsSetIconRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("image_url", req.getImageUrl(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminTeamsSettingsSetNameRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("name", req.getName(), form);
         return form;
     }
 

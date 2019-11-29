@@ -13,9 +13,7 @@ import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApprov
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
 import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
-import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
-import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsOwnersListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.*;
 import com.github.seratch.jslack.api.methods.response.admin.users.*;
 import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
 import com.github.seratch.jslack.api.model.User;
@@ -189,6 +187,24 @@ public class AdminApiTest {
             }
         }
     }
+
+    @Test
+    public void teams_settings() throws IOException, SlackApiException {
+        if (userToken != null && orgAdminToken != null) {
+            AdminTeamsSettingsSetDescriptionResponse setDescription = slack.methods(orgAdminToken)
+                    .adminTeamsSettingsSetDescription(r -> r.teamId(adminAppsTeamId).description("something great"));
+            assertThat(setDescription.getError(), is(nullValue()));
+
+            AdminTeamsSettingsSetNameResponse setName = slack.methods(orgAdminToken)
+                    .adminTeamsSettingsSetName(r -> r.teamId(adminAppsTeamId).name("Kaz's Awesome Engineering Team"));
+            assertThat(setName.getError(), is(nullValue()));
+
+            AdminTeamsSettingsSetIconResponse setIcon = slack.methods(orgAdminToken)
+                    .adminTeamsSettingsSetIcon(r -> r.teamId(adminAppsTeamId).imageUrl("https://avatars.slack-edge.com/2019-05-24/634650041250_0c70b65cdfc88ac9ef96_192.jpg"));
+            assertThat(setIcon.getError(), is(nullValue()));
+        }
+    }
+
 
     private String findUserId(List<String> idsToSkip) throws IOException, SlackApiException {
         String userId = null;
