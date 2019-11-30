@@ -26,17 +26,9 @@ jSlack is a Java library to easily integrate your operations with [Slack](https:
 
 Check the latest version on [the Maven Central repository](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.seratch%22%20AND%20a%3A%22jslack%22).
 
+#### API Client
+
 The following is an example using Maven. Of course, it's also possible to grab the library via Gradle, sbt and any other build tools.
-
-```xml
-<groupId>com.github.seratch</groupId>
-<artifactId>jslack</artifactId>
-<version>{latest version}</version>
-```
-
-The `{latest version}` is [![Maven Central](https://img.shields.io/maven-central/v/com.github.seratch/jslack.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.seratch%22%20a%3A%22jslack%22)
-
-See also: [Getting started with groovysh](https://github.com/seratch/jslack/wiki/Getting-Started-with-groovysh)
 
 If you really don't need classes for building Slack app backend (= you need only Webhook/Web API/RTM API clients), just depending on `jslack-api-client` would be enough.
 
@@ -48,7 +40,60 @@ If you really don't need classes for building Slack app backend (= you need only
 
 The `{latest version}` is [![Maven Central](https://img.shields.io/maven-central/v/com.github.seratch/jslack.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.seratch%22%20a%3A%22jslack%22)
 
-### Examples
+See also: [Getting started with groovysh](https://github.com/seratch/jslack/wiki/Getting-Started-with-groovysh)
+
+#### Slack App Server-side Framework
+
+Lightning is a framework to build Slack apps on the JVM.
+
+Yes, as you noticed, Lightning is highly inspired by [Bolt⚡](https://github.com/slackapi/bolt). The framework offers an abstraction layer on top of the web service infrastructure (e.g., Servlet API). The abstraction enables developers to focus on the essential parts of Slack app development.
+
+Lighning is available on the Maven Central repository.
+
+https://search.maven.org/search?q=g:com.github.seratch%20AND%20a:jslack-lightning
+
+##### Java / Maven
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>com.github.seratch</groupId>
+    <artifactId>jslack-lightning</artifactId>
+    <version>{latest version}</version>
+  </dependency>
+  <!-- if you go with Jetty server -->
+  <dependency>
+    <groupId>com.github.seratch</groupId>
+    <artifactId>jslack-lightning-jetty</artifactId>
+    <version>{latest version}</version>
+  </dependency>
+</dependencies>
+```
+
+The `{latest version}` is [![Maven Central](https://img.shields.io/maven-central/v/com.github.seratch/jslack.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.seratch%22%20a%3A%22jslack%22)
+
+```java
+import com.github.seratch.jslack.lightning.App;
+
+// export SLACK_BOT_TOKEN=xoxb-***
+// export SLACK_SIGNING_SECRET=123abc***
+App app = new App();
+
+// Handles requests triggered by /echo
+app.command("/echo", (req, ctx) -> {
+  // Context#respond sends a message using payload.responseUrl
+  ctx.respond(r -> r.text(req.getPayload().getText()));
+  // Context#ack returns 200 OK response to the request
+  return ctx.ack();
+});
+
+import com.github.seratch.jslack.lightning.jetty.SlackAppServer;
+
+SlackAppServer server = new SlackAppServer(app);
+server.start(); // http://localhost:3000
+```
+
+### API Client Examples
 
 If you like using Kotlin, check [this repository](https://github.com/seratch/jslack-kotlin-examples) as well 🙌
 
@@ -67,9 +112,7 @@ import com.github.seratch.jslack.api.webhook.*;
 // https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 String url = System.getenv("SLACK_WEBHOOK_URL");
 
-Payload payload = Payload.builder()
-  .text("Hello World!")
-  .build();
+Payload payload = Payload.builder().text("Hello World!").build();
 
 Slack slack = Slack.getInstance();
 WebhookResponse response = slack.send(url, payload);
@@ -79,16 +122,18 @@ WebhookResponse response = slack.send(url, payload);
 Here is a small example using [Block Kit](https://api.slack.com/block-kit).
 
 ```java
-ButtonElement button = ButtonElement.builder()
-  .text(PlainTextObject.builder().emoji(true).text("Farmhouse").build())
-  .value("click_me_123")
-  .build();
+import static com.github.seratch.jslack.api.webhook.WebhookPayloads.*;
+import static com.github.seratch.jslack.api.model.block.Blocks.*;
+import static com.github.seratch.jslack.api.model.block.element.BlockElements.*;
+import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.*;
 
-LayoutBlock block = ActionsBlock.builder().elements(Arrays.asList(button)).build();
-
-List<LayoutBlock> blocks = Arrays.asList(block);
-
-Payload payload = Payload.builder().blocks(blocks).build();
+Payload payload = payload(b -> b.blocks(
+  asBlocks(
+    actions(a -> a.elements(asElements(
+      button(bt -> bt.text(plainText(pt -> pt.emoji(true).text("label"))).value("value"))
+    )))
+  )
+));
 
 Slack slack = Slack.getInstance();
 WebhookResponse response = slack.send(url, payload);
@@ -98,11 +143,9 @@ WebhookResponse response = slack.send(url, payload);
 It's also possible to directly give a raw payload.
 
 ```java
-String payload = "{\"text\": \"Hello there!\"}";
+String payload = "{\"text\": \"Hi there!\"}";
 WebhookResponse response = slack.send(url, payload);
 ```
-
-
 
 #### API Methods
 
@@ -190,78 +233,37 @@ ChatDeleteResponse deleteResponse =
   slack.methods(token).chatDelete(req -> req.channel(general.getId()).ts(messageTs));
 ```
 
-##### Open a dialog modal
+##### Open a Block Kit modal
 
 ```java
-final String token = "xoxb-************************************";
-    
-// Required.  See https://api.slack.com/dialogs#implementation
-final String triggerId = "trigger-id";
+import com.github.seratch.jslack.lightning.App;
+import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
+import com.github.seratch.jslack.api.model.view.View;
+import static com.github.seratch.jslack.api.model.block.Blocks.*;
+import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.*;
+import static com.github.seratch.jslack.api.model.view.Views.*;
 
-Slack slack = Slack.getInstance();
+// export SLACK_BOT_TOKEN, SLACK_SIGNING_SECRET
+App app = new App();
 
-DialogTextElement quanityTextElement = DialogTextElement.builder()
-  .subtype(SubType.NUMBER)
-  .label("Quantity")
-  .name("quantity")
-  .hint("The number you need")
-  .maxLength(3)
-  .minLength(1)
-  .placeholder("Required quantity")
-  .value("1")
-  .build();
+View view = view(r -> { return r
+  .title(viewTitle(t -> t.text("My App")))
+  .submit(viewSubmit(s -> s.text("Submit")))
+  .close(viewClose(c -> c.text("Close")))
+  .blocks(asBlocks(
+    section(sec -> sec.text(plainText(pt -> pt.text("Hi")))),
+    image(img -> img.imageUrl("https://www.example.com/foo.png"))
+  ));
+});
 
-DialogSelectElement colourSelectElement = DialogSelectElement.builder()
-  .name("colour")
-  .label("Colour")
-  .placeholder("Choose your preferred colour")
-  .options(Arrays.asList(
-    Option.builder().label("Red").value("#FF0000").build(),
-    Option.builder().label("Green").value("#00FF00").build(),
-    Option.builder().label("Blue").value("#0000FF").build(),
-    Option.builder().label("Black").value("#000000").build(),
-    Option.builder().label("White").value("#FFFFFF").build()
-  ))
-  .build();
-
-Dialog dialog = Dialog.builder()
-  .title("Request pens")
-  .callbackId("pens-1122")
-  .elements(Arrays.asList(quanityTextElement, colourSelectElement))
-  .submitLabel("")
-  .build();
-
-DialogOpenResponse openDialogResponse = slack.methods().dialogOpen(req -> req
-  .token(token)
-  .triggerId(triggerId)
-  .dialog(dialog));
-```
-
-##### Use Block Kit in Modals
-
-```java
-final Slack slack = Slack.getInstance();
-final String token = "xoxb-************************************";
-final String triggerId = payload.getTriggerId(); // from command, block_actions, etc
-
-final List<LayoutBlock> blocks = Arrays.asList(InputBlock.builder()
-  .blockId("text_input")
-  .label(PlainTextObject.builder().text("text").build())
-  .element(PlainTextInputElement.builder().actionId("single").multiline(true).build())
-  .build());
-
-final View view = View.builder()
-  .type("modal")
-  .callbackId("callback_id")
-  .title(ViewTitle.builder().type("plain_text").text("Title").build())
-  .submit(ViewSubmit.builder().type("plain_text").text("Submit").build())
-  .notifyOnClose(true)
-  .blocks(blocks)
-  .build();
-
-ViewsOpenResponse apiResponse = slack.methods(token).viewsOpen(req -> req
-  .view(view)
-  .triggerId(triggerId));
+app.command("/open-modal", (req, ctx) -> {
+  ViewsOpenResponse apiRes = ctx.client().viewsOpen(r -> r
+    .triggerId(ctx.getTriggerId())
+    .view(view) // or .viewAsString(stringValue)
+  );
+  if (apiRes.isOk()) return ctx.ack();
+  else return ctx.ack(r -> r.text("Failed to open a modal (error: " + apiRes.getError() + ")"));
+});
 ```
 
 #### Events API
@@ -273,7 +275,6 @@ https://api.slack.com/events-api
 
 ```java
 AppUninstalledHandler appUninstalledEventHandler = new AppUninstalledHandler {
-
   @Override
   public void handle(AppUninstalledPayload event) {
     // do something here
@@ -281,12 +282,30 @@ AppUninstalledHandler appUninstalledEventHandler = new AppUninstalledHandler {
 };
 
 public class SampleServlet extends SlackEventsApiServlet {
-
   @Override
   protected void setupDispatcher(EventsDispatcher dispatcher) {
     dispatcher.register(appUninstalledEventHandler);
   }
 }
+```
+
+With Lightning, event handlers can be simpler:
+
+```java
+App app = new App();
+
+app.event(MessageEvent.class, (event, ctx) -> {
+  if (isRequest(event.getEvent().getText())) {
+    ChatPostMessage response = ctx.client().chatPostMessage(r -> r.channel(event.getEvent().getChannel()).text("I got it!"));
+    if (!response.isOk()) {
+        // error handling
+    }
+  }
+  return ctx.ack();
+});
+app.event(MessageDeletedEvent.class, (event, ctx) -> {
+  return ctx.ack();
+});
 ```
 
 
@@ -331,8 +350,11 @@ fun main() {
 
 Also, there are lots of working examples:
 
-* [jslack-lightning-kotlin-examples](https://github.com/seratch/jslack/tree/master/jslack-lightning-kotlin-examples)
-* [jslack-lightning-docker-examples](https://github.com/seratch/jslack/tree/master/jslack-lightning-docker-examples)
+* [Docker examples](https://github.com/seratch/jslack/tree/master/jslack-lightning-docker-examples)
+* [Examples in Kotlin](https://github.com/seratch/jslack/tree/master/jslack-lightning-kotlin-examples)
+* [Examples using Spring Boot](https://github.com/seratch/jslack/tree/master/jslack-lightning-spring-boot-examples/src/main/java/example)
+* [Examples using Micronaut](https://github.com/seratch/jslack/tree/master/jslack-lightning-micronaut/src/test/java)
+* [Examples using Quarkus](https://github.com/seratch/jslack/tree/master/jslack-lightning-quarkus-examples)
 
 #### Real Time Messaging API
 
