@@ -1,5 +1,9 @@
 # jSlack Release Notes
 
+## version 3.2.1 (2019-11-30)
+
+* 2b6939c Expose the methods to run api calls etc by Kazuhiro Sera
+
 ## version 3.2.0 (2019-11-29)
 
 * 9cd119b Handle message-related events appropriately (breaking change) by Kazuhiro Sera
