@@ -87,26 +87,22 @@ public class Methods {
     // apps.permissions
     // ------------------------------
 
+    // Developer preview has ended
+    // This feature was exclusive to our workspace apps developer preview.
+    // The preview has now ended, but fan-favorite features such as token rotation
+    // and the Conversations API will become available to classic Slack apps over the coming months.
+
+    @Deprecated
     public static final String APPS_PERMISSIONS_INFO = "apps.permissions.info";
+    @Deprecated
     public static final String APPS_PERMISSIONS_REQUEST = "apps.permissions.request";
-
-    // ------------------------------
-    // apps.permissions.resources
-    // ------------------------------
-
+    @Deprecated
     public static final String APPS_PERMISSIONS_RESOURCES_LIST = "apps.permissions.resources.list";
-
-    // ------------------------------
-    // apps.permissions.scopes
-    // ------------------------------
-
+    @Deprecated
     public static final String APPS_PERMISSIONS_SCOPES_LIST = "apps.permissions.scopes.list";
-
-    // ------------------------------
-    // apps.permissions.users
-    // ------------------------------
-
+    @Deprecated
     public static final String APPS_PERMISSIONS_USERS_LIST = "apps.permissions.users.list";
+    @Deprecated
     public static final String APPS_PERMISSIONS_USERS_REQUEST = "apps.permissions.users.request";
 
     // ------------------------------
