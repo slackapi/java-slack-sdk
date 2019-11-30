@@ -153,6 +153,10 @@ public interface MethodsClient {
 
     void setEndpointUrlPrefix(String endpointUrlPrefix);
 
+    // ----------------------------------------------
+    //  OkHttp layer methods
+    // ----------------------------------------------
+
     Response runPostForm(
             FormBody.Builder form,
             String endpoint) throws IOException;
@@ -167,6 +171,32 @@ public interface MethodsClient {
             String endpoint,
             String token) throws IOException;
 
+    // ----------------------------------------------
+    //  Methods to send requests and parse responses
+    // ----------------------------------------------
+
+    <T> T postFormAndParseResponse(
+            RequestConfigurator<FormBody.Builder> form,
+            String endpoint,
+            Class<T> clazz) throws IOException, SlackApiException;
+
+    <T> T postFormWithAuthorizationHeaderAndParseResponse(
+            RequestConfigurator<FormBody.Builder> form,
+            String endpoint,
+            String authorizationHeader,
+            Class<T> clazz) throws IOException, SlackApiException;
+
+    <T> T postFormWithTokenAndParseResponse(
+            RequestConfigurator<FormBody.Builder> form,
+            String endpoint,
+            String token,
+            Class<T> clazz) throws IOException, SlackApiException;
+
+    <T> T postMultipartAndParseResponse(
+            RequestConfigurator<MultipartBody.Builder> form,
+            String endpoint,
+            String token,
+            Class<T> clazz) throws IOException, SlackApiException;
 
     // ------------------------------
     // admin.apps
