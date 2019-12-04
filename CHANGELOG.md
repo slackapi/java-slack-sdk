@@ -1,5 +1,10 @@
 # jSlack Release Notes
 
+## version 3.2.2 (2019-12-04)
+
+* 182c3bc Add oauth.v2.access error handler by Kazuhiro Sera
+* ac1a386 Bump jetty-server version to the latest minor by Kazuhiro Sera
+
 ## version 3.2.1 (2019-11-30)
 
 * 2b6939c Expose the methods to run api calls etc by Kazuhiro Sera
