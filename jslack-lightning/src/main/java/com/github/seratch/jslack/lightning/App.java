@@ -69,6 +69,7 @@ public class App {
     private OAuthV2SuccessHandler oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(installationService);
     private OAuthErrorHandler oAuthErrorHandler = new OAuthDefaultErrorHandler();
     private OAuthAccessErrorHandler oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
+    private OAuthV2AccessErrorHandler oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler();
     private OAuthStateErrorHandler oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
     private OAuthExceptionHandler oAuthExceptionHandler = new OAuthDefaultExceptionHandler();
 
@@ -380,6 +381,11 @@ public class App {
 
     public App oauthCallbackAccessError(OAuthAccessErrorHandler handler) {
         oAuthAccessErrorHandler = handler;
+        return this;
+    }
+
+    public App oauthCallbackAccessError(OAuthV2AccessErrorHandler handler) {
+        oAuthV2AccessErrorHandler = handler;
         return this;
     }
 
@@ -728,6 +734,7 @@ public class App {
                         oAuthErrorHandler,
                         oAuthStateErrorHandler,
                         oAuthAccessErrorHandler,
+                        oAuthV2AccessErrorHandler,
                         oAuthExceptionHandler
                 );
             }
