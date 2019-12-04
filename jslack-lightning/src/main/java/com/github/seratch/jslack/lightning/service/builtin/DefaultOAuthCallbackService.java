@@ -24,6 +24,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
     private final OAuthErrorHandler errorHandler;
     private final OAuthStateErrorHandler stateErrorHandler;
     private final OAuthAccessErrorHandler accessErrorHandler;
+    private final OAuthV2AccessErrorHandler accessV2ErrorHandler;
     private final OAuthExceptionHandler exceptionHandler;
 
     public DefaultOAuthCallbackService(
@@ -34,6 +35,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
             OAuthErrorHandler errorHandler,
             OAuthStateErrorHandler stateErrorHandler,
             OAuthAccessErrorHandler accessErrorHandler,
+            OAuthV2AccessErrorHandler accessV2ErrorHandler,
             OAuthExceptionHandler exceptionHandler) {
         this.config = config;
         this.stateService = stateService;
@@ -42,6 +44,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
         this.errorHandler = errorHandler;
         this.stateErrorHandler = stateErrorHandler;
         this.accessErrorHandler = accessErrorHandler;
+        this.accessV2ErrorHandler = accessV2ErrorHandler;
         this.exceptionHandler = exceptionHandler;
 
         SlackAppConfig slackAppConfig = SlackAppConfig.builder()
@@ -65,7 +68,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
                         stateService.consume(payload.getState());
                         return successV2Handler.handle(request, oauthAccess);
                     } else {
-                        return successV2Handler.handle(request, oauthAccess);
+                        return accessV2ErrorHandler.handle(request, oauthAccess);
                     }
                 } else {
                     OAuthAccessResponse oauthAccess = operator.callOAuthAccessMethod(payload);
