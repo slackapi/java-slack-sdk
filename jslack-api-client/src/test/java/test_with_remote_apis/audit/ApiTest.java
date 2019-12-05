@@ -148,6 +148,7 @@ public class ApiTest {
                     req.oldest(1521214343).action(Actions.User.user_login).limit(10));
             fail();
         } catch (AuditApiException e) {
+            assertThat(e.getMessage(), is("status: 401, no response body"));
             assertThat(e.getResponse().code(), is(401));
             assertThat(e.getError(), is(nullValue()));
         }

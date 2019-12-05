@@ -1,6 +1,7 @@
 package com.github.seratch.jslack.api.scim;
 
 import com.github.seratch.jslack.SlackConfig;
+import com.github.seratch.jslack.api.methods.SlackApiErrorResponse;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,26 @@ public class SCIMApiException extends Exception {
     }
 
     public SCIMApiException(SlackConfig config, Response response, String responseBody) {
+        this(response, responseBody, parse(config, responseBody));
+    }
+
+    public SCIMApiException(Response response, String responseBody, SCIMApiErrorResponse error) {
+        super(buildErrorMessage(response, error));
         this.response = response;
         this.responseBody = responseBody;
+        this.error = error;
+    }
+
+    private static String buildErrorMessage(Response response, SCIMApiErrorResponse error) {
+        String message = "status: " + response.code();
+        if (error != null) {
+            return message + ", description: " + error.getErrors().getDescription();
+        } else {
+            return message + ", no response body";
+        }
+    }
+
+    private static SCIMApiErrorResponse parse(SlackConfig config, String responseBody) {
         SCIMApiErrorResponse parsedErrorResponse = null;
         try {
             parsedErrorResponse = GsonFactory.createCamelCase(config).fromJson(responseBody, SCIMApiErrorResponse.class);
@@ -30,7 +49,7 @@ public class SCIMApiException extends Exception {
                 log.debug("Failed to parse the error response body: {}", responseToPrint);
             }
         }
-        this.error = parsedErrorResponse;
+        return parsedErrorResponse;
     }
 
 }

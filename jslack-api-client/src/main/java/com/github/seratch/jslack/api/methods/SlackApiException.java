@@ -19,8 +19,26 @@ public class SlackApiException extends Exception {
     }
 
     public SlackApiException(SlackConfig config, Response response, String responseBody) {
+        this(response, responseBody, parse(config, responseBody));
+    }
+
+    public SlackApiException(Response response, String responseBody, SlackApiErrorResponse error) {
+        super(buildErrorMessage(response, error));
         this.response = response;
         this.responseBody = responseBody;
+        this.error = error;
+    }
+
+    private static String buildErrorMessage(Response response, SlackApiErrorResponse error) {
+        String message = "status: " + response.code();
+        if (error != null) {
+            return message + ", error: " + error.getError() + ", needed: " + error.getNeeded() + ", provided: " + error.getProvided() + ", warning: " + error.getWarning();
+        } else {
+            return message + ", no response body";
+        }
+    }
+
+    private static SlackApiErrorResponse parse(SlackConfig config, String responseBody) {
         SlackApiErrorResponse parsedErrorResponse = null;
         try {
             parsedErrorResponse = GsonFactory.createSnakeCase(config).fromJson(responseBody, SlackApiErrorResponse.class);
@@ -30,7 +48,8 @@ public class SlackApiException extends Exception {
                 log.debug("Failed to parse the error response body: {}", responseToPrint);
             }
         }
-        this.error = parsedErrorResponse;
+        return parsedErrorResponse;
     }
+
 
 }
