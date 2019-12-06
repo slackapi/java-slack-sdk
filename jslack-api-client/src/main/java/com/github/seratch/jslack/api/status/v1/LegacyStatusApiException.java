@@ -12,6 +12,7 @@ public class LegacyStatusApiException extends Exception {
     private final String responseBody;
 
     public LegacyStatusApiException(Response response, String responseBody) {
+        super("status: " + response.code() + ", message: " + response.message());
         this.response = response;
         this.responseBody = responseBody;
     }

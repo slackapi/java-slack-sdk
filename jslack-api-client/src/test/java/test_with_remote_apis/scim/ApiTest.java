@@ -60,6 +60,7 @@ public class ApiTest {
         try {
             slack.scim("dummy").searchUsers(req -> req.count(1000));
         } catch (SCIMApiException e) {
+            assertThat(e.getMessage(), is("status: 401, description: invalid_authentication"));
             assertThat(e.getError(), is(notNullValue()));
             assertThat(e.getError().getErrors().getCode(), is(401));
             assertThat(e.getError().getErrors().getDescription(), is("invalid_authentication"));
@@ -71,6 +72,7 @@ public class ApiTest {
         try {
             slack.scim("dummy").readUser(req -> req.id("U12345678"));
         } catch (SCIMApiException e) {
+            assertThat(e.getMessage(), is("status: 401, description: invalid_authentication"));
             assertThat(e.getError(), is(notNullValue()));
             assertThat(e.getError().getErrors().getCode(), is(401));
             assertThat(e.getError().getErrors().getDescription(), is("invalid_authentication"));
@@ -187,6 +189,7 @@ public class ApiTest {
         try {
             slack.scim("dummy").searchGroups(req -> req.count(1000));
         } catch (SCIMApiException e) {
+            assertThat(e.getMessage(), is("status: 401, description: invalid_authentication"));
             assertThat(e.getError(), is(notNullValue()));
             assertThat(e.getError().getErrors().getCode(), is(401));
             assertThat(e.getError().getErrors().getDescription(), is("invalid_authentication"));

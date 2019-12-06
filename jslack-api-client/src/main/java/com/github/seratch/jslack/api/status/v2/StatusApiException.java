@@ -12,6 +12,7 @@ public class StatusApiException extends Exception {
     private final String responseBody;
 
     public StatusApiException(Response response, String responseBody) {
+        super("status: " + response.code() + ", message: " + response.message());
         this.response = response;
         this.responseBody = responseBody;
     }
