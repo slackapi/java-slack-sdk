@@ -10,9 +10,11 @@ import com.github.seratch.jslack.api.methods.response.channels.*;
 import com.github.seratch.jslack.api.methods.response.chat.*;
 import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduleMessagesListResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.ConversationsHistoryResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsMembersResponse;
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Channel;
 import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.api.model.User;
 import com.github.seratch.jslack.api.model.block.DividerBlock;
 import com.github.seratch.jslack.api.model.block.ImageBlock;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
@@ -24,12 +26,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 @Slf4j
@@ -301,9 +301,8 @@ public class chat_Test {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
 
         {
-            ChannelsListResponse response = slack.methods().channelsList(
-                    ChannelsListRequest.builder().token(token).build());
-            assertThat(response.isOk(), is(true));
+            ChannelsListResponse response = slack.methods().channelsList(r -> r.token(token));
+            assertThat(response.getError(), is(nullValue()));
             assertThat(response.getChannels(), is(notNullValue()));
         }
 
@@ -785,6 +784,63 @@ public class chat_Test {
                 .text("modified2")
                 .build());
         assertThat(updateMessage2.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void postEphemeral_thread() throws Exception {
+        loadRandomChannelId();
+        String userId = findUser();
+        ChatPostMessageResponse first = slack.methods(token).chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .text("first message"));
+        assertThat(first.getError(), is(nullValue()));
+
+        ChatPostMessageResponse second = slack.methods(token).chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .threadTs(first.getTs())
+                .text("reply to create an active thread"));
+        assertThat(second.getError(), is(nullValue()));
+
+        ChatPostEphemeralResponse third = slack.methods(token).chatPostEphemeral(r -> r
+                .user(userId)
+                .channel(randomChannelId)
+                .text("ephemeral reply in thread")
+                .threadTs(first.getTs()));
+        assertThat(third.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void postEphemeral_authorship() throws Exception {
+        loadRandomChannelId();
+
+        String userId = findUser();
+        ChatPostEphemeralResponse response = slack.methods(token).chatPostEphemeral(r -> r
+                .channel(randomChannelId)
+                .user(userId)
+                .iconEmoji(":wave:")
+                .username("given name")
+                .text(":wave: Hi there!"));
+        assertThat(response.getError(), is(nullValue()));
+    }
+
+    private String findUser() throws IOException, SlackApiException {
+
+        String userId = null;
+
+        ConversationsMembersResponse membersResponse = slack.methods(token)
+                .conversationsMembers(r -> r.channel(randomChannelId).limit(100));
+        assertThat(membersResponse.getError(), is(nullValue()));
+        List<String> userIds = membersResponse.getMembers();
+        for (String id : userIds) {
+            User user = slack.methods(token).usersInfo(r -> r.user(id)).getUser();
+            if (user.isBot() || user.isAppUser() || user.isDeleted() || user.isWorkflowBot() || user.isStranger()) {
+                continue;
+            }
+            userId = id;
+            break;
+        }
+        assertThat(userId, is(notNullValue()));
+        return userId;
     }
 
 }

@@ -527,6 +527,10 @@ public class RequestFormBuilder {
             String json = GsonFactory.createSnakeCase().toJson(req.getAttachments());
             form.add("attachments", json);
         }
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("icon_emoji", req.getIconEmoji(), form);
+        setIfNotNull("icon_url", req.getIconUrl(), form);
+        setIfNotNull("username", req.getUsername(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
         setIfNotNull("parse", req.getParse(), form);
         return form;
