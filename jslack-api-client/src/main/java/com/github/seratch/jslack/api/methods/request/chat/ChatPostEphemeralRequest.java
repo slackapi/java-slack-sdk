@@ -60,6 +60,37 @@ public class ChatPostEphemeralRequest implements SlackApiRequest {
     private String attachmentsAsString;
 
     /**
+     * Provide another message's ts value to post this message in a thread.
+     * Avoid using a reply's ts value; use its parent's value instead.
+     * Ephemeral messages in threads are only shown if there is already an active thread.
+     */
+    private String threadTs;
+
+    /**
+     * Emoji to use as the icon for this message.
+     * Overrides icon_url. Must be used in conjunction with as_user set to false, otherwise ignored.
+     * See authorship below.
+     * https://api.slack.com/methods/chat.postEphemeral#authorship
+     */
+    private String iconEmoji;
+
+    /**
+     * URL to an image to use as the icon for this message.
+     * Must be used in conjunction with as_user set to false, otherwise ignored.
+     * See authorship below.
+     * https://api.slack.com/methods/chat.postEphemeral#authorship
+     */
+    private String iconUrl;
+
+    /**
+     * Set your bot's user name.
+     * Must be used in conjunction with as_user set to false, otherwise ignored.
+     * See authorship below.
+     * https://api.slack.com/methods/chat.postEphemeral#authorship
+     */
+    private String username;
+
+    /**
      * Find and link channel names and usernames.
      */
     private boolean linkNames;
