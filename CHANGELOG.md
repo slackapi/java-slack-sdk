@@ -1,5 +1,10 @@
 # jSlack Release Notes
 
+## version 3.2.3 (2019-12-08)
+
+* 7e5e725 Fix #295 Add thread_ts to ChatPostEphemeralRequest by Kazuhiro Sera
+* f9c4944 Fix #293 SlackApiException and other exceptions are not standard by Kazuhiro Sera
+
 ## version 3.2.2 (2019-12-04)
 
 * 182c3bc Add oauth.v2.access error handler by Kazuhiro Sera
