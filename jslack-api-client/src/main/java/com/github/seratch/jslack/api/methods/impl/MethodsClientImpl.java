@@ -282,6 +282,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminTeamsListResponse adminTeamsList(AdminTeamsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_TEAMS_LIST, getToken(req), AdminTeamsListResponse.class);
+    }
+
+    @Override
+    public AdminTeamsListResponse adminTeamsList(RequestConfigurator<AdminTeamsListRequest.AdminTeamsListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsList(req.configure(AdminTeamsListRequest.builder()).build());
+    }
+
+    @Override
     public AdminTeamsOwnersListResponse adminTeamsOwnersList(AdminTeamsOwnersListRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_TEAMS_OWNERS_LIST, getToken(req), AdminTeamsOwnersListResponse.class);
     }
