@@ -531,4 +531,47 @@ public class BlockKitTest {
         assertThat(radioButtons.getActionId(), is("this_is_an_action_id"));
     }
 
+    @Test
+    public void rich_text_color_code() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"d77H\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"Hello\\n\\n\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"color\",\n" +
+                "              \"value\": \"#FFFFFF\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"\\n\\n\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"emoji\",\n" +
+                "              \"name\": \"wave\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        RichTextBlock b = (RichTextBlock) message.getBlocks().get(0);
+        RichTextSectionElement elm = (RichTextSectionElement) b.getElements().get(0);
+        RichTextSectionElement.Color c = (RichTextSectionElement.Color) elm.getElements().get(1);
+        assertThat(c.getType(), is(RichTextSectionElement.Color.TYPE));
+        assertThat(c.getValue(), is("#FFFFFF"));
+
+    }
+
 }
