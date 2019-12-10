@@ -1,0 +1,20 @@
+{
+  "ok": false,
+  "teams": [
+    {
+      "id": "T00000000",
+      "name": "",
+      "discoverability": "",
+      "primary_owner": {
+        "user_id": "W00000000",
+        "email": ""
+      }
+    }
+  ],
+  "response_metadata": {
+    "next_cursor": ""
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

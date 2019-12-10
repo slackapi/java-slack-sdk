@@ -39,6 +39,7 @@ public class Methods {
     // ------------------------------
 
     public static final String ADMIN_TEAMS_CREATE = "admin.teams.create";
+    public static final String ADMIN_TEAMS_LIST = "admin.teams.list";
 
     // ------------------------------
     // admin.teams.owners

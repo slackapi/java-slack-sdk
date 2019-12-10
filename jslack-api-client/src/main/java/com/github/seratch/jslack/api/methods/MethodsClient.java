@@ -258,6 +258,10 @@ public interface MethodsClient {
 
     AdminTeamsCreateResponse adminTeamsCreate(RequestConfigurator<AdminTeamsCreateRequest.AdminTeamsCreateRequestBuilder> req) throws IOException, SlackApiException;
 
+    AdminTeamsListResponse adminTeamsList(AdminTeamsListRequest req) throws IOException, SlackApiException;
+
+    AdminTeamsListResponse adminTeamsList(RequestConfigurator<AdminTeamsListRequest.AdminTeamsListRequestBuilder> req) throws IOException, SlackApiException;
+
     // ------------------------------
     // admin.teams.owners
     // ------------------------------

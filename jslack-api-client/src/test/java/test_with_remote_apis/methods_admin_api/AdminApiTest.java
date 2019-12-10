@@ -119,10 +119,12 @@ public class AdminApiTest {
         }
     }
 
-    @Ignore // til the APIs stably work with these tests
     @Test
-    public void teams_users() throws Exception {
+    public void teams_list() throws Exception {
         if (orgAdminToken != null) {
+            AdminTeamsListResponse teams = slack.methods(orgAdminToken).adminTeamsList(r -> r.limit(100));
+            assertThat(teams.getError(), is(nullValue()));
+
             AdminTeamsAdminsListResponse admins = slack.methods(orgAdminToken).adminTeamsAdminsList(r -> r
                     .limit(100)
                     .teamId(adminAppsTeamId));
@@ -132,7 +134,14 @@ public class AdminApiTest {
                     .limit(100)
                     .teamId(adminAppsTeamId));
             assertThat(owners.getError(), is(nullValue()));
+        }
+    }
 
+
+    @Ignore // til the APIs stably work with these tests
+    @Test
+    public void teams_creation_and_users() throws Exception {
+        if (orgAdminToken != null) {
             String teamUniqueName = "jslack-" + System.currentTimeMillis();
             AdminTeamsCreateResponse creation = slack.methods(orgAdminToken).adminTeamsCreate(r -> r
                     .teamDomain(teamUniqueName)
