@@ -119,6 +119,16 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         private String range; // channel, here, ..
     }
 
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Color implements RichTextElement {
+        public static final String TYPE = "color";
+        private final String type = TYPE;
+        private String value;
+    }
+
     // -------------------------------
 
     @Data
