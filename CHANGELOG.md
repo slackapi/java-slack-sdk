@@ -1,5 +1,9 @@
 # jSlack Release Notes
 
+## version 3.2.5 (2019-12-11)
+
+* ace41ea #301 Fix a bug where url_verification doesn't work without bot token by Joel McCance
+
 ## version 3.2.4 (2019-12-11)
 
 * 929333a Fix #298 Add RichTextSectionElement.Color by Kazuhiro Sera

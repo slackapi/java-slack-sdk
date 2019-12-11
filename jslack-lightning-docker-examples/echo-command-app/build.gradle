@@ -8,8 +8,8 @@ repositories {
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("com.github.seratch:jslack-lightning:3.2.2")
-    implementation("com.github.seratch:jslack-lightning-jetty:3.2.2")
+    implementation("com.github.seratch:jslack-lightning:3.2.4")
+    implementation("com.github.seratch:jslack-lightning-jetty:3.2.4")
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation('net.logstash.logback:logstash-logback-encoder:6.2')
 }
