@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
-import static com.github.seratch.jslack.lightning.middleware.MiddlewareOps.isNoSlackSignatureRequest;
+import static com.github.seratch.jslack.lightning.middleware.MiddlewareOps.isNoAuthRequiredRequest;
 
 @Slf4j
 public class MultiTeamsAuthorization implements Middleware {
@@ -39,9 +39,10 @@ public class MultiTeamsAuthorization implements Middleware {
 
     @Override
     public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
-        if (isNoSlackSignatureRequest(req.getRequestType())) {
+        if (isNoAuthRequiredRequest(req.getRequestType())) {
             return chain.next(req);
         }
+
         Context context = req.getContext();
 
         String botToken = null;

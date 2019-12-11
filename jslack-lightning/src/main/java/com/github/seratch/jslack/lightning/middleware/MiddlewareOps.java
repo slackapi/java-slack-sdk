@@ -10,4 +10,9 @@ public class MiddlewareOps {
                 || requestType == RequestType.OAuthCallback
                 || requestType == RequestType.SSLCheck;
     }
+
+    public static boolean isNoAuthRequiredRequest(RequestType requestType) {
+        return isNoSlackSignatureRequest(requestType)
+                || requestType == RequestType.UrlVerification;
+    }
 }
