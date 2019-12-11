@@ -1,5 +1,10 @@
 # jSlack Release Notes
 
+## version 3.2.4 (2019-12-11)
+
+* 929333a Fix #298 Add RichTextSectionElement.Color by Kazuhiro Sera
+* 0266c43 Add admin.teams.list API by Kazuhiro Sera
+
 ## version 3.2.3 (2019-12-08)
 
 * 7e5e725 Fix #295 Add thread_ts to ChatPostEphemeralRequest by Kazuhiro Sera
