@@ -463,7 +463,15 @@
       },
       "gg_enabled": false,
       "external_shared_channel_requests_approval_channel": 12345,
-      "workflows_webhook_trigger_enabled": false
+      "workflows_webhook_trigger_enabled": false,
+      "calls_apps": {
+        "audio": [
+          ""
+        ],
+        "video": [
+          ""
+        ]
+      }
     },
     "icon": {
       "image_34": "https://www.example.com/",
