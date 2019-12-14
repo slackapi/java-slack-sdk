@@ -1,9 +1,8 @@
 package com.github.seratch.jslack.api.methods.response.admin.teams;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
+import com.github.seratch.jslack.api.model.ErrorResponseMetadata;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class AdminTeamsCreateResponse implements SlackApiResponse {
@@ -15,11 +14,6 @@ public class AdminTeamsCreateResponse implements SlackApiResponse {
     private String provided;
 
     private String team; // created team id
-    private ResponseMetadata responseMetadata;
 
-    @Data
-    public static class ResponseMetadata {
-        private List<String> messages;
-    }
-
+    private ErrorResponseMetadata responseMetadata;
 }
