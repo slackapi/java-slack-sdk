@@ -469,9 +469,14 @@
           ""
         ],
         "video": [
-          ""
+          {
+            "id": "",
+            "name": "",
+            "image": ""
+          }
         ]
-      }
+      },
+      "received_esc_route_to_channel_awareness_message": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
