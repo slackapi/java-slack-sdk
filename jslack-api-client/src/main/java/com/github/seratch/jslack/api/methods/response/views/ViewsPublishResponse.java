@@ -1,10 +1,9 @@
 package com.github.seratch.jslack.api.methods.response.views;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
+import com.github.seratch.jslack.api.model.ErrorResponseMetadata;
 import com.github.seratch.jslack.api.model.view.View;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class ViewsPublishResponse implements SlackApiResponse {
@@ -17,10 +16,5 @@ public class ViewsPublishResponse implements SlackApiResponse {
 
     private View view;
 
-    private ResponseMetadata responseMetadata;
-
-    @Data
-    public static class ResponseMetadata {
-        private List<String> messages;
-    }
+    private ErrorResponseMetadata responseMetadata;
 }
