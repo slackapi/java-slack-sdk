@@ -1,10 +1,10 @@
-package com.github.seratch.jslack.api.methods.response.admin.teams;
+package com.github.seratch.jslack.api.methods.response.admin.teams.settings;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import lombok.Data;
 
 @Data
-public class AdminTeamsSettingsSetNameResponse implements SlackApiResponse {
+public class AdminTeamsSettingsSetDescriptionResponse implements SlackApiResponse {
 
     private boolean ok;
     private String warning;

@@ -1,15 +1,15 @@
-package com.github.seratch.jslack.api.methods.request.admin.teams;
+package com.github.seratch.jslack.api.methods.request.admin.teams.settings;
 
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.teams.settings.setIcon
+ * https://api.slack.com/methods/admin.teams.settings.setName
  */
 @Data
 @Builder
-public class AdminTeamsSettingsSetIconRequest implements SlackApiRequest {
+public class AdminTeamsSettingsSetNameRequest implements SlackApiRequest {
 
     /**
      * Authentication token bearing required scopes.
@@ -21,6 +21,6 @@ public class AdminTeamsSettingsSetIconRequest implements SlackApiRequest {
      */
     private String teamId;
 
-    private String imageUrl;
+    private String name;
 
 }

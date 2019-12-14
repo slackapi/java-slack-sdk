@@ -1,0 +1,25 @@
+{
+  "ok": false,
+  "users": [
+    {
+      "id": "W00000000",
+      "email": "",
+      "is_admin": false,
+      "is_owner": false,
+      "is_primary_owner": false,
+      "is_restricted": false,
+      "is_ultra_restricted": false,
+      "is_bot": false,
+      "expiration_ts": 12345
+    }
+  ],
+  "response_metadata": {
+    "next_cursor": "",
+    "messages": [
+      ""
+    ]
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

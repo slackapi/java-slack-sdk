@@ -1,4 +1,4 @@
-package com.github.seratch.jslack.api.methods.response.admin.teams;
+package com.github.seratch.jslack.api.methods.response.admin.teams.owners;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import com.github.seratch.jslack.api.model.ResponseMetadata;

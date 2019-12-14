@@ -16,6 +16,7 @@ public class Team {
 
     private String enterpriseId;
     private String enterpriseName;
+    private List<String> defaultChannels;
 
     @Data
     public static class Profile {

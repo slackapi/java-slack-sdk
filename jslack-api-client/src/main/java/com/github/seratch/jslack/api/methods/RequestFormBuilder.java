@@ -3,8 +3,11 @@ package com.github.seratch.jslack.api.methods;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.request.admin.teams.*;
+import com.github.seratch.jslack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.settings.*;
 import com.github.seratch.jslack.api.methods.request.admin.users.*;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
@@ -66,7 +69,6 @@ import com.github.seratch.jslack.api.methods.request.views.ViewsOpenRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPublishRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPushRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
-import com.github.seratch.jslack.api.methods.response.admin.invite_requests.AdminInviteRequestsDenyResponse;
 import com.github.seratch.jslack.api.model.ConversationType;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -114,6 +116,17 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsSetTeamsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("org_channel", req.getOrgChannel(), form);
+        if (req.getTargetTeamIds() != null) {
+            setIfNotNull("target_team_ids", req.getTargetTeamIds().stream().collect(joining(",")), form);
+        }
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
@@ -188,10 +201,30 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminTeamsSettingsInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminTeamsSettingsSetDescriptionRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
         setIfNotNull("description", req.getDescription(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminTeamsSettingsSetDefaultChannelsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminTeamsSettingsSetDiscoverabilityRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("discoverability", req.getDiscoverability(), form);
         return form;
     }
 
@@ -230,6 +263,14 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminUsersListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminUsersRemoveRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
@@ -241,6 +282,14 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
         setIfNotNull("user_id", req.getUserId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersSetExpirationRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
+        setIfNotNull("expiration_ts", req.getExpirationTs(), form);
         return form;
     }
 

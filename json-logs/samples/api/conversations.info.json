@@ -48,12 +48,17 @@
     ],
     "locale": "",
     "internal_team_ids": [
-      ""
+      "T00000000"
     ],
     "connected_team_ids": [
       "E00000000"
     ],
-    "num_members": 12345
+    "num_members": 12345,
+    "is_moved": 12345,
+    "enterprise_id": "E00000000",
+    "is_global_shared": false,
+    "is_org_default": false,
+    "is_org_mandatory": false
   },
   "error": "",
   "needed": "",

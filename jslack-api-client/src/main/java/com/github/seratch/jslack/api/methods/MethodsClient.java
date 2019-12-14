@@ -4,8 +4,13 @@ import com.github.seratch.jslack.api.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.request.admin.teams.*;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.settings.*;
 import com.github.seratch.jslack.api.methods.request.admin.users.*;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
@@ -71,8 +76,13 @@ import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
+import com.github.seratch.jslack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
 import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.response.admin.teams.*;
+import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.settings.*;
 import com.github.seratch.jslack.api.methods.response.admin.users.*;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
 import com.github.seratch.jslack.api.methods.response.apps.AppsUninstallResponse;
@@ -219,6 +229,14 @@ public interface MethodsClient {
     AdminAppsRequestsListResponse adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
+    // admin.conversations
+    // ------------------------------
+
+    AdminConversationsSetTeamsResponse adminConversationsSetTeams(AdminConversationsSetTeamsRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsSetTeamsResponse adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
     // admin.inviteRequests
     // ------------------------------
 
@@ -274,9 +292,21 @@ public interface MethodsClient {
     // admin.teams.settings
     // ------------------------------
 
+    AdminTeamsSettingsInfoResponse adminTeamsSettingsInfo(AdminTeamsSettingsInfoRequest req) throws IOException, SlackApiException;
+
+    AdminTeamsSettingsInfoResponse adminTeamsSettingsInfo(RequestConfigurator<AdminTeamsSettingsInfoRequest.AdminTeamsSettingsInfoRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminTeamsSettingsSetDefaultChannelsResponse adminTeamsSettingsSetDefaultChannels(AdminTeamsSettingsSetDefaultChannelsRequest req) throws IOException, SlackApiException;
+
+    AdminTeamsSettingsSetDefaultChannelsResponse adminTeamsSettingsSetDefaultChannels(RequestConfigurator<AdminTeamsSettingsSetDefaultChannelsRequest.AdminTeamsSettingsSetDefaultChannelsRequestBuilder> req) throws IOException, SlackApiException;
+
     AdminTeamsSettingsSetDescriptionResponse adminTeamsSettingsSetDescription(AdminTeamsSettingsSetDescriptionRequest req) throws IOException, SlackApiException;
 
     AdminTeamsSettingsSetDescriptionResponse adminTeamsSettingsSetDescription(RequestConfigurator<AdminTeamsSettingsSetDescriptionRequest.AdminTeamsSettingsSetDescriptionRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminTeamsSettingsSetDiscoverabilityResponse adminTeamsSettingsSetDiscoverability(AdminTeamsSettingsSetDiscoverabilityRequest req) throws IOException, SlackApiException;
+
+    AdminTeamsSettingsSetDiscoverabilityResponse adminTeamsSettingsSetDiscoverability(RequestConfigurator<AdminTeamsSettingsSetDiscoverabilityRequest.AdminTeamsSettingsSetDiscoverabilityRequestBuilder> req) throws IOException, SlackApiException;
 
     AdminTeamsSettingsSetIconResponse adminTeamsSettingsSetIcon(AdminTeamsSettingsSetIconRequest req) throws IOException, SlackApiException;
 
@@ -298,6 +328,10 @@ public interface MethodsClient {
 
     AdminUsersInviteResponse adminUsersInvite(RequestConfigurator<AdminUsersInviteRequest.AdminUsersInviteRequestBuilder> req) throws IOException, SlackApiException;
 
+    AdminUsersListResponse adminUsersList(AdminUsersListRequest req) throws IOException, SlackApiException;
+
+    AdminUsersListResponse adminUsersList(RequestConfigurator<AdminUsersListRequest.AdminUsersListRequestBuilder> req) throws IOException, SlackApiException;
+
     AdminUsersRemoveResponse adminUsersRemove(AdminUsersRemoveRequest req) throws IOException, SlackApiException;
 
     AdminUsersRemoveResponse adminUsersRemove(RequestConfigurator<AdminUsersRemoveRequest.AdminUsersRemoveRequestBuilder> req) throws IOException, SlackApiException;
@@ -305,6 +339,10 @@ public interface MethodsClient {
     AdminUsersSetAdminResponse adminUsersSetAdmin(AdminUsersSetAdminRequest req) throws IOException, SlackApiException;
 
     AdminUsersSetAdminResponse adminUsersSetAdmin(RequestConfigurator<AdminUsersSetAdminRequest.AdminUsersSetAdminRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminUsersSetExpirationResponse adminUsersSetExpiration(AdminUsersSetExpirationRequest req) throws IOException, SlackApiException;
+
+    AdminUsersSetExpirationResponse adminUsersSetExpiration(RequestConfigurator<AdminUsersSetExpirationRequest.AdminUsersSetExpirationRequestBuilder> req) throws IOException, SlackApiException;
 
     AdminUsersSetOwnerResponse adminUsersSetOwner(AdminUsersSetOwnerRequest req) throws IOException, SlackApiException;
 
