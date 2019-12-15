@@ -64,6 +64,7 @@ public class User {
 
         private String guestChannels;
         private String guestInvitedBy;
+        private Long guestExpirationTs;
         private String avatarHash;
         private String statusText;
         private String statusTextCanonical;

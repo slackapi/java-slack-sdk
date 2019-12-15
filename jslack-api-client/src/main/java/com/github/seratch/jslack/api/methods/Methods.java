@@ -19,6 +19,12 @@ public class Methods {
     public static final String ADMIN_APPS_REQUESTS_LIST = "admin.apps.requests.list";
 
     // ------------------------------
+    // admin.conversations
+    // ------------------------------
+
+    public static final String ADMIN_CONVERSATIONS_SET_TEAMS = "admin.conversations.setTeams";
+
+    // ------------------------------
     // admin.inviteRequests
     // ------------------------------
 
@@ -51,7 +57,10 @@ public class Methods {
     // admin.teams.settings
     // ------------------------------
 
+    public static final String ADMIN_TEAMS_SETTINGS_INFO = "admin.teams.settings.info";
+    public static final String ADMIN_TEAMS_SETTINGS_SET_DEFAULT_CHANNELS = "admin.teams.settings.setDefaultChannels";
     public static final String ADMIN_TEAMS_SETTINGS_SET_DESCRIPTION = "admin.teams.settings.setDescription";
+    public static final String ADMIN_TEAMS_SETTINGS_SET_DISCOVERABILITY = "admin.teams.settings.setDiscoverability";
     public static final String ADMIN_TEAMS_SETTINGS_SET_ICON = "admin.teams.settings.setIcon";
     public static final String ADMIN_TEAMS_SETTINGS_SET_NAME = "admin.teams.settings.setName";
 
@@ -61,8 +70,10 @@ public class Methods {
 
     public static final String ADMIN_USERS_ASSIGN = "admin.users.assign";
     public static final String ADMIN_USERS_INVITE = "admin.users.invite";
+    public static final String ADMIN_USERS_LIST = "admin.users.list";
     public static final String ADMIN_USERS_REMOVE = "admin.users.remove";
     public static final String ADMIN_USERS_SET_ADMIN = "admin.users.setAdmin";
+    public static final String ADMIN_USERS_SET_EXPIRATION = "admin.users.setExpiration";
     public static final String ADMIN_USERS_SET_OWNER = "admin.users.setOwner";
     public static final String ADMIN_USERS_SET_REGULAR = "admin.users.setRegular";
 

@@ -27,6 +27,7 @@
       "profile": {
         "guest_channels": "",
         "guest_invited_by": "",
+        "guest_expiration_ts": 123,
         "avatar_hash": "",
         "status_text": "",
         "status_text_canonical": "",

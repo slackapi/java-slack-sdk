@@ -1,6 +1,7 @@
-package com.github.seratch.jslack.api.methods.response.admin.teams;
+package com.github.seratch.jslack.api.methods.response.admin.teams.settings;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
+import com.github.seratch.jslack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
 @Data
@@ -11,4 +12,6 @@ public class AdminTeamsSettingsSetIconResponse implements SlackApiResponse {
     private String error;
     private String needed;
     private String provided;
+
+    private ErrorResponseMetadata responseMetadata;
 }

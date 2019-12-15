@@ -5,8 +5,11 @@ import com.github.seratch.jslack.api.methods.*;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.request.admin.teams.*;
+import com.github.seratch.jslack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.settings.*;
 import com.github.seratch.jslack.api.methods.request.admin.users.*;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.request.apps.AppsUninstallRequest;
@@ -72,8 +75,11 @@ import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
+import com.github.seratch.jslack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
 import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.response.admin.teams.*;
+import com.github.seratch.jslack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.settings.*;
 import com.github.seratch.jslack.api.methods.response.admin.users.*;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
 import com.github.seratch.jslack.api.methods.response.apps.AppsUninstallResponse;
@@ -212,6 +218,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminConversationsSetTeamsResponse adminConversationsSetTeams(AdminConversationsSetTeamsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_SET_TEAMS, getToken(req), AdminConversationsSetTeamsResponse.class);
+    }
+
+    @Override
+    public AdminConversationsSetTeamsResponse adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsSetTeams(req.configure(AdminConversationsSetTeamsRequest.builder()).build());
+    }
+
+    @Override
     public AdminInviteRequestsApproveResponse adminInviteRequestsApprove(AdminInviteRequestsApproveRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_INVITE_REQUESTS_APPROVE, getToken(req), AdminInviteRequestsApproveResponse.class);
     }
@@ -302,6 +318,26 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminTeamsSettingsInfoResponse adminTeamsSettingsInfo(AdminTeamsSettingsInfoRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_TEAMS_SETTINGS_INFO, getToken(req), AdminTeamsSettingsInfoResponse.class);
+    }
+
+    @Override
+    public AdminTeamsSettingsInfoResponse adminTeamsSettingsInfo(RequestConfigurator<AdminTeamsSettingsInfoRequest.AdminTeamsSettingsInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsSettingsInfo(req.configure(AdminTeamsSettingsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public AdminTeamsSettingsSetDefaultChannelsResponse adminTeamsSettingsSetDefaultChannels(AdminTeamsSettingsSetDefaultChannelsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_TEAMS_SETTINGS_SET_DEFAULT_CHANNELS, getToken(req), AdminTeamsSettingsSetDefaultChannelsResponse.class);
+    }
+
+    @Override
+    public AdminTeamsSettingsSetDefaultChannelsResponse adminTeamsSettingsSetDefaultChannels(RequestConfigurator<AdminTeamsSettingsSetDefaultChannelsRequest.AdminTeamsSettingsSetDefaultChannelsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsSettingsSetDefaultChannels(req.configure(AdminTeamsSettingsSetDefaultChannelsRequest.builder()).build());
+    }
+
+    @Override
     public AdminTeamsSettingsSetDescriptionResponse adminTeamsSettingsSetDescription(AdminTeamsSettingsSetDescriptionRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_TEAMS_SETTINGS_SET_DESCRIPTION, getToken(req), AdminTeamsSettingsSetDescriptionResponse.class);
     }
@@ -309,6 +345,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminTeamsSettingsSetDescriptionResponse adminTeamsSettingsSetDescription(RequestConfigurator<AdminTeamsSettingsSetDescriptionRequest.AdminTeamsSettingsSetDescriptionRequestBuilder> req) throws IOException, SlackApiException {
         return adminTeamsSettingsSetDescription(req.configure(AdminTeamsSettingsSetDescriptionRequest.builder()).build());
+    }
+
+    @Override
+    public AdminTeamsSettingsSetDiscoverabilityResponse adminTeamsSettingsSetDiscoverability(AdminTeamsSettingsSetDiscoverabilityRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_TEAMS_SETTINGS_SET_DISCOVERABILITY, getToken(req), AdminTeamsSettingsSetDiscoverabilityResponse.class);
+    }
+
+    @Override
+    public AdminTeamsSettingsSetDiscoverabilityResponse adminTeamsSettingsSetDiscoverability(RequestConfigurator<AdminTeamsSettingsSetDiscoverabilityRequest.AdminTeamsSettingsSetDiscoverabilityRequestBuilder> req) throws IOException, SlackApiException {
+        return adminTeamsSettingsSetDiscoverability(req.configure(AdminTeamsSettingsSetDiscoverabilityRequest.builder()).build());
     }
 
     @Override
@@ -352,6 +398,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminUsersListResponse adminUsersList(AdminUsersListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_LIST, getToken(req), AdminUsersListResponse.class);
+    }
+
+    @Override
+    public AdminUsersListResponse adminUsersList(RequestConfigurator<AdminUsersListRequest.AdminUsersListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersList(req.configure(AdminUsersListRequest.builder()).build());
+    }
+
+    @Override
     public AdminUsersRemoveResponse adminUsersRemove(AdminUsersRemoveRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_REMOVE, getToken(req), AdminUsersRemoveResponse.class);
     }
@@ -369,6 +425,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminUsersSetAdminResponse adminUsersSetAdmin(RequestConfigurator<AdminUsersSetAdminRequest.AdminUsersSetAdminRequestBuilder> req) throws IOException, SlackApiException {
         return adminUsersSetAdmin(req.configure(AdminUsersSetAdminRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersSetExpirationResponse adminUsersSetExpiration(AdminUsersSetExpirationRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_SET_EXPIRATION, getToken(req), AdminUsersSetExpirationResponse.class);
+    }
+
+    @Override
+    public AdminUsersSetExpirationResponse adminUsersSetExpiration(RequestConfigurator<AdminUsersSetExpirationRequest.AdminUsersSetExpirationRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersSetExpiration(req.configure(AdminUsersSetExpirationRequest.builder()).build());
     }
 
     @Override
