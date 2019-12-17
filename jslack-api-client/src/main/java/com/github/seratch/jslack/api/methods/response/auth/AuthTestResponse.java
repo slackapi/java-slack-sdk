@@ -15,6 +15,7 @@ public class AuthTestResponse implements SlackApiResponse {
     private String url;
     private String team;
     private String user;
+    private String botId; // only for bot token
     private String teamId;
     private String userId;
     private String enterpriseId;
