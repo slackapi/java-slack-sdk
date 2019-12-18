@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.lightning.handler.builtin;
 
 import com.github.seratch.jslack.api.methods.SlackApiException;
+import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
-import com.github.seratch.jslack.api.methods.response.users.UsersInfoResponse;
 import com.github.seratch.jslack.lightning.context.builtin.OAuthCallbackContext;
 import com.github.seratch.jslack.lightning.handler.OAuthSuccessHandler;
 import com.github.seratch.jslack.lightning.model.Installer;
@@ -54,14 +54,14 @@ public class OAuthDefaultSuccessHandler implements OAuthSuccessHandler {
             i = i.botUserId(o.getBot().getBotUserId());
             i = i.botAccessToken(o.getBot().getBotAccessToken());
             try {
-                UsersInfoResponse user = context.client().usersInfo(r -> r.user(o.getBot().getBotUserId()));
-                if (user.isOk()) {
-                    i = i.botId(user.getUser().getProfile().getBotId());
+                AuthTestResponse authTest = context.client().authTest(r -> r);
+                if (authTest.isOk()) {
+                    i = i.botId(authTest.getBotId());
                 } else {
-                    log.warn("Failed to call users.info to fetch botId for the user: {} - {}", o.getBot().getBotUserId(), user.getError());
+                    log.warn("Failed to call auth.test to fetch botId for the user: {} - {}", o.getBot().getBotUserId(), authTest.getError());
                 }
             } catch (SlackApiException | IOException e) {
-                log.warn("Failed to call users.info to fetch botId for the user: {}", o.getBot().getBotUserId(), e);
+                log.warn("Failed to call auth.test to fetch botId for the user: {}", o.getBot().getBotUserId(), e);
             }
         }
         Installer installer = i.build();
