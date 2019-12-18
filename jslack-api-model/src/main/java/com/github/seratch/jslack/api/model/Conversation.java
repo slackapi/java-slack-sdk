@@ -38,7 +38,6 @@ public class Conversation {
     private List<String> previousNames;
     @SerializedName("num_members")
     private Integer numOfMembers;
-    private List<String> members;
     private Latest latest;
     private String locale;
     @SerializedName("unread_count")
