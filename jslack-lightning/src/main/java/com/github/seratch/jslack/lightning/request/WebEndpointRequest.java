@@ -8,12 +8,15 @@ public class WebEndpointRequest {
 
     private String clientIpAddress;
 
+    private final String queryString;
     private final String requestBody;
     private final RequestHeaders headers;
 
     public WebEndpointRequest(
+            String queryString,
             String requestBody,
             RequestHeaders headers) {
+        this.queryString = queryString;
         this.requestBody = requestBody;
         this.headers = headers;
     }
@@ -22,6 +25,10 @@ public class WebEndpointRequest {
 
     public WebEndpointContext getContext() {
         return context;
+    }
+
+    public String getQueryString() {
+        return queryString;
     }
 
     public String getRequestBodyAsString() {
