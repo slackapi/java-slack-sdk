@@ -21,11 +21,12 @@ public class WebEndpointServletAdapter {
     }
 
     public WebEndpointRequest buildSlackRequest(HttpServletRequest req) throws IOException {
+        String queryString = req.getQueryString();
         String requestBody = doReadRequestBodyAsString(req);
         RequestHeaders headers = new RequestHeaders(toHeaderMap(req));
         WebEndpointRequest slackRequest = null;
         try {
-            slackRequest = new WebEndpointRequest(requestBody, headers);
+            slackRequest = new WebEndpointRequest(queryString, requestBody, headers);
             return slackRequest;
         } finally {
             if (slackRequest != null) {
