@@ -13,7 +13,7 @@ public class OAuthDefaultStateErrorHandler implements OAuthStateErrorHandler {
 
     @Override
     public Response handle(OAuthCallbackRequest req) {
-        log.warn("Invalid state parameter detected - TODO");
+        log.warn("Invalid state parameter detected - payload: {}",  req.getPayload());
         Map<String, String> headers = new HashMap<>();
         headers.put("Location", req.getContext().getOauthCancellationUrl());
         return Response.builder().statusCode(302).headers(headers).build();

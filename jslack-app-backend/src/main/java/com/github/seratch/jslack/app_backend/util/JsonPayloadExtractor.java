@@ -19,7 +19,7 @@ public class JsonPayloadExtractor {
 
     public String extractIfExists(String requestBody) {
 
-        if (requestBody == null) {
+        if (requestBody == null || requestBody.trim().length() == 0) {
             return null;
         }
 

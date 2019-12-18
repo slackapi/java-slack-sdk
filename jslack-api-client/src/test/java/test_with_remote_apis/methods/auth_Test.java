@@ -29,7 +29,7 @@ public class auth_Test {
     }
 
     @Test
-    public void authTest() throws IOException, SlackApiException {
+    public void authTest_user() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
         AuthTestResponse response = slack.methods().authTest(req -> req.token(token));
         assertThat(response.getError(), is(nullValue()));
@@ -38,8 +38,17 @@ public class auth_Test {
     }
 
     @Test
-    public void authTest2() throws IOException, SlackApiException {
+    public void authTest_user_2() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        AuthTestResponse response = slack.methods(token).authTest(req -> req);
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getUrl(), is(notNullValue()));
+    }
+
+    @Test
+    public void authTest_bot() throws IOException, SlackApiException {
+        String token = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
         AuthTestResponse response = slack.methods(token).authTest(req -> req);
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));

@@ -2,6 +2,7 @@ package examples.oauth_flow
 
 import com.github.seratch.jslack.lightning.App
 import com.github.seratch.jslack.lightning.jetty.SlackAppServer
+import com.github.seratch.jslack.lightning.response.Response
 import com.github.seratch.jslack.lightning.service.builtin.AmazonS3InstallationService
 import com.github.seratch.jslack.lightning.service.builtin.AmazonS3OAuthStateService
 import org.slf4j.LoggerFactory
@@ -45,6 +46,13 @@ fun main() {
     oauthApp.service(installationService)
     // for state parameter in OAuth flow
     oauthApp.service(AmazonS3OAuthStateService(awsS3BucketName))
+
+    oauthApp.endpoint("GET", "/slack/oauth/completion") { _, _ ->
+        Response.json(200, mapOf("message" to "Thanks!"))
+    }
+    oauthApp.endpoint("GET", "/slack/oauth/cancellation") { _, _ ->
+        Response.json(200, mapOf("message" to "Something wrong!"))
+    }
 
     val server = SlackAppServer(mapOf(
             "/slack/events" to mainApp,
