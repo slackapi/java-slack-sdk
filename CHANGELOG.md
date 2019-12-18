@@ -1,5 +1,46 @@
 # jSlack Release Notes
 
+## version 3.3.0 (2019-12-18)
+
+* f25ccf7 Add query string support in Lightning web endpoints by Kazuhiro Sera
+* 7dc814c Change Lightning implementation to use only auth.test by Kazuhiro Sera
+* b540fdf Add bot_id in response for auth.test by Kazuhiro Sera
+* a395d7c Add six admin APIs by Kazuhiro Sera
+* 9242528 Commonize response_metadata holding message strings for error patterns by Kazuhiro Sera
+
+### Incompatibility
+
+There are two minor breaking changes since version 3.2.x series. Java compiler detects all of them but it would be appreciated if you could understand the decisions.
+
+#### ErrorResponseMetadata
+
+https://github.com/seratch/jslack/commit/92425282a9dc4f2cbb444b43246b4f8b11b2bbed
+
+To commonize `response_metadata` containing `messages` in responses, `com.github.seratch.jslack.api.model.ErrorResponseMetadata` class has been introduced. The following classes have been modified to use the new class instead of their inner classes.
+
+* AdminTeamsCreateResponse
+* AdminUsersAssignResponse
+* AdminUsersInviteResponse
+* AdminUsersRemoveResponse
+* AdminUsersSetAdminResponse
+* AdminUsersSetOwnerResponse
+* AdminUsersSetRegularResponse
+* ChatPostMessageResponse
+* PinsAddResponse
+* ViewsOpenResponse
+* ViewsPublishResponse
+* ViewsPushResponse
+* ViewsUpdateResponse
+
+#### Re-packaging admin APIs
+
+https://github.com/seratch/jslack/commit/a395d7c8408082bc08363de7f4ccf5402b33ea42
+
+* AdminTeamsOwnersListRequest/Response from `admin.teams` to `admin.teams.owners`
+* AdminTeamsSettingsSetDescriptionRequest/Response from `admin.teams` to `admin.teams.settings`
+* AdminTeamsSettingsSetIconRequest/Response from `admin.teams` to `admin.teams.settings`
+* AdminTeamsSettingsSetNameRequest/Response from `admin.teams` to `admin.teams.settings`
+
 ## version 3.2.5 (2019-12-11)
 
 * ace41ea #301 Fix a bug where url_verification doesn't work without bot token by Joel McCance
