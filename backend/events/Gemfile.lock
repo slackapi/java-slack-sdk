@@ -18,7 +18,7 @@ GEM
     minitest (5.11.3)
     multipart-post (2.0.0)
     mustermann (1.0.3)
-    rack (2.0.7)
+    rack (2.0.8)
     rack-contrib (2.1.0)
       rack (~> 2.0)
     rack-protection (2.0.5)
