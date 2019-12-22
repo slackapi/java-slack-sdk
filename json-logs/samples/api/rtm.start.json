@@ -292,7 +292,8 @@
       "contextual_message_shortcuts_modal_was_seen": false,
       "message_navigation_toast_was_seen": false,
       "show_drafts_page_sidebar": false,
-      "plain_text_mode": false
+      "plain_text_mode": false,
+      "ia_platform_actions_lab": 12345
     },
     "created": 12345,
     "manual_presence": ""
