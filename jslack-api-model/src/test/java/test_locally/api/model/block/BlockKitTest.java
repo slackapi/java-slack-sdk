@@ -2,18 +2,19 @@ package test_locally.api.model.block;
 
 import com.github.seratch.jslack.api.model.Message;
 import com.github.seratch.jslack.api.model.block.InputBlock;
-import com.github.seratch.jslack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.api.model.block.RichTextBlock;
 import com.github.seratch.jslack.api.model.block.SectionBlock;
 import com.github.seratch.jslack.api.model.block.element.RadioButtonsElement;
-import com.github.seratch.jslack.api.model.block.element.RichTextElement;
 import com.github.seratch.jslack.api.model.block.element.RichTextSectionElement;
+import com.github.seratch.jslack.api.model.block.element.RichTextUnknownElement;
+import com.google.gson.JsonParseException;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
 
 public class BlockKitTest {
 
@@ -572,6 +573,218 @@ public class BlockKitTest {
         assertThat(c.getType(), is(RichTextSectionElement.Color.TYPE));
         assertThat(c.getValue(), is("#FFFFFF"));
 
+    }
+
+    String unknownRichElementJson = "{\n" +
+            "  \"blocks\": [\n" +
+            "    {\n" +
+            "      \"type\": \"rich_text\",\n" +
+            "      \"block_id\": \"d77H\",\n" +
+            "      \"elements\": [\n" +
+            "        {\n" +
+            "          \"type\": \"rich_text_section\",\n" +
+            "          \"elements\": [\n" +
+            "            {\n" +
+            "              \"type\": \"text\",\n" +
+            "              \"text\": \"Hello\\n\\n\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "              \"type\": \"unknown_type\"\n" +
+            "            }\n" +
+            "          ]\n" +
+            "        }\n" +
+            "      ]\n" +
+            "    }\n" +
+            "  ]\n" +
+            "}";
+
+    @Test
+    public void rich_text_default_behavior_with_unknown() {
+        Message message = GsonFactory.createSnakeCase().fromJson(unknownRichElementJson, Message.class);
+        assertThat(message, is(notNullValue()));
+        RichTextBlock b = (RichTextBlock) message.getBlocks().get(0);
+        RichTextSectionElement elm = (RichTextSectionElement) b.getElements().get(0);
+        RichTextUnknownElement c = (RichTextUnknownElement) elm.getElements().get(1);
+        assertThat(c.getType(), is("unknown_type"));
+    }
+
+    @Test
+    public void rich_text_fail_on_unknown() {
+        try {
+            GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
+                    .fromJson(unknownRichElementJson, Message.class);
+            fail("throwing JsonParseException is expected here");
+        } catch (JsonParseException e) {
+            assertThat(e.getMessage(), is("Unknown RichTextSectionElement type: unknown_type"));
+        }
+    }
+
+    String unknownBlocksJson = "{blocks: [{\n" +
+            "  \"type\": \"unknown_block\",\n" +
+            "  \"block_id\": \"input123\",\n" +
+            "    \"label\": {\n" +
+            "        \"type\": \"plain_text\",\n" +
+            "        \"text\": \"Label of input\"\n" +
+            "    },\n" +
+            "  \"element\": {\n" +
+            "    \"type\": \"unknown_element\",\n" +
+            "    \"action_id\": \"plain_input\",\n" +
+            "    \"placeholder\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Enter some plain text\"\n" +
+            "    }\n" +
+            "  }\n" +
+            "}]}";
+
+    @Test
+    public void parse_unknown_blocks() {
+        Message message = GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(false)
+                .fromJson(unknownBlocksJson, Message.class);
+        assertThat(message, is(notNullValue()));
+    }
+
+    @Test
+    public void parse_fail_on_unknown_blocks() {
+        try {
+            GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
+                    .fromJson(unknownBlocksJson, Message.class);
+        } catch (JsonParseException e) {
+            assertThat(e.getMessage(), is("Unsupported layout block type: unknown_block"));
+        }
+    }
+
+    String unknownBlockElementsJson = "{blocks: [{\n" +
+            "  \"type\": \"input\",\n" +
+            "  \"block_id\": \"input123\",\n" +
+            "    \"label\": {\n" +
+            "        \"type\": \"plain_text\",\n" +
+            "        \"text\": \"Label of input\"\n" +
+            "    },\n" +
+            "  \"element\": {\n" +
+            "    \"type\": \"unknown_element\",\n" +
+            "    \"action_id\": \"plain_input\",\n" +
+            "    \"placeholder\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Enter some plain text\"\n" +
+            "    }\n" +
+            "  }\n" +
+            "}]}";
+
+    @Test
+    public void parse_unknown_block_elements() {
+        Message message = GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(false)
+                .fromJson(unknownBlockElementsJson, Message.class);
+        assertThat(message, is(notNullValue()));
+    }
+
+    @Test
+    public void parse_fail_on_unknown_block_elements() {
+        try {
+            GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
+                    .fromJson(unknownBlockElementsJson, Message.class);
+            fail();
+        } catch (JsonParseException e) {
+            assertThat(e.getMessage(), is("Unknown block element type: unknown_element"));
+        }
+    }
+
+    String unknownContextBlockElementsJson = "{blocks: [{\n" +
+            "  \"type\": \"context\",\n" +
+            "  \"elements\": [\n" +
+            "    {\n" +
+            "      \"type\": \"image\",\n" +
+            "      \"image_url\": \"https://image.freepik.com/free-photo/red-drawing-pin_1156-445.jpg\",\n" +
+            "      \"alt_text\": \"images\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"type\": \"unknown_element\",\n" +
+            "      \"text\": \"something\"\n" +
+            "    }\n" +
+            "  ]\n" +
+            "}]}";
+
+    @Test
+    public void parse_unknown_context_block_elements() {
+        Message message = GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(false)
+                .fromJson(unknownContextBlockElementsJson, Message.class);
+        assertThat(message, is(notNullValue()));
+    }
+
+    @Test
+    public void parse_fail_on_unknown_context_block_elements() {
+        try {
+            GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
+                    .fromJson(unknownContextBlockElementsJson, Message.class);
+            fail();
+        } catch (JsonParseException e) {
+            assertThat(e.getMessage(), is("Unknown context block element type: unknown_element"));
+        }
+    }
+
+    String unknownTextObjectsJson = "{blocks: [{\n" +
+            "  \"type\": \"section\",\n" +
+            "  \"text\": {\n" +
+            "    \"type\": \"unknown_text\",\n" +
+            "    \"text\": \"This is a section block with a button.\"\n" +
+            "  },\n" +
+            "  \"accessory\": {\n" +
+            "    \"type\": \"button\",\n" +
+            "    \"text\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Click Me\"\n" +
+            "    },\n" +
+            "    \"value\": \"click_me_123\",\n" +
+            "    \"action_id\": \"button\"\n" +
+            "  }\n" +
+            "}]}";
+
+    @Test
+    public void parse_unknown_text_objects() {
+        Message message = GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(false)
+                .fromJson(unknownTextObjectsJson, Message.class);
+        assertThat(message, is(notNullValue()));
+    }
+
+    @Test
+    public void parse_fail_on_unknown_text_objects() {
+        try {
+            GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
+                    .fromJson(unknownTextObjectsJson, Message.class);
+            fail();
+        } catch (JsonParseException e) {
+            assertThat(e.getMessage(), is("Unknown text object type: unknown_text"));
+        }
+    }
+
+    String unknownTextObjectsInInputBlocksJson = "{blocks: [{\n" +
+            "  \"type\": \"input\",\n" +
+            "  \"block_id\": \"input123\",\n" +
+            "  \"label\": {\n" +
+            "    \"type\": \"plain_text2\",\n" +
+            "    \"text\": \"Label of input\"\n" +
+            "  },\n" +
+            "  \"element\": {\n" +
+            "    \"type\": \"plain_text_input\",\n" +
+            "    \"action_id\": \"plain_input\",\n" +
+            "    \"placeholder\": {\n" +
+            "      \"type\": \"plain_text2\",\n" +
+            "      \"text\": \"Enter some plain text\"\n" +
+            "    }\n" +
+            "  }\n" +
+            "}]}";
+
+    @Test
+    public void parse_unknown_text_objects_input() {
+        Message message = GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(false)
+                .fromJson(unknownTextObjectsInInputBlocksJson, Message.class);
+        assertThat(message, is(notNullValue()));
+    }
+
+    @Test
+    public void parse_never_fails_on_unknown_text_objects_input() {
+        // never fails - invalid types are just skipped
+        GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
+                .fromJson(unknownTextObjectsInInputBlocksJson, Message.class);
     }
 
 }

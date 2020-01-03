@@ -1,5 +1,6 @@
 package com.github.seratch.jslack.common.json;
 
+import com.github.seratch.jslack.api.model.block.UnknownBlockElement;
 import com.github.seratch.jslack.api.model.block.element.*;
 import com.google.gson.*;
 
@@ -15,13 +16,24 @@ import java.lang.reflect.Type;
  * Elements documentation</a>
  */
 public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, JsonSerializer<BlockElement> {
+
+    private boolean failOnUnknownProperties;
+
+    public GsonBlockElementFactory() {
+        this(false);
+    }
+
+    public GsonBlockElementFactory(boolean failOnUnknownProperties) {
+        this.failOnUnknownProperties = failOnUnknownProperties;
+    }
+
     @Override
     public BlockElement deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final JsonPrimitive prim = (JsonPrimitive) jsonObject.get("type");
-        final String className = prim.getAsString();
-        final Class<? extends BlockElement> clazz = getContextBlockElementClassInstance(className);
+        final String typeName = prim.getAsString();
+        final Class<? extends BlockElement> clazz = getContextBlockElementClassInstance(typeName);
         return context.deserialize(jsonObject, clazz);
     }
 
@@ -30,8 +42,8 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
         return context.serialize(src);
     }
 
-    private Class<? extends BlockElement> getContextBlockElementClassInstance(String className) {
-        switch (className) {
+    private Class<? extends BlockElement> getContextBlockElementClassInstance(String typeName) {
+        switch (typeName) {
             case ButtonElement.TYPE:
                 return ButtonElement.class;
             case ImageElement.TYPE:
@@ -73,7 +85,11 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
             case RadioButtonsElement.TYPE:
                 return RadioButtonsElement.class;
             default:
-                throw new JsonParseException("Unknown context block element type: " + className);
+                if (failOnUnknownProperties) {
+                    throw new JsonParseException("Unknown block element type: " + typeName);
+                } else {
+                    return UnknownBlockElement.class;
+                }
         }
     }
 }
