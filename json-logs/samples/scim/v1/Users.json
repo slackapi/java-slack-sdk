@@ -1,8 +1,4 @@
 {
-  "Errors": {
-    "description": "",
-    "code": 12345
-  },
   "totalResults": 12345,
   "itemsPerPage": 12345,
   "startIndex": 12345,
@@ -76,6 +72,10 @@
       }
     }
   ],
+  "Errors": {
+    "description": "",
+    "code": 12345
+  },
   "id": "W00000000",
   "externalId": "",
   "meta": {

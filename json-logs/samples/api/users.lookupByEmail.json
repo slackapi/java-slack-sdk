@@ -23,6 +23,7 @@
       "status_expiration": 12345,
       "avatar_hash": "",
       "image_original": "https://www.example.com/",
+      "is_custom_image": false,
       "email": "",
       "first_name": "",
       "last_name": "",
@@ -34,8 +35,7 @@
       "image_512": "https://www.example.com/",
       "image_1024": "https://www.example.com/",
       "status_text_canonical": "",
-      "team": "T00000000",
-      "is_custom_image": false
+      "team": "T00000000"
     },
     "is_admin": false,
     "is_owner": false,

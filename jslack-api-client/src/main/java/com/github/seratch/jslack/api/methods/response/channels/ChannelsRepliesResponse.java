@@ -17,6 +17,12 @@ public class ChannelsRepliesResponse implements SlackApiResponse {
     private String provided;
 
     private List<Message> messages;
-    private ThreadInfo threadInfo;
     private boolean hasMore;
+
+    /**
+     * This field seems to be no longer available.
+     * To fetch ts to identify its thread, you can use thread_ts of each message in `messages`
+     */
+    @Deprecated
+    private ThreadInfo threadInfo;
 }

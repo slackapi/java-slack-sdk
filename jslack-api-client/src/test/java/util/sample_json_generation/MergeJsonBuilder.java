@@ -56,6 +56,13 @@ public class MergeJsonBuilder {
                     for (int i = 0; i < rightArr.size(); i++) {
                         JsonElement rightArrayElem = rightArr.get(i);
                         if (!leftArr.contains(rightArrayElem)) {
+                            // remove temporarily added an empty string
+                            if (rightArrayElem.isJsonObject()
+                                    && leftArr.size() == 1
+                                    && leftArr.get(i).isJsonPrimitive()
+                                    && leftArr.get(i).getAsString().equals("")) {
+                                leftArr.remove(0);
+                            }
                             leftArr.add(rightArrayElem);
                         }
                     }

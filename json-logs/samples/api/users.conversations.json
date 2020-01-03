@@ -1,7 +1,93 @@
 {
   "ok": false,
   "channels": [
-    ""
+    {
+      "enterprise_id": "",
+      "id": "",
+      "name": "",
+      "created": "",
+      "creator": "",
+      "unlinked": 123,
+      "name_normalized": "",
+      "last_read": "",
+      "topic": {
+        "value": "",
+        "creator": "",
+        "last_set": 123
+      },
+      "purpose": {
+        "value": "",
+        "creator": "",
+        "last_set": 123
+      },
+      "num_members": 123,
+      "latest": {
+        "client_msg_id": "",
+        "type": "",
+        "subtype": "",
+        "team": "",
+        "user": "",
+        "username": "",
+        "text": "",
+        "topic": "",
+        "root": {
+          "text": "",
+          "username": "",
+          "bot_id": "",
+          "mrkdwn": false,
+          "type": "",
+          "subtype": "",
+          "thread_ts": "",
+          "reply_count": 123,
+          "reply_users_count": 123,
+          "latest_reply": "",
+          "subscribed": false,
+          "last_read": "",
+          "unread_count": 123,
+          "ts": ""
+        },
+        "upload": false,
+        "display_as_bot": false,
+        "bot_id": "",
+        "bot_link": "",
+        "thread_ts": "",
+        "ts": "",
+        "icons": {
+          "emoji": "",
+          "image_36": "",
+          "image_48": "",
+          "image_64": "",
+          "image_72": ""
+        }
+      },
+      "locale": "",
+      "unread_count": 123,
+      "unread_count_display": 123,
+      "user": "",
+      "priority": 12.3,
+      "parent_conversation": "",
+      "conversation_host_id": "",
+      "is_channel": false,
+      "is_group": false,
+      "is_im": false,
+      "is_archived": false,
+      "is_general": false,
+      "is_read_only": false,
+      "is_thread_only": false,
+      "is_non_threadable": false,
+      "is_shared": false,
+      "is_ext_shared": false,
+      "is_org_shared": false,
+      "is_pending_ext_shared": false,
+      "is_global_shared": false,
+      "is_org_default": false,
+      "is_org_mandatory": false,
+      "is_moved": 123,
+      "is_member": false,
+      "is_open": false,
+      "is_private": false,
+      "is_mpim": false
+    }
   ],
   "response_metadata": {
     "next_cursor": ""

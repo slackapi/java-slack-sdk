@@ -85,7 +85,15 @@
   "content_highlight_html": "",
   "content_highlight_css": "",
   "comments": [
-    ""
+    {
+      "id": "",
+      "created": 12345,
+      "timestamp": 12345,
+      "user": "",
+      "comment": "",
+      "channel": "",
+      "is_intro": false
+    }
   ],
   "paging": {
     "count": 12345,

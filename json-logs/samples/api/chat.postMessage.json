@@ -9,9 +9,6 @@
     "ts": "0000000000.000000",
     "username": "",
     "bot_id": "B00000000",
-    "thread_ts": "0000000000.000000",
-    "user": "U00000000",
-    "team": "T00000000",
     "blocks": [
       {
         "type": "",
@@ -34,11 +31,6 @@
         "elements": [
           {
             "type": "",
-            "text": "",
-            "emoji": false
-          },
-          {
-            "type": "",
             "action_id": "",
             "text": {
               "type": "",
@@ -51,6 +43,11 @@
             "type": "",
             "text": "",
             "verbatim": false
+          },
+          {
+            "type": "",
+            "text": "",
+            "emoji": false
           },
           {
             "type": "",
@@ -141,6 +138,7 @@
         ]
       }
     ],
+    "thread_ts": "0000000000.000000",
     "root": {
       "type": "",
       "subtype": "",
@@ -161,8 +159,7 @@
           "ts": "0000000000.000000"
         }
       ],
-      "subscribed": false,
-      "last_read": "0000000000.000000"
+      "subscribed": false
     },
     "icons": {
       "emoji": "",
@@ -258,6 +255,8 @@
         }
       }
     ],
+    "user": "U00000000",
+    "team": "T00000000",
     "bot_profile": {
       "id": "B00000000",
       "deleted": false,

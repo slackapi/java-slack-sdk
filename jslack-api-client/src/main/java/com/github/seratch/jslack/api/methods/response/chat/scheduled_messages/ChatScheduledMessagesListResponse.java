@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ChatScheduleMessagesListResponse implements SlackApiResponse {
+public class ChatScheduledMessagesListResponse implements SlackApiResponse {
 
     private boolean ok;
     private String warning;

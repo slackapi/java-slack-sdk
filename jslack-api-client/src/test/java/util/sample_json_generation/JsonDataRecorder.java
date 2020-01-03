@@ -1,6 +1,10 @@
 package util.sample_json_generation;
 
 import com.github.seratch.jslack.SlackConfig;
+import com.github.seratch.jslack.api.model.Conversation;
+import com.github.seratch.jslack.api.model.FileComment;
+import com.github.seratch.jslack.api.model.Message;
+import com.github.seratch.jslack.api.model.admin.AppRequest;
 import com.github.seratch.jslack.api.scim.model.User;
 import com.github.seratch.jslack.api.status.v2.model.SlackIssue;
 import com.github.seratch.jslack.common.json.GsonFactory;
@@ -47,8 +51,7 @@ public class JsonDataRecorder {
             // given body is not in JSON format
             return;
         }
-        JsonParser jsonParser = new JsonParser();
-        JsonElement newJson = jsonParser.parse(body);
+        JsonElement newJson = JsonParser.parseString(body);
 
         String existingJson = null;
         if (path.startsWith("/scim")) {
@@ -70,7 +73,7 @@ public class JsonDataRecorder {
                 existingJson = "{}";
             }
         }
-        JsonElement jsonElem = jsonParser.parse(existingJson);
+        JsonElement jsonElem = JsonParser.parseString(existingJson);
         JsonObject jsonObj = jsonElem.isJsonObject() ? jsonElem.getAsJsonObject() : null;
 
         if (newJson.isJsonObject()) {
@@ -88,7 +91,7 @@ public class JsonDataRecorder {
 
         if (jsonElem.isJsonObject() && jsonObj != null) {
             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
-                scanToNormalizeStringValues(jsonObj, entry.getKey(), entry.getValue());
+                scanToNormalizeValues(path, jsonObj, entry.getKey(), entry.getValue());
             }
 
             if (path.startsWith("/scim")) {
@@ -121,7 +124,7 @@ public class JsonDataRecorder {
             }
         } else if (jsonElem.isJsonArray()) {
             JsonArray jsonArray = jsonElem.getAsJsonArray();
-            scanToNormalizeStringValues(null, null, jsonArray);
+            scanToNormalizeValues(path, null, null, jsonArray);
             existingJson = gson().toJson(jsonArray);
             Path filePath = new File(toMaskedFilePath(path)).toPath();
             Files.createDirectories(filePath.getParent());
@@ -207,7 +210,8 @@ public class JsonDataRecorder {
 
     private MergeJsonBuilder.ConflictStrategy CONFLICT_STRATEGY = MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ;
 
-    private void scanToNormalizeStringValues(JsonElement parent, String name, JsonElement element) {
+    private void scanToNormalizeValues(String path, JsonElement parent, String name, JsonElement element) {
+        Gson gson = GsonFactory.createSnakeCase();
         if (element.isJsonArray()) {
             JsonArray array = element.getAsJsonArray();
             if (name != null && name.equals("attachments")) {
@@ -224,6 +228,16 @@ public class JsonDataRecorder {
                 for (JsonElement block : Json.Blocks) {
                     array.add(block);
                 }
+            } else if (name != null && name.equals("replies")) {
+                for (int idx = 0; idx < array.size(); idx++) {
+                    array.remove(idx);
+                }
+                array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Message.MessageRootReply())));
+            } else if (name != null && name.equals("comments")) {
+                for (int idx = 0; idx < array.size(); idx++) {
+                    array.remove(idx);
+                }
+                array.add(gson.toJsonTree(ObjectInitializer.initProperties(new FileComment())));
             }
             if (array.size() == 0) {
                 List<String> addressNames = Arrays.asList("from", "to", "cc");
@@ -232,21 +246,29 @@ public class JsonDataRecorder {
                     address.setAddress("");
                     address.setName("");
                     address.setOriginal("");
-                    JsonElement elem = GsonFactory.createSnakeCase().toJsonTree(address);
+                    JsonElement elem = gson.toJsonTree(address);
                     array.add(elem);
+                } else if (path.equals("/api/users.conversations") && name.equals("channels")) {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Conversation())));
+                } else if (name.equals("app_requests")) {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new AppRequest())));
+                } else if (name.equals("replies")) {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Message.MessageRootReply())));
+                } else if (name.equals("comments")) {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new FileComment())));
                 } else if (name.equals("active_incidents")) {
                     SlackIssue slackIssue = new SlackIssue();
                     slackIssue.setNotes(Arrays.asList(ObjectInitializer.initProperties(new SlackIssue.Note())));
                     slackIssue.setServices(Arrays.asList(""));
                     slackIssue = ObjectInitializer.initProperties(slackIssue);
-                    array.add(GsonFactory.createSnakeCase().toJsonTree(slackIssue));
+                    array.add(gson.toJsonTree(slackIssue));
                 } else {
                     array.add(""); // in most cases, empty array can have string values
                 }
             } else {
                 JsonElement first = array.get(0);
                 if (first.isJsonPrimitive()) {
-                    array.set(0, normalize(null, first.getAsJsonPrimitive()));
+                    array.set(0, normalize(first.getAsJsonPrimitive()));
                     int size = array.size();
                     if (size > 1) {
                         for (int idx = size - 1; idx > 0; idx--) {
@@ -255,14 +277,14 @@ public class JsonDataRecorder {
                     }
                 } else {
                     for (JsonElement child : array) {
-                        scanToNormalizeStringValues(array, null, child);
+                        scanToNormalizeValues(path, array, null, child);
                     }
                     if (array.size() >= 2) {
                         for (int idx = 1; idx < array.size(); idx++) {
                             JsonElement elem = array.get(idx);
                             if (elem.isJsonArray()) {
                                 for (JsonElement child : elem.getAsJsonArray()) {
-                                    scanToNormalizeStringValues(elem, null, child);
+                                    scanToNormalizeValues(path, elem, null, child);
                                 }
                             } else {
                                 try {
@@ -304,19 +326,19 @@ public class JsonDataRecorder {
                 }
             }
             for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
-                scanToNormalizeStringValues(element, entry.getKey(), entry.getValue());
+                scanToNormalizeValues(path, element, entry.getKey(), entry.getValue());
             }
         } else if (element.isJsonNull()) {
             return;
         } else if (!parent.isJsonArray() && element.isJsonPrimitive()) {
             JsonPrimitive prim = element.getAsJsonPrimitive();
-            parent.getAsJsonObject().add(name, normalize(name, prim));
+            parent.getAsJsonObject().add(name, normalize(prim));
         }
     }
 
-    private JsonElement normalize(String name, JsonPrimitive original) {
+    private JsonElement normalize(JsonPrimitive original) {
         if (original.isString()) {
-            return new JsonPrimitive(normalizeString(name, original.getAsString()));
+            return new JsonPrimitive(normalizeString(original.getAsString()));
         } else if (original.isBoolean()) {
             return new JsonPrimitive(false);
         } else if (original.isNumber()) {
@@ -326,7 +348,7 @@ public class JsonDataRecorder {
         }
     }
 
-    private String normalizeString(String name, String value) {
+    private String normalizeString(String value) {
         if (value == null) {
             return null;
         }

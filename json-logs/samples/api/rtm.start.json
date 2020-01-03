@@ -62,6 +62,7 @@
       "enter_is_special_in_tbt": false,
       "msg_input_send_btn": false,
       "msg_input_send_btn_auto_set": false,
+      "msg_input_sticky_composer": false,
       "graphic_emoticons": false,
       "convert_emoticons": false,
       "ss_emojis": false,
@@ -182,6 +183,11 @@
       "seen_drafts_section_coachmark": false,
       "seen_emoji_update_overlay_coachmark": false,
       "seen_sonic_deluxe_toast": 12345,
+      "seen_wysiwyg_deluxe_toast": false,
+      "seen_markdown_paste_toast": 12345,
+      "seen_markdown_paste_shortcut": 12345,
+      "plain_text_mode": false,
+      "show_shared_channels_education_banner": false,
       "allow_calls_to_set_current_status": false,
       "in_interactive_mas_migration_flow": false,
       "sunset_interactive_message_views": 12345,
@@ -189,6 +195,8 @@
       "seen_shdep_slackbot_message": false,
       "seen_calls_interactive_coachmark": false,
       "allow_cmd_tab_iss": false,
+      "seen_workflow_builder_deluxe_toast": false,
+      "workflow_builder_intro_modal_clicked_through": false,
       "workflow_builder_coachmarks": "",
       "seen_gdrive_coachmark": false,
       "overloaded_message_enabled": false,
@@ -198,6 +206,11 @@
       "seen_new_search_ui": false,
       "seen_channel_search": false,
       "seen_people_search": false,
+      "seen_people_search_count": 12345,
+      "dismissed_scroll_search_tooltip_count": 12345,
+      "last_dismissed_scroll_search_tooltip_timestamp": 12345,
+      "has_used_quickswitcher_shortcut": false,
+      "seen_quickswitcher_shortcut_tip_count": 12345,
       "a11y_animations": false,
       "seen_keyboard_shortcuts_coachmark": false,
       "needs_initial_password_set": false,
@@ -208,6 +221,7 @@
       "newxp_suggested_channels": "",
       "onboarding_complete": false,
       "welcome_place_state": "",
+      "has_received_threaded_message": false,
       "whocanseethis_dm_mpdm_badge": false,
       "highlight_words": "",
       "threads_everything": false,
@@ -243,8 +257,9 @@
       "analytics_upsell_coachmark_seen": false,
       "seen_app_space_coachmark": false,
       "seen_app_space_tutorial": false,
+      "dismissed_app_launcher_welcome": false,
+      "dismissed_app_launcher_limit": false,
       "purchaser": false,
-      "app_action_picker": "",
       "show_ent_onboarding": false,
       "folders_enabled": false,
       "folder_data": "",
@@ -252,6 +267,8 @@
       "show_autocomplete_help": 12345,
       "deprecation_toast_last_seen": 12345,
       "deprecation_modal_last_seen": 12345,
+      "iap1_lab": 12345,
+      "ia_platform_actions_lab": 12345,
       "failover_proxy_check_completed": 12345,
       "edge_upload_proxy_check_completed": 12345,
       "app_subdomain_check_completed": 12345,
@@ -260,6 +277,11 @@
       "channel_sidebar_hide_invite": false,
       "in_prod_surveys_enabled": false,
       "dismissed_installed_app_dm_suggestions": "",
+      "seen_contextual_message_shortcuts_modal": false,
+      "seen_message_navigation_educational_toast": false,
+      "contextual_message_shortcuts_modal_was_seen": false,
+      "message_navigation_toast_was_seen": false,
+      "show_drafts_page_sidebar": false,
       "tz": "",
       "locales_enabled": {
         "de-DE": "",
@@ -270,30 +292,7 @@
         "fr-FR": "",
         "pt-BR": "",
         "ja-JP": ""
-      },
-      "msg_input_sticky_composer": false,
-      "seen_workflow_builder_deluxe_toast": false,
-      "workflow_builder_intro_modal_clicked_through": false,
-      "has_received_threaded_message": false,
-      "iap1_lab": 12345,
-      "seen_people_search_count": 12345,
-      "dismissed_app_launcher_welcome": false,
-      "dismissed_app_launcher_limit": false,
-      "dismissed_scroll_search_tooltip_count": 12345,
-      "seen_contextual_message_shortcuts_modal": false,
-      "seen_message_navigation_educational_toast": false,
-      "show_shared_channels_education_banner": false,
-      "seen_wysiwyg_deluxe_toast": false,
-      "last_dismissed_scroll_search_tooltip_timestamp": 12345,
-      "has_used_quickswitcher_shortcut": false,
-      "seen_quickswitcher_shortcut_tip_count": 12345,
-      "seen_markdown_paste_toast": 12345,
-      "seen_markdown_paste_shortcut": 12345,
-      "contextual_message_shortcuts_modal_was_seen": false,
-      "message_navigation_toast_was_seen": false,
-      "show_drafts_page_sidebar": false,
-      "plain_text_mode": false,
-      "ia_platform_actions_lab": 12345
+      }
     },
     "created": 12345,
     "manual_presence": ""
@@ -315,12 +314,30 @@
       "enable_shared_channels": 12345,
       "can_receive_shared_channels_invites": false,
       "dropbox_legacy_picker": false,
+      "app_whitelist_enabled": false,
+      "who_can_manage_integrations": {
+        "type": [
+          ""
+        ]
+      },
       "locale": "",
       "slackbot_responses_disabled": false,
       "hide_referers": false,
       "msg_edit_window_mins": 12345,
       "allow_message_deletion": false,
       "calling_app_name": "",
+      "calls_apps": {
+        "audio": [
+          ""
+        ],
+        "video": [
+          {
+            "id": "",
+            "name": "",
+            "image": ""
+          }
+        ]
+      },
       "allow_calls_interactive_screen_sharing": false,
       "display_real_names": false,
       "who_can_at_everyone": "",
@@ -332,6 +349,7 @@
       "who_can_post_general": "",
       "who_can_kick_channels": "",
       "who_can_kick_groups": "",
+      "workflow_builder_enabled": false,
       "retention_type": 12345,
       "retention_duration": 12345,
       "group_retention_type": 12345,
@@ -378,13 +396,25 @@
           ""
         ]
       },
-      "allow_shared_channel_perms_override": false,
       "who_can_manage_ext_shared_channels": {
         "type": [
           ""
         ]
       },
+      "box_app_installed": false,
+      "onedrive_app_installed": false,
       "onedrive_enabled_team": false,
+      "received_esc_route_to_channel_awareness_message": false,
+      "who_can_approve_ext_shared_channel_invites": {
+        "type": [
+          ""
+        ]
+      },
+      "who_can_create_ext_shared_channel_invites": {
+        "type": [
+          ""
+        ]
+      },
       "enterprise_default_channels": [
         ""
       ],
@@ -398,6 +428,7 @@
       "loud_channel_mentions_limit": 12345,
       "show_join_leave": false,
       "enterprise_mobile_device_check": false,
+      "gg_enabled": false,
       "disable_sidebar_connect_prompts": [
         ""
       ],
@@ -436,48 +467,13 @@
       ],
       "custom_status_default_emoji": "",
       "auth_mode": "",
-      "who_can_manage_integrations": {
-        "type": [
-          ""
-        ]
-      },
-      "app_whitelist_enabled": false,
-      "invites_limit": false,
-      "onedrive_app_installed": false,
-      "workflow_builder_enabled": false,
-      "box_app_installed": false,
-      "who_can_approve_ext_shared_channel_invites": {
-        "type": [
-          ""
-        ]
-      },
       "who_can_create_workflows": {
         "type": [
           ""
         ]
       },
-      "invite_requests_admin_apis": false,
-      "who_can_create_ext_shared_channel_invites": {
-        "type": [
-          ""
-        ]
-      },
-      "gg_enabled": false,
-      "external_shared_channel_requests_approval_channel": 12345,
       "workflows_webhook_trigger_enabled": false,
-      "calls_apps": {
-        "audio": [
-          ""
-        ],
-        "video": [
-          {
-            "id": "",
-            "name": "",
-            "image": ""
-          }
-        ]
-      },
-      "received_esc_route_to_channel_awareness_message": false
+      "invites_limit": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
@@ -564,8 +560,6 @@
       "creator": "U00000000",
       "is_archived": false,
       "name_normalized": "",
-      "is_read_only": false,
-      "is_thread_only": false,
       "is_mpim": false,
       "has_pins": false,
       "is_open": false,
@@ -634,8 +628,8 @@
         "updated_by": "U00000000",
         "prefs": {
           "channels": [
-            "C00000000",
-            ""
+            "",
+            "C00000000"
           ],
           "groups": [
             ""
@@ -674,10 +668,6 @@
           "Xf0DAGNXHT": {
             "value": "",
             "alt": ""
-          },
-          "XfPXP6GR3K": {
-            "value": "",
-            "alt": ""
           }
         },
         "status_text": "",
@@ -685,6 +675,7 @@
         "status_expiration": 12345,
         "avatar_hash": "",
         "image_original": "https://www.example.com/",
+        "is_custom_image": false,
         "email": "",
         "first_name": "",
         "last_name": "",
@@ -697,11 +688,9 @@
         "image_1024": "https://www.example.com/",
         "status_text_canonical": "",
         "team": "T00000000",
-        "is_custom_image": false,
-        "bot_id": "B00000000",
         "api_app_id": "",
+        "bot_id": "B00000000",
         "always_active": false,
-        "guest_channels": "",
         "guest_invited_by": "U00000000"
       },
       "is_admin": false,

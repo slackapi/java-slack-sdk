@@ -162,8 +162,8 @@ public class File {
     private String previewPlainText;
 
     private boolean hasMore;
+
     private boolean sentToSelf;
-    private String botId;
 
     private Integer lines;
     private Integer linesMore;
@@ -187,21 +187,6 @@ public class File {
     private List<String> channels;
     private List<String> groups;
     private List<String> ims;
-    private FileComment initialComment;
-    private Integer numStars;
-
-    @SerializedName("is_starred")
-    private boolean starred;
-
-    private List<String> pinnedTo;
-    private List<Reaction> reactions;
-    private Integer commentsCount;
-
-    private String channelActionsTs;
-    private Integer channelActionsCount;
-
-    private List<Attachment> attachments;
-    private List<LayoutBlock> blocks;
 
     private Shares shares;
 
@@ -252,5 +237,35 @@ public class File {
         private String pinnedBy; // U00000000
         private Integer pinnedTs;
     }
+
+
+    private String channelActionsTs;
+    private Integer channelActionsCount;
+
+    // ---------------------------------------
+    // file comments
+    // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
+
+    @Deprecated
+    private String botId;
+
+    @Deprecated
+    private FileComment initialComment;
+    @Deprecated
+    private Integer numStars;
+    @Deprecated
+    @SerializedName("is_starred")
+    private boolean starred;
+    @Deprecated
+    private List<String> pinnedTo;
+    @Deprecated
+    private List<Reaction> reactions;
+    @Deprecated
+    private Integer commentsCount;
+    @Deprecated
+    private List<Attachment> attachments;
+    @Deprecated
+    private List<LayoutBlock> blocks;
+    // ---------------------------------------
 
 }

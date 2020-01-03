@@ -17,10 +17,10 @@
     "is_mpim": false,
     "last_read": "0000000000.000000",
     "latest": {
-      "user": "U00000000",
       "type": "",
       "subtype": "",
       "ts": "0000000000.000000",
+      "user": "U00000000",
       "text": ""
     },
     "unread_count": 12345,

@@ -1,0 +1,98 @@
+{
+  "status": "ok",
+  "date_created": "2019-08-26T15:32:23-07:00",
+  "date_updated": "2019-08-26T15:32:23-07:00",
+  "id": 760,
+  "title": "Some customers cannot create channels that contain a dash or an underscore in the name",
+  "type": "incident",
+  "url": "https://status.slack.com/2019-08/37d6093783d8527d",
+  "services": [
+    "Messaging",
+    "Connections",
+    "Posts/Files",
+    "Notifications",
+    "Login/SSO"
+  ],
+  "notes": [
+    {
+      "date_created": "2019-08-29T22:06:31-07:00",
+      "body": "Issue Summary:\r\n\r\nOn August 28, 2019 at 10:01 a.m. PDT a change was released which unexpectedly prevented some customers from being able to create channels. Specifically, if the channel name included a hyphen or underscore.\r\n\r\nAn update was made to ensure channel names with such characters were validated correctly, and by August 29 at 12:33 p.m. PDT channel creation was functioning as expected once again."
+    },
+    {
+      "date_created": "2019-08-29T16:01:10-07:00",
+      "body": "We’re happy to report that you should now be able to create channels that contain a hyphen or underscore in the name without any trouble! We apologize for the disruption."
+    },
+    {
+      "date_created": "2019-08-29T12:21:12-07:00",
+      "body": "We are still looking into channel name issues with channel creation but we hope we are nearing a fix. Thanks for your patience!"
+    },
+    {
+      "date_created": "2019-08-29T11:46:36-07:00",
+      "body": "We\u0027re seeing report of users having intermittent trouble with creating channel names. We\u0027re investigating and will follow up when we know more."
+    },
+    {
+      "date_created": "2019-09-02T16:49:35-07:00",
+      "body": "Issue Summary: \r\n\r\nOn August 30, 2019, beginning at 3:04 p.m. PDT, we received reports that some Enterprise Grid customers were unable to connect to Slack. Upon investigation, we identified that a large spike in requests was causing the symptoms of degraded access and degraded search in Slack. To fix the issue, we rolled back recent updates causing the increased load. The issue was fully resolved at 4:29 p.m. PDT."
+    },
+    {
+      "date_created": "2019-08-30T16:32:16-07:00",
+      "body": "We\u0027ve got good news: we\u0027re in the clear and everyone should be able to connect again. We\u0027re sorry for any trouble this caused. Thanks for sticking with us."
+    },
+    {
+      "date_created": "2019-08-30T15:45:39-07:00",
+      "body": "We\u0027re seeing some positive signs and people should be able to connect again. However, if you\u0027re still having issues, please let us know at feedback@slack.com."
+    },
+    {
+      "date_created": "2019-08-30T15:30:40-07:00",
+      "body": "We’ve heard reports that some people are experiencing degraded service or have trouble connecting to Slack. We\u0027re sorry for any disruption this has caused to your day."
+    },
+    {
+      "date_created": "2019-08-30T15:24:21-07:00",
+      "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
+    },
+    {
+      "date_created": "2019-10-07T22:48:57-07:00",
+      "body": "Issue Summary:\r\n\r\nOn October 7, 2019 at 6:36 p.m. PDT, we identified a change that inadvertently impacted the posts feature. As a result, customers were unable to open or create new posts in Slack. After reverting these changes, full functionality was restored to posts and the issue was resolved at 9:56 p.m. PDT."
+    },
+    {
+      "date_created": "2019-10-07T21:56:30-07:00",
+      "body": "We’ve restored the functionality to posts and things are back to normal. Sorry for the trouble, and thank you for your patience with us."
+    },
+    {
+      "date_created": "2019-10-07T21:46:30-07:00",
+      "body": "We’ve started to see improvements when creating and opening posts, but we’re still monitoring this closely. We’ll let you know when this feature has been completely restored."
+    },
+    {
+      "date_created": "2019-10-07T21:10:35-07:00",
+      "body": "We’re still looking into the issue with posts — we’ll provide new information as soon as it’s available. Thanks for bearing with us."
+    },
+    {
+      "date_created": "2019-10-07T20:24:12-07:00",
+      "body": "Some people are having trouble creating and opening posts. We’re currently investigating and will share more information as soon as we have an update. We\u0027re sorry for the disruption."
+    },
+    {
+      "date_created": "2019-11-11T15:45:09-08:00",
+      "body": "We are aware of an issue with Brazilian time zone settings that are affecting notifications, reminders, time stamps and other elements in Slack. Our engineers are coordinating to solve the issue. Thank you for your patience as we investigate!"
+    },
+    {
+      "date_created": "2019-11-19T18:40:31-08:00",
+      "body": "Some of our Enterprise Grid customers are having trouble accessing Slack workspaces in our desktop apps. We\u0027re currently looking into the cause, and we\u0027ll keep you posted as soon as we have more information. For those affected, access to Slack is still available through a web browser. We\u0027re sorry for the disruption to your day."
+    },
+    {
+      "date_created": "2019-12-03T18:45:29-08:00",
+      "body": "We\u0027re looking into reports of issues with creating posts for some Enterprise Grid customers. Thanks for your patience as we look into this."
+    },
+    {
+      "date_created": "2019-12-09T16:49:34-08:00",
+      "body": "Some customers may be experiencing server errors or messages failing to send in the desktop app. We\u0027re very sorry for the trouble and we\u0027re working to get things back to normal."
+    },
+    {
+      "date_created": "2019-12-09T16:34:53-08:00",
+      "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
+    },
+    {
+      "date_created": "2019-12-09T21:47:58-08:00",
+      "body": "Some customers may be experiencing issues configuring SAML SSO. We are investigating and we\u0027re very sorry for the disruption."
+    }
+  ]
+}

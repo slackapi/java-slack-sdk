@@ -12,6 +12,9 @@ public class ChatPostEphemeralResponse implements SlackApiResponse {
     private String needed;
     private String provided;
 
-    private String channel;
     private String messageTs;
+
+    // As of Jan 2020, this field is no longer available
+    @Deprecated
+    private String channel;
 }

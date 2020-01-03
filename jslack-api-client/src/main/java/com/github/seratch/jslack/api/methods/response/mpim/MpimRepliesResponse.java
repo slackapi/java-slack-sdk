@@ -16,4 +16,5 @@ public class MpimRepliesResponse implements SlackApiResponse {
     private String provided;
 
     private List<Message> messages;
+    private boolean hasMore;
 }

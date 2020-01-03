@@ -21,27 +21,6 @@
       "display_as_bot": false,
       "username": "",
       "url_private": "https://www.example.com/",
-      "url_private_download": "https://www.example.com/",
-      "permalink": "https://www.example.com/",
-      "permalink_public": "https://www.example.com/",
-      "edit_link": "https://www.example.com/",
-      "preview": "",
-      "preview_highlight": "",
-      "lines": 12345,
-      "lines_more": 12345,
-      "preview_is_truncated": false,
-      "channels": [
-        "C00000000",
-        ""
-      ],
-      "groups": [
-        ""
-      ],
-      "ims": [
-        "",
-        "D00000000"
-      ],
-      "comments_count": 12345,
       "thumb_64": "https://www.example.com/",
       "thumb_80": "https://www.example.com/",
       "thumb_360": "https://www.example.com/",
@@ -66,139 +45,27 @@
       "image_exif_rotation": 12345,
       "original_w": 12345,
       "original_h": 12345,
-      "thumb_360_gif": "https://www.example.com/",
-      "deanimate_gif": "https://www.example.com/",
       "thumb_tiny": "",
-      "pinned_to": [
-        "C00000000"
+      "permalink": "https://www.example.com/",
+      "channels": [
+        "C00000000",
+        ""
       ],
-      "pinned_info": {
-        "C00000000": {
-          "pinned_by": "U00000000",
-          "pinned_ts": 12345
-        },
-        "C00000001": {
-          "pinned_by": "U00000000",
-          "pinned_ts": 12345
-        }
-      },
-      "subject": "",
-      "to": [
-        {
-          "address": "",
-          "name": "",
-          "original": ""
-        }
+      "groups": [
+        ""
       ],
-      "from": [
-        {
-          "address": "",
-          "name": "",
-          "original": ""
-        }
+      "ims": [
+        ""
       ],
-      "cc": [
-        {
-          "address": "",
-          "name": "",
-          "original": ""
-        }
-      ],
-      "attachments": [
-        {
-          "msg_subtype": "",
-          "fallback": "",
-          "callback_id": "",
-          "color": "",
-          "pretext": "",
-          "service_url": "",
-          "service_name": "",
-          "service_icon": "",
-          "author_name": "",
-          "author_link": "",
-          "author_icon": "",
-          "from_url": "",
-          "original_url": "",
-          "author_subname": "",
-          "channel_id": "",
-          "channel_name": "",
-          "id": 12345,
-          "bot_id": "",
-          "indent": false,
-          "is_msg_unfurl": false,
-          "is_reply_unfurl": false,
-          "is_thread_root_unfurl": false,
-          "is_app_unfurl": false,
-          "app_unfurl_url": "",
-          "title": "",
-          "title_link": "",
-          "text": "",
-          "fields": [
-            {
-              "title": "",
-              "value": "",
-              "short": false
-            }
-          ],
-          "image_url": "",
-          "image_width": 12345,
-          "image_height": 12345,
-          "image_bytes": 12345,
-          "thumb_url": "",
-          "thumb_width": 12345,
-          "thumb_height": 12345,
-          "video_html": "",
-          "video_html_width": 12345,
-          "video_html_height": 12345,
-          "footer": "",
-          "footer_icon": "",
-          "ts": "",
-          "mrkdwn_in": [
-            ""
-          ],
-          "actions": [
-            {
-              "id": "",
-              "name": "",
-              "text": "",
-              "style": "",
-              "type": "",
-              "value": "",
-              "confirm": {
-                "title": "",
-                "text": "",
-                "ok_text": "",
-                "dismiss_text": ""
-              },
-              "data_source": "",
-              "min_query_length": 12345,
-              "url": ""
-            }
-          ],
-          "filename": "",
-          "size": 12345,
-          "mimetype": "",
-          "url": "",
-          "metadata": {
-            "thumb_64": false,
-            "thumb_80": false,
-            "thumb_160": false,
-            "original_w": 12345,
-            "original_h": 12345,
-            "thumb_360_w": 12345,
-            "thumb_360_h": 12345,
-            "format": "",
-            "extension": "",
-            "rotation": 12345,
-            "thumb_tiny": ""
-          }
-        }
-      ],
-      "plain_text": "",
-      "preview_plain_text": "",
-      "has_more": false,
-      "sent_to_self": false,
-      "bot_id": "B00000000"
+      "comments_count": 12345,
+      "url_private_download": "https://www.example.com/",
+      "permalink_public": "https://www.example.com/",
+      "edit_link": "https://www.example.com/",
+      "preview": "",
+      "preview_highlight": "",
+      "lines": 12345,
+      "lines_more": 12345,
+      "preview_is_truncated": false
     }
   ],
   "paging": {

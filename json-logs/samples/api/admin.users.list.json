@@ -14,10 +14,7 @@
     }
   ],
   "response_metadata": {
-    "next_cursor": "",
-    "messages": [
-      ""
-    ]
+    "next_cursor": ""
   },
   "error": "",
   "needed": "",

@@ -18,6 +18,10 @@ public class FilesSharedPublicURLResponse implements SlackApiResponse {
     private String provided;
 
     private File file;
+
+    // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
+    @Deprecated
     private List<FileComment> comments;
+    @Deprecated
     private Paging paging;
 }

@@ -24,6 +24,10 @@ public class FilesInfoResponse implements SlackApiResponse {
     private String contentHighlightCss;
     @SerializedName("is_truncated")
     private boolean truncated;
+
+    // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
+    @Deprecated
     private List<FileComment> comments;
+    @Deprecated
     private Paging paging;
 }

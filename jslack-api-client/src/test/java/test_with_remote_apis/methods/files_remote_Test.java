@@ -3,7 +3,9 @@ package test_with_remote_apis.methods;
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.files.remote.*;
+import com.github.seratch.jslack.api.methods.response.search.SearchFilesResponse;
 import com.github.seratch.jslack.api.model.File;
+import com.github.seratch.jslack.api.model.MatchedItem;
 import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.shortcut.model.ChannelName;
 import config.Constants;
@@ -23,6 +25,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.junit.Assert.assertTrue;
 
 @Slf4j
 public class files_remote_Test {
@@ -202,25 +205,24 @@ public class files_remote_Test {
 
         }
 
-        // TODO: disable due to the instability
-//        boolean found = false;
-//        String query = externalId + ": Seamlessly start a voice call";
-//        long millis = 0;
-//        while (!found && millis < 20 * 1000) {
-//            Thread.sleep(500);
-//            millis += 500;
-//            SearchFilesResponse searchResults = slack.methods(userToken).searchFiles(r -> r.query(query));
-//            assertThat(searchResults.getError(), is(nullValue()));
-//            for (MatchedItem item : searchResults.getFiles().getMatches()) {
-//                if (item.getId().equals(file.getId())) {
-//                    found = true;
-//                    break;
-//                }
-//            }
-//        }
-//        assertTrue("The uploaded file not found", found);
-//
-//        log.info("Searchable file contents took {} milliseconds to get indexed", millis);
+        boolean found = false;
+        String query = externalId + ": Seamlessly start a voice call";
+        long millis = 0;
+        while (!found && millis < 20 * 1000) {
+            Thread.sleep(500);
+            millis += 500;
+            SearchFilesResponse searchResults = slack.methods(userToken).searchFiles(r -> r.query(query));
+            assertThat(searchResults.getError(), is(nullValue()));
+            for (MatchedItem item : searchResults.getFiles().getMatches()) {
+                if (item.getId().equals(file.getId())) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+        assertTrue("The uploaded file not found", found);
+
+        log.info("Searchable file contents took {} milliseconds to get indexed", millis);
     }
 
 }

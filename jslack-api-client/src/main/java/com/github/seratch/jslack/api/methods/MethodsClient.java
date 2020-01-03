@@ -25,7 +25,7 @@ import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.channels.*;
 import com.github.seratch.jslack.api.methods.request.chat.*;
-import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduleMessagesListRequest;
+import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.*;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
@@ -97,7 +97,7 @@ import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
 import com.github.seratch.jslack.api.methods.response.channels.*;
 import com.github.seratch.jslack.api.methods.response.chat.*;
-import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduleMessagesListResponse;
+import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.*;
 import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
@@ -576,9 +576,9 @@ public interface MethodsClient {
     // chat.scheduledMessages
     // ------------------------------
 
-    ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(ChatScheduleMessagesListRequest req) throws IOException, SlackApiException;
+    ChatScheduledMessagesListResponse chatScheduledMessagesList(ChatScheduledMessagesListRequest req) throws IOException, SlackApiException;
 
-    ChatScheduleMessagesListResponse chatScheduleMessagesListMessage(RequestConfigurator<ChatScheduleMessagesListRequest.ChatScheduleMessagesListRequestBuilder> req) throws IOException, SlackApiException;
+    ChatScheduledMessagesListResponse chatScheduledMessagesList(RequestConfigurator<ChatScheduledMessagesListRequest.ChatScheduledMessagesListRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // conversations

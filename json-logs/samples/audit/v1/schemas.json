@@ -37,8 +37,8 @@
         "name": "",
         "is_distributed": "",
         "is_directory_approved": "",
-        "scopes": "",
-        "is_workflow_app": ""
+        "is_workflow_app": "",
+        "scopes": ""
       },
       "message": {
         "team": "",
