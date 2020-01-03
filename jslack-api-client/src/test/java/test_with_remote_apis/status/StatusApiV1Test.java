@@ -4,7 +4,6 @@ import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.SlackConfig;
 import com.github.seratch.jslack.api.status.v1.LegacyStatusApiException;
 import com.github.seratch.jslack.api.status.v1.LegacyStatusClient;
-import com.github.seratch.jslack.api.status.v1.impl.LegacyStatusClientImpl;
 import com.github.seratch.jslack.api.status.v1.model.LegacyCurrentStatus;
 import com.github.seratch.jslack.api.status.v1.model.LegacySlackIssue;
 import config.SlackTestConfig;

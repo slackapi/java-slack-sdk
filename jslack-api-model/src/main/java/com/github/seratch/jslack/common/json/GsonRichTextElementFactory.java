@@ -1,6 +1,8 @@
 package com.github.seratch.jslack.common.json;
 
-import com.github.seratch.jslack.api.model.block.element.*;
+import com.github.seratch.jslack.api.model.block.element.RichTextElement;
+import com.github.seratch.jslack.api.model.block.element.RichTextSectionElement;
+import com.github.seratch.jslack.api.model.block.element.RichTextUnknownElement;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;

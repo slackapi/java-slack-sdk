@@ -6,7 +6,6 @@ import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.Data;
-import okhttp3.FormBody;
 import org.junit.Test;
 
 import java.io.IOException;

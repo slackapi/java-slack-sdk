@@ -4,8 +4,8 @@ import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommand
 import com.github.seratch.jslack.app_backend.util.RequestTokenVerifier;
 import org.junit.Test;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 @Deprecated
 public class RequestTokenVerifierTest {

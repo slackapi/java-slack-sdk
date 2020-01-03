@@ -1,10 +1,7 @@
 package com.github.seratch.jslack.api.model.event;
 
 import com.github.seratch.jslack.api.model.Attachment;
-import com.github.seratch.jslack.api.model.Message;
-import com.github.seratch.jslack.api.model.Reaction;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
-import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.api.model.block.element;
 
 import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
-import com.github.seratch.jslack.api.model.block.composition.OptionGroupObject;
 import com.github.seratch.jslack.api.model.block.composition.OptionObject;
 import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
 import lombok.*;

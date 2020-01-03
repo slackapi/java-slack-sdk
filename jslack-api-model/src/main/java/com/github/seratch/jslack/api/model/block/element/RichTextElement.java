@@ -27,7 +27,7 @@ package com.github.seratch.jslack.api.model.block.element;
  *   ]
  * }
  * </pre>
- *
+ * <p>
  * https://api.slack.com/changelog/2019-09-what-they-see-is-what-you-get-and-more-and-less
  */
 public interface RichTextElement {
