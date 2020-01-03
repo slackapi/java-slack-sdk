@@ -10,18 +10,29 @@ import java.lang.reflect.Type;
  * {@link com.github.seratch.jslack.api.model.Message chat message response}.
  */
 public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, JsonSerializer<LayoutBlock> {
+
+    private final boolean failOnUnknownProperties;
+
+    public GsonLayoutBlockFactory() {
+        this(false);
+    }
+
+    public GsonLayoutBlockFactory(boolean failOnUnknownProperties) {
+        this.failOnUnknownProperties = failOnUnknownProperties;
+    }
+
     @Override
     public LayoutBlock deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final JsonPrimitive prim = (JsonPrimitive) jsonObject.get("type");
-        final String className = prim.getAsString();
-        final Class<? extends LayoutBlock> clazz = getLayoutClassInstance(className);
+        final String typeName = prim.getAsString();
+        final Class<? extends LayoutBlock> clazz = getLayoutClassInstance(typeName);
         return context.deserialize(jsonObject, clazz);
     }
 
-    private Class<? extends LayoutBlock> getLayoutClassInstance(String className) {
-        switch (className) {
+    private Class<? extends LayoutBlock> getLayoutClassInstance(String typeName) {
+        switch (typeName) {
             case SectionBlock.TYPE:
                 return SectionBlock.class;
             case DividerBlock.TYPE:
@@ -39,7 +50,11 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
             case RichTextBlock.TYPE:
                 return RichTextBlock.class;
             default:
-                throw new JsonParseException("Unsupported layout block type: " + className);
+                if (failOnUnknownProperties) {
+                    throw new JsonParseException("Unsupported layout block type: " + typeName);
+                } else {
+                    return UnknownBlock.class;
+                }
         }
     }
 

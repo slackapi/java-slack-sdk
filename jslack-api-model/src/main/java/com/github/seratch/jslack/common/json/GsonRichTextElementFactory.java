@@ -12,13 +12,23 @@ public class GsonRichTextElementFactory implements
         JsonDeserializer<RichTextElement>,
         JsonSerializer<RichTextElement> {
 
+    private final boolean failOnUnknownProperties;
+
+    public GsonRichTextElementFactory() {
+        this(false);
+    }
+
+    public GsonRichTextElementFactory(boolean failOnUnknownProperties) {
+        this.failOnUnknownProperties = failOnUnknownProperties;
+    }
+
     @Override
     public RichTextElement deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final JsonPrimitive prim = (JsonPrimitive) jsonObject.get("type");
-        final String className = prim.getAsString();
-        final Class<? extends RichTextElement> clazz = detectElementClass(className);
+        final String typeName = prim.getAsString();
+        final Class<? extends RichTextElement> clazz = detectElementClassFromType(typeName);
         return context.deserialize(jsonObject, clazz);
     }
 
@@ -27,8 +37,16 @@ public class GsonRichTextElementFactory implements
         return context.serialize(src);
     }
 
+    // to be compatible with version 3.3.0 or older versions
+    private static final GsonRichTextElementFactory LEGACY_SINGLETON = new GsonRichTextElementFactory(true);
+
+    @Deprecated
     public static Class<? extends RichTextElement> detectElementClass(String className) {
-        switch (className) {
+        return LEGACY_SINGLETON.detectElementClassFromType(className);
+    }
+
+    private Class<? extends RichTextElement> detectElementClassFromType(String typeName) {
+        switch (typeName) {
             // --------------------------------
             // Elements can be a top-level element
             // --------------------------------
@@ -58,7 +76,11 @@ public class GsonRichTextElementFactory implements
             case RichTextSectionElement.Color.TYPE:
                 return RichTextSectionElement.Color.class;
             default:
-                throw new JsonParseException("Unknown RichTextSectionElement type: " + className);
+                if (failOnUnknownProperties) {
+                    throw new JsonParseException("Unknown RichTextSectionElement type: " + typeName);
+                } else {
+                    return RichTextUnknownElement.class;
+                }
         }
     }
 

@@ -25,4 +25,9 @@ public class SlackConfigTest {
         SlackConfig.DEFAULT.setLibraryMaintainerMode(false);
     }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void immutableDefaultConfig_setFailOnUnknownProperties() {
+        SlackConfig.DEFAULT.setFailOnUnknownProperties(false);
+    }
+
 }

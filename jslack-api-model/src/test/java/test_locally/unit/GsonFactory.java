@@ -14,14 +14,26 @@ public class GsonFactory {
     }
 
     public static Gson createSnakeCase() {
-        return new GsonBuilder()
+        return createSnakeCase(false, true);
+    }
+
+    public static Gson createSnakeCaseWithoutUnknownPropertyDetection(boolean failOnUnknownProperties) {
+        return createSnakeCase(failOnUnknownProperties, false);
+    }
+
+    public static Gson createSnakeCase(boolean failOnUnknownProperties, boolean unknownPropertyDetection) {
+        GsonBuilder builder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory())
-                .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory())
-                .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
-                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory())
-                .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
-                .registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory())
-                .create();
+                .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProperties))
+                .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProperties))
+                .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProperties))
+                .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProperties))
+                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProperties));
+
+        if (unknownPropertyDetection) {
+            return builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory()).create();
+        } else {
+            return builder.create();
+        }
     }
 }

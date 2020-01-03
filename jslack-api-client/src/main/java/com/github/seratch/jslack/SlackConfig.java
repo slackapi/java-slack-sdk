@@ -23,6 +23,11 @@ public class SlackConfig {
         }
 
         @Override
+        public void setFailOnUnknownProperties(boolean failOnUnknownProperties) {
+            throwException();
+        }
+
+        @Override
         public void setPrettyResponseLoggingEnabled(boolean prettyResponseLoggingEnabled) {
             throwException();
         }
@@ -79,6 +84,11 @@ public class SlackConfig {
      * Don't enable this flag in production. This flag enables some validation features for development.
      */
     private boolean libraryMaintainerMode = false;
+
+    /**
+     * If you would like to detect unknown properties by throwing exceptions, set this flag as true.
+     */
+    private boolean failOnUnknownProperties = false;
 
     /**
      * Slack Web API client verifies the existence of tokens before sending HTTP requests to Slack servers.
