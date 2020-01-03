@@ -24,7 +24,7 @@ import com.github.seratch.jslack.api.methods.request.auth.AuthTestRequest;
 import com.github.seratch.jslack.api.methods.request.bots.BotsInfoRequest;
 import com.github.seratch.jslack.api.methods.request.channels.*;
 import com.github.seratch.jslack.api.methods.request.chat.*;
-import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduleMessagesListRequest;
+import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.*;
 import com.github.seratch.jslack.api.methods.request.dialog.DialogOpenRequest;
 import com.github.seratch.jslack.api.methods.request.dnd.*;
@@ -552,7 +552,7 @@ public class RequestFormBuilder {
         return form;
     }
 
-    public static FormBody.Builder toForm(ChatScheduleMessagesListRequest req) {
+    public static FormBody.Builder toForm(ChatScheduledMessagesListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("cursor", req.getCursor(), form);

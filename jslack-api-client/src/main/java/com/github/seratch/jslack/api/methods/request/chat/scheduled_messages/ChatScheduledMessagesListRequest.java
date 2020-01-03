@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ChatScheduleMessagesListRequest implements SlackApiRequest {
+public class ChatScheduledMessagesListRequest implements SlackApiRequest {
 
     private String token;
 
