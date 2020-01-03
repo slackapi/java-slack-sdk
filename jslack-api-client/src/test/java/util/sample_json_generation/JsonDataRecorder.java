@@ -1,6 +1,7 @@
 package util.sample_json_generation;
 
 import com.github.seratch.jslack.SlackConfig;
+import com.github.seratch.jslack.api.model.Conversation;
 import com.github.seratch.jslack.api.scim.model.User;
 import com.github.seratch.jslack.api.status.v2.model.SlackIssue;
 import com.github.seratch.jslack.common.json.GsonFactory;
@@ -88,7 +89,7 @@ public class JsonDataRecorder {
 
         if (jsonElem.isJsonObject() && jsonObj != null) {
             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
-                scanToNormalizeStringValues(jsonObj, entry.getKey(), entry.getValue());
+                scanToNormalizeStringValues(path, jsonObj, entry.getKey(), entry.getValue());
             }
 
             if (path.startsWith("/scim")) {
@@ -121,7 +122,7 @@ public class JsonDataRecorder {
             }
         } else if (jsonElem.isJsonArray()) {
             JsonArray jsonArray = jsonElem.getAsJsonArray();
-            scanToNormalizeStringValues(null, null, jsonArray);
+            scanToNormalizeStringValues(path,null, null, jsonArray);
             existingJson = gson().toJson(jsonArray);
             Path filePath = new File(toMaskedFilePath(path)).toPath();
             Files.createDirectories(filePath.getParent());
@@ -207,7 +208,7 @@ public class JsonDataRecorder {
 
     private MergeJsonBuilder.ConflictStrategy CONFLICT_STRATEGY = MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ;
 
-    private void scanToNormalizeStringValues(JsonElement parent, String name, JsonElement element) {
+    private void scanToNormalizeStringValues(String path, JsonElement parent, String name, JsonElement element) {
         if (element.isJsonArray()) {
             JsonArray array = element.getAsJsonArray();
             if (name != null && name.equals("attachments")) {
@@ -234,6 +235,8 @@ public class JsonDataRecorder {
                     address.setOriginal("");
                     JsonElement elem = GsonFactory.createSnakeCase().toJsonTree(address);
                     array.add(elem);
+                } else if (path.equals("/api/users.conversations") && name.equals("channels")) {
+                    array.add(GsonFactory.createSnakeCase().toJsonTree(ObjectInitializer.initProperties(new Conversation())));
                 } else if (name.equals("active_incidents")) {
                     SlackIssue slackIssue = new SlackIssue();
                     slackIssue.setNotes(Arrays.asList(ObjectInitializer.initProperties(new SlackIssue.Note())));
@@ -246,7 +249,7 @@ public class JsonDataRecorder {
             } else {
                 JsonElement first = array.get(0);
                 if (first.isJsonPrimitive()) {
-                    array.set(0, normalize(null, first.getAsJsonPrimitive()));
+                    array.set(0, normalize(first.getAsJsonPrimitive()));
                     int size = array.size();
                     if (size > 1) {
                         for (int idx = size - 1; idx > 0; idx--) {
@@ -255,14 +258,14 @@ public class JsonDataRecorder {
                     }
                 } else {
                     for (JsonElement child : array) {
-                        scanToNormalizeStringValues(array, null, child);
+                        scanToNormalizeStringValues(path, array, null, child);
                     }
                     if (array.size() >= 2) {
                         for (int idx = 1; idx < array.size(); idx++) {
                             JsonElement elem = array.get(idx);
                             if (elem.isJsonArray()) {
                                 for (JsonElement child : elem.getAsJsonArray()) {
-                                    scanToNormalizeStringValues(elem, null, child);
+                                    scanToNormalizeStringValues(path, elem, null, child);
                                 }
                             } else {
                                 try {
@@ -304,19 +307,19 @@ public class JsonDataRecorder {
                 }
             }
             for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
-                scanToNormalizeStringValues(element, entry.getKey(), entry.getValue());
+                scanToNormalizeStringValues(path, element, entry.getKey(), entry.getValue());
             }
         } else if (element.isJsonNull()) {
             return;
         } else if (!parent.isJsonArray() && element.isJsonPrimitive()) {
             JsonPrimitive prim = element.getAsJsonPrimitive();
-            parent.getAsJsonObject().add(name, normalize(name, prim));
+            parent.getAsJsonObject().add(name, normalize(prim));
         }
     }
 
-    private JsonElement normalize(String name, JsonPrimitive original) {
+    private JsonElement normalize(JsonPrimitive original) {
         if (original.isString()) {
-            return new JsonPrimitive(normalizeString(name, original.getAsString()));
+            return new JsonPrimitive(normalizeString(original.getAsString()));
         } else if (original.isBoolean()) {
             return new JsonPrimitive(false);
         } else if (original.isNumber()) {
@@ -326,7 +329,7 @@ public class JsonDataRecorder {
         }
     }
 
-    private String normalizeString(String name, String value) {
+    private String normalizeString(String value) {
         if (value == null) {
             return null;
         }

@@ -1,12 +1,7 @@
 {
   "ok": false,
+  "channel": "C00000000",
   "error": "",
   "needed": "",
-  "provided": "",
-  "response_metadata": {
-    "messages": [
-      ""
-    ]
-  },
-  "channel": "C00000000"
+  "provided": ""
 }

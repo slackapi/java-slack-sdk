@@ -9,7 +9,6 @@
     "ts": "0000000000.000000",
     "username": "",
     "bot_id": "B00000000",
-    "permalink": "https://www.example.com/",
     "reactions": [
       {
         "name": "",
@@ -18,7 +17,8 @@
         ],
         "count": 12345
       }
-    ]
+    ],
+    "permalink": "https://www.example.com/"
   },
   "error": "",
   "needed": "",

@@ -9,9 +9,6 @@
     "ts": "0000000000.000000",
     "username": "",
     "bot_id": "B00000000",
-    "thread_ts": "0000000000.000000",
-    "user": "U00000000",
-    "team": "T00000000",
     "blocks": [
       {
         "type": "",
@@ -32,11 +29,6 @@
           "alt_text": ""
         },
         "elements": [
-          {
-            "type": "",
-            "text": "",
-            "emoji": false
-          },
           {
             "type": "",
             "action_id": "",
@@ -141,6 +133,7 @@
         ]
       }
     ],
+    "thread_ts": "0000000000.000000",
     "root": {
       "type": "",
       "subtype": "",
@@ -161,8 +154,7 @@
           "ts": "0000000000.000000"
         }
       ],
-      "subscribed": false,
-      "last_read": "0000000000.000000"
+      "subscribed": false
     },
     "icons": {
       "emoji": "",
@@ -170,11 +162,8 @@
     },
     "attachments": [
       {
-        "text": "",
-        "footer": "",
-        "id": 12345,
-        "fallback": "",
         "msg_subtype": "",
+        "fallback": "",
         "callback_id": "",
         "color": "",
         "pretext": "",
@@ -189,6 +178,7 @@
         "author_subname": "",
         "channel_id": "",
         "channel_name": "",
+        "id": 12345,
         "bot_id": "",
         "indent": false,
         "is_msg_unfurl": false,
@@ -198,6 +188,7 @@
         "app_unfurl_url": "",
         "title": "",
         "title_link": "",
+        "text": "",
         "fields": [
           {
             "title": "",
@@ -215,6 +206,7 @@
         "video_html": "",
         "video_html_width": 12345,
         "video_html_height": 12345,
+        "footer": "",
         "footer_icon": "",
         "ts": "",
         "mrkdwn_in": [
@@ -258,6 +250,8 @@
         }
       }
     ],
+    "user": "U00000000",
+    "team": "T00000000",
     "bot_profile": {
       "id": "B00000000",
       "deleted": false,

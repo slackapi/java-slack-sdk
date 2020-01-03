@@ -30,6 +30,7 @@
     "image_exif_rotation": 12345,
     "original_w": 12345,
     "original_h": 12345,
+    "thumb_tiny": "",
     "permalink": "https://www.example.com/",
     "permalink_public": "https://www.example.com/",
     "comments_count": 12345,
@@ -77,8 +78,7 @@
     "preview_highlight": "",
     "lines": 12345,
     "lines_more": 12345,
-    "preview_is_truncated": false,
-    "thumb_tiny": ""
+    "preview_is_truncated": false
   },
   "error": "",
   "needed": "",

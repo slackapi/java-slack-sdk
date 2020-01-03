@@ -1,15 +1,14 @@
 {
   "ok": false,
+  "error": "",
   "messages": [
     {
       "type": "",
       "subtype": "",
       "text": "",
-      "user": "U00000000",
-      "bot_id": "B00000000",
-      "bot_link": "",
       "ts": "0000000000.000000",
       "username": "",
+      "bot_id": "B00000000",
       "thread_ts": "0000000000.000000",
       "reply_count": 12345,
       "reply_users_count": 12345,
@@ -27,8 +26,6 @@
     }
   ],
   "has_more": false,
-  "channel_actions_count": 12345,
-  "error": "",
   "needed": "",
   "provided": ""
 }

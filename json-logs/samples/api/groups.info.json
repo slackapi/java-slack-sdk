@@ -8,16 +8,14 @@
     "creator": "U00000000",
     "is_archived": false,
     "name_normalized": "",
-    "is_read_only": false,
-    "is_thread_only": false,
     "is_mpim": false,
     "is_open": false,
     "last_read": "0000000000.000000",
     "latest": {
-      "user": "U00000000",
       "type": "",
       "subtype": "",
       "ts": "0000000000.000000",
+      "user": "U00000000",
       "text": ""
     },
     "unread_count": 12345,

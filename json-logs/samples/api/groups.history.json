@@ -2,10 +2,10 @@
   "ok": false,
   "messages": [
     {
-      "user": "U00000000",
       "type": "",
       "subtype": "",
       "ts": "0000000000.000000",
+      "user": "U00000000",
       "text": ""
     }
   ],

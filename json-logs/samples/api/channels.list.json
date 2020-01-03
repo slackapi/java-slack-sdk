@@ -17,9 +17,8 @@
       "is_private": false,
       "is_mpim": false,
       "members": [
-        "",
         "U00000000",
-        "W00000000"
+        ""
       ],
       "topic": {
         "value": "",
@@ -34,12 +33,7 @@
       "previous_names": [
         ""
       ],
-      "num_members": 12345,
-      "is_moved": 12345,
-      "enterprise_id": "E00000000",
-      "is_global_shared": false,
-      "is_org_default": false,
-      "is_org_mandatory": false
+      "num_members": 12345
     }
   ],
   "response_metadata": {

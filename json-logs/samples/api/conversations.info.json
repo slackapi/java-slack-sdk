@@ -13,11 +13,11 @@
     "name_normalized": "",
     "is_shared": false,
     "creator": "U00000000",
-    "is_read_only": false,
-    "is_thread_only": false,
-    "is_non_threadable": false,
     "is_ext_shared": false,
     "is_org_shared": false,
+    "shared_team_ids": [
+      "T00000000"
+    ],
     "pending_shared": [
       ""
     ],
@@ -25,14 +25,13 @@
       ""
     ],
     "is_pending_ext_shared": false,
-    "conversation_host_id": "T00000000",
     "is_member": false,
     "is_private": false,
     "is_mpim": false,
     "last_read": "0000000000.000000",
     "topic": {
       "value": "",
-      "creator": "U00000000",
+      "creator": "",
       "last_set": 12345
     },
     "purpose": {
@@ -43,22 +42,18 @@
     "previous_names": [
       ""
     ],
-    "shared_team_ids": [
-      "T00000000"
-    ],
     "locale": "",
+    "num_members": 12345,
+    "is_read_only": false,
+    "is_thread_only": false,
+    "is_non_threadable": false,
     "internal_team_ids": [
-      "T00000000"
+      ""
     ],
     "connected_team_ids": [
       "E00000000"
     ],
-    "num_members": 12345,
-    "is_moved": 12345,
-    "enterprise_id": "E00000000",
-    "is_global_shared": false,
-    "is_org_default": false,
-    "is_org_mandatory": false
+    "conversation_host_id": "T00000000"
   },
   "error": "",
   "needed": "",

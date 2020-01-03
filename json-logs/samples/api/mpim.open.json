@@ -8,11 +8,20 @@
     "creator": "U00000000",
     "is_archived": false,
     "name_normalized": "",
-    "is_read_only": false,
-    "is_thread_only": false,
     "is_mpim": false,
     "is_open": false,
     "last_read": "0000000000.000000",
+    "latest": {
+      "type": "",
+      "subtype": "",
+      "text": "",
+      "user": "U00000000",
+      "bot_id": "B00000000",
+      "bot_link": "",
+      "ts": "0000000000.000000",
+      "username": "",
+      "thread_ts": "0000000000.000000"
+    },
     "unread_count": 12345,
     "unread_count_display": 12345,
     "members": [
@@ -28,16 +37,7 @@
       "creator": "U00000000",
       "last_set": 12345
     },
-    "priority": 12345,
-    "latest": {
-      "type": "",
-      "subtype": "",
-      "text": "",
-      "user": "U00000000",
-      "bot_id": "B00000000",
-      "bot_link": "",
-      "ts": "0000000000.000000"
-    }
+    "priority": 12345
   },
   "error": "",
   "needed": "",

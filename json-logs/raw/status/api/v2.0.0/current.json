@@ -1,0 +1,120 @@
+{
+  "status": "ok",
+  "date_created": "2019-08-26T15:32:23-07:00",
+  "date_updated": "2019-08-26T15:32:23-07:00",
+  "active_incidents": [
+    {
+      "id": 783,
+      "date_created": "2019-11-11T15:45:09-08:00",
+      "date_updated": "2019-11-11T15:45:09-08:00",
+      "title": "We are investigating timestamp issues for customers in Brazil",
+      "type": "notice",
+      "status": "active",
+      "url": "https://status.slack.com/2019-11/268dad0bff822680",
+      "services": [
+        "Notifications"
+      ],
+      "notes": [
+        {
+          "date_created": "2019-11-11T15:45:09-08:00",
+          "body": "We are aware of an issue with Brazilian time zone settings that are affecting notifications, reminders, time stamps and other elements in Slack. Our engineers are coordinating to solve the issue. Thank you for your patience as we investigate!"
+        }
+      ]
+    },
+    {
+      "id": 786,
+      "date_created": "2019-11-19T18:40:31-08:00",
+      "date_updated": "2019-11-19T18:40:31-08:00",
+      "title": "Some Enterprise Grid customers are having trouble accessing Slack",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2019-11/9352c031c39663f8",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2019-11-19T18:40:31-08:00",
+          "body": "Some of our Enterprise Grid customers are having trouble accessing Slack workspaces in our desktop apps. We\u0027re currently looking into the cause, and we\u0027ll keep you posted as soon as we have more information. For those affected, access to Slack is still available through a web browser. We\u0027re sorry for the disruption to your day."
+        }
+      ]
+    },
+    {
+      "id": 789,
+      "date_created": "2019-12-03T18:45:29-08:00",
+      "date_updated": "2019-12-03T18:45:29-08:00",
+      "title": "Trouble Creating Posts for Enterprise Grid Customers",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2019-12/0cf550d63280e99f",
+      "services": [
+        "Posts/Files"
+      ],
+      "notes": [
+        {
+          "date_created": "2019-12-03T18:45:29-08:00",
+          "body": "We\u0027re looking into reports of issues with creating posts for some Enterprise Grid customers. Thanks for your patience as we look into this."
+        }
+      ]
+    },
+    {
+      "id": 791,
+      "date_created": "2019-12-09T16:34:53-08:00",
+      "date_updated": "2019-12-09T16:49:34-08:00",
+      "title": "Server errors and some messages failing to send",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2019-12/779e440f3e5f7339",
+      "services": [
+        "Connections",
+        "Messaging"
+      ],
+      "notes": [
+        {
+          "date_created": "2019-12-09T16:49:34-08:00",
+          "body": "Some customers may be experiencing server errors or messages failing to send in the desktop app. We\u0027re very sorry for the trouble and we\u0027re working to get things back to normal."
+        },
+        {
+          "date_created": "2019-12-09T16:34:53-08:00",
+          "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
+        }
+      ]
+    },
+    {
+      "id": 793,
+      "date_created": "2019-12-09T21:47:58-08:00",
+      "date_updated": "2019-12-09T21:47:58-08:00",
+      "title": "Issues configuring SAML SSO for some customers",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2019-12/49d2f338838c9596",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2019-12-09T21:47:58-08:00",
+          "body": "Some customers may be experiencing issues configuring SAML SSO. We are investigating and we\u0027re very sorry for the disruption."
+        }
+      ]
+    },
+    {
+      "id": 792,
+      "date_created": "2019-12-09T18:59:43-08:00",
+      "date_updated": "2019-12-09T18:59:43-08:00",
+      "title": "Issues accepting and approving shared channel invites",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2019-12/c5bfdf036d66d5c7",
+      "services": [
+        "Workspace/Org Administration"
+      ],
+      "notes": [
+        {
+          "date_created": "2019-12-09T18:59:43-08:00",
+          "body": "Some customers may be experiencing problems with accepting or approving shared channel invitations. We are investigating and will be back with an update as soon as we have news to share. We\u0027re very sorry for the trouble."
+        }
+      ]
+    }
+  ]
+}

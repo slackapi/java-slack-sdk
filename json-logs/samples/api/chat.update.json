@@ -4,13 +4,11 @@
   "ts": "0000000000.000000",
   "text": "",
   "message": {
-    "bot_id": "B00000000",
     "type": "",
-    "text": "",
-    "user": "U00000000",
-    "team": "T00000000",
     "subtype": "",
+    "text": "",
     "username": "",
+    "bot_id": "B00000000",
     "blocks": [
       {
         "type": "",
@@ -31,16 +29,6 @@
           "alt_text": ""
         },
         "elements": [
-          {
-            "type": "",
-            "action_id": "",
-            "text": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "value": ""
-          },
           {
             "type": "",
             "fallback": "",
@@ -130,6 +118,7 @@
         ]
       }
     ],
+    "user": "U00000000",
     "thread_ts": "0000000000.000000",
     "reply_count": 12345,
     "reply_users_count": 12345,
@@ -144,7 +133,7 @@
       }
     ],
     "subscribed": false,
-    "last_read": "0000000000.000000",
+    "team": "T00000000",
     "bot_profile": {
       "id": "B00000000",
       "deleted": false,

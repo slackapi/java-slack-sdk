@@ -62,6 +62,7 @@
         "image_exif_rotation": 12345,
         "original_w": 12345,
         "original_h": 12345,
+        "thumb_tiny": "",
         "permalink": "https://www.example.com/",
         "is_starred": false,
         "shares": {
@@ -104,8 +105,7 @@
         "external_id": "",
         "external_url": "https://www.example.com/",
         "has_rich_preview": false,
-        "preview": "",
-        "thumb_tiny": ""
+        "preview": ""
       }
     ]
   },
