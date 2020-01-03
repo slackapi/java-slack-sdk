@@ -124,7 +124,7 @@ public class JsonDataRecorder {
             }
         } else if (jsonElem.isJsonArray()) {
             JsonArray jsonArray = jsonElem.getAsJsonArray();
-            scanToNormalizeValues(path,null, null, jsonArray);
+            scanToNormalizeValues(path, null, null, jsonArray);
             existingJson = gson().toJson(jsonArray);
             Path filePath = new File(toMaskedFilePath(path)).toPath();
             Files.createDirectories(filePath.getParent());
