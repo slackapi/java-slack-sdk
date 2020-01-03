@@ -7,7 +7,8 @@ import java.util.List;
 
 public class Dialogs {
 
-    private Dialogs() {}
+    private Dialogs() {
+    }
 
     public static List<DialogElement> asElements(DialogElement... elements) {
         return Arrays.asList(elements);

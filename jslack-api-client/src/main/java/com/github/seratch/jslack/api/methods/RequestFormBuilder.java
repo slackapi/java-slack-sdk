@@ -5,7 +5,9 @@ import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequest
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
 import com.github.seratch.jslack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.request.admin.teams.*;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.settings.*;
 import com.github.seratch.jslack.api.methods.request.admin.users.*;

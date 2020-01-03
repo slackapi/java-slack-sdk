@@ -8,7 +8,8 @@ import java.util.List;
 
 public class Blocks {
 
-    private Blocks() {}
+    private Blocks() {
+    }
 
     public static List<LayoutBlock> asBlocks(LayoutBlock... blocks) {
         return Arrays.asList(blocks);

@@ -2,8 +2,6 @@ package test_with_remote_apis.status;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.api.status.v1.LegacyStatusApiException;
-import com.github.seratch.jslack.api.status.v1.LegacyStatusClient;
 import com.github.seratch.jslack.api.status.v2.StatusApiException;
 import com.github.seratch.jslack.api.status.v2.StatusClient;
 import com.github.seratch.jslack.api.status.v2.model.CurrentStatus;

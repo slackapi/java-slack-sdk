@@ -1,6 +1,5 @@
 package test_locally.sample_json_generation;
 
-import com.github.seratch.jslack.api.model.Reaction;
 import com.github.seratch.jslack.api.model.event.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

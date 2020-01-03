@@ -1,7 +1,6 @@
 package com.github.seratch.jslack.api.scim;
 
 import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.api.methods.SlackApiErrorResponse;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

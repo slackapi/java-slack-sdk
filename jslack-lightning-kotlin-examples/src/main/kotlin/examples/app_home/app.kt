@@ -20,7 +20,7 @@ fun main() {
     val app = App(config)
 
     if (addEventHandler) {
-        val handler: AppHomeOpenedHandler = object: AppHomeOpenedHandler() {
+        val handler: AppHomeOpenedHandler = object : AppHomeOpenedHandler() {
             override fun handle(payload: AppHomeOpenedPayload?) {
                 logger.info("AppHomeOpenedHandler - $payload")
             }
@@ -29,10 +29,11 @@ fun main() {
     }
 
     app.event(AppHomeOpenedEvent::class.java) { e, ctx ->
-        val res = ctx.client().viewsPublish { it.token(ctx.botToken)
-                .userId(e.event.user)
-                .viewAsString(view())
-                .hash(e.event.view?.hash)
+        val res = ctx.client().viewsPublish {
+            it.token(ctx.botToken)
+                    .userId(e.event.user)
+                    .viewAsString(view())
+                    .hash(e.event.view?.hash)
         }
         logger.info("event - $e / res - $res")
         ctx.ack()

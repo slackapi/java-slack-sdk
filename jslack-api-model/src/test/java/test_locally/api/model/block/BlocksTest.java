@@ -14,7 +14,8 @@ import static com.github.seratch.jslack.api.model.block.Blocks.*;
 import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.asSectionFields;
 import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.plainText;
 import static com.github.seratch.jslack.api.model.block.element.BlockElements.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BlocksTest {

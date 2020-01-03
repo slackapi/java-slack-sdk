@@ -32,8 +32,8 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
 @Slf4j
 public class rtm_Test {
@@ -157,7 +157,7 @@ public class rtm_Test {
         } finally {
             channelGenerator.archiveChannel(channel);
         }
-   }
+    }
 
     @Ignore
     @Test

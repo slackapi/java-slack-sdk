@@ -7,7 +7,8 @@ import java.util.List;
 
 public class BlockCompositions {
 
-    private BlockCompositions() {}
+    private BlockCompositions() {
+    }
 
     public static List<TextObject> asSectionFields(TextObject... elements) {
         return Arrays.asList(elements);

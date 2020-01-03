@@ -4,7 +4,8 @@ import com.github.seratch.jslack.api.model.ModelConfigurator;
 
 public class Views {
 
-    private Views() {}
+    private Views() {
+    }
 
     public static View view(ModelConfigurator<View.ViewBuilder> configurator) {
         return configurator.configure(View.builder()).build();

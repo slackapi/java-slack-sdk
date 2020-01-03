@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Attachments {
 
-    private Attachments() {}
+    private Attachments() {
+    }
 
     public static List<Attachment> asAttachments(Attachment... attachments) {
         return Arrays.asList(attachments);

@@ -7,7 +7,9 @@ import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequest
 import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
 import com.github.seratch.jslack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.request.admin.teams.*;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
+import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
 import com.github.seratch.jslack.api.methods.request.admin.teams.settings.*;
 import com.github.seratch.jslack.api.methods.request.admin.users.*;
@@ -77,7 +79,9 @@ import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsReques
 import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
 import com.github.seratch.jslack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
 import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.response.admin.teams.*;
+import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
+import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.teams.settings.*;
 import com.github.seratch.jslack.api.methods.response.admin.users.*;
@@ -2036,7 +2040,7 @@ public class MethodsClientImpl implements MethodsClient {
     public Response runPostMultipart(MultipartBody.Builder form, String endpoint, String token) throws IOException {
         return slackHttpClient.postMultipart(endpointUrlPrefix + endpoint, token, form.build());
     }
-    
+
     // ----------------------------------------------
     //  Methods to send requests and parse responses
     // ----------------------------------------------
