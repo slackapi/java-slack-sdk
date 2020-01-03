@@ -42,7 +42,11 @@
       "previous_names": [
         ""
       ],
-      "num_members": 12345
+      "num_members": 12345,
+      "is_moved": 12345,
+      "internal_team_ids": [
+        "T00000000"
+      ]
     }
   ],
   "response_metadata": {

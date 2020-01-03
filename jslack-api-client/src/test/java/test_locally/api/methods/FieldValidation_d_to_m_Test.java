@@ -131,7 +131,11 @@ public class FieldValidation_d_to_m_Test {
         }
         {
             FilesSharedPublicURLResponse obj = parse("files.sharedPublicURL", FilesSharedPublicURLResponse.class);
-            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning",
+                    "getComments",
+                    "getPaging"
+            );
             verifyFile(obj.getFile());
         }
         {

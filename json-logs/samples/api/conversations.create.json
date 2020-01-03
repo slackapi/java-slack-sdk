@@ -45,6 +45,10 @@
     "priority": 12345,
     "previous_names": [
       ""
+    ],
+    "is_moved": 12345,
+    "internal_team_ids": [
+      "T00000000"
     ]
   },
   "needed": "",

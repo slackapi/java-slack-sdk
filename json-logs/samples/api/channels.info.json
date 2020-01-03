@@ -82,6 +82,16 @@
           "elements": [
             {
               "type": "",
+              "action_id": "",
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "value": ""
+            },
+            {
+              "type": "",
               "fallback": "",
               "text": {
                 "type": "",
@@ -168,6 +178,9 @@
             }
           ]
         }
+      ],
+      "x_files": [
+        "F00000000"
       ]
     },
     "unread_count": 12345,

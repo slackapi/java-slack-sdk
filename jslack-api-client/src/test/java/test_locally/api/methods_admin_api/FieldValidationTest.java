@@ -53,8 +53,10 @@ public class FieldValidationTest {
     public void adminConversations() throws Exception {
         {
             AdminConversationsSetTeamsResponse obj = parse("admin.conversations.setTeams", AdminConversationsSetTeamsResponse.class);
-            verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata());
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning",
+                    "getResponseMetadata"
+            );
         }
     }
 

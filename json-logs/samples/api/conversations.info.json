@@ -48,12 +48,17 @@
     "is_thread_only": false,
     "is_non_threadable": false,
     "internal_team_ids": [
-      ""
+      "T00000000"
     ],
     "connected_team_ids": [
       "E00000000"
     ],
-    "conversation_host_id": "T00000000"
+    "conversation_host_id": "T00000000",
+    "is_moved": 12345,
+    "enterprise_id": "E00000000",
+    "is_global_shared": false,
+    "is_org_default": false,
+    "is_org_mandatory": false
   },
   "error": "",
   "needed": "",

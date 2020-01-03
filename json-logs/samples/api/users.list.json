@@ -40,7 +40,8 @@
         "api_app_id": "",
         "bot_id": "B00000000",
         "always_active": false,
-        "guest_invited_by": "U00000000"
+        "guest_invited_by": "U00000000",
+        "guest_expiration_ts": 12345
       },
       "is_admin": false,
       "is_owner": false,
@@ -52,7 +53,19 @@
       "updated": 12345,
       "has_2fa": false,
       "is_workflow_bot": false,
-      "locale": ""
+      "locale": "",
+      "enterprise_user": {
+        "id": "U00000000",
+        "enterprise_id": "E00000000",
+        "enterprise_name": "",
+        "is_admin": false,
+        "is_owner": false,
+        "teams": [
+          "",
+          "T00000000"
+        ]
+      },
+      "two_factor_type": ""
     }
   ],
   "cache_ts": 12345,

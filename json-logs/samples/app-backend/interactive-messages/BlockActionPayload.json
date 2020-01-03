@@ -601,26 +601,11 @@
       "preview_plain_text": "",
       "has_more": false,
       "sent_to_self": false,
-      "bot_id": "",
       "lines": 123,
       "lines_more": 123,
       "is_public": false,
       "public_url_shared": false,
       "display_as_bot": false,
-      "initial_comment": {
-        "id": "",
-        "created": 123,
-        "timestamp": 123,
-        "user": "",
-        "comment": "",
-        "channel": "",
-        "is_intro": false
-      },
-      "num_stars": 123,
-      "is_starred": false,
-      "comments_count": 123,
-      "channel_actions_ts": "",
-      "channel_actions_count": 123,
       "shares": {
         "public": {
           "C03E94MKU": [
@@ -682,7 +667,22 @@
             }
           ]
         }
-      }
+      },
+      "channel_actions_ts": "",
+      "channel_actions_count": 123,
+      "bot_id": "",
+      "initial_comment": {
+        "id": "",
+        "created": 123,
+        "timestamp": 123,
+        "user": "",
+        "comment": "",
+        "channel": "",
+        "is_intro": false
+      },
+      "num_stars": 123,
+      "is_starred": false,
+      "comments_count": 123
     },
     "files": [
       {
@@ -766,26 +766,11 @@
         "preview_plain_text": "",
         "has_more": false,
         "sent_to_self": false,
-        "bot_id": "",
         "lines": 123,
         "lines_more": 123,
         "is_public": false,
         "public_url_shared": false,
         "display_as_bot": false,
-        "initial_comment": {
-          "id": "",
-          "created": 123,
-          "timestamp": 123,
-          "user": "",
-          "comment": "",
-          "channel": "",
-          "is_intro": false
-        },
-        "num_stars": 123,
-        "is_starred": false,
-        "comments_count": 123,
-        "channel_actions_ts": "",
-        "channel_actions_count": 123,
         "shares": {
           "public": {
             "C03E94MKU": [
@@ -847,7 +832,22 @@
               }
             ]
           }
-        }
+        },
+        "channel_actions_ts": "",
+        "channel_actions_count": 123,
+        "bot_id": "",
+        "initial_comment": {
+          "id": "",
+          "created": 123,
+          "timestamp": 123,
+          "user": "",
+          "comment": "",
+          "channel": "",
+          "is_intro": false
+        },
+        "num_stars": 123,
+        "is_starred": false,
+        "comments_count": 123
       }
     ],
     "upload": false,
