@@ -2,6 +2,7 @@ package test_with_remote_apis.methods;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
+import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.mpim.*;
 import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
 import com.github.seratch.jslack.api.model.User;
@@ -63,6 +64,19 @@ public class mpim_Test {
         MpimHistoryResponse historyResponse = slack.methods().mpimHistory(r -> r.token(token).channel(channelId).count(10));
         assertThat(historyResponse.getError(), is(nullValue()));
         assertThat(historyResponse.isOk(), is(true));
+
+        ChatPostMessageResponse parentMessage = slack.methods(token).chatPostMessage(r ->
+                r.channel(channelId).text("Hi there"));
+        assertThat(parentMessage.getError(), is(nullValue()));
+
+        ChatPostMessageResponse threadMessage = slack.methods(token).chatPostMessage(r ->
+                r.channel(channelId).threadTs(parentMessage.getTs()).text("What's up?"));
+        assertThat(threadMessage.getError(), is(nullValue()));
+
+        MpimRepliesResponse repliesResponse = slack.methods(token).mpimReplies(r ->
+                r.channel(channelId).threadTs(parentMessage.getTs()));
+        assertThat(repliesResponse.getError(), is(nullValue()));
+        assertThat(repliesResponse.isOk(), is(true));
 
         MpimCloseResponse closeResponse = slack.methods().mpimClose(r -> r.token(token).channel(channelId));
         assertThat(closeResponse.getError(), is(nullValue()));

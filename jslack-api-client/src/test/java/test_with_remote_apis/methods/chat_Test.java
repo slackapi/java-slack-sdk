@@ -4,11 +4,11 @@ import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.channels.*;
 import com.github.seratch.jslack.api.methods.request.chat.*;
-import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduleMessagesListRequest;
+import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.github.seratch.jslack.api.methods.request.conversations.ConversationsHistoryRequest;
 import com.github.seratch.jslack.api.methods.response.channels.*;
 import com.github.seratch.jslack.api.methods.response.chat.*;
-import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduleMessagesListResponse;
+import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.ConversationsHistoryResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.ConversationsMembersResponse;
 import com.github.seratch.jslack.api.model.Attachment;
@@ -164,6 +164,28 @@ public class chat_Test {
                                 .build())));
         assertThat(firstMessageCreation.getError(), is("invalid_attachments"));
     }
+
+    @Test
+    public void channels_latest() throws Exception {
+        loadRandomChannelId();
+
+        ChannelsHistoryResponse history = slack.methods().channelsHistory(req -> req
+                .token(token)
+                .channel(randomChannelId)
+                .count(20));
+        assertThat(history.isOk(), is(true));
+        assertThat(history.getLatest(), is(nullValue()));
+
+        ChannelsHistoryResponse latestHistory = slack.methods().channelsHistory(req -> req
+                .token(token)
+                .channel(randomChannelId)
+                .latest(history.getMessages().get(0).getTs())
+                .inclusive(true)
+                .count(1));
+        assertThat(latestHistory.isOk(), is(true));
+        assertThat(latestHistory.getLatest(), is(notNullValue()));
+    }
+    // threadInfo
 
     @Test
     public void channels_threading() throws IOException, SlackApiException {
@@ -487,8 +509,8 @@ public class chat_Test {
 
             // scheduled messages
             {
-                ChatScheduleMessagesListResponse listResponse = slack.methods().chatScheduleMessagesListMessage(
-                        ChatScheduleMessagesListRequest.builder()
+                ChatScheduledMessagesListResponse listResponse = slack.methods().chatScheduledMessagesList(
+                        ChatScheduledMessagesListRequest.builder()
                                 .token(token)
                                 .limit(10)
                                 .channel(channel.getId())
@@ -614,9 +636,9 @@ public class chat_Test {
     }
 
     private void assertNumOfScheduledMessages(String token, Channel channel, int i) throws IOException, SlackApiException {
-        ChatScheduleMessagesListResponse listResponse;
-        listResponse = slack.methods().chatScheduleMessagesListMessage(
-                ChatScheduleMessagesListRequest.builder()
+        ChatScheduledMessagesListResponse listResponse;
+        listResponse = slack.methods().chatScheduledMessagesList(
+                ChatScheduledMessagesListRequest.builder()
                         .token(token)
                         .limit(10)
                         .channel(channel.getId())
