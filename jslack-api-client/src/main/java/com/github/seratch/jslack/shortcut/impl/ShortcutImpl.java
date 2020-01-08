@@ -2,18 +2,18 @@ package com.github.seratch.jslack.shortcut.impl;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsHistoryRequest;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsHistoryRequest;
+import com.github.seratch.jslack.api.methods.request.conversations.ConversationsListRequest;
 import com.github.seratch.jslack.api.methods.request.reactions.ReactionsAddRequest;
 import com.github.seratch.jslack.api.methods.request.search.SearchAllRequest;
-import com.github.seratch.jslack.api.methods.response.channels.ChannelsHistoryResponse;
-import com.github.seratch.jslack.api.methods.response.channels.ChannelsListResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsHistoryResponse;
+import com.github.seratch.jslack.api.methods.response.conversations.ConversationsListResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
 import com.github.seratch.jslack.api.model.Attachment;
-import com.github.seratch.jslack.api.model.Channel;
+import com.github.seratch.jslack.api.model.Conversation;
 import com.github.seratch.jslack.api.model.Message;
 import com.github.seratch.jslack.api.model.ResponseMetadata;
 import com.github.seratch.jslack.api.model.block.LayoutBlock;
@@ -39,7 +39,7 @@ public class ShortcutImpl implements Shortcut {
         return slack;
     }
 
-    private List<Channel> channels = new ArrayList<>();
+    private List<Conversation> channels = new ArrayList<>();
 
     public ShortcutImpl(Slack slack) {
         this.apiToken = Optional.empty();
@@ -80,10 +80,10 @@ public class ShortcutImpl implements Shortcut {
         Optional<ChannelId> maybeChannelId = findChannelIdByName(name);
         if (maybeChannelId.isPresent()) {
             ChannelId channelId = maybeChannelId.get();
-            ChannelsHistoryResponse response = slack.methods().channelsHistory(ChannelsHistoryRequest.builder()
+            ConversationsHistoryResponse response = slack.methods().conversationsHistory(ConversationsHistoryRequest.builder()
                     .token(apiToken.get().getValue())
                     .channel(channelId.getValue())
-                    .count(limit)
+                    .limit(limit)
                     .build());
             if (response.isOk()) {
                 response.getMessages().forEach(message -> {
@@ -201,8 +201,8 @@ public class ShortcutImpl implements Shortcut {
             if (channels.isEmpty()) {
                 String cursor = null;
                 do {
-                    ChannelsListResponse response = slack.methods()
-                            .channelsList(ChannelsListRequest.builder()
+                    ConversationsListResponse response = slack.methods()
+                            .conversationsList(ConversationsListRequest.builder()
                                     .token(apiToken.get().getValue())
                                     .cursor(cursor)
                                     .build());
