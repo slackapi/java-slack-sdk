@@ -156,7 +156,8 @@
         "image_72": "https://www.example.com/"
       },
       "team_id": "T00000000"
-    }
+    },
+    "last_read": "0000000000.000000"
   },
   "error": "",
   "needed": "",

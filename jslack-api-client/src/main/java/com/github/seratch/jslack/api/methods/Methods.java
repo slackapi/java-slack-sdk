@@ -134,20 +134,35 @@ public class Methods {
     // channels
     // ------------------------------
 
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_ARCHIVE = "channels.archive";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_CREATE = "channels.create";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_HISTORY = "channels.history";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_INFO = "channels.info";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_INVITE = "channels.invite";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_JOIN = "channels.join";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_KICK = "channels.kick";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_LEAVE = "channels.leave";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_LIST = "channels.list";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_MARK = "channels.mark";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_RENAME = "channels.rename";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_REPLIES = "channels.replies";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_SET_PURPOSE = "channels.setPurpose";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_SET_TOPIC = "channels.setTopic";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String CHANNELS_UNARCHIVE = "channels.unarchive";
 
     // ------------------------------
@@ -252,34 +267,56 @@ public class Methods {
     // groups
     // ------------------------------
 
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_ARCHIVE = "groups.archive";
     @Deprecated // https://github.com/slackapi/slack-api-specs/issues/12
     public static final String GROUPS_CLOSE = "groups.close";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_CREATE = "groups.create";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_CREATE_CHILD = "groups.createChild";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_HISTORY = "groups.history";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_INFO = "groups.info";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_INVITE = "groups.invite";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_KICK = "groups.kick";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_LEAVE = "groups.leave";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_LIST = "groups.list";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_MARK = "groups.mark";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_OPEN = "groups.open";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_RENAME = "groups.rename";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_SET_PURPOSE = "groups.setPurpose";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_SET_TOPIC = "groups.setTopic";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_UNARCHIVE = "groups.unarchive";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String GROUPS_REPLIES = "groups.replies";
 
     // ------------------------------
     // im
     // ------------------------------
 
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String IM_CLOSE = "im.close";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String IM_HISTORY = "im.history";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String IM_LIST = "im.list";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String IM_MARK = "im.mark";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String IM_OPEN = "im.open";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String IM_REPLIES = "im.replies";
 
     // ------------------------------
@@ -292,11 +329,17 @@ public class Methods {
     // mpim
     // ------------------------------
 
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String MPIM_CLOSE = "mpim.close";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String MPIM_HISTORY = "mpim.history";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String MPIM_LIST = "mpim.list";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String MPIM_MARK = "mpim.mark";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String MPIM_OPEN = "mpim.open";
+    @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
     public static final String MPIM_REPLIES = "mpim.replies";
 
     // ------------------------------

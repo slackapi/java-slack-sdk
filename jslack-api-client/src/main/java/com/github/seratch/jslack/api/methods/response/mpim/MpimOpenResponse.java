@@ -4,6 +4,7 @@ import com.github.seratch.jslack.api.methods.SlackApiResponse;
 import com.github.seratch.jslack.api.model.Group;
 import lombok.Data;
 
+@Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
 @Data
 public class MpimOpenResponse implements SlackApiResponse {
 

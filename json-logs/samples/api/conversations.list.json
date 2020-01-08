@@ -46,7 +46,8 @@
       "is_moved": 12345,
       "internal_team_ids": [
         "T00000000"
-      ]
+      ],
+      "conversation_host_id": "T00000000"
     }
   ],
   "response_metadata": {
