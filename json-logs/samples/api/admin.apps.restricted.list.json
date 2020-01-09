@@ -1,0 +1,50 @@
+{
+  "ok": false,
+  "restricted_apps": [
+    {
+      "app": {
+        "id": "A00000000",
+        "name": "",
+        "description": "",
+        "help_url": "https://www.example.com/",
+        "privacy_policy_url": "https://www.example.com/",
+        "app_homepage_url": "",
+        "app_directory_url": "https://www.example.com/",
+        "is_app_directory_approved": false,
+        "is_internal": false,
+        "icons": {
+          "image_32": "https://www.example.com/",
+          "image_36": "https://www.example.com/",
+          "image_48": "https://www.example.com/",
+          "image_64": "https://www.example.com/",
+          "image_72": "https://www.example.com/",
+          "image_96": "https://www.example.com/",
+          "image_128": "https://www.example.com/",
+          "image_192": "https://www.example.com/",
+          "image_512": "https://www.example.com/",
+          "image_1024": "https://www.example.com/"
+        },
+        "additional_info": ""
+      },
+      "scopes": [
+        {
+          "name": "",
+          "description": "",
+          "is_sensitive": false,
+          "token_type": ""
+        }
+      ],
+      "date_updated": 12345,
+      "last_resolved_by": {
+        "actor_id": "A00000000",
+        "actor_type": ""
+      }
+    }
+  ],
+  "response_metadata": {
+    "next_cursor": ""
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

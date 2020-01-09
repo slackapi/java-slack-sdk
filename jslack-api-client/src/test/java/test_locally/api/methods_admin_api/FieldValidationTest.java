@@ -1,8 +1,6 @@
 package test_locally.api.methods_admin_api;
 
-import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
-import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
-import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
+import com.github.seratch.jslack.api.methods.response.admin.apps.*;
 import com.github.seratch.jslack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
 import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
@@ -38,6 +36,11 @@ public class FieldValidationTest {
             verifyIfAllGettersReturnNonNull(obj);
         }
         {
+            AdminAppsApprovedListResponse obj = parse(prefix + "approved.list", AdminAppsApprovedListResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNullRecursively(obj.getApprovedApps().get(0));
+        }
+        {
             AdminAppsRequestsListResponse obj = parse(prefix + "requests.list", AdminAppsRequestsListResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
             verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
@@ -46,6 +49,13 @@ public class FieldValidationTest {
         {
             AdminAppsRestrictResponse obj = parse(prefix + "restrict", AdminAppsRestrictResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
+            AdminAppsRestrictedListResponse obj = parse(prefix + "restricted.list", AdminAppsRestrictedListResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNullRecursively(
+                    obj.getRestrictedApps().get(0),
+                    "getImageOriginal");
         }
     }
 

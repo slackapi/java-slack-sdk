@@ -121,6 +121,7 @@ public class Actions {
         public static final String guest_expiration_cleared = "guest_expiration_cleared";
         public static final String guest_expired = "guest_expired";
         public static final String user_logout_compromised = "user_logout_compromised";
+        public static final String user_session_reset_by_admin = "user_session_reset_by_admin";
     }
 
     public static class File {

@@ -6,9 +6,7 @@ import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersAssig
 import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersInviteRequest;
 import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersRemoveRequest;
 import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
-import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
-import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
-import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
+import com.github.seratch.jslack.api.methods.response.admin.apps.*;
 import com.github.seratch.jslack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
 import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
@@ -110,7 +108,37 @@ public class AdminApiTest {
     }
 
     @Test
-    public void apps() throws Exception {
+    public void apps_approvedList() throws Exception {
+        if (orgAdminToken != null) {
+            AdminAppsApprovedListResponse errorResponse = slack.methods(orgAdminToken).adminAppsApprovedList(r -> r
+                            .limit(1000)
+                    /*.teamId(adminAppsTeamId)*/);
+            assertThat(errorResponse.getError(), is("team_not_found"));
+
+            AdminAppsApprovedListResponse response = slack.methods(orgAdminToken).adminAppsApprovedList(r -> r
+                    .limit(1000)
+                    .teamId(adminAppsTeamId));
+            assertThat(response.getError(), is(nullValue()));
+        }
+    }
+
+    @Test
+    public void apps_restrictedList() throws Exception {
+        if (orgAdminToken != null) {
+            AdminAppsRestrictedListResponse errorResponse = slack.methods(orgAdminToken).adminAppsRestrictedList(r -> r
+                            .limit(1000)
+                    /*.teamId(adminAppsTeamId)*/);
+            assertThat(errorResponse.getError(), is("team_not_found"));
+
+            AdminAppsRestrictedListResponse response = slack.methods(orgAdminToken).adminAppsRestrictedList(r -> r
+                    .limit(1000)
+                    .teamId(adminAppsTeamId));
+            assertThat(response.getError(), is(nullValue()));
+        }
+    }
+
+    @Test
+    public void appsRequests() throws Exception {
         if (orgAdminToken != null) {
             AdminAppsRequestsListResponse list = slack.methods(orgAdminToken).adminAppsRequestsList(r -> r
                     .limit(1000)

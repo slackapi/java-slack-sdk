@@ -1,9 +1,7 @@
 package com.github.seratch.jslack.api.methods;
 
 import com.github.seratch.jslack.api.RequestConfigurator;
-import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
-import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
-import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.apps.*;
 import com.github.seratch.jslack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
@@ -73,9 +71,7 @@ import com.github.seratch.jslack.api.methods.request.views.ViewsOpenRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPublishRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPushRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
-import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsApproveResponse;
-import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRequestsListResponse;
-import com.github.seratch.jslack.api.methods.response.admin.apps.AdminAppsRestrictResponse;
+import com.github.seratch.jslack.api.methods.response.admin.apps.*;
 import com.github.seratch.jslack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
 import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
@@ -219,6 +215,14 @@ public interface MethodsClient {
     AdminAppsRestrictResponse adminAppsRestrict(AdminAppsRestrictRequest req) throws IOException, SlackApiException;
 
     AdminAppsRestrictResponse adminAppsRestrict(RequestConfigurator<AdminAppsRestrictRequest.AdminAppsRestrictRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminAppsApprovedListResponse adminAppsApprovedList(AdminAppsApprovedListRequest req) throws IOException, SlackApiException;
+
+    AdminAppsApprovedListResponse adminAppsApprovedList(RequestConfigurator<AdminAppsApprovedListRequest.AdminAppsApprovedListRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminAppsRestrictedListResponse adminAppsRestrictedList(AdminAppsRestrictedListRequest req) throws IOException, SlackApiException;
+
+    AdminAppsRestrictedListResponse adminAppsRestrictedList(RequestConfigurator<AdminAppsRestrictedListRequest.AdminAppsRestrictedListRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // admin.apps.requests

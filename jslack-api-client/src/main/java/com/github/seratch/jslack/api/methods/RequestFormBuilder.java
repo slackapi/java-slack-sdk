@@ -1,8 +1,6 @@
 package com.github.seratch.jslack.api.methods;
 
-import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsApproveRequest;
-import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRequestsListRequest;
-import com.github.seratch.jslack.api.methods.request.admin.apps.AdminAppsRestrictRequest;
+import com.github.seratch.jslack.api.methods.request.admin.apps.*;
 import com.github.seratch.jslack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;
 import com.github.seratch.jslack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
@@ -106,10 +104,28 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminAppsApprovedListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminAppsRestrictRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("app_id", req.getAppId(), form);
         setIfNotNull("request_id", req.getRequestId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsRestrictedListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
