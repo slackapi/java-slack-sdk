@@ -1,6 +1,6 @@
 package test_with_remote_apis.methods_admin_api;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersAssignRequest;
 import com.github.seratch.jslack.api.methods.request.admin.users.AdminUsersInviteRequest;

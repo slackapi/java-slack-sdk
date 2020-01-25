@@ -1,7 +1,7 @@
 package test_locally;
 
-import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.api.RequestConfigurator;
+import com.slack.api.Slack;
+import com.slack.api.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;

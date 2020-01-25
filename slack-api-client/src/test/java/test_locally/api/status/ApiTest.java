@@ -1,8 +1,8 @@
 package test_locally.api.status;
 
-import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.api.status.v2.model.CurrentStatus;
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
+import com.slack.api.status.v2.model.CurrentStatus;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.junit.After;

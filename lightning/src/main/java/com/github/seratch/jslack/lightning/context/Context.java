@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning.context;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.MethodsClient;
 import com.github.seratch.jslack.lightning.response.Response;
 import com.github.seratch.jslack.lightning.util.JsonOps;

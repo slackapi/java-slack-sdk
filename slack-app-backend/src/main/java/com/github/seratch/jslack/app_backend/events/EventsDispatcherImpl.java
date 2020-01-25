@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.app_backend.events;
 
 import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;

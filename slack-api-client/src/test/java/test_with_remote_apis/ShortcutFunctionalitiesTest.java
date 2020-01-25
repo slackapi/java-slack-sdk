@@ -1,6 +1,6 @@
 package test_with_remote_apis;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
@@ -11,11 +11,11 @@ import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.MarkdownTextObject;
 import com.slack.api.model.block.element.ImageElement;
-import com.github.seratch.jslack.shortcut.Shortcut;
-import com.github.seratch.jslack.shortcut.model.ApiToken;
-import com.github.seratch.jslack.shortcut.model.ChannelId;
-import com.github.seratch.jslack.shortcut.model.ChannelName;
-import com.github.seratch.jslack.shortcut.model.ReactionName;
+import com.slack.api.methods.shortcut.Shortcut;
+import com.slack.api.methods.shortcut.model.ApiToken;
+import com.slack.api.methods.shortcut.model.ChannelId;
+import com.slack.api.methods.shortcut.model.ChannelName;
+import com.slack.api.methods.shortcut.model.ReactionName;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.lightning.request.builtin;
 
 import com.github.seratch.jslack.app_backend.views.payload.ViewSubmissionPayload;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.context.builtin.ViewSubmissionContext;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.RequestHeaders;

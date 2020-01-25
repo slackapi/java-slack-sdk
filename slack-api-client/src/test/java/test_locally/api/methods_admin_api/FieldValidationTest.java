@@ -9,7 +9,7 @@ import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsList
 import com.github.seratch.jslack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.github.seratch.jslack.api.methods.response.admin.teams.settings.*;
 import com.github.seratch.jslack.api.methods.response.admin.users.*;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import test_locally.api.util.FileReader;

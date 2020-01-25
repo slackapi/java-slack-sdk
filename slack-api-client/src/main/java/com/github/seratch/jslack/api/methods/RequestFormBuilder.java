@@ -70,7 +70,7 @@ import com.github.seratch.jslack.api.methods.request.views.ViewsPublishRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsPushRequest;
 import com.github.seratch.jslack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.model.ConversationType;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
 import okhttp3.MediaType;

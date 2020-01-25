@@ -2,7 +2,7 @@ package test_locally.app_backend.interactive_messages.payload;
 
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.PayloadTypeDetector;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;

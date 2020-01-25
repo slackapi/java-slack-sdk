@@ -1,8 +1,8 @@
 package test_locally.api.audit;
 
-import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.api.audit.response.LogsResponse;
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
+import com.slack.api.audit.response.LogsResponse;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.junit.After;

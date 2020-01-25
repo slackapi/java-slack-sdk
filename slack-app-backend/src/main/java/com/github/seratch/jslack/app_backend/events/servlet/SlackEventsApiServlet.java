@@ -3,7 +3,7 @@ package com.github.seratch.jslack.app_backend.events.servlet;
 import com.github.seratch.jslack.app_backend.SlackSignature;
 import com.github.seratch.jslack.app_backend.events.EventsDispatcher;
 import com.github.seratch.jslack.app_backend.events.EventsDispatcherFactory;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;

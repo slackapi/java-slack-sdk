@@ -16,7 +16,7 @@ import com.github.seratch.jslack.app_backend.util.SSLCheckRequestDetector;
 import com.github.seratch.jslack.app_backend.util.SlashCommandRequestDetector;
 import com.github.seratch.jslack.app_backend.views.payload.ViewClosedPayload;
 import com.github.seratch.jslack.app_backend.views.payload.ViewSubmissionPayload;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.RequestHeaders;

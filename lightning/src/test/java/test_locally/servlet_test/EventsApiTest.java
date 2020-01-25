@@ -7,7 +7,7 @@ import com.github.seratch.jslack.app_backend.events.payload.AppUninstalledPayloa
 import com.github.seratch.jslack.app_backend.events.payload.GoodbyePayload;
 import com.github.seratch.jslack.app_backend.events.payload.MessagePayload;
 import com.github.seratch.jslack.app_backend.events.payload.UrlVerificationPayload;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.servlet.SlackAppServlet;

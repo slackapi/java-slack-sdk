@@ -1,6 +1,6 @@
 package test_with_remote_apis.views;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
@@ -22,7 +22,7 @@ import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommand
 import com.github.seratch.jslack.app_backend.vendor.aws.lambda.request.PayloadExtractor;
 import com.github.seratch.jslack.app_backend.views.payload.ViewClosedPayload;
 import com.github.seratch.jslack.app_backend.views.payload.ViewSubmissionPayload;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Server;

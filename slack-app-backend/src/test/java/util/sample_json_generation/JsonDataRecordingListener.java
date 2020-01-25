@@ -1,6 +1,6 @@
 package util.sample_json_generation;
 
-import com.github.seratch.jslack.common.http.listener.HttpResponseListener;
+import com.slack.api.util.http.listener.HttpResponseListener;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

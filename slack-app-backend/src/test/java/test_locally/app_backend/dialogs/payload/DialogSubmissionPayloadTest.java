@@ -1,7 +1,7 @@
 package test_locally.app_backend.dialogs.payload;
 
 import com.github.seratch.jslack.app_backend.dialogs.payload.DialogSubmissionPayload;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.google.gson.Gson;
 import org.junit.Test;
 

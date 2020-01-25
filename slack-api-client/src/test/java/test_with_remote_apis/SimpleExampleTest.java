@@ -1,6 +1,6 @@
 package test_with_remote_apis;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.chat.ChatDeleteRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;

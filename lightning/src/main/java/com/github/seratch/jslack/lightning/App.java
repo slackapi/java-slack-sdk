@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.slack.api.model.event.Event;
 import com.github.seratch.jslack.app_backend.SlackSignature;
@@ -9,7 +9,7 @@ import com.github.seratch.jslack.app_backend.events.EventsDispatcher;
 import com.github.seratch.jslack.app_backend.events.EventsDispatcherFactory;
 import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.handler.*;
 import com.github.seratch.jslack.lightning.handler.builtin.*;
 import com.github.seratch.jslack.lightning.middleware.Middleware;

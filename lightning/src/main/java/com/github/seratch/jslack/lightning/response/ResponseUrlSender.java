@@ -1,12 +1,12 @@
 package com.github.seratch.jslack.lightning.response;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.slack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.app_backend.interactive_messages.ActionResponseSender;
 import com.github.seratch.jslack.app_backend.interactive_messages.response.ActionResponse;
 import com.github.seratch.jslack.app_backend.slash_commands.SlashCommandResponseSender;
 import com.github.seratch.jslack.app_backend.slash_commands.response.SlashCommandResponse;
-import com.github.seratch.jslack.common.http.SlackHttpClient;
+import com.slack.api.util.http.SlackHttpClient;
 import okhttp3.Response;
 
 import java.io.IOException;

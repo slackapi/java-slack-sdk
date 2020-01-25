@@ -1,7 +1,7 @@
 package util.sample_json_generation;
 
-import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.SlackConfig;
+import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;

@@ -1,13 +1,13 @@
 package util.sample_json_generation;
 
-import com.github.seratch.jslack.SlackConfig;
+import com.slack.api.SlackConfig;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.FileComment;
 import com.slack.api.model.Message;
 import com.slack.api.model.admin.AppRequest;
 import com.github.seratch.jslack.api.scim.model.User;
-import com.github.seratch.jslack.api.status.v2.model.SlackIssue;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.status.v2.model.SlackIssue;
+import com.slack.api.util.json.GsonFactory;
 import com.google.gson.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

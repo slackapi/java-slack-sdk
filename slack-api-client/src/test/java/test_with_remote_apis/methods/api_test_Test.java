@@ -1,12 +1,12 @@
 package test_with_remote_apis.methods;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.Methods;
 import com.github.seratch.jslack.api.methods.RequestFormBuilder;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.api.ApiTestRequest;
 import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
-import com.github.seratch.jslack.common.http.SlackHttpClient;
+import com.slack.api.util.http.SlackHttpClient;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;

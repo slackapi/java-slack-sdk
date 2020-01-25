@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.app_backend.util;
 
 import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;

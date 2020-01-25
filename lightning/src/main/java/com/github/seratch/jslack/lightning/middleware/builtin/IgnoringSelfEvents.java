@@ -5,7 +5,7 @@ import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.model.event.MemberJoinedChannelEvent;
 import com.slack.api.model.event.MemberLeftChannelEvent;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.middleware.Middleware;
 import com.github.seratch.jslack.lightning.middleware.MiddlewareChain;
 import com.github.seratch.jslack.lightning.request.Request;

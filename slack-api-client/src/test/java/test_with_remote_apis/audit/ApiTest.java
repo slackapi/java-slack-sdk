@@ -1,11 +1,11 @@
 package test_with_remote_apis.audit;
 
-import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.api.audit.Actions;
-import com.github.seratch.jslack.api.audit.AuditApiException;
-import com.github.seratch.jslack.api.audit.response.ActionsResponse;
-import com.github.seratch.jslack.api.audit.response.LogsResponse;
-import com.github.seratch.jslack.api.audit.response.SchemasResponse;
+import com.slack.api.Slack;
+import com.slack.api.audit.Actions;
+import com.slack.api.audit.AuditApiException;
+import com.slack.api.audit.response.ActionsResponse;
+import com.slack.api.audit.response.LogsResponse;
+import com.slack.api.audit.response.SchemasResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

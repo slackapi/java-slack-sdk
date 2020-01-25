@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.api.methods.impl;
 
-import com.github.seratch.jslack.api.RequestConfigurator;
+import com.slack.api.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.*;
 import com.github.seratch.jslack.api.methods.request.admin.apps.*;
 import com.github.seratch.jslack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
@@ -142,8 +142,8 @@ import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsPublishResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsPushResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
-import com.github.seratch.jslack.common.http.SlackHttpClient;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.http.SlackHttpClient;
+import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Credentials;
 import okhttp3.FormBody;

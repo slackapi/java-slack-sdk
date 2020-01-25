@@ -1,6 +1,6 @@
 package config;
 
-import com.github.seratch.jslack.SlackConfig;
+import com.slack.api.SlackConfig;
 import util.sample_json_generation.JsonDataRecordingListener;
 
 public class SlackTestConfig {

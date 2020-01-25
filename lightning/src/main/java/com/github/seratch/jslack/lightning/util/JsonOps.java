@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning.util;
 
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 

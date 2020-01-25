@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.oauth;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.oauth.OAuthAccessRequest;
 import com.github.seratch.jslack.api.methods.request.oauth.OAuthV2AccessRequest;

@@ -6,7 +6,7 @@ import com.github.seratch.jslack.app_backend.util.JsonPayloadExtractor;
 import com.github.seratch.jslack.app_backend.util.OutgoingWebhooksRequestDetector;
 import com.github.seratch.jslack.app_backend.util.RequestTokenVerifier;
 import com.github.seratch.jslack.app_backend.util.SlashCommandRequestDetector;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.middleware.Middleware;
 import com.github.seratch.jslack.lightning.middleware.MiddlewareChain;
 import com.github.seratch.jslack.lightning.request.Request;

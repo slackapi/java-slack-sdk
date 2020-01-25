@@ -1,11 +1,11 @@
 package test_with_remote_apis.status;
 
-import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.api.status.v2.StatusApiException;
-import com.github.seratch.jslack.api.status.v2.StatusClient;
-import com.github.seratch.jslack.api.status.v2.model.CurrentStatus;
-import com.github.seratch.jslack.api.status.v2.model.SlackIssue;
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
+import com.slack.api.status.v2.StatusApiException;
+import com.slack.api.status.v2.StatusClient;
+import com.slack.api.status.v2.model.CurrentStatus;
+import com.slack.api.status.v2.model.SlackIssue;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

@@ -7,7 +7,7 @@ import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.ImageElement;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import com.google.gson.JsonElement;
 
 import java.util.Arrays;

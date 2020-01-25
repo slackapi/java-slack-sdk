@@ -1,13 +1,13 @@
 package com.github.seratch.jslack.api.scim.impl;
 
-import com.github.seratch.jslack.api.RequestConfigurator;
+import com.slack.api.RequestConfigurator;
 import com.github.seratch.jslack.api.scim.SCIMApiException;
 import com.github.seratch.jslack.api.scim.SCIMApiRequest;
 import com.github.seratch.jslack.api.scim.SCIMClient;
 import com.github.seratch.jslack.api.scim.request.*;
 import com.github.seratch.jslack.api.scim.response.*;
-import com.github.seratch.jslack.common.http.SlackHttpClient;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.http.SlackHttpClient;
+import com.slack.api.util.json.GsonFactory;
 import okhttp3.Request;
 import okhttp3.Response;
 

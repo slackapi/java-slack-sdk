@@ -1,6 +1,6 @@
 package test_locally;
 
-import com.github.seratch.jslack.SlackConfig;
+import com.slack.api.SlackConfig;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

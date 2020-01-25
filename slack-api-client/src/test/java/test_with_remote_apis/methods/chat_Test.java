@@ -1,6 +1,6 @@
 package test_with_remote_apis.methods;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
 import com.github.seratch.jslack.api.methods.request.chat.ChatUnfurlRequest;
@@ -12,7 +12,7 @@ import com.slack.api.model.Attachment;
 import com.slack.api.model.Channel;
 import com.slack.api.model.User;
 import com.slack.api.model.block.DividerBlock;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

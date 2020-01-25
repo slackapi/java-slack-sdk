@@ -1,6 +1,6 @@
 package test_with_remote_apis.methods;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.methods.response.reminders.RemindersAddResponse;
 import com.github.seratch.jslack.api.methods.response.reminders.RemindersCompleteResponse;
 import com.github.seratch.jslack.api.methods.response.reminders.RemindersDeleteResponse;

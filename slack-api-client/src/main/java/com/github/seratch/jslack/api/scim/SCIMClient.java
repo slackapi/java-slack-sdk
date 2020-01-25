@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.api.scim;
 
-import com.github.seratch.jslack.api.RequestConfigurator;
+import com.slack.api.RequestConfigurator;
 import com.github.seratch.jslack.api.scim.request.*;
 import com.github.seratch.jslack.api.scim.response.*;
 

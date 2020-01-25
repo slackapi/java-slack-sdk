@@ -1,7 +1,7 @@
 package test_locally.app_backend.events.payload;
 
 import com.github.seratch.jslack.app_backend.events.payload.UrlVerificationPayload;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

@@ -1,7 +1,7 @@
 package test_locally.api.rtm.message;
 
-import com.github.seratch.jslack.api.rtm.message.Typing;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.rtm.message.Typing;
+import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

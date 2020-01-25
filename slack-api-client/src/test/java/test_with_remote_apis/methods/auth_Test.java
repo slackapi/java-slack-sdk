@@ -1,7 +1,7 @@
 package test_with_remote_apis.methods;
 
-import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.SlackConfig;
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
 import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;

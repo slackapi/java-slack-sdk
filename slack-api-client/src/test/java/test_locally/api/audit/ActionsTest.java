@@ -1,6 +1,6 @@
 package test_locally.api.audit;
 
-import com.github.seratch.jslack.api.audit.Actions;
+import com.slack.api.audit.Actions;
 import org.junit.Test;
 
 import java.lang.reflect.Field;

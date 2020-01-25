@@ -1,6 +1,6 @@
 package test_locally.api.rtm;
 
-import com.github.seratch.jslack.api.rtm.RTMEventsDispatcherImpl;
+import com.slack.api.rtm.RTMEventsDispatcherImpl;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

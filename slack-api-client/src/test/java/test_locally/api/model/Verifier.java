@@ -1,7 +1,7 @@
 package test_locally.api.model;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

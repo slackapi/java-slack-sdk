@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.dialogs.payload;
 
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import lombok.Data;
 
 public class PayloadTypeDetector {

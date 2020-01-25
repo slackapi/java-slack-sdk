@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.api.methods;
 
-import com.github.seratch.jslack.api.RequestConfigurator;
+import com.slack.api.RequestConfigurator;
 import com.github.seratch.jslack.api.methods.request.admin.apps.*;
 import com.github.seratch.jslack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.github.seratch.jslack.api.methods.request.admin.invite_requests.*;

@@ -1,6 +1,6 @@
 package test_with_remote_apis.scim;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import com.github.seratch.jslack.api.scim.SCIMApiException;
 import com.github.seratch.jslack.api.scim.model.Group;
 import com.github.seratch.jslack.api.scim.model.User;

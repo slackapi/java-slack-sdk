@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.app_backend.views.response;
 
 import com.slack.api.model.view.View;
-import com.github.seratch.jslack.common.json.GsonFactory;
+import com.slack.api.util.json.GsonFactory;
 import lombok.*;
 
 import java.util.Map;

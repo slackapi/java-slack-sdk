@@ -1,7 +1,7 @@
 package test_with_remote_apis.methods;
 
-import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.SlackConfig;
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.channels.ChannelsInviteRequest;
 import com.github.seratch.jslack.api.methods.response.channels.ChannelsInviteResponse;
@@ -9,11 +9,11 @@ import com.slack.api.model.Conversation;
 import com.slack.api.model.User;
 import com.slack.api.model.event.HelloEvent;
 import com.slack.api.model.event.UserTypingEvent;
-import com.github.seratch.jslack.api.rtm.*;
-import com.github.seratch.jslack.api.rtm.message.Message;
-import com.github.seratch.jslack.api.rtm.message.PresenceQuery;
-import com.github.seratch.jslack.api.rtm.message.PresenceSub;
-import com.github.seratch.jslack.api.rtm.message.Typing;
+import com.slack.api.rtm.*;
+import com.slack.api.rtm.message.Message;
+import com.slack.api.rtm.message.PresenceQuery;
+import com.slack.api.rtm.message.PresenceSub;
+import com.slack.api.rtm.message.Typing;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import config.Constants;

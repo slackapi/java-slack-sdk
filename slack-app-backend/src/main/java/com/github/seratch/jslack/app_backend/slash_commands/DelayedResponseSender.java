@@ -3,7 +3,7 @@ package com.github.seratch.jslack.app_backend.slash_commands;
 import com.slack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayload;
 import com.github.seratch.jslack.app_backend.slash_commands.response.SlashCommandResponse;
-import com.github.seratch.jslack.common.http.SlackHttpClient;
+import com.slack.api.util.http.SlackHttpClient;
 import okhttp3.Response;
 
 import java.io.IOException;

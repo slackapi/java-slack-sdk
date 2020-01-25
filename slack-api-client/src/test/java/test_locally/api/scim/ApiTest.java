@@ -1,7 +1,7 @@
 package test_locally.api.scim;
 
-import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.SlackConfig;
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
 import com.github.seratch.jslack.api.scim.response.UsersSearchResponse;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;

@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning;
 
-import com.github.seratch.jslack.Slack;
+import com.slack.api.Slack;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
