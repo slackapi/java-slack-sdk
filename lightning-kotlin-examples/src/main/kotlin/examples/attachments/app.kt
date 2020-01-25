@@ -2,9 +2,9 @@ package examples.attachments
 
 import com.slack.api.app_backend.interactive_components.response.ActionResponse
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse
-import com.github.seratch.jslack.lightning.App
-import com.github.seratch.jslack.lightning.jetty.SlackAppServer
-import com.github.seratch.jslack.lightning.util.JsonOps
+import com.slack.api.lightning.App
+import com.slack.api.lightning.jetty.SlackAppServer
+import com.slack.api.lightning.util.JsonOps
 import org.slf4j.LoggerFactory
 import util.ResourceLoader
 

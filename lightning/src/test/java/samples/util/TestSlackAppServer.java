@@ -1,11 +1,11 @@
 package samples.util;
 
-import com.github.seratch.jslack.lightning.App;
-import com.github.seratch.jslack.lightning.WebEndpoint;
-import com.github.seratch.jslack.lightning.handler.WebEndpointHandler;
-import com.github.seratch.jslack.lightning.servlet.SlackAppServlet;
-import com.github.seratch.jslack.lightning.servlet.SlackOAuthAppServlet;
-import com.github.seratch.jslack.lightning.servlet.WebEndpointServlet;
+import com.slack.api.lightning.App;
+import com.slack.api.lightning.WebEndpoint;
+import com.slack.api.lightning.handler.WebEndpointHandler;
+import com.slack.api.lightning.servlet.SlackAppServlet;
+import com.slack.api.lightning.servlet.SlackOAuthAppServlet;
+import com.slack.api.lightning.servlet.WebEndpointServlet;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;

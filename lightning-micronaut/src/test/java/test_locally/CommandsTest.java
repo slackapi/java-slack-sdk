@@ -6,7 +6,7 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.app_backend.SlackSignature;
-import com.github.seratch.jslack.lightning.AppConfig;
+import com.slack.api.lightning.AppConfig;
 import io.micronaut.context.annotation.Primary;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;

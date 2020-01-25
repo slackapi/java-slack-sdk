@@ -1,10 +1,10 @@
 package examples.oauth_flow_v2
 
-import com.github.seratch.jslack.lightning.App
-import com.github.seratch.jslack.lightning.jetty.SlackAppServer
-import com.github.seratch.jslack.lightning.response.Response
-import com.github.seratch.jslack.lightning.service.builtin.AmazonS3InstallationService
-import com.github.seratch.jslack.lightning.service.builtin.AmazonS3OAuthStateService
+import com.slack.api.lightning.App
+import com.slack.api.lightning.jetty.SlackAppServer
+import com.slack.api.lightning.response.Response
+import com.slack.api.lightning.service.builtin.AmazonS3InstallationService
+import com.slack.api.lightning.service.builtin.AmazonS3OAuthStateService
 import org.slf4j.LoggerFactory
 import util.ResourceLoader
 

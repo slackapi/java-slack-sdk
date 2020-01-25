@@ -2,10 +2,10 @@ package test_locally.servlet_test;
 
 import com.slack.api.webhook.WebhookResponse;
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
-import com.github.seratch.jslack.lightning.App;
-import com.github.seratch.jslack.lightning.AppConfig;
-import com.github.seratch.jslack.lightning.response.ResponseUrlSender;
-import com.github.seratch.jslack.lightning.servlet.SlackAppServlet;
+import com.slack.api.lightning.App;
+import com.slack.api.lightning.AppConfig;
+import com.slack.api.lightning.response.ResponseUrlSender;
+import com.slack.api.lightning.servlet.SlackAppServlet;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.http.HttpTester;
 import org.eclipse.jetty.servlet.ServletTester;

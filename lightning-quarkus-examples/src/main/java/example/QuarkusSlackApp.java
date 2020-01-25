@@ -1,8 +1,8 @@
 package example;
 
-import com.github.seratch.jslack.lightning.App;
-import com.github.seratch.jslack.lightning.response.Response;
-import com.github.seratch.jslack.lightning.servlet.SlackAppServlet;
+import com.slack.api.lightning.App;
+import com.slack.api.lightning.response.Response;
+import com.slack.api.lightning.servlet.SlackAppServlet;
 
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;

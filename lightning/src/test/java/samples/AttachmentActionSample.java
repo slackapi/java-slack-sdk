@@ -2,9 +2,9 @@ package samples;
 
 import com.slack.api.app_backend.interactive_components.response.ActionResponse;
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
-import com.github.seratch.jslack.lightning.App;
-import com.github.seratch.jslack.lightning.AppConfig;
-import com.github.seratch.jslack.lightning.util.JsonOps;
+import com.slack.api.lightning.App;
+import com.slack.api.lightning.AppConfig;
+import com.slack.api.lightning.util.JsonOps;
 import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;

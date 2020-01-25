@@ -1,7 +1,7 @@
 package examples.middleware
 
-import com.github.seratch.jslack.lightning.App
-import com.github.seratch.jslack.lightning.jetty.SlackAppServer
+import com.slack.api.lightning.App
+import com.slack.api.lightning.jetty.SlackAppServer
 import org.slf4j.LoggerFactory
 
 fun main() {

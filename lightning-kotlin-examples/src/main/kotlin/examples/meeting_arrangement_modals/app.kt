@@ -2,10 +2,11 @@ package examples.meeting_arrangement_modals
 
 import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.app_backend.interactive_components.response.Option
-import com.github.seratch.jslack.lightning.App
-import com.github.seratch.jslack.lightning.jetty.SlackAppServer
-import com.github.seratch.jslack.lightning.response.Response
+import com.slack.api.lightning.App
+import com.slack.api.lightning.jetty.SlackAppServer
+import com.slack.api.lightning.response.Response
 import org.slf4j.LoggerFactory
+import util.ResourceLoader
 
 fun main() {
 
@@ -14,7 +15,7 @@ fun main() {
     // export SLACK_BOT_TOKEN=xoxb-***
     // export SLACK_SIGNING_SECRET=123abc***
     //val app = App()
-    val app = App(util.ResourceLoader.loadAppConfig("appConfig_MeetingArrangement.json"))
+    val app = App(ResourceLoader.loadAppConfig("appConfig_MeetingArrangement.json"))
 
     app.use { req, _, chain ->
         logger.info("Request - $req")

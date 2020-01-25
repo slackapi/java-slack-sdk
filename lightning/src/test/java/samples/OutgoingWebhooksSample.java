@@ -1,9 +1,9 @@
 package samples;
 
-import com.github.seratch.jslack.lightning.App;
-import com.github.seratch.jslack.lightning.AppConfig;
-import com.github.seratch.jslack.lightning.middleware.builtin.LegacyRequestVerification;
-import com.github.seratch.jslack.lightning.middleware.builtin.SingleTeamAuthorization;
+import com.slack.api.lightning.App;
+import com.slack.api.lightning.AppConfig;
+import com.slack.api.lightning.middleware.builtin.LegacyRequestVerification;
+import com.slack.api.lightning.middleware.builtin.SingleTeamAuthorization;
 import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;

@@ -1,6 +1,6 @@
 package test_locally;
 
-import com.github.seratch.jslack.lightning.App;
+import com.slack.api.lightning.App;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

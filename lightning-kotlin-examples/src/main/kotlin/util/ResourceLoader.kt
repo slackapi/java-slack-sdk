@@ -1,6 +1,6 @@
 package util
 
-import com.github.seratch.jslack.lightning.AppConfig
+import com.slack.api.lightning.AppConfig
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import org.slf4j.LoggerFactory

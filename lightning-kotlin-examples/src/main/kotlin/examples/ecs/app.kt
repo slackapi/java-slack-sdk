@@ -1,8 +1,8 @@
 package examples.ecs
 
-import com.github.seratch.jslack.lightning.App
-import com.github.seratch.jslack.lightning.jetty.SlackAppServer
-import com.github.seratch.jslack.lightning.response.Response
+import com.slack.api.lightning.App
+import com.slack.api.lightning.jetty.SlackAppServer
+import com.slack.api.lightning.response.Response
 import org.slf4j.LoggerFactory
 
 fun main() {

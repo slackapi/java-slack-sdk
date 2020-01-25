@@ -1,11 +1,11 @@
 package test_locally.servlet_test;
 
-import com.github.seratch.jslack.lightning.App;
-import com.github.seratch.jslack.lightning.AppConfig;
-import com.github.seratch.jslack.lightning.WebEndpoint;
-import com.github.seratch.jslack.lightning.handler.WebEndpointHandler;
-import com.github.seratch.jslack.lightning.response.Response;
-import com.github.seratch.jslack.lightning.servlet.WebEndpointServlet;
+import com.slack.api.lightning.App;
+import com.slack.api.lightning.AppConfig;
+import com.slack.api.lightning.WebEndpoint;
+import com.slack.api.lightning.handler.WebEndpointHandler;
+import com.slack.api.lightning.response.Response;
+import com.slack.api.lightning.servlet.WebEndpointServlet;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.http.HttpTester;
 import org.eclipse.jetty.servlet.ServletTester;
