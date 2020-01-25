@@ -2,7 +2,7 @@ package com.slack.api;
 
 import com.slack.api.audit.AuditClient;
 import com.github.seratch.jslack.api.methods.MethodsClient;
-import com.github.seratch.jslack.api.scim.SCIMClient;
+import com.slack.api.scim.SCIMClient;
 import com.slack.api.status.v1.LegacyStatusClient;
 import com.slack.api.status.v2.StatusClient;
 import com.slack.api.util.http.listener.DetailedLoggingListener;

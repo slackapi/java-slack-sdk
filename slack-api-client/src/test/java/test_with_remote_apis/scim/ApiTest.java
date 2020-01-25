@@ -1,11 +1,11 @@
 package test_with_remote_apis.scim;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.scim.SCIMApiException;
-import com.github.seratch.jslack.api.scim.model.Group;
-import com.github.seratch.jslack.api.scim.model.User;
-import com.github.seratch.jslack.api.scim.request.GroupsPatchRequest;
-import com.github.seratch.jslack.api.scim.response.*;
+import com.slack.api.scim.SCIMApiException;
+import com.slack.api.scim.model.Group;
+import com.slack.api.scim.model.User;
+import com.slack.api.scim.request.GroupsPatchRequest;
+import com.slack.api.scim.response.*;
 import config.Constants;
 import config.SlackTestConfig;
 import org.junit.Test;
