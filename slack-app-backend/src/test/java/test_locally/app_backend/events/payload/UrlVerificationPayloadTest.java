@@ -1,6 +1,6 @@
 package test_locally.app_backend.events.payload;
 
-import com.github.seratch.jslack.app_backend.events.payload.UrlVerificationPayload;
+import com.slack.api.app_backend.events.payload.UrlVerificationPayload;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 

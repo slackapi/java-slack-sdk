@@ -1,9 +1,9 @@
 package test_with_remote_apis.events_subscription;
 
-import com.github.seratch.jslack.app_backend.events.EventsDispatcher;
-import com.github.seratch.jslack.app_backend.events.handler.MessageHandler;
-import com.github.seratch.jslack.app_backend.events.payload.MessagePayload;
-import com.github.seratch.jslack.app_backend.events.servlet.SlackEventsApiServlet;
+import com.slack.api.app_backend.events.EventsDispatcher;
+import com.slack.api.app_backend.events.handler.MessageHandler;
+import com.slack.api.app_backend.events.payload.MessagePayload;
+import com.slack.api.app_backend.events.servlet.SlackEventsApiServlet;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;

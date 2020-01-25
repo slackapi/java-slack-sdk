@@ -1,6 +1,6 @@
 package com.slack.api.app_backend.util;
 
-import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
+import com.slack.api.app_backend.events.payload.EventsApiPayload;
 import com.slack.api.util.json.GsonFactory;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

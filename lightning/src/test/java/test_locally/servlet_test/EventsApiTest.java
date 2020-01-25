@@ -1,12 +1,12 @@
 package test_locally.servlet_test;
 
-import com.github.seratch.jslack.app_backend.events.handler.AppUninstalledHandler;
-import com.github.seratch.jslack.app_backend.events.handler.GoodbyeHandler;
-import com.github.seratch.jslack.app_backend.events.handler.MessageHandler;
-import com.github.seratch.jslack.app_backend.events.payload.AppUninstalledPayload;
-import com.github.seratch.jslack.app_backend.events.payload.GoodbyePayload;
-import com.github.seratch.jslack.app_backend.events.payload.MessagePayload;
-import com.github.seratch.jslack.app_backend.events.payload.UrlVerificationPayload;
+import com.slack.api.app_backend.events.handler.AppUninstalledHandler;
+import com.slack.api.app_backend.events.handler.GoodbyeHandler;
+import com.slack.api.app_backend.events.handler.MessageHandler;
+import com.slack.api.app_backend.events.payload.AppUninstalledPayload;
+import com.slack.api.app_backend.events.payload.GoodbyePayload;
+import com.slack.api.app_backend.events.payload.MessagePayload;
+import com.slack.api.app_backend.events.payload.UrlVerificationPayload;
 import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;

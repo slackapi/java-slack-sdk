@@ -6,7 +6,7 @@ import com.slack.api.model.block.composition.MarkdownTextObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.element.ExternalSelectElement;
 import com.slack.api.app_backend.SlackSignature;
-import com.github.seratch.jslack.app_backend.events.servlet.SlackSignatureVerifier;
+import com.slack.api.app_backend.events.servlet.SlackSignatureVerifier;
 import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
 import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
 import com.slack.api.app_backend.interactive_components.response.ActionResponse;

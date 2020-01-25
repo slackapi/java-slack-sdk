@@ -1,14 +1,14 @@
 package test_locally.app_backend.events;
 
-import com.github.seratch.jslack.app_backend.events.EventsDispatcher;
-import com.github.seratch.jslack.app_backend.events.handler.AppUninstalledHandler;
-import com.github.seratch.jslack.app_backend.events.handler.GoodbyeHandler;
-import com.github.seratch.jslack.app_backend.events.handler.MessageHandler;
-import com.github.seratch.jslack.app_backend.events.payload.AppUninstalledPayload;
-import com.github.seratch.jslack.app_backend.events.payload.GoodbyePayload;
-import com.github.seratch.jslack.app_backend.events.payload.MessagePayload;
-import com.github.seratch.jslack.app_backend.events.payload.UrlVerificationPayload;
-import com.github.seratch.jslack.app_backend.events.servlet.SlackEventsApiServlet;
+import com.slack.api.app_backend.events.EventsDispatcher;
+import com.slack.api.app_backend.events.handler.AppUninstalledHandler;
+import com.slack.api.app_backend.events.handler.GoodbyeHandler;
+import com.slack.api.app_backend.events.handler.MessageHandler;
+import com.slack.api.app_backend.events.payload.AppUninstalledPayload;
+import com.slack.api.app_backend.events.payload.GoodbyePayload;
+import com.slack.api.app_backend.events.payload.MessagePayload;
+import com.slack.api.app_backend.events.payload.UrlVerificationPayload;
+import com.slack.api.app_backend.events.servlet.SlackEventsApiServlet;
 import com.slack.api.util.json.GsonFactory;
 import org.eclipse.jetty.http.HttpTester;
 import org.eclipse.jetty.servlet.ServletTester;

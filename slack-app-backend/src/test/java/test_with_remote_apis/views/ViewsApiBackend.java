@@ -14,7 +14,7 @@ import com.slack.api.model.view.View;
 import com.slack.api.model.view.ViewSubmit;
 import com.slack.api.model.view.ViewTitle;
 import com.slack.api.app_backend.SlackSignature;
-import com.github.seratch.jslack.app_backend.events.servlet.SlackSignatureVerifier;
+import com.slack.api.app_backend.events.servlet.SlackSignatureVerifier;
 import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
 import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
 import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;

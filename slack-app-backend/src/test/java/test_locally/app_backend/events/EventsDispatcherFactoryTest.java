@@ -1,7 +1,7 @@
 package test_locally.app_backend.events;
 
-import com.github.seratch.jslack.app_backend.events.EventsDispatcher;
-import com.github.seratch.jslack.app_backend.events.EventsDispatcherFactory;
+import com.slack.api.app_backend.events.EventsDispatcher;
+import com.slack.api.app_backend.events.EventsDispatcherFactory;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

@@ -1,8 +1,8 @@
 package examples.app_home
 
 import com.slack.api.model.event.AppHomeOpenedEvent
-import com.github.seratch.jslack.app_backend.events.handler.AppHomeOpenedHandler
-import com.github.seratch.jslack.app_backend.events.payload.AppHomeOpenedPayload
+import com.slack.api.app_backend.events.handler.AppHomeOpenedHandler
+import com.slack.api.app_backend.events.payload.AppHomeOpenedPayload
 import com.github.seratch.jslack.lightning.App
 import com.github.seratch.jslack.lightning.jetty.SlackAppServer
 import org.slf4j.LoggerFactory

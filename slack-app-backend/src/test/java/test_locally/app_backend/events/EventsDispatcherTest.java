@@ -1,9 +1,9 @@
 package test_locally.app_backend.events;
 
-import com.github.seratch.jslack.app_backend.events.EventsDispatcher;
-import com.github.seratch.jslack.app_backend.events.EventsDispatcherImpl;
-import com.github.seratch.jslack.app_backend.events.handler.GoodbyeHandler;
-import com.github.seratch.jslack.app_backend.events.payload.GoodbyePayload;
+import com.slack.api.app_backend.events.EventsDispatcher;
+import com.slack.api.app_backend.events.EventsDispatcherImpl;
+import com.slack.api.app_backend.events.handler.GoodbyeHandler;
+import com.slack.api.app_backend.events.payload.GoodbyePayload;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
