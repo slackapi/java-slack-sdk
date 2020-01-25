@@ -1,7 +1,7 @@
 package samples;
 
-import com.github.seratch.jslack.api.methods.response.chat.ChatGetPermalinkResponse;
-import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
+import com.slack.api.methods.response.chat.ChatGetPermalinkResponse;
+import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.model.view.View;
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;

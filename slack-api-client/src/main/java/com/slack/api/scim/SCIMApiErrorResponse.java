@@ -1,6 +1,5 @@
 package com.slack.api.scim;
 
-import com.slack.api.scim.SCIMApiResponse;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 

@@ -1,15 +1,15 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.channels.*;
-import com.github.seratch.jslack.api.methods.request.chat.*;
-import com.github.seratch.jslack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsHistoryRequest;
-import com.github.seratch.jslack.api.methods.response.channels.*;
-import com.github.seratch.jslack.api.methods.response.chat.*;
-import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsHistoryResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.channels.*;
+import com.slack.api.methods.request.chat.*;
+import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
+import com.slack.api.methods.request.conversations.ConversationsHistoryRequest;
+import com.slack.api.methods.response.channels.*;
+import com.slack.api.methods.response.chat.*;
+import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
+import com.slack.api.methods.response.conversations.ConversationsHistoryResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.Channel;
 import com.slack.api.model.Message;

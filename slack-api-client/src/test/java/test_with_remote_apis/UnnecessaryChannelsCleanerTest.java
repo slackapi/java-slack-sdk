@@ -1,8 +1,8 @@
 package test_with_remote_apis;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.response.channels.ChannelsArchiveResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsArchiveResponse;
+import com.slack.api.methods.response.channels.ChannelsArchiveResponse;
+import com.slack.api.methods.response.conversations.ConversationsArchiveResponse;
 import com.slack.api.model.Channel;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.ConversationType;

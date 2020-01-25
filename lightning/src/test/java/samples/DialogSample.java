@@ -1,6 +1,6 @@
 package samples;
 
-import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
+import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.github.seratch.jslack.app_backend.dialogs.response.Error;
 import com.github.seratch.jslack.app_backend.dialogs.response.Option;
 import com.github.seratch.jslack.lightning.App;

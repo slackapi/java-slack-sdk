@@ -1,11 +1,11 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.files.FilesUploadResponse;
-import com.github.seratch.jslack.api.methods.response.pins.PinsAddResponse;
-import com.github.seratch.jslack.api.methods.response.pins.PinsListResponse;
-import com.github.seratch.jslack.api.methods.response.pins.PinsRemoveResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.files.FilesUploadResponse;
+import com.slack.api.methods.response.pins.PinsAddResponse;
+import com.slack.api.methods.response.pins.PinsListResponse;
+import com.slack.api.methods.response.pins.PinsRemoveResponse;
 import com.slack.api.model.Channel;
 import config.Constants;
 import config.SlackTestConfig;

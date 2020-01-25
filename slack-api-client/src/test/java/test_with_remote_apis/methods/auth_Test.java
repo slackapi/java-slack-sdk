@@ -2,9 +2,9 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
-import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.auth.AuthRevokeResponse;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

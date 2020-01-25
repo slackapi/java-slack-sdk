@@ -1,8 +1,8 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.emoji.EmojiListResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.emoji.EmojiListResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

@@ -1,10 +1,10 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.response.reminders.RemindersAddResponse;
-import com.github.seratch.jslack.api.methods.response.reminders.RemindersCompleteResponse;
-import com.github.seratch.jslack.api.methods.response.reminders.RemindersDeleteResponse;
-import com.github.seratch.jslack.api.methods.response.reminders.RemindersInfoResponse;
+import com.slack.api.methods.response.reminders.RemindersAddResponse;
+import com.slack.api.methods.response.reminders.RemindersCompleteResponse;
+import com.slack.api.methods.response.reminders.RemindersDeleteResponse;
+import com.slack.api.methods.response.reminders.RemindersInfoResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

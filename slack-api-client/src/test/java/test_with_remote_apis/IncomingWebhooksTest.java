@@ -1,7 +1,7 @@
 package test_with_remote_apis;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.Field;
 import com.slack.api.model.block.ActionsBlock;

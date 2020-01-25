@@ -1,7 +1,7 @@
 package test_locally.api.model;
 
-import com.github.seratch.jslack.api.methods.response.users.UsersInfoResponse;
-import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
+import com.slack.api.methods.response.users.UsersInfoResponse;
+import com.slack.api.methods.response.users.UsersListResponse;
 import org.junit.Test;
 
 public class UserTest implements Verifier {

@@ -1,8 +1,8 @@
 package com.slack.api.audit.response;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.audit.AuditApiResponse;
 import com.slack.api.model.ResponseMetadata;
-import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.util.List;

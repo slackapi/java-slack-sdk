@@ -2,9 +2,9 @@ package test_locally;
 
 import com.slack.api.Slack;
 import com.slack.api.RequestConfigurator;
-import com.github.seratch.jslack.api.methods.MethodsClient;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.MethodsClient;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.app_backend.SlackSignature;
 import com.github.seratch.jslack.lightning.AppConfig;
 import io.micronaut.context.annotation.Primary;

@@ -1,9 +1,9 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.files.remote.*;
-import com.github.seratch.jslack.api.methods.response.search.SearchFilesResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.files.remote.*;
+import com.slack.api.methods.response.search.SearchFilesResponse;
 import com.slack.api.model.File;
 import com.slack.api.model.MatchedItem;
 import com.slack.api.methods.shortcut.model.ApiToken;

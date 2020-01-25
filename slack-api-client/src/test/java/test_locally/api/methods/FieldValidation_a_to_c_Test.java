@@ -1,14 +1,14 @@
 package test_locally.api.methods;
 
-import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
-import com.github.seratch.jslack.api.methods.response.apps.AppsUninstallResponse;
-import com.github.seratch.jslack.api.methods.response.auth.AuthRevokeResponse;
-import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
-import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
-import com.github.seratch.jslack.api.methods.response.channels.*;
-import com.github.seratch.jslack.api.methods.response.chat.*;
-import com.github.seratch.jslack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.*;
+import com.slack.api.methods.response.api.ApiTestResponse;
+import com.slack.api.methods.response.apps.AppsUninstallResponse;
+import com.slack.api.methods.response.auth.AuthRevokeResponse;
+import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.response.bots.BotsInfoResponse;
+import com.slack.api.methods.response.channels.*;
+import com.slack.api.methods.response.chat.*;
+import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
+import com.slack.api.methods.response.conversations.*;
 import com.slack.api.model.Channel;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.Message;

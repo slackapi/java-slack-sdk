@@ -1,11 +1,11 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.users.UsersLookupByEmailRequest;
-import com.github.seratch.jslack.api.methods.request.users.UsersSetActiveRequest;
-import com.github.seratch.jslack.api.methods.response.channels.UsersLookupByEmailResponse;
-import com.github.seratch.jslack.api.methods.response.users.*;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.users.UsersLookupByEmailRequest;
+import com.slack.api.methods.request.users.UsersSetActiveRequest;
+import com.slack.api.methods.response.channels.UsersLookupByEmailResponse;
+import com.slack.api.methods.response.users.*;
 import com.slack.api.model.User;
 import config.Constants;
 import config.SlackTestConfig;

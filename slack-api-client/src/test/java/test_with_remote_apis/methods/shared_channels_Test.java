@@ -1,7 +1,7 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsInfoResponse;
+import com.slack.api.methods.response.conversations.ConversationsInfoResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

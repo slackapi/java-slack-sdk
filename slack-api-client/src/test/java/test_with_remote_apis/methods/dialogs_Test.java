@@ -1,8 +1,8 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.model.dialog.Dialog;
 import com.slack.api.model.dialog.DialogSubType;
 import com.slack.api.model.dialog.DialogTextElement;

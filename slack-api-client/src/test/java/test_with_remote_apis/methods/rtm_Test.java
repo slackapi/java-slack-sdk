@@ -2,9 +2,9 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsInviteRequest;
-import com.github.seratch.jslack.api.methods.response.channels.ChannelsInviteResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.channels.ChannelsInviteRequest;
+import com.slack.api.methods.response.channels.ChannelsInviteResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.User;
 import com.slack.api.model.event.HelloEvent;

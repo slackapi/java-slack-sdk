@@ -1,10 +1,10 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
-import com.github.seratch.jslack.api.methods.response.oauth.OAuthTokenResponse;
-import com.github.seratch.jslack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.oauth.OAuthAccessResponse;
+import com.slack.api.methods.response.oauth.OAuthTokenResponse;
+import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

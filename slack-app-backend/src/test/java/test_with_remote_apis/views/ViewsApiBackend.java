@@ -1,9 +1,9 @@
 package test_with_remote_apis.views;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
-import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.views.ViewsOpenResponse;
+import com.slack.api.methods.response.views.ViewsUpdateResponse;
 import com.slack.api.model.block.InputBlock;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;

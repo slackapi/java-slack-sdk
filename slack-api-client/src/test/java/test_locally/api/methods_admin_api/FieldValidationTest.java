@@ -1,14 +1,14 @@
 package test_locally.api.methods_admin_api;
 
-import com.github.seratch.jslack.api.methods.response.admin.apps.*;
-import com.github.seratch.jslack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
-import com.github.seratch.jslack.api.methods.response.admin.invite_requests.*;
-import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
-import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
-import com.github.seratch.jslack.api.methods.response.admin.teams.AdminTeamsListResponse;
-import com.github.seratch.jslack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
-import com.github.seratch.jslack.api.methods.response.admin.teams.settings.*;
-import com.github.seratch.jslack.api.methods.response.admin.users.*;
+import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.invite_requests.*;
+import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
+import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
+import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
+import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
+import com.slack.api.methods.response.admin.teams.settings.*;
+import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

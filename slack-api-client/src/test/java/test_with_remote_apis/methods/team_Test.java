@@ -1,11 +1,11 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.response.team.TeamAccessLogsResponse;
-import com.github.seratch.jslack.api.methods.response.team.TeamBillableInfoResponse;
-import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
-import com.github.seratch.jslack.api.methods.response.team.TeamIntegrationLogsResponse;
-import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGetResponse;
+import com.slack.api.methods.response.team.TeamAccessLogsResponse;
+import com.slack.api.methods.response.team.TeamBillableInfoResponse;
+import com.slack.api.methods.response.team.TeamInfoResponse;
+import com.slack.api.methods.response.team.TeamIntegrationLogsResponse;
+import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.User;
 import config.Constants;
 import config.SlackTestConfig;

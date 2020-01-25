@@ -1,12 +1,12 @@
 package com.slack.api.status.v2.impl;
 
+import com.google.gson.reflect.TypeToken;
 import com.slack.api.status.v2.StatusApiException;
 import com.slack.api.status.v2.StatusClient;
 import com.slack.api.status.v2.model.CurrentStatus;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
-import com.google.gson.reflect.TypeToken;
 import okhttp3.Response;
 
 import java.io.IOException;

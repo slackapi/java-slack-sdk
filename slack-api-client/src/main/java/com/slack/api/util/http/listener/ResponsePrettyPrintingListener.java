@@ -1,9 +1,9 @@
 package com.slack.api.util.http.listener;
 
-import com.slack.api.SlackConfig;
-import com.slack.api.util.json.GsonFactory;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.slack.api.SlackConfig;
+import com.slack.api.util.json.GsonFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,11 +1,11 @@
 package com.github.seratch.jslack.app_backend.oauth;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.oauth.OAuthAccessRequest;
-import com.github.seratch.jslack.api.methods.request.oauth.OAuthV2AccessRequest;
-import com.github.seratch.jslack.api.methods.response.oauth.OAuthAccessResponse;
-import com.github.seratch.jslack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.oauth.OAuthAccessRequest;
+import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
+import com.slack.api.methods.response.oauth.OAuthAccessResponse;
+import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.github.seratch.jslack.app_backend.config.SlackAppConfig;
 import com.github.seratch.jslack.app_backend.oauth.payload.VerificationCodePayload;
 

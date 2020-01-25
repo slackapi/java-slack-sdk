@@ -1,15 +1,15 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.channels.ChannelsInfoRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostEphemeralRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
-import com.github.seratch.jslack.api.methods.response.channels.ChannelsListResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostEphemeralResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
-import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.channels.ChannelsInfoRequest;
+import com.slack.api.methods.request.chat.ChatPostEphemeralRequest;
+import com.slack.api.methods.request.chat.ChatPostMessageRequest;
+import com.slack.api.methods.request.chat.ChatUpdateRequest;
+import com.slack.api.methods.response.channels.ChannelsListResponse;
+import com.slack.api.methods.response.chat.ChatPostEphemeralResponse;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
+import com.slack.api.methods.response.chat.ChatUpdateResponse;
 import com.slack.api.model.Channel;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;

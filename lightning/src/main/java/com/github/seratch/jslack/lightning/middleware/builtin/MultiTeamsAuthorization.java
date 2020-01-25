@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.lightning.middleware.builtin;
 
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.context.Context;
 import com.github.seratch.jslack.lightning.middleware.Middleware;

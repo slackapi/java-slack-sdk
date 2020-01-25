@@ -1,13 +1,13 @@
 package test_locally.api.methods;
 
-import com.github.seratch.jslack.api.methods.response.dialog.DialogOpenResponse;
-import com.github.seratch.jslack.api.methods.response.dnd.*;
-import com.github.seratch.jslack.api.methods.response.emoji.EmojiListResponse;
-import com.github.seratch.jslack.api.methods.response.files.*;
-import com.github.seratch.jslack.api.methods.response.files.remote.*;
-import com.github.seratch.jslack.api.methods.response.groups.*;
-import com.github.seratch.jslack.api.methods.response.im.*;
-import com.github.seratch.jslack.api.methods.response.mpim.*;
+import com.slack.api.methods.response.dialog.DialogOpenResponse;
+import com.slack.api.methods.response.dnd.*;
+import com.slack.api.methods.response.emoji.EmojiListResponse;
+import com.slack.api.methods.response.files.*;
+import com.slack.api.methods.response.files.remote.*;
+import com.slack.api.methods.response.groups.*;
+import com.slack.api.methods.response.im.*;
+import com.slack.api.methods.response.mpim.*;
 import com.slack.api.model.File;
 import com.slack.api.model.Group;
 import com.slack.api.util.json.GsonFactory;

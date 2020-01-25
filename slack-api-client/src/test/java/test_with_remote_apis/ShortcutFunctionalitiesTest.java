@@ -1,10 +1,10 @@
 package test_with_remote_apis;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
-import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
-import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
+import com.slack.api.methods.response.reactions.ReactionsAddResponse;
+import com.slack.api.methods.response.search.SearchAllResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.DividerBlock;

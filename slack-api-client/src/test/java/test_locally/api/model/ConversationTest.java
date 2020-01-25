@@ -1,7 +1,7 @@
 package test_locally.api.model;
 
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsInfoResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsListResponse;
+import com.slack.api.methods.response.conversations.ConversationsInfoResponse;
+import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import org.junit.Test;
 
 public class ConversationTest implements Verifier {

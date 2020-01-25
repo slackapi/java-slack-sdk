@@ -1,11 +1,11 @@
 package util;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsArchiveRequest;
-import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCreateRequest;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsArchiveResponse;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsCreateResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.conversations.ConversationsArchiveRequest;
+import com.slack.api.methods.request.conversations.ConversationsCreateRequest;
+import com.slack.api.methods.response.conversations.ConversationsArchiveResponse;
+import com.slack.api.methods.response.conversations.ConversationsCreateResponse;
 import com.slack.api.model.Conversation;
 import config.SlackTestConfig;
 

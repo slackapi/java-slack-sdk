@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.lightning.handler.builtin;
 
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.auth.AuthTestResponse;
-import com.github.seratch.jslack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.github.seratch.jslack.lightning.context.builtin.OAuthCallbackContext;
 import com.github.seratch.jslack.lightning.handler.OAuthV2SuccessHandler;
 import com.github.seratch.jslack.lightning.model.Installer;

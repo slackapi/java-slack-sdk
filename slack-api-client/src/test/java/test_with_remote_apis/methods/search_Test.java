@@ -1,10 +1,10 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
-import com.github.seratch.jslack.api.methods.response.search.SearchFilesResponse;
-import com.github.seratch.jslack.api.methods.response.search.SearchMessagesResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.search.SearchAllResponse;
+import com.slack.api.methods.response.search.SearchFilesResponse;
+import com.slack.api.methods.response.search.SearchMessagesResponse;
 import com.slack.api.model.MatchedItem;
 import config.Constants;
 import config.SlackTestConfig;

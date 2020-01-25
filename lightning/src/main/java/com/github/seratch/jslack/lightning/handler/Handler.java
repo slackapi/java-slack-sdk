@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning.handler;
 
-import com.github.seratch.jslack.api.methods.SlackApiException;
+import com.slack.api.methods.SlackApiException;
 import com.github.seratch.jslack.lightning.context.Context;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.response.Response;

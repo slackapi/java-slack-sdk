@@ -2,7 +2,7 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
-import com.github.seratch.jslack.api.methods.response.api.ApiTestResponse;
+import com.slack.api.methods.response.api.ApiTestResponse;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.junit.After;

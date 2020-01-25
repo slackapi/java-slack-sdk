@@ -1,6 +1,6 @@
 package test_locally.api;
 
-import com.github.seratch.jslack.api.methods.Methods;
+import com.slack.api.methods.Methods;
 import org.junit.Test;
 
 import java.lang.reflect.Field;

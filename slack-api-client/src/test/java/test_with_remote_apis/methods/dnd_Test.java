@@ -1,8 +1,8 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.dnd.*;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.dnd.*;
 import com.slack.api.model.User;
 import config.Constants;
 import config.SlackTestConfig;

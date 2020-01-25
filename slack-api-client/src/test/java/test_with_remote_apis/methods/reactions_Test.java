@@ -1,13 +1,13 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
-import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
-import com.github.seratch.jslack.api.methods.response.reactions.ReactionsGetResponse;
-import com.github.seratch.jslack.api.methods.response.reactions.ReactionsListResponse;
-import com.github.seratch.jslack.api.methods.response.reactions.ReactionsRemoveResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.chat.ChatPostMessageRequest;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
+import com.slack.api.methods.response.reactions.ReactionsAddResponse;
+import com.slack.api.methods.response.reactions.ReactionsGetResponse;
+import com.slack.api.methods.response.reactions.ReactionsListResponse;
+import com.slack.api.methods.response.reactions.ReactionsRemoveResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

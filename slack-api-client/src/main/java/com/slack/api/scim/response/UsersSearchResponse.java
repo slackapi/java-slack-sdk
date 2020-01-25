@@ -1,8 +1,8 @@
 package com.slack.api.scim.response;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.scim.SCIMApiResponse;
 import com.slack.api.scim.model.User;
-import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.util.List;

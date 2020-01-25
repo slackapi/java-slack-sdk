@@ -1,11 +1,11 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
-import com.github.seratch.jslack.api.methods.response.usergroups.*;
-import com.github.seratch.jslack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
-import com.github.seratch.jslack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
-import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
+import com.slack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
+import com.slack.api.methods.response.usergroups.*;
+import com.slack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
+import com.slack.api.methods.response.users.UsersListResponse;
 import com.slack.api.model.User;
 import com.slack.api.model.Usergroup;
 import config.Constants;

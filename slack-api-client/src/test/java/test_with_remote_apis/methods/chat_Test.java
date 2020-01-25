@@ -1,13 +1,13 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.request.chat.ChatPostMessageRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatUnfurlRequest;
-import com.github.seratch.jslack.api.methods.request.chat.ChatUpdateRequest;
-import com.github.seratch.jslack.api.methods.response.channels.ChannelsListResponse;
-import com.github.seratch.jslack.api.methods.response.chat.*;
-import com.github.seratch.jslack.api.methods.response.conversations.ConversationsMembersResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.chat.ChatPostMessageRequest;
+import com.slack.api.methods.request.chat.ChatUnfurlRequest;
+import com.slack.api.methods.request.chat.ChatUpdateRequest;
+import com.slack.api.methods.response.channels.ChannelsListResponse;
+import com.slack.api.methods.response.chat.*;
+import com.slack.api.methods.response.conversations.ConversationsMembersResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.Channel;
 import com.slack.api.model.User;

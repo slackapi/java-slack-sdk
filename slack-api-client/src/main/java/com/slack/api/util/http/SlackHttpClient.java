@@ -1,9 +1,9 @@
 package com.slack.api.util.http;
 
+import com.google.gson.Gson;
 import com.slack.api.SlackConfig;
 import com.slack.api.util.http.listener.HttpResponseListener;
 import com.slack.api.util.json.GsonFactory;
-import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 

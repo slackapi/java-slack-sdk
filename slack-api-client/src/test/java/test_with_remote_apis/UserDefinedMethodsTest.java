@@ -1,8 +1,8 @@
 package test_with_remote_apis;
 
 import com.slack.api.Slack;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.SlackApiResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.Data;

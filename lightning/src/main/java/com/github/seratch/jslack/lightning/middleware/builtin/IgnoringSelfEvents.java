@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.lightning.middleware.builtin;
 
-import com.github.seratch.jslack.api.methods.MethodsClient;
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.bots.BotsInfoResponse;
+import com.slack.api.methods.MethodsClient;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.model.event.MemberJoinedChannelEvent;
 import com.slack.api.model.event.MemberLeftChannelEvent;
 import com.slack.api.util.json.GsonFactory;

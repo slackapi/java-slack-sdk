@@ -1,15 +1,15 @@
 package com.slack.api.methods.shortcut;
 
-import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
-import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
-import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
-import com.slack.api.model.Attachment;
-import com.slack.api.model.Message;
-import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
+import com.slack.api.methods.response.reactions.ReactionsAddResponse;
+import com.slack.api.methods.response.search.SearchAllResponse;
 import com.slack.api.methods.shortcut.model.ChannelId;
 import com.slack.api.methods.shortcut.model.ChannelName;
 import com.slack.api.methods.shortcut.model.ReactionName;
+import com.slack.api.model.Attachment;
+import com.slack.api.model.Message;
+import com.slack.api.model.block.LayoutBlock;
 
 import java.io.IOException;
 import java.util.List;
