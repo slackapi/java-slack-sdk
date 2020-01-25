@@ -6,7 +6,7 @@ import com.github.seratch.jslack.api.methods.response.files.FilesUploadResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsAddResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsListResponse;
 import com.github.seratch.jslack.api.methods.response.stars.StarsRemoveResponse;
-import com.github.seratch.jslack.api.model.Channel;
+import com.slack.api.model.Channel;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +46,7 @@ public class stars_Test {
         }
 
         File file = new File("src/test/resources/sample.txt");
-        com.github.seratch.jslack.api.model.File fileObj;
+        com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods().filesUpload(r -> r
                     .token(token)

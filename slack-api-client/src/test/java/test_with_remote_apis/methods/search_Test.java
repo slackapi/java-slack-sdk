@@ -5,7 +5,7 @@ import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchFilesResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchMessagesResponse;
-import com.github.seratch.jslack.api.model.MatchedItem;
+import com.slack.api.model.MatchedItem;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

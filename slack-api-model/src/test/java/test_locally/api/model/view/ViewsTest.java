@@ -1,11 +1,11 @@
 package test_locally.api.model.view;
 
-import com.github.seratch.jslack.api.model.view.View;
+import com.slack.api.model.view.View;
 import org.junit.Test;
 
-import static com.github.seratch.jslack.api.model.block.Blocks.*;
-import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.plainText;
-import static com.github.seratch.jslack.api.model.view.Views.*;
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.view.Views.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;

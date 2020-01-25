@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.api.methods.response.team;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Login;
-import com.github.seratch.jslack.api.model.Paging;
+import com.slack.api.model.Login;
+import com.slack.api.model.Paging;
 import lombok.Data;
 
 import java.util.List;

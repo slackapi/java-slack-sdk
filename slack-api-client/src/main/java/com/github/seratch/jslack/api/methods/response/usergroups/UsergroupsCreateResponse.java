@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.usergroups;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Usergroup;
+import com.slack.api.model.Usergroup;
 import lombok.Data;
 
 @Data

@@ -1,9 +1,9 @@
 package com.github.seratch.jslack.api.methods.response.pins;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.File;
-import com.github.seratch.jslack.api.model.FileComment;
-import com.github.seratch.jslack.api.model.Message;
+import com.slack.api.model.File;
+import com.slack.api.model.FileComment;
+import com.slack.api.model.Message;
 import lombok.Data;
 
 import java.util.List;

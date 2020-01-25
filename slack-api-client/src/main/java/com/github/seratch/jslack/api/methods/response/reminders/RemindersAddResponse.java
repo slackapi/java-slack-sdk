@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.reminders;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Reminder;
+import com.slack.api.model.Reminder;
 import lombok.Data;
 
 @Data

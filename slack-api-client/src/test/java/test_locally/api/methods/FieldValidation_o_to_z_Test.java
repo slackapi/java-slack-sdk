@@ -38,7 +38,7 @@ import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsPublishResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsPushResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
-import com.github.seratch.jslack.api.model.Usergroup;
+import com.slack.api.model.Usergroup;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

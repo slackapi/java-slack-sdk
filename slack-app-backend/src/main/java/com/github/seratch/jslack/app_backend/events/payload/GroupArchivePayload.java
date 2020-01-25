@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.events.payload;
 
-import com.github.seratch.jslack.api.model.event.GroupArchiveEvent;
+import com.slack.api.model.event.GroupArchiveEvent;
 import lombok.Data;
 
 import java.util.List;

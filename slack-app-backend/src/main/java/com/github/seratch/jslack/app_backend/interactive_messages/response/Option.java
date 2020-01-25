@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.interactive_messages.response;
 
-import com.github.seratch.jslack.api.model.block.composition.TextObject;
+import com.slack.api.model.block.composition.TextObject;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

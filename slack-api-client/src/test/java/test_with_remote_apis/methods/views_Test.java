@@ -6,7 +6,7 @@ import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsPublishResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsPushResponse;
 import com.github.seratch.jslack.api.methods.response.views.ViewsUpdateResponse;
-import com.github.seratch.jslack.api.model.view.View;
+import com.slack.api.model.view.View;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

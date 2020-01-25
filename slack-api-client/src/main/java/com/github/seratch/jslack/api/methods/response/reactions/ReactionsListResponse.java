@@ -1,11 +1,11 @@
 package com.github.seratch.jslack.api.methods.response.reactions;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Attachment;
-import com.github.seratch.jslack.api.model.BotProfile;
-import com.github.seratch.jslack.api.model.Paging;
-import com.github.seratch.jslack.api.model.Reaction;
-import com.github.seratch.jslack.api.model.block.LayoutBlock;
+import com.slack.api.model.Attachment;
+import com.slack.api.model.BotProfile;
+import com.slack.api.model.Paging;
+import com.slack.api.model.Reaction;
+import com.slack.api.model.block.LayoutBlock;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 

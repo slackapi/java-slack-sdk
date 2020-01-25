@@ -14,8 +14,8 @@ import com.github.seratch.jslack.api.methods.response.chat.ChatDeleteResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
 import com.github.seratch.jslack.api.methods.response.files.*;
-import com.github.seratch.jslack.api.model.Channel;
-import com.github.seratch.jslack.api.model.Conversation;
+import com.slack.api.model.Channel;
+import com.slack.api.model.Conversation;
 import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.shortcut.model.ChannelName;
 import config.Constants;
@@ -72,7 +72,7 @@ public class files_Test {
         String channelId = channels.get(0);
 
         File file = new File("src/test/resources/sample.txt");
-        final com.github.seratch.jslack.api.model.File fileObj;
+        final com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods(botToken).filesUpload(r -> r
                     .channels(channels)
@@ -173,7 +173,7 @@ public class files_Test {
         String channelId = channels.get(0);
 
         File file = new File("src/test/resources/sample_long.txt");
-        com.github.seratch.jslack.api.model.File fileObj;
+        com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods(botToken).filesUpload(r -> r
                     .channels(channels)
@@ -256,7 +256,7 @@ public class files_Test {
         String channelId = channels.get(0);
 
         File file = new File("src/test/resources/seratch.jpg");
-        com.github.seratch.jslack.api.model.File fileObj;
+        com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods().filesUpload(r -> r
                     .token(userToken)
@@ -373,7 +373,7 @@ public class files_Test {
             assertThat(postThread1Response.isOk(), is(true));
 
             File file = new File("src/test/resources/sample.txt");
-            com.github.seratch.jslack.api.model.File fileObj;
+            com.slack.api.model.File fileObj;
             {
                 FilesUploadResponse response = slack.methods().filesUpload(r -> r
                         .token(userToken)
@@ -414,7 +414,7 @@ public class files_Test {
         assertThat(message.getError(), is(nullValue()));
 
         File file = new File("src/test/resources/sample.txt");
-        com.github.seratch.jslack.api.model.File fileObj;
+        com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slackMethods.filesUpload(r -> r
                     .file(file)

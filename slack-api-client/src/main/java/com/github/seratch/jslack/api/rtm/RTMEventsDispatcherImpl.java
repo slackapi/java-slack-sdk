@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.api.rtm;
 
-import com.github.seratch.jslack.api.model.event.Event;
+import com.slack.api.model.event.Event;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,6 +1,6 @@
 package test_locally.api.model.view;
 
-import com.github.seratch.jslack.api.model.view.View;
+import com.slack.api.model.view.View;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 

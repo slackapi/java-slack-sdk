@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.events.handler;
 
-import com.github.seratch.jslack.api.model.event.TeamJoinEvent;
+import com.slack.api.model.event.TeamJoinEvent;
 import com.github.seratch.jslack.app_backend.events.EventHandler;
 import com.github.seratch.jslack.app_backend.events.payload.TeamJoinPayload;
 

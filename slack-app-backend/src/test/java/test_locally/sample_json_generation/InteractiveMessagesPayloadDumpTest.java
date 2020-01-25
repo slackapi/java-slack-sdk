@@ -1,7 +1,7 @@
 package test_locally.sample_json_generation;
 
-import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
-import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.composition.ConfirmationDialogObject;
+import com.slack.api.model.block.composition.PlainTextObject;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.AttachmentActionPayload;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
 import lombok.extern.slf4j.Slf4j;

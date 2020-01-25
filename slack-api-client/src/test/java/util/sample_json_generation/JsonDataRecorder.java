@@ -1,10 +1,10 @@
 package util.sample_json_generation;
 
 import com.github.seratch.jslack.SlackConfig;
-import com.github.seratch.jslack.api.model.Conversation;
-import com.github.seratch.jslack.api.model.FileComment;
-import com.github.seratch.jslack.api.model.Message;
-import com.github.seratch.jslack.api.model.admin.AppRequest;
+import com.slack.api.model.Conversation;
+import com.slack.api.model.FileComment;
+import com.slack.api.model.Message;
+import com.slack.api.model.admin.AppRequest;
 import com.github.seratch.jslack.api.scim.model.User;
 import com.github.seratch.jslack.api.status.v2.model.SlackIssue;
 import com.github.seratch.jslack.common.json.GsonFactory;

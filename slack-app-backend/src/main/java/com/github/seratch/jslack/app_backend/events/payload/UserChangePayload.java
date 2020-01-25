@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.events.payload;
 
-import com.github.seratch.jslack.api.model.event.UserChangeEvent;
+import com.slack.api.model.event.UserChangeEvent;
 import lombok.Data;
 
 import java.util.List;

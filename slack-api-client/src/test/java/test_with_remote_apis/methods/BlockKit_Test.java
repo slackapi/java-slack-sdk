@@ -10,12 +10,12 @@ import com.github.seratch.jslack.api.methods.response.channels.ChannelsListRespo
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostEphemeralResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.chat.ChatUpdateResponse;
-import com.github.seratch.jslack.api.model.Channel;
-import com.github.seratch.jslack.api.model.block.DividerBlock;
-import com.github.seratch.jslack.api.model.block.LayoutBlock;
-import com.github.seratch.jslack.api.model.block.SectionBlock;
-import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
-import com.github.seratch.jslack.api.model.block.element.BlockElements;
+import com.slack.api.model.Channel;
+import com.slack.api.model.block.DividerBlock;
+import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.SectionBlock;
+import com.slack.api.model.block.composition.MarkdownTextObject;
+import com.slack.api.model.block.element.BlockElements;
 import config.Constants;
 import config.SlackTestConfig;
 import org.junit.Before;
@@ -25,11 +25,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.github.seratch.jslack.api.model.block.Blocks.*;
-import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.markdownText;
-import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.plainText;
-import static com.github.seratch.jslack.api.model.block.element.BlockElements.asElements;
-import static com.github.seratch.jslack.api.model.block.element.BlockElements.button;
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.element.BlockElements.asElements;
+import static com.slack.api.model.block.element.BlockElements.button;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 

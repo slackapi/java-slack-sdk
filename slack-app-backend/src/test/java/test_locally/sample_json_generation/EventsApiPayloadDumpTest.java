@@ -1,7 +1,7 @@
 package test_locally.sample_json_generation;
 
-import com.github.seratch.jslack.api.model.Message;
-import com.github.seratch.jslack.api.model.event.*;
+import com.slack.api.model.Message;
+import com.slack.api.model.event.*;
 import com.github.seratch.jslack.app_backend.events.payload.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package test_locally.api.model.event;
 
-import com.github.seratch.jslack.api.model.event.ResourcesRemovedEvent;
+import com.slack.api.model.event.ResourcesRemovedEvent;
 import com.google.gson.Gson;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;

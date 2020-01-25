@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.lightning.handler;
 
 import com.github.seratch.jslack.api.methods.SlackApiException;
-import com.github.seratch.jslack.api.model.event.Event;
+import com.slack.api.model.event.Event;
 import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
 import com.github.seratch.jslack.lightning.context.builtin.DefaultContext;
 import com.github.seratch.jslack.lightning.response.Response;

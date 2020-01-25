@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.views.payload;
 
-import com.github.seratch.jslack.api.model.view.View;
+import com.slack.api.model.view.View;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.groups;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Channel;
+import com.slack.api.model.Channel;
 import lombok.Data;
 
 @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api

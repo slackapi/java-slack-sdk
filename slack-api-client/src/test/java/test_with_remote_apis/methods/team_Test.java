@@ -6,7 +6,7 @@ import com.github.seratch.jslack.api.methods.response.team.TeamBillableInfoRespo
 import com.github.seratch.jslack.api.methods.response.team.TeamInfoResponse;
 import com.github.seratch.jslack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.github.seratch.jslack.api.methods.response.team.profile.TeamProfileGetResponse;
-import com.github.seratch.jslack.api.model.User;
+import com.slack.api.model.User;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

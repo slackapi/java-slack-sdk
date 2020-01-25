@@ -12,11 +12,11 @@ import com.github.seratch.jslack.api.methods.response.conversations.Conversation
 import com.github.seratch.jslack.api.methods.response.conversations.ConversationsListResponse;
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
 import com.github.seratch.jslack.api.methods.response.search.SearchAllResponse;
-import com.github.seratch.jslack.api.model.Attachment;
-import com.github.seratch.jslack.api.model.Conversation;
-import com.github.seratch.jslack.api.model.Message;
-import com.github.seratch.jslack.api.model.ResponseMetadata;
-import com.github.seratch.jslack.api.model.block.LayoutBlock;
+import com.slack.api.model.Attachment;
+import com.slack.api.model.Conversation;
+import com.slack.api.model.Message;
+import com.slack.api.model.ResponseMetadata;
+import com.slack.api.model.block.LayoutBlock;
 import com.github.seratch.jslack.shortcut.Shortcut;
 import com.github.seratch.jslack.shortcut.model.ApiToken;
 import com.github.seratch.jslack.shortcut.model.ChannelId;

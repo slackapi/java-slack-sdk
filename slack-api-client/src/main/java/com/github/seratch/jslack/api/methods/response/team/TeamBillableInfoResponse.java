@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.team;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.BillableInfo;
+import com.slack.api.model.BillableInfo;
 import lombok.Data;
 
 import java.util.Map;

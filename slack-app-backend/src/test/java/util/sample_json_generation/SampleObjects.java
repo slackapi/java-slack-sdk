@@ -1,12 +1,12 @@
 package util.sample_json_generation;
 
-import com.github.seratch.jslack.api.model.*;
-import com.github.seratch.jslack.api.model.block.*;
-import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
-import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
-import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-import com.github.seratch.jslack.api.model.block.composition.TextObject;
-import com.github.seratch.jslack.api.model.block.element.*;
+import com.slack.api.model.*;
+import com.slack.api.model.block.*;
+import com.slack.api.model.block.composition.ConfirmationDialogObject;
+import com.slack.api.model.block.composition.MarkdownTextObject;
+import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.composition.TextObject;
+import com.slack.api.model.block.element.*;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.JsonElement;
 

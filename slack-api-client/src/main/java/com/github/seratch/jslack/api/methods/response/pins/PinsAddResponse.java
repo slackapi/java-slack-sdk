@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.pins;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.ErrorResponseMetadata;
+import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
 @Data

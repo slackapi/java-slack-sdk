@@ -6,7 +6,7 @@ import com.github.seratch.jslack.api.methods.request.conversations.Conversations
 import com.github.seratch.jslack.api.methods.request.conversations.ConversationsCreateRequest;
 import com.github.seratch.jslack.api.methods.response.conversations.ConversationsArchiveResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.ConversationsCreateResponse;
-import com.github.seratch.jslack.api.model.Conversation;
+import com.slack.api.model.Conversation;
 import config.SlackTestConfig;
 
 import java.io.IOException;

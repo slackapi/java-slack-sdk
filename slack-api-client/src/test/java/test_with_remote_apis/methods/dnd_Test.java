@@ -3,7 +3,7 @@ package test_with_remote_apis.methods;
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.response.dnd.*;
-import com.github.seratch.jslack.api.model.User;
+import com.slack.api.model.User;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

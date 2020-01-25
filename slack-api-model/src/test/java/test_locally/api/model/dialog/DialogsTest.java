@@ -1,10 +1,10 @@
 package test_locally.api.model.dialog;
 
-import com.github.seratch.jslack.api.model.dialog.Dialog;
-import com.github.seratch.jslack.api.model.dialog.DialogSubType;
+import com.slack.api.model.dialog.Dialog;
+import com.slack.api.model.dialog.DialogSubType;
 import org.junit.Test;
 
-import static com.github.seratch.jslack.api.model.dialog.Dialogs.*;
+import static com.slack.api.model.dialog.Dialogs.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;

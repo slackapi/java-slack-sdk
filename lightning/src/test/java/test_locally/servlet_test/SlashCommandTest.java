@@ -1,6 +1,6 @@
 package test_locally.servlet_test;
 
-import com.github.seratch.jslack.api.webhook.WebhookResponse;
+import com.slack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.app_backend.slash_commands.response.SlashCommandResponse;
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;

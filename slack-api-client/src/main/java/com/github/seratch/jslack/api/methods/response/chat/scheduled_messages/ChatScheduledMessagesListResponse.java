@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.chat.scheduled_messages;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.ResponseMetadata;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;

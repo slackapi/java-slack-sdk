@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.bots;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.BotIcons;
+import com.slack.api.model.BotIcons;
 import lombok.Data;
 
 @Data

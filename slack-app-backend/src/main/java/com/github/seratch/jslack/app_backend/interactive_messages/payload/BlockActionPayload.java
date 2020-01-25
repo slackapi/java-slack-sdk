@@ -1,10 +1,10 @@
 package com.github.seratch.jslack.app_backend.interactive_messages.payload;
 
-import com.github.seratch.jslack.api.model.Message;
-import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
-import com.github.seratch.jslack.api.model.block.composition.OptionObject;
-import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-import com.github.seratch.jslack.api.model.view.View;
+import com.slack.api.model.Message;
+import com.slack.api.model.block.composition.ConfirmationDialogObject;
+import com.slack.api.model.block.composition.OptionObject;
+import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.view.View;
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

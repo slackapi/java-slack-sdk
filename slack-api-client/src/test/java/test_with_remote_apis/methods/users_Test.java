@@ -6,7 +6,7 @@ import com.github.seratch.jslack.api.methods.request.users.UsersLookupByEmailReq
 import com.github.seratch.jslack.api.methods.request.users.UsersSetActiveRequest;
 import com.github.seratch.jslack.api.methods.response.channels.UsersLookupByEmailResponse;
 import com.github.seratch.jslack.api.methods.response.users.*;
-import com.github.seratch.jslack.api.model.User;
+import com.slack.api.model.User;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

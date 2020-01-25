@@ -1,9 +1,9 @@
 package samples;
 
 import com.github.seratch.jslack.api.methods.response.views.ViewsOpenResponse;
-import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-import com.github.seratch.jslack.api.model.view.View;
-import com.github.seratch.jslack.api.model.view.ViewState;
+import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.view.View;
+import com.slack.api.model.view.ViewState;
 import com.github.seratch.jslack.app_backend.interactive_messages.response.Option;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import com.github.seratch.jslack.lightning.App;

@@ -1,8 +1,8 @@
 package samples;
 
-import com.github.seratch.jslack.api.model.event.MessageBotEvent;
-import com.github.seratch.jslack.api.model.event.MessageDeletedEvent;
-import com.github.seratch.jslack.api.model.event.MessageEvent;
+import com.slack.api.model.event.MessageBotEvent;
+import com.slack.api.model.event.MessageDeletedEvent;
+import com.slack.api.model.event.MessageEvent;
 import com.github.seratch.jslack.app_backend.events.handler.MessageHandler;
 import com.github.seratch.jslack.app_backend.events.payload.MessagePayload;
 import com.github.seratch.jslack.lightning.App;

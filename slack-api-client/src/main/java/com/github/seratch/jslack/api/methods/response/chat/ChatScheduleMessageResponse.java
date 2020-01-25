@@ -1,9 +1,9 @@
 package com.github.seratch.jslack.api.methods.response.chat;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Attachment;
-import com.github.seratch.jslack.api.model.BotProfile;
-import com.github.seratch.jslack.api.model.block.LayoutBlock;
+import com.slack.api.model.Attachment;
+import com.slack.api.model.BotProfile;
+import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
 import java.util.List;

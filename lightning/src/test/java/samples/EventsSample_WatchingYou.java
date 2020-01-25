@@ -1,8 +1,8 @@
 package samples;
 
 import com.github.seratch.jslack.api.methods.response.reactions.ReactionsAddResponse;
-import com.github.seratch.jslack.api.model.event.MessageEvent;
-import com.github.seratch.jslack.api.model.event.ReactionAddedEvent;
+import com.slack.api.model.event.MessageEvent;
+import com.slack.api.model.event.ReactionAddedEvent;
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;
 import lombok.extern.slf4j.Slf4j;

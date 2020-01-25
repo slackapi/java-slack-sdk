@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.team.profile;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Team;
+import com.slack.api.model.Team;
 import lombok.Data;
 
 import java.util.List;

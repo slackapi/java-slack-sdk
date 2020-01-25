@@ -8,11 +8,11 @@ import com.github.seratch.jslack.api.methods.response.channels.ChannelsRepliesRe
 import com.github.seratch.jslack.api.methods.response.chat.ChatPostMessageResponse;
 import com.github.seratch.jslack.api.methods.response.conversations.*;
 import com.github.seratch.jslack.api.methods.response.users.UsersListResponse;
-import com.github.seratch.jslack.api.model.*;
-import com.github.seratch.jslack.api.model.block.ContextBlock;
-import com.github.seratch.jslack.api.model.block.ContextBlockElement;
-import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
-import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.*;
+import com.slack.api.model.block.ContextBlock;
+import com.slack.api.model.block.ContextBlockElement;
+import com.slack.api.model.block.composition.MarkdownTextObject;
+import com.slack.api.model.block.composition.PlainTextObject;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;

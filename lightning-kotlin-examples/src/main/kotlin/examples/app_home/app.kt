@@ -1,6 +1,6 @@
 package examples.app_home
 
-import com.github.seratch.jslack.api.model.event.AppHomeOpenedEvent
+import com.slack.api.model.event.AppHomeOpenedEvent
 import com.github.seratch.jslack.app_backend.events.handler.AppHomeOpenedHandler
 import com.github.seratch.jslack.app_backend.events.payload.AppHomeOpenedPayload
 import com.github.seratch.jslack.lightning.App

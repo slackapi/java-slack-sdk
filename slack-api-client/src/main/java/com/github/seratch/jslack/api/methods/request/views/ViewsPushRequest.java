@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.request.views;
 
 import com.github.seratch.jslack.api.methods.SlackApiRequest;
-import com.github.seratch.jslack.api.model.view.View;
+import com.slack.api.model.view.View;
 import lombok.Builder;
 import lombok.Data;
 

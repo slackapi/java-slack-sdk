@@ -1,10 +1,10 @@
 package test_with_remote_apis.interactive_messages;
 
 import com.github.seratch.jslack.Slack;
-import com.github.seratch.jslack.api.model.block.SectionBlock;
-import com.github.seratch.jslack.api.model.block.composition.MarkdownTextObject;
-import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-import com.github.seratch.jslack.api.model.block.element.ExternalSelectElement;
+import com.slack.api.model.block.SectionBlock;
+import com.slack.api.model.block.composition.MarkdownTextObject;
+import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.element.ExternalSelectElement;
 import com.github.seratch.jslack.app_backend.SlackSignature;
 import com.github.seratch.jslack.app_backend.events.servlet.SlackSignatureVerifier;
 import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;

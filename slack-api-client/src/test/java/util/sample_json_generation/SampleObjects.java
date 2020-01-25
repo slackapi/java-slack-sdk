@@ -1,12 +1,12 @@
 package util.sample_json_generation;
 
-import com.github.seratch.jslack.api.model.*;
-import com.github.seratch.jslack.api.model.block.*;
-import com.github.seratch.jslack.api.model.block.composition.ConfirmationDialogObject;
-import com.github.seratch.jslack.api.model.block.composition.PlainTextObject;
-import com.github.seratch.jslack.api.model.block.composition.TextObject;
-import com.github.seratch.jslack.api.model.block.element.BlockElement;
-import com.github.seratch.jslack.api.model.block.element.ImageElement;
+import com.slack.api.model.*;
+import com.slack.api.model.block.*;
+import com.slack.api.model.block.composition.ConfirmationDialogObject;
+import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.composition.TextObject;
+import com.slack.api.model.block.element.BlockElement;
+import com.slack.api.model.block.element.ImageElement;
 import com.github.seratch.jslack.common.json.GsonFactory;
 import com.google.gson.JsonElement;
 
@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.github.seratch.jslack.api.model.block.Blocks.*;
-import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.*;
-import static com.github.seratch.jslack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.*;
+import static com.slack.api.model.block.element.BlockElements.*;
 import static util.ObjectInitializer.initProperties;
 
 public class SampleObjects {
@@ -69,7 +69,7 @@ public class SampleObjects {
             initProperties(conversationsSelect(c -> c.confirm(Confirm))),
             initProperties(datePicker(d -> d.confirm(Confirm))),
             initProperties(externalSelect(e -> e.confirm(Confirm))),
-            initProperties(com.github.seratch.jslack.api.model.block.element.BlockElements.image(i -> i)),
+            initProperties(com.slack.api.model.block.element.BlockElements.image(i -> i)),
             initProperties(overflowMenu(o -> o.confirm(Confirm))),
             initProperties(staticSelect(s -> s.confirm(Confirm))),
             initProperties(usersSelect(u -> u.confirm(Confirm)))
@@ -85,7 +85,7 @@ public class SampleObjects {
             initProperties(actions(a -> a.elements(BlockElements))),
             initProperties(context(c -> c.elements(ContextBlockElements))),
             initProperties(divider()),
-            initProperties(com.github.seratch.jslack.api.model.block.Blocks.image(i -> i)),
+            initProperties(com.slack.api.model.block.Blocks.image(i -> i)),
             initProperties(section(s -> s
                     .accessory(initProperties(ImageElement.builder().build()))
                     .text(TextObject)

@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.files.comments;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.FileComment;
+import com.slack.api.model.FileComment;
 import lombok.Data;
 
 @Data

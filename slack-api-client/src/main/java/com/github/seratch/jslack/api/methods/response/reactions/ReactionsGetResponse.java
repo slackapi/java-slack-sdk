@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.reactions;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Reaction;
+import com.slack.api.model.Reaction;
 import lombok.Data;
 
 import java.util.List;

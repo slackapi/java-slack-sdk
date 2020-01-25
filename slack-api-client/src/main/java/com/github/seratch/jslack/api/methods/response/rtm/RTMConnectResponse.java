@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.api.methods.response.rtm;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.Team;
-import com.github.seratch.jslack.api.model.User;
+import com.slack.api.model.Team;
+import com.slack.api.model.User;
 import lombok.Data;
 
 /**

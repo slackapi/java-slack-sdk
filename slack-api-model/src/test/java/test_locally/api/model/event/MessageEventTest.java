@@ -1,7 +1,7 @@
 package test_locally.api.model.event;
 
-import com.github.seratch.jslack.api.model.event.MessageBotEvent;
-import com.github.seratch.jslack.api.model.event.MessageEvent;
+import com.slack.api.model.event.MessageBotEvent;
+import com.slack.api.model.event.MessageEvent;
 import com.google.gson.Gson;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;

@@ -1,19 +1,19 @@
 package test_locally.api.model.block;
 
-import com.github.seratch.jslack.api.model.block.ActionsBlock;
-import com.github.seratch.jslack.api.model.block.Blocks;
-import com.github.seratch.jslack.api.model.block.ContextBlock;
-import com.github.seratch.jslack.api.model.block.ContextBlockElement;
-import com.github.seratch.jslack.api.model.block.element.BlockElement;
-import com.github.seratch.jslack.api.model.block.element.BlockElements;
+import com.slack.api.model.block.ActionsBlock;
+import com.slack.api.model.block.Blocks;
+import com.slack.api.model.block.ContextBlock;
+import com.slack.api.model.block.ContextBlockElement;
+import com.slack.api.model.block.element.BlockElement;
+import com.slack.api.model.block.element.BlockElements;
 import org.junit.Test;
 
 import java.util.List;
 
-import static com.github.seratch.jslack.api.model.block.Blocks.*;
-import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.asSectionFields;
-import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.plainText;
-import static com.github.seratch.jslack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.element.BlockElements.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;

@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.message_actions.payload;
 
-import com.github.seratch.jslack.api.model.Message;
+import com.slack.api.model.Message;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

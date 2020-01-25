@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.slash_commands;
 
-import com.github.seratch.jslack.api.webhook.WebhookResponse;
+import com.slack.api.webhook.WebhookResponse;
 import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayload;
 import com.github.seratch.jslack.app_backend.slash_commands.response.SlashCommandResponse;
 import com.github.seratch.jslack.common.http.SlackHttpClient;

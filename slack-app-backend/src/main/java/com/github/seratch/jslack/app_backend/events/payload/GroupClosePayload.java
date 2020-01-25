@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.events.payload;
 
-import com.github.seratch.jslack.api.model.event.GroupCloseEvent;
+import com.slack.api.model.event.GroupCloseEvent;
 import lombok.Data;
 
 import java.util.List;

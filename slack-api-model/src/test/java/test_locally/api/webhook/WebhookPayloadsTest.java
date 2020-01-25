@@ -1,12 +1,12 @@
 package test_locally.api.webhook;
 
-import com.github.seratch.jslack.api.webhook.Payload;
+import com.slack.api.webhook.Payload;
 import org.junit.Test;
 
-import static com.github.seratch.jslack.api.model.Attachments.*;
-import static com.github.seratch.jslack.api.model.block.Blocks.*;
-import static com.github.seratch.jslack.api.model.block.composition.BlockCompositions.plainText;
-import static com.github.seratch.jslack.api.webhook.WebhookPayloads.payload;
+import static com.slack.api.model.Attachments.*;
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.webhook.WebhookPayloads.payload;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;

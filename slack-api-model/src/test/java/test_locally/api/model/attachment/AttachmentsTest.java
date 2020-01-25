@@ -1,11 +1,11 @@
 package test_locally.api.model.attachment;
 
-import com.github.seratch.jslack.api.model.Attachment;
-import com.github.seratch.jslack.api.model.Message;
+import com.slack.api.model.Attachment;
+import com.slack.api.model.Message;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
-import static com.github.seratch.jslack.api.model.Attachments.*;
+import static com.slack.api.model.Attachments.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;

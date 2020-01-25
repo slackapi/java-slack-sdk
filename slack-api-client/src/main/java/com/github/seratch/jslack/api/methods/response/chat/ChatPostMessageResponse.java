@@ -1,8 +1,8 @@
 package com.github.seratch.jslack.api.methods.response.chat;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.ErrorResponseMetadata;
-import com.github.seratch.jslack.api.model.Message;
+import com.slack.api.model.ErrorResponseMetadata;
+import com.slack.api.model.Message;
 import lombok.Data;
 
 @Data

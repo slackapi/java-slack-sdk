@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.api.methods.response.admin.users;
 
 import com.github.seratch.jslack.api.methods.SlackApiResponse;
-import com.github.seratch.jslack.api.model.ResponseMetadata;
+import com.slack.api.model.ResponseMetadata;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 

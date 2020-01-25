@@ -4,7 +4,7 @@ import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.SlackApiException;
 import com.github.seratch.jslack.api.methods.request.rtm.RTMConnectRequest;
 import com.github.seratch.jslack.api.methods.response.rtm.RTMConnectResponse;
-import com.github.seratch.jslack.api.model.User;
+import com.slack.api.model.User;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.websocket.*;
