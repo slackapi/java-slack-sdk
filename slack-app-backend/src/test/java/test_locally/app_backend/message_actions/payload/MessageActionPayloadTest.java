@@ -1,6 +1,6 @@
 package test_locally.app_backend.message_actions.payload;
 
-import com.github.seratch.jslack.app_backend.message_actions.payload.MessageActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
 import com.slack.api.util.json.GsonFactory;
 import com.google.gson.Gson;
 import org.junit.Test;

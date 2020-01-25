@@ -2,10 +2,10 @@ package com.github.seratch.jslack.lightning.response;
 
 import com.slack.api.Slack;
 import com.slack.api.webhook.WebhookResponse;
-import com.github.seratch.jslack.app_backend.interactive_messages.ActionResponseSender;
-import com.github.seratch.jslack.app_backend.interactive_messages.response.ActionResponse;
-import com.github.seratch.jslack.app_backend.slash_commands.SlashCommandResponseSender;
-import com.github.seratch.jslack.app_backend.slash_commands.response.SlashCommandResponse;
+import com.slack.api.app_backend.interactive_components.ActionResponseSender;
+import com.slack.api.app_backend.interactive_components.response.ActionResponse;
+import com.slack.api.app_backend.slash_commands.SlashCommandResponseSender;
+import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.util.http.SlackHttpClient;
 import okhttp3.Response;
 
@@ -21,7 +21,7 @@ public class ResponseUrlSender {
         this.responseUrl = responseUrl;
     }
 
-    public WebhookResponse send(com.github.seratch.jslack.app_backend.outgoing_webhooks.response.WebhookResponse response) throws IOException {
+    public WebhookResponse send(com.slack.api.app_backend.outgoing_webhooks.response.WebhookResponse response) throws IOException {
         SlackHttpClient httpClient = slack.getHttpClient();
         Response httpResponse = httpClient.postJsonBody(responseUrl, response);
         String body = httpResponse.body().string();

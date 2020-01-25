@@ -1,6 +1,6 @@
 package test_locally.app_backend.oauth.payload;
 
-import com.github.seratch.jslack.app_backend.oauth.payload.VerificationCodePayload;
+import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 import org.junit.Test;
 
 import java.util.HashMap;

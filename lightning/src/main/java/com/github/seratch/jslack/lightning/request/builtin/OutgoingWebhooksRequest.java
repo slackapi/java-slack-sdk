@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.lightning.request.builtin;
 
-import com.github.seratch.jslack.app_backend.outgoing_webhooks.payload.WebhookPayload;
-import com.github.seratch.jslack.app_backend.outgoing_webhooks.payload.WebhookPayloadParser;
+import com.slack.api.app_backend.outgoing_webhooks.payload.WebhookPayload;
+import com.slack.api.app_backend.outgoing_webhooks.WebhookPayloadParser;
 import com.github.seratch.jslack.lightning.context.builtin.OutgoingWebhooksContext;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.RequestHeaders;

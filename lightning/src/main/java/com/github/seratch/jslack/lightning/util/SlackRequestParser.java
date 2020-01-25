@@ -1,21 +1,21 @@
 package com.github.seratch.jslack.lightning.util;
 
-import com.github.seratch.jslack.app_backend.dialogs.payload.DialogCancellationPayload;
-import com.github.seratch.jslack.app_backend.dialogs.payload.DialogSubmissionPayload;
-import com.github.seratch.jslack.app_backend.dialogs.payload.DialogSuggestionPayload;
+import com.slack.api.app_backend.dialogs.payload.DialogCancellationPayload;
+import com.slack.api.app_backend.dialogs.payload.DialogSubmissionPayload;
+import com.slack.api.app_backend.dialogs.payload.DialogSuggestionPayload;
 import com.github.seratch.jslack.app_backend.events.payload.EventsApiPayload;
 import com.github.seratch.jslack.app_backend.events.payload.UrlVerificationPayload;
-import com.github.seratch.jslack.app_backend.interactive_messages.payload.AttachmentActionPayload;
-import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
-import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockSuggestionPayload;
-import com.github.seratch.jslack.app_backend.message_actions.payload.MessageActionPayload;
-import com.github.seratch.jslack.app_backend.oauth.payload.VerificationCodePayload;
-import com.github.seratch.jslack.app_backend.util.JsonPayloadExtractor;
-import com.github.seratch.jslack.app_backend.util.OutgoingWebhooksRequestDetector;
-import com.github.seratch.jslack.app_backend.util.SSLCheckRequestDetector;
-import com.github.seratch.jslack.app_backend.util.SlashCommandRequestDetector;
-import com.github.seratch.jslack.app_backend.views.payload.ViewClosedPayload;
-import com.github.seratch.jslack.app_backend.views.payload.ViewSubmissionPayload;
+import com.slack.api.app_backend.interactive_components.payload.AttachmentActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.BlockSuggestionPayload;
+import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
+import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
+import com.slack.api.app_backend.util.JsonPayloadExtractor;
+import com.slack.api.app_backend.outgoing_webhooks.WebhookPayloadDetector;
+import com.slack.api.app_backend.ssl_check.SSLCheckPayloadDetector;
+import com.slack.api.app_backend.slash_commands.SlashCommandPayloadDetector;
+import com.slack.api.app_backend.views.payload.ViewClosedPayload;
+import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.request.Request;
@@ -36,9 +36,9 @@ import java.util.Map;
 public class SlackRequestParser {
 
     private JsonPayloadExtractor jsonPayloadExtractor = new JsonPayloadExtractor();
-    private SlashCommandRequestDetector commandRequestDetector = new SlashCommandRequestDetector();
-    private SSLCheckRequestDetector sslCheckRequestDetector = new SSLCheckRequestDetector();
-    private OutgoingWebhooksRequestDetector webhookRequestDetector = new OutgoingWebhooksRequestDetector();
+    private SlashCommandPayloadDetector commandRequestDetector = new SlashCommandPayloadDetector();
+    private SSLCheckPayloadDetector sslCheckPayloadDetector = new SSLCheckPayloadDetector();
+    private WebhookPayloadDetector webhookRequestDetector = new WebhookPayloadDetector();
     private Gson gson = GsonFactory.createSnakeCase();
 
     private final AppConfig appConfig;
@@ -108,7 +108,7 @@ public class SlackRequestParser {
             } else {
                 if (commandRequestDetector.isCommand(requestBody)) {
                     slackRequest = new SlashCommandRequest(requestBody, headers);
-                } else if (sslCheckRequestDetector.isSSLCheckRequest(requestBody)) {
+                } else if (sslCheckPayloadDetector.isSSLCheckRequest(requestBody)) {
                     slackRequest = new SSLCheckRequest(requestBody, headers);
                 } else if (webhookRequestDetector.isWebhook(requestBody)) {
                     slackRequest = new OutgoingWebhooksRequest(requestBody, headers);

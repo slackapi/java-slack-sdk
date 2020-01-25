@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning.context.builtin;
 
-import com.github.seratch.jslack.app_backend.views.response.ViewSubmissionResponse;
+import com.slack.api.app_backend.views.response.ViewSubmissionResponse;
 import com.github.seratch.jslack.lightning.context.Context;
 import com.github.seratch.jslack.lightning.response.Response;
 import com.github.seratch.jslack.lightning.util.BuilderConfigurator;

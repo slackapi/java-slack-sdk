@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning.request.builtin;
 
-import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
 import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.context.builtin.ActionContext;
 import com.github.seratch.jslack.lightning.request.Request;

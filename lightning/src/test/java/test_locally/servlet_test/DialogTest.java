@@ -1,9 +1,9 @@
 package test_locally.servlet_test;
 
 import com.slack.api.webhook.WebhookResponse;
-import com.github.seratch.jslack.app_backend.dialogs.response.Error;
-import com.github.seratch.jslack.app_backend.dialogs.response.Option;
-import com.github.seratch.jslack.app_backend.interactive_messages.response.ActionResponse;
+import com.slack.api.app_backend.dialogs.response.Error;
+import com.slack.api.app_backend.dialogs.response.Option;
+import com.slack.api.app_backend.interactive_components.response.ActionResponse;
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.response.ResponseUrlSender;

@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning.request;
 
-import com.github.seratch.jslack.app_backend.SlackSignature;
+import com.slack.api.app_backend.SlackSignature;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.context.Context;
 import com.github.seratch.jslack.lightning.context.builtin.OAuthCallbackContext;

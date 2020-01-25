@@ -1,8 +1,8 @@
 package test_locally.app_backend.vendor.aws.lambda.util;
 
-import com.github.seratch.jslack.app_backend.SlackSignature;
-import com.github.seratch.jslack.app_backend.vendor.aws.lambda.request.ApiGatewayRequest;
-import com.github.seratch.jslack.app_backend.vendor.aws.lambda.util.SlackSignatureVerifier;
+import com.slack.api.app_backend.SlackSignature;
+import com.slack.api.app_backend.vendor.aws.lambda.request.ApiGatewayRequest;
+import com.slack.api.app_backend.vendor.aws.lambda.util.SlackSignatureVerifier;
 import org.junit.Test;
 
 import java.util.HashMap;

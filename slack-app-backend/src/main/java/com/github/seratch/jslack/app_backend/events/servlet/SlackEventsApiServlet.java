@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.events.servlet;
 
-import com.github.seratch.jslack.app_backend.SlackSignature;
+import com.slack.api.app_backend.SlackSignature;
 import com.github.seratch.jslack.app_backend.events.EventsDispatcher;
 import com.github.seratch.jslack.app_backend.events.EventsDispatcherFactory;
 import com.slack.api.util.json.GsonFactory;

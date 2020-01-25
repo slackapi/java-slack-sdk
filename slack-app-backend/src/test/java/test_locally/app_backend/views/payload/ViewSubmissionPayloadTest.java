@@ -1,6 +1,6 @@
 package test_locally.app_backend.views.payload;
 
-import com.github.seratch.jslack.app_backend.views.payload.ViewSubmissionPayload;
+import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import com.slack.api.util.json.GsonFactory;
 import com.google.gson.Gson;
 import org.junit.Test;

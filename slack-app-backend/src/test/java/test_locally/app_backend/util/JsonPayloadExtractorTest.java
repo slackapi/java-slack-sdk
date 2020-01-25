@@ -1,6 +1,6 @@
 package test_locally.app_backend.util;
 
-import com.github.seratch.jslack.app_backend.util.JsonPayloadExtractor;
+import com.slack.api.app_backend.util.JsonPayloadExtractor;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

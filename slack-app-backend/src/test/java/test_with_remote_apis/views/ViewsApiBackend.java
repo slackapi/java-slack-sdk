@@ -13,15 +13,15 @@ import com.slack.api.model.block.element.PlainTextInputElement;
 import com.slack.api.model.view.View;
 import com.slack.api.model.view.ViewSubmit;
 import com.slack.api.model.view.ViewTitle;
-import com.github.seratch.jslack.app_backend.SlackSignature;
+import com.slack.api.app_backend.SlackSignature;
 import com.github.seratch.jslack.app_backend.events.servlet.SlackSignatureVerifier;
-import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
-import com.github.seratch.jslack.app_backend.interactive_messages.payload.PayloadTypeDetector;
-import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayload;
-import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayloadParser;
-import com.github.seratch.jslack.app_backend.vendor.aws.lambda.request.PayloadExtractor;
-import com.github.seratch.jslack.app_backend.views.payload.ViewClosedPayload;
-import com.github.seratch.jslack.app_backend.views.payload.ViewSubmissionPayload;
+import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
+import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
+import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
+import com.slack.api.app_backend.slash_commands.SlashCommandPayloadParser;
+import com.slack.api.app_backend.vendor.aws.lambda.request.PayloadExtractor;
+import com.slack.api.app_backend.views.payload.ViewClosedPayload;
+import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import com.slack.api.util.json.GsonFactory;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -55,7 +55,7 @@ public class ViewsApiBackend {
 
         private final Gson gson = GsonFactory.createSnakeCase();
         private final PayloadExtractor payloadExtractor = new PayloadExtractor();
-        private final PayloadTypeDetector payloadTypeDetector = new PayloadTypeDetector();
+        private final JsonPayloadTypeDetector payloadTypeDetector = new JsonPayloadTypeDetector();
 
         private final Slack slack = Slack.getInstance();
 

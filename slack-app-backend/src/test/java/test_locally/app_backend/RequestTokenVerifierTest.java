@@ -1,7 +1,7 @@
 package test_locally.app_backend;
 
-import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayload;
-import com.github.seratch.jslack.app_backend.util.RequestTokenVerifier;
+import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
+import com.slack.api.app_backend.util.RequestTokenVerifier;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

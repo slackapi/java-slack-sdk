@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning.middleware.builtin;
 
-import com.github.seratch.jslack.app_backend.SlackSignature;
+import com.slack.api.app_backend.SlackSignature;
 import com.github.seratch.jslack.lightning.middleware.Middleware;
 import com.github.seratch.jslack.lightning.middleware.MiddlewareChain;
 import com.github.seratch.jslack.lightning.request.Request;

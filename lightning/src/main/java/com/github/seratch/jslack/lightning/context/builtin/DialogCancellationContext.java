@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.lightning.context.builtin;
 
 import com.slack.api.webhook.WebhookResponse;
-import com.github.seratch.jslack.app_backend.interactive_messages.response.ActionResponse;
+import com.slack.api.app_backend.interactive_components.response.ActionResponse;
 import com.github.seratch.jslack.lightning.context.Context;
 import com.github.seratch.jslack.lightning.response.ResponseUrlSender;
 import com.github.seratch.jslack.lightning.util.BuilderConfigurator;

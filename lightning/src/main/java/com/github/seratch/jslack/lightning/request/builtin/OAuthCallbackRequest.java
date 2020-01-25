@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.lightning.request.builtin;
 
-import com.github.seratch.jslack.app_backend.oauth.payload.VerificationCodePayload;
+import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 import com.github.seratch.jslack.lightning.context.builtin.OAuthCallbackContext;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.RequestHeaders;

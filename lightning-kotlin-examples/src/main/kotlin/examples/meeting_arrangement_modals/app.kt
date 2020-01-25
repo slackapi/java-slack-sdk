@@ -1,7 +1,7 @@
 package examples.meeting_arrangement_modals
 
 import com.slack.api.model.block.composition.PlainTextObject
-import com.github.seratch.jslack.app_backend.interactive_messages.response.Option
+import com.slack.api.app_backend.interactive_components.response.Option
 import com.github.seratch.jslack.lightning.App
 import com.github.seratch.jslack.lightning.jetty.SlackAppServer
 import com.github.seratch.jslack.lightning.response.Response

@@ -1,11 +1,11 @@
 package com.github.seratch.jslack.lightning.middleware.builtin;
 
-import com.github.seratch.jslack.app_backend.outgoing_webhooks.payload.WebhookPayloadParser;
-import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayloadParser;
-import com.github.seratch.jslack.app_backend.util.JsonPayloadExtractor;
-import com.github.seratch.jslack.app_backend.util.OutgoingWebhooksRequestDetector;
-import com.github.seratch.jslack.app_backend.util.RequestTokenVerifier;
-import com.github.seratch.jslack.app_backend.util.SlashCommandRequestDetector;
+import com.slack.api.app_backend.outgoing_webhooks.WebhookPayloadParser;
+import com.slack.api.app_backend.slash_commands.SlashCommandPayloadParser;
+import com.slack.api.app_backend.util.JsonPayloadExtractor;
+import com.slack.api.app_backend.outgoing_webhooks.WebhookPayloadDetector;
+import com.slack.api.app_backend.util.RequestTokenVerifier;
+import com.slack.api.app_backend.slash_commands.SlashCommandPayloadDetector;
 import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.middleware.Middleware;
 import com.github.seratch.jslack.lightning.middleware.MiddlewareChain;
@@ -23,9 +23,9 @@ public class LegacyRequestVerification implements Middleware {
 
     private final RequestTokenVerifier verifier;
     private final JsonPayloadExtractor jsonPayloadExtractor = new JsonPayloadExtractor();
-    private final SlashCommandRequestDetector commandRequestDetector = new SlashCommandRequestDetector();
+    private final SlashCommandPayloadDetector commandRequestDetector = new SlashCommandPayloadDetector();
     private final SlashCommandPayloadParser commandPayloadParser = new SlashCommandPayloadParser();
-    private final OutgoingWebhooksRequestDetector webhooksRequestDetector = new OutgoingWebhooksRequestDetector();
+    private final WebhookPayloadDetector webhooksRequestDetector = new WebhookPayloadDetector();
     private final WebhookPayloadParser webhookPayloadParser = new WebhookPayloadParser();
     private final Gson gson = GsonFactory.createSnakeCase();
 

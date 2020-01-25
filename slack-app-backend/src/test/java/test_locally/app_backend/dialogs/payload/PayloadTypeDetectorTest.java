@@ -1,6 +1,6 @@
 package test_locally.app_backend.dialogs.payload;
 
-import com.github.seratch.jslack.app_backend.dialogs.payload.PayloadTypeDetector;
+import com.slack.api.app_backend.dialogs.payload.PayloadTypeDetector;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

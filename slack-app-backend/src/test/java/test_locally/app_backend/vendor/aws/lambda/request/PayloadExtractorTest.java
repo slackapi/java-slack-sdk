@@ -1,7 +1,7 @@
 package test_locally.app_backend.vendor.aws.lambda.request;
 
-import com.github.seratch.jslack.app_backend.vendor.aws.lambda.request.ApiGatewayRequest;
-import com.github.seratch.jslack.app_backend.vendor.aws.lambda.request.PayloadExtractor;
+import com.slack.api.app_backend.vendor.aws.lambda.request.ApiGatewayRequest;
+import com.slack.api.app_backend.vendor.aws.lambda.request.PayloadExtractor;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

@@ -1,8 +1,8 @@
 package samples;
 
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
-import com.github.seratch.jslack.app_backend.dialogs.response.Error;
-import com.github.seratch.jslack.app_backend.dialogs.response.Option;
+import com.slack.api.app_backend.dialogs.response.Error;
+import com.slack.api.app_backend.dialogs.response.Option;
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;
 import lombok.extern.slf4j.Slf4j;

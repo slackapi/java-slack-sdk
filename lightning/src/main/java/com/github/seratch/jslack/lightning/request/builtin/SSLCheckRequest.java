@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.lightning.request.builtin;
 
-import com.github.seratch.jslack.app_backend.ssl_check.payload.SSLCheckPayload;
-import com.github.seratch.jslack.app_backend.ssl_check.payload.SSLCheckPayloadParser;
+import com.slack.api.app_backend.ssl_check.payload.SSLCheckPayload;
+import com.slack.api.app_backend.ssl_check.SSLCheckPayloadParser;
 import com.github.seratch.jslack.lightning.context.builtin.DefaultContext;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.RequestHeaders;

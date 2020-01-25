@@ -1,6 +1,6 @@
 package test_locally.app_backend;
 
-import com.github.seratch.jslack.app_backend.SlackSignature;
+import com.slack.api.app_backend.SlackSignature;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

@@ -1,7 +1,7 @@
 package test_locally.app_backend.interactive_messages.payload;
 
-import com.github.seratch.jslack.app_backend.interactive_messages.payload.BlockActionPayload;
-import com.github.seratch.jslack.app_backend.interactive_messages.payload.PayloadTypeDetector;
+import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
+import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
@@ -79,7 +79,7 @@ public class PayloadTypeDetectorTest {
     @Test
     public void interactive_message() throws UnsupportedEncodingException {
         String encoded = URLEncoder.encode(attachmentActionPayload, "UTF-8");
-        PayloadTypeDetector detector = new PayloadTypeDetector();
+        JsonPayloadTypeDetector detector = new JsonPayloadTypeDetector();
         String type = detector.detectType(URLDecoder.decode(encoded, "UTF-8"));
         assertThat(type, is("interactive_message"));
     }

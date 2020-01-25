@@ -1,7 +1,7 @@
 package com.github.seratch.jslack.lightning.request.builtin;
 
-import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayload;
-import com.github.seratch.jslack.app_backend.slash_commands.payload.SlashCommandPayloadParser;
+import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
+import com.slack.api.app_backend.slash_commands.SlashCommandPayloadParser;
 import com.github.seratch.jslack.lightning.context.builtin.SlashCommandContext;
 import com.github.seratch.jslack.lightning.request.Request;
 import com.github.seratch.jslack.lightning.request.RequestHeaders;

@@ -1,6 +1,6 @@
 package test_locally.app_backend.config;
 
-import com.github.seratch.jslack.app_backend.config.SlackAppConfig;
+import com.slack.api.app_backend.config.SlackAppConfig;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

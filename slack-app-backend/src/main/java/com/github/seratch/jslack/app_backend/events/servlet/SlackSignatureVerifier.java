@@ -1,6 +1,6 @@
 package com.github.seratch.jslack.app_backend.events.servlet;
 
-import com.github.seratch.jslack.app_backend.SlackSignature;
+import com.slack.api.app_backend.SlackSignature;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;

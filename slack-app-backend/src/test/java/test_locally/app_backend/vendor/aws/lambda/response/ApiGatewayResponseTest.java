@@ -1,6 +1,6 @@
 package test_locally.app_backend.vendor.aws.lambda.response;
 
-import com.github.seratch.jslack.app_backend.vendor.aws.lambda.response.ApiGatewayResponse;
+import com.slack.api.app_backend.vendor.aws.lambda.response.ApiGatewayResponse;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

@@ -1,8 +1,8 @@
 package test_locally.sample_json_generation;
 
-import com.github.seratch.jslack.app_backend.dialogs.payload.DialogCancellationPayload;
-import com.github.seratch.jslack.app_backend.dialogs.payload.DialogSubmissionPayload;
-import com.github.seratch.jslack.app_backend.dialogs.payload.DialogSuggestionPayload;
+import com.slack.api.app_backend.dialogs.payload.DialogCancellationPayload;
+import com.slack.api.app_backend.dialogs.payload.DialogSubmissionPayload;
+import com.slack.api.app_backend.dialogs.payload.DialogSuggestionPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import util.ObjectInitializer;

@@ -1,6 +1,6 @@
 package test_locally.app_backend.slash_commands.response;
 
-import com.github.seratch.jslack.app_backend.slash_commands.response.SlashCommandResponse;
+import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

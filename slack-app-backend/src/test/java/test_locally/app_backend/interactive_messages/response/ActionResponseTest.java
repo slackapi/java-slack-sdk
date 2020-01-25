@@ -1,6 +1,6 @@
 package test_locally.app_backend.interactive_messages.response;
 
-import com.github.seratch.jslack.app_backend.interactive_messages.response.ActionResponse;
+import com.slack.api.app_backend.interactive_components.response.ActionResponse;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 

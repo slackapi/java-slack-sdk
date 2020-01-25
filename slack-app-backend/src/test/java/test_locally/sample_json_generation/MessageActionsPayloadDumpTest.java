@@ -1,6 +1,6 @@
 package test_locally.sample_json_generation;
 
-import com.github.seratch.jslack.app_backend.message_actions.payload.MessageActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import util.ObjectInitializer;

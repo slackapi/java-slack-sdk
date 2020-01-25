@@ -4,7 +4,7 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.view.View;
 import com.slack.api.model.view.ViewState;
-import com.github.seratch.jslack.app_backend.interactive_messages.response.Option;
+import com.slack.api.app_backend.interactive_components.response.Option;
 import com.slack.api.util.json.GsonFactory;
 import com.github.seratch.jslack.lightning.App;
 import com.github.seratch.jslack.lightning.AppConfig;

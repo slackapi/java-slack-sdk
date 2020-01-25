@@ -2,9 +2,9 @@ package com.github.seratch.jslack.lightning.service.builtin;
 
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
-import com.github.seratch.jslack.app_backend.config.SlackAppConfig;
-import com.github.seratch.jslack.app_backend.oauth.OAuthFlowOperator;
-import com.github.seratch.jslack.app_backend.oauth.payload.VerificationCodePayload;
+import com.slack.api.app_backend.config.SlackAppConfig;
+import com.slack.api.app_backend.oauth.OAuthFlowOperator;
+import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 import com.github.seratch.jslack.lightning.AppConfig;
 import com.github.seratch.jslack.lightning.handler.*;
 import com.github.seratch.jslack.lightning.request.builtin.OAuthCallbackRequest;

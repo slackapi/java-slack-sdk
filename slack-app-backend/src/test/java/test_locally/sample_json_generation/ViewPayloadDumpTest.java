@@ -1,8 +1,8 @@
 package test_locally.sample_json_generation;
 
 import com.slack.api.model.view.View;
-import com.github.seratch.jslack.app_backend.views.payload.ViewClosedPayload;
-import com.github.seratch.jslack.app_backend.views.payload.ViewSubmissionPayload;
+import com.slack.api.app_backend.views.payload.ViewClosedPayload;
+import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import util.ObjectInitializer;
