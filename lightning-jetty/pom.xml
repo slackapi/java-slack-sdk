@@ -4,69 +4,65 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.seratch</groupId>
-        <artifactId>jslack-modules</artifactId>
-        <version>3.3.0</version>
+        <groupId>com.slack</groupId>
+        <artifactId>slack-sdk-modules</artifactId>
+        <version>0.99.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.github.seratch</groupId>
-    <artifactId>jslack-api-client</artifactId>
+    <properties>
+        <jetty.version>9.4.24.v20191120</jetty.version>
+    </properties>
+
+    <groupId>com.slack</groupId>
+    <artifactId>lightning-jetty</artifactId>
     <version>${project.parent.version}</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.seratch</groupId>
-            <artifactId>jslack-api-model</artifactId>
+            <groupId>com.slack</groupId>
+            <artifactId>slack-api-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.slack</groupId>
+            <artifactId>slack-api-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.slack</groupId>
+            <artifactId>slack-app-backend</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.slack</groupId>
+            <artifactId>lightning</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>${okhttp.version}</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>${gson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.websocket</groupId>
-            <artifactId>javax.websocket-api</artifactId>
-            <version>1.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.tyrus.bundles</groupId>
-            <artifactId>tyrus-standalone-client</artifactId>
-            <version>1.15</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
             <version>${jetty.version}</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
             <version>${jetty.version}</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
             <version>${jetty.version}</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

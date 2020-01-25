@@ -3,25 +3,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.seratch</groupId>
-    <artifactId>jslack-modules</artifactId>
-    <version>3.3.0</version>
+    <groupId>com.slack</groupId>
+    <artifactId>slack-sdk-modules</artifactId>
+    <version>0.99.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>jSlack project</name>
-    <url>https://github.com/seratch/jslack</url>
+    <name>Java Slack SDK Project</name>
+    <url>https://github.com/slackapi/java-slack-sdk</url>
 
     <modules>
-        <module>jslack-all</module>
-        <module>jslack-api-client</module>
-        <module>jslack-api-model</module>
-        <module>jslack-app-backend</module>
-        <module>jslack-lightning</module>
-        <module>jslack-lightning-jetty</module>
-        <module>jslack-lightning-micronaut</module>
-        <module>jslack-lightning-spring-boot-examples</module>
-        <module>jslack-lightning-kotlin-examples</module>
-        <module>jslack-lightning-quarkus-examples</module>
+        <module>slack-api-client</module>
+        <module>slack-api-model</module>
+        <module>slack-app-backend</module>
+        <module>lightning</module>
+        <module>lightning-jetty</module>
+        <module>lightning-micronaut</module>
+        <module>lightning-spring-boot-examples</module>
+        <module>lightning-kotlin-examples</module>
+        <module>lightning-quarkus-examples</module>
     </modules>
 
     <parent>
@@ -49,9 +48,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:seratch/jslack.git</connection>
-        <developerConnection>scm:git:git@github.com:seratch/jslack.git</developerConnection>
-        <url>git@github.com:seratch/jslack.git</url>
+        <connection>scm:git:git@github.com:seratch/slack.git</connection>
+        <developerConnection>scm:git:git@github.com:seratch/slack.git</developerConnection>
+        <url>git@github.com:seratch/slack.git</url>
     </scm>
 
     <developers>
