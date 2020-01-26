@@ -29,7 +29,7 @@ public class bots_Test {
 
     @Test
     public void botsInfo() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
         List<User> users = slack.methods().usersList(req -> req.token(token)).getMembers();
         User user = null;

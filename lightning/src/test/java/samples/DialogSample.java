@@ -1,10 +1,10 @@
 package samples;
 
-import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.app_backend.dialogs.response.Error;
 import com.slack.api.app_backend.dialogs.response.Option;
 import com.slack.api.lightning.App;
 import com.slack.api.lightning.AppConfig;
+import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;

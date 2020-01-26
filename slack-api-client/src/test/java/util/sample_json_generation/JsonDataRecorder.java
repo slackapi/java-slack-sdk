@@ -1,5 +1,6 @@
 package util.sample_json_generation;
 
+import com.google.gson.*;
 import com.slack.api.SlackConfig;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.FileComment;
@@ -8,7 +9,6 @@ import com.slack.api.model.admin.AppRequest;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.json.GsonFactory;
-import com.google.gson.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;

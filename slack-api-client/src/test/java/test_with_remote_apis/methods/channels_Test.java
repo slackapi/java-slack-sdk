@@ -33,7 +33,7 @@ import static org.junit.Assert.*;
 public class channels_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     private String randomChannelId = null;
 
@@ -177,7 +177,7 @@ public class channels_Test {
 
     @Test
     public void channels_chat() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
         {
             ChannelsListResponse response = slack.methods().channelsList(r -> r.token(token));

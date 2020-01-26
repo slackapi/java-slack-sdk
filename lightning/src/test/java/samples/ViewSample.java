@@ -1,14 +1,14 @@
 package samples;
 
+import com.slack.api.app_backend.interactive_components.response.Option;
+import com.slack.api.lightning.App;
+import com.slack.api.lightning.AppConfig;
+import com.slack.api.lightning.util.JsonOps;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.view.View;
 import com.slack.api.model.view.ViewState;
-import com.slack.api.app_backend.interactive_components.response.Option;
 import com.slack.api.util.json.GsonFactory;
-import com.slack.api.lightning.App;
-import com.slack.api.lightning.AppConfig;
-import com.slack.api.lightning.util.JsonOps;
 import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;

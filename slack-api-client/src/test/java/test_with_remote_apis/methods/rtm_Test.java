@@ -1,5 +1,7 @@
 package test_with_remote_apis.methods;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.SlackApiException;
@@ -14,8 +16,6 @@ import com.slack.api.rtm.message.Message;
 import com.slack.api.rtm.message.PresenceQuery;
 import com.slack.api.rtm.message.PresenceSub;
 import com.slack.api.rtm.message.Typing;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -40,8 +40,8 @@ public class rtm_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 
-    String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
-    String channelCreationToken = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String channelCreationToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
     User currentUser;
 
     JsonParser jsonParser = new JsonParser();
@@ -85,7 +85,7 @@ public class rtm_Test {
             // need to invite the bot user to the created channel before starting an RTM session
             inviteBotUser(channelId);
 
-            String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
+            String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
             RTMEventsDispatcher dispatcher = RTMEventsDispatcherFactory.getInstance();
             HelloHandler hello = new HelloHandler();

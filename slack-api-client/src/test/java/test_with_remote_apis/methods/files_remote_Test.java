@@ -4,10 +4,10 @@ import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.files.remote.*;
 import com.slack.api.methods.response.search.SearchFilesResponse;
-import com.slack.api.model.File;
-import com.slack.api.model.MatchedItem;
 import com.slack.api.methods.shortcut.model.ApiToken;
 import com.slack.api.methods.shortcut.model.ChannelName;
+import com.slack.api.model.File;
+import com.slack.api.model.MatchedItem;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.Data;
@@ -31,8 +31,8 @@ import static org.junit.Assert.assertTrue;
 public class files_remote_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String userToken = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-    String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
     @Test
     public void listAllFiles() throws IOException, SlackApiException {

@@ -1,7 +1,7 @@
 package com.slack.api.model;
 
-import com.slack.api.model.block.LayoutBlock;
 import com.google.gson.annotations.SerializedName;
+import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
 import java.util.List;

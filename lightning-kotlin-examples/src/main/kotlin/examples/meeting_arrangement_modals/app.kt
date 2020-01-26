@@ -1,10 +1,10 @@
 package examples.meeting_arrangement_modals
 
-import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.app_backend.interactive_components.response.Option
 import com.slack.api.lightning.App
 import com.slack.api.lightning.jetty.SlackAppServer
 import com.slack.api.lightning.response.Response
+import com.slack.api.model.block.composition.PlainTextObject
 import org.slf4j.LoggerFactory
 import util.ResourceLoader
 

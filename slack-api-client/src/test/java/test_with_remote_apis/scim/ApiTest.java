@@ -20,7 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ApiTest {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String token = System.getenv(Constants.SLACK_TEST_ADMIN_OAUTH_ACCESS_TOKEN);
+    String token = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
 
     @Test
     public void getServiceProviderConfigs() throws IOException, SCIMApiException {

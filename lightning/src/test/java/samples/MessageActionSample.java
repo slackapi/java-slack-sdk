@@ -1,10 +1,10 @@
 package samples;
 
+import com.slack.api.lightning.App;
+import com.slack.api.lightning.AppConfig;
 import com.slack.api.methods.response.chat.ChatGetPermalinkResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.model.view.View;
-import com.slack.api.lightning.App;
-import com.slack.api.lightning.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;

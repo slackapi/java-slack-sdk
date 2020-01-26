@@ -28,9 +28,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class IncomingWebhooksTest {
 
     // String url = "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX";
-    String url = System.getenv(Constants.SLACK_WEBHOOK_TEST_URL);
-    String channel = System.getenv(Constants.SLACK_WEBHOOK_TEST_CHANNEL);
-    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+    String url = System.getenv(Constants.SLACK_SDK_TEST_INCOMING_WEBHOOK_URL);
+    String channel = System.getenv(Constants.SLACK_SDK_TEST_INCOMING_WEBHOOK_CHANNEL_NAME);
+    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 

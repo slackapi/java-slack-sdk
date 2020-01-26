@@ -21,7 +21,7 @@
 
     <groupId>com.slack</groupId>
     <artifactId>lightning-quarkus-examples</artifactId>
-    <version>${project.parent.version}</version>
+    <version>0.99.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -45,11 +45,7 @@
             <artifactId>lightning</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.slack</groupId>
-            <artifactId>lightning</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-core</artifactId>

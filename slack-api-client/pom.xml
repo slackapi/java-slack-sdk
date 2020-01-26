@@ -11,8 +11,13 @@
 
     <groupId>com.slack</groupId>
     <artifactId>slack-api-client</artifactId>
-    <version>${project.parent.version}</version>
+    <version>0.99.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+
+    <properties>
+        <javax.websocket-api.version>1.1</javax.websocket-api.version>
+        <tyrus-standalone-client.version>1.15</tyrus-standalone-client.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -40,32 +45,32 @@
         <dependency>
             <groupId>javax.websocket</groupId>
             <artifactId>javax.websocket-api</artifactId>
-            <version>1.1</version>
+            <version>${javax.websocket-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish.tyrus.bundles</groupId>
             <artifactId>tyrus-standalone-client</artifactId>
-            <version>1.15</version>
+            <version>${tyrus-standalone-client.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
-            <version>${jetty.version}</version>
+            <version>${jetty-for-tests.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>${jetty.version}</version>
+            <version>${jetty-for-tests.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>${jetty.version}</version>
+            <version>${jetty-for-tests.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

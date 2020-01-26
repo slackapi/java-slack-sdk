@@ -9,15 +9,14 @@ import org.slf4j.LoggerFactory;
 
 public class ResponsePrettyPrintingListener extends HttpResponseListener {
 
-    private static final Logger JSON_RESPONSE_LOGGER = LoggerFactory.getLogger("com.github.seratach.jslack.maintainer.json");
-    private static final JsonParser JSON_PARSER = new JsonParser();
+    private static final Logger JSON_RESPONSE_LOGGER = LoggerFactory.getLogger(ResponsePrettyPrintingListener.class);
 
     @Override
     public void accept(State state) {
         SlackConfig config = state.getConfig();
         String body = state.getParsedResponseBody();
         if (config.isPrettyResponseLoggingEnabled() && body != null && body.trim().startsWith("{")) {
-            JsonElement jsonObj = JSON_PARSER.parse(body);
+            JsonElement jsonObj = JsonParser.parseString(body);
             String prettifiedJson = GsonFactory.createSnakeCase(config).toJson(jsonObj);
 
             JSON_RESPONSE_LOGGER.debug("--- Pretty printing the response ---\n" +

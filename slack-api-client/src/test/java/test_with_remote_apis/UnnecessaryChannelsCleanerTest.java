@@ -26,7 +26,7 @@ public class UnnecessaryChannelsCleanerTest {
     @Ignore
     @Test
     public void deleteUnnecessaryPublicChannels() throws Exception {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         for (Channel channel : slack.methods().channelsList(r -> r
                 .token(token)
                 .excludeArchived(true)
@@ -45,7 +45,7 @@ public class UnnecessaryChannelsCleanerTest {
     @Ignore
     @Test
     public void deleteUnnecessaryPrivateChannels() throws Exception {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         for (Conversation channel : slack.methods().conversationsList(r -> r
                 .token(token)
                 .excludeArchived(true)

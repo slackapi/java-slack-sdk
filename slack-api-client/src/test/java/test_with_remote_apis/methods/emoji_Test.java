@@ -20,7 +20,7 @@ public class emoji_Test {
 
     @Test
     public void emojiList() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         {
             EmojiListResponse response = slack.methods().emojiList(r -> r.token(token));
             assertThat(response.getError(), is(nullValue()));

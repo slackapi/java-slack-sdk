@@ -1,8 +1,8 @@
 package com.slack.api.util.json;
 
+import com.google.gson.*;
 import com.slack.api.model.block.UnknownBlockElement;
 import com.slack.api.model.block.element.*;
-import com.google.gson.*;
 
 import java.lang.reflect.Type;
 

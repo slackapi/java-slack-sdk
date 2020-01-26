@@ -1,7 +1,7 @@
 package test_locally.api.model.event;
 
-import com.slack.api.model.event.AppUninstalledEvent;
 import com.google.gson.Gson;
+import com.slack.api.model.event.AppUninstalledEvent;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 

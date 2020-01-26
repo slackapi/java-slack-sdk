@@ -1,5 +1,6 @@
 package test_locally.api.model.block;
 
+import com.google.gson.JsonParseException;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.InputBlock;
 import com.slack.api.model.block.RichTextBlock;
@@ -7,7 +8,6 @@ import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.element.RadioButtonsElement;
 import com.slack.api.model.block.element.RichTextSectionElement;
 import com.slack.api.model.block.element.RichTextUnknownElement;
-import com.google.gson.JsonParseException;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 

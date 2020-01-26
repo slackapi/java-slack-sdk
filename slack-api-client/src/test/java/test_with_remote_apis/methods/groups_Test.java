@@ -25,7 +25,7 @@ public class groups_Test {
 
     @Test
     public void groups() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
         String name = "secret-" + System.currentTimeMillis();
         GroupsCreateResponse creationResponse = slack.methods().groupsCreate(r -> r.token(token).name(name));

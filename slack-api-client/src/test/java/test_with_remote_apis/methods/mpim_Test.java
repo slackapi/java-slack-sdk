@@ -23,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class mpim_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
     public void operations() throws IOException, SlackApiException {

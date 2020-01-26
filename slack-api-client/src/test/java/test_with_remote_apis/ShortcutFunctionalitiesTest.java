@@ -5,17 +5,17 @@ import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.reactions.ReactionsAddResponse;
 import com.slack.api.methods.response.search.SearchAllResponse;
+import com.slack.api.methods.shortcut.Shortcut;
+import com.slack.api.methods.shortcut.model.ApiToken;
+import com.slack.api.methods.shortcut.model.ChannelId;
+import com.slack.api.methods.shortcut.model.ChannelName;
+import com.slack.api.methods.shortcut.model.ReactionName;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.MarkdownTextObject;
 import com.slack.api.model.block.element.ImageElement;
-import com.slack.api.methods.shortcut.Shortcut;
-import com.slack.api.methods.shortcut.model.ApiToken;
-import com.slack.api.methods.shortcut.model.ChannelId;
-import com.slack.api.methods.shortcut.model.ChannelName;
-import com.slack.api.methods.shortcut.model.ReactionName;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ShortcutFunctionalitiesTest {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
-    ApiToken token = ApiToken.of(System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN));
+    ApiToken token = ApiToken.of(System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN));
 
     @Test
     public void chatOps() throws IOException, SlackApiException {

@@ -14,10 +14,10 @@ import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
 import com.slack.api.methods.response.files.*;
-import com.slack.api.model.Channel;
-import com.slack.api.model.Conversation;
 import com.slack.api.methods.shortcut.model.ApiToken;
 import com.slack.api.methods.shortcut.model.ChannelName;
+import com.slack.api.model.Channel;
+import com.slack.api.model.Conversation;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -36,8 +36,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class files_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String userToken = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
-    String botToken = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
     @Test
     public void describe() throws IOException, SlackApiException {

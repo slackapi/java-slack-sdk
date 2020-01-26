@@ -1,7 +1,7 @@
 package com.slack.api.util.json;
 
-import com.slack.api.model.block.*;
 import com.google.gson.*;
+import com.slack.api.model.block.*;
 
 import java.lang.reflect.Type;
 

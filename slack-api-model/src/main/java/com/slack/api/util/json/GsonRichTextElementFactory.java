@@ -1,9 +1,9 @@
 package com.slack.api.util.json;
 
+import com.google.gson.*;
 import com.slack.api.model.block.element.RichTextElement;
 import com.slack.api.model.block.element.RichTextSectionElement;
 import com.slack.api.model.block.element.RichTextUnknownElement;
-import com.google.gson.*;
 
 import java.lang.reflect.Type;
 

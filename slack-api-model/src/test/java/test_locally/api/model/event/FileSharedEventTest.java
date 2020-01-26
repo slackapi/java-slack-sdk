@@ -1,7 +1,7 @@
 package test_locally.api.model.event;
 
-import com.slack.api.model.event.FileSharedEvent;
 import com.google.gson.Gson;
+import com.slack.api.model.event.FileSharedEvent;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 

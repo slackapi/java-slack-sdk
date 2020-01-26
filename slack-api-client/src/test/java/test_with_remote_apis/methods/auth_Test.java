@@ -30,7 +30,7 @@ public class auth_Test {
 
     @Test
     public void authTest_user() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         AuthTestResponse response = slack.methods().authTest(req -> req.token(token));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -39,7 +39,7 @@ public class auth_Test {
 
     @Test
     public void authTest_user_2() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         AuthTestResponse response = slack.methods(token).authTest(req -> req);
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -48,7 +48,7 @@ public class auth_Test {
 
     @Test
     public void authTest_bot() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_BOT_USER_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
         AuthTestResponse response = slack.methods(token).authTest(req -> req);
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -57,7 +57,7 @@ public class auth_Test {
 
     @Test
     public void authTest_grid() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_ADMIN_WORKSPACE_USER_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
         AuthTestResponse response = slack.methods().authTest(req -> req.token(token));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));

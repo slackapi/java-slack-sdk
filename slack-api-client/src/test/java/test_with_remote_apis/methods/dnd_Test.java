@@ -19,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class dnd_Test {
 
-    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
     Slack slack = Slack.getInstance(SlackTestConfig.get());
 
     @Test

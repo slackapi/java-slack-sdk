@@ -1,11 +1,11 @@
 package com.slack.api.util.json;
 
+import com.google.gson.*;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.UnknownContextBlockElement;
 import com.slack.api.model.block.composition.MarkdownTextObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.element.ImageElement;
-import com.google.gson.*;
 
 import java.lang.reflect.Type;
 

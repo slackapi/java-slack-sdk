@@ -1,10 +1,10 @@
 package examples.app_home
 
-import com.slack.api.model.event.AppHomeOpenedEvent
 import com.slack.api.app_backend.events.handler.AppHomeOpenedHandler
 import com.slack.api.app_backend.events.payload.AppHomeOpenedPayload
 import com.slack.api.lightning.App
 import com.slack.api.lightning.jetty.SlackAppServer
+import com.slack.api.model.event.AppHomeOpenedEvent
 import org.slf4j.LoggerFactory
 import java.time.ZonedDateTime
 

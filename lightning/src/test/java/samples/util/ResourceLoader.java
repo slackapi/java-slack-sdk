@@ -1,9 +1,9 @@
 package samples.util;
 
-import com.slack.api.lightning.AppConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.slack.api.lightning.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import samples.DialogSample;
 

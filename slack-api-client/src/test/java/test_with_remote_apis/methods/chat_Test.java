@@ -31,7 +31,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class chat_Test {
 
     Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     private String randomChannelId = null;
 
@@ -162,7 +162,7 @@ public class chat_Test {
 
     @Test
     public void chat_getPermalink() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         ChannelsListResponse channels = slack.methods().channelsList(req -> req
                 .token(token)
                 .excludeArchived(true));

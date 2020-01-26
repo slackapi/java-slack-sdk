@@ -21,7 +21,7 @@ public class apps_Test {
 
     @Test
     public void appsUninstall() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_TEST_OAUTH_ACCESS_TOKEN);
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         AppsUninstallResponse response = slack.methods().appsUninstall(req -> req
                 .token(token));
         assertThat(response.getError(), is("not_allowed_token_type"));

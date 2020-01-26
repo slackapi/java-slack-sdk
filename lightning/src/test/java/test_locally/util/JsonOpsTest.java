@@ -1,7 +1,7 @@
 package test_locally.util;
 
-import com.slack.api.lightning.util.JsonOps;
 import com.google.gson.JsonElement;
+import com.slack.api.lightning.util.JsonOps;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.junit.Test;

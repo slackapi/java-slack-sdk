@@ -1,12 +1,12 @@
 package samples;
 
-import com.slack.api.model.event.MessageBotEvent;
-import com.slack.api.model.event.MessageDeletedEvent;
-import com.slack.api.model.event.MessageEvent;
 import com.slack.api.app_backend.events.handler.MessageHandler;
 import com.slack.api.app_backend.events.payload.MessagePayload;
 import com.slack.api.lightning.App;
 import com.slack.api.lightning.AppConfig;
+import com.slack.api.model.event.MessageBotEvent;
+import com.slack.api.model.event.MessageDeletedEvent;
+import com.slack.api.model.event.MessageEvent;
 import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;

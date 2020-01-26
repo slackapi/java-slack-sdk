@@ -1,9 +1,9 @@
 package com.slack.api.model.event;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.Reaction;
 import com.slack.api.model.block.LayoutBlock;
-import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.util.List;
