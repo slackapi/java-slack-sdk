@@ -3,25 +3,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.seratch</groupId>
-    <artifactId>jslack-modules</artifactId>
-    <version>3.3.0</version>
+    <groupId>com.slack</groupId>
+    <artifactId>slack-sdk-modules</artifactId>
+    <version>0.99.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>jSlack project</name>
-    <url>https://github.com/seratch/jslack</url>
+    <name>Java Slack SDK Project</name>
+    <url>https://github.com/slackapi/java-slack-sdk</url>
 
     <modules>
-        <module>jslack-all</module>
-        <module>jslack-api-client</module>
-        <module>jslack-api-model</module>
-        <module>jslack-app-backend</module>
-        <module>jslack-lightning</module>
-        <module>jslack-lightning-jetty</module>
-        <module>jslack-lightning-micronaut</module>
-        <module>jslack-lightning-spring-boot-examples</module>
-        <module>jslack-lightning-kotlin-examples</module>
-        <module>jslack-lightning-quarkus-examples</module>
+        <module>slack-api-client</module>
+        <module>slack-api-model</module>
+        <module>slack-app-backend</module>
+        <module>lightning</module>
+        <module>lightning-jetty</module>
+        <module>lightning-micronaut</module>
+        <module>lightning-spring-boot-examples</module>
+        <module>lightning-kotlin-examples</module>
+        <module>lightning-quarkus-examples</module>
     </modules>
 
     <parent>
@@ -32,12 +31,25 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jetty.version>9.2.27.v20190403</jetty.version>
+        <jetty-for-tests.version>9.2.27.v20190403</jetty-for-tests.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <okhttp.version>4.2.2</okhttp.version>
         <gson.version>2.8.6</gson.version>
         <lombok.version>1.18.10</lombok.version>
         <slf4j.version>1.7.29</slf4j.version>
         <aws.s3.version>1.11.683</aws.s3.version>
+        <junit.version>4.13-rc-1</junit.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <logback.version>1.2.3</logback.version>
+        <mockito-core.version>3.2.0</mockito-core.version>
+        <duplicate-finder-maven-plugin.version>1.3.0</duplicate-finder-maven-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
     </properties>
 
     <licenses>
@@ -49,9 +61,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:seratch/jslack.git</connection>
-        <developerConnection>scm:git:git@github.com:seratch/jslack.git</developerConnection>
-        <url>git@github.com:seratch/jslack.git</url>
+        <connection>scm:git:git@github.com:slackapi/java-slack-sdk.git</connection>
+        <developerConnection>scm:git:git@github.com:slackapi/java-slack-sdk.git</developerConnection>
+        <url>git@github.com:slackapi/java-slack-sdk.git</url>
     </scm>
 
     <developers>
@@ -73,25 +85,25 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13-rc-1</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
-            <version>1.3</version>
+            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <version>${logback.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.2.0</version>
+            <version>${mockito-core.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -101,15 +113,15 @@
             <plugin>
                 <groupId>org.basepom.maven</groupId>
                 <artifactId>duplicate-finder-maven-plugin</artifactId>
-                <version>1.3.0</version>
+                <version>${duplicate-finder-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
+                <version>${maven-deploy-plugin.version}</version>
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -118,14 +130,14 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>${maven-resources-plugin.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -151,7 +163,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-release-plugin</artifactId>
-                        <version>2.5.3</version>
+                        <version>${maven-release-plugin.version}</version>
                         <configuration>
                             <goals>deploy,site-deploy</goals>
                         </configuration>
@@ -159,7 +171,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>${maven-gpg-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -172,7 +184,7 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.1.0</version>
+                        <version>${maven-javadoc-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>

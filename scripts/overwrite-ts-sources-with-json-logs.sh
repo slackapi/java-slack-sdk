@@ -1,6 +1,10 @@
 #!/bin/bash
 
+# This script is used to maintain https://github.com/seratch/seratch-slack-types
+# The npm package is an unofficial type definitions created by @seratch. It's NOT by Slack.
+
 cd `dirname $0`/..
+# git clone git@github.com:seratch/seratch-slack-types.git
 cp -a json-logs/samples/audit/. ../seratch-slack-types/json/audit-api/
 cp -a json-logs/samples/api/. ../seratch-slack-types/json/web-api/
 cp -a json-logs/samples/events/. ../seratch-slack-types/json/events-api/

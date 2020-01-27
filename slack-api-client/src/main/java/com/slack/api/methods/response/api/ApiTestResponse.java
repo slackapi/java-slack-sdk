@@ -1,0 +1,21 @@
+package com.slack.api.methods.response.api;
+
+import com.slack.api.methods.SlackApiResponse;
+import lombok.Data;
+
+@Data
+public class ApiTestResponse implements SlackApiResponse {
+    @Data
+    public static class Args {
+        private String foo;
+        private String error;
+    }
+
+    private boolean ok;
+    private Args args;
+    private String warning;
+    private String error;
+    private String needed;
+    private String provided;
+
+}
