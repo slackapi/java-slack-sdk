@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.slack</groupId>
-    <artifactId>slack-sdk-modules</artifactId>
+    <groupId>com.slack.api</groupId>
+    <artifactId>slack-sdk-parent</artifactId>
     <version>0.99.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -150,6 +150,13 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-staging</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <profiles>
         <profile>
             <id>release-sign-artifacts</id>
@@ -192,7 +199,8 @@
                                     <goal>jar</goal>
                                 </goals>
                                 <configuration>
-                                    <additionalOptions>-Xdoclint:none</additionalOptions>
+                                    <additionalJOption>-Xdoclint:none</additionalJOption>
+                                    <sourcepath>${project.basedir}/src;${project.basedir}/target/generated-sources/annotations</sourcepath>
                                 </configuration>
                             </execution>
                         </executions>
