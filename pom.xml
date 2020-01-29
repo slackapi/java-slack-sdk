@@ -17,6 +17,7 @@
         <module>slack-app-backend</module>
         <module>lightning</module>
         <module>lightning-jetty</module>
+        <module>lightning-aws-lambda</module>
         <module>lightning-micronaut</module>
         <module>lightning-spring-boot-examples</module>
         <module>lightning-kotlin-examples</module>

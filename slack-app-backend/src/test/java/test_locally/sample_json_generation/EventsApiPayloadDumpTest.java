@@ -27,7 +27,6 @@ public class EventsApiPayloadDumpTest {
                 new AppRequestedPayload(),
                 new AppRateLimitedPayload(),
                 new AppUninstalledPayload(),
-                new CallRejectedPayload(),
                 new ChannelArchivePayload(),
                 new ChannelCreatedPayload(),
                 new ChannelDeletedPayload(),
