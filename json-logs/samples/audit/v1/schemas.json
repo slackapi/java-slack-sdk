@@ -44,6 +44,10 @@
         "team": "",
         "channel": "",
         "timestamp": ""
+      },
+      "workflow": {
+        "id": "",
+        "name": ""
       }
     }
   ],

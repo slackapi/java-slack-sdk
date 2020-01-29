@@ -161,6 +161,14 @@
     "message": [
       "message_tombstoned",
       "message_restored"
+    ],
+    "workflow_builder": [
+      "workflow_created",
+      "workflow_deleted",
+      "workflow_published",
+      "workflow_unpublished",
+      "workflow_responses_csv_download",
+      "workflow_unknown_action"
     ]
   }
 }

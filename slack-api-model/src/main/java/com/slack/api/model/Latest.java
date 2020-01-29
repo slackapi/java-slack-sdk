@@ -30,4 +30,11 @@ public class Latest {
     private String ts;
     private Message.Icons icons;
     private List<String> xFiles;
+    private Edited edited;
+
+    @Data
+    public static class Edited {
+        private String user;
+        private String ts;
+    }
 }

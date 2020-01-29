@@ -407,6 +407,7 @@ public class FieldValidation_a_to_c_Test {
             ConversationsOpenResponse obj = parse(prefix + "open", ConversationsOpenResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
             verifyIfAllGettersReturnNonNullRecursively(obj.getChannel(),
+                    "getEdited",
                     "getName",
                     "getNameNormalized",
                     "getTopic",

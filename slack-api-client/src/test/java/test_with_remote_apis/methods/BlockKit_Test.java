@@ -2,15 +2,16 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
-import com.slack.api.methods.request.channels.ChannelsInfoRequest;
 import com.slack.api.methods.request.chat.ChatPostEphemeralRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUpdateRequest;
-import com.slack.api.methods.response.channels.ChannelsListResponse;
+import com.slack.api.methods.request.conversations.ConversationsMembersRequest;
 import com.slack.api.methods.response.chat.ChatPostEphemeralResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
-import com.slack.api.model.Channel;
+import com.slack.api.methods.response.conversations.ConversationsListResponse;
+import com.slack.api.model.Conversation;
+import com.slack.api.model.ConversationType;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
@@ -23,6 +24,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.slack.api.model.block.Blocks.*;
@@ -44,12 +46,13 @@ public class BlockKit_Test {
     public void loadRandomChannel() throws IOException, SlackApiException {
         if (randomChannelId == null) {
             String channelId = null;
-            ChannelsListResponse channelsListResponse = slack.methods().channelsList(req -> req
+            ConversationsListResponse conversations = slack.methods().conversationsList(req -> req
                     .token(token)
+                    .types(Arrays.asList(ConversationType.PUBLIC_CHANNEL))
                     .excludeArchived(true)
                     .limit(100));
-            assertThat(channelsListResponse.getError(), is(nullValue()));
-            for (Channel channel : channelsListResponse.getChannels()) {
+            assertThat(conversations.getError(), is(nullValue()));
+            for (Conversation channel : conversations.getChannels()) {
                 if (channel.getName().equals("random")) {
                     channelId = channel.getId();
                     break;
@@ -67,11 +70,11 @@ public class BlockKit_Test {
 
         // ephemeral message creation
         {
-            String userId = slack.methods().channelsInfo(ChannelsInfoRequest.builder()
+            String userId = slack.methods().conversationsMembers(ConversationsMembersRequest.builder()
                     .token(token)
                     .channel(randomChannelId)
                     .build()
-            ).getChannel().getMembers().get(0);
+            ).getMembers().get(0);
 
             ChatPostEphemeralRequest request = ChatPostEphemeralRequest.builder()
                     .channel(randomChannelId)
@@ -129,28 +132,14 @@ public class BlockKit_Test {
     public void exampleWithBlocksAsString() throws IOException, SlackApiException {
         // ephemeral message creation
         {
-            String channelId = null;
-            ChannelsListResponse channelsListResponse = slack.methods().channelsList(req -> req
+           String userId = slack.methods().conversationsMembers(ConversationsMembersRequest.builder()
                     .token(token)
-                    .excludeArchived(true)
-                    .limit(100));
-            assertThat(channelsListResponse.getError(), is(nullValue()));
-            for (Channel channel : channelsListResponse.getChannels()) {
-                if (channel.getName().equals("random")) {
-                    channelId = channel.getId();
-                    break;
-                }
-            }
-            assertThat(channelId, is(notNullValue()));
-
-            String userId = slack.methods().channelsInfo(ChannelsInfoRequest.builder()
-                    .token(token)
-                    .channel(channelId)
+                    .channel(randomChannelId)
                     .build()
-            ).getChannel().getMembers().get(0);
+            ).getMembers().get(0);
 
             ChatPostEphemeralRequest request = ChatPostEphemeralRequest.builder()
-                    .channel(channelId)
+                    .channel(randomChannelId)
                     .token(token)
                     .user(userId)
                     .text("Example message")

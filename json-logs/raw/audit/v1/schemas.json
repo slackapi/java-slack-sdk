@@ -63,6 +63,13 @@
         "channel": "string",
         "timestamp": "string"
       }
+    },
+    {
+      "type": "workflow",
+      "workflow": {
+        "id": "string",
+        "name": "string"
+      }
     }
   ]
 }

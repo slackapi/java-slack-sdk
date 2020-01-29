@@ -11,7 +11,8 @@
     "Connections",
     "Posts/Files",
     "Notifications",
-    "Login/SSO"
+    "Login/SSO",
+    "Workspace/Org Administration"
   ],
   "notes": [
     {
@@ -93,6 +94,10 @@
     {
       "date_created": "2019-12-09T21:47:58-08:00",
       "body": "Some customers may be experiencing issues configuring SAML SSO. We are investigating and we\u0027re very sorry for the disruption."
+    },
+    {
+      "date_created": "2020-01-28T17:58:58-08:00",
+      "body": "Some of our customers are having trouble inviting Guest accounts. In particular, this appears to be affecting our Enterprise Grid customers. We\u0027re currently investigating the cause and we\u0027ll keep you updated on new information. We\u0027re sorry for the disruption."
     }
   ]
 }

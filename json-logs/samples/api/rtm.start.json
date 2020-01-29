@@ -294,7 +294,13 @@
         "ja-JP": ""
       },
       "channel_sections": "",
-      "ia_top_nav_theme": ""
+      "ia_top_nav_theme": "",
+      "browsers_dismissed_channels_low_results_education": false,
+      "browsers_seen_initial_channels_education": false,
+      "browsers_dismissed_people_low_results_education": false,
+      "browsers_seen_initial_people_education": false,
+      "activity_view": "",
+      "up_to_browse_kb_shortcut": false
     },
     "created": 12345,
     "manual_presence": ""
@@ -475,7 +481,9 @@
         ]
       },
       "workflows_webhook_trigger_enabled": false,
-      "invites_limit": false
+      "invites_limit": false,
+      "has_seen_partner_promo": false,
+      "workflows_export_csv_enabled": false
     },
     "icon": {
       "image_34": "https://www.example.com/",

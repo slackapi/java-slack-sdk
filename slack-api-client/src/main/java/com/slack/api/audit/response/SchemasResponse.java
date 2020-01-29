@@ -25,6 +25,7 @@ public class SchemasResponse implements AuditApiResponse {
         private Channel channel;
         private App app;
         private Message message;
+        private Workflow workflow;
     }
 
     @Data
@@ -82,6 +83,12 @@ public class SchemasResponse implements AuditApiResponse {
         private String team;
         private String channel;
         private String timestamp;
+    }
+
+    @Data
+    public static class Workflow {
+        private String id;
+        private String name;
     }
 
 }

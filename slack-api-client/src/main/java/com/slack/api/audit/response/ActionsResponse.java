@@ -23,5 +23,6 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> channel;
         private List<String> app;
         private List<String> message;
+        private List<String> workflowBuilder;
     }
 }
