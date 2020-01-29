@@ -115,6 +115,24 @@
           "body": "Some customers may be experiencing problems with accepting or approving shared channel invitations. We are investigating and will be back with an update as soon as we have news to share. We\u0027re very sorry for the trouble."
         }
       ]
+    },
+    {
+      "id": 803,
+      "date_created": "2020-01-28T17:58:58-08:00",
+      "date_updated": "2020-01-28T17:58:58-08:00",
+      "title": "Some Enterprise Grid customers are having trouble inviting Guests",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-01/fca008b9c6598e4d",
+      "services": [
+        "Workspace/Org Administration"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-01-28T17:58:58-08:00",
+          "body": "Some of our customers are having trouble inviting Guest accounts. In particular, this appears to be affecting our Enterprise Grid customers. We\u0027re currently investigating the cause and we\u0027ll keep you updated on new information. We\u0027re sorry for the disruption."
+        }
+      ]
     }
   ]
 }

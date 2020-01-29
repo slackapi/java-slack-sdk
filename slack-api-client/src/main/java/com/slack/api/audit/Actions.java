@@ -194,4 +194,15 @@ public class Actions {
         public static final String message_restored = "message_restored";
     }
 
+    public static class WorkflowBuilder {
+        private WorkflowBuilder() {
+        }
+
+        public static final String workflow_created = "workflow_created";
+        public static final String workflow_deleted = "workflow_deleted";
+        public static final String workflow_published = "workflow_published";
+        public static final String workflow_unpublished = "workflow_unpublished";
+        public static final String workflow_responses_csv_download = "workflow_responses_csv_download";
+        public static final String workflow_unknown_action = "workflow_unknown_action";
+    }
 }
