@@ -26,7 +26,6 @@ public class FileOAuthStateService implements OAuthStateService {
     public FileOAuthStateService(String baseDir, long millisToExpire) throws RuntimeException {
         this.baseDir = baseDir;
         this.millisToExpire = millisToExpire;
-        initDirectoryIfAbsent();
     }
 
     @Override
