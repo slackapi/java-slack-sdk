@@ -2,6 +2,7 @@ package com.slack.api.methods;
 
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
@@ -146,6 +147,40 @@ public class RequestFormBuilder {
             setIfNotNull("target_team_ids", req.getTargetTeamIds().stream().collect(joining(",")), form);
         }
         setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminEmojiAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("name", req.getName(), form);
+        setIfNotNull("url", req.getUrl(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminEmojiAddAliasRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("alias_for", req.getAliasFor(), form);
+        setIfNotNull("name", req.getName(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminEmojiListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminEmojiRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("name", req.getName(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminEmojiRenameRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("name", req.getName(), form);
+        setIfNotNull("new_name", req.getNewName(), form);
         return form;
     }
 

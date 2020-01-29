@@ -8,6 +8,7 @@ import com.slack.api.methods.request.admin.users.AdminUsersRemoveRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
@@ -379,6 +380,66 @@ public class AdminApiTest {
         }
     }
 
+    static void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    @Test
+    public void emoji() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminEmojiListResponse list = slack.methods(orgAdminUserToken).adminEmojiList(r -> r.limit(1000));
+            assertThat(list.getError(), is(nullValue()));
+
+            sleep(10000);
+
+            AdminEmojiAddResponse creationError = slack.methods(orgAdminUserToken).adminEmojiAdd(r -> r.name("test"));
+            assertThat(creationError.getError(), is("invalid_arguments"));
+
+            sleep(10000);
+
+            String name = "java-" + System.currentTimeMillis();
+            String url = "https://emoji.slack-edge.com/T03E94MJU/java/624937af2b22523e.png";
+
+            AdminEmojiAddResponse creation = slack.methods(orgAdminUserToken).adminEmojiAdd(r -> r
+                    .name(name).url(url));
+            assertThat(creation.getError(), is(nullValue()));
+
+            sleep(10000);
+
+            AdminEmojiAddAliasResponse aliasCreationError = slack.methods(orgAdminUserToken).adminEmojiAddAlias(r -> r.name(name));
+            assertThat(aliasCreationError.getError(), is("invalid_arguments"));
+
+            sleep(10000);
+
+            AdminEmojiAddAliasResponse aliasCreation = slack.methods(orgAdminUserToken).adminEmojiAddAlias(r -> r
+                    .name(name + "-alias").aliasFor(name));
+            assertThat(aliasCreation.getError(), is(nullValue()));
+
+            sleep(10000);
+
+            AdminEmojiRenameResponse renamingError = slack.methods(orgAdminUserToken).adminEmojiRename(r -> r.name(name));
+            assertThat(renamingError.getError(), is("invalid_arguments"));
+
+            sleep(10000);
+
+            AdminEmojiRenameResponse renaming = slack.methods(orgAdminUserToken).adminEmojiRename(r -> r.name(name).newName(name + "-2"));
+            assertThat(renaming.getError(), is(nullValue()));
+
+            sleep(10000);
+
+            AdminEmojiRemoveResponse removalError = slack.methods(orgAdminUserToken).adminEmojiRemove(r -> r);
+            assertThat(removalError.getError(), is("invalid_arguments"));
+
+            sleep(10000);
+
+            AdminEmojiRemoveResponse removal = slack.methods(orgAdminUserToken).adminEmojiRemove(r -> r.name(name + "-2"));
+            assertThat(removal.getError(), is(nullValue()));
+        }
+    }
 
     private String findUserId(List<String> idsToSkip) throws IOException, SlackApiException {
         String userId = null;

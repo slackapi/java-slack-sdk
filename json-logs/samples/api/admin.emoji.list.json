@@ -1,0 +1,19 @@
+{
+  "ok": false,
+  "emoji": {
+    "emoji": {
+      "emoji": "https://www.example.com/",
+      "emoji_": "https://www.example.com/"
+    },
+    "emoji_": {
+      "emoji": "https://www.example.com/",
+      "emoji_": "https://www.example.com/"
+    }
+  },
+  "response_metadata": {
+    "next_cursor": ""
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

@@ -27,6 +27,16 @@ public class Methods {
     public static final String ADMIN_CONVERSATIONS_SET_TEAMS = "admin.conversations.setTeams";
 
     // ------------------------------
+    // admin.emoji
+    // ------------------------------
+
+    public static final String ADMIN_EMOJI_ADD = "admin.emoji.add";
+    public static final String ADMIN_EMOJI_ADD_ALIAS = "admin.emoji.addAlias";
+    public static final String ADMIN_EMOJI_LIST = "admin.emoji.list";
+    public static final String ADMIN_EMOJI_REMOVE = "admin.emoji.remove";
+    public static final String ADMIN_EMOJI_RENAME = "admin.emoji.rename";
+
+    // ------------------------------
     // admin.inviteRequests
     // ------------------------------
 
