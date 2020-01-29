@@ -2,6 +2,8 @@ package com.slack.api.lightning.service.builtin;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.util.IOUtils;
@@ -84,12 +86,12 @@ public class AmazonS3InstallationService implements InstallationService {
         if (isHistoricalDataEnabled()) {
             fullKey = fullKey + "-latest";
         }
-        if (s3.getObjectMetadata(bucketName, fullKey) == null && enterpriseId != null) {
+        if (getObjectMetadata(s3, fullKey) == null && enterpriseId != null) {
             String nonGridKey = getBotKey(null, teamId);
             if (isHistoricalDataEnabled()) {
                 nonGridKey = nonGridKey + "-latest";
             }
-            S3Object nonGridObject = s3.getObject(bucketName, nonGridKey);
+            S3Object nonGridObject = getObject(s3, nonGridKey);
             if (nonGridObject != null) {
                 try {
                     Bot bot = toBot(nonGridObject);
@@ -101,7 +103,7 @@ public class AmazonS3InstallationService implements InstallationService {
                 }
             }
         }
-        S3Object s3Object = s3.getObject(bucketName, fullKey);
+        S3Object s3Object = getObject(s3, fullKey);
         try {
             return toBot(s3Object);
         } catch (IOException e) {
@@ -117,12 +119,12 @@ public class AmazonS3InstallationService implements InstallationService {
         if (isHistoricalDataEnabled()) {
             fullKey = fullKey + "-latest";
         }
-        if (s3.getObjectMetadata(bucketName, fullKey) == null && enterpriseId != null) {
+        if (getObjectMetadata(s3, fullKey) == null && enterpriseId != null) {
             String nonGridKey = getInstallerKey(null, teamId, userId);
             if (isHistoricalDataEnabled()) {
                 nonGridKey = nonGridKey + "-latest";
             }
-            S3Object nonGridObject = s3.getObject(bucketName, nonGridKey);
+            S3Object nonGridObject = getObject(s3, nonGridKey);
             if (nonGridObject != null) {
                 try {
                     Installer installer = toInstaller(nonGridObject);
@@ -135,7 +137,7 @@ public class AmazonS3InstallationService implements InstallationService {
                 }
             }
         }
-        S3Object s3Object = s3.getObject(bucketName, fullKey);
+        S3Object s3Object = getObject(s3, fullKey);
         try {
             return toInstaller(s3Object);
         } catch (Exception e) {
@@ -145,12 +147,42 @@ public class AmazonS3InstallationService implements InstallationService {
         }
     }
 
+    private ObjectMetadata getObjectMetadata(AmazonS3 s3, String fullKey) {
+        try {
+            return s3.getObjectMetadata(bucketName, fullKey);
+        } catch (AmazonS3Exception e) {
+            if (e.getStatusCode() == 404) {
+                return null;
+            } else {
+                throw e;
+            }
+        }
+    }
+
+    private S3Object getObject(AmazonS3 s3, String fullKey) {
+        try {
+            return s3.getObject(bucketName, fullKey);
+        } catch (AmazonS3Exception e) {
+            if (e.getStatusCode() == 404) {
+                return null;
+            } else {
+                throw e;
+            }
+        }
+    }
+
     private Bot toBot(S3Object s3Object) throws IOException {
+        if (s3Object == null) {
+            return null;
+        }
         String json = IOUtils.toString(s3Object.getObjectContent());
         return JsonOps.fromJson(json, DefaultBot.class);
     }
 
     private Installer toInstaller(S3Object s3Object) throws IOException {
+        if (s3Object == null) {
+            return null;
+        }
         String json = IOUtils.toString(s3Object.getObjectContent());
         return JsonOps.fromJson(json, DefaultInstaller.class);
     }

@@ -9,6 +9,9 @@ import java.net.URLDecoder;
 public class WebhookPayloadDetector {
 
     public boolean isWebhook(String requestBody) {
+        if (requestBody == null) {
+            return false;
+        }
         String[] pairs = requestBody.split("\\&");
         for (String pair : pairs) {
             String[] fields = pair.split("=");
