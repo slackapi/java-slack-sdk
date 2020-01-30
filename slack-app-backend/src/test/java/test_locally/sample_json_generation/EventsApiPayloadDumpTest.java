@@ -1,8 +1,8 @@
 package test_locally.sample_json_generation;
 
+import com.slack.api.app_backend.events.payload.*;
 import com.slack.api.model.Message;
 import com.slack.api.model.event.*;
-import com.slack.api.app_backend.events.payload.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import util.sample_json_generation.ObjectToJsonDumper;
@@ -61,6 +61,7 @@ public class EventsApiPayloadDumpTest {
                 new ImCreatedPayload(),
                 new ImHistoryChangedPayload(),
                 new ImOpenPayload(),
+                buildInviteRequestedPayload(),
                 buildLinkSharedPayload(),
                 new MemberJoinedChannelPayload(),
                 new MemberLeftChannelPayload(),
@@ -70,6 +71,7 @@ public class EventsApiPayloadDumpTest {
                 buildMessageDeletedPayload(),
                 buildMessageEkmAccessDeniedPayload(),
                 buildMessageMePayload(),
+                buildMessageRepliedPayload(),
                 buildMessageThreadBroadcastPayload(),
                 buildPinAddedPayload(),
                 buildPinRemovedPayload(),
@@ -317,6 +319,30 @@ public class EventsApiPayloadDumpTest {
         event.setRoot(new Message.MessageRoot());
         event.setAttachments(SampleObjects.Attachments);
         event.setBlocks(SampleObjects.Blocks);
+        payload.setEvent(event);
+        return payload;
+    }
+
+    private InviteRequestedPayload buildInviteRequestedPayload() {
+        InviteRequestedPayload payload = new InviteRequestedPayload();
+        InviteRequestedEvent event = new InviteRequestedEvent();
+        InviteRequestedEvent.InviteRequest inviteRequest = new InviteRequestedEvent.InviteRequest();
+        inviteRequest.setChannelIds(Arrays.asList(""));
+        inviteRequest.setRequesterIds(Arrays.asList(""));
+        inviteRequest.setTeam(new InviteRequestedEvent.Team());
+        event.setInviteRequest(inviteRequest);
+        payload.setEvent(event);
+        return payload;
+    }
+
+    private MessageRepliedPayload buildMessageRepliedPayload() {
+        MessageRepliedPayload payload = new MessageRepliedPayload();
+        MessageRepliedEvent event = new MessageRepliedEvent();
+        MessageRepliedEvent.Message message = initProperties(new MessageRepliedEvent.Message());
+        message.setPinnedTo(Arrays.asList(""));
+        message.setAttachments(SampleObjects.Attachments);
+        message.setBlocks(SampleObjects.Blocks);
+        event.setMessage(message);
         payload.setEvent(event);
         return payload;
     }

@@ -1,0 +1,9 @@
+{
+  "type": "external_org_migration_finished",
+  "team": {
+    "id": "",
+    "is_migrating": false
+  },
+  "date_started": 123,
+  "date_finished": 123
+}

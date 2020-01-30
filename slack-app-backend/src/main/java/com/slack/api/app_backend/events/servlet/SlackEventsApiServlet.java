@@ -1,11 +1,11 @@
 package com.slack.api.app_backend.events.servlet;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.slack.api.app_backend.SlackSignature;
 import com.slack.api.app_backend.events.EventsDispatcher;
 import com.slack.api.app_backend.events.EventsDispatcherFactory;
 import com.slack.api.util.json.GsonFactory;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletException;

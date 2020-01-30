@@ -40,6 +40,8 @@ public class RTMPayloadDumpTest {
                 new EmailDomainChangedEvent(),
                 buildEmojiChangedEvent(),
                 new ErrorEvent(),
+                buildExternalOrgMigrationFinishedEvent(),
+                buildExternalOrgMigrationStartedEvent(),
                 new FileChangeEvent(),
                 new FileCommentAddedEvent(),
                 new FileCommentDeletedEvent(),
@@ -273,6 +275,18 @@ public class RTMPayloadDumpTest {
     private EmojiChangedEvent buildEmojiChangedEvent() {
         EmojiChangedEvent event = new EmojiChangedEvent();
         event.setNames(Arrays.asList(""));
+        return event;
+    }
+
+    private ExternalOrgMigrationFinishedEvent buildExternalOrgMigrationFinishedEvent() {
+        ExternalOrgMigrationFinishedEvent event = new ExternalOrgMigrationFinishedEvent();
+        event.setTeam(new ExternalOrgMigrationFinishedEvent.Team());
+        return event;
+    }
+
+    private ExternalOrgMigrationStartedEvent buildExternalOrgMigrationStartedEvent() {
+        ExternalOrgMigrationStartedEvent event = new ExternalOrgMigrationStartedEvent();
+        event.setTeam(new ExternalOrgMigrationStartedEvent.Team());
         return event;
     }
 
