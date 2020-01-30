@@ -1,4 +1,4 @@
-package com.slack.api.app_backend.vendor.aws.lambda.response;
+package com.slack.api.lightning.aws_lambda.response;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
