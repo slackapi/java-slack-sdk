@@ -1,0 +1,8 @@
+{
+  "type": "external_org_migration_started",
+  "team": {
+    "id": "",
+    "is_migrating": false
+  },
+  "date_started": 123
+}
