@@ -2,6 +2,7 @@ package test_locally.api.methods_admin_api;
 
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
@@ -191,6 +192,35 @@ public class FieldValidationTest {
         {
             AdminUsersSetRegularResponse obj = parse(prefix + "setRegular", AdminUsersSetRegularResponse.class);
             verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+    }
+
+    @Test
+    public void adminEmoji() throws Exception {
+        String prefix = "admin.emoji.";
+        {
+            AdminEmojiAddResponse obj = parse(prefix + "add", AdminEmojiAddResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+        }
+        {
+            AdminEmojiAddAliasResponse obj = parse(prefix + "addAlias", AdminEmojiAddAliasResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+        }
+        {
+            AdminEmojiListResponse obj = parse(prefix + "list", AdminEmojiListResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
+            AdminEmojiRemoveResponse obj = parse(prefix + "remove", AdminEmojiRemoveResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+        }
+        {
+            AdminEmojiRenameResponse obj = parse(prefix + "rename", AdminEmojiRenameResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
         }
     }
 

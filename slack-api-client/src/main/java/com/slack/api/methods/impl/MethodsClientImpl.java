@@ -4,6 +4,7 @@ import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.*;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
@@ -74,6 +75,7 @@ import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
@@ -245,6 +247,56 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminConversationsSetTeamsResponse adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) throws IOException, SlackApiException {
         return adminConversationsSetTeams(req.configure(AdminConversationsSetTeamsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminEmojiAddResponse adminEmojiAdd(AdminEmojiAddRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_EMOJI_ADD, getToken(req), AdminEmojiAddResponse.class);
+    }
+
+    @Override
+    public AdminEmojiAddResponse adminEmojiAdd(RequestConfigurator<AdminEmojiAddRequest.AdminEmojiAddRequestBuilder> req) throws IOException, SlackApiException {
+        return adminEmojiAdd(req.configure(AdminEmojiAddRequest.builder()).build());
+    }
+
+    @Override
+    public AdminEmojiAddAliasResponse adminEmojiAddAlias(AdminEmojiAddAliasRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_EMOJI_ADD_ALIAS, getToken(req), AdminEmojiAddAliasResponse.class);
+    }
+
+    @Override
+    public AdminEmojiAddAliasResponse adminEmojiAddAlias(RequestConfigurator<AdminEmojiAddAliasRequest.AdminEmojiAddAliasRequestBuilder> req) throws IOException, SlackApiException {
+        return adminEmojiAddAlias(req.configure(AdminEmojiAddAliasRequest.builder()).build());
+    }
+
+    @Override
+    public AdminEmojiListResponse adminEmojiList(AdminEmojiListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_EMOJI_LIST, getToken(req), AdminEmojiListResponse.class);
+    }
+
+    @Override
+    public AdminEmojiListResponse adminEmojiList(RequestConfigurator<AdminEmojiListRequest.AdminEmojiListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminEmojiList(req.configure(AdminEmojiListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminEmojiRemoveResponse adminEmojiRemove(AdminEmojiRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_EMOJI_REMOVE, getToken(req), AdminEmojiRemoveResponse.class);
+    }
+
+    @Override
+    public AdminEmojiRemoveResponse adminEmojiRemove(RequestConfigurator<AdminEmojiRemoveRequest.AdminEmojiRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return adminEmojiRemove(req.configure(AdminEmojiRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public AdminEmojiRenameResponse adminEmojiRename(AdminEmojiRenameRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_EMOJI_RENAME, getToken(req), AdminEmojiRenameResponse.class);
+    }
+
+    @Override
+    public AdminEmojiRenameResponse adminEmojiRename(RequestConfigurator<AdminEmojiRenameRequest.AdminEmojiRenameRequestBuilder> req) throws IOException, SlackApiException {
+        return adminEmojiRename(req.configure(AdminEmojiRenameRequest.builder()).build());
     }
 
     @Override
