@@ -2,16 +2,17 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.chat.ChatDeleteResponse;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.files.remote.*;
 import com.slack.api.methods.response.search.SearchFilesResponse;
-import com.slack.api.methods.shortcut.model.ApiToken;
-import com.slack.api.methods.shortcut.model.ChannelName;
 import com.slack.api.model.File;
 import com.slack.api.model.MatchedItem;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -30,9 +31,25 @@ import static org.junit.Assert.assertTrue;
 @Slf4j
 public class files_remote_Test {
 
-    Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    static Slack slack = Slack.getInstance(SlackTestConfig.get());
+    static String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    static String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+
+    static String randomChannelId = null;
+
+    @BeforeClass
+    public static void loadRandomChannel() throws IOException, SlackApiException {
+        ChatPostMessageResponse message = slack.methods(botToken).chatPostMessage(r -> r
+                .channel("#random")
+                .asUser(true)
+                .text("test prep"));
+        assertThat(message.getError(), is(nullValue()));
+
+        randomChannelId = message.getChannel();
+
+        ChatDeleteResponse deletion = slack.methods(botToken).chatDelete(r -> r.channel(message.getChannel()).ts(message.getTs()));
+        assertThat(deletion.getError(), is(nullValue()));
+    }
 
     @Test
     public void listAllFiles() throws IOException, SlackApiException {
@@ -46,14 +63,9 @@ public class files_remote_Test {
 
     @Test
     public void listFilesInAChannel() throws IOException, SlackApiException {
-        {
-            String randomChannelId = slack.shortcut(ApiToken.of(botToken))
-                    .findChannelIdByName(ChannelName.of("random"))
-                    .get().getValue();
-            FilesRemoteListResponse response = slack.methods(botToken).filesRemoteList(r -> r.channel(randomChannelId));
-            assertThat(response.getError(), is(nullValue()));
-            assertThat(response.isOk(), is(true));
-        }
+        FilesRemoteListResponse response = slack.methods(botToken).filesRemoteList(r -> r.channel(randomChannelId).limit(10));
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
     }
 
     @Test
@@ -125,10 +137,6 @@ public class files_remote_Test {
 
         File file = addResponse.getFile();
 
-        String randomChannelId = slack.shortcut(ApiToken.of(botToken))
-                .findChannelIdByName(ChannelName.of("random"))
-                .get().getValue();
-
         {
             FilesRemoteUpdateResponse response = slack.methods(botToken).filesRemoteUpdate(r -> r
                     .externalId(file.getExternalId())
@@ -194,9 +202,6 @@ public class files_remote_Test {
         File file = addResponse.getFile();
 
         {
-            String randomChannelId = slack.shortcut(ApiToken.of(botToken))
-                    .findChannelIdByName(ChannelName.of("random"))
-                    .get().getValue();
             FilesRemoteShareResponse response = slack.methods(botToken).filesRemoteShare(r -> r
                     .externalId(file.getExternalId())
                     .channels(Arrays.asList(randomChannelId)));

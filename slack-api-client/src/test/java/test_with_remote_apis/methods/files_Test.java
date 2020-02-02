@@ -14,20 +14,17 @@ import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
 import com.slack.api.methods.response.files.*;
-import com.slack.api.methods.shortcut.model.ApiToken;
-import com.slack.api.methods.shortcut.model.ChannelName;
-import com.slack.api.model.Channel;
 import com.slack.api.model.Conversation;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import util.TestChannelGenerator;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -35,9 +32,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class files_Test {
 
-    Slack slack = Slack.getInstance(SlackTestConfig.get());
-    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    static Slack slack = Slack.getInstance(SlackTestConfig.get());
+    static String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    static String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+
+    static String channelId = null;
+
+    @BeforeClass
+    public static void loadRandomChannel() throws IOException, SlackApiException {
+        ChatPostMessageResponse message = slack.methods(botToken).chatPostMessage(r -> r
+                .channel("#random")
+                .asUser(true)
+                .text("test prep"));
+        assertThat(message.getError(), is(nullValue()));
+
+        channelId = message.getChannel();
+
+        ChatDeleteResponse deletion = slack.methods(botToken).chatDelete(r -> r.channel(message.getChannel()).ts(message.getTs()));
+        assertThat(deletion.getError(), is(nullValue()));
+    }
 
     @Test
     public void describe() throws IOException, SlackApiException {
@@ -61,21 +74,11 @@ public class files_Test {
 
     @Test
     public void createTextFileAndComments() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(botToken)).getChannels();
-        List<String> channels = new ArrayList<>();
-        for (Channel c : channels_) {
-            if (c.getName().equals("random")) {
-                channels.add(c.getId());
-                break;
-            }
-        }
-        String channelId = channels.get(0);
-
         File file = new File("src/test/resources/sample.txt");
         final com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods(botToken).filesUpload(r -> r
-                    .channels(channels)
+                    .channels(Arrays.asList(channelId))
                     .file(file)
                     .filename("sample.txt")
                     .initialComment("initial comment")
@@ -119,7 +122,7 @@ public class files_Test {
 
             assertThat(fileObj.getShares(), is(notNullValue()));
             assertThat(fileObj.getShares().getPublicChannels(), is(notNullValue()));
-            assertThat(fileObj.getShares().getPublicChannels().get(channels.get(0)), is(notNullValue()));
+            assertThat(fileObj.getShares().getPublicChannels().get(channelId), is(notNullValue()));
 
             assertThat(fileObj.getShares().getPrivateChannels(), is(nullValue()));
         }
@@ -162,21 +165,11 @@ public class files_Test {
 
     @Test
     public void createLongTextFile() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(botToken)).getChannels();
-        List<String> channels = new ArrayList<>();
-        for (Channel c : channels_) {
-            if (c.getName().equals("random")) {
-                channels.add(c.getId());
-                break;
-            }
-        }
-        String channelId = channels.get(0);
-
         File file = new File("src/test/resources/sample_long.txt");
         com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods(botToken).filesUpload(r -> r
-                    .channels(channels)
+                    .channels(Arrays.asList(channelId))
                     .file(file)
                     .filename("sample.txt")
                     .initialComment("initial comment")
@@ -219,7 +212,7 @@ public class files_Test {
 
             assertThat(fileObj.getShares(), is(notNullValue()));
             assertThat(fileObj.getShares().getPublicChannels(), is(notNullValue()));
-            assertThat(fileObj.getShares().getPublicChannels().get(channels.get(0)), is(notNullValue()));
+            assertThat(fileObj.getShares().getPublicChannels().get(channelId), is(notNullValue()));
 
             assertThat(fileObj.getShares().getPrivateChannels(), is(nullValue()));
         }
@@ -245,22 +238,12 @@ public class files_Test {
 
     @Test
     public void createImageFileAndComments() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(userToken)).getChannels();
-        List<String> channels = new ArrayList<>();
-        for (Channel c : channels_) {
-            if (c.getName().equals("random")) {
-                channels.add(c.getId());
-                break;
-            }
-        }
-        String channelId = channels.get(0);
-
         File file = new File("src/test/resources/seratch.jpg");
         com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods().filesUpload(r -> r
                     .token(userToken)
-                    .channels(channels)
+                    .channels(Arrays.asList(channelId))
                     .file(file)
                     .filename("seratch.jpg")
                     .initialComment("This is me!")
@@ -297,7 +280,7 @@ public class files_Test {
 
             assertThat(fileObj.getShares(), is(notNullValue()));
             assertThat(fileObj.getShares().getPublicChannels(), is(notNullValue()));
-            assertThat(fileObj.getShares().getPublicChannels().get(channels.get(0)), is(notNullValue()));
+            assertThat(fileObj.getShares().getPublicChannels().get(channelId), is(notNullValue()));
 
             assertThat(fileObj.getShares().getPrivateChannels(), is(nullValue()));
         }
@@ -401,17 +384,15 @@ public class files_Test {
 
     @Test
     public void uploadAndPostMessage() throws IOException, SlackApiException {
-        String channelId = slack.shortcut(ApiToken.of(botToken))
-                .findChannelIdByName(ChannelName.of("random"))
-                .get().getValue();
-
         MethodsClient slackMethods = slack.methods(userToken);
 
         ChatPostMessageResponse message = slackMethods.chatPostMessage(r -> r
-                .channel(channelId)
+                .channel("#random")
                 .asUser(true)
                 .text("Uploading a file..."));
         assertThat(message.getError(), is(nullValue()));
+
+        String channelId = message.getChannel();
 
         File file = new File("src/test/resources/sample.txt");
         com.slack.api.model.File fileObj;

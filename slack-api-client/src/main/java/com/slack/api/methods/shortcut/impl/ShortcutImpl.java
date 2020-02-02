@@ -1,6 +1,7 @@
 package com.slack.api.methods.shortcut.impl;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.conversations.ConversationsHistoryRequest;
@@ -17,18 +18,15 @@ import com.slack.api.methods.shortcut.model.ApiToken;
 import com.slack.api.methods.shortcut.model.ChannelId;
 import com.slack.api.methods.shortcut.model.ChannelName;
 import com.slack.api.methods.shortcut.model.ReactionName;
-import com.slack.api.model.Attachment;
-import com.slack.api.model.Conversation;
-import com.slack.api.model.Message;
-import com.slack.api.model.ResponseMetadata;
+import com.slack.api.model.*;
 import com.slack.api.model.block.LayoutBlock;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+@Slf4j
 public class ShortcutImpl implements Shortcut {
 
     private final Optional<ApiToken> apiToken;
@@ -39,7 +37,13 @@ public class ShortcutImpl implements Shortcut {
         return slack;
     }
 
-    private List<Conversation> channels = new ArrayList<>();
+    @Data
+    private static class ChannelCache {
+        private String id;
+        private String name;
+    }
+
+    private static List<ChannelCache> channels = new ArrayList<>();
 
     public ShortcutImpl(Slack slack) {
         this.apiToken = Optional.empty();
@@ -198,19 +202,32 @@ public class ShortcutImpl implements Shortcut {
     @Override
     public void updateChannelsCache() throws IOException, SlackApiException {
         if (apiToken.isPresent()) {
+            MethodsClient slackApi = slack.methods(apiToken.get().getValue());
             if (channels.isEmpty()) {
                 String cursor = null;
                 do {
-                    ConversationsListResponse response = slack.methods()
-                            .conversationsList(ConversationsListRequest.builder()
-                                    .token(apiToken.get().getValue())
-                                    .cursor(cursor)
-                                    .build());
+                    if (log.isDebugEnabled()) {
+                        log.debug("Start conversations.list API call - cursor: {}", cursor);
+                    }
+                    ConversationsListResponse response = slackApi.conversationsList(ConversationsListRequest.builder()
+                            .types(Arrays.asList(ConversationType.PUBLIC_CHANNEL))
+                            .excludeArchived(true)
+                            .limit(1000)
+                            .cursor(cursor)
+                            .build());
                     if (response.isOk()) {
-                        channels.addAll(response.getChannels());
-                        cursor = Optional.ofNullable(response.getResponseMetadata())
-                                .map(ResponseMetadata::getNextCursor)
-                                .orElse(null);
+                        for (Conversation c : response.getChannels()) {
+                            ChannelCache channel = new ChannelCache();
+                            channel.setId(c.getId());
+                            channel.setName(c.getName());
+                            channels.add(channel);
+                        }
+                        if (log.isDebugEnabled()) {
+                            log.debug("Finished conversations.list API call - {} channels loaded", response.getChannels().size());
+                        }
+                        if (response.getResponseMetadata() != null) {
+                            cursor = response.getResponseMetadata().getNextCursor();
+                        }
                     } else {
                         // if response isn't okay, clear the cursor otherwise it may infinite loop
                         cursor = null;

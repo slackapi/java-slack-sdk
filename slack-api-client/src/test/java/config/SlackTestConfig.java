@@ -13,7 +13,10 @@ public class SlackTestConfig {
     static {
         CONFIG.setLibraryMaintainerMode(true);
         CONFIG.setPrettyResponseLoggingEnabled(true);
-        CONFIG.getHttpClientResponseHandlers().add(new JsonDataRecordingListener());
+        String enabled = System.getenv(Constants.SLACK_SDK_SAMPLE_JSON_GENERATION_ENABLED);
+        if (enabled != null && enabled.equals("1")) {
+            CONFIG.getHttpClientResponseHandlers().add(new JsonDataRecordingListener());
+        }
     }
 
     public static SlackConfig get() {
