@@ -20,5 +20,5 @@ public class AdminEmojiRemoveRequest implements SlackApiRequest {
      * The name of the emoji to be removed. Colons (:myemoji:) around the value are not required, although they may be included.
      */
     private String name;
-    
+
 }

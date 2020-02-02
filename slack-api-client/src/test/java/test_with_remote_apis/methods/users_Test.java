@@ -28,6 +28,8 @@ public class users_Test {
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
 
+    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+
     @AfterClass
     public static void tearDown() throws InterruptedException {
         SlackTestConfig.awaitCompletion(testConfig);
@@ -35,24 +37,29 @@ public class users_Test {
 
     @Test
     public void showUsers() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-        UsersListResponse users = slack.methods(token).usersList(r -> r.includeLocale(true).limit(100));
+        UsersListResponse users = slack.methods(token).usersList(r -> r.includeLocale(true).limit(10));
         assertThat(users.getError(), is(nullValue()));
 
         UsersInfoResponse usersInfo = slack.methods(token)
                 .usersInfo(r -> r.user(users.getMembers().get(0).getId()).includeLocale(true));
         assertThat(usersInfo.getError(), is(nullValue()));
         assertThat(usersInfo.getUser().getLocale(), is(notNullValue()));
+    }
 
-        for (User member : users.getMembers()) {
-            log.info("user id: {} , name: {}", member.getId(), member.getName());
-        }
+    @Test
+    public void showUsers_async() throws Exception {
+        UsersListResponse users = slack.methodsAsync(token).usersList(r -> r.includeLocale(true).limit(10)).get();
+        assertThat(users.getError(), is(nullValue()));
+
+        UsersInfoResponse usersInfo = slack.methodsAsync(token)
+                .usersInfo(r -> r.user(users.getMembers().get(0).getId()).includeLocale(true))
+                .get();
+        assertThat(usersInfo.getError(), is(nullValue()));
+        assertThat(usersInfo.getUser().getLocale(), is(notNullValue()));
     }
 
     @Test
     public void usersScenarios() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-
         {
             UsersSetPresenceResponse response = slack.methods().usersSetPresence(r -> r.token(token).presence("away"));
             assertThat(response.getError(), is(nullValue()));

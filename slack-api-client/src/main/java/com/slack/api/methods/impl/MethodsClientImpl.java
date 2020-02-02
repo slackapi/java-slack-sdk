@@ -2,6 +2,7 @@ package com.slack.api.methods.impl;
 
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.*;
+import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.slack.api.methods.request.admin.emoji.*;
@@ -163,16 +164,24 @@ public class MethodsClientImpl implements MethodsClient {
 
     private String endpointUrlPrefix = MethodsClient.ENDPOINT_URL_PREFIX;
 
+    private final String executorName;
+    private final boolean statsEnabled;
     private final SlackHttpClient slackHttpClient;
     private final Optional<String> token;
+    private final MetricsDatastore metricsDatastore;
+    private final TeamIdCache teamIdCache;
 
     public MethodsClientImpl(SlackHttpClient slackHttpClient) {
         this(slackHttpClient, null);
     }
 
     public MethodsClientImpl(SlackHttpClient slackHttpClient, String token) {
+        this.executorName = slackHttpClient.getConfig().getMethodsConfig().getExecutorName();
+        this.statsEnabled = slackHttpClient.getConfig().getMethodsConfig().isStatsEnabled();
         this.slackHttpClient = slackHttpClient;
         this.token = Optional.ofNullable(token);
+        this.metricsDatastore = slackHttpClient.getConfig().getMethodsConfig().getMetricsDatastore();
+        this.teamIdCache = new TeamIdCache(this);
     }
 
     @Override
@@ -2095,18 +2104,18 @@ public class MethodsClientImpl implements MethodsClient {
     // ----------------------------------------------
 
     @Override
-    public Response runPostForm(FormBody.Builder form, String endpoint) throws IOException {
-        return slackHttpClient.postForm(endpointUrlPrefix + endpoint, form.build());
+    public Response runPostForm(FormBody.Builder form, String methodName) throws IOException {
+        return slackHttpClient.postForm(endpointUrlPrefix + methodName, form.build());
     }
 
     @Override
-    public Response runPostFormWithToken(FormBody.Builder form, String endpoint, String token) throws IOException {
-        return slackHttpClient.postFormWithBearerHeader(endpointUrlPrefix + endpoint, token, form.build());
+    public Response runPostFormWithToken(FormBody.Builder form, String methodName, String token) throws IOException {
+        return slackHttpClient.postFormWithBearerHeader(endpointUrlPrefix + methodName, token, form.build());
     }
 
     @Override
-    public Response runPostMultipart(MultipartBody.Builder form, String endpoint, String token) throws IOException {
-        return slackHttpClient.postMultipart(endpointUrlPrefix + endpoint, token, form.build());
+    public Response runPostMultipart(MultipartBody.Builder form, String methodName, String token) throws IOException {
+        return slackHttpClient.postMultipart(endpointUrlPrefix + methodName, token, form.build());
     }
 
     // ----------------------------------------------
@@ -2114,33 +2123,33 @@ public class MethodsClientImpl implements MethodsClient {
     // ----------------------------------------------
 
     @Override
-    public <T> T postFormAndParseResponse(
+    public <T extends SlackApiResponse> T postFormAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
-            String endpoint,
+            String methodName,
             Class<T> clazz) throws IOException, SlackApiException {
         return postFormAndParseResponse(
                 form.configure(new FormBody.Builder()),
-                endpoint,
+                methodName,
                 clazz
         );
     }
 
     @Override
-    public <T> T postFormWithAuthorizationHeaderAndParseResponse(
+    public <T extends SlackApiResponse> T postFormWithAuthorizationHeaderAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
-            String endpoint,
+            String methodName,
             String authorizationHeader,
             Class<T> clazz) throws IOException, SlackApiException {
         return postFormWithAuthorizationHeaderAndParseResponse(
                 form.configure(new FormBody.Builder()),
-                endpoint,
+                methodName,
                 authorizationHeader,
                 clazz
         );
     }
 
     @Override
-    public <T> T postFormWithTokenAndParseResponse(
+    public <T extends SlackApiResponse> T postFormWithTokenAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
             String endpoint,
             String token,
@@ -2154,7 +2163,7 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public <T> T postMultipartAndParseResponse(
+    public <T extends SlackApiResponse> T postMultipartAndParseResponse(
             RequestConfigurator<MultipartBody.Builder> form,
             String endpoint,
             String token,
@@ -2169,40 +2178,104 @@ public class MethodsClientImpl implements MethodsClient {
         );
     }
 
-    protected <T> T postFormAndParseResponse(
+    protected <T extends SlackApiResponse> T postFormAndParseResponse(
             FormBody.Builder form,
-            String endpoint,
+            String methodName,
             Class<T> clazz) throws IOException, SlackApiException {
-        Response response = runPostForm(form, endpoint);
-        return parseJsonResponseAndRunListeners(response, clazz);
+        Response response = runPostForm(form, methodName);
+        return parseJsonResponseAndRunListeners(null, methodName, response, clazz);
     }
 
-    protected <T> T postFormWithAuthorizationHeaderAndParseResponse(
+    protected <T extends SlackApiResponse> T postFormWithAuthorizationHeaderAndParseResponse(
             FormBody.Builder form,
-            String endpoint,
+            String methodName,
             String authorizationHeader,
             Class<T> clazz) throws IOException, SlackApiException {
-        Response response = slackHttpClient.postFormWithAuthorizationHeader(endpoint, authorizationHeader, form.build());
-        return parseJsonResponseAndRunListeners(response, clazz);
+        Response response = slackHttpClient.postFormWithAuthorizationHeader(methodName, authorizationHeader, form.build());
+        return parseJsonResponseAndRunListeners(null, methodName, response, clazz);
     }
 
-    protected <T> T postFormWithTokenAndParseResponse(
+    protected <T extends SlackApiResponse> T postFormWithTokenAndParseResponse(
             FormBody.Builder form,
-            String endpoint,
+            String methodName,
             String token,
             Class<T> clazz) throws IOException, SlackApiException {
-        Response response = runPostFormWithToken(form, endpoint, token);
-        return parseJsonResponseAndRunListeners(response, clazz);
+        String teamId = null;
+        if (statsEnabled) {
+            teamId = teamIdCache.lookupOrResolve(token);
+        }
+        try {
+            if (teamId != null) {
+                String key = buildMethodNameAndSuffix(form, methodName);
+                metricsDatastore.incrementAllCompletedCalls(executorName, teamId, methodName);
+                metricsDatastore.addToLastMinuteRequests(executorName, teamId, key, System.currentTimeMillis());
+            }
+            Response response = runPostFormWithToken(form, methodName, token);
+            T apiResponse = parseJsonResponseAndRunListeners(teamId, methodName, response, clazz);
+            return apiResponse;
+
+        } catch (IOException e) {
+            if (teamId != null) {
+                metricsDatastore.incrementFailedCalls(executorName, teamId, methodName);
+            }
+            throw e;
+        } catch (SlackApiException e) {
+            if (teamId != null) {
+                metricsDatastore.incrementFailedCalls(executorName, teamId, methodName);
+                if (e.getResponse().code() == 429) {
+                    // rate limited
+                    final String retryAfterSeconds = e.getResponse().header("Retry-After");
+                    if (retryAfterSeconds != null) {
+                        long secondsToWait = Long.valueOf(retryAfterSeconds);
+                        long epochMillisToRetry = System.currentTimeMillis() + (secondsToWait * 1000L);
+                        String key = buildMethodNameAndSuffix(form, methodName);
+                        metricsDatastore.setRateLimitedMethodRetryEpochMillis(executorName, teamId, key, epochMillisToRetry);
+                    }
+                }
+            }
+            throw e;
+        }
     }
 
-    protected <T> T postMultipartAndParseResponse(
+    protected <T extends SlackApiResponse> T postMultipartAndParseResponse(
             MultipartBody.Builder form,
-            String endpoint,
+            String methodName,
             String token,
             Class<T> clazz) throws IOException, SlackApiException {
-        form.setType(MultipartBody.FORM);
-        Response response = runPostMultipart(form, endpoint, token);
-        return parseJsonResponseAndRunListeners(response, clazz);
+        String teamId = null;
+        if (statsEnabled) {
+            teamId = teamIdCache.lookupOrResolve(token);
+        }
+        try {
+            form.setType(MultipartBody.FORM);
+            if (teamId != null) {
+                metricsDatastore.incrementAllCompletedCalls(executorName, teamId, methodName);
+                metricsDatastore.addToLastMinuteRequests(executorName, teamId, methodName, System.currentTimeMillis());
+            }
+            Response response = runPostMultipart(form, methodName, token);
+            T apiResponse = parseJsonResponseAndRunListeners(teamId, methodName, response, clazz);
+            return apiResponse;
+
+        } catch (IOException e) {
+            if (teamId != null) {
+                metricsDatastore.incrementFailedCalls(executorName, teamId, methodName);
+            }
+            throw e;
+        } catch (SlackApiException e) {
+            if (teamId != null) {
+                metricsDatastore.incrementFailedCalls(executorName, teamId, methodName);
+            }
+            if (e.getResponse().code() == 429) {
+                // rate limited
+                final String retryAfterSeconds = e.getResponse().header("Retry-After");
+                if (retryAfterSeconds != null) {
+                    long secondsToWait = Long.valueOf(retryAfterSeconds);
+                    long epochMillisToRetry = System.currentTimeMillis() + (secondsToWait * 1000L);
+                    metricsDatastore.setRateLimitedMethodRetryEpochMillis(executorName, teamId, methodName, epochMillisToRetry);
+                }
+            }
+            throw e;
+        }
     }
 
     // ----------------------------------------------
@@ -2216,7 +2289,6 @@ public class MethodsClientImpl implements MethodsClient {
         if (token.isPresent()) {
             return token.get();
         }
-
         if (slackHttpClient.getConfig().isTokenExistenceVerificationEnabled()) {
             String error = "Slack API token is supposed to be set in " + request.getClass().getSimpleName() + " but not found";
             throw new IllegalStateException(error);
@@ -2225,14 +2297,47 @@ public class MethodsClientImpl implements MethodsClient {
         }
     }
 
-    private <T> T parseJsonResponseAndRunListeners(Response response, Class<T> clazz) throws IOException, SlackApiException {
+    <T extends SlackApiResponse> T parseJsonResponseAndRunListeners(
+            String teamId,
+            String methodName,
+            Response response,
+            Class<T> clazz) throws IOException, SlackApiException {
         String body = response.body().string();
-        slackHttpClient.runHttpResponseListeners(response, body);
         if (response.isSuccessful()) {
-            return GsonFactory.createSnakeCase(slackHttpClient.getConfig()).fromJson(body, clazz);
+            try {
+                T apiResponse = GsonFactory.createSnakeCase(slackHttpClient.getConfig()).fromJson(body, clazz);
+                if (teamId != null) {
+                    if (apiResponse.isOk()) {
+                        metricsDatastore.incrementSuccessfulCalls(executorName, teamId, methodName);
+                    } else {
+                        metricsDatastore.incrementUnsuccessfulCalls(executorName, teamId, methodName);
+                    }
+                }
+                return apiResponse;
+            } finally {
+                slackHttpClient.runHttpResponseListeners(response, body);
+            }
         } else {
             throw new SlackApiException(slackHttpClient.getConfig(), response, body);
         }
+    }
+
+    private String buildMethodNameAndSuffix(FormBody.Builder form, String methodName) {
+        String key = methodName;
+        if (methodName.equals(Methods.CHAT_POST_MESSAGE)) {
+            key += "_" + channel(form.build());
+        }
+        return key;
+    }
+
+    private static String channel(FormBody form) {
+        for (int idx = 0; idx < form.size(); idx++) {
+            String key = form.name(idx);
+            if (key.equals("channel")) {
+                return form.value(idx);
+            }
+        }
+        return null;
     }
 
 }

@@ -14,6 +14,7 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -39,50 +40,97 @@ public class views_Test {
      */
 
     @Test
-    public void open() throws IOException, SlackApiException {
+    public void open() throws IOException, SlackApiException, ExecutionException, InterruptedException {
         View view = View.builder().id("FAKE_ID").build();
-        ViewsOpenResponse response = slack.methods().viewsOpen(r -> r
-                .token(token)
-                .triggerId("FAKE_TRIGGER_ID")
-                .view(view));
-        assertThat(response.isOk(), is(false));
-        assertThat(response.getError(), is("invalid_arguments"));
+        {
+            ViewsOpenResponse response = slack.methods().viewsOpen(r -> r
+                    .token(token)
+                    .triggerId("FAKE_TRIGGER_ID")
+                    .view(view));
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("invalid_arguments"));
+        }
+        {
+            ViewsOpenResponse response = slack.methodsAsync().viewsOpen(r -> r
+                    .token(token)
+                    .triggerId("FAKE_TRIGGER_ID")
+                    .view(view))
+                    .get();
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("invalid_arguments"));
+        }
     }
 
     @Test
-    public void push() throws IOException, SlackApiException {
+    public void push() throws IOException, SlackApiException, ExecutionException, InterruptedException {
         View view = View.builder().id("FAKE_ID").build();
-        ViewsPushResponse response = slack.methods().viewsPush(r -> r
-                .token(token)
-                .triggerId("FAKE_TRIGGER_ID")
-                .view(view));
-        assertThat(response.isOk(), is(false));
-        assertThat(response.getError(), is("invalid_arguments"));
+        {
+            ViewsPushResponse response = slack.methods().viewsPush(r -> r
+                    .token(token)
+                    .triggerId("FAKE_TRIGGER_ID")
+                    .view(view));
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("invalid_arguments"));
+        }
+        {
+            ViewsPushResponse response = slack.methodsAsync().viewsPush(r -> r
+                    .token(token)
+                    .triggerId("FAKE_TRIGGER_ID")
+                    .view(view))
+                    .get();
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("invalid_arguments"));
+        }
     }
 
     @Test
-    public void update() throws IOException, SlackApiException {
+    public void update() throws IOException, SlackApiException, ExecutionException, InterruptedException {
         View view = View.builder().id("FAKE_ID").build();
-        ViewsUpdateResponse response = slack.methods().viewsUpdate(r -> r
-                .token(token)
-                .externalId("FAKE_EXTERNAL_ID")
-                .hash("FAKE_HASH")
-                .viewId("FAKE_VIEW_ID")
-                .view(view));
-        assertThat(response.isOk(), is(false));
-        assertThat(response.getError(), is("invalid_arguments"));
+        {
+            ViewsUpdateResponse response = slack.methods().viewsUpdate(r -> r
+                    .token(token)
+                    .externalId("FAKE_EXTERNAL_ID")
+                    .hash("FAKE_HASH")
+                    .viewId("FAKE_VIEW_ID")
+                    .view(view));
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("invalid_arguments"));
+        }
+        {
+            ViewsUpdateResponse response = slack.methodsAsync().viewsUpdate(r -> r
+                    .token(token)
+                    .externalId("FAKE_EXTERNAL_ID")
+                    .hash("FAKE_HASH")
+                    .viewId("FAKE_VIEW_ID")
+                    .view(view))
+                    .get();
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("invalid_arguments"));
+        }
     }
 
     @Test
-    public void publish() throws IOException, SlackApiException {
+    public void publish() throws IOException, SlackApiException, ExecutionException, InterruptedException {
         View view = View.builder().id("FAKE_ID").build();
-        ViewsPublishResponse response = slack.methods().viewsPublish(r -> r
-                .token(token)
-                .userId("FAKE_USER_ID")
-                .view(view));
-        assertThat(response.isOk(), is(false));
-        // need to join the beta
-        assertThat(response.getError(), is("not_allowed_token_type"));
+        {
+            ViewsPublishResponse response = slack.methods().viewsPublish(r -> r
+                    .token(token)
+                    .userId("FAKE_USER_ID")
+                    .view(view));
+            assertThat(response.isOk(), is(false));
+            // need to join the beta
+            assertThat(response.getError(), is("not_allowed_token_type"));
+        }
+        {
+            ViewsPublishResponse response = slack.methodsAsync().viewsPublish(r -> r
+                    .token(token)
+                    .userId("FAKE_USER_ID")
+                    .view(view))
+                    .get();
+            assertThat(response.isOk(), is(false));
+            // need to join the beta
+            assertThat(response.getError(), is("not_allowed_token_type"));
+        }
     }
 
 }

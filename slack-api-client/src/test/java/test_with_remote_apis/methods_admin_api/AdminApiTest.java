@@ -1,6 +1,7 @@
 package test_with_remote_apis.methods_admin_api;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.admin.users.AdminUsersAssignRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersInviteRequest;
@@ -31,12 +32,14 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.SocketTimeoutException;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -53,19 +56,22 @@ public class AdminApiTest {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String email = System.getenv(Constants.SLACK_SDK_TEST_EMAIL_ADDRESS);
-    String teamAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
-    String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
-    String teamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
-    String sharedChannelId = System.getenv(Constants.SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID);
+    static String email = System.getenv(Constants.SLACK_SDK_TEST_EMAIL_ADDRESS);
+    static String teamAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
+    static String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
+    static String teamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
+    static String sharedChannelId = System.getenv(Constants.SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID);
+
+    static AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
 
     @Test
-    public void usersSessionReset() throws IOException, SlackApiException {
+    public void usersSessionReset() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null) {
             String userId = findUserId(Collections.emptyList());
             assertThat(userId, is(notNullValue()));
-            AdminUsersSessionResetResponse response = slack.methods(orgAdminUserToken)
-                    .adminUsersSessionReset(AdminUsersSessionResetRequest.builder().userId(userId).build());
+            AdminUsersSessionResetResponse response = methodsAsync
+                    .adminUsersSessionReset(AdminUsersSessionResetRequest.builder().userId(userId).build())
+                    .get();
             assertThat(response.getError(), is(nullValue()));
         }
     }
@@ -80,10 +86,11 @@ public class AdminApiTest {
             String channelId = channel.getId();
 
             // org-channel
-            AdminConversationsSetTeamsResponse orgChannelResp = slack.methods(orgAdminUserToken).adminConversationsSetTeams(r -> r
+            AdminConversationsSetTeamsResponse orgChannelResp = methodsAsync.adminConversationsSetTeams(r -> r
                     .teamId(originalTeamId)
                     .channelId(channelId)
-                    .orgChannel(true));
+                    .orgChannel(true))
+                    .get();
             assertThat(orgChannelResp.getError(), is(nullValue()));
         }
     }
@@ -102,16 +109,18 @@ public class AdminApiTest {
                     .limit(channel.getSharedTeamIds().size() - 1)
                     .collect(Collectors.toList());
 
-            AdminConversationsSetTeamsResponse shareResp = slack.methods(orgAdminUserToken).adminConversationsSetTeams(r -> r
+            AdminConversationsSetTeamsResponse shareResp = methodsAsync.adminConversationsSetTeams(r -> r
                     .teamId(originalTeamId)
                     .channelId(channelId)
-                    .targetTeamIds(newTeams));
+                    .targetTeamIds(newTeams))
+                    .get();
             assertThat(shareResp.getError(), is(nullValue()));
 
-            AdminConversationsSetTeamsResponse revertResp = slack.methods(orgAdminUserToken).adminConversationsSetTeams(r -> r
+            AdminConversationsSetTeamsResponse revertResp = methodsAsync.adminConversationsSetTeams(r -> r
                     .teamId(originalTeamId)
                     .channelId(channelId)
-                    .targetTeamIds(channel.getSharedTeamIds()));
+                    .targetTeamIds(channel.getSharedTeamIds()))
+                    .get();
             assertThat(revertResp.getError(), is(nullValue()));
         }
     }
@@ -119,14 +128,16 @@ public class AdminApiTest {
     @Test
     public void apps_approvedList() throws Exception {
         if (orgAdminUserToken != null) {
-            AdminAppsApprovedListResponse errorResponse = slack.methods(orgAdminUserToken).adminAppsApprovedList(r -> r
+            AdminAppsApprovedListResponse errorResponse = methodsAsync.adminAppsApprovedList(r -> r
                             .limit(1000)
-                    /*.teamId(adminAppsTeamId)*/);
+                    /*.teamId(adminAppsTeamId)*/)
+                    .get();
             assertThat(errorResponse.getError(), is("team_not_found"));
 
-            AdminAppsApprovedListResponse response = slack.methods(orgAdminUserToken).adminAppsApprovedList(r -> r
+            AdminAppsApprovedListResponse response = methodsAsync.adminAppsApprovedList(r -> r
                     .limit(1000)
-                    .teamId(teamId));
+                    .teamId(teamId))
+                    .get();
             assertThat(response.getError(), is(nullValue()));
         }
     }
@@ -134,14 +145,16 @@ public class AdminApiTest {
     @Test
     public void apps_restrictedList() throws Exception {
         if (orgAdminUserToken != null) {
-            AdminAppsRestrictedListResponse errorResponse = slack.methods(orgAdminUserToken).adminAppsRestrictedList(r -> r
+            AdminAppsRestrictedListResponse errorResponse = methodsAsync.adminAppsRestrictedList(r -> r
                             .limit(1000)
-                    /*.teamId(adminAppsTeamId)*/);
+                    /*.teamId(adminAppsTeamId)*/)
+                    .get();
             assertThat(errorResponse.getError(), is("team_not_found"));
 
-            AdminAppsRestrictedListResponse response = slack.methods(orgAdminUserToken).adminAppsRestrictedList(r -> r
+            AdminAppsRestrictedListResponse response = methodsAsync.adminAppsRestrictedList(r -> r
                     .limit(1000)
-                    .teamId(teamId));
+                    .teamId(teamId))
+                    .get();
             assertThat(response.getError(), is(nullValue()));
         }
     }
@@ -149,34 +162,39 @@ public class AdminApiTest {
     @Test
     public void appsRequests() throws Exception {
         if (orgAdminUserToken != null) {
-            AdminAppsRequestsListResponse list = slack.methods(orgAdminUserToken).adminAppsRequestsList(r -> r
+            AdminAppsRequestsListResponse list = methodsAsync.adminAppsRequestsList(r -> r
                     .limit(1000)
-                    .teamId(teamId));
+                    .teamId(teamId))
+                    .get();
             assertThat(list.getError(), is(nullValue()));
 
             if (list.getAppRequests().size() >= 2) {
                 AppRequest toBeApproved = list.getAppRequests().get(0);
 
-                AdminAppsApproveResponse approvalError = slack.methods(orgAdminUserToken).adminAppsApprove(req -> req
+                AdminAppsApproveResponse approvalError = methodsAsync.adminAppsApprove(req -> req
                         .appId(toBeApproved.getId())
-                        .teamId(teamId));
+                        .teamId(teamId))
+                        .get();
                 assertThat(approvalError.getError(), is(notNullValue()));
 
-                AdminAppsApproveResponse approval = slack.methods(orgAdminUserToken).adminAppsApprove(req -> req
+                AdminAppsApproveResponse approval = methodsAsync.adminAppsApprove(req -> req
                         .appId(toBeApproved.getApp().getId())
-                        .teamId(teamId));
+                        .teamId(teamId))
+                        .get();
                 assertThat(approval.getError(), is(nullValue()));
 
                 AppRequest toBeRestricted = list.getAppRequests().get(1);
 
-                AdminAppsRestrictResponse restrictionError = slack.methods(orgAdminUserToken).adminAppsRestrict(req -> req
+                AdminAppsRestrictResponse restrictionError = methodsAsync.adminAppsRestrict(req -> req
                         .appId(toBeRestricted.getId())
-                        .teamId(teamId));
+                        .teamId(teamId))
+                        .get();
                 assertThat(restrictionError.getError(), is(notNullValue()));
 
-                AdminAppsRestrictResponse restriction = slack.methods(orgAdminUserToken).adminAppsRestrict(req -> req
+                AdminAppsRestrictResponse restriction = methodsAsync.adminAppsRestrict(req -> req
                         .appId(toBeRestricted.getApp().getId())
-                        .teamId(teamId));
+                        .teamId(teamId))
+                        .get();
                 assertThat(restriction.getError(), is(nullValue()));
             }
         }
@@ -185,29 +203,34 @@ public class AdminApiTest {
     @Test
     public void inviteRequests() throws Exception {
         if (orgAdminUserToken != null) {
-            AdminInviteRequestsApproveResponse approval = slack.methods(orgAdminUserToken).adminInviteRequestsApprove(r -> r
+            AdminInviteRequestsApproveResponse approval = methodsAsync.adminInviteRequestsApprove(r -> r
                     .teamId(teamId)
-                    .inviteRequestId("I12345678"));
+                    .inviteRequestId("I12345678"))
+                    .get();
             assertThat(approval.getError(), is("invalid_request"));
 
-            AdminInviteRequestsDenyResponse denial = slack.methods(orgAdminUserToken).adminInviteRequestsDeny(r -> r
+            AdminInviteRequestsDenyResponse denial = methodsAsync.adminInviteRequestsDeny(r -> r
                     .teamId(teamId)
-                    .inviteRequestId("I12345678"));
+                    .inviteRequestId("I12345678"))
+                    .get();
             assertThat(denial.getError(), is("invalid_request"));
 
-            AdminInviteRequestsListResponse list = slack.methods(orgAdminUserToken).adminInviteRequestsList(r -> r
+            AdminInviteRequestsListResponse list = methodsAsync.adminInviteRequestsList(r -> r
                     .limit(1000)
-                    .teamId(teamId));
+                    .teamId(teamId))
+                    .get();
             assertThat(list.getError(), is(nullValue()));
 
-            AdminInviteRequestsApprovedListResponse approvedList = slack.methods(orgAdminUserToken).adminInviteRequestsApprovedList(r -> r
+            AdminInviteRequestsApprovedListResponse approvedList = methodsAsync.adminInviteRequestsApprovedList(r -> r
                     .limit(1000)
-                    .teamId(teamId));
+                    .teamId(teamId))
+                    .get();
             assertThat(approvedList.getError(), is(nullValue()));
 
-            AdminInviteRequestsDeniedListResponse deniedList = slack.methods(orgAdminUserToken).adminInviteRequestsDeniedList(r -> r
+            AdminInviteRequestsDeniedListResponse deniedList = methodsAsync.adminInviteRequestsDeniedList(r -> r
                     .limit(1000)
-                    .teamId(teamId));
+                    .teamId(teamId))
+                    .get();
             assertThat(deniedList.getError(), is(nullValue()));
         }
     }
@@ -215,17 +238,19 @@ public class AdminApiTest {
     @Test
     public void teams_list() throws Exception {
         if (orgAdminUserToken != null) {
-            AdminTeamsListResponse teams = slack.methods(orgAdminUserToken).adminTeamsList(r -> r.limit(100));
+            AdminTeamsListResponse teams = methodsAsync.adminTeamsList(r -> r.limit(100)).get();
             assertThat(teams.getError(), is(nullValue()));
 
-            AdminTeamsAdminsListResponse admins = slack.methods(orgAdminUserToken).adminTeamsAdminsList(r -> r
+            AdminTeamsAdminsListResponse admins = methodsAsync.adminTeamsAdminsList(r -> r
                     .limit(100)
-                    .teamId(teamId));
+                    .teamId(teamId))
+                    .get();
             assertThat(admins.getError(), is(nullValue()));
 
-            AdminTeamsOwnersListResponse owners = slack.methods(orgAdminUserToken).adminTeamsOwnersList(r -> r
+            AdminTeamsOwnersListResponse owners = methodsAsync.adminTeamsOwnersList(r -> r
                     .limit(100)
-                    .teamId(teamId));
+                    .teamId(teamId))
+                    .get();
             assertThat(owners.getError(), is(nullValue()));
         }
     }
@@ -235,13 +260,13 @@ public class AdminApiTest {
     @Test
     public void teams_creation_and_users() throws Exception {
         if (orgAdminUserToken != null) {
-            String teamUniqueName = "jslack-" + System.currentTimeMillis();
-            AdminTeamsCreateResponse creation = slack.methods(orgAdminUserToken).adminTeamsCreate(r -> r
+            String teamUniqueName = "java-slack-sdk-" + System.currentTimeMillis();
+            AdminTeamsCreateResponse creation = methodsAsync.adminTeamsCreate(r -> r
                     .teamDomain(teamUniqueName)
                     .teamName(teamUniqueName)
                     .teamDescription("Something great for you")
                     .teamDiscoverability("closed")
-            );
+            ).get();
             assertThat(creation.getError(), is(nullValue()));
 
             if (teamAdminUserToken != null && orgAdminUserToken != null) {
@@ -251,7 +276,7 @@ public class AdminApiTest {
                 assertThat(userId, is(notNullValue()));
 
                 AdminUsersAssignRequest assignReq = AdminUsersAssignRequest.builder().teamId(teamId).userId(userId).build();
-                AdminUsersAssignResponse assignment = slack.methods(orgAdminUserToken).adminUsersAssign(assignReq);
+                AdminUsersAssignResponse assignment = methodsAsync.adminUsersAssign(assignReq).get();
                 assertThat(assignment.getError(), is("user_already_team_member")); // TODO: fix this
 
                 List<String> channelIds = slack.methods(teamAdminUserToken)
@@ -266,25 +291,24 @@ public class AdminApiTest {
                         .channelIds(channelIds)
                         .realName("Kazuhiro Sera")
                         .build();
-                AdminUsersInviteResponse invitation = slack.methods(orgAdminUserToken).adminUsersInvite(inviteReq);
+                AdminUsersInviteResponse invitation = methodsAsync.adminUsersInvite(inviteReq).get();
                 // TODO: fix this
                 //assertThat(invitation.getError(), is(nullValue()));
 
                 AdminUsersRemoveRequest removeReq = AdminUsersRemoveRequest.builder().teamId(teamId).userId(userId).build();
-                AdminUsersRemoveResponse removal = slack.methods(orgAdminUserToken).adminUsersRemove(removeReq);
+                AdminUsersRemoveResponse removal = methodsAsync.adminUsersRemove(removeReq).get();
                 // TODO: fix this
                 //assertThat(removal.getError(), is(nullValue()));
 
-                AdminUsersSetAdminResponse setAdmin = slack.methods(orgAdminUserToken)
-                        .adminUsersSetAdmin(r -> r.teamId(teamId).userId(userId));
+                AdminUsersSetAdminResponse setAdmin = methodsAsync.adminUsersSetAdmin(r -> r.teamId(teamId).userId(userId)).get();
                 // TODO: fix this
                 //assertThat(setAdmin.getError(), is(nullValue()));
-                AdminUsersSetOwnerResponse setOwner = slack.methods(orgAdminUserToken)
-                        .adminUsersSetOwner(r -> r.teamId(teamId).userId(userId));
+                AdminUsersSetOwnerResponse setOwner = methodsAsync
+                        .adminUsersSetOwner(r -> r.teamId(teamId).userId(userId)).get();
                 // TODO: fix this
                 //assertThat(setOwner.getError(), is(nullValue()));
-                AdminUsersSetRegularResponse setRegular = slack.methods(orgAdminUserToken)
-                        .adminUsersSetRegular(r -> r.teamId(teamId).userId(userId));
+                AdminUsersSetRegularResponse setRegular = methodsAsync
+                        .adminUsersSetRegular(r -> r.teamId(teamId).userId(userId)).get();
                 // TODO: fix this
                 //assertThat(setRegular.getError(), is(nullValue()));
             }
@@ -292,11 +316,11 @@ public class AdminApiTest {
     }
 
     @Test
-    public void teams_settings() throws IOException, SlackApiException {
+    public void teams_settings() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null) {
             String teamId = this.teamId;
 
-            AdminTeamsSettingsInfoResponse info = slack.methods(orgAdminUserToken).adminTeamsSettingsInfo(r -> r.teamId(teamId));
+            AdminTeamsSettingsInfoResponse info = methodsAsync.adminTeamsSettingsInfo(r -> r.teamId(teamId)).get();
             assertThat(info.getError(), is(nullValue()));
 
             List<String> channelIds = slack.methods(teamAdminUserToken).conversationsList(r -> r
@@ -305,46 +329,46 @@ public class AdminApiTest {
                     .limit(2)
             ).getChannels().stream().map(c -> c.getId()).collect(Collectors.toList());
 
-            AdminTeamsSettingsSetDefaultChannelsResponse defaultChannelsFailure = slack.methods(orgAdminUserToken)
-                    .adminTeamsSettingsSetDefaultChannels(r -> r.teamId(teamId).channelIds(Collections.emptyList()));
+            AdminTeamsSettingsSetDefaultChannelsResponse defaultChannelsFailure = methodsAsync
+                    .adminTeamsSettingsSetDefaultChannels(r -> r.teamId(teamId).channelIds(Collections.emptyList())).get();
             assertThat(defaultChannelsFailure.getError(), is("invalid_arguments"));
             assertThat(defaultChannelsFailure.getResponseMetadata().getMessages().toString(),
                     is("[[ERROR] input must match regex pattern: ^[C][A-Z0-9]{2,}$ [json-pointer:/channel_ids/0]]"));
 
-            AdminTeamsSettingsSetDefaultChannelsResponse defaultChannels = slack.methods(orgAdminUserToken)
-                    .adminTeamsSettingsSetDefaultChannels(r -> r.teamId(teamId).channelIds(channelIds));
+            AdminTeamsSettingsSetDefaultChannelsResponse defaultChannels = methodsAsync
+                    .adminTeamsSettingsSetDefaultChannels(r -> r.teamId(teamId).channelIds(channelIds)).get();
             assertThat(defaultChannels.getError(), is(nullValue()));
 
-            AdminTeamsSettingsSetDiscoverabilityResponse discoverabilityFailure = slack.methods(orgAdminUserToken)
-                    .adminTeamsSettingsSetDiscoverability(r -> r.teamId(teamId).discoverability("invitation_only??"));
+            AdminTeamsSettingsSetDiscoverabilityResponse discoverabilityFailure = methodsAsync
+                    .adminTeamsSettingsSetDiscoverability(r -> r.teamId(teamId).discoverability("invitation_only??")).get();
             assertThat(discoverabilityFailure.getError(), is("discoverability_setting_invalid"));
 
-            AdminTeamsSettingsSetDiscoverabilityResponse discoverability = slack.methods(orgAdminUserToken)
-                    .adminTeamsSettingsSetDiscoverability(r -> r.teamId(teamId).discoverability("invite_only"));
+            AdminTeamsSettingsSetDiscoverabilityResponse discoverability = methodsAsync
+                    .adminTeamsSettingsSetDiscoverability(r -> r.teamId(teamId).discoverability("invite_only")).get();
             assertThat(discoverability.getError(), is(nullValue()));
 
-            AdminTeamsSettingsSetDescriptionResponse setDescription = slack.methods(orgAdminUserToken)
-                    .adminTeamsSettingsSetDescription(r -> r.teamId(this.teamId).description("something great"));
+            AdminTeamsSettingsSetDescriptionResponse setDescription = methodsAsync
+                    .adminTeamsSettingsSetDescription(r -> r.teamId(this.teamId).description("something great")).get();
             assertThat(setDescription.getError(), is(nullValue()));
 
-            AdminTeamsSettingsSetNameResponse setName = slack.methods(orgAdminUserToken)
-                    .adminTeamsSettingsSetName(r -> r.teamId(teamId).name("Kaz's Awesome Engineering Team"));
+            AdminTeamsSettingsSetNameResponse setName = methodsAsync
+                    .adminTeamsSettingsSetName(r -> r.teamId(teamId).name("Kaz's Awesome Engineering Team")).get();
             assertThat(setName.getError(), is(nullValue()));
 
             try {
-                AdminTeamsSettingsSetIconResponse setIcon = slack.methods(orgAdminUserToken)
-                        .adminTeamsSettingsSetIcon(r -> r/*.teamId(teamId)*/.imageUrl("https://avatars.slack-edge.com/2019-05-24/634650041250_0c70b65cdfc88ac9ef96_192.jpg"));
+                AdminTeamsSettingsSetIconResponse setIcon = methodsAsync
+                        .adminTeamsSettingsSetIcon(r -> r/*.teamId(teamId)*/.imageUrl("https://avatars.slack-edge.com/2019-05-24/634650041250_0c70b65cdfc88ac9ef96_192.jpg")).get();
                 assertThat(setIcon.getError(), is("invalid_arguments"));
                 assertThat(setIcon.getResponseMetadata().getMessages().toString(), is("[[ERROR] missing required field: team_id]"));
-            } catch (SocketTimeoutException e) {
+            } catch (CompletionException e) {
                 log.warn("timed out", e);
             }
 
             try {
-                AdminTeamsSettingsSetIconResponse setIcon = slack.methods(orgAdminUserToken)
-                        .adminTeamsSettingsSetIcon(r -> r.teamId(teamId).imageUrl("https://avatars.slack-edge.com/2019-05-24/634650041250_0c70b65cdfc88ac9ef96_192.jpg"));
+                AdminTeamsSettingsSetIconResponse setIcon = methodsAsync
+                        .adminTeamsSettingsSetIcon(r -> r.teamId(teamId).imageUrl("https://avatars.slack-edge.com/2019-05-24/634650041250_0c70b65cdfc88ac9ef96_192.jpg")).get();
                 assertThat(setIcon.getError(), is(nullValue()));
-            } catch (SocketTimeoutException e) {
+            } catch (CompletionException e) {
                 log.warn("timed out", e);
             }
         }
@@ -354,15 +378,16 @@ public class AdminApiTest {
     public void users() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null) {
             String teamId = this.teamId;
+            AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
 
             AdminUsersListResponse.User user = null;
             String nextCursor = "dummy";
             while (!nextCursor.equals("")) {
                 final String cursor = nextCursor.equals("dummy") ? null : nextCursor;
-                AdminUsersListResponse users = slack.methods(orgAdminUserToken).adminUsersList(r -> r
+                AdminUsersListResponse users = methodsAsync.adminUsersList(r -> r
                         .limit(100)
                         .cursor(cursor)
-                        .teamId(teamId));
+                        .teamId(teamId)).get();
                 assertThat(users.getError(), is(nullValue()));
 
                 Optional<AdminUsersListResponse.User> maybeUser = users.getUsers().stream()
@@ -379,79 +404,63 @@ public class AdminApiTest {
             // same timestamp results in "failed_to_validate_expiration" error
             final Long expirationTs = user.getExpirationTs() != null ? user.getExpirationTs() + 1 : defaultExpirationTs;
 
-            AdminUsersSetExpirationResponse response = slack.methods(orgAdminUserToken).adminUsersSetExpiration(r -> r
+            AdminUsersSetExpirationResponse response = methodsAsync.adminUsersSetExpiration(r -> r
                     .teamId(teamId)
                     .userId(guestUserId)
                     .expirationTs(expirationTs)
-            );
+            ).get();
             assertThat(response.getError(), is(nullValue()));
-        }
-    }
-
-    static void sleep(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
         }
     }
 
     @Test
     public void emoji() throws Exception {
         if (orgAdminUserToken != null) {
-            AdminEmojiListResponse list = slack.methods(orgAdminUserToken).adminEmojiList(r -> r.limit(1000));
-            assertThat(list.getError(), is(nullValue()));
+            CompletableFuture<AdminEmojiListResponse> list = methodsAsync.adminEmojiList(r -> r.limit(100));
 
-            sleep(10000);
+            Thread.sleep(3000);
 
-            AdminEmojiAddResponse creationError = slack.methods(orgAdminUserToken).adminEmojiAdd(r -> r.name("test"));
-            assertThat(creationError.getError(), is("invalid_arguments"));
+            CompletableFuture<AdminEmojiAddResponse> creationError = methodsAsync.adminEmojiAdd(r -> r.name("test"));
+            assertThat(creationError.get().getError(), is("invalid_arguments"));
 
-            sleep(10000);
+            Thread.sleep(10000);
 
             String name = "java-" + System.currentTimeMillis();
             String url = "https://emoji.slack-edge.com/T03E94MJU/java/624937af2b22523e.png";
 
-            AdminEmojiAddResponse creation = slack.methods(orgAdminUserToken).adminEmojiAdd(r -> r
-                    .name(name).url(url));
-            assertThat(creation.getError(), is(nullValue()));
+            CompletableFuture<AdminEmojiAddResponse> creation = methodsAsync.adminEmojiAdd(r -> r.name(name).url(url));
+            assertThat(creation.get().getError(), is(nullValue()));
 
-            sleep(10000);
+            CompletableFuture<AdminEmojiAddAliasResponse> aliasCreationError = methodsAsync.adminEmojiAddAlias(r -> r.name(name));
+            assertThat(aliasCreationError.get().getError(), is("invalid_arguments"));
 
-            AdminEmojiAddAliasResponse aliasCreationError = slack.methods(orgAdminUserToken).adminEmojiAddAlias(r -> r.name(name));
-            assertThat(aliasCreationError.getError(), is("invalid_arguments"));
+            Thread.sleep(10000);
 
-            sleep(10000);
-
-            AdminEmojiAddAliasResponse aliasCreation = slack.methods(orgAdminUserToken).adminEmojiAddAlias(r -> r
+            CompletableFuture<AdminEmojiAddAliasResponse> aliasCreation = methodsAsync.adminEmojiAddAlias(r -> r
                     .name(name + "-alias").aliasFor(name));
-            assertThat(aliasCreation.getError(), is(nullValue()));
+            assertThat(aliasCreation.get().getError(), is(nullValue()));
 
-            sleep(10000);
+            CompletableFuture<AdminEmojiRenameResponse> renamingError = methodsAsync.adminEmojiRename(r -> r.name(name));
+            assertThat(renamingError.get().getError(), is("invalid_arguments"));
 
-            AdminEmojiRenameResponse renamingError = slack.methods(orgAdminUserToken).adminEmojiRename(r -> r.name(name));
-            assertThat(renamingError.getError(), is("invalid_arguments"));
+            Thread.sleep(10000);
 
-            sleep(10000);
+            CompletableFuture<AdminEmojiRenameResponse> renaming = methodsAsync.adminEmojiRename(r -> r.name(name).newName(name + "-2"));
+            assertThat(renaming.get().getError(), is(nullValue()));
 
-            AdminEmojiRenameResponse renaming = slack.methods(orgAdminUserToken).adminEmojiRename(r -> r.name(name).newName(name + "-2"));
-            assertThat(renaming.getError(), is(nullValue()));
+            CompletableFuture<AdminEmojiRemoveResponse> removalError = methodsAsync.adminEmojiRemove(r -> r);
+            assertThat(removalError.get().getError(), is("invalid_arguments"));
 
-            sleep(10000);
+            Thread.sleep(10000);
 
-            AdminEmojiRemoveResponse removalError = slack.methods(orgAdminUserToken).adminEmojiRemove(r -> r);
-            assertThat(removalError.getError(), is("invalid_arguments"));
-
-            sleep(10000);
-
-            AdminEmojiRemoveResponse removal = slack.methods(orgAdminUserToken).adminEmojiRemove(r -> r.name(name + "-2"));
-            assertThat(removal.getError(), is(nullValue()));
+            CompletableFuture<AdminEmojiRemoveResponse> removal = methodsAsync.adminEmojiRemove(r -> r.name(name + "-2"));
+            assertThat(removal.get().getError(), is(nullValue()));
         }
     }
 
-    private String findUserId(List<String> idsToSkip) throws IOException, SlackApiException {
+    private String findUserId(List<String> idsToSkip) throws Exception {
         String userId = null;
-        UsersListResponse usersListResponse = slack.methods(teamAdminUserToken).usersList(req -> req);
+        UsersListResponse usersListResponse = slack.methodsAsync(teamAdminUserToken).usersList(req -> req).get();
         assertThat(usersListResponse.getError(), is(nullValue()));
         List<User> members = usersListResponse.getMembers();
         for (User member : members) {

@@ -7,6 +7,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -29,8 +30,16 @@ public class apps_Test {
     @Test
     public void appsUninstall() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-        AppsUninstallResponse response = slack.methods().appsUninstall(req -> req
-                .token(token));
+        AppsUninstallResponse response = slack.methods().appsUninstall(req -> req.token(token));
+        assertThat(response.getError(), is("not_allowed_token_type"));
+        assertThat(response.isOk(), is(false));
+    }
+
+    @Ignore
+    @Test
+    public void appsUninstall_async() throws Exception {
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+        AppsUninstallResponse response = slack.methodsAsync().appsUninstall(req -> req.token(token)).get();
         assertThat(response.getError(), is("not_allowed_token_type"));
         assertThat(response.isOk(), is(false));
     }

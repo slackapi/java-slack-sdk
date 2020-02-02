@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -77,6 +78,21 @@ public class bots_Test {
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getBot(), is(notNullValue()));
+    }
+
+    @Test
+    public void botsInfo_async() throws Exception {
+        String botId = findBotId();
+        BotsInfoResponse response = slack.methodsAsync(token).botsInfo(req -> req.bot(botId)).get();
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getBot(), is(notNullValue()));
+    }
+
+    @Test(expected = ExecutionException.class)
+    public void botsInfo_async_error() throws Exception {
+        String botId = findBotId();
+        brokenSlack.methodsAsync(token).botsInfo(req -> req.bot(botId)).get();
     }
 
 }

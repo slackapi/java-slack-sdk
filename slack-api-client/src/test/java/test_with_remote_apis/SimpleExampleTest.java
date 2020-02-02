@@ -4,10 +4,10 @@ import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatDeleteRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
-import com.slack.api.methods.response.channels.ChannelsListResponse;
 import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
-import com.slack.api.model.Channel;
+import com.slack.api.methods.response.conversations.ConversationsListResponse;
+import com.slack.api.model.Conversation;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -38,12 +38,12 @@ public class SimpleExampleTest {
     public void postAMessageToRandomChannel() throws IOException, SlackApiException, InterruptedException {
 
         // find all channels in the team
-        ChannelsListResponse channelsResponse = slack.methods().channelsList(r -> r.token(token));
+        ConversationsListResponse channelsResponse = slack.methods().conversationsList(r -> r.token(token));
         assertThat(channelsResponse.isOk(), is(true));
         // find #random
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
-        Channel random = null;
-        for (Channel c : channels_) {
+        List<Conversation> channels_ = slack.methods().conversationsList(r -> r.token(token)).getChannels();
+        Conversation random = null;
+        for (Conversation c : channels_) {
             if (c.getName().equals("random")) {
                 random = c;
                 break;

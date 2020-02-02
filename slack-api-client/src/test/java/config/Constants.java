@@ -26,4 +26,6 @@ public class Constants {
     public static final String SLACK_SDK_TEST_INCOMING_WEBHOOK_CHANNEL_NAME = "SLACK_SDK_TEST_INCOMING_WEBHOOK_CHANNEL_NAME";
 
     public static final String SLACK_SDK_TEST_EMAIL_ADDRESS = "SLACK_SDK_TEST_EMAIL_ADDRESS";
+
+    public static final String SLACK_SDK_TEST_REDIS_ENABLED = "SLACK_SDK_TEST_REDIS_ENABLED";
 }

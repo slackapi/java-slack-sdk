@@ -106,7 +106,7 @@ public class conversations_Test {
             ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(r -> r
                     .token(token)
                     .channel(createPublicResponse.getChannel().getId())
-                    .text("This is a test message posted by unit tests for jslack library")
+                    .text("This is a test message posted by unit tests for Java Slack SDK library")
                     .replyBroadcast(false));
             assertThat(postMessageResponse.getError(), is(nullValue()));
             assertThat(postMessageResponse.isOk(), is(true));
@@ -115,7 +115,7 @@ public class conversations_Test {
                     .token(token)
                     .channel(createPublicResponse.getChannel().getId())
                     .threadTs(postMessageResponse.getTs())
-                    .text("[thread 1] This is a test message posted by unit tests for jslack library")
+                    .text("[thread 1] This is a test message posted by unit tests for Java Slack SDK library")
                     .replyBroadcast(false));
             assertThat(postThread1Response.getError(), is(nullValue()));
             assertThat(postThread1Response.isOk(), is(true));
@@ -124,7 +124,7 @@ public class conversations_Test {
                     .token(token)
                     .channel(createPublicResponse.getChannel().getId())
                     .threadTs(postMessageResponse.getTs())
-                    .text("[thread 2] This is a test message posted by unit tests for jslack library")
+                    .text("[thread 2] This is a test message posted by unit tests for Java Slack SDK library")
                     .replyBroadcast(false));
             assertThat(postThread2Response.getError(), is(nullValue()));
             assertThat(postThread2Response.isOk(), is(true));
