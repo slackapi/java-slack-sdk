@@ -17,10 +17,6 @@ public class ViewState {
     // block_id, action_id
     private Map<String, Map<String, Value>> values;
 
-    /**
-     * This class may miss some attributes.
-     * If you find missing ones, let us know at https://github.com/seratch/jslack/issues
-     */
     @Data
     public static class Value {
         private String type;
@@ -30,7 +26,10 @@ public class ViewState {
         private String selectedChannel;
         private String selectedUser;
         private SelectedOption selectedOption;
+        private List<String> selectedConversations;
+        private List<String> selectedChannels;
         private List<String> selectedUsers;
+        private List<SelectedOption> selectedOptions;
     }
 
     @Data
