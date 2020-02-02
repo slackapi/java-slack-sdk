@@ -1,9 +1,6 @@
 package config;
 
 import com.slack.api.SlackConfig;
-import com.slack.api.methods.MethodsStats;
-import com.slack.api.util.http.listener.HttpResponseListener;
-import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import util.sample_json_generation.JsonDataRecordingListener;
 
@@ -27,12 +24,6 @@ public class SlackTestConfig {
         CONFIG.setLibraryMaintainerMode(true);
         CONFIG.setPrettyResponseLoggingEnabled(true);
         CONFIG.getHttpClientResponseHandlers().add(JSON_DATA_RECORDING_LISTENER);
-        CONFIG.getHttpClientResponseHandlers().add(new HttpResponseListener() {
-            @Override
-            public void accept(State state) {
-                log.info("--- (MethodsStats) ---\n" + GsonFactory.createSnakeCase(CONFIG).toJson(MethodsStats.getAllStats()));
-            }
-        });
     }
 
     public static SlackTestConfig getInstance() {

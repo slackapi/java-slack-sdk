@@ -14,12 +14,9 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
 
 @Slf4j
 public class bots_Test {
@@ -80,24 +77,6 @@ public class bots_Test {
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getBot(), is(notNullValue()));
-    }
-
-    @Test
-    public void botsInfo_async() throws Exception {
-        String botId = findBotId();
-        CompletableFuture<BotsInfoResponse> future = slack.methodsAsync(token).botsInfo(req -> req.bot(botId));
-        BotsInfoResponse response = future.join();
-        assertThat(response.getError(), is(nullValue()));
-        assertThat(response.isOk(), is(true));
-        assertThat(response.getBot(), is(notNullValue()));
-    }
-
-    @Test(expected = CompletionException.class)
-    public void botsInfo_async_failure() throws Exception {
-        String botId = findBotId();
-        CompletableFuture<BotsInfoResponse> future = brokenSlack.methodsAsync(token).botsInfo(req -> req.bot(botId));
-        future.join();
-        fail();
     }
 
 }
