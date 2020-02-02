@@ -16,10 +16,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestChannelGenerator {
 
+    private final Slack slack;
     private final String token;
-    private final Slack slack = Slack.getInstance(SlackTestConfig.get());
 
-    public TestChannelGenerator(String token) {
+    public TestChannelGenerator(SlackTestConfig testConfig, String token) {
+        this.slack = Slack.getInstance(testConfig.getConfig());
         this.token = token;
     }
 

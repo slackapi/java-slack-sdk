@@ -13,6 +13,7 @@ import com.slack.api.webhook.WebhookResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,7 +33,13 @@ public class IncomingWebhooksTest {
     String channel = System.getenv(Constants.SLACK_SDK_TEST_INCOMING_WEBHOOK_CHANNEL_NAME);
     String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
-    Slack slack = Slack.getInstance(SlackTestConfig.get());
+    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
+    static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @AfterClass
+    public static void tearDown() throws InterruptedException {
+        SlackTestConfig.awaitCompletion(testConfig);
+    }
 
     @Before
     public void setup() {

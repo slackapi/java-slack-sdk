@@ -7,6 +7,7 @@ import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.AfterClass;
 import org.junit.Test;
 import util.ObjectInitializer;
 import util.sample_json_generation.ObjectToJsonDumper;
@@ -20,7 +21,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class oauth_Test {
 
-    Slack slack = Slack.getInstance(SlackTestConfig.get());
+    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
+    static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @AfterClass
+    public static void tearDown() throws InterruptedException {
+        SlackTestConfig.awaitCompletion(testConfig);
+    }
 
     // TODO: valid test; currently just checking the API access
     @Test

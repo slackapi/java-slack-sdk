@@ -6,6 +6,7 @@ import com.slack.api.methods.SlackApiResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.Data;
+import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -31,7 +32,14 @@ public class UserDefinedMethodsTest {
         private String userId;
     }
 
-    Slack slack = Slack.getInstance(SlackTestConfig.get());
+    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
+    static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @AfterClass
+    public static void tearDown() throws InterruptedException {
+        SlackTestConfig.awaitCompletion(testConfig);
+    }
+
     String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test

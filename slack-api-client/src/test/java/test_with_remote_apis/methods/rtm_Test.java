@@ -19,6 +19,7 @@ import com.slack.api.rtm.message.Typing;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -38,11 +39,17 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 @Slf4j
 public class rtm_Test {
 
-    Slack slack = Slack.getInstance(SlackTestConfig.get());
-
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
     String channelCreationToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
     User currentUser;
+
+    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
+    static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @AfterClass
+    public static void tearDown() throws InterruptedException {
+        SlackTestConfig.awaitCompletion(testConfig);
+    }
 
     JsonParser jsonParser = new JsonParser();
 
@@ -77,7 +84,7 @@ public class rtm_Test {
     @Test
     public void test() throws Exception {
         String channelName = "test" + System.currentTimeMillis();
-        TestChannelGenerator channelGenerator = new TestChannelGenerator(channelCreationToken);
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(testConfig, channelCreationToken);
         Conversation channel = channelGenerator.createNewPublicChannel(channelName);
         try {
             String channelId = channel.getId();
@@ -96,7 +103,8 @@ public class rtm_Test {
 
             dispatcher.register(new UserTypingHandler());
 
-            Slack slack = Slack.getInstance(SlackTestConfig.get());
+            SlackTestConfig testConfig = SlackTestConfig.getInstance();
+            Slack slack = Slack.getInstance(testConfig.getConfig());
 
             try (RTMClient rtm = slack.rtmConnect(botToken)) {
                 rtm.addMessageHandler(dispatcher.toMessageHandler());
@@ -133,7 +141,7 @@ public class rtm_Test {
         Slack slack = Slack.getInstance(config);
 
         String channelName = "test" + System.currentTimeMillis();
-        TestChannelGenerator channelGenerator = new TestChannelGenerator(channelCreationToken);
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(testConfig, channelCreationToken);
         Conversation channel = channelGenerator.createNewPublicChannel(channelName);
         try {
             String channelId = channel.getId();

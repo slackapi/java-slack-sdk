@@ -5,6 +5,7 @@ import com.slack.api.methods.response.conversations.ConversationsInfoResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.util.Optional;
@@ -15,7 +16,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class shared_channels_Test {
 
-    Slack slack = Slack.getInstance(SlackTestConfig.get());
+    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
+    static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @AfterClass
+    public static void tearDown() throws InterruptedException {
+        SlackTestConfig.awaitCompletion(testConfig);
+    }
+
     String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test

@@ -18,6 +18,7 @@ import com.slack.api.model.Conversation;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import util.TestChannelGenerator;
@@ -32,7 +33,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class files_Test {
 
-    static Slack slack = Slack.getInstance(SlackTestConfig.get());
+    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
+    static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @AfterClass
+    public static void tearDown() throws InterruptedException {
+        SlackTestConfig.awaitCompletion(testConfig);
+    }
+
     static String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
     static String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
@@ -334,7 +342,7 @@ public class files_Test {
 
     @Test
     public void createFileForAThread() throws IOException, SlackApiException {
-        TestChannelGenerator channelGenerator = new TestChannelGenerator(userToken);
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(testConfig, userToken);
         Conversation channel = channelGenerator.createNewPublicChannel("test" + System.currentTimeMillis());
 
         try {

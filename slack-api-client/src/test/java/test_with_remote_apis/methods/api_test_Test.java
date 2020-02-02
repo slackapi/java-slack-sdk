@@ -11,6 +11,7 @@ import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
+import org.junit.AfterClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -25,7 +26,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class api_test_Test {
 
-    Slack slack = Slack.getInstance(SlackTestConfig.get());
+    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
+    static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @AfterClass
+    public static void tearDown() throws InterruptedException {
+        SlackTestConfig.awaitCompletion(testConfig);
+    }
 
     @Test
     public void ok() throws IOException, SlackApiException {
@@ -49,7 +56,8 @@ public class api_test_Test {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8888));
         OkHttpClient okHttpClient = new OkHttpClient.Builder().proxy(proxy).build();
         SlackHttpClient slackHttpClient = new SlackHttpClient(okHttpClient);
-        Slack slack = Slack.getInstance(SlackTestConfig.get(), slackHttpClient);
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Slack slack = Slack.getInstance(testConfig.getConfig(), slackHttpClient);
 
         ApiTestResponse response = slack.methods().apiTest(req -> req.foo("proxy?"));
         assertThat(response.getError(), is(nullValue()));

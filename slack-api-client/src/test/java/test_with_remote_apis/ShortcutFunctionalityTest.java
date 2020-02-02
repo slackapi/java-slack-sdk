@@ -19,6 +19,7 @@ import com.slack.api.model.block.element.ImageElement;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.AfterClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -33,7 +34,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class ShortcutFunctionalityTest {
 
-    Slack slack = Slack.getInstance(SlackTestConfig.get());
+    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
+    static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @AfterClass
+    public static void tearDown() throws InterruptedException {
+        SlackTestConfig.awaitCompletion(testConfig);
+    }
+
     ApiToken token = ApiToken.of(System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN));
 
     @Ignore
