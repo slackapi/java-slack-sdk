@@ -2,6 +2,7 @@ package com.slack.api;
 
 import com.slack.api.audit.AuditClient;
 import com.slack.api.methods.MethodsClient;
+import com.slack.api.methods.MethodsConfig;
 import com.slack.api.scim.SCIMClient;
 import com.slack.api.status.v1.LegacyStatusClient;
 import com.slack.api.status.v2.StatusClient;
@@ -71,6 +72,11 @@ public class SlackConfig {
         public void setLegacyStatusEndpointUrlPrefix(String legacyStatusEndpointUrlPrefix) {
             throwException();
         }
+
+        @Override
+        public void setMethodsConfig(MethodsConfig methodsConfig) {
+            throwException();
+        }
     };
 
     public SlackConfig() {
@@ -106,5 +112,7 @@ public class SlackConfig {
     private String statusEndpointUrlPrefix = StatusClient.ENDPOINT_URL_PREFIX;
 
     private String legacyStatusEndpointUrlPrefix = LegacyStatusClient.ENDPOINT_URL_PREFIX;
+
+    private MethodsConfig methodsConfig = MethodsConfig.DEFAULT_SINGLETON;
 
 }

@@ -7,6 +7,7 @@ import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
 import com.slack.api.model.Channel;
+import com.slack.api.model.Conversation;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -43,10 +44,18 @@ public class stars_Test {
     }
 
     @Test
+    public void list_async() throws Exception {
+        StarsListResponse response = slack.methodsAsync().starsList(r -> r.token(token)).get();
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getItems(), is(notNullValue()));
+    }
+
+    @Test
     public void add() throws IOException, SlackApiException {
-        List<Channel> channels = slack.methods().channelsList(r -> r.token(token)).getChannels();
+        List<Conversation> channels = slack.methods().conversationsList(r -> r.token(token)).getChannels();
         List<String> channelIds = new ArrayList<>();
-        for (Channel c : channels) {
+        for (Conversation c : channels) {
             if (c.getName().equals("random")) {
                 channelIds.add(c.getId());
                 break;
@@ -85,17 +94,17 @@ public class stars_Test {
             assertThat(response.isOk(), is(true));
         }
 
-        {
-            // as of August 2018, File object no longer contains initialComment.
-            if (fileObj.getInitialComment() != null) {
-                StarsAddResponse response = slack.methods().starsAdd(r -> r
-                        .token(token)
-                        .channel(channelIds.get(0))
-                        .fileComment(fileObj.getInitialComment().getId()));
-                assertThat(response.getError(), is(nullValue()));
-                assertThat(response.isOk(), is(true));
-            }
-        }
+//        {
+//            // as of August 2018, File object no longer contains initialComment.
+//            if (fileObj.getInitialComment() != null) {
+//                StarsAddResponse response = slack.methods().starsAdd(r -> r
+//                        .token(token)
+//                        .channel(channelIds.get(0))
+//                        .fileComment(fileObj.getInitialComment().getId()));
+//                assertThat(response.getError(), is(nullValue()));
+//                assertThat(response.isOk(), is(true));
+//            }
+//        }
 
     }
 

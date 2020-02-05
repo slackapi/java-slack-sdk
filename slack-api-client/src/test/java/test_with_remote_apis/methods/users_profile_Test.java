@@ -9,6 +9,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class users_profile_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
+    @Ignore
     @Test
     public void usersProfile() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
@@ -51,6 +53,38 @@ public class users_profile_Test {
             profile.setSkype("skype-" + System.currentTimeMillis());
             UsersProfileSetResponse response = slack.methods().usersProfileSet(
                     r -> r.token(token).profile(profile));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getProfile(), is(notNullValue()));
+        }
+    }
+
+    @Test
+    public void usersProfile_async() throws Exception {
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+
+        {
+            UsersProfileGetResponse response = slack.methodsAsync().usersProfileGet(r -> r.token(token)).get();
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getProfile(), is(notNullValue()));
+        }
+
+        {
+            UsersProfileSetResponse response = slack.methodsAsync().usersProfileSet(
+                    r -> r.token(token).name("skype").value("skype-" + System.currentTimeMillis()))
+                    .get();
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getProfile(), is(notNullValue()));
+        }
+
+        {
+            User.Profile profile = new User.Profile();
+            profile.setSkype("skype-" + System.currentTimeMillis());
+            UsersProfileSetResponse response = slack.methodsAsync().usersProfileSet(
+                    r -> r.token(token).profile(profile))
+                    .get();
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));

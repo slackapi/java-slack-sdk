@@ -7,9 +7,11 @@ import com.slack.api.methods.request.chat.ChatUnfurlRequest;
 import com.slack.api.methods.request.chat.ChatUpdateRequest;
 import com.slack.api.methods.response.channels.ChannelsListResponse;
 import com.slack.api.methods.response.chat.*;
+import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.conversations.ConversationsMembersResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.Channel;
+import com.slack.api.model.Conversation;
 import com.slack.api.model.User;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.util.json.GsonFactory;
@@ -24,6 +26,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -45,10 +48,9 @@ public class chat_Test {
 
     void loadRandomChannelId() throws IOException, SlackApiException {
         if (randomChannelId == null) {
-            ChannelsListResponse channelsListResponse = slack.methods().channelsList(r ->
-                    r.token(token).excludeArchived(true).limit(100));
+            ConversationsListResponse channelsListResponse = slack.methods().conversationsList(r -> r.token(token).excludeArchived(true).limit(100));
             assertThat(channelsListResponse.getError(), is(nullValue()));
-            for (Channel channel : channelsListResponse.getChannels()) {
+            for (Conversation channel : channelsListResponse.getChannels()) {
                 if (channel.getName().equals("random")) {
                     randomChannelId = channel.getId();
                     break;
@@ -150,7 +152,7 @@ public class chat_Test {
         assertThat(response.getError(), is(nullValue()));
     }
 
-    // https://github.com/seratch/jslack/issues/157
+    // https://github.com/slackapi/java-slack-sdk/issues/157
     @Test
     public void postMessage_blocksInAttachment_do_not_work() throws Exception {
         loadRandomChannelId();
@@ -171,7 +173,7 @@ public class chat_Test {
     @Test
     public void chat_getPermalink() throws IOException, SlackApiException {
         String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-        ChannelsListResponse channels = slack.methods().channelsList(req -> req
+        ConversationsListResponse channels = slack.methods().conversationsList(req -> req
                 .token(token)
                 .excludeArchived(true));
         assertThat(channels.getError(), is(nullValue()));
@@ -182,7 +184,7 @@ public class chat_Test {
         ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(req -> req
                 .channel(channelId)
                 .token(token)
-                .text("Hi, this is a test message from jSlack library's unit tests")
+                .text("Hi, this is a test message from Java Slack SDK's unit tests")
                 .linkNames(true));
         assertThat(postResponse.getError(), is(nullValue()));
         assertThat(postResponse.isOk(), is(true));
@@ -191,6 +193,37 @@ public class chat_Test {
                 .token(token)
                 .channel(channelId)
                 .messageTs(postResponse.getTs()));
+        assertThat(permalink.getError(), is(nullValue()));
+        assertThat(permalink.isOk(), is(true));
+        assertThat(permalink.getPermalink(), is(notNullValue()));
+    }
+
+    @Test
+    public void chat_getPermalink_async() throws ExecutionException, InterruptedException {
+        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+        ConversationsListResponse channels = slack.methodsAsync().conversationsList(req -> req
+                .token(token)
+                .excludeArchived(true))
+                .get();
+        assertThat(channels.getError(), is(nullValue()));
+        assertThat(channels.isOk(), is(true));
+
+        String channelId = channels.getChannels().get(0).getId();
+
+        ChatPostMessageResponse postResponse = slack.methodsAsync().chatPostMessage(req -> req
+                .channel(channelId)
+                .token(token)
+                .text("Hi, this is a test message from Java Slack SDK's unit tests")
+                .linkNames(true))
+                .get();
+        assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.isOk(), is(true));
+
+        ChatGetPermalinkResponse permalink = slack.methodsAsync().chatGetPermalink(req -> req
+                .token(token)
+                .channel(channelId)
+                .messageTs(postResponse.getTs()))
+                .get();
         assertThat(permalink.getError(), is(nullValue()));
         assertThat(permalink.isOk(), is(true));
         assertThat(permalink.getPermalink(), is(notNullValue()));

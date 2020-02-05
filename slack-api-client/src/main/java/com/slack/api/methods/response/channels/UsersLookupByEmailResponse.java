@@ -4,7 +4,6 @@ import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.User;
 import lombok.Data;
 
-@Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
 @Data
 public class UsersLookupByEmailResponse implements SlackApiResponse {
 

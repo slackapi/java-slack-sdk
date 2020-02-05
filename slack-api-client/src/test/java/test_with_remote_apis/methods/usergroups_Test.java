@@ -60,6 +60,13 @@ public class usergroups_Test {
     }
 
     @Test
+    public void list_async() throws Exception {
+        UsergroupsListResponse response = slack.methodsAsync().usergroupsList(r -> r.token(token)).get();
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
     public void usergroups() throws Exception {
         UsergroupsListResponse usergroups = slack.methods().usergroupsList(r -> r.token(token));
         if (usergroups.isOk() && usergroups.getUsergroups().size() > 0) {

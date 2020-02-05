@@ -58,4 +58,38 @@ public class reminders_Test {
         assertThat(deleteResponse.isOk(), is(true));
     }
 
+    @Test
+    public void test_async() throws Exception {
+        RemindersAddResponse addResponse = slack.methodsAsync().remindersAdd(r -> r
+                .token(token)
+                .text("Don't forget it!")
+                .time("10"))
+                .get();
+        assertThat(addResponse.getError(), is(nullValue()));
+        assertThat(addResponse.isOk(), is(true));
+
+        String reminderId = addResponse.getReminder().getId();
+
+        RemindersInfoResponse infoResponse = slack.methodsAsync().remindersInfo(r -> r
+                .token(token)
+                .reminder(reminderId))
+                .get();
+        assertThat(infoResponse.getError(), is(nullValue()));
+        assertThat(infoResponse.isOk(), is(true));
+
+        RemindersCompleteResponse completeResponse = slack.methodsAsync().remindersComplete(r -> r
+                .token(token)
+                .reminder(reminderId))
+                .get();
+        assertThat(completeResponse.getError(), is(nullValue()));
+        assertThat(completeResponse.isOk(), is(true));
+
+        RemindersDeleteResponse deleteResponse = slack.methodsAsync().remindersDelete(r -> r
+                .token(token)
+                .reminder(reminderId))
+                .get();
+        assertThat(deleteResponse.getError(), is(nullValue()));
+        assertThat(deleteResponse.isOk(), is(true));
+    }
+
 }

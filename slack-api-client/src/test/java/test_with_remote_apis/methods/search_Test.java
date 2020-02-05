@@ -39,8 +39,29 @@ public class search_Test {
     }
 
     @Test
+    public void all_async() throws Exception {
+        SearchAllResponse response = slack.methodsAsync().searchAll(r -> r.token(token).query("test")).get();
+
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
     public void messages() throws IOException, SlackApiException {
         SearchMessagesResponse response = slack.methods().searchMessages(r -> r.token(token).query("test"));
+
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+
+        MatchedItem match = response.getMessages().getMatches().get(0);
+        assertThat(match.getUsername(), is(notNullValue()));
+        // As of Nov 2019, user is not available
+        // assertThat(match.getUser(), is(notNullValue()));
+    }
+
+    @Test
+    public void messages_async() throws Exception {
+        SearchMessagesResponse response = slack.methodsAsync().searchMessages(r -> r.token(token).query("test")).get();
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -62,4 +83,17 @@ public class search_Test {
         assertThat(match.getUser(), is(notNullValue()));
         assertThat(match.getUsername(), is(notNullValue()));
     }
+
+    @Test
+    public void files_async() throws Exception {
+        SearchFilesResponse response = slack.methodsAsync().searchFiles(r -> r.token(token).query("test")).get();
+
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+
+        MatchedItem match = response.getFiles().getMatches().get(0);
+        assertThat(match.getUser(), is(notNullValue()));
+        assertThat(match.getUsername(), is(notNullValue()));
+    }
+
 }

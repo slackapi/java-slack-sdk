@@ -2,9 +2,10 @@ package com.slack.api;
 
 import com.slack.api.audit.AuditClient;
 import com.slack.api.audit.impl.AuditClientImpl;
-import com.slack.api.methods.MethodsClient;
-import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.*;
+import com.slack.api.methods.impl.AsyncMethodsClientImpl;
 import com.slack.api.methods.impl.MethodsClientImpl;
+import com.slack.api.methods.MethodsStats;
 import com.slack.api.methods.request.rtm.RTMConnectRequest;
 import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.users.UsersInfoRequest;
@@ -25,16 +26,16 @@ import com.slack.api.status.v2.impl.StatusClientImpl;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.webhook.Payload;
 import com.slack.api.webhook.WebhookResponse;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 /**
- * Slack Integrations
- * <p>
- * https://{your team name}.slack.com/apps/manage/custom-integrations
+ * Slack API Client Facade
  */
+@Slf4j
 public class Slack {
 
     private static final Slack SINGLETON = new Slack(SlackConfig.DEFAULT, new SlackHttpClient());
@@ -255,6 +256,22 @@ public class Slack {
         MethodsClientImpl client = new MethodsClientImpl(httpClient, token);
         client.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
         return client;
+    }
+
+    public AsyncMethodsClient methodsAsync() {
+        return methodsAsync(null);
+    }
+
+    public AsyncMethodsClient methodsAsync(String token) {
+        return new AsyncMethodsClientImpl(token, methods(token), config);
+    }
+
+    public MethodsStats methodsStats(String teamId) {
+        return methodsStats(MethodsConfig.DEFAULT_SINGLETON_EXECUTOR_NAME, teamId);
+    }
+
+    public MethodsStats methodsStats(String executorName, String teamId) {
+        return config.getMethodsConfig().getMetricsDatastore().getStats(executorName, teamId);
     }
 
     public Shortcut shortcut() {

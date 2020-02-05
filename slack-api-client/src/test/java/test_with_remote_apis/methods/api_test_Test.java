@@ -18,6 +18,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.util.concurrent.ExecutionException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -43,8 +44,24 @@ public class api_test_Test {
     }
 
     @Test
+    public void ok_async() throws ExecutionException, InterruptedException {
+        ApiTestResponse response = slack.methodsAsync().apiTest(req -> req.foo("fine")).get();
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getArgs().getFoo(), is("fine"));
+    }
+
+    @Test
     public void error() throws IOException, SlackApiException {
         ApiTestResponse response = slack.methods().apiTest(req -> req.error("error"));
+        assertThat(response.isOk(), is(false));
+        assertThat(response.getError(), is("error"));
+        assertThat(response.getArgs().getError(), is("error"));
+    }
+
+    @Test
+    public void error_async() throws ExecutionException, InterruptedException {
+        ApiTestResponse response = slack.methodsAsync().apiTest(req -> req.error("error")).get();
         assertThat(response.isOk(), is(false));
         assertThat(response.getError(), is("error"));
         assertThat(response.getArgs().getError(), is("error"));

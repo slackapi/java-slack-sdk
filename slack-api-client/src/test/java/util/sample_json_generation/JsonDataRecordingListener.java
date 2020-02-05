@@ -20,7 +20,7 @@ public class JsonDataRecordingListener extends HttpResponseListener {
         if (remaining.size() > 0) {
             log.debug("remaining: {} ({})",
                     remaining.size(),
-                    remaining.stream().map(r -> "`" + r.substring(0, 30) + "...`").collect(joining("[", ",", "]")));
+                    remaining.stream().map(r -> "`" + r.substring(0, 30) + "...`").collect(joining(",", "[", "]")));
         }
         return remaining.size() == 0;
     }
@@ -36,14 +36,14 @@ public class JsonDataRecordingListener extends HttpResponseListener {
 
             try {
                 remaining.add(bodyPrefix);
-                log.debug("Started for {} - remaining: {}", bodyPrefix, remaining.size());
+                log.debug("Started for `{}` - remaining: {}", bodyPrefix, remaining.size());
                 JsonDataRecorder recorder = new JsonDataRecorder(state.getConfig(), "../json-logs");
                 recorder.writeMergedResponse(state.getResponse(), state.getParsedResponseBody());
             } catch (IOException e) {
                 log.error("Failed to write JSON files because {}", e.getMessage(), e);
             } finally {
                 remaining.remove(bodyPrefix);
-                log.debug("Finished for {} - remaining: {}", bodyPrefix, remaining.size());
+                log.debug("Finished for `{}` - remaining: {}", bodyPrefix, remaining.size());
             }
         });
     }

@@ -87,7 +87,7 @@ public class channels_Test {
         ChatPostMessageResponse firstMessageCreation = slack.methods().chatPostMessage(req -> req
                 .channel(randomChannelId)
                 .token(token)
-                .text("[thread] This is a test message posted by unit tests for jslack library")
+                .text("[thread] This is a test message posted by unit tests for Java Slack SDK library")
                 .replyBroadcast(false));
         assertThat(firstMessageCreation.getError(), is(nullValue()));
         assertThat(firstMessageCreation.isOk(), is(true));
