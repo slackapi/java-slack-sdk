@@ -5,9 +5,7 @@ import com.slack.api.lightning.response.Response;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ServletAdapterOps {
@@ -18,20 +16,24 @@ public class ServletAdapterOps {
         return req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public static Map<String, String> toHeaderMap(HttpServletRequest req) {
-        Map<String, String> map = new HashMap<>();
+    public static Map<String, List<String>> toHeaderMap(HttpServletRequest req) {
+        Map<String, List<String>> headers = new HashMap<>();
         Enumeration<String> names = req.getHeaderNames();
         while (names.hasMoreElements()) {
             String name = names.nextElement();
-            map.put(name, req.getHeader(name));
+            List<String> values = Collections.list(req.getHeaders(name));
+            headers.put(name, values);
         }
-        return map;
+        return headers;
     }
 
     public static void writeResponse(HttpServletResponse resp, Response slackResp) throws IOException {
         resp.setStatus(slackResp.getStatusCode());
-        for (Map.Entry<String, String> header : slackResp.getHeaders().entrySet()) {
-            resp.setHeader(header.getKey(), header.getValue());
+        for (Map.Entry<String, List<String>> header : slackResp.getHeaders().entrySet()) {
+            String name = header.getKey();
+            for (String value : header.getValue()) {
+                resp.addHeader(name, value);
+            }
         }
         resp.setHeader("Content-Type", slackResp.getContentType());
         if (slackResp.getBody() != null) {

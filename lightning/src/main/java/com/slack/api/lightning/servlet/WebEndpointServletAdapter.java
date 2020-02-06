@@ -9,7 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
+
+import static com.slack.api.lightning.servlet.ServletAdapterOps.toHeaderMap;
 
 @Slf4j
 public class WebEndpointServletAdapter {
@@ -41,10 +42,6 @@ public class WebEndpointServletAdapter {
 
     protected String doReadRequestBodyAsString(HttpServletRequest req) throws IOException {
         return ServletAdapterOps.doReadRequestBodyAsString(req);
-    }
-
-    protected Map<String, String> toHeaderMap(HttpServletRequest req) {
-        return ServletAdapterOps.toHeaderMap(req);
     }
 
     public void writeResponse(HttpServletResponse resp, Response slackResp) throws IOException {

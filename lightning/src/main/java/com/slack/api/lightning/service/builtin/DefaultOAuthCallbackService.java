@@ -18,7 +18,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
 
     private final AppConfig config;
     private final OAuthFlowOperator operator;
-    private final OAuthStateService stateService;
+    private final OAuthStateService serverSideStateService;
     private final OAuthSuccessHandler successHandler;
     private final OAuthV2SuccessHandler successV2Handler;
     private final OAuthErrorHandler errorHandler;
@@ -38,7 +38,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
             OAuthV2AccessErrorHandler accessV2ErrorHandler,
             OAuthExceptionHandler exceptionHandler) {
         this.config = config;
-        this.stateService = stateService;
+        this.serverSideStateService = stateService;
         this.successHandler = successHandler;
         this.successV2Handler = successV2Handler;
         this.errorHandler = errorHandler;
@@ -56,35 +56,40 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
     }
 
     public Response handle(OAuthCallbackRequest request) {
+        Response response = new Response();
         VerificationCodePayload payload = request.getPayload();
         try {
             if (payload.getError() != null) {
-                return errorHandler.handle(request);
+                return errorHandler.handle(request, response);
             }
-            if (stateService.isValid(payload.getState())) {
+            OAuthStateService _stateService = serverSideStateService;
+            if (_stateService == null) {
+                _stateService = new CookieOAuthStateService(request, response);
+            }
+            if (_stateService.isValid(payload.getState())) {
                 if (config.isGranularBotPermissionsEnabled()) {
                     OAuthV2AccessResponse oauthAccess = operator.callOAuthV2AccessMethod(payload);
                     if (oauthAccess.isOk()) {
-                        stateService.consume(payload.getState());
-                        return successV2Handler.handle(request, oauthAccess);
+                        _stateService.consume(payload.getState());
+                        return successV2Handler.handle(request, response, oauthAccess);
                     } else {
-                        return accessV2ErrorHandler.handle(request, oauthAccess);
+                        return accessV2ErrorHandler.handle(request, response, oauthAccess);
                     }
                 } else {
                     OAuthAccessResponse oauthAccess = operator.callOAuthAccessMethod(payload);
                     if (oauthAccess.isOk()) {
-                        stateService.consume(payload.getState());
-                        return successHandler.handle(request, oauthAccess);
+                        _stateService.consume(payload.getState());
+                        return successHandler.handle(request, response, oauthAccess);
                     } else {
-                        return accessErrorHandler.handle(request, oauthAccess);
+                        return accessErrorHandler.handle(request, response, oauthAccess);
                     }
                 }
             } else {
-                return stateErrorHandler.handle(request);
+                return stateErrorHandler.handle(request, response);
             }
         } catch (Exception e) {
             log.error("Failed to handle an OAuth request - {}", e.getMessage(), e);
-            return exceptionHandler.handle(request, e);
+            return exceptionHandler.handle(request, response, e);
         }
     }
 

@@ -17,7 +17,13 @@ public class ApiGatewayResponse {
 
     private final int statusCode;
     private final String body;
+
+    /**
+     * Note: We cannot have multiple values with the same header name here.
+     * See also "https://forums.aws.amazon.com/thread.jspa?threadID=205782"
+     */
     private final Map<String, String> headers;
+
     private final boolean isBase64Encoded;
 
     public ApiGatewayResponse(int statusCode, String body, Map<String, String> headers, boolean isBase64Encoded) {

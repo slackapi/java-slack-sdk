@@ -5,18 +5,18 @@ import com.slack.api.lightning.request.builtin.OAuthCallbackRequest;
 import com.slack.api.lightning.response.Response;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 @Slf4j
 public class OAuthDefaultStateErrorHandler implements OAuthStateErrorHandler {
 
     @Override
-    public Response handle(OAuthCallbackRequest req) {
-        log.warn("Invalid state parameter detected - payload: {}", req.getPayload());
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Location", req.getContext().getOauthCancellationUrl());
-        return Response.builder().statusCode(302).headers(headers).build();
+    public Response handle(OAuthCallbackRequest request, Response response) {
+        log.warn("Invalid state parameter detected - payload: {}", request.getPayload());
+
+        response.setStatusCode(302);
+        response.getHeaders().put("Location", Arrays.asList(request.getContext().getOauthCancellationUrl()));
+        return response;
     }
 
 }

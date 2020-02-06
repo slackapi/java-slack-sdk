@@ -7,6 +7,6 @@ import com.slack.api.lightning.response.Response;
 @FunctionalInterface
 public interface WebEndpointHandler {
 
-    Response apply(WebEndpointRequest req, WebEndpointContext context);
+    Response apply(WebEndpointRequest request, WebEndpointContext context);
 
 }
