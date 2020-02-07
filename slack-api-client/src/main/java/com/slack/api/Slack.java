@@ -36,7 +36,7 @@ import java.net.URISyntaxException;
  * Slack API Client Facade
  */
 @Slf4j
-public class Slack {
+public class Slack implements AutoCloseable {
 
     private static final Slack SINGLETON = new Slack(SlackConfig.DEFAULT, new SlackHttpClient());
 
@@ -71,6 +71,11 @@ public class Slack {
 
     public SlackHttpClient getHttpClient() {
         return this.httpClient;
+    }
+
+    @Override
+    public void close() throws Exception {
+        getHttpClient().close();
     }
 
     /**

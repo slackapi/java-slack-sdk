@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @Slf4j
-public class SlackHttpClient {
+public class SlackHttpClient implements AutoCloseable {
 
     private final OkHttpClient okHttpClient;
 
@@ -23,6 +23,15 @@ public class SlackHttpClient {
 
     public SlackHttpClient(OkHttpClient okHttpClient) {
         this.okHttpClient = okHttpClient;
+    }
+
+    @Override
+    public void close() throws Exception {
+        this.okHttpClient.dispatcher().executorService().shutdown();
+        this.okHttpClient.connectionPool().evictAll();
+        if (this.okHttpClient.cache() != null) {
+            this.okHttpClient.cache().close();
+        }
     }
 
     public SlackConfig getConfig() {
