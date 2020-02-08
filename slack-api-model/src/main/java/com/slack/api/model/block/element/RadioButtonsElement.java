@@ -23,7 +23,7 @@ public class RadioButtonsElement extends BlockElement {
     private PlainTextObject placeholder;
     private String actionId;
 
-    // https://github.com/seratch/jslack/pull/103
+    // https://github.com/slackapi/java-slack-sdk/pull/103
     // The reason I didn't initialize the List<> fields is because Slack (sometimes) gives errors
     // when it encounters an empty list in the generated JSON.
     // The proper solution if/when you don't want un-initialized fields is to have a Gson type adapter that skips empty lists

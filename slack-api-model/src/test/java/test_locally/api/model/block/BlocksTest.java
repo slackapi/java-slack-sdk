@@ -80,4 +80,10 @@ public class BlocksTest {
         assertThat(section(s -> s.blockId("block-id").fields(asSectionFields(plainText("foo")))), is(notNullValue()));
     }
 
+    @Test
+    public void testCheckboxes() {
+        assertThat(section(s -> s.blockId("block-id").accessory(checkboxes(c -> c.actionId("foo")))), is(notNullValue()));
+        assertThat(input(i -> i.element(checkboxes(c -> c.actionId("foo")))), is(notNullValue()));
+    }
+
 }
