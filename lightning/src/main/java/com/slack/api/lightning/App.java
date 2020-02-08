@@ -19,9 +19,9 @@ import com.slack.api.lightning.response.Response;
 import com.slack.api.lightning.service.InstallationService;
 import com.slack.api.lightning.service.OAuthCallbackService;
 import com.slack.api.lightning.service.OAuthStateService;
+import com.slack.api.lightning.service.builtin.CookieOAuthStateService;
 import com.slack.api.lightning.service.builtin.DefaultOAuthCallbackService;
 import com.slack.api.lightning.service.builtin.FileInstallationService;
-import com.slack.api.lightning.service.builtin.FileOAuthStateService;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.model.event.Event;
 import com.slack.api.util.json.GsonFactory;
@@ -61,7 +61,7 @@ public class App {
     private final Map<String, OutgoingWebhooksHandler> outgoingWebhooksHandlers = new HashMap<>();
     private final EventsDispatcher eventsDispatcher = EventsDispatcherFactory.getInstance();
 
-    private OAuthStateService oAuthStateService = new FileOAuthStateService();
+    private OAuthStateService oAuthStateService; // default: cookie-based
     private InstallationService installationService = new FileInstallationService();
     private OAuthCallbackService oAuthCallbackService = null;
 
@@ -474,15 +474,21 @@ public class App {
             case OAuthStart: {
                 if (config().isDistributedApp()) {
                     try {
-                        String state = oAuthStateService.issueNewState();
-                        String url = config().getOauthInstallationUrl(state);
-                        Map<String, String> headers = new HashMap<>();
-                        if (url == null) {
-                            headers.put("Location", config().getOauthCancellationUrl());
-                        } else {
-                            headers.put("Location", url);
+                        Map<String, List<String>> responseHeaders = new HashMap<>();
+                        Response response = Response.builder().statusCode(302).headers(responseHeaders).build();
+                        OAuthStateService stateService = oAuthStateService;
+                        if (stateService == null) { // use cookie based one
+                            response.setStatusCode(302);
+                            stateService = new CookieOAuthStateService(req, response);
                         }
-                        return Response.builder().statusCode(302).headers(headers).build();
+                        String state = stateService.issueNewState();
+                        String url = config().getOauthInstallationUrl(state);
+                        if (url == null) {
+                            responseHeaders.put("Location", Arrays.asList(config().getOauthCancellationUrl()));
+                        } else {
+                            responseHeaders.put("Location", Arrays.asList(url));
+                        }
+                        return response;
                     } catch (Exception e) {
                         log.error("Failed to run the operation (error: {})", e.getMessage(), e);
                     }

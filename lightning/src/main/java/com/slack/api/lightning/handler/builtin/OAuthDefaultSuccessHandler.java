@@ -13,8 +13,7 @@ import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 @Slf4j
 public class OAuthDefaultSuccessHandler implements OAuthSuccessHandler {
@@ -26,8 +25,8 @@ public class OAuthDefaultSuccessHandler implements OAuthSuccessHandler {
     }
 
     @Override
-    public Response handle(OAuthCallbackRequest req, OAuthAccessResponse o) {
-        OAuthCallbackContext context = req.getContext();
+    public Response handle(OAuthCallbackRequest request, Response response, OAuthAccessResponse o) {
+        OAuthCallbackContext context = request.getContext();
         context.setEnterpriseId(o.getEnterpriseId());
         context.setTeamId(o.getTeamId());
         context.setBotUserId(o.getBot().getBotUserId());
@@ -66,15 +65,15 @@ public class OAuthDefaultSuccessHandler implements OAuthSuccessHandler {
         }
         Installer installer = i.build();
 
-        Map<String, String> headers = new HashMap<>();
+        response.setStatusCode(302);
         try {
             installationService.saveInstallerAndBot(installer);
-            headers.put("Location", context.getOauthCompletionUrl());
+            response.getHeaders().put("Location", Arrays.asList(context.getOauthCompletionUrl()));
         } catch (Exception e) {
             log.warn("Failed to store the installation - {}", e.getMessage(), e);
-            headers.put("Location", context.getOauthCancellationUrl());
+            response.getHeaders().put("Location", Arrays.asList(context.getOauthCancellationUrl()));
         }
-        return Response.builder().statusCode(302).headers(headers).build();
+        return response;
     }
 
 }

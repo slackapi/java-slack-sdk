@@ -7,6 +7,6 @@ import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 @FunctionalInterface
 public interface OAuthAccessErrorHandler {
 
-    Response handle(OAuthCallbackRequest req, OAuthAccessResponse apiResponse);
+    Response handle(OAuthCallbackRequest request, Response response, OAuthAccessResponse apiResponse);
 
 }

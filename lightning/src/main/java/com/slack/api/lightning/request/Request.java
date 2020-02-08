@@ -50,8 +50,8 @@ public abstract class Request<CTX extends Context> {
     }
 
     public boolean isValid(SlackSignature.Verifier verifier, long nowInMillis) {
-        String requestTimestamp = getHeaders().get(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP);
-        String requestSignature = getHeaders().get(SlackSignature.HeaderNames.X_SLACK_SIGNATURE);
+        String requestTimestamp = getHeaders().getFirstValue(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP);
+        String requestSignature = getHeaders().getFirstValue(SlackSignature.HeaderNames.X_SLACK_SIGNATURE);
         return verifier.isValid(requestTimestamp, getRequestBodyAsString(), requestSignature, nowInMillis);
     }
 

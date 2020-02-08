@@ -40,7 +40,7 @@ public class SlackAppMicronautAdapter {
                 return e.getKey() + "=" + e.getValue();
             }
         }).collect(Collectors.joining("&"));
-        RequestHeaders headers = new RequestHeaders(flatten(req.getHeaders().asMap()));
+        RequestHeaders headers = new RequestHeaders(req.getHeaders().asMap());
 
         SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
                 .requestUri(req.getPath())
@@ -57,8 +57,11 @@ public class SlackAppMicronautAdapter {
     public HttpResponse<String> toMicronautResponse(Response resp) {
         HttpStatus status = HttpStatus.valueOf(resp.getStatusCode());
         MutableHttpResponse<String> response = micronautResponseFactory.status(status);
-        for (Map.Entry<String, String> header : resp.getHeaders().entrySet()) {
-            response.header(header.getKey(), header.getValue());
+        for (Map.Entry<String, List<String>> header : resp.getHeaders().entrySet()) {
+            String name = header.getKey();
+            for (String value : header.getValue()) {
+                response.header(name, value);
+            }
         }
         response.body(resp.getBody());
         return response;

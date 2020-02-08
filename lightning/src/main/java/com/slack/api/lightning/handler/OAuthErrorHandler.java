@@ -6,6 +6,6 @@ import com.slack.api.lightning.response.Response;
 @FunctionalInterface
 public interface OAuthErrorHandler {
 
-    Response handle(OAuthCallbackRequest req);
+    Response handle(OAuthCallbackRequest request, Response response);
 
 }

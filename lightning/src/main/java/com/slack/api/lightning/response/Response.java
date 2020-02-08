@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.slack.api.lightning.util.JsonOps.toJsonString;
@@ -21,7 +22,7 @@ public class Response {
     @Builder.Default
     private String contentType = "plain/text";
     @Builder.Default
-    private Map<String, String> headers = new HashMap<>();
+    private Map<String, List<String>> headers = new HashMap<>();
     private String body;
 
     public static final String CONTENT_TYPE_APPLICATION_JSON = "application/json";

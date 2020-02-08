@@ -11,6 +11,11 @@ import com.slack.api.lightning.response.Response;
 import com.slack.api.lightning.util.SlackRequestParser;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Slf4j
 public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGatewayRequest, ApiGatewayResponse> {
 
@@ -29,7 +34,7 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
         SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
                 .requestUri(awsReq.getPath())
                 .queryString(awsReq.getQueryStringParameters())
-                .headers(new RequestHeaders(awsReq.getHeaders()))
+                .headers(new RequestHeaders(toStringToStringListMap(awsReq.getHeaders())))
                 .requestBody(awsReq.getBody())
                 .remoteAddress(awsReq.getRequestContext().getIdentity() != null ? awsReq.getRequestContext().getIdentity().getSourceIp() : null)
                 .build();
@@ -39,7 +44,7 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
     protected ApiGatewayResponse toApiGatewayResponse(Response slackResp) {
         return ApiGatewayResponse.builder()
                 .statusCode(slackResp.getStatusCode())
-                .headers(slackResp.getHeaders())
+                .headers(toStringToStringMap(slackResp.getHeaders()))
                 .rawBody(slackResp.getBody())
                 .build();
     }
@@ -57,6 +62,24 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
         } catch (Exception e) {
             return ApiGatewayResponse.builder().statusCode(500).rawBody(e.getMessage()).build();
         }
+    }
+
+    private static Map<String, String> toStringToStringMap(Map<String, List<String>> stringToStringListMap) {
+        Map<String, String> headers = new HashMap<>();
+        for (Map.Entry<String, List<String>> each : stringToStringListMap.entrySet()) {
+            if (each.getValue() != null && each.getValue().size() > 0) {
+                headers.put(each.getKey(), each.getValue().get(0)); // set the first value in the array
+            }
+        }
+        return headers;
+    }
+
+    private static Map<String, List<String>> toStringToStringListMap(Map<String, String> stringToStringListMap) {
+        Map<String, List<String>> headers = new HashMap<>();
+        for (Map.Entry<String, String> each : stringToStringListMap.entrySet()) {
+            headers.put(each.getKey(), Arrays.asList(each.getValue()));
+        }
+        return headers;
     }
 
 }

@@ -127,7 +127,7 @@ public class SlackRequestParser {
             if (slackRequest != null) {
                 slackRequest.updateContext(appConfig);
 
-                String ipAddress = headers.get("X-FORWARDED-FOR");
+                String ipAddress = headers.getFirstValue("X-FORWARDED-FOR");
                 if (ipAddress == null) {
                     ipAddress = httpRequest.getRemoteAddress();
                 }

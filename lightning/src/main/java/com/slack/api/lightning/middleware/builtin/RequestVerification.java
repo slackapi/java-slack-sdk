@@ -26,7 +26,7 @@ public class RequestVerification implements Middleware {
         if (req.isValid(verifier)) {
             return chain.next(req);
         } else {
-            String signature = req.getHeaders().get(SlackSignature.HeaderNames.X_SLACK_SIGNATURE);
+            String signature = req.getHeaders().getFirstValue(SlackSignature.HeaderNames.X_SLACK_SIGNATURE);
             log.info("Invalid signature detected - {}", signature);
             return Response.json(401, "{\"error\":\"invalid request\"}");
         }
