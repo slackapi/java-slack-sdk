@@ -157,7 +157,13 @@
               "text": "",
               "emoji": false
             },
-            "value": ""
+            "value": "",
+            "description": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "url": ""
           },
           "min_query_length": 123,
           "confirm": {
@@ -234,7 +240,13 @@
               "text": "",
               "emoji": false
             },
-            "value": ""
+            "value": "",
+            "description": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "url": ""
           },
           "confirm": {
             "title": {
