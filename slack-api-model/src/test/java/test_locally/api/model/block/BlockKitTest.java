@@ -5,6 +5,7 @@ import com.slack.api.model.Message;
 import com.slack.api.model.block.InputBlock;
 import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.block.SectionBlock;
+import com.slack.api.model.block.element.CheckboxesElement;
 import com.slack.api.model.block.element.RadioButtonsElement;
 import com.slack.api.model.block.element.RichTextSectionElement;
 import com.slack.api.model.block.element.RichTextUnknownElement;
@@ -785,6 +786,108 @@ public class BlockKitTest {
         // never fails - invalid types are just skipped
         GsonFactory.createSnakeCaseWithoutUnknownPropertyDetection(true)
                 .fromJson(unknownTextObjectsInInputBlocksJson, Message.class);
+    }
+
+    @Test
+    public void parseCheckboxes() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"input\",\n" +
+                "      \"element\": {\n" +
+                "        \"type\": \"checkboxes\",\n" +
+                "        \"action_id\": \"input-action-id\",\n" +
+                "        \"options\": [\n" +
+                "          {\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"plain_text\",\n" +
+                "              \"text\": \"*this is plain_text text*\",\n" +
+                "              \"emoji\": true\n" +
+                "            },\n" +
+                "            \"value\": \"value-0\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"plain_text\",\n" +
+                "              \"text\": \"*this is plain_text text*\",\n" +
+                "              \"emoji\": true\n" +
+                "            },\n" +
+                "            \"value\": \"value-1\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"plain_text\",\n" +
+                "              \"text\": \"*this is plain_text text*\",\n" +
+                "              \"emoji\": true\n" +
+                "            },\n" +
+                "            \"value\": \"value-2\"\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      },\n" +
+                "      \"label\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Label\",\n" +
+                "        \"emoji\": true\n" +
+                "      }\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"type\": \"section\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"mrkdwn\",\n" +
+                "        \"text\": \"This is a section block with checkboxes.\"\n" +
+                "      },\n" +
+                "      \"accessory\": {\n" +
+                "        \"type\": \"checkboxes\",\n" +
+                "        \"action_id\": \"section-action-id\",\n" +
+                "        \"options\": [\n" +
+                "          {\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"mrkdwn\",\n" +
+                "              \"text\": \"*this is mrkdwn text*\"\n" +
+                "            },\n" +
+                "            \"description\": {\n" +
+                "              \"type\": \"mrkdwn\",\n" +
+                "              \"text\": \"*this is mrkdwn text*\"\n" +
+                "            },\n" +
+                "            \"value\": \"value-0\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"mrkdwn\",\n" +
+                "              \"text\": \"*this is mrkdwn text*\"\n" +
+                "            },\n" +
+                "            \"description\": {\n" +
+                "              \"type\": \"mrkdwn\",\n" +
+                "              \"text\": \"*this is mrkdwn text*\"\n" +
+                "            },\n" +
+                "            \"value\": \"value-1\"\n" +
+                "          },\n" +
+                "          {\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"mrkdwn\",\n" +
+                "              \"text\": \"*this is mrkdwn text*\"\n" +
+                "            },\n" +
+                "            \"description\": {\n" +
+                "              \"type\": \"mrkdwn\",\n" +
+                "              \"text\": \"*this is mrkdwn text*\"\n" +
+                "            },\n" +
+                "            \"value\": \"value-2\"\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+
+        InputBlock input = (InputBlock) message.getBlocks().get(0);
+        CheckboxesElement checkboxes1 = (CheckboxesElement) input.getElement();
+        assertThat(checkboxes1.getActionId(), is("input-action-id"));
+
+        SectionBlock block = (SectionBlock) message.getBlocks().get(1);
+        CheckboxesElement checkboxes2 = (CheckboxesElement) block.getAccessory();
+        assertThat(checkboxes2.getActionId(), is("section-action-id"));
     }
 
 }

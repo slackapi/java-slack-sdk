@@ -6,7 +6,7 @@ import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/messaging/block-elements#external-select
+ * https://api.slack.com/reference/block-kit/block-elements#external_select
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -16,10 +16,38 @@ import lombok.*;
 public class ExternalSelectElement extends BlockElement {
     public static final String TYPE = "external_select";
     private final String type = TYPE;
-    private String fallback;
+
+    /**
+     * A plain_text only text object that defines the placeholder text shown on the menu.
+     * Maximum length for the text in this field is 150 characters.
+     */
     private PlainTextObject placeholder;
+
+    /**
+     * An identifier for the action triggered when a menu option is selected.
+     * You can use this when you receive an interaction payload to identify the source of the action.
+     * Should be unique among all other action_ids used elsewhere by your app.
+     * Maximum length for this field is 255 characters.
+     */
     private String actionId;
+
+    /**
+     * A single option that exactly matches one of the options within the options or
+     * option_groups loaded from the external data source.
+     * This option will be selected when the menu initially loads.
+     */
     private OptionObject initialOption;
+
+    /**
+     * When the typeahead field is used, a request will be sent on every character change.
+     * If you prefer fewer requests or more fully ideated queries,
+     * use the min_query_length attribute to tell Slack the fewest number of typed characters required before dispatch.
+     */
     private Integer minQueryLength;
+
+    /**
+     * A confirm object that defines an optional confirmation dialog that appears after a menu item is selected.
+     */
     private ConfirmationDialogObject confirm;
+
 }

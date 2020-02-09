@@ -84,6 +84,8 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
                 return RichTextPreformattedElement.class;
             case RadioButtonsElement.TYPE:
                 return RadioButtonsElement.class;
+            case CheckboxesElement.TYPE:
+                return CheckboxesElement.class;
             default:
                 if (failOnUnknownProperties) {
                     throw new JsonParseException("Unknown block element type: " + typeName);

@@ -300,7 +300,8 @@
       "browsers_dismissed_people_low_results_education": false,
       "browsers_seen_initial_people_education": false,
       "activity_view": "",
-      "up_to_browse_kb_shortcut": false
+      "up_to_browse_kb_shortcut": false,
+      "suppress_link_warning": false
     },
     "created": 12345,
     "manual_presence": ""

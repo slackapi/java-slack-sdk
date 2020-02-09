@@ -139,6 +139,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         private boolean bold;
         private boolean italic;
         private boolean strike;
+        private boolean code;
     }
 
 }

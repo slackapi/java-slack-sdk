@@ -29,6 +29,12 @@ public class BlockElements {
         return configurator.configure(ButtonElement.builder()).build();
     }
 
+    // CheckboxesElement
+
+    public static CheckboxesElement checkboxes(ModelConfigurator<CheckboxesElement.CheckboxesElementBuilder> configurator) {
+        return configurator.configure(CheckboxesElement.builder()).build();
+    }
+
     // OverflowMenuElement
 
     public static OverflowMenuElement overflowMenu(ModelConfigurator<OverflowMenuElement.OverflowMenuElementBuilder> configurator) {
