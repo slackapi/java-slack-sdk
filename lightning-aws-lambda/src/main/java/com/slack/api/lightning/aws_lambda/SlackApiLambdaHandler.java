@@ -33,7 +33,7 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
         }
         SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
                 .requestUri(awsReq.getPath())
-                .queryString(awsReq.getQueryStringParameters())
+                .queryString(toStringToStringListMap(awsReq.getQueryStringParameters()))
                 .headers(new RequestHeaders(toStringToStringListMap(awsReq.getHeaders())))
                 .requestBody(awsReq.getBody())
                 .remoteAddress(awsReq.getRequestContext().getIdentity() != null ? awsReq.getRequestContext().getIdentity().getSourceIp() : null)

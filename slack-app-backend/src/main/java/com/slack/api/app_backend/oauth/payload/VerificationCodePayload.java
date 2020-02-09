@@ -2,6 +2,7 @@ package com.slack.api.app_backend.oauth.payload;
 
 import lombok.Data;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,11 +19,11 @@ public class VerificationCodePayload {
      * Extracts code and state from Map object. This method is supposed to be used in AWS lambda functions.
      * See also {@link com.slack.api.app_backend.vendor.aws.lambda.request.ApiGatewayRequest}
      */
-    public static VerificationCodePayload from(Map<String, String> queryStringParameters) {
+    public static VerificationCodePayload from(Map<String, List<String >> queryParams) {
         VerificationCodePayload payload = new VerificationCodePayload();
-        payload.setCode(queryStringParameters.get("code"));
-        payload.setState(queryStringParameters.get("state"));
-        payload.setError(queryStringParameters.get("error"));
+        payload.setCode(queryParams.get("code") != null ? queryParams.get("code").get(0) : null);
+        payload.setState(queryParams.get("state") != null ? queryParams.get("state").get(0) : null);
+        payload.setError(queryParams.get("error") != null ? queryParams.get("error").get(0) : null);
         return payload;
     }
 

@@ -29,6 +29,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -47,7 +48,7 @@ public class SlackRequestParser {
     @Builder
     public static class HttpRequest {
         private String requestUri;
-        private Map<String, String> queryString;
+        private Map<String, List<String>> queryString;
         private String requestBody;
         private RequestHeaders headers;
         private String remoteAddress;
@@ -115,8 +116,9 @@ public class SlackRequestParser {
                 } else if (appConfig.isOAuthStartEnabled() && appConfig.getOauthStartRequestURI().equals(requestUri)) {
                     slackRequest = new OAuthStartRequest(requestBody, headers);
                 } else if (appConfig.isOAuthCallbackEnabled() && appConfig.getOauthCallbackRequestURI().equals(requestUri)) {
-                    VerificationCodePayload payload = VerificationCodePayload.from(httpRequest.getQueryString());
-                    slackRequest = new OAuthCallbackRequest(requestBody, payload, headers);
+                    Map<String, List<String>> queryString = httpRequest.getQueryString();
+                    VerificationCodePayload payload = VerificationCodePayload.from(queryString);
+                    slackRequest = new OAuthCallbackRequest(queryString, requestBody, payload, headers);
                 } else {
                     log.warn("No request pattern detected for {}", requestBody);
                 }

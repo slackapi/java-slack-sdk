@@ -6,6 +6,10 @@ import com.slack.api.lightning.context.Context;
 import com.slack.api.lightning.context.builtin.OAuthCallbackContext;
 import lombok.ToString;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 @ToString
 public abstract class Request<CTX extends Context> {
 
@@ -40,6 +44,10 @@ public abstract class Request<CTX extends Context> {
     }
 
     public abstract RequestType getRequestType();
+
+    public Map<String, List<String>> getQueryString() {
+        return Collections.emptyMap();
+    }
 
     public abstract String getRequestBodyAsString();
 

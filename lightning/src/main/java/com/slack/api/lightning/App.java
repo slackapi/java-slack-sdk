@@ -19,9 +19,9 @@ import com.slack.api.lightning.response.Response;
 import com.slack.api.lightning.service.InstallationService;
 import com.slack.api.lightning.service.OAuthCallbackService;
 import com.slack.api.lightning.service.OAuthStateService;
-import com.slack.api.lightning.service.builtin.CookieOAuthStateService;
 import com.slack.api.lightning.service.builtin.DefaultOAuthCallbackService;
 import com.slack.api.lightning.service.builtin.FileInstallationService;
+import com.slack.api.lightning.service.builtin.ClientOnlyOAuthStateService;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.model.event.Event;
 import com.slack.api.util.json.GsonFactory;
@@ -61,12 +61,12 @@ public class App {
     private final Map<String, OutgoingWebhooksHandler> outgoingWebhooksHandlers = new HashMap<>();
     private final EventsDispatcher eventsDispatcher = EventsDispatcherFactory.getInstance();
 
-    private OAuthStateService oAuthStateService; // default: cookie-based
-    private InstallationService installationService = new FileInstallationService();
+    private OAuthStateService oAuthStateService = new ClientOnlyOAuthStateService();
+    private InstallationService installationService; // will be initialized in the constructor
     private OAuthCallbackService oAuthCallbackService = null;
 
-    private OAuthSuccessHandler oAuthSuccessHandler = new OAuthDefaultSuccessHandler(installationService);
-    private OAuthV2SuccessHandler oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(installationService);
+    private OAuthSuccessHandler oAuthSuccessHandler; // will be initialized in the constructor
+    private OAuthV2SuccessHandler oAuthV2SuccessHandler; // will be initialized in the constructor
     private OAuthErrorHandler oAuthErrorHandler = new OAuthDefaultErrorHandler();
     private OAuthAccessErrorHandler oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
     private OAuthV2AccessErrorHandler oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler();
@@ -111,6 +111,10 @@ public class App {
         this.appConfig = appConfig;
         this.slack = slack;
         this.middlewareList = middlewareList;
+
+        this.installationService = new FileInstallationService(this.appConfig);
+        this.oAuthSuccessHandler = new OAuthDefaultSuccessHandler(this.installationService);
+        this.oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(this.installationService);
     }
 
     // --------------------------------------
@@ -469,21 +473,17 @@ public class App {
         }
     }
 
-    protected Response runHandler(Request req) throws IOException, SlackApiException {
-        switch (req.getRequestType()) {
+    protected Response runHandler(Request slackRequest) throws IOException, SlackApiException {
+        switch (slackRequest.getRequestType()) {
             case OAuthStart: {
                 if (config().isDistributedApp()) {
                     try {
                         Map<String, List<String>> responseHeaders = new HashMap<>();
                         Response response = Response.builder().statusCode(302).headers(responseHeaders).build();
-                        OAuthStateService stateService = oAuthStateService;
-                        if (stateService == null) { // use cookie based one
-                            response.setStatusCode(302);
-                            stateService = new CookieOAuthStateService(req, response);
-                        }
-                        String state = stateService.issueNewState();
+                        String state = oAuthStateService.issueNewState(slackRequest, response);
                         String url = config().getOauthInstallationUrl(state);
                         if (url == null) {
+                            log.error("AppConfig#getOauthInstallationUrl(String) returned null due to some missing settings");
                             responseHeaders.put("Location", Arrays.asList(config().getOauthCancellationUrl()));
                         } else {
                             responseHeaders.put("Location", Arrays.asList(url));
@@ -499,7 +499,7 @@ public class App {
             case OAuthCallback: {
                 if (config().isDistributedApp()) {
                     if (oAuthCallbackService != null) {
-                        OAuthCallbackRequest request = (OAuthCallbackRequest) req;
+                        OAuthCallbackRequest request = (OAuthCallbackRequest) slackRequest;
                         return oAuthCallbackService.handle(request);
                     }
                 }
@@ -507,7 +507,7 @@ public class App {
                 return Response.builder().statusCode(500).body("something wrong").build();
             }
             case Command: {
-                SlashCommandRequest request = (SlashCommandRequest) req;
+                SlashCommandRequest request = (SlashCommandRequest) slackRequest;
                 String command = request.getPayload().getCommand();
                 for (Pattern pattern : slashCommandHandlers.keySet()) {
                     if (pattern.matcher(command).matches()) {
@@ -519,7 +519,7 @@ public class App {
                 break;
             }
             case OutgoingWebhooks: {
-                OutgoingWebhooksRequest request = (OutgoingWebhooksRequest) req;
+                OutgoingWebhooksRequest request = (OutgoingWebhooksRequest) slackRequest;
                 OutgoingWebhooksHandler handler = outgoingWebhooksHandlers.get(request.getPayload().getTriggerWord());
                 if (handler != null) {
                     return handler.apply(request, request.getContext());
@@ -530,9 +530,9 @@ public class App {
             }
             case Event: {
                 if (eventsDispatcher.isRunning()) {
-                    eventsDispatcher.enqueue(req.getRequestBodyAsString());
+                    eventsDispatcher.enqueue(slackRequest.getRequestBodyAsString());
                 }
-                EventRequest request = (EventRequest) req;
+                EventRequest request = (EventRequest) slackRequest;
                 LightningEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
                 if (handler != null) {
                     LightningEventPayload payload = buildEventPayload(request);
@@ -547,11 +547,11 @@ public class App {
                 return Response.builder()
                         .statusCode(200)
                         .contentType("text/plain")
-                        .body(((UrlVerificationRequest) req).getChallenge())
+                        .body(((UrlVerificationRequest) slackRequest).getChallenge())
                         .build();
             }
             case AttachmentAction: {
-                AttachmentActionRequest request = (AttachmentActionRequest) req;
+                AttachmentActionRequest request = (AttachmentActionRequest) slackRequest;
                 String callbackId = request.getPayload().getCallbackId();
                 for (Pattern pattern : attachmentActionHandlers.keySet()) {
                     if (pattern.matcher(callbackId).matches()) {
@@ -563,7 +563,7 @@ public class App {
                 break;
             }
             case BlockAction: {
-                BlockActionRequest request = (BlockActionRequest) req;
+                BlockActionRequest request = (BlockActionRequest) slackRequest;
                 List<BlockActionPayload.Action> actions = request.getPayload().getActions();
                 if (actions.size() == 1) {
                     String actionId = actions.get(0).getActionId();
@@ -583,7 +583,7 @@ public class App {
                 break;
             }
             case BlockSuggestion: {
-                BlockSuggestionRequest request = (BlockSuggestionRequest) req;
+                BlockSuggestionRequest request = (BlockSuggestionRequest) slackRequest;
                 String actionId = request.getPayload().getActionId();
                 for (Pattern pattern : blockSuggestionHandlers.keySet()) {
                     if (pattern.matcher(actionId).matches()) {
@@ -595,7 +595,7 @@ public class App {
                 break;
             }
             case MessageAction: {
-                MessageActionRequest request = (MessageActionRequest) req;
+                MessageActionRequest request = (MessageActionRequest) slackRequest;
                 String callbackId = request.getPayload().getCallbackId();
                 for (Pattern pattern : messageActionHandlers.keySet()) {
                     if (pattern.matcher(callbackId).matches()) {
@@ -607,7 +607,7 @@ public class App {
                 break;
             }
             case DialogSubmission: {
-                DialogSubmissionRequest request = (DialogSubmissionRequest) req;
+                DialogSubmissionRequest request = (DialogSubmissionRequest) slackRequest;
                 String callbackId = request.getPayload().getCallbackId();
                 for (Pattern pattern : dialogSubmissionHandlers.keySet()) {
                     if (pattern.matcher(callbackId).matches()) {
@@ -619,7 +619,7 @@ public class App {
                 break;
             }
             case DialogCancellation: {
-                DialogCancellationRequest request = (DialogCancellationRequest) req;
+                DialogCancellationRequest request = (DialogCancellationRequest) slackRequest;
                 String callbackId = request.getPayload().getCallbackId();
                 for (Pattern pattern : dialogCancellationHandlers.keySet()) {
                     if (pattern.matcher(callbackId).matches()) {
@@ -631,7 +631,7 @@ public class App {
                 break;
             }
             case DialogSuggestion: {
-                DialogSuggestionRequest request = (DialogSuggestionRequest) req;
+                DialogSuggestionRequest request = (DialogSuggestionRequest) slackRequest;
                 String callbackId = request.getPayload().getCallbackId();
                 for (Pattern pattern : dialogSuggestionHandlers.keySet()) {
                     if (pattern.matcher(callbackId).matches()) {
@@ -643,7 +643,7 @@ public class App {
                 break;
             }
             case ViewSubmission: {
-                ViewSubmissionRequest request = (ViewSubmissionRequest) req;
+                ViewSubmissionRequest request = (ViewSubmissionRequest) slackRequest;
                 String callbackId = request.getPayload().getView().getCallbackId();
                 for (Pattern pattern : viewSubmissionHandlers.keySet()) {
                     if (pattern.matcher(callbackId).matches()) {
@@ -655,7 +655,7 @@ public class App {
                 break;
             }
             case ViewClosed: {
-                ViewClosedRequest request = (ViewClosedRequest) req;
+                ViewClosedRequest request = (ViewClosedRequest) slackRequest;
                 String callbackId = request.getPayload().getView().getCallbackId();
                 for (Pattern pattern : viewClosedHandlers.keySet()) {
                     if (pattern.matcher(callbackId).matches()) {

@@ -18,7 +18,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
 
     private final AppConfig config;
     private final OAuthFlowOperator operator;
-    private final OAuthStateService serverSideStateService;
+    private final OAuthStateService stateService;
     private final OAuthSuccessHandler successHandler;
     private final OAuthV2SuccessHandler successV2Handler;
     private final OAuthErrorHandler errorHandler;
@@ -38,7 +38,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
             OAuthV2AccessErrorHandler accessV2ErrorHandler,
             OAuthExceptionHandler exceptionHandler) {
         this.config = config;
-        this.serverSideStateService = stateService;
+        this.stateService = stateService;
         this.successHandler = successHandler;
         this.successV2Handler = successV2Handler;
         this.errorHandler = errorHandler;
@@ -62,15 +62,11 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
             if (payload.getError() != null) {
                 return errorHandler.handle(request, response);
             }
-            OAuthStateService _stateService = serverSideStateService;
-            if (_stateService == null) {
-                _stateService = new CookieOAuthStateService(request, response);
-            }
-            if (_stateService.isValid(payload.getState())) {
+            if (stateService.isValid(request)) {
                 if (config.isGranularBotPermissionsEnabled()) {
                     OAuthV2AccessResponse oauthAccess = operator.callOAuthV2AccessMethod(payload);
                     if (oauthAccess.isOk()) {
-                        _stateService.consume(payload.getState());
+                        stateService.consume(request, response);
                         return successV2Handler.handle(request, response, oauthAccess);
                     } else {
                         return accessV2ErrorHandler.handle(request, response, oauthAccess);
@@ -78,7 +74,7 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
                 } else {
                     OAuthAccessResponse oauthAccess = operator.callOAuthAccessMethod(payload);
                     if (oauthAccess.isOk()) {
-                        _stateService.consume(payload.getState());
+                        stateService.consume(request, response);
                         return successHandler.handle(request, response, oauthAccess);
                     } else {
                         return accessErrorHandler.handle(request, response, oauthAccess);

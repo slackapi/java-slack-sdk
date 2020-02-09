@@ -44,7 +44,7 @@ public class SlackAppMicronautAdapter {
 
         SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
                 .requestUri(req.getPath())
-                .queryString(flatten(req.getParameters().asMap()))
+                .queryString(req.getParameters().asMap())
                 .headers(headers)
                 .requestBody(requestBody)
                 .remoteAddress(toString(req.getRemoteAddress().getAddress().getAddress()))
@@ -65,15 +65,6 @@ public class SlackAppMicronautAdapter {
         }
         response.body(resp.getBody());
         return response;
-    }
-
-    private static final Map<String, String> flatten(Map<String, List<String>> map) {
-        if (map == null) {
-            return null;
-        }
-        return map.entrySet()
-                .stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().get(0)));
     }
 
     private static final String toString(byte[] rawBytes) {
