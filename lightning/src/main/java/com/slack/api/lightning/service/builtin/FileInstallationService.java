@@ -1,5 +1,6 @@
 package com.slack.api.lightning.service.builtin;
 
+import com.slack.api.lightning.AppConfig;
 import com.slack.api.lightning.model.Bot;
 import com.slack.api.lightning.model.Installer;
 import com.slack.api.lightning.model.builtin.DefaultBot;
@@ -19,17 +20,19 @@ import static java.util.stream.Collectors.joining;
 @Slf4j
 public class FileInstallationService implements InstallationService {
 
-    public static final String DEFAULT_BASE_DIR = System.getProperty("user.home") + File.separator + ".jslack-lightning";
+    public static final String DEFAULT_ROOT_DIR = System.getProperty("user.home") + File.separator + ".slack-app";
 
-    private final String baseDir;
+    private final AppConfig config;
+    private final String rootDir;
     private boolean historicalDataEnabled;
 
-    public FileInstallationService() {
-        this(DEFAULT_BASE_DIR);
+    public FileInstallationService(AppConfig config) {
+        this(config, DEFAULT_ROOT_DIR);
     }
 
-    public FileInstallationService(String baseDir) {
-        this.baseDir = baseDir;
+    public FileInstallationService(AppConfig config, String rootDir) {
+        this.config = config;
+        this.rootDir = rootDir;
     }
 
     @Override
@@ -142,7 +145,7 @@ public class FileInstallationService implements InstallationService {
     }
 
     private String getBaseDir() {
-        return baseDir + File.separator + "installation";
+        return rootDir + File.separator + config.getClientId() + File.separator + "installation";
     }
 
     private void save(String path, Long installedAt, String json) throws IOException {

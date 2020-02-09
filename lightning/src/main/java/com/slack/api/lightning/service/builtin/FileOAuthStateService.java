@@ -1,5 +1,6 @@
 package com.slack.api.lightning.service.builtin;
 
+import com.slack.api.lightning.AppConfig;
 import com.slack.api.lightning.service.OAuthStateService;
 
 import java.io.File;
@@ -7,55 +8,58 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.UUID;
 
 import static java.util.stream.Collectors.joining;
 
+/**
+ * OAuthStateService implementation using local file system.
+ */
 public class FileOAuthStateService implements OAuthStateService {
 
-    public static final String DEFAULT_BASE_DIR = System.getProperty("user.home") + File.separator + ".jslack-lightning";
-    public static final long DEFAULT_EXPIRATION_IN_MILLIS = 10 * 60 * 1000; // default 10 min
+    public static final String DEFAULT_ROOT_DIR = System.getProperty("user.home") + File.separator + ".slack-app";
 
-    private final String baseDir;
-    private final long millisToExpire;
+    private final AppConfig config;
+    private final String rootDir;
 
-    public FileOAuthStateService() throws RuntimeException {
-        this(DEFAULT_BASE_DIR, DEFAULT_EXPIRATION_IN_MILLIS);
+    public FileOAuthStateService(AppConfig config) throws RuntimeException {
+        this(config, DEFAULT_ROOT_DIR);
     }
 
-    public FileOAuthStateService(String baseDir, long millisToExpire) throws RuntimeException {
-        this.baseDir = baseDir;
-        this.millisToExpire = millisToExpire;
+    public FileOAuthStateService(AppConfig config, String rootDir) throws RuntimeException {
+        this.config = config;
+        this.rootDir = rootDir;
     }
 
     @Override
-    public String issueNewState() throws Exception {
+    public void addNewStateToDatastore(String state) throws Exception {
         initDirectoryIfAbsent();
-        String newState = UUID.randomUUID().toString();
-        Path filepath = Paths.get(getPath(newState));
-        String value = "" + (System.currentTimeMillis() + millisToExpire);
+        Path filepath = Paths.get(getPath(state));
+        String value = "" + (System.currentTimeMillis() + getExpirationInSeconds() * 1000);
         Files.write(filepath, value.getBytes());
-        return newState;
     }
 
     @Override
-    public boolean isValid(String state) {
-        Long millisToExpire = getMillisToExpire(state);
+    public boolean isAvailableInDatabase(String state) {
+        Long millisToExpire = findExpirationMillisFor(state);
         return millisToExpire != null && millisToExpire > System.currentTimeMillis();
     }
 
     @Override
-    public void consume(String state) throws Exception {
+    public void deleteStateFromDatastore(String state) throws Exception {
         initDirectoryIfAbsent();
         Path filepath = Paths.get(getPath(state));
         Files.delete(filepath);
     }
 
-    private String getPath(String state) {
-        return baseDir + File.separator + "state" + File.separator + state;
+    private String getBaseDir() {
+        return rootDir + File.separator + config.getClientId();
     }
 
-    private Long getMillisToExpire(String state) {
+    private String getPath(String state) {
+        return getBaseDir() + File.separator + "state" + File.separator + state;
+    }
+
+    private Long findExpirationMillisFor(String state) {
         initDirectoryIfAbsent();
         try {
             String value = Files.readAllLines(Paths.get(getPath(state))).stream().collect(joining());
@@ -68,7 +72,7 @@ public class FileOAuthStateService implements OAuthStateService {
     }
 
     private void initDirectoryIfAbsent() {
-        String dir = baseDir + File.separator + "state";
+        String dir = getBaseDir() + File.separator + "state";
         Path dirPath = Paths.get(dir);
         if (!Files.exists(dirPath)) {
             try {
@@ -78,4 +82,5 @@ public class FileOAuthStateService implements OAuthStateService {
             }
         }
     }
+
 }

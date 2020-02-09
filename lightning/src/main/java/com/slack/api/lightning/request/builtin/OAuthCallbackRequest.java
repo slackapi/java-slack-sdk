@@ -7,17 +7,23 @@ import com.slack.api.lightning.request.RequestHeaders;
 import com.slack.api.lightning.request.RequestType;
 import lombok.ToString;
 
+import java.util.List;
+import java.util.Map;
+
 @ToString(callSuper = true)
 public class OAuthCallbackRequest extends Request<OAuthCallbackContext> {
 
+    private final Map<String, List<String>> queryString;
     private final String requestBody;
     private final RequestHeaders headers;
     private final VerificationCodePayload payload;
 
     public OAuthCallbackRequest(
+            Map<String, List<String>> queryString,
             String requestBody,
             VerificationCodePayload payload,
             RequestHeaders headers) {
+        this.queryString = queryString;
         this.requestBody = requestBody;
         this.headers = headers;
         this.payload = payload;
@@ -33,6 +39,11 @@ public class OAuthCallbackRequest extends Request<OAuthCallbackContext> {
     @Override
     public RequestType getRequestType() {
         return RequestType.OAuthCallback;
+    }
+
+    @Override
+    public Map<String, List<String>> getQueryString() {
+        return this.queryString;
     }
 
     @Override

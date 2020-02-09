@@ -10,39 +10,33 @@ import com.slack.api.lightning.util.JsonOps;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.UUID;
 
+/**
+ * OAuthStateService implementation using Amazon S3.
+ *
+ * @see "https://aws.amazon.com/s3/"
+ */
 @Slf4j
 public class AmazonS3OAuthStateService implements OAuthStateService {
 
-    public static final long DEFAULT_EXPIRATION_IN_MILLIS = 10 * 60 * 1000; // default 10 min
-
     private final String bucketName;
-    private final long millisToExpire;
 
     public AmazonS3OAuthStateService(String bucketName) {
-        this(bucketName, DEFAULT_EXPIRATION_IN_MILLIS);
-    }
-
-    public AmazonS3OAuthStateService(String bucketName, long millisToExpire) {
         this.bucketName = bucketName;
-        this.millisToExpire = millisToExpire;
     }
 
     @Override
-    public String issueNewState() {
-        String state = UUID.randomUUID().toString();
+    public void addNewStateToDatastore(String state) throws Exception {
         AmazonS3 s3 = this.createS3Client();
-        String value = "" + (System.currentTimeMillis() + millisToExpire);
+        String value = "" + (System.currentTimeMillis() + getExpirationInSeconds() * 1000);
         PutObjectResult putObjectResult = s3.putObject(bucketName, getKey(state), value);
         if (log.isDebugEnabled()) {
             log.debug("AWS S3 putObject result of state data - {}", JsonOps.toJsonString(putObjectResult));
         }
-        return state;
     }
 
     @Override
-    public boolean isValid(String state) {
+    public boolean isAvailableInDatabase(String state) {
         AmazonS3 s3 = this.createS3Client();
         S3Object s3Object = s3.getObject(bucketName, getKey(state));
         String millisToExpire = null;
@@ -59,7 +53,7 @@ public class AmazonS3OAuthStateService implements OAuthStateService {
     }
 
     @Override
-    public void consume(String state) {
+    public void deleteStateFromDatastore(String state) throws Exception {
         AmazonS3 s3 = this.createS3Client();
         s3.deleteObject(bucketName, getKey(state));
     }
