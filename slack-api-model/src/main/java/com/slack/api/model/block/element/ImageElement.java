@@ -4,7 +4,7 @@ import com.slack.api.model.block.ContextBlockElement;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/messaging/block-elements#image
+ * https://api.slack.com/reference/block-kit/block-elements#image
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -14,10 +14,19 @@ import lombok.*;
 public class ImageElement extends BlockElement implements ContextBlockElement {
     public static final String TYPE = "image";
     private final String type = TYPE;
-    private String fallback;
+
+    /**
+     * The URL of the image to be displayed.
+     */
     private String imageUrl;
+
+    /**
+     * A plain-text summary of the image. This should not contain any markup.
+     */
+    private String altText;
+
+    private String fallback;
     private Integer imageWidth;
     private Integer imageHeight;
     private Integer imageBytes;
-    private String altText;
 }
