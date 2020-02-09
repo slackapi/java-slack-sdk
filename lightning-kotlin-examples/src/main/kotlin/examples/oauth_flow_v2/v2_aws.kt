@@ -42,7 +42,6 @@ fun main() {
     }
 
     val oauthConfig = ResourceLoader.loadAppConfig("appConfig_GBP.json")
-    oauthConfig.isGranularBotPermissionsEnabled = true
     val oauthApp = App(oauthConfig).asOAuthApp(true)
 
     oauthApp.service(installationService)

@@ -32,6 +32,8 @@ fun main() {
     }
 
     val oauthConfig = ResourceLoader.loadAppConfig()
+    // https://api.slack.com/authentication/migration
+    oauthConfig.isClassicAppPermissionsEnabled = true
     val oauthApp = App(oauthConfig).asOAuthApp(true)
 
     oauthApp.endpoint("GET", "/slack/oauth/completion") { _, _ ->

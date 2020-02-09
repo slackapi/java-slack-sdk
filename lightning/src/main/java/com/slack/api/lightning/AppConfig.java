@@ -50,7 +50,9 @@ public class AppConfig {
 
     private boolean oAuthStartEnabled = false;
     private boolean oAuthCallbackEnabled = false;
-    private boolean granularBotPermissionsEnabled = false;
+
+    // https://api.slack.com/authentication/migration
+    private boolean classicAppPermissionsEnabled = false;
 
     public void setOauthStartPath(String oauthStartPath) {
         this.oauthStartPath = oauthStartPath;
@@ -77,16 +79,17 @@ public class AppConfig {
         if (clientId == null || scope == null || state == null) {
             return null;
         } else {
-            if (isGranularBotPermissionsEnabled()) {
+            if (isClassicAppPermissionsEnabled()) {
+                // https://api.slack.com/authentication/migration
+                return "https://slack.com/oauth/authorize" +
+                        "?client_id=" + clientId +
+                        "&scope=" + scope +
+                        "&state=" + state;
+            } else {
                 return "https://slack.com/oauth/v2/authorize" +
                         "?client_id=" + clientId +
                         "&scope=" + scope +
                         "&user_scope=" + userScope +
-                        "&state=" + state;
-            } else {
-                return "https://slack.com/oauth/authorize" +
-                        "?client_id=" + clientId +
-                        "&scope=" + scope +
                         "&state=" + state;
             }
         }
