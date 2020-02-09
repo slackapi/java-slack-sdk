@@ -1,0 +1,5 @@
+<ruleset>
+    <ignoreVersions>
+        <ignoreVersion type="regex">.*[-_\.](alpha|Alpha|ALPHA|b|beta|Beta|BETA|rc|RC|M|EA)[-_\.]?[0-9]*</ignoreVersion>
+    </ignoreVersions>
+</ruleset>
