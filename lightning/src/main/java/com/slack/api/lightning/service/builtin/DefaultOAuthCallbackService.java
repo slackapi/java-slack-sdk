@@ -63,21 +63,21 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
                 return errorHandler.handle(request, response);
             }
             if (stateService.isValid(request)) {
-                if (config.isGranularBotPermissionsEnabled()) {
-                    OAuthV2AccessResponse oauthAccess = operator.callOAuthV2AccessMethod(payload);
-                    if (oauthAccess.isOk()) {
-                        stateService.consume(request, response);
-                        return successV2Handler.handle(request, response, oauthAccess);
-                    } else {
-                        return accessV2ErrorHandler.handle(request, response, oauthAccess);
-                    }
-                } else {
+                if (config.isClassicAppPermissionsEnabled()) {
                     OAuthAccessResponse oauthAccess = operator.callOAuthAccessMethod(payload);
                     if (oauthAccess.isOk()) {
                         stateService.consume(request, response);
                         return successHandler.handle(request, response, oauthAccess);
                     } else {
                         return accessErrorHandler.handle(request, response, oauthAccess);
+                    }
+                } else {
+                    OAuthV2AccessResponse oauthAccess = operator.callOAuthV2AccessMethod(payload);
+                    if (oauthAccess.isOk()) {
+                        stateService.consume(request, response);
+                        return successV2Handler.handle(request, response, oauthAccess);
+                    } else {
+                        return accessV2ErrorHandler.handle(request, response, oauthAccess);
                     }
                 }
             } else {

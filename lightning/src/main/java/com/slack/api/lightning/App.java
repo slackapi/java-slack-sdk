@@ -356,10 +356,10 @@ public class App {
 
     public App service(InstallationService installationService) {
         this.installationService = installationService;
-        if (config().isGranularBotPermissionsEnabled()) {
-            return oauthCallback(new OAuthV2DefaultSuccessHandler(installationService));
-        } else {
+        if (config().isClassicAppPermissionsEnabled()) {
             return oauthCallback(new OAuthDefaultSuccessHandler(installationService));
+        } else {
+            return oauthCallback(new OAuthV2DefaultSuccessHandler(installationService));
         }
     }
 
