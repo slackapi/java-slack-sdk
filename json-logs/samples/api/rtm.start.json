@@ -301,7 +301,10 @@
       "browsers_seen_initial_people_education": false,
       "activity_view": "",
       "up_to_browse_kb_shortcut": false,
-      "suppress_link_warning": false
+      "suppress_link_warning": false,
+      "seen_ia_education": false,
+      "browsers_dismissed_user_groups_low_results_education": false,
+      "browsers_seen_initial_user_groups_education": false
     },
     "created": 12345,
     "manual_presence": ""

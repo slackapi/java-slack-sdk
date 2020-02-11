@@ -5,7 +5,6 @@ import com.slack.api.audit.impl.AuditClientImpl;
 import com.slack.api.methods.*;
 import com.slack.api.methods.impl.AsyncMethodsClientImpl;
 import com.slack.api.methods.impl.MethodsClientImpl;
-import com.slack.api.methods.MethodsStats;
 import com.slack.api.methods.request.rtm.RTMConnectRequest;
 import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.users.UsersInfoRequest;
@@ -27,10 +26,11 @@ import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.webhook.Payload;
 import com.slack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.net.*;
 
 /**
  * Slack API Client Facade
@@ -44,7 +44,11 @@ public class Slack implements AutoCloseable {
     private final SlackConfig config;
 
     public Slack() {
-        this(SlackConfig.DEFAULT, new SlackHttpClient());
+        this(SlackConfig.DEFAULT, buildHttpClient(SlackConfig.DEFAULT));
+    }
+
+    private Slack(SlackConfig config) {
+        this(config, buildHttpClient(config));
     }
 
     private Slack(SlackConfig config, SlackHttpClient httpClient) {
@@ -58,7 +62,7 @@ public class Slack implements AutoCloseable {
     }
 
     public static Slack getInstance(SlackConfig config) {
-        return new Slack(config, new SlackHttpClient());
+        return new Slack(config);
     }
 
     public static Slack getInstance(SlackConfig config, SlackHttpClient httpClient) {
@@ -285,6 +289,27 @@ public class Slack implements AutoCloseable {
 
     public Shortcut shortcut(ApiToken apiToken) {
         return new ShortcutImpl(this, apiToken);
+    }
+
+    // -------------------------------------------------------
+
+    private static SlackHttpClient buildHttpClient(SlackConfig config) {
+        OkHttpClient okHttpClient;
+        if (config.getProxyUrl() != null && !config.getProxyUrl().trim().isEmpty()) {
+            try {
+                URL url = new URL(config.getProxyUrl());
+                InetSocketAddress address = new InetSocketAddress(url.getHost(), url.getPort());
+                Proxy proxy = new Proxy(Proxy.Type.HTTP, address);
+                okHttpClient = new OkHttpClient.Builder().proxy(proxy).build();
+            } catch (MalformedURLException e) {
+                throw new IllegalArgumentException("Failed to parse the proxy URL: " + config.getProxyUrl());
+            }
+        } else {
+            okHttpClient = new OkHttpClient.Builder().build();
+        }
+        SlackHttpClient httpClient = new SlackHttpClient(okHttpClient);
+        httpClient.setConfig(config);
+        return httpClient;
     }
 
 }

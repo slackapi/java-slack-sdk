@@ -5,8 +5,7 @@ import com.google.gson.JsonParser;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.SlackApiException;
-import com.slack.api.methods.request.channels.ChannelsInviteRequest;
-import com.slack.api.methods.response.channels.ChannelsInviteResponse;
+import com.slack.api.methods.response.conversations.ConversationsInviteResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.User;
 import com.slack.api.model.event.HelloEvent;
@@ -39,7 +38,7 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 @Slf4j
 public class rtm_Test {
 
-    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String classicAppBotToken = System.getenv(Constants.SLACK_SDK_TEST_CLASSIC_APP_BOT_TOKEN);
     String channelCreationToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
     User currentUser;
 
@@ -51,12 +50,10 @@ public class rtm_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    JsonParser jsonParser = new JsonParser();
-
     @Before
     public void loadBotUser() throws IOException {
         if (currentUser == null) {
-            RTMClient rtm = slack.rtmConnect(botToken);
+            RTMClient rtm = slack.rtmConnect(classicAppBotToken);
             currentUser = rtm.getConnectedBotUser();
         }
     }
@@ -92,8 +89,6 @@ public class rtm_Test {
             // need to invite the bot user to the created channel before starting an RTM session
             inviteBotUser(channelId);
 
-            String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
-
             RTMEventsDispatcher dispatcher = RTMEventsDispatcherFactory.getInstance();
             HelloHandler hello = new HelloHandler();
             dispatcher.register(hello);
@@ -106,7 +101,7 @@ public class rtm_Test {
             SlackTestConfig testConfig = SlackTestConfig.getInstance();
             Slack slack = Slack.getInstance(testConfig.getConfig());
 
-            try (RTMClient rtm = slack.rtmConnect(botToken)) {
+            try (RTMClient rtm = slack.rtmConnect(classicAppBotToken)) {
                 rtm.addMessageHandler(dispatcher.toMessageHandler());
 
                 rtm.connect();
@@ -151,7 +146,7 @@ public class rtm_Test {
 
             Thread.sleep(3000);
 
-            try (RTMClient rtm = slack.rtmStart(botToken)) {
+            try (RTMClient rtm = slack.rtmStart(classicAppBotToken)) {
                 User user = rtm.getConnectedBotUser();
 
                 assertThat(user.getId(), is(notNullValue()));
@@ -170,7 +165,7 @@ public class rtm_Test {
     @Ignore
     @Test
     public void rtmConnect_withoutFullConnectedUserInfo() throws Exception {
-        try (RTMClient rtm = slack.rtmConnect(botToken, false)) {
+        try (RTMClient rtm = slack.rtmConnect(classicAppBotToken, false)) {
             User user = rtm.getConnectedBotUser();
             assertThat(user.getId(), is(notNullValue()));
             assertThat(user.getName(), is(notNullValue()));
@@ -181,11 +176,10 @@ public class rtm_Test {
     }
 
     private void inviteBotUser(String channelId) throws IOException, SlackApiException {
-        ChannelsInviteResponse invitation = slack.methods().channelsInvite(ChannelsInviteRequest.builder()
-                .token(channelCreationToken)
-                .user(currentUser.getId())
+        ConversationsInviteResponse invitation = slack.methods(channelCreationToken).conversationsInvite(r -> r
+                .users(Arrays.asList(currentUser.getId()))
                 .channel(channelId)
-                .build());
+        );
         assertThat(invitation.getError(), is(nullValue()));
     }
 
@@ -197,7 +191,7 @@ public class rtm_Test {
         RTMMessageHandler handler1 = new RTMMessageHandler() {
             @Override
             public void handle(String message) {
-                JsonObject json = jsonParser.parse(message).getAsJsonObject();
+                JsonObject json = JsonParser.parseString(message).getAsJsonObject();
                 if (json.get("error") == null) {
                     counter.incrementAndGet();
                 }
