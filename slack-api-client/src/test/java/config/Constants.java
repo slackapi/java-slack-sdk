@@ -19,6 +19,8 @@ public class Constants {
     // normal user token / bot token
     public static final String SLACK_SDK_TEST_USER_TOKEN = "SLACK_SDK_TEST_USER_TOKEN";
     public static final String SLACK_SDK_TEST_BOT_TOKEN = "SLACK_SDK_TEST_BOT_TOKEN";
+    // https://api.slack.com/apps?new_classic_app=1
+    public static final String SLACK_SDK_TEST_CLASSIC_APP_BOT_TOKEN = "SLACK_SDK_TEST_CLASSIC_APP_BOT_TOKEN";
 
     // shared channel tests
     public static final String SLACK_SDK_TEST_SHARED_CHANNEL_ID = "SLACK_SDK_TEST_SHARED_CHANNEL_ID";

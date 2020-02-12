@@ -77,12 +77,22 @@ public class SlackConfig {
         public void setMethodsConfig(MethodsConfig methodsConfig) {
             throwException();
         }
+
+        @Override
+        public void setProxyUrl(String proxyUrl) {
+            throwException();
+        }
     };
 
     public SlackConfig() {
         getHttpClientResponseHandlers().add(new DetailedLoggingListener());
         getHttpClientResponseHandlers().add(new ResponsePrettyPrintingListener());
     }
+
+    /**
+     * The proxy server URL supposed to be used for all api calls.
+     */
+    private String proxyUrl = null;
 
     private boolean prettyResponseLoggingEnabled = false;
 
