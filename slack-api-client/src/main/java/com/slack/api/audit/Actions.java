@@ -167,6 +167,7 @@ public class Actions {
         public static final String external_shared_channel_invite_created = "external_shared_channel_invite_created";
         public static final String channel_moved = "channel_moved";
         public static final String group_converted_to_channel = "group_converted_to_channel";
+        public static final String channel_renamed = "channel_renamed";
     }
 
     public static class App {

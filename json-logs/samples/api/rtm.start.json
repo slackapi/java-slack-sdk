@@ -304,7 +304,9 @@
       "suppress_link_warning": false,
       "seen_ia_education": false,
       "browsers_dismissed_user_groups_low_results_education": false,
-      "browsers_seen_initial_user_groups_education": false
+      "browsers_seen_initial_user_groups_education": false,
+      "browsers_dismissed_files_low_results_education": false,
+      "browsers_seen_initial_files_education": false
     },
     "created": 12345,
     "manual_presence": ""
@@ -487,7 +489,15 @@
       "workflows_webhook_trigger_enabled": false,
       "invites_limit": false,
       "has_seen_partner_promo": false,
-      "workflows_export_csv_enabled": false
+      "workflows_export_csv_enabled": false,
+      "who_can_manage_public_channels": {
+        "user": [
+          ""
+        ],
+        "subteam": [
+          ""
+        ]
+      }
     },
     "icon": {
       "image_34": "https://www.example.com/",
@@ -737,6 +747,7 @@
     }
   ],
   "url": "",
+  "is_europe": false,
   "error": "",
   "needed": "",
   "provided": ""

@@ -41,7 +41,6 @@
           },
           {
             "type": "",
-            "fallback": "",
             "text": {
               "type": "",
               "text": "",
@@ -87,24 +86,31 @@
                 "text": "",
                 "emoji": false
               },
-              "value": ""
+              "value": "",
+              "description": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
             },
             "min_query_length": 12345,
             "image_url": "",
+            "alt_text": "",
+            "fallback": "",
             "image_width": 12345,
             "image_height": 12345,
             "image_bytes": 12345,
-            "alt_text": "",
             "initial_user": ""
           },
           {
             "type": "",
-            "fallback": "",
             "image_url": "",
+            "alt_text": "",
+            "fallback": "",
             "image_width": 12345,
             "image_height": 12345,
-            "image_bytes": 12345,
-            "alt_text": ""
+            "image_bytes": 12345
           }
         ],
         "fallback": "",

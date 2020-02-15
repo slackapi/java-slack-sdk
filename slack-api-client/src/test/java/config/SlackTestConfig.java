@@ -48,7 +48,7 @@ public class SlackTestConfig {
     static {
         CONFIG.setLibraryMaintainerMode(true);
         CONFIG.setPrettyResponseLoggingEnabled(true);
-        //CONFIG.getHttpClientResponseHandlers().add(JSON_DATA_RECORDING_LISTENER);
+        CONFIG.getHttpClientResponseHandlers().add(JSON_DATA_RECORDING_LISTENER);
     }
 
     public static SlackTestConfig getInstance() {

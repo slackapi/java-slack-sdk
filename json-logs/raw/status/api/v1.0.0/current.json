@@ -12,7 +12,9 @@
     "Posts/Files",
     "Notifications",
     "Login/SSO",
-    "Workspace/Org Administration"
+    "Workspace/Org Administration",
+    "Link Previews",
+    "Apps/Integrations/APIs"
   ],
   "notes": [
     {
@@ -98,6 +100,14 @@
     {
       "date_created": "2020-01-28T17:58:58-08:00",
       "body": "Some of our customers are having trouble inviting Guest accounts. In particular, this appears to be affecting our Enterprise Grid customers. We\u0027re currently investigating the cause and we\u0027ll keep you updated on new information. We\u0027re sorry for the disruption."
+    },
+    {
+      "date_created": "2020-02-12T17:39:32-08:00",
+      "body": "Google Drive thumbnails for new and recently uploaded files are now visible in Slack. We\u0027ll be back with an update on the thumbnails that are still missing. Thanks for your patience."
+    },
+    {
+      "date_created": "2020-02-12T14:26:29-08:00",
+      "body": "Google Drive thumbnails aren\u0027t displaying in Slack. We\u0027re sorry for the trouble, and we\u0027ll keep you posted here."
     }
   ]
 }
