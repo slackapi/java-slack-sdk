@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
 
 @Slf4j
@@ -17,8 +18,14 @@ public class SlackHttpClient implements AutoCloseable {
 
     private SlackConfig config = SlackConfig.DEFAULT;
 
+    public SlackHttpClient(Map<String, String> userAgentCustomInfo) {
+        this.okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new UserAgentInterceptor(userAgentCustomInfo))
+                .build();
+    }
+
     public SlackHttpClient() {
-        this.okHttpClient = new OkHttpClient.Builder().build();
+        this(Collections.emptyMap());
     }
 
     public SlackHttpClient(OkHttpClient okHttpClient) {

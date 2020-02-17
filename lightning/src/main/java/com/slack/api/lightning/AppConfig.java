@@ -1,11 +1,15 @@
 package com.slack.api.lightning;
 
 import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
+import com.slack.api.util.http.SlackHttpClient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Data
@@ -33,7 +37,16 @@ public class AppConfig {
     }
 
     @Builder.Default
-    private Slack slack = Slack.getInstance();
+    private Slack slack = Slack.getInstance(SlackConfig.DEFAULT, buildSlackHttpClient());
+
+    private static SlackHttpClient buildSlackHttpClient() {
+        Map<String, String> userAgentCustomInfo = new HashMap<>();
+        String version = AppConfig.class.getPackage().getImplementationVersion();
+        userAgentCustomInfo.put("lightning", version == null ? "unknown" : version);
+        SlackHttpClient client = new SlackHttpClient(userAgentCustomInfo);
+        return client;
+    }
+
     @Builder.Default
     private String singleTeamBotToken = System.getenv(EnvVariableName.SLACK_BOT_TOKEN);
     @Builder.Default
