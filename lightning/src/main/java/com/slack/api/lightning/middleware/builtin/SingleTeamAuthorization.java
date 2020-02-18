@@ -13,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import static com.slack.api.lightning.middleware.MiddlewareOps.isNoAuthRequiredRequest;
 
+/**
+ * Verifies if the given access token when booting this app is valid for incoming requests.
+ */
 @Slf4j
 public class SingleTeamAuthorization implements Middleware {
 

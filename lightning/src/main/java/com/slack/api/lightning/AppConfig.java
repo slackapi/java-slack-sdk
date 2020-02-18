@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Configuration for a Slack App.
+ */
 @Data
 @Builder(toBuilder = true)
 @NoArgsConstructor
@@ -87,26 +90,6 @@ public class AppConfig {
     private String scope = System.getenv(EnvVariableName.SLACK_APP_SCOPE);
     @Builder.Default
     private String userScope = System.getenv(EnvVariableName.SLACK_APP_USER_SCOPE);
-
-    public String getOauthInstallationUrl(String state) {
-        if (clientId == null || scope == null || state == null) {
-            return null;
-        } else {
-            if (isClassicAppPermissionsEnabled()) {
-                // https://api.slack.com/authentication/migration
-                return "https://slack.com/oauth/authorize" +
-                        "?client_id=" + clientId +
-                        "&scope=" + scope +
-                        "&state=" + state;
-            } else {
-                return "https://slack.com/oauth/v2/authorize" +
-                        "?client_id=" + clientId +
-                        "&scope=" + scope +
-                        "&user_scope=" + userScope +
-                        "&state=" + state;
-            }
-        }
-    }
 
     private String appPath;
 

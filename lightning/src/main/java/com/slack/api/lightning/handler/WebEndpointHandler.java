@@ -4,6 +4,9 @@ import com.slack.api.lightning.context.WebEndpointContext;
 import com.slack.api.lightning.request.WebEndpointRequest;
 import com.slack.api.lightning.response.Response;
 
+/**
+ * A handler for additional web endpoints.
+ */
 @FunctionalInterface
 public interface WebEndpointHandler {
 

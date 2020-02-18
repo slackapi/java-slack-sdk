@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The default data class for the Installer interface.
+ */
 @Data
 @Builder
 @NoArgsConstructor

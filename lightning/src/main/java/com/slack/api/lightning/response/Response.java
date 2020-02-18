@@ -11,6 +11,9 @@ import java.util.Map;
 
 import static com.slack.api.lightning.util.JsonOps.toJsonString;
 
+/**
+ * HTTP response to the Slack API server.
+ */
 @Data
 @Builder
 @NoArgsConstructor

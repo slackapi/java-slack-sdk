@@ -8,6 +8,10 @@ import com.slack.api.model.event.Event;
 
 import java.io.IOException;
 
+/**
+ * A handler for Events API.
+ * @param <E>
+ */
 @FunctionalInterface
 public interface LightningEventHandler<E extends Event> {
 

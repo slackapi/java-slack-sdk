@@ -1,5 +1,8 @@
 package com.slack.api.lightning.request;
 
+/**
+ * All the possible request types for incoming requests.
+ */
 public enum RequestType {
     OAuthStart,
     OAuthCallback,

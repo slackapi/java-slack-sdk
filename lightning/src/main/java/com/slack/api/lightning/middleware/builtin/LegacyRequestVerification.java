@@ -17,6 +17,11 @@ import lombok.extern.slf4j.Slf4j;
 
 import static com.slack.api.lightning.middleware.MiddlewareOps.isNoSlackSignatureRequest;
 
+/**
+ * Validates legacy verification token parameters.
+ *
+ * @see "https://api.slack.com/docs/verifying-requests-from-slack#verification_token_deprecation"
+ */
 @Deprecated
 @Slf4j
 public class LegacyRequestVerification implements Middleware {

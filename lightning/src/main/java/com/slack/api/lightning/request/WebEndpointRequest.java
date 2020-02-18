@@ -3,6 +3,9 @@ package com.slack.api.lightning.request;
 import com.slack.api.lightning.context.WebEndpointContext;
 import lombok.ToString;
 
+/**
+ * Additional Web Endpoint Definition.
+ */
 @ToString(callSuper = true)
 public class WebEndpointRequest {
 

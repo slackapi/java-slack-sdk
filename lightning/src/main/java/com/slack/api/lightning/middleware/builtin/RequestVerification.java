@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import static com.slack.api.lightning.middleware.MiddlewareOps.isNoSlackSignatureRequest;
 
+/**
+ * Verifies if the x-slack-signature, x-slack-request-timestamp are valid.
+ */
 @Slf4j
 public class RequestVerification implements Middleware {
 

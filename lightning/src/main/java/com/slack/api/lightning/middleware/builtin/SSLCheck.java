@@ -8,6 +8,9 @@ import com.slack.api.lightning.request.builtin.SSLCheckRequest;
 import com.slack.api.lightning.response.Response;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Responds to ssl_check requests from Slack for Slash commands.
+ */
 @Slf4j
 public class SSLCheck implements Middleware {
 

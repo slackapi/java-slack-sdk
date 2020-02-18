@@ -1,6 +1,6 @@
-package com.slack.api.lightning.handler.builtin;
+package com.slack.api.lightning.service.builtin.oauth.default_impl;
 
-import com.slack.api.lightning.handler.OAuthExceptionHandler;
+import com.slack.api.lightning.service.builtin.oauth.OAuthExceptionHandler;
 import com.slack.api.lightning.request.builtin.OAuthCallbackRequest;
 import com.slack.api.lightning.response.Response;
 import lombok.extern.slf4j.Slf4j;

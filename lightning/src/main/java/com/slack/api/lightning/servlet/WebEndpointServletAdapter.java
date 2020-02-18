@@ -12,6 +12,10 @@ import java.io.IOException;
 
 import static com.slack.api.lightning.servlet.ServletAdapterOps.toHeaderMap;
 
+/**
+ * An adapter that converts requests for additional web endpoints
+ * and translates the Response object to the actual Servlet HTTP response.
+ */
 @Slf4j
 public class WebEndpointServletAdapter {
 

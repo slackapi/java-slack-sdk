@@ -4,6 +4,9 @@ import lombok.ToString;
 
 import java.util.*;
 
+/**
+ * Represents HTTP request headers.
+ */
 @ToString
 public class RequestHeaders {
 

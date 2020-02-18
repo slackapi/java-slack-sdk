@@ -12,6 +12,9 @@ import lombok.ToString;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Represents a context behind a request from Slack API.
+ */
 @ToString
 @Getter
 @Setter
@@ -19,14 +22,36 @@ public abstract class Context {
 
     protected Slack slack;
 
+    /**
+     * Organization ID for Enterprise Grid.
+     */
     protected String enterpriseId;
+
+    /**
+     * Workspace ID.
+     */
     protected String teamId;
 
+    /**
+     * A bot token associated with this request. The format must be starting with `xoxb-`.
+     */
     protected String botToken;
+    /**
+     * bot_id associated with this request.
+     */
     protected String botId; // set by MultiTeamsAuthorization
+    /**
+     * Bot user's user_id associated with this request.
+     */
     protected String botUserId;
 
+    /**
+     * An install user's user_id associated with this request.
+     */
     protected String requestUserId;
+    /**
+     * An install user's access token associated with this request.
+     */
     protected String requestUserToken;
 
     protected final Map<String, String> additionalValues = new HashMap<>();

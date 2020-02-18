@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * The default Servlet for additional web endpoints.
+ */
 @Slf4j
 public class WebEndpointServlet extends HttpServlet {
 
