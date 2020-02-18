@@ -11,9 +11,6 @@ import com.slack.api.methods.request.users.UsersInfoRequest;
 import com.slack.api.methods.response.rtm.RTMConnectResponse;
 import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.users.UsersInfoResponse;
-import com.slack.api.methods.shortcut.Shortcut;
-import com.slack.api.methods.shortcut.impl.ShortcutImpl;
-import com.slack.api.methods.shortcut.model.ApiToken;
 import com.slack.api.model.User;
 import com.slack.api.rtm.RTMClient;
 import com.slack.api.scim.SCIMClient;
@@ -281,14 +278,6 @@ public class Slack implements AutoCloseable {
 
     public MethodsStats methodsStats(String executorName, String teamId) {
         return config.getMethodsConfig().getMetricsDatastore().getStats(executorName, teamId);
-    }
-
-    public Shortcut shortcut() {
-        return new ShortcutImpl(this);
-    }
-
-    public Shortcut shortcut(ApiToken apiToken) {
-        return new ShortcutImpl(this, apiToken);
     }
 
     // -------------------------------------------------------
