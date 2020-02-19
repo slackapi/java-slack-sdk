@@ -20,7 +20,7 @@ public class EventsSample {
 
         app.event(MessageEvent.class, (event, ctx) -> {
             ctx.logger.info("new message by a user - {}", event);
-            ctx.client().chatPostMessage(r -> r
+            ctx.say(r -> r
                     .text("Hi there!")
                     .channel(event.getEvent().getChannel()));
             return ctx.ack();
