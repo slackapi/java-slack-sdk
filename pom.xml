@@ -15,13 +15,13 @@
         <module>slack-api-client</module>
         <module>slack-api-model</module>
         <module>slack-app-backend</module>
-        <module>lightning</module>
-        <module>lightning-jetty</module>
-        <module>lightning-aws-lambda</module>
-        <module>lightning-micronaut</module>
-        <module>lightning-spring-boot-examples</module>
-        <module>lightning-kotlin-examples</module>
-        <module>lightning-quarkus-examples</module>
+        <module>bolt</module>
+        <module>bolt-jetty</module>
+        <module>bolt-aws-lambda</module>
+        <module>bolt-micronaut</module>
+        <module>bolt-spring-boot-examples</module>
+        <module>bolt-kotlin-examples</module>
+        <module>bolt-quarkus-examples</module>
     </modules>
 
     <parent>
