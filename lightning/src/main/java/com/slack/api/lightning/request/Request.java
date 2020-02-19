@@ -10,9 +10,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Http Request from the Slack API server.
+ * @param <CTX> context
+ */
 @ToString
 public abstract class Request<CTX extends Context> {
 
+    /**
+     * The client IP address of the Slack API server.
+     */
     private String clientIpAddress;
 
     public String getClientIpAddress() {
@@ -23,8 +30,14 @@ public abstract class Request<CTX extends Context> {
         this.clientIpAddress = clientIpAddress;
     }
 
+    /**
+     * The context behind this request.
+     */
     public abstract CTX getContext();
 
+    /**
+     * Set the sufficient information to the underlying context.
+     */
     public void updateContext(AppConfig config) {
         // To use the properly configured Web API client
         getContext().setSlack(config.getSlack());
@@ -53,10 +66,21 @@ public abstract class Request<CTX extends Context> {
 
     public abstract RequestHeaders getHeaders();
 
+    /**
+     * Verifies if the signature is valid.
+     * @param verifier the verifier
+     * @return true if valid
+     */
     public boolean isValid(SlackSignature.Verifier verifier) {
         return isValid(verifier, System.currentTimeMillis());
     }
 
+    /**
+     * Verifies if the signature is valid.
+     * @param verifier the verifier
+     * @param nowInMillis current timestamp
+     * @return true if valid
+     */
     public boolean isValid(SlackSignature.Verifier verifier, long nowInMillis) {
         String requestTimestamp = getHeaders().getFirstValue(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP);
         String requestSignature = getHeaders().getFirstValue(SlackSignature.HeaderNames.X_SLACK_SIGNATURE);

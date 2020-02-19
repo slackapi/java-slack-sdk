@@ -9,6 +9,9 @@ import lombok.*;
 
 import java.io.IOException;
 
+/**
+ * Action type request's context.
+ */
 @Getter
 @Setter
 @Builder

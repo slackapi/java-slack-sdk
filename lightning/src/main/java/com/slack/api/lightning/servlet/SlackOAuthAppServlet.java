@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * The default Slack OAuth flow Servlet.
+ */
 @Slf4j
 public class SlackOAuthAppServlet extends HttpServlet {
 

@@ -32,17 +32,25 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Parses an HTTP request and generates a concrete Slack request.
+ */
 @Data
 @Slf4j
 public class SlackRequestParser {
 
+    private final AppConfig appConfig;
+
+    // NOTE: these are intentionally instance fields.
     private JsonPayloadExtractor jsonPayloadExtractor = new JsonPayloadExtractor();
     private SlashCommandPayloadDetector commandRequestDetector = new SlashCommandPayloadDetector();
     private SSLCheckPayloadDetector sslCheckPayloadDetector = new SSLCheckPayloadDetector();
     private WebhookPayloadDetector webhookRequestDetector = new WebhookPayloadDetector();
     private Gson gson = GsonFactory.createSnakeCase();
 
-    private final AppConfig appConfig;
+    public SlackRequestParser(AppConfig appConfig) {
+        this.appConfig = appConfig;
+    }
 
     @Data
     @Builder
@@ -52,10 +60,6 @@ public class SlackRequestParser {
         private String requestBody;
         private RequestHeaders headers;
         private String remoteAddress;
-    }
-
-    public SlackRequestParser(AppConfig appConfig) {
-        this.appConfig = appConfig;
     }
 
     @Nullable

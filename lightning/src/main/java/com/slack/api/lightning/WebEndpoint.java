@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * Additional Web Endpoint Definition.
+ */
 @Data
 @Builder
 @AllArgsConstructor

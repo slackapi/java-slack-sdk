@@ -3,6 +3,9 @@ package com.slack.api.lightning.model.builtin;
 import com.slack.api.lightning.model.Bot;
 import lombok.Data;
 
+/**
+ * The default data class for the Bot interface.
+ */
 @Data
 public class DefaultBot implements Bot {
 

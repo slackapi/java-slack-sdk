@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Common utilities for Servlet compatibilities.
+ */
 public class ServletAdapterOps {
     private ServletAdapterOps() {
     }

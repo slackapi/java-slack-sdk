@@ -1,7 +1,7 @@
-package com.slack.api.lightning.handler.builtin;
+package com.slack.api.lightning.service.builtin.oauth.default_impl;
 
 import com.slack.api.lightning.context.builtin.OAuthCallbackContext;
-import com.slack.api.lightning.handler.OAuthV2SuccessHandler;
+import com.slack.api.lightning.service.builtin.oauth.OAuthV2SuccessHandler;
 import com.slack.api.lightning.model.Installer;
 import com.slack.api.lightning.model.builtin.DefaultInstaller;
 import com.slack.api.lightning.request.builtin.OAuthCallbackRequest;

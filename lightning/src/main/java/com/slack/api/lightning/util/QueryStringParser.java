@@ -7,6 +7,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Query string parser.
+ */
 public class QueryStringParser {
     private QueryStringParser() {
     }

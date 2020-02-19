@@ -1,5 +1,8 @@
 package com.slack.api.lightning.model;
 
+/**
+ * Persisted installer(Slack user)'s permissions.
+ */
 public interface Installer {
 
     // ---------------------------------

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * The default Servlet that handles incoming requests from the Slack API server.
+ */
 @Slf4j
 public class SlackAppServlet extends HttpServlet {
 

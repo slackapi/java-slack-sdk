@@ -17,6 +17,9 @@ import java.io.IOException;
 
 import static com.slack.api.lightning.middleware.MiddlewareOps.isNoAuthRequiredRequest;
 
+/**
+ * Verifies if valid installations exist for requests.
+ */
 @Slf4j
 public class MultiTeamsAuthorization implements Middleware {
 

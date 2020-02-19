@@ -1,5 +1,8 @@
 package com.slack.api.lightning.model;
 
+/**
+ * Persisted bot permissions.
+ */
 public interface Bot {
 
     String getEnterpriseId();
