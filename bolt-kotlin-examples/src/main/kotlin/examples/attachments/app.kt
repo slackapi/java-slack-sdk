@@ -5,11 +5,9 @@ import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse
 import com.slack.api.bolt.App
 import com.slack.api.bolt.jetty.SlackAppServer
 import com.slack.api.bolt.util.JsonOps
-import org.slf4j.LoggerFactory
 import util.ResourceLoader
 
 fun main() {
-    val logger = LoggerFactory.getLogger("main")
 
     val config = ResourceLoader.loadAppConfig()
     val app = App(config)
@@ -19,7 +17,7 @@ fun main() {
         ctx.ack()
     }
     app.attachmentAction("wopr_game") { req, ctx ->
-        logger.info("attachment action - {}, {}", req.payload, ctx)
+        ctx.logger.info("attachment action - {}, {}", req.payload, ctx)
         ctx.respond(JsonOps.fromJson(secondMessage, ActionResponse::class.java))
         ctx.ack()
     }

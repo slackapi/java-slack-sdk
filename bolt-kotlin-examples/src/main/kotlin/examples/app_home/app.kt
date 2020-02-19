@@ -11,7 +11,6 @@ import java.time.ZonedDateTime
 fun main() {
 
     val addEventHandler = false
-    val logger = LoggerFactory.getLogger("main")
 
     // export SLACK_BOT_TOKEN=xoxb-***
     // export SLACK_SIGNING_SECRET=123abc***
@@ -20,6 +19,7 @@ fun main() {
     val app = App(config)
 
     if (addEventHandler) {
+        val logger = LoggerFactory.getLogger("main")
         val handler: AppHomeOpenedHandler = object : AppHomeOpenedHandler() {
             override fun handle(payload: AppHomeOpenedPayload?) {
                 logger.info("AppHomeOpenedHandler - $payload")
@@ -35,7 +35,7 @@ fun main() {
                     .viewAsString(view())
                     .hash(e.event.view?.hash)
         }
-        logger.info("event - $e / res - $res")
+        ctx.logger.info("event - $e / res - $res")
         ctx.ack()
     }
     val server = SlackAppServer(app)

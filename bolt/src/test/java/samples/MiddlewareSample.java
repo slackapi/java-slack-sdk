@@ -2,11 +2,10 @@ package samples;
 
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;
 
-@Slf4j
 public class MiddlewareSample {
 
     public static void main(String[] args) throws Exception {
@@ -14,9 +13,10 @@ public class MiddlewareSample {
         App app = new App(config);
 
         app.use((req, resp, chain) -> {
-            log.info("request - {}", req);
+            Logger logger = req.getContext().logger;
+            logger.info("request - {}", req);
             resp = chain.next(req);
-            log.info("response - {}", resp);
+            logger.info("response - {}", resp);
             return resp;
         });
 

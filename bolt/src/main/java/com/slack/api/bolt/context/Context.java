@@ -2,12 +2,15 @@ package com.slack.api.bolt.context;
 
 import com.google.gson.JsonElement;
 import com.slack.api.Slack;
+import com.slack.api.bolt.App;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.util.JsonOps;
 import com.slack.api.methods.MethodsClient;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +24,8 @@ import java.util.Map;
 public abstract class Context {
 
     protected Slack slack;
+
+    public final Logger logger = LoggerFactory.getLogger(App.class);
 
     /**
      * Organization ID for Enterprise Grid.

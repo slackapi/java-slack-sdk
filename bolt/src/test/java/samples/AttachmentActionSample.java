@@ -5,11 +5,9 @@ import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.util.JsonOps;
-import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;
 
-@Slf4j
 public class AttachmentActionSample {
 
     public static void main(String[] args) throws Exception {
@@ -26,7 +24,7 @@ public class AttachmentActionSample {
         // https://github.com/slackapi/java-slack-sdk/blob/master/bolt/src/test/resources/action_response/message1.json
         String secondMessage = ResourceLoader.load("action_response/message1.json");
         app.attachmentAction("wopr_game", (req, ctx) -> {
-            log.info("attachment action - {}", req.getPayload());
+            ctx.logger.info("attachment action - {}", req.getPayload());
             ctx.respond(JsonOps.fromJson(secondMessage, ActionResponse.class));
             return ctx.ack();
         });
