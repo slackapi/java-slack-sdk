@@ -9,7 +9,6 @@ import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.view.View;
 import com.slack.api.model.view.ViewState;
 import com.slack.api.util.json.GsonFactory;
-import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;
 
@@ -20,7 +19,6 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
 
-@Slf4j
 public class ViewSample {
 
     static final List<Option> allOptions = Arrays.asList(
@@ -73,7 +71,7 @@ public class ViewSample {
 
         // callback_id: view-callback-id
         app.viewSubmission("view-callback-id", (req, ctx) -> {
-            log.info("state - {}", req.getPayload().getView().getState());
+            ctx.logger.info("state - {}", req.getPayload().getView().getState());
             ViewState state = req.getPayload().getView().getState();
             String agenda = state.getValues().get("agenda").get("agenda-input").getValue();
             Map<String, String> errors = new HashMap<>();
@@ -92,7 +90,7 @@ public class ViewSample {
         // callback_id: app-satisfaction-survey (view2)
         app.viewSubmission("app-satisfaction-survey", (req, ctx) -> {
             View view = req.getPayload().getView();
-            log.info("state - {}, private_metadata - {}", view.getState(), view.getPrivateMetadata());
+            ctx.logger.info("state - {}, private_metadata - {}", view.getState(), view.getPrivateMetadata());
             return ctx.ack(); // just close the view
         });
 

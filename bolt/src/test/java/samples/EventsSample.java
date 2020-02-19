@@ -19,18 +19,18 @@ public class EventsSample {
         App app = new App(config);
 
         app.event(MessageEvent.class, (event, ctx) -> {
-            log.info("new message by a user - {}", event);
+            ctx.logger.info("new message by a user - {}", event);
             ctx.client().chatPostMessage(r -> r
                     .text("Hi there!")
                     .channel(event.getEvent().getChannel()));
             return ctx.ack();
         });
         app.event(MessageBotEvent.class, (event, ctx) -> {
-            log.info("bot message - {}", event);
+            ctx.logger.info("bot message - {}", event);
             return ctx.ack();
         });
         app.event(MessageDeletedEvent.class, (event, ctx) -> {
-            log.info("message deleted - {}", event);
+            ctx.logger.info("message deleted - {}", event);
             return ctx.ack();
         });
 

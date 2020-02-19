@@ -5,12 +5,9 @@ import com.slack.api.bolt.App
 import com.slack.api.bolt.jetty.SlackAppServer
 import com.slack.api.bolt.response.Response
 import com.slack.api.model.block.composition.PlainTextObject
-import org.slf4j.LoggerFactory
 import util.ResourceLoader
 
 fun main() {
-
-    val logger = LoggerFactory.getLogger("main")
 
     // export SLACK_BOT_TOKEN=xoxb-***
     // export SLACK_SIGNING_SECRET=123abc***
@@ -18,6 +15,7 @@ fun main() {
     val app = App(ResourceLoader.loadAppConfig("appConfig_MeetingArrangement.json"))
 
     app.use { req, _, chain ->
+        val logger = req.context.logger
         logger.info("Request - $req")
         val resp = chain.next(req)
         logger.info("Response - $resp")
@@ -26,7 +24,7 @@ fun main() {
 
     app.command("/meeting") { _, ctx ->
         val res = ctx.client().viewsOpen { it.triggerId(ctx.triggerId).viewAsString(view) }
-        logger.info("views.open result - {}", res)
+        ctx.logger.info("views.open result - {}", res)
         if (res.isOk) ctx.ack()
         else Response.builder().statusCode(500).body(res.error).build()
     }
@@ -52,7 +50,7 @@ fun main() {
             ctx.ack { it.responseAction("errors").errors(errors) }
         } else {
             // Operate something with the data
-            logger.info("state: $stateValues private_metadata: ${req.payload.view.privateMetadata}")
+            ctx.logger.info("state: $stateValues private_metadata: ${req.payload.view.privateMetadata}")
             ctx.ack()
         }
     }

@@ -5,11 +5,9 @@ import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.response.chat.ChatGetPermalinkResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.model.view.View;
-import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;
 
-@Slf4j
 public class MessageActionSample {
 
     public static void main(String[] args) throws Exception {
@@ -25,7 +23,7 @@ public class MessageActionSample {
                     .channel(req.getPayload().getChannel().getId())
                     .messageTs(req.getPayload().getMessageTs()));
             if (!permalinkResponse.isOk()) {
-                log.error("Failed to get a permalink - {}", permalinkResponse.getError());
+                ctx.logger.error("Failed to get a permalink - {}", permalinkResponse.getError());
             }
 
             final String finalizedView = view
@@ -37,7 +35,7 @@ public class MessageActionSample {
                     .triggerId(ctx.getTriggerId())
                     .viewAsString(finalizedView));
             if (!apiResponse.isOk()) {
-                log.error("Failed to open a view - {}", apiResponse.getError());
+                ctx.logger.error("Failed to open a view - {}", apiResponse.getError());
             }
             return ctx.ack();
         });
@@ -45,7 +43,7 @@ public class MessageActionSample {
         app.viewSubmission("read-it-later", (req, ctx) -> {
             // save the data
             View view = req.getPayload().getView();
-            log.info("state - {}, private_metadata - {}", view.getState(), view.getPrivateMetadata());
+            ctx.logger.info("state - {}, private_metadata - {}", view.getState(), view.getPrivateMetadata());
             return ctx.ack();
         });
 

@@ -5,12 +5,9 @@ import com.slack.api.bolt.jetty.SlackAppServer
 import com.slack.api.bolt.response.Response
 import com.slack.api.bolt.service.builtin.AmazonS3InstallationService
 import com.slack.api.bolt.service.builtin.AmazonS3OAuthStateService
-import org.slf4j.LoggerFactory
 import util.ResourceLoader
 
 fun main() {
-
-    val logger = LoggerFactory.getLogger("main")
 
     // export SLACK_SIGNING_SECRET=123abc***
     // export SLACK_APP_CLIENT_ID=12345.12345
@@ -36,7 +33,7 @@ fun main() {
         val p = req.payload
         val text = "<@${p.userId}> said ${p.text} at <#${p.channelId}|${p.channelName}>"
         val res = ctx.respond { it.text(text).responseType("in_channel") }
-        logger.info("respond result - {}", res)
+        ctx.logger.info("respond result - {}", res)
         ctx.ack()
     }
 

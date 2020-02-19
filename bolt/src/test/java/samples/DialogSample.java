@@ -5,7 +5,6 @@ import com.slack.api.app_backend.dialogs.response.Option;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
-import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;
 
@@ -14,7 +13,6 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Slf4j
 public class DialogSample {
 
     static final List<Option> allOptions = Arrays.asList(
@@ -36,7 +34,7 @@ public class DialogSample {
                     .triggerId(req.getPayload().getTriggerId())
                     .dialogAsString(dialog)
             );
-            log.info("dialog.open - {}", apiResponse);
+            ctx.logger.info("dialog.open - {}", apiResponse);
             if (apiResponse.isOk()) {
                 return ctx.ack();
             } else {

@@ -4,13 +4,11 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.middleware.builtin.LegacyRequestVerification;
 import com.slack.api.bolt.middleware.builtin.SingleTeamAuthorization;
-import lombok.extern.slf4j.Slf4j;
 import samples.util.ResourceLoader;
 import samples.util.TestSlackAppServer;
 
 import java.util.Arrays;
 
-@Slf4j
 public class OutgoingWebhooksSample {
 
     public static void main(String[] args) throws Exception {
@@ -24,7 +22,7 @@ public class OutgoingWebhooksSample {
         ));
 
         app.webhook("something", (req, ctx) -> {
-            log.info("outgoing webhook - {}", req);
+            ctx.logger.info("outgoing webhook - {}", req);
             return ctx.ack(r -> r.text("Hello " + req.getPayload().getUserName()));
         });
         TestSlackAppServer server = new TestSlackAppServer(app);
