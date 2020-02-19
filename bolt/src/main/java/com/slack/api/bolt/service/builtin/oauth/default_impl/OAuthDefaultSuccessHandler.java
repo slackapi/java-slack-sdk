@@ -1,12 +1,12 @@
 package com.slack.api.bolt.service.builtin.oauth.default_impl;
 
 import com.slack.api.bolt.context.builtin.OAuthCallbackContext;
-import com.slack.api.bolt.service.builtin.oauth.OAuthSuccessHandler;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.model.builtin.DefaultInstaller;
 import com.slack.api.bolt.request.builtin.OAuthCallbackRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
+import com.slack.api.bolt.service.builtin.oauth.OAuthSuccessHandler;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;

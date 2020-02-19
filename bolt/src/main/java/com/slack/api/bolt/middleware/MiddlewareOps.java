@@ -12,6 +12,7 @@ public class MiddlewareOps {
 
     /**
      * Returns true if there is no need to verify a request signature with a given request.
+     *
      * @param requestType request type
      * @return true if the request normally doesn't have a signature.
      */
@@ -23,6 +24,7 @@ public class MiddlewareOps {
 
     /**
      * Returns true if there is no need to check the existence of valid app installations.
+     *
      * @param requestType request type
      * @return true if the request normally doesn't have a valid bot token for it.
      */

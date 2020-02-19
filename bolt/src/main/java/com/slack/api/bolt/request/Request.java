@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * Http Request from the Slack API server.
+ *
  * @param <CTX> context
  */
 @ToString
@@ -68,6 +69,7 @@ public abstract class Request<CTX extends Context> {
 
     /**
      * Verifies if the signature is valid.
+     *
      * @param verifier the verifier
      * @return true if valid
      */
@@ -77,7 +79,8 @@ public abstract class Request<CTX extends Context> {
 
     /**
      * Verifies if the signature is valid.
-     * @param verifier the verifier
+     *
+     * @param verifier    the verifier
      * @param nowInMillis current timestamp
      * @return true if valid
      */

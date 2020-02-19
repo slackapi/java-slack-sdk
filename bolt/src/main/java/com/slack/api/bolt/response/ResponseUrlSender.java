@@ -21,7 +21,8 @@ public class ResponseUrlSender {
 
     /**
      * Initializes with a valid response_url
-     * @param slack the underlying sender
+     *
+     * @param slack       the underlying sender
      * @param responseUrl the response_url in a payload
      */
     public ResponseUrlSender(Slack slack, String responseUrl) {

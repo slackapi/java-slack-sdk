@@ -3,6 +3,7 @@ package com.slack.api.bolt.context.builtin;
 import com.slack.api.app_backend.dialogs.response.DialogSubmissionErrorResponse;
 import com.slack.api.app_backend.interactive_components.response.ActionResponse;
 import com.slack.api.bolt.context.Context;
+import com.slack.api.bolt.context.SayUtility;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.response.ResponseUrlSender;
 import com.slack.api.bolt.util.BuilderConfigurator;
@@ -18,9 +19,10 @@ import java.io.IOException;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
-public class DialogSubmissionContext extends Context {
+public class DialogSubmissionContext extends Context implements SayUtility {
 
     private String responseUrl;
+    private String channelId;
     private ResponseUrlSender responseUrlSender;
 
     public WebhookResponse respond(ActionResponse response) throws IOException {
