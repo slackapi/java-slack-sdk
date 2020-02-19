@@ -4,16 +4,23 @@ import com.google.gson.JsonElement;
 import com.slack.api.Slack;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.response.Response;
+import com.slack.api.bolt.util.BuilderConfigurator;
 import com.slack.api.bolt.util.JsonOps;
+import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.chat.ChatPostMessageRequest;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Represents a context behind a request from Slack API.
@@ -63,6 +70,20 @@ public abstract class Context {
 
     public MethodsClient client() {
         return slack.methods(botToken);
+    }
+
+    public AsyncMethodsClient asyncClient() {
+        return slack.methodsAsync(botToken);
+    }
+
+    public ChatPostMessageResponse say(BuilderConfigurator<ChatPostMessageRequest.ChatPostMessageRequestBuilder> request) throws IOException, SlackApiException {
+        ChatPostMessageResponse response = client().chatPostMessage(request.configure(ChatPostMessageRequest.builder()).build());
+        return response;
+    }
+
+    public CompletableFuture<ChatPostMessageResponse> sayAsync(BuilderConfigurator<ChatPostMessageRequest.ChatPostMessageRequestBuilder> request) {
+        CompletableFuture<ChatPostMessageResponse> response = asyncClient().chatPostMessage(request.configure(ChatPostMessageRequest.builder()).build());
+        return response;
     }
 
     public Response ack() {
