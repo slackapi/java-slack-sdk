@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * Represents a context behind a request from Slack API.
@@ -78,11 +77,6 @@ public abstract class Context {
 
     public ChatPostMessageResponse say(BuilderConfigurator<ChatPostMessageRequest.ChatPostMessageRequestBuilder> request) throws IOException, SlackApiException {
         ChatPostMessageResponse response = client().chatPostMessage(request.configure(ChatPostMessageRequest.builder()).build());
-        return response;
-    }
-
-    public CompletableFuture<ChatPostMessageResponse> sayAsync(BuilderConfigurator<ChatPostMessageRequest.ChatPostMessageRequestBuilder> request) {
-        CompletableFuture<ChatPostMessageResponse> response = asyncClient().chatPostMessage(request.configure(ChatPostMessageRequest.builder()).build());
         return response;
     }
 

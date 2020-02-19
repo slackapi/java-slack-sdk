@@ -10,6 +10,9 @@ import lombok.*;
 
 import java.io.IOException;
 
+/**
+ * Action type request's context from attachments in messages.
+ */
 @Getter
 @Setter
 @Builder
@@ -17,10 +20,11 @@ import java.io.IOException;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
-public class DialogCancellationContext extends Context implements SayUtility {
+public class MessageActionContext extends Context implements SayUtility {
 
-    private String responseUrl;
+    private String triggerId;
     private String channelId;
+    private String responseUrl;
     private ResponseUrlSender responseUrlSender;
 
     public WebhookResponse respond(ActionResponse response) throws IOException {

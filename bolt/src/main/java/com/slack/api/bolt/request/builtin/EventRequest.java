@@ -2,7 +2,7 @@ package com.slack.api.bolt.request.builtin;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.slack.api.bolt.context.builtin.DefaultContext;
+import com.slack.api.bolt.context.builtin.EventContext;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.RequestType;
@@ -10,7 +10,7 @@ import com.slack.api.util.json.GsonFactory;
 import lombok.ToString;
 
 @ToString(callSuper = true)
-public class EventRequest extends Request<DefaultContext> {
+public class EventRequest extends Request<EventContext> {
 
     private final String requestBody;
     private final RequestHeaders headers;
@@ -35,12 +35,17 @@ public class EventRequest extends Request<DefaultContext> {
         if (enterpriseId != null) {
             this.getContext().setTeamId(enterpriseId.getAsString());
         }
+        if (event.get("channel") != null && event.get("channel").isJsonPrimitive()) {
+            this.getContext().setChannelId(event.get("channel").getAsString());
+        } else if (event.get("channel_id") != null) {
+            this.getContext().setChannelId(event.get("channel_id").getAsString());
+        }
     }
 
-    private DefaultContext context = new DefaultContext();
+    private EventContext context = new EventContext();
 
     @Override
-    public DefaultContext getContext() {
+    public EventContext getContext() {
         return context;
     }
 

@@ -20,9 +20,7 @@ public class EventsSample {
 
         app.event(MessageEvent.class, (event, ctx) -> {
             ctx.logger.info("new message by a user - {}", event);
-            ctx.say(r -> r
-                    .text("Hi there!")
-                    .channel(event.getEvent().getChannel()));
+            ctx.say("Hi there!");
             return ctx.ack();
         });
         app.event(MessageBotEvent.class, (event, ctx) -> {

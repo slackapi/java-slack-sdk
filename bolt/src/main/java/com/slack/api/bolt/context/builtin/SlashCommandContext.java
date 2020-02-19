@@ -2,6 +2,7 @@ package com.slack.api.bolt.context.builtin;
 
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.context.Context;
+import com.slack.api.bolt.context.SayUtility;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.response.ResponseUrlSender;
 import com.slack.api.bolt.util.BuilderConfigurator;
@@ -17,9 +18,10 @@ import java.io.IOException;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
-public class SlashCommandContext extends Context {
+public class SlashCommandContext extends Context implements SayUtility {
 
     private String triggerId;
+    private String channelId;
     private String responseUrl;
     private ResponseUrlSender responseUrlSender;
 

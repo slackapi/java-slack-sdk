@@ -1,7 +1,7 @@
 package com.slack.api.bolt.request.builtin;
 
 import com.slack.api.app_backend.interactive_components.payload.AttachmentActionPayload;
-import com.slack.api.bolt.context.builtin.ActionContext;
+import com.slack.api.bolt.context.builtin.AttachmentActionContext;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.RequestType;
@@ -9,7 +9,7 @@ import com.slack.api.util.json.GsonFactory;
 import lombok.ToString;
 
 @ToString(callSuper = true)
-public class AttachmentActionRequest extends Request<ActionContext> {
+public class AttachmentActionRequest extends Request<AttachmentActionContext> {
 
     private final String requestBody;
     private final RequestHeaders headers;
@@ -25,13 +25,16 @@ public class AttachmentActionRequest extends Request<ActionContext> {
         getContext().setResponseUrl(payload.getResponseUrl());
         getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
         getContext().setTeamId(payload.getTeam().getId());
+        if (payload.getChannel() != null) {
+            getContext().setChannelId(payload.getChannel().getId());
+        }
         getContext().setRequestUserId(payload.getUser().getId());
     }
 
-    private ActionContext context = new ActionContext();
+    private AttachmentActionContext context = new AttachmentActionContext();
 
     @Override
-    public ActionContext getContext() {
+    public AttachmentActionContext getContext() {
         return context;
     }
 

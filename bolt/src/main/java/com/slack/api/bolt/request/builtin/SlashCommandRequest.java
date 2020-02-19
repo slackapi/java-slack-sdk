@@ -27,6 +27,7 @@ public class SlashCommandRequest extends Request<SlashCommandContext> {
         this.payload = PAYLOAD_PARSER.parse(requestBody);
         getContext().setResponseUrl(payload.getResponseUrl());
         getContext().setTriggerId(payload.getTriggerId());
+        getContext().setChannelId(payload.getChannelId());
         getContext().setEnterpriseId(payload.getEnterpriseId());
         getContext().setTeamId(payload.getTeamId());
         getContext().setRequestUserId(payload.getUserId());

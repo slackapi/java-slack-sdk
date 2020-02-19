@@ -25,6 +25,9 @@ public class DialogCancellationRequest extends Request<DialogCancellationContext
         getContext().setResponseUrl(payload.getResponseUrl());
         getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
         getContext().setTeamId(payload.getTeam().getId());
+        if (payload.getChannel() != null) {
+            getContext().setChannelId(payload.getChannel().getId());
+        }
         getContext().setRequestUserId(payload.getUser().getId());
     }
 

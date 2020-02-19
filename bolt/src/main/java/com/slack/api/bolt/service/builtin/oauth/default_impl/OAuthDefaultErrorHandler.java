@@ -1,8 +1,8 @@
 package com.slack.api.bolt.service.builtin.oauth.default_impl;
 
-import com.slack.api.bolt.service.builtin.oauth.OAuthErrorHandler;
 import com.slack.api.bolt.request.builtin.OAuthCallbackRequest;
 import com.slack.api.bolt.response.Response;
+import com.slack.api.bolt.service.builtin.oauth.OAuthErrorHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
