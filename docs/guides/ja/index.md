@@ -30,6 +30,7 @@ lang: ja
 |[**com.slack.api:slack-app-backend**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-app-backend)|このモジュールは Slack アプリサーバサイドで必要となる共通モジュールやペイロードなどのデータ構造を提供します。サポートされているのは、イベント API、インタラクティブコンポーネント、スラッシュコマンド、アクション、そして OAuth フローです。これらの機能はよりプリミティブなレイヤーとして Bolt から利用されています。|
 |[**com.slack.api:bolt**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt)|Bolt は Slack アプリをより安全かつ早く作るためのフレームワークで、特定の環境やフレームワークに依存しない抽象化されたレイヤーを提供します。広く利用されている Servlet API へのアダプターは標準でサポートされています。|
 |[**com.slack.api:bolt-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jetty)|このモジュールは Bolt で実装された Slack アプリを Jetty サーバで動作させるためのモジュールです。|
+|[**com.slack.api:bolt-aws-lambda**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-aws-lambda)|このモジュールは Bolt で実装された Slack アプリを AWS [API Gateway](https://aws.amazon.com/api-gateway/) + [Lambda](https://aws.amazon.com/lambda/) で動作させるためのモジュールです。|
 |[**com.slack.api:bolt-micronaut**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-micronaut)|このモジュールは [Micronaut](https://micronaut.io/) というフレームワークを使って Bolt アプリを動作させるためのアダプターを提供するモジュールです。|
 
 ---
