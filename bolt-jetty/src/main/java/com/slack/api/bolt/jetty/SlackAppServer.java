@@ -122,7 +122,7 @@ public class SlackAppServer {
             app.start();
         }
         server.start();
-        log.info("⚡️ Your Bolt app is running!");
+        log.info("⚡️ Bolt app is running!");
         server.join();
     }
 
