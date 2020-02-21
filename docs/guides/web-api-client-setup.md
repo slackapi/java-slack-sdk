@@ -98,7 +98,7 @@ repositories {
   mavenCentral()
 }
 dependencies {
-  implementation("com.slack:slack-api-client:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:slack-api-client:{{ site.sdkLatestVersion }}")
 }
 application {
   mainClassName = "Example"
@@ -135,7 +135,7 @@ repositories {
 dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  implementation("com.slack:slack-api-client:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:slack-api-client:{{ site.sdkLatestVersion }}")
 }
 application {
   mainClassName = "ExampleKt" // add "Kt" suffix for main function source file

@@ -115,7 +115,7 @@ Lastly, place a configuration file in the resources directory. The following exa
 
 ```yaml
 logging.level:
-  com.slack: DEBUG
+  com.slack.api: DEBUG
 server:
   port: 3000
 ```

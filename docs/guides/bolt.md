@@ -44,8 +44,8 @@ I don't repeat the Maven part. Just add necessary dependencies in your `build.gr
 
 ```groovy
 dependencies {
-  implementation("com.slack:bolt:{{ site.sdkLatestVersion }}")
-  implementation("com.slack:bolt-jetty:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
 }
 ```
 
@@ -67,8 +67,8 @@ repositories {
   mavenCentral()
 }
 dependencies {
-  implementation("com.slack:bolt:{{ site.sdkLatestVersion }}")
-  implementation("com.slack:bolt-jetty:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
   implementation("org.slf4j:slf4j-simple:1.7.30")
 }
 application {
@@ -146,7 +146,7 @@ As [Spring Boot](https://spring.io/projects/spring-boot) is one of the most popu
 
 Rest assured about it! It's quick and easy to _inject_ Bolt into Spring Boot apps.
 
-All you need to do is add `implementation("com.slack:bolt:{{ site.sdkLatestVersion }}")` to `dependencies` in `build.gradle` and write a few lines of code.
+All you need to do is add `implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")` to `dependencies` in `build.gradle` and write a few lines of code.
 
 ```java
 @Configuration
@@ -392,8 +392,8 @@ repositories {
 dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  implementation("com.slack:bolt:{{ site.sdkLatestVersion }}")
-  implementation("com.slack:bolt-jetty:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
   implementation("org.slf4j:slf4j-simple:1.7.30") // or logback-classic
 }
 application {
