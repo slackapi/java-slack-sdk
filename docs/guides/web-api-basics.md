@@ -8,9 +8,9 @@ lang: en
 
 **slack-api-client** contains simple, easy-to-use, and flexibly configurable HTTP clients for making requests to Slack APIs.
 
-Before trying the samples on this page, you need to set up your Java project first. If you haven't done it yet, check the [API Client Installation]({{ site.url | append: site.baseurl }}/guides/web-api-client-setup) guide and follow the instructions there first.
+Before trying the samples on this page, you need to set up your Java project first. If you haven't done it yet, check the [API Client Installation]({{ site.url | append: site.baseurl }}/guides/web-api-client-setup) guide and follow the instructions there.
 
-## Initialize Slack Facade
+## Initialize Slack Object
 
 Everything in this library starts from a variety of instance methods in **com.slack.api.Slack** class.
 
@@ -37,9 +37,9 @@ Are you looking for the [Incoming Webhooks](https://api.slack.com/messaging/webh
 
 ## Call a Method
 
-The most popular Slack Web API is called **chat.postMessage**, and it's used to send a message to a conversation.
+The most popular Slack Web API method is called [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage), and it's used to send a message to a conversation.
 
-To call a Web API such as **chat.postMessage**, a **MethodsClient** instance needs to be initialized with a token. A token usually begins with **xoxb-** (bot token) or **xoxp-** (user token). You get them from each workspace that an app has been installed. [The Slack App configuration pages](https://api.slack.com/apps) help you get your first token for your development workspace.
+To call a Web API method such as [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage), a **MethodsClient** instance needs to be initialized with a token. A token usually begins with **xoxb-** (bot token) or **xoxp-** (user token). You get them from each workspace that an app has been installed. [The Slack App configuration pages](https://api.slack.com/apps) help you get your first token for your development workspace.
 
 **NOTE**: Hardcoding tokens in your source code is not preferable. We highly recommend using env variables or other secure ways to store your tokens to avoid accidental exposures.
 
@@ -97,7 +97,7 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
   .text(":wave: Hi from a bot written in Java!"));
 ```
 
-I'm sure most people should agree the last one is the handiest and concise. We'll use this way for code snippets from here.
+I'm sure most people should agree the last one is the handiest and concise. We'll use this way for code snippets throughout the rest of this guide.
 
 ```java
 import com.slack.api.Slack;
@@ -127,7 +127,7 @@ val response = slack.methods(token).chatPostMessage { it
 
 ### Handle Responses
 
-If you're not yet familiar with the Slack Web API response format, read the [Evaluating responses](https://api.slack.com/web#responses) guide to understand it. All Web API responses contain a JSON object, which always contains a top-level boolean property "ok", indicating success or failure.
+If you're not yet familiar with the Slack Web API response format, read the [Evaluating responses](https://api.slack.com/web#responses) guide to understand it. All Web API responses contain a JSON object, which always contains a top-level boolean property `"ok"`, indicating success or failure.
 
 ```json
 {
@@ -158,15 +158,15 @@ if (response.isOk()) {
 }
 ```
 
-Not only the case you receive a successful response containing `"ok": false` property at the top level, errors can happen for many reasons. You need to be aware of the following three error patterns when using this SDK.
+When calling API methods, errors can occur for a variety of reasons:
 
-1. Received a successful response but in its body, `"ok"` is **false** and an `"error"` such as `channel_not_found` exists
+1. Received a successful response but in its body, `"ok"` is **false** and an `"error"` such as `channel_not_found` exists. These errors correspond to their definitions on their [method page](https://api.slack.com/methods).
 2. Got a **java.io.IOException** thrown due to connectivity issues
 3. Got a **com.slack.api.methods.SlackApiException** thrown for an unsuccessful response
 
 To understand how to handle **1.** pattern, read [this API document](https://api.slack.com/web#evaluating_responses).
 
-As for **2.** & **3.** patterns, the **MethodsClient** may throw two types of exceptions. Applications using this library is responsible for catching and handling these exceptions properly.
+As for **2.** & **3.** patterns, the **MethodsClient** may throw two types of exceptions. Applications are responsible for catching and handling both of these exceptions.
 
 |Exception|Information Included|Reason|
 |-|-|-|
@@ -199,11 +199,11 @@ try {
 
 Slack Web API offers [180+ methods](https://api.slack.com/methods). The way to use others is almost the same. Just calling methods in **MethodsClient** with a valid token and sufficient parameters works for you.
 
-A good way to check the entire list of methods available in this SDK is to access [the Javadoc](https://javadoc.io/doc/com.slack/slack-api-client/latest/com/slack/api/methods/MethodsClient.html).
+A good way to check the entire list of methods available in this SDK is to access [the Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/methods/MethodsClient.html).
 
 #### Call Unsupported Methods
 
-If you need to call the methods **slack-api-client** doesn't support, you can call the method like this.
+If you need to call a method that **slack-api-client** doesn't support, you can call the method like this.
 
 ```java
 import com.slack.api.Slack;
@@ -328,6 +328,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
+import redis.clients.jedis.JedisPool;
 
 SlackConfig config = new SlackConfig();
 // brew install redis
@@ -341,6 +342,8 @@ Slack slack = Slack.getInstance(config);
 ---
 
 ## Real Time Messaging (RTM)
+
+**NOTE**: The RTM API is not recommended unless your app has unique restrictions, like needs to receive events from behind a firewall.
 
 The Real Time Messaging API is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users. It’s sometimes referred to just as the “RTM API”.
 

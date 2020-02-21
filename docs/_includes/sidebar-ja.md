@@ -19,7 +19,7 @@
   </li>
 </ul>
 <ul class="current">
-  <li class="toctree-l1 current"><div class="toctree-h">Slack アプリフレームワーク</div>
+  <li class="toctree-l1 current"><div class="toctree-h">Bolt for Java</div>
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/bolt">Bolt️</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/slash-commands">スラッシュコマンド</a></li>
@@ -32,7 +32,6 @@
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/events-api">イベント API</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/app-distribution">アプリの配布 (OAuth)</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/supported-web-frameworks">対応 Web フレームワーク</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/deployments">デプロイ</a></li>
     </ul>
   </li>
 </ul>

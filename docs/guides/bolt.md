@@ -51,7 +51,7 @@ dependencies {
 
 ---
 
-## Run Your bolt App in 3 Minutes
+## Run Your Bolt App in 3 Minutes
 
 **bolt-jetty** is a handy way to start your Slack app server. It allows developers to build a Slack app backend service by writing only a main method initializes **App** and starts an HTTP server.
 
@@ -84,7 +84,7 @@ run {
 
 Coding with this framework is much simpler than you think.
 
-Only single source code is required to run your first-ever bolt app. All you need to do is define the main method that starts **SlackAppServer**. Your server with the default configuration will listen to the 3000 port but it's configurable. Check other constructors of the class to customize the behavior.
+Only single source code is required to run your first-ever Bolt app. All you need to do is define the main method that starts **SlackAppServer**. Your server with the default configuration will listen to the 3000 port but it's configurable. Check other constructors of the class to customize the behavior.
 
 ```java
 package hello;
@@ -129,7 +129,7 @@ export SLACK_SIGNING_SECRET=123abc...your-own-valid-one
 gradle run
 ```
 
-You will see the message saying "**⚡️ Your bolt app is running!**" in stdout.
+You will see the message saying "**⚡️ Bolt app is running!**" in stdout.
 
 If you get stuck this setup, go through the following checklist:
 
@@ -142,9 +142,9 @@ If you get stuck this setup, go through the following checklist:
 
 ### OK, What about Spring Boot?
 
-As [Spring Boot](https://spring.io/projects/spring-boot) is one of the most popular web frameworks in the Java world, you may be curious about the possibility to let this bolt live together with it.
+As [Spring Boot](https://spring.io/projects/spring-boot) is one of the most popular web frameworks in the Java world, you may be curious about the possibility to let this Bolt live together with it.
 
-Rest assured about it! It's quick and easy to _inject_ bolt into Spring Boot apps.
+Rest assured about it! It's quick and easy to _inject_ Bolt into Spring Boot apps.
 
 All you need to do is add `implementation("com.slack:bolt:{{ site.sdkLatestVersion }}")` to `dependencies` in `build.gradle` and write a few lines of code.
 
@@ -222,7 +222,7 @@ app.command("/hello", (req, ctx) -> { // ctx: Context
 It's also possible to post a message as a reply to the user action.
 
 ```java
-app.command("/hello", (req, ctx) -> {
+app.command("/ping", (req, ctx) -> {
   return ctx.ack(res -> res.text(":wave: pong"));
 });
 ```
@@ -230,7 +230,7 @@ app.command("/hello", (req, ctx) -> {
 By default, the reply will be sent as an ephemeral message. To send a message visible to everyone, use `in_channel` type.
 
 ```java
-app.command("/hello", (req, ctx) -> {
+app.command("/ping", (req, ctx) -> {
   return ctx.ack(res -> res
     .responseType("in_channel")
     .text(":wave: pong")
@@ -261,7 +261,7 @@ app.command("/hello", (req, ctx) -> {
 
 ### Use Web APIs
 
-When you need to call some Slack Web APIs in bolt apps, use `ctx.client()` for it. The **MethodsClient** created by the method already holds a valid bot token. So, you don't need to give a token to it. Just calling a method with parameters as below works for you.
+When you need to call some Slack Web APIs in Bolt apps, use `ctx.client()` for it. The **MethodsClient** created by the method already holds a valid bot token. So, you don't need to give a token to it. Just calling a method with parameters as below works for you.
 
 ```java
 app.command("/hello", (req, ctx) -> {
@@ -314,7 +314,7 @@ app.command("/my-search", (req, ctx) -> {
 
 ## Middleware
 
-bolt offers chaining middleware supports. You can customize **App** behavior by weaving a kind of filter to all events.
+Bolt offers chaining middleware supports. You can customize **App** behavior by weaving a kind of filter to all events.
 
 Here is an example demonstrating how it works. The middleware changes your app's behavior in error patterns only when `SLACK_APP_DEBUG_MODE` env variable exists.
 
@@ -375,7 +375,7 @@ The most common would be the case where a request has been denied by **RequestVe
 
 ## Getting Started in Kotlin
 
-For code simplicity, [Kotlin](https://kotlinlang.org/) language would be a great option for writing bolt apps. In this section, you'll learn how to set up a Kotlin project for bolt apps.
+For code simplicity, [Kotlin](https://kotlinlang.org/) language would be a great option for writing Bolt apps. In this section, you'll learn how to set up a Kotlin project for Bolt apps.
 
 #### build.gradle
 
@@ -405,7 +405,7 @@ If you're already familiar with Kotlin and prefer the Gradle Kotlin DSL, of cour
 
 #### src/main/kotlin/MyApp.kt
 
-Here is a minimum source file that just starts a bolt app on your local machine.
+Here is a minimum source file that just starts a Bolt app on your local machine.
 
 ```kotlin
 import com.slack.api.bolt.App
@@ -434,7 +434,7 @@ OK, you should be done. Just in case, here is the checklist:
 * ✅ [Create a Slack App](https://api.slack.com/apps), add a bot user, install the app to your development workspace
 * ✅ Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
 
-If all are ✅, bootstrapping your first-ever Kotlin-flavored bolt app will succeed.
+If all are ✅, bootstrapping your first-ever Kotlin-flavored Bolt app will succeed.
 
 ```bash
 # Visit https://api.slack.com/apps to know these
@@ -445,11 +445,11 @@ export SLACK_SIGNING_SECRET=123abc...your-own-valid-one
 gradle run
 ```
 
-... Did you see the message saying "**⚡️ Your bolt app is running!**" in stdout?
+... Did you see the message saying "**⚡️ Bolt app is running!**" in stdout?
 
 If yes, that's all settled! 🎉
 
-From here, all you need to do is write code and restart the app. Enjoy bolt app development in Kotlin! 👋
+From here, all you need to do is write code and restart the app. Enjoy Bolt app development in Kotlin! 👋
 
 **Pro tip**: We strongly recommend using [IntelliJ IDEA](https://www.jetbrains.com/idea/) here even if you don't prefer using IDEs. The IDE is the smoothest way to try Kotlin application development.
 
@@ -459,4 +459,4 @@ Refer to [this page]({{ site.url | append: site.baseurl }}/guides/supported-web-
 
 ## Deployments
 
-To learn how to deploy bolt apps to production environment, read [this page]({{ site.url | append: site.baseurl }}/guides/deployments).
+[We're planning](https://github.com/slackapi/java-slack-sdk/issues/348) to have some guide documents for deployments.

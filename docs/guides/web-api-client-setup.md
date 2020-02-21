@@ -6,11 +6,11 @@ lang: en
 
 # API Client Installation
 
-Installing **slack-api-client** into your Java project is the first step to use Slack API clients. This guide shows you how to set up using [Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), and by building from source on your own. 
+The first step to using the Slack API client is installing the **slack-api-client** module. This guide shows you how to set up using [Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), and by building from source on your own. 
 
 ## Prerequisites
 
-Getting OpenJDK 8 and higher LTS versions installed beforehand is required. As long as using a supported JDK version, this SDK should be working with any of OpenJDK distributions.
+[Installing OpenJDK 8 or higher LTS version](https://openjdk.java.net/install/) beforehand is required. As long as your using a supported JDK version, this SDK should be working with any OpenJDK distributions.
 
 ---
 

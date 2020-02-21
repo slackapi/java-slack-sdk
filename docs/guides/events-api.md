@@ -10,7 +10,7 @@ The [Events API](https://api.slack.com/events-api) used in the following example
 
 All you need to do to handle Events API requests are:
 
-1. Verify requests from Slack (read [this](https://api.slack.com/docs/verifying-requests-from-slack) if unfamiliar)
+1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `type` in `event` is the one you'd like to handle
 1. Whatever you want to do with the event data
 1. Respond with 200 OK reply as aknowledgement

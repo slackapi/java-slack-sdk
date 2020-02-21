@@ -3,16 +3,16 @@ layout: default
 title: "Overview"
 ---
 
-# Slack SDK for Java / Bolt for Java️
+# Slack SDK for Java
 
-**Slack SDK for Java** supports all public Slack platform functionality in a Java idiomatic way. The SDK is completely written in Java, so that developers can use this SDK also in any JVM language such as Kotlin, Groovy, and Scala without any hurdles.
+**Slack SDK for Java** supports all public Slack platform functionality in a Java idiomatic way. The SDK is completely written in Java, so that developers can use this SDK in any JVM language, including Kotlin, Groovy, and Scala without any hurdles.
 
-The SDK offers a corresponding module for each group of platform features. There are two main types of modules:
+The SDK offers two different modules depending on what platform features you intend to use:
 
 * [**Slack API Client**]({{ site.url | append: site.baseurl }}/guides/web-api-basics) for calling a variety of Slack APIs
-* [**Bolt️**]({{ site.url | append: site.baseurl }}/guides/bolt) Framework for Slack App development with full platform features
+* [**Bolt for Java**]({{ site.url | append: site.baseurl }}/guides/bolt) Framework for Slack App development with full platform features
 
-If what you want to do is call Slack APIs in your existing services, we recommend using only the Slack API Client. If instead, you’re developing a new modern and interactive Slack app, we recommend **Bolt** for it. The framework enables developers to focus on the essential parts of their apps without being bothered by trifles.
+If what you want to do is call Slack APIs in your existing services, we recommend using only the **Slack API Client**. If instead, you’re developing a new modern and interactive Slack app, we recommend **Bolt** for it. The framework enables developers to focus on the essential parts of their apps without being bothered by trifles.
 
 ---
 

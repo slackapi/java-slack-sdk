@@ -8,5 +8,5 @@
     style="width: 225px; padding-right: 25px; border-right: 1px solid #DDD;" />
 </a>
 <span style="display: inline-block; padding-left: 20px; margin-top: 25px; font-weight: bold; font-size: 1.4rem;">
-  Slack SDK for Java / Bolt for Java️
+  Slack SDK for Java
 </span>

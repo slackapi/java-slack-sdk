@@ -62,8 +62,6 @@ In general, there are a few things to know when working with modals. They would 
 * You respond to `view_submission` requests with `response_action` to determine the next state of a modal
 * **views.update/push** APIs are supposed to be used when receiving `block_actions` requests in modals, NOT for `view_submission` requests
 
-Once you understand above, handling modal interactions is not difficult at all.
-
 ## Bolt Examples
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [The Basics of Bolt]({{ site.url | append: site.baseurl }}/guides/Bolt), first.

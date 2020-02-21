@@ -19,7 +19,7 @@
   </li>
 </ul>
 <ul class="current">
-  <li class="toctree-l1 current"><div class="toctree-h">Slack App Framework</div>
+  <li class="toctree-l1 current"><div class="toctree-h">Bolt for Java</div>
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/bolt">The Basics of Bolt️</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/slash-commands">Slash Commands</a></li>
@@ -32,7 +32,6 @@
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/events-api">Events API</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/app-distribution">App Distribution (OAuth)</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/supported-web-frameworks">Supported Web Frameworks</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/deployments">Deployments</a></li>
     </ul>
   </li>
 </ul>

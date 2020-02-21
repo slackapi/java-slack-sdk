@@ -8,7 +8,7 @@ lang: en
 
 This section shows how to build Slack messages using **slack-api-client** library. If you're not familiar with **chat.postMessage** API yet, read [this page]({{ site.url | append: site.baseurl }}/guides/web-api-basics) before trying the samples here.
 
-Also, before jumping into Java code, we recommend developing a good understanding of the concept behind this SDK's Java interfaces. Reading the API document entitled [An overview of message composition](https://api.slack.com/messaging/composing) is the fastest way to know the basics about Slack message composition.
+Also, before jumping into Java code, we recommend developing an understand of composing Slack messages. [Read the API documentation](https://api.slack.com/messaging/composing) for more information.
 
 ## Text Formatting
 

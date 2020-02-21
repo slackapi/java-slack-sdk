@@ -86,11 +86,11 @@ Here is the list of the necessary configurations for distributing apps built wit
 
 ### Choose Proper Storage Services
 
-By default, OAuth flow supported Bolt apps uses the local file system to generate/store state parameters, and store bot/user tokens. bolt supports the following out-of-the-box.
+By default, OAuth flow supported Bolt apps uses the local file system to generate/store state parameters, and store bot/user tokens. Bolt supports the following out-of-the-box.
 
 * Local File System
 * Amazon S3
-* Relational Database (via JDBC) - _coming soon!_
+* Relational Database (via JDBC) - [_coming soon!_](https://github.com/slackapi/java-slack-sdk/issues/347)
 
 If your datastore is unsupported, you can implement the interfaces **com.slack.api.bolt.service.InstallationService** and **com.slack.api.bolt.service.OAuthStateService** on your own.
 
@@ -154,7 +154,7 @@ Slack has two types of OAuth flows for Slack app installations. The V2 OAuth flo
   * Web API to issue tokens - [`oauth.access`](https://api.slack.com/methods/oauth.access)
   * Authorization URL - `https://slack.com/oauth/authorize`
 
-By default, bolt enables the V2 OAuth Flow over the classic one. It's configurable by **AppConfig**'s the setter method for `granularBotPermissionsEnabled`. The value is set to true by default. Change the flag to false to authorize your class OAuth apps.
+By default, Bolt enables the V2 OAuth Flow over the classic one. It's configurable by **AppConfig**'s the setter method for `granularBotPermissionsEnabled`. The value is set to true by default. Change the flag to false to authorize your class OAuth apps.
 
 ```java
 AppConfig appConfig = new AppConfig();
@@ -165,7 +165,7 @@ App app = new App(appConfig);
 **InstallationService** absorbs the difference in the response structure. So, you don't need to change anything even when you switch from the classic OAuth to the V2.
 
 
-#### Host the Completion/Cancellation Pages in bolt App
+#### Host the Completion/Cancellation Pages in Bolt App
 
 Most apps tend to choose static pages for the completion/cancellation URLs but it's also possible to host those URLs in the same app. bolt doesn't offer any features to render web pages. Use your favorite template engine for it.
 

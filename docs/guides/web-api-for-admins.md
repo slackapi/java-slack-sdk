@@ -37,4 +37,4 @@ AdminAppsApprovedListResponse response = slack.methods(orgAdminToken).adminAppsA
 // There are more...!
 ```
 
-You can look up the comprehensive list of admin APIs [here](https://api.slack.com/admins). Also, checking [the Javadoc](https://javadoc.io/doc/com.slack/slack-api-client/latest/com/slack/api/methods/MethodsClient.html) and search by a keyword starting with **`admin`** may be helpful to know methods to use.
+You can look up the comprehensive list of admin APIs [here](https://api.slack.com/admins). Also, checking [the Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/methods/MethodsClient.html) and search by a keyword starting with **`admin`** may be helpful to know methods to use.
