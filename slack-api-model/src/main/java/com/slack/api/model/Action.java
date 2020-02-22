@@ -52,7 +52,9 @@ public class Action {
     private Type type = Type.BUTTON;
     private String value;
     private Confirmation confirm;
+    @Builder.Default
     private List<Option> options = new ArrayList<>();
+    @Builder.Default
     private List<Option> selectedOptions = new ArrayList<>();
     private String dataSource;
     private Integer minQueryLength;

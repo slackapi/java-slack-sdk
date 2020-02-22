@@ -2,10 +2,12 @@ package com.slack.api.audit.response;
 
 import com.slack.api.audit.AuditApiResponse;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SchemasResponse implements AuditApiResponse {
     private boolean ok;
     private String warning;

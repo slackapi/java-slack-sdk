@@ -111,6 +111,7 @@ public class App {
     /**
      * Current status of this App.
      */
+    @Builder.Default
     private Status status = Status.Stopped;
 
     // -------------------------------------
@@ -141,6 +142,7 @@ public class App {
     /**
      * Cached mapping between Event data types and their "{type}:{subtype}" values.
      */
+    @Builder.Default
     private Map<Class<? extends Event>, String> eventTypeAndSubtypeValues = new HashMap<>();
 
     private Class<? extends Event> getEventClass(String eventType) {
@@ -285,15 +287,23 @@ public class App {
     // OAuth Flow
     // -------------------------------------
 
+    @Builder.Default
     private OAuthStateService oAuthStateService = new ClientOnlyOAuthStateService();
+    @Builder.Default
     private OAuthCallbackService oAuthCallbackService = null;
 
     private OAuthSuccessHandler oAuthSuccessHandler; // will be initialized in the constructor
     private OAuthV2SuccessHandler oAuthV2SuccessHandler; // will be initialized in the constructor
+
+    @Builder.Default
     private OAuthErrorHandler oAuthErrorHandler = new OAuthDefaultErrorHandler();
+    @Builder.Default
     private OAuthAccessErrorHandler oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
+    @Builder.Default
     private OAuthV2AccessErrorHandler oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler();
+    @Builder.Default
     private OAuthStateErrorHandler oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
+    @Builder.Default
     private OAuthExceptionHandler oAuthExceptionHandler = new OAuthDefaultExceptionHandler();
 
     private void initOAuthServicesIfNecessary() {
