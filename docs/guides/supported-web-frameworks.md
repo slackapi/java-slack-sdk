@@ -283,7 +283,6 @@ The only thing you need to do is to create a `@WebServlet`-wired class. The Quar
 package hello;
 
 import com.slack.api.bolt.App;
-import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.servlet.SlackAppServlet;
 
 import javax.servlet.annotation.WebServlet;
@@ -291,19 +290,14 @@ import java.io.IOException;
 
 @WebServlet("/slack/events")
 public class SlackApp extends SlackAppServlet {
-
-  public SlackApp() throws IOException {
-    super(initSlackApp());
-  }
-
-  public SlackApp(App app) {
-    super(app);
-  }
+  private static final long serialVersionUID = 1L;
+  public SlackApp() throws IOException { super(initSlackApp()); }
+  public SlackApp(App app) { super(app); }
 
   private static App initSlackApp() throws IOException {
     App app = new App();
-    app.command("/hello", (ctx, req) -> {
-        return Response.ok("What's up?");
+    app.command("/hello", (req, ctx) -> {
+      return ctx.ack("What's up?");
     });
     return app;
   }
@@ -328,7 +322,7 @@ class SlackApp : SlackAppServlet(initSlackApp()) {
     fun initSlackApp(): App {
       val app = App()
       app.command("/ping") { req, ctx ->
-        ctx.ack { it.text("<@${req.payload.userId}> pong!") }
+        ctx.ack("<@${req.payload.userId}> pong!")
       }
       return app
     }
@@ -357,7 +351,7 @@ class Components {
   fun initApp(): App {
     val app = App()
     app.command("/ping") { req, ctx ->
-      ctx.ack { it.text("<@${req.payload.userId}> pong!") }
+      ctx.ack("<@${req.payload.userId}> pong!")
     }
     return app
   }

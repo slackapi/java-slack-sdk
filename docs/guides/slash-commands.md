@@ -67,12 +67,12 @@ app.command("/echo") { req, ctx ->
   val channelId = req.payload.channelId
   val channelName = req.payload.channelName
   val text = "You said ${commandArgText} at <#${channelId}|${channelName}>"
-  ctx.ack { it.text(text) }
+  ctx.ack(text)
 }
 
 app.command("/echo") { req, ctx ->
-  val text = text = buildMessage(req)
-  ctx.respond { it.text(text) }
+  val text = buildMessage(req)
+  ctx.respond(text) // send via response_url
   ctx.ack()
 }
 ```

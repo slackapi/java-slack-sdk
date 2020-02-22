@@ -8,7 +8,7 @@ lang: en
 
 [The Real Time Messaging API](https://api.slack.com/rtm) is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users. It's sometimes referred to just as the "RTM API".
 
-**Note**: RTM isn't available for modern scoped apps anymore. We recommend using the [Events API]({{ site.url | append: site.baseurl }}/guides/events-api) and [Web API]({{ site.url | append: site.baseurl }}/guides/web-api-basics) instead. If you need to use RTM (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
+**NOTE**: RTM isn't available for modern scoped apps anymore. We recommend using the [Events API]({{ site.url | append: site.baseurl }}/guides/events-api) and [Web API]({{ site.url | append: site.baseurl }}/guides/web-api-basics) instead. If you need to use RTM (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
 
 ## Subscribing Slack Events Over WebSocket
 
