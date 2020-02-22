@@ -336,6 +336,34 @@ class SlackApp : SlackAppServlet(initSlackApp()) {
 }
 ```
 
+For properly using Dependency Injection, having producers may be better.
+
+#### src/mian/kotlin/app.kt
+
+```kotlin
+package hello
+
+import com.slack.api.bolt.App
+import com.slack.api.bolt.servlet.SlackAppServlet
+import javax.enterprise.inject.Produces
+import javax.inject.Inject
+import javax.servlet.annotation.WebServlet
+
+@WebServlet("/slack/events")
+class SlackApp(app: App?) : @Inject SlackAppServlet(app)
+
+class Components {
+  @Produces
+  fun initApp(): App {
+    val app = App()
+    app.command("/ping") { req, ctx ->
+      ctx.ack { it.text("<@${req.payload.userId}> pong!") }
+    }
+    return app
+  }
+}
+```
+
 ### src/main/resources/application.properties
 
 The default port Quarkus uses is 8080. You can change the port by having the following config.
