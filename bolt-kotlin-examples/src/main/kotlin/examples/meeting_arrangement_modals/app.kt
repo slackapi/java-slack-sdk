@@ -47,7 +47,7 @@ fun main() {
             errors["agenda"] = "Agenda needs to be longer than 10 characters."
         }
         if (errors.isNotEmpty()) {
-            ctx.ack { it.responseAction("errors").errors(errors) }
+            ctx.ackWithErrors(errors)
         } else {
             // Operate something with the data
             ctx.logger.info("state: $stateValues private_metadata: ${req.payload.view.privateMetadata}")

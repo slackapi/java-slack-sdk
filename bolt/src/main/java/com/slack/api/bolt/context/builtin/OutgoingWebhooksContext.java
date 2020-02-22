@@ -18,7 +18,10 @@ public class OutgoingWebhooksContext extends Context implements SayUtility {
 
     private String triggerId;
     private String channelId;
-    private String responseUrl;
+
+    public Response ack(String text) {
+        return Response.json(200, WebhookResponse.builder().text(text).build());
+    }
 
     public Response ack(WebhookResponse response) {
         return Response.json(200, response);
