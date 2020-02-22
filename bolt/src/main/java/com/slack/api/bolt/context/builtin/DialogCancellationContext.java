@@ -5,10 +5,12 @@ import com.slack.api.bolt.context.Context;
 import com.slack.api.bolt.context.SayUtility;
 import com.slack.api.bolt.response.ResponseUrlSender;
 import com.slack.api.bolt.util.BuilderConfigurator;
+import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.webhook.WebhookResponse;
 import lombok.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,6 +24,14 @@ public class DialogCancellationContext extends Context implements SayUtility {
     private String responseUrl;
     private String channelId;
     private ResponseUrlSender responseUrlSender;
+
+    public WebhookResponse respond(String text) throws IOException {
+        return respond(ActionResponse.builder().text(text).build());
+    }
+
+    public WebhookResponse respond(List<LayoutBlock> blocks) throws IOException {
+        return respond(ActionResponse.builder().blocks(blocks).build());
+    }
 
     public WebhookResponse respond(ActionResponse response) throws IOException {
         if (responseUrlSender == null) {

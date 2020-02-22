@@ -37,13 +37,12 @@ fun main() {
     fun joinConversation(ctx: Context, conversationId: String) {
         val res = ctx.client().conversationsJoin { it.channel(conversationId) }
         ctx.logger.info("conversions.join result - {}", res)
-        res
     }
 
     fun saySomething(ctx: SlashCommandContext, where: String, text: String) {
         val conversationId = toConversationId(ctx, where)
         if (conversationId == null) {
-            ctx.ack { it.text("[Error] $where was not found") }
+            ctx.ack("[Error] $where was not found")
         } else {
             joinConversation(ctx, conversationId)
             val res = ctx.say { it.channel(where).text(text) }
@@ -54,7 +53,7 @@ fun main() {
     app.command("/say-something") { req, ctx ->
         val elements = req.payload.text?.split(" at ")
         if (elements == null || elements.size < 2) {
-            ctx.ack { it.text("[Usage] /say-something Hey folks, how have you been doing? at #general") }
+            ctx.ack("[Usage] /say-something Hey folks, how have you been doing? at #general")
         } else {
             if (elements.size == 2) {
                 val where = elements[1].trim()

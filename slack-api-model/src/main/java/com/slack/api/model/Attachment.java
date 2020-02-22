@@ -190,6 +190,7 @@ public class Attachment {
     /**
      * Fields are defined as an array, and hashes contained within it will be displayed in a table inside the message attachment.
      */
+    @Builder.Default
     private List<Field> fields = new ArrayList<>();
 
     /**
@@ -258,11 +259,13 @@ public class Attachment {
      * in attachments</a> are not formatted. To enable formatting on attachment fields, add the
      * name of the field (as defined in the API) in this list.
      */
+    @Builder.Default
     private List<String> mrkdwnIn = new ArrayList<>();
 
     /**
      * Actions are defined as an array, and hashes contained within it will be displayed in as buttons in the message attachment.
      */
+    @Builder.Default
     private List<Action> actions = new ArrayList<>();
 
     private List<LayoutBlock> blocks;

@@ -105,6 +105,7 @@ public class ChatPostMessageRequest implements SlackApiRequest {
     /**
      * Disable Slack markup parsing by setting to `false`. Enabled by default.
      */
+    @Builder.Default
     private boolean mrkdwn = true;
 
     /**

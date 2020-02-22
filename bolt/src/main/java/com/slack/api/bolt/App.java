@@ -45,7 +45,7 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 @AllArgsConstructor
-@Builder(toBuilder = true)
+@Builder(toBuilder = true) // This builder is used for creating another App instance based on this
 public class App {
 
     /**
@@ -111,7 +111,7 @@ public class App {
     /**
      * Current status of this App.
      */
-    private Status status = Status.Stopped;
+    private Status status; // will be initialized in the constructor
 
     // -------------------------------------
     // Slash Commands
@@ -141,7 +141,7 @@ public class App {
     /**
      * Cached mapping between Event data types and their "{type}:{subtype}" values.
      */
-    private Map<Class<? extends Event>, String> eventTypeAndSubtypeValues = new HashMap<>();
+    private final Map<Class<? extends Event>, String> eventTypeAndSubtypeValues = new HashMap<>();
 
     private Class<? extends Event> getEventClass(String eventType) {
         for (Map.Entry<Class<? extends Event>, String> entry : eventTypeAndSubtypeValues.entrySet()) {
@@ -285,16 +285,16 @@ public class App {
     // OAuth Flow
     // -------------------------------------
 
-    private OAuthStateService oAuthStateService = new ClientOnlyOAuthStateService();
-    private OAuthCallbackService oAuthCallbackService = null;
-
+    private OAuthStateService oAuthStateService; // will be initialized in the constructor
     private OAuthSuccessHandler oAuthSuccessHandler; // will be initialized in the constructor
     private OAuthV2SuccessHandler oAuthV2SuccessHandler; // will be initialized in the constructor
-    private OAuthErrorHandler oAuthErrorHandler = new OAuthDefaultErrorHandler();
-    private OAuthAccessErrorHandler oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
-    private OAuthV2AccessErrorHandler oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler();
-    private OAuthStateErrorHandler oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
-    private OAuthExceptionHandler oAuthExceptionHandler = new OAuthDefaultExceptionHandler();
+    private OAuthErrorHandler oAuthErrorHandler; // will be initialized in the constructor
+    private OAuthAccessErrorHandler oAuthAccessErrorHandler; // will be initialized in the constructor
+    private OAuthV2AccessErrorHandler oAuthV2AccessErrorHandler; // will be initialized in the constructor
+    private OAuthStateErrorHandler oAuthStateErrorHandler; // will be initialized in the constructor
+    private OAuthExceptionHandler oAuthExceptionHandler; // will be initialized in the constructor
+
+    private OAuthCallbackService oAuthCallbackService; // will be initialized by initOAuthServicesIfNecessary()
 
     private void initOAuthServicesIfNecessary() {
         if (appConfig.isDistributedApp() && appConfig.isOAuthCallbackEnabled()) {
@@ -362,6 +362,7 @@ public class App {
 
     public App(AppConfig appConfig, List<Middleware> middlewareList) {
         this(appConfig, appConfig.getSlack() != null ? appConfig.getSlack() : Slack.getInstance(), middlewareList);
+        this.status = Status.Stopped;
     }
 
     public App(AppConfig appConfig, Slack slack, List<Middleware> middlewareList) {
@@ -369,9 +370,19 @@ public class App {
         this.slack = slack;
         this.middlewareList = middlewareList;
 
+        this.oAuthStateService = new ClientOnlyOAuthStateService();
+
         this.installationService = new FileInstallationService(this.appConfig);
         this.oAuthSuccessHandler = new OAuthDefaultSuccessHandler(this.installationService);
         this.oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(this.installationService);
+
+        this.oAuthErrorHandler = new OAuthDefaultErrorHandler();
+        this.oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
+        this.oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler();
+        this.oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
+        this.oAuthExceptionHandler = new OAuthDefaultExceptionHandler();
+
+        this.oAuthCallbackService = null; // will be initialized by initOAuthServicesIfNecessary()
     }
 
     // --------------------------------------
@@ -386,7 +397,7 @@ public class App {
         return this.status;
     }
 
-    private AtomicBoolean neverStarted = new AtomicBoolean(true);
+    private final AtomicBoolean neverStarted = new AtomicBoolean(true);
 
     public App start() {
         synchronized (status) {

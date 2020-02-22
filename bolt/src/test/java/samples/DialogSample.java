@@ -46,7 +46,7 @@ public class DialogSample {
             if (req.getPayload().getSubmission().get("comment").length() < 10) {
                 List<Error> errors = Arrays.asList(
                         new Error("comment", "must be longer than 10 characters"));
-                return ctx.ack(r -> r.errors(errors));
+                return ctx.ack(errors);
             } else {
                 ctx.respond(r -> r.text("Thanks!!"));
                 return ctx.ack();
