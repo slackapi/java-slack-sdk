@@ -57,7 +57,7 @@ app.messageAction("create-task-action-callback-id", (req, ctx) -> {
   if (!viewsOpenResp.isOk()) {
     String errorCode = viewsOpenResp.getError();
     logger.error("Failed to open a modal view for user: {} - error: {}", userId, errorCode);
-    ctx.respond(r -> r.text("Failed to open a modal view because of " + errorCode));
+    ctx.respond(":x: Failed to open a modal view because of " + errorCode);
   }
 
   return ctx.ack(); // respond with 200 OK to the request
@@ -83,7 +83,7 @@ app.messageAction("create-task-action-callback-id") { req, ctx ->
   if (!viewsOpenResp.isOk) {
     val errorCode = viewsOpenResp.error
     logger.error("Failed to open a modal view for user: ${userId} - error: ${errorCode}")
-    ctx.respond { it.text("Failed to open a modal view because of ${errorCode}") }
+    ctx.respond(":x: Failed to open a modal view because of ${errorCode}")
   }
 
   ctx.ack() // respond with 200 OK to the request

@@ -61,7 +61,7 @@ app.blockAction("button-action", (req, ctx) -> {
   String value = req.getPayload().getActions().get(0).getValue(); // "button's value"
   if (req.getPayload().getResponseUrl() != null) {
     // Post a message to the same channel if it's a block in a message
-    ctx.respond(r -> r.text("You've sent " + value + " by clicking the button!"));
+    ctx.respond("You've sent " + value + " by clicking the button!");
   }
   return ctx.ack();
 });
@@ -73,7 +73,7 @@ The sample code in Kotlin looks like as blow.
 app.blockAction("button-action") { req, ctx ->
   val value = req.payload.actions[0].value
   if (req.payload.responseUrl != null) {
-    ctx.respond { it.text("You've sent ${value} by clicking the button!") }
+    ctx.respond("You've sent ${value} by clicking the button!")
   }
   ctx.ack()
 }

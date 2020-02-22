@@ -45,7 +45,7 @@ import static java.util.Map.entry;
 //   SLACK_SIGNING_SECRET
 App apiApp = new App();
 apiApp.command("/hi", (req, ctx) -> {
-  return ctx.ack(r -> r.text("Hi there!"));
+  return ctx.ack("Hi there!");
 });
 
 // OAuth Flow Handler App
@@ -126,7 +126,7 @@ OAuthStateService stateService = new AmazonS3OAuthStateService(awsS3BucketName);
 // apiApp uses only InstallationService to access stored tokens
 App apiApp = new App();
 apiApp.command("/hi", (req, ctx) -> {
-  return ctx.ack(r -> r.text("Hi there!"));
+  return ctx.ack("Hi there!");
 });
 apiApp.service(installationService);
 

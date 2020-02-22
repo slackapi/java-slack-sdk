@@ -63,7 +63,7 @@ public class SlackApp {
   public App initSlackApp() {
     App app = new App();
     app.command("/hello", (req, ctx) -> {
-      return ctx.ack(r -> r.text("Thanks!"));
+      return ctx.ack("What's up?");
     });
     return app;
   }
@@ -216,7 +216,7 @@ public class AppFactory {
   public App createApp(AppConfig config) {
     App app = new App(config);
     app.command("/hello", (req, ctx) -> {
-      return ctx.ack(r -> r.text("Thanks!"));
+      return ctx.ack("What's up?");
     });
     return app;
   }
