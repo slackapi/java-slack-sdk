@@ -21,7 +21,7 @@ import com.slack.api.bolt.App;
 
 App app = new App();
 app.command("/echo", (req, ctx) -> {
-  return ctx.ack(res -> res.text(req.getText()));
+  return ctx.ack(req.getText());
 });
 ```
 
@@ -64,11 +64,30 @@ app.command("/hello", (req, ctx) -> { // ctx: Context
 });
 ```
 
-It's also possible to post a message as a reply to the user action.
+If your app replies to a user action, you can pass a message text to the `ack()` method.
 
 ```java
 app.command("/ping", (req, ctx) -> {
-  return ctx.ack(res -> res.text(":wave: pong"));
+  return ctx.ack(":wave: pong");
+});
+```
+
+It's also possible to use [Block Kit](https://api.slack.com/block-kit) to make messages more interactive.
+
+```java
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.*;
+import static com.slack.api.model.block.element.BlockElements.*;
+
+app.command("/ping", (req, ctx) -> {
+  return ctx.ack(asBlocks(
+    section(section -> section.text(markdownText(":wave: pong"))),
+    actions(actions -> actions
+      .elements(asElements(
+        button(b -> b.actionId("ping-again").text(plainText(pt -> pt.text("Ping"))).value("ping"))
+      ))
+    )
+  ));
 });
 ```
 
@@ -76,10 +95,7 @@ By default, the reply will be sent as an ephemeral message. To send a message vi
 
 ```java
 app.command("/ping", (req, ctx) -> {
-  return ctx.ack(res -> res
-    .responseType("in_channel")
-    .text(":wave: pong")
-  );
+  return ctx.ack(res -> res.responseType("in_channel").text(":wave: pong"));
 });
 ```
 
@@ -136,7 +152,7 @@ import com.slack.api.methods.response.search.SearchMessagesResponse;
 app.command("/my-search", (req, ctx) -> {
   String query = req.getPayload().getText();
   if (query == null || query.trim().size() == 0) {
-    return ctx.ack(r -> r.text("Please give some query."));
+    return ctx.ack("Please give some query.");
   }
 
   String userToken = ctx.getRequestUserToken(); // enabling InstallationService required
@@ -146,16 +162,30 @@ app.command("/my-search", (req, ctx) -> {
       .query(query));
     if (response.isOk()) {
       String reply = response.getMessages().getTotal() + " results found for " + query;
-      return ctx.ack(r -> r.text(reply));
+      return ctx.ack(reply);
     } else {
       String reply = "Failed to search by " + query + " (error: " + response.getError() + ")";
-      return ctx.ack(r -> r.text(reply));
+      return ctx.ack(reply);
     }
   } else {
-    return ctx.ack(r -> r.text("Please allow this Slack app to run search queries for you."));
+    return ctx.ack("Please allow this Slack app to run search queries for you.");
   }
 });
 ```
+
+## Use Logger
+
+You can access slf4j logger in **Context** objects. If you use the **logback-classic** library as the implementation of the APIs, you can configure the settings by **logback.xml** etc.
+
+```java
+app.command("/weather", (req, ctx) -> {
+  String keyword = req.getPayload().getText();
+  String userId = req.getPayload().getUserId();
+  ctx.logger.info("Weather search by keyword: {} for user: {}", keyword, userId);
+  return ctx.ack(weatherService.find(keyword).toMessage());
+});
+```
+
 
 ## Middleware
 

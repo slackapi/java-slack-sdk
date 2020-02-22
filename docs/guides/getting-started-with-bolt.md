@@ -113,7 +113,7 @@ public class MyApp {
     App app = new App();
 
     app.command("/hello", (req, ctx) -> {
-      return ctx.ack(r -> r.text(":wave: Hello!"));
+      return ctx.ack(":wave: Hello!");
     });
 
     SlackAppServer server = new SlackAppServer(app);
@@ -169,7 +169,7 @@ public class SlackApp {
   @Bean
   public App initSlackApp() {
     App app = new App();
-    app.command("/hello", (req, ctx) -> ctx.ack(r -> r.text("Hi there!")));
+    app.command("/hello", (req, ctx) -> ctx.ack("Hi there!"));
     return app;
   }
 }
@@ -223,10 +223,8 @@ Here is a minimum source file that just starts a Bolt app on your local machine.
 ```kotlin
 import com.slack.api.bolt.App
 import com.slack.api.bolt.jetty.SlackAppServer
-import org.slf4j.LoggerFactory
 
 fun main() {
-  val logger = LoggerFactory.getLogger("main")
   val app = App()
 
   // Write some code here
