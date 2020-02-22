@@ -350,6 +350,9 @@
             "name": "",
             "image": ""
           }
+        ],
+        "profile_field_options": [
+          ""
         ]
       },
       "allow_calls_interactive_screen_sharing": false,
@@ -495,6 +498,12 @@
           ""
         ],
         "subteam": [
+          ""
+        ]
+      },
+      "channel_email_addresses_enabled": false,
+      "who_can_create_channel_email_addresses": {
+        "type": [
           ""
         ]
       }

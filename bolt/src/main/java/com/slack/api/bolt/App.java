@@ -319,17 +319,19 @@ public class App {
         if (config.getClientId() == null || config.getScope() == null || state == null) {
             return null;
         } else {
+            String scope = config.getScope() == null ? "" : config.getScope();
             if (config.isClassicAppPermissionsEnabled()) {
                 // https://api.slack.com/authentication/migration
                 return "https://slack.com/oauth/authorize" +
                         "?client_id=" + config.getClientId() +
-                        "&scope=" + config.getScope() +
+                        "&scope=" + scope +
                         "&state=" + state;
             } else {
+                String userScope = config.getUserScope() == null ? "" : config.getUserScope();
                 return "https://slack.com/oauth/v2/authorize" +
                         "?client_id=" + config.getClientId() +
-                        "&scope=" + config.getScope() +
-                        "&user_scope=" + config.getUserScope() +
+                        "&scope=" + scope +
+                        "&user_scope=" + userScope +
                         "&state=" + state;
             }
         }
