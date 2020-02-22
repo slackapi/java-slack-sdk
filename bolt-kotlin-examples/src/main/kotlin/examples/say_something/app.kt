@@ -37,7 +37,6 @@ fun main() {
     fun joinConversation(ctx: Context, conversationId: String) {
         val res = ctx.client().conversationsJoin { it.channel(conversationId) }
         ctx.logger.info("conversions.join result - {}", res)
-        res
     }
 
     fun saySomething(ctx: SlashCommandContext, where: String, text: String) {

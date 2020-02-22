@@ -9,7 +9,6 @@ public class PayloadExtractor {
      * Extract URL decoded JSON string from body parameter given by AWS Lambda/API Gateway.
      *
      * @param body a string value like "payload=%7B%22type%22%3A%22block_actions%22%2C%22team%22%3A%7B%22id%22%3A% ..."
-     * @return
      */
     public String extractPayloadJsonAsString(String body) {
         if (body == null) {

@@ -45,7 +45,7 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 @AllArgsConstructor
-@Builder(toBuilder = true)
+@Builder(toBuilder = true) // This builder is used for creating another App instance based on this
 public class App {
 
     /**
@@ -111,7 +111,7 @@ public class App {
     /**
      * Current status of this App.
      */
-    private Status status = Status.Stopped;
+    private Status status; // will be initialized in the constructor
 
     // -------------------------------------
     // Slash Commands
@@ -285,24 +285,16 @@ public class App {
     // OAuth Flow
     // -------------------------------------
 
-    @Builder.Default
-    private OAuthStateService oAuthStateService = new ClientOnlyOAuthStateService();
-    @Builder.Default
-    private OAuthCallbackService oAuthCallbackService = null;
-
+    private OAuthStateService oAuthStateService; // will be initialized in the constructor
     private OAuthSuccessHandler oAuthSuccessHandler; // will be initialized in the constructor
     private OAuthV2SuccessHandler oAuthV2SuccessHandler; // will be initialized in the constructor
+    private OAuthErrorHandler oAuthErrorHandler; // will be initialized in the constructor
+    private OAuthAccessErrorHandler oAuthAccessErrorHandler; // will be initialized in the constructor
+    private OAuthV2AccessErrorHandler oAuthV2AccessErrorHandler; // will be initialized in the constructor
+    private OAuthStateErrorHandler oAuthStateErrorHandler; // will be initialized in the constructor
+    private OAuthExceptionHandler oAuthExceptionHandler; // will be initialized in the constructor
 
-    @Builder.Default
-    private OAuthErrorHandler oAuthErrorHandler = new OAuthDefaultErrorHandler();
-    @Builder.Default
-    private OAuthAccessErrorHandler oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
-    @Builder.Default
-    private OAuthV2AccessErrorHandler oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler();
-    @Builder.Default
-    private OAuthStateErrorHandler oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
-    @Builder.Default
-    private OAuthExceptionHandler oAuthExceptionHandler = new OAuthDefaultExceptionHandler();
+    private OAuthCallbackService oAuthCallbackService; // will be initialized by initOAuthServicesIfNecessary()
 
     private void initOAuthServicesIfNecessary() {
         if (appConfig.isDistributedApp() && appConfig.isOAuthCallbackEnabled()) {
@@ -370,6 +362,7 @@ public class App {
 
     public App(AppConfig appConfig, List<Middleware> middlewareList) {
         this(appConfig, appConfig.getSlack() != null ? appConfig.getSlack() : Slack.getInstance(), middlewareList);
+        this.status = Status.Stopped;
     }
 
     public App(AppConfig appConfig, Slack slack, List<Middleware> middlewareList) {
@@ -377,9 +370,19 @@ public class App {
         this.slack = slack;
         this.middlewareList = middlewareList;
 
+        this.oAuthStateService = new ClientOnlyOAuthStateService();
+
         this.installationService = new FileInstallationService(this.appConfig);
         this.oAuthSuccessHandler = new OAuthDefaultSuccessHandler(this.installationService);
         this.oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(this.installationService);
+
+        this.oAuthErrorHandler = new OAuthDefaultErrorHandler();
+        this.oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
+        this.oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler();
+        this.oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
+        this.oAuthExceptionHandler = new OAuthDefaultExceptionHandler();
+
+        this.oAuthCallbackService = null; // will be initialized by initOAuthServicesIfNecessary()
     }
 
     // --------------------------------------
@@ -394,7 +397,7 @@ public class App {
         return this.status;
     }
 
-    private AtomicBoolean neverStarted = new AtomicBoolean(true);
+    private final AtomicBoolean neverStarted = new AtomicBoolean(true);
 
     public App start() {
         synchronized (status) {
