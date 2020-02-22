@@ -392,7 +392,7 @@ Here is the list of available customizable options.
 |Name|Type|Description (Default Value)|
 |-|-|-|
 |**prettyResponseLoggingEnabled**|**boolean**|If this flag is set as true, the logger prints the whole response JSON data from Slack APIs in a prettified format. (default: `false`)|
-|**failOnUnknownProperties**|**boolean**|If this flag is set as true, JSON parser throws an exception when detecting an uknown property in a Slack API repsonse. (default: `false`)|
+|**failOnUnknownProperties**|**boolean**|If this flag is set as true, JSON parser throws an exception when detecting an uknown property in a Slack API response. (default: `false`)|
 |**tokenExistenceVerificationEnabled**|**boolean**|If this flag is set as true, **MethodsClient** throws exceptions when detecting missing token for API calls. (default: `false`)|
 |**httpClientResponseHandlers**|**List\<HttpResponseListener\>**|**HttpResponseListener** is a **Consumer\<HttpResponseListener.State\>** function that works as a post-processing hook for Web API calls. To know how to implement it, check the code snippet below. (default: mutable empty list)|
 |**auditEndpointUrlPrefix**|**String**|If you need to set a different URL prefix for Audit Logs API calls, you can set the one. (default: `"https://api.slack.com/audit/v1/"`)|

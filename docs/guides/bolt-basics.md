@@ -105,7 +105,7 @@ Are you already familiar with `response_url`? If not, we recommend reading [this
 
 As the guide says, some of the user interaction payloads may contain a `response_url`. This `response_url` is unique to each payload, and can be used to publish messages back to the place where the interaction happened.
 
-Similarly to **ack()** above, the **Context** object offers `respond()` method for easily taking advantage of `repsonse_url`.
+Similarly to **ack()** above, the **Context** object offers `respond()` method for easily taking advantage of `response_url`.
 
 ```java
 import com.slack.api.webhook.WebhookResponse;
@@ -116,7 +116,7 @@ app.command("/hello", (req, ctx) -> {
     .responseType("ephemeral") // or "in_channnel"
     .text("Hi there!") // blocks, attachments are also available
   );
-  return ctx.ack(); // ack() here doesn't post a mesage
+  return ctx.ack(); // ack() here doesn't post a message
 });
 ```
 

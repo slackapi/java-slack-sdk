@@ -120,7 +120,7 @@ app.event(MessageEvent.class, (payload, ctx) -> {
 
 ## Under the Hood
 
-If you hope to understand what is actually happening with the above code, reading  the following (a bit psuedo) code may be helpful.
+If you hope to understand what is actually happening with the above code, reading  the following (a bit pseudo) code may be helpful.
 
 ```java
 import java.util.Map;

@@ -15,7 +15,7 @@ This guide explains how to start your first-ever Bolt app.
   * Gradle
 * Run Your Bolt App in 3 Minutes
   * Use **bolt-jetty**
-  * Start the App with Two Env Varaibles
+  * Start the App with Two Env Variables
   * OK, What about Spring Boot?
 * Getting Started in Kotlin
   * Make Sure If It Works
@@ -122,7 +122,7 @@ public class MyApp {
 }
 ```
 
-### Start the App with Two Env Varaibles
+### Start the App with Two Env Variables
 
 The default constructor expects the following two env variables exist when starting the app.
 
