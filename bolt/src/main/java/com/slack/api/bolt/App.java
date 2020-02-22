@@ -111,7 +111,6 @@ public class App {
     /**
      * Current status of this App.
      */
-    @Builder.Default
     private Status status = Status.Stopped;
 
     // -------------------------------------
@@ -142,8 +141,7 @@ public class App {
     /**
      * Cached mapping between Event data types and their "{type}:{subtype}" values.
      */
-    @Builder.Default
-    private Map<Class<? extends Event>, String> eventTypeAndSubtypeValues = new HashMap<>();
+    private final Map<Class<? extends Event>, String> eventTypeAndSubtypeValues = new HashMap<>();
 
     private Class<? extends Event> getEventClass(String eventType) {
         for (Map.Entry<Class<? extends Event>, String> entry : eventTypeAndSubtypeValues.entrySet()) {
