@@ -6,7 +6,7 @@ lang: en
 
 # Events API
 
-The [Events API](https://api.slack.com/events-api) used in the following example is a streamlined, easy way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
+The [Events API](https://api.slack.com/events-api) used in the following example is a streamlined, easy way to build apps that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
 
 All you need to do to handle Events API requests are:
 
@@ -16,11 +16,11 @@ All you need to do to handle Events API requests are:
 1. Respond with 200 OK reply as aknowledgement
 
 
-Your app has to respond to the request within 3 seconds by `ack()` method for sure. Otherwise, the user will see the timeout error on Slack.
+Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
-## Bolt Examples
+## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [The Basics of Bolt]({{ site.url | append: site.baseurl }}/guides/Bolt), first.
+**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
 Bolt does most of the things for you. The steps you need to handle would be:
 
@@ -28,7 +28,7 @@ Bolt does most of the things for you. The steps you need to handle would be:
 * Whatever you want to do with the event data
 * Respond with 200 OK as the acknowledgment
 
-In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user at the conversation the event happened, call **chat.postMessage** API or other similar ones with `channel` in the event payload.
+In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user at the conversation the event happened, call [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) method or other similar ones with `channel` in the event payload.
 
 ```java
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -49,7 +49,7 @@ app.event(ReactionAddedEvent.class, (payload, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/Bolt#getting-started-in-kotlin) may be helpful)
+The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful)
 
 ```kotlin
 app.event(ReactionAddedEvent::class.java) { payload, ctx ->

@@ -16,16 +16,16 @@ To enable Interactive Components, visit the [Slack App configuration page](http:
 
 All your app needs to do to provide Home tabs to your app users are:
 
-1. Call the [**views.publish** API](https://api.slack.com/methods/views.publish) to update the Home tab per user
-2. Handle any user interactions on Home tab (`block_actions`, `block_suggestions`)
+1. Call the [**views.publish**](https://api.slack.com/methods/views.publish) method to update the Home tab on a per-user basis
+2. Handle any user interactions in Home tab (`block_actions`, `block_suggestion`)
 
-Most commonly, [`app_home_opened`](https://api.slack.com/events/app_home_opened) events would be used as the trigger to call **views.publish** API. But it's also fine to publish Home tabs by any other means.
+Most commonly, [`app_home_opened`](https://api.slack.com/events/app_home_opened) events would be used as the trigger to call the **views.publish** method. But it's also fine to publish Home tabs by any other means.
 
-## Bolt Examples
+## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [The Basics of Bolt]({{ site.url | append: site.baseurl }}/guides/Bolt), first.
+**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
-The following code calls **views.publish** API when receiving an `app_home_opened` events for the user that triggered the event. The user will see the updated Home tab immediately after the **views.publish** call has been successfully completed.
+The following code calls [**views.publish**](https://api.slack.com/methods/views.publish) method when receiving an [`app_home_opened` events](https://api.slack.com/events/app_home_opened) for the user that triggered the event. The user will see the updated Home tab immediately after the [**views.publish**](https://api.slack.com/methods/views.publish) call has been successfully completed.
 
 ```java
 import com.slack.api.methods.response.views.ViewsPublishResponse;
@@ -59,7 +59,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
 });
 ```
 
-It looks like as below in Kotlin. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/Bolt#getting-started-in-kotlin) may be helpful)
+It looks like as below in Kotlin. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful)
 
 ```kotlin
 // static imports

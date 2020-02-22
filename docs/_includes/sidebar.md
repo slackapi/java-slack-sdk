@@ -21,7 +21,8 @@
 <ul class="current">
   <li class="toctree-l1 current"><div class="toctree-h">Bolt for Java</div>
     <ul>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/bolt">The Basics of Bolt️</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt">Getting Started with Bolt</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/bolt-basics">Bolt Basics</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/slash-commands">Slash Commands</a></li>
       <!--
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/actions">Actions</a></li>

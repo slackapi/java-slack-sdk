@@ -13,7 +13,9 @@ A newly created Slack app can only be installed in its development workspace in 
 
 ### Slack App Configuration
 
-To enable App Distribution, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Manage Distribution** on the left pane, and follow the instructions there. For **Redirect URL**, Bolt apps respond to `https://{your app's public URL domain}/slack/oauth/callback` if you go with recommended settings.
+To enable App Distribution, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Manage Distribution** on the left pane, and follow the instructions there.
+
+For **Redirect URL**, Bolt apps respond to `https://{your app's public URL domain}/slack/oauth/callback` if you go with recommended settings. To know how to configure such settings, consult the list of the available env variables below in this page.
 
 ### What Your Bolt App Does
 
@@ -28,7 +30,7 @@ All your app needs to do to properly handle OAuth Flow are:
 * Provide the endpoints to navigate installers for the completion/cancellation of the installation flow
   * The URLs are usually somewhere else but Bolt has simple functionality to host them
 
-## Bolt Examples
+## Examples
 
 Here is a Bolt app demonstrating how to implement OAuth flow. As the OAuth flow handling features are unnecessary for many custom apps, those are disabled by default. **App** instances need to explicitly call `asOAuthApp(true)` to turn on them.
 

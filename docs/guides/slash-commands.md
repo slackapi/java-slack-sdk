@@ -6,9 +6,9 @@ lang: en
 
 # Slash Commands
 
-[Slash Commands](https://api.slack.com/interactivity/slash-commands) allow users to invoke your app by typing a string into the message composer box.
+[Slash Commands](https://api.slack.com/interactivity/slash-commands) allow users to invoke your app from the message composer box.
 
-Responding to slash command invocations is a common use case. Your app has to respond to the request within 3 seconds by `ack()` method for sure. Otherwise, the user will see the timeout error on Slack.
+Responding to slash command invocations is a common use case. Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
 ### Slack App Configuration
 
@@ -25,9 +25,9 @@ All your app needs to do to handle slash command requests are:
 
 If the response body is empty, the response will be recognized as just an acknowledgment. No message will be posted to the channel.
 
-## Bolt Examples
+## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [The Basics of Bolt]({{ site.url | append: site.baseurl }}/guides/Bolt), first.
+**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
 Bolt does most of the things for you. The steps you need to handle would be:
 
@@ -59,8 +59,7 @@ app.command("/echo", (req, ctx) -> {
 });
 ```
 
-The followings are the ones written in Kotlin. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/Bolt#getting-started-in-kotlin) may be helpful)
-
+The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful)
 
 ```kotlin
 app.command("/echo") { req, ctx ->

@@ -6,7 +6,7 @@ lang: en
 
 # Interactive Components
 
-[Interactive components](https://api.slack.com/reference/block-kit/interactive-components) are a subset of Block Kit elements that add interactivity to various app surfaces. Interactions on blocks may happen not only in messages but also on [Modals]({{ site.url | append: site.baseurl }}/guides/modals), and [Home tabs]({{ site.url | append: site.baseurl }}/guides/app-home).
+[Interactive components](https://api.slack.com/reference/block-kit/interactive-components) are a subset of Block Kit elements that add interactivity to various [surfaces](https://api.slack.com/surfaces). Interactions on blocks may happen not only in messages but also on [Modals]({{ site.url | append: site.baseurl }}/guides/modals), and [Home tabs]({{ site.url | append: site.baseurl }}/guides/app-home).
 
 ### Slack App Configuration
 
@@ -25,11 +25,11 @@ All your app needs to do to handle Slack requests by user interactions are:
 1. Build a reply message or surface to interact with the user further
 1. Respond with 200 OK as the aknowledgement
 
-Your app has to respond to the request within 3 seconds by `ack()` method for sure. Otherwise, the user will see the timeout error on Slack.
+Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack. For some of the requests including external selects, having valid parameters to the method may be required.
 
-## Bolt Examples
+## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [The Basics of Bolt]({{ site.url | append: site.baseurl }}/guides/Bolt), first.
+**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
 Bolt does most of the things for you. The steps you need to handle would be:
 
@@ -37,7 +37,7 @@ Bolt does most of the things for you. The steps you need to handle would be:
 * Build a reply message or surface to interact with the user further
 * Respond with 200 OK as the acknowledgment
 
-The request payloads have `request_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
+The request payloads have `request_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the action invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
 
 Let's say, a message has a simple action block that has a button.
 
@@ -125,7 +125,7 @@ app.blockAction("topics-action", (req, ctx) -> {
 });
 ```
 
-The same code in Kotlin looks like as below. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/Bolt#getting-started-in-kotlin) may be helpful)
+The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful)
 
 ```kotlin
 import com.slack.api.app_backend.interactive_components.response.Option

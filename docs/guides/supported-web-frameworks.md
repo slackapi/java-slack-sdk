@@ -138,16 +138,16 @@ $ gradle bootRun
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.2.RELEASE)
 
-2020-01-17 10:22:50.011  INFO 7815 --- [main] hello.Application                        : Starting Application on MACHNE_NAME with PID 7815 (/path-to-project/build/classes/java/main started by seratch in /path-to-project)
-2020-01-17 10:22:50.013  INFO 7815 --- [main] hello.Application                        : No active profile set, falling back to default profiles: default
-2020-01-17 10:22:50.473  INFO 7815 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3000 (http)
-2020-01-17 10:22:50.478  INFO 7815 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-01-17 10:22:50.479  INFO 7815 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
-2020-01-17 10:22:50.517  INFO 7815 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-01-17 10:22:50.517  INFO 7815 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 478 ms
-2020-01-17 10:22:50.750  INFO 7815 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-01-17 10:22:50.837  INFO 7815 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3000 (http) with context path ''
-2020-01-17 10:22:50.839  INFO 7815 --- [main] hello.Application                        : Started Application in 1.079 seconds (JVM running for 1.301)
+[main] hello.Application                        : Starting Application on MACHNE_NAME with PID 7815 (/path-to-project/build/classes/java/main started by seratch in /path-to-project)
+[main] hello.Application                        : No active profile set, falling back to default profiles: default
+[main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3000 (http)
+[main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+[main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+[main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+[main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 478 ms
+[main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+[main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3000 (http) with context path ''
+[main] hello.Application                        : Started Application in 1.079 seconds (JVM running for 1.301)
 <=========----> 75% EXECUTING [17s]
 > :bootRun
 ```
@@ -158,12 +158,11 @@ Then, forward requests to the app as always.
 ngrok http 3000 --subdomain {your-favorite-one}
 ```
 
+---
 
 ## Micronaut
 
-TODO 
-
-If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add **Bolt-micronaut**, not **Bolt-jetty**.
+If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add **bolt-micronaut**, NOT **bolt-jetty**. Needless to say, that's the same for Gradle projects.
 
 ```xml
 <dependency>
@@ -178,9 +177,13 @@ If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet
 </dependency>
 ```
 
-#### Application.java
+#### src/main/java/hello/Application.java
+
+**Application.java** is a kind of boilerplate. You can cut and paste the following code as-is.
 
 ```java
+package hello;
+
 import io.micronaut.runtime.Micronaut;
 
 public class Application {
@@ -190,18 +193,28 @@ public class Application {
 }
 ```
 
-#### AppFactory.java
+#### src/main/java/hello/AppFactory.java
+
+The simplest way would be to have some code that initializes the **App** instance in a factory class. Micronaut scans the classes with DI related annotations and uses them when injecting components for you.
 
 ```java
+package hello;
+
 import com.slack.api.bolt.App;
 import io.micronaut.context.annotation.Factory;
 import javax.inject.Singleton;
 
 @Factory
 public class AppFactory {
+
   @Singleton
-  public App createApp() {
-    App app = new App();
+  public AppConfig createAppConfig() {
+    return new AppConfig(); // loads the env variables
+  }
+
+  @Singleton
+  public App createApp(AppConfig config) {
+    App app = new App(config);
     app.command("/hello", (req, ctx) -> {
       return ctx.ack(r -> r.text("Thanks!"));
     });
@@ -210,7 +223,154 @@ public class AppFactory {
 }
 ```
 
+#### src/main/resources/application.yml
+
+To use a different port like 3000, place a configuration file for the app as below.
+
+```yaml
+---
+micronaut:
+  application:
+    name: micronaut-slack-app
+  server:
+    port: 3000
+```
+
+### Start the Micronaut App
+
+That's all set! It's time to hit `mvn run` to boot the app.
+
+```
+[main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1321ms. Server Running: http://localhost:3000
+```
+
+---
+
 
 ## Quarkus
 
-TODO
+[Quarkus](https://quarkus.io/) is a Web application framework that supports packaging for GraarlVM and HotSpot. In this section, I'll explain how to configure SlackAppServlet with the framework.
+
+You can generate a blank project from [code.quarkus.io](https://code.quarkus.io/). For simple Bolt apps, we recommend using **Undertow Servlet** in the **Web** component section. Nothing else is required. Just click **Generate your application** button and download the generated zip file.
+
+Although the RESTEasy dependency has to be included in a blank project, it's not necessary for a Bolt app. You can manually remove them from the build dependencies.
+
+### pom.xml
+
+```xml
+<dependency>
+  <groupId>io.quarkus</groupId>
+  <artifactId>quarkus-core</artifactId>
+  <version>${quarkus.version}</version>
+</dependency>
+<dependency>
+  <groupId>io.quarkus</groupId>
+  <artifactId>quarkus-undertow</artifactId>
+  <version>${quarkus.version}</version>
+</dependency>
+<dependency>
+  <groupId>com.slack.api</groupId>
+  <artifactId>bolt</artifactId>
+  <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+```
+
+### src/main/java/hello/SlackApp.java
+
+The only thing you need to do is to create a `@WebServlet`-wired class. The Quarkus framework scans such classes and enables them for you.
+
+```java
+package hello;
+
+import com.slack.api.bolt.App;
+import com.slack.api.bolt.response.Response;
+import com.slack.api.bolt.servlet.SlackAppServlet;
+
+import javax.servlet.annotation.WebServlet;
+import java.io.IOException;
+
+@WebServlet("/slack/events")
+public class SlackApp extends SlackAppServlet {
+
+  public SlackApp() throws IOException {
+    super(initSlackApp());
+  }
+
+  public SlackApp(App app) {
+    super(app);
+  }
+
+  private static App initSlackApp() throws IOException {
+    App app = new App();
+    app.command("/hello", (ctx, req) -> {
+        return Response.ok("What's up?");
+    });
+    return app;
+  }
+}
+```
+
+#### src/main/kotlin/hello/SlackApp.java
+
+If you choose Kotlin language when generating the project, the code would like this:
+
+```kotlin
+package hello
+
+import com.slack.api.bolt.App
+import com.slack.api.bolt.servlet.SlackAppServlet
+import javax.servlet.annotation.WebServlet
+
+@WebServlet("/slack/events")
+class SlackApp : SlackAppServlet(initSlackApp()) {
+
+  companion object {
+    fun initSlackApp(): App {
+      val app = App()
+      app.command("/ping") { req, ctx ->
+        ctx.ack { it.text("<@${req.payload.userId}> pong!") }
+      }
+      return app
+    }
+  }
+}
+```
+
+### src/main/resources/application.properties
+
+The default port Quarkus uses is 8080. You can change the port by having the following config.
+
+```
+quarkus.http.port=3000
+```
+
+### Run the App
+
+That’s all set! It’s time to run the app in its the dev mode.
+
+```bash
+./mvnw quarkus:dev
+```
+
+If your Quarkus project is correctly configured, the stdout should look like this.
+
+```
+[INFO] --- quarkus-maven-plugin:1.2.1.Final:dev (default-cli) @ code-with-quarkus ---
+[INFO] Applied plugin: 'all-open'
+[INFO] Changes detected - recompiling the module!
+Listening for transport dt_socket at address: 5005
+[io.quarkus] (main) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus 1.2.1.Final) started in 0.902s. Listening on: http://0.0.0.0:3000
+[io.quarkus] (main) Profile dev activated. Live Coding activated.
+[io.quarkus] (main) Installed features: [cdi, kotlin, servlet]
+```
+
+The hot reload mode is enabled by default.
+
+```
+[io.qua.dev] (vert.x-worker-thread-2) Changed source files detected, recompiling [/path-to-project/src/main/kotlin/hello/SlackApp.kt]
+[io.quarkus] (vert.x-worker-thread-2) Quarkus stopped in 0.001s
+[io.quarkus] (vert.x-worker-thread-2) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus 1.2.1.Final) started in 0.163s. Listening on: http://0.0.0.0:3000
+[io.quarkus] (vert.x-worker-thread-2) Profile dev activated. Live Coding activated.
+[io.quarkus] (vert.x-worker-thread-2) Installed features: [cdi, kotlin, servlet]
+[io.qua.dev] (vert.x-worker-thread-2) Hot replace total time: 0.572s
+```

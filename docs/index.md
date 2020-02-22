@@ -10,7 +10,7 @@ title: "Overview"
 The SDK offers two different modules depending on what platform features you intend to use:
 
 * [**Slack API Client**]({{ site.url | append: site.baseurl }}/guides/web-api-basics) for calling a variety of Slack APIs
-* [**Bolt for Java**]({{ site.url | append: site.baseurl }}/guides/bolt) Framework for Slack App development with full platform features
+* [**Bolt for Java**]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt) Framework for Slack App development with full platform features
 
 If what you want to do is call Slack APIs in your existing services, we recommend using only the **Slack API Client**. If instead, you’re developing a new modern and interactive Slack app, we recommend **Bolt** for it. The framework enables developers to focus on the essential parts of their apps without being bothered by trifles.
 

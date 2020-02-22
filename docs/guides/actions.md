@@ -12,7 +12,7 @@ As of March 2020, this SDK supports the following features (yes, there are [more
 
 * [Message Actions](https://api.slack.com/interactive-messages)
 
-For all types of action requests, your app has to respond to the request within 3 seconds by `ack()` method for sure. Otherwise, the user will see the timeout error on Slack.
+For all types of action requests, your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
 ## Message Actions
 
@@ -38,9 +38,9 @@ All your app needs to do to handle message actions requests are:
 1. Build a reply message or do whatever you want to do
 1. Respond with 200 OK as an acknowledgment
 
-## Bolt Examples
+## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [The Basics of Bolt]({{ site.url | append: site.baseurl }}/guides/bolt), first.
+**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
 Bolt does most of the things for you. The steps you need to handle would be:
 
@@ -79,7 +79,7 @@ View buildView(Message message) {
 }
 ```
 
-The followings are the ones written in Kotlin. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/bolt#getting-started-in-kotlin) may be helpful)
+The followings are the ones written in Kotlin. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful)
 
 ```kotlin
 app.messageAction("create-task-action-callback-id") { req, ctx ->
