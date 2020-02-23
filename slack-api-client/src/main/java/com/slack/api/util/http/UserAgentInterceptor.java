@@ -8,6 +8,9 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * An OkHttpClient interceptor that adds the SDK User-Agent to all the outgoing HTTP requests by this SDK.
+ */
 @Slf4j
 public class UserAgentInterceptor implements Interceptor {
 

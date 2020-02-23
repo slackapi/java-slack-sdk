@@ -13,9 +13,7 @@ import java.lang.reflect.Type;
  * Factory for deserializing BlockKit 'context block' elements from a
  * {@link com.slack.api.model.Message chat message response}.
  *
- * @see <a href=
- * "https://api.slack.com/reference/messaging/blocks#context">Context Block
- * documentation</a>
+ * @see <a href="https://api.slack.com/reference/messaging/blocks#context">Context Blocks</a>
  */
 public class GsonContextBlockElementFactory implements JsonDeserializer<ContextBlockElement>, JsonSerializer<ContextBlockElement> {
 

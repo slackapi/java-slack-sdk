@@ -12,9 +12,7 @@ import java.lang.reflect.Type;
  * Factory for deserializing BlockKit 'text object' elements from a
  * {@link com.slack.api.model.Message chat message response}.
  *
- * @see <a href=
- * "https://api.slack.com/reference/messaging/composition-objects#text">Text
- * Composition Objects documentation</a>
+ * @see <a href="https://api.slack.com/reference/messaging/composition-objects#text">Text Composition Objects</a>
  */
 public class GsonTextObjectFactory implements JsonDeserializer<TextObject>, JsonSerializer<TextObject> {
 

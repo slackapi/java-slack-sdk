@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * see https://api.slack.com/dialogs
+ * @see <a href="https://api.slack.com/dialogs">Dialogs</a>
  */
 @Data
 @Builder

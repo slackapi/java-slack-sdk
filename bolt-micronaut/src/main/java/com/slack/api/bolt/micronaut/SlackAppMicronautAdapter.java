@@ -20,6 +20,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * The default adaptor that translates Micronaut specific interfaces into Bolt's ones.
+ * This component requires singleton {@AppConfig} instance managed by the Micronaut DI container.
+ */
 @Slf4j
 @Singleton
 public class SlackAppMicronautAdapter {

@@ -30,7 +30,21 @@ import java.io.IOException;
 import java.net.*;
 
 /**
- * Slack API Client Facade
+ * This class is a kind of facade of a variety of Slack API clients offered by this SDK.
+ * Any objects of this class and all the APIs this class provides are thread-safe.
+ * We recommend sharing an instance across your application.
+ * <p>
+ * This class internally uses the OkHttpClient and the client has its own daemon thread
+ * for realizing its optimal resource management. When your app needs to close all the threads when shutting down etc,
+ * call #close() method to terminate those threads.
+ * <p>
+ * If your application depends on the Gson library for JSON manipulation as with this SDK
+ * and the app uses the latest version for some reasons, just in case, you may need to check
+ * the binary-compatibility among their releases. We don't think any issues happened before but
+ * in general, some libraries may break bin-compatibility among major/minor releases.
+ *
+ * @see <a href="https://square.github.io/okhttp/4.x/okhttp/okhttp3/-ok-http-client/">OkHttpClient</a>
+ * @see <a href="https://github.com/google/gson">Gson</a>
  */
 @Slf4j
 public class Slack implements AutoCloseable {
@@ -114,7 +128,8 @@ public class Slack implements AutoCloseable {
     /**
      * Creates an RTM API client.
      *
-     * @see "https://api.slack.com/docs/rate-limits#rtm"
+     * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
      */
     public RTMClient rtm(String apiToken) throws IOException {
         return rtmConnect(apiToken);
@@ -123,7 +138,8 @@ public class Slack implements AutoCloseable {
     /**
      * Creates an RTM API client using `/rtm.connect`.
      *
-     * @see "https://api.slack.com/docs/rate-limits#rtm"
+     * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
      */
     public RTMClient rtmConnect(String apiToken) throws IOException {
         return rtmConnect(apiToken, true);
@@ -132,7 +148,8 @@ public class Slack implements AutoCloseable {
     /**
      * Creates an RTM API client using `/rtm.connect`.
      *
-     * @see "https://api.slack.com/docs/rate-limits#rtm"
+     * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
      */
     public RTMClient rtmConnect(String apiToken, boolean fullUserInfoRequired) throws IOException {
         try {
@@ -168,7 +185,8 @@ public class Slack implements AutoCloseable {
     /**
      * Creates an RTM API client using `/rtm.start`.
      *
-     * @see "https://api.slack.com/docs/rate-limits#rtm"
+     * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
      */
     public RTMClient rtmStart(String apiToken) throws IOException {
         return rtmStart(apiToken, true);
@@ -177,7 +195,8 @@ public class Slack implements AutoCloseable {
     /**
      * Creates an RTM API client using `/rtm.start`.
      *
-     * @see "https://api.slack.com/docs/rate-limits#rtm"
+     * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
      */
     public RTMClient rtmStart(String apiToken, boolean fullUserInfoRequired) throws IOException {
         try {

@@ -33,8 +33,8 @@ public class CheckboxesElement extends BlockElement {
      * when it encounters an empty list in the generated JSON.
      * The proper solution if/when you don't want un-initialized fields is to have a Gson type adapter that skips empty lists
      *
-     * @see "https://github.com/slackapi/java-slack-sdk/pull/103"
-     * @see "https://stackoverflow.com/questions/11942118/how-do-you-get-gson-to-omit-null-or-empty-objects-and-empty-arrays-and-lists"
+     * @see <a href="https://github.com/slackapi/java-slack-sdk/pull/103">The Pull request #103</a>
+     * @see <a href="https://stackoverflow.com/questions/11942118/how-do-you-get-gson-to-omit-null-or-empty-objects-and-empty-arrays-and-lists">A related discussion on StackOverFlow.com</a>
      */
     private List<OptionObject> options;
 

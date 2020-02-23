@@ -7,6 +7,9 @@ import com.slack.api.util.json.GsonFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * An HTTP response listener that prints the response body in a prettified JSON format.
+ */
 public class ResponsePrettyPrintingListener extends HttpResponseListener {
 
     private static final Logger JSON_RESPONSE_LOGGER = LoggerFactory.getLogger(ResponsePrettyPrintingListener.class);
