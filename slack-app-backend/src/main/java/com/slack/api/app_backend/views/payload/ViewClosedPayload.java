@@ -7,8 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>
- * see https://api.slack.com/block-kit/surfaces/modals
+ * @see <a href="https://api.slack.com/block-kit/surfaces/modals">Modals</a>
  */
 @Data
 @Builder

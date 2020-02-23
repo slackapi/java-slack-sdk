@@ -20,7 +20,7 @@ import static com.slack.api.bolt.middleware.MiddlewareOps.isNoSlackSignatureRequ
 /**
  * Validates legacy verification token parameters.
  *
- * @see "https://api.slack.com/docs/verifying-requests-from-slack#verification_token_deprecation"
+ * @see <a href="https://api.slack.com/docs/verifying-requests-from-slack#verification_token_deprecation">Slack Request Verification</a>
  */
 @Deprecated
 @Slf4j

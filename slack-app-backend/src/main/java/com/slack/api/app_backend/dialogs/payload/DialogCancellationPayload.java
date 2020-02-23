@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>
- * see https://api.slack.com/dialogs
+ * @see <a href="https://api.slack.com/dialogs">Dialogs</a>
  */
 @Data
 @Builder

@@ -7,8 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * see https://api.slack.com/actions
- * see https://github.com/slackapi/bolt/blob/dae21827c1c11720e5d6c8f23abcddb2d983b1f2/src/types/actions/message-action.ts
+ * @see <a href="https://api.slack.com/actions">Actions</a>
  */
 @Data
 @Builder

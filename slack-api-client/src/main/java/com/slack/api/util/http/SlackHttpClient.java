@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * The Slack API HTTP Client.
+ */
 @Slf4j
 public class SlackHttpClient implements AutoCloseable {
 

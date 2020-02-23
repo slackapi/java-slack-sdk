@@ -7,6 +7,9 @@ import okio.Buffer;
 
 import java.io.IOException;
 
+/**
+ * An HTTP response listener that prints the details of request/response mainly for debugging purposes.
+ */
 @Slf4j
 public class DetailedLoggingListener extends HttpResponseListener {
 

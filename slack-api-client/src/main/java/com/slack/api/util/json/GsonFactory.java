@@ -10,10 +10,16 @@ import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.RichTextElement;
 
+/**
+ * Gson Factory for the entire SDK. This factory enables some Slack-specific settings.
+ */
 public class GsonFactory {
     private GsonFactory() {
     }
 
+    /**
+     * Most of the Slack APIs' key naming is snake-cased.
+     */
     public static Gson createSnakeCase() {
         return new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -25,6 +31,9 @@ public class GsonFactory {
                 .create();
     }
 
+    /**
+     * Most of the Slack APIs' key naming is snake-cased.
+     */
     public static Gson createSnakeCase(SlackConfig config) {
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -42,6 +51,9 @@ public class GsonFactory {
         return gsonBuilder.create();
     }
 
+    /**
+     * Mainly used for SCIM APIs.
+     */
     public static Gson createCamelCase(SlackConfig config) {
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(config.isFailOnUnknownProperties()))
