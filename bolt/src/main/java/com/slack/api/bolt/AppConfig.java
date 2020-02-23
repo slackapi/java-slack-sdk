@@ -54,8 +54,8 @@ public class AppConfig {
     private String singleTeamBotToken = System.getenv(EnvVariableName.SLACK_BOT_TOKEN);
     @Builder.Default
     private String signingSecret = System.getenv(EnvVariableName.SLACK_SIGNING_SECRET);
-    @Builder.Default
     @Deprecated
+    @Builder.Default
     private String verificationToken = System.getenv(EnvVariableName.SLACK_VERIFICATION_TOKEN);
 
     // https://api.slack.com/docs/oauth
@@ -64,9 +64,12 @@ public class AppConfig {
         return clientId != null && clientSecret != null;
     }
 
+    @Builder.Default
     private boolean oAuthStartEnabled = false;
+    @Builder.Default
     private boolean oAuthCallbackEnabled = false;
 
+    @Builder.Default
     // https://api.slack.com/authentication/migration
     private boolean classicAppPermissionsEnabled = false;
 

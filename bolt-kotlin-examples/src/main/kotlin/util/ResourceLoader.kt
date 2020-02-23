@@ -14,6 +14,7 @@ class ResourceLoader {
     companion object {
         private val logger = LoggerFactory.getLogger("resource-loader")
 
+        @Suppress("DEPRECATION")
         fun loadAppConfig(name: String = "appConfig.json"): AppConfig {
             val config = AppConfig()
             val classLoader = ResourceLoader::class.java.classLoader

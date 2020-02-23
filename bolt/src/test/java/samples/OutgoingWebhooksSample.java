@@ -23,7 +23,7 @@ public class OutgoingWebhooksSample {
 
         app.webhook("something", (req, ctx) -> {
             ctx.logger.info("outgoing webhook - {}", req);
-            return ctx.ack(r -> r.text("Hello " + req.getPayload().getUserName()));
+            return ctx.ack("Hello " + req.getPayload().getUserName());
         });
         TestSlackAppServer server = new TestSlackAppServer(app);
         server.start();

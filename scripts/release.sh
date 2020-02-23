@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mvn deploy \
+mvn clean deploy \
   -P release-sign-artifacts \
   -D maven.test.skip=true \
   -pl !bolt-kotlin-examples \

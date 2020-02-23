@@ -4,10 +4,12 @@ import com.google.gson.annotations.SerializedName;
 import com.slack.api.audit.AuditApiResponse;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class LogsResponse implements AuditApiResponse {
     private boolean ok;
     private String warning;

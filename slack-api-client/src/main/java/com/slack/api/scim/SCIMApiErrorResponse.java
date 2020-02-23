@@ -2,8 +2,10 @@ package com.slack.api.scim;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SCIMApiErrorResponse implements SCIMApiResponse {
 
     @SerializedName("Errors")

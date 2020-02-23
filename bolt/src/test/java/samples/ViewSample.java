@@ -79,11 +79,11 @@ public class ViewSample {
                 errors.put("agenda", "The agenda needs to be longer than 10 characters.");
             }
             if (errors.size() > 0) {
-                return ctx.ack(r -> r.responseAction("errors").errors(errors));
+                return ctx.ackWithErrors(errors);
             } else {
                 View view = GsonFactory.createSnakeCase().fromJson(view2, View.class);
                 view.setPrivateMetadata(JsonOps.toJsonString(req.getPayload().getView().getState()));
-                return ctx.ack(r -> r.responseAction("update").view(view));
+                return ctx.ackWithUpdate(view);
             }
         });
 
