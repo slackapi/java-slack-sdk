@@ -8,16 +8,20 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * see "https://api.slack.com/docs/verifying-requests-from-slack"
+ * Slack request signature representation in Java.
+ *
+ * @see <a href="https://api.slack.com/docs/verifying-requests-from-slack">Slack Request Verification</a>
  */
 public class SlackSignature {
 
     public static final String ALGORITHM = "HmacSHA256";
 
-
     private SlackSignature() {
     }
 
+    /**
+     * The collection of the request header names related to the Slack request verification.
+     */
     public static class HeaderNames {
         private HeaderNames() {
         }
@@ -28,6 +32,9 @@ public class SlackSignature {
 
     }
 
+    /**
+     * Secret key for the Slack request verification. The value is shared between Slack API server and a Slack app.
+     */
     public static class Secret {
         private Secret() {
         }
@@ -35,6 +42,9 @@ public class SlackSignature {
         public static final String DEFAULT_ENV_NAME = "SLACK_SIGNING_SECRET";
     }
 
+    /**
+     * This utility verifies if the timestamp header value if valid.
+     */
     public static class TimestampVerifier {
 
         public static final int TIMESTAMP_EXPIRATION_TIME_IN_MILLIS = 60 * 5 * 1000; // 5 minutes
@@ -56,6 +66,9 @@ public class SlackSignature {
         }
     }
 
+    /**
+     * This utility has the ability to generate the Slack request signature.
+     */
     @Slf4j
     public static class Generator {
 
@@ -105,6 +118,9 @@ public class SlackSignature {
 
     }
 
+    /**
+     * This utility has the ability to verify if a given signature and related values are valid.
+     */
     @Slf4j
     public static class Verifier {
 

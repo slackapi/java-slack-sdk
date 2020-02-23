@@ -6,7 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * https://api.slack.com/apps
+ * The basic configuration for Slack apps.
+ *
+ * @see <a href="https://api.slack.com/apps">The list of your Slack apps</a>
+ * @see <a href="https://api.slack.com/docs/oauth">Slack OAuth</a>
  */
 @Data
 @Builder

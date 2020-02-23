@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Represents a Slack Modal Dialog
  *
- * @see <a href="https://api.slack.com/dialogs">Slack Modal Dialog</a>
+ * @see <a href="https://api.slack.com/dialogs">Slack Dialogs</a>
  */
 @Data
 @Builder

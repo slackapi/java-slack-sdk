@@ -16,6 +16,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The AWS Lambda handler base class. A sub class that inherits this abstract class works as a Lambda handler.
+ *
+ * @see <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>
+ */
 @Slf4j
 public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGatewayRequest, ApiGatewayResponse> {
 

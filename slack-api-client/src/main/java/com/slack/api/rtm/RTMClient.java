@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Real Time Messaging API
+ * Real Time Messaging (RTM) API
  * <p>
- * https://api.slack.com/rtm
+ * @see <a href="https://api.slack.com/rtm">RTM API</a>
  */
 @ClientEndpoint
 @Slf4j

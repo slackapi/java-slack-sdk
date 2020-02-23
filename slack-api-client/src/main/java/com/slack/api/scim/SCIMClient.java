@@ -7,7 +7,16 @@ import com.slack.api.scim.response.*;
 import java.io.IOException;
 
 /**
- * <a href="https://api.slack.com/scim">API Methods</a>
+ * Slack SCIM API client.
+ * <p>
+ * Provision and manage user accounts and groups with the Slack SCIM API.
+ * SCIM is used by Single Sign-On (SSO) services and identity providers to manage people
+ * across a variety of tools, including Slack.
+ * <p>
+ * It's also possible to write your own apps
+ * and scripts using the SCIM API to programmatically manage the members of your workspace.
+ *
+ * @see <a href="https://api.slack.com/scim">Slack SCIM API</a>
  */
 public interface SCIMClient {
 

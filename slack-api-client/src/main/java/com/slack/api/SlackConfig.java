@@ -14,9 +14,15 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The basic configuration of this SDK. Some settings can be propagated to sub modules such as Bolt.
+ */
 @Data
 public class SlackConfig {
 
+    /**
+     * The default instance is immutable. It's not allowed to modify the value runtime for any reasons.
+     */
     public static final SlackConfig DEFAULT = new SlackConfig() {
 
         void throwException() {
