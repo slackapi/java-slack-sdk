@@ -150,24 +150,24 @@ server.start();
 Slack has two types of OAuth flows for Slack app installations. The V2 OAuth flow enables Slack apps to request more granular permissions than the classic ones, especially for bot users. The differences between the two types are having `v2` in the endpoint to issue access tokens and the OAuth authorization URL, plus some changes to the response data structure returned by the `oauth(.v2).access` endpoint.
 
 * [V2 OAuth 2.0 Flow](https://api.slack.com/authentication/oauth-v2) (default)
-  * Web API to issue access tokens - [`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access)
   * Authorization URL - `https://slack.com/oauth/v2/authorize`
+  * Web API to issue access tokens - [`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access)
 * [Classic OAuth Flow](https://api.slack.com/docs/oauth)
-  * Web API to issue tokens - [`oauth.access`](https://api.slack.com/methods/oauth.access)
   * Authorization URL - `https://slack.com/oauth/authorize`
+  * Web API to issue tokens - [`oauth.access`](https://api.slack.com/methods/oauth.access)
 
-By default, Bolt enables the V2 OAuth Flow over the classic one. It's configurable by **AppConfig**'s the setter method for `granularBotPermissionsEnabled`. The value is set to true by default. Change the flag to false to authorize your class OAuth apps.
+By default, Bolt enables the V2 OAuth Flow over the classic one. It's configurable by **AppConfig**'s the setter method for `classicAppPermissionsEnabled`. The value is set to `false` by default. Change the flag to `true` to authorize your classic OAuth apps.
 
 ```java
 AppConfig appConfig = new AppConfig();
-appConfig.setGranularBotPermissionsEnabled(false);
+appConfig.setClassicAppPermissionsEnabled(true);
 App app = new App(appConfig);
 ```
 
 **InstallationService** absorbs the difference in the response structure. So, you don't need to change anything even when you switch from the classic OAuth to the V2.
 
 
-#### Host the Completion/Cancellation Pages in Bolt App
+#### Host the Completion/Cancellation Pages in Bolt Apps
 
 Most apps tend to choose static pages for the completion/cancellation URLs but it's also possible to host those URLs in the same app. bolt doesn't offer any features to render web pages. Use your favorite template engine for it.
 
