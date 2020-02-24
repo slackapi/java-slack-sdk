@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * https://api.slack.com/docs/slack-status
+ * Slack Status API V2 Client.
+ *
+ * @see <a href="https://api.slack.com/docs/slack-status">Slack Status API</a>
  */
 public interface StatusClient {
 

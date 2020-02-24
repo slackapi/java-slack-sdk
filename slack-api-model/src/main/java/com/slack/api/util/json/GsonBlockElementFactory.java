@@ -11,9 +11,7 @@ import java.lang.reflect.Type;
  * images, menus) from a {@link com.slack.api.model.Message chat
  * message response}.
  *
- * @see <a href=
- * "https://api.slack.com/reference/messaging/block-elements">Block
- * Elements documentation</a>
+ * @see <a href="https://api.slack.com/reference/messaging/block-elements">Block Elements</a>
  */
 public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, JsonSerializer<BlockElement> {
 

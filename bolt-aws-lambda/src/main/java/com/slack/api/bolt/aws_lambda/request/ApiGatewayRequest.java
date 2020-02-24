@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.util.Map;
 
+/**
+ * The incoming request from AWS API Gateway to a Lambda function.
+ * @see <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html">The official tutorial</a>
+ */
 @Data
 public class ApiGatewayRequest {
 

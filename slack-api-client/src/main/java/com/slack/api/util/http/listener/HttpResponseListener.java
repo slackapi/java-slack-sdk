@@ -7,6 +7,10 @@ import okhttp3.Response;
 
 import java.util.function.Consumer;
 
+/**
+ * An HTTP response listener that enables developers to add additional operations
+ * after any Slack API calls.
+ */
 public abstract class HttpResponseListener implements Consumer<HttpResponseListener.State> {
 
     public abstract void accept(State state);

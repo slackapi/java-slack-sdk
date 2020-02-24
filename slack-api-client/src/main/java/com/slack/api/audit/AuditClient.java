@@ -11,7 +11,15 @@ import com.slack.api.audit.response.SchemasResponse;
 import java.io.IOException;
 
 /**
- * https://api.slack.com/docs/audit-logs-api
+ * Audit Logs API client.
+ * <p>
+ * Monitor what's happening in your Enterprise Grid organization using Slack's Audit Logs API.
+ * The Audit Logs API can be used by security information and event management (SIEM) tools
+ * to provide analysis of how your Slack organization is being accessed.
+ * <p>
+ * You can also use this API to write your own applications to see how members of your organization are using Slack.
+ *
+ * @see <a href="https://api.slack.com/docs/audit-logs-api>Slack Audit Logs API</a>
  */
 public interface AuditClient {
 

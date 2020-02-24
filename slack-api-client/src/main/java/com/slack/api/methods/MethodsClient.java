@@ -150,8 +150,9 @@ import okhttp3.Response;
 import java.io.IOException;
 
 /**
- * API Methods.
- * https://api.slack.com/methods
+ * Slack API Methods client.
+ *
+ * c<a href="https://api.slack.com/methods">Slack API Methods</a>
  */
 public interface MethodsClient {
 

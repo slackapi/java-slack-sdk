@@ -21,6 +21,11 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * An HTTP server backed by Jetty HTTP Server that runs {@link App} apps.
+ *
+ * @see <a href="https://www.eclipse.org/jetty/">Jetty HTTP Server</a>
+ */
 @Slf4j
 public class SlackAppServer {
 
@@ -28,6 +33,7 @@ public class SlackAppServer {
     private final Map<String, App> pathToApp;
     private final boolean localDebug = System.getenv("SLACK_APP_LOCAL_DEBUG") != null;
 
+    // This is intentionally mutable to allow developers to register their own one
     private ErrorHandler errorHandler = new ErrorHandler() {
         @Override
         protected void writeErrorPage(

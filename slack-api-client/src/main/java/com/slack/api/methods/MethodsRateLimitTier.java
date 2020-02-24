@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @see "https://api.slack.com/docs/rate-limits"
+ * @see <a href="https://api.slack.com/docs/rate-limits">Slack Rate Lmits</a>
  */
 public enum MethodsRateLimitTier {
 

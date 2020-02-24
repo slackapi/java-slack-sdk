@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * Manages state parameters for Slack OAuth flow.
  *
- * @see "https://api.slack.com/docs/oauth"
+ * @see <a href="https://api.slack.com/docs/oauth">Slack OAuth</a>
  */
 public interface OAuthStateService {
 

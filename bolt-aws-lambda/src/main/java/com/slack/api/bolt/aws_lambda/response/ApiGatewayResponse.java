@@ -10,6 +10,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The valid format of a response supposed to be sent.
+ */
 @Slf4j
 public class ApiGatewayResponse {
 

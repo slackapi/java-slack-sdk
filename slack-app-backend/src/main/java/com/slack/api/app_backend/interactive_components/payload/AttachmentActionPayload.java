@@ -13,7 +13,7 @@ import java.util.List;
  * or they have some custom actions available.
  * Rather than remaining mostly static, interactive messages evolve over time.
  * <p>
- * see https://api.slack.com/interactive-messages
+ * @see <a href="https://api.slack.com/interactive-messages">Interactive messages</a>
  */
 @Data
 @Builder

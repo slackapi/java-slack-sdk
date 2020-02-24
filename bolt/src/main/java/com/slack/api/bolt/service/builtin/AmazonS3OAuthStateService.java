@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * OAuthStateService implementation using Amazon S3.
  *
- * @see "https://aws.amazon.com/s3/"
+ * @see <a href="https://aws.amazon.com/s3/">Amazon S3</a>
  */
 @Slf4j
 public class AmazonS3OAuthStateService implements OAuthStateService {
