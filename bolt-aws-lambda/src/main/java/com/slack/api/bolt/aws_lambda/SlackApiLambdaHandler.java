@@ -80,11 +80,14 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
     }
 
     private static Map<String, List<String>> toStringToStringListMap(Map<String, String> stringToStringListMap) {
-        Map<String, List<String>> headers = new HashMap<>();
-        for (Map.Entry<String, String> each : stringToStringListMap.entrySet()) {
-            headers.put(each.getKey(), Arrays.asList(each.getValue()));
+        if (stringToStringListMap == null) {
+            return null;
         }
-        return headers;
+        Map<String, List<String>> results = new HashMap<>();
+        for (Map.Entry<String, String> each : stringToStringListMap.entrySet()) {
+            results.put(each.getKey(), Arrays.asList(each.getValue()));
+        }
+        return results;
     }
 
 }
