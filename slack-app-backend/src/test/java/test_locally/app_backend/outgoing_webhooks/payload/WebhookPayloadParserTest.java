@@ -1,7 +1,7 @@
 package test_locally.app_backend.outgoing_webhooks.payload;
 
-import com.slack.api.app_backend.outgoing_webhooks.payload.WebhookPayload;
 import com.slack.api.app_backend.outgoing_webhooks.WebhookPayloadParser;
+import com.slack.api.app_backend.outgoing_webhooks.payload.WebhookPayload;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

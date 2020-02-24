@@ -20,7 +20,7 @@ public class OptionObject {
     private PlainTextObject text;
 
     /**
-     *	The text for the block. This field accepts any of the standard text formatting markup when type is mrkdwn.
+     * The text for the block. This field accepts any of the standard text formatting markup when type is mrkdwn.
      */
     private String value;
 

@@ -360,7 +360,7 @@ public class AdminApiTest {
                         .adminTeamsSettingsSetIcon(r -> r/*.teamId(teamId)*/.imageUrl("https://avatars.slack-edge.com/2019-05-24/634650041250_0c70b65cdfc88ac9ef96_192.jpg")).get();
                 assertThat(setIcon.getError(), is("invalid_arguments"));
                 assertThat(setIcon.getResponseMetadata().getMessages().toString(), is("[[ERROR] missing required field: team_id]"));
-            } catch (CompletionException e) {
+            } catch (CompletionException | ExecutionException e) {
                 log.warn("timed out", e);
             }
 
@@ -368,7 +368,7 @@ public class AdminApiTest {
                 AdminTeamsSettingsSetIconResponse setIcon = methodsAsync
                         .adminTeamsSettingsSetIcon(r -> r.teamId(teamId).imageUrl("https://avatars.slack-edge.com/2019-05-24/634650041250_0c70b65cdfc88ac9ef96_192.jpg")).get();
                 assertThat(setIcon.getError(), is(nullValue()));
-            } catch (CompletionException e) {
+            } catch (CompletionException | ExecutionException e) {
                 log.warn("timed out", e);
             }
         }

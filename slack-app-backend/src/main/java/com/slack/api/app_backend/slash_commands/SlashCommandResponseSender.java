@@ -1,9 +1,9 @@
 package com.slack.api.app_backend.slash_commands;
 
 import com.slack.api.Slack;
-import com.slack.api.webhook.WebhookResponse;
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.util.http.SlackHttpClient;
+import com.slack.api.webhook.WebhookResponse;
 import okhttp3.Response;
 
 import java.io.IOException;

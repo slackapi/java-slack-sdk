@@ -1,6 +1,5 @@
 package com.slack.api.bolt.service;
 
-import com.slack.api.bolt.Initializer;
 import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.model.block.LayoutBlock;

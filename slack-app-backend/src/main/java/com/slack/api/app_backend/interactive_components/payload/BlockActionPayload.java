@@ -1,11 +1,11 @@
 package com.slack.api.app_backend.interactive_components.payload;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.view.View;
-import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

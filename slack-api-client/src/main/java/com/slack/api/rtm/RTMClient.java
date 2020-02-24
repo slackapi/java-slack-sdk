@@ -12,7 +12,6 @@ import org.glassfish.tyrus.client.ClientProperties;
 import javax.websocket.*;
 import java.io.Closeable;
 import java.io.IOException;
-import java.net.Proxy;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -21,6 +20,7 @@ import java.util.List;
 /**
  * Real Time Messaging (RTM) API
  * <p>
+ *
  * @see <a href="https://api.slack.com/rtm">RTM API</a>
  */
 @ClientEndpoint

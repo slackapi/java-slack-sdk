@@ -109,6 +109,12 @@
                   "ok_text": "",
                   "dismiss_text": ""
                 },
+                "options": [
+                  ""
+                ],
+                "selected_options": [
+                  ""
+                ],
                 "data_source": "",
                 "min_query_length": 12345,
                 "url": ""
@@ -197,6 +203,12 @@
                   "ok_text": "",
                   "dismiss_text": ""
                 },
+                "options": [
+                  ""
+                ],
+                "selected_options": [
+                  ""
+                ],
                 "data_source": "",
                 "min_query_length": 12345,
                 "url": ""
@@ -285,6 +297,12 @@
                   "ok_text": "",
                   "dismiss_text": ""
                 },
+                "options": [
+                  ""
+                ],
+                "selected_options": [
+                  ""
+                ],
                 "data_source": "",
                 "min_query_length": 12345,
                 "url": ""
@@ -611,6 +629,12 @@
                     "ok_text": "",
                     "dismiss_text": ""
                   },
+                  "options": [
+                    ""
+                  ],
+                  "selected_options": [
+                    ""
+                  ],
                   "data_source": "",
                   "min_query_length": 12345,
                   "url": ""
@@ -937,6 +961,12 @@
                     "ok_text": "",
                     "dismiss_text": ""
                   },
+                  "options": [
+                    ""
+                  ],
+                  "selected_options": [
+                    ""
+                  ],
                   "data_source": "",
                   "min_query_length": 12345,
                   "url": ""

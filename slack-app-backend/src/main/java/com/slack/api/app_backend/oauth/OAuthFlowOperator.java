@@ -1,13 +1,13 @@
 package com.slack.api.app_backend.oauth;
 
 import com.slack.api.Slack;
+import com.slack.api.app_backend.config.SlackAppConfig;
+import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
-import com.slack.api.app_backend.config.SlackAppConfig;
-import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 
 import java.io.IOException;
 

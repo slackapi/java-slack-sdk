@@ -1,6 +1,9 @@
 package com.slack.api.methods.impl;
 
-import com.slack.api.methods.*;
+import com.slack.api.methods.Methods;
+import com.slack.api.methods.MethodsConfig;
+import com.slack.api.methods.MethodsRateLimitTier;
+import com.slack.api.methods.MethodsRateLimits;
 import com.slack.api.methods.metrics.LastMinuteRequests;
 import com.slack.api.methods.metrics.MetricsDatastore;
 import lombok.AllArgsConstructor;

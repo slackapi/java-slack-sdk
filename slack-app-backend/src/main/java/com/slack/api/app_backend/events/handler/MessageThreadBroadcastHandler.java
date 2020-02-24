@@ -1,8 +1,8 @@
 package com.slack.api.app_backend.events.handler;
 
-import com.slack.api.model.event.MessageThreadBroadcastEvent;
 import com.slack.api.app_backend.events.EventHandler;
 import com.slack.api.app_backend.events.payload.MessageThreadBroadcastPayload;
+import com.slack.api.model.event.MessageThreadBroadcastEvent;
 
 public abstract class MessageThreadBroadcastHandler extends EventHandler<MessageThreadBroadcastPayload> {
 
