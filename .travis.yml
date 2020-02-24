@@ -10,6 +10,6 @@ install:
   - echo 'skipped'
 script:
   - travis_retry ./mvnw test-compile
-  - travis_retry ./mvnw '-Dtest=test_locally.**.*Test' test -DfailIfNoTests=false
+  - travis_retry ./scripts/run_no_prep_tests.sh
   - travis_retry ./mvnw install -Dmaven.test.skip=true
   - travis_retry ./mvnw duplicate-finder:check

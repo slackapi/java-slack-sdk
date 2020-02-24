@@ -1,12 +1,16 @@
 package test_locally;
 
 import com.slack.api.bolt.App;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 
+@Slf4j
 public class AppTest {
 
     @Test
@@ -55,6 +59,47 @@ public class AppTest {
 
         app = app.toOAuthStartApp();
         assertNotNull(app.config());
+    }
+
+    @Test
+    public void initializer_called() {
+        App app = new App();
+        final AtomicBoolean called = new AtomicBoolean(false);
+        assertThat(called.get(), is(false));
+
+        app.initializer("foo", (theApp) -> {
+            called.set(true);
+        });
+        app.initialize();
+        assertThat(called.get(), is(true));
+    }
+
+    @Test
+    public void initializer_start() {
+        App app = new App();
+        final AtomicBoolean called = new AtomicBoolean(false);
+        assertThat(called.get(), is(false));
+
+        app.initializer("foo", (theApp) -> {
+            called.set(true);
+        });
+        app.start();
+        assertThat(called.get(), is(true));
+    }
+
+    @Test
+    public void initializer_same_key() {
+        App app = new App();
+        final AtomicBoolean called = new AtomicBoolean(false);
+        assertThat(called.get(), is(false));
+
+        app.initializer("foo", (theApp) -> {
+            called.set(true);
+        });
+        app.initializer("foo", (theApp) -> {
+        });
+        app.initialize();
+        assertThat(called.get(), is(false));
     }
 
 }

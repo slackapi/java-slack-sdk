@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.util.IOUtils;
+import com.slack.api.bolt.Initializer;
 import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.model.builtin.DefaultBot;
@@ -26,6 +27,17 @@ public class AmazonS3InstallationService implements InstallationService {
 
     public AmazonS3InstallationService(String bucketName) {
         this.bucketName = bucketName;
+    }
+
+    @Override
+    public Initializer initializer() {
+        return (app) -> {
+            try {
+                // The first access to S3 tends to be slow on AWS Lambda.
+                this.createS3Client().getObjectMetadata(bucketName, "dummy-for-initializer");
+            } catch (AmazonS3Exception ignored) {
+            }
+        };
     }
 
     @Override

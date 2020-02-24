@@ -59,13 +59,19 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
     @Override
     public ApiGatewayResponse handleRequest(ApiGatewayRequest input, Context context) {
         if (isWarmupRequest(input)) {
-            return ApiGatewayResponse.builder().statusCode(200).build();
+            // This one is always an internal request
+            // (It's not possible to create this request body via API Gateway)
+            app.start();
+            log.info("Successfully responded to a warmup request ({})", input);
+            return null;
         }
         Request<?> req = toSlackRequest(input);
         try {
             return toApiGatewayResponse(app.run(req));
         } catch (Exception e) {
-            return ApiGatewayResponse.builder().statusCode(500).rawBody(e.getMessage()).build();
+            log.error("Failed to respond to a request (request: {}, error: {})", input.getBody(), e.getMessage());
+            // As this response body can be exposed, it should not have detailed information.
+            return ApiGatewayResponse.builder().statusCode(500).rawBody("Internal Server Error").build();
         }
     }
 

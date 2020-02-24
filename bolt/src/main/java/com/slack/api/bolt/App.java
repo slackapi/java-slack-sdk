@@ -20,6 +20,7 @@ import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
 import com.slack.api.bolt.service.OAuthCallbackService;
 import com.slack.api.bolt.service.OAuthStateService;
+import com.slack.api.bolt.service.Service;
 import com.slack.api.bolt.service.builtin.ClientOnlyOAuthStateService;
 import com.slack.api.bolt.service.builtin.DefaultOAuthCallbackService;
 import com.slack.api.bolt.service.builtin.FileInstallationService;
@@ -393,8 +394,32 @@ public class App {
         return this.appConfig;
     }
 
+    // ----------------------
+    // App Status and Initializers
+
     public App.Status status() {
         return this.status;
+    }
+
+    private final Map<String, Initializer> componentNameToInitializer = new HashMap<>();
+
+    private void putServiceInitializer(Class<? extends Service> clazz, Initializer initializer) {
+        String canonicalName = clazz.getCanonicalName();
+        this.initializer(canonicalName, initializer);
+    }
+
+    public App initializer(String name, Initializer initializer) {
+        componentNameToInitializer.put(name, initializer);
+        return this;
+    }
+
+    public void initialize() {
+        initOAuthServicesIfNecessary();
+        if (neverStarted.get() && config().isAppInitializersEnabled()) {
+            for (Initializer initializer : componentNameToInitializer.values()) {
+                initializer.accept(this);
+            }
+        }
     }
 
     private final AtomicBoolean neverStarted = new AtomicBoolean(true);
@@ -405,7 +430,7 @@ public class App {
                 if (middlewareList == null) {
                     middlewareList = buildDefaultMiddlewareList(appConfig);
                 }
-                initOAuthServicesIfNecessary();
+                initialize();
 
                 if (!this.eventsDispatcher.isEmpty()) {
                     this.eventsDispatcher.start();
@@ -646,16 +671,19 @@ public class App {
 
     public App service(OAuthCallbackService oAuthCallbackService) {
         this.oAuthCallbackService = oAuthCallbackService;
+        putServiceInitializer(OAuthCallbackService.class, oAuthCallbackService.initializer());
         return this;
     }
 
     public App service(OAuthStateService oAuthStateService) {
         this.oAuthStateService = oAuthStateService;
+        putServiceInitializer(OAuthStateService.class, oAuthStateService.initializer());
         return this;
     }
 
     public App service(InstallationService installationService) {
         this.installationService = installationService;
+        putServiceInitializer(InstallationService.class, installationService.initializer());
         if (config().isClassicAppPermissionsEnabled()) {
             return oauthCallback(new OAuthDefaultSuccessHandler(installationService));
         } else {
@@ -738,6 +766,9 @@ public class App {
             Response response,
             Middleware current,
             LinkedList<Middleware> remaining) throws Exception {
+        if (log.isDebugEnabled()) {
+            log.debug("Start running a middleware (name: {})", current.getClass().getCanonicalName());
+        }
         if (remaining.isEmpty()) {
             return current.apply(request, response, (req) -> runHandler(req));
         } else {
@@ -747,6 +778,9 @@ public class App {
     }
 
     protected Response runHandler(Request slackRequest) throws IOException, SlackApiException {
+        if (log.isDebugEnabled()) {
+            log.debug("Start running the main handler (request type: {})", slackRequest.getRequestType());
+        }
         switch (slackRequest.getRequestType()) {
             case OAuthStart: {
                 if (config().isDistributedApp()) {
