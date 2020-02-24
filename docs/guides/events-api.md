@@ -141,8 +141,8 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // The request body in JSON format
   String payloadString = request.getBodyAsString();
   String eventType = PseudoEventTypeExtractor.extract(payloadString);
-  Gson gson = GsonFactory.createSnakeCase();
   if (eventType != null && eventType.equals("message")) {
+    Gson gson = GsonFactory.createSnakeCase();
     MessagePayload payload = gson.fromJson(payloadString, MessagePayload.class);
     // 3. Whatever you want to do with the event data
   } else {

@@ -18,7 +18,7 @@ To enable slash commands, visit the [Slack App configuration page](http://api.sl
 
 All your app needs to do to handle slash command requests are:
 
-1. Verify requests from Slack (read [this](https://api.slack.com/docs/verifying-requests-from-slack) if unfamiliar)
+1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `command` is the one you'd like to handle
 1. Build a reply message or do whatever you want to do
 1. Respond with 200 OK as an acknowledgment
@@ -45,7 +45,7 @@ app.command("/echo", (req, ctx) -> {
   String channelId = req.getPayload().getChannelId();
   String channelName = req.getPayload().getChannelName();
   String text = "You said " + commandArgText + " at <#" + channelId + "|" + channelName + ">";
-  return ctx.ack(body -> body.text(text)); // respond with 200 OK
+  return ctx.ack(text); // respond with 200 OK
 });
 ```
 
@@ -54,7 +54,7 @@ Here is the example to use `response_url` for posting a message. It's also fine 
 ```java
 app.command("/echo", (req, ctx) -> {
   String text = buildMessage(req);
-  ctx.respond(body -> body.text(text)); // perform an HTTP request
+  ctx.respond(text); // perform an HTTP request
   return ctx.ack(); // respond with 200 OK
 });
 ```
@@ -76,6 +76,8 @@ app.command("/echo") { req, ctx ->
   ctx.ack()
 }
 ```
+
+To learn how to build [Block Kit](https://api.slack.com/block-kit) messages with this SDK, consult [Composing Messages]({{ site.url | append: site.baseurl }}/guides/composing-messages).
 
 ## Under the Hood
 

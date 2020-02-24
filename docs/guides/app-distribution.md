@@ -57,14 +57,11 @@ App oauthApp = new App().asOAuthApp(true);
 
 // Mount the two apps with their root path
 SlackAppServer server = new SlackAppServer(Map.of(
-  entry("/slack/events", apiApp),
-  entry("/slack/oauth", oauthApp)
+  entry("/slack/events", apiApp), // POST /slack/events (incomng API requests from the Slack Platform)
+  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
 ));
 
-server.start()
-// http://localhost:3000/slack/events for API requests from Slack
-// http://localhost:3000/slack/oauth${SLACK_APP_OAUTH_START_PATH} for user accesses
-// http://localhost:3000/slack/oauth${SLACK_APP_OAUTH_CALLBACK_PATH} for user accesses
+server.start(); // http://localhost:3000
 ```
 
 Technically, it's possible to use a single **App** for both Slack API requests and direct user interactions for the OAuth flow. But most apps probably will prefer to have a different root path for OAuth interactions.
@@ -121,8 +118,6 @@ InstallationService installationService = new AmazonS3InstallationService(awsS3B
 // Set true if you'd like to store every single instllation as a different record
 installationService.setHistoricalDataEnabled(true);
 
-OAuthStateService stateService = new AmazonS3OAuthStateService(awsS3BucketName);
-
 // apiApp uses only InstallationService to access stored tokens
 App apiApp = new App();
 apiApp.command("/hi", (req, ctx) -> {
@@ -134,15 +129,19 @@ apiApp.service(installationService);
 // In addition, it uses OAuthStateService to create/read/delete state parameters
 App oauthApp = new App().asOAuthApp(true);
 oauthApp.service(installationService);
+
+// Store valid state parameter values in Amazon S3 storage
+OAuthStateService stateService = new AmazonS3OAuthStateService(awsS3BucketName);
+// This service is necessary only for OAuth flow apps
 oauthApp.service(stateService);
 
 // Mount the two apps with their root path
 SlackAppServer server = new SlackAppServer(Map.of(
-  entry("/slack/events", apiApp),
-  entry("/slack/oauth", oauthApp)
+  entry("/slack/events", apiApp), // POST /slack/events (incomng API requests from the Slack Platform)
+  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
 ));
 
-server.start();
+server.start(); // http://localhost:3000
 ```
 
 ### Granular Permission Apps or Classic Apps

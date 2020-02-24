@@ -6,7 +6,7 @@ lang: en
 
 # Modals
 
-[Modals](https://api.slack.com/surfaces/modals/using) are a focused surface to collect data from users or display dynamic and interactive information. To users, modals appear as focused surfaces inside of Slack enabling brief, yet deep interactions with apps.
+[Modals](https://api.slack.com/surfaces/modals/using) are a focused surface to collect data from users or display dynamic and interactive information. To users, modals appear as focused surfaces inside of Slack enabling brief, yet deep interactions with apps. Modals can be assembled using the visual and interactive components found in [Block Kit](https://api.slack.com/block-kit).
 
 ### Slack App Configuration
 
@@ -24,7 +24,7 @@ There are three patterns to handle on modals. As always, your app has to respond
 
 When someone uses an [interactive component](https://api.slack.com/reference/block-kit/interactive-components) in your app's modal views, the app will receive a [block_actions payload](https://api.slack.com/reference/interaction-payloads/block-actions). All you need to do to handle the `block_actions` requests are:
 
-1. Verify requests from Slack (read [this](https://api.slack.com/docs/verifying-requests-from-slack) if unfamiliar)
+1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body, and check if the `action_id` in a block is the one you'd like to handle
 1. [Modify/push a view via API](https://api.slack.com/surfaces/modals/using#modifying) and/or update the modal to hold the sent data as [private_metadata](https://api.slack.com/surfaces/modals/using#carrying_data_between_views)
 1. Respond with 200 OK as the acknowledgment
@@ -33,7 +33,7 @@ When someone uses an [interactive component](https://api.slack.com/reference/blo
 
 When a modal view is submitted, you'll receive a [view_submission payload](https://api.slack.com/reference/interaction-payloads/views#view_submission). All you need to do to handle the `view_submission` requests are:
 
-1. Verify requests from Slack (read [this](https://api.slack.com/docs/verifying-requests-from-slack) if unfamiliar)
+1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body, and check if the `type` is `view_submission` and the `callback_id` is the one you'd like to handle
 1. Extract the form data from `view.state.values`
 1. Do whatever to do such as input validations, storing them in a database, talking to external services
@@ -47,7 +47,7 @@ Your app can optionally receive [view_closed payloads](https://api.slack.com/ref
 
 All you need to do to handle the `view_closed` requests are:
 
-1. Verify requests from Slack (read [this](https://api.slack.com/docs/verifying-requests-from-slack) if unfamiliar)
+1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body, and check if the `type` is `view_closed` and the `callback_id` is the one you'd like to handle
 1. Do whatever to do at the timing
 1. Respond with 200 OK as the acknowledgment

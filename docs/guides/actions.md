@@ -33,7 +33,7 @@ The specified **Callback ID** will be sent as `callback_id` in payloads from Sla
 
 All your app needs to do to handle message actions requests are:
 
-1. Verify requests from Slack (read [this](https://api.slack.com/docs/verifying-requests-from-slack) if unfamiliar)
+1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `callback_id` is the one you'd like to handle
 1. Build a reply message or do whatever you want to do
 1. Respond with 200 OK as an acknowledgment

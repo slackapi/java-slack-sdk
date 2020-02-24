@@ -6,7 +6,9 @@ lang: en
 
 # Interactive Components
 
-[Interactive components](https://api.slack.com/reference/block-kit/interactive-components) are a subset of Block Kit elements that add interactivity to various [surfaces](https://api.slack.com/surfaces). Interactions on blocks may happen not only in messages but also on [Modals]({{ site.url | append: site.baseurl }}/guides/modals), and [Home tabs]({{ site.url | append: site.baseurl }}/guides/app-home).
+[Interactive components](https://api.slack.com/reference/block-kit/interactive-components) are a subset of [Block Kit](https://api.slack.com/block-kit) elements that add interactivity to various [surfaces](https://api.slack.com/surfaces). Interactions on blocks may happen not only in messages but also on [Modals]({{ site.url | append: site.baseurl }}/guides/modals), and [Home tabs]({{ site.url | append: site.baseurl }}/guides/app-home).
+
+Reading [Composing Messages]({{ site.url | append: site.baseurl }}/guides/composing-messages) is helpful to learn how to build [Block Kit](https://api.slack.com/block-kit) messages with this SDK.
 
 ### Slack App Configuration
 
@@ -20,7 +22,7 @@ To enable Interactive Components, visit the [Slack App configuration page](http:
 
 All your app needs to do to handle Slack requests by user interactions are:
 
-1. Verify requests from Slack (read [this](https://api.slack.com/docs/verifying-requests-from-slack) if unfamiliar)
+1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `action_id` in a block is the one you'd like to handle
 1. Build a reply message or surface to interact with the user further
 1. Respond with 200 OK as the aknowledgement
