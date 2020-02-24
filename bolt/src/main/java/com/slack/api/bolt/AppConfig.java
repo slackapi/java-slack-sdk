@@ -2,6 +2,7 @@ package com.slack.api.bolt;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.bolt.meta.BoltLibraryVersion;
 import com.slack.api.util.http.SlackHttpClient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,7 +46,7 @@ public class AppConfig {
     private static SlackHttpClient buildSlackHttpClient() {
         Map<String, String> userAgentCustomInfo = new HashMap<>();
         String version = AppConfig.class.getPackage().getImplementationVersion();
-        userAgentCustomInfo.put("bolt", version == null ? "unknown" : version);
+        userAgentCustomInfo.put("bolt", BoltLibraryVersion.get());
         SlackHttpClient client = new SlackHttpClient(userAgentCustomInfo);
         return client;
     }
@@ -97,11 +98,19 @@ public class AppConfig {
     private String appPath;
 
     public String getOauthStartRequestURI() {
-        return appPath + oauthStartPath;
+        if (appPath == null) {
+            return oauthStartPath;
+        } else {
+            return appPath + oauthStartPath;
+        }
     }
 
     public String getOauthCallbackRequestURI() {
-        return appPath + oauthCallbackPath;
+        if (appPath == null) {
+            return oauthCallbackPath;
+        } else {
+            return appPath + oauthCallbackPath;
+        }
     }
 
     @Builder.Default

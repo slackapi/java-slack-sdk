@@ -1,5 +1,6 @@
 package com.slack.api.util.http;
 
+import com.slack.api.meta.SlackApiClientLibraryVersion;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -21,7 +22,8 @@ public class UserAgentInterceptor implements Interceptor {
     }
 
     public static String buildDefaultUserAgent(Map<String, String> additionalInfo) {
-        String libraryVersion = loadLibraryVersion();
+        // NOTE: UserAgentInterceptor.class.getPackage().getImplementationVersion() returns null on AWS Lambda
+        String libraryVersion = SlackApiClientLibraryVersion.get();
         String library = "slack-api-client/" + libraryVersion + "";
         String jvm = "" + System.getProperty("java.vm.name") + "/" + System.getProperty("java.version") + "";
         String os = "" + System.getProperty("os.name") + "/" + System.getProperty("os.version") + "";
@@ -30,20 +32,6 @@ public class UserAgentInterceptor implements Interceptor {
             lastPart += " " + each.getKey() + "/" + each.getValue() + ";";
         }
         return library + "; " + jvm + "; " + os + ";" + lastPart;
-    }
-
-    private static String loadLibraryVersion() {
-        String artifactId = "slack-api-client";
-        String libraryVersion = "unknown";
-        try {
-            String parsedVersion = UserAgentInterceptor.class.getPackage().getImplementationVersion();
-            if (parsedVersion != null) {
-                libraryVersion = parsedVersion;
-            }
-        } catch (Exception e ) {
-            log.info("Failed to parse {}.jar to fetch the library version", artifactId);
-        }
-        return libraryVersion;
     }
 
     @Override

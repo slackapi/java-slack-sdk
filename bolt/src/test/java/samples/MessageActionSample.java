@@ -1,5 +1,6 @@
 package samples;
 
+import com.slack.api.app_backend.ResponseSender;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.response.chat.ChatGetPermalinkResponse;
@@ -27,7 +28,7 @@ public class MessageActionSample {
             }
 
             final String finalizedView = view
-                    .replaceFirst("REPLACE_WITH_SOME_DATA", req.getRequestBodyAsString())
+                    .replaceFirst("REPLACE_WITH_SOME_DATA", req.getPayload().getResponseUrl())
                     .replaceFirst("REPLACE_WITH_THE_URL", permalinkResponse.getPermalink())
                     .replaceFirst("REPLACE_WITH_THE_MESSAGE", req.getPayload().getMessage().getText());
 
@@ -44,6 +45,10 @@ public class MessageActionSample {
             // save the data
             View view = req.getPayload().getView();
             ctx.logger.info("state - {}, private_metadata - {}", view.getState(), view.getPrivateMetadata());
+
+            String responseUrl = view.getPrivateMetadata();
+            new ResponseSender(ctx.getSlack(), responseUrl).sendToAction(r -> r.text("Thanks!"));
+
             return ctx.ack();
         });
 
