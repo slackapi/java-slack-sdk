@@ -45,7 +45,6 @@ public class AppConfig {
 
     private static SlackHttpClient buildSlackHttpClient() {
         Map<String, String> userAgentCustomInfo = new HashMap<>();
-        String version = AppConfig.class.getPackage().getImplementationVersion();
         userAgentCustomInfo.put("bolt", BoltLibraryVersion.get());
         SlackHttpClient client = new SlackHttpClient(userAgentCustomInfo);
         return client;
@@ -123,6 +122,10 @@ public class AppConfig {
     @Builder.Default
     private String oauthCompletionUrl = System.getenv(EnvVariableName.SLACK_APP_OAUTH_COMPLETION_URL);
 
-    private boolean alwaysRequestUserTokenNeeded;
+    @Builder.Default
+    private boolean alwaysRequestUserTokenNeeded = false;
+
+    @Builder.Default
+    private boolean appInitializersEnabled = true;
 
 }

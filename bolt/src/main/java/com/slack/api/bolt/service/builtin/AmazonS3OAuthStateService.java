@@ -2,9 +2,11 @@ package com.slack.api.bolt.service.builtin;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.util.IOUtils;
+import com.slack.api.bolt.Initializer;
 import com.slack.api.bolt.service.OAuthStateService;
 import com.slack.api.bolt.util.JsonOps;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,17 @@ public class AmazonS3OAuthStateService implements OAuthStateService {
     }
 
     @Override
+    public Initializer initializer() {
+        return (app) -> {
+            try {
+                // The first access to S3 tends to be slow on AWS Lambda.
+                this.createS3Client().getObjectMetadata(bucketName, "dummy-for-initializer");
+            } catch (AmazonS3Exception ignored) {
+            }
+        };
+    }
+
+    @Override
     public void addNewStateToDatastore(String state) throws Exception {
         AmazonS3 s3 = this.createS3Client();
         String value = "" + (System.currentTimeMillis() + getExpirationInSeconds() * 1000);
@@ -38,7 +51,10 @@ public class AmazonS3OAuthStateService implements OAuthStateService {
     @Override
     public boolean isAvailableInDatabase(String state) {
         AmazonS3 s3 = this.createS3Client();
-        S3Object s3Object = s3.getObject(bucketName, getKey(state));
+        S3Object s3Object = getObject(s3, getKey(state));
+        if (s3Object == null) {
+            return false;
+        }
         String millisToExpire = null;
         try {
             millisToExpire = IOUtils.toString(s3Object.getObjectContent());
@@ -64,6 +80,19 @@ public class AmazonS3OAuthStateService implements OAuthStateService {
 
     private String getKey(String state) {
         return "state/" + state;
+    }
+
+    private S3Object getObject(AmazonS3 s3, String fullKey) {
+        try {
+            return s3.getObject(bucketName, fullKey);
+        } catch (AmazonS3Exception e) {
+            if (log.isDebugEnabled()) {
+                log.debug("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString(), e);
+            } else {
+                log.info("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString());
+            }
+            return null;
+        }
     }
 
 }
