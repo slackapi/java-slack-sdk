@@ -1,5 +1,7 @@
 package com.slack.api.bolt.service.builtin;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
@@ -30,10 +32,17 @@ public class AmazonS3OAuthStateService implements OAuthStateService {
     @Override
     public Initializer initializer() {
         return (app) -> {
-            try {
-                // The first access to S3 tends to be slow on AWS Lambda.
-                this.createS3Client().getObjectMetadata(bucketName, "dummy-for-initializer");
-            } catch (AmazonS3Exception ignored) {
+            // The first access to S3 tends to be slow on AWS Lambda.
+            AWSCredentials credentials = DefaultAWSCredentialsProviderChain.getInstance().getCredentials();
+            if (credentials == null || credentials.getAWSAccessKeyId() == null) {
+                throw new IllegalStateException("AWS credentials not found");
+            }
+            if (log.isDebugEnabled()) {
+                log.debug("AWS credentials loaded (access key id: {})", credentials.getAWSAccessKeyId());
+            }
+            boolean bucketExists = createS3Client().doesBucketExistV2(bucketName);
+            if (!bucketExists) {
+                throw new IllegalStateException("Failed to access the Amazon S3 bucket (name: " + bucketName + ")");
             }
         };
     }
