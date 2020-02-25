@@ -54,7 +54,11 @@ public class SampleObjects {
     public static List<Attachment> Attachments = Arrays.asList(
             initProperties(Attachment.builder()
                     .fields(Arrays.asList(initProperties(Field.builder().build())))
-                    .actions(Arrays.asList(initProperties(Action.builder().build())))
+                    .actions(Arrays.asList(initProperties(Action.builder()
+                            .optionGroups(Arrays.asList(initProperties(Action.OptionGroup.builder().build())))
+                            .options(Arrays.asList(initProperties(Action.Option.builder().build())))
+                            .selectedOptions(Arrays.asList(initProperties(Action.Option.builder().build())))
+                            .build())))
                     .mrkdwnIn(Arrays.asList(""))
                     .build())
     );

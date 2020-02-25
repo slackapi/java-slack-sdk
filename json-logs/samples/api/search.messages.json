@@ -110,13 +110,24 @@
                   "dismiss_text": ""
                 },
                 "options": [
-                  ""
+                  {
+                    "text": "",
+                    "value": ""
+                  }
                 ],
                 "selected_options": [
-                  ""
+                  {
+                    "text": "",
+                    "value": ""
+                  }
                 ],
                 "data_source": "",
                 "min_query_length": 12345,
+                "option_groups": [
+                  {
+                    "text": ""
+                  }
+                ],
                 "url": ""
               }
             ],
@@ -204,13 +215,24 @@
                   "dismiss_text": ""
                 },
                 "options": [
-                  ""
+                  {
+                    "text": "",
+                    "value": ""
+                  }
                 ],
                 "selected_options": [
-                  ""
+                  {
+                    "text": "",
+                    "value": ""
+                  }
                 ],
                 "data_source": "",
                 "min_query_length": 12345,
+                "option_groups": [
+                  {
+                    "text": ""
+                  }
+                ],
                 "url": ""
               }
             ],
@@ -650,13 +672,24 @@
                     "dismiss_text": ""
                   },
                   "options": [
-                    ""
+                    {
+                      "text": "",
+                      "value": ""
+                    }
                   ],
                   "selected_options": [
-                    ""
+                    {
+                      "text": "",
+                      "value": ""
+                    }
                   ],
                   "data_source": "",
                   "min_query_length": 12345,
+                  "option_groups": [
+                    {
+                      "text": ""
+                    }
+                  ],
                   "url": ""
                 }
               ],
@@ -751,13 +784,24 @@
                     "dismiss_text": ""
                   },
                   "options": [
-                    ""
+                    {
+                      "text": "",
+                      "value": ""
+                    }
                   ],
                   "selected_options": [
-                    ""
+                    {
+                      "text": "",
+                      "value": ""
+                    }
                   ],
                   "data_source": "",
                   "min_query_length": 12345,
+                  "option_groups": [
+                    {
+                      "text": ""
+                    }
+                  ],
                   "url": ""
                 }
               ],
