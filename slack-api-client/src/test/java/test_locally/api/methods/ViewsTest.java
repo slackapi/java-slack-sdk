@@ -30,6 +30,18 @@ public class ViewsTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).viewsOpen(r -> r.viewAsString("").triggerId("xxx"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).viewsPublish(r -> r.viewAsString("").userId("U123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).viewsPush(r -> r.viewAsString("").triggerId("xxx"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).viewsUpdate(r -> r.viewAsString("").hash("xxx").externalId("yyy"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).viewsOpen(r -> r.viewAsString("").triggerId("xxx"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).viewsPublish(r -> r.viewAsString("").userId("U123"))

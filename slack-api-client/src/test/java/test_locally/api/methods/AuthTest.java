@@ -30,10 +30,14 @@ public class AuthTest {
 
     @Test
     public void auth() throws Exception {
-        assertThat(slack.methodsAsync(ValidToken).authRevoke(r -> r.test(true))
-                .get().isOk(), is(true));
-        assertThat(slack.methodsAsync(ValidToken).authTest(r -> r)
-                .get().getTeamId(), is("T1234567"));
+        assertThat(slack.methods(ValidToken).authRevoke(r -> r.test(true)).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).authTest(r -> r).getTeamId(), is("T1234567"));
+    }
+
+    @Test
+    public void auth_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).authRevoke(r -> r.test(true)).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).authTest(r -> r).get().getTeamId(), is("T1234567"));
     }
 
 }

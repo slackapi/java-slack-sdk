@@ -30,6 +30,12 @@ public class BotsTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).botsInfo(r -> r.bot("B123"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).botsInfo(r -> r.bot("B123"))
                 .get().isOk(), is(true));
     }

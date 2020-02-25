@@ -30,6 +30,8 @@ public class DialogTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).dialogOpen(r -> r.triggerId("xxx").dialogAsString("{}"))
+                .isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).dialogOpen(r -> r.triggerId("xxx").dialogAsString("{}"))
                 .get().isOk(), is(true));
     }

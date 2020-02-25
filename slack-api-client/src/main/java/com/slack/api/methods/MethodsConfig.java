@@ -29,6 +29,7 @@ public class MethodsConfig {
      * The default configuration. It's not allowed to modify this runtime for any reasons.
      */
     public static final MethodsConfig DEFAULT_SINGLETON = new MethodsConfig() {
+
         void throwException() {
             throw new UnsupportedOperationException("This config is immutable");
         }
@@ -50,6 +51,16 @@ public class MethodsConfig {
 
         @Override
         public void setDefaultThreadPoolSize(int defaultThreadPoolSize) {
+            throwException();
+        }
+
+        @Override
+        public void setMetricsDatastore(MetricsDatastore metricsDatastore) {
+            throwException();
+        }
+
+        @Override
+        public void setCustomThreadPoolSizes(Map<String, Integer> customThreadPoolSizes) {
             throwException();
         }
     };

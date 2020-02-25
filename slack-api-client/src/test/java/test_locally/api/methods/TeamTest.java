@@ -30,6 +30,20 @@ public class TeamTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).teamAccessLogs(r -> r.count(1).page(1))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).teamBillableInfo(r -> r.user("U123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).teamInfo(r -> r)
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).teamIntegrationLogs(r -> r.user("U123").appId("12345"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).teamProfileGet(r -> r.visibility("v"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).teamAccessLogs(r -> r.count(1).page(1))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).teamBillableInfo(r -> r.user("U123"))

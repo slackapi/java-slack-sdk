@@ -30,6 +30,16 @@ public class StarsTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).starsAdd(r -> r.channel("C123").timestamp("123.123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).starsList(r -> r.page(1).count(1))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).starsRemove(r -> r.channel("C123").timestamp("123.123"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).starsAdd(r -> r.channel("C123").timestamp("123.123"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).starsList(r -> r.page(1).count(1))

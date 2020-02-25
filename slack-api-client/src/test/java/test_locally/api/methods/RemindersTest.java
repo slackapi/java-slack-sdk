@@ -30,9 +30,21 @@ public class RemindersTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).remindersAdd(r -> r.user("U123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).remindersComplete(r -> r.reminder("foo"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).remindersDelete(r -> r.reminder("foo"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).remindersInfo(r -> r.reminder("foo"))
+                .isOk(), is(true));
+        assertThat(slack.methods().remindersList(r -> r.token(ValidToken))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).remindersAdd(r -> r.user("U123"))
-                .get().isOk(), is(true));
-        assertThat(slack.methodsAsync(ValidToken).remindersComplete(r -> r.reminder("foo"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).remindersComplete(r -> r.reminder("foo"))
                 .get().isOk(), is(true));

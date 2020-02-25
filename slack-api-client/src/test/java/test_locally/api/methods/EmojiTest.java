@@ -30,6 +30,8 @@ public class EmojiTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).emojiList(r -> r)
+                .isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).emojiList(r -> r)
                 .get().isOk(), is(true));
     }

@@ -35,6 +35,8 @@ public class MigrationTest {
     @Ignore
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).migrationExchange(r -> r.users(Arrays.asList("U123")))
+                .isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).migrationExchange(r -> r.users(Arrays.asList("U123")))
                 .get().isOk(), is(true));
     }

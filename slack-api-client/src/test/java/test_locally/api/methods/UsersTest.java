@@ -30,6 +30,34 @@ public class UsersTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).usersConversations(r -> r.user("U123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersDeletePhoto(r -> r)
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersGetPresence(r -> r.user("U123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersIdentity(r -> r)
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersInfo(r -> r.user("U123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersList(r -> r.limit(1).cursor("xxx"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersLookupByEmail(r -> r.email("foo@example.com"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersSetActive(r -> r)
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersSetPhoto(r -> r.imageData("foo".getBytes()))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersSetPresence(r -> r.presence("presence"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersProfileGet(r -> r.user("U123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersProfileSet(r -> r.user("U123").name("name").value("value"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).usersConversations(r -> r.user("U123"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).usersDeletePhoto(r -> r)

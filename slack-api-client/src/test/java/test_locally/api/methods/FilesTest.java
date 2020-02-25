@@ -30,6 +30,22 @@ public class FilesTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).filesDelete(r -> r.file("F123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesInfo(r -> r.file("F123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesList(r -> r.channel("C123").count(1).page(10))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesRevokePublicURL(r -> r.file("F123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesSharedPublicURL(r -> r.file("F123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesUpload(r -> r.filename("name").title("title"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).filesDelete(r -> r.file("F123"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesInfo(r -> r.file("F123"))

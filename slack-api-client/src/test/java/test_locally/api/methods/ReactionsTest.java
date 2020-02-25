@@ -30,6 +30,18 @@ public class ReactionsTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).reactionsAdd(r -> r.channel("C123").timestamp("123.123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).reactionsGet(r -> r.channel("C123").timestamp("123.123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).reactionsList(r -> r.user("U123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).reactionsRemove(r -> r.channel("C123").name("smile").timestamp("123.123"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).reactionsAdd(r -> r.channel("C123").timestamp("123.123"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).reactionsGet(r -> r.channel("C123").timestamp("123.123"))

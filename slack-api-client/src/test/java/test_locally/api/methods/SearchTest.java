@@ -30,6 +30,16 @@ public class SearchTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).searchAll(r -> r.query("foo"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).searchFiles(r -> r.query("foo"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).searchMessages(r -> r.query("foo"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).searchAll(r -> r.query("foo"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).searchFiles(r -> r.query("foo"))

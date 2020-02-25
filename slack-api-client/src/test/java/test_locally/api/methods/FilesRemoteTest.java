@@ -32,6 +32,23 @@ public class FilesRemoteTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).filesRemoteAdd(r -> r.externalId("external id").title("title"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesRemoteInfo(r -> r.externalId("external id"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesRemoteList(r -> r.limit(1).cursor("xxx"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesRemoteRemove(r -> r.externalId("external id"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesRemoteShare(r ->
+                r.externalId("external id").channels(Arrays.asList("C123")))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesRemoteUpdate(r -> r.externalId("external id"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).filesRemoteAdd(r -> r.externalId("external id").title("title"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesRemoteInfo(r -> r.externalId("external id"))

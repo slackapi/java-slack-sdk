@@ -32,6 +32,44 @@ public class ConversationsTest {
 
     @Test
     public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).conversationsArchive(r -> r.channel("C123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsClose(r -> r.channel("C123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsCreate(r -> r.name("foo"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsHistory(r -> r.channel("C123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsInfo(r -> r.channel("C123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsInvite(r -> r.channel("C123").users(Arrays.asList("U123")))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsJoin(r -> r.channel("C123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsKick(r -> r.channel("C123").user("U123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsLeave(r -> r.channel("C123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsList(r -> r.limit(1).cursor("xxx"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsMembers(r -> r.limit(1).cursor("xxx"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsOpen(r -> r.users(Arrays.asList("U123")).channel("D123"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsRename(r -> r.channel("C123").name("new name"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsReplies(r -> r.channel("C123").limit(1).cursor("xxx"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsSetPurpose(r -> r.channel("C123").purpose("something"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsSetTopic(r -> r.channel("C123").topic("something"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsUnarchive(r -> r.channel("C123"))
+                .isOk(), is(true));
+    }
+
+    @Test
+    public void test_async() throws Exception {
         assertThat(slack.methodsAsync(ValidToken).conversationsArchive(r -> r.channel("C123"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).conversationsClose(r -> r.channel("C123"))
