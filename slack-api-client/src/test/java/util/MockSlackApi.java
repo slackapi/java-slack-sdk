@@ -51,6 +51,20 @@ public class MockSlackApi extends HttpServlet {
 
         String body = reader.readWholeAsString(methodName + ".json");
         body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");
+
+        if (methodName.equals("auth.test")) {
+            body = "{\n" +
+                    "  \"ok\": true,\n" +
+                    "  \"url\": \"https://java-slack-sdk-test.slack.com/\",\n" +
+                    "  \"team\": \"java-slack-sdk-test\",\n" +
+                    "  \"user\": \"test_user\",\n" +
+                    "  \"team_id\": \"T1234567\",\n" +
+                    "  \"user_id\": \"U1234567\",\n" +
+                    "  \"bot_id\": \"B12345678\",\n" +
+                    "  \"enterprise_id\": \"E12345678\",\n" +
+                    "  \"error\": \"\"\n" +
+                    "}";
+        }
         if (body == null || body.trim().isEmpty()) {
             resp.setStatus(400);
             return;

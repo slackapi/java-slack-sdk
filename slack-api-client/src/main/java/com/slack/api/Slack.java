@@ -288,7 +288,9 @@ public class Slack implements AutoCloseable {
     }
 
     public AsyncMethodsClient methodsAsync(String token) {
-        return new AsyncMethodsClientImpl(token, methods(token), config);
+        MethodsClientImpl client = new MethodsClientImpl(httpClient, token);
+        client.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
+        return new AsyncMethodsClientImpl(token, client, config);
     }
 
     public MethodsStats methodsStats(String teamId) {

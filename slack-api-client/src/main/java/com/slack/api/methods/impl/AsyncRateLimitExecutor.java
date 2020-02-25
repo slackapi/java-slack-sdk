@@ -21,20 +21,20 @@ public class AsyncRateLimitExecutor {
     private final MetricsDatastore metricsDatastore;
     private final TeamIdCache teamIdCache;
 
-    private AsyncRateLimitExecutor(SlackConfig config) {
+    private AsyncRateLimitExecutor(MethodsClientImpl clientImpl, SlackConfig config) {
         this.config = config.getMethodsConfig();
         this.metricsDatastore = config.getMethodsConfig().getMetricsDatastore();
-        this.teamIdCache = new TeamIdCache(config);
+        this.teamIdCache = new TeamIdCache(clientImpl);
     }
 
     public static AsyncRateLimitExecutor get(String executorName) {
         return ALL_EXECUTORS.get(executorName);
     }
 
-    public static AsyncRateLimitExecutor getOrCreate(SlackConfig config) {
+    public static AsyncRateLimitExecutor getOrCreate(MethodsClientImpl client, SlackConfig config) {
         AsyncRateLimitExecutor executor = ALL_EXECUTORS.get(config.getMethodsConfig().getExecutorName());
         if (executor == null) {
-            executor = new AsyncRateLimitExecutor(config);
+            executor = new AsyncRateLimitExecutor(client, config);
             ALL_EXECUTORS.put(config.getMethodsConfig().getExecutorName(), executor);
         }
         return executor;

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UsergroupUsersListRequest implements SlackApiRequest {
+public class UsergroupsUsersListRequest implements SlackApiRequest {
 
     /**
      * Authentication token. Requires scope: `usergroups:read`

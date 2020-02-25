@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class UsergroupUsersUpdateRequest implements SlackApiRequest {
+public class UsergroupsUsersUpdateRequest implements SlackApiRequest {
 
     /**
      * Authentication token. Requires scope: `usergroups:write`

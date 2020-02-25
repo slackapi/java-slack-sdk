@@ -31,70 +31,77 @@ public class ChatTest {
     @Test
     public void postMessage() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatPostMessage(r -> r.channel("C123").text("Hi!")
-                ).isOk(), is(true));
+                slack.methodsAsync(ValidToken).chatPostMessage(r -> r.channel("C123").text("Hi!")
+                ).get().isOk(), is(true));
     }
 
     @Test
     public void chatPostEphemeral() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatPostEphemeral(r -> r.channel("C123").text("Hi!")
-                ).isOk(), is(true));
+                slack.methodsAsync(ValidToken).chatPostEphemeral(r -> r.channel("C123").text("Hi!")
+                ).get().isOk(), is(true));
     }
 
     @Test
     public void chatDelete() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatDelete(r -> r.channel("C123").ts("123.123")
-                ).isOk(), is(true));
+                slack.methodsAsync(ValidToken).chatDelete(r -> r.channel("C123").ts("123.123")
+                ).get().isOk(), is(true));
     }
 
     @Test
     public void chatDeleteScheduledMessage() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatDeleteScheduledMessage(r ->
+                slack.methodsAsync(ValidToken).chatDeleteScheduledMessage(r ->
                         r.channel("C123").scheduledMessageId("id")
-                ).isOk(), is(true));
+                ).get().isOk(), is(true));
     }
 
     @Test
     public void chatGetPermalink() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatGetPermalink(r ->
+                slack.methodsAsync(ValidToken).chatGetPermalink(r ->
                         r.channel("C123").messageTs("123.123")
-                ).isOk(), is(true));
+                ).get().isOk(), is(true));
     }
 
     @Test
     public void chatMeMessage() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatMeMessage(r ->
+                slack.methodsAsync(ValidToken).chatMeMessage(r ->
                         r.channel("C123").text("Hi")
-                ).isOk(), is(true));
+                ).get().isOk(), is(true));
     }
 
     @Test
     public void chatScheduleMessage() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatScheduleMessage(r ->
+                slack.methodsAsync(ValidToken).chatScheduleMessage(r ->
                         r.channel("C123").text("Hi").postAt(123)
-                ).isOk(), is(true));
+                ).get().isOk(), is(true));
     }
 
     @Test
     public void chatUnfurl() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatUnfurl(r ->
+                slack.methodsAsync(ValidToken).chatUnfurl(r ->
                         r.channel("C123").ts("123.123")
-                ).isOk(), is(true));
+                ).get().isOk(), is(true));
     }
 
     @Test
     public void chatUpdate() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatUpdate(r ->
+                slack.methodsAsync(ValidToken).chatUpdate(r ->
                         r.channel("C123").ts("123.123").text("(edited)")
-                ).isOk(), is(true));
+                ).get().isOk(), is(true));
+    }
+
+    @Test
+    public void chatScheduledMessagesList() throws Exception {
+        assertThat(
+                slack.methodsAsync(ValidToken).chatScheduledMessagesList(r -> r.channel("C123"))
+                        .get().isOk(), is(true));
     }
 
 }
