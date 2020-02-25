@@ -26,7 +26,7 @@ public class TeamIntegrationLogsRequest implements SlackApiRequest {
     /**
      * Filter logs to this Slack app. Defaults to all logs.
      */
-    private Integer appId;
+    private String appId;
 
     /**
      * Filter logs with this change type. Defaults to all logs.

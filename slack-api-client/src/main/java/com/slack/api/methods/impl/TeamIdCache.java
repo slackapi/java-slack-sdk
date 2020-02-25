@@ -1,11 +1,9 @@
 package com.slack.api.methods.impl;
 
-import com.slack.api.SlackConfig;
 import com.slack.api.methods.Methods;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.response.auth.AuthTestResponse;
-import com.slack.api.util.http.SlackHttpClient;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
 import okhttp3.Response;
@@ -24,18 +22,8 @@ public class TeamIdCache {
 
     private final MethodsClientImpl methodsImpl;
 
-    public TeamIdCache(SlackConfig config) {
-        this(new MethodsClientImpl(buildHttpClient(config)));
-    }
-
     public TeamIdCache(MethodsClientImpl methodsImpl) {
         this.methodsImpl = methodsImpl;
-    }
-
-    private static SlackHttpClient buildHttpClient(SlackConfig config) {
-        SlackHttpClient httpClient = new SlackHttpClient();
-        httpClient.setConfig(config);
-        return httpClient;
     }
 
     public String lookupOrResolve(String token) {

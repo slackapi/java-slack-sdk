@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class AmazonS3InstallationServiceTest {
 
-    @Test
+    @Test(expected = IllegalStateException.class)
     public void init() {
         String bucketName = "java-slack-sdk-test-dummy-bucket" + UUID.randomUUID();
         AmazonS3InstallationService service = new AmazonS3InstallationService(bucketName);

@@ -54,8 +54,8 @@ import com.slack.api.methods.request.team.TeamInfoRequest;
 import com.slack.api.methods.request.team.TeamIntegrationLogsRequest;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.usergroups.*;
-import com.slack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
-import com.slack.api.methods.request.usergroups.users.UsergroupUsersUpdateRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.request.users.*;
 import com.slack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -113,8 +113,8 @@ import com.slack.api.methods.response.team.TeamInfoResponse;
 import com.slack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.usergroups.*;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.*;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -134,13 +134,13 @@ import static com.slack.api.methods.Methods.*;
 public class AsyncMethodsClientImpl implements AsyncMethodsClient {
 
     private final String token;
-    private final MethodsClient methods;
+    private final MethodsClientImpl methods;
     private final AsyncRateLimitExecutor executor;
 
-    public AsyncMethodsClientImpl(String token, MethodsClient methods, SlackConfig config) {
+    public AsyncMethodsClientImpl(String token, MethodsClientImpl clientImpl, SlackConfig config) {
         this.token = token;
-        this.methods = methods;
-        this.executor = AsyncRateLimitExecutor.getOrCreate(config);
+        this.methods = clientImpl;
+        this.executor = AsyncRateLimitExecutor.getOrCreate(clientImpl, config);
     }
 
     private String token(SlackApiRequest req) {
@@ -1370,23 +1370,23 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
-    public CompletableFuture<UsergroupUsersListResponse> usergroupUsersList(UsergroupUsersListRequest req) {
-        return executor.execute(USERGROUPS_USERS_LIST, toMap(req), () -> methods.usergroupUsersList(req));
+    public CompletableFuture<UsergroupsUsersListResponse> usergroupsUsersList(UsergroupsUsersListRequest req) {
+        return executor.execute(USERGROUPS_USERS_LIST, toMap(req), () -> methods.usergroupsUsersList(req));
     }
 
     @Override
-    public CompletableFuture<UsergroupUsersListResponse> usergroupUsersList(RequestConfigurator<UsergroupUsersListRequest.UsergroupUsersListRequestBuilder> req) {
-        return usergroupUsersList(req.configure(UsergroupUsersListRequest.builder()).build());
+    public CompletableFuture<UsergroupsUsersListResponse> usergroupsUsersList(RequestConfigurator<UsergroupsUsersListRequest.UsergroupsUsersListRequestBuilder> req) {
+        return usergroupsUsersList(req.configure(UsergroupsUsersListRequest.builder()).build());
     }
 
     @Override
-    public CompletableFuture<UsergroupUsersUpdateResponse> usergroupUsersUpdate(UsergroupUsersUpdateRequest req) {
-        return executor.execute(USERGROUPS_USERS_UPDATE, toMap(req), () -> methods.usergroupUsersUpdate(req));
+    public CompletableFuture<UsergroupsUsersUpdateResponse> usergroupsUsersUpdate(UsergroupsUsersUpdateRequest req) {
+        return executor.execute(USERGROUPS_USERS_UPDATE, toMap(req), () -> methods.usergroupsUsersUpdate(req));
     }
 
     @Override
-    public CompletableFuture<UsergroupUsersUpdateResponse> usergroupUsersUpdate(RequestConfigurator<UsergroupUsersUpdateRequest.UsergroupUsersUpdateRequestBuilder> req) {
-        return usergroupUsersUpdate(req.configure(UsergroupUsersUpdateRequest.builder()).build());
+    public CompletableFuture<UsergroupsUsersUpdateResponse> usergroupsUsersUpdate(RequestConfigurator<UsergroupsUsersUpdateRequest.UsergroupsUsersUpdateRequestBuilder> req) {
+        return usergroupsUsersUpdate(req.configure(UsergroupsUsersUpdateRequest.builder()).build());
     }
 
     @Override

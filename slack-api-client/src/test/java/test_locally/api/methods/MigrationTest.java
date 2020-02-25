@@ -2,16 +2,19 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
-import com.slack.api.methods.response.api.ApiTestResponse;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static util.MockSlackApi.ValidToken;
 
-public class ApiTest {
+public class MigrationTest {
 
     MockSlackApiServer server = new MockSlackApiServer();
     SlackConfig config = new SlackConfig();
@@ -28,18 +31,12 @@ public class ApiTest {
         server.stop();
     }
 
+    // TODO
+    @Ignore
     @Test
-    public void apiTest() throws Exception {
-        ApiTestResponse response = slack.methods().apiTest(r -> r.error("error").foo("bar"));
-        assertThat(response.isOk(), is(true));
-        assertThat(response.getArgs().getFoo(), is(""));
-    }
-
-    @Test
-    public void apiTest_async() throws Exception {
-        ApiTestResponse response = slack.methodsAsync().apiTest(r -> r.error("error").foo("bar")).get();
-        assertThat(response.isOk(), is(true));
-        assertThat(response.getArgs().getFoo(), is(""));
+    public void test() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).migrationExchange(r -> r.users(Arrays.asList("U123")))
+                .get().isOk(), is(true));
     }
 
 }

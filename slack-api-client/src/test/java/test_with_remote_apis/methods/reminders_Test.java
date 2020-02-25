@@ -1,10 +1,7 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.slack.api.methods.response.reminders.RemindersAddResponse;
-import com.slack.api.methods.response.reminders.RemindersCompleteResponse;
-import com.slack.api.methods.response.reminders.RemindersDeleteResponse;
-import com.slack.api.methods.response.reminders.RemindersInfoResponse;
+import com.slack.api.methods.response.reminders.*;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +27,9 @@ public class reminders_Test {
 
     @Test
     public void test() throws Exception {
+        RemindersListResponse list = slack.methods().remindersList(r -> r.token(token));
+        assertThat(list.getError(), is(nullValue()));
+
         RemindersAddResponse addResponse = slack.methods().remindersAdd(r -> r
                 .token(token)
                 .text("Don't forget it!")

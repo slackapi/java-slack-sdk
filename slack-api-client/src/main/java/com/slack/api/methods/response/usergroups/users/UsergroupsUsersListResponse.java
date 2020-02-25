@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class UsergroupUsersListResponse implements SlackApiResponse {
+public class UsergroupsUsersListResponse implements SlackApiResponse {
 
     private boolean ok;
     private String warning;

@@ -50,8 +50,8 @@ import com.slack.api.methods.request.team.TeamInfoRequest;
 import com.slack.api.methods.request.team.TeamIntegrationLogsRequest;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.usergroups.*;
-import com.slack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
-import com.slack.api.methods.request.usergroups.users.UsergroupUsersUpdateRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.request.users.*;
 import com.slack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -109,8 +109,8 @@ import com.slack.api.methods.response.team.TeamInfoResponse;
 import com.slack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.usergroups.*;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.*;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -741,13 +741,13 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<UsergroupsUpdateResponse> usergroupsUpdate(RequestConfigurator<UsergroupsUpdateRequest.UsergroupsUpdateRequestBuilder> req);
 
-    CompletableFuture<UsergroupUsersListResponse> usergroupUsersList(UsergroupUsersListRequest req);
+    CompletableFuture<UsergroupsUsersListResponse> usergroupsUsersList(UsergroupsUsersListRequest req);
 
-    CompletableFuture<UsergroupUsersListResponse> usergroupUsersList(RequestConfigurator<UsergroupUsersListRequest.UsergroupUsersListRequestBuilder> req);
+    CompletableFuture<UsergroupsUsersListResponse> usergroupsUsersList(RequestConfigurator<UsergroupsUsersListRequest.UsergroupsUsersListRequestBuilder> req);
 
-    CompletableFuture<UsergroupUsersUpdateResponse> usergroupUsersUpdate(UsergroupUsersUpdateRequest req);
+    CompletableFuture<UsergroupsUsersUpdateResponse> usergroupsUsersUpdate(UsergroupsUsersUpdateRequest req);
 
-    CompletableFuture<UsergroupUsersUpdateResponse> usergroupUsersUpdate(RequestConfigurator<UsergroupUsersUpdateRequest.UsergroupUsersUpdateRequestBuilder> req);
+    CompletableFuture<UsergroupsUsersUpdateResponse> usergroupsUsersUpdate(RequestConfigurator<UsergroupsUsersUpdateRequest.UsergroupsUsersUpdateRequestBuilder> req);
 
     // ------------------------------
     // users

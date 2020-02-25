@@ -5,7 +5,7 @@ import com.slack.api.model.Usergroup;
 import lombok.Data;
 
 @Data
-public class UsergroupUsersUpdateResponse implements SlackApiResponse {
+public class UsergroupsUsersUpdateResponse implements SlackApiResponse {
 
     private boolean ok;
     private String warning;
