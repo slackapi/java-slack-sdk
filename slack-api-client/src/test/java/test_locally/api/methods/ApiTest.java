@@ -3,50 +3,24 @@ package test_locally.api.methods;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.api.ApiTestResponse;
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.ServletHandler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import test_locally.api.util.PortProvider;
-
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import util.MockSlackApiServer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ApiTest {
 
-    @WebServlet
-    public static class SampleServlet extends HttpServlet {
-        @Override
-        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-            if (!req.getRequestURI().equals("/api/api.test")) {
-                resp.setStatus(400);
-                return;
-            }
-            resp.setStatus(200);
-            resp.getWriter().write("{\"ok\":true, \"args\":{\"foo\":\"" + req.getParameter("foo") + "\"}}");
-            resp.setContentType("application/json");
-        }
-    }
-
-    int port = PortProvider.getPort(ApiTest.class.getName());
-    Server server = new Server(port);
-
-    {
-        ServletHandler handler = new ServletHandler();
-        server.setHandler(handler);
-        handler.addServletWithMapping(SampleServlet.class, "/*");
-    }
+    MockSlackApiServer server = new MockSlackApiServer();
+    SlackConfig config = new SlackConfig();
+    Slack slack = Slack.getInstance(config);
 
     @Before
     public void setup() throws Exception {
         server.start();
+        config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
     }
 
     @After
@@ -56,11 +30,9 @@ public class ApiTest {
 
     @Test
     public void apiTest() throws Exception {
-        SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix("http://localhost:" + port + "/api/");
-
-        ApiTestResponse response = Slack.getInstance(config).methods().apiTest(r -> r.foo("bar"));
+        ApiTestResponse response = slack.methods().apiTest(r -> r.error("error").foo("bar"));
         assertThat(response.isOk(), is(true));
-        assertThat(response.getArgs().getFoo(), is("bar"));
+        assertThat(response.getArgs().getFoo(), is(""));
     }
+
 }
