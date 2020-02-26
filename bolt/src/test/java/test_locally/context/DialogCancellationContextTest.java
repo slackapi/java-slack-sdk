@@ -8,7 +8,7 @@ import com.slack.api.webhook.WebhookResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import test_locally.util.WebhookMockServer;
+import util.WebhookMockServer;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import test_locally.util.AuthTestMockServer;
+import util.AuthTestMockServer;
 
 import java.net.URLEncoder;
 import java.util.Arrays;
