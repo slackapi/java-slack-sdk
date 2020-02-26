@@ -1,7 +1,9 @@
 package test_locally.middleware;
 
+import com.google.gson.Gson;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.app_backend.events.payload.MessagePayload;
+import com.slack.api.app_backend.events.payload.UrlVerificationPayload;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.context.builtin.EventContext;
 import com.slack.api.bolt.middleware.MiddlewareChain;
@@ -11,6 +13,7 @@ import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.model.builtin.DefaultBot;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.EventRequest;
+import com.slack.api.bolt.request.builtin.UrlVerificationRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
 import com.slack.api.methods.MethodsClient;
@@ -30,6 +33,7 @@ import static org.mockito.Mockito.when;
 
 public class MultiTeamsAuthorizationTest {
 
+    final Gson gson = GsonFactory.createSnakeCase();
     final MiddlewareChain chain = req -> Response.error(200);
 
     InstallationService installationService = new InstallationService() {
@@ -90,7 +94,7 @@ public class MultiTeamsAuthorizationTest {
         authTestResult.setOk(true);
         when(client.authTest(any(RequestConfigurator.class))).thenReturn(authTestResult);
 
-        EventRequest req = new EventRequest(GsonFactory.createSnakeCase().toJson(payload), headers) {
+        EventRequest req = new EventRequest(gson.toJson(payload), headers) {
             @Override
             public EventContext getContext() {
                 EventContext context = new EventContext() {
@@ -129,7 +133,7 @@ public class MultiTeamsAuthorizationTest {
         authTestResult.setError("invalid");
         when(client.authTest(any(RequestConfigurator.class))).thenReturn(authTestResult);
 
-        EventRequest req = new EventRequest(GsonFactory.createSnakeCase().toJson(payload), headers) {
+        EventRequest req = new EventRequest(gson.toJson(payload), headers) {
             @Override
             public EventContext getContext() {
                 EventContext context = new EventContext() {
@@ -147,5 +151,17 @@ public class MultiTeamsAuthorizationTest {
         Response resp = new Response();
         Response result = middleware.apply(req, resp, chain);
         assertEquals(401L, result.getStatusCode().longValue());
+    }
+
+    @Test
+    public void skipped() throws Exception {
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        RequestHeaders headers = new RequestHeaders(rawHeaders);
+        UrlVerificationPayload payload = new UrlVerificationPayload();
+        payload.setChallenge("challenge-value");
+        UrlVerificationRequest req = new UrlVerificationRequest(gson.toJson(payload), headers);
+        Response resp = new Response();
+        Response result = middleware.apply(req, resp, chain);
+        assertEquals(200L, result.getStatusCode().longValue());
     }
 }

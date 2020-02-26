@@ -54,6 +54,9 @@ public class AdapterTest {
 
         String body = "{\"text\":\"Hi there!\"}";
         Response slackResponse = Response.json(200, body);
+        Map<String, List<String>> headers = new HashMap<>();
+        headers.put("Set-Cookie", Arrays.asList("foo=bar", "id=123"));
+        slackResponse.setHeaders(headers);
         HttpResponse<String> response = adapter.toMicronautResponse(slackResponse);
         assertNotNull(response);
         assertEquals(200, response.getStatus().getCode());

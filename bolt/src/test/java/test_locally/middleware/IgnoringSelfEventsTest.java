@@ -14,11 +14,13 @@ import com.slack.api.model.event.MessageEvent;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class IgnoringSelfEventsTest {
 
@@ -70,5 +72,12 @@ public class IgnoringSelfEventsTest {
         Response resp = new Response();
         Response result = middleware.apply(req, resp, chain);
         assertEquals(404L, result.getStatusCode().longValue());
+    }
+
+    @Test
+    public void eventTypesNotToMiss() {
+        IgnoringSelfEvents middleware = new IgnoringSelfEvents(SlackConfig.DEFAULT);
+        assertNotNull(middleware.getEventTypesNotToMiss());
+        middleware.setEventTypesNotToMiss(Collections.emptyList());
     }
 }

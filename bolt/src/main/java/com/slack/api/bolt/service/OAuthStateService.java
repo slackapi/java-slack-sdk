@@ -110,6 +110,9 @@ public interface OAuthStateService extends Service {
      */
     default String extractStateFromSession(Request request) {
         List<String> cookieHeaders = request.getHeaders().getMultipleValues("Cookie");
+        if (cookieHeaders == null) {
+            return null;
+        }
         for (String header : cookieHeaders) {
             if (header.startsWith(getSessionCookieName() + "=")) {
                 String[] valueWithAttributes = header.split(getSessionCookieName() + "=");
