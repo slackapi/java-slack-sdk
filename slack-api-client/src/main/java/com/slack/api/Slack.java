@@ -84,6 +84,10 @@ public class Slack implements AutoCloseable {
         return new Slack(SlackConfig.DEFAULT, httpClient);
     }
 
+    public SlackConfig getConfig() {
+        return this.config;
+    }
+
     public SlackHttpClient getHttpClient() {
         return this.httpClient;
     }

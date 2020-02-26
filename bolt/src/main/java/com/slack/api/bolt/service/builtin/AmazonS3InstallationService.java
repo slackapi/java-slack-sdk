@@ -35,7 +35,7 @@ public class AmazonS3InstallationService implements InstallationService {
     public Initializer initializer() {
         return (app) -> {
             // The first access to S3 tends to be slow on AWS Lambda.
-            AWSCredentials credentials = DefaultAWSCredentialsProviderChain.getInstance().getCredentials();
+            AWSCredentials credentials = getCredentials();
             if (credentials == null || credentials.getAWSAccessKeyId() == null) {
                 throw new IllegalStateException("AWS credentials not found");
             }
@@ -210,7 +210,11 @@ public class AmazonS3InstallationService implements InstallationService {
         return JsonOps.fromJson(json, DefaultInstaller.class);
     }
 
-    private AmazonS3 createS3Client() {
+    protected AWSCredentials getCredentials() {
+        return DefaultAWSCredentialsProviderChain.getInstance().getCredentials();
+    }
+
+    protected AmazonS3 createS3Client() {
         return AmazonS3ClientBuilder.defaultClient();
     }
 

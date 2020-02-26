@@ -3,6 +3,7 @@ package com.slack.api.bolt.middleware.builtin;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.slack.api.SlackConfig;
 import com.slack.api.bolt.middleware.Middleware;
 import com.slack.api.bolt.middleware.MiddlewareChain;
 import com.slack.api.bolt.request.Request;
@@ -29,10 +30,18 @@ import java.util.concurrent.ConcurrentMap;
 @Slf4j
 public class IgnoringSelfEvents implements Middleware {
 
-    private Gson gson = GsonFactory.createSnakeCase();
+    private final Gson gson;
+
+    public IgnoringSelfEvents(SlackConfig config) {
+        this.gson = GsonFactory.createSnakeCase(config);
+    }
 
     // cached bot_id <> bot_user_id mapping
-    private ConcurrentMap<String, String> botIdToBotUserId = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, String> botIdToBotUserId = new ConcurrentHashMap<>();
+
+    protected ConcurrentMap<String, String> getBotIdToBotUserId() {
+        return this.botIdToBotUserId;
+    }
 
     private List<String> eventTypesNotToMiss = new ArrayList<>();
 
@@ -86,8 +95,8 @@ public class IgnoringSelfEvents implements Middleware {
         return payload.getAsJsonObject().getAsJsonObject("event");
     }
 
-    private String findAndSaveBotUserId(MethodsClient client, String botId) throws IOException, SlackApiException {
-        String botUserId = botIdToBotUserId.get(botId);
+    protected String findAndSaveBotUserId(MethodsClient client, String botId) throws IOException, SlackApiException {
+        String botUserId = getBotIdToBotUserId().get(botId);
         if (botUserId != null) {
             return botUserId;
         } else {
@@ -95,7 +104,7 @@ public class IgnoringSelfEvents implements Middleware {
             if (botInfo.isOk()) {
                 botUserId = botInfo.getBot().getUserId();
                 if (botUserId != null) {
-                    botIdToBotUserId.put(botId, botUserId);
+                    getBotIdToBotUserId().put(botId, botUserId);
                 }
                 return botUserId;
             } else {

@@ -7,10 +7,7 @@ import com.slack.api.methods.metrics.MetricsDatastore;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -58,7 +55,14 @@ public class RedisMetricsDatastore implements MetricsDatastore {
     public Map<String, Map<String, MethodsStats>> getAllStats() {
         Map<String, Map<String, MethodsStats>> result = new HashMap<>();
         try (Jedis jedis = jedis()) {
-            for (String statsKey : jedis.smembers("StatsKeys")) {
+            if (jedis == null) {
+                return result;
+            }
+            Set<String> statsKeys = jedis.smembers("StatsKeys");
+            if (statsKeys == null) {
+                return result;
+            }
+            for (String statsKey : statsKeys) {
                 String[] elements = statsKey.split("@");
                 if (elements.length < 6) {
                     continue;
@@ -256,10 +260,10 @@ public class RedisMetricsDatastore implements MetricsDatastore {
         }
     }
 
-    private static class MaintenanceJob implements Runnable {
+    public static class MaintenanceJob implements Runnable {
         private final RedisMetricsDatastore store;
 
-        MaintenanceJob(RedisMetricsDatastore store) {
+        public MaintenanceJob(RedisMetricsDatastore store) {
             this.store = store;
         }
 

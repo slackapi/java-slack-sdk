@@ -1,6 +1,7 @@
 package test_locally;
 
 import com.slack.api.bolt.App;
+import com.slack.api.bolt.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -8,10 +9,41 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class AppTest {
+
+    @Test
+    public void getOauthInstallationUrl_v1() {
+        AppConfig config = AppConfig.builder()
+                .clientId("123")
+                .scope("commands,chat:write")
+                .classicAppPermissionsEnabled(true)
+                .build();
+        App app = new App(config);
+        String url = app.getOauthInstallationUrl("state-value");
+        assertEquals("https://slack.com/oauth/authorize?client_id=123&scope=commands,chat:write&state=state-value", url);
+    }
+
+    @Test
+    public void getOauthInstallationUrl_v2() {
+        AppConfig config = AppConfig.builder()
+                .clientId("123")
+                .scope("commands,chat:write")
+                .userScope("search:read")
+                .build();
+        App app = new App(config);
+        String url = app.getOauthInstallationUrl("state-value");
+        assertEquals("https://slack.com/oauth/v2/authorize?client_id=123&scope=commands,chat:write&user_scope=search:read&state=state-value", url);
+    }
+
+    @Test
+    public void getOauthInstallationUrl_null() {
+        App app = new App();
+        String url = app.getOauthInstallationUrl("state-value");
+        assertNull(url);
+    }
 
     @Test
     public void status() {

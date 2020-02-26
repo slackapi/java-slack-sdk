@@ -1,5 +1,6 @@
 package com.slack.api.bolt.response;
 
+import com.slack.api.RequestConfigurator;
 import com.slack.api.Slack;
 import com.slack.api.app_backend.interactive_components.ActionResponseSender;
 import com.slack.api.app_backend.interactive_components.response.ActionResponse;
@@ -14,10 +15,13 @@ import java.io.IOException;
 /**
  * HTTP response sender using response_url.
  */
-public class ResponseUrlSender {
+public class Responder {
 
     private final Slack slack;
     private final String responseUrl;
+
+    private final ActionResponseSender actionResponseSender;
+    private final SlashCommandResponseSender slashCommandResponseSender;
 
     /**
      * Initializes with a valid response_url
@@ -25,9 +29,11 @@ public class ResponseUrlSender {
      * @param slack       the underlying sender
      * @param responseUrl the response_url in a payload
      */
-    public ResponseUrlSender(Slack slack, String responseUrl) {
+    public Responder(Slack slack, String responseUrl) {
         this.slack = slack;
         this.responseUrl = responseUrl;
+        this.actionResponseSender = new ActionResponseSender(slack);
+        this.slashCommandResponseSender = new SlashCommandResponseSender(slack);
     }
 
     /**
@@ -58,6 +64,14 @@ public class ResponseUrlSender {
                 .message(httpResponse.message())
                 .body(body)
                 .build();
+    }
+
+    public WebhookResponse sendToAction(RequestConfigurator<ActionResponse.ActionResponseBuilder> body) throws IOException {
+        return send(body.configure(ActionResponse.builder()).build());
+    }
+
+    public WebhookResponse sendToCommand(RequestConfigurator<SlashCommandResponse.SlashCommandResponseBuilder> body) throws IOException {
+        return send(body.configure(SlashCommandResponse.builder()).build());
     }
 
 }

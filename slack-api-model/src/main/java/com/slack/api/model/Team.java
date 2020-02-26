@@ -1,7 +1,10 @@
 package com.slack.api.model;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -34,6 +37,8 @@ public class Team {
 
     @Data
     public static class ProfileOptions {
+        @Getter(AccessLevel.NONE)
+        @Setter(AccessLevel.NONE)
         @SerializedName("is_protected")
         private boolean _protected;
 

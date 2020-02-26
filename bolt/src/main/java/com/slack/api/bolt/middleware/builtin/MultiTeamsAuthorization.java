@@ -1,6 +1,5 @@
 package com.slack.api.bolt.middleware.builtin;
 
-import com.slack.api.app_backend.ResponseSender;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.context.Context;
 import com.slack.api.bolt.middleware.Middleware;
@@ -9,6 +8,7 @@ import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestType;
+import com.slack.api.bolt.response.Responder;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
 import com.slack.api.methods.SlackApiException;
@@ -81,7 +81,7 @@ public class MultiTeamsAuthorization implements Middleware {
             // try to respond to the user action if there is a response_url
             String responseUrl = extractResponseUrlFromPayloadIfExists(req);
             if (responseUrl != null) {
-                ResponseSender responseSender = new ResponseSender(config.getSlack(), responseUrl);
+                Responder responder = new Responder(config.getSlack(), responseUrl);
                 if (req.getRequestType() != null) {
                     List<LayoutBlock> blocks = installationService.getInstallationGuideBlocks(
                             context.getEnterpriseId(), context.getTeamId(), context.getRequestUserId());
@@ -89,15 +89,15 @@ public class MultiTeamsAuthorization implements Middleware {
                             context.getEnterpriseId(), context.getTeamId(), context.getRequestUserId()) : null;
                     if (req.getRequestType().equals(RequestType.Command)) {
                         if (blocks != null) {
-                            responseSender.sendToCommand(body -> body.responseType("ephemeral").blocks(blocks));
+                            responder.sendToCommand(body -> body.responseType("ephemeral").blocks(blocks));
                         } else {
-                            responseSender.sendToCommand(body -> body.responseType("ephemeral").text(text));
+                            responder.sendToCommand(body -> body.responseType("ephemeral").text(text));
                         }
                     } else {
                         if (blocks != null) {
-                            responseSender.sendToAction(body -> body.responseType("ephemeral").blocks(blocks));
+                            responder.sendToAction(body -> body.responseType("ephemeral").blocks(blocks));
                         } else {
-                            responseSender.sendToAction(body -> body.responseType("ephemeral").text(text));
+                            responder.sendToAction(body -> body.responseType("ephemeral").text(text));
                         }
                     }
                     // just for acknowledging this request
