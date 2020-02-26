@@ -2,7 +2,10 @@ package com.slack.api.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.block.LayoutBlock;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -165,6 +168,8 @@ public class Message {
         @SerializedName("is_intro")
         private boolean intro;
 
+        @Getter(AccessLevel.NONE)
+        @Setter(AccessLevel.NONE)
         @SerializedName("is_public")
         private boolean _public;
         @SerializedName("is_starred")

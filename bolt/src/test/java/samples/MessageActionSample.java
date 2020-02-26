@@ -1,8 +1,8 @@
 package samples;
 
-import com.slack.api.app_backend.ResponseSender;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
+import com.slack.api.bolt.response.Responder;
 import com.slack.api.methods.response.chat.ChatGetPermalinkResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.model.view.View;
@@ -47,7 +47,7 @@ public class MessageActionSample {
             ctx.logger.info("state - {}, private_metadata - {}", view.getState(), view.getPrivateMetadata());
 
             String responseUrl = view.getPrivateMetadata();
-            new ResponseSender(ctx.getSlack(), responseUrl).sendToAction(r -> r.text("Thanks!"));
+            new Responder(ctx.getSlack(), responseUrl).sendToAction(r -> r.text("Thanks!"));
 
             return ctx.ack();
         });

@@ -33,7 +33,7 @@ public class AmazonS3OAuthStateService implements OAuthStateService {
     public Initializer initializer() {
         return (app) -> {
             // The first access to S3 tends to be slow on AWS Lambda.
-            AWSCredentials credentials = DefaultAWSCredentialsProviderChain.getInstance().getCredentials();
+            AWSCredentials credentials = getCredentials();
             if (credentials == null || credentials.getAWSAccessKeyId() == null) {
                 throw new IllegalStateException("AWS credentials not found");
             }
@@ -83,7 +83,11 @@ public class AmazonS3OAuthStateService implements OAuthStateService {
         s3.deleteObject(bucketName, getKey(state));
     }
 
-    private AmazonS3 createS3Client() {
+    protected AWSCredentials getCredentials() {
+        return DefaultAWSCredentialsProviderChain.getInstance().getCredentials();
+    }
+
+    protected AmazonS3 createS3Client() {
         return AmazonS3ClientBuilder.defaultClient();
     }
 

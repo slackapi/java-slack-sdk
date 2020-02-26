@@ -1,4 +1,4 @@
-package test_locally.app_backend.slash_commands.response;
+package test_locally.app_backend.slash_commands;
 
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import org.junit.Test;

@@ -3,7 +3,7 @@ package test_locally.servlet_test;
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
-import com.slack.api.bolt.response.ResponseUrlSender;
+import com.slack.api.bolt.response.Responder;
 import com.slack.api.bolt.servlet.SlackAppServlet;
 import com.slack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class SlashCommandTest {
     private AtomicInteger weatherCalls = new AtomicInteger(0);
     private AtomicInteger echoCalls = new AtomicInteger(0);
 
-    private ResponseUrlSender echoSenderMock = mock(ResponseUrlSender.class);
+    private Responder echoSenderMock = mock(Responder.class);
 
     {
         try {
@@ -54,7 +54,7 @@ public class SlashCommandTest {
 
         app.command("/echo", (req, ctx) -> {
             echoCalls.incrementAndGet();
-            ctx.setResponseUrlSender(echoSenderMock);
+            ctx.setResponder(echoSenderMock);
             String message = "You said \"" + req.getPayload().getText() + "\" at " + req.getPayload().getChannelName();
             WebhookResponse respondResult = ctx.respond(r -> r.text(message));
             log.info("respond result - {}", respondResult);

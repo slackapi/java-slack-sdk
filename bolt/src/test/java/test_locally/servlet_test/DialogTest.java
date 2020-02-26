@@ -5,7 +5,7 @@ import com.slack.api.app_backend.dialogs.response.Option;
 import com.slack.api.app_backend.interactive_components.response.ActionResponse;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
-import com.slack.api.bolt.response.ResponseUrlSender;
+import com.slack.api.bolt.response.Responder;
 import com.slack.api.bolt.servlet.SlackAppServlet;
 import com.slack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ import static org.mockito.Mockito.*;
 @Slf4j
 public class DialogTest {
 
-    private ResponseUrlSender submissionSenderMock = mock(ResponseUrlSender.class);
+    private Responder submissionSenderMock = mock(Responder.class);
 
     {
         try {
@@ -48,7 +48,7 @@ public class DialogTest {
 
     {
         app.dialogSubmission("ok-submission-callback-id", (req, ctx) -> {
-            ctx.setResponseUrlSender(submissionSenderMock);
+            ctx.setResponder(submissionSenderMock);
             WebhookResponse resp = ctx.respond(r -> r.text("Thanks!"));
             log.info("respond result - {}", resp);
             return ctx.ack();
@@ -63,7 +63,7 @@ public class DialogTest {
             )));
         });
         app.dialogCancellation("dialog-callback-id", (req, ctx) -> {
-            ctx.setResponseUrlSender(submissionSenderMock);
+            ctx.setResponder(submissionSenderMock);
             WebhookResponse resp = ctx.respond(r -> r.text("Next time!"));
             log.info("respond result - {}", resp);
             return ctx.ack();
