@@ -5,7 +5,6 @@ import com.slack.api.model.block.Blocks;
 import com.slack.api.model.block.ContextBlock;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.element.BlockElement;
-import com.slack.api.model.block.element.BlockElements;
 import org.junit.Test;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class BlocksTest {
 
     @Test
     public void testContext() {
-        List<ContextBlockElement> elements = asContextElements(BlockElements.image(r -> r.imageUrl("https://www.example.com/logo.png")));
+        List<ContextBlockElement> elements = asContextElements(imageElement(r -> r.imageUrl("https://www.example.com/logo.png")));
         {
             ContextBlock block = context(elements);
             assertThat(block, is(notNullValue()));

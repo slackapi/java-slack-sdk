@@ -59,6 +59,11 @@ public class BlockElements {
         return configurator.configure(ImageElement.builder()).build();
     }
 
+    // NOTE: just as an alias to avoid conflict with Blocks.image()
+    public static ImageElement imageElement(ModelConfigurator<ImageElement.ImageElementBuilder> configurator) {
+        return image(configurator);
+    }
+
     // RadioButtonsElement
 
     public static RadioButtonsElement radioButtons(ModelConfigurator<RadioButtonsElement.RadioButtonsElementBuilder> configurator) {
