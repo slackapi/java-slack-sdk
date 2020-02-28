@@ -17,6 +17,7 @@ public class AppTest {
     @Test
     public void getOauthInstallationUrl_v1() {
         AppConfig config = AppConfig.builder()
+                .signingSecret("secret")
                 .clientId("123")
                 .scope("commands,chat:write")
                 .classicAppPermissionsEnabled(true)
@@ -29,6 +30,7 @@ public class AppTest {
     @Test
     public void getOauthInstallationUrl_v2() {
         AppConfig config = AppConfig.builder()
+                .signingSecret("secret")
                 .clientId("123")
                 .scope("commands,chat:write")
                 .userScope("search:read")
@@ -47,7 +49,7 @@ public class AppTest {
 
     @Test
     public void status() {
-        App app = new App();
+        App app = new App(AppConfig.builder().signingSecret("secret").build());
         assertThat(app.status(), is(App.Status.Stopped));
         app.start();
         assertThat(app.status(), is(App.Status.Running));
@@ -64,7 +66,7 @@ public class AppTest {
 
     @Test
     public void builder_status() {
-        App app = new App();
+        App app = new App(AppConfig.builder().signingSecret("secret").build());
         assertNotNull(app.status());
         assertThat(app.status(), is(App.Status.Stopped));
 
@@ -80,7 +82,7 @@ public class AppTest {
 
     @Test
     public void builder_config() {
-        App app = new App();
+        App app = new App(AppConfig.builder().signingSecret("secret").build());
         assertNotNull(app.config());
 
         app = app.toBuilder().build();
@@ -95,7 +97,7 @@ public class AppTest {
 
     @Test
     public void initializer_called() {
-        App app = new App();
+        App app = new App(AppConfig.builder().signingSecret("secret").build());
         final AtomicBoolean called = new AtomicBoolean(false);
         assertThat(called.get(), is(false));
 
@@ -108,7 +110,7 @@ public class AppTest {
 
     @Test
     public void initializer_start() {
-        App app = new App();
+        App app = new App(AppConfig.builder().signingSecret("secret").build());
         final AtomicBoolean called = new AtomicBoolean(false);
         assertThat(called.get(), is(false));
 
@@ -121,7 +123,7 @@ public class AppTest {
 
     @Test
     public void initializer_same_key() {
-        App app = new App();
+        App app = new App(AppConfig.builder().signingSecret("secret").build());
         final AtomicBoolean called = new AtomicBoolean(false);
         assertThat(called.get(), is(false));
 
