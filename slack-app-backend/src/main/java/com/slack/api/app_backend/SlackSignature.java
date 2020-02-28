@@ -79,6 +79,9 @@ public class SlackSignature {
         }
 
         public Generator(String slackSigningSecret) {
+            if (slackSigningSecret == null || slackSigningSecret.trim().isEmpty()) {
+                throw new IllegalArgumentException("The signing secret is required to generate signature values. Set the env variable " + Secret.DEFAULT_ENV_NAME + " or pass the value to the single arg constructor.");
+            }
             this.slackSigningSecret = slackSigningSecret;
         }
 
