@@ -61,8 +61,8 @@ import com.slack.api.methods.request.team.TeamInfoRequest;
 import com.slack.api.methods.request.team.TeamIntegrationLogsRequest;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.usergroups.*;
-import com.slack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
-import com.slack.api.methods.request.usergroups.users.UsergroupUsersUpdateRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.request.users.*;
 import com.slack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -1568,14 +1568,14 @@ public class RequestFormBuilder {
         return form;
     }
 
-    public static FormBody.Builder toForm(UsergroupUsersListRequest req) {
+    public static FormBody.Builder toForm(UsergroupsUsersListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("usergroup", req.getUsergroup(), form);
         setIfNotNull("include_disabled", req.isIncludeDisabled(), form);
         return form;
     }
 
-    public static FormBody.Builder toForm(UsergroupUsersUpdateRequest req) {
+    public static FormBody.Builder toForm(UsergroupsUsersUpdateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("usergroup", req.getUsergroup(), form);
         if (req.getUsers() != null) {

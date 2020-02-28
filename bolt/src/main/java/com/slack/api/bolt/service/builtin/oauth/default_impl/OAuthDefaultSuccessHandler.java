@@ -29,8 +29,10 @@ public class OAuthDefaultSuccessHandler implements OAuthSuccessHandler {
         OAuthCallbackContext context = request.getContext();
         context.setEnterpriseId(o.getEnterpriseId());
         context.setTeamId(o.getTeamId());
-        context.setBotUserId(o.getBot().getBotUserId());
-        context.setBotToken(o.getBot().getBotAccessToken());
+        if (o.getBot() != null) {
+            context.setBotUserId(o.getBot().getBotUserId());
+            context.setBotToken(o.getBot().getBotAccessToken());
+        }
         context.setRequestUserId(o.getUserId());
         context.setRequestUserToken(o.getAccessToken());
 

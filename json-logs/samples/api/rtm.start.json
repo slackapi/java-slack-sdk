@@ -506,6 +506,11 @@
         "type": [
           ""
         ]
+      },
+      "who_can_view_message_activity": {
+        "type": [
+          ""
+        ]
       }
     },
     "icon": {

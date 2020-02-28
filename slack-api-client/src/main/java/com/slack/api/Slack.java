@@ -84,6 +84,10 @@ public class Slack implements AutoCloseable {
         return new Slack(SlackConfig.DEFAULT, httpClient);
     }
 
+    public SlackConfig getConfig() {
+        return this.config;
+    }
+
     public SlackHttpClient getHttpClient() {
         return this.httpClient;
     }
@@ -288,7 +292,9 @@ public class Slack implements AutoCloseable {
     }
 
     public AsyncMethodsClient methodsAsync(String token) {
-        return new AsyncMethodsClientImpl(token, methods(token), config);
+        MethodsClientImpl client = new MethodsClientImpl(httpClient, token);
+        client.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
+        return new AsyncMethodsClientImpl(token, client, config);
     }
 
     public MethodsStats methodsStats(String teamId) {

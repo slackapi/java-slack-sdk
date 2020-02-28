@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @see <a href="https://api.slack.com/docs/oauth">Slack OAuth</a>
  */
-public interface OAuthStateService {
+public interface OAuthStateService extends Service {
 
     long DEFAULT_EXPIRATION_IN_SECONDS = 10 * 60; // default 10 min
 
@@ -110,6 +110,9 @@ public interface OAuthStateService {
      */
     default String extractStateFromSession(Request request) {
         List<String> cookieHeaders = request.getHeaders().getMultipleValues("Cookie");
+        if (cookieHeaders == null) {
+            return null;
+        }
         for (String header : cookieHeaders) {
             if (header.startsWith(getSessionCookieName() + "=")) {
                 String[] valueWithAttributes = header.split(getSessionCookieName() + "=");

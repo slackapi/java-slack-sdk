@@ -19,7 +19,7 @@ public class VerificationCodePayload {
      * Extracts code and state from Map object. This method is supposed to be used in AWS lambda functions.
      * See also {@link com.slack.api.app_backend.vendor.aws.lambda.request.ApiGatewayRequest}
      */
-    public static VerificationCodePayload from(Map<String, List<String >> queryParams) {
+    public static VerificationCodePayload from(Map<String, List<String>> queryParams) {
         VerificationCodePayload payload = new VerificationCodePayload();
         payload.setCode(queryParams.get("code") != null ? queryParams.get("code").get(0) : null);
         payload.setState(queryParams.get("state") != null ? queryParams.get("state").get(0) : null);

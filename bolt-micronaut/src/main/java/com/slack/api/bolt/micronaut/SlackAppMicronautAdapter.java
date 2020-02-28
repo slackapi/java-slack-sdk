@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Singleton;
 import java.io.UnsupportedEncodingException;
+import java.net.InetSocketAddress;
 import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -46,12 +47,17 @@ public class SlackAppMicronautAdapter {
         }).collect(Collectors.joining("&"));
         RequestHeaders headers = new RequestHeaders(req.getHeaders().asMap());
 
+        InetSocketAddress isa = req.getRemoteAddress();
+        String remoteAddress = null;
+        if (isa != null && isa.getAddress() != null) {
+            remoteAddress = toString(isa.getAddress().getAddress());
+        }
         SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
                 .requestUri(req.getPath())
                 .queryString(req.getParameters().asMap())
                 .headers(headers)
                 .requestBody(requestBody)
-                .remoteAddress(toString(req.getRemoteAddress().getAddress().getAddress()))
+                .remoteAddress(remoteAddress)
                 .build();
         return requestParser.parse(rawRequest);
     }
@@ -68,6 +74,12 @@ public class SlackAppMicronautAdapter {
             }
         }
         response.body(resp.getBody());
+        response.contentType(resp.getContentType());
+        if (resp.getBody() != null) {
+            response.contentLength(resp.getBody().length());
+        } else {
+            response.contentLength(0);
+        }
         return response;
     }
 

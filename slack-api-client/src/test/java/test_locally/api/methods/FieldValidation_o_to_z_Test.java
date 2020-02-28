@@ -29,8 +29,8 @@ import com.slack.api.methods.response.team.TeamInfoResponse;
 import com.slack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.usergroups.*;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.*;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -383,13 +383,13 @@ public class FieldValidation_o_to_z_Test {
 
     @Test
     public void usergroups_users_list() throws Exception {
-        UsergroupUsersListResponse obj = parse("usergroups.users.list", UsergroupUsersListResponse.class);
+        UsergroupsUsersListResponse obj = parse("usergroups.users.list", UsergroupsUsersListResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
     }
 
     @Test
     public void usergroups_users_update() throws Exception {
-        UsergroupUsersUpdateResponse obj = parse("usergroups.users.update", UsergroupUsersUpdateResponse.class);
+        UsergroupsUsersUpdateResponse obj = parse("usergroups.users.update", UsergroupsUsersUpdateResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
     }
 

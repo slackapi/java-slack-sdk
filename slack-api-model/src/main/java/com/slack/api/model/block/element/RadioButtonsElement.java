@@ -2,7 +2,6 @@ package com.slack.api.model.block.element;
 
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.OptionObject;
-import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
 import java.util.List;

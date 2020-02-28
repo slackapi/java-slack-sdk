@@ -1,10 +1,10 @@
 package example;
 
-import com.slack.api.bolt.App;
-import com.slack.api.bolt.AppConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.slack.api.bolt.App;
+import com.slack.api.bolt.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

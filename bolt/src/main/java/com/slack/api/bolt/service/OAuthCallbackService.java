@@ -6,7 +6,7 @@ import com.slack.api.bolt.response.Response;
 /**
  * Handle callback requests from the Slack OAuth confirmation page.
  */
-public interface OAuthCallbackService {
+public interface OAuthCallbackService extends Service {
 
     Response handle(OAuthCallbackRequest request);
 

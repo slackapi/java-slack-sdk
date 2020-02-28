@@ -2,11 +2,14 @@ package com.slack.api.bolt.service;
 
 import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
+import com.slack.api.model.block.LayoutBlock;
+
+import java.util.List;
 
 /**
  * A service that manages Slack app installations.
  */
-public interface InstallationService {
+public interface InstallationService extends Service {
 
     /**
      * Returns true if the historical data management is enabled.
@@ -42,5 +45,19 @@ public interface InstallationService {
      * Returns a user permission data if exists.
      */
     Installer findInstaller(String enterpriseId, String teamId, String userId);
+
+    /**
+     * Returns a message text to inform unknown users.
+     */
+    default String getInstallationGuideText(String enterpriseId, String teamId, String userId) {
+        return "This app was not able to respond to your action. Please install this Slack app :bow:";
+    }
+
+    /**
+     * Returns a message (Block Kit) to inform unknown users.
+     */
+    default List<LayoutBlock> getInstallationGuideBlocks(String enterpriseId, String teamId, String userId) {
+        return null;
+    }
 
 }

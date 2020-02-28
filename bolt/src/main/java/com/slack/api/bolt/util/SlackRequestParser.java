@@ -27,7 +27,6 @@ import com.slack.api.util.json.GsonFactory;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
@@ -62,7 +61,6 @@ public class SlackRequestParser {
         private String remoteAddress;
     }
 
-    @Nullable
     public Request<?> parse(HttpRequest httpRequest) {
         String requestUri = httpRequest.getRequestUri();
         String requestBody = httpRequest.getRequestBody();
@@ -119,7 +117,9 @@ public class SlackRequestParser {
                     slackRequest = new OutgoingWebhooksRequest(requestBody, headers);
                 } else if (appConfig.isOAuthStartEnabled() && appConfig.getOauthStartRequestURI().equals(requestUri)) {
                     slackRequest = new OAuthStartRequest(requestBody, headers);
-                } else if (appConfig.isOAuthCallbackEnabled() && appConfig.getOauthCallbackRequestURI().equals(requestUri)) {
+                } else if (appConfig.isOAuthCallbackEnabled()
+                        && appConfig.getOauthCallbackRequestURI().equals(requestUri)
+                        && httpRequest.getQueryString() != null) {
                     Map<String, List<String>> queryString = httpRequest.getQueryString();
                     VerificationCodePayload payload = VerificationCodePayload.from(queryString);
                     slackRequest = new OAuthCallbackRequest(queryString, requestBody, payload, headers);

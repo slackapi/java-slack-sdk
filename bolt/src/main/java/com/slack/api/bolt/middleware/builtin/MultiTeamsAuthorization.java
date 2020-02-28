@@ -7,13 +7,19 @@ import com.slack.api.bolt.middleware.MiddlewareChain;
 import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.request.Request;
+import com.slack.api.bolt.request.RequestType;
+import com.slack.api.bolt.response.Responder;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.model.block.LayoutBlock;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
 
 import static com.slack.api.bolt.middleware.MiddlewareOps.isNoAuthRequiredRequest;
 
@@ -23,6 +29,7 @@ import static com.slack.api.bolt.middleware.MiddlewareOps.isNoAuthRequiredReques
 @Slf4j
 public class MultiTeamsAuthorization implements Middleware {
 
+    private final AppConfig config;
     private final InstallationService installationService;
 
     private boolean alwaysRequestUserTokenNeeded;
@@ -36,8 +43,9 @@ public class MultiTeamsAuthorization implements Middleware {
     }
 
     public MultiTeamsAuthorization(AppConfig config, InstallationService installationService) {
-        setAlwaysRequestUserTokenNeeded(config.isAlwaysRequestUserTokenNeeded());
+        this.config = config;
         this.installationService = installationService;
+        setAlwaysRequestUserTokenNeeded(config.isAlwaysRequestUserTokenNeeded());
     }
 
     @Override
@@ -70,7 +78,34 @@ public class MultiTeamsAuthorization implements Middleware {
         }
 
         if (botToken == null && userToken == null) {
-            return buildError(401, null, null, null);
+            // try to respond to the user action if there is a response_url
+            String responseUrl = extractResponseUrlFromPayloadIfExists(req);
+            if (responseUrl != null) {
+                Responder responder = new Responder(config.getSlack(), responseUrl);
+                if (req.getRequestType() != null) {
+                    List<LayoutBlock> blocks = installationService.getInstallationGuideBlocks(
+                            context.getEnterpriseId(), context.getTeamId(), context.getRequestUserId());
+                    String text = blocks == null ? installationService.getInstallationGuideText(
+                            context.getEnterpriseId(), context.getTeamId(), context.getRequestUserId()) : null;
+                    if (req.getRequestType().equals(RequestType.Command)) {
+                        if (blocks != null) {
+                            responder.sendToCommand(body -> body.responseType("ephemeral").blocks(blocks));
+                        } else {
+                            responder.sendToCommand(body -> body.responseType("ephemeral").text(text));
+                        }
+                    } else {
+                        if (blocks != null) {
+                            responder.sendToAction(body -> body.responseType("ephemeral").blocks(blocks));
+                        } else {
+                            responder.sendToAction(body -> body.responseType("ephemeral").text(text));
+                        }
+                    }
+                    // just for acknowledging this request
+                    return Response.builder().statusCode(200).build();
+                }
+            } else {
+                return buildError(401, null, null, null);
+            }
         }
 
         try {
@@ -125,6 +160,28 @@ public class MultiTeamsAuthorization implements Middleware {
                 .contentType(Response.CONTENT_TYPE_APPLICATION_JSON)
                 .body("{\"error\":\"a request for an unknown workspace detected\"}")
                 .build();
+    }
+
+    protected static String extractResponseUrlFromPayloadIfExists(Request req) {
+        try {
+            Method getPayload = req.getClass().getDeclaredMethod("getPayload");
+            Object payload = getPayload.invoke(req);
+            if (payload == null) {
+                return null;
+            }
+            Method getResponseUrl = payload.getClass().getDeclaredMethod("getResponseUrl");
+            Object value = getResponseUrl.invoke(payload);
+            if (value instanceof String) {
+                return (String) value;
+            }
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            if (log.isDebugEnabled()) {
+                log.debug("Failed to call a method (error: {}, request: {})",
+                        e.getMessage(), req.getRequestBodyAsString(), e);
+            }
+            return null;
+        }
+        return null;
     }
 
 }

@@ -1,10 +1,10 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.slack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.response.usergroups.*;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.UsersListResponse;
 import com.slack.api.model.User;
 import com.slack.api.model.Usergroup;
@@ -70,8 +70,8 @@ public class usergroups_Test {
     public void usergroups() throws Exception {
         UsergroupsListResponse usergroups = slack.methods().usergroupsList(r -> r.token(token));
         if (usergroups.isOk() && usergroups.getUsergroups().size() > 0) {
-            UsergroupUsersListResponse response = slack.methods().usergroupUsersList(
-                    UsergroupUsersListRequest.builder()
+            UsergroupsUsersListResponse response = slack.methods().usergroupsUsersList(
+                    UsergroupsUsersListRequest.builder()
                             .token(token)
                             .includeDisabled(false)
                             .usergroup(usergroups.getUsergroups().get(0).getId())
@@ -112,7 +112,7 @@ public class usergroups_Test {
             for (User member : usersListResponse.getMembers()) {
                 userIds.add(member.getId());
             }
-            UsergroupUsersUpdateResponse response = slack.methods().usergroupUsersUpdate(r -> r
+            UsergroupsUsersUpdateResponse response = slack.methods().usergroupsUsersUpdate(r -> r
                     .token(token)
                     .usergroup(usergroup.getId())
                     .users(userIds));
@@ -122,8 +122,8 @@ public class usergroups_Test {
 
     @Test
     public void users_failure() throws Exception {
-        UsergroupUsersListResponse response = slack.methods().usergroupUsersList(
-                UsergroupUsersListRequest.builder()
+        UsergroupsUsersListResponse response = slack.methods().usergroupsUsersList(
+                UsergroupsUsersListRequest.builder()
                         .token(token)
                         .includeDisabled(false)
                         .usergroup("dummy")

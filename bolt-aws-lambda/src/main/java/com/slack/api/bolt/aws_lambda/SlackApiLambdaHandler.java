@@ -59,13 +59,19 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
     @Override
     public ApiGatewayResponse handleRequest(ApiGatewayRequest input, Context context) {
         if (isWarmupRequest(input)) {
-            return ApiGatewayResponse.builder().statusCode(200).build();
+            // This one is always an internal request
+            // (It's not possible to create this request body via API Gateway)
+            app.start();
+            log.info("Successfully responded to a warmup request ({})", input);
+            return null;
         }
         Request<?> req = toSlackRequest(input);
         try {
             return toApiGatewayResponse(app.run(req));
         } catch (Exception e) {
-            return ApiGatewayResponse.builder().statusCode(500).rawBody(e.getMessage()).build();
+            log.error("Failed to respond to a request (request: {}, error: {})", input.getBody(), e.getMessage());
+            // As this response body can be exposed, it should not have detailed information.
+            return ApiGatewayResponse.builder().statusCode(500).rawBody("Internal Server Error").build();
         }
     }
 
@@ -80,11 +86,14 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
     }
 
     private static Map<String, List<String>> toStringToStringListMap(Map<String, String> stringToStringListMap) {
-        Map<String, List<String>> headers = new HashMap<>();
-        for (Map.Entry<String, String> each : stringToStringListMap.entrySet()) {
-            headers.put(each.getKey(), Arrays.asList(each.getValue()));
+        if (stringToStringListMap == null) {
+            return null;
         }
-        return headers;
+        Map<String, List<String>> results = new HashMap<>();
+        for (Map.Entry<String, String> each : stringToStringListMap.entrySet()) {
+            results.put(each.getKey(), Arrays.asList(each.getValue()));
+        }
+        return results;
     }
 
 }

@@ -1,14 +1,18 @@
 #!/bin/bash
 
 new_version=$1
+# ------------------------------------------
 if [[ "$new_version" == "" ]]; then
   echo "Give a version to set (e.g., 1.0.0)"
   exit 1
 fi
+
+# ------------------------------------------
 # TODO: run as a single command
 find . -name pom.xml | xargs gsed -i "s/<version>[0-9]\+\.[0-9]\+\.[0-9]\+<\/version>/<version>${new_version}<\/version>/g"
 find . -name pom.xml | xargs gsed -i "s/<version>[0-9]\+\.[0-9]\+\.[0-9]\+-SNAPSHOT<\/version>/<version>${new_version}<\/version>/g"
 
+# ------------------------------------------
 if [[ "$new_version" =~ ^.+-SNAPSHOT$ ]]; then
   echo "skipped samples and docs"
 else
@@ -17,5 +21,46 @@ else
   gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[0-9]\+/sdkLatestVersion: ${new_version}/g" docs/_config.yml
   gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[0-9]\+-SNAPSHOT/sdkLatestVersion: ${new_version}/g" docs/_config.yml
 fi
+
+# ------------------------------------------
+# Library Versions in Source Code
+# NOTE: Class#getPackage().getImplementationVersion() returns null on AWS Lambda
+
+echo "package com.slack.api.meta;
+
+public final class SlackApiModelLibraryVersion {
+    private SlackApiModelLibraryVersion() {
+    }
+
+    public static final String get() {
+        return \"$new_version\";
+    }
+}
+" > slack-api-model/src/main/java/com/slack/api/meta/SlackApiModelLibraryVersion.java
+
+echo "package com.slack.api.meta;
+
+public final class SlackApiClientLibraryVersion {
+    private SlackApiClientLibraryVersion() {
+    }
+
+    public static final String get() {
+        return \"$new_version\";
+    }
+}
+" > slack-api-client/src/main/java/com/slack/api/meta/SlackApiClientLibraryVersion.java
+
+echo "package com.slack.api.bolt.meta;
+
+public final class BoltLibraryVersion {
+    private BoltLibraryVersion() {
+    }
+
+    public static final String get() {
+        return \"$new_version\";
+    }
+}
+" > bolt/src/main/java/com/slack/api/bolt/meta/BoltLibraryVersion.java
+# ------------------------------------------
 
 git diff

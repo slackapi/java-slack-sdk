@@ -15,7 +15,7 @@ public class UserAgentInterceptorTest {
         String userAgent = UserAgentInterceptor.buildDefaultUserAgent(Collections.emptyMap());
         String[] elements = userAgent.split(";");
         assertEquals(userAgent, 3, elements.length);
-        assertTrue(elements[0], elements[0].trim().matches("slack-api-client/unknown"));
+        assertTrue(elements[0], elements[0].trim().matches("slack-api-client/.+"));
         assertTrue(elements[1], elements[1].trim().matches("[^/]+/.+"));
         assertTrue(elements[2], elements[2].trim().matches("[^/]+/.+"));
     }

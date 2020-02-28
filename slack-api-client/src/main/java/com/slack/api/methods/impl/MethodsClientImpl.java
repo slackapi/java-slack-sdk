@@ -65,8 +65,8 @@ import com.slack.api.methods.request.team.TeamInfoRequest;
 import com.slack.api.methods.request.team.TeamIntegrationLogsRequest;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.usergroups.*;
-import com.slack.api.methods.request.usergroups.users.UsergroupUsersListRequest;
-import com.slack.api.methods.request.usergroups.users.UsergroupUsersUpdateRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
+import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.request.users.*;
 import com.slack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
@@ -136,8 +136,8 @@ import com.slack.api.methods.response.team.TeamInfoResponse;
 import com.slack.api.methods.response.team.TeamIntegrationLogsResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.usergroups.*;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersListResponse;
-import com.slack.api.methods.response.usergroups.users.UsergroupUsersUpdateResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
+import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.*;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
@@ -1920,23 +1920,23 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public UsergroupUsersListResponse usergroupUsersList(UsergroupUsersListRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.USERGROUPS_USERS_LIST, getToken(req), UsergroupUsersListResponse.class);
+    public UsergroupsUsersListResponse usergroupsUsersList(UsergroupsUsersListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.USERGROUPS_USERS_LIST, getToken(req), UsergroupsUsersListResponse.class);
     }
 
     @Override
-    public UsergroupUsersListResponse usergroupUsersList(RequestConfigurator<UsergroupUsersListRequest.UsergroupUsersListRequestBuilder> req) throws IOException, SlackApiException {
-        return usergroupUsersList(req.configure(UsergroupUsersListRequest.builder()).build());
+    public UsergroupsUsersListResponse usergroupsUsersList(RequestConfigurator<UsergroupsUsersListRequest.UsergroupsUsersListRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsUsersList(req.configure(UsergroupsUsersListRequest.builder()).build());
     }
 
     @Override
-    public UsergroupUsersUpdateResponse usergroupUsersUpdate(UsergroupUsersUpdateRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.USERGROUPS_USERS_UPDATE, getToken(req), UsergroupUsersUpdateResponse.class);
+    public UsergroupsUsersUpdateResponse usergroupsUsersUpdate(UsergroupsUsersUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.USERGROUPS_USERS_UPDATE, getToken(req), UsergroupsUsersUpdateResponse.class);
     }
 
     @Override
-    public UsergroupUsersUpdateResponse usergroupUsersUpdate(RequestConfigurator<UsergroupUsersUpdateRequest.UsergroupUsersUpdateRequestBuilder> req) throws IOException, SlackApiException {
-        return usergroupUsersUpdate(req.configure(UsergroupUsersUpdateRequest.builder()).build());
+    public UsergroupsUsersUpdateResponse usergroupsUsersUpdate(RequestConfigurator<UsergroupsUsersUpdateRequest.UsergroupsUsersUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return usergroupsUsersUpdate(req.configure(UsergroupsUsersUpdateRequest.builder()).build());
     }
 
     @Override

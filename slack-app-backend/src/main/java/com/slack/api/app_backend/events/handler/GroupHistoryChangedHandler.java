@@ -1,8 +1,8 @@
 package com.slack.api.app_backend.events.handler;
 
-import com.slack.api.model.event.GroupHistoryChangedEvent;
 import com.slack.api.app_backend.events.EventHandler;
 import com.slack.api.app_backend.events.payload.GroupHistoryChangedPayload;
+import com.slack.api.model.event.GroupHistoryChangedEvent;
 
 public abstract class GroupHistoryChangedHandler extends EventHandler<GroupHistoryChangedPayload> {
 

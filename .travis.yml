@@ -1,15 +1,20 @@
 sudo: false
 language: java
-jdk:
-  - openjdk8
-  - openjdk11
 cache:
   directories:
-  - $HOME/.m2
+    - $HOME/.m2
 install:
   - echo 'skipped'
-script:
-  - travis_retry ./mvnw test-compile
-  - travis_retry ./mvnw '-Dtest=test_locally.**.*Test' test -DfailIfNoTests=false
-  - travis_retry ./mvnw install -Dmaven.test.skip=true
-  - travis_retry ./mvnw duplicate-finder:check
+matrix:
+  - jdk: openjdk8
+    env: CODECOV="true"
+    script: travis_retry ./scripts/run_no_prep_tests.sh
+  - jdk: openjdk11
+    env: CODECOV="false"
+    script: travis_retry ./scripts/run_no_prep_tests.sh
+  - jdk: openjdk8
+    script:
+      - travis_retry ./mvnw install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -V -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+      - travis_retry ./mvnw duplicate-finder:check
+after_success:
+  - test "$CODECOV" = "true" && bash <(curl -s https://codecov.io/bash)

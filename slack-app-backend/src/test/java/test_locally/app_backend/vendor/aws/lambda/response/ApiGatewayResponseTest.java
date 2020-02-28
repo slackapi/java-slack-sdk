@@ -9,9 +9,22 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ApiGatewayResponseTest {
 
     @Test
-    public void test() {
+    public void instantiation() {
+        ApiGatewayResponse response = new ApiGatewayResponse(200, "something", null, false);
+        assertThat(response.getBody(), is("something"));
+    }
+
+    @Test
+    public void builder() {
         ApiGatewayResponse response = ApiGatewayResponse.builder().rawBody("something").build();
         assertThat(response.getBody(), is("something"));
+    }
+
+    @Test
+    public void build302Response() {
+        ApiGatewayResponse response = ApiGatewayResponse.build302Response("https://www.example.com/");
+        assertThat(response.getStatusCode(), is(302));
+        assertThat(response.getHeaders().get("Location"), is("https://www.example.com/"));
     }
 
 }

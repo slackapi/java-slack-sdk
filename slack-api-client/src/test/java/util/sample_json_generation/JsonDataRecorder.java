@@ -6,6 +6,7 @@ import com.slack.api.model.Conversation;
 import com.slack.api.model.FileComment;
 import com.slack.api.model.Message;
 import com.slack.api.model.admin.AppRequest;
+import com.slack.api.scim.model.Group;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.json.GsonFactory;
@@ -101,6 +102,9 @@ public class JsonDataRecorder {
                         if (resourceObj.get("userName") != null) {
                             initializeSCIMUser(resourceObj);
                         }
+                        if (resourceObj.get("members") != null) {
+                            initializeSCIMGroup(resourceObj);
+                        }
                     }
                 } else if (jsonObj.get("schemas") != null && jsonObj.get("userName") != null) {
                     initializeSCIMUser(jsonObj);
@@ -129,6 +133,18 @@ public class JsonDataRecorder {
             Path filePath = new File(toMaskedFilePath(path)).toPath();
             Files.createDirectories(filePath.getParent());
             Files.write(filePath, existingJson.getBytes(UTF_8));
+        }
+    }
+
+    private void initializeSCIMGroup(JsonObject resourceObj) {
+        if (resourceObj.get("members") == null) {
+            resourceObj.add("members", new JsonArray());
+        }
+        {
+            JsonArray objects = resourceObj.get("members").getAsJsonArray();
+            clearAllElements(objects);
+            User sampleObject = ObjectInitializer.initProperties(new User());
+            objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
     }
 
@@ -176,6 +192,15 @@ public class JsonDataRecorder {
             JsonArray objects = resourceObj.get("roles").getAsJsonArray();
             clearAllElements(objects);
             User.Role sampleObject = ObjectInitializer.initProperties(new User.Role());
+            objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
+        }
+        if (resourceObj.get("groups") == null) {
+            resourceObj.add("groups", new JsonArray());
+        }
+        {
+            JsonArray objects = resourceObj.get("groups").getAsJsonArray();
+            clearAllElements(objects);
+            Group sampleObject = ObjectInitializer.initProperties(new Group());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
     }

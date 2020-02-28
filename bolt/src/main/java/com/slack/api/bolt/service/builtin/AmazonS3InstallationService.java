@@ -1,5 +1,7 @@
 package com.slack.api.bolt.service.builtin;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
@@ -7,6 +9,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.util.IOUtils;
+import com.slack.api.bolt.Initializer;
 import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.model.builtin.DefaultBot;
@@ -26,6 +29,24 @@ public class AmazonS3InstallationService implements InstallationService {
 
     public AmazonS3InstallationService(String bucketName) {
         this.bucketName = bucketName;
+    }
+
+    @Override
+    public Initializer initializer() {
+        return (app) -> {
+            // The first access to S3 tends to be slow on AWS Lambda.
+            AWSCredentials credentials = getCredentials();
+            if (credentials == null || credentials.getAWSAccessKeyId() == null) {
+                throw new IllegalStateException("AWS credentials not found");
+            }
+            if (log.isDebugEnabled()) {
+                log.debug("AWS credentials loaded (access key id: {})", credentials.getAWSAccessKeyId());
+            }
+            boolean bucketExists = createS3Client().doesBucketExistV2(bucketName);
+            if (!bucketExists) {
+                throw new IllegalStateException("Failed to access the Amazon S3 bucket (name: " + bucketName + ")");
+            }
+        };
     }
 
     @Override
@@ -151,11 +172,12 @@ public class AmazonS3InstallationService implements InstallationService {
         try {
             return s3.getObjectMetadata(bucketName, fullKey);
         } catch (AmazonS3Exception e) {
-            if (e.getStatusCode() == 404) {
-                return null;
+            if (log.isDebugEnabled()) {
+                log.debug("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString(), e);
             } else {
-                throw e;
+                log.info("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString());
             }
+            return null;
         }
     }
 
@@ -163,11 +185,12 @@ public class AmazonS3InstallationService implements InstallationService {
         try {
             return s3.getObject(bucketName, fullKey);
         } catch (AmazonS3Exception e) {
-            if (e.getStatusCode() == 404) {
-                return null;
+            if (log.isDebugEnabled()) {
+                log.debug("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString(), e);
             } else {
-                throw e;
+                log.info("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString());
             }
+            return null;
         }
     }
 
@@ -187,7 +210,11 @@ public class AmazonS3InstallationService implements InstallationService {
         return JsonOps.fromJson(json, DefaultInstaller.class);
     }
 
-    private AmazonS3 createS3Client() {
+    protected AWSCredentials getCredentials() {
+        return DefaultAWSCredentialsProviderChain.getInstance().getCredentials();
+    }
+
+    protected AmazonS3 createS3Client() {
         return AmazonS3ClientBuilder.defaultClient();
     }
 

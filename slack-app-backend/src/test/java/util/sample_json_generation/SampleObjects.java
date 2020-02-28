@@ -1,5 +1,6 @@
 package util.sample_json_generation;
 
+import com.google.gson.JsonElement;
 import com.slack.api.model.*;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
@@ -8,7 +9,6 @@ import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.*;
 import com.slack.api.util.json.GsonFactory;
-import com.google.gson.JsonElement;
 
 import java.util.Arrays;
 import java.util.HashMap;

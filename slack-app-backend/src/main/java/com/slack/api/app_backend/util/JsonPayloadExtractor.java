@@ -1,10 +1,10 @@
 package com.slack.api.app_backend.util;
 
-import com.slack.api.app_backend.events.payload.EventsApiPayload;
-import com.slack.api.util.json.GsonFactory;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+import com.slack.api.app_backend.events.payload.EventsApiPayload;
+import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.UnsupportedEncodingException;

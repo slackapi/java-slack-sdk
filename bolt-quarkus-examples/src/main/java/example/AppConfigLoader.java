@@ -1,9 +1,9 @@
 package example;
 
-import com.slack.api.bolt.AppConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.slack.api.bolt.AppConfig;
 
 import java.io.BufferedReader;
 import java.io.IOException;
