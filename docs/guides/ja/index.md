@@ -11,7 +11,7 @@ lang: ja
 この SDK は、プラットフォーム機能群をそれぞれ対応するモジュールとして提供しています。大きく分けて主に二種類のモジュールを提供しています。
 
 * [**Slack API クライアント**]({{ site.url | append: site.baseurl }}/guides/ja/web-api-basics) - 様々な Slack API を呼び出すためにクライアント
-* [**Bolt️ for Java**]({{ site.url | append: site.baseurl }}/guides/bolt) - プラットフォームの機能をフル活用した Slack アプリのバックエンドサービスを開発するためのフレームワーク
+* [**Bolt️ for Java**]({{ site.url | append: site.baseurl }}/guides/ja/bolt-basics) - プラットフォームの機能をフル活用した Slack アプリのバックエンドサービスを開発するためのフレームワーク
 
 既存のサービス内で Slack API を呼び出す機能を追加したいという場合は、おそらく **Slack API クライアント**だけを利用すればよいでしょう。モダンでインタラクティブな Slack アプリを開発したいなら、**Bolt** を利用することをおすすめします。このフレームワークを利用することで、些末なことに煩わされることなく、Slack アプリの本質的な部分な実装だけに集中できるようになります。
 
