@@ -1,4 +1,7 @@
-name: Java Slack SDK
+title: Java Slack SDK
 markdown: kramdown
-sdkLatestVersion: 0.99.4
+
+baseurl: /java-slack-sdk
 url: https://slack.dev
+
+sdkLatestVersion: 0.99.4
