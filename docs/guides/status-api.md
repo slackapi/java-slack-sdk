@@ -59,9 +59,6 @@ import com.slack.api.Slack;
 import com.slack.api.status.v2.StatusClient;
 import com.slack.api.status.v2.model.SlackIssue;
 
-@Slf4j
-public class StatusApiV2Test {
-
 Slack slack = Slack.getInstance();
 List<SlackIssue> events = slack.status().history();
 ```

@@ -25,7 +25,7 @@ All your app needs to do to handle Slack requests by user interactions are:
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `action_id` in a block is the one you'd like to handle
 1. Build a reply message or surface to interact with the user further
-1. Respond with 200 OK as the aknowledgement
+1. Respond to the Slack API server with 200 OK as an acknowledgment
 
 Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack. For some of the requests including external selects, having valid parameters to the method may be required.
 
@@ -33,15 +33,15 @@ Your app has to respond to the request within 3 seconds by `ack()` method. Other
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
-Bolt does most of the things for you. The steps you need to handle would be:
+Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 
 * Specify the `action_id` to handle (by either of the exact name or regular expression)
 * Build a reply message or surface to interact with the user further
-* Respond with 200 OK as the acknowledgment
+* Call `ack()` as an acknowledgment
 
 The request payloads have `request_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the action invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
 
-Let's say, a message has a simple action block that has a button.
+Let's say, a message has a simple `"actions"`-typed block that has a button.
 
 ```javascript
 {
@@ -55,7 +55,7 @@ Let's say, a message has a simple action block that has a button.
 }
 ```
 
-When a user clicks the button, `block_actions` typed event with the `action_id` the element has will come to your Bolt app.
+When a user clicks the button, `"block_actions"`-typed event with the `action_id` the element with the value `"button-action"` has will come to your Bolt app.
 
 ```java
 // when a user clicks a button in the actions block
@@ -188,13 +188,15 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   } else if (payloadType != null && payloadType.equals("block_suggestion")) {
     BlockSuggestionPayload payload = gson.fromJson(payloadString, BlockSuggestionPayload.class);
     if (payload.getActionId().equals("topics-action")) {
+      List<Option> options = buildOptions(payload.getValue());
       // Return a successful response having `options` in its body
+      return PseudoHttpResponse.builder().body(Map.of("options", options)).status(200).build();
     }
   } else {
     // other patterns
     return PseudoHttpResponse.builder().status(404).build();
   }
-  // 4. Respond with 200 OK reply as aknowledgement
+  // 4. Respond to the Slack API server with 200 OK as an acknowledgment
   return PseudoHttpResponse.builder().status(200).build();
 }
 ```

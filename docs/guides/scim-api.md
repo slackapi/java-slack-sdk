@@ -98,7 +98,7 @@ memberOp.setOperation("delete");
 op.setMembers(Arrays.asList(memberOp));
 slack.scim(token).patchGroup(req -> req.id(group.getId()).group(op));
 
-// Overwrite all values for a Group even if an attribute is empty or not provided.
+// Overwrite all values for a Group even if some attributes are not given
 slack.scim(token).updateGroup(req -> req.id(groupId).group(group));
 ```
 
@@ -113,9 +113,8 @@ try {
 } catch (SCIMApiException e) {
   e.getMessage(); // "status: 401, description: invalid_authentication"
   e.getResponse(); // HTTP response object (okhttp)
-  // raw string response body
-  e.getResponseBody(); // a String value
-  // deserialized error data in the response body
+  e.getResponseBody(); // raw string response body
+  e.getError(); // deserialized error data in the response body
   e.getError().getErrors().getCode(); // 401
   e.getError().getErrors().getDescription(); // "invalid_authentication"
 }

@@ -63,7 +63,7 @@ Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/
 
 ### getActions()
 
-This endpoint returns information about the kind of actions that the Audit Logs API returns as a list of all actions and a short description of each. Authentication not required.
+This endpoint returns information about the kind of actions that the Audit Logs API returns as [a list of all actions](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/audit/Actions.html) and a short description of each. Authentication not required.
 
 ```java
 import com.slack.api.audit.response.ActionsResponse;

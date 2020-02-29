@@ -1,5 +1,298 @@
 ---
 layout: ja
-title: "Getting Started with Bolt"
+title: "Bolt ことはじめ"
 lang: ja
 ---
+
+# Bolt ことはじめ
+
+**Bolt for Java** は、最新のプラットフォーム機能を使った Slack アプリの開発をスピーディに行うための抽象レイヤーを提供するフレームワークです。
+
+このガイドでは、初めての Bolt アプリを開発する手順を紹介します。
+
+* プロジェクトのセットアップ
+  * Maven
+  * Gradle
+* 3 分間で動かす Bolt アプリ
+  * **bolt-jetty** の利用
+  * 環境変数を設定して起動
+  * `/hello` コマンドの有効化
+  * (参考) Spring Boot での設定
+* Koltin での設定
+  * 動作確認
+* 次のステップ
+
+なお Slack アプリ開発全般についてまだ不慣れな方は、まず「[An introduction to Slack apps（英語）](https://api.slack.com/start/overview)」に軽く目を通した方がよいかもしれません。
+
+---
+
+## プロジェクトのセットアップ
+
+では、さっそく Bolt を使った Slack アプリ開発を始めましょう！このガイドでは Maven、Gradle を使ったプロジェクトセットアップの手順を説明します。
+
+### Maven
+
+まず最初にやることは **bolt** 依存ライブラリを `pom.xml` に追加することです。Bolt を [Spring Boot](https://spring.io/projects/spring-boot)、[Quarkus (Undertow)](https://quarkus.io/) やその他 Servlet 環境で利用する場合は **bolt** という一つのライブラリだけを追加すれば OK です。
+
+```xml
+<dependency>
+  <groupId>com.slack.api</groupId>
+  <artifactId>bolt</artifactId>
+  <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+```
+
+そのような他のフレームワークは一切使わず、シンプルな構成で Jetty HTTP サーバーで起動したい場合は **bolt-jetty** を追加してください。
+
+```xml
+<dependency>
+  <groupId>com.slack.api</groupId>
+  <artifactId>bolt-jetty</artifactId> <!-- "bolt" はこれの依存として解決されます -->
+  <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+```
+
+### Gradle
+
+Maven での説明を繰り返す必要はないでしょう。必要な依存ライブラリを `build.gradle` に追加してください。
+
+```groovy
+dependencies {
+  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
+}
+```
+
+---
+
+## 3 分間で動かす Bolt アプリ
+
+### **bolt-jetty** の利用
+
+**bolt-jetty** は Slack アプリサーバーを起動する手軽な手段です。このモジュールを使えば、開発者は **App** インスタンスを初期化して HTTP サーバーを起動する main メソッドを書くだけで Slack アプリバックエンドサービスを立ち上げることができます。
+
+#### build.gradle
+
+以下のビルド設定は、そのままコピーして使うことができます。プロジェクトのルートディレクトリに配置してください。
+
+```groovy
+plugins {
+  id("application")
+}
+repositories {
+  mavenCentral()
+}
+dependencies {
+  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
+  implementation("org.slf4j:slf4j-simple:1.7.30")
+}
+application {
+  mainClassName = "hello.MyApp"
+}
+run {
+  // gradle run -DslackLogLevel=debug
+  systemProperty "org.slf4j.simpleLogger.log.com.slack.api", System.getProperty("slackLogLevel")
+}
+```
+
+#### src/main/java/hello/MyApp.java
+
+このフレームワークを使ったコーディングは想像以上に簡単です。
+
+はじめての Bolt アプリを動かすためにはたった一つのソースコードだけが必要です。必要なことは **SlackAppServer** を起動させる main メソッドを定義することだけです。デフォルトの設定では、このサーバーは 3000 ポートをリッスンしますが、設定によって変更可能です。変更の方法は、このクラスの他のコンストラクターを確認してみてください。
+
+```java
+package hello;
+
+import com.slack.api.bolt.App;
+import com.slack.api.bolt.jetty.SlackAppServer;
+
+public class MyApp {
+  public static void main(String[] args) throws Exception {
+    // SLACK_BOT_TOKEN, SLACK_SIGNING_SECRET という環境変数が設定されている前提
+    App app = new App();
+
+    app.command("/hello", (req, ctx) -> {
+      return ctx.ack(":candy: はい、アメちゃん！");
+    });
+
+    SlackAppServer server = new SlackAppServer(app);
+    server.start(); // http://localhost:3000/slack/events
+  }
+}
+```
+
+### 環境変数を設定して起動
+
+**App** のデフォルトコンストラクタは、アプリの起動時に、以下の二つの環境変数が設定されていることを期待します。
+
+|環境変数名|説明|
+|-|-|
+|**SLACK_BOT_TOKEN**|開発用ワークスペース（Development Workspace）での有効なボットトークン（形式は `xoxb-` から始まります）です。このボットトークンを発行するには Slack アプリを開発用ワークスペースにインストールする必要があります。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Install App** から実行します。 <br/><br/>複数のワークスペースにインストール可能なアプリとして実行する場合はこの環境変数を設定する必要はありません。そのようなアプリの開発については「[アプリの配布 (OAuth)]({{ site.url | append: site.baseurl }}/guides/ja/app-distribution)」を参考にしてください。|
+|**SLACK_SIGNING_SECRET**|この秘密の値は Slack プラットフォームとだけ共有する情報です。これは Slack アプリが受けたリクエストが本当に Slack API サーバーからのリクエストであるかを検証するために使用します。Slack アプリは公開されたエンドポイントを持つため、リクエストの検証はセキュリティのために重要です。この値は [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Basic Information** へ遷移して **App Credentials** > **Signing Secret** の情報を表示させると確認できます。より詳細な情報は「[Verifying requests from Slack（英語）](https://api.slack.com/docs/verifying-requests-from-slack)」を参考にしてください。|
+
+なお、**App** を別の方法（例: 規定の環境変数名を使わない）で初期化したい場合は **AppConfig** を自前で初期化するコードを書いてください。
+
+ともあれ、上記の二つの環境変数を設定した上で、ターミナル上で `gradle run` を実行してみましょう。このコマンドは、先ほど定義した main メソッドを実行します。より詳細なログ出力を見たい場合は `gradle run -DslackLogLevel=debug` のようにしてください。
+
+```bash
+# https://api.slack.com/apps にアクセスして取得
+export SLACK_BOT_TOKEN=xoxb-...your-own-valid-one
+export SLACK_SIGNING_SECRET=123abc...your-own-valid-one
+
+# main メソッドを実行して、サーバープロセスを起動
+gradle run
+```
+
+標準出力に "**⚡️ Bolt app is running!**" というメッセージが表示されているはずです。
+
+もしうまくいかない場合は、以下のチェックリストを見直してみてください。
+
+* ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
+* ✅ Gradle をインストール（もしまだであれば macOs は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
+* ✅ `build.gradle` に **bolt-jetty** 依存ライブラリを追加、適切な **application** プラグイン設定も追加
+* ✅ main メソッドを持つ `src/main/java/hello/MyApp.java` を作成
+* ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) `app_mention` という Bot Token Scope を追加、アプリを開発用ワークスペースにインストール
+* ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) と [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) の値をコピーしてきて環境変数に設定
+
+### `/hello` コマンドの有効化
+
+Bolt アプリは起動できました！しかし、コードの中で定義した `/hello` というスラッシュコマンドはまだ使えません。これを有効にするには以下の手順を行ってください。
+
+* Slack API サーバーから起動した Bolt アプリにアクセスできるようにする
+  * よく知られているのは [ngrok](https://ngrok.com/) を使う方法です（インストールして `ngrok http 3000` を別のターミナルで実行）
+* Slack アプリを設定して再インストール
+  * [Slack アプリ管理画面](https://api.slack.com/apps) にアクセス
+  * 開発中のアプリを選択して、左ペインから **Features** > **Slash Commands** へ遷移
+  * **Create New Command** ボタンをクリック
+  * ダイアログ内で必要なコマンドの情報を入力
+    * **Command**: `/hello`
+    * **Request URL**: `https://{あなたのドメイン}/slack/events` (ngrok だと `https://{ランダム}.ngrok.io/slack/events`)
+    * **Short Description**: お好きな内容で
+  * **Save** ボタンをクリック
+  * **Settings** > **Install App** に遷移して **Reinstall App** ボタンをクリック
+
+これで `/hello` コマンドが開発用ワークスペースで利用できるようになっているはずです。そして、Bolt アプリが正常に動作していれば、コマンド実行に「`🍬 はい、アメちゃん！`」という返事が返ってくるはずです。
+
+### (参考) Spring Boot での設定
+
+[Spring Boot](https://spring.io/projects/spring-boot) は、Java の世界で最も人気のある Web フレームワークの一つです。Bolt を Spring Boot と共存させる方法について興味を持っている方も多いかと思います。
+
+ご安心ください！Spring Boot アプリに Bolt を（Spring コンポーネントとして） _inject_ することはとても簡単ですぐにできます。
+
+やらなければならないことは `build.gradle` （Gradle の場合）内の `implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")` を `dependencies` に追加して数行のコードを追加で書くことだけです。
+
+```java
+@Configuration
+public class SlackApp {
+  @Bean
+  public App initSlackApp() {
+    App app = new App();
+    app.command("/hello", (req, ctx) -> ctx.ack(":candy: はい、アメちゃん！"));
+    return app;
+  }
+}
+
+@WebServlet("/slack/events")
+public class SlackAppController extends SlackAppServlet {
+  public SlackAppController(App app) {
+    super(app);
+  }
+}
+```
+
+
+より詳細な情報は[こちらのガイド]({{ site.url | append: site.baseurl }}/guides/ja/supported-web-frameworks)を参考にしてください。
+
+---
+
+## Koltin での設定
+
+コードをより簡潔にするために Java の代わりに [Kotlin](https://kotlinlang.org/) で Bolt アプリを書くことはとても良い選択肢です。このセクションでは、Bolt アプリを Kotlin で開発するための設定手順を紹介します。
+
+#### build.gradle
+
+ここでのビルド設定のほとんどは Kotlin 言語を有効にするために必要なものです。**bolt-jetty** 依存ライブラリを追加していることが唯一 Bolt に固有の設定です。
+
+```groovy
+plugins {
+  id("org.jetbrains.kotlin.jvm") version "{{ site.kotlinVersion }}"
+  id("application")
+}
+repositories {
+  mavenCentral()
+}
+dependencies {
+  implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
+  implementation("org.slf4j:slf4j-simple:1.7.30") // または logback-classic など
+}
+application {
+  mainClassName = "MyAppKt" // ソースファイル名の末尾、拡張子の代わりに "Kt" をつけた命名になります
+}
+```
+
+もしすでに Kotlin に詳しくて、Gradle Kotlin DSL を使いたい場合、もちろんそれも全く問題ありません。
+
+#### src/main/kotlin/MyApp.kt
+
+これは Bolt アプリをローカルマシンで起動するために必要最低限のコードを含むソースファイルです。
+
+```kotlin
+import com.slack.api.bolt.App
+import com.slack.api.bolt.jetty.SlackAppServer
+
+fun main() {
+  val app = App()
+
+  // ここで何かする
+
+  val server = SlackAppServer(app)
+  server.start() // http://localhost:3000/slack/events
+}
+```
+
+### 動作確認
+
+OK, you should be done. Just in case, here is the checklist:
+
+* ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
+* ✅ Gradle をインストール（もしまだであれば macOs は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
+* ✅ `build.gradle` に **bolt-jetty** 依存ライブラリを追加、適切な **application** プラグイン設定も追加
+* ✅ main メソッドを持つ `src/main/kotlin/MyApp.kt` を作成
+* ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) `app_mention` という Bot Token Scope を追加、アプリを開発用ワークスペースにインストール
+* ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) と [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) の値をコピーしてきて環境変数に設定
+
+If all are ✅, bootstrapping your first-ever Kotlin-flavored Bolt app will succeed.
+
+```bash
+# Visit https://api.slack.com/apps to know these
+export SLACK_BOT_TOKEN=xoxb-...your-own-valid-one
+export SLACK_SIGNING_SECRET=123abc...your-own-valid-one
+
+# run the main function
+gradle run
+```
+
+... 標準出力に "**⚡️ Bolt app is running!**" というメッセージが表示されましたか？
+
+もし表示されていれば、万事うまくいっています！ 🎉
+
+ここからやることはコードを書いて必要に応じてアプリをリスタートするだけです。Kotlin での Bolt アプリ開発を楽しんでください！ 👋
+
+**Pro tip**: もしあなたがあまり IDE を使うことが好みでないとしても Kotlin を使うなら [IntelliJ IDEA](https://www.jetbrains.com/idea/) を使うことを強くおすすめします。この IDE を使うことがもっともスムースな Kotlin アプリ開発の方法です。
+
+## 次のステップ
+
+[Bolt の概要]({{ site.url | append: site.baseurl }}/guides/ja/bolt-basics) を読んでさらに理解を深めてください。
+
+また、以下のように多くのサンプルがプロジェクトの GitHub リポジトリ内にあるので、あわせて参考にしてみてください。
+
+* [Spring Boot を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-spring-boot-examples)
+* [Micronaut を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-micronaut/src/test/java/example)
+* [Quarkus を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-quarkus-examples)
+* [Kotlin で書かれたサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-kotlin-examples)
+* [Docker を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-docker-examples)

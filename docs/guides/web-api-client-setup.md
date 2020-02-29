@@ -126,7 +126,7 @@ The build settings are almost the same as above except for some Kotlin-specific 
 
 ```groovy
 plugins {
-  id("org.jetbrains.kotlin.jvm") version "1.3.61" // use the latest Kotlin version
+  id("org.jetbrains.kotlin.jvm") version "{{ site.kotlinVersion }}" // use the latest Kotlin version
   id("application")
 }
 repositories {
@@ -163,7 +163,7 @@ In summary, the things you've done here are:
 * ✅ JDK 8 or higher installed (if not, run `brew install openjdk@11` for macOS / visit [OpenJDK website](https://openjdk.java.net/install/) for others)
 * ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
 * ✅ `build.gradle` having valid Kotlin language settings and **slack-api-client** as a dependency
-* ✅ `src/main/java/Example.java` with the main method
+* ✅ `src/main/kotlin/Example.kt` with the main method
 
 ---
 

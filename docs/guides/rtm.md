@@ -22,6 +22,8 @@ import com.slack.api.rtm.message.*;
 
 // Dispatches incoming message events from RTM API
 RTMEventsDispatcher dispatcher = RTMEventsDispatcherFactory.getInstance();
+
+// Register a event handler runtime
 RTMEventHandler<UserTypingEvent> userTyping = new RTMEventHandler<UserTypingEvent>() {
   @Override
   public void handle(UserTypingEvent event) {
@@ -55,6 +57,7 @@ String presenceSub = PresenceSub.builder().ids(Arrays.asList(userId)).build().to
 rtm.sendMessage(presenceSub);
 
 // A bit heavy-weight operation to re-establish a WS connection for sure
+// Don't call this method frequently - it will result in a rate-limited error
 rtm.reconnect();
 
 // Disconnect from Slack - #close() method does the same
