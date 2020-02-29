@@ -33,6 +33,10 @@ public class TeamIdCache {
                 Response response = methodsImpl.runPostFormWithToken(form, Methods.AUTH_TEST, token);
                 AuthTestResponse authTest = methodsImpl.parseJsonResponseAndRunListeners(null, null, response, AuthTestResponse.class);
                 if (authTest.isOk()) {
+                    if (log.isDebugEnabled()) {
+                        log.debug("Created cache for an auth.test API call (token: {}, team_id: {})",
+                                token.substring(0, 16) + "...", authTest.getTeamId());
+                    }
                     return authTest.getTeamId();
                 } else {
                     log.error("Got an unsuccessful response from auth.test API (error: {})", authTest.getError());

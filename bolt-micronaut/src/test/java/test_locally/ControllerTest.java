@@ -23,7 +23,7 @@ public class ControllerTest {
 
     @Test
     public void test() throws Exception {
-        AppConfig config = AppConfig.builder().build();
+        AppConfig config = AppConfig.builder().signingSecret("secret").build();
         SlackAppController controller = new SlackAppController(new App(config), new SlackAppMicronautAdapter(config));
         assertNotNull(controller);
 

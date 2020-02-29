@@ -9,6 +9,19 @@ import static org.junit.Assert.*;
 public class SlackSignatureTest {
 
     @Test
+    public void nullSigningSecret() {
+        String expectedMessage = "The signing secret is required to generate signature values. " +
+                "Set the env variable SLACK_SIGNING_SECRET or pass the value to the single arg constructor.";
+        try {
+            SlackSignature.Generator generator = new SlackSignature.Generator(null);
+            generator.generate(String.valueOf(System.currentTimeMillis() / 1000), "isNull=true");
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertEquals(expectedMessage, e.getMessage());
+        }
+    }
+
+    @Test
     public void test() {
         // https://api.slack.com/docs/verifying-requests-from-slack
         SlackSignature.Generator generator = new SlackSignature.Generator("8f742231b10e8888abcd99yyyzzz85a5");

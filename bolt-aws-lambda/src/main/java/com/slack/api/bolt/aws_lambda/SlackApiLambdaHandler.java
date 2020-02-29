@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.aws_lambda.request.ApiGatewayRequest;
+import com.slack.api.bolt.aws_lambda.request.RequestContext;
 import com.slack.api.bolt.aws_lambda.response.ApiGatewayResponse;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
@@ -11,10 +12,7 @@ import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.util.SlackRequestParser;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The AWS Lambda handler base class. A sub class that inherits this abstract class works as a Lambda handler.
@@ -36,12 +34,13 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
         if (log.isDebugEnabled()) {
             log.debug("AWS API Gateway Request: {}", awsReq);
         }
+        RequestContext context = awsReq.getRequestContext();
         SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
                 .requestUri(awsReq.getPath())
                 .queryString(toStringToStringListMap(awsReq.getQueryStringParameters()))
                 .headers(new RequestHeaders(toStringToStringListMap(awsReq.getHeaders())))
                 .requestBody(awsReq.getBody())
-                .remoteAddress(awsReq.getRequestContext().getIdentity() != null ? awsReq.getRequestContext().getIdentity().getSourceIp() : null)
+                .remoteAddress(context != null && context.getIdentity() != null ? context.getIdentity().getSourceIp() : null)
                 .build();
         return requestParser.parse(rawRequest);
     }
@@ -87,7 +86,7 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
 
     private static Map<String, List<String>> toStringToStringListMap(Map<String, String> stringToStringListMap) {
         if (stringToStringListMap == null) {
-            return null;
+            return Collections.emptyMap();
         }
         Map<String, List<String>> results = new HashMap<>();
         for (Map.Entry<String, String> each : stringToStringListMap.entrySet()) {
