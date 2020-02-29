@@ -14,7 +14,7 @@ This guide covers all the basics of Bolt app development. If you're not yet fami
 
 The **App** class is a place to write only essential parts of your Slack app without being bothered by trifles.
 
-The code using an **App** instance mainly consists of the ways to respond to incoming events from Slack such as user actions, command invocations, requests to load options in select menus, and any events you subscribe to in the Events API.
+The code configuring an **App** instance mainly consists of the ways to respond to incoming events from Slack such as user actions, command invocations, requests to load options in select menus, and any events you subscribe to in the Events API.
 
 ```java
 import com.slack.api.bolt.App;
@@ -31,13 +31,13 @@ Here is the list of the available methods to dispatch events.
 
 |Method|Constraints (value: type)|Description|
 |-|-|-|
-|**app.event**|event type: **Class\<Event\>**|[**Events API**]({{ site.url | append: site.baseurl }}/guides/events-api): Responds to any kinds of bot/workspace events you subscribe.|
+|**app.event**|event type: **Class\<Event\>**|[**Events API**]({{ site.url | append: site.baseurl }}/guides/events-api): Responds to any kinds of bot/user events you subscribe.|
 |**app.command**|command name: **String** \| **Pattern**|[**Slash Commands**]({{ site.url | append: site.baseurl }}/guides/slash-commands): Responds to slash command invocations in the workspace.|
 |**app.messageAction**|callback_id: **String** \| **Pattern**|[**Actions**]({{ site.url | append: site.baseurl }}/guides/actions): Responds to user actions in message menus.|
 |**app.blockAction**|action_id: **String** \| **Pattern**|[**Interactive Components**]({{ site.url | append: site.baseurl }}/guides/interactive-components): Responds to user actions (e.g., click a button, choose an item from select menus, radio buttons, etc.) in **blocks**. These events can be triggered in all the surfaces (messages, modals, and Home tabs).|
-|**app.blockSuggestion**|action_id: **String** \| **Pattern**|[**Interactive Components**]({{ site.url | append: site.baseurl }}/guides/interactive-components): Responds to user actions to input a keyword in select menus (external data source).|
+|**app.blockSuggestion**|action_id: **String** \| **Pattern**|[**Interactive Components**]({{ site.url | append: site.baseurl }}/guides/interactive-components): Responds to user actions to input a keyword (the length needs to be the `min_query_length` or longer) in select menus (external data source).|
 |**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**Modals**]({{ site.url | append: site.baseurl }}/guides/modals): Responds to data submissions in modals.|
-|**app.viewClosed**|callback_id: **String** \| **Pattern**|[**Modals**]({{ site.url | append: site.baseurl }}/guides/modals): Responds to the events where users close modals by clicking Cancel buttons.|
+|**app.viewClosed**|callback_id: **String** \| **Pattern**|[**Modals**]({{ site.url | append: site.baseurl }}/guides/modals): Responds to the events where users close modals by clicking Cancel buttons. The `notify_on_close` has to be `true` when opening/pushing the modal.|
 |**app.dialogSubmission**|callback_id: **String** \| **Pattern**|**Dialogs**: Responds to data submissions in dialogs.|
 |**app.dialogSuggestion**|callback_id: **String** \| **Pattern**|**Dialogs**: Responds to requests to load options for external typed select menus in dialogs.|
 |**app.dialogCancellation**|callback_id **String** \| **Pattern**|**Dialogs**: Responds to the events where users close dialogs by clicking Cancel buttons.|
@@ -48,6 +48,7 @@ Here is the list of the available methods to dispatch events.
 On these guide pages, you'll find a more concrete example code for each.
 
 * [**Slash Commands**]({{ site.url | append: site.baseurl }}/guides/slash-commands)
+* [**Actions**]({{ site.url | append: site.baseurl }}/guides/actions)
 * [**Interactive Components**]({{ site.url | append: site.baseurl }}/guides/interactive-components)
 * [**Modals**]({{ site.url | append: site.baseurl }}/guides/modals)
 * [**App Home**]({{ site.url | append: site.baseurl }}/guides/app-home)
@@ -105,7 +106,7 @@ Are you already familiar with `response_url`? If not, we recommend reading [this
 
 As the guide says, some of the user interaction payloads may contain a `response_url`. This `response_url` is unique to each payload, and can be used to publish messages back to the place where the interaction happened.
 
-Similarly to **ack()** above, the **Context** object offers `respond()` method for easily taking advantage of `response_url`.
+Similarly to `ack()`above, the **Context** object offers `respond()` method for easily taking advantage of `response_url`.
 
 ```java
 import com.slack.api.webhook.WebhookResponse;
@@ -135,7 +136,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-For `chat.postMessage` API calls, using `say()` utility is much simpler.
+For [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) API calls, using `say()` utility is much simpler.
 
 ```java
 app.command("/hello", (req, ctx) -> {
@@ -212,8 +213,8 @@ if (debugMode != null && debugMode.equals("1")) { // enable only when SLACK_APP_
   app.use((req, _resp, chain) -> {
     Response resp = chain.next(req);
     if (resp.getStatusCode() != 200) {
-      // dump all the headers as a single string
       resp.getHeaders().put("content-type", resp.getContentType());
+      // dump all the headers as a single string
       String headers = resp.getHeaders().entrySet().stream()
         .map(e -> e.getKey() +  ": " + e.getValue() + "\n").collect(joining());
 

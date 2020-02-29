@@ -27,7 +27,7 @@ When someone uses an [interactive component](https://api.slack.com/reference/blo
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body, and check if the `action_id` in a block is the one you'd like to handle
 1. [Modify/push a view via API](https://api.slack.com/surfaces/modals/using#modifying) and/or update the modal to hold the sent data as [private_metadata](https://api.slack.com/surfaces/modals/using#carrying_data_between_views)
-1. Respond with 200 OK as the acknowledgment
+1. Respond to the Slack API server with 200 OK as an acknowledgment
 
 #### `view_submission` requests
 
@@ -43,7 +43,7 @@ When a modal view is submitted, you'll receive a [view_submission payload](https
 
 #### `view_closed` requests (only when `notify_on_close` is `true`)
 
-Your app can optionally receive [view_closed payloads](https://api.slack.com/reference/interaction-payloads/views#view_closed) whenever a user clicks on the Cancel or x buttons. These buttons are standard in all app modals. To receive the `view_closed` payload when this happens, set `notify_on_close` to `true` when creating a view with [views.open](https://api.slack.com/methods/views.open) and [views.push](https://api.slack.com/methods/views.push) methods.
+Your app can optionally receive [view_closed payloads](https://api.slack.com/reference/interaction-payloads/views#view_closed) whenever a user clicks on the Cancel or x buttons. These buttons are standard, not blocks, in all app modals. To receive the `view_closed` payload when this happens, set `notify_on_close` to `true` when creating a view with [views.open](https://api.slack.com/methods/views.open) and [views.push](https://api.slack.com/methods/views.push) methods.
 
 All you need to do to handle the `view_closed` requests are:
 
@@ -57,12 +57,12 @@ All you need to do to handle the `view_closed` requests are:
 In general, there are a few things to know when working with modals. They would be:
 
 * You need `trigger_id` in user interaction payloads to open a modal view
-* Only the inputs in `"type": "input"` blocks will be included in `view.state.values`
+* Only the inputs in `"type": "input"` blocks will be included in `view_submission`'s `view.state.values`
 * Each input/selection in non-`"input"` typed blocks such as `"section"`, `"actions"` is sent as a `block_actions` request
 * You use `callback_id` to identify a modal, a pair of `block_id` and `action_id` to identify each input in `view.state.values`
 * You can use `view.private_metadata` to hold the internal state and/or `block_actions` results on the modal
 * You respond to `view_submission` requests with `response_action` to determine the next state of a modal
-* **[views.update](https://api.slack.com/methods/views.update) and [views.push](https://api.slack.com/methods/views.push) methods** are supposed to be used when receiving `block_actions` requests in modals, NOT for `view_submission` requests
+* [views.update](https://api.slack.com/methods/views.update) and [views.push](https://api.slack.com/methods/views.push) methods are supposed to be used when receiving `block_actions` requests in modals, NOT for `view_submission` requests
 
 ## Examples
 
@@ -72,18 +72,33 @@ Let's start with opening a modal. Let's say, we're going to open the following m
 
 ```javascript
 {
-  "callback_id": "meeting-arrangement",
   "type": "modal",
+  "callback_id": "meeting-arrangement",
   "notify_on_close": true,
-  "title": { "type": "plain_text", "text": "Meeting Arrangement", "emoji": true },
-  "submit": { "type": "plain_text", "text": "Submit", "emoji": true },
-  "close": { "type": "plain_text", "text": "Cancel", "emoji": true },
+  "title": { "type": "plain_text", "text": "Meeting Arrangement" },
+  "submit": { "type": "plain_text", "text": "Submit" },
+  "close": { "type": "plain_text", "text": "Cancel" },
+  "private_metadata": "{\"response_url\":\"https://hooks.slack.com/actions/T1ABCD2E12/330361579271/0dAEyLY19ofpLwxqozy3firz\"}",
   "blocks": [
     {
-      "block_id": "agenda-block",
+      "type": "section",
+      "block_id": "category-block",
+      "text": { "type": "mrkdwn", "text": "Select a category of the meeting!" },
+      "accessory": {
+        "type": "static_select",
+        "placeholder": { "type": "plain_text", "text": "Select a category" },
+        "options": [
+          { "text": { "type": "plain_text", "text": "Customer" }, "value": "customer" },
+          { "text": { "type": "plain_text", "text": "Partner" }, "value": "partner" },
+          { "text": { "type": "plain_text", "text": "Internal" }, "value": "internal" }
+        ]
+      }
+    },
+    {
       "type": "input",
+      "block_id": "agenda-block",
       "element": { "action_id": "agenda-action", "type": "plain_text_input", "multiline": true },
-      "label": { "type": "plain_text", "text": "Detailed Agenda", "emoji": true }
+      "label": { "type": "plain_text", "text": "Detailed Agenda" }
     }
   ]
 }
@@ -139,7 +154,7 @@ app.command("/meeting", (req, ctx) -> {
     // omitted ...
 ```
 
-A `trigger_id` is required to open a modal. You can access it in payloads sent by user interactions such as slash command invocations, clicking a button. In Bolt, you can acquire the value by calling `Request.getPayload().getTriggerId()` as it's a part of payloads. More easily, it's also possible to get it by `Context.getTriggerId()`.
+A `trigger_id` is required to open a modal. You can access it in payloads sent by user interactions such as slash command invocations, clicking a button. In Bolt, you can acquire the value by calling `Request.getPayload().getTriggerId()` as it's a part of payloads. More easily, it's also possible to get it by `Context.getTriggerId()`. These methods are defined only when `trigger_id` exists in a payload.
 
 ```java
 import com.slack.api.methods.response.views.ViewsOpenResponse;
@@ -173,18 +188,19 @@ In Koltin, it's much easier to embed multi-line string data in source code. It m
 val commandArg = req.payload.text
 val modalView = """
 {
-  "callback_id": "meeting-arrangement",
   "type": "modal",
+  "callback_id": "meeting-arrangement",
   "notify_on_close": true,
-  "title": { "type": "plain_text", "text": "Meeting Arrangement", "emoji": true },
-  "submit": { "type": "plain_text", "text": "Submit", "emoji": true },
-  "close": { "type": "plain_text", "text": "Cancel", "emoji": true },
+  "title": { "type": "plain_text", "text": "Meeting Arrangement" },
+  "submit": { "type": "plain_text", "text": "Submit" },
+  "close": { "type": "plain_text", "text": "Cancel" },
+  "private_metadata": "${commaondArg}"
   "blocks": [
     {
-      "block_id": "title-block",
       "type": "input",
-      "element": { "action_id": "title-action", "type": "plain_text_input", "initial_value": "${commandArg}" },
-      "label": { "type": "plain_text", "text": "Meeting Title", "emoji": true }
+      "block_id": "agenda-block",
+      "element": { "action_id": "agenda-action", "type": "plain_text_input", "multiline": true },
+      "label": { "type": "plain_text", "text": "Detailed Agenda" }
     }
   ]
 }
@@ -245,11 +261,11 @@ app.blockAction("category-selection-action") { req, ctx ->
 
 ### `view_submission` requests
 
-Bolt does most of the things for you. The steps you need to handle would be:
+Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 
 * Specify the `callback_id` to handle (by either of the exact name or regular expression)
 * Do whatever to do such as input validations, storing them in a database, talking to external services
-* Respond with 200 OK as the acknowledgment by either of the followings:
+* Call `ack()` as an acknowledgment with either of the followings:
   * Sending an empty body means closing only the modal
   * Sending a body with `response_action` (possible values are `errors`, `update`, `push`, `clear`)
 
@@ -318,11 +334,11 @@ ctx.ack { it.responseAction("push").view(newViewInStack) }
 
 ### `view_closed` requests (only when `notify_on_close` is `true`)
 
-Bolt does most of the things for you. The steps you need to handle would be:
+Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 
 * Specify the `callback_id` to handle (by either of the exact name or regular expression)
 * Do whatever to do at the timing
-* Respond with 200 OK as the acknowledgment
+* Call `ack()` as an acknowledgment
 
 ```java
 // when a user clicks "Cancel"
@@ -367,7 +383,7 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
     return PseudoHttpResponse.builder().status(401).build();
   }
 
-  // 2. Parse the request body and check the type, block_id, action_id
+  // 2. Parse the request body and check the type, callback_id, action_id
 
   // payload=url-encoded-json-string in the request body
   String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
@@ -380,27 +396,29 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
     if (payload.getCallbackId().equals("meeting-arrangement")) {
       // 3. Extract the form data from view.state.values
       // 4. Do whatever to do such as input validations, storing them in database, talking to external services
-      // 5. Respond with 200 OK reply as aknowledgement
+      // 5. Respond to the Slack API server with 200 OK as an acknowledgment
     }
   } else if (payloadType != null && payloadType.equals("view_closed")) {
     ViewClosedPayload payload = gson.fromJson(payloadString, ViewClosedPayload.class);
     if (payload.getCallbackId().equals("meeting-arrangement")) {
       // 3. Do whatever to do at the timing
-      // 4. Respond with 200 OK reply as aknowledgement
+      // 4. Respond to the Slack API server with 200 OK as an acknowledgment
     }
   } else if (payloadType != null && payloadType.equals("block_actions")) {
     BlockActionPayload payload = gson.fromJson(payloadString, BlockActionPayload.class);
     if (payload.getCallbackId().equals("meeting-arrangement")) {
       if (payload.getActionId().equals("category-selection-action")) {
         // 3. Modify/push a view via API and/or update the modal to hold the sent data as private_metadata
-        // 4. Respond with 200 OK reply as aknowledgement
+        // 4. Respond to the Slack API server with 200 OK as an acknowledgment
       }
     }
   } else if (payloadType != null && payloadType.equals("block_suggestion")) {
     BlockSuggestionPayload payload = gson.fromJson(payloadString, BlockSuggestionPayload.class);
     if (payload.getCallbackId().equals("meeting-arrangement")) {
       if (payload.getActionId().equals("category-selection-action")) {
+        List<Option> options = buildOptions(payload.getValue());
         // Return a successful response having `options` in its body
+        return PseudoHttpResponse.builder().body(Map.of("options", options)).status(200).build();
       }
     }
   } else {

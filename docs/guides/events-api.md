@@ -6,27 +6,40 @@ lang: en
 
 # Events API
 
-The [Events API](https://api.slack.com/events-api) used in the following example is a streamlined, easy way to build apps that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
+The [Events API](https://api.slack.com/events-api) is a streamlined, easy way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
+
+### Slack App Configuration
+
+To enable Events API, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Event Subscriptions** on the left pain. There are a few things to do on the page.
+
+* Turn on **Enable Events**
+* Set the **Request URL** to `https://{your app's public URL domain}/slack/events`
+* Add subscriptions to bot events
+  * Click **Subscribe to bot events**
+  * Click **Add Bot User Event** button
+  * Choose events to subscrible 
+* Click the **Save Changes** button at the bottom for sure
+
+### What Your Bolt App Does
 
 All you need to do to handle Events API requests are:
 
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `type` in `event` is the one you'd like to handle
 1. Whatever you want to do with the event data
-1. Respond with 200 OK reply as aknowledgement
+1. Respond to the Slack API server with 200 OK as an acknowledgment
 
-
-Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
+Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the Slack Platform may retry after a while.
 
 ## Examples
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
-Bolt does most of the things for you. The steps you need to handle would be:
+Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 
 * Specify the `event.type` (and also `event.subtype` [when necessary](https://api.slack.com/events/message#message_subtypes)) to handle
 * Whatever you want to do with the event data
-* Respond with 200 OK as the acknowledgment
+* Call `ack()` as an acknowledgment
 
 In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user at the conversation the event happened, call [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) method or other similar ones with `channel` in the event payload.
 
@@ -42,7 +55,7 @@ app.event(ReactionAddedEvent.class, (payload, ctx) -> {
       .threadTs(event.getItem().getTs())
       .text("<@" + event.getUser() + "> Thank you! We greatly appreciate your efforts :two_hearts:"));
     if (!message.isOk()) {
-      logger.error("chat.postMessage failed: {}", message.getError());
+      ctx.logger.error("chat.postMessage failed: {}", message.getError());
     }
   }
   return ctx.ack();
@@ -61,14 +74,14 @@ app.event(ReactionAddedEvent::class.java) { payload, ctx ->
         .text("<@${event.user}> Thank you! We greatly appreciate your efforts :two_hearts:")
     }
     if (!message.isOk) {
-      logger.error("chat.postMessage failed: ${message.error}")
+      ctx.logger.error("chat.postMessage failed: ${message.error}")
     }
   }
   ctx.ack()
 }
 ```
 
-Here is another example. Although Bolt doesn't offer something similar to Bolt's `app.message` handler, it's pretty easy to implement it just using `message` event handler as below.
+Here is another example. Although Bolt for Java hasn't provided something similar to Bolt for JavaScript's `app.message` handler yet, it's pretty easy to implement it just using `message` event handler as below.
 
 ```java
 import com.slack.api.methods.MethodsClient;
@@ -97,7 +110,7 @@ app.event(MessageEvent.class, (payload, ctx) -> {
     String ts = event.getTs();
     ReactionsAddResponse reaction = client.reactionsAdd(r -> r.channel(channelId).timestamp(ts).name("eyes"));
     if (!reaction.isOk()) {
-      log.error("reactions.add failed: {}", reaction.getError());
+      ctx.logger.error("reactions.add failed: {}", reaction.getError());
     }
 
     // Send the message to the SDK author
@@ -108,10 +121,10 @@ app.event(MessageEvent.class, (payload, ctx) -> {
         .text("An issue with the Java SDK might be reported:\n" + permalink.getPermalink())
         .unfurlLinks(true));
       if (!message.isOk()) {
-        log.error("chat.postMessage failed: {}", message.getError());
+        ctx.logger.error("chat.postMessage failed: {}", message.getError());
       }
     } else {
-      log.error("chat.getPermalink failed: {}", permalink.getError());
+      ctx.logger.error("chat.getPermalink failed: {}", permalink.getError());
     }
   }
   return ctx.ack();
@@ -149,7 +162,7 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
     // other patterns
     return PseudoHttpResponse.builder().status(404).build();
   }
-  // 4. Respond with 200 OK reply as aknowledgement
+  // 4. Respond to the Slack API server with 200 OK as an acknowledgment
   return PseudoHttpResponse.builder().status(200).build();
 }
 ```

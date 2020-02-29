@@ -39,7 +39,7 @@ Are you looking for the [Incoming Webhooks](https://api.slack.com/messaging/webh
 
 The most popular Slack Web API method is called [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage), and it's used to send a message to a conversation.
 
-To call a Web API method such as [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage), a **MethodsClient** instance needs to be initialized with a token. A token usually begins with **xoxb-** (bot token) or **xoxp-** (user token). You get them from each workspace that an app has been installed. [The Slack App configuration pages](https://api.slack.com/apps) help you get your first token for your development workspace.
+To call a Web API method such as [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage), a **MethodsClient** instance needs to be initialized with a token. A token usually begins with `xoxb-` (bot token) or `xoxp-` (user token). You get them from each workspace that an app has been installed. [The Slack App configuration pages](https://api.slack.com/apps) help you get your first token for your development workspace.
 
 **NOTE**: Hardcoding tokens in your source code is not preferable. We highly recommend using env variables or other secure ways to store your tokens to avoid accidental exposures.
 
@@ -71,7 +71,7 @@ If everything goes well, you will see a message like this in the **#random** cha
 
 To clearly understand what is happening here, take a look at a **curl** command example that is equivalent to the above Java code. The concept behind Slack Web APIs is so straight-forward that it's pretty easy to understand how given parameters will be sent in actual HTTP requests.
 
-```curl
+```bash
 curl -XPOST https://slack.com/api/chat.postMessage \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -H 'Authorization: Bearer xoxb-123-123-abcabcabc' \
@@ -209,7 +209,6 @@ If you need to call a method that **slack-api-client** doesn't support, you can 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiResponse;
 
-@lombok.Data
 public class AwesomeMethodResponse implements SlackApiResponse {
   private boolean ok;
   private String warning;
@@ -217,6 +216,8 @@ public class AwesomeMethodResponse implements SlackApiResponse {
   private String needed;
   private String provided;
   private String awesomeness;
+
+  // getter/setter here...
 }
 
 Slack slack = Slack.getInstance();
@@ -231,11 +232,11 @@ AwesomeMethodResponse response = slack.methods().postFormWithTokenAndParseRespon
 
 ## Rate Limits
 
-Slack platform features and APIs rely on [rate limits](https://api.slack.com/docs/rate-limits) to help provide a predictably pleasant experience for users. Broadly, you'll encounter limits like these, applied on a "per app per workspace" basis. There are several tiers to determine how frequently your apps can call Web APIs. **slack-api-client** has a complete support for those tiers and **AsyncMethodsClient**, the async client, has great consideration for Rate Limits.
+Slack platform features and APIs rely on [rate limits](https://api.slack.com/docs/rate-limits) to help provide a predictably pleasant experience for users. The limits would be applied on a "per app per workspace" basis. There are several tiers to determine how frequently your apps can call Web APIs. **slack-api-client** has a complete support for those tiers and **AsyncMethodsClient**, the async client, has great consideration for Rate Limits.
 
 The async client internally has its queue systems to avoid burst traffics as much as possible while **MethodsClient**, the synchronous client, always blindly sends requests. The good thing is that both sync and async clients maintain the metrics data in a **MetricsDatastore** together. This allows the async client to accurately know the current traffic they generated toward the Slack Platform and estimate the remaining amount to call.
 
-The default implementation of the datastore is in-memory one using the JVM heap memory. The default config enables the following settings. It should work nicely for most cases. If your app is fine with it, you don't need to configure anything.
+The default implementation of the datastore is in-memory one using the JVM heap memory. The default **SlackConfig** enables the in-memory one. It should work nicely for most cases. If your app is fine with it, you don't need to configure anything.
 
 ```java
 import com.slack.api.Slack;
@@ -261,13 +262,13 @@ If your app has multiple nodes, it's also possible to specify the number of node
 import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.methods.metrics.impl.MemoryMetricsDatastore;
 
-// Give the number of nodes if you run a same app on 12 nodes
-config.getMethodsConfig().setMetricsDatastore(new MemoryMetricsDatastore(12));
+// Give the number of nodes if you run a same app on 3 nodes (default: 1)
+config.getMethodsConfig().setMetricsDatastore(new MemoryMetricsDatastore(3));
 ```
 
 The metrics datastore provides useful information to get along with the Rate Limits. The structure of metrics looks as below. 
 
-The following example is a JSON representation of a **MethodsStats** instance. The stats data is recorded per **MethodsConfig**. The metrics database and its stats supports multiple workspaces. So, for most cases, a single stats should be shared among multiple API methods clients. But if your server behaves as multiple Slack apps, it's also possible to have several **MethodsConfig** objects per Slack app.
+The following example is a JSON representation of a **MethodsStats** instance. The stats data is recorded per **MethodsConfig**'s executor name. The metrics and stats support multiple workspaces. So, for most cases, a single stats should be shared among multiple API methods clients. But if your server behaves as multiple Slack apps, it's also possible to have several **MethodsConfig** objects per Slack app.
 
 |Key|Possible Value|
 |-|-|
@@ -408,7 +409,9 @@ Here is the list of available customizable options.
 
 The **ResponsePrettyPrintingListener** in this SDK is a good example demonstrating how it works.
 
-The **State** value given to the function holds **SlackConfig** used for the request, the raw string response body, and the whole HTTP response. The hook works only when the **prettyResponseLoggingEnabled** option in the config is enabled. So, the following code tests the flag in the current config object.
+The **State** value given to the function holds **SlackConfig** used for the request, the raw string response body, and the whole HTTP response. 
+
+The following listener works only when the **prettyResponseLoggingEnabled** option in the **SlackConfig** is enabled. So, the following code tests the flag in the current config object.
 
 ```java
 import com.slack.api.SlackConfig;

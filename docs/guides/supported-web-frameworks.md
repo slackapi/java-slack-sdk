@@ -6,7 +6,7 @@ lang: en
 
 # Supported Web Frameworks
 
-A Bolt app doesn't depend on any specific libraries and frameworks.
+Bolt for Java doesn't depend on any specific environments and frameworks.
 
 It works on Servlet containers out-of-the-box. So, developers can run Bolt apps with most Web frameworks on the JVM. **SlackAppServlet** is a simple Servlet that receives HTTP requests coming to `POST /slack/events` URI and properly dispatches each request to corresponding handlers in a Bolt app.
 
@@ -30,7 +30,7 @@ Let's start with putting `build.gradle` file in the root directory of your proje
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.2.2.RELEASE'
+  id 'org.springframework.boot' version '{{ site.springBootVersion }}'
   id 'io.spring.dependency-management' version '1.0.8.RELEASE'
   id 'java'
 }
@@ -136,7 +136,7 @@ $ gradle bootRun
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.2.2.RELEASE)
+ :: Spring Boot ::        (v{{ site.springBootVersion }})
 
 [main] hello.Application                        : Starting Application on MACHNE_NAME with PID 7815 (/path-to-project/build/classes/java/main started by seratch in /path-to-project)
 [main] hello.Application                        : No active profile set, falling back to default profiles: default
@@ -249,7 +249,7 @@ That's all set! It's time to hit `mvn run` to boot the app.
 
 ## Quarkus
 
-[Quarkus](https://quarkus.io/) is a Web application framework that supports packaging for GraarlVM and HotSpot. In this section, I'll explain how to configure SlackAppServlet with the framework.
+[Quarkus](https://quarkus.io/) is a Web application framework that supports packaging for GraalVM and HotSpot. In this section, I'll explain how to configure SlackAppServlet with the framework.
 
 You can generate a blank project from [code.quarkus.io](https://code.quarkus.io/). For simple Bolt apps, we recommend using **Undertow Servlet** in the **Web** component section. Nothing else is required. Just click **Generate your application** button and download the generated zip file.
 
@@ -330,9 +330,9 @@ class SlackApp : SlackAppServlet(initSlackApp()) {
 }
 ```
 
-For properly using Dependency Injection, having producers may be better.
-
 #### src/mian/kotlin/app.kt
+
+For properly using Dependency Injection, having producers may be better.
 
 ```kotlin
 package hello
@@ -368,7 +368,7 @@ quarkus.http.port=3000
 
 ### Run the App
 
-That’s all set! It’s time to run the app in its the dev mode.
+That’s all set! It’s time to run the app in its the development mode.
 
 ```bash
 ./mvnw quarkus:dev
@@ -377,11 +377,11 @@ That’s all set! It’s time to run the app in its the dev mode.
 If your Quarkus project is correctly configured, the stdout should look like this.
 
 ```
-[INFO] --- quarkus-maven-plugin:1.2.1.Final:dev (default-cli) @ code-with-quarkus ---
+[INFO] --- quarkus-maven-plugin:{{ site.quarkusVersion }}:dev (default-cli) @ code-with-quarkus ---
 [INFO] Applied plugin: 'all-open'
 [INFO] Changes detected - recompiling the module!
 Listening for transport dt_socket at address: 5005
-[io.quarkus] (main) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus 1.2.1.Final) started in 0.902s. Listening on: http://0.0.0.0:3000
+[io.quarkus] (main) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus {{ site.quarkusVersion }}) started in 0.902s. Listening on: http://0.0.0.0:3000
 [io.quarkus] (main) Profile dev activated. Live Coding activated.
 [io.quarkus] (main) Installed features: [cdi, kotlin, servlet]
 ```
@@ -391,7 +391,7 @@ The hot reload mode is enabled by default.
 ```
 [io.qua.dev] (vert.x-worker-thread-2) Changed source files detected, recompiling [/path-to-project/src/main/kotlin/hello/SlackApp.kt]
 [io.quarkus] (vert.x-worker-thread-2) Quarkus stopped in 0.001s
-[io.quarkus] (vert.x-worker-thread-2) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus 1.2.1.Final) started in 0.163s. Listening on: http://0.0.0.0:3000
+[io.quarkus] (vert.x-worker-thread-2) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus {{ site.quarkusVersion }}) started in 0.163s. Listening on: http://0.0.0.0:3000
 [io.quarkus] (vert.x-worker-thread-2) Profile dev activated. Live Coding activated.
 [io.quarkus] (vert.x-worker-thread-2) Installed features: [cdi, kotlin, servlet]
 [io.qua.dev] (vert.x-worker-thread-2) Hot replace total time: 0.572s

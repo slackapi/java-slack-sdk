@@ -25,9 +25,9 @@ To enable Message Actions, visit the [Slack App configuration page](http://api.s
 * Add/edit actions in the **Actions** section
 * Click the **Save Changes** button at the buttom for sure
 
-The specified **Callback ID** will be sent as `callback_id` in payloads from Slack.
-
 <img src="{{ site.url | append: site.baseurl }}/assets/images/bolt-actions.png" width="400" />
+
+The specified **Callback ID** will be sent as `callback_id` in payloads from Slack.
 
 ### What Your Bolt App Does
 
@@ -36,19 +36,19 @@ All your app needs to do to handle message actions requests are:
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `callback_id` is the one you'd like to handle
 1. Build a reply message or do whatever you want to do
-1. Respond with 200 OK as an acknowledgment
+1. Respond to the Slack API server with 200 OK as an acknowledgment
 
 ## Examples
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
-Bolt does most of the things for you. The steps you need to handle would be:
+Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 
 * Specify the `callback_id` to handle (by either of the exact name or regular expression)
 * Build a reply message or do whatever you want to do
-* Respond with 200 OK as an acknowledgment
+* Call `ack()` as an acknowledgment
 
-Message actions request payloads have `request_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
+Message actions request payloads have `request_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the action invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
 
 Here is a tiny example demonstrating how to handle message action requests in a Bolt app.
 
@@ -67,7 +67,7 @@ app.messageAction("create-task-action-callback-id", (req, ctx) -> {
     .view(buildView(message)));
   if (!viewsOpenResp.isOk()) {
     String errorCode = viewsOpenResp.getError();
-    logger.error("Failed to open a modal view for user: {} - error: {}", userId, errorCode);
+    ctx.logger.error("Failed to open a modal view for user: {} - error: {}", userId, errorCode);
     ctx.respond(":x: Failed to open a modal view because of " + errorCode);
   }
 
@@ -93,7 +93,7 @@ app.messageAction("create-task-action-callback-id") { req, ctx ->
   }
   if (!viewsOpenResp.isOk) {
     val errorCode = viewsOpenResp.error
-    logger.error("Failed to open a modal view for user: ${userId} - error: ${errorCode}")
+    ctx.logger.error("Failed to open a modal view for user: ${userId} - error: ${errorCode}")
     ctx.respond(":x: Failed to open a modal view because of ${errorCode}")
   }
 
@@ -131,7 +131,7 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
     // 3. Build a reply message or do whatever you want to do
   }
 
-  // 4. Respond with 200 OK reply as aknowledgement
+  // 4. Respond to the Slack API server with 200 OK as an acknowledgment
   return PseudoHttpResponse.builder().status(200).build();
 }
 ```

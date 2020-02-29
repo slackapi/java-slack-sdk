@@ -25,11 +25,13 @@ curl -X POST \
   https://hooks.slack.com/services/T1234567/AAAAAAAA/ZZZZZZ
 ```
 
-With **Slack SDK for Java**, Sending messages via Incoming Webhooks is still simple and handy. There are two ways to send a payload.
+Also with **Slack SDK for Java**, sending messages via Incoming Webhooks is still simple and handy. There are two ways to send a payload.
 
 ### Build a string payload
 
-A primitive way is to build a payload as a single string. This method is nearly the same as running **curl** command. As with tokens, we don't recommend embedding a webhook URL in your source code. Consider using env variables or some more secure ways to store those.
+A primitive way is to build a payload as a single string. This method is nearly the same as running **curl** command.
+
+**NOTE**: As with tokens, we don't recommend embedding a webhook URL in your source code. Consider using env variables or some more secure ways to store those.
 
 ```java
 import com.slack.api.Slack;

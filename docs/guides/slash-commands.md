@@ -12,7 +12,14 @@ Responding to slash command invocations is a common use case. Your app has to re
 
 ### Slack App Configuration
 
-To enable slash commands, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **Slash Commands** on the left pane, and create/edit slash commands. The default **Request URL** Bolt responds to is `https://{your app's public URL domain}/slack/events`.
+To enable slash commands, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **Slash Commands** on the left pane. There are a few things to there on the page.
+
+* Click **Create New Command** button
+* Input the command information on the dialog:
+  * **Command**: `/hello`
+  * **Request URL**: `https://{your domain here}/slack/events` - if you use ngrok for development, the URL would be `https://{random}.ngrok.io/slack/events`
+  * **Short Description**: whatever you like
+* Click **Save** Button
 
 ### What Your Bolt App Does
 
@@ -21,7 +28,7 @@ All your app needs to do to handle slash command requests are:
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `command` is the one you'd like to handle
 1. Build a reply message or do whatever you want to do
-1. Respond with 200 OK as an acknowledgment
+1. Respond to the Slack API server with 200 OK as an acknowledgment
 
 If the response body is empty, the response will be recognized as just an acknowledgment. No message will be posted to the channel.
 
@@ -29,11 +36,11 @@ If the response body is empty, the response will be recognized as just an acknow
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
-Bolt does most of the things for you. The steps you need to handle would be:
+Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 
 * Specify the `command` to handle (by either of the exact name or regular expression)
 * Build a reply message or do whatever you want to do
-* Respond with 200 OK as an acknowledgment
+* Call `ack()` as an acknowledgment
 
 Slash command request payloads have `request_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
 
@@ -119,7 +126,7 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
     String channelName = payload.getChannelName();
     String text = "You said " + commandArgText + " at <#" + channelId + "|" + channelName + ">";
 
-    // 4. Respond with 200 OK reply as aknowledgement
+    // 4. Respond to the Slack API server with 200 OK as an acknowledgment
     return PseudoHttpResponse.builder()
       .status(200)
       .body(PseudoJsonOps.serialize(Map.of("text", text))) // send a reply in the response
@@ -130,7 +137,7 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
 }
 ```
 
-Also, Bolt does messaging via `response_url` like this.
+Also, Bolt's `ctx.respond` method internally does messaging via `response_url` like this.
 
 ```java
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;

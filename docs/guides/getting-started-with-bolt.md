@@ -16,6 +16,7 @@ This guide explains how to start your first-ever Bolt app.
 * Run Your Bolt App in 3 Minutes
   * Use **bolt-jetty**
   * Start the App with Two Env Variables
+  * Enable `/hello` Command
   * OK, What about Spring Boot?
 * Getting Started in Kotlin
   * Make Sure If It Works
@@ -31,7 +32,7 @@ Let's start building a Slack app with Bolt! This guide shows how to set up a Bol
 
 ### Maven
 
-The first thing to do is to add the **bolt** dependency to your `pom.xml` anyway. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus](https://quarkus.io/), and any others on top of Servlet environment, only the **bolt** library is required for your app.
+The first thing to do is to add the **bolt** dependency to your `pom.xml` anyway. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), and any others on top of Servlet environment, only the **bolt** library is required for your app.
 
 ```xml
 <dependency>
@@ -129,7 +130,7 @@ The default constructor expects the following two env variables exist when start
 |Env Variable|Description|
 |-|-|
 |**SLACK_BOT_TOKEN**|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, you need to install your Slack App that has a bot user to your development workspace. Visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pain. <br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)]({{ site.url | append: site.baseurl }}/guides/app-distribution) for further information instead.|
-|**SLACK_SIGNING_SECRET**|The secret value shared only with the Slack Platform. This secret value is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [the document](https://api.slack.com/docs/verifying-requests-from-slack) for further information.|
+|**SLACK_SIGNING_SECRET**|The secret value shared only with the Slack Platform. It is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [the document](https://api.slack.com/docs/verifying-requests-from-slack) for further information.|
 
 If you prefer configuring an **App** in a different way, write some code to initialize **AppConfig** on your own.
 
@@ -152,8 +153,27 @@ If you get stuck this setup, go through the following checklist:
 * ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
 * ✅ `build.gradle` has **bolt-jetty** dependency and valid application plugin settings
 * ✅ `src/main/java/hello/MyApp.java` with a class having its main method
-* ✅ [Create a Slack App](https://api.slack.com/apps), add a bot user, install the app to your development workspace
+* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add `app_mention` bot scope, install the app to your development workspace
 * ✅ Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
+
+### Enable `/hello` Command
+
+Your app is up now! However, the slash command `/hello` in the code is still unavailable. To enable it, follow the steps below:
+
+* Set up some way to allow Slack API server to access your Bolt app
+  * A well-known way is to use [ngrok](https://ngrok.com/) - install it and run `ngrok http 3000` on another terminal
+* Configure & Reinstall the Slack App 
+  * Visit [Slack App configuration pages](https://api.slack.com/apps)
+  * Choose your app, go to **Features** > **Slash Commands** on the left pane
+  * Click **Create New Command** button
+  * Input the command information on the dialog:
+    * **Command**: `/hello`
+    * **Request URL**: `https://{your domain here}/slack/events` - if you use ngrok for development, the URL would be `https://{random}.ngrok.io/slack/events`
+    * **Short Description**: whatever you like
+  * Click **Save** Button
+  * Go to **Settings** > **Install App** and click **Reinstall App** button
+
+Now you can hit the `/hello` command in your development workspace. If your app is successfully running, the app should respond to the command by replying `👋 Hello!`.
 
 ### OK, What about Spring Boot?
 
@@ -192,11 +212,11 @@ For code simplicity, [Kotlin](https://kotlinlang.org/) language would be a great
 
 #### build.gradle
 
-Most of the build settings are necessary for enabling Kotlin language. Adding **bolt-jetty** dependency is the only one that is specific to bolt.
+Most of the build settings are necessary for enabling Kotlin language. Adding **bolt-jetty** dependency is the only one that is specific to Bolt.
 
 ```groovy
 plugins {
-  id("org.jetbrains.kotlin.jvm") version "1.3.61"
+  id("org.jetbrains.kotlin.jvm") version "{{ site.kotlinVersion }}"
   id("application")
 }
 repositories {

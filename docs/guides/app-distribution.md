@@ -6,7 +6,7 @@ lang: en
 
 # App Distribution (OAuth)
 
-A newly created Slack app can only be installed in its development workspace in the beginning. By setting an OAuth Redirect URL and enabling [App Distribution]((https://api.slack.com/start/distributing)), the app becomes to be ready for installation in any other workspaces.
+A newly created Slack app can only be installed in its development workspace in the beginning. By setting an OAuth Redirect URL and enabling [App Distribution](https://api.slack.com/start/distributing), the app becomes to be ready for installation in any other workspaces.
 
 * [Using OAuth 2.0](https://api.slack.com/docs/oauth)
 * [Distributing Slack Apps](https://api.slack.com/start/distributing)
@@ -26,9 +26,9 @@ All your app needs to do to properly handle OAuth Flow are:
   * Append `client_id`, `scope`, `user_scope` (only for v2), and `state` to the URL
 * Provide an endpoint to handle user redirection from Slack
   * Make sure if the `state` parameter is valid
-  * Complete the installation by calling `oauth.access`/`oauth.v2.access` and store the acquired tokens
+  * Complete the installation by calling [oauth.v2.access](https://api.slack.com/methods/oauth.v2.access) (or [oauth.access](https://api.slack.com/methods/oauth.access)) method and store the acquired tokens
 * Provide the endpoints to navigate installers for the completion/cancellation of the installation flow
-  * The URLs are usually somewhere else but Bolt has simple functionality to host them
+  * The URLs are usually somewhere else but Bolt has simple functionality to serve them
 
 ## Examples
 
@@ -78,8 +78,8 @@ Here is the list of the necessary configurations for distributing apps built wit
 |**SLACK_APP_REDIRECT_URI**|**OAUth 2.0 Redirect URI** (Configure at **Features** > **OAuth & Permissions** > **Redirect URLs**)|
 |**SLACK_APP_SCOPE**|**Command-separated list of scopes**: `scope` parameter that will be appended to `https://slack.com/oauth/authorize` and `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `scope`)|
 |**SLACK_APP_USER_SCOPE** (only for v2)|**Command-separated list of user scopes**: `user_scope` parameter that will be appended to `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `user_scope`)|
-|**SLACK_APP_OAUTH_START_PATH**|**Starting point of OAuth flow**: This endpoint redirects users to the Slack Authorize endpoint with required query parameters such as `client_id`, `scope`, `user_scope` (only for v2), and `state`. The path is a relative path under the mounted OAuth App root. The suggested path is `/start` but you can go with any path.|
-|**SLACK_APP_OAUTH_CALLBACK_PATH**|**Path for OAuth Redirect URI**: This endpoint handles callback requests after the Slack's OAuth confirmation. The path is a relative path under the mounted OAuth App root and must be consistent with **SLACK_APP_REDIRECT_URI** value. The suggested path is `/callback` but you can go with any path.|
+|**SLACK_APP_OAUTH_START_PATH**|**Starting point of OAuth flow**: This endpoint redirects users to the Slack Authorize endpoint with required query parameters such as `client_id`, `scope`, `user_scope` (only for v2), and `state`. The suggested path is `/slack/oauth/start` but you can go with any path.|
+|**SLACK_APP_OAUTH_CALLBACK_PATH**|**Path for OAuth Redirect URI**: This endpoint handles callback requests after the Slack's OAuth confirmation. The path must be consistent with **SLACK_APP_REDIRECT_URI** value. The suggested path is `/slack/oauth/callback` but you can go with any path.|
 |**SLACK_APP_OAUTH_COMPLETION_URL**|**Installation Completion URL**: The complete public URL to redirect users when their installations have been successfully completed. You can go with any URLs.|
 |**SLACK_APP_OAUTH_CANCELLATION_URL**|**Installation Cancellation/Error URL**: The complete public URL to redirect users when their installations have been cancelled for some reasons. You can go with any URLs.|
 
@@ -93,7 +93,7 @@ By default, OAuth flow supported Bolt apps uses the local file system to generat
 
 If your datastore is unsupported, you can implement the interfaces **com.slack.api.bolt.service.InstallationService** and **com.slack.api.bolt.service.OAuthStateService** on your own.
 
-Here is an example app demonstrating how to enable AWS S3 backed services.
+Here is an example app demonstrating how to enable Amazon S3 backed services.
 
 ```java
 import com.slack.api.bolt.App;
@@ -146,7 +146,7 @@ server.start(); // http://localhost:3000
 
 ### Granular Permission Apps or Classic Apps
 
-Slack has two types of OAuth flows for Slack app installations. The V2 OAuth flow enables Slack apps to request more granular permissions than the classic ones, especially for bot users. The differences between the two types are having `v2` in the endpoint to issue access tokens and the OAuth authorization URL, plus some changes to the response data structure returned by the `oauth(.v2).access` endpoint.
+Slack has two types of OAuth flows for Slack app installations. The V2 (this is a bit confusing but it's not the version of OAuth spec, but the version of the Slack OAuth flow) OAuth flow enables Slack apps to request more granular permissions than the classic ones, especially for bot users. The differences between the two types are having `v2` in the endpoint to issue access tokens and the OAuth authorization URL, plus some changes to the response data structure returned by the `oauth(.v2).access` endpoint.
 
 * [V2 OAuth 2.0 Flow](https://api.slack.com/authentication/oauth-v2) (default)
   * Authorization URL - `https://slack.com/oauth/v2/authorize`
@@ -166,9 +166,9 @@ App app = new App(appConfig);
 **InstallationService** absorbs the difference in the response structure. So, you don't need to change anything even when you switch from the classic OAuth to the V2.
 
 
-#### Host the Completion/Cancellation Pages in Bolt Apps
+#### Serve the Completion/Cancellation Pages in Bolt Apps
 
-Most apps tend to choose static pages for the completion/cancellation URLs but it's also possible to host those URLs in the same app. bolt doesn't offer any features to render web pages. Use your favorite template engine for it.
+Most apps tend to choose static pages for the completion/cancellation URLs but it's also possible to dynamically serve those URLs in the same app. Bolt doesn't offer any features to render web pages. Use your favorite template engine for it.
 
 ```java
 String renderCompletionPageHtml() { return null; }

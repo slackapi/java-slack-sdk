@@ -11,7 +11,7 @@
   <li class="toctree-l1 current"><div class="toctree-h">API クライアント</div>
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/web-api-client-setup">API クライアントのセットアップ</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/web-api-basics">Web API 利用の基本</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/web-api-basics">API クライアントの基本</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/composing-messages">メッセージの組み立て方</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/incoming-webhooks">Incoming Webhooks</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/rtm">Real Time Messaging (RTM)</a></li>
@@ -39,7 +39,7 @@
 <ul class="current">
   <li class="toctree-l1 current"><div class="toctree-h">エンタープライズ</div>
     <ul>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/web-api-for-admins">管理者向け API</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/web-api-for-admins">OrG 管理者向け API</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/scim-api">SCIM API</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/audit-logs-api">Audit Logs API</a></li>
     </ul>
