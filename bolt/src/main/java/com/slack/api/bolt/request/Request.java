@@ -7,8 +7,11 @@ import com.slack.api.bolt.context.builtin.OAuthCallbackContext;
 import lombok.ToString;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Http Request from the Slack API server.
@@ -22,6 +25,8 @@ public abstract class Request<CTX extends Context> {
      * The client IP address of the Slack API server.
      */
     private String clientIpAddress;
+
+    private final ConcurrentMap<String, List<String>> queryString = new ConcurrentHashMap<>();
 
     public String getClientIpAddress() {
         return clientIpAddress;
@@ -60,7 +65,7 @@ public abstract class Request<CTX extends Context> {
     public abstract RequestType getRequestType();
 
     public Map<String, List<String>> getQueryString() {
-        return Collections.emptyMap();
+        return queryString;
     }
 
     public abstract String getRequestBodyAsString();

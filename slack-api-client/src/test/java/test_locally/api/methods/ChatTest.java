@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import static com.slack.api.model.Attachments.asAttachments;
+import static com.slack.api.model.block.Blocks.asBlocks;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
@@ -36,15 +38,45 @@ public class ChatTest {
         assertThat(
                 slack.methodsAsync(ValidToken).chatPostMessage(r -> r.channel("C123").text("Hi!")
                 ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostMessage(r -> r.channel("C123").blocksAsString("[]")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostMessage(r -> r.channel("C123").blocks(asBlocks())
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostMessage(r -> r.channel("C123").blocksAsString("[]").blocks(asBlocks())
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostMessage(r -> r.channel("C123").attachmentsAsString("[]")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostMessage(r -> r.channel("C123").attachments(asAttachments())
+                ).get().isOk(), is(true));
     }
 
     @Test
     public void chatPostEphemeral() throws Exception {
         assertThat(
-                slack.methods(ValidToken).chatPostEphemeral(r -> r.channel("C123").text("Hi!")
+                slack.methods(ValidToken).chatPostEphemeral(r -> r.channel("C123").user("U123").text("Hi!")
                 ).isOk(), is(true));
         assertThat(
-                slack.methodsAsync(ValidToken).chatPostEphemeral(r -> r.channel("C123").text("Hi!")
+                slack.methodsAsync(ValidToken).chatPostEphemeral(r -> r.channel("C123").user("U123").text("Hi!")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostEphemeral(r -> r.channel("C123").user("U123").blocksAsString("[]")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostEphemeral(r -> r.channel("C123").user("U123").blocks(asBlocks())
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostEphemeral(r -> r.channel("C123").user("U123").blocksAsString("[]").blocks(asBlocks())
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostEphemeral(r -> r.channel("C123").user("U123").attachmentsAsString("[]")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatPostEphemeral(r -> r.channel("C123").user("U123").attachments(asAttachments())
                 ).get().isOk(), is(true));
     }
 
@@ -104,6 +136,21 @@ public class ChatTest {
                 slack.methodsAsync(ValidToken).chatScheduleMessage(r ->
                         r.channel("C123").text("Hi").postAt(123)
                 ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatScheduleMessage(r -> r.channel("C123").blocksAsString("[]").postAt(123)
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatScheduleMessage(r -> r.channel("C123").blocks(asBlocks()).postAt(123)
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatScheduleMessage(r -> r.channel("C123").blocksAsString("[]").blocks(asBlocks()).postAt(123)
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatScheduleMessage(r -> r.channel("C123").attachmentsAsString("[]").postAt(123)
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatScheduleMessage(r -> r.channel("C123").attachments(asAttachments()).postAt(123)
+                ).get().isOk(), is(true));
     }
 
     @Test
@@ -116,6 +163,10 @@ public class ChatTest {
                 slack.methodsAsync(ValidToken).chatUnfurl(r ->
                         r.channel("C123").ts("123.123")
                 ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatUnfurl(r ->
+                        r.channel("C123").ts("123.123").rawUnfurls("https://www.example.com")
+                ).get().isOk(), is(true));
     }
 
     @Test
@@ -127,6 +178,21 @@ public class ChatTest {
         assertThat(
                 slack.methodsAsync(ValidToken).chatUpdate(r ->
                         r.channel("C123").ts("123.123").text("(edited)")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatUpdate(r -> r.channel("C123").ts("123.123").blocksAsString("[]")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatUpdate(r -> r.channel("C123").ts("123.123").blocks(asBlocks())
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatUpdate(r -> r.channel("C123").ts("123.123").blocksAsString("[]").blocks(asBlocks())
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatUpdate(r -> r.channel("C123").ts("123.123").attachmentsAsString("[]")
+                ).get().isOk(), is(true));
+        assertThat(
+                slack.methodsAsync(ValidToken).chatUpdate(r -> r.channel("C123").ts("123.123").attachments(asAttachments())
                 ).get().isOk(), is(true));
     }
 

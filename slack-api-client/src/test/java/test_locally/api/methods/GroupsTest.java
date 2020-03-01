@@ -2,6 +2,7 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.request.groups.GroupsCloseRequest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +34,8 @@ public class GroupsTest {
         assertThat(slack.methods(ValidToken).groupsArchive(r -> r.channel("C123"))
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).groupsCreate(r -> r.name("foo"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).groupsClose(GroupsCloseRequest.builder().build())
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).groupsCreateChild(r -> r.channel("C123"))
                 .isOk(), is(true));

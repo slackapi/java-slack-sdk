@@ -28,6 +28,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -132,6 +133,18 @@ public class SlackRequestParser {
         } finally {
             if (slackRequest != null) {
                 slackRequest.updateContext(appConfig);
+
+                Map<String, List<String>> queryString = httpRequest.getQueryString();
+                if (queryString != null) {
+                    for (Map.Entry<String, List<String>> each : queryString.entrySet()) {
+                        List<String> values = slackRequest.getQueryString().get(each.getKey());
+                        if (values == null) {
+                            values = new ArrayList<>();
+                        }
+                        values.addAll(each.getValue());
+                        slackRequest.getQueryString().put(each.getKey(), values);
+                    }
+                }
 
                 String ipAddress = headers.getFirstValue("X-FORWARDED-FOR");
                 if (ipAddress == null) {

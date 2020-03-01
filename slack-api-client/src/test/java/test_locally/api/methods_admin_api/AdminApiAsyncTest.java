@@ -134,6 +134,8 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminUsersSetRegular(r -> r.teamId("T123").userId("U123"))
                 .get().isOk(), is(true));
+        assertThat(methods.adminUsersSetExpiration(r -> r.teamId("T123").userId("U123").expirationTs(12345L))
+                .get().isOk(), is(true));
 
         assertThat(methods.adminUsersSessionReset(r -> r.userId("U123").mobileOnly(false))
                 .get().isOk(), is(true));

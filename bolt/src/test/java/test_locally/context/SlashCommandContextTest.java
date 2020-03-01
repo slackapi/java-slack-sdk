@@ -22,7 +22,7 @@ public class SlashCommandContextTest {
     WebhookMockServer server = new WebhookMockServer();
     SlackConfig config = new SlackConfig();
     Slack slack = Slack.getInstance(config);
-    Responder responder = new Responder(slack, server.getWebhookURL());
+    Responder responder = new Responder(slack, server.getWebhookUrl());
 
     @Before
     public void setup() throws Exception {
@@ -54,7 +54,7 @@ public class SlashCommandContextTest {
         context.setResponder(responder);
         WebhookResponse response = context.respond("Hello");
         assertEquals(200L, response.getCode().longValue());
-        assertEquals("ok", response.getBody());
+        assertEquals("OK", response.getBody());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class SlashCommandContextTest {
         context.setResponder(responder);
         WebhookResponse response = context.respond(Arrays.asList());
         assertEquals(200L, response.getCode().longValue());
-        assertEquals("ok", response.getBody());
+        assertEquals("OK", response.getBody());
     }
 
     @Test
@@ -72,6 +72,6 @@ public class SlashCommandContextTest {
         context.setResponder(responder);
         WebhookResponse response = context.respond(r -> r.text("Thanks!"));
         assertEquals(200L, response.getCode().longValue());
-        assertEquals("ok", response.getBody());
+        assertEquals("OK", response.getBody());
     }
 }

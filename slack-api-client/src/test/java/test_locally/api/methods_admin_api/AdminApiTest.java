@@ -134,6 +134,8 @@ public class AdminApiTest {
                 .isOk(), is(true));
         assertThat(methods.adminUsersSetRegular(r -> r.teamId("T123").userId("U123"))
                 .isOk(), is(true));
+        assertThat(methods.adminUsersSetExpiration(r -> r.teamId("T123").userId("U123").expirationTs(12345L))
+                .isOk(), is(true));
 
         assertThat(methods.adminUsersSessionReset(r -> r.userId("U123").mobileOnly(false))
                 .isOk(), is(true));
