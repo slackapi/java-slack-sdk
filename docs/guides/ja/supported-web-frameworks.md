@@ -10,7 +10,7 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 
 標準では Servlet コンテナー上での動作がサポートされています。そのため、開発者は Bolt アプリをほとんどの JVM 上で動作する Web フレームワークと組み合わせて動作させることができます。**SlackAppServlet** は、`POST /slack/events` という URI に来るリクエストを受け付けて、適切に対応する Bolt アプリのハンドラーにディスパッチするだけのシンプルな Servlet です。
 
-Even running Bolt apps on non-Servlet settings like [Micronaut](https://micronaut.io/) is feasible if there is an adapter that transforms its specific HTTP interpretation to Bolt interfaces.
+[Micronaut](https://micronaut.io/) のように Servlet ではない環境も、その固有の HTTP 関連の表現（リクエスト・レスポンス）を変換するアダプターさえあれば、Bolt アプリを動作させることができます。
 
 ## 対応フレームワーク
 

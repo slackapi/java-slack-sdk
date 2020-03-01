@@ -151,7 +151,7 @@ app.blockAction("topics-action") { req, ctx ->
 }
 ```
 
-## Under the Hood
+### Under the Hood
 
 If you hope to understand what is actually happening with the above code, reading the following (a bit pseudo) code may be helpful.
 

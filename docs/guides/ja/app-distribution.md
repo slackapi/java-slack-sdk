@@ -27,7 +27,7 @@ Bolt アプリが OAuth フローをハンドルするためにやらなけれ�
 * Slack からリダイレクトされてきたユーザーリクエストを処理するエンドポイントを提供する
   * `state` パラメーターが正当かを検証する
   * [oauth.v2.access](https://api.slack.com/methods/oauth.v2.access) (または [oauth.access](https://api.slack.com/methods/oauth.access)) API メソッドを呼び出してトークンを発行し、それを保存することでインストールを完了させる
-* インストールを実行したユーザーを誘導する完了・エラ〜ページを用意する
+* インストールを実行したユーザーを誘導する完了・エラーページを用意する
   * これらの URL は通常別のどこかであることが多いが、Bolt アプリがそれをサーブすることも可能
 
 ## コード例
@@ -145,14 +145,19 @@ server.start(); // http://localhost:3000
 
 ### Granular Permission Apps と Classic Apps
 
-Slack アプリインストールには、二つの OAuth フローがあります。V2（ちょっと紛らわしいですが OAuth のバージョンではなく Slack OAuth フローのバージョンです）の OAuth フローでの Slack アプリは（特にボットユーザーの権限に関して）旧来に比べてより詳細な必要最小限の権限だけをリクエストできるようになりました。二つのやり方の違いは `v2` を Authorize URL やトークンを発行する API メソッド（`oauth(.v2).access`）の URL に含んでいることと、`oauth(.v2).access` のレスポンスのデータ構造に若干の変更が加わっていることです。
+Slack アプリインストールには、二つの OAuth フローがあります。V2（ちょっと紛らわしいですが OAuth のバージョンではなく Slack OAuth フローのバージョンです）の OAuth フローでの Slack アプリは（特にボットユーザーの権限に関して）旧来に比べてより詳細な必要最小限の権限だけをリクエストできるようになりました。二つのやり方の違いは `v2` を Authorization URL やトークンを発行する API メソッド（`oauth(.v2).access`）の URL に含んでいることと、`oauth(.v2).access` のレスポンスのデータ構造に若干の変更が加わっていることです。
 
-* [V2 OAuth 2.0 フロー](https://api.slack.com/authentication/oauth-v2) (デフォルト)
-  * Authorization URL - `https://slack.com/oauth/v2/authorize`
-  * トークンを発行するための API メソッド - [`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access)
-* [Classic OAuth フロー](https://api.slack.com/docs/oauth)
-  * Authorization URL - `https://slack.com/oauth/authorize`
-  * トークンを発行するための API メソッド - [`oauth.access`](https://api.slack.com/methods/oauth.access)
+#### [V2 OAuth 2.0 フロー](https://api.slack.com/authentication/oauth-v2) (デフォルト)
+
+|-|-|
+|Authorization URL|`https://slack.com/oauth/v2/authorize`|
+|トークン発行の API メソッド|[`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/master/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
+
+#### [Classic OAuth フロー](https://api.slack.com/docs/oauth)
+
+|-|-|
+|Authorization URL|`https://slack.com/oauth/authorize`|
+|トークン発行の API メソッド|[`oauth.access`](https://api.slack.com/methods/oauth.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/master/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
 
 デフォルトでは Classic OAuth ではなく V2 の OAuth フローが有効になっています。Classic OAuth に対応させるためには **AppConfig** の setter メソッドで `classicAppPermissionsEnabled` を true に設定します。
 

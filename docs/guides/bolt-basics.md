@@ -176,7 +176,7 @@ app.command("/my-search", (req, ctx) -> {
 
 ## Use Logger
 
-You can access slf4j logger in **Context** objects. If you use the **logback-classic** library as the implementation of the APIs, you can configure the settings by **logback.xml** etc.
+You can access [SLF4J](http://www.slf4j.org/) logger in **Context** objects.
 
 ```java
 app.command("/weather", (req, ctx) -> {
@@ -187,6 +187,20 @@ app.command("/weather", (req, ctx) -> {
 });
 ```
 
+If you use the [**ch.qos.logback:logback-classic**](https://search.maven.org/artifact/ch.qos.logback/logback-classic/1.2.3/jar) library as the implementation of the APIs, you can configure the settings by [**logback.xml**](http://logback.qos.ch/manual/configuration.html) etc.
+
+```xml
+<configuration>
+  <appender name="default" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date %level [%thread] %logger{64} %msg%n</pattern>
+    </encoder>
+    </appender>
+  <root level="debug">
+    <appender-ref ref="default"/>
+  </root>
+</configuration>
+```
 
 ## Middleware
 

@@ -148,12 +148,17 @@ server.start(); // http://localhost:3000
 
 Slack has two types of OAuth flows for Slack app installations. The V2 (this is a bit confusing but it's not the version of OAuth spec, but the version of the Slack OAuth flow) OAuth flow enables Slack apps to request more granular permissions than the classic ones, especially for bot users. The differences between the two types are having `v2` in the endpoint to issue access tokens and the OAuth authorization URL, plus some changes to the response data structure returned by the `oauth(.v2).access` endpoint.
 
-* [V2 OAuth 2.0 Flow](https://api.slack.com/authentication/oauth-v2) (default)
-  * Authorization URL - `https://slack.com/oauth/v2/authorize`
-  * Web API to issue access tokens - [`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access)
-* [Classic OAuth Flow](https://api.slack.com/docs/oauth)
-  * Authorization URL - `https://slack.com/oauth/authorize`
-  * Web API to issue tokens - [`oauth.access`](https://api.slack.com/methods/oauth.access)
+#### [V2 OAuth 2.0 Flow](https://api.slack.com/authentication/oauth-v2) (default)
+
+|-|-|
+|Authorization URL|`https://slack.com/oauth/v2/authorize`|
+|Web API to issue access tokens|[`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/master/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
+
+#### [Classic OAuth Flow](https://api.slack.com/docs/oauth)
+
+|-|-|
+|Authorization URL|`https://slack.com/oauth/authorize`|
+|Web API to issue access tokens|[`oauth.access`](https://api.slack.com/methods/oauth.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/master/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
 
 By default, Bolt enables the V2 OAuth Flow over the classic one. It's configurable by **AppConfig**'s the setter method for `classicAppPermissionsEnabled`. The value is set to `false` by default. Change the flag to `true` to authorize your classic OAuth apps.
 

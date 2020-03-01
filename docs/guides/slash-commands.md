@@ -86,7 +86,7 @@ app.command("/echo") { req, ctx ->
 
 To learn how to build [Block Kit](https://api.slack.com/block-kit) messages with this SDK, consult [Composing Messages]({{ site.url | append: site.baseurl }}/guides/composing-messages).
 
-## Under the Hood
+### Under the Hood
 
 If you hope to understand what is actually happening with the above code, reading the following (a bit pseudo) code may be helpful.
 

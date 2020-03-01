@@ -100,6 +100,6 @@ app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
 }
 ```
 
-## Under the Hood
+### Under the Hood
 
 Refer to [the Events API guide]({{ site.url | append: site.baseurl }}/guides/events-api).

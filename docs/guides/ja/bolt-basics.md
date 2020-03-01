@@ -176,8 +176,7 @@ app.command("/my-search", (req, ctx) -> {
 
 ## ロギング
 
-**Context** オブジェクトから slf4j のロガーにアクセスできます。slf4j の実装として **logback-classic** を使っている場合は **logback.xml** などの手段で設定をすることができます。
-
+**Context** オブジェクトから [SLF4J](http://www.slf4j.org/) のロガーにアクセスできます。
 
 ```java
 app.command("/weather", (req, ctx) -> {
@@ -186,6 +185,21 @@ app.command("/weather", (req, ctx) -> {
   ctx.logger.info("Weather search by keyword: {} for user: {}", keyword, userId);
   return ctx.ack(weatherService.find(keyword).toMessage());
 });
+```
+
+SLF4J の実装として [**ch.qos.logback:logback-classic**](https://search.maven.org/artifact/ch.qos.logback/logback-classic/1.2.3/jar) を使っている場合は [**logback.xml**](http://logback.qos.ch/manual/configuration.html) などの手段で設定をすることができます。
+
+```xml
+<configuration>
+  <appender name="default" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date %level [%thread] %logger{64} %msg%n</pattern>
+    </encoder>
+    </appender>
+  <root level="debug">
+    <appender-ref ref="default"/>
+  </root>
+</configuration>
 ```
 
 ## ミドルウェア
