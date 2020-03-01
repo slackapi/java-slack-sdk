@@ -12,50 +12,57 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import redis.clients.jedis.JedisPool;
+import util.MockSlackApiServer;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static util.MockSlackApi.ValidToken;
 
 public class RedisMetricsDatastoreTest {
 
-    RedisServer server;
-    JedisPool pool;
+    MockSlackApiServer slackApiServer = new MockSlackApiServer();
+    Slack slack;
+    RedisMetricsDatastore datastore;
 
     @Before
-    public void before() throws IOException {
-        server = RedisServer.newRedisServer();  // bind to a random port
-        server.start();
-        pool = new JedisPool(server.getHost(), server.getBindPort());
-    }
-
-    @After
-    public void after() {
-        pool.close();
-        server.stop();
-        server = null;
-    }
-
-    @Test
-    public void instantiation() {
-        RedisMetricsDatastore datastore = new RedisMetricsDatastore("name", pool);
-        assertNotNull(datastore);
-    }
-
-    @Test
-    public void stats() throws ExecutionException, InterruptedException {
-        RedisMetricsDatastore datastore = new RedisMetricsDatastore("name", pool);
+    public void setup() throws Exception {
+        redisServer = RedisServer.newRedisServer();  // bind to a random port
+        redisServer.start();
+        jedisPool = new JedisPool(redisServer.getHost(), redisServer.getBindPort());
 
         SlackConfig config = new SlackConfig();
+
+        slackApiServer.start();
+        config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+
+        datastore = new RedisMetricsDatastore("name", jedisPool);
         MethodsConfig methodsConfig = new MethodsConfig();
         methodsConfig.setMetricsDatastore(datastore);
         config.setMethodsConfig(methodsConfig);
-        AsyncMethodsClient client = Slack.getInstance(config).methodsAsync();
-        String token = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+
+        slack = Slack.getInstance(config);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        jedisPool.close();
+        redisServer.stop();
+        redisServer = null;
+
+        slackApiServer.stop();
+    }
+
+    RedisServer redisServer;
+    JedisPool jedisPool;
+
+    @Test
+    public void stats() throws ExecutionException, InterruptedException {
+        AsyncMethodsClient client = slack.methodsAsync(ValidToken);
         for (int i = 0; i < 3; i++) {
-            client.authTest(r -> r.token(token)).get();
+            client.authTest(r -> r.token(ValidToken)).get();
         }
         Map<String, Map<String, MethodsStats>> allStats = datastore.getAllStats();
         assertNotNull(allStats);
