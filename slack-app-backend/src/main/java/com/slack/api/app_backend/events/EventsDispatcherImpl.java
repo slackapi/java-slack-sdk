@@ -17,7 +17,7 @@ public class EventsDispatcherImpl implements EventsDispatcher {
 
     private final ConcurrentMap<String, List<EventHandler<?>>> eventTypeAndHandlers = new ConcurrentHashMap<>();
 
-    private AtomicBoolean closed = new AtomicBoolean(false);
+    private AtomicBoolean closed = new AtomicBoolean(true);
 
     private long maxTerminationDelayMillis = 10000L;
 
@@ -138,8 +138,8 @@ public class EventsDispatcherImpl implements EventsDispatcher {
 
     @Override
     public void start() {
-        closed.set(false);
         eventLoopThread.start();
+        closed.set(false);
     }
 
     @Override
