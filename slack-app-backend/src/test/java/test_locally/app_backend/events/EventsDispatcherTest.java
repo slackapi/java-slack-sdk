@@ -11,8 +11,25 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.*;
 
 public class EventsDispatcherTest {
+
+    @Slf4j
+    public static class GoodbyeEventCountHandler extends GoodbyeHandler {
+
+        private AtomicInteger counter = new AtomicInteger(0);
+
+        public Integer getCurrentCount() {
+            return counter.get();
+        }
+
+        @Override
+        public void handle(GoodbyePayload event) {
+            log.info("event: {}", event);
+            counter.incrementAndGet();
+        }
+    }
 
     @Test
     public void runHandlers() {
@@ -50,20 +67,46 @@ public class EventsDispatcherTest {
         assertThat(handler.getCurrentCount(), is(4));
     }
 
-    @Slf4j
-    public static class GoodbyeEventCountHandler extends GoodbyeHandler {
+    @Test
+    public void dispatch_empty() {
+        EventsDispatcherImpl dispatcher = new EventsDispatcherImpl();
+        dispatcher.start();
+        dispatcher.dispatch("{}");
+    }
 
-        private AtomicInteger counter = new AtomicInteger(0);
+    @Test
+    public void maxTerminationDelayMillis() {
+        EventsDispatcherImpl dispatcher = new EventsDispatcherImpl();
+        assertEquals(10000L, dispatcher.getMaxTerminationDelayMillis());
+        dispatcher.setMaxTerminationDelayMillis(100L);
+        assertEquals(100L, dispatcher.getMaxTerminationDelayMillis());
+    }
 
-        public Integer getCurrentCount() {
-            return counter.get();
-        }
+    @Test
+    public void status() {
+        EventsDispatcherImpl dispatcher = new EventsDispatcherImpl();
+        assertFalse(dispatcher.isRunning());
+        dispatcher.stop();
+        assertFalse(dispatcher.isRunning());
+        dispatcher.start();
+        assertTrue(dispatcher.isRunning());
+        dispatcher.stop();
+        assertFalse(dispatcher.isRunning());
 
-        @Override
-        public void handle(GoodbyePayload event) {
-            log.info("event: {}", event);
-            counter.incrementAndGet();
-        }
+        assertTrue(dispatcher.isEmpty());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void enqueue_stopped() {
+        EventsDispatcherImpl dispatcher = new EventsDispatcherImpl();
+        dispatcher.enqueue("{}"); // stopped
+    }
+
+    @Test
+    public void enqueue() {
+        EventsDispatcherImpl dispatcher = new EventsDispatcherImpl();
+        dispatcher.start();
+        dispatcher.enqueue("{}");
     }
 
 }
