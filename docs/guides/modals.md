@@ -86,6 +86,7 @@ Let's start with opening a modal. Let's say, we're going to open the following m
       "text": { "type": "mrkdwn", "text": "Select a category of the meeting!" },
       "accessory": {
         "type": "static_select",
+        "action_id": "category-selection-action",
         "placeholder": { "type": "plain_text", "text": "Select a category" },
         "options": [
           { "text": { "type": "plain_text", "text": "Customer" }, "value": "customer" },
@@ -378,14 +379,14 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Verify requests from Slack
   // https://api.slack.com/docs/verifying-requests-from-slack
-  //   "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
+  // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();
   }
 
   // 2. Parse the request body and check the type, callback_id, action_id
 
-  // payload=url-encoded-json-string in the request body
+  // payload={URL-encoded JSON} in the request body
   String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
   // The value looks like: { "type": "block_actions", "team": { "id": "T1234567", ... 
   String payloadType != null &&  = PseudoActionTypeExtractor.extract(payloadString);

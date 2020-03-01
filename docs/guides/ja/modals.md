@@ -84,6 +84,7 @@ lang: ja
       "text": { "type": "mrkdwn", "text": "Select a category of the meeting!" },
       "accessory": {
         "type": "static_select",
+        "action_id": "category-selection-action",
         "placeholder": { "type": "plain_text", "text": "Select a category" },
         "options": [
           { "text": { "type": "plain_text", "text": "Customer" }, "value": "customer" },

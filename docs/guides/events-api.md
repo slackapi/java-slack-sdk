@@ -146,7 +146,7 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Verify requests from Slack
   // https://api.slack.com/docs/verifying-requests-from-slack
-  //   "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
+  // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();
   }
