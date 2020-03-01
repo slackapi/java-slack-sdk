@@ -14,13 +14,14 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ActionContextTest {
 
     WebhookMockServer server = new WebhookMockServer();
     SlackConfig config = new SlackConfig();
     Slack slack = Slack.getInstance(config);
-    Responder responder = new Responder(slack, server.getWebhookURL());
+    Responder responder = new Responder(slack, server.getWebhookUrl());
 
     @Before
     public void setup() throws Exception {
@@ -38,7 +39,7 @@ public class ActionContextTest {
         context.setResponder(responder);
         WebhookResponse response = context.respond("Hello");
         assertEquals(200L, response.getCode().longValue());
-        assertEquals("ok", response.getBody());
+        assertEquals("OK", response.getBody());
     }
 
     @Test
@@ -47,7 +48,7 @@ public class ActionContextTest {
         context.setResponder(responder);
         WebhookResponse response = context.respond(Arrays.asList());
         assertEquals(200L, response.getCode().longValue());
-        assertEquals("ok", response.getBody());
+        assertEquals("OK", response.getBody());
     }
 
     @Test
@@ -56,6 +57,18 @@ public class ActionContextTest {
         context.setResponder(responder);
         WebhookResponse response = context.respond(r -> r.text("Thanks!"));
         assertEquals(200L, response.getCode().longValue());
-        assertEquals("ok", response.getBody());
+        assertEquals("OK", response.getBody());
+    }
+
+    @Test
+    public void delayedInit() {
+        ActionContext context = new ActionContext();
+        context.setSlack(Slack.getInstance());
+        context.setResponseUrl("http://localhost/foo/bar");
+        try {
+            context.respond(":wave: hello!");
+            fail("respond should have failed.");
+        } catch (IOException e) {
+        }
     }
 }

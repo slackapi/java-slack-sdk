@@ -2,9 +2,10 @@ package com.slack.api.bolt.context.builtin;
 
 import com.slack.api.app_backend.slash_commands.response.SlashCommandResponse;
 import com.slack.api.bolt.context.Context;
+import com.slack.api.bolt.context.RespondUtility;
 import com.slack.api.bolt.context.SayUtility;
-import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.response.Responder;
+import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.util.BuilderConfigurator;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.webhook.WebhookResponse;
@@ -20,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
-public class SlashCommandContext extends Context implements SayUtility {
+public class SlashCommandContext extends Context implements SayUtility, RespondUtility {
 
     private String triggerId;
     private String channelId;
@@ -36,10 +37,10 @@ public class SlashCommandContext extends Context implements SayUtility {
     }
 
     public WebhookResponse respond(SlashCommandResponse response) throws IOException {
-        if (responder == null) {
-            responder = new Responder(slack, responseUrl);
+        if (getResponder() == null) {
+            setResponder(new Responder(getSlack(), getResponseUrl()));
         }
-        return responder.send(response);
+        return getResponder().send(response);
     }
 
     public WebhookResponse respond(

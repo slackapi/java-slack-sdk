@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
@@ -34,13 +36,13 @@ public class FilesTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).filesInfo(r -> r.file("F123"))
                 .isOk(), is(true));
-        assertThat(slack.methods(ValidToken).filesList(r -> r.channel("C123").count(1).page(10))
+        assertThat(slack.methods(ValidToken).filesList(r -> r.channel("C123").types(Arrays.asList("")).count(1).page(10))
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).filesRevokePublicURL(r -> r.file("F123"))
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).filesSharedPublicURL(r -> r.file("F123"))
                 .isOk(), is(true));
-        assertThat(slack.methods(ValidToken).filesUpload(r -> r.filename("name").title("title"))
+        assertThat(slack.methods(ValidToken).filesUpload(r -> r.filename("name").channels(Arrays.asList("C123")).title("title"))
                 .isOk(), is(true));
     }
 
@@ -50,13 +52,13 @@ public class FilesTest {
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesInfo(r -> r.file("F123"))
                 .get().isOk(), is(true));
-        assertThat(slack.methodsAsync(ValidToken).filesList(r -> r.channel("C123").count(1).page(10))
+        assertThat(slack.methodsAsync(ValidToken).filesList(r -> r.channel("C123").types(Arrays.asList("")).count(1).page(10))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesRevokePublicURL(r -> r.file("F123"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesSharedPublicURL(r -> r.file("F123"))
                 .get().isOk(), is(true));
-        assertThat(slack.methodsAsync(ValidToken).filesUpload(r -> r.filename("name").title("title"))
+        assertThat(slack.methodsAsync(ValidToken).filesUpload(r -> r.filename("name").channels(Arrays.asList("C123")).title("title"))
                 .get().isOk(), is(true));
     }
 

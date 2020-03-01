@@ -1,14 +1,17 @@
 package test_locally.service;
 
 import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
+import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.OAuthCallbackRequest;
+import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.OAuthStateService;
 import org.junit.Test;
 
 import java.util.*;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 public class OAuthStateServiceTest {
 
@@ -93,6 +96,21 @@ public class OAuthStateServiceTest {
         payload.setState("234");
         boolean invalid = service.isValid(new OAuthCallbackRequest(query, "", payload, headers));
         assertFalse(invalid);
+    }
+
+    @Test
+    public void issueNewState() throws Exception {
+        Request req = mock(Request.class);
+        Response resp = mock(Response.class);
+        String state = service.issueNewState(req, resp);
+        assertNotNull(state);
+    }
+
+    @Test
+    public void consume() throws Exception {
+        Request req = mock(Request.class);
+        Response resp = mock(Response.class);
+        service.consume(req, resp);
     }
 
 }

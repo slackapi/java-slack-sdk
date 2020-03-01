@@ -68,15 +68,16 @@ public abstract class Context {
     protected final Map<String, String> additionalValues = new HashMap<>();
 
     public MethodsClient client() {
-        return slack.methods(botToken);
+        return getSlack().methods(botToken);
     }
 
     public AsyncMethodsClient asyncClient() {
-        return slack.methodsAsync(botToken);
+        return getSlack().methodsAsync(botToken);
     }
 
     public ChatPostMessageResponse say(BuilderConfigurator<ChatPostMessageRequest.ChatPostMessageRequestBuilder> request) throws IOException, SlackApiException {
-        ChatPostMessageResponse response = client().chatPostMessage(request.configure(ChatPostMessageRequest.builder()).build());
+        MethodsClient client = client();
+        ChatPostMessageResponse response = client.chatPostMessage(request.configure(ChatPostMessageRequest.builder()).build());
         return response;
     }
 

@@ -2,6 +2,17 @@ package test_locally;
 
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
+import com.slack.api.bolt.service.InstallationService;
+import com.slack.api.bolt.service.OAuthStateService;
+import com.slack.api.bolt.service.builtin.DefaultOAuthCallbackService;
+import com.slack.api.bolt.service.builtin.FileInstallationService;
+import com.slack.api.bolt.service.builtin.FileOAuthStateService;
+import com.slack.api.bolt.service.builtin.oauth.OAuthAccessErrorHandler;
+import com.slack.api.bolt.service.builtin.oauth.OAuthSuccessHandler;
+import com.slack.api.bolt.service.builtin.oauth.OAuthV2AccessErrorHandler;
+import com.slack.api.bolt.service.builtin.oauth.OAuthV2SuccessHandler;
+import com.slack.api.bolt.service.builtin.oauth.default_impl.OAuthDefaultExceptionHandler;
+import com.slack.api.bolt.service.builtin.oauth.default_impl.OAuthDefaultStateErrorHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -134,6 +145,31 @@ public class AppTest {
         });
         app.initialize();
         assertThat(called.get(), is(false));
+    }
+
+    @Test
+    public void oauthMethods() {
+        AppConfig config = new AppConfig();
+        App app = new App();
+        app.asOAuthApp(true);
+        InstallationService installationService = new FileInstallationService(config);
+        app.service(installationService);
+        OAuthStateService stateService = new FileOAuthStateService(config);
+        app.service(stateService);
+        app.service(new DefaultOAuthCallbackService(
+                config, stateService, null, null, null, null, null, null, null));
+
+        app.oauthCallback((OAuthSuccessHandler) (request, response, oauthAccess) -> response);
+        app.oauthCallback((OAuthV2SuccessHandler) (request, response, oauthAccess) -> response);
+
+        app.oauthCallbackAccessError((OAuthAccessErrorHandler) (request, response, apiResponse) -> response);
+        app.oauthCallbackAccessError((OAuthV2AccessErrorHandler) (request, response, apiResponse) -> response);
+
+        app.oauthCallbackError((request, response) -> response);
+        app.oauthCallbackException(new OAuthDefaultExceptionHandler() {
+        });
+        app.oauthCallbackStateError(new OAuthDefaultStateErrorHandler() {
+        });
     }
 
 }

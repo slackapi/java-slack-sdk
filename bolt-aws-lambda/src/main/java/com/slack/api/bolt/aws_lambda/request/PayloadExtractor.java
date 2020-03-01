@@ -27,13 +27,4 @@ public class PayloadExtractor {
         }
         return null;
     }
-
-    public String extractPayloadJsonAsString(ApiGatewayRequest request) {
-        if (request == null) {
-            return null;
-        } else {
-            return extractPayloadJsonAsString(request.getBody());
-        }
-    }
-
 }

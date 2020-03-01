@@ -58,6 +58,8 @@ public class ChannelsTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).channelsUnarchive(r -> r.channel("C123"))
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).channelsMark(r -> r.channel("C123").ts("123.123"))
+                .isOk(), is(true));
     }
 
 }

@@ -12,17 +12,12 @@ import java.io.IOException;
 public class WebhookMockServer {
 
     @WebServlet
-    public static class WebhookMockEndpoint extends HttpServlet {
+    public static class WebhookMockApi extends HttpServlet {
 
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-            if (req.getRequestURI().contains("INVALID")) {
-                resp.setStatus(400);
-                resp.getWriter().write("no_service");
-            } else {
-                resp.setStatus(200);
-                resp.getWriter().write("ok");
-            }
+            resp.setStatus(200);
+            resp.getWriter().write("OK");
         }
     }
 
@@ -38,10 +33,10 @@ public class WebhookMockServer {
         server = new Server(this.port);
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);
-        handler.addServletWithMapping(WebhookMockEndpoint.class, "/*");
+        handler.addServletWithMapping(WebhookMockApi.class, "/*");
     }
 
-    public String getWebhookURL() {
+    public String getWebhookUrl() {
         return "http://localhost:" + port;
     }
 

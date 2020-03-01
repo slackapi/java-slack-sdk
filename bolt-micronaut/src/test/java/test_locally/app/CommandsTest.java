@@ -1,4 +1,4 @@
-package test_locally;
+package test_locally.app;
 
 import com.slack.api.Slack;
 import com.slack.api.RequestConfigurator;

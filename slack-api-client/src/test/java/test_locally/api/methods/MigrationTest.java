@@ -31,8 +31,6 @@ public class MigrationTest {
         server.stop();
     }
 
-    // TODO
-    @Ignore
     @Test
     public void test() throws Exception {
         assertThat(slack.methods(ValidToken).migrationExchange(r -> r.users(Arrays.asList("U123")))

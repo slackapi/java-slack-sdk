@@ -16,6 +16,7 @@ import javax.inject.Singleton;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.net.URLEncoder;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,8 @@ public class SlackAppMicronautAdapter {
                 return e.getKey() + "=" + e.getValue();
             }
         }).collect(Collectors.joining("&"));
-        RequestHeaders headers = new RequestHeaders(req.getHeaders().asMap());
+        RequestHeaders headers = new RequestHeaders(
+                req.getHeaders() != null ? req.getHeaders().asMap() : Collections.emptyMap());
 
         InetSocketAddress isa = req.getRemoteAddress();
         String remoteAddress = null;
@@ -54,7 +56,7 @@ public class SlackAppMicronautAdapter {
         }
         SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
                 .requestUri(req.getPath())
-                .queryString(req.getParameters().asMap())
+                .queryString(req.getParameters() != null ? req.getParameters().asMap() : Collections.emptyMap())
                 .headers(headers)
                 .requestBody(requestBody)
                 .remoteAddress(remoteAddress)
