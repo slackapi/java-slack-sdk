@@ -16,6 +16,10 @@ public class AsyncMethodsRateLimiter {
     private final MethodsConfig config;
     private final MetricsDatastore metricsDatastore;
 
+    public MetricsDatastore getMetricsDatastore() {
+        return metricsDatastore;
+    }
+
     public AsyncMethodsRateLimiter(MethodsConfig config) {
         this.config = config;
         this.metricsDatastore = config.getMetricsDatastore();

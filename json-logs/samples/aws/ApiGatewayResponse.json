@@ -1,0 +1,8 @@
+{
+  "statusCode": 20,
+  "body": "body",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "isBase64Encoded": false
+}

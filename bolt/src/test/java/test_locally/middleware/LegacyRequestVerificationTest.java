@@ -1,16 +1,13 @@
 package test_locally.middleware;
 
-import com.slack.api.app_backend.SlackSignature;
 import com.slack.api.bolt.middleware.MiddlewareChain;
 import com.slack.api.bolt.middleware.builtin.LegacyRequestVerification;
-import com.slack.api.bolt.middleware.builtin.RequestVerification;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.BlockActionRequest;
 import com.slack.api.bolt.response.Response;
 import org.junit.Test;
 
 import java.net.URLEncoder;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

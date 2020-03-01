@@ -96,6 +96,7 @@ public class JsonDataRecorder {
             }
 
             if (path.startsWith("/scim")) {
+                boolean isGroup = false;
                 if (jsonObj.get("Resources") != null) {
                     for (JsonElement resource : jsonObj.get("Resources").getAsJsonArray()) {
                         JsonObject resourceObj = resource.getAsJsonObject();
@@ -106,6 +107,8 @@ public class JsonDataRecorder {
                             initializeSCIMGroup(resourceObj);
                         }
                     }
+                } else if (jsonObj.get("members") != null) {
+                    initializeSCIMGroup(jsonObj);
                 } else if (jsonObj.get("schemas") != null && jsonObj.get("userName") != null) {
                     initializeSCIMUser(jsonObj);
                 } else if (jsonObj.get("Errors") != null) {
@@ -378,7 +381,7 @@ public class JsonDataRecorder {
             return null;
         }
         if (value.matches("^[\\d]+\\.[\\d]+$")) {
-            return "0000000000.000000"; // ts
+            return "W000000000.000000"; // ts
         }
         if (value.matches("^[\\d]{10}$")) {
             return "1234567890"; // epoch
