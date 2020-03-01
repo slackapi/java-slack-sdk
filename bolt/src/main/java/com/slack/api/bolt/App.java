@@ -876,6 +876,9 @@ public class App {
             case BlockAction: {
                 BlockActionRequest request = (BlockActionRequest) slackRequest;
                 List<BlockActionPayload.Action> actions = request.getPayload().getActions();
+                if (actions == null) {
+                    return Response.json(400, "{\"error\":\"No `actions` property found\"}");
+                }
                 if (actions.size() == 1) {
                     String actionId = actions.get(0).getActionId();
                     if (actionId != null) {

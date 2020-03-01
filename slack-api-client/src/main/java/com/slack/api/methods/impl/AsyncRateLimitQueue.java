@@ -18,10 +18,6 @@ public class AsyncRateLimitQueue {
     // Executor name -> Team ID -> Queue
     private static final ConcurrentMap<String, ConcurrentMap<String, AsyncRateLimitQueue>> ALL_QUEUES = new ConcurrentHashMap<>();
 
-    private static ConcurrentMap<String, AsyncRateLimitQueue> getInstance() {
-        return getInstance(MethodsConfig.DEFAULT_SINGLETON_EXECUTOR_NAME);
-    }
-
     private static ConcurrentMap<String, AsyncRateLimitQueue> getInstance(String executorName) {
         ConcurrentMap<String, AsyncRateLimitQueue> teamIdToQueue = ALL_QUEUES.get(executorName);
         if (teamIdToQueue == null) {
@@ -31,7 +27,16 @@ public class AsyncRateLimitQueue {
         return teamIdToQueue;
     }
 
-    private final AsyncMethodsRateLimiter rateLimiter;
+    private AsyncMethodsRateLimiter rateLimiter; // intentionally mutable
+
+    public AsyncMethodsRateLimiter getRateLimiter() {
+        return rateLimiter;
+    }
+
+    public void setRateLimiter(AsyncMethodsRateLimiter rateLimiter) {
+        this.rateLimiter = rateLimiter;
+    }
+
     private final ConcurrentMap<String, LinkedBlockingQueue<Message>> methodNameToActiveQueue = new ConcurrentHashMap<>();
 
     private AsyncRateLimitQueue(MethodsConfig config) {
@@ -52,6 +57,10 @@ public class AsyncRateLimitQueue {
         }
         ConcurrentMap<String, AsyncRateLimitQueue> teamIdToQueue = getInstance(config.getExecutorName());
         AsyncRateLimitQueue queue = teamIdToQueue.get(teamId);
+        if (queue != null && queue.getRateLimiter().getMetricsDatastore() != config.getMetricsDatastore()) {
+            // As the metrics datastore has been changed, we should replace the executor
+            queue.setRateLimiter(new AsyncMethodsRateLimiter(config));
+        }
         if (queue == null) {
             queue = new AsyncRateLimitQueue(config);
             teamIdToQueue.put(teamId, queue);

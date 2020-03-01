@@ -29,7 +29,7 @@ public class DefaultOAuthCallbackServiceTest {
         OAuthV2AccessErrorHandler accessV2ErrorHandler = new OAuthV2DefaultAccessErrorHandler();
         OAuthExceptionHandler exceptionHandler = new OAuthDefaultExceptionHandler();
         DefaultOAuthCallbackService service = new DefaultOAuthCallbackService(
-            config,
+                config,
                 stateService,
                 successHandler,
                 successV2Handler,

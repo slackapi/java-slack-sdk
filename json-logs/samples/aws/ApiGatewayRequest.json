@@ -1,0 +1,39 @@
+{
+  "resource": "resource",
+  "path": "/foo",
+  "httpMethod": "POST",
+  "headers": {
+    "X-Slack-Request-Timestamp": "1531420618",
+    "X-Slack-Signature": "v0\u003da2114d57b48eac39b9ad189dd8316235a7b4a8d21a10bd27519666489c69b503"
+  },
+  "queryStringParameters": {
+    "code": "123"
+  },
+  "stageVariables": {
+    "level": "1"
+  },
+  "requestContext": {
+    "accountId": "",
+    "resourceId": "",
+    "stage": "",
+    "requestId": "",
+    "identity": {
+      "cognitoIdentityPoolId": "",
+      "accountId": "",
+      "cognitoIdentityId": "",
+      "caller": "",
+      "apiKey": "",
+      "sourceIp": "",
+      "cognitoAuthenticationType": "",
+      "cognitoAuthenticationProvider": "",
+      "userArn": "",
+      "userAgent": "",
+      "user": ""
+    },
+    "resourcePath": "",
+    "httpMethod": "",
+    "apiId": ""
+  },
+  "body": "",
+  "isBase64Encoded": false
+}

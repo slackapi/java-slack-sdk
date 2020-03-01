@@ -66,9 +66,12 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
         }
         Request<?> req = toSlackRequest(input);
         try {
+            if (req == null) {
+                return ApiGatewayResponse.builder().statusCode(400).rawBody("Invalid Request").build();
+            }
             return toApiGatewayResponse(app.run(req));
         } catch (Exception e) {
-            log.error("Failed to respond to a request (request: {}, error: {})", input.getBody(), e.getMessage());
+            log.error("Failed to respond to a request (request: {}, error: {})", input.getBody(), e.getMessage(), e);
             // As this response body can be exposed, it should not have detailed information.
             return ApiGatewayResponse.builder().statusCode(500).rawBody("Internal Server Error").build();
         }

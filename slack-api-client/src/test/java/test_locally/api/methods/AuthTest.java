@@ -2,6 +2,11 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.MethodsConfig;
+import com.slack.api.methods.impl.AsyncRateLimitExecutor;
+import com.slack.api.methods.metrics.MetricsDatastore;
+import com.slack.api.methods.metrics.impl.MemoryMetricsDatastore;
+import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +14,8 @@ import util.MockSlackApiServer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static util.MockSlackApi.ValidToken;
 
 public class AuthTest {

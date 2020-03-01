@@ -71,7 +71,11 @@ public class SlackRequestParser {
             String jsonPayload = jsonPayloadExtractor.extractIfExists(requestBody);
             if (jsonPayload != null) {
                 JsonObject payload = gson.fromJson(jsonPayload, JsonElement.class).getAsJsonObject();
-                String payloadType = payload.get("type").getAsString();
+                JsonElement typeElem = payload.get("type");
+                if (typeElem == null) {
+                    return null;
+                }
+                String payloadType = typeElem.getAsString();
                 switch (payloadType) {
                     case AttachmentActionPayload.TYPE:
                         slackRequest = new AttachmentActionRequest(requestBody, jsonPayload, headers);

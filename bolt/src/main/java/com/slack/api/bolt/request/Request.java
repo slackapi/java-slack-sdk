@@ -6,8 +6,6 @@ import com.slack.api.bolt.context.Context;
 import com.slack.api.bolt.context.builtin.OAuthCallbackContext;
 import lombok.ToString;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

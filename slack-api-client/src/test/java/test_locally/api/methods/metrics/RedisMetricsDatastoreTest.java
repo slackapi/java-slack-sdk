@@ -7,7 +7,6 @@ import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsConfig;
 import com.slack.api.methods.MethodsStats;
 import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
-import config.Constants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

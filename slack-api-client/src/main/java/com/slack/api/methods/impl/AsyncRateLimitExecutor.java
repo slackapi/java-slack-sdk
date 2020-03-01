@@ -17,8 +17,8 @@ public class AsyncRateLimitExecutor {
 
     private static final ConcurrentMap<String, AsyncRateLimitExecutor> ALL_EXECUTORS = new ConcurrentHashMap<>();
 
-    private final MethodsConfig config;
-    private final MetricsDatastore metricsDatastore;
+    private MethodsConfig config;
+    private MetricsDatastore metricsDatastore; // intentionally mutable
     private final TeamIdCache teamIdCache;
 
     private AsyncRateLimitExecutor(MethodsClientImpl clientImpl, SlackConfig config) {
@@ -33,12 +33,14 @@ public class AsyncRateLimitExecutor {
 
     public static AsyncRateLimitExecutor getOrCreate(MethodsClientImpl client, SlackConfig config) {
         AsyncRateLimitExecutor executor = ALL_EXECUTORS.get(config.getMethodsConfig().getExecutorName());
-        // As the metrics datastore has been changed, we should recreate the executor
-        boolean metricsDatastoreChanged = executor != null
-                && executor.metricsDatastore != config.getMethodsConfig().getMetricsDatastore();
-        if (executor == null || metricsDatastoreChanged) {
+        if (executor != null && executor.metricsDatastore != config.getMethodsConfig().getMetricsDatastore()) {
+            // As the metrics datastore has been changed, we should replace the executor
+            executor.config = config.getMethodsConfig();
+            executor.metricsDatastore = config.getMethodsConfig().getMetricsDatastore();
+        }
+        if (executor == null) {
             executor = new AsyncRateLimitExecutor(client, config);
-            ALL_EXECUTORS.put(config.getMethodsConfig().getExecutorName(), executor);
+            ALL_EXECUTORS.putIfAbsent(config.getMethodsConfig().getExecutorName(), executor);
         }
         return executor;
     }
