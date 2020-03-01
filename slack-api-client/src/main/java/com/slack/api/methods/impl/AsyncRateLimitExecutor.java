@@ -33,7 +33,10 @@ public class AsyncRateLimitExecutor {
 
     public static AsyncRateLimitExecutor getOrCreate(MethodsClientImpl client, SlackConfig config) {
         AsyncRateLimitExecutor executor = ALL_EXECUTORS.get(config.getMethodsConfig().getExecutorName());
-        if (executor == null) {
+        // As the metrics datastore has been changed, we should recreate the executor
+        boolean metricsDatastoreChanged = executor != null
+                && executor.metricsDatastore != config.getMethodsConfig().getMetricsDatastore();
+        if (executor == null || metricsDatastoreChanged) {
             executor = new AsyncRateLimitExecutor(client, config);
             ALL_EXECUTORS.put(config.getMethodsConfig().getExecutorName(), executor);
         }

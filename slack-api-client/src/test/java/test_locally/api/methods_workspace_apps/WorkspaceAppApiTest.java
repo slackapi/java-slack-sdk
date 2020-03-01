@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
@@ -38,11 +40,15 @@ public class WorkspaceAppApiTest {
         MethodsClient methods = slack.methods(ValidToken);
 
         assertThat(methods.appsPermissionsInfo(r -> r).isOk(), is(true));
-        assertThat(methods.appsPermissionsRequest(r -> r).isOk(), is(true));
+        assertThat(methods.appsPermissionsRequest(r -> r
+                .scopes(Arrays.asList("foo", "bar"))
+        ).isOk(), is(true));
         assertThat(methods.appsPermissionsResourcesList(AppsPermissionsResourcesListRequest.builder().build()).isOk(), is(true));
         assertThat(methods.appsPermissionsScopesList(AppsPermissionsScopesListRequest.builder().build()).isOk(), is(true));
         assertThat(methods.appsPermissionsUsersList(AppsPermissionsUsersListRequest.builder().build()).isOk(), is(true));
-        assertThat(methods.appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest.builder().build()).isOk(), is(true));
+        assertThat(methods.appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest.builder()
+                .scopes(Arrays.asList("foo", "bar")).build()
+        ).isOk(), is(true));
 
     }
 

@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
@@ -45,6 +46,29 @@ public class AdapterTest {
         Request<?> slackRequest = adapter.toSlackRequest(req, body);
 
         assertNotNull(slackRequest);
+        assertEquals("token=random&ssl_check=1", slackRequest.getRequestBodyAsString());
+        assertEquals("xxxxxxx", slackRequest.getHeaders().getFirstValue("X-Slack-Signature"));
+        assertEquals("bar", slackRequest.getQueryString().get("foo").get(0));
+    }
+
+    @Test
+    public void toSlackRequest_with_remote_address() throws UnknownHostException {
+        AppConfig config = AppConfig.builder().build();
+        SlackAppMicronautAdapter adapter = new SlackAppMicronautAdapter(config);
+
+        HttpRequest<String> req = mock(HttpRequest.class);
+
+        InetSocketAddress isa = new InetSocketAddress("localhost", 443);
+        when(req.getRemoteAddress()).thenReturn(isa);
+
+        LinkedHashMap<String, String> body = new LinkedHashMap<>();
+        body.put("token", "random");
+        body.put("ssl_check", "1");
+
+        Request<?> slackRequest = adapter.toSlackRequest(req, body);
+
+        assertNotNull(slackRequest);
+        assertEquals("127.0.0.1", slackRequest.getClientIpAddress());
     }
 
     @Test
