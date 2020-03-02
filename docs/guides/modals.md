@@ -20,35 +20,35 @@ The first step to use modals in your app is to enable Interactive Components. Vi
 
 There are three patterns to handle on modals. As always, your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
-#### `block_actions` requests
+#### `"block_actions"` requests
 
-When someone uses an [interactive component](https://api.slack.com/reference/block-kit/interactive-components) in your app's modal views, the app will receive a [block_actions payload](https://api.slack.com/reference/interaction-payloads/block-actions). All you need to do to handle the `block_actions` requests are:
+When someone uses an [interactive component](https://api.slack.com/reference/block-kit/interactive-components) in your app's modal views, the app will receive a [block_actions payload](https://api.slack.com/reference/interaction-payloads/block-actions). All you need to do to handle the `"block_actions"` requests are:
 
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
-1. Parse the request body, and check if the `action_id` in a block is the one you'd like to handle
+1. Parse the request body, and check if the `type` is `"block_actions"` and the `action_id` in a block is the one you'd like to handle
 1. [Modify/push a view via API](https://api.slack.com/surfaces/modals/using#modifying) and/or update the modal to hold the sent data as [private_metadata](https://api.slack.com/surfaces/modals/using#carrying_data_between_views)
 1. Respond to the Slack API server with 200 OK as an acknowledgment
 
-#### `view_submission` requests
+#### `"view_submission"` requests
 
-When a modal view is submitted, you'll receive a [view_submission payload](https://api.slack.com/reference/interaction-payloads/views#view_submission). All you need to do to handle the `view_submission` requests are:
+When a modal view is submitted, you'll receive a [view_submission payload](https://api.slack.com/reference/interaction-payloads/views#view_submission). All you need to do to handle the `"view_submission"` requests are:
 
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
-1. Parse the request body, and check if the `type` is `view_submission` and the `callback_id` is the one you'd like to handle
+1. Parse the request body, and check if the `type` is `"view_submission"` and the `callback_id` is the one you'd like to handle
 1. Extract the form data from `view.state.values`
 1. Do whatever to do such as input validations, storing them in a database, talking to external services
 1. Respond with 200 OK as the acknowledgment by either of the followings:
   * Sending an empty body means closing only the modal
-  * Sending a body with `response_action` (possible values are `errors`, `update`, `push`, `clear`)
+  * Sending a body with `response_action` (possible values are `"errors"`, `"update"`, `"push"`, `"clear"`)
 
-#### `view_closed` requests (only when `notify_on_close` is `true`)
+#### `"view_closed"` requests (only when `notify_on_close` is `true`)
 
-Your app can optionally receive [view_closed payloads](https://api.slack.com/reference/interaction-payloads/views#view_closed) whenever a user clicks on the Cancel or x buttons. These buttons are standard, not blocks, in all app modals. To receive the `view_closed` payload when this happens, set `notify_on_close` to `true` when creating a view with [views.open](https://api.slack.com/methods/views.open) and [views.push](https://api.slack.com/methods/views.push) methods.
+Your app can optionally receive [view_closed payloads](https://api.slack.com/reference/interaction-payloads/views#view_closed) whenever a user clicks on the Cancel or x buttons. These buttons are standard, not blocks, in all app modals. To receive the `"view_closed"` payload when this happens, set `notify_on_close` to `true` when creating a view with [views.open](https://api.slack.com/methods/views.open) and [views.push](https://api.slack.com/methods/views.push) methods.
 
-All you need to do to handle the `view_closed` requests are:
+All you need to do to handle the `"view_closed"` requests are:
 
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
-1. Parse the request body, and check if the `type` is `view_closed` and the `callback_id` is the one you'd like to handle
+1. Parse the request body, and check if the `type` is `"view_closed"` and the `callback_id` is the one you'd like to handle
 1. Do whatever to do at the timing
 1. Respond with 200 OK as the acknowledgment
 
@@ -58,11 +58,11 @@ In general, there are a few things to know when working with modals. They would 
 
 * You need `trigger_id` in user interaction payloads to open a modal view
 * Only the inputs in `"type": "input"` blocks will be included in `view_submission`'s `view.state.values`
-* Each input/selection in non-`"input"` typed blocks such as `"section"`, `"actions"` is sent as a `block_actions` request
+* Each input/selection in non-`"input"` typed blocks such as `"section"`, `"actions"` is sent as a `"block_actions"` request
 * You use `callback_id` to identify a modal, a pair of `block_id` and `action_id` to identify each input in `view.state.values`
-* You can use `view.private_metadata` to hold the internal state and/or `block_actions` results on the modal
-* You respond to `view_submission` requests with `response_action` to determine the next state of a modal
-* [views.update](https://api.slack.com/methods/views.update) and [views.push](https://api.slack.com/methods/views.push) methods are supposed to be used when receiving `block_actions` requests in modals, NOT for `view_submission` requests
+* You can use `view.private_metadata` to hold the internal state and/or `"block_actions"` results on the modal
+* You respond to `"view_submission"` requests with `response_action` to determine the next state of a modal
+* [views.update](https://api.slack.com/methods/views.update) and [views.push](https://api.slack.com/methods/views.push) API methods are supposed to be used when receiving `"block_actions"` requests in modals, NOT for `"view_submission"` requests
 
 ## Examples
 
@@ -109,10 +109,10 @@ Let's start with opening a modal. Let's say, we're going to open the following m
 
 ```java
 import com.slack.api.model.view.View;
-import static com.slack.api.model.view.Views.*;
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.*;
 import static com.slack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.view.Views.*;
 
 View buildView() {
   return view(view -> view
@@ -123,6 +123,19 @@ View buildView() {
     .submit(viewSubmit(submit -> submit.type("plain_text").text("Submit").emoji(true)))
     .close(viewClose(close -> close.type("plain_text").text("Cancel").emoji(true)))
     .blocks(asBlocks(
+      section(section -> section
+        .blockId("category-block")
+        .text(markdownText("Select a category of the meeting!"))
+        .accessory(staticSelect(staticSelect -> staticSelect
+          .actionId("category-selection-action")
+          .placeholder(plainText("Select a category"))
+          .options(asOptions(
+            option(plainText("Customer"), "customer"),
+            option(plainText("Partner"), "partner"),
+            option(plainText("Internal"), "internal")
+          ))
+        ))
+      ),
       input(input -> input
         .blockId("agenda-block")
         .element(plainTextInput(pti -> pti.actionId("agenda-action").multiline(true)))
@@ -195,7 +208,7 @@ val modalView = """
   "title": { "type": "plain_text", "text": "Meeting Arrangement" },
   "submit": { "type": "plain_text", "text": "Submit" },
   "close": { "type": "plain_text", "text": "Cancel" },
-  "private_metadata": "${commaondArg}"
+  "private_metadata": "${commandArg}"
   "blocks": [
     {
       "type": "input",
@@ -213,7 +226,7 @@ val res = ctx.client().viewsOpen { it
 }
 ```
 
-### `block_actions` requests
+### `"block_actions"` requests
 
 Basically it's the same with [Interactive Components]({{ site.url | append: site.baseurl }}/guides/interactive-components) but the only difference is that a payload coming from a modal has `view` and also its `private_metadata`
 
@@ -260,7 +273,7 @@ app.blockAction("category-selection-action") { req, ctx ->
 }
 ```
 
-### `view_submission` requests
+### `"view_submission"` requests
 
 Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 
@@ -268,7 +281,7 @@ Bolt does many of the commonly required tasks for you. The steps you need to han
 * Do whatever to do such as input validations, storing them in a database, talking to external services
 * Call `ack()` as an acknowledgment with either of the followings:
   * Sending an empty body means closing only the modal
-  * Sending a body with `response_action` (possible values are `errors`, `update`, `push`, `clear`)
+  * Sending a body with `response_action` (possible values are `"errors"`, `"update"`, `"push"`, `"clear"`)
 
 ```java
 import com.slack.api.model.view.ViewState;
@@ -292,7 +305,7 @@ app.viewSubmission("meeting-arrangement", (req, ctx) -> {
     // If your app has next steps, respond with other response_action and a modal view.
     return ctx.ack();
   }
-}
+});
 ```
 
 It looks like below in Kotlin.
@@ -333,7 +346,7 @@ ctx.ack { it.responseAction("update").view(renewedView) }
 ctx.ack { it.responseAction("push").view(newViewInStack) }
 ```
 
-### `view_closed` requests (only when `notify_on_close` is `true`)
+### `"view_closed"` requests (only when `notify_on_close` is `true`)
 
 Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 

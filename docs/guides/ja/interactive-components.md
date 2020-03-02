@@ -33,7 +33,7 @@ Bolt アプリは Slack API サーバーからのリクエストに対して 3 �
 
 **注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt ことはじめ]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
 
-Bolt は Slack アプリに共通で必要となる多くをやってくれます。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
+Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
 * 処理する `action_id` 名を指定 (文字列または正規表現)
 * ユーザとの次のインタラクションのためのメッセージやその他のインターフェースを構築
@@ -101,6 +101,7 @@ app.blockAction("button-action") { req, ctx ->
 
 ```java
 import com.slack.api.app_backend.interactive_components.response.Option;
+import com.slack.api.model.block.composition.PlainTextObject;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import java.util.Arrays;
 import java.util.List;
@@ -132,6 +133,7 @@ Kotlin で書いた同じコードは以下のようになります（参考：�
 ```kotlin
 import com.slack.api.app_backend.interactive_components.response.Option
 import com.slack.api.model.block.composition.BlockCompositions.plainText // static import
+import com.slack.api.model.block.composition.PlainTextObject
 
 val allOptions = listOf(
   Option(plainText("Schedule", true), "schedule"),

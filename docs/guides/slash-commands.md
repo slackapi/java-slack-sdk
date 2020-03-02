@@ -48,7 +48,7 @@ Here is a tiny example demonstrating how to handle slash command requests in a B
 
 ```java
 app.command("/echo", (req, ctx) -> {
-  String commandArgText = req.getPayload().getText(;
+  String commandArgText = req.getPayload().getText();
   String channelId = req.getPayload().getChannelId();
   String channelName = req.getPayload().getChannelName();
   String text = "You said " + commandArgText + " at <#" + channelId + "|" + channelName + ">";

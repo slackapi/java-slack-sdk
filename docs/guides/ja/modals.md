@@ -20,33 +20,33 @@ lang: ja
 
 モーダルのハンドリングには 3 つのパターンがあります。いつものように、Bolt アプリは Slack API サーバーからのリクエストに対して 3 秒以内に `ack()` メソッドで応答する必要があります。3 秒以内に応答しなかった場合、コマンドを実行したユーザーに対して Slack 上でタイムアウトした旨が通知されます。
 
-#### `block_actions` リクエスト
+#### `"block_actions"` リクエスト
 
 ユーザーがモーダル内の[インタラクティブなコンポーネント](https://api.slack.com/reference/block-kit/interactive-components)を使用して何かアクションを起こしたとき、アプリは [`"block_actions"` という type のペイロード]((https://api.slack.com/reference/interaction-payloads/block-actions))を受信します。このリクエストを処理するためにやらなければならないことは以下の通りです。
 
 1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
-1. リクエストボディをパースして `action_id` が処理対象か確認
+1. リクエストボディをパースして `type` が `"block_actions"` かつ `action_id` が処理対象か確認
 1. [views.* API](https://api.slack.com/methods/views.update) を使って[書き換えたり、上に新しく追加したり](https://api.slack.com/surfaces/modals/using#modifying)する and/or 必要に応じて送信された情報を [private_metadata](https://api.slack.com/surfaces/modals/using#carrying_data_between_views) に保持
 1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
 
-#### `view_submission` リクエスト
+#### `"view_submission"` リクエスト
 
 ユーザーがモーダル最下部の Submit ボタンを押してフォームの送信を行ったとき、[`"view_submission"` という type のペイロード](https://api.slack.com/reference/interaction-payloads/views#view_submission)を受信します。このリクエストを処理するためにやらなければならないことは以下の通りです。
 
 1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
-1. リクエストボディをパースして `type` が `view_submission` かつ `callback_id` が処理対象かを確認
+1. リクエストボディをパースして `type` が `"view_submission"` かつ `callback_id` が処理対象かを確認
 1. `view.state.values` からフォーム送信された情報を抽出
 1. 入力バリデーション、データベースへの保存、外部サービスとの連携など任意の処理
 1. 以下のいずれかによって受け取ったことを伝えるために Slack API へ 200 OK 応答:
   * 空のボディで応答してモーダルを閉じる
-  * `response_action` (可能な値は `errors`, `update`, `push`, `clear`) を指定して応答する
+  * `response_action` (可能な値は `"errors"`, `"update"`, `"push"`, `"clear"`) を指定して応答する
 
-#### `view_closed` リクエスト (`notify_on_close` が `true` のときのみ)
+#### `"view_closed"` リクエスト (`notify_on_close` が `true` のときのみ)
 
 ユーザーがモーダルの Cancel ボタンや x ボタンを押したとき、[`"view_closed"` という type のペイロード](https://api.slack.com/reference/interaction-payloads/views#view_closed) を受信する場合があります。これらのボタンは blocks ではなく、標準で配置されているものです。このイベントを受信するためには [views.open](https://api.slack.com/methods/views.open) や [views.push](https://api.slack.com/methods/views.push) の API メソッドでモーダルを生成したときに `notify_on_close` を `true` に設定しておく必要があります。このリクエストを処理するためにやらなければならないことは以下の通りです。
 
 1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
-1. リクエストボディをパースして `type` が `view_closed` かつ `callback_id` が処理対象かを確認
+1. リクエストボディをパースして `type` が `"view_closed"` かつ `callback_id` が処理対象かを確認
 1. 任意のこのタイミングでやるべきこと
 1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
 
@@ -55,12 +55,12 @@ lang: ja
 一般に Slack のモーダルを使って開発する上で知っておくべきことがいくつかあります。
 
 * モーダルを開始するには、ユーザーインタラクションのペイロードに含まれる `trigger_id` が必要です
-* `"type": "input"` のブロックに含まれる入力項目だけが `view_submission` の `view.state.values` に含まれます
-* `"section"`, `"actions"` 等の `"input"` の type ではないブロックでの入力・セレクトメニュー選択は `block_actions` として個別に送信されます
+* `"type": "input"` のブロックに含まれる入力項目だけが `"view_submission"` の `view.state.values` に含まれます
+* `"section"`, `"actions"` 等の `"input"` の type ではないブロックでの入力・セレクトメニュー選択は `"block_actions"` として個別に送信されます
 * モーダルを特定するには `callback_id` を使用し、`view.states` 内で入力値を特定するには `block_id` と `action_id` のペアを使用します
-* モーダルの内部状態や `block_actions` での入力結果は `view.private_metadata` に保持することができます
-* `view_submission` のリクエストは、その応答 (= `ack()`) で `response_action` を指定することでモーダルの次の状態を指示します
-* [views.update](https://api.slack.com/methods/views.update)、[views.push](https://api.slack.com/methods/views.push) API メソッドはモーダル内での `block_actions` リクエストを受信したときに使用するものであり、`view_submission` 時にモーダルを操作するための API ではありません
+* モーダルの内部状態や `"block_actions"` での入力結果は `view.private_metadata` に保持することができます
+* `"view_submission"` のリクエストは、その応答 (= `ack()`) で `response_action` を指定することでモーダルの次の状態を指示します
+* [views.update](https://api.slack.com/methods/views.update)、[views.push](https://api.slack.com/methods/views.push) API メソッドはモーダル内での `"block_actions"` リクエストを受信したときに使用するものであり、`"view_submission"` 時にモーダルを操作するための API ではありません
 
 ## コード例
 
@@ -107,10 +107,10 @@ lang: ja
 
 ```java
 import com.slack.api.model.view.View;
-import static com.slack.api.model.view.Views.*;
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.*;
 import static com.slack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.view.Views.*;
 
 View buildView() {
   return view(view -> view
@@ -121,6 +121,19 @@ View buildView() {
     .submit(viewSubmit(submit -> submit.type("plain_text").text("Submit").emoji(true)))
     .close(viewClose(close -> close.type("plain_text").text("Cancel").emoji(true)))
     .blocks(asBlocks(
+      section(section -> section
+        .blockId("category-block")
+        .text(markdownText("Select a category of the meeting!"))
+        .accessory(staticSelect(staticSelect -> staticSelect
+          .actionId("category-selection-action")
+          .placeholder(plainText("Select a category"))
+          .options(asOptions(
+            option(plainText("Customer"), "customer"),
+            option(plainText("Partner"), "partner"),
+            option(plainText("Internal"), "internal")
+          ))
+        ))
+      ),
       input(input -> input
         .blockId("agenda-block")
         .element(plainTextInput(pti -> pti.actionId("agenda-action").multiline(true)))
@@ -193,7 +206,7 @@ val modalView = """
   "title": { "type": "plain_text", "text": "Meeting Arrangement" },
   "submit": { "type": "plain_text", "text": "Submit" },
   "close": { "type": "plain_text", "text": "Cancel" },
-  "private_metadata": "${commaondArg}"
+  "private_metadata": "${commandArg}"
   "blocks": [
     {
       "type": "input",
@@ -211,7 +224,7 @@ val res = ctx.client().viewsOpen { it
 }
 ```
 
-### `block_actions` リクエスト
+### `"block_actions"` リクエスト
 
 基本的には [インタラクティブコンポーネントのページ]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components) で紹介したものと同じですが、違いとしてはそのペイロードに `view` としてモーダルの内容とその `private_metadata` が含まれていることが挙げられます。
 
@@ -258,15 +271,15 @@ app.blockAction("category-selection-action") { req, ctx ->
 }
 ```
 
-### `view_submission` リクエスト
+### `"view_submission"` リクエスト
 
-Bolt は Slack アプリに共通で必要となる多くをやってくれます。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
+Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
 * 処理する `callback_id` 名を指定 (文字列または正規表現)
 * 入力バリデーション、データベースへの保存、外部サービスとの連携など任意の処理
 * 以下のいずれかのボディとともに受け取ったことを伝えるために `ack()`
   * 空のボディで応答してモーダルを閉じる
-  * `response_action` (可能な値は `errors`, `update`, `push`, `clear`) を指定して応答する
+  * `response_action` (可能な値は `"errors"`, `"update"`, `"push"`, `"clear"`) を指定して応答する
 
 ```java
 import com.slack.api.model.view.ViewState;
@@ -290,7 +303,7 @@ app.viewSubmission("meeting-arrangement", (req, ctx) -> {
     // モーダルを書き換えて次のステップを見せる場合は response_action と新しいモーダルの view を応答する
     return ctx.ack();
   }
-}
+});
 ```
 
 Kotlin で書くとこのようになります。
@@ -341,9 +354,9 @@ ctx.ackWithUpdate(renewedView)
 ctx.ackWithPush(newViewInStack)
 ```
 
-### `view_closed` リクエスト (`notify_on_close` が `true` のときのみ)
+### `"view_closed"` リクエスト (`notify_on_close` が `true` のときのみ)
 
-Bolt は Slack アプリに共通で必要となる多くをやってくれます。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
+Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
 1. 処理する `callback_id` 名を指定 (文字列または正規表現)
 1. 任意のこのタイミングでやるべきこと

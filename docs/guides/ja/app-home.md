@@ -27,15 +27,15 @@ Home タブを有効にするには [Slack アプリ管理画面](http://api.sla
 Bolt アプリが Home タブの提供のためにやらなければならないことは以下の通りです。
 
 1. ユーザごとに Home タブを更新するために [views.publish](https://api.slack.com/methods/views.publish) API メソッドを呼び出す
-2. Home タブ上で発生したユーザーインタラクション (`block_actions`, `block_suggestion`) をハンドリング
+2. Home タブ上で発生したユーザーインタラクション (`"block_actions"`, `"block_suggestion"`) をハンドリング
 
-よくある手法としては [`app_home_opened`](https://api.slack.com/events/app_home_opened) のイベントを使って [views.publish](https://api.slack.com/methods/views.publish) API メソッドを呼び出すきっかけに使うという実装があります。特に初回更新にはこのイベントの利用が必要です。しかし、それ以外のタイミング・手段で Home タブを更新することも全く問題ありません。
+よくある手法としては [`"app_home_opened"`](https://api.slack.com/events/app_home_opened) のイベントを使って [views.publish](https://api.slack.com/methods/views.publish) API メソッドを呼び出すきっかけに使うという実装があります。特に初回更新にはこのイベントの利用が必要です。しかし、それ以外のタイミング・手段で Home タブを更新することも全く問題ありません。
 
 ## コード例
 
 **注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt ことはじめ]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
 
-以下のコードは、ユーザーが App Home にアクセスして [`app_home_opened` イベント](https://api.slack.com/events/app_home_opened)が発火したときに [**views.publish**](https://api.slack.com/methods/views.publish) API メソッドによって Home タブを更新しています。[**views.publish**](https://api.slack.com/methods/views.publish) の呼び出しが成功すれば、即座に Home タブの変更が反映されます。
+以下のコードは、ユーザーが App Home にアクセスして [`"app_home_opened"` イベント](https://api.slack.com/events/app_home_opened)が発火したときに [**views.publish**](https://api.slack.com/methods/views.publish) API メソッドによって Home タブを更新しています。[**views.publish**](https://api.slack.com/methods/views.publish) の呼び出しが成功すれば、即座に Home タブの変更が反映されます。
 
 ```java
 import com.slack.api.methods.response.views.ViewsPublishResponse;
@@ -64,7 +64,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
     .hash(payload.getEvent().getView().getHash()) // レースコンディション防止のため
     .view(appHomeView)
   );
-  return ctx.ack()
+  return ctx.ack();
 });
 ```
 

@@ -40,7 +40,7 @@ This is the primary endpoint for retrieving actual audit events from your organi
 ```java
 import com.slack.api.audit.response.LogsResponse;
 
-SchemasResponse response = audit.getLogs(req -> req
+LogsResponse response = audit.getLogs(req -> req
   .oldest(1521214343) // Unix timestamp of the least recent audit event to include (inclusive)
   .action(Actions.User.user_login) // A team member logged in
   .limit(10) // Number of results to optimistically return

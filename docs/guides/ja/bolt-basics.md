@@ -39,7 +39,7 @@ app.command("/echo", (req, ctx) -> {
 |**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**モーダル**]({{ site.url | append: site.baseurl }}/guides/ja/modals): Submit ボタンクリックによるデータ送信に応答します。|
 |**app.viewClosed**|callback_id: **String** \| **Pattern**|[**モーダル**]({{ site.url | append: site.baseurl }}/guides/ja/modals): ユーザーがモーダルを閉じたときのイベントに応答します。そのモーダルを open/push したときに `notify_on_close` が `true` に設定されている必要があります。|
 |**app.dialogSubmission**|callback_id: **String** \| **Pattern**|**ダイアログ**: ダイアログでのデータ送信に応答します。|
-|**app.dialogSuggestion**|callback_id: **String** \| **Pattern**|**ダイアログ**: ダイアログ内での `external` type に設定されたセレクトメニューの選択肢読み込みのリクエストに応答します。|
+|**app.dialogSuggestion**|callback_id: **String** \| **Pattern**|**ダイアログ**: ダイアログ内での `"external"` type に設定されたセレクトメニューの選択肢読み込みのリクエストに応答します。|
 |**app.dialogCancellation**|callback_id **String** \| **Pattern**|**ダイアログ**: ダイアログが閉じたときのイベントに応答します。|
 |**app.attachmentAction**|callback_id: **String** \| **Pattern**|**旧式のメッセージ**: **attachements** 内で発生したユーザアクションに応答します。これらのイベントはメッセージのみで発火します。|
 
@@ -61,7 +61,7 @@ app.command("/echo", (req, ctx) -> {
 
 ```java
 app.command("/hello", (req, ctx) -> { // 第二引数の ctx が Context 型です
-  return ctx.ack() // 空ボディでの応答は、今回は何もリプライのメッセージを投稿しないという意思表示になります
+  return ctx.ack(); // 空ボディでの応答は、今回は何もリプライのメッセージを投稿しないという意思表示になります
 });
 ```
 
@@ -92,7 +92,7 @@ app.command("/ping", (req, ctx) -> {
 });
 ```
 
-このような返信は、デフォルトではそのユーザにだけ見えるメッセージ（ephemeral message）として投稿されます。チャンネル内の他の人にも見えるメッセージとして投稿するには `in_channel` という種別を指定します。
+このような返信は、デフォルトではそのユーザにだけ見えるメッセージ（ephemeral message）として投稿されます。チャンネル内の他の人にも見えるメッセージとして投稿するには `"in_channel"` という種別を指定します。
 
 ```java
 app.command("/ping", (req, ctx) -> {
@@ -152,7 +152,7 @@ import com.slack.api.methods.response.search.SearchMessagesResponse;
 
 app.command("/my-search", (req, ctx) -> {
   String query = req.getPayload().getText();
-  if (query == null || query.trim().size() == 0) {
+  if (query == null || query.trim().length() == 0) {
     return ctx.ack("何か検索キーワードを指定してください :pray:");
   }
 
@@ -212,6 +212,7 @@ Bolt はチェインするミドルウェアの仕組みを提供しています
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.util.JsonOps;
+import java.util.Arrays;
 import static java.util.stream.Collectors.joining;
 
 class DebugResponseBody {
@@ -226,7 +227,7 @@ if (debugMode != null && debugMode.equals("1")) { // SLACK_APP_DEBUG_MODE=1 と�
   app.use((req, _resp, chain) -> {
     Response resp = chain.next(req);
     if (resp.getStatusCode() != 200) {
-      resp.getHeaders().put("content-type", resp.getContentType());
+      resp.getHeaders().put("content-type", Arrays.asList(resp.getContentType()));
       // 全てのヘッダーを一つの文字列としてダンプする
       String headers = resp.getHeaders().entrySet().stream()
         .map(e -> e.getKey() +  ": " + e.getValue() + "\n").collect(joining());

@@ -40,7 +40,7 @@ AuditClient audit = slack.audit(token);
 ```java
 import com.slack.api.audit.response.LogsResponse;
 
-SchemasResponse response = audit.getLogs(req -> req
+LogsResponse response = audit.getLogs(req -> req
   .oldest(1521214343) // 応答に含める監査イベントの最も直近な UNIX 時間 (inclusive)
   .action(Actions.User.user_login) // メンバーがログインしたイベントを指定
   .limit(10) // 結果の最大取得件数

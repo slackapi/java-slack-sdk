@@ -39,7 +39,7 @@ Here is the list of the available methods to dispatch events.
 |**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**Modals**]({{ site.url | append: site.baseurl }}/guides/modals): Responds to data submissions in modals.|
 |**app.viewClosed**|callback_id: **String** \| **Pattern**|[**Modals**]({{ site.url | append: site.baseurl }}/guides/modals): Responds to the events where users close modals by clicking Cancel buttons. The `notify_on_close` has to be `true` when opening/pushing the modal.|
 |**app.dialogSubmission**|callback_id: **String** \| **Pattern**|**Dialogs**: Responds to data submissions in dialogs.|
-|**app.dialogSuggestion**|callback_id: **String** \| **Pattern**|**Dialogs**: Responds to requests to load options for external typed select menus in dialogs.|
+|**app.dialogSuggestion**|callback_id: **String** \| **Pattern**|**Dialogs**: Responds to requests to load options for `"external"` typed select menus in dialogs.|
 |**app.dialogCancellation**|callback_id **String** \| **Pattern**|**Dialogs**: Responds to the events where users close dialogs by clicking Cancel buttons.|
 |**app.attachmentAction**|callback_id: **String** \| **Pattern**|**Legacy Messaging**: Responds to user actions in **attachements**. These events can be triggered in only messages.|
 
@@ -61,7 +61,7 @@ Actions, commands, and options events must always be acknowledged using the `ack
 
 ```java
 app.command("/hello", (req, ctx) -> { // ctx: Context
-  return ctx.ack() // empty body, that means your bot won't post a reply this time
+  return ctx.ack(); // empty body, that means your bot won't post a reply this time
 });
 ```
 
@@ -92,7 +92,7 @@ app.command("/ping", (req, ctx) -> {
 });
 ```
 
-By default, the reply will be sent as an ephemeral message. To send a message visible to everyone, use `in_channel` type.
+By default, the reply will be sent as an ephemeral message. To send a message visible to everyone, use `"in_channel"` type.
 
 ```java
 app.command("/ping", (req, ctx) -> {
@@ -152,7 +152,7 @@ import com.slack.api.methods.response.search.SearchMessagesResponse;
 
 app.command("/my-search", (req, ctx) -> {
   String query = req.getPayload().getText();
-  if (query == null || query.trim().size() == 0) {
+  if (query == null || query.trim().length() == 0) {
     return ctx.ack("Please give some query.");
   }
 
@@ -213,6 +213,7 @@ Here is an example demonstrating how it works. The middleware changes your app's
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.util.JsonOps;
+import java.util.Arrays;
 import static java.util.stream.Collectors.joining;
 
 class DebugResponseBody {
@@ -227,7 +228,7 @@ if (debugMode != null && debugMode.equals("1")) { // enable only when SLACK_APP_
   app.use((req, _resp, chain) -> {
     Response resp = chain.next(req);
     if (resp.getStatusCode() != 200) {
-      resp.getHeaders().put("content-type", resp.getContentType());
+      resp.getHeaders().put("content-type", Arrays.asList(resp.getContentType()));
       // dump all the headers as a single string
       String headers = resp.getHeaders().entrySet().stream()
         .map(e -> e.getKey() +  ": " + e.getValue() + "\n").collect(joining());
