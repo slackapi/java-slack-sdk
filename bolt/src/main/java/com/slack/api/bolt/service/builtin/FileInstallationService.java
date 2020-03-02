@@ -69,7 +69,11 @@ public class FileInstallationService implements InstallationService {
     @Override
     public Bot findBot(String enterpriseId, String teamId) {
         try {
-            String json = loadFileContent(getBotPath(enterpriseId, teamId));
+            String json = null;
+            try {
+                json = loadFileContent(getBotPath(enterpriseId, teamId));
+            } catch (IOException e) {
+            }
             if (json == null && enterpriseId != null) {
                 json = loadFileContent(getBotPath(null, teamId));
                 if (json != null) {
@@ -93,7 +97,11 @@ public class FileInstallationService implements InstallationService {
     @Override
     public Installer findInstaller(String enterpriseId, String teamId, String userId) {
         try {
-            String json = loadFileContent(getInstallerPath(enterpriseId, teamId, userId));
+            String json = null;
+            try {
+                json = loadFileContent(getInstallerPath(enterpriseId, teamId, userId));
+            } catch (IOException e) {
+            }
             if (json == null && enterpriseId != null) {
                 json = loadFileContent(getInstallerPath(null, teamId, userId));
                 if (json != null) {
@@ -158,9 +166,13 @@ public class FileInstallationService implements InstallationService {
     }
 
     private String loadFileContent(String filepath) throws IOException {
-        return Files.readAllLines(Paths.get(filepath))
+        String content = Files.readAllLines(Paths.get(filepath))
                 .stream()
                 .collect(joining());
+        if (content == null || content.trim().isEmpty() || content.trim().equals("null")) {
+            return null;
+        }
+        return content;
     }
 
 }

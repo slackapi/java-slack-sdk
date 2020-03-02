@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 public class EventsApiTest {
 
@@ -69,10 +70,17 @@ public class EventsApiTest {
 
         @Override
         protected void setupDispatcher(EventsDispatcher dispatcher) {
+            assertNotNull(getSlackSigningSecret());
             dispatcher.register(message);
             dispatcher.register(allUninstall);
             dispatcher.register(goodbye);
         }
+    }
+
+    @Test
+    public void destroy() {
+        SlackWebApp app = new SlackWebApp();
+        app.destroy();
     }
 
     @Test

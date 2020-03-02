@@ -147,8 +147,7 @@ public class SlackSignature {
                 long nowInMillis) {
 
             if (log.isDebugEnabled()) {
-                log.debug("Request verification - secret: {}, timestamp: {}, body: {}, signature: {}",
-                        signatureGenerator.slackSigningSecret,
+                log.debug("Request verification (timestamp: {}, body: {}, signature: {})",
                         requestTimestamp,
                         requestBody,
                         requestSignature

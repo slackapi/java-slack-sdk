@@ -15,7 +15,7 @@ import com.slack.api.model.Message;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import test_locally.api.util.FileReader;
+import util.FileReader;
 
 import java.io.IOException;
 
