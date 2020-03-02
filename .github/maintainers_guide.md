@@ -104,8 +104,8 @@ bundle exec jekyll serve -It
   * If you don't have `gnu-sed`, run `brew install gnu-sed` first
   * Run `script/set_version.sh (the version)` (e.g., `script/set_version.sh 1.0.0`)
 * Ship the libraries
-  * Run `script/release.sh`
-  * Log in https://oss.sonatype.org/ and click **close** and **publish**
+  * Run `script/release.sh` (it takes a bit long)
+  * (If you encounter an error, log in https://oss.sonatype.org/ to check detailed information)
 * Create GitHub Release(s) and add release notes
   * Prepare a release note by `git log --pretty=format:'%h %s by %an' --abbrev-commit | grep -v "Merge pull request " | head -50`
   * `git add . -v && git commit -m'version (your version here)'`
