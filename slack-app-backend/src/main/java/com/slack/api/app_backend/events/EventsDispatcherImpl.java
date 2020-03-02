@@ -105,7 +105,7 @@ public class EventsDispatcherImpl implements EventsDispatcher {
     public void dispatch(String json) {
         String eventType = eventTypeExtractor.extractEventType(json);
         String eventSubtype = eventTypeExtractor.extractEventSubtype(json);
-        if (eventType == null) {
+        if (eventType == null || eventType.trim().isEmpty()) {
             log.debug("Failed to detect event type from the given JSON data: {}", json);
             return;
         }

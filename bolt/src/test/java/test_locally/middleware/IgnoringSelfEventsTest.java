@@ -1,5 +1,6 @@
 package test_locally.middleware;
 
+import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.events.payload.MemberJoinedChannelPayload;
 import com.slack.api.app_backend.events.payload.MessagePayload;
@@ -9,11 +10,14 @@ import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.EventRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.methods.MethodsClient;
+import com.slack.api.methods.SlackApiException;
 import com.slack.api.model.event.MemberJoinedChannelEvent;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
+import util.MockSlackApiServer;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +25,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static util.MockSlackApi.ValidToken;
 
 public class IgnoringSelfEventsTest {
 
@@ -30,7 +35,7 @@ public class IgnoringSelfEventsTest {
     public void ignored() throws Exception {
         IgnoringSelfEvents middleware = new IgnoringSelfEvents(SlackConfig.DEFAULT) {
             @Override
-            protected String findAndSaveBotUserId(MethodsClient client, String botId) {
+            public String findAndSaveBotUserId(MethodsClient client, String botId) {
                 return "U123BOT";
             }
         };
@@ -55,7 +60,7 @@ public class IgnoringSelfEventsTest {
     public void not_ignored() throws Exception {
         IgnoringSelfEvents middleware = new IgnoringSelfEvents(SlackConfig.DEFAULT) {
             @Override
-            protected String findAndSaveBotUserId(MethodsClient client, String botId) {
+            public String findAndSaveBotUserId(MethodsClient client, String botId) {
                 return "U123BOT";
             }
         };
@@ -79,5 +84,24 @@ public class IgnoringSelfEventsTest {
         IgnoringSelfEvents middleware = new IgnoringSelfEvents(SlackConfig.DEFAULT);
         assertNotNull(middleware.getEventTypesNotToMiss());
         middleware.setEventTypesNotToMiss(Collections.emptyList());
+    }
+
+    MockSlackApiServer slackApiServer = new MockSlackApiServer();
+
+    @Test
+    public void findBotUserId() throws Exception {
+        slackApiServer.start();
+        try {
+            SlackConfig config = new SlackConfig();
+            Slack slack = Slack.getInstance(config);
+            config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+            IgnoringSelfEvents middleware = new IgnoringSelfEvents(config);
+            String userId = middleware.findAndSaveBotUserId(slack.methods(ValidToken), "botId");
+            assertEquals("U00000000", userId);
+            String cachedUserId = middleware.findAndSaveBotUserId(slack.methods(ValidToken), "botId");
+            assertEquals("U00000000", cachedUserId);
+        } finally {
+            slackApiServer.stop();
+        }
     }
 }

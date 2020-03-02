@@ -95,7 +95,7 @@ public class IgnoringSelfEvents implements Middleware {
         return payload.getAsJsonObject().getAsJsonObject("event");
     }
 
-    protected String findAndSaveBotUserId(MethodsClient client, String botId) throws IOException, SlackApiException {
+    public String findAndSaveBotUserId(MethodsClient client, String botId) throws IOException, SlackApiException {
         String botUserId = getBotIdToBotUserId().get(botId);
         if (botUserId != null) {
             return botUserId;

@@ -26,10 +26,11 @@ public class MockSlackApi extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String requestBody = null;
         try (InputStream is = req.getInputStream();
              InputStreamReader isr = new InputStreamReader(is);
              BufferedReader br = new BufferedReader(isr)) {
-            String requestBody = br.lines().collect(Collectors.joining());
+            requestBody = br.lines().collect(Collectors.joining());
             log.info("request body: {}", requestBody);
         }
         String methodName = req.getRequestURI().replaceFirst("^/api/", "");
@@ -49,7 +50,16 @@ public class MockSlackApi extends HttpServlet {
         }
 
         String body = reader.readWholeAsString(methodName + ".json");
-        body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");
+        if (methodName.startsWith("oauth.")) {
+            // oauth.v2.access / oauth.access
+            if (requestBody.contains("code=valid")) {
+                body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");
+                body = body.replaceFirst("\"access_token\": \"\",", "\"access_token\": \"" +  ValidToken + "\",");
+                body = body.replaceFirst("\"bot_access_token\": \"\",", "\"bot_access_token\": \"" +  ValidToken + "\",");
+            }
+        } else {
+            body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");
+        }
 
         if (methodName.equals("auth.test")) {
             body = "{\n" +

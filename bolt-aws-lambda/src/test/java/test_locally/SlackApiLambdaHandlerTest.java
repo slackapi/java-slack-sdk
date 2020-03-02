@@ -10,12 +10,15 @@ import com.slack.api.bolt.aws_lambda.SlackApiLambdaHandler;
 import com.slack.api.bolt.aws_lambda.request.ApiGatewayRequest;
 import com.slack.api.bolt.aws_lambda.request.RequestContext;
 import com.slack.api.bolt.aws_lambda.response.ApiGatewayResponse;
+import com.slack.api.bolt.response.Response;
 import org.junit.Test;
 import util.AuthTestMockServer;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -180,7 +183,7 @@ public class SlackApiLambdaHandlerTest {
     }
 
     @Test
-    public void valid_but_handled() throws Exception {
+    public void valid_and_handled() throws Exception {
         AuthTestMockServer slackApiServer = new AuthTestMockServer();
         slackApiServer.start();
 
@@ -198,7 +201,10 @@ public class SlackApiLambdaHandlerTest {
             AtomicBoolean called = new AtomicBoolean(false);
             app.blockAction("take-action", (req, ctx) -> {
                 called.set(true);
-                return ctx.ack();
+                // return ctx.ack();
+                Map<String, List<String>> headers = new HashMap<>();
+                headers.put("additional-header", Arrays.asList("foo"));
+                return Response.builder().statusCode(200).headers(headers).build();
             });
 
             ApiGatewayRequest req = new ApiGatewayRequest();
@@ -224,6 +230,58 @@ public class SlackApiLambdaHandlerTest {
             ApiGatewayResponse response = handler.handleRequest(req, context);
 
             assertEquals(200, response.getStatusCode());
+            assertTrue(called.get());
+
+        } finally {
+            slackApiServer.stop();
+        }
+    }
+
+    @Test
+    public void exception() throws Exception {
+        AuthTestMockServer slackApiServer = new AuthTestMockServer();
+        slackApiServer.start();
+
+        try {
+            String signingSecret = "secret";
+            SlackConfig slackConfig = new SlackConfig();
+            slackConfig.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+            Slack slack = Slack.getInstance(slackConfig);
+            App app = new App(AppConfig.builder().slack(slack)
+                    .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                    .signingSecret(signingSecret)
+                    .build()
+            );
+
+            AtomicBoolean called = new AtomicBoolean(false);
+            app.blockAction("take-action", (req, ctx) -> {
+                called.set(true);
+                throw new RuntimeException("Something wrong");
+            });
+
+            ApiGatewayRequest req = new ApiGatewayRequest();
+            initProperties(req);
+            Map<String, String> headers = new HashMap<>();
+            String timestamp = String.valueOf((System.currentTimeMillis() / 1000));
+            String requestBody = "payload=" + URLEncoder.encode(blockActionsPayload, "UTF-8");
+            SlackSignature.Generator signatureGenerator = new SlackSignature.Generator(signingSecret);
+            headers.put(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
+            headers.put(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signatureGenerator.generate(timestamp, requestBody));
+            req.setHeaders(headers);
+            req.setRequestContext(initProperties(new RequestContext()));
+            req.setBody(requestBody);
+
+            Context context = mock(Context.class);
+
+            SlackApiLambdaHandler handler = new SlackApiLambdaHandler(app) {
+                @Override
+                protected boolean isWarmupRequest(ApiGatewayRequest awsReq) {
+                    return false;
+                }
+            };
+            ApiGatewayResponse response = handler.handleRequest(req, context);
+
+            assertEquals(500, response.getStatusCode());
             assertTrue(called.get());
 
         } finally {

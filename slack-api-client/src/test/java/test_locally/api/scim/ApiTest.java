@@ -13,8 +13,8 @@ import org.eclipse.jetty.servlet.ServletHandler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import test_locally.api.util.FileReader;
-import test_locally.api.util.PortProvider;
+import util.FileReader;
+import util.PortProvider;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

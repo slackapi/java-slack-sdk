@@ -1,4 +1,4 @@
-package test_locally.api.util;
+package util;
 
 import java.io.File;
 import java.io.IOException;

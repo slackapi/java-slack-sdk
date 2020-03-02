@@ -13,7 +13,7 @@ import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import test_locally.api.util.FileReader;
+import util.FileReader;
 
 import java.io.IOException;
 

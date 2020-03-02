@@ -29,6 +29,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -125,7 +126,13 @@ public class SlackRequestParser {
                 } else if (appConfig.isOAuthCallbackEnabled()
                         && appConfig.getOauthCallbackRequestURI().equals(requestUri)
                         && httpRequest.getQueryString() != null) {
-                    Map<String, List<String>> queryString = httpRequest.getQueryString();
+                    Map<String, List<String>> queryString = new HashMap<>();
+                    for (Map.Entry<String, List<String>> original : httpRequest.getQueryString().entrySet()) {
+                        if (original.getValue() != null) {
+                            // To ensure the value is mutable
+                            queryString.put(original.getKey(), new ArrayList<>(original.getValue()));
+                        }
+                    }
                     VerificationCodePayload payload = VerificationCodePayload.from(queryString);
                     slackRequest = new OAuthCallbackRequest(queryString, requestBody, payload, headers);
                 } else {

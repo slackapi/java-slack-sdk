@@ -8,15 +8,19 @@ import com.slack.api.app_backend.interactive_components.payload.MessageActionPay
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
+import com.slack.api.bolt.request.builtin.*;
 import com.slack.api.bolt.util.SlackRequestParser;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class SlackRequestParserTest {
 
@@ -94,4 +98,144 @@ public class SlackRequestParserTest {
         Request<?> slackRequest = parser.parse(request);
         assertNotNull(slackRequest);
     }
+
+    @Test
+    public void testDialogCancellationRequest() throws UnsupportedEncodingException {
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .requestBody("payload=" + URLEncoder.encode("{\"type\":\"dialog_cancellation\",\"team\":{},\"user\":{}}", "UTF-8"))
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        Request<?> slackRequest = parser.parse(request);
+        assertNotNull(slackRequest);
+        assertTrue(slackRequest instanceof DialogCancellationRequest);
+    }
+
+    @Test
+    public void testDialogSuggestionRequest() throws UnsupportedEncodingException {
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .requestBody("payload=" + URLEncoder.encode("{\"type\":\"dialog_suggestion\",\"team\":{},\"user\":{}}", "UTF-8"))
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        Request<?> slackRequest = parser.parse(request);
+        assertNotNull(slackRequest);
+        assertTrue(slackRequest instanceof DialogSuggestionRequest);
+    }
+
+    @Test
+    public void testViewSubmissionRequest() throws UnsupportedEncodingException {
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .requestBody("payload=" + URLEncoder.encode("{\"type\":\"view_submission\",\"team\":{},\"user\":{},\"view\":{}}", "UTF-8"))
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        Request<?> slackRequest = parser.parse(request);
+        assertNotNull(slackRequest);
+        assertTrue(slackRequest instanceof ViewSubmissionRequest);
+    }
+
+    @Test
+    public void testViewClosedRequest() throws UnsupportedEncodingException {
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .requestBody("payload=" + URLEncoder.encode("{\"type\":\"view_closed\",\"team\":{},\"user\":{},\"view\":{}}", "UTF-8"))
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        Request<?> slackRequest = parser.parse(request);
+        assertNotNull(slackRequest);
+        assertTrue(slackRequest instanceof ViewClosedRequest);
+    }
+
+    @Test
+    public void testSSLCheckRequest() {
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .requestBody("token=legacy&ssl_check=1")
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        Request<?> slackRequest = parser.parse(request);
+        assertNotNull(slackRequest);
+        assertTrue(slackRequest instanceof SSLCheckRequest);
+    }
+
+    @Test
+    public void testOutgoingWebhooksRequest() {
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .requestBody("trigger_word=hi")
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        Request<?> slackRequest = parser.parse(request);
+        assertNotNull(slackRequest);
+        assertTrue(slackRequest instanceof OutgoingWebhooksRequest);
+    }
+
+    @Test
+    public void testOAuthStartRequest() {
+        Map<String, List<String>> query = new HashMap<>();
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .queryString(query)
+                .requestUri("start")
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        SlackRequestParser parser = new SlackRequestParser(AppConfig.builder()
+                .oAuthStartEnabled(true)
+                .build());
+        Request<?> slackRequest = parser.parse(request);
+        assertNotNull(slackRequest);
+        assertTrue(slackRequest instanceof OAuthStartRequest);
+    }
+
+    @Test
+    public void testOAuthCallbackRequest() {
+        Map<String, List<String>> query = new HashMap<>();
+        query.put("code", Arrays.asList("123"));
+        query.put("state", Arrays.asList("abc"));
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .queryString(query)
+                .requestUri("callback")
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        SlackRequestParser parser = new SlackRequestParser(AppConfig.builder()
+                .oAuthCallbackEnabled(true)
+                .build());
+        Request<?> slackRequest = parser.parse(request);
+        assertNotNull(slackRequest);
+        assertTrue(slackRequest instanceof OAuthCallbackRequest);
+    }
+
+    @Test
+    public void invalidJson() {
+        Map<String, List<String>> query = new HashMap<>();
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .queryString(query)
+                .requestBody("{}")
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        SlackRequestParser parser = new SlackRequestParser(AppConfig.builder()
+                .oAuthStartEnabled(true)
+                .build());
+        Request<?> slackRequest = parser.parse(request);
+        assertNull(slackRequest);
+    }
+
+    @Test
+    public void notFound() {
+        Map<String, List<String>> query = new HashMap<>();
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .queryString(query)
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        SlackRequestParser parser = new SlackRequestParser(AppConfig.builder()
+                .oAuthStartEnabled(true)
+                .build());
+        Request<?> slackRequest = parser.parse(request);
+        assertNull(slackRequest);
+    }
+
 }
