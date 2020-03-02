@@ -3,7 +3,11 @@
   <meta name="msapplication-TileColor" content="#FFFFFF" />
   <meta name="msapplication-TileImage" content="https://a.slack-edge.com/4f28/img/icons/app-144.png" />
 
-  <title>{{ page.title }} - Slack SDK for Java</title>
+  <title>{{ page.title }} | Slack SDK for Java</title>
+
+  <meta name="author" content="Slack">
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{% if page.lang == 'ja' %}{{ site.description_ja }}{% else %}{{ site.description }}{% endif %}{% endif %}">
+
   <link href="https://a.slack-edge.com/4f227/style/rollup-slack_kit_legacy_adapters.css" rel="stylesheet"
     type="text/css" />
   <link href="https://a.slack-edge.com/3e02c0/style/rollup-api_site.css" rel="stylesheet" type="text/css" />
@@ -27,4 +31,7 @@
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://a.slack-edge.com/4f28/img/icons/ios-114.png" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://a.slack-edge.com/4f28/img/icons/ios-72.png" />
   <link rel="apple-touch-icon-precomposed" href="https://a.slack-edge.com/4f28/img/icons/ios-57.png" />
+
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="https://a.slack-edge.com/4f28/img/icons/app-144.png" />
 </head>
