@@ -145,7 +145,7 @@ server.start(); // http://localhost:3000
 
 ### Granular Permission Apps と Classic Apps
 
-Slack アプリインストールには、二つの OAuth フローがあります。V2（ちょっと紛らわしいですが OAuth のバージョンではなく Slack OAuth フローのバージョンです）の OAuth フローでの Slack アプリは（特にボットユーザーの権限に関して）旧来に比べてより詳細な必要最小限の権限だけをリクエストできるようになりました。二つのやり方の違いは `v2` を Authorization URL やトークンを発行する API メソッド（`oauth(.v2).access`）の URL に含んでいることと、`oauth(.v2).access` のレスポンスのデータ構造に若干の変更が加わっていることです。
+Slack アプリインストールには、二つの OAuth フローがあります。V2（ちょっと紛らわしいですが OAuth のバージョンではなく Slack OAuth フローのバージョンです）の OAuth フローでの Slack アプリは（特にボットユーザーの権限に関して）旧来に比べてより詳細な必要最小限の権限だけをリクエストできるようになりました。二つのやり方の違いは `v2` を Authorization URL やトークンを発行する API メソッドの URL に含んでいることと、API レスポンスのデータ構造に若干の変更が加わっていることです。
 
 #### [V2 OAuth 2.0 フロー](https://api.slack.com/authentication/oauth-v2) (デフォルト)
 
@@ -174,8 +174,8 @@ App app = new App(appConfig);
 ほとんどのアプリは、完了・エラーページに静的なページを選択するかとは思いますが、これらの URL を Bolt アプリで動的に応答することも可能です。Bolt は Web ページをレンダリングするための機能は何も提供しません。お好みのテンプレートエンジンを使ってください。
 
 ```java
-String renderCompletionPageHtml() { return null; }
-String renderCancellationPageHtml() { return null; }
+String renderCompletionPageHtml(String queryString) { return null; }
+String renderCancellationPageHtml(String queryString) { return null; }
 
 oauthApp.endpoint("GET", "/slack/oauth/completion", (req, ctx) -> {
   return Response.builder()

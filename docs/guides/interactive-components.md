@@ -97,10 +97,11 @@ Here is another example. This is a [select menu using external data source](http
 }
 ```
 
-With this type of select menu, your app is expected to handle both `block_suggestion` and `block_actions` coming from the element named `topics-action`.
+With this type of select menu, your app is expected to handle both `"block_suggestion"` and `"block_actions"` coming from the element named `"topics-action"`.
 
 ```java
 import com.slack.api.app_backend.interactive_components.response.Option;
+import com.slack.api.model.block.composition.PlainTextObject;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import java.util.Arrays;
 import java.util.List;
@@ -132,6 +133,7 @@ The same code in Kotlin looks as below. (New to Kotlin? [Getting Started in Kotl
 ```kotlin
 import com.slack.api.app_backend.interactive_components.response.Option
 import com.slack.api.model.block.composition.BlockCompositions.plainText // static import
+import com.slack.api.model.block.composition.PlainTextObject
 
 val allOptions = listOf(
   Option(plainText("Schedule", true), "schedule"),

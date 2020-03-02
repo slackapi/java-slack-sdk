@@ -27,15 +27,15 @@ To enable Events API, go to **Features** > **Event Subscriptions** on the left p
 All your app needs to do to provide Home tabs to your app users are:
 
 1. Call the [**views.publish**](https://api.slack.com/methods/views.publish) method to update the Home tab on a per-user basis
-2. Handle any user interactions in Home tab (`block_actions`, `block_suggestion`)
+2. Handle any user interactions in Home tab (`"block_actions"`, `"block_suggestion"`)
 
-Most commonly, [`app_home_opened`](https://api.slack.com/events/app_home_opened) events would be used as the trigger to call the [**views.publish**](https://api.slack.com/methods/views.publish) method. Subscribing this event type is useful particularly for the initial Home tab creation. But it's also fine to publish Home tabs by any other means.
+Most commonly, [`"app_home_opened"`](https://api.slack.com/events/app_home_opened) events would be used as the trigger to call the [**views.publish**](https://api.slack.com/methods/views.publish) method. Subscribing this event type is useful particularly for the initial Home tab creation. But it's also fine to publish Home tabs by any other means.
 
 ## Examples
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
 
-The following code calls [**views.publish**](https://api.slack.com/methods/views.publish) method when receiving an [`app_home_opened` events](https://api.slack.com/events/app_home_opened) for the user that triggered the event. The user will see the updated Home tab immediately after the [**views.publish**](https://api.slack.com/methods/views.publish) call has been successfully completed.
+The following code calls [**views.publish**](https://api.slack.com/methods/views.publish) method when receiving an [`"app_home_opened"` events](https://api.slack.com/events/app_home_opened) for the user that triggered the event. The user will see the updated Home tab immediately after the [**views.publish**](https://api.slack.com/methods/views.publish) call has been successfully completed.
 
 ```java
 import com.slack.api.methods.response.views.ViewsPublishResponse;
@@ -64,7 +64,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
     .hash(payload.getEvent().getView().getHash()) // To protect against possible race conditions
     .view(appHomeView)
   );
-  return ctx.ack()
+  return ctx.ack();
 });
 ```
 
