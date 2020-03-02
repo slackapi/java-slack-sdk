@@ -4,7 +4,7 @@ title: "SDK の概要"
 lang: ja
 ---
 
-# Slack SDK for Java / Bolt for Java️
+# Slack SDK for Java
 
 **Slack SDK for Java** は Java らしいアプローチで全ての Slack プラットフォームの公開機能をサポートする公式 SDK です。この SDK は全て Java で書かれており、開発者はこの SDK を Java だけでなく Kotlin、Groovy、Scala といった JVM 言語でも問題なく利用できます。
 
