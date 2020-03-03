@@ -32,6 +32,7 @@ lang: ja
 |[**com.slack.api:bolt-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jetty)|Bolt で実装された Slack アプリを Jetty HTTP サーバーで動作させるモジュールです。|
 |[**com.slack.api:bolt-aws-lambda**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-aws-lambda)|Bolt で実装された Slack アプリを AWS [API Gateway](https://aws.amazon.com/api-gateway/) + [Lambda](https://aws.amazon.com/lambda/) で動作させるためのモジュールです。|
 |[**com.slack.api:bolt-micronaut**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-micronaut)|[Micronaut](https://micronaut.io/) で Bolt アプリを動作させるためのアダプターを提供するモジュールです。|
+|[**com.slack.api:bolt-helidon**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-helidon)|[Helidon SE](https://helidon.io/docs/latest/) で Bolt アプリを動作させるためのアダプターを提供するモジュールです。|
 
 ---
 

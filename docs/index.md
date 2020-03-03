@@ -31,6 +31,7 @@ All released versions are available on the Maven Central repositories. The lates
 |[**com.slack.api:bolt-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jetty)|This module offers a handy way to run Bolt apps on the [Jetty HTTP server](https://www.eclipse.org/jetty/).|
 |[**com.slack.api:bolt-aws-lambda**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-aws-lambda)|This module offers a handy way to run Bolt apps on AWS [API Gateway](https://aws.amazon.com/api-gateway/) + [Lambda](https://aws.amazon.com/lambda/).|
 |[**com.slack.api:bolt-micronaut**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-micronaut)|This is an adapter for [Micronaut Framework](https://micronaut.io/) to run Bolt apps on top of it.|
+|[**com.slack.api:bolt-helidon**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-helidon)|This is an adapter for [Helidon SE](https://helidon.io/docs/latest/) to run Bolt apps on top of it.|
 
 ---
 

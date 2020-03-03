@@ -455,6 +455,9 @@ public class App {
     }
 
     public Response run(Request request) throws Exception {
+        if (request == null || request.getContext() == null) {
+            return Response.builder().statusCode(400).body("Invalid Request").build();
+        }
         request.getContext().setSlack(this.slack); // use the properly configured API client
 
         if (neverStarted.get()) {

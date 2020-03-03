@@ -19,6 +19,7 @@
         <module>bolt-jetty</module>
         <module>bolt-aws-lambda</module>
         <module>bolt-micronaut</module>
+        <module>bolt-helidon</module>
         <module>bolt-spring-boot-examples</module>
         <module>bolt-kotlin-examples</module>
         <module>bolt-quarkus-examples</module>
