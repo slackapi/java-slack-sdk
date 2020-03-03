@@ -28,13 +28,15 @@ public class users_profile_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+
     @Ignore
     @Test
     public void usersProfile() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
         {
-            UsersProfileGetResponse response = slack.methods().usersProfileGet(r -> r.token(token));
+            UsersProfileGetResponse response = slack.methods().usersProfileGet(r -> r.token(userToken));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));
@@ -42,7 +44,7 @@ public class users_profile_Test {
 
         {
             UsersProfileSetResponse response = slack.methods().usersProfileSet(
-                    r -> r.token(token).name("skype").value("skype-" + System.currentTimeMillis()));
+                    r -> r.token(userToken).name("skype").value("skype-" + System.currentTimeMillis()));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));
@@ -52,7 +54,7 @@ public class users_profile_Test {
             User.Profile profile = new User.Profile();
             profile.setSkype("skype-" + System.currentTimeMillis());
             UsersProfileSetResponse response = slack.methods().usersProfileSet(
-                    r -> r.token(token).profile(profile));
+                    r -> r.token(userToken).profile(profile));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));
@@ -61,10 +63,17 @@ public class users_profile_Test {
 
     @Test
     public void usersProfile_async() throws Exception {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-
+        // user token
         {
-            UsersProfileGetResponse response = slack.methodsAsync().usersProfileGet(r -> r.token(token)).get();
+            UsersProfileGetResponse response = slack.methodsAsync().usersProfileGet(r -> r.token(userToken)).get();
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getProfile(), is(notNullValue()));
+        }
+        // bot token
+        {
+            String userId = slack.methodsAsync().usersList(r -> r.token(botToken)).get().getMembers().get(0).getId();
+            UsersProfileGetResponse response = slack.methodsAsync().usersProfileGet(r -> r.token(botToken).user(userId)).get();
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getProfile(), is(notNullValue()));
@@ -72,7 +81,7 @@ public class users_profile_Test {
 
         {
             UsersProfileSetResponse response = slack.methodsAsync().usersProfileSet(
-                    r -> r.token(token).name("skype").value("skype-" + System.currentTimeMillis()))
+                    r -> r.token(userToken).name("skype").value("skype-" + System.currentTimeMillis()))
                     .get();
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
@@ -83,7 +92,7 @@ public class users_profile_Test {
             User.Profile profile = new User.Profile();
             profile.setSkype("skype-" + System.currentTimeMillis());
             UsersProfileSetResponse response = slack.methodsAsync().usersProfileSet(
-                    r -> r.token(token).profile(profile))
+                    r -> r.token(userToken).profile(profile))
                     .get();
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));

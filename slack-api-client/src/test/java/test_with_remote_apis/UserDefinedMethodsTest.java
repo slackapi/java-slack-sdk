@@ -30,6 +30,7 @@ public class UserDefinedMethodsTest {
         private String user;
         private String teamId;
         private String userId;
+        private String botId;
     }
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
@@ -40,14 +41,14 @@ public class UserDefinedMethodsTest {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
     @Test
     public void runMethods() throws IOException, SlackApiException {
         MyResponse response = slack.methods().postFormWithTokenAndParseResponse(
                 f -> f.add("something", "important"), // request body
                 "auth.test", // endpoint
-                token, // xoxb-***
+                botToken, // xoxb-***
                 MyResponse.class // response class
         );
         assertThat(response.getError(), is(nullValue()));

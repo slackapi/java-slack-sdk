@@ -1160,7 +1160,8 @@
               "image_bytes": 12345
             }
           }
-        ]
+        ],
+        "no_reactions": false
       }
     ]
   },

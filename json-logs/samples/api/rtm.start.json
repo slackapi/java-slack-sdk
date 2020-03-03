@@ -499,6 +499,9 @@
         ],
         "subteam": [
           ""
+        ],
+        "type": [
+          ""
         ]
       },
       "channel_email_addresses_enabled": false,
@@ -511,7 +514,19 @@
         "type": [
           ""
         ]
-      }
+      },
+      "who_can_manage_private_channels": {
+        "user": [
+          ""
+        ],
+        "subteam": [
+          ""
+        ],
+        "type": [
+          ""
+        ]
+      },
+      "single_user_exports": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
@@ -762,6 +777,7 @@
   ],
   "url": "",
   "is_europe": false,
+  "accept_tos_url": "https://www.example.com/",
   "error": "",
   "needed": "",
   "provided": ""

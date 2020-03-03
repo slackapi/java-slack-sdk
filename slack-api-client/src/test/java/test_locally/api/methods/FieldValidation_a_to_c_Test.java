@@ -230,11 +230,11 @@ public class FieldValidation_a_to_c_Test {
         String prefix = "chat.";
         {
             ChatPostEphemeralResponse obj = parse(prefix + "postEphemeral", ChatPostEphemeralResponse.class);
-            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getChannel");
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getChannel", "getDeprecatedArgument");
         }
         {
             ChatPostMessageResponse obj = parse(prefix + "postMessage", ChatPostMessageResponse.class);
-            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNull(obj, "getDeprecatedArgument", "getWarning");
             validateMessage(obj.getMessage());
             verifyIfAllGettersReturnNonNull(obj.getResponseMetadata());
         }
@@ -244,7 +244,7 @@ public class FieldValidation_a_to_c_Test {
     public void chat_update() throws Exception {
         String prefix = "chat.";
         ChatUpdateResponse obj = parse(prefix + "update", ChatUpdateResponse.class);
-        verifyIfAllGettersReturnNonNull(obj);
+        verifyIfAllGettersReturnNonNull(obj, "getDeprecatedArgument", "getWarning");
         verifyIfAllGettersReturnNonNullRecursively(obj.getMessage(),
                 "getTs",
                 "getAttachments",
@@ -283,7 +283,7 @@ public class FieldValidation_a_to_c_Test {
     public void chat_delete() throws Exception {
         String prefix = "chat.";
         ChatDeleteResponse obj = parse(prefix + "delete", ChatDeleteResponse.class);
-        verifyIfAllGettersReturnNonNull(obj);
+        verifyIfAllGettersReturnNonNull(obj, "getDeprecatedArgument", "getWarning");
     }
 
     @Test
@@ -378,7 +378,7 @@ public class FieldValidation_a_to_c_Test {
         }
         {
             ConversationsCloseResponse obj = parse(prefix + "close", ConversationsCloseResponse.class);
-            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNull(obj, "getNoOp", "getWarning", "getAlreadyClosed");
         }
         {
             ConversationsCreateResponse obj = parse(prefix + "create", ConversationsCreateResponse.class);

@@ -11,4 +11,6 @@ public class ConversationsCloseResponse implements SlackApiResponse {
     private String error;
     private String needed;
     private String provided;
+    private Boolean noOp;
+    private Boolean alreadyClosed;
 }

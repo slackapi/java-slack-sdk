@@ -37,9 +37,9 @@ public class WorkspaceAppApiTest {
 
     @Test
     public void appsPermissionsRequest() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+        String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         AppsPermissionsRequestResponse response = slack.methods().appsPermissionsRequest(req -> req
-                .token(token)
+                .token(userToken)
                 .triggerId("dummy"));
         assertThat(response.getError(), is("not_allowed_token_type"));
         assertThat(response.isOk(), is(false));
@@ -47,18 +47,18 @@ public class WorkspaceAppApiTest {
 
     @Test
     public void appsPermissionsInfo() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+        String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         AppsPermissionsInfoResponse response = slack.methods().appsPermissionsInfo(req -> req
-                .token(token));
+                .token(userToken));
         assertThat(response.getError(), is("not_allowed_token_type"));
         assertThat(response.isOk(), is(false));
     }
 
     @Test
     public void appsPermissionsResourcesList() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+        String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         AppsPermissionsResourcesListResponse response = slack.methods().appsPermissionsResourcesList(AppsPermissionsResourcesListRequest.builder()
-                .token(token)
+                .token(userToken)
                 .limit(10)
                 .build());
         assertThat(response.getError(), is("not_allowed_token_type"));
@@ -67,9 +67,9 @@ public class WorkspaceAppApiTest {
 
     @Test
     public void appsPermissionsScopesList() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+        String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         AppsPermissionsScopesListResponse response = slack.methods().appsPermissionsScopesList(AppsPermissionsScopesListRequest.builder()
-                .token(token)
+                .token(userToken)
                 .build());
         assertThat(response.getError(), is("not_allowed_token_type"));
         assertThat(response.isOk(), is(false));
@@ -77,9 +77,9 @@ public class WorkspaceAppApiTest {
 
     @Test
     public void appsPermissionsUsersList() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+        String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         AppsPermissionsUsersListResponse response = slack.methods().appsPermissionsUsersList(AppsPermissionsUsersListRequest.builder()
-                .token(token)
+                .token(userToken)
                 .limit(10)
                 .build());
         assertThat(response.getError(), is("not_allowed_token_type"));
@@ -88,9 +88,9 @@ public class WorkspaceAppApiTest {
 
     @Test
     public void appsPermissionsUsersRequest() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+        String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         AppsPermissionsUsersRequestResponse response = slack.methods().appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest.builder()
-                .token(token)
+                .token(userToken)
                 .triggerId("abc")
                 .user("U0000000")
                 .build());

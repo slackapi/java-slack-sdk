@@ -381,7 +381,7 @@ public class JsonDataRecorder {
             return null;
         }
         if (value.matches("^[\\d]+\\.[\\d]+$")) {
-            return "W000000000.000000"; // ts
+            return "0000000000.000000"; // ts
         }
         if (value.matches("^[\\d]{10}$")) {
             return "1234567890"; // epoch

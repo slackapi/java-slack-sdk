@@ -31,13 +31,14 @@ public class usergroups_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
     public void create() throws Exception {
         String usergroupName = "usergroup-" + System.currentTimeMillis();
         UsergroupsCreateResponse response = slack.methods().usergroupsCreate(r -> r
-                .token(token)
+                .token(userToken)
                 .name(usergroupName));
         if (response.isOk()) {
             assertThat(response.getUsergroup(), is(notNullValue()));
@@ -54,25 +55,25 @@ public class usergroups_Test {
 
     @Test
     public void list() throws Exception {
-        UsergroupsListResponse response = slack.methods().usergroupsList(r -> r.token(token));
+        UsergroupsListResponse response = slack.methods().usergroupsList(r -> r.token(botToken));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
     @Test
     public void list_async() throws Exception {
-        UsergroupsListResponse response = slack.methodsAsync().usergroupsList(r -> r.token(token)).get();
+        UsergroupsListResponse response = slack.methodsAsync().usergroupsList(r -> r.token(botToken)).get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
 
     @Test
     public void usergroups() throws Exception {
-        UsergroupsListResponse usergroups = slack.methods().usergroupsList(r -> r.token(token));
+        UsergroupsListResponse usergroups = slack.methods().usergroupsList(r -> r.token(botToken));
         if (usergroups.isOk() && usergroups.getUsergroups().size() > 0) {
             UsergroupsUsersListResponse response = slack.methods().usergroupsUsersList(
                     UsergroupsUsersListRequest.builder()
-                            .token(token)
+                            .token(userToken)
                             .includeDisabled(false)
                             .usergroup(usergroups.getUsergroups().get(0).getId())
                             .build());
@@ -80,40 +81,40 @@ public class usergroups_Test {
         }
 
         UsergroupsCreateResponse creation = slack.methods().usergroupsCreate(r -> r
-                .token(token)
+                .token(userToken)
                 .name("usergroup-" + System.currentTimeMillis())
                 .description("Something wrong"));
         assertThat(creation.getError(), is(nullValue()));
         final Usergroup usergroup = creation.getUsergroup();
         {
             UsergroupsDisableResponse response = slack.methods().usergroupsDisable(r -> r
-                    .token(token)
+                    .token(userToken)
                     .usergroup(usergroup.getId()));
             assertThat(response.getError(), is(nullValue()));
         }
         {
             UsergroupsEnableResponse response = slack.methods().usergroupsEnable(r -> r
-                    .token(token)
+                    .token(userToken)
                     .usergroup(usergroup.getId()));
             assertThat(response.getError(), is(nullValue()));
         }
         {
             UsergroupsUpdateResponse response = slack.methods().usergroupsUpdate(r -> r
-                    .token(token)
+                    .token(userToken)
                     .usergroup(usergroup.getId())
                     .description("updated"));
             assertThat(response.getError(), is(nullValue()));
         }
         {
             UsersListResponse usersListResponse = slack.methods().usersList(r -> r
-                    .token(token)
+                    .token(userToken)
                     .limit(3));
             List<String> userIds = new ArrayList<>();
             for (User member : usersListResponse.getMembers()) {
                 userIds.add(member.getId());
             }
             UsergroupsUsersUpdateResponse response = slack.methods().usergroupsUsersUpdate(r -> r
-                    .token(token)
+                    .token(userToken)
                     .usergroup(usergroup.getId())
                     .users(userIds));
             assertThat(response.getError(), is(nullValue()));
@@ -124,7 +125,7 @@ public class usergroups_Test {
     public void users_failure() throws Exception {
         UsergroupsUsersListResponse response = slack.methods().usergroupsUsersList(
                 UsergroupsUsersListRequest.builder()
-                        .token(token)
+                        .token(botToken)
                         .includeDisabled(false)
                         .usergroup("dummy")
                         .build());

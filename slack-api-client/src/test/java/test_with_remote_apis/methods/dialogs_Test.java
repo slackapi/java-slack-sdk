@@ -29,7 +29,7 @@ public class dialogs_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
     @Test
     public void open() throws IOException, SlackApiException {
@@ -61,7 +61,7 @@ public class dialogs_Test {
          * seconds of the user action.  Therefore, only an 'invalid trigger' ID response can be tested.
          */
         DialogOpenResponse dialogOpenResponse = slack.methods().dialogOpen(r -> r
-                .token(token)
+                .token(botToken)
                 .triggerId("FAKE_TRIGGER_ID")
                 .dialog(dialog));
         assertThat(dialogOpenResponse.isOk(), is(false));

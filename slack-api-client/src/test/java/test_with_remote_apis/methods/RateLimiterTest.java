@@ -33,17 +33,17 @@ public class RateLimiterTest {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
     @Test
     public void sequentialRequests() throws Exception {
-        assertThat(token, is(notNullValue()));
+        assertThat(botToken, is(notNullValue()));
         for (int i = 0; i < 3; i++) {
-            CompletableFuture<ConversationsListResponse> response = slack.methodsAsync(token).conversationsList(r -> r.limit(1));
+            CompletableFuture<ConversationsListResponse> response = slack.methodsAsync(botToken).conversationsList(r -> r.limit(1));
             response.get();
         }
 
-        String teamId = slack.methods().teamInfo(r -> r.token(token)).getTeam().getId();
+        String teamId = slack.methods().teamInfo(r -> r.token(botToken)).getTeam().getId();
         MethodsStats stats = testConfig.getMetricsDatastore().getStats(teamId);
         assertThat(stats.getSuccessfulCalls().get(Methods.CONVERSATIONS_LIST), is(greaterThanOrEqualTo(3L)));
         assertThat(stats.getLastMinuteRequests().get(Methods.CONVERSATIONS_LIST), is(greaterThanOrEqualTo(3)));
@@ -51,9 +51,9 @@ public class RateLimiterTest {
 
     @Test
     public void controlRequestsAndCleanupData() throws Exception {
-        assertThat(token, is(notNullValue()));
+        assertThat(botToken, is(notNullValue()));
 
-        String teamId = slack.methods().teamInfo(r -> r.token(token)).getTeam().getId();
+        String teamId = slack.methods().teamInfo(r -> r.token(botToken)).getTeam().getId();
         MethodsStats stats = testConfig.getMetricsDatastore().getStats(teamId);
         Integer beforeRequestsPerMinute = stats.getLastMinuteRequests().get(Methods.CONVERSATIONS_LIST);
         if (beforeRequestsPerMinute == null) {
@@ -94,7 +94,7 @@ public class RateLimiterTest {
         int counter = 0;
         List<CompletableFuture<ConversationsListResponse>> futures = new ArrayList<>();
         while (counter < batchCalls) {
-            CompletableFuture<ConversationsListResponse> response = slack.methodsAsync(token).conversationsList(r -> r.limit(1));
+            CompletableFuture<ConversationsListResponse> response = slack.methodsAsync(botToken).conversationsList(r -> r.limit(1));
             futures.add(response);
             Thread.sleep(sleepMillis);
             counter++;
@@ -116,13 +116,13 @@ public class RateLimiterTest {
         List<CompletableFuture<ChatPostMessageResponse>> futures = new ArrayList<>();
         for (int i = 0; i < 65; i++) {
             final int idx = i;
-            CompletableFuture<ChatPostMessageResponse> future = slack.methodsAsync(token)
+            CompletableFuture<ChatPostMessageResponse> future = slack.methodsAsync(botToken)
                     .chatPostMessage(r -> r.channel("#random").text("hello * " + idx));
             futures.add(future);
             Thread.sleep(100L);
             // intentionally rate limited
         }
-        String teamId = slack.methods().teamInfo(r -> r.token(token)).getTeam().getId();
+        String teamId = slack.methods().teamInfo(r -> r.token(botToken)).getTeam().getId();
         MethodsStats stats = testConfig.getMetricsDatastore().getStats(teamId);
         Long rateLimited = stats.getRateLimitedMethods().get("chat.postMessage_#random");
         while (rateLimited != null) {
@@ -141,7 +141,7 @@ public class RateLimiterTest {
                 log.info("error - {}", e.getMessage(), e);
             }
         }
-        CompletableFuture<ChatPostMessageResponse> future = slack.methodsAsync(token)
+        CompletableFuture<ChatPostMessageResponse> future = slack.methodsAsync(botToken)
                 .chatPostMessage(r -> r.channel("#general").text("test"));
         ChatPostMessageResponse response = future.get();
         assertThat(response.getError(), is(nullValue()));

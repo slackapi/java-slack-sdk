@@ -34,6 +34,7 @@ public class MatchedItem {
 
     private boolean hasMore;
     private boolean sentToSelf;
+    private boolean noReactions;
 
     private String botId;
 

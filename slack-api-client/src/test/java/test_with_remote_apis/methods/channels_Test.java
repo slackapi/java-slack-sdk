@@ -20,6 +20,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -33,7 +34,8 @@ import static org.junit.Assert.*;
 @Slf4j
 public class channels_Test {
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
@@ -48,7 +50,7 @@ public class channels_Test {
     void loadRandomChannelId() throws IOException, SlackApiException {
         if (randomChannelId == null) {
             ChannelsListResponse channelsListResponse = slack.methods().channelsList(r ->
-                    r.token(token).excludeArchived(true).limit(100));
+                    r.token(botToken).excludeArchived(true).limit(100));
             assertThat(channelsListResponse.getError(), is(nullValue()));
             for (Channel channel : channelsListResponse.getChannels()) {
                 if (channel.getName().equals("random")) {
@@ -64,14 +66,14 @@ public class channels_Test {
         loadRandomChannelId();
 
         ChannelsHistoryResponse history = slack.methods().channelsHistory(req -> req
-                .token(token)
+                .token(botToken)
                 .channel(randomChannelId)
                 .count(20));
         assertThat(history.isOk(), is(true));
         assertThat(history.getLatest(), is(nullValue()));
 
         ChannelsHistoryResponse latestHistory = slack.methods().channelsHistory(req -> req
-                .token(token)
+                .token(botToken)
                 .channel(randomChannelId)
                 .latest(history.getMessages().get(0).getTs())
                 .inclusive(true)
@@ -86,7 +88,7 @@ public class channels_Test {
 
         ChatPostMessageResponse firstMessageCreation = slack.methods().chatPostMessage(req -> req
                 .channel(randomChannelId)
-                .token(token)
+                .token(botToken)
                 .text("[thread] This is a test message posted by unit tests for Java Slack SDK library")
                 .replyBroadcast(false));
         assertThat(firstMessageCreation.getError(), is(nullValue()));
@@ -94,7 +96,7 @@ public class channels_Test {
 
         ChatPostMessageResponse reply1 = slack.methods().chatPostMessage(req -> req
                         .channel(randomChannelId)
-                        .token(token)
+                        .token(userToken)
                         .asUser(false)
                         .text("replied")
                         .iconEmoji(":smile:")
@@ -105,7 +107,7 @@ public class channels_Test {
         assertThat(reply1.isOk(), is(true));
 
         ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(req -> req
-                .token(token)
+                .token(botToken)
                 .channel(randomChannelId)
                 .messageTs(reply1.getTs()));
         assertThat(permalink.getError(), is(nullValue()));
@@ -114,7 +116,7 @@ public class channels_Test {
 
         ChatPostMessageResponse reply2 = slack.methods().chatPostMessage(req -> req
                 .channel(randomChannelId)
-                .token(token)
+                .token(botToken)
                 .asUser(true)
                 .text("replied to " + permalink.getPermalink())
                 .threadTs(reply1.getTs())
@@ -129,7 +131,7 @@ public class channels_Test {
         // via channels.history
         {
             ChannelsHistoryResponse history = slack.methods().channelsHistory(req -> req
-                    .token(token)
+                    .token(botToken)
                     .channel(randomChannelId)
                     .count(20));
             assertThat(history.isOk(), is(true));
@@ -157,7 +159,7 @@ public class channels_Test {
         // via conversations.history
         {
             ConversationsHistoryResponse history = slack.methods().conversationsHistory(req -> req
-                    .token(token)
+                    .token(botToken)
                     .channel(randomChannelId)
                     .limit(20));
             assertThat(history.isOk(), is(true));
@@ -183,18 +185,18 @@ public class channels_Test {
         }
     }
 
+    @Ignore
     @Test
     public void channels_chat() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
         {
-            ChannelsListResponse response = slack.methods().channelsList(r -> r.token(token));
+            ChannelsListResponse response = slack.methods().channelsList(r -> r.token(botToken));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.getChannels(), is(notNullValue()));
         }
 
         ChannelsCreateResponse creationResponse = slack.methods().channelsCreate(
-                ChannelsCreateRequest.builder().token(token).name("test" + System.currentTimeMillis()).build());
+                ChannelsCreateRequest.builder().token(botToken).name("test" + System.currentTimeMillis()).build());
         assertThat(creationResponse.getError(), is(nullValue()));
         assertThat(creationResponse.isOk(), is(true));
         assertThat(creationResponse.getChannel(), is(notNullValue()));
@@ -204,7 +206,7 @@ public class channels_Test {
         try {
             {
                 ChannelsInfoResponse response = slack.methods().channelsInfo(
-                        ChannelsInfoRequest.builder().token(token).channel(channel.getId()).build());
+                        ChannelsInfoRequest.builder().token(botToken).channel(channel.getId()).build());
                 assertThat(response.isOk(), is(true));
                 Channel fetchedChannel = response.getChannel();
                 assertThat(fetchedChannel.isMember(), is(true));
@@ -214,61 +216,57 @@ public class channels_Test {
 
             {
                 ChannelsSetPurposeResponse response = slack.methods().channelsSetPurpose(
-                        ChannelsSetPurposeRequest.builder().token(token).channel(channel.getId()).purpose("purpose").build());
+                        ChannelsSetPurposeRequest.builder().token(botToken).channel(channel.getId()).purpose("purpose").build());
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
             {
                 ChannelsSetTopicResponse response = slack.methods().channelsSetTopic(
-                        ChannelsSetTopicRequest.builder().token(token).channel(channel.getId()).topic("topic").build());
+                        ChannelsSetTopicRequest.builder().token(botToken).channel(channel.getId()).topic("topic").build());
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
             {
                 ChannelsHistoryResponse response = slack.methods().channelsHistory(
-                        ChannelsHistoryRequest.builder().token(token).channel(channel.getId()).count(10).build());
+                        ChannelsHistoryRequest.builder().token(botToken).channel(channel.getId()).count(10).build());
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
             {
                 ChannelsHistoryResponse history = slack.methods().channelsHistory(
-                        ChannelsHistoryRequest.builder().token(token).channel(channel.getId()).count(1).build());
+                        ChannelsHistoryRequest.builder().token(botToken).channel(channel.getId()).count(1).build());
                 String threadTs = history.getMessages().get(0).getTs();
                 ChannelsRepliesResponse response = slack.methods().channelsReplies(
-                        ChannelsRepliesRequest.builder().token(token).channel(channel.getId()).threadTs(threadTs).build());
+                        ChannelsRepliesRequest.builder().token(botToken).channel(channel.getId()).threadTs(threadTs).build());
                 assertThat(response.getError(), is(nullValue()));
                 assertThat(response.isOk(), is(true));
             }
 
             {
                 ChannelsKickResponse response = slack.methods().channelsKick(ChannelsKickRequest.builder()
-                        .token(token)
+                        .token(userToken)
                         .channel(channel.getId())
                         .user(channel.getMembers().get(0))
                         .build());
-                // TODO: valid test
-                assertThat(response.isOk(), is(false));
-                assertThat(response.getError(), is("cant_kick_self"));
+                assertThat(response.getError(), is(nullValue()));
             }
 
             {
                 ChannelsInviteResponse response = slack.methods().channelsInvite(ChannelsInviteRequest.builder()
-                        .token(token)
+                        .token(userToken)
                         .channel(channel.getId())
                         .user(channel.getMembers().get(0))
                         .build());
-                // TODO: valid test
-                assertThat(response.isOk(), is(false));
-                assertThat(response.getError(), is("cant_invite_self"));
+                assertThat(response.getError(), is(notNullValue()));
             }
 
             {
                 ChatMeMessageResponse response = slack.methods().chatMeMessage(ChatMeMessageRequest.builder()
                         .channel(channel.getId())
-                        .token(token)
+                        .token(botToken)
                         .text("Hello World! via chat.meMessage API")
                         .build());
                 assertThat(response.getError(), is(nullValue()));
@@ -278,7 +276,7 @@ public class channels_Test {
             //--------------Edited test---------
             Message lastMessage = slack.methods().conversationsHistory(
                     ConversationsHistoryRequest.builder()
-                            .token(token)
+                            .token(botToken)
                             .channel(channel.getId())
                             .limit(1)
                             .build()
@@ -286,7 +284,7 @@ public class channels_Test {
 
             ChatUpdateResponse updateMessage = slack.methods().chatUpdate(ChatUpdateRequest.builder()
                     .channel(channel.getId())
-                    .token(token)
+                    .token(botToken)
                     .ts(lastMessage.getTs())
                     .text("Updated text" + lastMessage.getText())
                     .build());
@@ -295,7 +293,7 @@ public class channels_Test {
 
             ConversationsHistoryResponse conversationsHistoryResponse = slack.methods().conversationsHistory(
                     ConversationsHistoryRequest.builder()
-                            .token(token)
+                            .token(botToken)
                             .channel(channel.getId())
                             .limit(1)
                             .build()
@@ -308,7 +306,7 @@ public class channels_Test {
             {
                 ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
                         .channel(channel.getId())
-                        .token(token)
+                        .token(botToken)
                         .text("@seratch Hello World! via chat.postMessage API")
                         .linkNames(true)
                         .build());
@@ -317,7 +315,7 @@ public class channels_Test {
 
                 ChatPostMessageResponse replyResponse1 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
                         .channel(channel.getId())
-                        .token(token)
+                        .token(botToken)
                         .text("@seratch Replied via chat.postMessage API")
                         .linkNames(true)
                         .threadTs(postResponse.getTs())
@@ -328,7 +326,7 @@ public class channels_Test {
 
                 ChatPostMessageResponse replyResponse2 = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
                         .channel(channel.getId())
-                        .token(token)
+                        .token(botToken)
                         .text("@seratch Replied via chat.postMessage API")
                         .linkNames(true)
                         .threadTs(postResponse.getTs())
@@ -339,7 +337,7 @@ public class channels_Test {
 
                 ChatUpdateResponse updateResponse = slack.methods().chatUpdate(ChatUpdateRequest.builder()
                         .channel(channel.getId())
-                        .token(token)
+                        .token(botToken)
                         .ts(postResponse.getTs())
                         .text("Updated text")
                         .linkNames(false)
@@ -356,7 +354,7 @@ public class channels_Test {
                 assertThat(markResponse.isOk(), is(false));
 
                 markResponse = slack.methods().channelsMark(ChannelsMarkRequest.builder()
-                        .token(token)
+                        .token(botToken)
                         .channel(channel.getId())
                         .ts(updateMessage.getTs())
                         .build());
@@ -364,7 +362,7 @@ public class channels_Test {
                 assertThat(markResponse.isOk(), is(true));
 
                 ChatDeleteResponse deleteResponse = slack.methods().chatDelete(ChatDeleteRequest.builder()
-                        .token(token)
+                        .token(botToken)
                         .channel(channel.getId())
                         .ts(postResponse.getMessage().getTs())
                         .build());
@@ -376,7 +374,7 @@ public class channels_Test {
             {
                 ChatScheduledMessagesListResponse listResponse = slack.methods().chatScheduledMessagesList(
                         ChatScheduledMessagesListRequest.builder()
-                                .token(token)
+                                .token(botToken)
                                 .limit(10)
                                 .channel(channel.getId())
                                 .build());
@@ -387,31 +385,31 @@ public class channels_Test {
 
                 ChatScheduleMessageResponse postResponse = slack.methods().chatScheduleMessage(
                         ChatScheduleMessageRequest.builder()
-                                .token(token)
+                                .token(botToken)
                                 .channel(channel.getId())
                                 .text("Something is happening!")
                                 .postAt(postAt) // will be posted in 3 minutes
                                 .build());
                 assertThat(postResponse.getError(), is(nullValue()));
 
-                assertNumOfScheduledMessages(token, channel, initialScheduledMessageCount + 1);
-                deleteScheduledMessage(token, channel, postResponse);
+                assertNumOfScheduledMessages(botToken, channel, initialScheduledMessageCount + 1);
+                deleteScheduledMessage(botToken, channel, postResponse);
 
                 postResponse = slack.methods().chatScheduleMessage(
                         ChatScheduleMessageRequest.builder()
-                                .token(token)
+                                .token(botToken)
                                 .channel(channel.getId())
                                 .attachments(Arrays.asList(Attachment.builder().text("something is happening!").build()))
                                 .postAt(postAt) // will be posted in 3 minutes
                                 .build());
                 assertThat(postResponse.getError(), is(nullValue()));
 
-                assertNumOfScheduledMessages(token, channel, initialScheduledMessageCount + 1);
-                deleteScheduledMessage(token, channel, postResponse);
+                assertNumOfScheduledMessages(botToken, channel, initialScheduledMessageCount + 1);
+                deleteScheduledMessage(botToken, channel, postResponse);
 
                 postResponse = slack.methods().chatScheduleMessage(
                         ChatScheduleMessageRequest.builder()
-                                .token(token)
+                                .token(botToken)
                                 .channel(channel.getId())
                                 .blocks(Arrays.asList((LayoutBlock) ImageBlock.builder()
                                         .blockId("123")
@@ -423,13 +421,13 @@ public class channels_Test {
                                 .build());
                 assertThat(postResponse.getError(), is(nullValue()));
 
-                deleteScheduledMessage(token, channel, postResponse);
-                assertNumOfScheduledMessages(token, channel, initialScheduledMessageCount);
+                deleteScheduledMessage(botToken, channel, postResponse);
+                assertNumOfScheduledMessages(botToken, channel, initialScheduledMessageCount);
             }
 
             {
                 ChannelsLeaveResponse response = slack.methods().channelsLeave(ChannelsLeaveRequest.builder()
-                        .token(token)
+                        .token(botToken)
                         .channel(channel.getId())
                         .build());
                 assertThat(response.getError(), is(nullValue()));
@@ -437,7 +435,7 @@ public class channels_Test {
             }
             {
                 ChannelsJoinResponse response = slack.methods().channelsJoin(ChannelsJoinRequest.builder()
-                        .token(token)
+                        .token(botToken)
                         .name(channel.getName())
                         .build());
                 assertThat(response.getError(), is(nullValue()));
@@ -446,7 +444,7 @@ public class channels_Test {
 
             {
                 ChannelsRenameResponse response = slack.methods().channelsRename(ChannelsRenameRequest.builder()
-                        .token(token)
+                        .token(botToken)
                         .channel(channel.getId())
                         .name(channel.getName() + "-1")
                         .build());
@@ -457,7 +455,7 @@ public class channels_Test {
         } finally {
             {
                 ChannelsArchiveResponse response = slack.methods().channelsArchive(ChannelsArchiveRequest.builder()
-                        .token(token)
+                        .token(userToken)
                         .channel(channel.getId())
                         .build());
                 assertThat(response.getError(), is(nullValue()));
@@ -466,13 +464,13 @@ public class channels_Test {
 
             {
                 ChannelsUnarchiveResponse response = slack.methods().channelsUnarchive(ChannelsUnarchiveRequest.builder()
-                        .token(token)
+                        .token(userToken)
                         //.channel(channel.getId())
                         .build());
                 assertThat(response.getError(), is(notNullValue()));
 
                 response = slack.methods().channelsUnarchive(ChannelsUnarchiveRequest.builder()
-                        .token(token)
+                        .token(userToken) // intentional
                         .channel(channel.getId())
                         .build());
                 assertThat(response.getError(), is(nullValue()));
@@ -481,7 +479,7 @@ public class channels_Test {
 
             {
                 ChannelsArchiveResponse response = slack.methods().channelsArchive(ChannelsArchiveRequest.builder()
-                        .token(token)
+                        .token(userToken)
                         .channel(channel.getId())
                         .build());
                 assertThat(response.getError(), is(nullValue()));
@@ -490,7 +488,7 @@ public class channels_Test {
 
             {
                 ChannelsInfoResponse response = slack.methods().channelsInfo(
-                        ChannelsInfoRequest.builder().token(token).channel(channel.getId()).build());
+                        ChannelsInfoRequest.builder().token(botToken).channel(channel.getId()).build());
                 assertThat(response.isOk(), is(true));
                 Channel fetchedChannel = response.getChannel();
                 assertThat(fetchedChannel.isMember(), is(false));

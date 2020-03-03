@@ -34,17 +34,17 @@ public class ApiTest {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
+    String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
 
     @Test
     public void getSchemas() throws IOException, AuditApiException {
-        if (token != null) {
+        if (orgAdminUserToken != null) {
             {
-                SchemasResponse response = slack.audit(token).getSchemas();
+                SchemasResponse response = slack.audit(orgAdminUserToken).getSchemas();
                 assertThat(response, is(notNullValue()));
             }
             {
-                SchemasResponse response = slack.audit(token).getSchemas(req -> req);
+                SchemasResponse response = slack.audit(orgAdminUserToken).getSchemas(req -> req);
                 assertThat(response, is(notNullValue()));
             }
         }
@@ -64,13 +64,13 @@ public class ApiTest {
 
     @Test
     public void getActions() throws IOException, AuditApiException {
-        if (token != null) {
+        if (orgAdminUserToken != null) {
             {
-                ActionsResponse response = slack.audit(token).getActions();
+                ActionsResponse response = slack.audit(orgAdminUserToken).getActions();
                 assertThat(response, is(notNullValue()));
             }
             {
-                ActionsResponse response = slack.audit(token).getActions(req -> req);
+                ActionsResponse response = slack.audit(orgAdminUserToken).getActions(req -> req);
                 assertThat(response, is(notNullValue()));
             }
         }
@@ -135,8 +135,8 @@ public class ApiTest {
 
     @Test
     public void getLogs() throws IOException, AuditApiException {
-        if (token != null) {
-            LogsResponse response = slack.audit(token).getLogs(req ->
+        if (orgAdminUserToken != null) {
+            LogsResponse response = slack.audit(orgAdminUserToken).getLogs(req ->
                     req.oldest(1521214343).action(Actions.User.user_login).limit(10));
             assertThat(response, is(notNullValue()));
         }
