@@ -1,6 +1,7 @@
 package com.slack.api.methods.response.reactions;
 
 import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.model.BotProfile;
 import com.slack.api.model.Reaction;
 import lombok.Data;
 
@@ -25,8 +26,11 @@ public class ReactionsGetResponse implements SlackApiResponse {
         private String subtype;
         private String text;
         private String ts;
+        private String user;
         private String username;
+        private String team;
         private String botId;
+        private BotProfile botProfile;
         private String permalink;
         private List<Reaction> reactions;
     }

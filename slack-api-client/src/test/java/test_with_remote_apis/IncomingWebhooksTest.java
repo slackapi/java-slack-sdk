@@ -31,7 +31,8 @@ public class IncomingWebhooksTest {
     // String url = "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX";
     String url = System.getenv(Constants.SLACK_SDK_TEST_INCOMING_WEBHOOK_URL);
     String channel = System.getenv(Constants.SLACK_SDK_TEST_INCOMING_WEBHOOK_CHANNEL_NAME);
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
@@ -246,11 +247,27 @@ public class IncomingWebhooksTest {
         assertThat(response.getCode(), is(200));
     }
 
+    @Test
+    public void testWithThreads_bot() throws Exception {
+        ChatPostMessageResponse chatPostMessageResponse = slack.methods().chatPostMessage(r ->
+                r.token(botToken).channel(channel).text("[thread] Hello"));
+        assertThat(chatPostMessageResponse.getError(), is(nullValue()));
+
+        Payload payload = Payload.builder()
+                .threadTs(chatPostMessageResponse.getMessage().getTs())
+                .text("Reply via Incoming Webhook!").build();
+
+        WebhookResponse response = slack.send(url, payload);
+        log.info(response.toString());
+
+        assertThat(response.getBody(), is("ok"));
+        assertThat(response.getCode(), is(200));
+    }
 
     @Test
-    public void testWithThreads() throws Exception {
+    public void testWithThreads_user() throws Exception {
         ChatPostMessageResponse chatPostMessageResponse = slack.methods().chatPostMessage(r ->
-                r.token(token).channel(channel).text("[thread] Hello"));
+                r.token(userToken).channel(channel).text("[thread] Hello"));
         assertThat(chatPostMessageResponse.getError(), is(nullValue()));
 
         Payload payload = Payload.builder()

@@ -28,11 +28,18 @@ public class search_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
-    public void all() throws IOException, SlackApiException {
-        SearchAllResponse response = slack.methods().searchAll(r -> r.token(token).query("test"));
+    public void all_bot() throws IOException, SlackApiException {
+        SearchAllResponse response = slack.methods().searchAll(r -> r.token(botToken).query("test"));
+        assertThat(response.getError(), is("not_allowed_token_type"));
+    }
+
+    @Test
+    public void all_user() throws IOException, SlackApiException {
+        SearchAllResponse response = slack.methods().searchAll(r -> r.token(userToken).query("test"));
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -40,7 +47,7 @@ public class search_Test {
 
     @Test
     public void all_async() throws Exception {
-        SearchAllResponse response = slack.methodsAsync().searchAll(r -> r.token(token).query("test")).get();
+        SearchAllResponse response = slack.methodsAsync().searchAll(r -> r.token(userToken).query("test")).get();
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -48,7 +55,7 @@ public class search_Test {
 
     @Test
     public void messages() throws IOException, SlackApiException {
-        SearchMessagesResponse response = slack.methods().searchMessages(r -> r.token(token).query("test"));
+        SearchMessagesResponse response = slack.methods().searchMessages(r -> r.token(userToken).query("test"));
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -61,7 +68,7 @@ public class search_Test {
 
     @Test
     public void messages_async() throws Exception {
-        SearchMessagesResponse response = slack.methodsAsync().searchMessages(r -> r.token(token).query("test")).get();
+        SearchMessagesResponse response = slack.methodsAsync().searchMessages(r -> r.token(userToken).query("test")).get();
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -74,7 +81,7 @@ public class search_Test {
 
     @Test
     public void files() throws IOException, SlackApiException {
-        SearchFilesResponse response = slack.methods().searchFiles(r -> r.token(token).query("test"));
+        SearchFilesResponse response = slack.methods().searchFiles(r -> r.token(userToken).query("test"));
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -86,7 +93,7 @@ public class search_Test {
 
     @Test
     public void files_async() throws Exception {
-        SearchFilesResponse response = slack.methodsAsync().searchFiles(r -> r.token(token).query("test")).get();
+        SearchFilesResponse response = slack.methodsAsync().searchFiles(r -> r.token(userToken).query("test")).get();
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));

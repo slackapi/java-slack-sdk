@@ -105,12 +105,16 @@ public class Message {
     @Data
     public static class MessageRoot {
         private String text;
+        private String user;
         private String username;
+        private String team;
         private String botId;
         private boolean mrkdwn;
         private String type;
         private String subtype;
         private String threadTs;
+
+        private BotProfile botProfile;
 
         // https://api.slack.com/messaging/retrieving#threading
         // Parent messages in a thread will no longer explicitly list their replies.

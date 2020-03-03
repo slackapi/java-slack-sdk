@@ -23,15 +23,15 @@ public class reminders_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
     public void test() throws Exception {
-        RemindersListResponse list = slack.methods().remindersList(r -> r.token(token));
+        RemindersListResponse list = slack.methods().remindersList(r -> r.token(userToken));
         assertThat(list.getError(), is(nullValue()));
 
         RemindersAddResponse addResponse = slack.methods().remindersAdd(r -> r
-                .token(token)
+                .token(userToken)
                 .text("Don't forget it!")
                 .time("10"));
         assertThat(addResponse.getError(), is(nullValue()));
@@ -40,19 +40,19 @@ public class reminders_Test {
         String reminderId = addResponse.getReminder().getId();
 
         RemindersInfoResponse infoResponse = slack.methods().remindersInfo(r -> r
-                .token(token)
+                .token(userToken)
                 .reminder(reminderId));
         assertThat(infoResponse.getError(), is(nullValue()));
         assertThat(infoResponse.isOk(), is(true));
 
         RemindersCompleteResponse completeResponse = slack.methods().remindersComplete(r -> r
-                .token(token)
+                .token(userToken)
                 .reminder(reminderId));
         assertThat(completeResponse.getError(), is(nullValue()));
         assertThat(completeResponse.isOk(), is(true));
 
         RemindersDeleteResponse deleteResponse = slack.methods().remindersDelete(r -> r
-                .token(token)
+                .token(userToken)
                 .reminder(reminderId));
         assertThat(deleteResponse.getError(), is(nullValue()));
         assertThat(deleteResponse.isOk(), is(true));
@@ -61,7 +61,7 @@ public class reminders_Test {
     @Test
     public void test_async() throws Exception {
         RemindersAddResponse addResponse = slack.methodsAsync().remindersAdd(r -> r
-                .token(token)
+                .token(userToken)
                 .text("Don't forget it!")
                 .time("10"))
                 .get();
@@ -71,21 +71,21 @@ public class reminders_Test {
         String reminderId = addResponse.getReminder().getId();
 
         RemindersInfoResponse infoResponse = slack.methodsAsync().remindersInfo(r -> r
-                .token(token)
+                .token(userToken)
                 .reminder(reminderId))
                 .get();
         assertThat(infoResponse.getError(), is(nullValue()));
         assertThat(infoResponse.isOk(), is(true));
 
         RemindersCompleteResponse completeResponse = slack.methodsAsync().remindersComplete(r -> r
-                .token(token)
+                .token(userToken)
                 .reminder(reminderId))
                 .get();
         assertThat(completeResponse.getError(), is(nullValue()));
         assertThat(completeResponse.isOk(), is(true));
 
         RemindersDeleteResponse deleteResponse = slack.methodsAsync().remindersDelete(r -> r
-                .token(token)
+                .token(userToken)
                 .reminder(reminderId))
                 .get();
         assertThat(deleteResponse.getError(), is(nullValue()));

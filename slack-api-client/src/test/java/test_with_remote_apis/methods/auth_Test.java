@@ -13,6 +13,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -30,7 +31,8 @@ public class auth_Test {
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @AfterClass
     public static void tearDown() throws InterruptedException {
@@ -47,8 +49,7 @@ public class auth_Test {
 
     @Test
     public void authTest_user() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-        AuthTestResponse response = slack.methods().authTest(req -> req.token(token));
+        AuthTestResponse response = slack.methods().authTest(req -> req.token(userToken));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));
@@ -56,7 +57,7 @@ public class auth_Test {
 
     @Test
     public void authTest_user_async() throws Exception {
-        AuthTestResponse response = slack.methodsAsync().authTest(req -> req.token(token)).get();
+        AuthTestResponse response = slack.methodsAsync().authTest(req -> req.token(userToken)).get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));
@@ -64,7 +65,7 @@ public class auth_Test {
 
     @Test
     public void authTest_user_2() throws IOException, SlackApiException {
-        AuthTestResponse response = slack.methods(token).authTest(req -> req);
+        AuthTestResponse response = slack.methods(userToken).authTest(req -> req);
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));
@@ -72,7 +73,7 @@ public class auth_Test {
 
     @Test
     public void authTest_user_2_async() throws Exception {
-        AuthTestResponse response = slack.methodsAsync(token).authTest(req -> req).get();
+        AuthTestResponse response = slack.methodsAsync(userToken).authTest(req -> req).get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));
@@ -80,8 +81,7 @@ public class auth_Test {
 
     @Test
     public void authTest_bot() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
-        AuthTestResponse response = slack.methods(token).authTest(req -> req);
+        AuthTestResponse response = slack.methods(botToken).authTest(req -> req);
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));
@@ -89,8 +89,7 @@ public class auth_Test {
 
     @Test
     public void authTest_bot_async() throws Exception {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
-        AuthTestResponse response = slack.methodsAsync(token).authTest(req -> req).get();
+        AuthTestResponse response = slack.methodsAsync(botToken).authTest(req -> req).get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));
@@ -98,8 +97,8 @@ public class auth_Test {
 
     @Test
     public void authTest_grid() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
-        AuthTestResponse response = slack.methods().authTest(req -> req.token(token));
+        String gridAdminToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
+        AuthTestResponse response = slack.methods().authTest(req -> req.token(gridAdminToken));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));
@@ -108,8 +107,8 @@ public class auth_Test {
 
     @Test
     public void authTest_grid_async() throws Exception {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
-        AuthTestResponse response = slack.methodsAsync().authTest(req -> req.token(token)).get();
+        String gridAdminToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
+        AuthTestResponse response = slack.methodsAsync().authTest(req -> req.token(gridAdminToken)).get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getUrl(), is(notNullValue()));
@@ -124,12 +123,13 @@ public class auth_Test {
         slack.methods().authTest(req -> req);
     }
 
+    @Ignore
     @Test
     public void authTest_burst() throws Exception {
-        AuthTestResponse authTest = slack.methodsAsync(token).authTest(r -> r).get();
+        AuthTestResponse authTest = slack.methodsAsync(botToken).authTest(r -> r).get();
         List<CompletableFuture<AuthTestResponse>> futures = new ArrayList<>();
         for (int i = 0; i < 300; i++) {
-            futures.add(slack.methodsAsync(token).authTest(r -> r));
+            futures.add(slack.methodsAsync(botToken).authTest(r -> r));
         }
 
         boolean currentQueueSizeWorking = false;
@@ -152,14 +152,15 @@ public class auth_Test {
         assertThat(stats.getRateLimitedMethods().containsKey("auth.test"), is(false));
     }
 
+    @Ignore
     @Test
     public void lastMinuteRequests() throws Exception {
-        String teamId = slack.methods().authTest(r -> r.token(token)).getTeamId();
+        String teamId = slack.methods().authTest(r -> r.token(botToken)).getTeamId();
         MethodsStats before = testConfig.getMetricsDatastore().getStats(teamId);
 
-        AuthTestResponse sync = slack.methods().authTest(r -> r.token(token));
+        AuthTestResponse sync = slack.methods().authTest(r -> r.token(botToken));
         assertThat(sync.getError(), is(nullValue()));
-        AuthTestResponse async = slack.methodsAsync().authTest(r -> r.token(token)).get();
+        AuthTestResponse async = slack.methodsAsync().authTest(r -> r.token(botToken)).get();
         assertThat(async.getError(), is(nullValue()));
 
         MethodsStats after = testConfig.getMetricsDatastore().getStats(teamId);

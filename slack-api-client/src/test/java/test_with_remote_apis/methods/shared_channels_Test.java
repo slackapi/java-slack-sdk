@@ -24,7 +24,7 @@ public class shared_channels_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
     @Test
     public void fetchSharedChannel() throws Exception {
@@ -32,7 +32,7 @@ public class shared_channels_Test {
         if (sharedChannelId.isPresent()) {
             String channel = sharedChannelId.get();
             ConversationsInfoResponse response = slack.methods().conversationsInfo(r ->
-                    r.token(token).channel(channel));
+                    r.token(botToken).channel(channel));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.getChannel().isShared(), is(true));
             assertThat(response.getChannel().isExtShared(), is(true));

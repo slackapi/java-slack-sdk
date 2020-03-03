@@ -25,6 +25,8 @@ public class UnnecessaryChannelsCleanerTest {
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
 
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+
     @AfterClass
     public static void tearDown() throws InterruptedException {
         SlackTestConfig.awaitCompletion(testConfig);
@@ -33,17 +35,17 @@ public class UnnecessaryChannelsCleanerTest {
     @Ignore
     @Test
     public void deleteUnnecessaryPublicChannels() throws Exception {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
-        for (Channel channel : slack.methods().channelsList(r -> r
-                .token(token)
+        for (Conversation channel : slack.methods().conversationsList(r -> r
+                .token(botToken)
+                .types(Arrays.asList(ConversationType.PUBLIC_CHANNEL))
                 .excludeArchived(true)
-                .limit(1000)).getChannels()) {
+                .limit(5000)).getChannels()) {
 
             log.info(channel.toString());
 
             if (channel.getName().startsWith("test") && !channel.isGeneral()) {
-                ChannelsArchiveResponse resp = slack.methods().channelsArchive(r -> r
-                        .token(token).channel(channel.getId()));
+                ConversationsArchiveResponse resp = slack.methods().conversationsArchive(r -> r
+                        .token(botToken).channel(channel.getId()));
                 assertThat(resp.getError(), is(nullValue()));
             }
         }
@@ -52,9 +54,8 @@ public class UnnecessaryChannelsCleanerTest {
     @Ignore
     @Test
     public void deleteUnnecessaryPrivateChannels() throws Exception {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         for (Conversation channel : slack.methods().conversationsList(r -> r
-                .token(token)
+                .token(botToken)
                 .excludeArchived(true)
                 .limit(1000)
                 .types(Arrays.asList(ConversationType.PRIVATE_CHANNEL))).getChannels()) {
@@ -64,7 +65,7 @@ public class UnnecessaryChannelsCleanerTest {
             if ((channel.getName().startsWith("test") || channel.getName().startsWith("secret-"))
                     && !channel.isGeneral()) {
                 ConversationsArchiveResponse resp = slack.methods().conversationsArchive(r -> r
-                        .token(token)
+                        .token(botToken)
                         .channel(channel.getId()));
                 assertThat(resp.getError(), is(nullValue()));
             }

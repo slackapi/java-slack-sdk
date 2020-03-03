@@ -30,7 +30,10 @@
     "image_192": "https://www.example.com/",
     "image_512": "https://www.example.com/",
     "image_1024": "https://www.example.com/",
-    "status_text_canonical": ""
+    "status_text_canonical": "",
+    "api_app_id": "A00000000",
+    "always_active": false,
+    "bot_id": "B00000000"
   },
   "error": "",
   "needed": "",

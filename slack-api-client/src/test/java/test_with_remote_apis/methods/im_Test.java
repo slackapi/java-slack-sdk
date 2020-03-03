@@ -27,25 +27,25 @@ public class im_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
     public void operations() throws Exception {
         ImListResponse listResponse = slack.methods().imList(r -> r
-                .token(token)
+                .token(userToken)
                 .limit(2));
         assertThat(listResponse.getError(), is(nullValue()));
         assertThat(listResponse.isOk(), is(true));
         assertThat(listResponse.getResponseMetadata(), is(notNullValue()));
 
         UsersListResponse usersListResponse = slack.methods().usersList(r -> r
-                .token(token)
+                .token(userToken)
                 .presence(true));
         List<User> users = usersListResponse.getMembers();
         final String userId = users.get(0).getId();
 
         ImOpenResponse openResponse = slack.methods().imOpen(r -> r
-                .token(token)
+                .token(userToken)
                 .user(userId));
         assertThat(openResponse.getError(), is(nullValue()));
         assertThat(openResponse.isOk(), is(true));
@@ -55,14 +55,14 @@ public class im_Test {
         // without ts (worked before but it gets to fail because ts is required as of Jan 2019)
         {
             ImMarkResponse markResponse = slack.methods().imMark(r -> r
-                    .token(token)
+                    .token(userToken)
                     .channel(channelId));
             assertThat(markResponse.isOk(), is(false));
             assertThat(markResponse.getError(), is("invalid_timestamp"));
         }
 
         ChatPostMessageResponse firstMessageResponse = slack.methods().chatPostMessage(r -> r
-                .token(token)
+                .token(userToken)
                 .channel(channelId)
                 .text("Hi!"));
         assertThat(firstMessageResponse.getError(), is(nullValue()));
@@ -71,7 +71,7 @@ public class im_Test {
         // with ts
         {
             ImMarkResponse markResponse = slack.methods().imMark(r -> r
-                    .token(token)
+                    .token(userToken)
                     .channel(channelId)
                     .ts(firstMessageResponse.getTs()));
             assertThat(markResponse.getError(), is(nullValue()));
@@ -79,7 +79,7 @@ public class im_Test {
         }
 
         ChatPostMessageResponse threadReplyResponse = slack.methods().chatPostMessage(r -> r
-                .token(token)
+                .token(userToken)
                 .channel(channelId)
                 .threadTs(firstMessageResponse.getTs())
                 .text("Hi!"));
@@ -87,21 +87,21 @@ public class im_Test {
         assertThat(threadReplyResponse.isOk(), is(true));
 
         ImRepliesResponse repliesResponse = slack.methods().imReplies(r -> r
-                .token(token)
+                .token(userToken)
                 .channel(channelId)
                 .threadTs(threadReplyResponse.getMessage().getThreadTs()));
         assertThat(repliesResponse.getError(), is(nullValue()));
         assertThat(repliesResponse.isOk(), is(true));
 
         ImHistoryResponse historyResponse = slack.methods().imHistory(r -> r
-                .token(token)
+                .token(userToken)
                 .channel(channelId)
                 .count(10));
         assertThat(historyResponse.getError(), is(nullValue()));
         assertThat(historyResponse.isOk(), is(true));
 
         ImCloseResponse closeResponse = slack.methods().imClose(r -> r
-                .token(token)
+                .token(userToken)
                 .channel(channelId));
         assertThat(closeResponse.getError(), is(nullValue()));
         assertThat(closeResponse.isOk(), is(true));

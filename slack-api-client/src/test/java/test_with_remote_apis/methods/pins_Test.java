@@ -32,11 +32,11 @@ public class pins_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
     @Test
     public void list() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(botToken)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -46,7 +46,7 @@ public class pins_Test {
         }
 
         PinsListResponse response = slack.methods().pinsList(
-                r -> r.token(token).channel(channels.get(0)));
+                r -> r.token(botToken).channel(channels.get(0)));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getItems(), is(notNullValue()));
@@ -54,7 +54,7 @@ public class pins_Test {
 
     @Test
     public void add() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(token)).getChannels();
+        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(botToken)).getChannels();
         List<String> channels = new ArrayList<>();
         for (Channel c : channels_) {
             if (c.getName().equals("random")) {
@@ -67,7 +67,7 @@ public class pins_Test {
         com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods().filesUpload(r -> r
-                    .token(token)
+                    .token(botToken)
                     .channels(channels)
                     .file(file)
                     .filename("sample.txt")
@@ -81,7 +81,7 @@ public class pins_Test {
         {
             // https://api.slack.com/methods/pins.add
             PinsAddResponse response = slack.methods().pinsAdd(r -> r
-                    .token(token)
+                    .token(botToken)
                     .channel(channels.get(0))
                     .file(fileObj.getId()));
 //            // We are phasing out support for pinning files and file comments only.
@@ -93,7 +93,7 @@ public class pins_Test {
         {
             // https://api.slack.com/methods/pins.add
             PinsRemoveResponse response = slack.methods().pinsRemove(r -> r
-                    .token(token)
+                    .token(botToken)
                     .channel(channels.get(0))
                     .file(fileObj.getId()));
             // We are phasing out support for pinning files and file comments only.
@@ -107,7 +107,7 @@ public class pins_Test {
             // as of August 2018, File object no longer contains initialComment.
             if (fileObj.getInitialComment() != null) {
                 PinsAddResponse response = slack.methods().pinsAdd(r -> r
-                        .token(token)
+                        .token(botToken)
                         .channel(channels.get(0))
                         .fileComment(fileObj.getInitialComment().getId()));
                 assertThat(response.getError(), is(nullValue()));

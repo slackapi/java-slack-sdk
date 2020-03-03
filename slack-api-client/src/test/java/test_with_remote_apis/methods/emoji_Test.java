@@ -26,10 +26,21 @@ public class emoji_Test {
     }
 
     @Test
-    public void emojiList() throws IOException, SlackApiException {
-        String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    public void emojiList_bot() throws IOException, SlackApiException {
+        String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
         {
-            EmojiListResponse response = slack.methods().emojiList(r -> r.token(token));
+            EmojiListResponse response = slack.methods().emojiList(r -> r.token(botToken));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getEmoji(), is(notNullValue()));
+        }
+    }
+
+    @Test
+    public void emojiList_user() throws IOException, SlackApiException {
+        String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+        {
+            EmojiListResponse response = slack.methods().emojiList(r -> r.token(userToken));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getEmoji(), is(notNullValue()));

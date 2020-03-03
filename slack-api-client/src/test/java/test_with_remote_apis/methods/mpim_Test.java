@@ -31,14 +31,14 @@ public class mpim_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
     public void operations() throws IOException, SlackApiException {
-        MpimListResponse listResponse = slack.methods().mpimList(r -> r.token(token));
+        MpimListResponse listResponse = slack.methods().mpimList(r -> r.token(userToken));
         assertThat(listResponse.isOk(), is(true));
 
-        UsersListResponse usersListResponse = slack.methods().usersList(r -> r.token(token).presence(true));
+        UsersListResponse usersListResponse = slack.methods().usersList(r -> r.token(userToken).presence(true));
         List<User> users = usersListResponse.getMembers();
         List<String> userIds = new ArrayList<>();
         for (User u : users) {
@@ -49,44 +49,44 @@ public class mpim_Test {
             }
         }
 
-        MpimOpenResponse openResponse = slack.methods().mpimOpen(r -> r.token(token).users(userIds));
+        MpimOpenResponse openResponse = slack.methods().mpimOpen(r -> r.token(userToken).users(userIds));
         assertThat(openResponse.getError(), is(nullValue()));
         assertThat(openResponse.isOk(), is(true));
 
         String channelId = openResponse.getGroup().getId();
 
         {
-            MpimMarkResponse markResponse = slack.methods(token).mpimMark(r -> r.channel(channelId));
+            MpimMarkResponse markResponse = slack.methods(userToken).mpimMark(r -> r.channel(channelId));
             // ts is missing
             assertThat(markResponse.getError(), is("internal_error"));
         }
 
         {
-            MpimMarkResponse markResponse = slack.methods(token).mpimMark(r -> r
+            MpimMarkResponse markResponse = slack.methods(userToken).mpimMark(r -> r
                     .channel(channelId)
                     .ts(openResponse.getGroup().getLatest().getTs()));
             assertThat(markResponse.getError(), is(nullValue()));
             assertThat(markResponse.isOk(), is(true));
         }
 
-        MpimHistoryResponse historyResponse = slack.methods().mpimHistory(r -> r.token(token).channel(channelId).count(10));
+        MpimHistoryResponse historyResponse = slack.methods().mpimHistory(r -> r.token(userToken).channel(channelId).count(10));
         assertThat(historyResponse.getError(), is(nullValue()));
         assertThat(historyResponse.isOk(), is(true));
 
-        ChatPostMessageResponse parentMessage = slack.methods(token).chatPostMessage(r ->
+        ChatPostMessageResponse parentMessage = slack.methods(userToken).chatPostMessage(r ->
                 r.channel(channelId).text("Hi there"));
         assertThat(parentMessage.getError(), is(nullValue()));
 
-        ChatPostMessageResponse threadMessage = slack.methods(token).chatPostMessage(r ->
+        ChatPostMessageResponse threadMessage = slack.methods(userToken).chatPostMessage(r ->
                 r.channel(channelId).threadTs(parentMessage.getTs()).text("What's up?"));
         assertThat(threadMessage.getError(), is(nullValue()));
 
-        MpimRepliesResponse repliesResponse = slack.methods(token).mpimReplies(r ->
+        MpimRepliesResponse repliesResponse = slack.methods(userToken).mpimReplies(r ->
                 r.channel(channelId).threadTs(parentMessage.getTs()));
         assertThat(repliesResponse.getError(), is(nullValue()));
         assertThat(repliesResponse.isOk(), is(true));
 
-        MpimCloseResponse closeResponse = slack.methods().mpimClose(r -> r.token(token).channel(channelId));
+        MpimCloseResponse closeResponse = slack.methods().mpimClose(r -> r.token(userToken).channel(channelId));
         assertThat(closeResponse.getError(), is(nullValue()));
         assertThat(closeResponse.isOk(), is(true));
     }

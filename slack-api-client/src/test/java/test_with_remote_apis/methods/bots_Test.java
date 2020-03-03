@@ -22,7 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class bots_Test {
 
-    static String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    static String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
@@ -45,7 +45,7 @@ public class bots_Test {
     @BeforeClass
     public static void loadBotId() throws IOException, SlackApiException {
         if (cachedBotId == null) {
-            List<User> users = slack.methods(token).usersList(req -> req).getMembers();
+            List<User> users = slack.methods(botToken).usersList(req -> req).getMembers();
             User user = null;
             for (User u : users) {
                 if (u.isBot() && !"USLACKBOT".equals(u.getId())) {
@@ -74,7 +74,7 @@ public class bots_Test {
     @Test
     public void botsInfo() throws IOException, SlackApiException {
         String botId = findBotId();
-        BotsInfoResponse response = slack.methods(token).botsInfo(req -> req.bot(botId));
+        BotsInfoResponse response = slack.methods(botToken).botsInfo(req -> req.bot(botId));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getBot(), is(notNullValue()));
@@ -83,7 +83,7 @@ public class bots_Test {
     @Test
     public void botsInfo_async() throws Exception {
         String botId = findBotId();
-        BotsInfoResponse response = slack.methodsAsync(token).botsInfo(req -> req.bot(botId)).get();
+        BotsInfoResponse response = slack.methodsAsync(botToken).botsInfo(req -> req.bot(botId)).get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getBot(), is(notNullValue()));
@@ -92,7 +92,7 @@ public class bots_Test {
     @Test(expected = ExecutionException.class)
     public void botsInfo_async_error() throws Exception {
         String botId = findBotId();
-        brokenSlack.methodsAsync(token).botsInfo(req -> req.bot(botId)).get();
+        brokenSlack.methodsAsync(botToken).botsInfo(req -> req.bot(botId)).get();
     }
 
 }

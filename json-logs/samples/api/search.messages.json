@@ -1055,7 +1055,8 @@
               }
             }
           ]
-        }
+        },
+        "no_reactions": false
       }
     ]
   },

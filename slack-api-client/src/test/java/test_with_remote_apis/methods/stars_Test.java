@@ -6,7 +6,6 @@ import com.slack.api.methods.response.files.FilesUploadResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
-import com.slack.api.model.Channel;
 import com.slack.api.model.Conversation;
 import config.Constants;
 import config.SlackTestConfig;
@@ -33,11 +32,11 @@ public class stars_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
     public void list() throws IOException, SlackApiException {
-        StarsListResponse response = slack.methods().starsList(r -> r.token(token));
+        StarsListResponse response = slack.methods().starsList(r -> r.token(userToken));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getItems(), is(notNullValue()));
@@ -45,7 +44,7 @@ public class stars_Test {
 
     @Test
     public void list_async() throws Exception {
-        StarsListResponse response = slack.methodsAsync().starsList(r -> r.token(token)).get();
+        StarsListResponse response = slack.methodsAsync().starsList(r -> r.token(userToken)).get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
         assertThat(response.getItems(), is(notNullValue()));
@@ -53,7 +52,7 @@ public class stars_Test {
 
     @Test
     public void add() throws IOException, SlackApiException {
-        List<Conversation> channels = slack.methods().conversationsList(r -> r.token(token)).getChannels();
+        List<Conversation> channels = slack.methods().conversationsList(r -> r.token(userToken)).getChannels();
         List<String> channelIds = new ArrayList<>();
         for (Conversation c : channels) {
             if (c.getName().equals("random")) {
@@ -66,7 +65,7 @@ public class stars_Test {
         com.slack.api.model.File fileObj;
         {
             FilesUploadResponse response = slack.methods().filesUpload(r -> r
-                    .token(token)
+                    .token(userToken)
                     .channels(channelIds)
                     .file(file)
                     .filename("sample.txt")
@@ -79,7 +78,7 @@ public class stars_Test {
 
         {
             StarsAddResponse response = slack.methods().starsAdd(r -> r
-                    .token(token)
+                    .token(userToken)
                     .channel(channelIds.get(0))
                     .file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));
@@ -87,7 +86,7 @@ public class stars_Test {
         }
         {
             StarsRemoveResponse response = slack.methods().starsRemove(r -> r
-                    .token(token)
+                    .token(userToken)
                     .channel(channelIds.get(0))
                     .file(fileObj.getId()));
             assertThat(response.getError(), is(nullValue()));

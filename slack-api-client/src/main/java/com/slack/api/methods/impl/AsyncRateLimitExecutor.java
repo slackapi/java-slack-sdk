@@ -60,7 +60,7 @@ public class AsyncRateLimitExecutor {
         final String teamId = token != null ? teamIdCache.lookupOrResolve(token) : null;
         final ExecutorService executorService = teamId != null ? ThreadPools.getOrCreate(config, teamId) : ThreadPools.getDefault(config);
         return CompletableFuture.supplyAsync(() -> {
-            if (NO_TOKEN_METHOD_NAMES.contains(methodName)) {
+            if (NO_TOKEN_METHOD_NAMES.contains(methodName) || teamId == null) {
                 return runWithoutQueue(teamId, methodName, methodsSupplier);
             } else {
                 String messageId = generateMessageId();

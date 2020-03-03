@@ -28,12 +28,12 @@ public class ApiTest {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
-    String token = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
+    String orgAdminToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
 
     @Test
     public void getServiceProviderConfigs() throws IOException, SCIMApiException {
-        if (token != null) {
-            ServiceProviderConfigsGetResponse response = slack.scim(token).getServiceProviderConfigs(req -> req);
+        if (orgAdminToken != null) {
+            ServiceProviderConfigsGetResponse response = slack.scim(orgAdminToken).getServiceProviderConfigs(req -> req);
             assertThat(response.getAuthenticationSchemes(), is(notNullValue()));
         }
     }
@@ -46,16 +46,16 @@ public class ApiTest {
 
     @Test
     public void searchAndReadUser() throws IOException, SCIMApiException {
-        if (token != null) {
+        if (orgAdminToken != null) {
             {
-                UsersSearchResponse users = slack.scim(token).searchUsers(req -> req.count(1000));
+                UsersSearchResponse users = slack.scim(orgAdminToken).searchUsers(req -> req.count(1000));
                 final String userId = users.getResources().get(0).getId();
-                UsersReadResponse read = slack.scim(token).readUser(req -> req.id(userId));
+                UsersReadResponse read = slack.scim(orgAdminToken).readUser(req -> req.id(userId));
                 assertThat(read.getId(), is(userId));
             }
             {
                 // pagination
-                UsersSearchResponse users = slack.scim(token).searchUsers(req -> req.count(1).startIndex(2));
+                UsersSearchResponse users = slack.scim(orgAdminToken).searchUsers(req -> req.count(1).startIndex(2));
                 assertThat(users.getItemsPerPage(), is(1));
                 assertThat(users.getResources().size(), is(1));
                 assertThat(users.getStartIndex(), is(2));
@@ -89,7 +89,7 @@ public class ApiTest {
 
     @Test
     public void createAndDeleteUser() throws Exception {
-        if (token != null) {
+        if (orgAdminToken != null) {
             String userName = "user" + System.currentTimeMillis();
             User newUser = new User();
             newUser.setName(new User.Name());
@@ -99,17 +99,17 @@ public class ApiTest {
             User.Email email = new User.Email();
             email.setValue("seratch+" + System.currentTimeMillis() + "@gmail.com");
             newUser.setEmails(Arrays.asList(email));
-            UsersCreateResponse creation = slack.scim(token).createUser(req -> req.user(newUser));
+            UsersCreateResponse creation = slack.scim(orgAdminToken).createUser(req -> req.user(newUser));
             assertThat(creation.getId(), is(notNullValue()));
 
-            UsersReadResponse readResp = slack.scim(token).readUser(req -> req.id(creation.getId()));
+            UsersReadResponse readResp = slack.scim(orgAdminToken).readUser(req -> req.id(creation.getId()));
             assertThat(readResp.getId(), is(creation.getId()));
             assertThat(readResp.getUserName(), is(creation.getUserName()));
 
             try {
                 // https://api.slack.com/scim#filter
                 // filter query matching the created data
-                UsersSearchResponse searchResp = slack.scim(token).searchUsers(req -> req.count(1).filter("userName eq \"" + userName + "\""));
+                UsersSearchResponse searchResp = slack.scim(orgAdminToken).searchUsers(req -> req.count(1).filter("userName eq \"" + userName + "\""));
                 assertThat(searchResp.getItemsPerPage(), is(1));
                 assertThat(searchResp.getResources().size(), is(1));
                 assertThat(searchResp.getResources().get(0).getId(), is(creation.getId()));
@@ -119,33 +119,33 @@ public class ApiTest {
 
                 User user = new User();
                 user.setUserName(originalUserName + "_ed");
-                slack.scim(token).patchUser(req -> req.id(creation.getId()).user(user));
+                slack.scim(orgAdminToken).patchUser(req -> req.id(creation.getId()).user(user));
 
-                readResp = slack.scim(token).readUser(req -> req.id(creation.getId()));
+                readResp = slack.scim(orgAdminToken).readUser(req -> req.id(creation.getId()));
                 assertThat(readResp.getId(), is(creation.getId()));
                 assertThat(readResp.getUserName(), is(originalUserName + "_ed"));
 
                 User modifiedUser = readResp;
                 modifiedUser.setUserName(originalUserName + "_rv");
                 modifiedUser.setNickName(originalUserName + "_rv"); // required
-                slack.scim(token).updateUser(req -> req.id(modifiedUser.getId()).user(modifiedUser));
+                slack.scim(orgAdminToken).updateUser(req -> req.id(modifiedUser.getId()).user(modifiedUser));
 
-                readResp = slack.scim(token).readUser(req -> req.id(modifiedUser.getId()));
+                readResp = slack.scim(orgAdminToken).readUser(req -> req.id(modifiedUser.getId()));
                 assertThat(readResp.getId(), is(creation.getId()));
                 assertThat(readResp.getUserName(), is(originalUserName + "_rv"));
 
             } finally {
-                UsersDeleteResponse deletion = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
+                UsersDeleteResponse deletion = slack.scim(orgAdminToken).deleteUser(req -> req.id(creation.getId()));
                 assertThat(deletion, is(nullValue()));
                 // can call twice
-                UsersDeleteResponse deletion2 = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
+                UsersDeleteResponse deletion2 = slack.scim(orgAdminToken).deleteUser(req -> req.id(creation.getId()));
                 assertThat(deletion2, is(nullValue()));
 
                 int counter = 0;
                 UsersReadResponse supposedToBeDeleted = null;
                 while (counter < 10) {
                     Thread.sleep(1000);
-                    supposedToBeDeleted = slack.scim(token).readUser(req -> req.id(creation.getId()));
+                    supposedToBeDeleted = slack.scim(orgAdminToken).readUser(req -> req.id(creation.getId()));
                     if (!supposedToBeDeleted.getActive()) {
                         break;
                     }
@@ -154,7 +154,7 @@ public class ApiTest {
                 assertThat(supposedToBeDeleted.getActive(), is(false));
 
                 // can call again
-                UsersDeleteResponse deletion3 = slack.scim(token).deleteUser(req -> req.id(creation.getId()));
+                UsersDeleteResponse deletion3 = slack.scim(orgAdminToken).deleteUser(req -> req.id(creation.getId()));
                 assertThat(deletion3, is(nullValue()));
             }
         }
@@ -162,32 +162,32 @@ public class ApiTest {
 
     @Test
     public void groups() throws IOException, SCIMApiException {
-        if (token != null) {
-            GroupsSearchResponse groups = slack.scim(token).searchGroups(req -> req.count(1000));
+        if (orgAdminToken != null) {
+            GroupsSearchResponse groups = slack.scim(orgAdminToken).searchGroups(req -> req.count(1000));
             if (groups.getResources().size() == 0) {
                 Group newGroup = new Group();
                 newGroup.setDisplayName("Test Group" + System.currentTimeMillis());
-                slack.scim(token).createGroup(req -> req.group(newGroup));
+                slack.scim(orgAdminToken).createGroup(req -> req.group(newGroup));
             }
 
             // pagination
-            GroupsSearchResponse pagination = slack.scim(token).searchGroups(req -> req.count(1));
+            GroupsSearchResponse pagination = slack.scim(orgAdminToken).searchGroups(req -> req.count(1));
             assertThat(pagination.getResources().size(), is(1));
 
             Group group = groups.getResources().get(0);
 
             GroupsPatchRequest.GroupOperation op = new GroupsPatchRequest.GroupOperation();
             GroupsPatchRequest.MemberOperation memberOp = new GroupsPatchRequest.MemberOperation();
-            User user = slack.scim(token).searchUsers(req -> req.count(1)).getResources().get(0);
+            User user = slack.scim(orgAdminToken).searchUsers(req -> req.count(1)).getResources().get(0);
             memberOp.setValue(user.getId());
             memberOp.setOperation("delete");
             op.setMembers(Arrays.asList(memberOp));
 
-            slack.scim(token).patchGroup(req -> req.id(group.getId()).group(op));
+            slack.scim(orgAdminToken).patchGroup(req -> req.id(group.getId()).group(op));
 
-            slack.scim(token).updateGroup(req -> req.id(group.getId()).group(group));
+            slack.scim(orgAdminToken).updateGroup(req -> req.id(group.getId()).group(group));
 
-            GroupsReadResponse read = slack.scim(token).readGroup(req -> req.id(group.getId()));
+            GroupsReadResponse read = slack.scim(orgAdminToken).readGroup(req -> req.id(group.getId()));
             assertThat(read.getId(), is(group.getId()));
         }
     }
