@@ -10,7 +10,7 @@ Bolt for Java doesn't depend on any specific environments and frameworks.
 
 It works on Servlet containers out-of-the-box. So, developers can run Bolt apps with most Web frameworks on the JVM. **SlackAppServlet** is a simple Servlet that receives HTTP requests coming to `POST /slack/events` URI and properly dispatches each request to corresponding handlers in a Bolt app.
 
-Even running Bolt apps on non-Servlet settings like [Micronaut](https://micronaut.io/) is feasible if there is an adapter that transforms its specific HTTP interpretation to Bolt interfaces.
+Even running Bolt apps on non-Servlet settings like [Micronaut](https://micronaut.io/) and [Helidon](https://helidon.io/) is feasible if there is an adapter that transforms its specific HTTP interpretation to Bolt interfaces.
 
 ## Supported Frameworks
 
@@ -19,6 +19,7 @@ In this section, I'll share some minimum working examples for the following popu
 * [Spring Boot](https://spring.io/guides/gs/spring-boot/)
 * [Micronaut](https://micronaut.io/)
 * [Quarkus](https://quarkus.io/)
+* [Helidon SE](https://helidon.io/)
 
 ## Spring Boot
 
@@ -395,4 +396,134 @@ The hot reload mode is enabled by default.
 [io.quarkus] (vert.x-worker-thread-2) Profile dev activated. Live Coding activated.
 [io.quarkus] (vert.x-worker-thread-2) Installed features: [cdi, kotlin, servlet]
 [io.qua.dev] (vert.x-worker-thread-2) Hot replace total time: 0.572s
+```
+
+---
+
+## Helidon SE
+
+[Helidon SE](https://helidon.io/docs/latest/#/about/02_introduction) is the functional programming style web framework provided by all Helidon libraries. Let's start with a blank project.
+
+```bash
+mvn archetype:generate \
+  -DinteractiveMode=false \
+  -DarchetypeGroupId=io.helidon.archetypes \
+  -DarchetypeArtifactId=helidon-quickstart-se \
+  -DarchetypeVersion={{ site.helidonVersion }} \
+  -DgroupId=com.exmple \
+  -DartifactId=helidon-se-bolt-app \
+  -Dpackage=hello
+```
+
+### pom.xml
+
+The only thing you need to do with the build settings is add **bolt-helidon** dependency and your favorite [SLF4J](http://www.slf4j.org/) implementation.
+
+```xml
+<dependency>
+  <groupId>io.helidon.bundles</groupId>
+  <artifactId>helidon-bundles-webserver</artifactId>
+</dependency>
+<dependency>
+  <groupId>io.helidon.config</groupId>
+  <artifactId>helidon-config-yaml</artifactId>
+</dependency>
+<dependency>
+  <groupId>com.slack.api</groupId>
+  <artifactId>bolt-helidon</artifactId>
+  <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+<dependency>
+  <groupId>ch.qos.logback</groupId>
+  <artifactId>logback-classic</artifactId>
+  <version>1.2.3</version>
+</dependency>
+```
+
+### src/main/java/hello/Main.java
+
+**bolt-helidon** is as handy as **bolt-jetty**. All developers need to do is define a main method that initializes **App**s and starts an HTTP server.
+
+```java
+package hello;
+
+import com.slack.api.bolt.App;
+import com.slack.api.bolt.helidon.SlackAppServer;
+import com.slack.api.model.event.AppMentionEvent;
+import io.helidon.health.HealthSupport;
+import io.helidon.health.checks.HealthChecks;
+import io.helidon.metrics.MetricsSupport;
+
+public final class Main {
+  public static void main(final String[] args) { startServer(); }
+
+  public static SlackAppServer startServer() {
+    SlackAppServer server = new SlackAppServer(apiApp(), oauthApp());
+    // If you add more settings to Routing, overwrite this configurator
+    server.setAdditionalRoutingConfigurator(builder -> builder
+      .register(MetricsSupport.create())
+      .register(HealthSupport.builder().addLiveness(HealthChecks.healthChecks()).build()));
+    server.start();
+    return server;
+  }
+
+  // POST /slack/events - this path is configurable with bolt.apiPath in application.yaml
+  public static App apiApp() {
+    App app = new App();
+    app.event(AppMentionEvent.class, (event, ctx) -> {
+      ctx.say("May I help you?");
+      return ctx.ack();
+    });
+    return app;
+  }
+}
+```
+
+### src/main/resources/application.yml
+
+Use `application.yml` to configure your Helidon SE apps.
+
+```yaml
+server:
+  port: 3000
+  host: 0.0.0.0
+bolt:
+  apiPath: /slack/events
+```
+
+### src/main/resources/logback.xml
+
+If you use logback library as the SLF4J logger implementation, a simple **logback.xml** would be like blow.
+
+```xml
+<configuration>
+  <appender name="default" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date %level [%thread] %logger{64} %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="com.slack.api" level="debug"/>
+  <logger name="io.helidon" level="debug"/>
+  <root level="info">
+    <appender-ref ref="default"/>
+  </root>
+</configuration>
+```
+
+### Run the App
+
+As of March 2020, Helidon [doesn't support live reloading yet](https://github.com/oracle/helidon/issues/1207). The recommended way to start your app is to build and run your app every time you've applied changes to it.
+
+```bash
+mvn exec:java -Dexec.mainClass="hello.Main"
+# or
+mvn package && java -jar target/helidon-se-bolt-app.jar
+```
+
+If the project is correctly configured, the stdout should look like this.
+
+```bash
+[main] io.helidon.webserver.NettyWebServer Version: {{ site.helidonVersion }}
+[nioEventLoopGroup-2-1] io.helidon.webserver.NettyWebServer Channel '@default' started: [id: 0x9fcf416d, L:/0:0:0:0:0:0:0:0:3000]
+[nioEventLoopGroup-2-1] com.slack.api.bolt.helidon.SlackAppServer ⚡️ Bolt app is running!
 ```

@@ -10,7 +10,7 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 
 標準では Servlet コンテナー上での動作がサポートされています。そのため、開発者は Bolt アプリをほとんどの JVM 上で動作する Web フレームワークと組み合わせて動作させることができます。**SlackAppServlet** は、`POST /slack/events` という URI に来るリクエストを受け付けて、適切に対応する Bolt アプリのハンドラーにディスパッチするだけのシンプルな Servlet です。
 
-[Micronaut](https://micronaut.io/) のように Servlet ではない環境も、その固有の HTTP 関連の表現（リクエスト・レスポンス）を変換するアダプターさえあれば、Bolt アプリを動作させることができます。
+[Micronaut](https://micronaut.io/) や [Helidon](https://helidon.io/) のように Servlet ではない環境も、その固有の HTTP 関連の表現（リクエスト・レスポンス）を変換するアダプターさえあれば、Bolt アプリを動作させることができます。
 
 ## 対応フレームワーク
 
@@ -19,6 +19,7 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 * [Spring Boot](https://spring.io/guides/gs/spring-boot/)
 * [Micronaut](https://micronaut.io/)
 * [Quarkus](https://quarkus.io/)
+* [Helidon SE](https://helidon.io/)
 
 ## Spring Boot
 
@@ -364,7 +365,7 @@ Quarkus がデフォルトで使用するポートは 8080 です。このよう
 quarkus.http.port=3000
 ```
 
-### Run the App
+### Quarkus アプリを起動
 
 準備は以上です！それでは development mode でアプリを起動してみましょう。
 
@@ -393,4 +394,134 @@ Listening for transport dt_socket at address: 5005
 [io.quarkus] (vert.x-worker-thread-2) Profile dev activated. Live Coding activated.
 [io.quarkus] (vert.x-worker-thread-2) Installed features: [cdi, kotlin, servlet]
 [io.qua.dev] (vert.x-worker-thread-2) Hot replace total time: 0.572s
+```
+
+---
+
+## Helidon SE
+
+[Helidon SE](https://helidon.io/docs/latest/#/about/02_introduction) は Helidon プロジェクトのライブラリ群によって提供される関数型プログラミングの Web フレームワークです。早速ブランクプロジェクトからはじめてみましょう。
+ 
+```bash
+mvn archetype:generate \
+  -DinteractiveMode=false \
+  -DarchetypeGroupId=io.helidon.archetypes \
+  -DarchetypeArtifactId=helidon-quickstart-se \
+  -DarchetypeVersion={{ site.helidonVersion }} \
+  -DgroupId=com.exmple \
+  -DartifactId=helidon-se-bolt-app \
+  -Dpackage=hello
+```
+
+### pom.xml
+
+ビルド設定でやらなければならないのは **bolt-helidon** ライブラリとお好きな [SLF4J](http://www.slf4j.org/) 実装ライブラリの追加だけです。
+
+```xml
+<dependency>
+  <groupId>io.helidon.bundles</groupId>
+  <artifactId>helidon-bundles-webserver</artifactId>
+</dependency>
+<dependency>
+  <groupId>io.helidon.config</groupId>
+  <artifactId>helidon-config-yaml</artifactId>
+</dependency>
+<dependency>
+  <groupId>com.slack.api</groupId>
+  <artifactId>bolt-helidon</artifactId>
+  <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+<dependency>
+  <groupId>ch.qos.logback</groupId>
+  <artifactId>logback-classic</artifactId>
+  <version>1.2.3</version>
+</dependency>
+```
+
+### src/main/java/hello/Main.java
+
+**bolt-helidon** は **bolt-jetty** と同様にとても手軽に扱えます。開発者はただ **App** の初期化と HTTP サーバーを起動する main メソッドを定義するだけです。
+
+```java
+package hello;
+
+import com.slack.api.bolt.App;
+import com.slack.api.bolt.helidon.SlackAppServer;
+import com.slack.api.model.event.AppMentionEvent;
+import io.helidon.health.HealthSupport;
+import io.helidon.health.checks.HealthChecks;
+import io.helidon.metrics.MetricsSupport;
+
+public final class Main {
+  public static void main(final String[] args) { startServer(); }
+
+  public static SlackAppServer startServer() {
+    SlackAppServer server = new SlackAppServer(apiApp());
+    // 他の設定を Routing に加えたい時はこの関数で設定します 
+    server.setAdditionalRoutingConfigurator(builder -> builder
+      .register(MetricsSupport.create())
+      .register(HealthSupport.builder().addLiveness(HealthChecks.healthChecks()).build()));
+    server.start();
+    return server;
+  }
+
+  // POST /slack/events - このパスは application.yaml 内の bolt.apiPath で設定します
+  public static App apiApp() {
+    App app = new App();
+    app.event(AppMentionEvent.class, (event, ctx) -> {
+      ctx.say("何かご用でしょうか？ :eyes:");
+      return ctx.ack();
+    });
+    return app;
+  }
+}
+```
+
+### src/main/resources/application.yml
+
+Helidon SE アプリの設定は `application.yml` で行います。
+
+```yaml
+server:
+  port: 3000
+  host: 0.0.0.0
+bolt:
+  apiPath: /slack/events
+```
+
+### src/main/resources/logback.xml
+
+もし SLF4J の実装として logback を使っていれば、最低限のシンプルな **logback.xml** はこのようになります。
+
+```xml
+<configuration>
+  <appender name="default" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date %level [%thread] %logger{64} %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="com.slack.api" level="debug"/>
+  <logger name="io.helidon" level="debug"/>
+  <root level="info">
+    <appender-ref ref="default"/>
+  </root>
+</configuration>
+```
+
+### Helidon アプリを起動
+
+2020 年 3 月現在、Helidon は、再起動なしの変更反映を[まだサポートしていません](https://github.com/oracle/helidon/issues/1207)。推奨される起動方法は、変更する度にアプリケーションをビルドして起動し直すやり方です。
+
+```bash
+mvn exec:java -Dexec.mainClass="hello.Main"
+# or
+mvn package && java -jar target/helidon-se-bolt-app.jar
+```
+
+プロジェクトが正しく設定されていれば、以下のように表示されているはずです。
+
+```bash
+[main] io.helidon.webserver.NettyWebServer Version: {{ site.helidonVersion }}
+[nioEventLoopGroup-2-1] io.helidon.webserver.NettyWebServer Channel '@default' started: [id: 0x9fcf416d, L:/0:0:0:0:0:0:0:0:3000]
+[nioEventLoopGroup-2-1] com.slack.api.bolt.helidon.SlackAppServer ⚡️ Bolt app is running!
 ```
