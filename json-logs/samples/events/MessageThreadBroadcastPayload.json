@@ -20,12 +20,27 @@
     "user": "",
     "root": {
       "text": "",
+      "user": "",
       "username": "",
+      "team": "",
       "bot_id": "",
       "mrkdwn": false,
       "type": "",
       "subtype": "",
       "thread_ts": "",
+      "bot_profile": {
+        "id": "",
+        "deleted": false,
+        "name": "",
+        "updated": 123,
+        "app_id": "",
+        "icons": {
+          "image_36": "",
+          "image_48": "",
+          "image_72": ""
+        },
+        "team_id": ""
+      },
       "reply_count": 123,
       "reply_users_count": 123,
       "latest_reply": "",
