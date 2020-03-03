@@ -430,6 +430,11 @@ The only thing you need to do with the build settings is add **bolt-helidon** de
 </dependency>
 <dependency>
   <groupId>com.slack.api</groupId>
+  <artifactId>bolt</artifactId>
+  <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+<dependency>
+  <groupId>com.slack.api</groupId>
   <artifactId>bolt-helidon</artifactId>
   <version>{{ site.sdkLatestVersion }}</version>
 </dependency>

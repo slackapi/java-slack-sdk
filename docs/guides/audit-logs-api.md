@@ -47,7 +47,7 @@ LogsResponse response = audit.getLogs(req -> req
 );
 ```
 
-Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/audit/response/LogsResponse.html) to know the response data structure.
+Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/response/LogsResponse.html) to know the response data structure.
 
 ### getSchemas()
 
@@ -59,7 +59,7 @@ import com.slack.api.audit.response.SchemasResponse;
 SchemasResponse response = audit.getSchemas();
 ```
 
-Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/audit/response/SchemasResponse.html) to know the response data structure.
+Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/response/SchemasResponse.html) to know the response data structure.
 
 ### getActions()
 
@@ -71,4 +71,4 @@ import com.slack.api.audit.response.ActionsResponse;
 ActionsResponse response = audit.getActions();
 ```
 
-Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/audit/response/ActionsResponse.html) to know the response data structure.
+Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/response/ActionsResponse.html) to know the response data structure.

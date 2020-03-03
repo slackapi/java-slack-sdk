@@ -428,6 +428,11 @@ mvn archetype:generate \
 </dependency>
 <dependency>
   <groupId>com.slack.api</groupId>
+  <artifactId>bolt</artifactId>
+  <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+<dependency>
+  <groupId>com.slack.api</groupId>
   <artifactId>bolt-helidon</artifactId>
   <version>{{ site.sdkLatestVersion }}</version>
 </dependency>

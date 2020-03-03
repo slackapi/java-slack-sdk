@@ -47,7 +47,7 @@ LogsResponse response = audit.getLogs(req -> req
 );
 ```
 
-レスポンスのデータ構造を知りたい場合は [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/audit/response/LogsResponse.html) を確認するとよいでしょう。
+レスポンスのデータ構造を知りたい場合は [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/response/LogsResponse.html) を確認するとよいでしょう。
 
 ### getSchemas()
 
@@ -59,11 +59,11 @@ import com.slack.api.audit.response.SchemasResponse;
 SchemasResponse response = audit.getSchemas();
 ```
 
-レスポンスのデータ構造を知りたい場合は [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/audit/response/SchemasResponse.html) を確認するとよいでしょう。
+レスポンスのデータ構造を知りたい場合は [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/response/SchemasResponse.html) を確認するとよいでしょう。
 
 ### getActions()
 
-このエンドポイントはアクションの種類についての情報を、[すべてのアクションのリスト](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/audit/Actions.html)とそれぞれの説明とともに応答します。実行に認証は必要ありません。
+このエンドポイントはアクションの種類についての情報を、[すべてのアクションのリスト](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/Actions.html)とそれぞれの説明とともに応答します。実行に認証は必要ありません。
 
 ```java
 import com.slack.api.audit.response.ActionsResponse;
@@ -71,4 +71,4 @@ import com.slack.api.audit.response.ActionsResponse;
 ActionsResponse response = audit.getActions();
 ```
 
-レスポンスのデータ構造を知りたい場合は [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/audit/response/ActionsResponse.html) を確認するとよいでしょう。
+レスポンスのデータ構造を知りたい場合は [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/response/ActionsResponse.html) を確認するとよいでしょう。
