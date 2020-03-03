@@ -9,17 +9,17 @@ fi
 
 # ------------------------------------------
 # TODO: run as a single command
-find . -name pom.xml | xargs gsed -i "s/<version>[0-9]\+\.[0-9]\+\.[0-9]\+<\/version>/<version>${new_version}<\/version>/g"
-find . -name pom.xml | xargs gsed -i "s/<version>[0-9]\+\.[0-9]\+\.[0-9]\+-SNAPSHOT<\/version>/<version>${new_version}<\/version>/g"
+find . -name pom.xml | xargs gsed -i "s/<version>[0-9]\+\.[0-9]\+\.[^S]\+<\/version>/<version>${new_version}<\/version>/g"
+find . -name pom.xml | xargs gsed -i "s/<version>[0-9]\+\.[0-9]\+\.[^S]\+-SNAPSHOT<\/version>/<version>${new_version}<\/version>/g"
 
 # ------------------------------------------
 if [[ "$new_version" =~ ^.+-SNAPSHOT$ ]]; then
   echo "skipped samples and docs"
 else
-  gsed -i "s/\"com.slack.api:bolt-jetty:[0-9]\+\.[0-9]\+\.[0-9]\+\"/\"com.slack.api:bolt-jetty:${new_version}\"/g" bolt-docker-examples/echo-command-app/build.gradle
-  gsed -i "s/\"com.slack.api:bolt-jetty:[0-9]\+\.[0-9]\+\.[0-9]\+-SNAPSHOT\"/\"com.slack.api:bolt-jetty:${new_version}\"/g" bolt-docker-examples/echo-command-app/build.gradle
-  gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[0-9]\+/sdkLatestVersion: ${new_version}/g" docs/_config.yml
-  gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[0-9]\+-SNAPSHOT/sdkLatestVersion: ${new_version}/g" docs/_config.yml
+  gsed -i "s/\"com.slack.api:bolt-jetty:[0-9]\+\.[0-9]\+\.[^S]\+\"/\"com.slack.api:bolt-jetty:${new_version}\"/g" bolt-docker-examples/echo-command-app/build.gradle
+  gsed -i "s/\"com.slack.api:bolt-jetty:[0-9]\+\.[0-9]\+\.[^S]\+-SNAPSHOT\"/\"com.slack.api:bolt-jetty:${new_version}\"/g" bolt-docker-examples/echo-command-app/build.gradle
+  gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[^S]\+/sdkLatestVersion: ${new_version}/g" docs/_config.yml
+  gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[^S]\+-SNAPSHOT/sdkLatestVersion: ${new_version}/g" docs/_config.yml
 fi
 
 # ------------------------------------------
