@@ -15,8 +15,7 @@
   <link href="{{ site.url | append: site.baseurl }}/assets/pygments.css" rel="stylesheet" type="text/css">
   <link href="{{ site.url | append: site.baseurl }}/assets/docs.css" rel="stylesheet" type="text/css">
 
-  <meta name="HandheldFriendly" content="true" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="HandheldFriendly" content="false" />
 
   <!--[if lt IE 9]>
   <script src="https://a.slack-edge.com/ef0d/js/libs/html5shiv.js"></script>
