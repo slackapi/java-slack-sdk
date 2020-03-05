@@ -104,7 +104,7 @@ app.command("/ping", (req, ctx) -> {
 
 `response_url` についてすでにご存知ですか？もしまだでしたら、まず「[Handling user interaction in your Slack apps > Message responses（英語）](https://api.slack.com/interactivity/handling#message_responses)」を読むことをおすすめします。
 
-そのガイドページが説明しているように、一部のユーザーインタラクションによるペイロードは `repsonse_url` というプロパティを持っています。この `response_url` は、各ペイロードに一意な URL で、そのインタラクションが発生した場所（チャンネル）にメッセージを送信するために使うことができます。
+そのガイドページが説明しているように、一部のユーザーインタラクションによるペイロードは `response_url` というプロパティを持っています。この `response_url` は、各ペイロードに一意な URL で、そのインタラクションが発生した場所（チャンネル）にメッセージを送信するために使うことができます。
 
 上の `ack()` と似ていますが **Context** オブジェクトが受信した `response_url` を簡単に使うための `respond()` メソッドを提供しています。
 
