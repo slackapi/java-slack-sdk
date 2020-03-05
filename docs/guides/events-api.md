@@ -17,7 +17,7 @@ To enable Events API, visit the [Slack App configuration page](http://api.slack.
 * Add subscriptions to bot events
   * Click **Subscribe to bot events**
   * Click **Add Bot User Event** button
-  * Choose events to subscrible 
+  * Choose events to subscribe
 * Click the **Save Changes** button at the bottom for sure
 
 ### What Your Bolt App Does
