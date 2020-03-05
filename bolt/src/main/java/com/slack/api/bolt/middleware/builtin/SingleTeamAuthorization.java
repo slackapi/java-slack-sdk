@@ -49,14 +49,15 @@ public class SingleTeamAuthorization implements Middleware {
                                     "enterprise_id: {}, team_id: {}, user_id: {}",
                             context.getEnterpriseId(), context.getTeamId(), context.getRequestUserId()
                     );
-                }
-                Installer installer = installationService.findInstaller(
-                        context.getEnterpriseId(),
-                        context.getTeamId(),
-                        context.getRequestUserId()
-                );
-                if (installer != null) {
-                    context.setRequestUserToken(installer.getInstallerUserAccessToken());
+                } else {
+                    Installer installer = installationService.findInstaller(
+                            context.getEnterpriseId(),
+                            context.getTeamId(),
+                            context.getRequestUserId()
+                    );
+                    if (installer != null) {
+                        context.setRequestUserToken(installer.getInstallerUserAccessToken());
+                    }
                 }
             }
 
