@@ -42,7 +42,7 @@ Bolt does many of the commonly required tasks for you. The steps you need to han
 * Build a reply message or do whatever you want to do
 * Call `ack()` as an acknowledgment
 
-Slash command request payloads have `request_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
+Slash command request payloads have `response_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
 
 Here is a tiny example demonstrating how to handle slash command requests in a Bolt app.
 
