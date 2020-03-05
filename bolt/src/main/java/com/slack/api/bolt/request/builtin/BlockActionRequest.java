@@ -22,11 +22,13 @@ public class BlockActionRequest extends Request<ActionContext> {
         this.requestBody = requestBody;
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, BlockActionPayload.class);
-        getContext().setResponseUrl(payload.getResponseUrl());
-        getContext().setTriggerId(payload.getTriggerId());
-        getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
-        getContext().setTeamId(payload.getTeam().getId());
-        getContext().setRequestUserId(payload.getUser().getId());
+        if (this.payload != null) {
+            getContext().setResponseUrl(payload.getResponseUrl());
+            getContext().setTriggerId(payload.getTriggerId());
+            getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
+            getContext().setTeamId(payload.getTeam().getId());
+            getContext().setRequestUserId(payload.getUser().getId());
+        }
     }
 
     private ActionContext context = new ActionContext();
