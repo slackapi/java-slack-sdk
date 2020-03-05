@@ -22,13 +22,15 @@ public class AttachmentActionRequest extends Request<AttachmentActionContext> {
         this.requestBody = requestBody;
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, AttachmentActionPayload.class);
-        getContext().setResponseUrl(payload.getResponseUrl());
-        getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
-        getContext().setTeamId(payload.getTeam().getId());
-        if (payload.getChannel() != null) {
-            getContext().setChannelId(payload.getChannel().getId());
+        if (payload != null) {
+            getContext().setResponseUrl(payload.getResponseUrl());
+            getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
+            getContext().setTeamId(payload.getTeam().getId());
+            if (payload.getChannel() != null) {
+                getContext().setChannelId(payload.getChannel().getId());
+            }
+            getContext().setRequestUserId(payload.getUser().getId());
         }
-        getContext().setRequestUserId(payload.getUser().getId());
     }
 
     private AttachmentActionContext context = new AttachmentActionContext();
