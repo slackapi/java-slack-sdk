@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertEquals;
 
@@ -50,7 +51,26 @@ public class MessageActionTest {
     @Test
     public void handled() throws Exception {
         App app = buildApp();
-        app.messageAction("callback", (req, ctx) -> ctx.ack());
+        app.messageAction("callback$@+*", (req, ctx) -> ctx.ack());
+
+        MessageActionPayload payload = buildPayload();
+
+        String p = gson.toJson(payload);
+        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        MessageActionRequest req = new MessageActionRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+    }
+
+    @Test
+    public void regexp() throws Exception {
+        App app = buildApp();
+        app.messageAction(Pattern.compile("callback.+$"), (req, ctx) -> ctx.ack());
 
         MessageActionPayload payload = buildPayload();
 
@@ -69,10 +89,10 @@ public class MessageActionTest {
     @Test
     public void unhandled() throws Exception {
         App app = buildApp();
-        app.messageAction("callback", (req, ctx) -> ctx.ack());
+        app.messageAction("callback$@+*", (req, ctx) -> ctx.ack());
 
         MessageActionPayload payload = buildPayload();
-        payload.setCallbackId("unexpected-callback");
+        payload.setCallbackId("unexpected-callback$@+*");
 
         String p = gson.toJson(payload);
         String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
@@ -108,7 +128,7 @@ public class MessageActionTest {
         MessageActionPayload.User user = new MessageActionPayload.User();
         team.setId("U123");
         MessageActionPayload payload = MessageActionPayload.builder()
-                .callbackId("callback")
+                .callbackId("callback$@+*")
                 .triggerId("xxxx")
                 .channel(channel)
                 .team(team)

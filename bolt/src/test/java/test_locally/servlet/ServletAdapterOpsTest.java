@@ -5,7 +5,6 @@ import com.slack.api.bolt.servlet.ServletAdapterOps;
 import org.junit.Test;
 
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;

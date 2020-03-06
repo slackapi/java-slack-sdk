@@ -81,7 +81,7 @@ app.event(ReactionAddedEvent::class.java) { payload, ctx ->
 }
 ```
 
-Here is another example. Although Bolt for Java hasn't provided something similar to Bolt for JavaScript's `app.message` handler yet, it's pretty easy to implement it just using `message` event handler as below.
+Here is another example. With an `app.message` listener, you can receive only the events that contains given keyword or regular expressions, and do something with those event data in a fewer lines of code.
 
 ```java
 import com.slack.api.methods.MethodsClient;
@@ -94,39 +94,55 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 String notificationChannelId = "D1234567";
-Pattern sdk = Pattern.compile(".*[(Java SDK)|(Bolt)|(slack\\-java\\-sdk)].*", Pattern.CASE_INSENSITIVE);
-Pattern issues = Pattern.compile(".*[(bug)|(t work)|(issue)|(support)].*", Pattern.CASE_INSENSITIVE);
 
-app.event(MessageEvent.class, (payload, ctx) -> {
+// check if the message contains some monitoring keywords
+Pattern sdk = Pattern.compile(".*[(Java SDK)|(Bolt)|(slack\\-java\\-sdk)].*", Pattern.CASE_INSENSITIVE);
+app.message(sdk, (payload, ctx) -> {
   MessageEvent event = payload.getEvent();
   String text = event.getText();
-  // check if the message contains some monitoring keywords
-  if (sdk.matcher(text).matches() && issues.matcher(text).matches()) {
+  MethodsClient client = ctx.client();
 
-    MethodsClient client = ctx.client();
-
-    // Add 👀reacji to the message
-    String channelId = event.getChannel();
-    String ts = event.getTs();
-    ReactionsAddResponse reaction = client.reactionsAdd(r -> r.channel(channelId).timestamp(ts).name("eyes"));
-    if (!reaction.isOk()) {
-      ctx.logger.error("reactions.add failed: {}", reaction.getError());
-    }
+  // Add 👀reacji to the message
+  String channelId = event.getChannel();
+  String ts = event.getTs();
+  ReactionsAddResponse reaction = client.reactionsAdd(r -> r.channel(channelId).timestamp(ts).name("eyes"));
+  if (!reaction.isOk()) {
+    ctx.logger.error("reactions.add failed: {}", reaction.getError());
+  }
 
     // Send the message to the SDK author
-    ChatGetPermalinkResponse permalink = client.chatGetPermalink(r -> r.channel(channelId).messageTs(ts));
-    if (permalink.isOk()) {
-      ChatPostMessageResponse message = client.chatPostMessage(r -> r
-        .channel(notificationChannelId)
-        .text("An issue with the Java SDK might be reported:\n" + permalink.getPermalink())
-        .unfurlLinks(true));
-      if (!message.isOk()) {
-        ctx.logger.error("chat.postMessage failed: {}", message.getError());
-      }
-    } else {
-      ctx.logger.error("chat.getPermalink failed: {}", permalink.getError());
+  ChatGetPermalinkResponse permalink = client.chatGetPermalink(r -> r.channel(channelId).messageTs(ts));
+  if (permalink.isOk()) {
+    ChatPostMessageResponse message = client.chatPostMessage(r -> r
+      .channel(notificationChannelId)
+      .text("The Java SDK might be mentioned:\n" + permalink.getPermalink())
+      .unfurlLinks(true));
+    if (!message.isOk()) {
+      ctx.logger.error("chat.postMessage failed: {}", message.getError());
     }
+  } else {
+    ctx.logger.error("chat.getPermalink failed: {}", permalink.getError());
   }
+  return ctx.ack();
+});
+```
+
+If matching an exact word in a text message works for you, the code looks much simpler as below.
+
+```java
+app.message("seratch", (payload, ctx) -> {
+  return ctx.ack();
+});
+```
+
+To do the similar with `message` events from bot users, use an `app.botMessage` listener. There is a difference between [`message` event payloads without any subtype](https://api.slack.com/events/message) and [`message` event payloads with their subtype](https://api.slack.com/events/message/bot_message). As Java is a statically typed language, these events are distinguished by the subtype.
+
+```java
+app.botMessage("seratch", (payload, ctx) -> {
+  return ctx.ack();
+});
+
+app.botMessage(Pattern.compile("^.*seratch.*$"), (payload, ctx) -> {
   return ctx.ack();
 });
 ```

@@ -82,7 +82,7 @@ app.event(ReactionAddedEvent::class.java) { payload, ctx ->
 }
 ```
 
-次は別のサンプル例です。Bolt for Java は Bolt for JavaScript にある `app.message` ハンドラーのようなものは提供していませんが、以下のように `message` イベントを使って同じ処理を書くことは非常に簡単です。
+次は別のサンプル例です。`app.message` リスナーを使って簡単にキーワードにマッチする `message` イベントに対して処理を行うことができます。
 
 ```java
 import com.slack.api.methods.MethodsClient;
@@ -95,39 +95,55 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 String notificationChannelId = "D1234567";
-Pattern sdk = Pattern.compile(".*[(Java SDK)|(Bolt)|(slack\\-java\\-sdk)].*", Pattern.CASE_INSENSITIVE);
-Pattern issues = Pattern.compile(".*[(bug)|(t work)|(issue)|(support)].*", Pattern.CASE_INSENSITIVE);
 
-app.event(MessageEvent.class, (payload, ctx) -> {
+// メッセージがモニタリング対象のキーワードを含むか確認
+Pattern sdk = Pattern.compile(".*[(Java SDK)|(Bolt)|(slack\\-java\\-sdk)].*", Pattern.CASE_INSENSITIVE);
+app.message(sdk, (payload, ctx) -> {
   MessageEvent event = payload.getEvent();
   String text = event.getText();
-  // メッセージがモニタリング対象のキーワードを含むか確認
-  if (sdk.matcher(text).matches() && issues.matcher(text).matches()) {
+  MethodsClient client = ctx.client();
 
-    MethodsClient client = ctx.client();
-
-    // 👀 のリアクション絵文字をメッセージにつける
-    String channelId = event.getChannel();
-    String ts = event.getTs();
-    ReactionsAddResponse reaction = client.reactionsAdd(r -> r.channel(channelId).timestamp(ts).name("eyes"));
-    if (!reaction.isOk()) {
-      ctx.logger.error("reactions.add failed: {}", reaction.getError());
-    }
-
-    // SDK の作者に通知メッセージを送る
-    ChatGetPermalinkResponse permalink = client.chatGetPermalink(r -> r.channel(channelId).messageTs(ts));
-    if (permalink.isOk()) {
-      ChatPostMessageResponse message = client.chatPostMessage(r -> r
-        .channel(notificationChannelId)
-        .text("An issue with the Java SDK might be reported:\n" + permalink.getPermalink())
-        .unfurlLinks(true));
-      if (!message.isOk()) {
-        ctx.logger.error("chat.postMessage failed: {}", message.getError());
-      }
-    } else {
-      ctx.logger.error("chat.getPermalink failed: {}", permalink.getError());
-    }
+  // 👀 のリアクション絵文字をメッセージにつける
+  String channelId = event.getChannel();
+  String ts = event.getTs();
+  ReactionsAddResponse reaction = client.reactionsAdd(r -> r.channel(channelId).timestamp(ts).name("eyes"));
+  if (!reaction.isOk()) {
+    ctx.logger.error("reactions.add failed: {}", reaction.getError());
   }
+
+  // SDK の作者に通知メッセージを送る
+  ChatGetPermalinkResponse permalink = client.chatGetPermalink(r -> r.channel(channelId).messageTs(ts));
+  if (permalink.isOk()) {
+    ChatPostMessageResponse message = client.chatPostMessage(r -> r
+      .channel(notificationChannelId)
+      .text("An issue with the Java SDK might be reported:\n" + permalink.getPermalink())
+      .unfurlLinks(true));
+    if (!message.isOk()) {
+      ctx.logger.error("chat.postMessage failed: {}", message.getError());
+    }
+  } else {
+    ctx.logger.error("chat.getPermalink failed: {}", permalink.getError());
+  }
+  return ctx.ack();
+});
+```
+
+もし固定のキーワードを含むだけのパターンであれば、コードはもっとシンプルです。以下では指定されたキーワードをそのまま一部に含んでいるメッセージにマッチします。
+
+```java
+app.message("seratch", (payload, ctx) -> {
+  return ctx.ack();
+});
+```
+
+同じことをボットユーザーからのメッセージにも行いたい場合は `app.botMessage` リスナーを使います。 [subtype を持たない `message` イベント](https://api.slack.com/events/message)と [subtype が `bot_message` の `message` イベント](https://api.slack.com/events/message/bot_message)は、ペイロードのデータ構造が異なるため、静的型付け言語である Java の Bolt 実装ではこの二つを明確に区別しています。
+
+```java
+app.botMessage("seratch", (payload, ctx) -> {
+  return ctx.ack();
+});
+
+app.botMessage(Pattern.compile("^.*seratch.*$"), (payload, ctx) -> {
   return ctx.ack();
 });
 ```

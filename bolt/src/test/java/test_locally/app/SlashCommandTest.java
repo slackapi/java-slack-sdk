@@ -4,11 +4,10 @@ import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.SlackSignature;
-import com.slack.api.app_backend.views.payload.ViewClosedPayload;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.request.RequestHeaders;
-import com.slack.api.bolt.request.builtin.ViewClosedRequest;
+import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -17,19 +16,16 @@ import org.junit.Before;
 import org.junit.Test;
 import util.AuthTestMockServer;
 
-import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static com.slack.api.model.view.Views.view;
-import static com.slack.api.model.view.Views.viewTitle;
 import static org.junit.Assert.assertEquals;
 
 @Slf4j
-public class ViewClosedTest {
+public class SlashCommandTest {
 
     AuthTestMockServer server = new AuthTestMockServer();
     SlackConfig config = new SlackConfig();
@@ -50,21 +46,30 @@ public class ViewClosedTest {
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
 
+    String slashCommandPayload = "token=gIkuvaNzQIHg97ATvDxqgjtO" +
+            "&team_id=T0001" +
+            "&team_domain=example" +
+            "&enterprise_id=E0001" +
+            "&enterprise_name=Globular%20Construct%20Inc" +
+            "&channel_id=C2147483705" +
+            "&channel_name=test" +
+            "&user_id=U2147483697" +
+            "&user_name=Steve" +
+            "&command=/weather-123" +
+            "&text=94070" +
+            "&response_url=https://hooks.slack.com/commands/1234/5678" +
+            "&trigger_id=13345224609.738474920.8088930838d88f008e0";
+
     @Test
     public void handled() throws Exception {
         App app = buildApp();
-        app.viewClosed("callback!#@", (req, ctx) -> ctx.ack());
-
-        ViewClosedPayload payload = buildPayload();
-
-        String p = gson.toJson(payload);
-        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+        app.command("/weather-123", (req, ctx) -> ctx.ack());
 
         Map<String, List<String>> rawHeaders = new HashMap<>();
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        setRequestHeaders(requestBody, rawHeaders, timestamp);
+        setRequestHeaders(slashCommandPayload, rawHeaders, timestamp);
 
-        ViewClosedRequest req = new ViewClosedRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        SlashCommandRequest req = new SlashCommandRequest(slashCommandPayload, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
     }
@@ -72,18 +77,13 @@ public class ViewClosedTest {
     @Test
     public void regexp() throws Exception {
         App app = buildApp();
-        app.viewClosed(Pattern.compile("^.*llbac.*$"), (req, ctx) -> ctx.ack());
-
-        ViewClosedPayload payload = buildPayload();
-
-        String p = gson.toJson(payload);
-        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+        app.command(Pattern.compile("/weather-\\d+$"), (req, ctx) -> ctx.ack());
 
         Map<String, List<String>> rawHeaders = new HashMap<>();
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        setRequestHeaders(requestBody, rawHeaders, timestamp);
+        setRequestHeaders(slashCommandPayload, rawHeaders, timestamp);
 
-        ViewClosedRequest req = new ViewClosedRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        SlashCommandRequest req = new SlashCommandRequest(slashCommandPayload, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
     }
@@ -91,19 +91,13 @@ public class ViewClosedTest {
     @Test
     public void unhandled() throws Exception {
         App app = buildApp();
-        app.viewClosed("callback!#@", (req, ctx) -> ctx.ack());
-
-        ViewClosedPayload payload = buildPayload();
-        payload.getView().setCallbackId("unexpected-callback!#@");
-
-        String p = gson.toJson(payload);
-        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+        app.command("/weather", (req, ctx) -> ctx.ack());
 
         Map<String, List<String>> rawHeaders = new HashMap<>();
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        setRequestHeaders(requestBody, rawHeaders, timestamp);
+        setRequestHeaders(slashCommandPayload, rawHeaders, timestamp);
 
-        ViewClosedRequest req = new ViewClosedRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        SlashCommandRequest req = new SlashCommandRequest(slashCommandPayload, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(404L, response.getStatusCode().longValue());
     }
@@ -119,19 +113,6 @@ public class ViewClosedTest {
     void setRequestHeaders(String requestBody, Map<String, List<String>> rawHeaders, String timestamp) {
         rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, Arrays.asList(timestamp));
         rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, Arrays.asList(generator.generate(timestamp, requestBody)));
-    }
-
-    ViewClosedPayload buildPayload() {
-        ViewClosedPayload.Team team = new ViewClosedPayload.Team();
-        team.setId("T123");
-        ViewClosedPayload.User user = new ViewClosedPayload.User();
-        team.setId("U123");
-        ViewClosedPayload payload = ViewClosedPayload.builder()
-                .team(team)
-                .user(user)
-                .view(view(r -> r.callbackId("callback!#@").title(viewTitle(t -> t.text("Title")))))
-                .build();
-        return payload;
     }
 
 }
