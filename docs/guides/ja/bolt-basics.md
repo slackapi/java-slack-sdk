@@ -32,6 +32,8 @@ app.command("/echo", (req, ctx) -> {
 |メソッド|ディスパッチの条件 (値: 型)|説明|
 |-|-|-|
 |**app.event**|イベントデータ型: **Class\<Event\>**|[**イベント API**]({{ site.url | append: site.baseurl }}/guides/ja/events-api): 購読しているあらゆる bot/user events に応答します。|
+|**app.message**|キーワード: **String** \| **Pattern**|[**イベント API**]({{ site.url | append: site.baseurl }}/guides/ja/events-api): ユーザーからのメッセージ投稿で指定のキーワード・正規表現にマッチする bot/user events に応答します。|
+|**app.botMessage**|キーワード: **String** \| **Pattern**|[**イベント API**]({{ site.url | append: site.baseurl }}/guides/ja/events-api): ボットユーザーからのメッセージ投稿で指定のキーワード・正規表現にマッチする bot/user events に応答します。|
 |**app.command**|コマンド名: **String** \| **Pattern**|[**スラッシュコマンド**]({{ site.url | append: site.baseurl }}/guides/ja/slash-commands): スラッシュコマンドの実行に応答します。|
 |**app.messageAction**|callback_id: **String** \| **Pattern**|[**アクション**]({{ site.url | append: site.baseurl }}/guides/ja/actions): メッセージメニューのアクション実行に応答します。|
 |**app.blockAction**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components): **blocks** 内でのボタンクリック、セレクトメニューからの選択、ラジオボタン選択などユーザクアションに応答します。これらのイベントは全てのインターフェース（メッセージ、モーダル、Home タブ）で発火します。|

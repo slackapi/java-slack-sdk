@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static org.junit.Assert.assertEquals;
@@ -52,7 +53,31 @@ public class BlockSuggestionTest {
     @Test
     public void handled() throws Exception {
         App app = buildApp();
-        app.blockSuggestion("action", (req, ctx) -> {
+        app.blockSuggestion("action#@$+!", (req, ctx) -> {
+            List<Option> options = Arrays.asList(Option.builder().text(plainText("label")).value("v").build());
+            return ctx.ack(r -> r.options(options));
+        });
+
+        BlockSuggestionPayload payload = buildPayload();
+
+        String p = gson.toJson(payload);
+        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        BlockSuggestionRequest req = new BlockSuggestionRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals("application/json", response.getContentType());
+        assertEquals("{\"options\":[{\"text\":{\"type\":\"plain_text\",\"text\":\"label\"},\"value\":\"v\"}]}", response.getBody());
+    }
+
+    @Test
+    public void regexp() throws Exception {
+        App app = buildApp();
+        app.blockSuggestion(Pattern.compile("^act.+$"), (req, ctx) -> {
             List<Option> options = Arrays.asList(Option.builder().text(plainText("label")).value("v").build());
             return ctx.ack(r -> r.options(options));
         });
@@ -76,13 +101,13 @@ public class BlockSuggestionTest {
     @Test
     public void unhandled() throws Exception {
         App app = buildApp();
-        app.blockSuggestion("action", (req, ctx) -> {
+        app.blockSuggestion("action#@$+!", (req, ctx) -> {
             List<Option> options = Arrays.asList(Option.builder().text(plainText("label")).value("v").build());
             return ctx.ack(r -> r.options(options));
         });
 
         BlockSuggestionPayload payload = buildPayload();
-        payload.setActionId("unexpected-action");
+        payload.setActionId("unexpected-action#@$+!");
 
         String p = gson.toJson(payload);
         String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
@@ -117,7 +142,7 @@ public class BlockSuggestionTest {
         BlockSuggestionPayload payload = BlockSuggestionPayload.builder()
                 .team(team)
                 .user(user)
-                .actionId("action")
+                .actionId("action#@$+!")
                 .value("Slack")
                 .build();
         return payload;

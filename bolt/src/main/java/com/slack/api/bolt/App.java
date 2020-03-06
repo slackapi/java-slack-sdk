@@ -28,6 +28,8 @@ import com.slack.api.bolt.service.builtin.oauth.*;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.*;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.model.event.Event;
+import com.slack.api.model.event.MessageBotEvent;
+import com.slack.api.model.event.MessageEvent;
 import com.slack.api.util.json.GsonFactory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -162,7 +164,10 @@ public class App {
                 if (constructor.getParameterCount() == 0) {
                     try {
                         Event event = (Event) constructor.newInstance();
-                        String typeAndSubtype = event.getType() + ":" + event.getSubtype();
+                        String typeAndSubtype = event.getType();
+                        if (event.getSubtype() != null) {
+                            typeAndSubtype = event.getType() + ":" + event.getSubtype();
+                        }
                         eventTypeAndSubtypeValues.put(clazz, typeAndSubtype);
                         return typeAndSubtype;
                     } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
@@ -507,12 +512,50 @@ public class App {
         return this;
     }
 
+    public App botMessage(String pattern, BoltEventHandler<MessageBotEvent> messageHandler) {
+        return botMessage(Pattern.compile("^.*" + Pattern.quote(pattern) + ".*$"), messageHandler);
+    }
+
+    public App botMessage(Pattern pattern, BoltEventHandler<MessageBotEvent> messageHandler) {
+        event(MessageBotEvent.class, (event, ctx) -> {
+            String text = event.getEvent().getText();
+            if (log.isDebugEnabled()) {
+                log.debug("Run a bot message event handler (pattern: {}, text: {})", pattern, text);
+            }
+            if (text != null && pattern.matcher(text).matches()) {
+                return messageHandler.apply(event, ctx);
+            } else {
+                return ctx.ack();
+            }
+        });
+        return this;
+    }
+
+    public App message(String pattern, BoltEventHandler<MessageEvent> messageHandler) {
+        return message(Pattern.compile("^.*" + Pattern.quote(pattern) + ".*$"), messageHandler);
+    }
+
+    public App message(Pattern pattern, BoltEventHandler<MessageEvent> messageHandler) {
+        event(MessageEvent.class, (event, ctx) -> {
+            String text = event.getEvent().getText();
+            if (log.isDebugEnabled()) {
+                log.debug("Run a message event handler (pattern: {}, text: {})", pattern, text);
+            }
+            if (text != null && pattern.matcher(text).matches()) {
+                return messageHandler.apply(event, ctx);
+            } else {
+                return ctx.ack();
+            }
+        });
+        return this;
+    }
+
     // -------------
     // Slash Commands
     // https://api.slack.com/interactivity/slash-commands
 
     public App command(String command, SlashCommandHandler handler) {
-        return command(Pattern.compile("^" + command + "$"), handler);
+        return command(Pattern.compile("^" + Pattern.quote(command) + "$"), handler);
     }
 
     public App command(Pattern command, SlashCommandHandler handler) {
@@ -528,7 +571,7 @@ public class App {
     // https://api.slack.com/block-kit
 
     public App blockAction(String actionId, BlockActionHandler handler) {
-        return blockAction(Pattern.compile("^" + actionId + "$"), handler);
+        return blockAction(Pattern.compile("^" + Pattern.quote(actionId) + "$"), handler);
     }
 
     public App blockAction(Pattern actionId, BlockActionHandler handler) {
@@ -540,7 +583,7 @@ public class App {
     }
 
     public App blockSuggestion(String actionId, BlockSuggestionHandler handler) {
-        return blockSuggestion(Pattern.compile("^" + actionId + "$"), handler);
+        return blockSuggestion(Pattern.compile("^" + Pattern.quote(actionId) + "$"), handler);
     }
 
     public App blockSuggestion(Pattern actionId, BlockSuggestionHandler handler) {
@@ -556,7 +599,7 @@ public class App {
     // https://api.slack.com/surfaces/modals/using
 
     public App viewSubmission(String callbackId, ViewSubmissionHandler handler) {
-        return viewSubmission(Pattern.compile("^" + callbackId + "$"), handler);
+        return viewSubmission(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
     }
 
     public App viewSubmission(Pattern callbackId, ViewSubmissionHandler handler) {
@@ -568,7 +611,7 @@ public class App {
     }
 
     public App viewClosed(String callbackId, ViewClosedHandler handler) {
-        return viewClosed(Pattern.compile("^" + callbackId + "$"), handler);
+        return viewClosed(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
     }
 
     public App viewClosed(Pattern callbackId, ViewClosedHandler handler) {
@@ -584,7 +627,7 @@ public class App {
     // https://api.slack.com/interactivity/actions
 
     public App messageAction(String callbackId, MessageActionHandler handler) {
-        return messageAction(Pattern.compile("^" + callbackId + "$"), handler);
+        return messageAction(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
     }
 
     public App messageAction(Pattern callbackId, MessageActionHandler handler) {
@@ -600,7 +643,7 @@ public class App {
     // https://api.slack.com/messaging/composing/layouts#attachments
 
     public App attachmentAction(String callbackId, AttachmentActionHandler handler) {
-        return attachmentAction(Pattern.compile("^" + callbackId + "$"), handler);
+        return attachmentAction(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
     }
 
     public App attachmentAction(Pattern callbackId, AttachmentActionHandler handler) {
@@ -616,7 +659,7 @@ public class App {
     // https://api.slack.com/dialogs
 
     public App dialogSubmission(String callbackId, DialogSubmissionHandler handler) {
-        return dialogSubmission(Pattern.compile("^" + callbackId + "$"), handler);
+        return dialogSubmission(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
     }
 
     public App dialogSubmission(Pattern callbackId, DialogSubmissionHandler handler) {
@@ -628,7 +671,7 @@ public class App {
     }
 
     public App dialogSuggestion(String callbackId, DialogSuggestionHandler handler) {
-        return dialogSuggestion(Pattern.compile("^" + callbackId + "$"), handler);
+        return dialogSuggestion(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
     }
 
     public App dialogSuggestion(Pattern callbackId, DialogSuggestionHandler handler) {
@@ -640,7 +683,7 @@ public class App {
     }
 
     public App dialogCancellation(String callbackId, DialogCancellationHandler handler) {
-        return dialogCancellation(Pattern.compile("^" + callbackId + "$"), handler);
+        return dialogCancellation(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
     }
 
     public App dialogCancellation(Pattern callbackId, DialogCancellationHandler handler) {

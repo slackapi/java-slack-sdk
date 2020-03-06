@@ -10,8 +10,8 @@ import org.junit.Test;
 import java.time.ZonedDateTime;
 
 import static com.slack.api.model.block.Blocks.*;
-import static com.slack.api.model.block.composition.BlockCompositions.*;
-import static com.slack.api.model.view.Views.*;
+import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
+import static com.slack.api.model.view.Views.view;
 
 public class AppHomeTest {
 

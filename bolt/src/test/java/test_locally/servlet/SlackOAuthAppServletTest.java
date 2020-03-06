@@ -3,7 +3,6 @@ package test_locally.servlet;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.service.OAuthStateService;
-import com.slack.api.bolt.servlet.SlackAppServlet;
 import com.slack.api.bolt.servlet.SlackOAuthAppServlet;
 import org.junit.Test;
 
@@ -135,4 +134,5 @@ public class SlackOAuthAppServletTest {
         servlet.service(req, resp);
 
         verify(resp, times(1)).setStatus(500);
-    }}
+    }
+}

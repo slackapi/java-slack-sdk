@@ -12,8 +12,10 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static com.slack.api.model.block.Blocks.*;
-import static com.slack.api.model.block.composition.BlockCompositions.*;
-import static com.slack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.element.BlockElements.asElements;
+import static com.slack.api.model.block.element.BlockElements.button;
 import static java.util.stream.Collectors.joining;
 
 public class BasicsTest {
@@ -123,7 +125,7 @@ public class BasicsTest {
                     resp.getHeaders().put("content-type", Arrays.asList(resp.getContentType()));
                     // dump all the headers as a single string
                     String headers = resp.getHeaders().entrySet().stream()
-                            .map(e -> e.getKey() +  ": " + e.getValue() + "\n").collect(joining());
+                            .map(e -> e.getKey() + ": " + e.getValue() + "\n").collect(joining());
 
                     // set an ephemeral message with useful information
                     DebugResponseBody body = new DebugResponseBody();

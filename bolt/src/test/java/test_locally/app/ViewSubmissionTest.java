@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.slack.api.model.view.Views.view;
 import static com.slack.api.model.view.Views.viewTitle;
@@ -52,7 +53,26 @@ public class ViewSubmissionTest {
     @Test
     public void handled() throws Exception {
         App app = buildApp();
-        app.viewSubmission("callback", (req, ctx) -> ctx.ack());
+        app.viewSubmission("callback+@!", (req, ctx) -> ctx.ack());
+
+        ViewSubmissionPayload payload = buildPayload();
+
+        String p = gson.toJson(payload);
+        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        ViewSubmissionRequest req = new ViewSubmissionRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+    }
+
+    @Test
+    public void regexp() throws Exception {
+        App app = buildApp();
+        app.viewSubmission(Pattern.compile("^.*allback.*$"), (req, ctx) -> ctx.ack());
 
         ViewSubmissionPayload payload = buildPayload();
 
@@ -71,10 +91,10 @@ public class ViewSubmissionTest {
     @Test
     public void unhandled() throws Exception {
         App app = buildApp();
-        app.viewSubmission("callback", (req, ctx) -> ctx.ack());
+        app.viewSubmission("callback+@!", (req, ctx) -> ctx.ack());
 
         ViewSubmissionPayload payload = buildPayload();
-        payload.getView().setCallbackId("unexpected-callback");
+        payload.getView().setCallbackId("unexpected-callback+@!");
 
         String p = gson.toJson(payload);
         String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
@@ -109,7 +129,7 @@ public class ViewSubmissionTest {
         ViewSubmissionPayload payload = ViewSubmissionPayload.builder()
                 .team(team)
                 .user(user)
-                .view(view(r -> r.callbackId("callback").title(viewTitle(t -> t.text("Title")))))
+                .view(view(r -> r.callbackId("callback+@!").title(viewTitle(t -> t.text("Title")))))
                 .build();
         return payload;
     }
