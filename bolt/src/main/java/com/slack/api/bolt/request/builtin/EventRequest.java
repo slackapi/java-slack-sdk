@@ -33,7 +33,7 @@ public class EventRequest extends Request<EventContext> {
         this.getContext().setTeamId(payload.get("team_id").getAsString());
         JsonElement enterpriseId = payload.get("enterprise_id");
         if (enterpriseId != null) {
-            this.getContext().setTeamId(enterpriseId.getAsString());
+            this.getContext().setEnterpriseId(enterpriseId.getAsString());
         }
         if (event.get("channel") != null && event.get("channel").isJsonPrimitive()) {
             this.getContext().setChannelId(event.get("channel").getAsString());
