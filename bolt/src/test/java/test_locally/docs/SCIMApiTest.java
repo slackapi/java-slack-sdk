@@ -1,10 +1,15 @@
 package test_locally.docs;
 
 import com.slack.api.Slack;
-import com.slack.api.scim.*;
-import com.slack.api.scim.model.*;
-import com.slack.api.scim.response.*;
-import com.slack.api.scim.request.*;
+import com.slack.api.scim.SCIMApiException;
+import com.slack.api.scim.SCIMClient;
+import com.slack.api.scim.model.Group;
+import com.slack.api.scim.model.User;
+import com.slack.api.scim.request.GroupsPatchRequest;
+import com.slack.api.scim.response.GroupsSearchResponse;
+import com.slack.api.scim.response.UsersCreateResponse;
+import com.slack.api.scim.response.UsersReadResponse;
+import com.slack.api.scim.response.UsersSearchResponse;
 
 import java.io.IOException;
 import java.util.Arrays;

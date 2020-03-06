@@ -39,7 +39,7 @@ Bolt does many of the commonly required tasks for you. The steps you need to han
 * Build a reply message or surface to interact with the user further
 * Call `ack()` as an acknowledgment
 
-The request payloads have `request_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the action invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
+The request payloads have `response_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the action invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
 
 Let's say, a message has a simple `"actions"`-typed block that has a button.
 

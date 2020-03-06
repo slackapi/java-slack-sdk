@@ -1,13 +1,15 @@
 package test_locally.docs;
 
+import com.slack.api.app_backend.interactive_components.response.Option;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.model.block.composition.PlainTextObject;
 import org.junit.Test;
-import com.slack.api.app_backend.interactive_components.response.Option;
-import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+
 import java.util.Arrays;
 import java.util.List;
+
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static java.util.stream.Collectors.toList;
 
 

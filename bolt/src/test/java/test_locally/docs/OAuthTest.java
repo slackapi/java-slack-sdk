@@ -57,7 +57,12 @@ public class OAuthTest {
         });
     }
 
-    static String renderCompletionPageHtml(String queryString) { return null; }
-    static String renderCancellationPageHtml(String queryString) { return null; }
+    static String renderCompletionPageHtml(String queryString) {
+        return null;
+    }
+
+    static String renderCancellationPageHtml(String queryString) {
+        return null;
+    }
 
 }

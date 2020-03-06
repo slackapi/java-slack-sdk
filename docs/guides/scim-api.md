@@ -27,7 +27,7 @@ SCIMClient scim = slack.scim(token);
 
 The **SCIMClient** supports all the available endpoints in SCIM APIs. Check [the Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/scim/SCIMClient.html) for the entire list of them. On this page, let me share a few code snippets demonstrating how to use SCIM APIs in Java.
 
-### Manange Users
+### Manage Users
 
 The following pieces of Java code demonstrate how to manage Users.
 

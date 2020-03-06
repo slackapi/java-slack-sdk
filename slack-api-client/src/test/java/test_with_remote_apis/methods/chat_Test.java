@@ -6,12 +6,16 @@ import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUnfurlRequest;
 import com.slack.api.methods.request.chat.ChatUpdateRequest;
 import com.slack.api.methods.response.chat.*;
+import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.conversations.ConversationsMembersResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.User;
 import com.slack.api.model.block.DividerBlock;
+import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.SectionBlock;
+import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.util.json.GsonFactory;
 import config.Constants;
 import config.SlackTestConfig;
@@ -20,14 +24,13 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 @Slf4j
 public class chat_Test {
@@ -555,6 +558,31 @@ public class chat_Test {
         }
         assertThat(userId, is(notNullValue()));
         return userId;
+    }
+
+    @Test
+    public void scheduleMessages() throws IOException, SlackApiException {
+        loadRandomChannelId();
+        int postAt = (int) ((new Date().getTime() / 1000) + 180);
+
+        ChatScheduledMessagesListResponse before = slack.methods(botToken).chatScheduledMessagesList(r -> r.limit(100));
+        assertNull(before.getError());
+
+        ChatScheduleMessageResponse message1 = slack.methods(botToken).chatScheduleMessage(r ->
+                r.channel(randomChannelId).postAt(postAt).text("hello"));
+        assertNull(message1.getError());
+
+        List<LayoutBlock> blocks = Arrays.asList(
+                DividerBlock.builder().build(),
+                SectionBlock.builder().text(PlainTextObject.builder().text("foo").build()).build()
+        );
+        ChatScheduleMessageResponse message2 = slack.methods(botToken).chatScheduleMessage(r ->
+                r.channel(randomChannelId).postAt(postAt).blocks(blocks));
+        assertNull(message2.getError());
+
+        ChatScheduledMessagesListResponse after = slack.methods(botToken).chatScheduledMessagesList(r -> r.limit(100));
+        assertNull(after.getError());
+        assertTrue(after.getScheduledMessages().size() - before.getScheduledMessages().size() == 2);
     }
 
 }

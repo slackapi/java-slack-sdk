@@ -22,6 +22,7 @@ public class ChatScheduledMessagesListResponse implements SlackApiResponse {
     public static class ScheduledMessage {
         private String id;
         private String channelId;
+        private String text;
         private Integer postAt;
         private Integer dateCreated;
     }

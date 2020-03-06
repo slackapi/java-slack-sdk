@@ -2,14 +2,13 @@ package test_locally.docs;
 
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
-import org.junit.Test;
-import com.slack.api.methods.response.chat.ChatPostMessageResponse;
-import com.slack.api.model.event.ReactionAddedEvent;
-
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.chat.ChatGetPermalinkResponse;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.reactions.ReactionsAddResponse;
 import com.slack.api.model.event.MessageEvent;
+import com.slack.api.model.event.ReactionAddedEvent;
+import org.junit.Test;
 
 import java.util.regex.Pattern;
 

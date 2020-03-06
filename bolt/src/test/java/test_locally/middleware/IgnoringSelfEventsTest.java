@@ -10,14 +10,12 @@ import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.EventRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.methods.MethodsClient;
-import com.slack.api.methods.SlackApiException;
 import com.slack.api.model.event.MemberJoinedChannelEvent;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

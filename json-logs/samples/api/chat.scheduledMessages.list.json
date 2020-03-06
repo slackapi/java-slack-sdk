@@ -5,7 +5,8 @@
       "id": "Q00000000",
       "channel_id": "C00000000",
       "post_at": 12345,
-      "date_created": 12345
+      "date_created": 12345,
+      "text": ""
     }
   ],
   "response_metadata": {
