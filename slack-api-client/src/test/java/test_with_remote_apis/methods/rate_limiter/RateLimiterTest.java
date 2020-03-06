@@ -1,4 +1,4 @@
-package test_with_remote_apis.methods;
+package test_with_remote_apis.methods.rate_limiter;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.Methods;
@@ -10,6 +10,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+/**
+ * Note: These tests are usually ignored but they're useful for verifying the behavior of RateLimiter
+ */
 @Slf4j
 public class RateLimiterTest {
 
@@ -35,6 +39,7 @@ public class RateLimiterTest {
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
+    @Ignore // These tests are usually ignored but they're useful for verifying the behavior of RateLimiter
     @Test
     public void sequentialRequests() throws Exception {
         assertThat(botToken, is(notNullValue()));
@@ -49,6 +54,7 @@ public class RateLimiterTest {
         assertThat(stats.getLastMinuteRequests().get(Methods.CONVERSATIONS_LIST), is(greaterThanOrEqualTo(3)));
     }
 
+    @Ignore // These tests are usually ignored but they're useful for verifying the behavior of RateLimiter
     @Test
     public void controlRequestsAndCleanupData() throws Exception {
         assertThat(botToken, is(notNullValue()));
@@ -109,6 +115,7 @@ public class RateLimiterTest {
         return totalCalls;
     }
 
+    @Ignore // These tests are usually ignored but they're useful for verifying the behavior of RateLimiter
     @Test
     public void chat_postMessage() throws Exception {
         long start = System.currentTimeMillis();
