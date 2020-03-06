@@ -123,6 +123,26 @@ public class MyApp {
 }
 ```
 
+Java 10 以上のバージョンを使えば [Local Variable Type Inference](https://developer.oracle.com/java/jdk-10-local-variable-type-inference.html) によって上記のコードはもう少し簡潔になるでしょう。例えば OpenJDK 11 をインストールして、以下のように `build.gradle` で Java のバージョンを指定します。お使いの IDE でも同じ設定にします。
+
+```groovy
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+```
+
+これによって、同じ型を繰り返し記述する必要がなくなります。
+
+```java
+var app = new App();
+app.command("/hello", (req, ctx) -> {
+  return ctx.ack(":candy: はい、アメちゃん！");
+});
+var server = new SlackAppServer(app);
+server.start();
+```
+
 ### 環境変数を設定して起動
 
 **App** のデフォルトコンストラクタは、アプリの起動時に、以下の二つの環境変数が設定されていることを期待します。
@@ -179,9 +199,9 @@ Bolt アプリは起動できました！しかし、コードの中で定義し
 
 [Spring Boot](https://spring.io/projects/spring-boot) は、Java の世界で最も人気のある Web フレームワークの一つです。Bolt を Spring Boot と共存させる方法について興味を持っている方も多いかと思います。
 
-ご安心ください！Spring Boot アプリに Bolt を（Spring コンポーネントとして） _inject_ することはとても簡単ですぐにできます。
+ご心配なく！Spring Boot アプリに Bolt を（Spring コンポーネントとして） _inject_ することはとても簡単ですぐにできます。
 
-やらなければならないことは `build.gradle` （Gradle の場合）内の `implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")` を `dependencies` に追加して数行のコードを追加で書くことだけです。
+やることは `build.gradle` （Gradle の場合）内の `implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")` を `dependencies` に追加して数行のコードを追加で書くことだけです。
 
 ```java
 @Configuration
@@ -257,7 +277,7 @@ fun main() {
 
 ### 動作確認
 
-OK, you should be done. Just in case, here is the checklist:
+これで全て完了です。念のため、チェックリストを確認しておきましょう。
 
 * ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
 * ✅ Gradle をインストール（もしまだであれば macOs は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
@@ -266,7 +286,7 @@ OK, you should be done. Just in case, here is the checklist:
 * ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) `app_mention` という Bot Token Scope を追加、アプリを開発用ワークスペースにインストール
 * ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) と [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) の値をコピーしてきて環境変数に設定
 
-If all are ✅, bootstrapping your first-ever Kotlin-flavored Bolt app will succeed.
+すべてが OK ✅であれば、あなたのはじめての Kotlin を使った Bolt アプリが正常に起動するはずです。
 
 ```bash
 # Visit https://api.slack.com/apps to know these
@@ -287,7 +307,7 @@ gradle run
 
 ## 次のステップ
 
-[Bolt の概要]({{ site.url | append: site.baseurl }}/guides/ja/bolt-basics) を読んでさらに理解を深めてください。
+「[Bolt の概要]({{ site.url | append: site.baseurl }}/guides/ja/bolt-basics)」を読んでさらに理解を深めてください。
 
 また、以下のように多くのサンプルがプロジェクトの GitHub リポジトリ内にあるので、あわせて参考にしてみてください。
 

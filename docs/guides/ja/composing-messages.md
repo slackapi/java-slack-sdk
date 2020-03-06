@@ -34,7 +34,7 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 
 ## Block を使ったリッチなレイアウト
 
-[Block Kit](https://api.slack.com/block-kit) は、メッセージやその他の[インターフェース](https://api.slack.com/surfaces)で利用することができる Slack アプリのための UI フレームワークです。Block Kit は優れたバランスで UI の制御と柔軟性を提供します。
+[Block Kit](https://api.slack.com/block-kit) は、メッセージやその他の[サーフェスエリア](https://api.slack.com/surfaces)で利用することができる Slack アプリのための UI フレームワークです。Block Kit は優れたバランスで UI の制御と柔軟性を提供します。
 
 特に大きな JSON データ構造になると、それを Java コード内で構築することがやりやすくない場合もあります。そのため、このライブラリでは `blocks` 全体を一つの文字列として渡すことができる `blocksAsString(String)` のようなメソッドも提供しています。このようなメソッドは外部ファイルからの読み込みやテンプレートエンジンとの併用を想定しています。
 

@@ -37,7 +37,7 @@ Your app has to respond to the request within 3 seconds by `ack()` method. Other
 
 Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 
-* Specify the `event.type` (and also `event.subtype` [when necessary](https://api.slack.com/events/message#message_subtypes)) to handle
+* Specify [the Java class](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/{{ site.sdkLatestVersion }}/slack-api-model-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/model/event/Event.html) corresponding to `event.type` (and also `event.subtype` [when necessary](https://api.slack.com/events/message#message_subtypes)) to handle
 * Whatever you want to do with the event data
 * Call `ack()` as an acknowledgment
 

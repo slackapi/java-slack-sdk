@@ -123,6 +123,26 @@ public class MyApp {
 }
 ```
 
+If you go with JDK 10+, thanks to [Local Variable Type Inference](https://developer.oracle.com/java/jdk-10-local-variable-type-inference.html), your code could be much more concise. To take advantage of it, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below. Also, configure the same on your IDE.
+
+```groovy
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+```
+
+Now, you don't need to repeat the same type in a single line.
+
+```java
+var app = new App();
+app.command("/hello", (req, ctx) -> {
+  return ctx.ack(":wave: Hello!");
+});
+var server = new SlackAppServer(app);
+server.start();
+```
+
 ### Start the App with Two Env Variables
 
 The default constructor expects the following two env variables exist when starting the app.

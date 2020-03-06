@@ -38,7 +38,7 @@ Bolt アプリは Slack API サーバーからのリクエストに対して 3 �
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
-* 処理する `event.type` をイベントデータの Java クラスで指定 ([必要に応じて](https://api.slack.com/events/message#message_subtypes)さらに `event.subtype` も考慮)
+* 処理する `event.type` を[イベントデータの Java クラス](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/{{ site.sdkLatestVersion }}/slack-api-model-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/model/event/Event.html)で指定 ([必要に応じて](https://api.slack.com/events/message#message_subtypes)さらに `event.subtype` も考慮)
 * イベントデータを使った任意の処理
 * 受け取ったことを伝えるために `ack()`
 

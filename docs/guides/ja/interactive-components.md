@@ -6,9 +6,9 @@ lang: ja
 
 # インタラクティブコンポーネント
 
-[インタラクティブコンポーネント](https://api.slack.com/reference/block-kit/interactive-components)は、様々な[インターフェース](https://api.slack.com/surfaces)にインタラクティビティをもたらす [Block Kit](https://api.slack.com/block-kit) エレメントのサブセットです。blocks でのインタラクションはチャンネル内のメッセージ上だけではなく、[モーダル]({{ site.url | append: site.baseurl }}/guides/ja/modals) や [Home タブ]({{ site.url | append: site.baseurl }}/guides/ja/app-home) でも発生します。
+[インタラクティブコンポーネント](https://api.slack.com/reference/block-kit/interactive-components)は、様々な[サーフェスエリア](https://api.slack.com/surfaces)にインタラクティビティをもたらす [Block Kit](https://api.slack.com/block-kit) エレメントのサブセットです。blocks でのインタラクションはチャンネル内のメッセージ上だけではなく、[モーダル]({{ site.url | append: site.baseurl }}/guides/ja/modals) や [Home タブ]({{ site.url | append: site.baseurl }}/guides/ja/app-home) でも発生します。
 
-この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は、[メッセージの組み立て方]({{ site.url | append: site.baseurl }}/guides/ja/composing-messages) を参考にしてください。
+この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方]({{ site.url | append: site.baseurl }}/guides/ja/composing-messages)」を参考にしてください。
 
 ### Slack アプリの設定
 

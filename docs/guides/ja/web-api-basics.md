@@ -232,7 +232,7 @@ AwesomeMethodResponse response = slack.methods().postFormWithTokenAndParseRespon
 
 ## Rate Limits
 
-Slack プラットフォームの機能・API は、予想通りで快適なユーザー体験を提供するために、その [Rate Limits](https://api.slack.com/docs/rate-limits) に依拠しています。この制限は **"per app per workspace"**（Slack アプリ毎、かつ、それがインストールされたワークスペース毎）で適用されます。それぞれの API は、どれくらいの頻度で呼び出せるかを規定する "Tier" が設定されています。**slack-api-client** はこの Tier の完全なサポートを提供しており、**AsyncMethodsClient** （非同期クライアント）はその実行において Rate Limits を考慮します。
+Slack プラットフォームの機能・API は、期待通りの快適なユーザー体験を提供するために、その [Rate Limits](https://api.slack.com/docs/rate-limits) に依拠しています。この制限は **"per app per workspace"**（Slack アプリ毎、かつ、それがインストールされたワークスペース毎）で適用されます。それぞれの API は、どれくらいの頻度で呼び出せるかを規定する "Tier" が設定されています。**slack-api-client** はこの Tier の完全なサポートを提供しており、**AsyncMethodsClient** （非同期クライアント）はその実行において Rate Limits を考慮します。
 
 非同期クライアントは、可能な限りバーストリクエストを発生させないために、内部にキューの仕組みを持っています。一方、**MethodsClient** （同期クライアント）はそのような考慮はなく、常に即時でリクエストを送信します。幸いにもこれらの同期・非同期クライアントは協調して **MetricsDatastore** 内のメトリクスを更新します。これにより、非同期クライアントは、今どれくらいのトラフックを Slack プラットフォームに送っているかを正確に把握し、残っている呼び出し量を推測することができます。
 

@@ -36,7 +36,7 @@ app.command("/echo", (req, ctx) -> {
 |**app.botMessage**|キーワード: **String** \| **Pattern**|[**イベント API**]({{ site.url | append: site.baseurl }}/guides/ja/events-api): ボットユーザーからのメッセージ投稿で指定のキーワード・正規表現にマッチする bot/user events に応答します。|
 |**app.command**|コマンド名: **String** \| **Pattern**|[**スラッシュコマンド**]({{ site.url | append: site.baseurl }}/guides/ja/slash-commands): スラッシュコマンドの実行に応答します。|
 |**app.messageAction**|callback_id: **String** \| **Pattern**|[**アクション**]({{ site.url | append: site.baseurl }}/guides/ja/actions): メッセージメニューのアクション実行に応答します。|
-|**app.blockAction**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components): **blocks** 内でのボタンクリック、セレクトメニューからの選択、ラジオボタン選択などユーザクアションに応答します。これらのイベントは全てのインターフェース（メッセージ、モーダル、Home タブ）で発火します。|
+|**app.blockAction**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components): **blocks** 内でのボタンクリック、セレクトメニューからの選択、ラジオボタン選択などユーザクアションに応答します。これらのイベントは全てのサーフェスエリア（メッセージ、モーダル、Home タブ）で発火します。|
 |**app.blockSuggestion**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components): **blocks** 内の external data source を使ったセレクトメニュー内でユーザーが `min_query_length` 以上の長さのキーワードを入力したときに表示する選択肢を応答します。|
 |**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**モーダル**]({{ site.url | append: site.baseurl }}/guides/ja/modals): Submit ボタンクリックによるデータ送信に応答します。|
 |**app.viewClosed**|callback_id: **String** \| **Pattern**|[**モーダル**]({{ site.url | append: site.baseurl }}/guides/ja/modals): ユーザーがモーダルを閉じたときのイベントに応答します。そのモーダルを open/push したときに `notify_on_close` が `true` に設定されている必要があります。|

@@ -26,10 +26,10 @@ Home タブを有効にするには [Slack アプリ管理画面](http://api.sla
 
 Bolt アプリが Home タブの提供のためにやらなければならないことは以下の通りです。
 
-1. ユーザごとに Home タブを更新するために [views.publish](https://api.slack.com/methods/views.publish) API メソッドを呼び出す
+1. ユーザごとに Home タブを更新するために [**views.publish**](https://api.slack.com/methods/views.publish) API メソッドを呼び出す
 2. Home タブ上で発生したユーザーインタラクション (`"block_actions"`, `"block_suggestion"`) をハンドリング
 
-よくある手法としては [`"app_home_opened"`](https://api.slack.com/events/app_home_opened) のイベントを使って [views.publish](https://api.slack.com/methods/views.publish) API メソッドを呼び出すきっかけに使うという実装があります。特に初回更新にはこのイベントの利用が必要です。しかし、それ以外のタイミング・手段で Home タブを更新することも全く問題ありません。
+よくある手法としては [`"app_home_opened"`](https://api.slack.com/events/app_home_opened) のイベントを使って [**views.publish**](https://api.slack.com/methods/views.publish) API メソッドを呼び出すきっかけに使うという実装があります。特に初回更新にはこのイベントの利用が必要です。しかし、それ以外のタイミング・手段で Home タブを更新することも全く問題ありません。
 
 ## コード例
 
@@ -102,4 +102,4 @@ app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
 
 ### Bolt がやっていること
 
-[イベント API]({{ site.url | append: site.baseurl }}/guides/ja/events-api) の同項目を参照してください。
+「[イベント API]({{ site.url | append: site.baseurl }}/guides/ja/events-api)」の同項目を参照してください。

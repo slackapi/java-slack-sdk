@@ -122,6 +122,7 @@ View buildView() {
     .title(viewTitle(title -> title.type("plain_text").text("Meeting Arrangement").emoji(true)))
     .submit(viewSubmit(submit -> submit.type("plain_text").text("Submit").emoji(true)))
     .close(viewClose(close -> close.type("plain_text").text("Cancel").emoji(true)))
+    .privateMetadata("{\"response_url\":\"https://hooks.slack.com/actions/T1ABCD2E12/330361579271/0dAEyLY19ofpLwxqozy3firz\"}")
     .blocks(asBlocks(
       section(section -> section
         .blockId("category-block")

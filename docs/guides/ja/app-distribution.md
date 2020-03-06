@@ -8,8 +8,8 @@ lang: ja
 
 新しく作られた Slack アプリは、はじめは開発用ワークスペース（Development Workspace）にだけインストールすることができます。OAuth Redirect URL を設定して [App Distribution](https://api.slack.com/start/distributing) を有効にすると、そのアプリは他のどのワークスペースにもインストールできるようになります。
 
-* [Using OAuth 2.0（英語）](https://api.slack.com/docs/oauth)
-* [Distributing Slack Apps（英語）](https://api.slack.com/start/distributing)
+* 「[Using OAuth 2.0（英語）](https://api.slack.com/docs/oauth)」
+* 「[Distributing Slack Apps（英語）](https://api.slack.com/start/distributing)」
 
 ### Slack アプリの設定
 

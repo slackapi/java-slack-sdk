@@ -84,7 +84,7 @@ app.command("/echo") { req, ctx ->
 }
 ```
 
-この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は、[メッセージの組み立て方]({{ site.url | append: site.baseurl }}/guides/ja/composing-messages) を参考にしてください。
+この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方]({{ site.url | append: site.baseurl }}/guides/ja/composing-messages)」を参考にしてください。
 
 ### Bolt がやっていること
 

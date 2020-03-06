@@ -6,7 +6,7 @@ lang: ja
 
 # モーダル
 
-[モーダル](https://api.slack.com/surfaces/modals/using)は、ユーザからデータを収集したり、動的でインタラクティブな表示を見せることに特化したインターフェースです。モーダルは Slack 内でユーザが手短でありながらも深いアプリとのインタラクションを行うことができるインターフェースです。モーダルは [Block Kit](https://api.slack.com/block-kit) の視覚的でインタラクティブなコンポーネントを使って構成されます。
+[モーダル](https://api.slack.com/surfaces/modals/using)は、ユーザからデータを収集したり、動的でインタラクティブな表示を見せることに特化したインターフェースです。モーダルは Slack 内でユーザがアプリとの端的でありながらも深いインタラクションを行うことができるインターフェースです。モーダルは [Block Kit](https://api.slack.com/block-kit) の視覚的でインタラクティブなコンポーネントを使って構成されます。
 
 ### Slack アプリの設定
 
@@ -120,6 +120,7 @@ View buildView() {
     .title(viewTitle(title -> title.type("plain_text").text("Meeting Arrangement").emoji(true)))
     .submit(viewSubmit(submit -> submit.type("plain_text").text("Submit").emoji(true)))
     .close(viewClose(close -> close.type("plain_text").text("Cancel").emoji(true)))
+    .privateMetadata("{\"response_url\":\"https://hooks.slack.com/actions/T1ABCD2E12/330361579271/0dAEyLY19ofpLwxqozy3firz\"}")
     .blocks(asBlocks(
       section(section -> section
         .blockId("category-block")
@@ -226,7 +227,7 @@ val res = ctx.client().viewsOpen { it
 
 ### `"block_actions"` リクエスト
 
-基本的には [インタラクティブコンポーネントのページ]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components) で紹介したものと同じですが、違いとしてはそのペイロードに `view` としてモーダルの内容とその `private_metadata` が含まれていることが挙げられます。
+基本的には「[インタラクティブコンポーネント]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components)」で紹介したものと同じですが、違いとしてはそのペイロードに `view` としてモーダルの内容とその `private_metadata` が含まれていることが挙げられます。
 
 ```java
 import com.slack.api.model.view.View;
