@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 /**
  * The default adaptor that translates Micronaut specific interfaces into Bolt's ones.
- * This component requires singleton {@AppConfig} instance managed by the Micronaut DI container.
+ * This component requires singleton {@link AppConfig} instance managed by the Micronaut DI container.
  */
 @Slf4j
 @Singleton

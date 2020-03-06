@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 
 /**
  * The default Web controller that works in Micronaut apps.
- * This component requires singleton {@App} instance managed by the Micronaut DI container.
+ * This component requires singleton {@link App} instance managed by the Micronaut DI container.
  *
  * @see <a href="https://guides.micronaut.io/creating-your-first-micronaut-app/guide/index.html">The official tutorial</a>
  * @see <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html">@Controller annotation</a>
