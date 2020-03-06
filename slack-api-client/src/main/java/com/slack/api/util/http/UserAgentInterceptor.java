@@ -15,6 +15,8 @@ import java.util.Map;
 @Slf4j
 public class UserAgentInterceptor implements Interceptor {
 
+    public static final String USER_AGENT_PREFIX = "Java-Slack-SDK; ";
+
     private final String userAgent;
 
     public UserAgentInterceptor(Map<String, String> additionalInfo) {
@@ -31,7 +33,7 @@ public class UserAgentInterceptor implements Interceptor {
         for (Map.Entry<String, String> each : additionalInfo.entrySet()) {
             lastPart += " " + each.getKey() + "/" + each.getValue() + ";";
         }
-        return library + "; " + jvm + "; " + os + ";" + lastPart;
+        return USER_AGENT_PREFIX + library + "; " + jvm + "; " + os + ";" + lastPart;
     }
 
     @Override
