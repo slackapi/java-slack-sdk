@@ -47,7 +47,7 @@ LogsResponse response = audit.getLogs(req -> req
 );
 ```
 
-Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/response/LogsResponse.html) to know the response data structure.
+Refer to [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/audit/response/LogsResponse.html) to know the response data structure.
 
 ### getSchemas()
 
@@ -59,11 +59,11 @@ import com.slack.api.audit.response.SchemasResponse;
 SchemasResponse response = audit.getSchemas();
 ```
 
-Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/response/SchemasResponse.html) to know the response data structure.
+Refer to [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/audit/response/SchemasResponse.html) to know the response data structure.
 
 ### getActions()
 
-This endpoint returns information about the kind of actions that the Audit Logs API returns as [a list of all actions](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/audit/Actions.html) and a short description of each. Authentication not required.
+This endpoint returns information about the kind of actions that the Audit Logs API returns as [a list of all actions](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/audit/Actions.html) and a short description of each. Authentication not required.
 
 ```java
 import com.slack.api.audit.response.ActionsResponse;
@@ -71,4 +71,4 @@ import com.slack.api.audit.response.ActionsResponse;
 ActionsResponse response = audit.getActions();
 ```
 
-Refer to [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/{{ site.sdkLatestVersion }}/com/slack/api/audit/response/ActionsResponse.html) to know the response data structure.
+Refer to [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/audit/response/ActionsResponse.html) to know the response data structure.

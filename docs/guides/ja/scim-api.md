@@ -25,7 +25,7 @@ String token = System.getenv("SLACK_ADMIN_ACCESS_TOKN"); // `admin` scope が必
 SCIMClient scim = slack.scim(token);
 ```
 
-**SCIMClient** は SCIM API で提供されている全てのエンドポイントをサポートしています。その一覧については [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/scim/SCIMClient.html) を確認してください。このページでは、実際にどのように使うかを示すいくつかのコード例を紹介します。
+**SCIMClient** は SCIM API で提供されている全てのエンドポイントをサポートしています。その一覧については [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/scim/SCIMClient.html) を確認してください。このページでは、実際にどのように使うかを示すいくつかのコード例を紹介します。
 
 ### ユーザーの管理
 

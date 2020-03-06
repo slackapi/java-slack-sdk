@@ -199,7 +199,7 @@ try {
 
 Slack Web API は [180 以上の API メソッド](https://api.slack.com/methods)を提供しています。他の API メソッドを使うやり方もほぼ同じです。**MethodsClient** のメソッドを正しいトークンと必要なパラメータを指定して呼び出します。
 
-この SDK でサポートされている Java メソッドの一覧にアクセスするには [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/methods/MethodsClient.html) を参照するとよいでしょう。
+この SDK でサポートされている Java メソッドの一覧にアクセスするには [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/methods/MethodsClient.html) を参照するとよいでしょう。
 
 #### サポートされていない API メソッドを実行
 

@@ -199,7 +199,7 @@ try {
 
 Slack Web API offers [180+ methods](https://api.slack.com/methods). The way to use others is almost the same. Just calling methods in **MethodsClient** with a valid token and sufficient parameters works for you.
 
-A good way to check the entire list of methods available in this SDK is to access [the Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/methods/MethodsClient.html).
+A good way to check the entire list of methods available in this SDK is to access [the Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/methods/MethodsClient.html).
 
 #### Call Unsupported Methods
 

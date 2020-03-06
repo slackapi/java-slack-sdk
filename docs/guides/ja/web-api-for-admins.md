@@ -37,4 +37,4 @@ AdminAppsApprovedListResponse response = slack.methods(orgAdminToken).adminAppsA
 // まだまだたくさんあります...!
 ```
 
-網羅的な管理系 API の一覧は[こちら](https://api.slack.com/admins)で確認することができます。また、この SDK の [Javadoc](https://javadoc.io/doc/com.slack.api/slack-api-client/latest/com/slack/api/methods/MethodsClient.html) にアクセスして、ページ内検索で **`admin`** で始まるものを探すのもよいでしょう。
+網羅的な管理系 API の一覧は[こちら](https://api.slack.com/admins)で確認することができます。また、この SDK の [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/methods/MethodsClient.html) にアクセスして、ページ内検索で **`admin`** で始まるものを探すのもよいでしょう。
