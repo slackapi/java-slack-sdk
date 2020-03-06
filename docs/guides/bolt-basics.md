@@ -32,6 +32,8 @@ Here is the list of the available methods to dispatch events.
 |Method|Constraints (value: type)|Description|
 |-|-|-|
 |**app.event**|event type: **Class\<Event\>**|[**Events API**]({{ site.url | append: site.baseurl }}/guides/events-api): Responds to any kinds of bot/user events you subscribe.|
+|**app.message**|keyword: **String** \| **Pattern**|[**Events API**]({{ site.url | append: site.baseurl }}/guides/events-api): Responds to messages posted by a user only when the text in messages matches the given keyword or regular expressions.|
+|**app.botMessage**|keyword: **String** \| **Pattern**|[**Events API**]({{ site.url | append: site.baseurl }}/guides/events-api): Responds to messages posted by a bot user only when the text in messages matches the given keyword or regular expressions.|
 |**app.command**|command name: **String** \| **Pattern**|[**Slash Commands**]({{ site.url | append: site.baseurl }}/guides/slash-commands): Responds to slash command invocations in the workspace.|
 |**app.messageAction**|callback_id: **String** \| **Pattern**|[**Actions**]({{ site.url | append: site.baseurl }}/guides/actions): Responds to user actions in message menus.|
 |**app.blockAction**|action_id: **String** \| **Pattern**|[**Interactive Components**]({{ site.url | append: site.baseurl }}/guides/interactive-components): Responds to user actions (e.g., click a button, choose an item from select menus, radio buttons, etc.) in **blocks**. These events can be triggered in all the surfaces (messages, modals, and Home tabs).|

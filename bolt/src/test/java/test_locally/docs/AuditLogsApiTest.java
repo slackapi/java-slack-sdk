@@ -1,10 +1,12 @@
 package test_locally.docs;
 
 import com.slack.api.Slack;
-import com.slack.api.audit.*;
+import com.slack.api.audit.Actions;
+import com.slack.api.audit.AuditApiException;
+import com.slack.api.audit.AuditClient;
+import com.slack.api.audit.response.ActionsResponse;
 import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.audit.response.SchemasResponse;
-import com.slack.api.audit.response.ActionsResponse;
 
 import java.io.IOException;
 

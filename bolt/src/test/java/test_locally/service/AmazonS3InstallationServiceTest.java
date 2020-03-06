@@ -132,6 +132,7 @@ public class AmazonS3InstallationServiceTest {
         public AWSCredentials credentials() {
             return getCredentials();
         }
+
         public AmazonS3 s3() {
             return createS3Client();
         }

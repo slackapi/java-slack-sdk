@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertEquals;
 
@@ -50,7 +51,26 @@ public class BlockActionTest {
     @Test
     public void handled() throws Exception {
         App app = buildApp();
-        app.blockAction("action", (req, ctx) -> ctx.ack());
+        app.blockAction("action?foo$^", (req, ctx) -> ctx.ack());
+
+        BlockActionPayload payload = buildPayload();
+
+        String p = gson.toJson(payload);
+        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        BlockActionRequest req = new BlockActionRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+    }
+
+    @Test
+    public void regexp() throws Exception {
+        App app = buildApp();
+        app.blockAction(Pattern.compile("^ac.+$"), (req, ctx) -> ctx.ack());
 
         BlockActionPayload payload = buildPayload();
 
@@ -69,10 +89,10 @@ public class BlockActionTest {
     @Test
     public void unhandled() throws Exception {
         App app = buildApp();
-        app.blockAction("action", (req, ctx) -> ctx.ack());
+        app.blockAction("action?foo$^", (req, ctx) -> ctx.ack());
 
         BlockActionPayload payload = buildPayload();
-        payload.getActions().get(0).setActionId("unexpected-action");
+        payload.getActions().get(0).setActionId("unexpected-action?foo$^");
 
         String p = gson.toJson(payload);
         String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
@@ -106,7 +126,7 @@ public class BlockActionTest {
         team.setId("U123");
         BlockActionPayload.Action action = new BlockActionPayload.Action();
         action.setBlockId("block");
-        action.setActionId("action");
+        action.setActionId("action?foo$^");
         action.setValue("value");
         BlockActionPayload payload = BlockActionPayload.builder()
                 .team(team)

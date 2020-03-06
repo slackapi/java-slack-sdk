@@ -8,7 +8,6 @@ import com.slack.api.app_backend.events.payload.MessagePayload;
 import com.slack.api.app_backend.events.payload.UrlVerificationPayload;
 import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
 import com.slack.api.bolt.AppConfig;
-import com.slack.api.bolt.context.builtin.ActionContext;
 import com.slack.api.bolt.context.builtin.EventContext;
 import com.slack.api.bolt.middleware.MiddlewareChain;
 import com.slack.api.bolt.middleware.builtin.MultiTeamsAuthorization;
@@ -35,7 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -264,7 +264,7 @@ public class MultiTeamsAuthorizationTest {
         } finally {
             slackApiServer.stop();
         }
-   }
+    }
 
     @Test
     public void valid_and_installer() throws Exception {

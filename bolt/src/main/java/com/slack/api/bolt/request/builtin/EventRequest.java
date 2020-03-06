@@ -69,6 +69,10 @@ public class EventRequest extends Request<EventContext> {
     }
 
     public String getEventTypeAndSubtype() {
-        return eventType + ":" + eventSubtype;
+        if (eventSubtype == null) {
+            return eventType;
+        } else {
+            return eventType + ":" + eventSubtype;
+        }
     }
 }

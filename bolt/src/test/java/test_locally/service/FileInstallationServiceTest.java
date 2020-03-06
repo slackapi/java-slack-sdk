@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
 
 public class FileInstallationServiceTest {
 
@@ -68,9 +67,11 @@ public class FileInstallationServiceTest {
 
     static class MyInstaller extends DefaultInstaller {
         Bot bot;
+
         MyInstaller(Bot bot) {
             this.bot = bot;
         }
+
         @Override
         public Bot toBot() {
             return bot;
