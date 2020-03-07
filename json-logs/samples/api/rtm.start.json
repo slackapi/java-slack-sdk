@@ -306,7 +306,9 @@
       "browsers_dismissed_user_groups_low_results_education": false,
       "browsers_seen_initial_user_groups_education": false,
       "browsers_dismissed_files_low_results_education": false,
-      "browsers_seen_initial_files_education": false
+      "browsers_seen_initial_files_education": false,
+      "browsers_dismissed_initial_drafts_education": false,
+      "browsers_seen_initial_drafts_education": false
     },
     "created": 12345,
     "manual_presence": ""

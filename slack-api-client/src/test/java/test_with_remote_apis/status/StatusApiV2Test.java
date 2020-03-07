@@ -45,7 +45,7 @@ public class StatusApiV2Test {
             slack.status().current();
             fail();
         } catch (StatusApiException e) {
-            assertThat(e.getMessage(), is("status: 404, message: Not Found"));
+            assertThat(e.getResponse().code(), is(404));
         }
     }
 

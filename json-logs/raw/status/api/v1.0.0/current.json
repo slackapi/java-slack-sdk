@@ -108,6 +108,18 @@
     {
       "date_created": "2020-02-12T14:26:29-08:00",
       "body": "Google Drive thumbnails aren\u0027t displaying in Slack. We\u0027re sorry for the trouble, and we\u0027ll keep you posted here."
+    },
+    {
+      "date_created": "2020-03-06T15:11:57-08:00",
+      "body": "We’re glad to report all issues with the Admin stats page and Workspace Directory have been resolved. Apologies for the disruption we caused, and thank you for your patience."
+    },
+    {
+      "date_created": "2020-03-06T14:48:11-08:00",
+      "body": "We’re investigating issues with the Admin stats page and Workspace Directory for Grid customers. We’re looking into the cause and will provide new information as soon as it’s available."
+    },
+    {
+      "date_created": "2020-03-06T14:40:45-08:00",
+      "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
     }
   ]
 }
