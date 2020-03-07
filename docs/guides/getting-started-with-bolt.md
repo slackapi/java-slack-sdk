@@ -282,7 +282,7 @@ OK, you should be done. Just in case, here is the checklist:
 * ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
 * ✅ `build.gradle` with valid Kolitn language settings and **bolt-jetty** dependency
 * ✅ `src/main/kotlin/MyApp.kt` with a main method
-* ✅ [Create a Slack App](https://api.slack.com/apps), add a bot user, install the app to your development workspace
+* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) bot scope, install the app to your development workspace
 * ✅ Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
 
 If all are ✅, bootstrapping your first-ever Kotlin-flavored Bolt app will succeed.

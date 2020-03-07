@@ -283,7 +283,7 @@ fun main() {
 * ✅ Gradle をインストール（もしまだであれば macOs は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
 * ✅ `build.gradle` に **bolt-jetty** 依存ライブラリを追加、適切な **application** プラグイン設定も追加
 * ✅ main メソッドを持つ `src/main/kotlin/MyApp.kt` を作成
-* ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) `app_mention` という Bot Token Scope を追加、アプリを開発用ワークスペースにインストール
+* ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) という Bot Token Scope を追加、アプリを開発用ワークスペースにインストール
 * ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) と [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) の値をコピーしてきて環境変数に設定
 
 すべてが OK ✅であれば、あなたのはじめての Kotlin を使った Bolt アプリが正常に起動するはずです。
