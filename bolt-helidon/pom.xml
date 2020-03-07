@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <helidon.version>1.4.1</helidon.version>
+        <helidon.version>1.4.2</helidon.version>
     </properties>
 
     <groupId>com.slack.api</groupId>
