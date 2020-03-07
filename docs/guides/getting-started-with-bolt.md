@@ -173,7 +173,7 @@ If you get stuck this setup, go through the following checklist:
 * ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
 * ✅ `build.gradle` has **bolt-jetty** dependency and valid application plugin settings
 * ✅ `src/main/java/hello/MyApp.java` with a class having its main method
-* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add `app_mention` bot scope, install the app to your development workspace
+* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) bot scope, install the app to your development workspace
 * ✅ Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
 
 ### Enable `/hello` Command
