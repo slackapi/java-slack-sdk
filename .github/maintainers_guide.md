@@ -117,9 +117,9 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
   * Make sure if there is no build failures at https://travis-ci.org/slackapi/java-slack-sdk
 * Set a new version
   * If you don't have `gnu-sed`, run `brew install gnu-sed` first
-  * Run `script/set_version.sh (the version)` (e.g., `script/set_version.sh 1.0.0`)
+  * Run `scripts/set_version.sh (the version)` (e.g., `scripts/set_version.sh 1.0.0`)
 * Ship the libraries
-  * Run `script/release.sh` (it takes a bit long)
+  * Run `scripts/release.sh` (it takes a bit long)
   * (If you encounter an error, log in https://oss.sonatype.org/ to check detailed information)
 * Create GitHub Release(s) and add release notes
   * Prepare a release note by `git log --pretty=format:'%h %s by %an' --abbrev-commit | grep -v "Merge pull request " | head -50`
