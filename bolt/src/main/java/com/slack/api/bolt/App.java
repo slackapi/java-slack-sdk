@@ -818,7 +818,7 @@ public class App {
                 // In Kotlin, `app.use { req, resp, chain -> chain.next(req) }` doesn't have its class name here
                 middlewareName = current.toString();
             }
-            log.debug("Start running a middleware (name: {})", middlewareName);
+            log.debug("Start a middleware (name: {})", middlewareName);
         }
         if (remaining.isEmpty()) {
             return current.apply(request, response, (req) -> runHandler(req));
@@ -830,228 +830,234 @@ public class App {
 
     protected Response runHandler(Request slackRequest) throws IOException, SlackApiException {
         if (log.isDebugEnabled()) {
-            log.debug("Start running the main handler (request type: {})", slackRequest.getRequestType());
+            log.debug("The main handler started (request type: {})", slackRequest.getRequestType());
         }
-        switch (slackRequest.getRequestType()) {
-            case OAuthStart: {
-                if (config().isDistributedApp()) {
-                    try {
-                        Map<String, List<String>> responseHeaders = new HashMap<>();
-                        Response response = Response.builder().statusCode(302).headers(responseHeaders).build();
-                        String state = oAuthStateService.issueNewState(slackRequest, response);
-                        String url = getOauthInstallationUrl(state);
-                        if (url == null) {
-                            log.error("AppConfig#getOauthInstallationUrl(String) returned null due to some missing settings");
-                            responseHeaders.put("Location", Arrays.asList(config().getOauthCancellationUrl()));
-                        } else {
-                            responseHeaders.put("Location", Arrays.asList(url));
-                        }
-                        return response;
-                    } catch (Exception e) {
-                        log.error("Failed to run the operation (error: {})", e.getMessage(), e);
-                    }
-                }
-                log.warn("Skipped to handle an OAuth callback request as this Bolt app is not ready for it");
-                return Response.builder().statusCode(500).body("something wrong").build();
-            }
-            case OAuthCallback: {
-                if (config().isDistributedApp()) {
-                    if (oAuthCallbackService != null) {
-                        OAuthCallbackRequest request = (OAuthCallbackRequest) slackRequest;
-                        return oAuthCallbackService.handle(request);
-                    }
-                }
-                log.warn("Skipped to handle an OAuth callback request as this Bolt app is not ready for it");
-                return Response.builder().statusCode(500).body("something wrong").build();
-            }
-            case Command: {
-                SlashCommandRequest request = (SlashCommandRequest) slackRequest;
-                String command = request.getPayload().getCommand();
-                if (command != null) {
-                    for (Pattern pattern : slashCommandHandlers.keySet()) {
-                        if (pattern.matcher(command).matches()) {
-                            SlashCommandHandler handler = slashCommandHandlers.get(pattern);
-                            return handler.apply(request, request.getContext());
+        try {
+            switch (slackRequest.getRequestType()) {
+                case OAuthStart: {
+                    if (config().isDistributedApp()) {
+                        try {
+                            Map<String, List<String>> responseHeaders = new HashMap<>();
+                            Response response = Response.builder().statusCode(302).headers(responseHeaders).build();
+                            String state = oAuthStateService.issueNewState(slackRequest, response);
+                            String url = getOauthInstallationUrl(state);
+                            if (url == null) {
+                                log.error("AppConfig#getOauthInstallationUrl(String) returned null due to some missing settings");
+                                responseHeaders.put("Location", Arrays.asList(config().getOauthCancellationUrl()));
+                            } else {
+                                responseHeaders.put("Location", Arrays.asList(url));
+                            }
+                            return response;
+                        } catch (Exception e) {
+                            log.error("Failed to run the operation (error: {})", e.getMessage(), e);
                         }
                     }
+                    log.warn("Skipped to handle an OAuth callback request as this Bolt app is not ready for it");
+                    return Response.builder().statusCode(500).body("something wrong").build();
                 }
-                log.warn("No SlashCommandHandler registered for command: {}", request.getPayload().getCommand());
-                break;
-            }
-            case OutgoingWebhooks: {
-                OutgoingWebhooksRequest request = (OutgoingWebhooksRequest) slackRequest;
-                OutgoingWebhooksHandler handler = outgoingWebhooksHandlers.get(request.getPayload().getTriggerWord());
-                if (handler != null) {
-                    return handler.apply(request, request.getContext());
-                } else {
-                    log.warn("No OutgoingWebhooksHandler for trigger_word: {}", request.getPayload().getTriggerWord());
-                }
-                break;
-            }
-            case Event: {
-                if (eventsDispatcher.isRunning()) {
-                    eventsDispatcher.enqueue(slackRequest.getRequestBodyAsString());
-                }
-                EventRequest request = (EventRequest) slackRequest;
-                BoltEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
-                if (handler != null) {
-                    BoltEventPayload payload = buildEventPayload(request);
-                    return handler.apply(payload, request.getContext());
-                } else {
-                    log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
-                    return Response.ok();
-                }
-            }
-            case UrlVerification: {
-                // https://api.slack.com/events/url_verification
-                return Response.builder()
-                        .statusCode(200)
-                        .contentType("text/plain")
-                        .body(((UrlVerificationRequest) slackRequest).getChallenge())
-                        .build();
-            }
-            case AttachmentAction: {
-                AttachmentActionRequest request = (AttachmentActionRequest) slackRequest;
-                String callbackId = request.getPayload().getCallbackId();
-                if (callbackId != null) {
-                    for (Pattern pattern : attachmentActionHandlers.keySet()) {
-                        if (pattern.matcher(callbackId).matches()) {
-                            AttachmentActionHandler handler = attachmentActionHandlers.get(pattern);
-                            return handler.apply(request, request.getContext());
+                case OAuthCallback: {
+                    if (config().isDistributedApp()) {
+                        if (oAuthCallbackService != null) {
+                            OAuthCallbackRequest request = (OAuthCallbackRequest) slackRequest;
+                            return oAuthCallbackService.handle(request);
                         }
                     }
+                    log.warn("Skipped to handle an OAuth callback request as this Bolt app is not ready for it");
+                    return Response.builder().statusCode(500).body("something wrong").build();
                 }
-                log.warn("No AttachmentActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
-                break;
-            }
-            case BlockAction: {
-                BlockActionRequest request = (BlockActionRequest) slackRequest;
-                List<BlockActionPayload.Action> actions = request.getPayload().getActions();
-                if (actions == null) {
-                    return Response.json(400, "{\"error\":\"No `actions` property found\"}");
-                }
-                if (actions.size() == 1) {
-                    String actionId = actions.get(0).getActionId();
-                    if (actionId != null) {
-                        for (Pattern pattern : blockActionHandlers.keySet()) {
-                            if (pattern.matcher(actionId).matches()) {
-                                BlockActionHandler handler = blockActionHandlers.get(pattern);
+                case Command: {
+                    SlashCommandRequest request = (SlashCommandRequest) slackRequest;
+                    String command = request.getPayload().getCommand();
+                    if (command != null) {
+                        for (Pattern pattern : slashCommandHandlers.keySet()) {
+                            if (pattern.matcher(command).matches()) {
+                                SlashCommandHandler handler = slashCommandHandlers.get(pattern);
                                 return handler.apply(request, request.getContext());
                             }
                         }
                     }
-                    log.warn("No BlockActionHandler registered for action_id: {}", actions.get(0).getActionId());
-                } else {
-                    for (BlockActionPayload.Action action : request.getPayload().getActions()) {
-                        // Returned response values will be ignored
-                        if (action != null && action.getActionId() != null) {
-                            blockActionHandlers.get(action.getActionId());
-                        }
+                    log.warn("No SlashCommandHandler registered for command: {}", request.getPayload().getCommand());
+                    break;
+                }
+                case OutgoingWebhooks: {
+                    OutgoingWebhooksRequest request = (OutgoingWebhooksRequest) slackRequest;
+                    OutgoingWebhooksHandler handler = outgoingWebhooksHandlers.get(request.getPayload().getTriggerWord());
+                    if (handler != null) {
+                        return handler.apply(request, request.getContext());
+                    } else {
+                        log.warn("No OutgoingWebhooksHandler for trigger_word: {}", request.getPayload().getTriggerWord());
+                    }
+                    break;
+                }
+                case Event: {
+                    if (eventsDispatcher.isRunning()) {
+                        eventsDispatcher.enqueue(slackRequest.getRequestBodyAsString());
+                    }
+                    EventRequest request = (EventRequest) slackRequest;
+                    BoltEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
+                    if (handler != null) {
+                        BoltEventPayload payload = buildEventPayload(request);
+                        return handler.apply(payload, request.getContext());
+                    } else {
+                        log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
+                        return Response.ok();
                     }
                 }
-                break;
-            }
-            case BlockSuggestion: {
-                BlockSuggestionRequest request = (BlockSuggestionRequest) slackRequest;
-                String actionId = request.getPayload().getActionId();
-                if (actionId != null) {
-                    for (Pattern pattern : blockSuggestionHandlers.keySet()) {
-                        if (pattern.matcher(actionId).matches()) {
-                            BlockSuggestionHandler handler = blockSuggestionHandlers.get(pattern);
-                            return handler.apply(request, request.getContext());
+                case UrlVerification: {
+                    // https://api.slack.com/events/url_verification
+                    return Response.builder()
+                            .statusCode(200)
+                            .contentType("text/plain")
+                            .body(((UrlVerificationRequest) slackRequest).getChallenge())
+                            .build();
+                }
+                case AttachmentAction: {
+                    AttachmentActionRequest request = (AttachmentActionRequest) slackRequest;
+                    String callbackId = request.getPayload().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : attachmentActionHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                AttachmentActionHandler handler = attachmentActionHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
                         }
                     }
+                    log.warn("No AttachmentActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    break;
                 }
-                log.warn("No BlockSuggestionHandler registered for action_id: {}", actionId);
-                break;
-            }
-            case MessageAction: {
-                MessageActionRequest request = (MessageActionRequest) slackRequest;
-                String callbackId = request.getPayload().getCallbackId();
-                if (callbackId != null) {
-                    for (Pattern pattern : messageActionHandlers.keySet()) {
-                        if (pattern.matcher(callbackId).matches()) {
-                            MessageActionHandler handler = messageActionHandlers.get(pattern);
-                            return handler.apply(request, request.getContext());
+                case BlockAction: {
+                    BlockActionRequest request = (BlockActionRequest) slackRequest;
+                    List<BlockActionPayload.Action> actions = request.getPayload().getActions();
+                    if (actions == null) {
+                        return Response.json(400, "{\"error\":\"No `actions` property found\"}");
+                    }
+                    if (actions.size() == 1) {
+                        String actionId = actions.get(0).getActionId();
+                        if (actionId != null) {
+                            for (Pattern pattern : blockActionHandlers.keySet()) {
+                                if (pattern.matcher(actionId).matches()) {
+                                    BlockActionHandler handler = blockActionHandlers.get(pattern);
+                                    return handler.apply(request, request.getContext());
+                                }
+                            }
+                        }
+                        log.warn("No BlockActionHandler registered for action_id: {}", actions.get(0).getActionId());
+                    } else {
+                        for (BlockActionPayload.Action action : request.getPayload().getActions()) {
+                            // Returned response values will be ignored
+                            if (action != null && action.getActionId() != null) {
+                                blockActionHandlers.get(action.getActionId());
+                            }
                         }
                     }
+                    break;
                 }
-                log.warn("No MessageActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
-                break;
-            }
-            case DialogSubmission: {
-                DialogSubmissionRequest request = (DialogSubmissionRequest) slackRequest;
-                String callbackId = request.getPayload().getCallbackId();
-                if (callbackId != null) {
-                    for (Pattern pattern : dialogSubmissionHandlers.keySet()) {
-                        if (pattern.matcher(callbackId).matches()) {
-                            DialogSubmissionHandler handler = dialogSubmissionHandlers.get(pattern);
-                            return handler.apply(request, request.getContext());
+                case BlockSuggestion: {
+                    BlockSuggestionRequest request = (BlockSuggestionRequest) slackRequest;
+                    String actionId = request.getPayload().getActionId();
+                    if (actionId != null) {
+                        for (Pattern pattern : blockSuggestionHandlers.keySet()) {
+                            if (pattern.matcher(actionId).matches()) {
+                                BlockSuggestionHandler handler = blockSuggestionHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
                         }
                     }
+                    log.warn("No BlockSuggestionHandler registered for action_id: {}", actionId);
+                    break;
                 }
-                log.warn("No DialogSubmissionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
-                break;
-            }
-            case DialogCancellation: {
-                DialogCancellationRequest request = (DialogCancellationRequest) slackRequest;
-                String callbackId = request.getPayload().getCallbackId();
-                if (callbackId != null) {
-                    for (Pattern pattern : dialogCancellationHandlers.keySet()) {
-                        if (pattern.matcher(callbackId).matches()) {
-                            DialogCancellationHandler handler = dialogCancellationHandlers.get(pattern);
-                            return handler.apply(request, request.getContext());
+                case MessageAction: {
+                    MessageActionRequest request = (MessageActionRequest) slackRequest;
+                    String callbackId = request.getPayload().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : messageActionHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                MessageActionHandler handler = messageActionHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
                         }
                     }
+                    log.warn("No MessageActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    break;
                 }
-                log.warn("No DialogCancellationHandler registered for callback_id: {}", request.getPayload().getCallbackId());
-                break;
-            }
-            case DialogSuggestion: {
-                DialogSuggestionRequest request = (DialogSuggestionRequest) slackRequest;
-                String callbackId = request.getPayload().getCallbackId();
-                if (callbackId != null) {
-                    for (Pattern pattern : dialogSuggestionHandlers.keySet()) {
-                        if (pattern.matcher(callbackId).matches()) {
-                            DialogSuggestionHandler handler = dialogSuggestionHandlers.get(pattern);
-                            return handler.apply(request, request.getContext());
+                case DialogSubmission: {
+                    DialogSubmissionRequest request = (DialogSubmissionRequest) slackRequest;
+                    String callbackId = request.getPayload().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : dialogSubmissionHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                DialogSubmissionHandler handler = dialogSubmissionHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
                         }
                     }
+                    log.warn("No DialogSubmissionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    break;
                 }
-                log.warn("No DialogSuggestionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
-                break;
-            }
-            case ViewSubmission: {
-                ViewSubmissionRequest request = (ViewSubmissionRequest) slackRequest;
-                String callbackId = request.getPayload().getView().getCallbackId();
-                if (callbackId != null) {
-                    for (Pattern pattern : viewSubmissionHandlers.keySet()) {
-                        if (pattern.matcher(callbackId).matches()) {
-                            ViewSubmissionHandler handler = viewSubmissionHandlers.get(pattern);
-                            return handler.apply(request, request.getContext());
+                case DialogCancellation: {
+                    DialogCancellationRequest request = (DialogCancellationRequest) slackRequest;
+                    String callbackId = request.getPayload().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : dialogCancellationHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                DialogCancellationHandler handler = dialogCancellationHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
                         }
                     }
+                    log.warn("No DialogCancellationHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    break;
                 }
-                log.warn("No ViewSubmissionHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
-                break;
-            }
-            case ViewClosed: {
-                ViewClosedRequest request = (ViewClosedRequest) slackRequest;
-                String callbackId = request.getPayload().getView().getCallbackId();
-                if (callbackId != null) {
-                    for (Pattern pattern : viewClosedHandlers.keySet()) {
-                        if (pattern.matcher(callbackId).matches()) {
-                            ViewClosedHandler handler = viewClosedHandlers.get(pattern);
-                            return handler.apply(request, request.getContext());
+                case DialogSuggestion: {
+                    DialogSuggestionRequest request = (DialogSuggestionRequest) slackRequest;
+                    String callbackId = request.getPayload().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : dialogSuggestionHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                DialogSuggestionHandler handler = dialogSuggestionHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
                         }
                     }
+                    log.warn("No DialogSuggestionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    break;
                 }
-                log.warn("No ViewClosedHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
-                break;
+                case ViewSubmission: {
+                    ViewSubmissionRequest request = (ViewSubmissionRequest) slackRequest;
+                    String callbackId = request.getPayload().getView().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : viewSubmissionHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                ViewSubmissionHandler handler = viewSubmissionHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
+                        }
+                    }
+                    log.warn("No ViewSubmissionHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
+                    break;
+                }
+                case ViewClosed: {
+                    ViewClosedRequest request = (ViewClosedRequest) slackRequest;
+                    String callbackId = request.getPayload().getView().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : viewClosedHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                ViewClosedHandler handler = viewClosedHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
+                        }
+                    }
+                    log.warn("No ViewClosedHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
+                    break;
+                }
+                default:
             }
-            default:
+            return Response.json(404, "{\"error\":\"no handler found\"}");
+        } finally {
+            if (log.isDebugEnabled()) {
+                log.debug("The main handler completed (request type: {})", slackRequest.getRequestType());
+            }
         }
-        return Response.json(404, "{\"error\":\"no handler found\"}");
     }
 
 }
