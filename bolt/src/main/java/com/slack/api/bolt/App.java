@@ -818,7 +818,7 @@ public class App {
                 // In Kotlin, `app.use { req, resp, chain -> chain.next(req) }` doesn't have its class name here
                 middlewareName = current.toString();
             }
-            log.debug("Start a middleware (name: {})", middlewareName);
+            log.debug("Applying a middleware (name: {})", middlewareName);
         }
         if (remaining.isEmpty()) {
             return current.apply(request, response, (req) -> runHandler(req));
@@ -830,7 +830,7 @@ public class App {
 
     protected Response runHandler(Request slackRequest) throws IOException, SlackApiException {
         if (log.isDebugEnabled()) {
-            log.debug("The main handler started (request type: {})", slackRequest.getRequestType());
+            log.debug("The handler started (request type: {})", slackRequest.getRequestType());
         }
         try {
             switch (slackRequest.getRequestType()) {
@@ -1055,7 +1055,7 @@ public class App {
             return Response.json(404, "{\"error\":\"no handler found\"}");
         } finally {
             if (log.isDebugEnabled()) {
-                log.debug("The main handler completed (request type: {})", slackRequest.getRequestType());
+                log.debug("The handler completed (request type: {})", slackRequest.getRequestType());
             }
         }
     }
