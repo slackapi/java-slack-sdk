@@ -125,18 +125,6 @@ public class SCIMClientImpl implements SCIMClient {
         return deleteUser(req.configure(UsersDeleteRequest.builder()).build());
     }
 
-    @Deprecated
-    @Override
-    public UsersDeleteResponse delete(UsersDeleteRequest req) throws IOException, SCIMApiException {
-        return deleteUser(req);
-    }
-
-    @Deprecated
-    @Override
-    public UsersDeleteResponse delete(RequestConfigurator<UsersDeleteRequest.UsersDeleteRequestBuilder> req) throws IOException, SCIMApiException {
-        return deleteUser(req);
-    }
-
     @Override
     public GroupsSearchResponse searchGroups(GroupsSearchRequest req) throws IOException, SCIMApiException {
         Map<String, String> query = new HashMap<>();
