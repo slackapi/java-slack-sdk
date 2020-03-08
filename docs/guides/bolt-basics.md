@@ -123,7 +123,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-## Use Web APIs
+## Use Web APIs / Reply using say utility
 
 When you need to call some Slack Web APIs in Bolt apps, use `ctx.client()` for it. The **MethodsClient** created by the method already holds a valid bot token. So, you don't need to give a token to it. Just calling a method with parameters as below works for you.
 
@@ -131,14 +131,14 @@ When you need to call some Slack Web APIs in Bolt apps, use `ctx.client()` for i
 app.command("/hello", (req, ctx) -> {
   // ctx.client() holds a valid bot token
   ChatPostMessageResponse response = ctx.client().chatPostMessage(r -> r
-    .channel("C1234567")
+    .channel(ctx.getChannelId())
     .text(":wave: How are you?")
   );
   return ctx.ack();
 });
 ```
 
-For [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) API calls, using `say()` utility is much simpler.
+For [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) API calls with the given channel ID, using `say()` utility is much simpler.
 
 ```java
 app.command("/hello", (req, ctx) -> {

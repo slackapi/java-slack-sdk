@@ -123,7 +123,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-## Web API の利用
+## Web API の利用 / ユーザーへの返事を say する
 
 Web API を Bolt アプリ内で利用したいときは `ctx.client()` を使います。このメソッドが返す **MethodsClient** はあらかじめボットトークンを保持しています。そのため、トークンを渡す必要はありません。ただパラメーターを指定して呼び出すだけで OK です。
 
@@ -131,14 +131,14 @@ Web API を Bolt アプリ内で利用したいときは `ctx.client()` を使�
 app.command("/hello", (req, ctx) -> {
   // ctx.client() はすでにボットトークンを持っています
   ChatPostMessageResponse response = ctx.client().chatPostMessage(r -> r
-    .channel("C1234567")
+    .channel(ctx.getChannelId())
     .text(":wave: いつもお世話になっています！")
   );
   return ctx.ack();
 });
 ```
 
-ちなみに [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) API の呼び出しに限っては `say()` というユーティリティメソッドを使えば、より簡単になります。
+ちなみにペイロードに含まれているチャンネル ID を用いた [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) API の呼び出しに限っては `say()` というユーティリティメソッドを使えば、より簡単になります。
 
 ```java
 app.command("/hello", (req, ctx) -> {
