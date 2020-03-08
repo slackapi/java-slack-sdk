@@ -2,15 +2,23 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
+import com.slack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
+import com.slack.api.methods.request.files.comments.FilesCommentsEditRequest;
+import com.slack.api.methods.response.files.FilesUploadResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static util.MockSlackApi.ValidToken;
 
 public class FilesTest {
@@ -60,6 +68,40 @@ public class FilesTest {
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesUpload(r -> r.filename("name").channels(Arrays.asList("C123")).title("title"))
                 .get().isOk(), is(true));
+    }
+
+    @Test
+    public void fileUpload_bytes() throws Exception {
+        byte[] fileData = "This is a text data".getBytes();
+        FilesUploadResponse response = slack.methods(ValidToken).filesUpload(r ->
+                r.fileData(fileData).filename("sample.txt").title("sample.txt").filetype("plain/text"));
+        assertThat(response.isOk(), is(true));
+
+        response = slack.methodsAsync(ValidToken).filesUpload(r ->
+                r.fileData(fileData).filename("sample.txt").title("sample.txt").filetype("plain/text")).get();
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void fileUpload_file() throws Exception {
+        File file = new File("src/test/resources/sample.txt");
+        FilesUploadResponse response = slack.methods(ValidToken).filesUpload(r ->
+                r.file(file).filename("sample.txt").title("sample.txt").filetype("plain/text"));
+        assertThat(response.isOk(), is(true));
+
+        response = slack.methodsAsync(ValidToken).filesUpload(r ->
+                r.file(file).filename("sample.txt").title("sample.txt").filetype("plain/text")).get();
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void fileComments() throws IOException, SlackApiException {
+        assertTrue(slack.methods(ValidToken)
+                .filesCommentsAdd(FilesCommentsAddRequest.builder().comment("comment").file("file").build()).isOk());
+        assertTrue(slack.methods(ValidToken)
+                .filesCommentEdit(FilesCommentsEditRequest.builder().id("id").comment("comment").file("file").build()).isOk());
+        assertTrue(slack.methods(ValidToken)
+                .filesCommentsDelete(FilesCommentsDeleteRequest.builder().id("id").file("file").build()).isOk());
     }
 
 }

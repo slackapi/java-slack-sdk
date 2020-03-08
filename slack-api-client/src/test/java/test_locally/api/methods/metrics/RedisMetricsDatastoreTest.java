@@ -75,4 +75,27 @@ public class RedisMetricsDatastoreTest {
         String teamId = allStats.get("DEFAULT_SINGLETON_EXECUTOR").keySet().iterator().next();
         assertNotNull(datastore.getStats("DEFAULT_SINGLETON_EXECUTOR", teamId));
     }
+
+    @Test
+    public void job() throws ExecutionException, InterruptedException {
+        AsyncMethodsClient client = slack.methodsAsync(ValidToken);
+        for (int i = 0; i < 3; i++) {
+            client.authTest(r -> r.token(ValidToken)).get();
+        }
+        String executor = MethodsConfig.DEFAULT_SINGLETON_EXECUTOR_NAME;
+        datastore.setRateLimitedMethodRetryEpochMillis(executor, "T123", "auth.test", 123456L);
+        RedisMetricsDatastore.MaintenanceJob job = new RedisMetricsDatastore.MaintenanceJob(datastore);
+        job.run();
+    }
+
+    @Test
+    public void increment() {
+        String executor = MethodsConfig.DEFAULT_SINGLETON_EXECUTOR_NAME;
+        datastore.incrementAllCompletedCalls(executor, "T123", "auth.test");
+        datastore.incrementUnsuccessfulCalls(executor, "T123", "auth.test");
+        datastore.incrementFailedCalls(executor, "T123", "auth.test");
+        datastore.updateCurrentQueueSize(executor, "T123", "auth.test");
+        datastore.updateNumberOfLastMinuteRequests(executor, "T123", "auth.test");
+        datastore.setRateLimitedMethodRetryEpochMillis(executor, "T123", "auth.test", 123456L);
+    }
 }

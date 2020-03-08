@@ -2162,22 +2162,6 @@ public class MethodsClientImpl implements MethodsClient {
         );
     }
 
-    @Override
-    public <T extends SlackApiResponse> T postMultipartAndParseResponse(
-            RequestConfigurator<MultipartBody.Builder> form,
-            String endpoint,
-            String token,
-            Class<T> clazz) throws IOException, SlackApiException {
-        MultipartBody.Builder f = new MultipartBody.Builder();
-        f.setType(MultipartBody.FORM);
-        return postMultipartAndParseResponse(
-                form.configure(f),
-                endpoint,
-                token,
-                clazz
-        );
-    }
-
     protected <T extends SlackApiResponse> T postFormAndParseResponse(
             FormBody.Builder form,
             String methodName,
