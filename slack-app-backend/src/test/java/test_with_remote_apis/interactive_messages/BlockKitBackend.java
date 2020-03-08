@@ -1,7 +1,6 @@
 package test_with_remote_apis.interactive_messages;
 
 import com.google.gson.Gson;
-import com.slack.api.Slack;
 import com.slack.api.app_backend.SlackSignature;
 import com.slack.api.app_backend.events.servlet.SlackSignatureVerifier;
 import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
@@ -10,8 +9,8 @@ import com.slack.api.app_backend.interactive_components.response.BlockSuggestion
 import com.slack.api.app_backend.interactive_components.response.Option;
 import com.slack.api.app_backend.slash_commands.SlashCommandPayloadParser;
 import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
+import com.slack.api.app_backend.util.JsonPayloadExtractor;
 import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
-import com.slack.api.app_backend.vendor.aws.lambda.request.PayloadExtractor;
 import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.MarkdownTextObject;
 import com.slack.api.model.block.composition.PlainTextObject;
@@ -44,10 +43,8 @@ public class BlockKitBackend {
         private final SlashCommandPayloadParser commandPayloadParser = new SlashCommandPayloadParser();
 
         private final Gson gson = GsonFactory.createSnakeCase();
-        private final PayloadExtractor payloadExtractor = new PayloadExtractor();
+        private final JsonPayloadExtractor payloadExtractor = new JsonPayloadExtractor();
         private final JsonPayloadTypeDetector payloadTypeDetector = new JsonPayloadTypeDetector();
-
-        private final Slack slack = Slack.getInstance();
 
         protected String doReadRequestBodyAsString(HttpServletRequest httpReq) throws IOException {
             return httpReq.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
@@ -69,7 +66,7 @@ public class BlockKitBackend {
             }
 
             if (requestBody.startsWith("payload=")) {
-                String json = payloadExtractor.extractPayloadJsonAsString(requestBody);
+                String json = payloadExtractor.extractIfExists(requestBody);
                 String payloadType = payloadTypeDetector.detectType(json);
 
                 if (payloadType.equals("block_actions")) {

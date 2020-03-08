@@ -7,8 +7,8 @@ import com.slack.api.app_backend.events.servlet.SlackSignatureVerifier;
 import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
 import com.slack.api.app_backend.slash_commands.SlashCommandPayloadParser;
 import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
+import com.slack.api.app_backend.util.JsonPayloadExtractor;
 import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
-import com.slack.api.app_backend.vendor.aws.lambda.request.PayloadExtractor;
 import com.slack.api.app_backend.views.payload.ViewClosedPayload;
 import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import com.slack.api.methods.SlackApiException;
@@ -54,7 +54,7 @@ public class ViewsApiBackend {
         private final SlashCommandPayloadParser commandPayloadParser = new SlashCommandPayloadParser();
 
         private final Gson gson = GsonFactory.createSnakeCase();
-        private final PayloadExtractor payloadExtractor = new PayloadExtractor();
+        private final JsonPayloadExtractor payloadExtractor = new JsonPayloadExtractor();
         private final JsonPayloadTypeDetector payloadTypeDetector = new JsonPayloadTypeDetector();
 
         private final Slack slack = Slack.getInstance();
@@ -80,7 +80,7 @@ public class ViewsApiBackend {
 
             String triggerId;
             if (requestBody.startsWith("payload=")) {
-                String json = payloadExtractor.extractPayloadJsonAsString(requestBody);
+                String json = payloadExtractor.extractIfExists(requestBody);
                 String payloadType = payloadTypeDetector.detectType(json);
 
                 if (payloadType.equals("view_submission")) {
