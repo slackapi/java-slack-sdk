@@ -17,6 +17,8 @@ import java.util.Map;
 @Slf4j
 public class SlackHttpClient implements AutoCloseable {
 
+    private static final MediaType MEDIA_TYPE_APPLICATION_JSON = MediaType.parse("application/json; charset=utf-8");
+
     private final OkHttpClient okHttpClient;
 
     private SlackConfig config = SlackConfig.DEFAULT;
@@ -91,56 +93,29 @@ public class SlackHttpClient implements AutoCloseable {
         return okHttpClient.newCall(request).execute();
     }
 
-    // Use postJsonBody instead
-    @Deprecated
-    public Response postJsonPostRequest(String url, Object obj) throws IOException {
-        return postJsonBody(url, obj);
-    }
-
     public Response postJsonBody(String url, Object obj) throws IOException {
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), toSnakeCaseJsonString(obj));
+        RequestBody body = RequestBody.create(toSnakeCaseJsonString(obj), MEDIA_TYPE_APPLICATION_JSON);
         Request request = new Request.Builder().url(url).post(body).build();
-        return okHttpClient.newCall(request).execute();
-    }
-
-    public Response postJsonBodyWithBearerHeader(String url, String token, Object obj) throws IOException {
-        String bearerHeaderValue = "Bearer " + token;
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), toSnakeCaseJsonString(obj));
-        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).post(body).build();
-        return okHttpClient.newCall(request).execute();
-    }
-
-    public Response patchJsonBodyWithBearerHeader(String url, String token, Object obj) throws IOException {
-        String bearerHeaderValue = "Bearer " + token;
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), toSnakeCaseJsonString(obj));
-        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).patch(body).build();
-        return okHttpClient.newCall(request).execute();
-    }
-
-    public Response putJsonBodyWithBearerHeader(String url, String token, Object obj) throws IOException {
-        String bearerHeaderValue = "Bearer " + token;
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), toSnakeCaseJsonString(obj));
-        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).put(body).build();
         return okHttpClient.newCall(request).execute();
     }
 
     public Response postCamelCaseJsonBodyWithBearerHeader(String url, String token, Object obj) throws IOException {
         String bearerHeaderValue = "Bearer " + token;
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), toCamelCaseJsonString(obj));
+        RequestBody body = RequestBody.create(toCamelCaseJsonString(obj), MEDIA_TYPE_APPLICATION_JSON);
         Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).post(body).build();
         return okHttpClient.newCall(request).execute();
     }
 
     public Response patchCamelCaseJsonBodyWithBearerHeader(String url, String token, Object obj) throws IOException {
         String bearerHeaderValue = "Bearer " + token;
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), toCamelCaseJsonString(obj));
+        RequestBody body = RequestBody.create(toCamelCaseJsonString(obj), MEDIA_TYPE_APPLICATION_JSON);
         Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).patch(body).build();
         return okHttpClient.newCall(request).execute();
     }
 
     public Response putCamelCaseJsonBodyWithBearerHeader(String url, String token, Object obj) throws IOException {
         String bearerHeaderValue = "Bearer " + token;
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), toCamelCaseJsonString(obj));
+        RequestBody body = RequestBody.create(toCamelCaseJsonString(obj), MEDIA_TYPE_APPLICATION_JSON);
         Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).put(body).build();
         return okHttpClient.newCall(request).execute();
     }

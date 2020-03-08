@@ -72,16 +72,6 @@ public interface SCIMClient {
 
     UsersDeleteResponse deleteUser(RequestConfigurator<UsersDeleteRequest.UsersDeleteRequestBuilder> req) throws IOException, SCIMApiException;
 
-    // ---
-
-    // Use deleteUser instead
-    @Deprecated
-    UsersDeleteResponse delete(UsersDeleteRequest req) throws IOException, SCIMApiException;
-
-    // Use deleteUser instead
-    @Deprecated
-    UsersDeleteResponse delete(RequestConfigurator<UsersDeleteRequest.UsersDeleteRequestBuilder> req) throws IOException, SCIMApiException;
-
     // --------------------
     // Groups
     // --------------------
