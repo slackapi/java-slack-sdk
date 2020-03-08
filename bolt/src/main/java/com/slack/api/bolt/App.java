@@ -813,7 +813,12 @@ public class App {
             Middleware current,
             LinkedList<Middleware> remaining) throws Exception {
         if (log.isDebugEnabled()) {
-            log.debug("Start running a middleware (name: {})", current.getClass().getCanonicalName());
+            String middlewareName = current.getClass().getCanonicalName();
+            if (middlewareName == null) {
+                // In Kotlin, `app.use { req, resp, chain -> chain.next(req) }` doesn't have its class name here
+                middlewareName = current.toString();
+            }
+            log.debug("Start running a middleware (name: {})", middlewareName);
         }
         if (remaining.isEmpty()) {
             return current.apply(request, response, (req) -> runHandler(req));
