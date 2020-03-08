@@ -44,7 +44,7 @@ public class BlockActionPayload {
     public static class Team {
         private String id;
         private String domain;
-        private String enterpriseId; // https://github.com/slackapi/bolt/blob/8f9245f9b9dce0771bb615b42192e7adb6228444/src/types/actions/block-action.ts#L127-L128
+        private String enterpriseId;
         private String enterpriseName;
     }
 
@@ -84,16 +84,15 @@ public class BlockActionPayload {
         private String type;
         private String actionTs;
 
-        // Add more properties found here:
-        // https://github.com/slackapi/bolt/blob/8f9245f9b9dce0771bb615b42192e7adb6228444/src/types/actions/block-action.ts#L127-L128
+        // common fields
+        private PlainTextObject placeholder;
+        private ConfirmationDialogObject confirm;
 
         // button
         private String url;
-        private ConfirmationDialogObject confirm;
 
         // static_select
         private OptionObject initialOption;
-        private PlainTextObject placeholder;
         private SelectedOption selectedOption; // overflow
 
         // users_select
@@ -109,12 +108,28 @@ public class BlockActionPayload {
         private String initialChannel;
 
         // external_select
-        // private Option initialOption;
         private Integer minQueryLength;
 
         // datepicker
         private String selectedDate;
         private String initialDate;
+
+        // multi_static_select
+        // multi_external_select
+        private List<OptionObject> initialOptions;
+        private List<SelectedOption> selectedOptions;
+
+        // multi_users_select
+        private List<String> initialUsers;
+        private List<String> selectedUsers;
+
+        // multi_conversations_select
+        private List<String> initialConversations;
+        private List<String> selectedConversations;
+
+        // multi_channels_select
+        private List<String> initialChannels;
+        private List<String> selectedChannels;
 
         @Data
         public static class Text {
