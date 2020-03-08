@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
+import static util.MockSlackApi.InvalidToken;
 import static util.MockSlackApi.ValidToken;
 
 public class IgnoringSelfEventsTest {
@@ -78,6 +78,29 @@ public class IgnoringSelfEventsTest {
     }
 
     @Test
+    public void not_ignored_no_botUserId() throws Exception {
+        IgnoringSelfEvents middleware = new IgnoringSelfEvents(SlackConfig.DEFAULT) {
+            @Override
+            public String findAndSaveBotUserId(MethodsClient client, String botId) {
+                return "U123BOT";
+            }
+        };
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        RequestHeaders headers = new RequestHeaders(rawHeaders);
+        MemberJoinedChannelPayload payload = new MemberJoinedChannelPayload();
+        payload.setType("member_joined_channel");
+        payload.setTeamId("T123");
+        MemberJoinedChannelEvent event = new MemberJoinedChannelEvent();
+        event.setUser("U123BOT");
+        payload.setEvent(event);
+        EventRequest req = new EventRequest(GsonFactory.createSnakeCase().toJson(payload), headers);
+        req.getContext().setBotUserId(null); // intentionally null here
+        Response resp = new Response();
+        Response result = middleware.apply(req, resp, chain);
+        assertEquals(404L, result.getStatusCode().longValue());
+    }
+
+    @Test
     public void eventTypesNotToMiss() {
         IgnoringSelfEvents middleware = new IgnoringSelfEvents(SlackConfig.DEFAULT);
         assertNotNull(middleware.getEventTypesNotToMiss());
@@ -94,6 +117,8 @@ public class IgnoringSelfEventsTest {
             Slack slack = Slack.getInstance(config);
             config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
             IgnoringSelfEvents middleware = new IgnoringSelfEvents(config);
+            String nullUserId = middleware.findAndSaveBotUserId(slack.methods(InvalidToken), "botId");
+            assertNull(nullUserId);
             String userId = middleware.findAndSaveBotUserId(slack.methods(ValidToken), "botId");
             assertEquals("U00000000", userId);
             String cachedUserId = middleware.findAndSaveBotUserId(slack.methods(ValidToken), "botId");

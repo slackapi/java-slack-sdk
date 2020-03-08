@@ -53,6 +53,50 @@ public class MessageTest {
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
 
+    String messagePayload = "{\"token\":\"legacy-fixed-value\",\"team_id\":\"T123\",\"api_app_id\":\"A123\",\"event\":{\"client_msg_id\":\"3fd13273-5a6a-4b5c-bd6f-109fd697038c\",\"type\":\"message\",\"text\":\"<@U123> test\",\"user\":\"U234\",\"ts\":\"1583636399.000700\",\"team\":\"T123\",\"blocks\":[{\"type\":\"rich_text\",\"block_id\":\"FMAzp\",\"elements\":[{\"type\":\"rich_text_section\",\"elements\":[{\"type\":\"user\",\"user_id\":\"U123\"},{\"type\":\"text\",\"text\":\" test\"}]}]}],\"channel\":\"C123\",\"event_ts\":\"1583636399.000700\",\"channel_type\":\"channel\"},\"type\":\"event_callback\",\"event_id\":\"EvV1KA7U3A\",\"event_time\":1583636399,\"authed_users\":[\"U123\"]}";
+
+    @Test
+    public void withPayload() throws Exception {
+        App app = buildApp();
+        AtomicBoolean userMessageReceived = new AtomicBoolean(false);
+        app.message("test", (req, ctx) -> {
+            userMessageReceived.set(req.getEvent().getUser().equals("U234"));
+            return ctx.ack();
+        });
+        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
+        app.botMessage("test", (req, ctx) -> {
+            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
+            return ctx.ack();
+        });
+
+        EventRequest req = buildRequest(messagePayload);
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertTrue(userMessageReceived.get());
+        assertFalse(botMessageReceived.get());
+    }
+
+    @Test
+    public void withPayload_skipped() throws Exception {
+        App app = buildApp();
+        AtomicBoolean userMessageReceived = new AtomicBoolean(false);
+        app.message("testing", (req, ctx) -> {
+            userMessageReceived.set(req.getEvent().getUser().equals("U234"));
+            return ctx.ack();
+        });
+        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
+        app.botMessage("testing", (req, ctx) -> {
+            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
+            return ctx.ack();
+        });
+
+        EventRequest req = buildRequest(messagePayload);
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertFalse(userMessageReceived.get());
+        assertFalse(botMessageReceived.get());
+    }
+
     @Test
     public void user() throws Exception {
         App app = buildApp();

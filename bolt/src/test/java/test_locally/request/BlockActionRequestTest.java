@@ -47,7 +47,7 @@ public class BlockActionRequestTest {
             "    \"team_id\": \"T9TK3CUKW\"\n" +
             "  },\n" +
             "  \"api_app_id\": \"AABA1ABCD\",\n" +
-            "  \"token\": \"9s8d9as89d8as9d8as989\",\n" +
+            "  \"token\": \"legacy-fixed-value\",\n" +
             "  \"container\": {\n" +
             "    \"type\": \"message_attachment\",\n" +
             "    \"message_ts\": \"1548261231.000200\",\n" +

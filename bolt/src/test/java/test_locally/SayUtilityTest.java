@@ -14,8 +14,7 @@ import static com.slack.api.model.block.composition.BlockCompositions.markdownTe
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.asElements;
 import static com.slack.api.model.block.element.BlockElements.button;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -60,4 +59,63 @@ public class SayUtilityTest {
             assertEquals("123.123", result.getTs());
         }
     }
+
+    @Test(expected = IllegalStateException.class)
+    public void no_channel_null() throws IOException, SlackApiException {
+        MethodsClient client = mock(MethodsClient.class);
+        ChatPostMessageResponse response = new ChatPostMessageResponse();
+        response.setOk(true);
+        response.setTs("123.123");
+        when(client.chatPostMessage(any(ChatPostMessageRequest.class))).thenReturn(response);
+        SayUtility util = new SayUtility() {
+            @Override
+            public String getChannelId() {
+                return null; // intentionally null here
+            }
+
+            @Override
+            public MethodsClient client() {
+                return client;
+            }
+        };
+        {
+            ChatPostMessageResponse result = util.say("hello!");
+            assertTrue(result.isOk());
+            assertEquals("123.123", result.getTs());
+        }
+        {
+            util.say("This should fail..");
+            fail();
+        }
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void no_channel_empty_string() throws IOException, SlackApiException {
+        MethodsClient client = mock(MethodsClient.class);
+        ChatPostMessageResponse response = new ChatPostMessageResponse();
+        response.setOk(true);
+        response.setTs("123.123");
+        when(client.chatPostMessage(any(ChatPostMessageRequest.class))).thenReturn(response);
+        SayUtility util = new SayUtility() {
+            @Override
+            public String getChannelId() {
+                return " "; // intentionally empty string here
+            }
+
+            @Override
+            public MethodsClient client() {
+                return client;
+            }
+        };
+        {
+            ChatPostMessageResponse result = util.say("hello!");
+            assertTrue(result.isOk());
+            assertEquals("123.123", result.getTs());
+        }
+        {
+            util.say("This should fail..");
+            fail();
+        }
+    }
+
 }
