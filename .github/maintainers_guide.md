@@ -13,10 +13,9 @@ Maintaining this project requires installing [OpenJDK](https://openjdk.java.net/
 This project has tests for individual packages inside of each's respective `src/test/java` directory. All the tests under `test_locally` package are executed in every single Travis CI build as below.
 
 ```bash
-mvn test-compile &&
-mvn '-Dtest=test_locally.**.*Test' test -DfailIfNoTests=false &&
-mvn install -Dmaven.test.skip=true &&
-mvn duplicate-finder:check
+./scripts/run_no_prep_tests.sh
+./mvnw install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true
+./mvnw duplicate-finder:check
 ```
 
 Apart from those, you need to run the rest on your local machine. `mvn test` command runs all the tests including the ones that requires access tokens to call Slack APIs in the **slack-api-client** project.
@@ -43,7 +42,7 @@ By installing App(1), you get the followings. Set them as env variables.
 
 * User token
 * Bot token
-* Incoming Webhook
+* Incoming Webhooks
 
 |Env Variable|Description|
 |-|-|
@@ -62,7 +61,7 @@ By creating a shared channel in the workspace the App(1) has been installed, you
 
 #### Testing with Enterprise Grid
 
-By installing App(2) and App(3), you get the followings. Set them as env varaibles.
+By installing App(2) and App(3), you get the followings. Set them as env variables.
 
 * User token as an admin of the Org in Grid
 * User token as an admin of a workspace in Grid
@@ -81,21 +80,37 @@ The documentation is built using [Jekyll](https://jekyllrb.com/) and hosted with
 contained in the `docs` directory. Reading the Jekyll configuration in `docs/_config.yml` is helpful to understand how
 the documentation is organized and built.
 
-```bash
-cd docs
-
-# general prep for Ruby
-rbenv local 2.6.5
-rbenv rehash
-gem install bundler
-
-# Setup this Jekyll project and run it on your local machine
-bundle install
-bundle exec jekyll serve -It
-# open http://localhost:4000
-```
+Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/master/docs/README.md) for details.
 
 ### Releasing
+
+#### Prerequisites
+
+Place `$HOME/.m2/settings.xml` with your Sonatype account information.
+
+```xml
+<settings>
+  <localRepository>/${your-home-dir}/.m2/repository</localRepository>
+  <servers>
+    <server>
+      <username>${your-username}</username>
+      <password>${your-password}</password>
+      <id>sonatype-nexus-staging</id>
+    </server>
+    <server>
+      <username>${your-username}</username>
+      <password>${your-password}</password>
+      <id>sonatype-nexus-snapshots</id>
+    </server>
+  </servers>
+  <pluginGroups>
+    <pluginGroup>org.apache.maven.plugins</pluginGroup>
+    <pluginGroup>org.codehaus.mojo</pluginGroup>
+  </pluginGroups>
+</settings>
+```
+
+#### Operations
 
 * Preparation
   * `git pull --rebase slackapi master`
