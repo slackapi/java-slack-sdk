@@ -27,6 +27,11 @@ public class ResponderTest {
 
             WebhookResponse commandResponse = responder.sendToCommand(r -> r.text("Hi"));
             assertEquals(200L, commandResponse.getCode().longValue());
+
+            com.slack.api.app_backend.outgoing_webhooks.response.WebhookResponse outgoing =
+                    com.slack.api.app_backend.outgoing_webhooks.response.WebhookResponse.builder().text("Hi").build();
+            WebhookResponse outgoingWebhookResponse = responder.send(outgoing);
+            assertEquals(200L, outgoingWebhookResponse.getCode().longValue());
         } finally {
             slackApiServer.stop();
         }

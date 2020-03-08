@@ -50,6 +50,40 @@ public class ViewClosedTest {
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
 
+    String realPayload = "{\"type\":\"view_closed\",\"team\":{\"id\":\"T123\",\"domain\":\"test-test\"},\"user\":{\"id\":\"U123\",\"username\":\"test-test\",\"name\":\"test-test\",\"team_id\":\"T123\"},\"api_app_id\":\"A123\",\"token\":\"legacy-fixed-value\",\"view\":{\"id\":\"V123\",\"team_id\":\"T123\",\"type\":\"modal\",\"blocks\":[{\"type\":\"input\",\"block_id\":\"request-block\",\"label\":{\"type\":\"plain_text\",\"text\":\"Detailed Request\",\"emoji\":true},\"optional\":false,\"element\":{\"type\":\"plain_text_input\",\"action_id\":\"request-action\",\"multiline\":true}}],\"private_metadata\":\"https:\\/\\/hooks.slack.com\\/commands\\/T123\\/123\\/Waa4vC7sELkGIbOtAaVTRjpw\",\"callback_id\":\"request-modal\",\"state\":{\"values\":{}},\"hash\":\"1583639131.8ac7cc0b\",\"title\":{\"type\":\"plain_text\",\"text\":\"Request Form\",\"emoji\":false},\"clear_on_close\":false,\"notify_on_close\":true,\"close\":{\"type\":\"plain_text\",\"text\":\"Cancel\",\"emoji\":false},\"submit\":{\"type\":\"plain_text\",\"text\":\"Submit\",\"emoji\":false},\"previous_view_id\":null,\"root_view_id\":\"V123\",\"app_id\":\"A123\",\"external_id\":\"\",\"app_installed_team_id\":\"T123\",\"bot_id\":\"B123\"},\"is_cleared\":false}";
+
+    @Test
+    public void withPayload() throws Exception {
+        App app = buildApp();
+        app.viewClosed("request-modal", (req, ctx) -> ctx.ack());
+
+        String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        ViewClosedRequest req = new ViewClosedRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+    }
+
+    @Test
+    public void withPayload_skipped() throws Exception {
+        App app = buildApp();
+        app.viewClosed("request-modal-2", (req, ctx) -> ctx.ack());
+
+        String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        ViewClosedRequest req = new ViewClosedRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(404L, response.getStatusCode().longValue());
+    }
+
     @Test
     public void handled() throws Exception {
         App app = buildApp();

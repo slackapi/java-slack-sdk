@@ -12,6 +12,7 @@ import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.EventRequest;
 import com.slack.api.bolt.response.Response;
+import com.slack.api.model.event.AppMentionEvent;
 import com.slack.api.model.event.MessageBotEvent;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.util.json.GsonFactory;
@@ -51,6 +52,56 @@ public class EventTest {
     final Gson gson = GsonFactory.createSnakeCase();
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
+
+    String appMentionPayload = "{\"token\":\"legacy-fixed-value\",\"team_id\":\"T123\",\"api_app_id\":\"A123\",\"event\":{\"client_msg_id\":\"3fd13273-5a6a-4b5c-bd6f-109fd697038c\",\"type\":\"app_mention\",\"text\":\"<@U123> test\",\"user\":\"U234\",\"ts\":\"1583636399.000700\",\"team\":\"T123\",\"blocks\":[{\"type\":\"rich_text\",\"block_id\":\"FMAzp\",\"elements\":[{\"type\":\"rich_text_section\",\"elements\":[{\"type\":\"user\",\"user_id\":\"U123\"},{\"type\":\"text\",\"text\":\" test\"}]}]}],\"channel\":\"C123\",\"event_ts\":\"1583636399.000700\"},\"type\":\"event_callback\",\"event_id\":\"EvV1KV8BM3\",\"event_time\":1583636399,\"authed_users\":[\"U123\"]}";
+
+    @Test
+    public void appMention() throws Exception {
+        App app = buildApp();
+        AtomicBoolean userMessageReceived = new AtomicBoolean(false);
+        app.event(AppMentionEvent.class, (req, ctx) -> {
+            userMessageReceived.set(req.getEvent().getUser().equals("U234"));
+            return ctx.ack();
+        });
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(appMentionPayload, rawHeaders, timestamp);
+
+        EventRequest req = new EventRequest(appMentionPayload, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+
+        assertTrue(userMessageReceived.get());
+    }
+
+    String messagePayload = "{\"token\":\"legacy-fixed-value\",\"team_id\":\"T123\",\"api_app_id\":\"A123\",\"event\":{\"client_msg_id\":\"3fd13273-5a6a-4b5c-bd6f-109fd697038c\",\"type\":\"message\",\"text\":\"<@U123> test\",\"user\":\"U234\",\"ts\":\"1583636399.000700\",\"team\":\"T123\",\"blocks\":[{\"type\":\"rich_text\",\"block_id\":\"FMAzp\",\"elements\":[{\"type\":\"rich_text_section\",\"elements\":[{\"type\":\"user\",\"user_id\":\"U123\"},{\"type\":\"text\",\"text\":\" test\"}]}]}],\"channel\":\"C123\",\"event_ts\":\"1583636399.000700\",\"channel_type\":\"channel\"},\"type\":\"event_callback\",\"event_id\":\"EvV1KA7U3A\",\"event_time\":1583636399,\"authed_users\":[\"U123\"]}";
+
+    @Test
+    public void message() throws Exception {
+        App app = buildApp();
+        AtomicBoolean userMessageReceived = new AtomicBoolean(false);
+        app.event(MessageEvent.class, (req, ctx) -> {
+            userMessageReceived.set(req.getEvent().getUser().equals("U234"));
+            return ctx.ack();
+        });
+        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
+        app.event(MessageBotEvent.class, (req, ctx) -> {
+            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
+            return ctx.ack();
+        });
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(messagePayload, rawHeaders, timestamp);
+
+        EventRequest req = new EventRequest(messagePayload, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+
+        assertTrue(userMessageReceived.get());
+        assertFalse(botMessageReceived.get());
+    }
 
     @Test
     public void user() throws Exception {

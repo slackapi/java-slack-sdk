@@ -48,6 +48,24 @@ public class MessageActionTest {
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
 
+    String realPayload = "{\"type\":\"message_action\",\"token\":\"legacy-fixed-value\",\"action_ts\":\"1583637157.207593\",\"team\":{\"id\":\"T123\",\"domain\":\"test-test\"},\"user\":{\"id\":\"U123\",\"name\":\"test-test\"},\"channel\":{\"id\":\"C123\",\"name\":\"dev\"},\"callback_id\":\"test-message-action\",\"trigger_id\":\"123.123.xxx\",\"message_ts\":\"1583636382.000300\",\"message\":{\"client_msg_id\":\"b64abe86-8607-4317-bd45-cb6cfacdbfd8\",\"type\":\"message\",\"text\":\"<@U234> test\",\"user\":\"U123\",\"ts\":\"1583636382.000300\",\"team\":\"T123\",\"blocks\":[{\"type\":\"rich_text\",\"block_id\":\"d7eJ\",\"elements\":[{\"type\":\"rich_text_section\",\"elements\":[{\"type\":\"user\",\"user_id\":\"U234\"},{\"type\":\"text\",\"text\":\" test\"}]}]}]},\"response_url\":\"https:\\/\\/hooks.slack.com\\/app\\/T123\\/123\\/yYHNzRxpHc2xHjezSVw9e4zB\"}";
+
+    @Test
+    public void withPayload() throws Exception {
+        App app = buildApp();
+        app.messageAction("test-message-action", (req, ctx) -> ctx.ack());
+
+        String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        MessageActionRequest req = new MessageActionRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+    }
+
     @Test
     public void handled() throws Exception {
         App app = buildApp();

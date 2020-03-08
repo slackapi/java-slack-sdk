@@ -120,7 +120,7 @@ public class DialogTest {
                 "        \"name\": \"coverthon-1999\"\n" +
                 "    },\n" +
                 "    \"action_ts\": \"936893340.702759\",\n" +
-                "    \"token\": \"M1AqUUw3FqayAbqNtsGMch72\",\n" +
+                "    \"token\": \"legacy-fixed-value\",\n" +
                 "    \"response_url\": \"https://hooks.slack.com/app/T012AB0A1/123456789/JpmK0yzoZDeRiqfeduTBYXWQ\"\n" +
                 "}";
         request.setContent("payload=" + URLEncoder.encode(payload, "UTF-8"));
@@ -164,7 +164,7 @@ public class DialogTest {
                 "        \"name\": \"coverthon-1999\"\n" +
                 "    },\n" +
                 "    \"action_ts\": \"936893340.702759\",\n" +
-                "    \"token\": \"M1AqUUw3FqayAbqNtsGMch72\",\n" +
+                "    \"token\": \"legacy-fixed-value\",\n" +
                 "    \"response_url\": \"https://hooks.slack.com/app/T012AB0A1/123456789/JpmK0yzoZDeRiqfeduTBYXWQ\"\n" +
                 "}";
         request.setContent("payload=" + URLEncoder.encode(payload, "UTF-8"));

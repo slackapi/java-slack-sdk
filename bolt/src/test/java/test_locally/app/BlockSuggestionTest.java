@@ -50,24 +50,23 @@ public class BlockSuggestionTest {
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
 
+    String realPayload = "{\"type\":\"block_suggestion\",\"team\":{\"id\":\"T123\",\"domain\":\"test-test\"},\"user\":{\"id\":\"U123\",\"username\":\"test-test\",\"name\":\"test-test\",\"team_id\":\"T123\"},\"container\":{\"type\":\"message\",\"message_ts\":\"1583636071.000500\",\"channel_id\":\"D123\",\"is_ephemeral\":true},\"api_app_id\":\"AU776HF50\",\"token\":\"legacy-fixed-value\",\"action_id\":\"select-action\",\"block_id\":\"UJMC\",\"value\":\"a\",\"channel\":{\"id\":\"D123\",\"name\":\"directmessage\"}}";
+
     @Test
     public void handled() throws Exception {
         App app = buildApp();
-        app.blockSuggestion("action#@$+!", (req, ctx) -> {
+        app.blockSuggestion("select-action", (req, ctx) -> {
             List<Option> options = Arrays.asList(Option.builder().text(plainText("label")).value("v").build());
             return ctx.ack(r -> r.options(options));
         });
 
-        BlockSuggestionPayload payload = buildPayload();
-
-        String p = gson.toJson(payload);
-        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+        String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
 
         Map<String, List<String>> rawHeaders = new HashMap<>();
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         setRequestHeaders(requestBody, rawHeaders, timestamp);
 
-        BlockSuggestionRequest req = new BlockSuggestionRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        BlockSuggestionRequest req = new BlockSuggestionRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
         assertEquals("application/json", response.getContentType());
