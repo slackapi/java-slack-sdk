@@ -56,4 +56,9 @@ public class SlashCommandRequest extends Request<SlashCommandContext> {
     public SlashCommandPayload getPayload() {
         return payload;
     }
+
+    @Override
+    public String getResponseUrl() {
+        return getPayload() != null ? getPayload().getResponseUrl() : null;
+    }
 }

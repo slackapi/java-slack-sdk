@@ -54,4 +54,8 @@ public class ViewSubmissionRequest extends Request<ViewSubmissionContext> {
         return payload;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }

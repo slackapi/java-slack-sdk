@@ -53,4 +53,8 @@ public class BlockSuggestionRequest extends Request<BlockSuggestionContext> {
         return payload;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }

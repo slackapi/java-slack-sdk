@@ -70,6 +70,8 @@ public abstract class Request<CTX extends Context> {
 
     public abstract RequestHeaders getHeaders();
 
+    public abstract String getResponseUrl();
+
     /**
      * Verifies if the signature is valid.
      *

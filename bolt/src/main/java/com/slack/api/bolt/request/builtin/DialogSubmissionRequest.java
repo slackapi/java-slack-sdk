@@ -57,4 +57,8 @@ public class DialogSubmissionRequest extends Request<DialogSubmissionContext> {
         return payload;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return getPayload() != null ? getPayload().getResponseUrl() : null;
+    }
 }

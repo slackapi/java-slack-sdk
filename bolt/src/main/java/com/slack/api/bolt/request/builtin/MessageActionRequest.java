@@ -59,4 +59,8 @@ public class MessageActionRequest extends Request<MessageActionContext> {
         return payload;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return getPayload() != null ? getPayload().getResponseUrl() : null;
+    }
 }

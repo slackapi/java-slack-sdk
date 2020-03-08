@@ -41,4 +41,8 @@ public class OAuthStartRequest extends Request<OAuthCallbackContext> {
         return this.headers;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }

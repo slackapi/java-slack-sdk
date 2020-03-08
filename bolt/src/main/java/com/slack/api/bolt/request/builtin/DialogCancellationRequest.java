@@ -57,4 +57,8 @@ public class DialogCancellationRequest extends Request<DialogCancellationContext
         return payload;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return getPayload() != null ? getPayload().getResponseUrl() : null;
+    }
 }

@@ -60,4 +60,8 @@ public class OAuthCallbackRequest extends Request<OAuthCallbackContext> {
         return payload;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }

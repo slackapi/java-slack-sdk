@@ -17,11 +17,10 @@ import com.slack.api.model.block.LayoutBlock;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 import static com.slack.api.bolt.middleware.MiddlewareOps.isNoAuthRequiredRequest;
+import static com.slack.api.bolt.response.ResponseTypes.*;
 
 /**
  * Verifies if valid installations exist for requests.
@@ -78,8 +77,9 @@ public class MultiTeamsAuthorization implements Middleware {
         }
 
         if (botToken == null && userToken == null) {
-            // try to respond to the user action if there is a response_url
-            String responseUrl = extractResponseUrlFromPayloadIfExists(req);
+            // In this case, no valid bot/user token was found for enterprise_id/team_id/user_id given by a request.
+            // Bolt tries to ask the user to install the app if there is a response_url in the request.
+            String responseUrl = req.getResponseUrl();
             if (responseUrl != null) {
                 Responder responder = new Responder(config.getSlack(), responseUrl);
                 if (req.getRequestType() != null) {
@@ -89,15 +89,15 @@ public class MultiTeamsAuthorization implements Middleware {
                             context.getEnterpriseId(), context.getTeamId(), context.getRequestUserId()) : null;
                     if (req.getRequestType().equals(RequestType.Command)) {
                         if (blocks != null) {
-                            responder.sendToCommand(body -> body.responseType("ephemeral").blocks(blocks));
+                            responder.sendToCommand(body -> body.responseType(ephemeral).blocks(blocks));
                         } else {
-                            responder.sendToCommand(body -> body.responseType("ephemeral").text(text));
+                            responder.sendToCommand(body -> body.responseType(ephemeral).text(text));
                         }
                     } else {
                         if (blocks != null) {
-                            responder.sendToAction(body -> body.responseType("ephemeral").blocks(blocks));
+                            responder.sendToAction(body -> body.responseType(ephemeral).blocks(blocks));
                         } else {
-                            responder.sendToAction(body -> body.responseType("ephemeral").text(text));
+                            responder.sendToAction(body -> body.responseType(ephemeral).text(text));
                         }
                     }
                     // just for acknowledging this request
@@ -161,27 +161,4 @@ public class MultiTeamsAuthorization implements Middleware {
                 .body("{\"error\":\"a request for an unknown workspace detected\"}")
                 .build();
     }
-
-    protected static String extractResponseUrlFromPayloadIfExists(Request req) {
-        try {
-            Method getPayload = req.getClass().getDeclaredMethod("getPayload");
-            Object payload = getPayload.invoke(req);
-            if (payload == null) {
-                return null;
-            }
-            Method getResponseUrl = payload.getClass().getDeclaredMethod("getResponseUrl");
-            Object value = getResponseUrl.invoke(payload);
-            if (value instanceof String) {
-                return (String) value;
-            }
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            if (log.isDebugEnabled()) {
-                log.debug("Failed to call a method (error: {}, request: {})",
-                        e.getMessage(), req.getRequestBodyAsString(), e);
-            }
-            return null;
-        }
-        return null;
-    }
-
 }
