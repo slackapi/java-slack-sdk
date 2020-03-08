@@ -50,4 +50,9 @@ public class UrlVerificationRequest extends Request<DefaultContext> {
     public String getChallenge() {
         return this.challenge;
     }
+
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }

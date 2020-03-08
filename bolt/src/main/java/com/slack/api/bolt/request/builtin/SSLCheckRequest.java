@@ -50,4 +50,9 @@ public class SSLCheckRequest extends Request<DefaultContext> {
     public SSLCheckPayload getPayload() {
         return payload;
     }
+
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }

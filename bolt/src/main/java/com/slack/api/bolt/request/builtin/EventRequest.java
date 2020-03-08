@@ -75,4 +75,9 @@ public class EventRequest extends Request<EventContext> {
             return eventType + ":" + eventSubtype;
         }
     }
+
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }

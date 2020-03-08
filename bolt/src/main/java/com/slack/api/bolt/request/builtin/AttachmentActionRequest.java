@@ -55,6 +55,11 @@ public class AttachmentActionRequest extends Request<AttachmentActionContext> {
         return this.headers;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return getPayload() != null ? getPayload().getResponseUrl() : null;
+    }
+
     public AttachmentActionPayload getPayload() {
         return payload;
     }

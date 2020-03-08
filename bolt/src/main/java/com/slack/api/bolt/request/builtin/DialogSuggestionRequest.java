@@ -53,4 +53,8 @@ public class DialogSuggestionRequest extends Request<DialogSuggestionContext> {
         return payload;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }

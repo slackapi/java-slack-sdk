@@ -54,4 +54,8 @@ public class ViewClosedRequest extends Request<DefaultContext> {
         return payload;
     }
 
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }

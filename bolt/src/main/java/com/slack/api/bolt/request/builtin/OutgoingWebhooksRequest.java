@@ -53,4 +53,9 @@ public class OutgoingWebhooksRequest extends Request<OutgoingWebhooksContext> {
     public WebhookPayload getPayload() {
         return payload;
     }
+
+    @Override
+    public String getResponseUrl() {
+        return null;
+    }
 }
