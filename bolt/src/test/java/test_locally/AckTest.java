@@ -144,9 +144,4 @@ public class AckTest {
         app.attachmentAction("callback-id", (req, ctx) -> ctx.ack());
     }
 
-    @Test
-    public void webhook() {
-        app.webhook("trigger word", (req, ctx) -> ctx.ack());
-        app.webhook("trigger word", (req, ctx) -> ctx.ack("Thanks!"));
-    }
 }

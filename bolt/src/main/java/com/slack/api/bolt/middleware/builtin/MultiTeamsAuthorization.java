@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static com.slack.api.bolt.middleware.MiddlewareOps.isNoAuthRequiredRequest;
-import static com.slack.api.bolt.response.ResponseTypes.*;
+import static com.slack.api.bolt.response.ResponseTypes.ephemeral;
 
 /**
  * Verifies if valid installations exist for requests.

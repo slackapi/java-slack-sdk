@@ -272,16 +272,6 @@ public class App {
     private final Map<Pattern, DialogCancellationHandler> dialogCancellationHandlers = new HashMap<>();
 
     // -------------------------------------
-    // Outgoing Webhooks
-    // https://api.slack.com/legacy/custom-integrations/outgoing-webhooks
-    // -------------------------------------
-
-    /**
-     * Registered handlers for outgoing webhooks (custom integrations).
-     */
-    private final Map<String, OutgoingWebhooksHandler> outgoingWebhooksHandlers = new HashMap<>();
-
-    // -------------------------------------
     // Installation information / OAuth access tokens
     // -------------------------------------
 
@@ -694,18 +684,6 @@ public class App {
         return this;
     }
 
-    // -------------
-    // Outgoing Webhooks
-    // https://api.slack.com/legacy/custom-integrations/outgoing-webhooks
-
-    public App webhook(String triggerWord, OutgoingWebhooksHandler handler) {
-        if (outgoingWebhooksHandlers.get(triggerWord) != null) {
-            log.warn("Replaced the handler for {}", triggerWord);
-        }
-        outgoingWebhooksHandlers.put(triggerWord, handler);
-        return this;
-    }
-
     // ----------------------
     // OAuth App configuration methods
 
@@ -877,16 +855,6 @@ public class App {
                         }
                     }
                     log.warn("No SlashCommandHandler registered for command: {}", request.getPayload().getCommand());
-                    break;
-                }
-                case OutgoingWebhooks: {
-                    OutgoingWebhooksRequest request = (OutgoingWebhooksRequest) slackRequest;
-                    OutgoingWebhooksHandler handler = outgoingWebhooksHandlers.get(request.getPayload().getTriggerWord());
-                    if (handler != null) {
-                        return handler.apply(request, request.getContext());
-                    } else {
-                        log.warn("No OutgoingWebhooksHandler for trigger_word: {}", request.getPayload().getTriggerWord());
-                    }
                     break;
                 }
                 case Event: {

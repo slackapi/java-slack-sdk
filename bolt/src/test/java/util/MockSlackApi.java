@@ -54,8 +54,8 @@ public class MockSlackApi extends HttpServlet {
             // oauth.v2.access / oauth.access
             if (requestBody.contains("code=valid")) {
                 body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");
-                body = body.replaceFirst("\"access_token\": \"\",", "\"access_token\": \"" +  ValidToken + "\",");
-                body = body.replaceFirst("\"bot_access_token\": \"\",", "\"bot_access_token\": \"" +  ValidToken + "\",");
+                body = body.replaceFirst("\"access_token\": \"\",", "\"access_token\": \"" + ValidToken + "\",");
+                body = body.replaceFirst("\"bot_access_token\": \"\",", "\"bot_access_token\": \"" + ValidToken + "\",");
             }
         } else {
             body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");

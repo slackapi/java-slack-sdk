@@ -8,7 +8,6 @@ public enum RequestType {
     OAuthCallback,
     Command,
     SSLCheck,
-    OutgoingWebhooks,
     Event,
     UrlVerification,
     AttachmentAction,

@@ -4,7 +4,6 @@ import com.slack.api.bolt.middleware.MiddlewareChain;
 import com.slack.api.bolt.middleware.builtin.LegacyRequestVerification;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.BlockActionRequest;
-import com.slack.api.bolt.request.builtin.OutgoingWebhooksRequest;
 import com.slack.api.bolt.request.builtin.SSLCheckRequest;
 import com.slack.api.bolt.request.builtin.SlashCommandRequest;
 import com.slack.api.bolt.response.Response;
@@ -68,18 +67,6 @@ public class LegacyRequestVerificationTest {
         Map<String, List<String>> rawHeaders = new HashMap<>();
         RequestHeaders headers = new RequestHeaders(rawHeaders);
         SlashCommandRequest req = new SlashCommandRequest(requestBody, headers);
-        Response resp = new Response();
-        Response result = middleware.apply(req, resp, chain);
-        assertEquals(200L, result.getStatusCode().longValue());
-    }
-
-    @Test
-    public void validRequest_going_webhooks() throws Exception {
-        String requestBody = "token=gIkuvaNzQIHg97ATvDxqgjtO&trigger_word=hello";
-        LegacyRequestVerification middleware = new LegacyRequestVerification("gIkuvaNzQIHg97ATvDxqgjtO");
-        Map<String, List<String>> rawHeaders = new HashMap<>();
-        RequestHeaders headers = new RequestHeaders(rawHeaders);
-        OutgoingWebhooksRequest req = new OutgoingWebhooksRequest(requestBody, headers);
         Response resp = new Response();
         Response result = middleware.apply(req, resp, chain);
         assertEquals(200L, result.getStatusCode().longValue());

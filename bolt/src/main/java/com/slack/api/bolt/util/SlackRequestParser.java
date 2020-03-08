@@ -13,7 +13,6 @@ import com.slack.api.app_backend.interactive_components.payload.BlockActionPaylo
 import com.slack.api.app_backend.interactive_components.payload.BlockSuggestionPayload;
 import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
 import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
-import com.slack.api.app_backend.outgoing_webhooks.WebhookPayloadDetector;
 import com.slack.api.app_backend.slash_commands.SlashCommandPayloadDetector;
 import com.slack.api.app_backend.ssl_check.SSLCheckPayloadDetector;
 import com.slack.api.app_backend.util.JsonPayloadExtractor;
@@ -46,7 +45,6 @@ public class SlackRequestParser {
     private JsonPayloadExtractor jsonPayloadExtractor = new JsonPayloadExtractor();
     private SlashCommandPayloadDetector commandRequestDetector = new SlashCommandPayloadDetector();
     private SSLCheckPayloadDetector sslCheckPayloadDetector = new SSLCheckPayloadDetector();
-    private WebhookPayloadDetector webhookRequestDetector = new WebhookPayloadDetector();
     private Gson gson = GsonFactory.createSnakeCase();
 
     public SlackRequestParser(AppConfig appConfig) {
@@ -119,8 +117,6 @@ public class SlackRequestParser {
                     slackRequest = new SlashCommandRequest(requestBody, headers);
                 } else if (sslCheckPayloadDetector.isSSLCheckRequest(requestBody)) {
                     slackRequest = new SSLCheckRequest(requestBody, headers);
-                } else if (webhookRequestDetector.isWebhook(requestBody)) {
-                    slackRequest = new OutgoingWebhooksRequest(requestBody, headers);
                 } else if (appConfig.isOAuthStartEnabled() && appConfig.getOauthStartRequestURI().equals(requestUri)) {
                     slackRequest = new OAuthStartRequest(requestBody, headers);
                 } else if (appConfig.isOAuthCallbackEnabled()
