@@ -2,8 +2,6 @@ package com.slack.api.bolt.middleware.builtin;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.slack.api.app_backend.outgoing_webhooks.WebhookPayloadDetector;
-import com.slack.api.app_backend.outgoing_webhooks.WebhookPayloadParser;
 import com.slack.api.app_backend.slash_commands.SlashCommandPayloadDetector;
 import com.slack.api.app_backend.slash_commands.SlashCommandPayloadParser;
 import com.slack.api.app_backend.util.JsonPayloadExtractor;
@@ -30,8 +28,6 @@ public class LegacyRequestVerification implements Middleware {
     private final JsonPayloadExtractor jsonPayloadExtractor = new JsonPayloadExtractor();
     private final SlashCommandPayloadDetector commandRequestDetector = new SlashCommandPayloadDetector();
     private final SlashCommandPayloadParser commandPayloadParser = new SlashCommandPayloadParser();
-    private final WebhookPayloadDetector webhooksRequestDetector = new WebhookPayloadDetector();
-    private final WebhookPayloadParser webhookPayloadParser = new WebhookPayloadParser();
     private final Gson gson = GsonFactory.createSnakeCase();
 
     public LegacyRequestVerification(String verificationToken) {
@@ -52,8 +48,6 @@ public class LegacyRequestVerification implements Middleware {
         } else {
             if (commandRequestDetector.isCommand(body)) {
                 actualToken = commandPayloadParser.parse(body).getToken();
-            } else if (webhooksRequestDetector.isWebhook(body)) {
-                actualToken = webhookPayloadParser.parse(body).getToken();
             } else {
                 log.info("Failed to find a verification token - {}", body);
                 return Response.json(401, "{\"error\":\"invalid request\"}");

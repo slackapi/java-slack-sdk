@@ -160,18 +160,6 @@ public class SlackRequestParserTest {
     }
 
     @Test
-    public void testOutgoingWebhooksRequest() {
-        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
-                .requestBody("trigger_word=hi")
-                .headers(new RequestHeaders(new HashMap<>()))
-                .build();
-
-        Request<?> slackRequest = parser.parse(request);
-        assertNotNull(slackRequest);
-        assertTrue(slackRequest instanceof OutgoingWebhooksRequest);
-    }
-
-    @Test
     public void testOAuthStartRequest() {
         Map<String, List<String>> query = new HashMap<>();
         SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()

@@ -7,7 +7,10 @@ import com.slack.api.app_backend.dialogs.payload.DialogSuggestionPayload;
 import com.slack.api.app_backend.interactive_components.payload.AttachmentActionPayload;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.RequestType;
-import com.slack.api.bolt.request.builtin.*;
+import com.slack.api.bolt.request.builtin.AttachmentActionRequest;
+import com.slack.api.bolt.request.builtin.DialogCancellationRequest;
+import com.slack.api.bolt.request.builtin.DialogSubmissionRequest;
+import com.slack.api.bolt.request.builtin.DialogSuggestionRequest;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,9 +38,6 @@ public class LegacyRequestsTest {
 
     String dialogSubmissionPayloadString;
     DialogSubmissionRequest dialogSubmissionRequest;
-
-    String webhookPayloadString;
-    OutgoingWebhooksRequest webhooksRequest;
 
     @Before
     public void setup() throws UnsupportedEncodingException {
@@ -84,9 +84,6 @@ public class LegacyRequestsTest {
                 dialogSubmissionPayloadString,
                 requestHeaders
         );
-
-        webhookPayloadString = "token=123&trigger_word=hello";
-        webhooksRequest = new OutgoingWebhooksRequest(webhookPayloadString, requestHeaders);
     }
 
     @Test
@@ -95,7 +92,6 @@ public class LegacyRequestsTest {
         assertEquals(RequestType.DialogCancellation, dialogCancellationRequest.getRequestType());
         assertEquals(RequestType.DialogSuggestion, dialogSuggestionRequest.getRequestType());
         assertEquals(RequestType.DialogSubmission, dialogSubmissionRequest.getRequestType());
-        assertEquals(RequestType.OutgoingWebhooks, webhooksRequest.getRequestType());
     }
 
     @Test
@@ -112,7 +108,6 @@ public class LegacyRequestsTest {
         assertEquals(
                 "payload=" + URLEncoder.encode(dialogSubmissionPayloadString, "UTF-8"),
                 dialogSubmissionRequest.getRequestBodyAsString());
-        assertEquals(webhookPayloadString, webhooksRequest.getRequestBodyAsString());
     }
 
     @Test
@@ -121,7 +116,6 @@ public class LegacyRequestsTest {
         assertEquals(requestHeaders, dialogCancellationRequest.getHeaders());
         assertEquals(requestHeaders, dialogSuggestionRequest.getHeaders());
         assertEquals(requestHeaders, dialogSubmissionRequest.getHeaders());
-        assertEquals(requestHeaders, webhooksRequest.getHeaders());
     }
 
     @Test
@@ -130,6 +124,5 @@ public class LegacyRequestsTest {
         assertNotNull(dialogCancellationRequest.getPayload());
         assertNotNull(dialogSuggestionRequest.getPayload());
         assertNotNull(dialogSubmissionRequest.getPayload());
-        assertNotNull(webhooksRequest.getPayload());
     }
 }
