@@ -186,25 +186,19 @@ public interface MethodsClient {
 
     <T extends SlackApiResponse> T postFormAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
-            String endpoint,
+            String methodName,
+            Class<T> clazz) throws IOException, SlackApiException;
+
+    <T extends SlackApiResponse> T postFormWithTokenAndParseResponse(
+            RequestConfigurator<FormBody.Builder> form,
+            String methodName,
+            String token,
             Class<T> clazz) throws IOException, SlackApiException;
 
     <T extends SlackApiResponse> T postFormWithAuthorizationHeaderAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
             String endpoint,
             String authorizationHeader,
-            Class<T> clazz) throws IOException, SlackApiException;
-
-    <T extends SlackApiResponse> T postFormWithTokenAndParseResponse(
-            RequestConfigurator<FormBody.Builder> form,
-            String endpoint,
-            String token,
-            Class<T> clazz) throws IOException, SlackApiException;
-
-    <T extends SlackApiResponse> T postMultipartAndParseResponse(
-            RequestConfigurator<MultipartBody.Builder> form,
-            String endpoint,
-            String token,
             Class<T> clazz) throws IOException, SlackApiException;
 
     // ------------------------------

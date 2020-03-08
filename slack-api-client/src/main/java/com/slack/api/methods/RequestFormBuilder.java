@@ -969,10 +969,10 @@ public class RequestFormBuilder {
         MultipartBody.Builder form = new MultipartBody.Builder();
 
         if (req.getFileData() != null) {
-            RequestBody file = RequestBody.create(MultipartBody.FORM, req.getFileData());
+            RequestBody file = RequestBody.create(req.getFileData(), MultipartBody.FORM);
             form.addFormDataPart("file", req.getFilename(), file);
         } else if (req.getFile() != null) {
-            RequestBody file = RequestBody.create(MultipartBody.FORM, req.getFile());
+            RequestBody file = RequestBody.create(req.getFile(), MultipartBody.FORM);
             form.addFormDataPart("file", req.getFilename(), file);
         }
 
