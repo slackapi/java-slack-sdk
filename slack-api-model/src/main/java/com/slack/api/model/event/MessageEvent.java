@@ -27,6 +27,8 @@ public class MessageEvent implements Event {
     private final String type = TYPE_NAME;
     private String channel;
     private String user;
+
+    private String botId;
     private BotProfile botProfile;
 
     private String text;

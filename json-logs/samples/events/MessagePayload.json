@@ -17,6 +17,7 @@
     "type": "message",
     "channel": "",
     "user": "",
+    "bot_id": "",
     "bot_profile": {
       "id": "",
       "deleted": false,
