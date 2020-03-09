@@ -24,6 +24,11 @@
             <artifactId>bolt</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.slack.api</groupId>
+            <artifactId>bolt-servlet</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

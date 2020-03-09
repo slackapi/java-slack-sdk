@@ -14,7 +14,7 @@
     </properties>
 
     <groupId>com.slack.api</groupId>
-    <artifactId>bolt-jetty</artifactId>
+    <artifactId>bolt-servlet</artifactId>
     <version>1.0.0-RC2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -39,35 +39,31 @@
             <artifactId>bolt</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.slack.api</groupId>
-            <artifactId>bolt-servlet</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>${javax.servlet-api.version}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
-            <version>${jetty.version}</version>
-            <scope>compile</scope>
+            <version>${jetty-for-tests.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>${jetty.version}</version>
-            <scope>compile</scope>
+            <version>${jetty-for-tests.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>${jetty.version}</version>
-            <scope>compile</scope>
+            <version>${jetty-for-tests.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

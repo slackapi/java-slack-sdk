@@ -16,6 +16,7 @@
         <module>slack-api-model</module>
         <module>slack-app-backend</module>
         <module>bolt</module>
+        <module>bolt-servlet</module>
         <module>bolt-jetty</module>
         <module>bolt-aws-lambda</module>
         <module>bolt-micronaut</module>
