@@ -130,19 +130,8 @@ app.message(sdk, (payload, ctx) -> {
 If matching an exact word in a text message works for you, the code looks much simpler as below.
 
 ```java
-app.message("seratch", (payload, ctx) -> {
-  return ctx.ack();
-});
-```
-
-To do the similar with `message` events from bot users, use an `app.botMessage` listener. There is a difference between [`message` event payloads without any subtype](https://api.slack.com/events/message) and [`message` event payloads with their subtype](https://api.slack.com/events/message/bot_message). As Java is a statically typed language, these events are distinguished by the subtype.
-
-```java
-app.botMessage("seratch", (payload, ctx) -> {
-  return ctx.ack();
-});
-
-app.botMessage(Pattern.compile("^.*seratch.*$"), (payload, ctx) -> {
+app.message(":wave:", (payload, ctx) -> {
+  ctx.say("Hello, <@" + payload.getEvent().getUser() + ">");
   return ctx.ack();
 });
 ```
