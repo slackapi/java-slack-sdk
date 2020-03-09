@@ -63,17 +63,10 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U234"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage("test", (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
-
         EventRequest req = buildRequest(messagePayload);
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
         assertTrue(userMessageReceived.get());
-        assertFalse(botMessageReceived.get());
     }
 
     @Test
@@ -84,17 +77,11 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U234"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage("testing", (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
 
         EventRequest req = buildRequest(messagePayload);
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
         assertFalse(userMessageReceived.get());
-        assertFalse(botMessageReceived.get());
     }
 
     @Test
@@ -105,11 +92,6 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U123"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage("sent by a user", (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
 
         EventsApiPayload<MessageEvent> payload = buildUserMessagePayload();
 
@@ -117,7 +99,6 @@ public class MessageTest {
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
         assertTrue(userMessageReceived.get());
-        assertFalse(botMessageReceived.get());
     }
 
     @Test
@@ -128,11 +109,6 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U123"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage("sent by a user...", (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
 
         EventsApiPayload<MessageEvent> payload = buildUserMessagePayload();
         payload.getEvent().setText("This is a message sent by a user... is it really correct?");
@@ -141,7 +117,6 @@ public class MessageTest {
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
         assertTrue(userMessageReceived.get());
-        assertFalse(botMessageReceived.get());
     }
 
     @Test
@@ -152,11 +127,6 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U123"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage("sent by a user, is it really correct?", (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
 
         EventsApiPayload<MessageEvent> payload = buildUserMessagePayload();
         payload.getEvent().setText("This is a message sent by a user... is it really correct?");
@@ -165,7 +135,6 @@ public class MessageTest {
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
         assertFalse(userMessageReceived.get());
-        assertFalse(botMessageReceived.get());
     }
 
     @Test
@@ -177,11 +146,6 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U123"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage(pattern, (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
 
         EventsApiPayload<MessageEvent> payload = buildUserMessagePayload();
         payload.getEvent().setText("This is a message sent by a user... is it really correct?");
@@ -190,7 +154,6 @@ public class MessageTest {
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
         assertTrue(userMessageReceived.get());
-        assertFalse(botMessageReceived.get());
     }
 
     @Test
@@ -202,11 +165,6 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U123"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage(pattern, (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
 
         EventsApiPayload<MessageEvent> payload = buildUserMessagePayload();
         payload.getEvent().setText("This is a message sent by a user... is it really correct?");
@@ -215,7 +173,6 @@ public class MessageTest {
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
         assertFalse(userMessageReceived.get());
-        assertFalse(botMessageReceived.get());
     }
 
     @Test
@@ -226,11 +183,6 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U123"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage("posted by a user", (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
 
         EventsApiPayload<MessageEvent> payload = buildUserMessagePayload();
 
@@ -238,7 +190,6 @@ public class MessageTest {
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
         assertFalse(userMessageReceived.get());
-        assertFalse(botMessageReceived.get());
     }
 
     @Test
@@ -249,11 +200,6 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U123"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage("sent by a bot user", (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
 
         EventsApiPayload<MessageBotEvent> payload = buildUserBotMessagePayload();
 
@@ -262,7 +208,6 @@ public class MessageTest {
         assertEquals(200L, response.getStatusCode().longValue());
 
         assertFalse(userMessageReceived.get());
-        assertTrue(botMessageReceived.get());
     }
 
     @Test
@@ -273,11 +218,6 @@ public class MessageTest {
             userMessageReceived.set(req.getEvent().getUser().equals("U123"));
             return ctx.ack();
         });
-        AtomicBoolean botMessageReceived = new AtomicBoolean(false);
-        app.botMessage("posted by a bot user", (req, ctx) -> {
-            botMessageReceived.set(req.getEvent().getBotId().equals("B123"));
-            return ctx.ack();
-        });
 
         EventsApiPayload<MessageBotEvent> payload = buildUserBotMessagePayload();
 
@@ -286,7 +226,6 @@ public class MessageTest {
         assertEquals(200L, response.getStatusCode().longValue());
 
         assertFalse(userMessageReceived.get());
-        assertFalse(botMessageReceived.get());
     }
 
     App buildApp() {

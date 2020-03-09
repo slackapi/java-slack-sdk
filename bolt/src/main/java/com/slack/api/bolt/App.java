@@ -502,25 +502,6 @@ public class App {
         return this;
     }
 
-    public App botMessage(String pattern, BoltEventHandler<MessageBotEvent> messageHandler) {
-        return botMessage(Pattern.compile("^.*" + Pattern.quote(pattern) + ".*$"), messageHandler);
-    }
-
-    public App botMessage(Pattern pattern, BoltEventHandler<MessageBotEvent> messageHandler) {
-        event(MessageBotEvent.class, (event, ctx) -> {
-            String text = event.getEvent().getText();
-            if (log.isDebugEnabled()) {
-                log.debug("Run a bot message event handler (pattern: {}, text: {})", pattern, text);
-            }
-            if (text != null && pattern.matcher(text).matches()) {
-                return messageHandler.apply(event, ctx);
-            } else {
-                return ctx.ack();
-            }
-        });
-        return this;
-    }
-
     public App message(String pattern, BoltEventHandler<MessageEvent> messageHandler) {
         return message(Pattern.compile("^.*" + Pattern.quote(pattern) + ".*$"), messageHandler);
     }

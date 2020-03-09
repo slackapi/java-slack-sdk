@@ -17,12 +17,6 @@ public class MessagesSample {
             ctx.say("You're right. This is a message by a user <@" + event.getEvent().getUser() + "> !");
             return ctx.ack();
         });
-        app.botMessage("posted by a bot", (event, ctx) -> {
-            String botId = event.getEvent().getBotId();
-            String userId = ctx.client().botsInfo(r -> r.bot(botId)).getBot().getUserId();
-            ctx.say("You're right. This is a message by a bot user <@" + userId + "> !");
-            return ctx.ack();
-        });
         TestSlackAppServer server = new TestSlackAppServer(app);
         server.start();
     }
