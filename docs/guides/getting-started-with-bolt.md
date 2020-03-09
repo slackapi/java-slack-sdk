@@ -32,12 +32,17 @@ Let's start building a Slack app with Bolt! This guide shows how to set up a Bol
 
 ### Maven
 
-The first thing to do is to add the **bolt** dependency to your `pom.xml` anyway. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), and any others on top of Servlet environment, only the **bolt** library is required for your app.
+The first thing to do is to add the **bolt** dependency to your `pom.xml` anyway. The **bolt** dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), and any others on top of Servlet environment, the **bolt-servlet** library is required for your app. Adding only **bolt-servlet** also works for you.
 
 ```xml
 <dependency>
   <groupId>com.slack.api</groupId>
   <artifactId>bolt</artifactId>
+  <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+<dependency>
+  <groupId>com.slack.api</groupId>
+  <artifactId>bolt-servlet</artifactId>
   <version>{{ site.sdkLatestVersion }}</version>
 </dependency>
 ```
@@ -47,7 +52,7 @@ If you run the Bolt app on the Jetty HTTP server without any frameworks, you can
 ```xml
 <dependency>
   <groupId>com.slack.api</groupId>
-  <artifactId>bolt-jetty</artifactId> <!-- will resolve "bolt" artifact as its dependency -->
+  <artifactId>bolt-jetty</artifactId> <!-- will resolve "bolt" and "bolt-servlet" artifacts as its dependencies -->
   <version>{{ site.sdkLatestVersion }}</version>
 </dependency>
 ```
@@ -59,6 +64,7 @@ I don't repeat the Maven part. Just add necessary dependencies in your `build.gr
 ```groovy
 dependencies {
   implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
 }
 ```
@@ -83,7 +89,6 @@ repositories {
   mavenCentral()
 }
 dependencies {
-  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
   implementation("org.slf4j:slf4j-simple:1.7.30")
 }
@@ -245,7 +250,6 @@ repositories {
 dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
   implementation("org.slf4j:slf4j-simple:1.7.30") // or logback-classic
 }

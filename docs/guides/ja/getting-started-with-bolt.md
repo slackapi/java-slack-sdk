@@ -32,12 +32,17 @@ lang: ja
 
 ### Maven
 
-まず最初にやることは **bolt** 依存ライブラリを `pom.xml` に追加することです。Bolt を [Spring Boot](https://spring.io/projects/spring-boot)、[Quarkus (Undertow)](https://quarkus.io/) やその他 Servlet 環境で利用する場合は **bolt** という一つのライブラリだけを追加すれば OK です。
+まず最初にやることは **bolt** 依存ライブラリを `pom.xml` に追加することです。このライブラリ自体は特定の環境に依存していません。Bolt を [Spring Boot](https://spring.io/projects/spring-boot)、[Quarkus (Undertow)](https://quarkus.io/) やその他 Servlet 環境で利用する場合は **bolt-servlet** というライブラリも追加します。単に **bolt-servlet** だけを追加しても OK です。
 
 ```xml
 <dependency>
   <groupId>com.slack.api</groupId>
   <artifactId>bolt</artifactId>
+  <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+<dependency>
+  <groupId>com.slack.api</groupId>
+  <artifactId>bolt-servlet</artifactId>
   <version>{{ site.sdkLatestVersion }}</version>
 </dependency>
 ```
@@ -47,7 +52,7 @@ lang: ja
 ```xml
 <dependency>
   <groupId>com.slack.api</groupId>
-  <artifactId>bolt-jetty</artifactId> <!-- "bolt" はこれの依存として解決されます -->
+  <artifactId>bolt-jetty</artifactId> <!-- "bolt" と　"bolt-servlet" はこれの依存として解決されます -->
   <version>{{ site.sdkLatestVersion }}</version>
 </dependency>
 ```
@@ -59,6 +64,7 @@ Maven での説明を繰り返す必要はないでしょう。必要な依存�
 ```groovy
 dependencies {
   implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
 }
 ```
@@ -83,7 +89,6 @@ repositories {
   mavenCentral()
 }
 dependencies {
-  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
   implementation("org.slf4j:slf4j-simple:1.7.30")
 }
@@ -246,7 +251,6 @@ repositories {
 dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
   implementation("org.slf4j:slf4j-simple:1.7.30") // または logback-classic など
 }

@@ -42,7 +42,7 @@ repositories {
 }
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
-  implementation 'com.slack.api:bolt:{{ site.sdkLatestVersion }}'
+  implementation 'com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}'
 }
 ```
 
@@ -162,14 +162,9 @@ ngrok http 3000 --subdomain {あなたのサブドメイン}
 
 ## Micronaut
 
-ありふれた Servlet での実行環境ではなく、[Micronaut](https://micronaut.io/) を使いたい場合、**bolt-micronaut** というライブラリを追加します。**bolt-jetty** は必要ないので注意してください。以下は Maven の例ですが、もちろん Gradle でも同様です。
+ありふれた Servlet での実行環境ではなく、[Micronaut](https://micronaut.io/) を使いたい場合、**bolt-micronaut** というライブラリだけを追加します（**bolt** ライブラリもこれの依存ライブラリとして自動で解決されます）。**bolt-jetty** は必要ないので注意してください。以下は Maven の例ですが、もちろん Gradle でも同様です。
 
 ```xml
-<dependency>
-  <groupId>com.slack.api</groupId>
-  <artifactId>bolt</artifactId>
-  <version>{{ site.sdkLatestVersion }}</version>
-</dependency>
 <dependency>
   <groupId>com.slack.api</groupId>
   <artifactId>bolt-micronaut</artifactId>
@@ -259,17 +254,12 @@ micronaut:
 ```xml
 <dependency>
   <groupId>io.quarkus</groupId>
-  <artifactId>quarkus-core</artifactId>
-  <version>${quarkus.version}</version>
-</dependency>
-<dependency>
-  <groupId>io.quarkus</groupId>
   <artifactId>quarkus-undertow</artifactId>
   <version>${quarkus.version}</version>
 </dependency>
 <dependency>
   <groupId>com.slack.api</groupId>
-  <artifactId>bolt</artifactId>
+  <artifactId>bolt-servlet</artifactId>
   <version>{{ site.sdkLatestVersion }}</version>
 </dependency>
 ```
@@ -425,11 +415,6 @@ mvn archetype:generate \
 <dependency>
   <groupId>io.helidon.config</groupId>
   <artifactId>helidon-config-yaml</artifactId>
-</dependency>
-<dependency>
-  <groupId>com.slack.api</groupId>
-  <artifactId>bolt</artifactId>
-  <version>{{ site.sdkLatestVersion }}</version>
 </dependency>
 <dependency>
   <groupId>com.slack.api</groupId>

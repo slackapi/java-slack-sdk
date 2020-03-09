@@ -43,7 +43,7 @@ repositories {
 }
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
-  implementation 'com.slack.api:bolt:{{ site.sdkLatestVersion }}'
+  implementation 'com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}'
 }
 ```
 
@@ -163,14 +163,9 @@ ngrok http 3000 --subdomain {your-favorite-one}
 
 ## Micronaut
 
-If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add **bolt-micronaut**, NOT **bolt-jetty**. Needless to say, that's the same for Gradle projects.
+If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add **bolt-micronaut**, NOT **bolt-jetty**. As the **bolt** dependency will be automatically resolved as the **bolt-micronaut**'s dependency, you don't need to add it. Needless to say, that's the same for Gradle projects.
 
 ```xml
-<dependency>
-  <groupId>com.slack.api</groupId>
-  <artifactId>bolt</artifactId>
-  <version>{{ site.sdkLatestVersion }}</version>
-</dependency>
 <dependency>
   <groupId>com.slack.api</groupId>
   <artifactId>bolt-micronaut</artifactId>
@@ -261,17 +256,12 @@ Although the RESTEasy dependency has to be included in a blank project, it's not
 ```xml
 <dependency>
   <groupId>io.quarkus</groupId>
-  <artifactId>quarkus-core</artifactId>
-  <version>${quarkus.version}</version>
-</dependency>
-<dependency>
-  <groupId>io.quarkus</groupId>
   <artifactId>quarkus-undertow</artifactId>
   <version>${quarkus.version}</version>
 </dependency>
 <dependency>
   <groupId>com.slack.api</groupId>
-  <artifactId>bolt</artifactId>
+  <artifactId>bolt-servlet</artifactId>
   <version>{{ site.sdkLatestVersion }}</version>
 </dependency>
 ```
@@ -427,11 +417,6 @@ The only thing you need to do with the build settings is add **bolt-helidon** de
 <dependency>
   <groupId>io.helidon.config</groupId>
   <artifactId>helidon-config-yaml</artifactId>
-</dependency>
-<dependency>
-  <groupId>com.slack.api</groupId>
-  <artifactId>bolt</artifactId>
-  <version>{{ site.sdkLatestVersion }}</version>
 </dependency>
 <dependency>
   <groupId>com.slack.api</groupId>
