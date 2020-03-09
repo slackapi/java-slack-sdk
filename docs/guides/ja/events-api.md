@@ -131,19 +131,8 @@ app.message(sdk, (payload, ctx) -> {
 もし固定のキーワードを含むだけのパターンであれば、コードはもっとシンプルです。以下では指定されたキーワードをそのまま一部に含んでいるメッセージにマッチします。
 
 ```java
-app.message("seratch", (payload, ctx) -> {
-  return ctx.ack();
-});
-```
-
-同じことをボットユーザーからのメッセージにも行いたい場合は `app.botMessage` リスナーを使います。 [subtype を持たない `message` イベント](https://api.slack.com/events/message)と [subtype が `bot_message` の `message` イベント](https://api.slack.com/events/message/bot_message)は、ペイロードのデータ構造が異なるため、静的型付け言語である Java の Bolt 実装ではこの二つを明確に区別しています。
-
-```java
-app.botMessage("seratch", (payload, ctx) -> {
-  return ctx.ack();
-});
-
-app.botMessage(Pattern.compile("^.*seratch.*$"), (payload, ctx) -> {
+app.message(":wave:", (payload, ctx) -> {
+  ctx.say("Hello, <@" + payload.getEvent().getUser() + ">");
   return ctx.ack();
 });
 ```

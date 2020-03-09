@@ -1,6 +1,7 @@
 package com.slack.api.model.event;
 
 import com.slack.api.model.Attachment;
+import com.slack.api.model.BotProfile;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
@@ -26,6 +27,7 @@ public class MessageEvent implements Event {
     private final String type = TYPE_NAME;
     private String channel;
     private String user;
+    private BotProfile botProfile;
 
     private String text;
     private List<LayoutBlock> blocks;
