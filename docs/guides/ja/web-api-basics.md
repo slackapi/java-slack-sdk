@@ -332,7 +332,7 @@ import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
 import redis.clients.jedis.JedisPool;
 
 SlackConfig config = new SlackConfig();
-// macOS では、以下の手順で自動させることができます
+// macOS では、以下の手順で起動させることができます
 // brew install redis
 // redis-server /usr/local/etc/redis.conf --loglevel verbose
 JedisPool jedis = new JedisPool("localhost");
