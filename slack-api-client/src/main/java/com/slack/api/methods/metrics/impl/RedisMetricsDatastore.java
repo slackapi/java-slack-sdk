@@ -24,8 +24,7 @@ public class RedisMetricsDatastore implements MetricsDatastore {
     public RedisMetricsDatastore(String appName, JedisPool jedisPool) {
         this.appName = appName;
         this.jedisPool = jedisPool;
-        String threadGroupName = "slack-methods-metrics-redis";
-        this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(threadGroupName);
+        this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(getThreadGroupName());
         this.cleanerExecutor.scheduleAtFixedRate(new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
     }
 
@@ -38,6 +37,10 @@ public class RedisMetricsDatastore implements MetricsDatastore {
         this.cleanerExecutor.shutdown();
         this.jedisPool.destroy();
         super.finalize();
+    }
+
+    public String getThreadGroupName() {
+        return "slack-methods-metrics-redis:" + this.appName;
     }
 
     private void addToStatsKeyIndices(Jedis jedis, String statsKey) {

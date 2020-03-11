@@ -24,8 +24,7 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
 
     public MemoryMetricsDatastore(int numberOfNodes) {
         this.numberOfNodes = numberOfNodes;
-        String threadGroupName = "slack-methods-metrics-memory";
-        this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(threadGroupName);
+        this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(getThreadGroupName());
         this.cleanerExecutor.scheduleAtFixedRate(new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
     }
 
@@ -33,6 +32,10 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
     protected void finalize() throws Throwable {
         cleanerExecutor.shutdown();
         super.finalize();
+    }
+
+    public String getThreadGroupName() {
+        return "slack-methods-metrics-memory:" + Integer.toHexString(hashCode());
     }
 
     // -----------------------------------------------------------
