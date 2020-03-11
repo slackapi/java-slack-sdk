@@ -6,6 +6,7 @@ import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsConfig;
 import com.slack.api.methods.MethodsStats;
+import com.slack.api.methods.metrics.impl.MemoryMetricsDatastore;
 import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
 import org.junit.After;
 import org.junit.Before;
@@ -16,8 +17,7 @@ import util.MockSlackApiServer;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static util.MockSlackApi.ValidToken;
 
 public class RedisMetricsDatastoreTest {
@@ -97,5 +97,14 @@ public class RedisMetricsDatastoreTest {
         datastore.updateCurrentQueueSize(executor, "T123", "auth.test");
         datastore.updateNumberOfLastMinuteRequests(executor, "T123", "auth.test");
         datastore.setRateLimitedMethodRetryEpochMillis(executor, "T123", "auth.test", 123456L);
+    }
+
+    @Test
+    public void threadGroupName() {
+        RedisMetricsDatastore datastore1 = new RedisMetricsDatastore("app1", jedisPool);
+        RedisMetricsDatastore datastore2 = new RedisMetricsDatastore("app2", jedisPool);
+        assertEquals("slack-methods-metrics-redis:app1", datastore1.getThreadGroupName());
+        assertEquals("slack-methods-metrics-redis:app2", datastore2.getThreadGroupName());
+        assertNotEquals(datastore1.getThreadGroupName(), datastore2.getThreadGroupName());
     }
 }

@@ -4,7 +4,6 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import util.MockSlackApiServer;
 

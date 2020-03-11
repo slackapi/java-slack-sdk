@@ -7,6 +7,7 @@ import com.slack.api.methods.metrics.LastMinuteRequests;
 import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.methods.metrics.WaitingMessageIds;
 import com.slack.api.util.json.GsonFactory;
+import com.slack.api.util.thread.ExecutorServiceFactory;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
 
     public MemoryMetricsDatastore(int numberOfNodes) {
         this.numberOfNodes = numberOfNodes;
-        this.cleanerExecutor = Executors.newSingleThreadScheduledExecutor();
+        this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(getThreadGroupName());
         this.cleanerExecutor.scheduleAtFixedRate(new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
     }
 
@@ -31,6 +32,10 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
     protected void finalize() throws Throwable {
         cleanerExecutor.shutdown();
         super.finalize();
+    }
+
+    public String getThreadGroupName() {
+        return "slack-methods-metrics-memory:" + Integer.toHexString(hashCode());
     }
 
     // -----------------------------------------------------------

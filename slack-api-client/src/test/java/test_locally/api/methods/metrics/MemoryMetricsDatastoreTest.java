@@ -7,8 +7,7 @@ import org.junit.Test;
 import java.util.Map;
 
 import static com.slack.api.methods.MethodsConfig.DEFAULT_SINGLETON_EXECUTOR_NAME;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class MemoryMetricsDatastoreTest {
 
@@ -50,5 +49,12 @@ public class MemoryMetricsDatastoreTest {
                 DEFAULT_SINGLETON_EXECUTOR_NAME, null, "chat.postMessage", "id");
         datastore.deleteFromWaitingMessageIds(
                 DEFAULT_SINGLETON_EXECUTOR_NAME, null, "chat.postMessage", "id");
+    }
+
+    @Test
+    public void threadGroupName() {
+        MemoryMetricsDatastore datastore1 = new MemoryMetricsDatastore(1);
+        MemoryMetricsDatastore datastore2 = new MemoryMetricsDatastore(1);
+        assertNotEquals(datastore1.getThreadGroupName(), datastore2.getThreadGroupName());
     }
 }
