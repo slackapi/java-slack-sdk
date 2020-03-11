@@ -15,6 +15,7 @@ public class DndUpdatedUserEvent implements Event {
     private final String type = TYPE_NAME;
     private String user;
     private DndStatus dndStatus;
+    private String eventTs;
 
     @Data
     public static class DndStatus {

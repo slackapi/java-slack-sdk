@@ -3,8 +3,8 @@ package samples;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.model.block.LayoutBlock;
-import samples.util.ResourceLoader;
-import samples.util.TestSlackAppServer;
+import util.ResourceLoader;
+import util.TestSlackAppServer;
 
 import java.util.List;
 

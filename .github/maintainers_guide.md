@@ -70,6 +70,8 @@ By installing App(2) and App(3), you get the followings. Set them as env variabl
 |-|-|
 |SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN|User token (`xoxp-` token) with a Grid admin permissions. To get this, the app needs to be installed to not a workspace but the Org in the Grid.|
 |SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN|User token (`xoxp-` token) with a workspace admin permissions. The workspace must be one of the workspaces in an Enterprise Grid you run unit tests.|
+|SLACK_SDK_TEST_GRID_WORKSPACE_BOT_TOKEN|User token (`xoxb-` token) with a workspace bot permissions. The workspace must be one of the workspaces in an Enterprise Grid you run unit tests.|
+|SLACK_SDK_TEST_GRID_WORKSPACE_USER_TOKEN|User token (`xoxp-` token) with a workspace bot permissions. The workspace must be one of the workspaces in an Enterprise Grid you run unit tests.|
 |SLACK_SDK_TEST_GRID_TEAM_ID|The `team_id` of the workspace `SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN` can manage.|
 |SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID|A shared channel's ID `SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN` can manage.|
 |SLACK_SDK_TEST_EMAIL_ADDRESS|An email address to invite.|

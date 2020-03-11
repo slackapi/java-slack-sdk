@@ -34,5 +34,6 @@ public class MemberLeftChannelEvent implements Event {
     private String channel;
     private String channelType;
     private String team;
+    private String eventTs;
 
 }

@@ -1,4 +1,5 @@
 {
   "type": "subteam_self_removed",
-  "subteam_id": ""
+  "subteam_id": "",
+  "event_ts": ""
 }

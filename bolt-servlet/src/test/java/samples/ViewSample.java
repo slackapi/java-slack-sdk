@@ -9,8 +9,8 @@ import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.view.View;
 import com.slack.api.model.view.ViewState;
 import com.slack.api.util.json.GsonFactory;
-import samples.util.ResourceLoader;
-import samples.util.TestSlackAppServer;
+import util.ResourceLoader;
+import util.TestSlackAppServer;
 
 import java.util.Arrays;
 import java.util.HashMap;

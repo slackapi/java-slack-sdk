@@ -1,23 +1,23 @@
 {
   "token": "",
-  "enterprise_id": "",
-  "team_id": "",
-  "api_app_id": "",
-  "type": "",
-  "authed_users": [
-    ""
-  ],
-  "authed_teams": [
-    ""
-  ],
-  "event_id": "",
-  "event_time": 123,
+  "team_id": "T00000000",
+  "enterprise_id": "E00000000",
+  "api_app_id": "A00000000",
   "event": {
     "type": "channel_rename",
     "channel": {
-      "id": "",
+      "id": "C00000000",
+      "is_channel": false,
       "name": "",
-      "created": 123
-    }
-  }
+      "name_normalized": "",
+      "created": 12345
+    },
+    "event_ts": "0000000000.000000"
+  },
+  "type": "event_callback",
+  "event_id": "",
+  "event_time": 12345,
+  "authed_users": [
+    "W00000000"
+  ]
 }

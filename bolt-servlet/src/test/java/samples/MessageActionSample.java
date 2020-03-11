@@ -6,8 +6,8 @@ import com.slack.api.bolt.response.Responder;
 import com.slack.api.methods.response.chat.ChatGetPermalinkResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.model.view.View;
-import samples.util.ResourceLoader;
-import samples.util.TestSlackAppServer;
+import util.ResourceLoader;
+import util.TestSlackAppServer;
 
 public class MessageActionSample {
 

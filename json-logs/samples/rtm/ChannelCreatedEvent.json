@@ -3,7 +3,12 @@
   "channel": {
     "id": "",
     "name": "",
+    "name_normalized": "",
+    "is_channel": false,
+    "is_shared": false,
+    "is_org_shared": false,
     "created": 123,
     "creator": ""
-  }
+  },
+  "event_ts": ""
 }

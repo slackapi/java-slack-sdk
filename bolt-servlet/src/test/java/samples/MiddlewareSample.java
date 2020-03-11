@@ -3,8 +3,8 @@ package samples;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import org.slf4j.Logger;
-import samples.util.ResourceLoader;
-import samples.util.TestSlackAppServer;
+import util.ResourceLoader;
+import util.TestSlackAppServer;
 
 public class MiddlewareSample {
 

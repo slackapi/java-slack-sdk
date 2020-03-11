@@ -5,8 +5,8 @@ import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.response.reactions.ReactionsAddResponse;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.model.event.ReactionAddedEvent;
-import samples.util.ResourceLoader;
-import samples.util.TestSlackAppServer;
+import util.ResourceLoader;
+import util.TestSlackAppServer;
 
 public class EventsSample_WatchingYou {
 

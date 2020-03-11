@@ -1,4 +1,6 @@
 {
   "type": "group_unarchive",
-  "channel": ""
+  "channel": "",
+  "actor_id": "",
+  "event_ts": ""
 }

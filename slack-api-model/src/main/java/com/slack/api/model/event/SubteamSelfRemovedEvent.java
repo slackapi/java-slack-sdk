@@ -17,5 +17,6 @@ public class SubteamSelfRemovedEvent implements Event {
 
     private final String type = TYPE_NAME;
     private String subteamId;
+    private String eventTs;
 
 }

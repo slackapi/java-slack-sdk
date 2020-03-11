@@ -1,4 +1,6 @@
 {
   "type": "channel_left",
-  "channel": ""
+  "channel": "",
+  "actor_id": "",
+  "event_ts": ""
 }

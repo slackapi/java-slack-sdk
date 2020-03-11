@@ -17,10 +17,12 @@ public class DndUpdatedEvent implements Event {
     private final String type = TYPE_NAME;
     private String user;
     private DndStatus dndStatus;
+    private String eventTs;
 
     @Data
     public static class DndStatus {
         private boolean dndEnabled;
+        private Integer snoozeRemaining;
         private Integer nextDndStartTs;
         private Integer nextDndEndTs;
         private boolean snoozeEnabled;

@@ -1,4 +1,4 @@
-package samples.util;
+package util;
 
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.WebEndpoint;
@@ -86,12 +86,16 @@ public class TestSlackAppServer {
         server.setHandler(handler);
     }
 
-    public void start() throws Exception {
+    public void startAsDaemon() throws Exception {
         for (App app : pathToApp.values()) {
             app.start();
         }
         server.start();
         log.info("⚡️ Bolt app is running!");
+    }
+
+    public void start() throws Exception {
+        startAsDaemon();
         server.join();
     }
 

@@ -10,8 +10,8 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
-import samples.util.ResourceLoader;
-import samples.util.TestSlackAppServer;
+import util.ResourceLoader;
+import util.TestSlackAppServer;
 
 import java.net.URLDecoder;
 import java.util.Arrays;

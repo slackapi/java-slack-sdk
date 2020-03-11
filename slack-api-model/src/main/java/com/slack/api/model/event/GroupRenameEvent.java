@@ -15,11 +15,14 @@ public class GroupRenameEvent implements Event {
 
     private final String type = TYPE_NAME;
     private Channel channel;
+    private String eventTs;
 
     @Data
     public static class Channel {
         private String id;
         private String name;
+        private String nameNormalized;
+        private boolean isGroup;
         private Integer created;
     }
 
