@@ -53,5 +53,6 @@ public class MemberJoinedChannelEvent implements Event {
     private String channelType;
     private String team;
     private String inviter;
+    private String eventTs;
 
 }

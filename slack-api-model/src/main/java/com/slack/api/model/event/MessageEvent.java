@@ -25,6 +25,7 @@ public class MessageEvent implements Event {
     private String clientMsgId;
 
     private final String type = TYPE_NAME;
+    private String team;
     private String channel;
     private String user;
 

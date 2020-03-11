@@ -5,11 +5,26 @@
     "type": "",
     "channel": "",
     "created_by": "",
-    "created": 123,
+    "date_create": 123,
     "message": {
       "client_msg_id": "",
       "type": "",
+      "team": "",
       "user": "",
+      "bot_id": "",
+      "bot_profile": {
+        "id": "",
+        "deleted": false,
+        "name": "",
+        "updated": 123,
+        "app_id": "",
+        "icons": {
+          "image_36": "",
+          "image_48": "",
+          "image_72": ""
+        },
+        "team_id": ""
+      },
       "text": "",
       "blocks": [
         {
@@ -482,7 +497,11 @@
       "pinned_to": [
         ""
       ],
-      "permalink": ""
+      "permalink": "",
+      "edited": {
+        "user": "",
+        "ts": ""
+      }
     },
     "file": {
       "id": "",

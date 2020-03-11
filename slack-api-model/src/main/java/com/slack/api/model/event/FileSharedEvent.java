@@ -18,6 +18,9 @@ public class FileSharedEvent implements Event {
     private final String type = TYPE_NAME;
     private String fileId;
     private File file;
+    private String channelId;
+    private String userId;
+    private String eventTs;
 
     @Data
     public static class File {

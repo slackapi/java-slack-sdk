@@ -1,4 +1,4 @@
-package samples.util;
+package util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -11,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.util.stream.Collectors.joining;
 
@@ -34,6 +36,19 @@ public class ResourceLoader {
             log.error(e.getMessage(), e);
         }
         return config;
+    }
+
+    public static Map<String, String> loadValues() {
+        ClassLoader classLoader = DialogSample.class.getClassLoader();
+        // src/test/resources
+        try (InputStream is = classLoader.getResourceAsStream("appConfig.json");
+             InputStreamReader isr = new InputStreamReader(is)) {
+            String json = new BufferedReader(isr).lines().collect(joining());
+            return new Gson().fromJson(json, HashMap.class);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
     }
 
     public static String load(String filepath) {

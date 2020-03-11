@@ -3,6 +3,9 @@
   "channel": {
     "id": "",
     "name": "",
+    "name_normalized": "",
+    "is_channel": false,
     "created": 123
-  }
+  },
+  "event_ts": ""
 }

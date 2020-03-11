@@ -1,5 +1,6 @@
 {
   "type": "im_close",
   "user": "",
-  "channel": ""
+  "channel": "",
+  "event_ts": ""
 }

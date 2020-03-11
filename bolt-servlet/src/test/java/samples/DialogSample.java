@@ -5,8 +5,8 @@ import com.slack.api.app_backend.dialogs.response.Option;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
-import samples.util.ResourceLoader;
-import samples.util.TestSlackAppServer;
+import util.ResourceLoader;
+import util.TestSlackAppServer;
 
 import java.util.Arrays;
 import java.util.List;

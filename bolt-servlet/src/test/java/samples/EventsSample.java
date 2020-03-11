@@ -8,8 +8,8 @@ import com.slack.api.model.event.MessageBotEvent;
 import com.slack.api.model.event.MessageDeletedEvent;
 import com.slack.api.model.event.MessageEvent;
 import lombok.extern.slf4j.Slf4j;
-import samples.util.ResourceLoader;
-import samples.util.TestSlackAppServer;
+import util.ResourceLoader;
+import util.TestSlackAppServer;
 
 @Slf4j
 public class EventsSample {

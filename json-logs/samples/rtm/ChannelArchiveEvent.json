@@ -1,5 +1,7 @@
 {
   "type": "channel_archive",
   "channel": "",
-  "user": ""
+  "user": "",
+  "is_moved": 123,
+  "event_ts": ""
 }

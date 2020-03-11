@@ -42,7 +42,7 @@ public class ChannelCreatedEventTest {
         ChannelCreatedEvent event = new ChannelCreatedEvent();
         event.setChannel(new ChannelCreatedEvent.Channel());
         String generatedJson = gson.toJson(event);
-        String expectedJson = "{\"type\":\"channel_created\",\"channel\":{}}";
+        String expectedJson = "{\"type\":\"channel_created\",\"channel\":{\"is_channel\":false,\"is_shared\":false,\"is_org_shared\":false}}";
         assertThat(generatedJson, is(expectedJson));
     }
 

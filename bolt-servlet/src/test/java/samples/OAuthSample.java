@@ -1,7 +1,7 @@
 package samples;
 
 import com.slack.api.bolt.App;
-import samples.util.TestSlackAppServer;
+import util.TestSlackAppServer;
 
 public class OAuthSample {
 

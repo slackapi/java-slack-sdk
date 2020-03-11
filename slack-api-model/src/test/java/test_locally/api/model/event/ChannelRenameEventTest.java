@@ -41,7 +41,7 @@ public class ChannelRenameEventTest {
         event.setChannel(new ChannelRenameEvent.Channel());
         event.getChannel().setName("foo");
         String generatedJson = gson.toJson(event);
-        String expectedJson = "{\"type\":\"channel_rename\",\"channel\":{\"name\":\"foo\"}}";
+        String expectedJson = "{\"type\":\"channel_rename\",\"channel\":{\"name\":\"foo\",\"is_channel\":false}}";
         assertThat(generatedJson, is(expectedJson));
     }
 }

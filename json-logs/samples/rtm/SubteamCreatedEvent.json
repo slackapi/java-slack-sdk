@@ -2,8 +2,11 @@
   "type": "subteam_created",
   "subteam": {
     "id": "",
+    "enterprise_subteam_id": "",
     "team_id": "",
+    "is_subteam": false,
     "is_usergroup": false,
+    "auto_provision": false,
     "name": "",
     "description": "",
     "handle": "",
@@ -24,5 +27,6 @@
       ]
     },
     "user_count": ""
-  }
+  },
+  "event_ts": ""
 }

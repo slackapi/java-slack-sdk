@@ -1,6 +1,7 @@
 {
   "client_msg_id": "",
   "type": "message",
+  "team": "",
   "channel": "",
   "user": "",
   "bot_id": "",

@@ -1,6 +1,7 @@
 package com.slack.api.model.event;
 
 import com.slack.api.model.Attachment;
+import com.slack.api.model.BotProfile;
 import com.slack.api.model.File;
 import com.slack.api.model.FileComment;
 import com.slack.api.model.block.LayoutBlock;
@@ -26,7 +27,7 @@ public class StarRemovedEvent implements Event {
         private String type;
         private String channel;
         private String createdBy; // user id
-        private Integer created;
+        private Long dateCreate;
 
         private Message message;
         private File file; // TODO: correct definition
@@ -37,13 +38,23 @@ public class StarRemovedEvent implements Event {
     public static class Message {
         private String clientMsgId;
         private String type;
+        private String team;
         private String user;
+        private String botId;
+        private BotProfile botProfile;
         private String text;
         private List<LayoutBlock> blocks;
         private List<Attachment> attachments;
         private String ts;
         private List<String> pinnedTo;
         private String permalink;
+        private Edited edited;
+    }
+
+    @Data
+    public static class Edited {
+        private String user;
+        private String ts;
     }
 
 }

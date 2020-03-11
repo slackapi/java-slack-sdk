@@ -15,5 +15,7 @@ public class GroupUnarchiveEvent implements Event {
 
     private final String type = TYPE_NAME;
     private String channel;
+    private String actorId;
+    private String eventTs;
 
 }

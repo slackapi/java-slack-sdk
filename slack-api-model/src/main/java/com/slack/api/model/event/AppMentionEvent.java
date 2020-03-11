@@ -1,5 +1,6 @@
 package com.slack.api.model.event;
 
+import com.slack.api.model.BotProfile;
 import lombok.Data;
 
 /**
@@ -27,9 +28,13 @@ public class AppMentionEvent implements Event {
 
     private final String type = TYPE_NAME;
     private String user;
+    private String username;
+    private String botId;
+    private BotProfile botProfile;
     private String subtype;
     private String text;
     private String ts;
+    private String team;
     private String channel;
     private String eventTs;
 

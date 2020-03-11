@@ -26,18 +26,20 @@ public class SubteamUpdatedEvent implements Event {
 
     private final String type = TYPE_NAME;
     private Subteam subteam;
+    private String eventTs;
 
     @Data
     public static class Subteam {
         private String id;
         private String teamId;
-        @SerializedName("is_usergroup")
-        private boolean usergroup;
+        private String enterpriseSubteamId;
+        private boolean isSubteam;
+        private boolean isUsergroup;
         private String name;
         private String description;
         private String handle;
-        @SerializedName("is_external")
-        private boolean external;
+        private boolean isExternal;
+        private boolean autoProvision;
         private Integer dateCreate;
         private Integer dateUpdate;
         private Integer dateDelete;

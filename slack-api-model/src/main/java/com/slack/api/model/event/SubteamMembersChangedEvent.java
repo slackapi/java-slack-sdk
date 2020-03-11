@@ -27,5 +27,6 @@ public class SubteamMembersChangedEvent implements Event {
     private Integer addedUsersCount;
     private List<String> removedUsers;
     private Integer removedUsersCount;
+    private String eventTs;
 
 }

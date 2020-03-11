@@ -18,13 +18,16 @@ public class SubteamCreatedEvent implements Event {
 
     private final String type = TYPE_NAME;
     private Subteam subteam;
+    private String eventTs;
 
     @Data
     public static class Subteam {
         private String id;
+        private String enterpriseSubteamId;
         private String teamId;
-        @SerializedName("is_usergroup")
-        private boolean usergroup;
+        private boolean isSubteam;
+        private boolean isUsergroup;
+        private boolean autoProvision;
         private String name;
         private String description;
         private String handle;

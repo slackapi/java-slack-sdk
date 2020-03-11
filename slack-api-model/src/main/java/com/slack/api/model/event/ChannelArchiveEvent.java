@@ -16,4 +16,6 @@ public class ChannelArchiveEvent implements Event {
     private final String type = TYPE_NAME;
     private String channel;
     private String user;
+    private Integer isMoved;
+    private String eventTs;
 }

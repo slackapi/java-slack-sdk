@@ -15,5 +15,6 @@ public class ImCloseEvent implements Event {
     private final String type = TYPE_NAME;
     private String user;
     private String channel;
+    private String eventTs;
 
 }

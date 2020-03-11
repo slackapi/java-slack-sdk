@@ -1,6 +1,7 @@
 package com.slack.api.model.event;
 
 import com.slack.api.model.Attachment;
+import com.slack.api.model.BotProfile;
 import com.slack.api.model.File;
 import com.slack.api.model.FileComment;
 import com.slack.api.model.block.LayoutBlock;
@@ -22,6 +23,9 @@ public class PinAddedEvent implements Event {
     private String user;
     private String channelId;
     private Item item;
+    private String itemUser;
+    private Integer pinCount;
+    private PinnedInfo pinnedInfo;
     private String eventTs;
 
     @Data
@@ -40,13 +44,23 @@ public class PinAddedEvent implements Event {
     public static class Message {
         private String clientMsgId;
         private String type;
+        private String team;
         private String user;
+        private String botId;
+        private BotProfile botProfile;
         private String text;
         private List<LayoutBlock> blocks;
         private List<Attachment> attachments;
         private String ts;
         private List<String> pinnedTo;
         private String permalink;
+    }
+
+    @Data
+    public static class PinnedInfo {
+        private String channel;
+        private String pinnedBy;
+        private Long pinnedTs;
     }
 
 }
