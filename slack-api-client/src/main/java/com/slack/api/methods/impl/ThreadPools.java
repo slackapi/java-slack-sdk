@@ -1,11 +1,11 @@
 package com.slack.api.methods.impl;
 
 import com.slack.api.methods.MethodsConfig;
+import com.slack.api.util.thread.ExecutorServiceFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ThreadPools {
 
@@ -32,7 +32,8 @@ public class ThreadPools {
             }
             ExecutorService teamExecutor = allTeams.get(teamId);
             if (teamExecutor == null) {
-                teamExecutor = Executors.newFixedThreadPool(customPoolSize);
+                String threadGroupName = "slack-methods-" + config.getExecutorName() + "-" + teamId;
+                teamExecutor = ExecutorServiceFactory.createDaemonThreadPoolExecutor(threadGroupName, customPoolSize);
                 allTeams.put(teamId, teamExecutor);
             }
             return teamExecutor;
@@ -40,7 +41,9 @@ public class ThreadPools {
         } else {
             ExecutorService defaultExecutor = ALL_DEFAULT.get(executorName);
             if (defaultExecutor == null) {
-                defaultExecutor = Executors.newFixedThreadPool(config.getDefaultThreadPoolSize());
+                String threadGroupName = "slack-methods-" + config.getExecutorName();
+                int poolSize = config.getDefaultThreadPoolSize();
+                defaultExecutor = ExecutorServiceFactory.createDaemonThreadPoolExecutor(threadGroupName, poolSize);
                 ALL_DEFAULT.put(config.getExecutorName(), defaultExecutor);
             }
             return defaultExecutor;

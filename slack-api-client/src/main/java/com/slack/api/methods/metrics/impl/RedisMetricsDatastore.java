@@ -4,11 +4,11 @@ import com.slack.api.methods.MethodsStats;
 import com.slack.api.methods.impl.AsyncRateLimitQueue;
 import com.slack.api.methods.metrics.LastMinuteRequests;
 import com.slack.api.methods.metrics.MetricsDatastore;
+import com.slack.api.util.thread.ExecutorServiceFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.util.*;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +24,8 @@ public class RedisMetricsDatastore implements MetricsDatastore {
     public RedisMetricsDatastore(String appName, JedisPool jedisPool) {
         this.appName = appName;
         this.jedisPool = jedisPool;
-        this.cleanerExecutor = Executors.newSingleThreadScheduledExecutor();
+        String threadGroupName = "slack-methods-metrics-redis";
+        this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(threadGroupName);
         this.cleanerExecutor.scheduleAtFixedRate(new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
     }
 

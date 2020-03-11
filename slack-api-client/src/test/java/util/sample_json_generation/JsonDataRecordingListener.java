@@ -1,12 +1,12 @@
 package util.sample_json_generation;
 
 import com.slack.api.util.http.listener.HttpResponseListener;
+import com.slack.api.util.thread.ExecutorServiceFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static java.util.stream.Collectors.joining;
 
@@ -14,7 +14,8 @@ import static java.util.stream.Collectors.joining;
 public class JsonDataRecordingListener extends HttpResponseListener {
 
     private final CopyOnWriteArrayList<String> remaining = new CopyOnWriteArrayList<>();
-    private final ExecutorService executorService = Executors.newFixedThreadPool(5);
+    private final String threadGroupName = "slack-unit-test-JsonDataRecordingListener";
+    private final ExecutorService executorService = ExecutorServiceFactory.createDaemonThreadPoolExecutor(threadGroupName, 5);
 
     public boolean isAllDone() {
         if (remaining.size() > 0) {

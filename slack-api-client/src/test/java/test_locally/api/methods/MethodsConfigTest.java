@@ -11,6 +11,7 @@ public class MethodsConfigTest {
     public void immutable_singleton_setCustomThreadPoolSizes() {
         MethodsConfig.DEFAULT_SINGLETON.setCustomThreadPoolSizes(Collections.emptyMap());
     }
+
     @Test(expected = UnsupportedOperationException.class)
     public void immutable_singleton_setMetricsDatastore() {
         MethodsConfig.DEFAULT_SINGLETON.setMetricsDatastore(null);

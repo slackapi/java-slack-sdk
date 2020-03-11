@@ -64,6 +64,7 @@ public class LegacyApiTest {
             resp.setContentType("application/json");
         }
     }
+
     int port = PortProvider.getPort(LegacyApiTest.class.getName());
     Server server = new Server(port);
 

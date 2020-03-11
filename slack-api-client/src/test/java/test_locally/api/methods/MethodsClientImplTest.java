@@ -14,7 +14,8 @@ import util.MockSlackApiServer;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static util.MockSlackApi.ValidToken;
 
 public class MethodsClientImplTest {
