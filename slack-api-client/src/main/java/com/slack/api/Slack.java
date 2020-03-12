@@ -133,7 +133,7 @@ public class Slack implements AutoCloseable {
      * Creates an RTM API client.
      *
      * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
-     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Limits</a>
      */
     public RTMClient rtm(String apiToken) throws IOException {
         return rtmConnect(apiToken);
@@ -143,7 +143,7 @@ public class Slack implements AutoCloseable {
      * Creates an RTM API client using `/rtm.connect`.
      *
      * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
-     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Limits</a>
      */
     public RTMClient rtmConnect(String apiToken) throws IOException {
         return rtmConnect(apiToken, true);
@@ -153,7 +153,7 @@ public class Slack implements AutoCloseable {
      * Creates an RTM API client using `/rtm.connect`.
      *
      * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
-     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Limits</a>
      */
     public RTMClient rtmConnect(String apiToken, boolean fullUserInfoRequired) throws IOException {
         try {
@@ -190,7 +190,7 @@ public class Slack implements AutoCloseable {
      * Creates an RTM API client using `/rtm.start`.
      *
      * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
-     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Limits</a>
      */
     public RTMClient rtmStart(String apiToken) throws IOException {
         return rtmStart(apiToken, true);
@@ -200,7 +200,7 @@ public class Slack implements AutoCloseable {
      * Creates an RTM API client using `/rtm.start`.
      *
      * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
-     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Lmits</a>
+     * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Limits</a>
      */
     public RTMClient rtmStart(String apiToken, boolean fullUserInfoRequired) throws IOException {
         try {
