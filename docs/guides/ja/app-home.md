@@ -19,7 +19,7 @@ Home タブを有効にするには [Slack アプリ管理画面](http://api.sla
 * Bot User Event を設定
   * **Subscribe to bot events** をクリック
   * **Add Bot User Event** ボタンをクリック
-  * **app_home_opend** を選択
+  * **app_home_opened** を選択
 * 最下部にある **Save Changes** ボタンをクリック
 
 ### Bolt アプリがやること

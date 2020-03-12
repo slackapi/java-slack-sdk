@@ -19,7 +19,7 @@ To enable Events API, go to **Features** > **Event Subscriptions** on the left p
 * Add subscriptions to bot events
   * Click **Subscribe to bot events**
   * Click **Add Bot User Event** button
-  * Choose **app_home_opend** event 
+  * Choose **app_home_opened** event
 * Click the **Save Changes** button at the bottom for sure
 
 ### What Your Bolt App Does
