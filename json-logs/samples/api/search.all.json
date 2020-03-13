@@ -1279,7 +1279,9 @@
         "preview_highlight": "",
         "lines": 12345,
         "lines_more": 12345,
-        "preview_is_truncated": false
+        "preview_is_truncated": false,
+        "user_team": "T00000000",
+        "source_team": "T00000000"
       }
     ]
   },

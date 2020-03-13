@@ -38,6 +38,9 @@ public class MatchedItem {
 
     private String botId;
 
+    private String userTeam;
+    private String sourceTeam;
+
     private String fileId;
     private String externalId;
     private String externalUrl;

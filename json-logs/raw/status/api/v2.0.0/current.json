@@ -156,6 +156,28 @@
           "body": "Google Drive thumbnails aren\u0027t displaying in Slack. We\u0027re sorry for the trouble, and we\u0027ll keep you posted here."
         }
       ]
+    },
+    {
+      "id": 828,
+      "date_created": "2020-03-12T21:46:04-07:00",
+      "date_updated": "2020-03-12T22:17:04-07:00",
+      "title": "Trouble loading Slack for some customers",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-03/1bf29bb9e356ed20",
+      "services": [
+        "Connections"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-03-12T22:17:04-07:00",
+          "body": "We are working hard to identify the cause of the issue. We will be back with more information in 30 minutes."
+        },
+        {
+          "date_created": "2020-03-12T21:46:04-07:00",
+          "body": "Some customers may be having trouble loading Slack or parts of the Slack interface. We\u0027re very sorry for the disruption and we have all hands on deck as we investigate. Thank you for bearing with us."
+        }
+      ]
     }
   ]
 }

@@ -120,6 +120,14 @@
     {
       "date_created": "2020-03-06T14:40:45-08:00",
       "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
+    },
+    {
+      "date_created": "2020-03-12T22:17:04-07:00",
+      "body": "We are working hard to identify the cause of the issue. We will be back with more information in 30 minutes."
+    },
+    {
+      "date_created": "2020-03-12T21:46:04-07:00",
+      "body": "Some customers may be having trouble loading Slack or parts of the Slack interface. We\u0027re very sorry for the disruption and we have all hands on deck as we investigate. Thank you for bearing with us."
     }
   ]
 }

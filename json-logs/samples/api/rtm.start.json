@@ -308,7 +308,13 @@
       "browsers_dismissed_files_low_results_education": false,
       "browsers_seen_initial_files_education": false,
       "browsers_dismissed_initial_drafts_education": false,
-      "browsers_seen_initial_drafts_education": false
+      "browsers_seen_initial_drafts_education": false,
+      "show_ia_tour_relaunch": 12345,
+      "browsers_dismissed_initial_activity_education": false,
+      "browsers_seen_initial_activity_education": false,
+      "browsers_dismissed_initial_saved_education": false,
+      "browsers_seen_initial_saved_education": false,
+      "saved_view": ""
     },
     "created": 12345,
     "manual_presence": ""
