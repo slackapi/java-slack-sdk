@@ -56,7 +56,7 @@ public class ApiTest {
             }
             String endpoint = req.getRequestURI().replaceFirst("^/api/", "");
             if (req.getMethod().equals("POST")) {
-                endpoint += "/000000000";
+                endpoint += "/00000000000";
             }
             String body = reader.readWholeAsString(endpoint + ".json");
             body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");
@@ -116,7 +116,7 @@ public class ApiTest {
     @Test
     public void readUser() throws Exception {
         SCIMClient scim = Slack.getInstance(config).scim(ValidToken);
-        UsersReadResponse response = scim.readUser(r -> r.id("000000000"));
+        UsersReadResponse response = scim.readUser(r -> r.id("00000000000"));
         assertThat(response, is(notNullValue()));
         assertThat(response.getId(), is("W00000000"));
     }
@@ -136,7 +136,7 @@ public class ApiTest {
         SCIMClient scim = Slack.getInstance(config).scim(ValidToken);
         User user = new User();
         user.setUserName("Kazuhiro Sera");
-        UsersPatchResponse response = scim.patchUser(r -> r.id("000000000").user(user));
+        UsersPatchResponse response = scim.patchUser(r -> r.id("00000000000").user(user));
         assertThat(response, is(notNullValue()));
     }
 
@@ -145,21 +145,21 @@ public class ApiTest {
         SCIMClient scim = Slack.getInstance(config).scim(ValidToken);
         User user = new User();
         user.setUserName("Kazuhiro Sera");
-        UsersUpdateResponse response = scim.updateUser(r -> r.id("000000000").user(user));
+        UsersUpdateResponse response = scim.updateUser(r -> r.id("00000000000").user(user));
         assertThat(response, is(notNullValue()));
     }
 
     @Test
     public void deleteUser() throws Exception {
         SCIMClient scim = Slack.getInstance(config).scim(ValidToken);
-        UsersDeleteResponse response = scim.deleteUser(r -> r.id("000000000"));
+        UsersDeleteResponse response = scim.deleteUser(r -> r.id("00000000000"));
         assertThat(response, is(notNullValue()));
     }
 
     @Test
     public void readGroup() throws Exception {
         SCIMClient scim = Slack.getInstance(config).scim(ValidToken);
-        GroupsReadResponse response = scim.readGroup(r -> r.id("000000000"));
+        GroupsReadResponse response = scim.readGroup(r -> r.id("00000000000"));
         assertThat(response, is(notNullValue()));
         assertThat(response.getId(), is("S00000000"));
     }
@@ -179,7 +179,7 @@ public class ApiTest {
         SCIMClient scim = Slack.getInstance(config).scim(ValidToken);
         GroupsPatchRequest.GroupOperation group = new GroupsPatchRequest.GroupOperation();
         group.setMembers(Arrays.asList());
-        GroupsPatchResponse response = scim.patchGroup(r -> r.id("000000000").group(group));
+        GroupsPatchResponse response = scim.patchGroup(r -> r.id("00000000000").group(group));
         assertThat(response, is(notNullValue()));
     }
 
@@ -188,14 +188,14 @@ public class ApiTest {
         SCIMClient scim = Slack.getInstance(config).scim(ValidToken);
         Group group = new Group();
         group.setDisplayName("Kazuhiro Sera");
-        GroupsUpdateResponse response = scim.updateGroup(r -> r.id("000000000").group(group));
+        GroupsUpdateResponse response = scim.updateGroup(r -> r.id("00000000000").group(group));
         assertThat(response, is(notNullValue()));
     }
 
     @Test
     public void deleteGroup() throws Exception {
         SCIMClient scim = Slack.getInstance(config).scim(ValidToken);
-        GroupsDeleteResponse response = scim.deleteGroup(r -> r.id("000000000"));
+        GroupsDeleteResponse response = scim.deleteGroup(r -> r.id("00000000000"));
         assertThat(response, is(notNullValue()));
     }
 }
