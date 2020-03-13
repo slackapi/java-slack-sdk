@@ -56,7 +56,7 @@ public class JsonDataRecorder {
 
         String existingJson = null;
         if (path.startsWith("/scim")) {
-            path = path.replaceFirst("/\\w{9}$", "/000000000");
+            path = path.replaceFirst("/\\w{9,11}$", "/00000000000");
         }
         // status api
         if (path.startsWith("/api/v1.0.0") || path.startsWith("/api/v2.0.0")) {
@@ -334,7 +334,7 @@ public class JsonDataRecorder {
         } else if (element.isJsonObject()) {
             List<Map.Entry<String, JsonElement>> entries = new ArrayList<>(element.getAsJsonObject().entrySet());
             if (entries.size() > 0) {
-                if (entries.get(0).getKey().matches("^[A-Z].{8}$")) {
+                if (entries.get(0).getKey().matches("^[A-Z].{8,10}$")) {
                     Map.Entry<String, JsonElement> first = entries.get(0);
                     for (Map.Entry<String, JsonElement> entry : entries) {
                         element.getAsJsonObject().remove(entry.getKey());
@@ -390,7 +390,7 @@ public class JsonDataRecorder {
         if (value.startsWith("http://") || value.startsWith("https://")) {
             return "https://www.example.com/";
         }
-        if (value.matches("^[A-Z][A-Z0-9]{8}$")) {
+        if (value.matches("^[A-Z][A-Z0-9]{8,10}$")) {
             return value.substring(0, 1) + "00000000"; // identifier
         }
         if (value.matches("^\\d$")) {

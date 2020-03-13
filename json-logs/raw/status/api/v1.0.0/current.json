@@ -128,6 +128,34 @@
     {
       "date_created": "2020-03-12T21:46:04-07:00",
       "body": "Some customers may be having trouble loading Slack or parts of the Slack interface. We\u0027re very sorry for the disruption and we have all hands on deck as we investigate. Thank you for bearing with us."
+    },
+    {
+      "date_created": "2020-03-13T15:58:47-07:00",
+      "body": "We’ve resolved the issue with some features failing to load and Slack is back to full functionality. We’re sorry for the disruption this has caused."
+    },
+    {
+      "date_created": "2020-03-13T12:51:28-07:00",
+      "body": "Our team continues to work to get full functionality restored as soon as possible. No additional information to share just yet, but we’ll keep you posted as soon we have an update."
+    },
+    {
+      "date_created": "2020-03-13T11:49:20-07:00",
+      "body": "We\u0027re continuing to look into this issue and work towards a fix. Thank you again for bearing with us in the meantime."
+    },
+    {
+      "date_created": "2020-03-13T10:47:30-07:00",
+      "body": "Upon further investigation, we\u0027ve also found that this issue may be causing issues with installing apps or integrations in Slack. We\u0027ll continue to keep you in the loop as more information becomes available."
+    },
+    {
+      "date_created": "2020-03-13T10:07:34-07:00",
+      "body": "We\u0027re still hard at work investigating a fix for this issue. We\u0027re sorry about the continued trouble and we\u0027ll let you know once we have more information to share."
+    },
+    {
+      "date_created": "2020-03-13T09:34:42-07:00",
+      "body": "Some users may be experiencing issues with various features in Slack, including app, channel, and user names not displaying as expected. We\u0027re aware of the source of the issue, and we have a team of engineers dedicated to fixing this as soon as possible. We\u0027ll keep you posted as we make progress towards a fix."
+    },
+    {
+      "date_created": "2020-03-13T09:07:32-07:00",
+      "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
     }
   ]
 }
