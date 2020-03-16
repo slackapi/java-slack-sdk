@@ -9,9 +9,7 @@ import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.conversations.ConversationsMembersResponse;
-import com.slack.api.model.Attachment;
-import com.slack.api.model.Conversation;
-import com.slack.api.model.User;
+import com.slack.api.model.*;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
@@ -341,6 +339,8 @@ public class chat_Test {
         assertThat(unfurlResponse.getError(), is(nullValue()));
     }
 
+    // NOTE: You need to add "youtube.com" at
+    // Features > Event Subscriptions > App Unfurl Domains
     @Test
     public void unfurl_raw_json_user() throws Exception {
         loadRandomChannelId();
@@ -418,7 +418,114 @@ public class chat_Test {
         String ts = postResponse.getTs();
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
         ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
-        detail.setBlocks(Arrays.asList(DividerBlock.builder().blockId("123").build()));
+        detail.setBlocks(Arrays.asList(
+                DividerBlock.builder().blockId("b1").build(),
+                DividerBlock.builder().blockId("b2").build()
+        ));
+        unfurls.put(url, detail);
+
+        ChatUnfurlResponse unfurlResponse = slack.methods().chatUnfurl(ChatUnfurlRequest.builder()
+                .token(botToken)
+                .channel(randomChannelId)
+                .ts(ts)
+                .unfurls(unfurls)
+                .build());
+        assertThat(unfurlResponse.getError(), is(nullValue()));
+    }
+
+    // NOTE: You need to add "example.com" at
+    // Features > Event Subscriptions > App Unfurl Domains
+    @Test
+    public void unfurl_issue_399() throws Exception {
+
+        loadRandomChannelId();
+
+        String url = "https://www.example.com/test-issue-399";
+        ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .token(botToken)
+                .channel(randomChannelId)
+                .text(url)
+                .unfurlLinks(true)
+                .unfurlMedia(true)
+                .build());
+        assertThat(postResponse.getError(), is(nullValue()));
+
+        String ts = postResponse.getTs();
+        Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
+
+        // https://api.slack.com/docs/message-link-unfurling#slack_app_unfurling
+        ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
+        detail.setTitle("Let's pretend we're on a rocket ship to Neptune");
+        detail.setText("The planet Neptune looms near. What do you want to do?");
+        detail.setFallback("imagine_001");
+        detail.setAttachmentType("default");
+        detail.setCallbackId("callback-id");
+        detail.setActions(Arrays.asList(
+                Action.builder().name("decision").value("orbit").style("primary").text("Orbit").type(Action.Type.BUTTON).build(),
+                Action.builder().name("decision").value("land").text("Attempt to land").type(Action.Type.BUTTON).build(),
+                Action.builder().name("decision").value("self_destruct").style("danger").text("Self destruct").type(Action.Type.BUTTON)
+                        .confirm(Confirmation.builder()
+                                .title("Are you sure you want to self destruct?")
+                                .text("Maybe you should attempt to land instead. You might crash.")
+                                .okText("Yes, self destruct")
+                                .dismissText("No thanks")
+                                .build()
+                        ).build()
+        ));
+        unfurls.put(url, detail);
+
+        ChatUnfurlResponse unfurlResponse = slack.methods().chatUnfurl(ChatUnfurlRequest.builder()
+                .token(botToken)
+                .channel(randomChannelId)
+                .ts(ts)
+                .unfurls(unfurls)
+                .build());
+        assertThat(unfurlResponse.getError(), is(nullValue()));
+    }
+
+    // NOTE: You need to add "upload.wikimedia.org" at
+    // Features > Event Subscriptions > App Unfurl Domains
+    @Test
+    public void unfurl_issue_399_flickr_example() throws Exception {
+
+        loadRandomChannelId();
+
+        String url = "https://www.example.com/test-issue-399-flickr";
+        ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .token(botToken)
+                .channel(randomChannelId)
+                .text(url)
+                .unfurlLinks(true)
+                .unfurlMedia(true)
+                .build());
+        assertThat(postResponse.getError(), is(nullValue()));
+
+        String ts = postResponse.getTs();
+        Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
+
+        // https://api.slack.com/docs/message-link-unfurling#slack_app_unfurling
+        ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
+        detail.setImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/San_Francisco_Chronicle_Building.jpg/640px-San_Francisco_Chronicle_Building.jpg?download");
+        detail.setColor("#ff0084");
+        detail.setTitle("Chronicle Building");
+        detail.setTitleLink("https://www.example.com/title-link");
+        detail.setFields(Arrays.asList(
+                Field.builder().title("Tags").value("chronicle building, flickrhq, san francisco, sf, sky, soma, California, United States").build(),
+                Field.builder().title("Taken").value("Mon, 30 Jun 2014 15:50:53 GMT").build(),
+                Field.builder().title("Posted").value("Tue, 01 Jul 2014 03:37:27 GMT").build()
+        ));
+
+        detail.setText("This is an awesome picture taken in SF");
+        detail.setFallback("chronicle_building.png");
+        detail.setAttachmentType("default");
+        detail.setCallbackId("callback-id");
+        detail.setActions(Arrays.asList(
+                Action.builder().name("buttons").value("Albums").text("Albums").url("https://www.example.com/buttons/albums").type(Action.Type.BUTTON).build(),
+                Action.builder().name("buttons").value("Groups").text("Groups").url("https://www.example.com/buttons/groups").type(Action.Type.BUTTON).build()
+        ));
+        detail.setAuthorName("Phil Dokas");
+        detail.setAuthorLink("https://www.example.com/author-link");
+        detail.setAuthorIcon("https://secure.gravatar.com/avatar/132fe0f031849e12eea7ce74f99b90f0");
         unfurls.put(url, detail);
 
         ChatUnfurlResponse unfurlResponse = slack.methods().chatUnfurl(ChatUnfurlRequest.builder()

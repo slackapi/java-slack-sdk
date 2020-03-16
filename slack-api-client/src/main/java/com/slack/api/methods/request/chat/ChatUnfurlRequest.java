@@ -2,6 +2,7 @@ package com.slack.api.methods.request.chat;
 
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.model.Action;
+import com.slack.api.model.Field;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Builder;
 import lombok.Data;
@@ -59,13 +60,25 @@ public class ChatUnfurlRequest implements SlackApiRequest {
     // https://api.slack.com/docs/message-link-unfurling#unfurls_parameter
     @Data
     public static class UnfurlDetail {
-        private String title;
+
         private String text;
+
+        // attachments: https://api.slack.com/docs/message-attachments
         private String callbackId;
         private String attachmentType;
         private String fallback;
+        private String color;
+        private String url;
+        private String title;
+        private String titleLink;
+        private String imageUrl;
+        private String authorName;
+        private String authorIcon;
+        private String authorLink;
         private List<Action> actions;
+        private List<Field> fields;
 
+        // blocks: https://api.slack.com/reference/block-kit/blocks
         private List<LayoutBlock> blocks;
     }
 }
