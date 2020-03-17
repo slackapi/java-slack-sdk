@@ -32,7 +32,7 @@ public class GlobalShortcutPayload {
     @Data
     public static class User {
         private String id;
-        private String name;
+        private String username;
         private String teamId;
     }
 

@@ -62,6 +62,8 @@ public class GlobalShortcutTest {
         setRequestHeaders(requestBody, rawHeaders, timestamp);
 
         GlobalShortcutRequest req = new GlobalShortcutRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
+        assertEquals("seratch", req.getPayload().getUser().getUsername()); // a bit different from message_actions payload
+
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
     }
