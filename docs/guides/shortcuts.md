@@ -1,37 +1,32 @@
 ---
 layout: default
-title: "Actions"
+title: "Shortcuts"
 lang: en
 ---
 
-# Actions
+# Shortcuts
 
-[Actions](https://api.slack.com/interactivity/actions) are simple shortcuts that people can use to quickly complete a task with your app — like reporting a bug, requesting time off, or starting a meeting.
+Shortcuts are an evolution of slash commands, surfaced in both the composer menu and the quick switcher. Shortcuts allow users to trigger your app's workflows from intuitive surface areas within Slack.
 
-As of March 2020, this SDK supports the following features (yes, there are [more to come soon](https://medium.com/slack-developer-blog/introducing-the-slack-app-toolkit-3d509a15f41b)!).
+For all types of shortcut requests, your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
-* [Message Actions](https://api.slack.com/interactive-messages)
-
-For all types of action requests, your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
-
-## Message Actions
+## Global / Message Shortcuts
 
 ### Slack App Configuration
 
-To enable Message Actions, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactive Components** on the left pain. There are four things to do on the page.
+To enable global/message shortcuts, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactive Components** on the left pain. There are four things to do on the page.
 
 * Turn on the feature
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events`
-* Add/edit actions in the **Actions** section
-* Click the **Save Changes** button at the buttom for sure
-
-<img src="{{ site.url | append: site.baseurl }}/assets/images/bolt-actions.png" width="400" />
+* Add/edit shortcuts in the **Shortcuts** section
+  * **Name**, **Short Description**, **Callback ID**
+* Click the **Save Changes** button at the bottom for sure
 
 The specified **Callback ID** will be sent as `callback_id` in payloads from Slack.
 
 ### What Your Bolt App Does
 
-All your app needs to do to handle message actions requests are:
+All your app needs to do to handle message shortcuts requests are:
 
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `callback_id` is the one you'd like to handle
@@ -48,16 +43,27 @@ Bolt does many of the commonly required tasks for you. The steps you need to han
 * Build a reply message or do whatever you want to do
 * Call `ack()` as an acknowledgment
 
-Message actions request payloads have `response_url`, so that your app can reply to the action (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the action invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
+Message shortcut request payloads have `response_url`, so that your app can reply to the shortcut (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the shortcut invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message. Global shortcut request payloads don't have `response_url`.
 
-Here is a tiny example demonstrating how to handle message action requests in a Bolt app.
+Here is a tiny example demonstrating how to handle shortcut requests in a Bolt app.
 
 ```java
 import com.slack.api.model.Message;
 import com.slack.api.model.view.View;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
 
-app.messageAction("create-task-action-callback-id", (req, ctx) -> {
+// Handles global shortcut requests
+app.globalShortcut("create-task-shortcut-callback-id", (req, ctx) -> {
+  // do something with the payload
+  ViewsOpenResponse viewsOpenResp = ctx.client().viewsOpen(r -> r
+    .triggerId(ctx.getTriggerId())
+    .view(buildView()));
+
+  return ctx.ack(); // respond with 200 OK to the request
+});
+
+// Handles message shortcut requests (formerly message actions)
+app.messageShortcut("create-task-shortcut-callback-id", (req, ctx) -> {
   String userId = req.getPayload().getUser().getId();
   Message message = req.getPayload().getMessage();
   // do something with the message
@@ -74,15 +80,26 @@ app.messageAction("create-task-action-callback-id", (req, ctx) -> {
   return ctx.ack(); // respond with 200 OK to the request
 });
 
-View buildView(Message message) {
-  return null; // TODO
-}
+View buildView(Message message) { return null; }
+View buildView() { return null; }
 ```
 
 The followings are the ones written in Kotlin. (New to Kotlin? [Getting Started in Kotlin]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt#getting-started-in-kotlin) may be helpful)
 
 ```kotlin
-app.messageAction("create-task-action-callback-id") { req, ctx ->
+// Handles global shortcut requests
+app.globalShortcut("create-task-shortcut-callback-id") { req, ctx -> 
+  // do something with the payload
+  val viewsOpenResp = ctx.client().viewsOpen {
+    it.triggerId(ctx.triggerId)
+      .view(buildView()))
+  }
+
+  ctx.ack() // respond with 200 OK to the request
+}
+
+// Handles message shortcut requests (formerly message actions)
+app.messageShortcut("create-task-shortcut-callback-id") { req, ctx ->
   val userId = req.payload.user.id
   val message = req.payload.message
   // do something with the message
@@ -109,7 +126,7 @@ If you hope to understand what is actually happening with the above code, readin
 import java.util.Map;
 import com.google.gson.Gson;
 import com.slack.api.Slack;
-import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.MessageShortcutPayload;
 import com.slack.api.util.json.GsonFactory;
 
 PseudoHttpResponse handle(PseudoHttpRequest request) {
@@ -125,10 +142,23 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // payload={URL-encoded JSON} in the request body
   String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
+  // The value looks like: { "type": "shortcut", "team": { "id": "T1234567", ... 
+  String payloadType = PseudoActionTypeExtractor.extract(payloadString);
+
   Gson gson = GsonFactory.createSnakeCase();
-  MessageActionPayload payload = gson.fromJson(payloadString, MessageActionPayload.class);
-  if (payload.getCallbackId().equals("create-task-action-callback-id")) {
-    // 3. Build a reply message or do whatever you want to do
+  if (payloadType.equals("shortcut")) {
+    GlobalShortcutPayload payload = gson.fromJson(payloadString, GlobalShortcutPayload.class);
+    if (payload.getCallbackId().equals("create-task-shortcut-callback-id")) {
+      // 3. Build a reply message or do whatever you want to do
+    }
+  } else if (payloadType.equals("message_action")) {
+    MessageShortcutPayload payload = gson.fromJson(payloadString, MessageShortcutPayload.class);
+    if (payload.getCallbackId().equals("create-task-shortcut-callback-id")) {
+      // 3. Build a reply message or do whatever you want to do
+    }
+  } else {
+    // other patterns
+    return PseudoHttpResponse.builder().status(404).build();
   }
 
   // 4. Respond to the Slack API server with 200 OK as an acknowledgment

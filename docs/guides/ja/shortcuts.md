@@ -1,32 +1,27 @@
 ---
 layout: ja
-title: "アクション"
+title: "ショートカット"
 lang: ja
 ---
 
-# アクション
 
-[アクション](https://api.slack.com/interactivity/actions)は、ユーザーがバグのレポート、休暇の申請、ミーティングの開始などのタスクをスピーディに終わらせるためのシンプルなショートカットです。
+# ショートカット
 
-2020 年 3 月現在、この SDK がサポートしている機能は以下の通りです（[近い将来に追加予定](https://medium.com/slack-developer-blog/introducing-the-slack-app-toolkit-3d509a15f41b)）。
+ショートカットは、コンポーザーメニューやクイックスイッチャーから呼び出すことのできるスラッシュコマンドの進化形です。ユーザーは Slack 内の直感的なサーフェスエリアであなたのアプリのワークフローを起動することができるようになります。
 
-* [メッセージアクション](https://api.slack.com/interactive-messages)
+ショートカットのリクエストの全てのタイプで Slack アプリは 3 秒以内に `ack()` メソッドで返答する必要があります。そうでなければ、Slack 上でユーザーにタイムアウトした旨が通知されます。
 
-アクションリクエストの全てのタイプで Slack アプリは 3 秒以内に `ack()` メソッドで返答する必要があります。そうでなければ、Slack 上でユーザーにタイムアウトした旨が通知されます。
-
-## メッセージアクション
+## グローバル / メッセージショートカット
 
 #### Slack アプリの設定
 
-メッセージアクションを有効にするには [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Interactive Components** へ遷移します。このページで以下の設定を行います。
+ショートカットを有効にするには [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Interactive Components** へ遷移します。このページで以下の設定を行います。
 
 * **Interactivity** を Off から On にする
 * `https://{あなたのドメイン}/slack/events` を **Request URL** に設定
-* **Actions** セクションでアクションを設定
-  * **Action Name**, **Short Description**, **Callback ID**
+* **Shortcuts** セクションでショートカットを設定
+  * **Name**, **Short Description**, **Callback ID**
 * 最下部にある **Save Changes** ボタンをクリック
-
-<img src="{{ site.url | append: site.baseurl }}/assets/images/bolt-actions.png" width="400" />
 
 指定された **Callback ID** は Slack API からのペイロードの中で `callback_id` として送信されます。
 
@@ -49,16 +44,27 @@ Bolt は Slack アプリに必要な共通処理の多くを巻き取ります�
 * メッセージを組み立てるなどメインの処理の実装
 * 受け取ったことを伝えるために `ack()`
 
-このペイロードは `response_url` を持っており、例えば `ack()` した後、しばらく経ってからでも返信することができます。URL は発行されてから 30 分間を期限に最大 5 回まで使用することができます。処理が終わったタイミングで `response_url` を使って返信する場合は `ctx.ack()` は引数なしで実行し `ctx.respond()` でメッセージを投稿する、というやり方になります。
+メッセージショートカットのペイロードは `response_url` を持っており、例えば `ack()` した後、しばらく経ってからでも返信することができます。URL は発行されてから 30 分間を期限に最大 5 回まで使用することができます。処理が終わったタイミングで `response_url` を使って返信する場合は `ctx.ack()` は引数なしで実行し `ctx.respond()` でメッセージを投稿する、というやり方になります。グローバルショートカットのペイロードには `response_url` は含まれません。
 
-以下のサンプルは、メッセージアクションのリクエストに応答する実装の例です。
+以下のサンプルは、ショートカットのリクエストに応答する Bolt アプリの実装の例です。
 
 ```java
 import com.slack.api.model.Message;
 import com.slack.api.model.view.View;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
 
-app.messageAction("create-task-action-callback-id", (req, ctx) -> {
+// グローバルショートカットの処理
+app.globalShortcut("create-task-shortcut-callback-id", (req, ctx) -> {
+  // ペイロードを使ってここで何かする
+  ViewsOpenResponse viewsOpenResp = ctx.client().viewsOpen(r -> r
+    .triggerId(ctx.getTriggerId())
+    .view(buildView()));
+
+  return ctx.ack(); // 受け取ったことを伝えるために Slack API へ 200 OK 応答
+});
+
+// メッセージショートカット（旧メッセージアクション）の処理
+app.messageShortcut("create-task-shortcut-callback-id", (req, ctx) -> {
   String userId = req.getPayload().getUser().getId();
   Message message = req.getPayload().getMessage();
   // そのメッセージを使ってここで何かする
@@ -75,15 +81,26 @@ app.messageAction("create-task-action-callback-id", (req, ctx) -> {
   return ctx.ack(); // 受け取ったことを伝えるために Slack API へ 200 OK 応答
 });
 
-View buildView(Message message) {
-  return null; // TODO
-}
+View buildView(Message message) { return null; }
+View buildView() { return null; }
 ```
 
 同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt ことはじめ > Koltin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
-app.messageAction("create-task-action-callback-id") { req, ctx ->
+// グローバルショートカットの処理
+app.globalShortcut("create-task-shortcut-callback-id") { req, ctx -> 
+  // ペイロードを使ってここで何かする
+  val viewsOpenResp = ctx.client().viewsOpen {
+    it.triggerId(ctx.triggerId)
+      .view(buildView()))
+  }
+
+  ctx.ack() // 受け取ったことを伝えるために Slack API へ 200 OK 応答
+}
+
+// メッセージショートカット（旧メッセージアクション）の処理
+app.messageShortcut("create-task-shortcut-callback-id") { req, ctx ->
   val userId = req.payload.user.id
   val message = req.payload.message
   // そのメッセージを使ってここで何かする
@@ -110,7 +127,7 @@ app.messageAction("create-task-action-callback-id") { req, ctx ->
 import java.util.Map;
 import com.google.gson.Gson;
 import com.slack.api.Slack;
-import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.MessageShortcutPayload;
 import com.slack.api.util.json.GsonFactory;
 
 PseudoHttpResponse handle(PseudoHttpRequest request) {
@@ -126,10 +143,23 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // リクエストボディは payload={URL エンコードされた JSON 文字列} の形式
   String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
+  // このような値になります: { "type": "shortcut", "team": { "id": "T1234567", ... 
+  String payloadType != null &&  = PseudoActionTypeExtractor.extract(payloadString);
+
   Gson gson = GsonFactory.createSnakeCase();
-  MessageActionPayload payload = gson.fromJson(payloadString, MessageActionPayload.class);
-  if (payload.getCallbackId().equals("create-task-action-callback-id")) {
-    // 3. 返信メッセージを組み立てるなどメインの処理を実行
+  if (payloadType.equals("shortcut")) {
+    GlobalShortcutPayload payload = gson.fromJson(payloadString, GlobalShortcutPayload.class);
+    if (payload.getCallbackId().equals("create-task-shortcut-callback-id")) {
+      // 3. 返信メッセージを組み立てるなどメインの処理を実行
+    }
+  } else if (payloadType.equals("message_action")) {
+    MessageShortcutPayload payload = gson.fromJson(payloadString, MessageShortcutPayload.class);
+    if (payload.getCallbackId().equals("create-task-shortcut-callback-id")) {
+      // 3. 返信メッセージを組み立てるなどメインの処理を実行
+    }
+  } else {
+    // その他の不明なパターン
+    return PseudoHttpResponse.builder().status(404).build();
   }
 
   // 4. 受け取ったことを伝えるために Slack API へ 200 OK 応答

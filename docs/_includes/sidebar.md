@@ -24,11 +24,9 @@
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt">Getting Started</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/bolt-basics">Bolt Basics</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/slash-commands">Slash Commands</a></li>
-      <!--
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/actions">Actions</a></li>
-      -->
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/interactive-components">Interactive Components</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/modals">Modals</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/shortcuts">Shortcuts</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/app-home">App Home</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/events-api">Events API</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/app-distribution">App Distribution (OAuth)</a></li>
