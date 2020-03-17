@@ -33,9 +33,9 @@ public class AckTest {
     }
 
     @Test
-    public void messageAction() {
+    public void messageShortcut() {
         // TODO
-        app.messageAction("callback-id", (req, ctx) -> ctx.ack());
+        app.messageShortcut("callback-id", (req, ctx) -> ctx.ack());
     }
 
     @Test

@@ -7,7 +7,7 @@ import com.slack.api.bolt.response.Responder;
 import lombok.*;
 
 /**
- * Action type request's context from attachments in messages.
+ * Action type request's context in messages.
  */
 @Getter
 @Setter
@@ -16,7 +16,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
-public class MessageActionContext extends Context implements SayUtility, ActionRespondUtility {
+public class MessageShortcutContext extends Context implements SayUtility, ActionRespondUtility {
 
     private String triggerId;
     private String channelId;

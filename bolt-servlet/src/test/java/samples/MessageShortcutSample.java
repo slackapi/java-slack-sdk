@@ -9,14 +9,14 @@ import com.slack.api.model.view.View;
 import util.ResourceLoader;
 import util.TestSlackAppServer;
 
-public class MessageActionSample {
+public class MessageShortcutSample {
 
     public static void main(String[] args) throws Exception {
         AppConfig config = ResourceLoader.loadAppConfig();
         App app = new App(config);
 
         // https://api.slack.com/apps/{your apiAppId}/interactive-messages
-        app.messageAction("open-view", (req, ctx) -> {
+        app.messageShortcut("open-view", (req, ctx) -> {
             // https://github.com/slackapi/java-slack-sdk/blob/master/bolt/src/test/resources/views/view3.json
             String view = ResourceLoader.load("views/view3.json");
 

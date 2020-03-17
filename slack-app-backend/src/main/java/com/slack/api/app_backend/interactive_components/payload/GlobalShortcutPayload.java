@@ -1,33 +1,25 @@
 package com.slack.api.app_backend.interactive_components.payload;
 
-import com.slack.api.model.Message;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * @see <a href="https://api.slack.com/actions">Actions</a>
- */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageActionPayload {
+public class GlobalShortcutPayload {
 
-    public static final String TYPE = "message_action";
+    public static final String TYPE = "shortcut";
 
     private final String type = TYPE;
-    private String callbackId;
-    private String triggerId;
-    private String messageTs;
-    private String responseUrl;
-    private Message message;
-    private Team team;
-    private User user;
-    private Channel channel;
     private String token;
     private String actionTs;
+    private Team team;
+    private User user;
+    private String callbackId;
+    private String triggerId;
 
     @Data
     public static class Team {
@@ -35,12 +27,6 @@ public class MessageActionPayload {
         private String domain;
         private String enterpriseId;
         private String enterpriseName;
-    }
-
-    @Data
-    public static class Channel {
-        private String id;
-        private String name;
     }
 
     @Data

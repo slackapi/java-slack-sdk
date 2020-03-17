@@ -22,11 +22,11 @@ public class ResourceLoader {
     private ResourceLoader() {
     }
 
-    public static AppConfig loadAppConfig() {
+    public static AppConfig loadAppConfig(String fileName) {
         AppConfig config = new AppConfig();
         ClassLoader classLoader = DialogSample.class.getClassLoader();
         // https://github.com/slackapi/java-slack-sdk/blob/master/bolt/src/test/resources
-        try (InputStream is = classLoader.getResourceAsStream("appConfig.json");
+        try (InputStream is = classLoader.getResourceAsStream(fileName);
              InputStreamReader isr = new InputStreamReader(is)) {
             String json = new BufferedReader(isr).lines().collect(joining());
             JsonObject j = new Gson().fromJson(json, JsonElement.class).getAsJsonObject();
@@ -36,6 +36,10 @@ public class ResourceLoader {
             log.error(e.getMessage(), e);
         }
         return config;
+    }
+
+    public static AppConfig loadAppConfig() {
+        return loadAppConfig("appConfig.json");
     }
 
     public static Map<String, String> loadValues() {

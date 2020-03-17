@@ -1,6 +1,6 @@
 package test_locally.sample_json_generation;
 
-import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.MessageShortcutPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import util.ObjectInitializer;
@@ -11,9 +11,9 @@ import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
-public class MessageActionsPayloadDumpTest {
+public class MessageShortcutPayloadDumpTest {
 
-    ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/app-backend/message-actions");
+    ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/app-backend/interactive-components");
 
     @Test
     public void dumpAll() throws Exception {
@@ -26,11 +26,11 @@ public class MessageActionsPayloadDumpTest {
         }
     }
 
-    private MessageActionPayload buildMessageActionPayload() {
-        return MessageActionPayload.builder()
-                .team(new MessageActionPayload.Team())
-                .user(new MessageActionPayload.User())
-                .channel(new MessageActionPayload.Channel())
+    private MessageShortcutPayload buildMessageActionPayload() {
+        return MessageShortcutPayload.builder()
+                .team(new MessageShortcutPayload.Team())
+                .user(new MessageShortcutPayload.User())
+                .channel(new MessageShortcutPayload.Channel())
                 .message(SampleObjects.Message)
                 .build();
     }
