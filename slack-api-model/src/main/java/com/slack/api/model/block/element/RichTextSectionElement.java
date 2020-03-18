@@ -64,6 +64,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "emoji";
         private final String type = TYPE;
         private String name;
+        private Integer skinTone;
     }
 
     @Data

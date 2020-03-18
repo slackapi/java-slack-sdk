@@ -1,11 +1,10 @@
 package test_locally.api.model.block;
 
-import com.slack.api.model.block.ActionsBlock;
-import com.slack.api.model.block.Blocks;
-import com.slack.api.model.block.ContextBlock;
-import com.slack.api.model.block.ContextBlockElement;
+import com.slack.api.model.Message;
+import com.slack.api.model.block.*;
 import com.slack.api.model.block.element.BlockElement;
 import org.junit.Test;
+import test_locally.unit.GsonFactory;
 
 import java.util.List;
 
@@ -16,6 +15,7 @@ import static com.slack.api.model.block.element.BlockElements.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 public class BlocksTest {
 
@@ -72,6 +72,39 @@ public class BlocksTest {
                 .blockId("block-id")
                 .elements(asElements(button(b -> b.value("v"))))
         ), is(notNullValue()));
+    }
+
+    String richTextSkinTone = "{ \"blocks\": [\n" +
+            "  {\n" +
+            "    \"type\": \"rich_text\",\n" +
+            "    \"block_id\": \"b123\",\n" +
+            "    \"elements\": [\n" +
+            "      {\n" +
+            "        \"type\": \"rich_text_section\",\n" +
+            "        \"elements\": [\n" +
+            "          {\n" +
+            "            \"type\": \"text\",\n" +
+            "            \"text\": \"Hello\"\n" +
+            "          },\n" +
+            "          {\n" +
+            "            \"type\": \"emoji\",\n" +
+            "            \"name\": \"wave\",\n" +
+            "            \"skin_tone\": 3\n" +
+            "          },\n" +
+            "          {\n" +
+            "            \"type\": \"emoji\",\n" +
+            "            \"name\": \"rocket\"\n" +
+            "          }\n" +
+            "        ]\n" +
+            "      }\n" +
+            "    ]\n" +
+            "  }\n" +
+            "]}";
+
+    @Test
+    public void testRichTextSkinToneEmoji() {
+        Message message = GsonFactory.createSnakeCase().fromJson(richTextSkinTone, Message.class);
+        assertNotNull(message);
     }
 
     @Test
