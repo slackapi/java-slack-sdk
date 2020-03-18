@@ -3,9 +3,13 @@ package test_locally.api.model.block;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.element.BlockElement;
+import com.slack.api.model.block.element.ChannelsSelectElement;
+import com.slack.api.model.block.element.ConversationsSelectElement;
+import com.slack.api.model.block.element.MultiConversationsSelectElement;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.slack.api.model.block.Blocks.*;
@@ -15,7 +19,7 @@ import static com.slack.api.model.block.element.BlockElements.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class BlocksTest {
 
@@ -116,6 +120,196 @@ public class BlocksTest {
     public void testCheckboxes() {
         assertThat(section(s -> s.blockId("block-id").accessory(checkboxes(c -> c.actionId("foo")))), is(notNullValue()));
         assertThat(input(i -> i.element(checkboxes(c -> c.actionId("foo")))), is(notNullValue()));
+    }
+
+    @Test
+    public void testConversationsFilter() {
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"input\",\n" +
+                "    \"element\": {\n" +
+                "      \"type\": \"conversations_select\",\n" +
+                "      \"placeholder\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Select a conversation\",\n" +
+                "        \"emoji\": true\n" +
+                "      },\n" +
+                "      \"filter\": {\n" +
+                "        \"include\": [\n" +
+                "          \"public\",\n" +
+                "          \"mpim\"\n" +
+                "        ],\n" +
+                "        \"exclude_bot_users\": true\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"label\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Choose the conversation to publish your result to:\",\n" +
+                "      \"emoji\": true\n" +
+                "    }\n" +
+                "  }\n" +
+                "]}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertNotNull(message);
+        assertEquals(1, message.getBlocks().size());
+        InputBlock block = (InputBlock) message.getBlocks().get(0);
+        ConversationsSelectElement element = (ConversationsSelectElement) block.getElement();
+        assertEquals(Arrays.asList("public", "mpim"), element.getFilter().getInclude());
+        assertTrue(element.getFilter().getExcludeBotUsers());
+        assertNull(element.getFilter().getExcludeExternalSharedChannels());
+    }
+
+    @Test
+    public void testConversationsFilter_multi() {
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"input\",\n" +
+                "    \"element\": {\n" +
+                "      \"type\": \"multi_conversations_select\",\n" +
+                "      \"placeholder\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Select a conversation\",\n" +
+                "        \"emoji\": true\n" +
+                "      },\n" +
+                "      \"filter\": {\n" +
+                "        \"include\": [\n" +
+                "          \"public\",\n" +
+                "          \"mpim\"\n" +
+                "        ],\n" +
+                "        \"exclude_bot_users\": true\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"label\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Choose the conversation to publish your result to:\",\n" +
+                "      \"emoji\": true\n" +
+                "    }\n" +
+                "  }\n" +
+                "]}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertNotNull(message);
+        assertEquals(1, message.getBlocks().size());
+        InputBlock block = (InputBlock) message.getBlocks().get(0);
+        MultiConversationsSelectElement element = (MultiConversationsSelectElement) block.getElement();
+        assertEquals(Arrays.asList("public", "mpim"), element.getFilter().getInclude());
+        assertTrue(element.getFilter().getExcludeBotUsers());
+        assertNull(element.getFilter().getExcludeExternalSharedChannels());
+    }
+
+    @Test
+    public void testResponseUrlEnabled_conversations() {
+        {
+            String json = "{\"blocks\":[\n" +
+                    "  {\n" +
+                    "    \"type\": \"input\",\n" +
+                    "    \"element\": {\n" +
+                    "      \"type\": \"conversations_select\",\n" +
+                    "      \"placeholder\": {\n" +
+                    "        \"type\": \"plain_text\",\n" +
+                    "        \"text\": \"Select a conversation\",\n" +
+                    "        \"emoji\": true\n" +
+                    "      },\n" +
+                    "      \"response_url_enabled\": true\n" +
+                    "    },\n" +
+                    "    \"label\": {\n" +
+                    "      \"type\": \"plain_text\",\n" +
+                    "      \"text\": \"Choose the conversation to publish your result to:\",\n" +
+                    "      \"emoji\": true\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "]}";
+            Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+            assertNotNull(message);
+            assertEquals(1, message.getBlocks().size());
+            InputBlock block = (InputBlock) message.getBlocks().get(0);
+            ConversationsSelectElement element = (ConversationsSelectElement) block.getElement();
+            assertTrue(element.getResponseUrlEnabled());
+        }
+
+        {
+            String json = "{\"blocks\":[\n" +
+                    "  {\n" +
+                    "    \"type\": \"input\",\n" +
+                    "    \"element\": {\n" +
+                    "      \"type\": \"conversations_select\",\n" +
+                    "      \"placeholder\": {\n" +
+                    "        \"type\": \"plain_text\",\n" +
+                    "        \"text\": \"Select a conversation\",\n" +
+                    "        \"emoji\": true\n" +
+                    "      }\n" +
+                    "    },\n" +
+                    "    \"label\": {\n" +
+                    "      \"type\": \"plain_text\",\n" +
+                    "      \"text\": \"Choose the conversation to publish your result to:\",\n" +
+                    "      \"emoji\": true\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "]}";
+            Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+            assertNotNull(message);
+            assertEquals(1, message.getBlocks().size());
+            InputBlock block = (InputBlock) message.getBlocks().get(0);
+            ConversationsSelectElement element = (ConversationsSelectElement) block.getElement();
+            assertNull(element.getResponseUrlEnabled());
+        }
+    }
+
+    @Test
+    public void testResponseUrlEnabled_channels() {
+        {
+            String json = "{\"blocks\":[\n" +
+                    "  {\n" +
+                    "    \"type\": \"input\",\n" +
+                    "    \"element\": {\n" +
+                    "      \"type\": \"channels_select\",\n" +
+                    "      \"placeholder\": {\n" +
+                    "        \"type\": \"plain_text\",\n" +
+                    "        \"text\": \"Select a conversation\",\n" +
+                    "        \"emoji\": true\n" +
+                    "      },\n" +
+                    "      \"response_url_enabled\": true\n" +
+                    "    },\n" +
+                    "    \"label\": {\n" +
+                    "      \"type\": \"plain_text\",\n" +
+                    "      \"text\": \"Choose the conversation to publish your result to:\",\n" +
+                    "      \"emoji\": true\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "]}";
+            Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+            assertNotNull(message);
+            assertEquals(1, message.getBlocks().size());
+            InputBlock block = (InputBlock) message.getBlocks().get(0);
+            ChannelsSelectElement element = (ChannelsSelectElement) block.getElement();
+            assertTrue(element.getResponseUrlEnabled());
+        }
+
+        {
+            String json = "{\"blocks\":[\n" +
+                    "  {\n" +
+                    "    \"type\": \"input\",\n" +
+                    "    \"element\": {\n" +
+                    "      \"type\": \"channels_select\",\n" +
+                    "      \"placeholder\": {\n" +
+                    "        \"type\": \"plain_text\",\n" +
+                    "        \"text\": \"Select a conversation\",\n" +
+                    "        \"emoji\": true\n" +
+                    "      }\n" +
+                    "    },\n" +
+                    "    \"label\": {\n" +
+                    "      \"type\": \"plain_text\",\n" +
+                    "      \"text\": \"Choose the conversation to publish your result to:\",\n" +
+                    "      \"emoji\": true\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "]}";
+            Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+            assertNotNull(message);
+            assertEquals(1, message.getBlocks().size());
+            InputBlock block = (InputBlock) message.getBlocks().get(0);
+            ChannelsSelectElement element = (ChannelsSelectElement) block.getElement();
+            assertNull(element.getResponseUrlEnabled());
+        }
     }
 
 }

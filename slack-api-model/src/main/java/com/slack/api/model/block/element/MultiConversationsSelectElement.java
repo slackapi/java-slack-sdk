@@ -49,4 +49,9 @@ public class MultiConversationsSelectElement extends BlockElement {
      */
     private Integer maxSelectedItems;
 
+    /**
+     * A filter object that reduces the list of available conversations using the specified criteria.
+     */
+    private ConversationsFilter filter;
+
 }

@@ -39,4 +39,12 @@ public class ChannelsSelectElement extends BlockElement {
      * A confirm object that defines an optional confirmation dialog that appears after a menu item is selected.
      */
     private ConfirmationDialogObject confirm;
+
+    /**
+     * This field only works with menus in input blocks in modals.
+     * When set to true, the view_submission payload from the menu's parent view will contain a response_url.
+     * This response_url can be used for message responses.
+     * The target conversation for the message will be determined by the value of this select menu.
+     */
+    private Boolean responseUrlEnabled;
 }
