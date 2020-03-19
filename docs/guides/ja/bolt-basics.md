@@ -34,11 +34,12 @@ app.command("/echo", (req, ctx) -> {
 |**app.event**|イベントデータ型: **Class\<Event\>**|[**イベント API**]({{ site.url | append: site.baseurl }}/guides/ja/events-api): 購読しているあらゆる bot/user events に応答します。|
 |**app.message**|キーワード: **String** \| **Pattern**|[**イベント API**]({{ site.url | append: site.baseurl }}/guides/ja/events-api): ユーザーからのメッセージ投稿で指定のキーワード・正規表現にマッチする bot/user events に応答します。|
 |**app.command**|コマンド名: **String** \| **Pattern**|[**スラッシュコマンド**]({{ site.url | append: site.baseurl }}/guides/ja/slash-commands): スラッシュコマンドの実行に応答します。|
-|**app.messageAction**|callback_id: **String** \| **Pattern**|[**アクション**]({{ site.url | append: site.baseurl }}/guides/ja/actions): メッセージメニューのアクション実行に応答します。|
 |**app.blockAction**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components): **blocks** 内でのボタンクリック、セレクトメニューからの選択、ラジオボタン選択などユーザクアションに応答します。これらのイベントは全てのサーフェスエリア（メッセージ、モーダル、Home タブ）で発火します。|
 |**app.blockSuggestion**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components): **blocks** 内の external data source を使ったセレクトメニュー内でユーザーが `min_query_length` 以上の長さのキーワードを入力したときに表示する選択肢を応答します。|
 |**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**モーダル**]({{ site.url | append: site.baseurl }}/guides/ja/modals): Submit ボタンクリックによるデータ送信に応答します。|
 |**app.viewClosed**|callback_id: **String** \| **Pattern**|[**モーダル**]({{ site.url | append: site.baseurl }}/guides/ja/modals): ユーザーがモーダルを閉じたときのイベントに応答します。そのモーダルを open/push したときに `notify_on_close` が `true` に設定されている必要があります。|
+|**app.globalShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**]({{ site.url | append: site.baseurl }}/guides/ja/shortcuts): ショートカット実行に応答します。|
+|**app.messageShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**]({{ site.url | append: site.baseurl }}/guides/ja/shortcuts): メッセージメニューのショートカット実行に応答します。|
 |**app.dialogSubmission**|callback_id: **String** \| **Pattern**|**ダイアログ**: ダイアログでのデータ送信に応答します。|
 |**app.dialogSuggestion**|callback_id: **String** \| **Pattern**|**ダイアログ**: ダイアログ内での `"external"` type に設定されたセレクトメニューの選択肢読み込みのリクエストに応答します。|
 |**app.dialogCancellation**|callback_id **String** \| **Pattern**|**ダイアログ**: ダイアログが閉じたときのイベントに応答します。|
@@ -49,9 +50,9 @@ app.command("/echo", (req, ctx) -> {
 以下のガイドページで、それぞれの機能について具体的なコード例を見つけることができます。
 
 * [**スラッシュコマンド**]({{ site.url | append: site.baseurl }}/guides/ja/slash-commands)
-* [**アクション**]({{ site.url | append: site.baseurl }}/guides/ja/actions)
 * [**インタラクティブコンポーネント**]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components)
 * [**モーダル**]({{ site.url | append: site.baseurl }}/guides/ja/modals)
+* [**ショートカット**]({{ site.url | append: site.baseurl }}/guides/ja/shortcuts)
 * [**Home タブ**]({{ site.url | append: site.baseurl }}/guides/ja/app-home)
 * [**イベント API**]({{ site.url | append: site.baseurl }}/guides/ja/events-api)
 * [**アプリの配布 (OAuth Flow)**]({{ site.url | append: site.baseurl }}/guides/ja/app-distribution)
