@@ -536,7 +536,8 @@
           ""
         ]
       },
-      "single_user_exports": false
+      "single_user_exports": false,
+      "default_channel_creation_enabled": false
     },
     "icon": {
       "image_34": "https://www.example.com/",

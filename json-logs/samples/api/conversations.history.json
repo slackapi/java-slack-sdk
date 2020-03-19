@@ -327,7 +327,12 @@
                     "emoji": false
                   },
                   "initial_channel": "",
+                  "response_url_enabled": false,
                   "initial_conversation": "",
+                  "filter": {
+                    "exclude_external_shared_channels": false,
+                    "exclude_bot_users": false
+                  },
                   "initial_date": "",
                   "initial_option": {
                     "text": {
@@ -545,7 +550,12 @@
                 "emoji": false
               },
               "initial_channel": "",
+              "response_url_enabled": false,
               "initial_conversation": "",
+              "filter": {
+                "exclude_external_shared_channels": false,
+                "exclude_bot_users": false
+              },
               "initial_date": "",
               "initial_option": {
                 "text": {
@@ -673,7 +683,12 @@
                 "emoji": false
               },
               "initial_channel": "",
+              "response_url_enabled": false,
               "initial_conversation": "",
+              "filter": {
+                "exclude_external_shared_channels": false,
+                "exclude_bot_users": false
+              },
               "initial_date": "",
               "initial_option": {
                 "text": {
@@ -786,7 +801,12 @@
                 "emoji": false
               },
               "initial_channel": "",
+              "response_url_enabled": false,
               "initial_conversation": "",
+              "filter": {
+                "exclude_external_shared_channels": false,
+                "exclude_bot_users": false
+              },
               "initial_date": "",
               "initial_option": {
                 "text": {
@@ -889,7 +909,12 @@
                 "emoji": false
               },
               "initial_channel": "",
+              "response_url_enabled": false,
               "initial_conversation": "",
+              "filter": {
+                "exclude_external_shared_channels": false,
+                "exclude_bot_users": false
+              },
               "initial_date": "",
               "initial_option": {
                 "text": {
