@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @see <a href="https://api.slack.com/block-kit/surfaces/modals">Modals</a>
  */
@@ -24,6 +26,12 @@ public class ViewSubmissionPayload {
     private View view;
     private boolean isCleared;
 
+    /**
+     * These response URLs are available only when having input block elements with response_url_enabled.
+     * (possible block element types: conversations_select, channels_select)
+     */
+    private List<ResponseUrl> responseUrls;
+
     @Data
     public static class Team {
         private String id;
@@ -38,6 +46,14 @@ public class ViewSubmissionPayload {
         private String username;
         private String name;
         private String teamId;
+    }
+
+    @Data
+    public static class ResponseUrl {
+        private String blockId;
+        private String actionId;
+        private String channelId;
+        private String responseUrl;
     }
 
 }

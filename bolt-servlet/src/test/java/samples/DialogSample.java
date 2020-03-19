@@ -28,7 +28,7 @@ public class DialogSample {
         App app = new App(config);
 
         app.command("/dialog", (req, ctx) -> {
-            // https://github.com/slackapi/java-slack-sdk/blob/master/bolt/src/test/resources/dialogs/dialog.json
+            // src/test/resources/dialogs/dialog.json
             String dialog = ResourceLoader.load("dialogs/dialog.json");
             DialogOpenResponse apiResponse = ctx.client().dialogOpen(r -> r
                     .triggerId(req.getPayload().getTriggerId())

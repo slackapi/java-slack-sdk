@@ -14,14 +14,14 @@ public class AttachmentActionSample {
         AppConfig config = ResourceLoader.loadAppConfig();
         App app = new App(config);
 
-        // https://github.com/slackapi/java-slack-sdk/blob/master/bolt/src/test/resources/attachments/message1.json
+        // src/test/resources/attachments/message1.json
         String firstMessage = ResourceLoader.load("attachments/message1.json");
         app.command("/view", (req, ctx) -> {
             ctx.respond(JsonOps.fromJson(firstMessage, SlashCommandResponse.class));
             return ctx.ack();
         });
 
-        // https://github.com/slackapi/java-slack-sdk/blob/master/bolt/src/test/resources/action_response/message1.json
+        // src/test/resources/action_response/message1.json
         String secondMessage = ResourceLoader.load("action_response/message1.json");
         app.attachmentAction("wopr_game", (req, ctx) -> {
             ctx.logger.info("attachment action - {}", req.getPayload());

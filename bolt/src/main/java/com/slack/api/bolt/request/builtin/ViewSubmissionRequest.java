@@ -26,6 +26,7 @@ public class ViewSubmissionRequest extends Request<ViewSubmissionContext> {
         getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
         getContext().setTeamId(payload.getTeam().getId());
         getContext().setRequestUserId(payload.getUser().getId());
+        getContext().setResponseUrls(payload.getResponseUrls());
     }
 
     private ViewSubmissionContext context = new ViewSubmissionContext();
@@ -50,12 +51,24 @@ public class ViewSubmissionRequest extends Request<ViewSubmissionContext> {
         return this.headers;
     }
 
-    public ViewSubmissionPayload getPayload() {
-        return payload;
-    }
-
     @Override
     public String getResponseUrl() {
-        return null;
+        if (payload.getResponseUrls() == null || payload.getResponseUrls().size() == 0) {
+            return null;
+        } else {
+            int numOfResponseUrls = payload.getResponseUrls().size();
+            if (numOfResponseUrls > 1) {
+                // NOTE: As of March 2020, response_url_enabled field can be used on a single block element in a view.
+                // That said, the payload can have multiple URLs here. The warning message is just for possible changes in the future.
+                String warnMessage = "You have " + numOfResponseUrls + " `response_url`s in the payload. " +
+                        "ViewSubmissionRequest#getResponseUrl() always returns the first one.";
+                getContext().getLogger().warn(warnMessage);
+            }
+            return payload.getResponseUrls().get(0).getResponseUrl();
+        }
+    }
+
+    public ViewSubmissionPayload getPayload() {
+        return payload;
     }
 }
