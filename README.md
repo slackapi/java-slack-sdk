@@ -1,9 +1,3 @@
-## Important Notice
-
-The [jSlack](https://search.maven.org/artifact/com.github.seratch/jslack) project has been transferred to [@slackapi](http://github.com/slackapi). The transfer is still in progress. The initial version will be released sometime soon! The jSlack maintenance releases for security issues or major bugfixes will be continued at https://github.com/seratch/jslack-maintenance-releases .
-
----
-
 ## Slack SDK for Java
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.slack.api%22%20a%3A%22slack-api-client%22) [![Build Status](https://travis-ci.org/slackapi/java-slack-sdk.svg?branch=master)](https://travis-ci.org/slackapi/java-slack-sdk) [![codecov](https://codecov.io/gh/slackapi/java-slack-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/slackapi/java-slack-sdk)
@@ -80,7 +74,7 @@ All released versions are available on the Maven Central repositories. The lates
 
 The SDK supports **OpenJDK 8 and higher LTS versions**.
 
-Users can expect every single patch release has been done after verifying functionalities by running [the basic CI builds with all LTS versions](https://github.com/slackapi/java-slack-sdk/blob/master/.travis.yml) and all the unit tests have passed at least on the latest LTS version. We don't run comprehensive verifications with all OpenJDK distributions but it should be working with all of them.
+Users can expect every single patch release has been done after verifying functionality by running [the basic CI builds with all LTS versions](https://github.com/slackapi/java-slack-sdk/blob/master/.travis.yml) and all the unit tests have passed at least on the latest LTS version. We don't run comprehensive verifications with all OpenJDK distributions but it should be working with all of them.
 
 ## Getting Help
 
@@ -88,3 +82,7 @@ If you get stuck, we’re here to help. The following are the best ways to get a
 
 * Use our [GitHub Issue Tracker](https://github.com/slackapi/java-slack-sdk/issues) for reporting bugs or requesting features
 * Visit the [Slack Developer Community](https://slackcommunity.com/) for getting help using **Slack SDK for Java** or just generally bond with your fellow Slack developers.
+
+## Important Notice for jSlack users
+
+The [jSlack](https://search.maven.org/artifact/com.github.seratch/jslack) project has been transferred to [@slackapi](http://github.com/slackapi). The jSlack maintenance releases for security issues or major bugfixes will be continued at https://github.com/seratch/jslack-maintenance-releases .
