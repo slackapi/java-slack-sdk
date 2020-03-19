@@ -6,15 +6,15 @@ lang: en
 
 # Shortcuts
 
-Shortcuts are an evolution of slash commands, surfaced in both the composer menu and the quick switcher. Shortcuts allow users to trigger your app's workflows from intuitive surface areas within Slack.
+[Shortcuts](https://api.slack.com/interactivity/shortcuts) are an evolution of slash commands, surfaced in both the composer menu and the quick switcher. Shortcuts allow users to trigger your app's workflows from intuitive surface areas within Slack.
 
-For all types of shortcut requests, your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
+Your app has 3 seconds to call `ack()`, which acknowledges a shortcut request is received from Slack.
 
 ## Global / Message Shortcuts
 
 ### Slack App Configuration
 
-To enable global/message shortcuts, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactive Components** on the left pain. There are four things to do on the page.
+To enable shortcuts, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactive Components** on the left pain. There are four things to do on the page.
 
 * Turn on the feature
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events`
@@ -43,7 +43,9 @@ Bolt does many of the commonly required tasks for you. The steps you need to han
 * Build a reply message or do whatever you want to do
 * Call `ack()` as an acknowledgment
 
-Message shortcut request payloads have `response_url`, so that your app can reply to the shortcut (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the shortcut invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message. Global shortcut request payloads don't have `response_url`.
+Message shortcut request payloads have `response_url`, so that your app can reply to the shortcut (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the shortcut invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
+
+Global shortcut request payloads don't have `response_url` by default. If you have an input block element asking users a channel to post a message, global shortcut request payloads may provide `response_urls`. To enable this, set the block element type as either [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) or [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) and add `"response_url_enabled": true`.
 
 Here is a tiny example demonstrating how to handle shortcut requests in a Bolt app.
 
