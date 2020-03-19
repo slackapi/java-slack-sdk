@@ -4,11 +4,11 @@ import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.SlackSignature;
-import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.GlobalShortcutPayload;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.request.RequestHeaders;
-import com.slack.api.bolt.request.builtin.MessageActionRequest;
+import com.slack.api.bolt.request.builtin.GlobalShortcutRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 import static org.junit.Assert.assertEquals;
 
 @Slf4j
-public class MessageActionTest {
+public class GlobalShortcutTest {
 
     AuthTestMockServer server = new AuthTestMockServer();
     SlackConfig config = new SlackConfig();
@@ -48,12 +48,12 @@ public class MessageActionTest {
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
 
-    String realPayload = "{\"type\":\"message_action\",\"token\":\"legacy-fixed-value\",\"action_ts\":\"1583637157.207593\",\"team\":{\"id\":\"T123\",\"domain\":\"test-test\"},\"user\":{\"id\":\"U123\",\"name\":\"test-test\"},\"channel\":{\"id\":\"C123\",\"name\":\"dev\"},\"callback_id\":\"test-message-action\",\"trigger_id\":\"123.123.xxx\",\"message_ts\":\"1583636382.000300\",\"message\":{\"client_msg_id\":\"b64abe86-8607-4317-bd45-cb6cfacdbfd8\",\"type\":\"message\",\"text\":\"<@U234> test\",\"user\":\"U123\",\"ts\":\"1583636382.000300\",\"team\":\"T123\",\"blocks\":[{\"type\":\"rich_text\",\"block_id\":\"d7eJ\",\"elements\":[{\"type\":\"rich_text_section\",\"elements\":[{\"type\":\"user\",\"user_id\":\"U234\"},{\"type\":\"text\",\"text\":\" test\"}]}]}]},\"response_url\":\"https:\\/\\/hooks.slack.com\\/app\\/T123\\/123\\/yYHNzRxpHc2xHjezSVw9e4zB\"}";
+    String realPayload = "{\"type\":\"shortcut\",\"token\":\"legacy-fixed-value\",\"action_ts\":\"123.123\",\"team\":{\"id\":\"T123\",\"domain\":\"seratch-test\"},\"user\":{\"id\":\"U123\",\"username\":\"seratch\",\"team_id\":\"T123\"},\"callback_id\":\"test-global-shortcut\",\"trigger_id\":\"123.123.123\"}\n";
 
     @Test
     public void withPayload() throws Exception {
         App app = buildApp();
-        app.messageAction("test-message-action", (req, ctx) -> ctx.ack());
+        app.globalShortcut("test-global-shortcut", (req, ctx) -> ctx.ack());
 
         String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
 
@@ -61,7 +61,9 @@ public class MessageActionTest {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         setRequestHeaders(requestBody, rawHeaders, timestamp);
 
-        MessageActionRequest req = new MessageActionRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
+        GlobalShortcutRequest req = new GlobalShortcutRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
+        assertEquals("seratch", req.getPayload().getUser().getUsername()); // a bit different from message_actions payload
+
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
     }
@@ -69,9 +71,9 @@ public class MessageActionTest {
     @Test
     public void handled() throws Exception {
         App app = buildApp();
-        app.messageAction("callback$@+*", (req, ctx) -> ctx.ack());
+        app.globalShortcut("callback$@+*", (req, ctx) -> ctx.ack());
 
-        MessageActionPayload payload = buildPayload();
+        GlobalShortcutPayload payload = buildPayload();
 
         String p = gson.toJson(payload);
         String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
@@ -80,7 +82,7 @@ public class MessageActionTest {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         setRequestHeaders(requestBody, rawHeaders, timestamp);
 
-        MessageActionRequest req = new MessageActionRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        GlobalShortcutRequest req = new GlobalShortcutRequest(requestBody, p, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
     }
@@ -88,9 +90,9 @@ public class MessageActionTest {
     @Test
     public void regexp() throws Exception {
         App app = buildApp();
-        app.messageAction(Pattern.compile("callback.+$"), (req, ctx) -> ctx.ack());
+        app.globalShortcut(Pattern.compile("callback.+$"), (req, ctx) -> ctx.ack());
 
-        MessageActionPayload payload = buildPayload();
+        GlobalShortcutPayload payload = buildPayload();
 
         String p = gson.toJson(payload);
         String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
@@ -99,7 +101,7 @@ public class MessageActionTest {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         setRequestHeaders(requestBody, rawHeaders, timestamp);
 
-        MessageActionRequest req = new MessageActionRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        GlobalShortcutRequest req = new GlobalShortcutRequest(requestBody, p, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
     }
@@ -107,9 +109,9 @@ public class MessageActionTest {
     @Test
     public void unhandled() throws Exception {
         App app = buildApp();
-        app.messageAction("callback$@+*", (req, ctx) -> ctx.ack());
+        app.globalShortcut("callback$@+*", (req, ctx) -> ctx.ack());
 
-        MessageActionPayload payload = buildPayload();
+        GlobalShortcutPayload payload = buildPayload();
         payload.setCallbackId("unexpected-callback$@+*");
 
         String p = gson.toJson(payload);
@@ -119,7 +121,7 @@ public class MessageActionTest {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         setRequestHeaders(requestBody, rawHeaders, timestamp);
 
-        MessageActionRequest req = new MessageActionRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        GlobalShortcutRequest req = new GlobalShortcutRequest(requestBody, p, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(404L, response.getStatusCode().longValue());
     }
@@ -137,18 +139,14 @@ public class MessageActionTest {
         rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, Arrays.asList(generator.generate(timestamp, requestBody)));
     }
 
-    MessageActionPayload buildPayload() {
-        MessageActionPayload.Channel channel = new MessageActionPayload.Channel();
-        channel.setId("C123");
-        channel.setName("general");
-        MessageActionPayload.Team team = new MessageActionPayload.Team();
+    GlobalShortcutPayload buildPayload() {
+        GlobalShortcutPayload.Team team = new GlobalShortcutPayload.Team();
         team.setId("T123");
-        MessageActionPayload.User user = new MessageActionPayload.User();
+        GlobalShortcutPayload.User user = new GlobalShortcutPayload.User();
         team.setId("U123");
-        MessageActionPayload payload = MessageActionPayload.builder()
+        GlobalShortcutPayload payload = GlobalShortcutPayload.builder()
                 .callbackId("callback$@+*")
                 .triggerId("xxxx")
-                .channel(channel)
                 .team(team)
                 .user(user)
                 .build();

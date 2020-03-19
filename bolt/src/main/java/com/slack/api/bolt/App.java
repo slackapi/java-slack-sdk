@@ -28,7 +28,6 @@ import com.slack.api.bolt.service.builtin.oauth.*;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.*;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.model.event.Event;
-import com.slack.api.model.event.MessageBotEvent;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.util.json.GsonFactory;
 import lombok.AllArgsConstructor;
@@ -234,14 +233,19 @@ public class App {
     private final Map<Pattern, ViewClosedHandler> viewClosedHandlers = new HashMap<>();
 
     // -------------------------------------
-    // Message Actions
-    // https://api.slack.com/interactivity/actions
+    // Shortcuts
+    // https://api.slack.com/interactivity
     // -------------------------------------
 
     /**
-     * Registered handlers for message actions.
+     * Registered handlers for global shortcuts.
      */
-    private final Map<Pattern, MessageActionHandler> messageActionHandlers = new HashMap<>();
+    private final Map<Pattern, GlobalShortcutHandler> globalShortcutHandlers = new HashMap<>();
+
+    /**
+     * Registered handlers for message shortcuts (formerly message actions).
+     */
+    private final Map<Pattern, MessageShortcutHandler> messageShortcutHandlers = new HashMap<>();
 
     // -------------------------------------
     // Attachments
@@ -566,6 +570,35 @@ public class App {
     }
 
     // -------------
+    // Shortcuts
+    // https://api.slack.com/interactivity
+    // https://api.slack.com/interactivity/actions
+
+    public App globalShortcut(String callbackId, GlobalShortcutHandler handler) {
+        return globalShortcut(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
+    }
+
+    public App globalShortcut(Pattern callbackId, GlobalShortcutHandler handler) {
+        if (globalShortcutHandlers.get(callbackId) != null) {
+            log.warn("Replaced the handler for {}", callbackId);
+        }
+        globalShortcutHandlers.put(callbackId, handler);
+        return this;
+    }
+
+    public App messageShortcut(String callbackId, MessageShortcutHandler handler) {
+        return messageShortcut(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
+    }
+
+    public App messageShortcut(Pattern callbackId, MessageShortcutHandler handler) {
+        if (messageShortcutHandlers.get(callbackId) != null) {
+            log.warn("Replaced the handler for {}", callbackId);
+        }
+        messageShortcutHandlers.put(callbackId, handler);
+        return this;
+    }
+
+    // -------------
     // Modal Views
     // https://api.slack.com/surfaces/modals/using
 
@@ -590,22 +623,6 @@ public class App {
             log.warn("Replaced the handler for {}", callbackId);
         }
         viewClosedHandlers.put(callbackId, handler);
-        return this;
-    }
-
-    // -------------
-    // Message Actions
-    // https://api.slack.com/interactivity/actions
-
-    public App messageAction(String callbackId, MessageActionHandler handler) {
-        return messageAction(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
-    }
-
-    public App messageAction(Pattern callbackId, MessageActionHandler handler) {
-        if (messageActionHandlers.get(callbackId) != null) {
-            log.warn("Replaced the handler for {}", callbackId);
-        }
-        messageActionHandlers.put(callbackId, handler);
         return this;
     }
 
@@ -915,18 +932,32 @@ public class App {
                     log.warn("No BlockSuggestionHandler registered for action_id: {}", actionId);
                     break;
                 }
-                case MessageAction: {
-                    MessageActionRequest request = (MessageActionRequest) slackRequest;
+                case GlobalShortcut: {
+                    GlobalShortcutRequest request = (GlobalShortcutRequest) slackRequest;
                     String callbackId = request.getPayload().getCallbackId();
                     if (callbackId != null) {
-                        for (Pattern pattern : messageActionHandlers.keySet()) {
+                        for (Pattern pattern : globalShortcutHandlers.keySet()) {
                             if (pattern.matcher(callbackId).matches()) {
-                                MessageActionHandler handler = messageActionHandlers.get(pattern);
+                                GlobalShortcutHandler handler = globalShortcutHandlers.get(pattern);
                                 return handler.apply(request, request.getContext());
                             }
                         }
                     }
-                    log.warn("No MessageActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    log.warn("No GlobalShortcutHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    break;
+                }
+                case MessageShortcut: {
+                    MessageShortcutRequest request = (MessageShortcutRequest) slackRequest;
+                    String callbackId = request.getPayload().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : messageShortcutHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                MessageShortcutHandler handler = messageShortcutHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
+                        }
+                    }
+                    log.warn("No MessageShortcutHandler registered for callback_id: {}", request.getPayload().getCallbackId());
                     break;
                 }
                 case DialogSubmission: {

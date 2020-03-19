@@ -1,7 +1,7 @@
 package test_locally.app_backend.message_actions.payload;
 
 import com.google.gson.Gson;
-import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.MessageShortcutPayload;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MessageActionPayloadTest {
+public class MessageShortcutPayloadTest {
 
     public static final String JSON = "{\n" +
             "  \"token\": \"Nj2rfC2hU8mAfgaJLemZgO7H\",\n" +
@@ -41,7 +41,7 @@ public class MessageActionPayloadTest {
 
     @Test
     public void test() {
-        MessageActionPayload payload = gson.fromJson(JSON, MessageActionPayload.class);
+        MessageShortcutPayload payload = gson.fromJson(JSON, MessageShortcutPayload.class);
         assertThat(payload, is(notNullValue()));
         assertThat(payload.getType(), is("message_action"));
         assertThat(payload.getCallbackId(), is("chirp_message"));

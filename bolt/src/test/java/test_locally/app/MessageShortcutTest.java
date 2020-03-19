@@ -22,13 +22,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @Slf4j
-public class MiddlewareTest {
+public class MessageShortcutTest {
 
     AuthTestMockServer server = new AuthTestMockServer();
     SlackConfig config = new SlackConfig();
@@ -49,18 +48,31 @@ public class MiddlewareTest {
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
 
+    String realPayload = "{\"type\":\"message_action\",\"token\":\"legacy-fixed-value\",\"action_ts\":\"1583637157.207593\",\"team\":{\"id\":\"T123\",\"domain\":\"test-test\"},\"user\":{\"id\":\"U123\",\"name\":\"test-test\"},\"channel\":{\"id\":\"C123\",\"name\":\"dev\"},\"callback_id\":\"test-message-action\",\"trigger_id\":\"123.123.xxx\",\"message_ts\":\"1583636382.000300\",\"message\":{\"client_msg_id\":\"b64abe86-8607-4317-bd45-cb6cfacdbfd8\",\"type\":\"message\",\"text\":\"<@U234> test\",\"user\":\"U123\",\"ts\":\"1583636382.000300\",\"team\":\"T123\",\"blocks\":[{\"type\":\"rich_text\",\"block_id\":\"d7eJ\",\"elements\":[{\"type\":\"rich_text_section\",\"elements\":[{\"type\":\"user\",\"user_id\":\"U234\"},{\"type\":\"text\",\"text\":\" test\"}]}]}]},\"response_url\":\"https:\\/\\/hooks.slack.com\\/app\\/T123\\/123\\/yYHNzRxpHc2xHjezSVw9e4zB\"}";
+
+    @Test
+    public void withPayload() throws Exception {
+        App app = buildApp();
+        app.messageShortcut("test-message-action", (req, ctx) -> ctx.ack());
+
+        String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        MessageShortcutRequest req = new MessageShortcutRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+    }
+
     @Test
     public void handled() throws Exception {
-        AtomicBoolean called = new AtomicBoolean(false);
         App app = buildApp();
-        app.use((req, resp, chain) -> {
-            req.getContext().logger.debug("request body: {}", req.getRequestBodyAsString());
-            called.set(true);
-            return chain.next(req);
-        });
-        app.messageShortcut("callback", (req, ctx) -> ctx.ack());
+        app.messageShortcut("callback$@+*", (req, ctx) -> ctx.ack());
 
         MessageShortcutPayload payload = buildPayload();
+
         String p = gson.toJson(payload);
         String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
 
@@ -71,7 +83,45 @@ public class MiddlewareTest {
         MessageShortcutRequest req = new MessageShortcutRequest(requestBody, p, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
-        assertTrue(called.get());
+    }
+
+    @Test
+    public void regexp() throws Exception {
+        App app = buildApp();
+        app.messageShortcut(Pattern.compile("callback.+$"), (req, ctx) -> ctx.ack());
+
+        MessageShortcutPayload payload = buildPayload();
+
+        String p = gson.toJson(payload);
+        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        MessageShortcutRequest req = new MessageShortcutRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+    }
+
+    @Test
+    public void unhandled() throws Exception {
+        App app = buildApp();
+        app.messageShortcut("callback$@+*", (req, ctx) -> ctx.ack());
+
+        MessageShortcutPayload payload = buildPayload();
+        payload.setCallbackId("unexpected-callback$@+*");
+
+        String p = gson.toJson(payload);
+        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        MessageShortcutRequest req = new MessageShortcutRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(404L, response.getStatusCode().longValue());
     }
 
     App buildApp() {
@@ -96,7 +146,7 @@ public class MiddlewareTest {
         MessageShortcutPayload.User user = new MessageShortcutPayload.User();
         team.setId("U123");
         MessageShortcutPayload payload = MessageShortcutPayload.builder()
-                .callbackId("callback")
+                .callbackId("callback$@+*")
                 .triggerId("xxxx")
                 .channel(channel)
                 .team(team)

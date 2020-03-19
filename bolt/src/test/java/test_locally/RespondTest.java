@@ -26,8 +26,8 @@ public class RespondTest {
     }
 
     @Test
-    public void messageAction() {
-        app.messageAction("callback-id", (req, ctx) -> {
+    public void messageShortcut() {
+        app.messageShortcut("callback-id", (req, ctx) -> {
             ctx.respond("bar");
             ctx.respond(asBlocks(section(s -> s.text(markdownText("*bold* _italic_"))), divider()));
             ctx.respond(r -> r.text("bar"));

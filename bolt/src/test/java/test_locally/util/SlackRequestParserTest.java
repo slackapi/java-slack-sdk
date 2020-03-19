@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.slack.api.app_backend.interactive_components.payload.AttachmentActionPayload;
 import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
 import com.slack.api.app_backend.interactive_components.payload.BlockSuggestionPayload;
-import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.MessageShortcutPayload;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
@@ -82,12 +82,12 @@ public class SlackRequestParserTest {
     }
 
     @Test
-    public void testMessageActionPayload() throws UnsupportedEncodingException {
-        MessageActionPayload payload = new MessageActionPayload();
-        MessageActionPayload.Team team = new MessageActionPayload.Team();
+    public void testMessageShortcutPayload() throws UnsupportedEncodingException {
+        MessageShortcutPayload payload = new MessageShortcutPayload();
+        MessageShortcutPayload.Team team = new MessageShortcutPayload.Team();
         team.setId("T123");
         payload.setTeam(team);
-        MessageActionPayload.User user = new MessageActionPayload.User();
+        MessageShortcutPayload.User user = new MessageShortcutPayload.User();
         user.setId("U123");
         payload.setUser(user);
         SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()

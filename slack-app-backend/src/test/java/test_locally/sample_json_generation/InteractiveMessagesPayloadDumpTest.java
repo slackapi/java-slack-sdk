@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class InteractiveMessagesPayloadDumpTest {
 
-    ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/app-backend/interactive-messages");
+    ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/app-backend/interactive-components");
 
     @Test
     public void dumpAll() throws Exception {

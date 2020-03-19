@@ -1,7 +1,7 @@
 package com.slack.api.bolt.request.builtin;
 
-import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
-import com.slack.api.bolt.context.builtin.MessageActionContext;
+import com.slack.api.app_backend.interactive_components.payload.MessageShortcutPayload;
+import com.slack.api.bolt.context.builtin.MessageShortcutContext;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.RequestType;
@@ -9,19 +9,19 @@ import com.slack.api.util.json.GsonFactory;
 import lombok.ToString;
 
 @ToString(callSuper = true)
-public class MessageActionRequest extends Request<MessageActionContext> {
+public class MessageShortcutRequest extends Request<MessageShortcutContext> {
 
     private final String requestBody;
     private final RequestHeaders headers;
-    private final MessageActionPayload payload;
+    private final MessageShortcutPayload payload;
 
-    public MessageActionRequest(
+    public MessageShortcutRequest(
             String requestBody,
             String payloadBody,
             RequestHeaders headers) {
         this.requestBody = requestBody;
         this.headers = headers;
-        this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, MessageActionPayload.class);
+        this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, MessageShortcutPayload.class);
 
         getContext().setResponseUrl(payload.getResponseUrl());
         getContext().setTriggerId(payload.getTriggerId());
@@ -33,16 +33,16 @@ public class MessageActionRequest extends Request<MessageActionContext> {
         getContext().setRequestUserId(payload.getUser().getId());
     }
 
-    private MessageActionContext context = new MessageActionContext();
+    private MessageShortcutContext context = new MessageShortcutContext();
 
     @Override
-    public MessageActionContext getContext() {
+    public MessageShortcutContext getContext() {
         return context;
     }
 
     @Override
     public RequestType getRequestType() {
-        return RequestType.MessageAction;
+        return RequestType.MessageShortcut;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class MessageActionRequest extends Request<MessageActionContext> {
         return this.headers;
     }
 
-    public MessageActionPayload getPayload() {
+    public MessageShortcutPayload getPayload() {
         return payload;
     }
 

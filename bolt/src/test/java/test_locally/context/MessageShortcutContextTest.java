@@ -2,7 +2,7 @@ package test_locally.context;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
-import com.slack.api.bolt.context.builtin.MessageActionContext;
+import com.slack.api.bolt.context.builtin.MessageShortcutContext;
 import com.slack.api.bolt.response.Responder;
 import com.slack.api.webhook.WebhookResponse;
 import org.junit.After;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
-public class MessageActionContextTest {
+public class MessageShortcutContextTest {
 
     WebhookMockServer server = new WebhookMockServer();
     SlackConfig config = new SlackConfig();
@@ -34,7 +34,7 @@ public class MessageActionContextTest {
 
     @Test
     public void respond() throws IOException {
-        MessageActionContext context = new MessageActionContext();
+        MessageShortcutContext context = new MessageShortcutContext();
         context.setResponder(responder);
         WebhookResponse response = context.respond("Hello");
         assertEquals(200L, response.getCode().longValue());
@@ -43,7 +43,7 @@ public class MessageActionContextTest {
 
     @Test
     public void respond_blocks() throws IOException {
-        MessageActionContext context = new MessageActionContext();
+        MessageShortcutContext context = new MessageShortcutContext();
         context.setResponder(responder);
         WebhookResponse response = context.respond(Arrays.asList());
         assertEquals(200L, response.getCode().longValue());
@@ -52,7 +52,7 @@ public class MessageActionContextTest {
 
     @Test
     public void respond_lambda() throws IOException {
-        MessageActionContext context = new MessageActionContext();
+        MessageShortcutContext context = new MessageShortcutContext();
         context.setResponder(responder);
         WebhookResponse response = context.respond(r -> r.text("Thanks!"));
         assertEquals(200L, response.getCode().longValue());

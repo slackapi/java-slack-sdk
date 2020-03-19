@@ -8,10 +8,7 @@ import com.slack.api.app_backend.dialogs.payload.DialogSubmissionPayload;
 import com.slack.api.app_backend.dialogs.payload.DialogSuggestionPayload;
 import com.slack.api.app_backend.events.payload.EventsApiPayload;
 import com.slack.api.app_backend.events.payload.UrlVerificationPayload;
-import com.slack.api.app_backend.interactive_components.payload.AttachmentActionPayload;
-import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
-import com.slack.api.app_backend.interactive_components.payload.BlockSuggestionPayload;
-import com.slack.api.app_backend.interactive_components.payload.MessageActionPayload;
+import com.slack.api.app_backend.interactive_components.payload.*;
 import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 import com.slack.api.app_backend.slash_commands.SlashCommandPayloadDetector;
 import com.slack.api.app_backend.ssl_check.SSLCheckPayloadDetector;
@@ -85,8 +82,11 @@ public class SlackRequestParser {
                     case BlockSuggestionPayload.TYPE:
                         slackRequest = new BlockSuggestionRequest(requestBody, jsonPayload, headers);
                         break;
-                    case MessageActionPayload.TYPE:
-                        slackRequest = new MessageActionRequest(requestBody, jsonPayload, headers);
+                    case GlobalShortcutPayload.TYPE:
+                        slackRequest = new GlobalShortcutRequest(requestBody, jsonPayload, headers);
+                        break;
+                    case MessageShortcutPayload.TYPE:
+                        slackRequest = new MessageShortcutRequest(requestBody, jsonPayload, headers);
                         break;
                     case EventsApiPayload.TYPE:
                         slackRequest = new EventRequest(jsonPayload, headers);
