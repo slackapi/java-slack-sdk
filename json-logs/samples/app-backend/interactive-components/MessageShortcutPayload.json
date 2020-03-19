@@ -80,7 +80,40 @@
                 "text": "",
                 "emoji": false
               }
-            }
+            },
+            "response_url_enabled": false
+          },
+          {
+            "type": "multi_channels_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              }
+            },
+            "max_selected_items": 123
           },
           {
             "type": "conversations_select",
@@ -112,6 +145,53 @@
                 "text": "",
                 "emoji": false
               }
+            },
+            "response_url_enabled": false,
+            "filter": {
+              "include": [
+                ""
+              ],
+              "exclude_external_shared_channels": false,
+              "exclude_bot_users": false
+            }
+          },
+          {
+            "type": "multi_conversations_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              }
+            },
+            "max_selected_items": 123,
+            "filter": {
+              "include": [
+                ""
+              ],
+              "exclude_external_shared_channels": false,
+              "exclude_bot_users": false
             }
           },
           {
@@ -191,6 +271,39 @@
                 "emoji": false
               }
             }
+          },
+          {
+            "type": "multi_external_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "min_query_length": 123,
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              }
+            },
+            "max_selected_items": 123
           },
           {
             "type": "image",
@@ -273,6 +386,38 @@
             }
           },
           {
+            "type": "multi_static_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              }
+            },
+            "max_selected_items": 123
+          },
+          {
             "type": "users_select",
             "placeholder": {
               "type": "plain_text",
@@ -303,6 +448,38 @@
                 "emoji": false
               }
             }
+          },
+          {
+            "type": "multi_users_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              }
+            },
+            "max_selected_items": 123
           }
         ],
         "block_id": ""

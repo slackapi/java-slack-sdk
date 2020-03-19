@@ -87,7 +87,8 @@
               "text": "",
               "emoji": false
             }
-          }
+          },
+          "response_url_enabled": false
         },
         {
           "type": "conversations_select",
@@ -119,6 +120,11 @@
               "text": "",
               "emoji": false
             }
+          },
+          "response_url_enabled": false,
+          "filter": {
+            "exclude_external_shared_channels": false,
+            "exclude_bot_users": false
           }
         },
         {

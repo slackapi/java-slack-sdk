@@ -60,16 +60,22 @@ public class SampleObjects {
 
     public static ConfirmationDialogObject Confirm = ConfirmationDialogObject.builder().text(TextObject).build();
 
+    public static ConversationsFilter conversationsFilter = ConversationsFilter.builder().include(Arrays.asList("")).build();
     public static List<BlockElement> BlockElements = Arrays.asList(
             initProperties(ButtonElement.builder().confirm(Confirm).build()),
             initProperties(ChannelsSelectElement.builder().confirm(Confirm).build()),
-            initProperties(ConversationsSelectElement.builder().confirm(Confirm).build()),
+            initProperties(MultiChannelsSelectElement.builder().confirm(Confirm).build()),
+            initProperties(ConversationsSelectElement.builder().confirm(Confirm).filter(conversationsFilter).build()),
+            initProperties(MultiConversationsSelectElement.builder().confirm(Confirm).filter(conversationsFilter).build()),
             initProperties(DatePickerElement.builder().confirm(Confirm).build()),
             initProperties(ExternalSelectElement.builder().confirm(Confirm).build()),
+            initProperties(MultiExternalSelectElement.builder().confirm(Confirm).build()),
             initProperties(ImageElement.builder().build()),
             initProperties(OverflowMenuElement.builder().confirm(Confirm).build()),
             initProperties(StaticSelectElement.builder().confirm(Confirm).build()),
-            initProperties(UsersSelectElement.builder().confirm(Confirm).build())
+            initProperties(MultiStaticSelectElement.builder().confirm(Confirm).build()),
+            initProperties(UsersSelectElement.builder().confirm(Confirm).build()),
+            initProperties(MultiUsersSelectElement.builder().confirm(Confirm).build())
     );
     public static List<ContextBlockElement> ContextBlockElements = Arrays.asList(
             (ContextBlockElement) initProperties(ImageElement.builder().build())

@@ -40,4 +40,17 @@ public class ConversationsSelectElement extends BlockElement {
      */
     private ConfirmationDialogObject confirm;
 
+    /**
+     * This field only works with menus in input blocks in modals.
+     * When set to true, the view_submission payload from the menu's parent view will contain a response_url.
+     * This response_url can be used for message responses.
+     * The target conversation for the message will be determined by the value of this select menu.
+     */
+    private Boolean responseUrlEnabled;
+
+    /**
+     * A filter object that reduces the list of available conversations using the specified criteria.
+     */
+    private ConversationsFilter filter;
+
 }
