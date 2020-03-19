@@ -1,0 +1,64 @@
+{
+  "callback_id": "view-callback-id",
+  "type": "modal",
+  "notify_on_close": true,
+  "title": {
+    "type": "plain_text",
+    "text": "My App",
+    "emoji": true
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit",
+    "emoji": true
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Cancel",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "type": "input",
+      "block_id": "b1",
+      "element": {
+        "type": "channels_select",
+        "action_id": "a",
+        "response_url_enabled": true,
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Select a channel",
+          "emoji": true
+        }
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Label",
+        "emoji": true
+      }
+    },
+    {
+      "type": "input",
+      "block_id": "b2",
+      "element": {
+        "type": "conversations_select",
+        "action_id": "a",
+        "filter": {
+          "include": ["public"],
+          "exclude_external_shared_channels": true,
+          "exclude_bot_users": false
+        },
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Select a channel",
+          "emoji": true
+        }
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Label",
+        "emoji": true
+      }
+    }
+  ]
+}

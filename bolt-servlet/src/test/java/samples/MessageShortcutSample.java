@@ -17,7 +17,7 @@ public class MessageShortcutSample {
 
         // https://api.slack.com/apps/{your apiAppId}/interactive-messages
         app.messageShortcut("open-view", (req, ctx) -> {
-            // https://github.com/slackapi/java-slack-sdk/blob/master/bolt/src/test/resources/views/view3.json
+            // src/test/resources/views/view3.json
             String view = ResourceLoader.load("views/view3.json");
 
             ChatGetPermalinkResponse permalinkResponse = ctx.client().chatGetPermalink(r -> r

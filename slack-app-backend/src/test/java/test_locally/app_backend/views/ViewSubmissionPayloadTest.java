@@ -1,4 +1,4 @@
-package test_locally.app_backend.views.payload;
+package test_locally.app_backend.views;
 
 import com.google.gson.Gson;
 import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;

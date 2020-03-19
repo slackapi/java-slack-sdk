@@ -31,7 +31,7 @@ public class ViewSample {
         AppConfig config = ResourceLoader.loadAppConfig();
         App app = new App(config);
 
-        // https://github.com/slackapi/java-slack-sdk/blob/master/bolt/src/test/resources
+        // src/test/resources
         String view1 = ResourceLoader.load("views/view1.json");
         app.command("/view", (req, ctx) -> {
             ViewsOpenResponse apiResponse = ctx.client().viewsOpen(r -> r

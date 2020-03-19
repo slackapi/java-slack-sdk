@@ -27,6 +27,10 @@ public class ResponderTest {
 
             WebhookResponse commandResponse = responder.sendToCommand(r -> r.text("Hi"));
             assertEquals(200L, commandResponse.getCode().longValue());
+
+            WebhookResponse modalResponse = responder.sendFromModal(r -> r.text("Hi"));
+            assertEquals(200L, modalResponse.getCode().longValue());
+
         } finally {
             slackApiServer.stop();
         }

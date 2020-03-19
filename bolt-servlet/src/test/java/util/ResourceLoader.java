@@ -31,7 +31,9 @@ public class ResourceLoader {
             String json = new BufferedReader(isr).lines().collect(joining());
             JsonObject j = new Gson().fromJson(json, JsonElement.class).getAsJsonObject();
             config.setSigningSecret(j.get("signingSecret").getAsString());
-            config.setSingleTeamBotToken(j.get("singleTeamBotToken").getAsString());
+            if (j.get("singleTeamBotToken") != null) {
+                config.setSingleTeamBotToken(j.get("singleTeamBotToken").getAsString());
+            }
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
