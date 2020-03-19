@@ -12,7 +12,7 @@ An [App Home](https://api.slack.com/surfaces/tabs/events) is a private, one-to-o
 
 To enable Home tabs, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **App Home** on the left pane, and then turn on **Home Tab**.
 
-To enable Events API, go to **Features** > **Event Subscriptions** on the left pain. There are a few things to do on the page.
+To enable Events API, go to **Features** > **Event Subscriptions** on the left pane. There are a few things to do on the page.
 
 * Turn on **Enable Events**
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events`

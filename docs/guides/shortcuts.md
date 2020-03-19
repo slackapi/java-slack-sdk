@@ -14,7 +14,7 @@ Your app has 3 seconds to call `ack()`, which acknowledges a shortcut request is
 
 ### Slack App Configuration
 
-To enable shortcuts, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactive Components** on the left pain. There are four things to do on the page.
+To enable shortcuts, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactive Components** on the left pane. There are four things to do on the page.
 
 * Turn on the feature
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events`

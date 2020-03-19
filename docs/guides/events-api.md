@@ -10,7 +10,7 @@ The [Events API](https://api.slack.com/events-api) is a streamlined, easy way to
 
 ### Slack App Configuration
 
-To enable Events API, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Event Subscriptions** on the left pain. There are a few things to do on the page.
+To enable Events API, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Event Subscriptions** on the left pane. There are a few things to do on the page.
 
 * Turn on **Enable Events**
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events`
