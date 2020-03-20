@@ -175,7 +175,7 @@ gradle run
 もしうまくいかない場合は、以下のチェックリストを見直してみてください。
 
 * ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
-* ✅ Gradle をインストール（もしまだであれば macOs は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
+* ✅ Gradle をインストール（もしまだであれば macOS は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
 * ✅ `build.gradle` に **bolt-jetty** 依存ライブラリを追加、適切な **application** プラグイン設定も追加
 * ✅ main メソッドを持つ `src/main/java/hello/MyApp.java` を作成
 * ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) という Bot Token Scope を追加、アプリを開発用ワークスペースにインストール
@@ -284,7 +284,7 @@ fun main() {
 これで全て完了です。念のため、チェックリストを確認しておきましょう。
 
 * ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
-* ✅ Gradle をインストール（もしまだであれば macOs は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
+* ✅ Gradle をインストール（もしまだであれば macOS は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
 * ✅ `build.gradle` に **bolt-jetty** 依存ライブラリを追加、適切な **application** プラグイン設定も追加
 * ✅ main メソッドを持つ `src/main/kotlin/MyApp.kt` を作成
 * ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) という Bot Token Scope を追加、アプリを開発用ワークスペースにインストール

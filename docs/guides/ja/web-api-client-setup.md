@@ -77,7 +77,7 @@ ApiTestResponse(ok=true, args=ApiTestResponse.Args(foo=bar, error=null), warning
 ここで行ったことをまとめると以下のようになります。
 
 * ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
-* ✅ Maven をインストール（もしまだであれば macOs は `brew install maven` を実行 / 他の OS 環境の場合は [公式サイト](https://maven.apache.org/) へアクセス）
+* ✅ Maven をインストール（もしまだであれば macOS は `brew install maven` を実行 / 他の OS 環境の場合は [公式サイト](https://maven.apache.org/) へアクセス）
 * ✅ `pom.xml` に **slack-api-client** を依存ライブラリとして追加
 * ✅ main メソッドを持つ `src/main/java/Example.java` を作成
 
@@ -111,7 +111,7 @@ Maven のセクションでも紹介した通り、main メソッドを持つ **
 ここで行ったことをまとめると以下のようになります。
 
 * ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
-* ✅ Gradle をインストール（もしまだであれば macOs は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
+* ✅ Gradle をインストール（もしまだであれば macOS は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
 * ✅ `build.gradle` に **slack-api-client** を依存ライブラリとして追加
 * ✅ main メソッドを持つ `src/main/java/Example.java` を作成
 
@@ -163,7 +163,7 @@ fun main() {
 ここで行ったことをまとめると以下のようになります。
 
 * ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
-* ✅ Gradle をインストール（もしまだであれば macOs は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
+* ✅ Gradle をインストール（もしまだであれば macOS は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
 * ✅ `build.gradle` に 適切な Kotlin の言語関連の設定と **slack-api-client** を依存ライブラリとして追加
 * ✅ main メソッドを持つ `src/main/kotlin/Example.kt` を作成
 
