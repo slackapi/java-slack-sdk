@@ -316,7 +316,8 @@
       "browsers_seen_initial_saved_education": false,
       "saved_view": "",
       "ia_slackbot_survey_timestamp_48h": 12345,
-      "ia_slackbot_survey_timestamp_7d": 12345
+      "ia_slackbot_survey_timestamp_7d": 12345,
+      "dnd_weekdays_off_allday": false
     },
     "created": 12345,
     "manual_presence": ""
@@ -537,7 +538,9 @@
         ]
       },
       "single_user_exports": false,
-      "default_channel_creation_enabled": false
+      "default_channel_creation_enabled": false,
+      "welcome_place_enabled": false,
+      "dnd_weekdays_off_allday": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
