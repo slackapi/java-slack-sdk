@@ -154,7 +154,7 @@ The default constructor expects the following two env variables exist when start
 
 |Env Variable|Description|
 |-|-|
-|**SLACK_BOT_TOKEN**|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, you need to install your Slack App that has a bot user to your development workspace. Visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane. <br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)]({{ site.url | append: site.baseurl }}/guides/app-distribution) for further information instead.|
+|**SLACK_BOT_TOKEN**|The valid bot token value starting with `xoxb-` in your development workspace. To issue a bot token, you need to install your Slack App that has a bot user to your development workspace. Visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** > **Install App** on the left pane (Add [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) bot scope if you see the message saying "Please add at least one feature or permission scope to install your app.").<br/><br/> If you run an app that is installable for multiple workspaces, no need to specify this. Consult [App Distribution (OAuth)]({{ site.url | append: site.baseurl }}/guides/app-distribution) for further information instead.|
 |**SLACK_SIGNING_SECRET**|The secret value shared only with the Slack Platform. It is used for verifying incoming requests from Slack. Request verification is crucial for security as Slack apps have internet-facing endpoints. To know the value, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Settings** > **Basic Information** on the left pane, and find **App Credentials** > **Signing Secret** on the page. Refer to [the document](https://api.slack.com/docs/verifying-requests-from-slack) for further information.|
 
 If you prefer configuring an **App** in a different way, write some code to initialize **AppConfig** on your own.
@@ -284,7 +284,7 @@ OK, you should be done. Just in case, here is the checklist:
 
 * ✅ JDK 8 or higher installed (if not, run `brew install openjdk@11` for macOS / visit [OpenJDK website](https://openjdk.java.net/install/) for others)
 * ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
-* ✅ `build.gradle` with valid Kolitn language settings and **bolt-jetty** dependency
+* ✅ `build.gradle` with valid Kotlin language settings and **bolt-jetty** dependency
 * ✅ `src/main/kotlin/MyApp.kt` with a main method
 * ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) bot scope, install the app to your development workspace
 * ✅ Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables

@@ -154,7 +154,7 @@ server.start();
 
 |環境変数名|説明|
 |-|-|
-|**SLACK_BOT_TOKEN**|開発用ワークスペース（Development Workspace）での有効なボットトークン（形式は `xoxb-` から始まります）です。このボットトークンを発行するには Slack アプリを開発用ワークスペースにインストールする必要があります。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Install App** から実行します。 <br/><br/>複数のワークスペースにインストール可能なアプリとして実行する場合はこの環境変数を設定する必要はありません。そのようなアプリの開発については「[アプリの配布 (OAuth)]({{ site.url | append: site.baseurl }}/guides/ja/app-distribution)」を参考にしてください。|
+|**SLACK_BOT_TOKEN**|開発用ワークスペース（Development Workspace）での有効なボットトークン（形式は `xoxb-` から始まります）です。このボットトークンを発行するには Slack アプリを開発用ワークスペースにインストールする必要があります。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Install App** から実行します（「Please add at least one feature or permission scope to install your app.」というメッセージが表示されている場合は　[`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) bot scope を追加してください）。 <br/><br/>複数のワークスペースにインストール可能なアプリとして実行する場合はこの環境変数を設定する必要はありません。そのようなアプリの開発については「[アプリの配布 (OAuth)]({{ site.url | append: site.baseurl }}/guides/ja/app-distribution)」を参考にしてください。|
 |**SLACK_SIGNING_SECRET**|この秘密の値は Slack プラットフォームとだけ共有する情報です。これは Slack アプリが受けたリクエストが本当に Slack API サーバーからのリクエストであるかを検証するために使用します。Slack アプリは公開されたエンドポイントを持つため、リクエストの検証はセキュリティのために重要です。この値は [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Basic Information** へ遷移して **App Credentials** > **Signing Secret** の情報を表示させると確認できます。より詳細な情報は「[Verifying requests from Slack（英語）](https://api.slack.com/docs/verifying-requests-from-slack)」を参考にしてください。|
 
 なお、**App** を別の方法（例: 規定の環境変数名を使わない）で初期化したい場合は **AppConfig** を自前で初期化するコードを書いてください。
@@ -285,7 +285,7 @@ fun main() {
 
 * ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
 * ✅ Gradle をインストール（もしまだであれば macOS は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
-* ✅ `build.gradle` に **bolt-jetty** 依存ライブラリを追加、適切な **application** プラグイン設定も追加
+* ✅ `build.gradle` に適切な Kotlin の言語設定と **bolt-jetty** 依存ライブラリを追加
 * ✅ main メソッドを持つ `src/main/kotlin/MyApp.kt` を作成
 * ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) という Bot Token Scope を追加、アプリを開発用ワークスペースにインストール
 * ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) と [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) の値をコピーしてきて環境変数に設定
