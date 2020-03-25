@@ -317,7 +317,11 @@
       "saved_view": "",
       "ia_slackbot_survey_timestamp_48h": 12345,
       "ia_slackbot_survey_timestamp_7d": 12345,
-      "dnd_weekdays_off_allday": false
+      "dnd_weekdays_off_allday": false,
+      "onboarding_state": 12345,
+      "has_received_mention_or_reaction": false,
+      "has_starred_item": false,
+      "has_drafted_message": false
     },
     "created": 12345,
     "manual_presence": ""
