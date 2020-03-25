@@ -30,6 +30,8 @@ public class Actions {
         public static final String corporate_exports_enabled = "corporate_exports_enabled";
         public static final String manual_export_started = "manual_export_started";
         public static final String manual_export_completed = "manual_export_completed";
+        public static final String manual_user_export_started = "manual_user_export_started";
+        public static final String manual_user_export_completed = "manual_user_export_completed";
         public static final String scheduled_export_started = "scheduled_export_started";
         public static final String scheduled_export_completed = "scheduled_export_completed";
         public static final String channels_export_started = "channels_export_started";
@@ -95,8 +97,7 @@ public class Actions {
         public static final String pref_loading_only_admins = "pref.loading_only_admins";
         public static final String pref_display_real_names = "pref.display_real_names";
         public static final String pref_enterprise_mobile_device_check = "pref.enterprise_mobile_device_check";
-        public static final String manual_user_export_started = "manual_user_export_started";
-        public static final String manual_user_export_completed = "manual_user_export_completed";
+        public static final String pref_required_minimum_mobile_version_changed = "pref.required_minimum_mobile_version_changed";
     }
 
     public static class User {

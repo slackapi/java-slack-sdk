@@ -85,7 +85,8 @@
       "pref.username_policy",
       "pref.enterprise_team_creation_request",
       "pref.loading_only_admins",
-      "pref.display_real_names"
+      "pref.display_real_names",
+      "pref.required_minimum_mobile_version_changed"
     ],
     "user": [
       "custom_tos_accepted",
