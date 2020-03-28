@@ -46,7 +46,7 @@ Bolt は Slack アプリに必要な共通処理の多くを巻き取ります�
 
 メッセージショートカットのペイロードは `response_url` を持っており、例えば `ack()` した後、しばらく経ってからでも返信することができます。URL は発行されてから 30 分間を期限に最大 5 回まで使用することができます。処理が終わったタイミングで `response_url` を使って返信する場合は `ctx.ack()` は引数なしで実行し `ctx.respond()` でメッセージを投稿する、というやり方になります。グローバルショートカットのペイロードには `response_url` は含まれません。
 
-グローバルショートカットのペイロードは、デフォルトでは `response_url` を持っていません。しかし、モーダルの中にユーザーにチャンネルを入力してもらうためのブロックがある場合は `response_urls` という項目で受け取ることができます。これを利用するためには [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) か [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) の input type の block element を用意し、かつ、その属性に `"response_url_enabled": true` を設定してください。
+グローバルショートカットのペイロードは、デフォルトでは `response_url` を持っていません。しかし、モーダルの中にユーザーにチャンネルを入力してもらうための `input` タイプのブロックがある場合は `response_urls` という項目で受け取ることができます。これを利用するためには [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) か [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) の input type の block element を用意し、かつ、その属性に `"response_url_enabled": true` を設定してください。
 
 以下のサンプルは、ショートカットのリクエストに応答する Bolt アプリの実装の例です。
 

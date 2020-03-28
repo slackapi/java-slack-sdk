@@ -355,6 +355,12 @@ ctx.ackWithUpdate(renewedView)
 ctx.ackWithPush(newViewInStack)
 ```
 
+#### モーダル送信後にメッセージを投稿
+
+`view_submission` のペイロードはデフォルトでは `response_url` を含んでいません。しかし、モーダルがユーザーにメッセージを投稿するためのチャンネルを入力するよう求める `input` タイプのブロックを含む場合、ペイロード内の `response_urls` として URL を受け取ることができます。
+
+これを有効にするためには [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) もしくは [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) のタイプのブロックエレメントを配置し、さらにその属性として `"response_url_enabled": true` を追加してください。より詳細な情報は [API ドキュメント（英語）](https://api.slack.com/surfaces/modals/using#modal_response_url)を参照してください。
+
 ### `"view_closed"` リクエスト (`notify_on_close` が `true` のときのみ)
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。

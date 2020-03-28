@@ -347,6 +347,12 @@ ctx.ack { it.responseAction("update").view(renewedView) }
 ctx.ack { it.responseAction("push").view(newViewInStack) }
 ```
 
+#### Publishing Messages After Modal Submissions
+
+`view_submission` payloads don't have `response_url` by default. However, if you have an `input` block asking users a channel to post a message, payloads may provide `response_urls`.
+
+To enable this, set the block element type as either [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) or [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) and add `"response_url_enabled": true`. Refer to [the API document](https://api.slack.com/surfaces/modals/using#modal_response_url) for details.
+
 ### `"view_closed"` requests (only when `notify_on_close` is `true`)
 
 Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
