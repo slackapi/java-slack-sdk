@@ -28,6 +28,10 @@ public class BlockKitTest {
                 "        \"type\": \"plain_text\",\n" +
                 "        \"text\": \"Label of input\"\n" +
                 "    },\n" +
+                "    \"hint\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Hint of input\"\n" +
+                "    },\n" +
                 "  \"element\": {\n" +
                 "    \"type\": \"plain_text_input\",\n" +
                 "    \"action_id\": \"plain_input\",\n" +
@@ -42,6 +46,7 @@ public class BlockKitTest {
         InputBlock inputBlock = (InputBlock) message.getBlocks().get(0);
         assertThat(inputBlock.getLabel(), is(notNullValue()));
         assertThat(inputBlock.getElement(), is(notNullValue()));
+        assertThat(inputBlock.getHint(),is(notNullValue()));
     }
 
     @Test
