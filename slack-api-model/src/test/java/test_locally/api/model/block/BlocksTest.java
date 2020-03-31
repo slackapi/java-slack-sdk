@@ -242,6 +242,11 @@ public class BlocksTest {
                     "      \"type\": \"plain_text\",\n" +
                     "      \"text\": \"Choose the conversation to publish your result to:\",\n" +
                     "      \"emoji\": true\n" +
+                    "    },\n" +
+                    "    \"hint\": {\n" +
+                    "      \"type\": \"plain_text\",\n" +
+                    "      \"text\": \"Choose the conversation to publish your result to:\",\n" +
+                    "      \"emoji\": true\n" +
                     "    }\n" +
                     "  }\n" +
                     "]}";

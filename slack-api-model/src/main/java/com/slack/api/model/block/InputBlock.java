@@ -36,7 +36,7 @@ public class InputBlock implements LayoutBlock {
      * It must be a a text object with a type of plain_text.
      * Maximum length for the text in this field is 2000 characters.
      */
-    private String hint;
+    private PlainTextObject hint;
 
     /**
      * A boolean that indicates whether the input element may be empty when a user submits the modal.
