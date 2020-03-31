@@ -34,16 +34,8 @@
   ],
   "groups": [
     {
-      "schemas": [
-        "urn:scim:schemas:core:1.0",
-        "urn:scim:schemas:extension:enterprise:1.0"
-      ],
-      "id": "",
-      "displayName": "",
-      "meta": {
-        "created": "",
-        "location": ""
-      }
+      "value": "",
+      "display": ""
     }
   ],
   "addresses": [
