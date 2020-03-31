@@ -24,5 +24,6 @@ public class Group {
     @Data
     public static class Member {
         private String value;
+        private String display;
     }
 }

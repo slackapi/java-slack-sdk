@@ -197,14 +197,12 @@ public class JsonDataRecorder {
             User.Role sampleObject = ObjectInitializer.initProperties(new User.Role());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
-        if (resourceObj.get("groups") == null) {
-            resourceObj.add("groups", new JsonArray());
-        }
-        {
-            JsonArray objects = resourceObj.get("groups").getAsJsonArray();
-            clearAllElements(objects);
-            Group sampleObject = ObjectInitializer.initProperties(new Group());
-            objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
+        if (resourceObj.get("groups") != null) {
+            JsonArray groups = new JsonArray();
+            User.Group group = new User.Group();
+            ObjectInitializer.initProperties(group);
+            groups.add(GsonFactory.createCamelCase(config).toJsonTree(group));
+            resourceObj.add("groups", groups);
         }
     }
 

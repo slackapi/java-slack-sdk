@@ -30,6 +30,19 @@ public class ApiTest {
 
     String orgAdminToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
 
+    private UsersCreateResponse createNewUser() throws IOException, SCIMApiException {
+        String userName = "user" + System.currentTimeMillis();
+        User newUser = new User();
+        newUser.setName(new User.Name());
+        newUser.getName().setGivenName("Kazuhiro");
+        newUser.getName().setFamilyName("Sera");
+        newUser.setUserName(userName);
+        User.Email email = new User.Email();
+        email.setValue("seratch+" + System.currentTimeMillis() + "@gmail.com");
+        newUser.setEmails(Arrays.asList(email));
+        return slack.scim(orgAdminToken).createUser(req -> req.user(newUser));
+    }
+
     @Test
     public void getServiceProviderConfigs() throws IOException, SCIMApiException {
         if (orgAdminToken != null) {
@@ -90,16 +103,7 @@ public class ApiTest {
     @Test
     public void createAndDeleteUser() throws Exception {
         if (orgAdminToken != null) {
-            String userName = "user" + System.currentTimeMillis();
-            User newUser = new User();
-            newUser.setName(new User.Name());
-            newUser.getName().setGivenName("Kazuhiro");
-            newUser.getName().setFamilyName("Sera");
-            newUser.setUserName(userName);
-            User.Email email = new User.Email();
-            email.setValue("seratch+" + System.currentTimeMillis() + "@gmail.com");
-            newUser.setEmails(Arrays.asList(email));
-            UsersCreateResponse creation = slack.scim(orgAdminToken).createUser(req -> req.user(newUser));
+            UsersCreateResponse creation = createNewUser();
             assertThat(creation.getId(), is(notNullValue()));
 
             UsersReadResponse readResp = slack.scim(orgAdminToken).readUser(req -> req.id(creation.getId()));
@@ -109,6 +113,7 @@ public class ApiTest {
             try {
                 // https://api.slack.com/scim#filter
                 // filter query matching the created data
+                String userName = creation.getUserName();
                 UsersSearchResponse searchResp = slack.scim(orgAdminToken).searchUsers(req -> req.count(1).filter("userName eq \"" + userName + "\""));
                 assertThat(searchResp.getItemsPerPage(), is(1));
                 assertThat(searchResp.getResources().size(), is(1));
@@ -167,7 +172,15 @@ public class ApiTest {
             if (groups.getResources().size() == 0) {
                 Group newGroup = new Group();
                 newGroup.setDisplayName("Test Group" + System.currentTimeMillis());
-                slack.scim(orgAdminToken).createGroup(req -> req.group(newGroup));
+
+                Group.Member member = new Group.Member();
+                UsersCreateResponse newUser = createNewUser();
+                assertThat(newUser.getId(), is(notNullValue()));
+                member.setValue(newUser.getId());
+                newGroup.setMembers(Arrays.asList(member));
+
+                GroupsCreateResponse createdGroup = slack.scim(orgAdminToken).createGroup(req -> req.group(newGroup));
+                assertThat(createdGroup.getMembers().size(), is(1));
             }
 
             // pagination
@@ -189,6 +202,35 @@ public class ApiTest {
 
             GroupsReadResponse read = slack.scim(orgAdminToken).readGroup(req -> req.id(group.getId()));
             assertThat(read.getId(), is(group.getId()));
+        }
+    }
+
+    @Test
+    public void groupAndUsers() throws IOException, SCIMApiException {
+        if (orgAdminToken != null) {
+            Group newGroup = new Group();
+            newGroup.setDisplayName("Test Group" + System.currentTimeMillis());
+            UsersCreateResponse newUser = createNewUser();
+            assertThat(newUser.getId(), is(notNullValue()));
+            try {
+                Group.Member member = new Group.Member();
+                member.setValue(newUser.getId());
+                newGroup.setMembers(Arrays.asList(member));
+                GroupsCreateResponse createdGroup = slack.scim(orgAdminToken).createGroup(req -> req.group(newGroup));
+                assertThat(createdGroup.getMembers().size(), is(1));
+                try {
+                    String userName = newUser.getUserName();
+                    UsersSearchResponse searchResp = slack.scim(orgAdminToken).searchUsers(req -> req.count(1).filter("userName eq \"" + userName + "\""));
+                    assertThat(searchResp.getResources().size(), is(1));
+                    assertThat(searchResp.getResources().get(0).getGroups().size(), is(1));
+                } finally {
+                    GroupsDeleteResponse groupDeletion = slack.scim(orgAdminToken).deleteGroup(req -> req.id(createdGroup.getId()));
+                    assertThat(groupDeletion, is(nullValue()));
+                }
+            } finally {
+                UsersDeleteResponse deletion = slack.scim(orgAdminToken).deleteUser(req -> req.id(newUser.getId()));
+                assertThat(deletion, is(nullValue()));
+            }
         }
     }
 
