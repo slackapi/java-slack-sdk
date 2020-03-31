@@ -105,4 +105,10 @@ public class User {
         }
     }
 
+    @Data
+    public static class Group {
+        private String value;
+        private String display;
+    }
+
 }
