@@ -160,6 +160,18 @@
     {
       "date_created": "2020-03-24T17:18:02-07:00",
       "body": "We\u0027re looking into reports of access issues for some people using web browsers. Please hold tight. In the meantime, using a different type of web browser or the desktop app will hopefully get you back into your workspace."
+    },
+    {
+      "date_created": "2020-03-30T19:11:11-07:00",
+      "body": "Issue Summary: \r\n\r\nOn March 30, 2020 from 3:20 p.m. to 6:26 p.m. PDT, some customers may have experienced elevated API response times or timeouts. This was caused by an issue with a third-party provider. Once they resolved the issue, Slack API response times returned to normal."
+    },
+    {
+      "date_created": "2020-03-30T18:36:12-07:00",
+      "body": "Customers should no longer be experiencing elevated API response times or timeouts. Thank you for being patient with us, we appreciate it. \r\n\r\nIf you have any further issues, please reach out to us at feedback@slack.com."
+    },
+    {
+      "date_created": "2020-03-30T17:38:55-07:00",
+      "body": "Issues with a third-party provider are causing elevated response times in the API, leading to potential timeouts. We are monitoring the situation and working to mitigate this from our end as best we can. We apologize for the disruption."
     }
   ]
 }
