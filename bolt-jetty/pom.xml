@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <jetty.version>9.4.24.v20191120</jetty.version>
+        <jetty.version>9.4.27.v20200227</jetty.version>
     </properties>
 
     <groupId>com.slack.api</groupId>
