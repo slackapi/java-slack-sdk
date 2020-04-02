@@ -21,7 +21,9 @@
           "ts": ""
         }
       ],
-      "subscribed": false
+      "subscribed": false,
+      "user": "U00000000",
+      "bot_link": ""
     }
   ],
   "has_more": false,

@@ -416,7 +416,9 @@ public class conversations_Test {
                 List<Message> messages = response.getMessages();
                 Message firstMessage = messages.get(0);
                 assertThat(firstMessage.getReplyUsersCount(), is(1));
-                assertThat(firstMessage.getReplies().size(), is(5));
+                // NOTE: As of April 2020, this field is no longer available
+                // assertThat(firstMessage.getReplies().size(), is(5));
+                assertThat(firstMessage.getReplies(), is(nullValue()));
                 assertThat(firstMessage.getReplyCount(), is(5));
                 assertThat(firstMessage.getLatestReply(), is(messages.get(5).getTs()));
             }
@@ -433,7 +435,9 @@ public class conversations_Test {
                 List<Message> messages = response.getMessages();
                 Message firstMessage = messages.get(0);
                 assertThat(firstMessage.getReplyUsersCount(), is(1));
-                assertThat(firstMessage.getReplies().size(), is(5));
+                // NOTE: As of April 2020, this field is no longer available
+                // assertThat(firstMessage.getReplies().size(), is(5));
+                assertThat(firstMessage.getReplies(), is(nullValue()));
                 assertThat(firstMessage.getReplyCount(), is(5));
                 assertThat(firstMessage.getLatestReply(), is(messages.get(5).getTs()));
             }

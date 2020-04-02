@@ -8,6 +8,7 @@ import java.util.Collections;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertNull;
 
 public class WebhookResponseTest {
@@ -64,7 +65,7 @@ public class WebhookResponseTest {
         assertThat(attachmentResponse.getTitle(), is("Slack API Documentation"));
         assertThat(attachmentResponse.getTitleLink(), is("https://api.slack.com/"));
         assertThat(attachmentResponse.getText(), is("This is an *attachment*."));
-        assertThat(attachmentResponse.getFields().size(), is(0));
+        assertThat(attachmentResponse.getFields(), is(nullValue()));
         assertNull(attachmentResponse.getImageUrl());
         assertNull(attachmentResponse.getImageWidth());
         assertNull(attachmentResponse.getImageHeight());
@@ -78,8 +79,8 @@ public class WebhookResponseTest {
         assertThat(attachmentResponse.getFooter(), is("footer"));
         assertNull(attachmentResponse.getFooterIcon());
         assertNull(attachmentResponse.getTs());
-        assertThat(attachmentResponse.getMrkdwnIn().size(), is(0));
-        assertThat(attachmentResponse.getActions().size(), is(0));
+        assertThat(attachmentResponse.getMrkdwnIn(), is(nullValue()));
+        assertThat(attachmentResponse.getActions(), is(nullValue()));
         assertNull(attachmentResponse.getBlocks());
         assertNull(attachmentResponse.getFilename());
         assertNull(attachmentResponse.getSize());
