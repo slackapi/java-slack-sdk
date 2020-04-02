@@ -25,6 +25,11 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+import static com.slack.api.model.Attachments.asAttachments;
+import static com.slack.api.model.Attachments.attachment;
+import static com.slack.api.model.block.Blocks.asBlocks;
+import static com.slack.api.model.block.Blocks.section;
+import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNull;
@@ -690,6 +695,40 @@ public class chat_Test {
         ChatScheduledMessagesListResponse after = slack.methods(botToken).chatScheduledMessagesList(r -> r.limit(100));
         assertNull(after.getError());
         assertTrue(after.getScheduledMessages().size() - before.getScheduledMessages().size() == 2);
+    }
+
+    // https://github.com/slackapi/java-slack-sdk/issues/415
+    @Test
+    public void attachmentsWithBlocks_issue_415() throws IOException, SlackApiException {
+        loadRandomChannelId();
+        /*
+         * {
+         *   "attachments": [
+         *     {
+         *       "color": "#00FF00",
+         *       "blocks": [
+         *         {
+         *           "type": "section",
+         *           "text": {
+         *             "type": "mrkdwn",
+         *             "text": "*I would expect this text to show*"
+         *           }
+         *         }
+         *       ]
+         *     }
+         *   ]
+         * }
+         */
+        List<Attachment> attachments = asAttachments(
+                attachment(a -> a.color("#00FF00").blocks(asBlocks(
+                        section(s -> s.text(markdownText("*I would expect this text to show*")))
+                )))
+        );
+        ChatPostMessageResponse result = slack.methods(botToken).chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .attachments(attachments)
+        );
+        assertThat(result.getError(), is(nullValue()));
     }
 
 }

@@ -800,6 +800,7 @@
   "url": "",
   "is_europe": false,
   "accept_tos_url": "https://www.example.com/",
+  "channels_with_use_case": {},
   "error": "",
   "needed": "",
   "provided": ""
