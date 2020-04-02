@@ -15,7 +15,7 @@ Slack アプリは 3 秒以内に `ack()` メソッドでショッートカッ�
 
 #### Slack アプリの設定
 
-ショートカットを有効にするには [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Interactive Components** へ遷移します。このページで以下の設定を行います。
+ショートカットを有効にするには [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Interactivity & Shortcuts** へ遷移します。このページで以下の設定を行います。
 
 * **Interactivity** を Off から On にする
 * `https://{あなたのドメイン}/slack/events` を **Request URL** に設定
