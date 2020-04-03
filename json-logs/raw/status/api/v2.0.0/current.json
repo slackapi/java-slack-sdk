@@ -196,6 +196,29 @@
           "body": "We\u0027re looking into reports of access issues for some people using web browsers. Please hold tight. In the meantime, using a different type of web browser or the desktop app will hopefully get you back into your workspace."
         }
       ]
+    },
+    {
+      "id": 834,
+      "date_created": "2020-04-02T17:49:13-07:00",
+      "date_updated": "2020-04-02T18:24:03-07:00",
+      "title": "Some customers are experiencing delayed or failed actions",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-04/646f8b88bc0b7be5",
+      "services": [
+        "Search",
+        "Workspace/Org Administration"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-04-02T18:24:03-07:00",
+          "body": "We’re still investigating the issue with these delayed or failed actions, and we\u0027ve discovered that this may be affecting searching in Slack as well. We\u0027ll confirm as soon as things are working as they should be."
+        },
+        {
+          "date_created": "2020-04-02T17:49:13-07:00",
+          "body": "Some of our customers are having trouble completing certain user-related actions, such as when deactivating members. We\u0027re currently investigating the cause of these delays, and we\u0027ll keep you posted as soon as we have more information. We\u0027re sorry for the disruption."
+        }
+      ]
     }
   ]
 }

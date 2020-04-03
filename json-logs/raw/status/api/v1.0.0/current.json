@@ -14,7 +14,8 @@
     "Login/SSO",
     "Workspace/Org Administration",
     "Link Previews",
-    "Apps/Integrations/APIs"
+    "Apps/Integrations/APIs",
+    "Search"
   ],
   "notes": [
     {
@@ -172,6 +173,14 @@
     {
       "date_created": "2020-03-30T17:38:55-07:00",
       "body": "Issues with a third-party provider are causing elevated response times in the API, leading to potential timeouts. We are monitoring the situation and working to mitigate this from our end as best we can. We apologize for the disruption."
+    },
+    {
+      "date_created": "2020-04-02T18:24:03-07:00",
+      "body": "We’re still investigating the issue with these delayed or failed actions, and we\u0027ve discovered that this may be affecting searching in Slack as well. We\u0027ll confirm as soon as things are working as they should be."
+    },
+    {
+      "date_created": "2020-04-02T17:49:13-07:00",
+      "body": "Some of our customers are having trouble completing certain user-related actions, such as when deactivating members. We\u0027re currently investigating the cause of these delays, and we\u0027ll keep you posted as soon as we have more information. We\u0027re sorry for the disruption."
     }
   ]
 }
