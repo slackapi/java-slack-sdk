@@ -545,7 +545,12 @@
       "default_channel_creation_enabled": false,
       "welcome_place_enabled": false,
       "dnd_weekdays_off_allday": false,
-      "has_installed_apps": false
+      "has_installed_apps": false,
+      "who_can_dm_anyone": {
+        "type": [
+          ""
+        ]
+      }
     },
     "icon": {
       "image_34": "https://www.example.com/",

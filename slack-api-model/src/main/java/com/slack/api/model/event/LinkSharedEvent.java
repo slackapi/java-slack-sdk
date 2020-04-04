@@ -20,6 +20,7 @@ public class LinkSharedEvent implements Event {
     private String messageTs;
     private String threadTs;
     private List<Link> links;
+    private String eventTs;
 
     @Data
     public static class Link {

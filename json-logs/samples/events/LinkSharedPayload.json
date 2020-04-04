@@ -13,7 +13,8 @@
         "url": "https://www.example.com/",
         "domain": ""
       }
-    ]
+    ],
+    "event_ts": "0000000000.000000"
   },
   "type": "event_callback",
   "event_id": "",
