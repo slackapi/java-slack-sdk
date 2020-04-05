@@ -26,41 +26,14 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
     private final App app;
 
     public SlackApiLambdaHandler(App app) {
-        this.app = app;
         this.requestParser = new SlackRequestParser(app.config());
+        this.app = app;
+        this.app.start();
     }
-
-    protected Request<?> toSlackRequest(ApiGatewayRequest awsReq) {
-        if (log.isDebugEnabled()) {
-            log.debug("AWS API Gateway Request: {}", awsReq);
-        }
-        RequestContext context = awsReq.getRequestContext();
-        SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
-                .requestUri(awsReq.getPath())
-                .queryString(toStringToStringListMap(awsReq.getQueryStringParameters()))
-                .headers(new RequestHeaders(toStringToStringListMap(awsReq.getHeaders())))
-                .requestBody(awsReq.getBody())
-                .remoteAddress(context != null && context.getIdentity() != null ? context.getIdentity().getSourceIp() : null)
-                .build();
-        return requestParser.parse(rawRequest);
-    }
-
-    protected ApiGatewayResponse toApiGatewayResponse(Response slackResp) {
-        return ApiGatewayResponse.builder()
-                .statusCode(slackResp.getStatusCode())
-                .headers(toStringToStringMap(slackResp.getHeaders()))
-                .rawBody(slackResp.getBody())
-                .build();
-    }
-
-    protected abstract boolean isWarmupRequest(ApiGatewayRequest awsReq);
 
     @Override
     public ApiGatewayResponse handleRequest(ApiGatewayRequest input, Context context) {
         if (isWarmupRequest(input)) {
-            // This one is always an internal request
-            // (It's not possible to create this request body via API Gateway)
-            app.start();
             log.info("Successfully responded to a warmup request ({})", input);
             return null;
         }
@@ -77,14 +50,30 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
         }
     }
 
-    private static Map<String, String> toStringToStringMap(Map<String, List<String>> stringToStringListMap) {
-        Map<String, String> headers = new HashMap<>();
-        for (Map.Entry<String, List<String>> each : stringToStringListMap.entrySet()) {
-            if (each.getValue() != null && each.getValue().size() > 0) {
-                headers.put(each.getKey(), each.getValue().get(0)); // set the first value in the array
-            }
+    /**
+     * Segregates internal requests for warmup to the actual requests by the API
+     * Gateway. If returns {@code true} request payload will be logged depending
+     * on the logging level and return. It is useful to warm up the lambda in
+     * order to avoid cold starts.
+     *
+     * @param awsReq the {@code ApiGatewayRequest} that triggered this lambda
+     * @return {@code true} if request is for warmup, otherwise {@code false}
+     */
+    protected abstract boolean isWarmupRequest(ApiGatewayRequest awsReq);
+
+    protected Request<?> toSlackRequest(ApiGatewayRequest awsReq) {
+        if (log.isDebugEnabled()) {
+            log.debug("AWS API Gateway Request: {}", awsReq);
         }
-        return headers;
+        RequestContext context = awsReq.getRequestContext();
+        SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
+                .requestUri(awsReq.getPath())
+                .queryString(toStringToStringListMap(awsReq.getQueryStringParameters()))
+                .headers(new RequestHeaders(toStringToStringListMap(awsReq.getHeaders())))
+                .requestBody(awsReq.getBody())
+                .remoteAddress(context != null && context.getIdentity() != null ? context.getIdentity().getSourceIp() : null)
+                .build();
+        return requestParser.parse(rawRequest);
     }
 
     private static Map<String, List<String>> toStringToStringListMap(Map<String, String> stringToStringListMap) {
@@ -98,4 +87,33 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
         return results;
     }
 
+    protected ApiGatewayResponse toApiGatewayResponse(Response slackResp) {
+        return ApiGatewayResponse.builder()
+                .statusCode(slackResp.getStatusCode())
+                .headers(toStringToStringMap(slackResp.getHeaders()))
+                .rawBody(slackResp.getBody())
+                .build();
+    }
+
+    private static Map<String, String> toStringToStringMap(Map<String, List<String>> stringToStringListMap) {
+        Map<String, String> headers = new HashMap<>();
+        for (Map.Entry<String, List<String>> each : stringToStringListMap.entrySet()) {
+            if (each.getValue() != null && !each.getValue().isEmpty()) {
+                headers.put(each.getKey(), each.getValue().get(0)); // set the first value in the array
+            }
+        }
+        return headers;
+    }
+
+    /**
+     * Allows access to the internal {@link App} used by this class interact
+     * with Slack. It is useful in cases where changes on the app are necessary
+     * after initialisation. For example, when adding a reaction after certain
+     * command calls this bot.
+     *
+     * @return the {@code App} used by this class to handle events
+     */
+    protected App app() {
+        return app;
+    }
 }
