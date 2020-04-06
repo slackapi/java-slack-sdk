@@ -30,6 +30,10 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
         this.requestParser = new SlackRequestParser(app.config());
     }
 
+    protected App getApp() {
+        return app;
+    }
+
     protected Request<?> toSlackRequest(ApiGatewayRequest awsReq) {
         if (log.isDebugEnabled()) {
             log.debug("AWS API Gateway Request: {}", awsReq);
