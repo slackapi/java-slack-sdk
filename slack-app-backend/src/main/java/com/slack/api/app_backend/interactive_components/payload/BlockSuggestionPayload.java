@@ -1,6 +1,7 @@
 package com.slack.api.app_backend.interactive_components.payload;
 
 import com.google.gson.annotations.SerializedName;
+import com.slack.api.model.view.View;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class BlockSuggestionPayload {
     private String blockId;
     private String value;
     private Channel channel;
+    private View view;
 
     @Data
     public static class Team {
