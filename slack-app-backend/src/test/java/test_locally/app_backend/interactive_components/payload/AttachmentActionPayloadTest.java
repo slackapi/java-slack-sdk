@@ -1,4 +1,4 @@
-package test_locally.app_backend.interactive_messages.payload;
+package test_locally.app_backend.interactive_components.payload;
 
 import com.slack.api.app_backend.interactive_components.payload.AttachmentActionPayload;
 import com.slack.api.util.json.GsonFactory;
