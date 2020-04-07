@@ -45,7 +45,7 @@ public class Issue419UseCaseTest {
         }
 
         public void enableEventSubscription() {
-            App app = getApp();
+            App app = app();
             app.event(MessageEvent.class, (event, ctx) -> {
                 messageCount.incrementAndGet();
                 return ctx.ack();
