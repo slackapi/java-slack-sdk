@@ -26,8 +26,47 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
     private final App app;
 
     public SlackApiLambdaHandler(App app) {
-        this.app = app;
         this.requestParser = new SlackRequestParser(app.config());
+        this.app = app;
+        app.start();
+    }
+
+    /**
+     * Returns true if the given incoming request is an internal warmup request.
+     * You can use your own logic for distinguishing requests from Slack from your own internal warmup trigger.
+     */
+    protected abstract boolean isWarmupRequest(ApiGatewayRequest awsReq);
+
+    @Override
+    public ApiGatewayResponse handleRequest(ApiGatewayRequest input, Context context) {
+        if (isWarmupRequest(input)) {
+            // This one is always an internal request
+            // (It's not possible to create this request body via API Gateway)
+            log.info("Successfully responded to a warmup request ({})", input);
+            return null;
+        }
+        Request<?> req = toSlackRequest(input);
+        try {
+            if (req == null) {
+                return ApiGatewayResponse.builder().statusCode(400).rawBody("Invalid Request").build();
+            }
+            return toApiGatewayResponse(app.run(req));
+        } catch (Exception e) {
+            log.error("Failed to respond to a request (request: {}, error: {})", input.getBody(), e.getMessage(), e);
+            // As this response body can be exposed, it should not have detailed information.
+            return ApiGatewayResponse.builder().statusCode(500).rawBody("Internal Server Error").build();
+        }
+    }
+
+    // -------------------------------------------
+    // Extensible internal methods
+    // -------------------------------------------
+
+    /**
+     * Returns the underlying {@link App} instance in this handler.
+     */
+    protected App app() {
+        return app;
     }
 
     protected Request<?> toSlackRequest(ApiGatewayRequest awsReq) {
@@ -53,29 +92,9 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
                 .build();
     }
 
-    protected abstract boolean isWarmupRequest(ApiGatewayRequest awsReq);
-
-    @Override
-    public ApiGatewayResponse handleRequest(ApiGatewayRequest input, Context context) {
-        if (isWarmupRequest(input)) {
-            // This one is always an internal request
-            // (It's not possible to create this request body via API Gateway)
-            app.start();
-            log.info("Successfully responded to a warmup request ({})", input);
-            return null;
-        }
-        Request<?> req = toSlackRequest(input);
-        try {
-            if (req == null) {
-                return ApiGatewayResponse.builder().statusCode(400).rawBody("Invalid Request").build();
-            }
-            return toApiGatewayResponse(app.run(req));
-        } catch (Exception e) {
-            log.error("Failed to respond to a request (request: {}, error: {})", input.getBody(), e.getMessage(), e);
-            // As this response body can be exposed, it should not have detailed information.
-            return ApiGatewayResponse.builder().statusCode(500).rawBody("Internal Server Error").build();
-        }
-    }
+    // -------------------------------------------
+    // Private utility methods
+    // -------------------------------------------
 
     private static Map<String, String> toStringToStringMap(Map<String, List<String>> stringToStringListMap) {
         Map<String, String> headers = new HashMap<>();
