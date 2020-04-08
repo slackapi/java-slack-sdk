@@ -625,6 +625,48 @@ public class BlockKitTest {
         }
     }
 
+    @Test
+    public void richText_emoji_with_style() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"UiW\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"This is a text part.\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"emoji\",\n" +
+                "              \"name\": \"house\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true\n," +
+                "                \"strike\": true" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"link\",\n" +
+                "              \"url\": \"https://medium.com/slack-developer-blog\",\n" +
+                "              \"text\": \"Slack Platform Blog\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true\n," +
+                "                \"strike\": true" +
+                "              }\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+    }
+
     String unknownBlocksJson = "{blocks: [{\n" +
             "  \"type\": \"unknown_block\",\n" +
             "  \"block_id\": \"input123\",\n" +
