@@ -9,8 +9,6 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
 
-import java.util.LinkedHashMap;
-
 /**
  * The default Web controller that works in Micronaut apps.
  * This component requires singleton {@link App} instance managed by the Micronaut DI container.
@@ -30,7 +28,7 @@ public class SlackAppController {
     }
 
     @Post(value = "/events", consumes = {MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
-    public HttpResponse<String> dispatch(HttpRequest<String> request, @Body LinkedHashMap<String, String> body) throws Exception {
+    public HttpResponse<String> dispatch(HttpRequest<String> request, @Body String body) throws Exception {
         Request<?> slackRequest = adapter.toSlackRequest(request, body);
         return adapter.toMicronautResponse(slackApp.run(slackRequest));
     }

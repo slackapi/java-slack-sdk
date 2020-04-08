@@ -13,14 +13,10 @@ import io.micronaut.http.server.netty.NettyHttpResponseFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Singleton;
-import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
-import java.net.URLEncoder;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * The default adaptor that translates Micronaut specific interfaces into Bolt's ones.
@@ -36,16 +32,7 @@ public class SlackAppMicronautAdapter {
         this.requestParser = new SlackRequestParser(appConfig);
     }
 
-    public Request<?> toSlackRequest(HttpRequest<?> req, LinkedHashMap<String, String> body) {
-        String requestBody = body.entrySet().stream().map(e -> {
-            try {
-                String k = URLEncoder.encode(e.getKey(), "UTF-8");
-                String v = URLEncoder.encode(e.getValue(), "UTF-8");
-                return k + "=" + v;
-            } catch (UnsupportedEncodingException ex) {
-                return e.getKey() + "=" + e.getValue();
-            }
-        }).collect(Collectors.joining("&"));
+    public Request<?> toSlackRequest(HttpRequest<?> req, String requestBody) {
         RequestHeaders headers = new RequestHeaders(
                 req.getHeaders() != null ? req.getHeaders().asMap() : Collections.emptyMap());
 
