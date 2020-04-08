@@ -7,15 +7,16 @@ import com.slack.api.bolt.response.Response;
 import io.micronaut.core.convert.DefaultConversionService;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.MediaType;
 import io.micronaut.http.simple.SimpleHttpHeaders;
 import io.micronaut.http.simple.SimpleHttpParameters;
 import org.junit.Test;
 
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -39,11 +40,7 @@ public class AdapterTest {
         SimpleHttpParameters parameters = new SimpleHttpParameters(params, new DefaultConversionService());
         when(req.getParameters()).thenReturn(parameters);
 
-        LinkedHashMap<String, String> body = new LinkedHashMap<>();
-        body.put("token", "random");
-        body.put("ssl_check", "1");
-
-        Request<?> slackRequest = adapter.toSlackRequest(req, body);
+        Request<?> slackRequest = adapter.toSlackRequest(req, "token=random&ssl_check=1");
 
         assertNotNull(slackRequest);
         assertEquals("token=random&ssl_check=1", slackRequest.getRequestBodyAsString());
@@ -61,11 +58,7 @@ public class AdapterTest {
         InetSocketAddress isa = new InetSocketAddress("localhost", 443);
         when(req.getRemoteAddress()).thenReturn(isa);
 
-        LinkedHashMap<String, String> body = new LinkedHashMap<>();
-        body.put("token", "random");
-        body.put("ssl_check", "1");
-
-        Request<?> slackRequest = adapter.toSlackRequest(req, body);
+        Request<?> slackRequest = adapter.toSlackRequest(req, "token=random&ssl_check=1");
 
         assertNotNull(slackRequest);
         assertEquals("127.0.0.1", slackRequest.getClientIpAddress());

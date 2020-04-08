@@ -1,12 +1,12 @@
 package test_locally.app;
 
-import com.slack.api.Slack;
 import com.slack.api.RequestConfigurator;
+import com.slack.api.Slack;
+import com.slack.api.app_backend.SlackSignature;
+import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
-import com.slack.api.app_backend.SlackSignature;
-import com.slack.api.bolt.AppConfig;
 import io.micronaut.context.annotation.Primary;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;

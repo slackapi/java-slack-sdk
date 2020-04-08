@@ -12,7 +12,6 @@ import io.micronaut.http.simple.SimpleHttpParameters;
 import org.junit.Test;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -33,11 +32,7 @@ public class ControllerTest {
         SimpleHttpParameters parameters = new SimpleHttpParameters(new HashMap<>(), new DefaultConversionService());
         when(req.getParameters()).thenReturn(parameters);
 
-        LinkedHashMap<String, String> body = new LinkedHashMap<>();
-        body.put("token", "random");
-        body.put("ssl_check", "1");
-
-        HttpResponse<String> response = controller.dispatch(req, body);
+        HttpResponse<String> response = controller.dispatch(req, "token=random&ssl_check=1");
         assertEquals(200, response.getStatus().getCode());
     }
 
