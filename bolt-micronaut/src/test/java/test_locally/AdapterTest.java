@@ -78,7 +78,7 @@ public class AdapterTest {
         assertNotNull(response);
         assertEquals(200, response.getStatus().getCode());
         assertEquals(body.length(), response.getContentLength());
-        assertEquals("application/json", response.getHeaders().getContentType().get());
+        assertEquals("application/json; charset=utf-8", response.getHeaders().getContentType().get());
     }
 
 }

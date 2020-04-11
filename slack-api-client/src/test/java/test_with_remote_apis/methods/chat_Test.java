@@ -731,4 +731,17 @@ public class chat_Test {
         assertThat(result.getError(), is(nullValue()));
     }
 
+    // Just in case, this test verifies the issue doesn't exist in MethodsClient
+    // https://github.com/slackapi/java-slack-sdk/issues/429
+    @Test
+    public void post_messages_in_Chinese_issue_429() throws IOException, SlackApiException {
+        loadRandomChannelId();
+
+        ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .text(":wave: Hello! 哈囉"));
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getMessage().getText(), is(":wave: Hello! 哈囉"));
+    }
+
 }

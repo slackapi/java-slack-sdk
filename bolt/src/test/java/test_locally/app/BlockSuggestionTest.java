@@ -69,7 +69,7 @@ public class BlockSuggestionTest {
         BlockSuggestionRequest req = new BlockSuggestionRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
-        assertEquals("application/json", response.getContentType());
+        assertEquals("application/json; charset=utf-8", response.getContentType());
         assertEquals("{\"options\":[{\"text\":{\"type\":\"plain_text\",\"text\":\"label\"},\"value\":\"v\"}]}", response.getBody());
     }
 
@@ -93,7 +93,7 @@ public class BlockSuggestionTest {
         BlockSuggestionRequest req = new BlockSuggestionRequest(requestBody, p, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
-        assertEquals("application/json", response.getContentType());
+        assertEquals("application/json; charset=utf-8", response.getContentType());
         assertEquals("{\"options\":[{\"text\":{\"type\":\"plain_text\",\"text\":\"label\"},\"value\":\"v\"}]}", response.getBody());
     }
 

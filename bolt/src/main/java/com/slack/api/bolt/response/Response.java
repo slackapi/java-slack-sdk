@@ -28,6 +28,12 @@ public class Response {
     private Map<String, List<String>> headers = new HashMap<>();
     private String body;
 
+    /**
+     * This is no longer used. Use CONTENT_TYPE_APPLICATION_JSON_UTF8 instead.
+     */
+    @Deprecated
+    public static final String CONTENT_TYPE_APPLICATION_JSON = "application/json";
+
     public static final String CONTENT_TYPE_APPLICATION_JSON_UTF8 = "application/json; charset=utf-8";
 
     public static Response ok() {

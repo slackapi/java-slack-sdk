@@ -464,7 +464,7 @@ public class EventsApiTest {
             // ------------------------------------------------------------------------------------
 
             long waitTime = 0;
-            while (!state.isAllDone() && waitTime < 20_000L) {
+            while (!state.isAllDone() && waitTime < 50_000L) {
                 long sleepTime = 100L;
                 Thread.sleep(sleepTime);
                 waitTime += sleepTime;
