@@ -85,6 +85,10 @@ public class EventsApiTest {
 
     private void waitForSlackAppConnection() throws IOException, InterruptedException {
         String publicUrl = configValues.get("publicUrl");
+        if (publicUrl == null) {
+            throw new IllegalStateException("To run this test, set publicUrl in src/test/resources/appConfig.json");
+        }
+        String subdomain = publicUrl.split("\\.")[0].replaceFirst("https://", "");
         OkHttpClient httpClient = new OkHttpClient();
         Request req = new Request.Builder().post(FormBody.create("ssl_check=1".getBytes())).url(publicUrl).build();
 
@@ -94,7 +98,7 @@ public class EventsApiTest {
                     "\n" +
                     "Run the following:\n" +
                     "\n" +
-                    "  ngrok http 3000 --subdomain {your-domain}\n" +
+                    "  ngrok http 3000 --subdomain " + subdomain + "\n" +
                     "\n" +
                     "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
             Thread.sleep(3000);
@@ -460,7 +464,7 @@ public class EventsApiTest {
             // ------------------------------------------------------------------------------------
 
             long waitTime = 0;
-            while (!state.isAllDone() && waitTime < 10_000L) {
+            while (!state.isAllDone() && waitTime < 20_000L) {
                 long sleepTime = 100L;
                 Thread.sleep(sleepTime);
                 waitTime += sleepTime;
@@ -845,7 +849,6 @@ public class EventsApiTest {
         App app = new App(appConfig);
         app.use(recorderMiddleware());
 
-        String botToken = appConfig.getSingleTeamBotToken();
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_USER_TOKEN);
 
         TestSlackAppServer server = new TestSlackAppServer(app);

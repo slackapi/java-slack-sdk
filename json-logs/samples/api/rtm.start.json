@@ -321,7 +321,8 @@
       "onboarding_state": 12345,
       "has_received_mention_or_reaction": false,
       "has_starred_item": false,
-      "has_drafted_message": false
+      "has_drafted_message": false,
+      "has_acknowledged_shortcut_speedbump": false
     },
     "created": 12345,
     "manual_presence": ""
