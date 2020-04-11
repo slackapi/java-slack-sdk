@@ -157,7 +157,7 @@ public class MultiTeamsAuthorization implements Middleware {
 
         return Response.builder()
                 .statusCode(statusCode)
-                .contentType(Response.CONTENT_TYPE_APPLICATION_JSON)
+                .contentType(Response.CONTENT_TYPE_APPLICATION_JSON_UTF8)
                 .body("{\"error\":\"a request for an unknown workspace detected\"}")
                 .build();
     }

@@ -28,7 +28,7 @@ public class Response {
     private Map<String, List<String>> headers = new HashMap<>();
     private String body;
 
-    public static final String CONTENT_TYPE_APPLICATION_JSON = "application/json";
+    public static final String CONTENT_TYPE_APPLICATION_JSON_UTF8 = "application/json; charset=utf-8";
 
     public static Response ok() {
         return Response.builder().statusCode(200).build();
@@ -41,7 +41,7 @@ public class Response {
             String json = toJsonString(body);
             return Response.builder()
                     .statusCode(200)
-                    .contentType(CONTENT_TYPE_APPLICATION_JSON)
+                    .contentType(CONTENT_TYPE_APPLICATION_JSON_UTF8)
                     .body(json)
                     .build();
         }
@@ -54,7 +54,7 @@ public class Response {
     public static Response json(Integer statusCode, Object body) {
         return Response.builder()
                 .statusCode(statusCode)
-                .contentType(CONTENT_TYPE_APPLICATION_JSON)
+                .contentType(CONTENT_TYPE_APPLICATION_JSON_UTF8)
                 .body(toJsonString(body))
                 .build();
     }
