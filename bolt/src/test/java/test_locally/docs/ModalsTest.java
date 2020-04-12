@@ -1,10 +1,12 @@
 package test_locally.docs;
 
+import com.google.gson.Gson;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
 import com.slack.api.model.view.View;
 import com.slack.api.model.view.ViewState;
+import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -21,7 +23,7 @@ import static org.junit.Assert.assertNotNull;
 // https://slack.dev/java-slack-sdk/guides/modals
 public class ModalsTest {
 
-    App app = new App(AppConfig.builder().signingSecret("foo").signingSecret("xoxb-xxx").build());
+    App app = new App(AppConfig.builder().signingSecret("foo").singleTeamBotToken("xoxb-xxx").build());
 
     View buildView() {
         return view(view -> view
@@ -62,17 +64,45 @@ public class ModalsTest {
         assertEquals(2, view.getBlocks().size());
     }
 
-    View buildViewByCategory(String categoryId, String privateMetadata) {
-        return null; // TODO
+    private static final Gson gson = GsonFactory.createSnakeCase();
+
+    static View buildViewByCategory(String categoryId, String privateMetadata) {
+        Map<String, String> metadata = gson.fromJson(privateMetadata, Map.class);
+        metadata.put("categoryId", categoryId);
+        String updatedPrivateMetadata = gson.toJson(metadata);
+        return view(view -> view
+                .callbackId("meeting-arrangement")
+                .type("modal")
+                .notifyOnClose(true)
+                .title(viewTitle(title -> title.type("plain_text").text("Meeting Arrangement").emoji(true)))
+                .submit(viewSubmit(submit -> submit.type("plain_text").text("Submit").emoji(true)))
+                .close(viewClose(close -> close.type("plain_text").text("Cancel").emoji(true)))
+                .privateMetadata(updatedPrivateMetadata)
+                .blocks(asBlocks(
+                        section(section -> section
+                                .blockId("category-block")
+                                .text(markdownText("You've selected \"" + categoryId + "\""))
+                        ),
+                        input(input -> input
+                                .blockId("agenda-block")
+                                .element(plainTextInput(pti -> pti.actionId("agenda-action").multiline(true)))
+                                .label(plainText(pt -> pt.text("Detailed Agenda").emoji(true)))
+                        )
+                ))
+        );
     }
 
     @Test
     public void boltApp() {
+        app.command("/doc-test", (req, ctx) -> {
+            ctx.client().viewsOpen(r -> r.triggerId(ctx.getTriggerId()).view(buildView()));
+            return ctx.ack();
+        });
+
         app.blockAction("category-selection-action", (req, ctx) -> {
+            String categoryId = req.getPayload().getActions().get(0).getSelectedOption().getValue();
             View currentView = req.getPayload().getView();
             String privateMetadata = currentView.getPrivateMetadata();
-            Map<String, Map<String, ViewState.Value>> stateValues = currentView.getState().getValues();
-            String categoryId = stateValues.get("category-block").get("category-selection-action").getSelectedOption().getValue();
             View viewForTheCategory = buildViewByCategory(categoryId, privateMetadata);
             ViewsUpdateResponse viewsUpdateResp = ctx.client().viewsUpdate(r -> r
                     .viewId(currentView.getId())

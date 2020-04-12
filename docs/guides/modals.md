@@ -232,20 +232,42 @@ val res = ctx.client().viewsOpen { it
 Basically it's the same with [Interactive Components]({{ site.url | append: site.baseurl }}/guides/interactive-components) but the only difference is that a payload coming from a modal has `view` and also its `private_metadata`
 
 ```java
+import com.google.gson.Gson;
 import com.slack.api.model.view.View;
 import com.slack.api.model.view.ViewState;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.util.json.GsonFactory;
 import java.util.Map;
 
 View buildViewByCategory(String categoryId, String privateMetadata) {
-  return null; // TODO
+  Gson gson = GsonFactory.createSnakeCase();
+  Map<String, String> metadata = gson.fromJson(privateMetadata, Map.class);
+  metadata.put("categoryId", categoryId);
+  String updatedPrivateMetadata = gson.toJson(metadata);
+
+  return view(view -> view
+    .callbackId("meeting-arrangement")
+    .type("modal")
+    .notifyOnClose(true)
+    .title(viewTitle(title -> title.type("plain_text").text("Meeting Arrangement").emoji(true)))
+    .submit(viewSubmit(submit -> submit.type("plain_text").text("Submit").emoji(true)))
+    .close(viewClose(close -> close.type("plain_text").text("Cancel").emoji(true)))
+    .privateMetadata(updatedPrivateMetadata)
+    .blocks(asBlocks(
+      section(section -> section.blockId("category-block").text(markdownText("You've selected \"" + categoryId + "\""))),
+      input(input -> input
+        .blockId("agenda-block")
+        .element(plainTextInput(pti -> pti.actionId("agenda-action").multiline(true)))
+        .label(plainText(pt -> pt.text("Detailed Agenda").emoji(true)))
+      )
+    ))
+  );
 }
 
 app.blockAction("category-selection-action", (req, ctx) -> {
+  String categoryId = req.getPayload().getActions().get(0).getSelectedOption().getValue();
   View currentView = req.getPayload().getView();
   String privateMetadata = currentView.getPrivateMetadata();
-  Map<String, Map<String, ViewState.Value>> stateValues = currentView.getState().getValues();
-  String categoryId = stateValues.get("category-block").get("category-selection-action").getSelectedOption().getValue();
   View viewForTheCategory = buildViewByCategory(categoryId, privateMetadata);
   ViewsUpdateResponse viewsUpdateResp = ctx.client().viewsUpdate(r -> r
     .viewId(currentView.getId())
@@ -260,10 +282,9 @@ It looks like below in Kotlin.
 
 ```kotlin
 app.blockAction("category-selection-action") { req, ctx ->
+  val categoryId = req.payload.actions[0].selectedOption.value
   val currentView = req.payload.view
   val privateMetadata = currentView.privateMetadata
-  val stateValues = currentView.state.values
-  val categoryId = stateValues["category-block"]!!["category-selection-action"]!!.selectedOption.value
   val viewForTheCategory = buildViewByCategory(categoryId, privateMetadata)
   val viewsUpdateResp = ctx.client().viewsUpdate { it
     .viewId(currentView.id)
