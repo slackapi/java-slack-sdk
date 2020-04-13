@@ -24,6 +24,7 @@
         <module>bolt-spring-boot-examples</module>
         <module>bolt-kotlin-examples</module>
         <module>bolt-quarkus-examples</module>
+        <module>slack-api-client-kotlin-builders</module>
     </modules>
 
     <parent>
