@@ -13,7 +13,9 @@
 
     <modules>
         <module>slack-api-client</module>
+        <module>slack-api-client-kotlin-extension</module>
         <module>slack-api-model</module>
+        <module>slack-api-model-kotlin-extension</module>
         <module>slack-app-backend</module>
         <module>bolt</module>
         <module>bolt-servlet</module>
@@ -24,7 +26,6 @@
         <module>bolt-spring-boot-examples</module>
         <module>bolt-kotlin-examples</module>
         <module>bolt-quarkus-examples</module>
-        <module>slack-api-client-kotlin-builders</module>
     </modules>
 
     <parent>
@@ -42,6 +43,7 @@
         <lombok.version>1.18.12</lombok.version>
         <lombok-maven-plugin.version>1.18.10.0</lombok-maven-plugin.version>
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
+        <kotlin.version>1.3.72</kotlin.version>
         <slf4j.version>1.7.30</slf4j.version>
         <aws.s3.version>1.11.805</aws.s3.version>
         <junit.version>4.13</junit.version>
