@@ -181,6 +181,18 @@
     {
       "date_created": "2020-04-02T17:49:13-07:00",
       "body": "Some of our customers are having trouble completing certain user-related actions, such as when deactivating members. We\u0027re currently investigating the cause of these delays, and we\u0027ll keep you posted as soon as we have more information. We\u0027re sorry for the disruption."
+    },
+    {
+      "date_created": "2020-04-14T17:50:51-07:00",
+      "body": "We\u0027ve been seeing improvements to the performance of accounts with Enterprise Key Management enabled though we are still investigating the root cause. Thank you for your patience as we get to the bottom of this."
+    },
+    {
+      "date_created": "2020-04-14T16:30:09-07:00",
+      "body": "Some customers with Enterprise Key Management enabled may be experiencing issues when trying to read or write messages. We’re looking into it and will provide another update as soon as it’s available."
+    },
+    {
+      "date_created": "2020-04-14T16:20:31-07:00",
+      "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
     }
   ]
 }
