@@ -1,5 +1,5 @@
 a.headerlink {
-    display: none !important;
+  display: none !important;
 }
 
 .section-title {
@@ -8,6 +8,10 @@ a.headerlink {
   letter-spacing: -1px;
   font-weight: 700;
   margin: 0 0 1rem;
+}
+
+nav#api_nav {
+  padding: 0 30px;
 }
 
 nav#api_nav .toctree-l1 {
@@ -21,13 +25,13 @@ nav#api_nav #api_sections ul {
 }
 
 nav#api_nav #api_sections ul li.toctree-l1>.toctree-h {
-  color: #1264a3;
+  color: #1d1c1d;
   letter-spacing: 0;
-  /* font-size: .8rem; */
+  font-size: 1.1rem;
   font-weight: 800;
   /* text-transform: uppercase; */
   border: none;
-  padding: 0;
+  padding: 0 0 5px 2px;
 }
 
 nav#api_nav #api_sections ul li.toctree-l2 {
@@ -41,21 +45,21 @@ nav#api_nav #api_sections ul li.toctree-l2 a {
   font-weight: inherit;
   padding: 0;
   display: block;
-  text-overflow: ellipsis;
+  word-wrap: break-word;
   overflow: hidden;
-  white-space: nowrap;
   font-size: 15px!important;
   line-height:15px;
-  padding: 4px 8px;
-  border: 1px solid transparent;
+  padding: 3px 8px;
   border-radius: 4px;
+  border: 1px solid transparent;
+  line-height: 1.35em;
 }
 
 nav#api_nav #api_sections ul li.toctree-l2 a:hover {
   cursor: pointer;
   text-decoration: none;
-  background-color:#e8f5fa;
-  border-color:#dcf0fb;
+  background-color:#e6eff5;
+  border-color: #dff0fa;
 }
 
 nav#api_nav #footer #footer_nav {

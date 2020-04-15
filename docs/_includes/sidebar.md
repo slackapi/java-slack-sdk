@@ -4,6 +4,22 @@
   <li class="toctree-l1 current"><div class="toctree-h">Slack SDK for Java</div>
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/">Overview</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt">Getting Started with Bolt</a></li>
+    </ul>
+  </li>
+</ul>
+<ul class="current">
+  <li class="toctree-l1 current"><div class="toctree-h">Bolt for Java</div>
+    <ul>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/bolt-basics">Basic Concepts</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/shortcuts">Shortcuts</a></li>      
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/interactive-components">Interactive Components</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/modals">Modals</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/app-home">App Home</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/slash-commands">Slash Commands</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/events-api">Events API</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/app-distribution">App Distribution (OAuth)</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/supported-web-frameworks">Supported Web Frameworks</a></li>
     </ul>
   </li>
 </ul>
@@ -15,22 +31,6 @@
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/composing-messages">Composing Messages</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/incoming-webhooks">Incoming Webhooks</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/rtm">Real Time Messaging (RTM)</a></li>
-    </ul>
-  </li>
-</ul>
-<ul class="current">
-  <li class="toctree-l1 current"><div class="toctree-h">Bolt for Java</div>
-    <ul>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt">Getting Started</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/bolt-basics">Bolt Basics</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/slash-commands">Slash Commands</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/interactive-components">Interactive Components</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/modals">Modals</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/shortcuts">Shortcuts</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/app-home">App Home</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/events-api">Events API</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/app-distribution">App Distribution (OAuth)</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/supported-web-frameworks">Supported Web Frameworks</a></li>
     </ul>
   </li>
 </ul>

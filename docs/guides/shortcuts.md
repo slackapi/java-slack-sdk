@@ -6,11 +6,11 @@ lang: en
 
 # Shortcuts
 
-[Shortcuts](https://api.slack.com/interactivity/shortcuts) are an evolution of slash commands, surfaced in both the composer menu and the quick switcher. Shortcuts allow users to trigger your app's workflows from intuitive surface areas within Slack.
+**Shortcuts** are simple entry points for users to invoke your app. [**Global shortcuts**](https://api.slack.com/interactivity/shortcuts/using#global_shortcuts) are surfaced from everywhere in Slack, while [**message shortcuts**](https://api.slack.com/interactivity/shortcuts/using#message_shortcuts) are surfaced in the message context menu.
 
 Your app has 3 seconds to call `ack()`, which acknowledges a shortcut request is received from Slack.
 
-## Global / Message Shortcuts
+## Global and Message Shortcuts
 
 ### Slack App Configuration
 

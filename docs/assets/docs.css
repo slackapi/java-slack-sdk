@@ -4,8 +4,16 @@ body {
   font-size: 1.0rem;
 }
 
+#header_logo img {
+  max-height: 36px;
+  width: auto !important;
+  padding-right: 25px;
+  border-right: 1px solid #DDD;
+  margin-left: 15px;
+}
+
 #page_contents {
-  width: 90%;
+  width: 80%;
 }
 
 .card {

@@ -15,9 +15,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </a>
 <a href="https://api.slack.com/" id="header_logo" class="api hide_on_mobile"
   style="float:left; display: inline-block;">
-  <img alt="Slack API" src="https://a.slack-edge.com/3026cb/img/slack_api_logo_vogue.png"
-    style="width: 225px; padding-right: 25px; border-right: 1px solid #DDD;" />
+  <img alt="Slack API" src="https://a.slack-edge.com/3026cb/img/slack_api_logo_vogue.png" />
 </a>
-<span style="display: inline-block; padding-left: 20px; margin-top: 25px; font-weight: bold; font-size: 1.4rem;">
+<span style="display: inline-block; margin-top: 22px; font-weight: bold; font-size: 1.4rem;">
   Slack SDK for Java
 </span>
