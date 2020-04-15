@@ -551,7 +551,8 @@
         "type": [
           ""
         ]
-      }
+      },
+      "use_browser_picker": false
     },
     "icon": {
       "image_34": "https://www.example.com/",

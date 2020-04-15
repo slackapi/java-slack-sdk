@@ -17,6 +17,7 @@ public class IntegrationLog {
 
     private Integer date;
     private String changeType;
+    private String resolution;
     private String reason;
     private String scope;
 
