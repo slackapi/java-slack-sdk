@@ -4,7 +4,7 @@
   <li class="toctree-l1 current"><div class="toctree-h">Slack SDK for Java</div>
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/">SDK の概要</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt">Bolt️ ことはじめ</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt">Bolt️ 入門</a></li>
     </ul>
   </li>
 </ul>
@@ -12,11 +12,11 @@
   <li class="toctree-l1 current"><div class="toctree-h">Bolt for Java</div>
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/bolt-basics">Bolt️ の概要</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/slash-commands">スラッシュコマンド</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/shortcuts">ショートカット</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/interactive-components">インタラクティブコンポーネント</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/modals">モーダル</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/shortcuts">ショートカット</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/app-home">Home タブ</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/slash-commands">スラッシュコマンド</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/events-api">イベント API</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/app-distribution">アプリの配布 (OAuth)</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/supported-web-frameworks">対応 Web フレームワーク</a></li>

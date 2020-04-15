@@ -64,7 +64,7 @@ lang: ja
 
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt ことはじめ]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
 
 まずはモーダルを新しく開くところから始めましょう。ここでは以下のようなモーダルを開いてみることにします。
 
@@ -181,7 +181,7 @@ app.command("/meeting", (req, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt ことはじめ > Koltin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 app.command("/meeting") { req, ctx ->

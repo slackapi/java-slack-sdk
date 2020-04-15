@@ -196,7 +196,7 @@ app.command("/meeting") { req, ctx ->
 }
 ```
 
-In Koltin, it's much easier to embed multi-line string data in source code. It may be handier to use `viewAsString(String)` method instead.
+In Kotlin, it's much easier to embed multi-line string data in source code. It may be handier to use `viewAsString(String)` method instead.
 
 ```kotlin
 // Build a view using string interpolation
