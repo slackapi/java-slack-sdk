@@ -18,7 +18,7 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 
 * [Spring Boot](https://spring.io/guides/gs/spring-boot/)
 * [Micronaut](https://micronaut.io/)
-* [Quarkus](https://quarkus.io/)
+* [Quarkus Undertow](https://quarkus.io/)
 * [Helidon SE](https://helidon.io/)
 
 ## Spring Boot
@@ -241,27 +241,106 @@ micronaut:
 
 ---
 
-## Quarkus
+## Quarkus Undertow
 
 [Quarkus](https://quarkus.io/) は GraalVM と HotSpot 両方へのパッケージングをサポートしている Web アプリケーションフレームワークです。このセクションでは、どのように **SlackAppServlet** をこのフレームワークを使って設定するかを説明します。
 
 [code.quarkus.io](https://code.quarkus.io/) からブランクプロジェクトを生成できます。シンプルな Bolt アプリであれば **Web** コンポーネント内で **Undertow Servlet** を選択することをおすすめします。それ以外には何も必要ありません。**Generate your application** ボタンをクリックして、生成されたプロジェクトの zip ファイルをダウンロードします。
 
-ブランクプロジェクトには RESTEasy の依存が含まれていますが、これは Bolt アプリには必要ありません。手動で取り除いても OK です。
+ブランクプロジェクトをつくったら **`quarkus-universe-bom` をビルド設定から削除してください**。これを削除しなければならない理由は 2020 年 4 月現在、`quarkus-universe-bom` は [okhttp](https://search.maven.org/artifact/com.squareup.okhttp3/okhttp) 3.x をプロジェクトに追加するためです。この SDK は okhttp 4.x を必要とするため、この設定ではバイナリ互換性がなく正常に動作しません。もし、何らかの理由で `quarkus-universe-bom` を外すことができない場合は、そのプロジェクトに Bolt for Java を含めることは難しいでしょう。Bolt for Java を使ったアプリケーションはそのプロジェクトから切り出すことを検討してください。
 
-### pom.xml
+また、もし RESTEasy を使って追加のエンドポイントを実装しないなら、デフォルトで追加されている **quarkus-resteasy** も外して問題ありません。
+
+### ビルド設定
+
+以下のビルド設定ファイルは、そのままコピーして利用することができます。Maven プロジェクトでは `pom.xml` を、Gradle プロジェクトでは `build.gradle` と `settings.gradle` をプロジェクトのルートディレクトリに配置してください。
+
+#### Maven - pom.xml
+
+以下の設定は JDK 8 と 11 両方に互換性があります。もし Java 11 機能を利用したい場合は `maven.compiler.source` と `maven.compiler.target` に `11` を設定してください。
 
 ```xml
-<dependency>
-  <groupId>io.quarkus</groupId>
-  <artifactId>quarkus-undertow</artifactId>
-  <version>${quarkus.version}</version>
-</dependency>
-<dependency>
-  <groupId>com.slack.api</groupId>
-  <artifactId>bolt-servlet</artifactId>
-  <version>{{ site.sdkLatestVersion }}</version>
-</dependency>
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+     xmlns="http://maven.apache.org/POM/4.0.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.acme</groupId>
+  <artifactId>code-with-quarkus</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <properties>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <quarkus-plugin.version>{{ site.quarkusVersion }}</quarkus-plugin.version>
+    <quarkus.platform.version>{{ site.quarkusVersion }}</quarkus.platform.version>
+    <slack.bolt.version>{{ site.sdkLatestVersion }}</slack.bolt.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-undertow</artifactId>
+      <version>${quarkus.platform.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.slack.api</groupId>
+      <artifactId>bolt-servlet</artifactId>
+      <version>${slack.bolt.version}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-maven-plugin</artifactId>
+        <version>${quarkus-plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+
+#### Gradle - 1) build.gradle
+
+Gradle プロジェクトでは最低でもこれらの二つのファイルが必要です。
+
+```groovy
+plugins {
+  id 'java'
+  id 'io.quarkus'
+}
+repositories {
+  mavenCentral()
+}
+dependencies {
+  implementation 'io.quarkus:quarkus-undertow:{{ site.quarkusVersion }}'
+  implementation 'com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}'
+}
+group 'org.acme'
+version '1.0.0-SNAPSHOT'
+```
+
+#### Gradle - 2) settings.gradle
+
+```groovy
+pluginManagement {
+  repositories {
+    mavenCentral()
+    gradlePluginPortal()
+  }
+  plugins {
+    id 'io.quarkus' version "{{ site.quarkusVersion }}"
+  }
+}
+rootProject.name='code-with-quarkus'
 ```
 
 ### src/main/java/hello/SlackApp.java
@@ -319,7 +398,7 @@ class SlackApp : SlackAppServlet(initSlackApp()) {
 }
 ```
 
-#### src/mian/kotlin/app.kt
+#### src/main/kotlin/app.kt
 
 適切に DI を活用するなら `@Produces` アノテーションを指定したクラスを定義する方がよいでしょう。
 
@@ -349,42 +428,60 @@ class Components {
 
 ### src/main/resources/application.properties
 
-Quarkus がデフォルトで使用するポートは 8080 です。このような設定で変更することができます。
+Quarkus がデフォルトで使用するポートは 8080 です。以下の設定で変更することができます。Bolt のデバッグログを有効にすると Bolt がどのように動作するかを学んだり、意図しなかった挙動をしたときのデバッグするときに大変役立つでしょう。
 
 ```
 quarkus.http.port=3000
+quarkus.log.level=INFO
+quarkus.log.category."com.slack.api".level=DEBUG
 ```
 
 ### Quarkus アプリを起動
 
 準備は以上です！それでは development mode でアプリを起動してみましょう。
 
+
 ```bash
 ./mvnw quarkus:dev
+./mvnw clean quarkus:dev # 変更が反映されないときは clean を試してみてください
+```
+
+```bash
+./gradlew quarkusDev
+./gradlew clean quarkusDev # 変更が反映されないときは clean を試してみてください
 ```
 
 プロジェクトが適切に設定されていれば、標準出力はこのようになっているでしょう。
 
 ```
 [INFO] --- quarkus-maven-plugin:{{ site.quarkusVersion }}:dev (default-cli) @ code-with-quarkus ---
-[INFO] Applied plugin: 'all-open'
 [INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /path-to-projet/target/classes
 Listening for transport dt_socket at address: 5005
-[io.quarkus] (main) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus {{ site.quarkusVersion }}) started in 0.902s. Listening on: http://0.0.0.0:3000
-[io.quarkus] (main) Profile dev activated. Live Coding activated.
-[io.quarkus] (main) Installed features: [cdi, kotlin, servlet]
+__  ____  __  _____   ___  __ ____  ______ 
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+INFO  [io.quarkus] (main) code-with-quarkus 1.0.0-SNAPSHOT (powered by Quarkus {{ site.quarkusVersion }})) started in 0.846s. Listening on: http://0.0.0.0:3000
+INFO  [io.quarkus] (main) Profile dev activated. Live Coding activated.
+INFO  [io.quarkus] (main) Installed features: [cdi, servlet]
 ```
 
 ホットリロードのモードもこのようにデフォルトで有効になっているはずです。
 
 ```
-[io.qua.dev] (vert.x-worker-thread-2) Changed source files detected, recompiling [/path-to-project/src/main/kotlin/hello/SlackApp.kt]
-[io.quarkus] (vert.x-worker-thread-2) Quarkus stopped in 0.001s
-[io.quarkus] (vert.x-worker-thread-2) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus {{ site.quarkusVersion }}) started in 0.163s. Listening on: http://0.0.0.0:3000
-[io.quarkus] (vert.x-worker-thread-2) Profile dev activated. Live Coding activated.
-[io.quarkus] (vert.x-worker-thread-2) Installed features: [cdi, kotlin, servlet]
-[io.qua.dev] (vert.x-worker-thread-2) Hot replace total time: 0.572s
+INFO  [io.qua.dev] (vert.x-worker-thread-0) Changed source files detected, recompiling [/path-to-project/src/main/java/hello/SlackApp.java]
+INFO  [io.quarkus] (vert.x-worker-thread-0) Quarkus stopped in 0.001s
+__  ____  __  _____   ___  __ ____  ______ 
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+INFO  [io.quarkus] (vert.x-worker-thread-0) code-with-quarkus 1.0.0-SNAPSHOT (powered by Quarkus {{ site.quarkusVersion }}) started in 0.021s. Listening on: http://0.0.0.0:3000
+INFO  [io.quarkus] (vert.x-worker-thread-0) Profile dev activated. Live Coding activated.
+INFO  [io.quarkus] (vert.x-worker-thread-0) Installed features: [cdi, servlet]
+INFO  [io.qua.dev] (vert.x-worker-thread-0) Hot replace total time: 0.232s 
 ```
+
 
 ---
 
