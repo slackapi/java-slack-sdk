@@ -172,7 +172,7 @@ public class Slack implements AutoCloseable {
                 }
                 return new RTMClient(this, apiToken, response.getUrl(), connectedBotUser);
             } else {
-                throw new IllegalStateException("Failed to the RTM endpoint URL (error: " + response.getError() + ")");
+                throw new IllegalStateException("Failed to connect to the RTM endpoint URL (error: " + response.getError() + ")");
             }
         } catch (SlackApiException e) {
             throw new IllegalStateException(
@@ -219,7 +219,7 @@ public class Slack implements AutoCloseable {
                 }
                 return new RTMClient(this, apiToken, response.getUrl(), connectedBotUser);
             } else {
-                throw new IllegalStateException("Failed to the RTM endpoint URL (error: " + response.getError() + ")");
+                throw new IllegalStateException("Failed to connect to the RTM endpoint URL (error: " + response.getError() + ")");
             }
         } catch (SlackApiException e) {
             throw new IllegalStateException(
