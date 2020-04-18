@@ -322,7 +322,10 @@
       "has_received_mention_or_reaction": false,
       "has_starred_item": false,
       "has_drafted_message": false,
-      "has_acknowledged_shortcut_speedbump": false
+      "has_acknowledged_shortcut_speedbump": false,
+      "seen_first_install_coachmark": false,
+      "seen_existing_install_coachmark": false,
+      "seen_link_unfurl_coachmark": false
     },
     "created": 12345,
     "manual_presence": ""
@@ -552,7 +555,8 @@
           ""
         ]
       },
-      "use_browser_picker": false
+      "use_browser_picker": false,
+      "filepicker_app_first_install": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
