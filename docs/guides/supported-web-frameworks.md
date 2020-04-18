@@ -250,7 +250,7 @@ You can generate a blank project from [code.quarkus.io](https://code.quarkus.io/
 
 After generating a blank project, **remove `quarkus-universe-bom` from the build settings**. The reason why we need to remove it is that, as of April 2020, `quarkus-universe-bom` adds [okhttp](https://search.maven.org/artifact/com.squareup.okhttp3/okhttp) 3.x to the project while this SDK requires okhttp 4.x. This means your application won't work due to binary compatibility issues with the setting. If you cannot remove `quarkus-universe-bom` for some reasons, including Bolt for Java in the project may not be a feasible idea. Consider separating the application built with Bolt for Java from the one.
 
-Also, if you don't have additional endpoints using RESTEasy, you can safely remove **quarkus-resteasy** (a dependency included by default) dependency.
+Also, if you don't have additional endpoints using RESTEasy, you can safely remove **quarkus-resteasy** (a dependency included by default).
 
 ### Build Settings
 
@@ -448,7 +448,6 @@ That’s all set! It’s time to run the app in its the development mode.
 
 ```bash
 ./gradlew quarkusDev
-./gradlew clean quarkusDev # try clean when you don't see some updates
 ```
 
 If your Quarkus project is correctly configured, the stdout should look like this.

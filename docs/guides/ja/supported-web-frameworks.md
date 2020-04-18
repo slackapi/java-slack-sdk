@@ -448,7 +448,6 @@ quarkus.log.category."com.slack.api".level=DEBUG
 
 ```bash
 ./gradlew quarkusDev
-./gradlew clean quarkusDev # 変更が反映されないときは clean を試してみてください
 ```
 
 プロジェクトが適切に設定されていれば、標準出力はこのようになっているでしょう。
