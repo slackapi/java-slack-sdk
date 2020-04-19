@@ -12,6 +12,7 @@ Audit Logs API は、各種 SIEM (Security Information and Event Management) ツ
 
 Audit Logs API で利用できるトークンの取得は「[Monitoring workspace events with the Audit Logs API（英語）](https://api.slack.com/docs/audit-logs-api)」で解説されている手順に従ってください。Audit Logs API を利用する Slack アプリは、通常のアプリのように個々のワークスペース単位でインストールするのではなく OrG レベルでインストールする必要があります。
 
+---
 ## Audit Logs API を Java で利用
 
 **slack-api-client** を使った Audit Logs API の呼び出しは、以下のコードのようなわかりやすいアプローチです。

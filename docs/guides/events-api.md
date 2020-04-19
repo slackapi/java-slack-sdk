@@ -31,6 +31,7 @@ All you need to do to handle Events API requests are:
 
 Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the Slack Platform may retry after a while.
 
+---
 ## Examples
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.

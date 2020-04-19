@@ -25,7 +25,6 @@ This guide explains how to start your first-ever Bolt app.
 If you're not yet familiar with Slack app development in general, we recommend reading [An introduction to Slack apps](https://api.slack.com/start/overview).
 
 ---
-
 ## Project Setup
 
 Let's start building a Slack app with Bolt! This guide shows how to set up a Bolt project with Maven, and Gradle.
@@ -70,7 +69,6 @@ dependencies {
 ```
 
 ---
-
 ## Run Your Bolt App in 3 Minutes
 
 ### Use **bolt-jetty**
@@ -230,7 +228,6 @@ public class SlackAppController extends SlackAppServlet {
 Check [the detailed guide here]({{ site.url | append: site.baseurl }}/guides/supported-web-frameworks) for further information.
 
 ---
-
 ## Getting Started in Kotlin
 
 For code simplicity, [Kotlin](https://kotlinlang.org/) language would be a great option for writing Bolt apps. In this section, you'll learn how to set up a Kotlin project for Bolt apps.
@@ -308,6 +305,7 @@ From here, all you need to do is write code and restart the app. Enjoy Bolt app 
 
 **Pro tip**: We strongly recommend using [IntelliJ IDEA](https://www.jetbrains.com/idea/) here even if you don't prefer using IDEs. The IDE is the smoothest way to try Kotlin application development.
 
+---
 ## Next Steps
 
 Read the [Bolt Basics]({{ site.url | append: site.baseurl }}/guides/bolt-basics) for further information.

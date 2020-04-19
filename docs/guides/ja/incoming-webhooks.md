@@ -14,6 +14,7 @@ lang: ja
 
 その次に、そのアプリを開発用ワークスペース（Development Workspace）にインストールします。アプリをインストールする度に新しい Webhook の URL が発行されます。
 
+---
 ## 使い方
 
 まず、Incoming Webhook URL を使ってどのようにメッセージを送信するかを示す **curl** コマンドの例を見ておきましょう。

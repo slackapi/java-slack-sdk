@@ -29,6 +29,7 @@ Bolt アプリがユーザーインタラクションへの応答のためにや
 
 Bolt アプリは Slack API サーバーからのリクエストに対して 3 秒以内に `ack()` メソッドで応答する必要があります。3 秒以内に応答しなかった場合、コマンドを実行したユーザーに対して Slack 上でタイムアウトした旨が通知されます。`external_select` などの場合は `ack()` の引数に正しい形式の内容を含める必要があります。
 
+---
 ## コード例
 
 **注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。

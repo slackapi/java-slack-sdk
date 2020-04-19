@@ -12,6 +12,7 @@ lang: en
 
 Refer to [the API document](https://api.slack.com/scim) for more details.
 
+---
 ## Call SCIM API in Java
 
 It's straight-forward to call SCIM API using **slack-api-client** library. As with other API clients, creating an API client by invoking a **Slack** object's method.

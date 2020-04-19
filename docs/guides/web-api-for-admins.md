@@ -8,6 +8,7 @@ lang: en
 
 The method names of a portion of [API Methods](https://api.slack.com/methods) start with **`admin.`**. As you may know, those APIs are not available for all developers. They are supposed to be used by [Enterprise Grid](https://api.slack.com/enterprise/grid) Organization administrators. 
 
+---
 ## Call Web API for Org Admins
 
 There is no difference regarding the ways to use those APIs except for necessary scopes.

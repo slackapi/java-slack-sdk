@@ -31,6 +31,7 @@ Bolt アプリが Home タブの提供のためにやらなければならない
 
 よくある手法としては [`"app_home_opened"`](https://api.slack.com/events/app_home_opened) のイベントを使って [**views.publish**](https://api.slack.com/methods/views.publish) API メソッドを呼び出すきっかけに使うという実装があります。特に初回更新にはこのイベントの利用が必要です。しかし、それ以外のタイミング・手段で Home タブを更新することも全く問題ありません。
 
+---
 ## コード例
 
 **注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。

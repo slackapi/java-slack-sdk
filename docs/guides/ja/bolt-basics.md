@@ -10,6 +10,7 @@ lang: ja
 
 このガイドは、Bolt を使ったアプリ開発の基礎的な内容を全てカバーします。なお Slack アプリ開発全般についてまだ不慣れな方は、まず「[An introduction to Slack apps（英語）](https://api.slack.com/start/overview)」に軽く目を通した方がよいかもしれません。
 
+---
 ## App クラス
 
 **App** クラスは、些末なことに煩わされることなく、その Slack アプリの本質的なロジックだけを書くことができる場所です。
@@ -25,6 +26,7 @@ app.command("/echo", (req, ctx) -> {
 });
 ```
 
+---
 ## イベントのディスパッチ
 
 以下は、利用可能なイベントをディスパッチするためのメソッドの一覧です。
@@ -45,6 +47,7 @@ app.command("/echo", (req, ctx) -> {
 |**app.dialogCancellation**|callback_id **String** \| **Pattern**|**ダイアログ**: ダイアログが閉じたときのイベントに応答します。|
 |**app.attachmentAction**|callback_id: **String** \| **Pattern**|**旧式のメッセージ**: **attachements** 内で発生したユーザアクションに応答します。これらのイベントはメッセージのみで発火します。|
 
+---
 ## 機能ごとの開発ガイド
 
 以下のガイドページで、それぞれの機能について具体的なコード例を見つけることができます。
@@ -57,6 +60,7 @@ app.command("/echo", (req, ctx) -> {
 * [**イベント API**]({{ site.url | append: site.baseurl }}/guides/ja/events-api)
 * [**アプリの配布 (OAuth Flow)**]({{ site.url | append: site.baseurl }}/guides/ja/app-distribution)
 
+---
 ## リクエストを ack する
 
 アクション、コマンド、選択肢読み込みなどのイベントでのリクエストに対しては、必ず `ack()` メソッドで応答を返す必要があります。`ack()` に限らず、このようなユーティリティは全て **Context** オブジェクトのインスタンスメソッドとして定義されています。
@@ -102,6 +106,7 @@ app.command("/ping", (req, ctx) -> {
 });
 ```
 
+---
 ## ユーザーアクションに respond する
 
 `response_url` についてすでにご存知ですか？もしまだでしたら、まず「[Handling user interaction in your Slack apps > Message responses（英語）](https://api.slack.com/interactivity/handling#message_responses)」を読むことをおすすめします。
@@ -123,6 +128,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
+---
 ## Web API の利用 / ユーザーへの返事を say する
 
 Web API を Bolt アプリ内で利用したいときは `ctx.client()` を使います。このメソッドが返す **MethodsClient** はあらかじめボットトークンを保持しています。そのため、トークンを渡す必要はありません。ただパラメーターを指定して呼び出すだけで OK です。
@@ -176,6 +182,7 @@ app.command("/my-search", (req, ctx) -> {
 });
 ```
 
+---
 ## ロギング
 
 **Context** オブジェクトから [SLF4J](http://www.slf4j.org/) のロガーにアクセスできます。
@@ -204,6 +211,7 @@ SLF4J の実装として [**ch.qos.logback:logback-classic**](https://search.mav
 </configuration>
 ```
 
+---
 ## ミドルウェア
 
 Bolt はチェインするミドルウェアの仕組みを提供しています。フィルターのような処理を全てのイベントに対して適用することで **App** の挙動をカスタマイズすることができます。
@@ -263,10 +271,12 @@ Bolt に標準で組み込まれているミドルウェアはアプリ側で追
 
 最もよくあるパターンは **RequestVerification** ミドルウェアでリクエストが拒否される場合です。この拒否のあとは、他のどのミドルウェアも実行されないため、上記のサンプル例のミドルウェアも同様に動作しません。
 
+---
 ## 対応している Web フレームワーク
 
 [こちらのページ]({{ site.url | append: site.baseurl }}/guides/ja/supported-web-frameworks)を参考にしてください。
 
+---
 ## デプロイ
 
 デプロイについてのガイドを公開することを[予定しています](https://github.com/slackapi/java-slack-sdk/issues/348)。
