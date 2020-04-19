@@ -12,6 +12,7 @@ lang: ja
 
 詳細は「[SCIM API（英語）](https://api.slack.com/scim)」を確認してください。
 
+---
 ## SCIM API を Java で使う
 
 **slack-api-client** を使った SCIM API の呼び出しは、以下のコードのようなわかりやすいアプローチです。他の API クライアントと同様に **Slack** オブジェクトのメソッドで API クライアントを生成します。

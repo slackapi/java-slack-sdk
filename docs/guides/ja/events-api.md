@@ -32,6 +32,7 @@ Bolt アプリがイベントへの応答のためにやらなければならな
 
 Bolt アプリは Slack API サーバーからのリクエストに対して 3 秒以内に `ack()` メソッドで応答する必要があります。3 秒以内に応答しなかった場合、Slack API は一定時間経過後にリトライします。
 
+---
 ## コード例
 
 **注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。

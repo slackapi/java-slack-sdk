@@ -14,7 +14,6 @@ lang: ja
 * [**Slack API クライアント**]({{ site.url | append: site.baseurl }}/guides/ja/web-api-basics) は、より柔軟に Slack アプリを開発したい場合にこれだけを組み込んで使用することができます
 
 ---
-
 ## <!--Modules--> モジュール一覧
 
 以下のテーブルは、この Java SDK で現在提供されているモジュールの一覧を示しています。これらのモジュールは、たとえその一部のモジュール自体には変更がなく、依存ライブラリ側の変更しかなかったとしても、すべてのモジュールが必ず同じタイミングでリリースされます。そのため、いかなるタイミングでも、必ず同一の最新バージョンが存在します。
@@ -34,7 +33,6 @@ lang: ja
 |[**com.slack.api:slack-app-backend**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-app-backend) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-app-backend/{{ site.sdkLatestVersion }}/slack-app-backend-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|Slack アプリサーバーサイドで必要となる共通モジュールやペイロードなどのデータ構造を提供します。サポートされているのは、イベント API、インタラクティブコンポーネント、スラッシュコマンド、アクション、そして OAuth フローです。これらの機能はよりプリミティブなレイヤーとして Bolt から利用されています。|
 
 ---
-
 ## <!--Requirements--> 動作条件
 
 この SDK は **OpenJDK 8 かそれよりも新しい LTS バージョン** での動作を保証しています。
@@ -42,7 +40,6 @@ lang: ja
 全てのパッチリリースが[全ての LTS バージョンでの基本的な CI ビルド](https://github.com/slackapi/java-slack-sdk/blob/master/.travis.yml)が実行されており、利用者は最新の LTS バージョンで全てのユニットテストが成功していることを期待することができます。SDK 開発チームは、全ての OpenJDK ディストリビューションでの網羅的な QA テストまでは実施していませんが、問題はまず発生しないはずです。
 
 ---
-
 ## <!--Getting Help--> ヘルプ
 
 何か困ったことがあったら、以下の場所でサポートを受けてみてください。

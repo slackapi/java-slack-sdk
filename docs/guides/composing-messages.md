@@ -10,6 +10,7 @@ This section shows how to build Slack messages using **slack-api-client** librar
 
 Also, before jumping into Java code, we recommend developing an understand of composing Slack messages. [Read the API documentation](https://api.slack.com/messaging/composing) for more information.
 
+---
 ## Text Formatting
 
 Composing a text message is the simplest way to post a message to Slack conversations.
@@ -32,6 +33,7 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 
 As you see, using `text` is fairly simple. The only thing to know is to give a string value with a valid format. Consult [Basic formatting with `mrkdwn`](https://api.slack.com/reference/surfaces/formatting#basics) for understanding the markup language.
 
+---
 ## Building Blocks for Rich Message Layouts
 
 [Block Kit](https://api.slack.com/block-kit) is a UI framework for Slack apps that offers a balance of control and flexibility when building experiences in messages and other [surfaces](https://api.slack.com/surfaces).

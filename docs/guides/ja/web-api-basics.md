@@ -10,6 +10,7 @@ lang: ja
 
 このページにあるサンプルを試す前に、Java プロジェクトを設定しておく必要があります。もしまだでしたら「[API クライアントのセットアップ]({{ site.url | append: site.baseurl }}/guides/ja/web-api-client-setup)」にある手順に従ってください。
 
+---
 ## Slack オブジェクトの初期化
 
 このライブラリの全ての機能は **com.slack.api.Slack** クラスに定義されている多様なインスタンスメソッドから始まります。
@@ -35,6 +36,7 @@ Slack slack = Slack.getInstance();
 
 [Incoming Webhooks](https://api.slack.com/messaging/webhooks) の解説をお探しですか？もちろん、サポートされています！[こちらのガイド]({{ site.url | append: site.baseurl }}/guides/ja/incoming-webhooks)を参考にしてください。
 
+---
 ## API メソッドを実行
 
 最も人気のある Slack の API メソッドは [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) という API で、これはチャンネルなどにメッセージを投稿するために使用されます。
@@ -195,6 +197,7 @@ try {
 }
 ```
 
+---
 ## 他の API メソッド
 
 Slack Web API は [180 以上の API メソッド](https://api.slack.com/methods)を提供しています。他の API メソッドを使うやり方もほぼ同じです。**MethodsClient** のメソッドを正しいトークンと必要なパラメータを指定して呼び出します。
@@ -230,6 +233,7 @@ AwesomeMethodResponse response = slack.methods().postFormWithTokenAndParseRespon
 );
 ```
 
+---
 ## Rate Limits
 
 Slack プラットフォームの機能・API は、期待通りの快適なユーザー体験を提供するために、その [Rate Limits](https://api.slack.com/docs/rate-limits) に依拠しています。この制限は **"per app per workspace"**（Slack アプリ毎、かつ、それがインストールされたワークスペース毎）で適用されます。それぞれの API は、どれくらいの頻度で呼び出せるかを規定する "Tier" が設定されています。**slack-api-client** はこの Tier の完全なサポートを提供しており、**AsyncMethodsClient** （非同期クライアント）はその実行において Rate Limits を考慮します。
@@ -342,7 +346,6 @@ Slack slack = Slack.getInstance(config);
 ```
 
 ---
-
 ## Real Time Messaging (RTM)
 
 **注**: ファイヤーウォール内で Slack イベントを受信する必要があるなどの特殊な制約下以外での RTM API の利用は推奨していません
@@ -352,7 +355,6 @@ Real Time Messaging API は Slack からリアルタイムでイベントを受�
 詳細は「[Real Time Messaging (RTM)]({{ site.url | append: site.baseurl }}/guides/ja/rtm)」を参考にしてください。
 
 ---
-
 ## SCIM API
 
 SCIM API は、ユーザアカウントやグループのプロビジョニングのための API 群です。SCIM は、Slack を含む複数のサービス・ツールを横断してユーザアカウントの管理を行うために Single Sign-on (SSO) サービスや ID プロバイダーによって利用されます。
@@ -360,7 +362,6 @@ SCIM API は、ユーザアカウントやグループのプロビジョニン�
 詳細は「[SCIM API]({{ site.url | append: site.baseurl }}/guides/ja/scim-api)」を参考にしてください。
 
 ---
-
 ## Audit Logs API
 
 Audit Logs API は Enterprise Grid の OrG 内で発生したイベントをモニタリングするための API 群です。
@@ -368,7 +369,6 @@ Audit Logs API は Enterprise Grid の OrG 内で発生したイベントをモ�
 詳細は「[Audit Logs API]({{ site.url | append: site.baseurl }}/guides/ja/audit-logs-api)」を参考にしてください。
 
 ---
-
 ## ステータス API
 
 ステータス API は、Slack サービスの稼働状態の情報を提供する API です。何らかの障害、サービス停止、メンテナンスが発生した場合、影響のある Slack の機能、時系列での詳細なアップデートなど、発生している問題に関する全ての情報が反映されます。
@@ -376,7 +376,6 @@ Audit Logs API は Enterprise Grid の OrG 内で発生したイベントをモ�
 詳細は「[ステータス API]({{ site.url | append: site.baseurl }}/guides/ja/status-api)」を参考にしてください。
 
 ---
-
 ## API クライアントのカスタマイズ
 
 **com.slack.api.SlackConfig** には API クライアントをカスタマイズするための様々な設定オプションが提供されています。設定したい内容を反映した **SlackConfig** を生成して **Slack** インスタンスの初期化時に渡すことができます。

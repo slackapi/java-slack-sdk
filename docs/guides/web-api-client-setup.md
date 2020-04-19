@@ -8,12 +8,12 @@ lang: en
 
 The first step to using the Slack API client is installing the **slack-api-client** module. This guide shows you how to set up using [Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), and by building from source on your own. 
 
+---
 ## Prerequisites
 
 [Installing OpenJDK 8 or higher LTS version](https://openjdk.java.net/install/) beforehand is required. As long as your using a supported JDK version, this SDK should be working with any OpenJDK distributions.
 
 ---
-
 ## Maven
 
 Let's start with how to installation with Maven. As **slack-api-client** is a library dependency, there is no requirement of Maven versions.
@@ -81,7 +81,6 @@ In summary, the things you've done here are:
 * ✅ `src/main/java/Example.java` with the main method
 
 ---
-
 ## Gradle
 
 Do you prefer using Gradle? Let's try installing the library with Gradle. The steps are quite similar to Maven, but there are some differences.
@@ -115,7 +114,6 @@ In summary, the things you've done here are:
 * ✅ `src/main/java/Example.java` with the main method
 
 ---
-
 ## Gradle for Kotlin
 
 In this guide, we sometimes use Kotlin code examples for simplicity. To try those examples, set up a Kotlin project with Gradle as below.
@@ -166,7 +164,6 @@ In summary, the things you've done here are:
 * ✅ `src/main/kotlin/Example.kt` with the main method
 
 ---
-
 ## Build from Source
 
 You may want to build the latest revision on your own. In the case of building from source, go with the following steps.

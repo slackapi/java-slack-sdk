@@ -32,6 +32,7 @@ All your app needs to do to handle slash command requests are:
 
 If the response body is empty, the response will be recognized as just an acknowledgment. No message will be posted to the channel.
 
+---
 ## Examples
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.

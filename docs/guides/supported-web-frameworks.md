@@ -12,6 +12,7 @@ It works on Servlet containers out-of-the-box. So, developers can run Bolt apps 
 
 Even running Bolt apps on non-Servlet settings like [Micronaut](https://micronaut.io/) and [Helidon](https://helidon.io/) is feasible if there is an adapter that transforms its specific HTTP interpretation to Bolt interfaces.
 
+---
 ## Supported Frameworks
 
 In this section, I'll share some minimum working examples for the following popular frameworks.
@@ -21,6 +22,7 @@ In this section, I'll share some minimum working examples for the following popu
 * [Quarkus Undertow](https://quarkus.io/)
 * [Helidon SE](https://helidon.io/)
 
+---
 ## Spring Boot
 
 [Spring Boot](https://spring.io/guides/gs/spring-boot/) is the most popular Web framework in Java. Enabling **SlackAppServlet** in your Spring Boot application is the easiest way to run Bolt apps with the framework. Let's look at a tiny Gradle project.
@@ -160,7 +162,6 @@ ngrok http 3000 --subdomain {your-favorite-one}
 ```
 
 ---
-
 ## Micronaut
 
 If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add **bolt-micronaut**, NOT **bolt-jetty**. As the **bolt** dependency will be automatically resolved as the **bolt-micronaut**'s dependency, you don't need to add it. Needless to say, that's the same for Gradle projects.
@@ -241,7 +242,6 @@ That's all set! It's time to hit `mvn run` to boot the app.
 ```
 
 ---
-
 ## Quarkus Undertow
 
 [Quarkus](https://quarkus.io/) is a Web application framework that supports packaging for GraalVM and HotSpot. In this section, I'll explain how to configure SlackAppServlet with the framework.
@@ -482,7 +482,6 @@ INFO  [io.qua.dev] (vert.x-worker-thread-0) Hot replace total time: 0.232s
 ```
 
 ---
-
 ## Helidon SE
 
 [Helidon SE](https://helidon.io/docs/latest/#/about/02_introduction) is the functional programming style web framework provided by all Helidon libraries. Let's start with a blank project.

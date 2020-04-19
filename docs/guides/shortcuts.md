@@ -10,6 +10,7 @@ lang: en
 
 Your app has 3 seconds to call `ack()`, which acknowledges a shortcut request is received from Slack.
 
+---
 ## Global and Message Shortcuts
 
 ### Slack App Configuration
@@ -33,6 +34,7 @@ All your app needs to do to handle message shortcuts requests are:
 1. Build a reply message or do whatever you want to do
 1. Respond to the Slack API server with 200 OK as an acknowledgment
 
+---
 ## Examples
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.

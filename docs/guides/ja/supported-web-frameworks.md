@@ -12,6 +12,7 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 
 [Micronaut](https://micronaut.io/) や [Helidon](https://helidon.io/) のように Servlet ではない環境も、その固有の HTTP 関連の表現（リクエスト・レスポンス）を変換するアダプターさえあれば、Bolt アプリを動作させることができます。
 
+---
 ## 対応フレームワーク
 
 このセクションでは、最小の動作するサンプルとともに以下の人気フレームワークの対応について説明します。
@@ -21,6 +22,7 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 * [Quarkus Undertow](https://quarkus.io/)
 * [Helidon SE](https://helidon.io/)
 
+---
 ## Spring Boot
 
 [Spring Boot](https://spring.io/guides/gs/spring-boot/) は Java の世界で最も人気のある Web フレームワークの一つです。**SlackAppServlet** を Spring Boot アプリ内で有効にするのが最も簡単なやり方です。それでは小さな Gradle プロジェクトの例を見てみましょう。
@@ -159,7 +161,6 @@ ngrok http 3000 --subdomain {あなたのサブドメイン}
 ```
 
 ---
-
 ## Micronaut
 
 ありふれた Servlet での実行環境ではなく、[Micronaut](https://micronaut.io/) を使いたい場合、**bolt-micronaut** というライブラリだけを追加します（**bolt** ライブラリもこれの依存ライブラリとして自動で解決されます）。**bolt-jetty** は必要ないので注意してください。以下は Maven の例ですが、もちろん Gradle でも同様です。
@@ -240,7 +241,6 @@ micronaut:
 ```
 
 ---
-
 ## Quarkus Undertow
 
 [Quarkus](https://quarkus.io/) は GraalVM と HotSpot 両方へのパッケージングをサポートしている Web アプリケーションフレームワークです。このセクションでは、どのように **SlackAppServlet** をこのフレームワークを使って設定するかを説明します。
@@ -483,7 +483,6 @@ INFO  [io.qua.dev] (vert.x-worker-thread-0) Hot replace total time: 0.232s
 
 
 ---
-
 ## Helidon SE
 
 [Helidon SE](https://helidon.io/docs/latest/#/about/02_introduction) は Helidon プロジェクトのライブラリ群によって提供される関数型プログラミングの Web フレームワークです。早速ブランクプロジェクトからはじめてみましょう。
