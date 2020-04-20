@@ -55,6 +55,7 @@ public class InteractiveMessagesPayloadDumpTest {
         action.getConfirm().setDeny(new PlainTextObject());
         action.getConfirm().setTitle(new PlainTextObject());
         action.getConfirm().setText(new PlainTextObject());
+        action.setInitialOption(SampleObjects.Option);
         List<BlockActionPayload.Action> actions = Arrays.asList(action);
         return BlockActionPayload.builder()
                 .team(new BlockActionPayload.Team())

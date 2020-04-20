@@ -3,10 +3,7 @@ package util.sample_json_generation;
 import com.google.gson.JsonElement;
 import com.slack.api.model.*;
 import com.slack.api.model.block.*;
-import com.slack.api.model.block.composition.ConfirmationDialogObject;
-import com.slack.api.model.block.composition.MarkdownTextObject;
-import com.slack.api.model.block.composition.PlainTextObject;
-import com.slack.api.model.block.composition.TextObject;
+import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.*;
 import com.slack.api.util.json.GsonFactory;
 
@@ -58,6 +55,11 @@ public class SampleObjects {
 
     public static TextObject TextObject = initProperties(PlainTextObject.builder().build());
 
+    public static OptionObject Option = initProperties(OptionObject.builder()
+            .text(TextObject)
+            .description(PlainTextObject.builder().build())
+            .build());
+
     public static ConfirmationDialogObject Confirm = ConfirmationDialogObject.builder().text(TextObject).build();
 
     public static ConversationsFilter conversationsFilter = ConversationsFilter.builder().include(Arrays.asList("")).build();
@@ -68,11 +70,11 @@ public class SampleObjects {
             initProperties(ConversationsSelectElement.builder().confirm(Confirm).filter(conversationsFilter).build()),
             initProperties(MultiConversationsSelectElement.builder().confirm(Confirm).filter(conversationsFilter).build()),
             initProperties(DatePickerElement.builder().confirm(Confirm).build()),
-            initProperties(ExternalSelectElement.builder().confirm(Confirm).build()),
+            initProperties(ExternalSelectElement.builder().initialOption(Option).confirm(Confirm).build()),
             initProperties(MultiExternalSelectElement.builder().confirm(Confirm).build()),
             initProperties(ImageElement.builder().build()),
             initProperties(OverflowMenuElement.builder().confirm(Confirm).build()),
-            initProperties(StaticSelectElement.builder().confirm(Confirm).build()),
+            initProperties(StaticSelectElement.builder().initialOption(Option).confirm(Confirm).build()),
             initProperties(MultiStaticSelectElement.builder().confirm(Confirm).build()),
             initProperties(UsersSelectElement.builder().confirm(Confirm).build()),
             initProperties(MultiUsersSelectElement.builder().confirm(Confirm).build())
