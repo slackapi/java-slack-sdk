@@ -556,7 +556,8 @@
         ]
       },
       "use_browser_picker": false,
-      "filepicker_app_first_install": false
+      "filepicker_app_first_install": false,
+      "created_with_google": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
