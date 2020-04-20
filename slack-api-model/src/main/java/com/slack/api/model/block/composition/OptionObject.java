@@ -15,18 +15,22 @@ import lombok.NoArgsConstructor;
 public class OptionObject {
 
     /**
-     * The formatting to use for this text object. Can be one of plain_text or mrkdwn.
+     * A text object that defines the text shown in the option on the menu.
+     * Overflow, select, and multi-select menus can only use plain_text objects,
+     * while radio buttons and checkboxes can use mrkdwn text objects.
+     * Maximum length for the text in this field is 75 characters.
      */
-    private PlainTextObject text;
+    private TextObject text;
 
     /**
-     * The text for the block. This field accepts any of the standard text formatting markup when type is mrkdwn.
+     * The string value that will be passed to your app when this option is chosen.
+     * Maximum length for this field is 75 characters.
      */
     private String value;
 
     /**
-     * A plain_text https://api.slack.com/reference/block-kit/composition-objects#text
-     * only text object that defines a line of descriptive text shown below the text field beside the radio button.
+     * A plain_text only text object that defines a line of descriptive text shown
+     * below the text field beside the radio button.
      * Maximum length for the text object within this field is 75 characters.
      */
     private PlainTextObject description;
@@ -38,6 +42,7 @@ public class OptionObject {
      * <p>
      * Maximum length for this field is 3000 characters.
      * If you're using url, you'll still receive an interaction payload and will need to send an acknowledgement response.
+     * A URL to load in the user's browser when the option is clicked.
      */
     private String url;
 }

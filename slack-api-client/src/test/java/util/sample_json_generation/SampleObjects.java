@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.slack.api.model.*;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
+import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
@@ -65,6 +66,11 @@ public class SampleObjects {
 
     public static TextObject TextObject = initProperties(PlainTextObject.builder().build());
 
+    public static OptionObject Option = initProperties(OptionObject.builder()
+            .text(TextObject)
+            .description(PlainTextObject.builder().build())
+            .build());
+
     public static ConfirmationDialogObject Confirm = ConfirmationDialogObject.builder().text(TextObject).build();
 
     public static List<BlockElement> BlockElements = asElements(
@@ -72,10 +78,10 @@ public class SampleObjects {
             initProperties(channelsSelect(c -> c.confirm(Confirm))),
             initProperties(conversationsSelect(c -> c.confirm(Confirm))),
             initProperties(datePicker(d -> d.confirm(Confirm))),
-            initProperties(externalSelect(e -> e.confirm(Confirm))),
+            initProperties(externalSelect(e -> e.initialOption(Option).confirm(Confirm))),
             initProperties(com.slack.api.model.block.element.BlockElements.image(i -> i)),
             initProperties(overflowMenu(o -> o.confirm(Confirm))),
-            initProperties(staticSelect(s -> s.confirm(Confirm))),
+            initProperties(staticSelect(s -> s.initialOption(Option).confirm(Confirm))),
             initProperties(usersSelect(u -> u.confirm(Confirm)))
     );
     public static List<ContextBlockElement> ContextBlockElements = asContextElements(
