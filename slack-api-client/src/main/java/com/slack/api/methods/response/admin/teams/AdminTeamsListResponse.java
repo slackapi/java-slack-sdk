@@ -22,6 +22,7 @@ public class AdminTeamsListResponse implements SlackApiResponse {
     public static class Team {
         private String id;
         private String name;
+        private String teamUrl;
         private String discoverability;
         private PrimaryOwner primaryOwner;
     }

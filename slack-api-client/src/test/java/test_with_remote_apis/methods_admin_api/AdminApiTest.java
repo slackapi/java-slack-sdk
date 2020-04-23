@@ -95,7 +95,6 @@ public class AdminApiTest {
         }
     }
 
-    @Ignore // Doesn't work as of Jan 3, 2020
     @Test
     public void changeSharedChannels() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null && sharedChannelId != null) {

@@ -8,7 +8,8 @@
       "primary_owner": {
         "user_id": "W00000000",
         "email": ""
-      }
+      },
+      "team_url": "https://www.example.com/"
     }
   ],
   "response_metadata": {
