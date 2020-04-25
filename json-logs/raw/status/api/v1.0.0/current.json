@@ -193,6 +193,26 @@
     {
       "date_created": "2020-04-14T16:20:31-07:00",
       "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
+    },
+    {
+      "date_created": "2020-04-24T17:56:21-07:00",
+      "body": "We have resolved the issue and everyone should be able to connect to Slack once more. We\u0027re very sorry for the disruption and we appreciate you bearing with us."
+    },
+    {
+      "date_created": "2020-04-24T16:42:42-07:00",
+      "body": "Users should start to see improvements and be able to connect again. We will provide another update as soon as the issue is fully resolved. Thank you for your patience."
+    },
+    {
+      "date_created": "2020-04-24T15:36:33-07:00",
+      "body": "Upon further investigation this issue is not exclusive to Android devices. Some users are unable to automatically receive new messages and may notice a grey banner on desktop. We’ll provide an update as soon as it’s available."
+    },
+    {
+      "date_created": "2020-04-24T15:06:02-07:00",
+      "body": "Some Android users have reported difficulty logging into Slack. We are investigating and will provide an update as soon as we know more."
+    },
+    {
+      "date_created": "2020-04-24T14:59:53-07:00",
+      "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
     }
   ]
 }
