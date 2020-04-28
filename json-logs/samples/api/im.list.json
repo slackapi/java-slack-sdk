@@ -9,7 +9,9 @@
       "is_org_shared": false,
       "user": "U00000000",
       "is_user_deleted": false,
-      "priority": 12345
+      "priority": 12345,
+      "is_shared": false,
+      "is_ext_shared": false
     }
   ],
   "response_metadata": {

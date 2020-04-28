@@ -20,5 +20,9 @@ public class Im {
     private boolean user_deleted;
     @SerializedName("is_archived")
     private boolean archived;
+    @SerializedName("is_shared")
+    private boolean shared;
+    @SerializedName("is_ext_shared")
+    private boolean extShared;
     private Double priority;
 }
