@@ -147,7 +147,8 @@
       "external_shared_channel_disconnected",
       "external_shared_channel_reconnected",
       "channel_moved",
-      "channel_renamed"
+      "channel_renamed",
+      "channel_posting_pref_changed_from_org_level"
     ],
     "app": [
       "app_installed",

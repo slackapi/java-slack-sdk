@@ -213,6 +213,14 @@
     {
       "date_created": "2020-04-24T14:59:53-07:00",
       "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
+    },
+    {
+      "date_created": "2020-04-29T13:31:59-07:00",
+      "body": "Customers using older versions of Safari should be able to access Slack now. We truly appreciate your patience."
+    },
+    {
+      "date_created": "2020-04-29T00:57:24-07:00",
+      "body": "We\u0027re investigating reports that some customers are unable to access Slack in older versions of Safari (Safari 11 and Safari 12). We\u0027re very sorry for the disruption, and we\u0027re on the case.\r\n\r\nIn the meantime, we recommend updating to the latest version of Safari or signing into Slack in another web browser. Thank you for bearing with us."
     }
   ]
 }

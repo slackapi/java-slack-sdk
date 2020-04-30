@@ -1,6 +1,7 @@
 package test_locally.api.model.dialog;
 
 import com.slack.api.model.dialog.Dialog;
+import com.slack.api.model.dialog.DialogDataSourceType;
 import com.slack.api.model.dialog.DialogSubType;
 import org.junit.Test;
 
@@ -24,6 +25,23 @@ public class DialogsTest {
                     dialogTextArea(dta -> dta.subtype(DialogSubType.NUMBER))
             ));
         });
+        assertThat(dialog, is(notNullValue()));
+    }
+
+    @Test
+    public void testDataSource() {
+        Dialog dialog = dialog(d -> {
+            return d.elements(asElements(
+                    dialogSelect(ds ->
+                            ds.label("aaa")
+                                    .name("nnnn")
+                                    .dataSource(DialogDataSourceType.CONVERSATIONS)
+                    ),
+                    dialogText(dt -> dt.name("foo")),
+                    dialogTextArea(dta -> dta.subtype(DialogSubType.NUMBER))
+            ));
+        });
+        System.out.println(dialog.toString());
         assertThat(dialog, is(notNullValue()));
     }
 }

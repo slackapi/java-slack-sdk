@@ -7,29 +7,5 @@
       "specUrl": "https://www.example.com/",
       "primary": false
     }
-  ],
-  "patch": {
-    "supported": false
-  },
-  "bulk": {
-    "supported": false,
-    "maxOperations": 12345,
-    "maxPayloadSize": 12345
-  },
-  "filter": {
-    "supported": false,
-    "maxResults": 12345
-  },
-  "changePassword": {
-    "supported": false
-  },
-  "sort": {
-    "supported": false
-  },
-  "etag": {
-    "supported": false
-  },
-  "xmlDataFormat": {
-    "supported": false
-  }
+  ]
 }
