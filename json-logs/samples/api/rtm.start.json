@@ -328,7 +328,8 @@
       "seen_link_unfurl_coachmark": false
     },
     "created": 12345,
-    "manual_presence": ""
+    "manual_presence": "",
+    "first_login": 12345
   },
   "team": {
     "id": "T00000000",

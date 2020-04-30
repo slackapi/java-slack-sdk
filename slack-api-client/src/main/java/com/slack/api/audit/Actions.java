@@ -171,6 +171,7 @@ public class Actions {
         public static final String channel_moved = "channel_moved";
         public static final String group_converted_to_channel = "group_converted_to_channel";
         public static final String channel_renamed = "channel_renamed";
+        public static final String channel_posting_pref_changed_from_org_level = "channel_posting_pref_changed_from_org_level";
     }
 
     public static class App {
