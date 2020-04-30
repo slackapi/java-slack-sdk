@@ -74,7 +74,7 @@ public class DialogSelectElement implements DialogElement {
     /**
      * Provide the number of characters that must be typed by a user.
      */
-    private Integer minQueryLenght;
+    private Integer minQueryLength;
 
     /**
      * Provide the data source type for the Element.
