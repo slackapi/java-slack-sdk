@@ -6,7 +6,6 @@ import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsConfig;
 import com.slack.api.methods.MethodsStats;
-import com.slack.api.methods.metrics.impl.MemoryMetricsDatastore;
 import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
 import org.junit.After;
 import org.junit.Before;

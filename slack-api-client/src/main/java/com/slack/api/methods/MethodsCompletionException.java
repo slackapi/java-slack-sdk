@@ -1,7 +1,6 @@
 package com.slack.api.methods;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

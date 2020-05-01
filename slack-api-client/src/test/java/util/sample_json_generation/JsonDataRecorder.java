@@ -6,7 +6,6 @@ import com.slack.api.model.Conversation;
 import com.slack.api.model.FileComment;
 import com.slack.api.model.Message;
 import com.slack.api.model.admin.AppRequest;
-import com.slack.api.scim.model.Group;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.json.GsonFactory;

@@ -2,7 +2,6 @@ package test_with_remote_apis.methods_admin_api;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
-import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.admin.users.AdminUsersAssignRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersInviteRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersRemoveRequest;
@@ -31,7 +30,6 @@ import org.junit.AfterClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Collections;

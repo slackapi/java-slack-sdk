@@ -4,7 +4,10 @@ import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.OptionGroupObject;
 import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 

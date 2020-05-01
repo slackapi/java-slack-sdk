@@ -35,6 +35,7 @@ public class Issue419UseCaseTest {
 
     static class SampleHandler extends SlackApiLambdaHandler {
         AtomicInteger messageCount = new AtomicInteger(0);
+
         public SampleHandler(App app) {
             super(app);
         }

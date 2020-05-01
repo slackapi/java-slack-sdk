@@ -1,20 +1,5 @@
 package test_locally.middleware;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static util.MockSlackApi.InvalidToken;
-import static util.MockSlackApi.ValidToken;
-
-import util.MockSlackApiServer;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Test;
-
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.events.payload.MemberJoinedChannelPayload;
@@ -31,6 +16,17 @@ import com.slack.api.model.event.MemberJoinedChannelEvent;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.model.event.UserChangeEvent;
 import com.slack.api.util.json.GsonFactory;
+import org.junit.Test;
+import util.MockSlackApiServer;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.Assert.*;
+import static util.MockSlackApi.InvalidToken;
+import static util.MockSlackApi.ValidToken;
 
 public class IgnoringSelfEventsTest {
 

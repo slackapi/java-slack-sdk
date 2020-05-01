@@ -2,7 +2,10 @@ package com.slack.api.model.block.element;
 
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.PlainTextObject;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * https://api.slack.com/reference/block-kit/block-elements#channel_select

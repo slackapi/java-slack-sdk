@@ -1,6 +1,5 @@
 package com.slack.api.model.event;
 
-import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.util.List;

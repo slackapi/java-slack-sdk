@@ -1,7 +1,10 @@
 package com.slack.api.model.block;
 
 import com.slack.api.model.block.element.BlockElement;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder

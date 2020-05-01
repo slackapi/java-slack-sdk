@@ -46,7 +46,7 @@ public class BlockKitTest {
         InputBlock inputBlock = (InputBlock) message.getBlocks().get(0);
         assertThat(inputBlock.getLabel(), is(notNullValue()));
         assertThat(inputBlock.getElement(), is(notNullValue()));
-        assertThat(inputBlock.getHint(),is(notNullValue()));
+        assertThat(inputBlock.getHint(), is(notNullValue()));
     }
 
     @Test

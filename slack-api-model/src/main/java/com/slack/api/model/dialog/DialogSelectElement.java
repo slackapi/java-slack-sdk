@@ -82,5 +82,4 @@ public class DialogSelectElement implements DialogElement {
     private DialogDataSourceType dataSource;
 
 
-
 }
