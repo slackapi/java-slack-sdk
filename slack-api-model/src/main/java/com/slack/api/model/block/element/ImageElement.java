@@ -7,7 +7,6 @@ import lombok.*;
  * https://api.slack.com/reference/block-kit/block-elements#image
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

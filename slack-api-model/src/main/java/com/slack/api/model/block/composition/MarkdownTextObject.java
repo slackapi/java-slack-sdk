@@ -7,7 +7,6 @@ import lombok.*;
  */
 @Data
 @Builder
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class MarkdownTextObject extends TextObject {

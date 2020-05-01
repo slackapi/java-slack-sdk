@@ -3,7 +3,6 @@ package com.slack.api.model.block.element;
 import lombok.*;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

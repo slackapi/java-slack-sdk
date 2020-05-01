@@ -8,7 +8,6 @@ import lombok.*;
  * https://api.slack.com/reference/block-kit/block-elements#button
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

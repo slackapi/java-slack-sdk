@@ -12,7 +12,6 @@ import java.util.List;
  * https://api.slack.com/reference/block-kit/block-elements#multi_select
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

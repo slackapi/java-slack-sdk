@@ -12,7 +12,6 @@ import java.util.List;
  * https://api.slack.com/reference/messaging/block-elements#static-select
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
