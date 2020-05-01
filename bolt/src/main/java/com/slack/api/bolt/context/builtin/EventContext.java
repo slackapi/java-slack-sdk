@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @Builder
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventContext extends Context implements SayUtility {

@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 public class SlashCommandContext extends Context implements SayUtility, RespondUtility {
 
     private String triggerId;
