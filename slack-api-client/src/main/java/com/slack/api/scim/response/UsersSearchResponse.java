@@ -9,7 +9,6 @@ import lombok.EqualsAndHashCode;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class UsersSearchResponse implements SCIMApiResponse {
     private Integer totalResults;
     private Integer itemsPerPage;

@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class SCIMApiErrorResponse implements SCIMApiResponse {
 
     @SerializedName("Errors")

@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class ServiceProviderConfigsGetResponse implements SCIMApiResponse {
 
     private List<AuthenticationScheme> authenticationSchemes;

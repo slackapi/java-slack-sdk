@@ -6,6 +6,5 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class GroupsUpdateResponse extends Group implements SCIMApiResponse {
 }
