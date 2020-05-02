@@ -2,10 +2,7 @@ package com.slack.api.app_backend.views.response;
 
 import com.slack.api.model.view.View;
 import com.slack.api.util.json.GsonFactory;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Map;
 
@@ -13,6 +10,7 @@ import java.util.Map;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class ViewSubmissionResponse {
 
     private String responseAction; // push, update, errors, (no value to close)

@@ -1,9 +1,6 @@
 package com.slack.api.model.block.composition;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * https://api.slack.com/reference/messaging/composition-objects#text
@@ -12,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class UnknownTextObject extends TextObject {
     private String type;
     private String text;

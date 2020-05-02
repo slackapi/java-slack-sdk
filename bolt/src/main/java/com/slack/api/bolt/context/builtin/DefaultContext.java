@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @Builder
 @ToString(callSuper = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class DefaultContext extends Context {
 
     public DefaultContext() {

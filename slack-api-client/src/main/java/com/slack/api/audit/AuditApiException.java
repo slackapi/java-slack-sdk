@@ -3,11 +3,13 @@ package com.slack.api.audit;
 import com.slack.api.SlackConfig;
 import com.slack.api.util.json.GsonFactory;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 
 @Data
 @Slf4j
+@EqualsAndHashCode(callSuper = false)
 public class AuditApiException extends Exception {
 
     private final Response response;
