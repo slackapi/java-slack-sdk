@@ -245,6 +245,24 @@
           "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
         }
       ]
+    },
+    {
+      "id": 845,
+      "date_created": "2020-04-30T10:49:51-07:00",
+      "date_updated": "2020-04-30T10:49:51-07:00",
+      "title": "Outdated information on Analytics page",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-04/f1e8e83254a381ac",
+      "services": [
+        "Workspace/Org Administration"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-04-30T10:49:51-07:00",
+          "body": "Information on the Analytics dashboard (https://my.slack.com/stats) is not up to date. We are currently investigating this issue and will be back as soon as we have more news to share. We\u0027re sorry for any inconvenience caused in the meantime."
+        }
+      ]
     }
   ]
 }
