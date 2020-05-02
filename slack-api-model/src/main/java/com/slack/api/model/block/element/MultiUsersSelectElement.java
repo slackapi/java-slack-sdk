@@ -2,10 +2,7 @@ package com.slack.api.model.block.element;
 
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.PlainTextObject;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class MultiUsersSelectElement extends BlockElement {
     public static final String TYPE = "multi_users_select";
     private final String type = TYPE;

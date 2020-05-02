@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class DialogSubmissionContext extends Context implements SayUtility, ActionRespondUtility {
 
     private String responseUrl;

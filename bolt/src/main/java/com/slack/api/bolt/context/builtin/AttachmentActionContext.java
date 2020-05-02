@@ -15,7 +15,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class AttachmentActionContext extends Context implements SayUtility, ActionRespondUtility {
 
     private String triggerId;

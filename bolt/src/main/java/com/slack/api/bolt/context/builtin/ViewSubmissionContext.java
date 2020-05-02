@@ -19,7 +19,7 @@ import java.util.Map;
 @Builder
 @AllArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class ViewSubmissionContext extends Context implements InputBlockRespondUtility {
 
     private List<ViewSubmissionPayload.ResponseUrl> responseUrls;

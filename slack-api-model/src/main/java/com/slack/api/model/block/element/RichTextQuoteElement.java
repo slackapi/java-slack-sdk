@@ -1,9 +1,6 @@
 package com.slack.api.model.block.element;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class RichTextQuoteElement extends BlockElement implements RichTextElement {
 
     public static final String TYPE = "rich_text_quote";

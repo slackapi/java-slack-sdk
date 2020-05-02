@@ -1,10 +1,7 @@
 package com.slack.api.model.block.element;
 
 import com.slack.api.model.block.composition.PlainTextObject;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * https://api.slack.com/reference/block-kit/block-elements#input
@@ -13,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class PlainTextInputElement extends BlockElement {
     public static final String TYPE = "plain_text_input";
     private final String type = TYPE;

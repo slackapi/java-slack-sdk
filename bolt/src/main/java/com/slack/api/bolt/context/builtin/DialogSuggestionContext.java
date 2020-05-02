@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @Builder
 @ToString(callSuper = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class DialogSuggestionContext extends Context {
 
     public DialogSuggestionContext() {

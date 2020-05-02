@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class DialogCancellationContext extends Context implements SayUtility, ActionRespondUtility {
 
     private String responseUrl;
