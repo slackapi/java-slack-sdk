@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.slack.api.audit.AuditApiResponse;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 

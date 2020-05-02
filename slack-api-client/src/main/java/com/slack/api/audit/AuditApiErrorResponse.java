@@ -1,6 +1,7 @@
 package com.slack.api.audit;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)

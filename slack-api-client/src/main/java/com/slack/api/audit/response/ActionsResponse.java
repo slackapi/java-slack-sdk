@@ -2,6 +2,7 @@ package com.slack.api.audit.response;
 
 import com.slack.api.audit.AuditApiResponse;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package com.slack.api.status.v1;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 
