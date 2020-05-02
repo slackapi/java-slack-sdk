@@ -5,5 +5,6 @@ import com.slack.api.scim.model.Group;
 import lombok.Data;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class GroupsUpdateResponse extends Group implements SCIMApiResponse {
 }

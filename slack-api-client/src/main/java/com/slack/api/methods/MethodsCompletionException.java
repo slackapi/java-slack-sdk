@@ -7,6 +7,7 @@ import java.io.IOException;
 
 @Data
 @Slf4j
+@EqualsAndHashCode(callSuper = false)
 public class MethodsCompletionException extends RuntimeException {
 
     private final IOException ioException;

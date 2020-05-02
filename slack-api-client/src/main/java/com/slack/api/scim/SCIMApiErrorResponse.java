@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class SCIMApiErrorResponse implements SCIMApiResponse {
 
     @SerializedName("Errors")

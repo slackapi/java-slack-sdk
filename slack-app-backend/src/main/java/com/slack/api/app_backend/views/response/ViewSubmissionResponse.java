@@ -13,6 +13,7 @@ import java.util.Map;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class ViewSubmissionResponse {
 
     private String responseAction; // push, update, errors, (no value to close)

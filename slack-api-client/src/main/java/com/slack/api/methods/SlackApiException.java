@@ -8,6 +8,7 @@ import okhttp3.Response;
 
 @Data
 @Slf4j
+@EqualsAndHashCode(callSuper = false)
 public class SlackApiException extends Exception {
 
     private final Response response;

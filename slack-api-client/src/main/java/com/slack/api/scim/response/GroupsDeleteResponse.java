@@ -4,5 +4,6 @@ import com.slack.api.scim.SCIMApiResponse;
 import lombok.Data;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class GroupsDeleteResponse implements SCIMApiResponse {
 }

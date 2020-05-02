@@ -6,6 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class ActionsResponse implements AuditApiResponse {
     private boolean ok;
     private String warning;

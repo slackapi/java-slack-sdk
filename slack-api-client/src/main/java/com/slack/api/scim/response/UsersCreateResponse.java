@@ -5,5 +5,6 @@ import com.slack.api.scim.model.User;
 import lombok.Data;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class UsersCreateResponse extends User implements SCIMApiResponse {
 }
