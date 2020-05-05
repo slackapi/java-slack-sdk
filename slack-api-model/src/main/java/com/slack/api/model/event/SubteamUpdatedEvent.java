@@ -48,7 +48,8 @@ public class SubteamUpdatedEvent implements Event {
         private String deletedBy;
         private Prefs prefs;
         private List<String> users;
-        private String userCount;
+        private Integer userCount;
+        private Integer channelCount;
     }
 
     @Data

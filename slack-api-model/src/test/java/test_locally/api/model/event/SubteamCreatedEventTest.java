@@ -53,7 +53,7 @@ public class SubteamCreatedEventTest {
         assertThat(event.getSubteam().getAutoType(), is(nullValue()));
         assertThat(event.getSubteam().getPrefs().getChannels(), is(notNullValue()));
         assertThat(event.getSubteam().getPrefs().getGroups(), is(notNullValue()));
-        assertThat(event.getSubteam().getUserCount(), is("0"));
+        assertThat(event.getSubteam().getUserCount(), is(0));
     }
 
     @Test
