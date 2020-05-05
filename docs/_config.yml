@@ -9,5 +9,5 @@ url: https://slack.dev
 sdkLatestVersion: 1.0.6
 kotlinVersion: 1.3.72
 springBootVersion: 2.2.6.RELEASE
-quarkusVersion: 1.3.2.Final
+quarkusVersion: 1.4.1.Final
 helidonVersion: 1.4.4
