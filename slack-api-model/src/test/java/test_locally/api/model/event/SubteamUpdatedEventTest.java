@@ -52,7 +52,7 @@ public class SubteamUpdatedEventTest {
         SubteamUpdatedEvent event = GsonFactory.createSnakeCase().fromJson(json, SubteamUpdatedEvent.class);
         assertThat(event.getType(), is("subteam_updated"));
         assertThat(event.getSubteam().getId(), is("S0614TZR7"));
-        assertThat(event.getSubteam().getUserCount(), is("4"));
+        assertThat(event.getSubteam().getUserCount(), is(4));
         assertThat(event.getSubteam().getUsers().size(), is(4));
     }
 

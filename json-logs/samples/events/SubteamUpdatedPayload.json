@@ -33,7 +33,8 @@
         "W00000000"
       ],
       "user_count": 12345,
-      "deleted_by": "W00000000"
+      "deleted_by": "W00000000",
+      "channel_count": 12345
     },
     "event_ts": "0000000000.000000"
   },
