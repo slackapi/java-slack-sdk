@@ -104,7 +104,7 @@ lang: ja
 }
 ```
 
-**slack-api-client** は　blocks や views を構築するための扱いやすい SDL を提供しています。以下のコード例は型安全に **View** オブジェクトを生成している例です。
+**slack-api-client** は　blocks や views を構築するための扱いやすい DSL を提供しています。以下のコード例は型安全に **View** オブジェクトを生成している例です。
 
 ```java
 import com.slack.api.model.view.View;
