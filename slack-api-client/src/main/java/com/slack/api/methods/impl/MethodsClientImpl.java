@@ -12,6 +12,9 @@ import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
 import com.slack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
 import com.slack.api.methods.request.admin.teams.settings.*;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
@@ -83,6 +86,9 @@ import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.slack.api.methods.response.admin.teams.settings.*;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
@@ -456,6 +462,36 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminTeamsSettingsSetNameResponse adminTeamsSettingsSetName(RequestConfigurator<AdminTeamsSettingsSetNameRequest.AdminTeamsSettingsSetNameRequestBuilder> req) throws IOException, SlackApiException {
         return adminTeamsSettingsSetName(req.configure(AdminTeamsSettingsSetNameRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsergroupsAddChannelsResponse adminUsergroupsAddChannels(AdminUsergroupsAddChannelsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERGROUPS_ADD_CHANNELS, getToken(req), AdminUsergroupsAddChannelsResponse.class);
+    }
+
+    @Override
+    public AdminUsergroupsAddChannelsResponse adminUsergroupsAddChannels(RequestConfigurator<AdminUsergroupsAddChannelsRequest.AdminUsergroupsAddChannelsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsergroupsAddChannels(req.configure(AdminUsergroupsAddChannelsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsergroupsListChannelsResponse adminUsergroupsListChannels(AdminUsergroupsListChannelsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERGROUPS_LIST_CHANNELS, getToken(req), AdminUsergroupsListChannelsResponse.class);
+    }
+
+    @Override
+    public AdminUsergroupsListChannelsResponse adminUsergroupsListChannels(RequestConfigurator<AdminUsergroupsListChannelsRequest.AdminUsergroupsListChannelsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsergroupsListChannels(req.configure(AdminUsergroupsListChannelsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsergroupsRemoveChannelsResponse adminUsergroupsRemoveChannels(AdminUsergroupsRemoveChannelsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERGROUPS_REMOVE_CHANNELS, getToken(req), AdminUsergroupsRemoveChannelsResponse.class);
+    }
+
+    @Override
+    public AdminUsergroupsRemoveChannelsResponse adminUsergroupsRemoveChannels(RequestConfigurator<AdminUsergroupsRemoveChannelsRequest.AdminUsergroupsRemoveChannelsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsergroupsRemoveChannels(req.configure(AdminUsergroupsRemoveChannelsRequest.builder()).build());
     }
 
     @Override

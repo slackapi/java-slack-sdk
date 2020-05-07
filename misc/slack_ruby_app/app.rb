@@ -30,7 +30,7 @@ end
 
 get "/oauth" do
   client = Slack::Web::Client.new
-  response = client.oauth_access(
+  response = client.oauth_v2_access(
     client_id: ENV['SLACK_TEST_CLIENT_ID'],
     client_secret: ENV['SLACK_TEST_CLIENT_SECRET'],
     code: params[:code]
