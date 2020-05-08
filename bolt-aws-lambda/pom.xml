@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <aws-lambda-core.version>1.2.0</aws-lambda-core.version>
+        <aws-lambda-core.version>1.2.1</aws-lambda-core.version>
     </properties>
 
     <groupId>com.slack.api</groupId>
