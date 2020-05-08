@@ -28,7 +28,7 @@ Slack アプリは 3 秒以内に `ack()` メソッドでショッートカッ�
 
 #### Bolt アプリがやること
 
-Bolt アプリがメッセージアクションへの応答のためにやらなければならないことは以下の通りです。
+Bolt アプリがショートカットへの応答のためにやらなければならないことは以下の通りです。
 
 1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
 1. リクエストボディをパースして `callback_id` が処理対象か確認
