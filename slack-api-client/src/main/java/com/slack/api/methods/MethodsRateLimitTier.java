@@ -69,6 +69,11 @@ public enum MethodsRateLimitTier {
     }
 
     public static Integer getAllowedRequestsPerMinute(MethodsRateLimitTier tier) {
+        if (tier == null) {
+            // Just in case, this method returns Tier2 when the given Tier is null to avoid runtime errors
+            // Tier2 may not be optimal in the case but it works for most cases
+            return allowedRequestsPerMinute.get(MethodsRateLimitTier.Tier2);
+        }
         return allowedRequestsPerMinute.get(tier);
     }
 
