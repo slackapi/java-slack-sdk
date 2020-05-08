@@ -47,6 +47,8 @@ public class Conversation {
     private String user; // conversations.open
     private Double priority;
 
+    private Integer dateConnected;
+
     private List<String> sharedTeamIds;
 
     private String parentConversation;

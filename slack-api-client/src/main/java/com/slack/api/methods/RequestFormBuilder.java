@@ -9,6 +9,9 @@ import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
 import com.slack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
 import com.slack.api.methods.request.admin.teams.settings.*;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
@@ -292,6 +295,29 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
         setIfNotNull("name", req.getName(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsergroupsAddChannelsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("usergroup_id", req.getUsergroupId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsergroupsListChannelsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("usergroup_id", req.getUsergroupId(), form);
+        setIfNotNull("include_num_members", req.getIncludeNumMembers(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsergroupsRemoveChannelsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
+        setIfNotNull("usergroup_id", req.getUsergroupId(), form);
         return form;
     }
 

@@ -267,8 +267,7 @@ public class files_Test {
             assertThat(fileObj.getSize(), is(29720));
             assertThat(fileObj.isEditable(), is(false));
 
-            // NOTE: This value use to be 1 until April 15, 2020
-            assertThat(fileObj.getImageExifRotation(), is(nullValue()));
+            assertThat(fileObj.getImageExifRotation(), is(1));
             assertThat(fileObj.getPjpeg(), is(nullValue()));
             assertThat(fileObj.getOriginalWidth(), is("400"));
             assertThat(fileObj.getThumb360Width(), is("360"));

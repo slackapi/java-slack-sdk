@@ -77,6 +77,14 @@ public class Methods {
     public static final String ADMIN_TEAMS_SETTINGS_SET_NAME = "admin.teams.settings.setName";
 
     // ------------------------------
+    // admin.usergroups
+    // ------------------------------
+
+    public static final String ADMIN_USERGROUPS_ADD_CHANNELS = "admin.usergroups.addChannels";
+    public static final String ADMIN_USERGROUPS_LIST_CHANNELS = "admin.usergroups.listChannels";
+    public static final String ADMIN_USERGROUPS_REMOVE_CHANNELS = "admin.usergroups.removeChannels";
+
+    // ------------------------------
     // admin.users
     // ------------------------------
 

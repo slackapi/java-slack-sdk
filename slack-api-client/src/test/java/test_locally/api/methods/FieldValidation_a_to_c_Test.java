@@ -337,7 +337,8 @@ public class FieldValidation_a_to_c_Test {
                 "getUnreadCount",
                 "getUnreadCountDisplay",
                 "getLatest",
-                "getLastRead"
+                "getLastRead",
+                "getDateConnected"
         );
     }
 
@@ -438,7 +439,8 @@ public class FieldValidation_a_to_c_Test {
                     "getNumOfMembers",
                     "getIsMoved",
                     "getPendingShared",
-                    "getLastRead"
+                    "getLastRead",
+                    "getDateConnected"
             );
         }
         {

@@ -141,4 +141,15 @@ public class AdminApiTest {
                 .isOk(), is(true));
     }
 
+    @Test
+    public void adminUsergroups() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminUsergroupsAddChannels(r -> r.teamId("T123").usergroupId("S123").channelIds(Arrays.asList("C123", "C234")))
+                .isOk(), is(true));
+        assertThat(methods.adminUsergroupsListChannels(r -> r.teamId("T123").usergroupId("S123").includeNumMembers(true))
+                .isOk(), is(true));
+        assertThat(methods.adminUsergroupsRemoveChannels(r -> r.usergroupId("S123").channelIds(Arrays.asList("C123", "C234")))
+                .isOk(), is(true));
+    }
 }

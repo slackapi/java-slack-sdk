@@ -3,6 +3,7 @@ package test_locally.api.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
+import com.slack.api.methods.MethodsClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -138,6 +139,18 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
 
         assertThat(methods.adminUsersSessionReset(r -> r.userId("U123").mobileOnly(false))
+                .get().isOk(), is(true));
+    }
+
+    @Test
+    public void adminUsergroups() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminUsergroupsAddChannels(r -> r.teamId("T123").usergroupId("S123").channelIds(Arrays.asList("C123", "C234")))
+                .get().isOk(), is(true));
+        assertThat(methods.adminUsergroupsListChannels(r -> r.teamId("T123").usergroupId("S123").includeNumMembers(true))
+                .get().isOk(), is(true));
+        assertThat(methods.adminUsergroupsRemoveChannels(r -> r.usergroupId("S123").channelIds(Arrays.asList("C123", "C234")))
                 .get().isOk(), is(true));
     }
 

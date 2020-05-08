@@ -14,6 +14,9 @@ import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
 import com.slack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
 import com.slack.api.methods.request.admin.teams.settings.*;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
@@ -72,6 +75,9 @@ import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.slack.api.methods.response.admin.teams.settings.*;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
@@ -424,6 +430,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminTeamsSettingsSetNameResponse> adminTeamsSettingsSetName(RequestConfigurator<AdminTeamsSettingsSetNameRequest.AdminTeamsSettingsSetNameRequestBuilder> req) {
         return adminTeamsSettingsSetName(req.configure(AdminTeamsSettingsSetNameRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsAddChannelsResponse> adminUsergroupsAddChannels(AdminUsergroupsAddChannelsRequest req) {
+        return executor.execute(ADMIN_USERGROUPS_ADD_CHANNELS, toMap(req), () -> methods.adminUsergroupsAddChannels(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsAddChannelsResponse> adminUsergroupsAddChannels(RequestConfigurator<AdminUsergroupsAddChannelsRequest.AdminUsergroupsAddChannelsRequestBuilder> req) {
+        return adminUsergroupsAddChannels(req.configure(AdminUsergroupsAddChannelsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsListChannelsResponse> adminUsergroupsListChannels(AdminUsergroupsListChannelsRequest req) {
+        return executor.execute(ADMIN_USERGROUPS_LIST_CHANNELS, toMap(req), () -> methods.adminUsergroupsListChannels(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsListChannelsResponse> adminUsergroupsListChannels(RequestConfigurator<AdminUsergroupsListChannelsRequest.AdminUsergroupsListChannelsRequestBuilder> req) {
+        return adminUsergroupsListChannels(req.configure(AdminUsergroupsListChannelsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsRemoveChannelsResponse> adminUsergroupsRemoveChannels(AdminUsergroupsRemoveChannelsRequest req) {
+        return executor.execute(ADMIN_USERGROUPS_REMOVE_CHANNELS, toMap(req), () -> methods.adminUsergroupsRemoveChannels(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsRemoveChannelsResponse> adminUsergroupsRemoveChannels(RequestConfigurator<AdminUsergroupsRemoveChannelsRequest.AdminUsergroupsRemoveChannelsRequestBuilder> req) {
+        return adminUsergroupsRemoveChannels(req.configure(AdminUsergroupsRemoveChannelsRequest.builder()).build());
     }
 
     @Override
