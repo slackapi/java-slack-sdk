@@ -106,5 +106,9 @@
         "manager": {}
       }
     }
-  ]
+  ],
+  "Errors": {
+    "description": "",
+    "code": 12345
+  }
 }
