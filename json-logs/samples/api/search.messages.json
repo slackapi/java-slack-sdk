@@ -36,7 +36,8 @@
             ""
           ],
           "is_pending_ext_shared": false,
-          "user": "U00000000"
+          "user": "U00000000",
+          "name_normalized": ""
         },
         "type": "",
         "username": "",
@@ -62,6 +63,7 @@
             "color": "",
             "pretext": "",
             "service_url": "",
+            "author_id": "",
             "author_name": "",
             "author_link": "",
             "author_icon": "",
@@ -158,6 +160,7 @@
             "service_url": "",
             "service_name": "",
             "service_icon": "",
+            "author_id": "",
             "author_name": "",
             "author_link": "",
             "author_icon": "",
@@ -630,6 +633,7 @@
               "service_url": "",
               "service_name": "",
               "service_icon": "",
+              "author_id": "",
               "author_name": "",
               "author_link": "",
               "author_icon": "",
@@ -742,6 +746,7 @@
               "service_url": "",
               "service_name": "",
               "service_icon": "",
+              "author_id": "",
               "author_name": "",
               "author_link": "",
               "author_icon": "",

@@ -64,5 +64,9 @@
   ],
   "urn:scim:schemas:extension:enterprise:1.0": {
     "manager": {}
+  },
+  "Errors": {
+    "description": "",
+    "code": 12345
   }
 }

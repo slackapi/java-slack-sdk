@@ -26,7 +26,8 @@
         ""
       ]
     },
-    "user_count": ""
+    "user_count": 123,
+    "channel_count": 123
   },
   "event_ts": ""
 }
