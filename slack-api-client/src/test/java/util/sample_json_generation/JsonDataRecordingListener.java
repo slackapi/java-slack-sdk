@@ -21,7 +21,7 @@ public class JsonDataRecordingListener extends HttpResponseListener {
         if (remaining.size() > 0) {
             log.debug("remaining: {} ({})",
                     remaining.size(),
-                    remaining.stream().map(r -> "`" + r.substring(0, 30) + "...`").collect(joining(",", "[", "]")));
+                    remaining.stream().map(r -> "`" + (r.length() > 30 ? r.substring(0, 30) : r) + "...`").collect(joining(",", "[", "]")));
         }
         return remaining.size() == 0;
     }
