@@ -38,8 +38,7 @@ public abstract class RTMEventHandler<E extends Event> {
     /**
      * Returns the subtype value of the event (e.g., MessageEvent.TYPE_NAME)
      */
-    public String getEventSubType()
-    {
+    public String getEventSubType() {
         if (cachedEventSubName != null) {
             return cachedEventSubName;
         }

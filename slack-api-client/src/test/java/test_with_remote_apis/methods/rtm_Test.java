@@ -5,10 +5,12 @@ import com.google.gson.JsonParser;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.conversations.ConversationsInviteResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.User;
 import com.slack.api.model.event.HelloEvent;
+import com.slack.api.model.event.MessageBotEvent;
 import com.slack.api.model.event.UserTypingEvent;
 import com.slack.api.rtm.*;
 import com.slack.api.rtm.message.Message;
@@ -68,6 +70,17 @@ public class rtm_Test {
         }
     }
 
+    @Slf4j
+    public static class BotMessageHandler extends RTMEventHandler<MessageBotEvent> {
+        public final AtomicInteger counter = new AtomicInteger(0);
+
+        @Override
+        public void handle(MessageBotEvent event) {
+            log.info("bot message event: {}", event);
+            counter.incrementAndGet();
+        }
+    }
+
     public static class SubHelloHandler extends HelloHandler {
     }
 
@@ -109,6 +122,16 @@ public class rtm_Test {
                 assertThat(hello.counter.get(), is(1));
                 assertThat(hello2.counter.get(), is(1));
 
+                BotMessageHandler bot = new BotMessageHandler();
+                dispatcher.register(bot);
+
+                ChatPostMessageResponse chatPostMessage = slack.methods(classicAppBotToken)
+                        .chatPostMessage(r -> r.channel(channelId).text("Hi!"));
+                assertThat(chatPostMessage.getError(), is(nullValue()));
+
+                Thread.sleep(1000L);
+                assertThat(bot.counter.get(), is(1));
+
                 rtm.reconnect();
                 Thread.sleep(1000L);
                 assertThat(hello.counter.get(), is(2));
@@ -120,6 +143,7 @@ public class rtm_Test {
                 Thread.sleep(1000L);
                 assertThat(hello.counter.get(), is(2)); // should not be incremented
                 assertThat(hello2.counter.get(), is(3));
+
             }
 
         } finally {

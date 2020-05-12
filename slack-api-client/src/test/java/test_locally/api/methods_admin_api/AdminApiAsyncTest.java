@@ -3,7 +3,6 @@ package test_locally.api.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
-import com.slack.api.methods.MethodsClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
