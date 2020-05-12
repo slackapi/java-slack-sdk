@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
@@ -40,6 +41,8 @@ public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
     @Override
     public void dispatch(String json) {
         String eventType = detectEventType(json);
+        String eventSubType = detectEventSubType(json);
+
         if (eventType == null) {
             log.debug("Failed to detect event type from the given JSON data: {}", json);
             return;
@@ -49,10 +52,16 @@ public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
         if (RTMEventHandlers == null || RTMEventHandlers.size() == 0) {
             log.debug("No event handler registered for type: {}", eventType);
         } else {
-            Class<?> clazz = RTMEventHandlers.get(0).getEventClass();
-            Event event = (Event) GsonFactory.createSnakeCase().fromJson(json, clazz);
-            for (RTMEventHandler<?> handler : RTMEventHandlers) {
-                handler.acceptUntypedObject(event);
+            List<RTMEventHandler<?>> rtmEventHandlers = RTMEventHandlers.stream()
+                    .filter(e -> e.getEventSubType().equals(eventSubType))
+                    .collect(Collectors.toList());
+
+            if (rtmEventHandlers.isEmpty() == false) {
+                Class<?> clazz = rtmEventHandlers.get(0).getEventClass();
+                for (RTMEventHandler<?> handler : rtmEventHandlers) {
+                    Event event = (Event) GsonFactory.createSnakeCase().fromJson(json, clazz);
+                    handler.acceptUntypedObject(event);
+                }
             }
         }
     }
@@ -81,6 +90,42 @@ public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
                     && chars[idx + 5] == '"'
                     && chars[idx + 6] == ':') {
                 idx = idx + 7;
+                int doubleQuoteCount = 0;
+                boolean isPreviousCharEscape = false;
+                while (doubleQuoteCount < 2 && idx < chars.length) {
+                    char c = chars[idx];
+                    if (c == '"' && !isPreviousCharEscape) {
+                        doubleQuoteCount++;
+                    } else {
+                        if (doubleQuoteCount == 1) {
+                            sb.append(c);
+                        }
+                    }
+                    isPreviousCharEscape = c == '\\';
+                    idx++;
+                }
+                break;
+            }
+        }
+        return sb.toString();
+    }
+
+
+    public static String detectEventSubType(String json) {
+        StringBuilder sb = new StringBuilder();
+        char[] chars = json.toCharArray();
+        for (int idx = 0; idx < (chars.length - 9); idx++) {
+            if (chars[idx] == '"'
+                    && chars[idx + 1] == 's'
+                    && chars[idx + 2] == 'u'
+                    && chars[idx + 3] == 'b'
+                    && chars[idx + 4] == 't'
+                    && chars[idx + 5] == 'y'
+                    && chars[idx + 6] == 'p'
+                    && chars[idx + 7] == 'e'
+                    && chars[idx + 8] == '"'
+                    && chars[idx + 9] == ':') {
+                idx = idx + 10;
                 int doubleQuoteCount = 0;
                 boolean isPreviousCharEscape = false;
                 while (doubleQuoteCount < 2 && idx < chars.length) {
