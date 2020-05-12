@@ -1,5 +1,6 @@
 #!/bin/bash
-./mvnw clean \
+./mvnw ${MAVEN_OPTS} \
+  clean \
   test-compile \
   '-Dtest=test_locally.**.*Test' test \
   -DfailIfNoTests=false \

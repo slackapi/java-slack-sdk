@@ -13,6 +13,7 @@ matrix:
   # LTS version
   - jdk: openjdk11
     env: CODECOV="false"
+    env: MAVEN_OPTS=-Djdk.tls.client.protocols=TLSv1.2
     script: travis_retry ./scripts/run_no_prep_tests.sh
   # non-LTS but latest
   - jdk: openjdk14
