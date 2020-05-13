@@ -326,7 +326,9 @@
       "seen_first_install_coachmark": false,
       "seen_existing_install_coachmark": false,
       "seen_link_unfurl_coachmark": false,
-      "chime_access_check_completed": 12345
+      "chime_access_check_completed": 12345,
+      "enable_mentions_and_reactions_view": false,
+      "enable_saved_items_view": false
     },
     "created": 12345,
     "manual_presence": "",
