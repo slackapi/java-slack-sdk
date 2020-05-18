@@ -46,6 +46,7 @@
     "is_admin": false,
     "is_owner": false,
     "is_primary_owner": false,
+    "is_invited_user": false,
     "is_restricted": false,
     "is_ultra_restricted": false,
     "is_bot": false,
