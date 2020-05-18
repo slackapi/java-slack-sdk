@@ -2,8 +2,10 @@ package util.sample_json_generation;
 
 import com.google.gson.*;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.FileComment;
+import com.slack.api.model.Group;
 import com.slack.api.model.Message;
 import com.slack.api.model.admin.AppRequest;
 import com.slack.api.scim.model.User;
@@ -275,8 +277,12 @@ public class JsonDataRecorder {
                     array.add(elem);
                 } else if (path.equals("/api/users.conversations") && name.equals("channels")) {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Conversation())));
+                } else if (path.equals("/api/rtm.start") && name.equals("groups")) {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Group())));
                 } else if (name.equals("app_requests")) {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new AppRequest())));
+                } else if (path.equals("/api/chat.scheduledMessages.list") && name.equals("scheduled_messages")) {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new ChatScheduledMessagesListResponse.ScheduledMessage())));
                 } else if (name.equals("replies")) {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Message.MessageRootReply())));
                 } else if (name.equals("comments")) {

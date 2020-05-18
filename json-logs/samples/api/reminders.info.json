@@ -3,8 +3,8 @@
   "reminder": {
     "id": "",
     "creator": "U00000000",
-    "user": "U00000000",
     "text": "",
+    "user": "U00000000",
     "recurring": false,
     "time": 12345,
     "complete_ts": 12345

@@ -40,14 +40,14 @@
         "is_workflow_app": "",
         "scopes": ""
       },
+      "workflow": {
+        "id": "",
+        "name": ""
+      },
       "message": {
         "team": "",
         "channel": "",
         "timestamp": ""
-      },
-      "workflow": {
-        "id": "",
-        "name": ""
       }
     }
   ],

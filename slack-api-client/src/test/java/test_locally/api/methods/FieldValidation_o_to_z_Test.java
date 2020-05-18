@@ -270,7 +270,9 @@ public class FieldValidation_o_to_z_Test {
                 "getTo",
                 "getFrom",
                 "getCc",
-                "getShares"
+                "getShares",
+                "getReplies",
+                "getChannelCount"
         );
     }
 
@@ -313,7 +315,13 @@ public class FieldValidation_o_to_z_Test {
     public void team_integrationLogs() throws Exception {
         TeamIntegrationLogsResponse obj = parse("team.integrationLogs", TeamIntegrationLogsResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
-        verifyIfAllGettersReturnNonNullRecursively(obj.getLogs().get(0));
+        verifyIfAllGettersReturnNonNullRecursively(obj.getLogs().get(0),
+                "getChannel",
+                "getRssFeedChangeType",
+                "getRssFeedTitle",
+                "getRssFeedUrl",
+                "getReason"
+        );
     }
 
     @Test
@@ -334,7 +342,8 @@ public class FieldValidation_o_to_z_Test {
                 "getUsers",
                 "getAutoType",
                 "getDeletedBy",
-                "getUserCount"
+                "getUserCount",
+                "getChannelCount"
         );
     }
 

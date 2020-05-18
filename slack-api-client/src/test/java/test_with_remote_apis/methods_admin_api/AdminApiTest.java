@@ -128,6 +128,7 @@ public class AdminApiTest {
         }
     }
 
+    @Ignore
     @Test
     public void apps_approvedList() throws Exception {
         if (orgAdminUserToken != null) {
@@ -145,6 +146,7 @@ public class AdminApiTest {
         }
     }
 
+    @Ignore
     @Test
     public void apps_restrictedList() throws Exception {
         if (orgAdminUserToken != null) {
@@ -162,6 +164,7 @@ public class AdminApiTest {
         }
     }
 
+    @Ignore
     @Test
     public void appsRequests() throws Exception {
         if (orgAdminUserToken != null) {
@@ -355,7 +358,7 @@ public class AdminApiTest {
             assertThat(setDescription.getError(), is(nullValue()));
 
             AdminTeamsSettingsSetNameResponse setName = methodsAsync
-                    .adminTeamsSettingsSetName(r -> r.teamId(teamId).name("Kaz's Awesome Engineering Team")).get();
+                    .adminTeamsSettingsSetName(r -> r.teamId(teamId).name("Slack Java SDK Testing Workspace")).get();
             assertThat(setName.getError(), is(nullValue()));
 
             try {
@@ -426,11 +429,12 @@ public class AdminApiTest {
                 }
                 nextCursor = users.getResponseMetadata().getNextCursor();
             }
-            assertThat(user, is(notNullValue()));
+            assertThat("Create a guest user for this test", user, is(notNullValue()));
             final String guestUserId = user.getId();
-            long defaultExpirationTs = ZonedDateTime.parse("2037-12-31T00:00:00+09:00").toEpochSecond() / 1000;
+            long defaultExpirationTs = ZonedDateTime.now().toEpochSecond() / 1000;
             // same timestamp results in "failed_to_validate_expiration" error
-            final Long expirationTs = user.getExpirationTs() != null ? user.getExpirationTs() + 1 : defaultExpirationTs;
+            final Long expirationTs = user.getExpirationTs() != null && user.getExpirationTs() != 0 ?
+                    user.getExpirationTs() + 1 : defaultExpirationTs + 3600;
 
             AdminUsersSetExpirationResponse response = methodsAsync.adminUsersSetExpiration(r -> r
                     .teamId(teamId)

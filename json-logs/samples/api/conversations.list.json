@@ -1,5 +1,8 @@
 {
   "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
   "channels": [
     {
       "id": "C00000000",
@@ -13,10 +16,14 @@
       "unlinked": 12345,
       "name_normalized": "",
       "is_shared": false,
-      "creator": "U00000000",
+      "creator": "W00000000",
+      "is_moved": 12345,
       "is_ext_shared": false,
       "is_org_shared": false,
       "shared_team_ids": [
+        "T00000000"
+      ],
+      "internal_team_ids": [
         "T00000000"
       ],
       "pending_shared": [
@@ -31,29 +38,29 @@
       "is_mpim": false,
       "topic": {
         "value": "",
-        "creator": "",
+        "creator": "W00000000",
         "last_set": 12345
       },
       "purpose": {
         "value": "",
-        "creator": "",
+        "creator": "W00000000",
         "last_set": 12345
       },
       "previous_names": [
         ""
       ],
       "num_members": 12345,
-      "is_moved": 12345,
-      "internal_team_ids": [
-        "T00000000"
-      ],
-      "conversation_host_id": "T00000000"
+      "is_global_shared": false,
+      "is_org_default": false,
+      "is_org_mandatory": false,
+      "conversation_host_id": "E00000000",
+      "enterprise_id": "E00000000",
+      "last_read": "0000000000.000000",
+      "is_open": false,
+      "priority": 12345
     }
   ],
   "response_metadata": {
     "next_cursor": ""
-  },
-  "error": "",
-  "needed": "",
-  "provided": ""
+  }
 }

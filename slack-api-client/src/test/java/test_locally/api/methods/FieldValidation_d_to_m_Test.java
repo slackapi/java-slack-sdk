@@ -247,7 +247,8 @@ public class FieldValidation_d_to_m_Test {
                 "getBotLink",
                 "getXFiles",
                 "getUsername",
-                "getLastRead"
+                "getLastRead",
+                "getMembers"
         );
     }
 

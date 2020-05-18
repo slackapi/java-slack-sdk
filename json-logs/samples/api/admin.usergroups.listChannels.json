@@ -1,5 +1,6 @@
 {
   "ok": false,
+  "error": "",
   "channels": [
     {
       "id": "C00000000",
@@ -16,13 +17,11 @@
       "creator": "W00000000",
       "is_moved": 12345,
       "is_ext_shared": false,
+      "enterprise_id": "E00000000",
+      "is_global_shared": false,
+      "is_org_default": false,
+      "is_org_mandatory": false,
       "is_org_shared": false,
-      "shared_team_ids": [
-        "T00000000"
-      ],
-      "internal_team_ids": [
-        "T00000000"
-      ],
       "pending_shared": [
         ""
       ],
@@ -49,7 +48,6 @@
       "date_connected": 12345
     }
   ],
-  "error": "",
   "needed": "",
   "provided": ""
 }

@@ -127,7 +127,9 @@ public class FieldValidation_a_to_c_Test {
                 "getTeam",
                 "getAttachments",
                 "getBlocks",
-                "getIcons"
+                "getIcons",
+                "getUsername",
+                "getSubtype"
         );
     }
 
@@ -167,7 +169,15 @@ public class FieldValidation_a_to_c_Test {
                     "getItemType",
                     "getImage\\d+$",
                     "getComment",
-                    "getItem"
+                    "getItem",
+                    "getUsername",
+                    "getLastRead",
+                    "getReplies",
+                    "getSubtype",
+                    "getTopic",
+                    "getPurpose",
+                    "getFiles",
+                    "getXFiles"
             );
         }
         {
@@ -275,7 +285,8 @@ public class FieldValidation_a_to_c_Test {
                 "getReplyUsers",
                 "getReplyUsersCount",
                 "getLatestReply",
-                "getRoot"
+                "getRoot",
+                "getThreadTs"
         );
     }
 
@@ -300,7 +311,7 @@ public class FieldValidation_a_to_c_Test {
         {
             ChatScheduleMessageResponse obj = parse(prefix + "scheduleMessage", ChatScheduleMessageResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNull(obj.getMessage());
+            verifyIfAllGettersReturnNonNull(obj.getMessage(), "getAttachments");
         }
     }
 
@@ -440,7 +451,9 @@ public class FieldValidation_a_to_c_Test {
                     "getIsMoved",
                     "getPendingShared",
                     "getLastRead",
-                    "getDateConnected"
+                    "getDateConnected",
+                    "getThreadTs",
+                    "getUsername"
             );
         }
         {

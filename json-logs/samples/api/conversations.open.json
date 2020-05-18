@@ -13,9 +13,7 @@
       "subtype": "",
       "text": "",
       "ts": "0000000000.000000",
-      "username": "",
       "bot_id": "B00000000",
-      "thread_ts": "0000000000.000000",
       "blocks": [
         {
           "type": "",
@@ -141,8 +139,6 @@
     "is_open": false,
     "priority": 12345
   },
-  "no_op": false,
-  "already_open": false,
   "error": "",
   "needed": "",
   "provided": ""

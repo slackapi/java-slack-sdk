@@ -79,6 +79,9 @@
       "seen_onboarding_banner": false,
       "onboarding_slackbot_conversation_step": 12345,
       "set_tz_automatically": false,
+      "suppress_link_warning": false,
+      "seen_emoji_pack_cta": 12345,
+      "seen_emoji_pack_dialog": false,
       "dnd_enabled": false,
       "dnd_start_hour": "",
       "dnd_end_hour": "",
@@ -104,6 +107,7 @@
       "dnd_after_sunday": "",
       "dnd_enabled_sunday": "",
       "dnd_days": "",
+      "dnd_weekdays_off_allday": false,
       "dnd_custom_new_badge_seen": false,
       "dnd_notification_schedule_new_badge_seen": false,
       "sidebar_behavior": "",
@@ -186,8 +190,12 @@
       "seen_wysiwyg_deluxe_toast": false,
       "seen_markdown_paste_toast": 12345,
       "seen_markdown_paste_shortcut": 12345,
+      "seen_ia_education": false,
+      "show_ia_tour_relaunch": 12345,
       "plain_text_mode": false,
       "show_shared_channels_education_banner": false,
+      "ia_slackbot_survey_timestamp_48h": 12345,
+      "ia_slackbot_survey_timestamp_7d": 12345,
       "allow_calls_to_set_current_status": false,
       "in_interactive_mas_migration_flow": false,
       "sunset_interactive_message_views": 12345,
@@ -199,6 +207,9 @@
       "workflow_builder_intro_modal_clicked_through": false,
       "workflow_builder_coachmarks": "",
       "seen_gdrive_coachmark": false,
+      "seen_first_install_coachmark": false,
+      "seen_existing_install_coachmark": false,
+      "seen_link_unfurl_coachmark": false,
       "overloaded_message_enabled": false,
       "seen_highlights_coachmark": false,
       "seen_highlights_arrows_coachmark": false,
@@ -211,6 +222,20 @@
       "last_dismissed_scroll_search_tooltip_timestamp": 12345,
       "has_used_quickswitcher_shortcut": false,
       "seen_quickswitcher_shortcut_tip_count": 12345,
+      "browsers_dismissed_channels_low_results_education": false,
+      "browsers_seen_initial_channels_education": false,
+      "browsers_dismissed_people_low_results_education": false,
+      "browsers_seen_initial_people_education": false,
+      "browsers_dismissed_user_groups_low_results_education": false,
+      "browsers_seen_initial_user_groups_education": false,
+      "browsers_dismissed_files_low_results_education": false,
+      "browsers_seen_initial_files_education": false,
+      "browsers_dismissed_initial_drafts_education": false,
+      "browsers_seen_initial_drafts_education": false,
+      "browsers_dismissed_initial_activity_education": false,
+      "browsers_seen_initial_activity_education": false,
+      "browsers_dismissed_initial_saved_education": false,
+      "browsers_seen_initial_saved_education": false,
       "a11y_animations": false,
       "seen_keyboard_shortcuts_coachmark": false,
       "needs_initial_password_set": false,
@@ -222,6 +247,7 @@
       "onboarding_complete": false,
       "welcome_place_state": "",
       "has_received_threaded_message": false,
+      "onboarding_state": 12345,
       "whocanseethis_dm_mpdm_badge": false,
       "highlight_words": "",
       "threads_everything": false,
@@ -268,8 +294,13 @@
       "deprecation_toast_last_seen": 12345,
       "deprecation_modal_last_seen": 12345,
       "iap1_lab": 12345,
+      "ia_top_nav_theme": "",
       "ia_platform_actions_lab": 12345,
+      "activity_view": "",
+      "saved_view": "",
+      "seen_floating_sidebar_coachmark": false,
       "failover_proxy_check_completed": 12345,
+      "chime_access_check_completed": 12345,
       "edge_upload_proxy_check_completed": 12345,
       "app_subdomain_check_completed": 12345,
       "add_apps_prompt_dismissed": false,
@@ -281,7 +312,14 @@
       "seen_message_navigation_educational_toast": false,
       "contextual_message_shortcuts_modal_was_seen": false,
       "message_navigation_toast_was_seen": false,
-      "show_drafts_page_sidebar": false,
+      "up_to_browse_kb_shortcut": false,
+      "channel_sections": "",
+      "has_received_mention_or_reaction": false,
+      "has_starred_item": false,
+      "has_drafted_message": false,
+      "enable_mentions_and_reactions_view": false,
+      "enable_saved_items_view": false,
+      "has_acknowledged_shortcut_speedbump": false,
       "tz": "",
       "locales_enabled": {
         "de-DE": "",
@@ -292,47 +330,11 @@
         "fr-FR": "",
         "pt-BR": "",
         "ja-JP": ""
-      },
-      "channel_sections": "",
-      "ia_top_nav_theme": "",
-      "browsers_dismissed_channels_low_results_education": false,
-      "browsers_seen_initial_channels_education": false,
-      "browsers_dismissed_people_low_results_education": false,
-      "browsers_seen_initial_people_education": false,
-      "activity_view": "",
-      "up_to_browse_kb_shortcut": false,
-      "suppress_link_warning": false,
-      "seen_ia_education": false,
-      "browsers_dismissed_user_groups_low_results_education": false,
-      "browsers_seen_initial_user_groups_education": false,
-      "browsers_dismissed_files_low_results_education": false,
-      "browsers_seen_initial_files_education": false,
-      "browsers_dismissed_initial_drafts_education": false,
-      "browsers_seen_initial_drafts_education": false,
-      "show_ia_tour_relaunch": 12345,
-      "browsers_dismissed_initial_activity_education": false,
-      "browsers_seen_initial_activity_education": false,
-      "browsers_dismissed_initial_saved_education": false,
-      "browsers_seen_initial_saved_education": false,
-      "saved_view": "",
-      "ia_slackbot_survey_timestamp_48h": 12345,
-      "ia_slackbot_survey_timestamp_7d": 12345,
-      "dnd_weekdays_off_allday": false,
-      "onboarding_state": 12345,
-      "has_received_mention_or_reaction": false,
-      "has_starred_item": false,
-      "has_drafted_message": false,
-      "has_acknowledged_shortcut_speedbump": false,
-      "seen_first_install_coachmark": false,
-      "seen_existing_install_coachmark": false,
-      "seen_link_unfurl_coachmark": false,
-      "chime_access_check_completed": 12345,
-      "enable_mentions_and_reactions_view": false,
-      "enable_saved_items_view": false
+      }
     },
     "created": 12345,
-    "manual_presence": "",
-    "first_login": 12345
+    "first_login": 12345,
+    "manual_presence": ""
   },
   "team": {
     "id": "T00000000",
@@ -357,6 +359,7 @@
           ""
         ]
       },
+      "welcome_place_enabled": false,
       "locale": "",
       "slackbot_responses_disabled": false,
       "hide_referers": false,
@@ -390,6 +393,12 @@
       "who_can_kick_channels": "",
       "who_can_kick_groups": "",
       "workflow_builder_enabled": false,
+      "who_can_view_message_activity": {
+        "type": [
+          ""
+        ]
+      },
+      "channel_email_addresses_enabled": false,
       "retention_type": 12345,
       "retention_duration": 12345,
       "group_retention_type": 12345,
@@ -441,9 +450,16 @@
           ""
         ]
       },
+      "who_can_dm_anyone": {
+        "type": [
+          ""
+        ]
+      },
       "box_app_installed": false,
       "onedrive_app_installed": false,
       "onedrive_enabled_team": false,
+      "filepicker_app_first_install": false,
+      "use_browser_picker": false,
       "received_esc_route_to_channel_awareness_message": false,
       "who_can_approve_ext_shared_channel_invites": {
         "type": [
@@ -458,6 +474,7 @@
       "enterprise_default_channels": [
         ""
       ],
+      "enterprise_has_corporate_exports": false,
       "enterprise_mandatory_channels": [
         ""
       ],
@@ -467,8 +484,27 @@
       "self_serve_select": false,
       "loud_channel_mentions_limit": 12345,
       "show_join_leave": false,
+      "who_can_manage_public_channels": {
+        "user": [
+          ""
+        ],
+        "type": [
+          ""
+        ]
+      },
+      "who_can_manage_private_channels": {
+        "user": [
+          ""
+        ],
+        "type": [
+          ""
+        ]
+      },
       "enterprise_mobile_device_check": false,
+      "default_channel_creation_enabled": false,
       "gg_enabled": false,
+      "created_with_google": false,
+      "has_seen_partner_promo": false,
       "disable_sidebar_connect_prompts": [
         ""
       ],
@@ -476,6 +512,7 @@
         ""
       ],
       "block_file_download": false,
+      "single_user_exports": false,
       "dnd_enabled": false,
       "dnd_start_hour": "",
       "dnd_end_hour": "",
@@ -500,6 +537,7 @@
       "dnd_enabled_friday": "",
       "dnd_enabled_saturday": "",
       "dnd_enabled_sunday": "",
+      "dnd_weekdays_off_allday": false,
       "custom_status_presets": [
         [
           ""
@@ -513,56 +551,13 @@
         ]
       },
       "workflows_webhook_trigger_enabled": false,
-      "invites_limit": false,
-      "has_seen_partner_promo": false,
       "workflows_export_csv_enabled": false,
-      "who_can_manage_public_channels": {
-        "user": [
-          ""
-        ],
-        "subteam": [
-          ""
-        ],
-        "type": [
-          ""
-        ]
-      },
-      "channel_email_addresses_enabled": false,
       "who_can_create_channel_email_addresses": {
         "type": [
           ""
         ]
       },
-      "who_can_view_message_activity": {
-        "type": [
-          ""
-        ]
-      },
-      "who_can_manage_private_channels": {
-        "user": [
-          ""
-        ],
-        "subteam": [
-          ""
-        ],
-        "type": [
-          ""
-        ]
-      },
-      "single_user_exports": false,
-      "default_channel_creation_enabled": false,
-      "welcome_place_enabled": false,
-      "dnd_weekdays_off_allday": false,
-      "has_installed_apps": false,
-      "who_can_dm_anyone": {
-        "type": [
-          ""
-        ]
-      },
-      "use_browser_picker": false,
-      "filepicker_app_first_install": false,
-      "created_with_google": false,
-      "enterprise_has_corporate_exports": false
+      "invites_limit": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
@@ -582,6 +577,7 @@
     "limit_ts": 12345,
     "avatar_base_url": "https://www.example.com/"
   },
+  "accept_tos_url": "https://www.example.com/",
   "latest_event_ts": "0000000000.000000",
   "channels": [
     {
@@ -600,6 +596,10 @@
       "is_member": false,
       "is_private": false,
       "is_mpim": false,
+      "previous_names": [
+        ""
+      ],
+      "priority": 12345,
       "last_read": "0000000000.000000",
       "members": [
         "U00000000"
@@ -614,10 +614,6 @@
         "creator": "",
         "last_set": 12345
       },
-      "previous_names": [
-        ""
-      ],
-      "priority": 12345,
       "is_group": false,
       "is_im": false,
       "is_ext_shared": false,
@@ -642,31 +638,90 @@
   ],
   "groups": [
     {
-      "id": "G00000000",
+      "id": "",
       "name": "",
-      "is_group": false,
-      "created": 12345,
-      "creator": "U00000000",
-      "is_archived": false,
       "name_normalized": "",
+      "is_group": false,
+      "created": 123,
+      "creator": "",
+      "is_archived": false,
       "is_mpim": false,
-      "has_pins": false,
       "is_open": false,
-      "last_read": "0000000000.000000",
-      "members": [
-        "U00000000"
-      ],
+      "is_read_only": false,
+      "is_thread_only": false,
+      "parent_group": "",
       "topic": {
         "value": "",
         "creator": "",
-        "last_set": 12345
+        "last_set": 123
       },
       "purpose": {
         "value": "",
         "creator": "",
-        "last_set": 12345
+        "last_set": 123
       },
-      "priority": 12345
+      "last_read": "",
+      "latest": {
+        "client_msg_id": "",
+        "type": "",
+        "subtype": "",
+        "team": "",
+        "user": "",
+        "username": "",
+        "text": "",
+        "topic": "",
+        "root": {
+          "text": "",
+          "user": "",
+          "username": "",
+          "team": "",
+          "bot_id": "",
+          "mrkdwn": false,
+          "type": "",
+          "subtype": "",
+          "thread_ts": "",
+          "bot_profile": {
+            "id": "",
+            "deleted": false,
+            "name": "",
+            "updated": 123,
+            "app_id": "",
+            "icons": {
+              "image_36": "",
+              "image_48": "",
+              "image_72": ""
+            },
+            "team_id": ""
+          },
+          "reply_count": 123,
+          "reply_users_count": 123,
+          "latest_reply": "",
+          "subscribed": false,
+          "last_read": "",
+          "unread_count": 123,
+          "ts": ""
+        },
+        "upload": false,
+        "display_as_bot": false,
+        "bot_id": "",
+        "bot_link": "",
+        "thread_ts": "",
+        "ts": "",
+        "icons": {
+          "emoji": "",
+          "image_36": "",
+          "image_48": "",
+          "image_64": "",
+          "image_72": ""
+        },
+        "edited": {
+          "user": "",
+          "ts": ""
+        }
+      },
+      "unread_count": 123,
+      "unread_count_display": 123,
+      "priority": 12.3
     }
   ],
   "ims": [
@@ -721,7 +776,92 @@
             "C00000000"
           ],
           "groups": [
-            ""
+            {
+              "id": "",
+              "name": "",
+              "name_normalized": "",
+              "is_group": false,
+              "created": 123,
+              "creator": "",
+              "is_archived": false,
+              "is_mpim": false,
+              "is_open": false,
+              "is_read_only": false,
+              "is_thread_only": false,
+              "parent_group": "",
+              "topic": {
+                "value": "",
+                "creator": "",
+                "last_set": 123
+              },
+              "purpose": {
+                "value": "",
+                "creator": "",
+                "last_set": 123
+              },
+              "last_read": "",
+              "latest": {
+                "client_msg_id": "",
+                "type": "",
+                "subtype": "",
+                "team": "",
+                "user": "",
+                "username": "",
+                "text": "",
+                "topic": "",
+                "root": {
+                  "text": "",
+                  "user": "",
+                  "username": "",
+                  "team": "",
+                  "bot_id": "",
+                  "mrkdwn": false,
+                  "type": "",
+                  "subtype": "",
+                  "thread_ts": "",
+                  "bot_profile": {
+                    "id": "",
+                    "deleted": false,
+                    "name": "",
+                    "updated": 123,
+                    "app_id": "",
+                    "icons": {
+                      "image_36": "",
+                      "image_48": "",
+                      "image_72": ""
+                    },
+                    "team_id": ""
+                  },
+                  "reply_count": 123,
+                  "reply_users_count": 123,
+                  "latest_reply": "",
+                  "subscribed": false,
+                  "last_read": "",
+                  "unread_count": 123,
+                  "ts": ""
+                },
+                "upload": false,
+                "display_as_bot": false,
+                "bot_id": "",
+                "bot_link": "",
+                "thread_ts": "",
+                "ts": "",
+                "icons": {
+                  "emoji": "",
+                  "image_36": "",
+                  "image_48": "",
+                  "image_64": "",
+                  "image_72": ""
+                },
+                "edited": {
+                  "user": "",
+                  "ts": ""
+                }
+              },
+              "unread_count": 123,
+              "unread_count_display": 123,
+              "priority": 12.3
+            }
           ]
         },
         "user_count": 12345
@@ -817,8 +957,6 @@
   ],
   "url": "",
   "is_europe": false,
-  "accept_tos_url": "https://www.example.com/",
-  "channels_with_use_case": {},
   "error": "",
   "needed": "",
   "provided": ""

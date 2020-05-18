@@ -1,6 +1,4 @@
 {
-  "ok": false,
-  "error": "",
   "messages": [
     {
       "type": "",
@@ -16,16 +14,12 @@
       "reply_users": [
         "B00000000"
       ],
-      "replies": [
-        {
-          "user": "",
-          "ts": ""
-        }
-      ],
       "subscribed": false
     }
   ],
   "has_more": false,
+  "ok": false,
+  "error": "",
   "needed": "",
   "provided": ""
 }
