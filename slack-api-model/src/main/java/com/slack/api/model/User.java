@@ -29,6 +29,8 @@ public class User {
     private boolean owner;
     @SerializedName("is_primary_owner")
     private boolean primaryOwner;
+    @SerializedName("is_invited_user")
+    private boolean invitedUser;
     /**
      * is_restricted indicates the user is a multi-channel guest.
      * see also: https://get.slack.help/hc/en-us/articles/201314026-roles-and-permissions-in-slack

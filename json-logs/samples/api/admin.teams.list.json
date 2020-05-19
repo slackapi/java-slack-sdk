@@ -12,9 +12,6 @@
       "team_url": "https://www.example.com/"
     }
   ],
-  "response_metadata": {
-    "next_cursor": ""
-  },
   "error": "",
   "needed": "",
   "provided": ""

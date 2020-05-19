@@ -111,8 +111,10 @@ public class FieldValidationTest {
         }
         {
             AdminTeamsListResponse obj = parse(prefix + "list", AdminTeamsListResponse.class);
-            verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
+            if (obj.getResponseMetadata() != null) {
+                verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            }
         }
         {
             AdminTeamsOwnersListResponse obj = parse(prefix + "owners.list", AdminTeamsOwnersListResponse.class);

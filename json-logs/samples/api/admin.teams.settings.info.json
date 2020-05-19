@@ -13,6 +13,7 @@
       "image_102": "https://www.example.com/",
       "image_132": "https://www.example.com/",
       "image_230": "https://www.example.com/",
+      "image_default": false,
       "image_original": "https://www.example.com/"
     },
     "enterprise_id": "E00000000",
