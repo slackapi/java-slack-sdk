@@ -1,13 +1,13 @@
 {
   "token": "",
-  "team_id": "T00000000",
-  "enterprise_id": "E00000000",
-  "api_app_id": "A00000000",
+  "team_id": "",
+  "enterprise_id": "",
+  "api_app_id": "",
   "event": {
     "type": "file_deleted",
-    "file_id": "F00000000",
+    "file_id": "",
     "channel_ids": [
-      "C00000000"
+      ""
     ],
     "event_ts": "0000000000.000000"
   },
@@ -15,6 +15,6 @@
   "event_id": "",
   "event_time": 12345,
   "authed_users": [
-    "W00000000"
+    ""
   ]
 }

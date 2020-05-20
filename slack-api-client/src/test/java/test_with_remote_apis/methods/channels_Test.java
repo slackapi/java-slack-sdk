@@ -94,17 +94,27 @@ public class channels_Test {
         assertThat(firstMessageCreation.getError(), is(nullValue()));
         assertThat(firstMessageCreation.isOk(), is(true));
 
+        {
+            ChatPostMessageResponse reply1 = slack.methods().chatPostMessage(req -> req
+                            .channel(randomChannelId)
+                            .token(userToken)
+                            .asUser(false)
+                            .text("replied")
+                            .iconEmoji(":smile:")
+                            .threadTs(firstMessageCreation.getTs())
+            );
+            assertThat(reply1.getError(), is("invalid_arguments"));
+            assertThat(reply1.getDeprecatedArgument(), is("as_user"));
+        }
+
         ChatPostMessageResponse reply1 = slack.methods().chatPostMessage(req -> req
                         .channel(randomChannelId)
-                        .token(userToken)
-                        .asUser(false)
+                        .token(botToken)
                         .text("replied")
                         .iconEmoji(":smile:")
                         .threadTs(firstMessageCreation.getTs())
-                //.replyBroadcast(true)
         );
         assertThat(reply1.getError(), is(nullValue()));
-        assertThat(reply1.isOk(), is(true));
 
         ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(req -> req
                 .token(botToken)
@@ -121,12 +131,22 @@ public class channels_Test {
                 .text("replied to " + permalink.getPermalink())
                 .threadTs(reply1.getTs())
                 .unfurlLinks(true)
-                .replyBroadcast(true));
-        assertThat(reply2.isOk(), is(true));
+        );
+        assertThat(reply2.getError(), is(nullValue()));
 
         // Ideally, this message must contain an attachment which shows the preview for reply1
         // however, in this timing, Slack API doesn't return any attachments.
         assertThat(reply2.getMessage().getAttachments(), is(nullValue()));
+
+        ChatPostMessageResponse reply3 = slack.methods().chatPostMessage(req -> req
+                .channel(randomChannelId)
+                .token(userToken)
+                .text("replied to " + permalink.getPermalink())
+                .threadTs(reply1.getTs())
+                .unfurlLinks(true)
+                .replyBroadcast(true)
+        );
+        assertThat(reply3.getError(), is(nullValue()));
 
         // via channels.history
         {
@@ -134,26 +154,24 @@ public class channels_Test {
                     .token(botToken)
                     .channel(randomChannelId)
                     .count(20));
-            assertThat(history.isOk(), is(true));
+            assertThat(history.getError(), is(nullValue()));
 
-            Message firstReply = history.getMessages().get(1);
+            Message firstReply = history.getMessages().get(2);
             assertThat(firstReply.getType(), is("message"));
             assertThat(firstReply.getSubtype(), is("bot_message"));
-            assertThat(firstReply.getAttachments(), is(nullValue()));
             assertThat(firstReply.getRoot(), is(nullValue()));
+
+            Message secondReply = history.getMessages().get(1);
+            assertThat(secondReply.getType(), is("message"));
+            assertThat(secondReply.getSubtype(), is(nullValue()));
+            assertThat(secondReply.getRoot(), is(nullValue()));
 
             Message latestMessage = history.getMessages().get(0);
             assertThat(latestMessage.getType(), is("message"));
             assertThat(latestMessage.getSubtype(), is("thread_broadcast"));
 
-            // NOTE: the following assertions can fail due to Slack API's unstable response
-            // this message must contain an attachment which shows the preview for reply1
-            // TODO: as of 2018/05, these assertions fail.
-//            assertThat(latestMessage.getAttachments(), is(notNullValue()));
-//            assertThat(latestMessage.getAttachments().size(), is(1));
-//            assertThat(latestMessage.getRoot(), is(notNullValue()));
-//            assertThat(latestMessage.getRoot().getReplies().size(), is(2));
-//            assertThat(latestMessage.getRoot().getReplyCount(), is(2));
+            assertThat(latestMessage.getRoot(), is(notNullValue()));
+            assertThat(latestMessage.getRoot().getReplyCount(), is(1));
         }
 
         // via conversations.history
@@ -167,21 +185,14 @@ public class channels_Test {
             Message firstReply = history.getMessages().get(1);
             assertThat(firstReply.getType(), is("message"));
             assertThat(firstReply.getSubtype(), is("bot_message"));
-            assertThat(firstReply.getAttachments(), is(nullValue()));
             assertThat(firstReply.getRoot(), is(nullValue()));
 
             Message latestMessage = history.getMessages().get(0);
             assertThat(latestMessage.getType(), is("message"));
             assertThat(latestMessage.getSubtype(), is("thread_broadcast"));
 
-            // NOTE: the following assertions can fail due to Slack API's unstable response
-            // this message must contain an attachment which shows the preview for reply1
-            // TODO: as of August 2018, these assertions fail.
-//            assertThat(latestMessage.getAttachments(), is(notNullValue()));
-//            assertThat(latestMessage.getAttachments().size(), is(1));
-//            assertThat(latestMessage.getRoot(), is(notNullValue()));
-//            assertThat(latestMessage.getRoot().getReplies().size(), is(2));
-//            assertThat(latestMessage.getRoot().getReplyCount(), is(2));
+            assertThat(latestMessage.getRoot(), is(notNullValue()));
+            assertThat(latestMessage.getRoot().getReplyCount(), is(1));
         }
     }
 
