@@ -13,7 +13,11 @@ import com.slack.api.model.event.HelloEvent;
 import com.slack.api.model.event.MessageBotEvent;
 import com.slack.api.model.event.PongEvent;
 import com.slack.api.model.event.UserTypingEvent;
-import com.slack.api.rtm.*;
+import com.slack.api.rtm.RTMClient;
+import com.slack.api.rtm.RTMEventHandler;
+import com.slack.api.rtm.RTMEventsDispatcher;
+import com.slack.api.rtm.RTMEventsDispatcherFactory;
+import com.slack.api.rtm.RTMMessageHandler;
 import com.slack.api.rtm.message.Message;
 import com.slack.api.rtm.message.PingMessage;
 import com.slack.api.rtm.message.PresenceQuery;
@@ -37,7 +41,10 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
@@ -324,7 +331,7 @@ public class rtm_Test {
         RTMEventsDispatcher dispatcher = RTMEventsDispatcherFactory.getInstance();
         dispatcher.register(new RTMEventHandler<PongEvent>() {
             @Override public void handle(PongEvent event) {
-                if (Objects.equals(event.getReply_to(), pingId)) {
+                if (Objects.equals(event.getReplyTo(), pingId)) {
                     synchronized(pongReceived) {
                         pongReceived.event = event;
                         pongReceived.notifyAll();
@@ -345,7 +352,7 @@ public class rtm_Test {
                 pongReceived.wait(5000L);
             }
             assertThat(pongReceived.event, notNullValue());
-            assertThat(pongReceived.event.getReply_to(), equalTo(pingId));
+            assertThat(pongReceived.event.getReplyTo(), equalTo(pingId));
             assertThat(pongReceived.event.getTime(), equalTo(now));
         }
 
