@@ -146,6 +146,7 @@ app.message(":wave:", (payload, ctx) -> {
 import java.util.Map;
 import com.google.gson.Gson;
 import com.slack.api.Slack;
+import com.slack.api.app_backend.events.*;
 import com.slack.api.app_backend.events.payload.MessagePayload;
 import com.slack.api.util.json.GsonFactory;
 
@@ -160,7 +161,8 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 2. リクエストボディをパースして `event` の中の `type` が処理対象か確認
   // リクエストボディは全体が JSON 形式になっています
   String payloadString = request.getBodyAsString();
-  String eventType = PseudoEventTypeExtractor.extract(payloadString);
+  EventTypeExtractor eventTypeExtractor = new EventsDispatcherImpl();
+  String eventType = eventTypeExtractor.extractEventType(payloadString);
   if (eventType != null && eventType.equals("message")) {
     Gson gson = GsonFactory.createSnakeCase();
     MessagePayload payload = gson.fromJson(payloadString, MessagePayload.class);
