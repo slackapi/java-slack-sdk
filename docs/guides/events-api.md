@@ -145,6 +145,7 @@ If you hope to understand what is actually happening with the above code, readin
 import java.util.Map;
 import com.google.gson.Gson;
 import com.slack.api.Slack;
+import com.slack.api.app_backend.events.*;
 import com.slack.api.app_backend.events.payload.MessagePayload;
 import com.slack.api.util.json.GsonFactory;
 
@@ -159,7 +160,8 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 2. Parse the request body and check if the `type` in `event` is the one you'd like to handle
   // The request body in JSON format
   String payloadString = request.getBodyAsString();
-  String eventType = PseudoEventTypeExtractor.extract(payloadString);
+  EventTypeExtractor eventTypeExtractor = new EventsDispatcherImpl();
+  String eventType = eventTypeExtractor.extractEventType(payloadString);
   if (eventType != null && eventType.equals("message")) {
     Gson gson = GsonFactory.createSnakeCase();
     MessagePayload payload = gson.fromJson(payloadString, MessagePayload.class);

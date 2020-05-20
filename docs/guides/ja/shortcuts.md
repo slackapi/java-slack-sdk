@@ -145,9 +145,11 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 2. リクエストボディをパースして `callback_id` が処理対象か確認
 
   // リクエストボディは payload={URL エンコードされた JSON 文字列} の形式
-  String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
+  JsonPayloadExtractor payloadExtractor = new JsonPayloadExtractor();
+  String payloadString = payloadExtractor.extractIfExists(request.getBodyAsString());
   // このような値になります: { "type": "shortcut", "team": { "id": "T1234567", ... 
-  String payloadType != null &&  = PseudoActionTypeExtractor.extract(payloadString);
+  JsonPayloadTypeDetector typeDetector = new JsonPayloadTypeDetector();
+  String payloadType = typeDetector.detectType(payloadString);
 
   Gson gson = GsonFactory.createSnakeCase();
   if (payloadType.equals("shortcut")) {

@@ -166,7 +166,8 @@
     "username": "",
     "icons": {
       "emoji": "",
-      "image_64": "https://www.example.com/"
+      "image_64": "https://www.example.com/",
+      "image_48": "https://www.example.com/"
     },
     "thread_ts": "0000000000.000000",
     "parent_user_id": "U00000000",
@@ -197,7 +198,14 @@
       "reply_users": [
         "U00000000"
       ],
-      "subscribed": false
+      "subscribed": false,
+      "subtype": "",
+      "username": "",
+      "icons": {
+        "emoji": "",
+        "image_64": "https://www.example.com/"
+      },
+      "parent_user_id": "U00000000"
     },
     "attachments": [
       {
@@ -433,6 +441,7 @@
       ""
     ]
   },
+  "deprecated_argument": "",
   "needed": "",
   "provided": ""
 }

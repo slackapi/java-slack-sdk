@@ -106,6 +106,7 @@ public class Message {
     public static class MessageRoot {
         private String text;
         private String user;
+        private String parentUserId;
         private String username;
         private String team;
         private String botId;
@@ -114,6 +115,7 @@ public class Message {
         private String subtype;
         private String threadTs;
 
+        private Icons icons;
         private BotProfile botProfile;
 
         // https://api.slack.com/messaging/retrieving#threading

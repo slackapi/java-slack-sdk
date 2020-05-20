@@ -1068,6 +1068,7 @@
     "root": {
       "text": "",
       "user": "",
+      "parent_user_id": "",
       "username": "",
       "team": "",
       "bot_id": "",
@@ -1075,6 +1076,13 @@
       "type": "",
       "subtype": "",
       "thread_ts": "",
+      "icons": {
+        "emoji": "",
+        "image_36": "",
+        "image_48": "",
+        "image_64": "",
+        "image_72": ""
+      },
       "bot_profile": {
         "id": "",
         "deleted": false,

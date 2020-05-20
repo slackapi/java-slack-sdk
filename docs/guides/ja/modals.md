@@ -421,6 +421,8 @@ import com.slack.api.app_backend.interactive_components.payload.BlockActionPaylo
 import com.slack.api.app_backend.interactive_components.payload.BlockSuggestionPayload;
 import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import com.slack.api.app_backend.views.payload.ViewClosedPayload;
+import com.slack.api.app_backend.util.JsonPayloadExtractor;
+import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
 import com.slack.api.util.json.GsonFactory;
 
 PseudoHttpResponse handle(PseudoHttpRequest request) {
@@ -435,9 +437,11 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 2. リクエストボディをパースして callback_id, action_id が処理対象か確認
   
   // リクエストボディは payload={URL エンコードされた JSON 文字列} の形式
-  String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
+  JsonPayloadExtractor payloadExtractor = new JsonPayloadExtractor();
+  String payloadString = payloadExtractor.extractIfExists(request.getBodyAsString());
   // このような値になります: { "type": "block_actions", "team": { "id": "T1234567", ... 
-  String payloadType != null &&  = PseudoActionTypeExtractor.extract(payloadString);
+  JsonPayloadTypeDetector typeDetector = new JsonPayloadTypeDetector();
+  String payloadType = typeDetector.detectType(payloadString);
   
   Gson gson = GsonFactory.createSnakeCase();
   if (payloadType != null && payloadType.equals("view_submission")) {
