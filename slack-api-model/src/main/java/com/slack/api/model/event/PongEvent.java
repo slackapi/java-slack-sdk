@@ -15,6 +15,7 @@ public class PongEvent implements Event
 {
 	public static final String TYPE_NAME = "pong";
 	private final String type = TYPE_NAME;
-	private final String id;
+
+	private final Long reply_to;
 	private final Instant time;
 }
