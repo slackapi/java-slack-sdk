@@ -88,6 +88,7 @@ public class ChatPostMessageRequest implements SlackApiRequest {
      * <p>
      * NOTE: The default value is intentionally null to support workplace apps.
      */
+    @Deprecated // use a user token to post a message as a user
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private Boolean asUser;

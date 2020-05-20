@@ -1,24 +1,24 @@
 {
   "token": "",
-  "team_id": "T00000000",
-  "enterprise_id": "E00000000",
-  "api_app_id": "A00000000",
+  "team_id": "",
+  "enterprise_id": "",
+  "api_app_id": "",
   "event": {
     "type": "reaction_removed",
-    "user": "W00000000",
+    "user": "",
     "item": {
       "type": "message",
-      "channel": "C00000000",
+      "channel": "",
       "ts": "0000000000.000000"
     },
     "reaction": "",
-    "item_user": "W00000000",
+    "item_user": "",
     "event_ts": "0000000000.000000"
   },
   "type": "event_callback",
   "event_id": "",
   "event_time": 12345,
   "authed_users": [
-    "W00000000"
+    ""
   ]
 }
