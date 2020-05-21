@@ -9,7 +9,8 @@
     "channel": "",
     "channel_type": "",
     "team": "",
-    "event_ts": "0000000000.000000"
+    "event_ts": "0000000000.000000",
+    "inviter": ""
   },
   "type": "event_callback",
   "event_id": "",

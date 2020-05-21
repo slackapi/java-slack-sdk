@@ -453,7 +453,9 @@ public class FieldValidation_a_to_c_Test {
                     "getLastRead",
                     "getDateConnected",
                     "getThreadTs",
-                    "getUsername"
+                    "getUsername",
+                    "getParentUserId",
+                    "getBotProfile"
             );
         }
         {
