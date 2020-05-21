@@ -668,6 +668,7 @@
         "team": "",
         "user": "",
         "username": "",
+        "parent_user_id": "",
         "text": "",
         "topic": "",
         "root": {
@@ -713,6 +714,19 @@
         "display_as_bot": false,
         "bot_id": "",
         "bot_link": "",
+        "bot_profile": {
+          "id": "",
+          "deleted": false,
+          "name": "",
+          "updated": 123,
+          "app_id": "",
+          "icons": {
+            "image_36": "",
+            "image_48": "",
+            "image_72": ""
+          },
+          "team_id": ""
+        },
         "thread_ts": "",
         "ts": "",
         "icons": {
@@ -815,6 +829,7 @@
                 "team": "",
                 "user": "",
                 "username": "",
+                "parent_user_id": "",
                 "text": "",
                 "topic": "",
                 "root": {
@@ -860,6 +875,19 @@
                 "display_as_bot": false,
                 "bot_id": "",
                 "bot_link": "",
+                "bot_profile": {
+                  "id": "",
+                  "deleted": false,
+                  "name": "",
+                  "updated": 123,
+                  "app_id": "",
+                  "icons": {
+                    "image_36": "",
+                    "image_48": "",
+                    "image_72": ""
+                  },
+                  "team_id": ""
+                },
                 "thread_ts": "",
                 "ts": "",
                 "icons": {

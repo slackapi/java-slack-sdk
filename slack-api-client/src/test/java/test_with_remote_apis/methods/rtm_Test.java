@@ -11,12 +11,10 @@ import com.slack.api.model.Conversation;
 import com.slack.api.model.User;
 import com.slack.api.model.event.HelloEvent;
 import com.slack.api.model.event.MessageBotEvent;
+import com.slack.api.model.event.PongEvent;
 import com.slack.api.model.event.UserTypingEvent;
 import com.slack.api.rtm.*;
-import com.slack.api.rtm.message.Message;
-import com.slack.api.rtm.message.PresenceQuery;
-import com.slack.api.rtm.message.PresenceSub;
-import com.slack.api.rtm.message.Typing;
+import com.slack.api.rtm.message.*;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +28,9 @@ import util.sample_json_generation.JsonDataRecordingListener;
 import javax.websocket.DeploymentException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.time.Instant;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -301,4 +301,54 @@ public class rtm_Test {
         assertThat(counter.get(), is(greaterThanOrEqualTo(5)));
     }
 
+
+    @Test
+    public void ping_pong() throws Exception {
+
+        // given
+        SlackConfig config = new SlackConfig();
+        config.setLibraryMaintainerMode(false);
+        config.getHttpClientResponseHandlers().add(new JsonDataRecordingListener());
+        Slack slack = Slack.getInstance(config);
+
+        final Instant now = Instant.now();
+        final long pingId = now.toEpochMilli();
+
+        class PongReceived {
+            PongEvent event = null;
+        }
+        final PongReceived pongReceived = new PongReceived();
+
+        RTMEventsDispatcher dispatcher = RTMEventsDispatcherFactory.getInstance();
+        dispatcher.register(new RTMEventHandler<PongEvent>() {
+            @Override
+            public void handle(PongEvent event) {
+                if (Objects.equals(event.getReplyTo(), pingId)) {
+                    pongReceived.event = event;
+                    pongReceived.notifyAll();
+                }
+            }
+        });
+
+        try (RTMClient rtm = slack.rtmStart(classicAppBotToken)) {
+            rtm.addMessageHandler(dispatcher.toMessageHandler());
+            rtm.connect();
+
+            Thread.sleep(3000);
+
+            // when
+            rtm.sendMessage(PingMessage.builder().id(pingId).time(now).build().toJSONString());
+
+            // ensure
+            long millis = 0L;
+            while (pongReceived.event == null && millis < 30_000L) {
+                Thread.sleep(1000L);
+                millis += 1000;
+            }
+        }
+        assertThat(pongReceived.event, notNullValue());
+        assertThat(pongReceived.event.getReplyTo(), equalTo(pingId));
+        assertThat(pongReceived.event.getTime(), equalTo(now));
+
+    }
 }
