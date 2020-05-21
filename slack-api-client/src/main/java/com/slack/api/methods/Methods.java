@@ -151,6 +151,21 @@ public class Methods {
     public static final String BOTS_INFO = "bots.info";
 
     // ------------------------------
+    // calls
+    // ------------------------------
+
+    public static final String CALLS_ADD = "calls.add";
+    public static final String CALLS_END = "calls.end";
+    public static final String CALLS_INFO = "calls.info";
+    public static final String CALLS_UPDATE = "calls.update";
+
+    // ------------------------------
+    // calls.participants
+    // ------------------------------
+
+    public static final String CALLS_PARTICIPANTS_ADD = "calls.participants.add";
+
+    // ------------------------------
     // channels
     // ------------------------------
 

@@ -1,0 +1,23 @@
+{
+  "ok": false,
+  "call": {
+    "id": "R00000000",
+    "date_start": 12345,
+    "external_unique_id": "",
+    "join_url": "https://www.example.com/",
+    "date_end": 12345,
+    "channels": [
+      "C00000000"
+    ],
+    "external_display_id": "",
+    "title": "",
+    "users": [
+      {
+        "slack_id": "U00000000"
+      }
+    ]
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

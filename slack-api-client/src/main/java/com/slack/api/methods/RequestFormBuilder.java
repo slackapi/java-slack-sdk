@@ -1,5 +1,6 @@
 package com.slack.api.methods;
 
+import com.google.gson.Gson;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
 import com.slack.api.methods.request.admin.emoji.*;
@@ -24,6 +25,11 @@ import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsers
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
+import com.slack.api.methods.request.calls.CallsAddRequest;
+import com.slack.api.methods.request.calls.CallsEndRequest;
+import com.slack.api.methods.request.calls.CallsInfoRequest;
+import com.slack.api.methods.request.calls.CallsUpdateRequest;
+import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
 import com.slack.api.methods.request.channels.*;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
@@ -88,6 +94,8 @@ import static java.util.stream.Collectors.joining;
 
 @Slf4j
 public class RequestFormBuilder {
+
+    private static final Gson GSON = GsonFactory.createSnakeCase();
 
     private RequestFormBuilder() {
     }
@@ -457,6 +465,54 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(BotsInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("bot", req.getBot(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CallsAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("external_unique_id", req.getExternalUniqueId(), form);
+        setIfNotNull("join_url", req.getJoinUrl(), form);
+        setIfNotNull("created_by", req.getCreatedBy(), form);
+        setIfNotNull("date_start", req.getDateStart(), form);
+        setIfNotNull("desktop_app_join_url", req.getDesktopAppJoinUrl(), form);
+        setIfNotNull("external_display_id", req.getExternalDisplayId(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        if (req.getUsers() != null && req.getUsers().size() > 0) {
+            String usersJson = GSON.toJson(req.getUsers());
+            setIfNotNull("users", usersJson, form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CallsEndRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("id", req.getId(), form);
+        setIfNotNull("duration", req.getDuration(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CallsInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("id", req.getId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CallsUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("id", req.getId(), form);
+        setIfNotNull("desktop_app_join_url", req.getDesktopAppJoinUrl(), form);
+        setIfNotNull("join_url", req.getJoinUrl(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CallsParticipantsAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("id", req.getId(), form);
+        if (req.getUsers() != null && req.getUsers().size() > 0) {
+            String usersJson = GSON.toJson(req.getUsers());
+            setIfNotNull("users", usersJson, form);
+        }
         return form;
     }
 
