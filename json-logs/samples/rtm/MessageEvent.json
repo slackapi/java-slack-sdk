@@ -54,7 +54,8 @@
               "type": "plain_text",
               "text": "",
               "emoji": false
-            }
+            },
+            "style": ""
           }
         },
         {
@@ -86,7 +87,8 @@
               "type": "plain_text",
               "text": "",
               "emoji": false
-            }
+            },
+            "style": ""
           },
           "response_url_enabled": false
         },
@@ -119,7 +121,8 @@
               "type": "plain_text",
               "text": "",
               "emoji": false
-            }
+            },
+            "style": ""
           },
           "response_url_enabled": false,
           "filter": {
@@ -156,7 +159,8 @@
               "type": "plain_text",
               "text": "",
               "emoji": false
-            }
+            },
+            "style": ""
           }
         },
         {
@@ -202,7 +206,8 @@
               "type": "plain_text",
               "text": "",
               "emoji": false
-            }
+            },
+            "style": ""
           }
         },
         {
@@ -237,7 +242,8 @@
               "type": "plain_text",
               "text": "",
               "emoji": false
-            }
+            },
+            "style": ""
           }
         },
         {
@@ -282,7 +288,8 @@
               "type": "plain_text",
               "text": "",
               "emoji": false
-            }
+            },
+            "style": ""
           }
         },
         {
@@ -314,7 +321,8 @@
               "type": "plain_text",
               "text": "",
               "emoji": false
-            }
+            },
+            "style": ""
           }
         }
       ],
