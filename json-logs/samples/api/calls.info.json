@@ -12,9 +12,13 @@
     "title": "",
     "users": [
       {
-        "slack_id": "U00000000"
+        "slack_id": "U00000000",
+        "external_id": "",
+        "avatar_url": "https://www.example.com/",
+        "display_name": ""
       }
-    ]
+    ],
+    "desktop_app_join_url": "https://www.example.com/"
   },
   "error": "",
   "needed": "",

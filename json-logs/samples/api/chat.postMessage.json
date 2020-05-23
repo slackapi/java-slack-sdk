@@ -164,11 +164,23 @@
             "active_participants": [
               {
                 "slack_id": "U00000000"
+              },
+              {
+                "slack_id": "U00000000",
+                "external_id": "",
+                "avatar_url": "https://www.example.com/",
+                "display_name": ""
               }
             ],
             "all_participants": [
               {
                 "slack_id": "U00000000"
+              },
+              {
+                "slack_id": "U00000000",
+                "external_id": "",
+                "avatar_url": "https://www.example.com/",
+                "display_name": ""
               }
             ],
             "display_id": "",
@@ -183,7 +195,8 @@
             "was_rejected": false,
             "was_missed": false,
             "was_accepted": false,
-            "has_ended": false
+            "has_ended": false,
+            "desktop_app_join_url": "https://www.example.com/"
           }
         },
         "fallback": "",

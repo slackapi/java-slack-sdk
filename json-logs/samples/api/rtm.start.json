@@ -330,7 +330,8 @@
         "fr-FR": "",
         "pt-BR": "",
         "ja-JP": ""
-      }
+      },
+      "channel_sidebar_hide_browse_dms_link": false
     },
     "created": 12345,
     "first_login": 12345,
