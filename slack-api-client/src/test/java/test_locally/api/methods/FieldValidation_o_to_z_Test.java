@@ -272,7 +272,10 @@ public class FieldValidation_o_to_z_Test {
                 "getCc",
                 "getShares",
                 "getReplies",
-                "getChannelCount"
+                "getChannelCount",
+                "getEditor",
+                "getLastEditor",
+                "getUpdated"
         );
     }
 

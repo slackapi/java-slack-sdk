@@ -60,7 +60,8 @@
                     "type": "",
                     "text": "",
                     "emoji": false
-                  }
+                  },
+                  "style": ""
                 },
                 "placeholder": {
                   "type": "",
@@ -161,7 +162,71 @@
         "reply_users": [
           "B00000000"
         ],
-        "subscribed": false
+        "subscribed": false,
+        "files": [
+          {
+            "id": "F00000000",
+            "created": 12345,
+            "timestamp": 12345,
+            "name": "",
+            "title": "",
+            "mimetype": "",
+            "filetype": "",
+            "pretty_type": "",
+            "user": "U00000000",
+            "editable": false,
+            "size": 12345,
+            "mode": "",
+            "is_external": false,
+            "external_type": "",
+            "is_public": false,
+            "public_url_shared": false,
+            "display_as_bot": false,
+            "username": "",
+            "url_private": "https://www.example.com/",
+            "url_private_download": "https://www.example.com/",
+            "permalink": "https://www.example.com/",
+            "permalink_public": "https://www.example.com/",
+            "preview": "",
+            "last_editor": "U00000000",
+            "non_owner_editable": false,
+            "updated": 12345,
+            "is_starred": false,
+            "has_rich_preview": false
+          },
+          {
+            "id": "F00000000",
+            "created": 12345,
+            "timestamp": 12345,
+            "name": "",
+            "title": "",
+            "mimetype": "",
+            "filetype": "",
+            "pretty_type": "",
+            "user": "U00000000",
+            "editable": false,
+            "size": 12345,
+            "mode": "",
+            "is_external": false,
+            "external_type": "",
+            "is_public": false,
+            "public_url_shared": false,
+            "display_as_bot": false,
+            "username": "",
+            "url_private": "https://www.example.com/",
+            "url_private_download": "https://www.example.com/",
+            "permalink": "https://www.example.com/",
+            "permalink_public": "https://www.example.com/",
+            "preview": "",
+            "last_editor": "U00000000",
+            "non_owner_editable": false,
+            "updated": 12345,
+            "is_starred": false,
+            "has_rich_preview": false
+          }
+        ],
+        "upload": false,
+        "display_as_bot": false
       }
     }
   ],

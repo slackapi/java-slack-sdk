@@ -2,10 +2,7 @@ package com.slack.api.methods.response.reactions;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiResponse;
-import com.slack.api.model.Attachment;
-import com.slack.api.model.BotProfile;
-import com.slack.api.model.Paging;
-import com.slack.api.model.Reaction;
+import com.slack.api.model.*;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
@@ -42,6 +39,9 @@ public class ReactionsListResponse implements SlackApiResponse {
             private String username;
             private String botId;
             private String permalink;
+            private List<File> files;
+            private boolean upload;
+            private boolean displayAsBot;
             private List<Reaction> reactions;
             private String threadTs;
             private Integer replyCount;

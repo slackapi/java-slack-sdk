@@ -65,7 +65,10 @@
       "preview_highlight": "",
       "lines": 12345,
       "lines_more": 12345,
-      "preview_is_truncated": false
+      "preview_is_truncated": false,
+      "last_editor": "U00000000",
+      "non_owner_editable": false,
+      "updated": 12345
     }
   ],
   "paging": {

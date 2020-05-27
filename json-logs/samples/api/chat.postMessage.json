@@ -93,7 +93,8 @@
                 "type": "",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "placeholder": {
               "type": "",
@@ -305,7 +306,8 @@
                     "type": "",
                     "text": "",
                     "emoji": false
-                  }
+                  },
+                  "style": ""
                 },
                 "placeholder": {
                   "type": "",

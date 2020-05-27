@@ -84,6 +84,7 @@ public class Message {
     private boolean subscribed;
 
     private List<String> xFiles; // remote file ids
+    private boolean hidden;
 
     private String lastRead;
 

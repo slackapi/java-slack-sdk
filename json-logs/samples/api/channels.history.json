@@ -56,7 +56,8 @@
                   "type": "",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               },
               "placeholder": {
                 "type": "",
@@ -189,7 +190,8 @@
                   "type": "",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               },
               "placeholder": {
                 "type": "",
@@ -655,6 +657,16 @@
       "display_as_bot": false,
       "x_files": [
         "F00000000"
+      ],
+      "hidden": false,
+      "reactions": [
+        {
+          "name": "",
+          "users": [
+            "U00000000"
+          ],
+          "count": 12345
+        }
       ]
     }
   ],
