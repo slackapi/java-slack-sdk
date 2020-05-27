@@ -263,6 +263,36 @@
           "body": "Information on the Analytics dashboard (https://my.slack.com/stats) is not up to date. We are currently investigating this issue and will be back as soon as we have more news to share. We\u0027re sorry for any inconvenience caused in the meantime."
         }
       ]
+    },
+    {
+      "id": 856,
+      "date_created": "2020-05-26T11:19:03-07:00",
+      "date_updated": "2020-05-26T14:20:09-07:00",
+      "title": "Missing custom emoji",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-05/f15c26c51317c7d0",
+      "services": [
+        "Messaging"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-05-26T14:20:09-07:00",
+          "body": "We\u0027re still working towards a solution for this issue. We\u0027ll return back here with an update when we have more news to share on a fix."
+        },
+        {
+          "date_created": "2020-05-26T12:49:00-07:00",
+          "body": "We\u0027ve identified the likely cause of this issue and we\u0027re now exploring possible fixes. Thank you for your continued patience as we work to get things fixed up."
+        },
+        {
+          "date_created": "2020-05-26T11:49:48-07:00",
+          "body": "We\u0027re continuing to look into the issue causing custom emoji to not appear for some customers. We\u0027re sorry for the trouble and will continue to keep you posted."
+        },
+        {
+          "date_created": "2020-05-26T11:19:03-07:00",
+          "body": "Our team is investigating an issue that is causing custom emoji to go missing from some workspaces. We\u0027ll keep you updated as soon as we have more information."
+        }
+      ]
     }
   ]
 }

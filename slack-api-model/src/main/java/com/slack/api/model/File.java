@@ -28,6 +28,10 @@ public class File {
     private String user;
     private String mode;
     private boolean editable;
+    private boolean nonOwnerEditable; // application/vnd.slack-docs
+    private String editor; // application/vnd.slack-docs
+    private String lastEditor; // application/vnd.slack-docs
+    private Integer updated; // application/vnd.slack-docs
 
     @SerializedName("is_external")
     private boolean external;

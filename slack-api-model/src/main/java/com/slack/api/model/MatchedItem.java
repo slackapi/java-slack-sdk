@@ -92,7 +92,13 @@ public class MatchedItem {
     @SerializedName("is_starred")
     private boolean starred;
     private String externalType;
+
     private boolean editable;
+    private boolean nonOwnerEditable; // application/vnd.slack-docs
+    private String editor; // application/vnd.slack-docs
+    private String lastEditor; // application/vnd.slack-docs
+    private Integer updated; // application/vnd.slack-docs
+
     private boolean displayAsBot;
     private Integer size;
     private String mode;
