@@ -19,6 +19,11 @@ import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
+import com.slack.api.methods.request.calls.CallsAddRequest;
+import com.slack.api.methods.request.calls.CallsEndRequest;
+import com.slack.api.methods.request.calls.CallsInfoRequest;
+import com.slack.api.methods.request.calls.CallsUpdateRequest;
+import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
@@ -80,6 +85,11 @@ import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
+import com.slack.api.methods.response.calls.CallsAddResponse;
+import com.slack.api.methods.response.calls.CallsEndResponse;
+import com.slack.api.methods.response.calls.CallsInfoResponse;
+import com.slack.api.methods.response.calls.CallsUpdateResponse;
+import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
 import com.slack.api.methods.response.channels.UsersLookupByEmailResponse;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
@@ -370,6 +380,34 @@ public interface AsyncMethodsClient {
     CompletableFuture<BotsInfoResponse> botsInfo(BotsInfoRequest req);
 
     CompletableFuture<BotsInfoResponse> botsInfo(RequestConfigurator<BotsInfoRequest.BotsInfoRequestBuilder> req);
+
+    // ------------------------------
+    // calls
+    // ------------------------------
+
+    CompletableFuture<CallsAddResponse> callsAdd(CallsAddRequest req);
+
+    CompletableFuture<CallsAddResponse> callsAdd(RequestConfigurator<CallsAddRequest.CallsAddRequestBuilder> req);
+
+    CompletableFuture<CallsEndResponse> callsEnd(CallsEndRequest req);
+
+    CompletableFuture<CallsEndResponse> callsEnd(RequestConfigurator<CallsEndRequest.CallsEndRequestBuilder> req);
+
+    CompletableFuture<CallsInfoResponse> callsInfo(CallsInfoRequest req);
+
+    CompletableFuture<CallsInfoResponse> callsInfo(RequestConfigurator<CallsInfoRequest.CallsInfoRequestBuilder> req);
+
+    CompletableFuture<CallsUpdateResponse> callsUpdate(CallsUpdateRequest req);
+
+    CompletableFuture<CallsUpdateResponse> callsUpdate(RequestConfigurator<CallsUpdateRequest.CallsUpdateRequestBuilder> req);
+
+    // ------------------------------
+    // calls.participants
+    // ------------------------------
+
+    CompletableFuture<CallsParticipantsAddResponse> callsParticipantsAdd(CallsParticipantsAddRequest req);
+
+    CompletableFuture<CallsParticipantsAddResponse> callsParticipantsAdd(RequestConfigurator<CallsParticipantsAddRequest.CallsParticipantsAddRequestBuilder> req);
 
     // ------------------------------
     // chat

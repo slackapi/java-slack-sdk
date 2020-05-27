@@ -132,6 +132,12 @@ public class MethodsRateLimits {
 
         setRateLimitTier(BOTS_INFO, Tier3);
 
+        setRateLimitTier(CALLS_ADD, Tier2);
+        setRateLimitTier(CALLS_END, Tier2);
+        setRateLimitTier(CALLS_INFO, Tier2);
+        setRateLimitTier(CALLS_UPDATE, Tier2);
+        setRateLimitTier(CALLS_PARTICIPANTS_ADD, Tier2);
+
         setRateLimitTier(CHAT_DELETE, Tier3);
         setRateLimitTier(CHAT_DELETE_SCHEDULED_MESSAGE, Tier3);
         setRateLimitTier(CHAT_GET_PERMALINK, SpecialTier_chat_getPermalink);

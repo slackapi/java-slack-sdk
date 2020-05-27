@@ -5,6 +5,11 @@ import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
+import com.slack.api.methods.response.calls.CallsAddResponse;
+import com.slack.api.methods.response.calls.CallsEndResponse;
+import com.slack.api.methods.response.calls.CallsInfoResponse;
+import com.slack.api.methods.response.calls.CallsUpdateResponse;
+import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
 import com.slack.api.methods.response.channels.*;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
@@ -60,6 +65,36 @@ public class FieldValidation_a_to_c_Test {
         BotsInfoResponse obj = parse("bots.info", BotsInfoResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
         verifyIfAllGettersReturnNonNullRecursively(obj.getBot());
+    }
+
+    @Test
+    public void calls_add() throws Exception {
+        CallsAddResponse obj = parse("calls.add", CallsAddResponse.class);
+        verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
+    }
+
+    @Test
+    public void calls_end() throws Exception {
+        CallsEndResponse obj = parse("calls.end", CallsEndResponse.class);
+        verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
+    }
+
+    @Test
+    public void calls_info() throws Exception {
+        CallsInfoResponse obj = parse("calls.info", CallsInfoResponse.class);
+        verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
+    }
+
+    @Test
+    public void calls_update() throws Exception {
+        CallsUpdateResponse obj = parse("calls.update", CallsUpdateResponse.class);
+        verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
+    }
+
+    @Test
+    public void calls_participants_add() throws Exception {
+        CallsParticipantsAddResponse obj = parse("calls.participants.add", CallsParticipantsAddResponse.class);
+        verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
     }
 
     private void validateChannel(Channel channel) throws Exception {

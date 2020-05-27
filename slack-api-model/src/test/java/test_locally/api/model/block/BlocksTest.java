@@ -61,6 +61,11 @@ public class BlocksTest {
     }
 
     @Test
+    public void testCall() {
+        assertThat(call(f -> f.blockId("block-id").callId("R111")), is(notNullValue()));
+    }
+
+    @Test
     public void testImage() {
         assertThat(Blocks.image(i -> i.blockId("block-id").imageUrl("https://www.example.com/")), is(notNullValue()));
     }

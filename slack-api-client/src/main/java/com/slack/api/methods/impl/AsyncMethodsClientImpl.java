@@ -23,6 +23,11 @@ import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
+import com.slack.api.methods.request.calls.CallsAddRequest;
+import com.slack.api.methods.request.calls.CallsEndRequest;
+import com.slack.api.methods.request.calls.CallsInfoRequest;
+import com.slack.api.methods.request.calls.CallsUpdateRequest;
+import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
@@ -84,6 +89,11 @@ import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
+import com.slack.api.methods.response.calls.CallsAddResponse;
+import com.slack.api.methods.response.calls.CallsEndResponse;
+import com.slack.api.methods.response.calls.CallsInfoResponse;
+import com.slack.api.methods.response.calls.CallsUpdateResponse;
+import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
 import com.slack.api.methods.response.channels.UsersLookupByEmailResponse;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
@@ -600,6 +610,56 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<BotsInfoResponse> botsInfo(RequestConfigurator<BotsInfoRequest.BotsInfoRequestBuilder> req) {
         return botsInfo(req.configure(BotsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsAddResponse> callsAdd(CallsAddRequest req) {
+        return executor.execute(CALLS_ADD, toMap(req), () -> methods.callsAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsAddResponse> callsAdd(RequestConfigurator<CallsAddRequest.CallsAddRequestBuilder> req) {
+        return callsAdd(req.configure(CallsAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsEndResponse> callsEnd(CallsEndRequest req) {
+        return executor.execute(CALLS_END, toMap(req), () -> methods.callsEnd(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsEndResponse> callsEnd(RequestConfigurator<CallsEndRequest.CallsEndRequestBuilder> req) {
+        return callsEnd(req.configure(CallsEndRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsInfoResponse> callsInfo(CallsInfoRequest req) {
+        return executor.execute(CALLS_INFO, toMap(req), () -> methods.callsInfo(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsInfoResponse> callsInfo(RequestConfigurator<CallsInfoRequest.CallsInfoRequestBuilder> req) {
+        return callsInfo(req.configure(CallsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsUpdateResponse> callsUpdate(CallsUpdateRequest req) {
+        return executor.execute(CALLS_UPDATE, toMap(req), () -> methods.callsUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsUpdateResponse> callsUpdate(RequestConfigurator<CallsUpdateRequest.CallsUpdateRequestBuilder> req) {
+        return callsUpdate(req.configure(CallsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsParticipantsAddResponse> callsParticipantsAdd(CallsParticipantsAddRequest req) {
+        return executor.execute(CALLS_PARTICIPANTS_ADD, toMap(req), () -> methods.callsParticipantsAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsParticipantsAddResponse> callsParticipantsAdd(RequestConfigurator<CallsParticipantsAddRequest.CallsParticipantsAddRequestBuilder> req) {
+        return callsParticipantsAdd(req.configure(CallsParticipantsAddRequest.builder()).build());
     }
 
     @Override
