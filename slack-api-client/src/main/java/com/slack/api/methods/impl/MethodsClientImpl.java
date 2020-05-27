@@ -1680,7 +1680,9 @@ public class MethodsClientImpl implements MethodsClient {
     public OAuthAccessResponse oauthAccess(OAuthAccessRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         form.add("code", req.getCode());
-        form.add("redirect_uri", req.getRedirectUri());
+        if (req.getRedirectUri() != null) {
+            form.add("redirect_uri", req.getRedirectUri());
+        }
         form.add("single_channel", req.isSingleChannel() ? "1" : "0");
         String authorizationHeader = Credentials.basic(req.getClientId(), req.getClientSecret());
         return postFormWithAuthorizationHeaderAndParseResponse(form, endpointUrlPrefix + Methods.OAUTH_ACCESS, authorizationHeader, OAuthAccessResponse.class);
@@ -1695,7 +1697,9 @@ public class MethodsClientImpl implements MethodsClient {
     public OAuthV2AccessResponse oauthV2Access(OAuthV2AccessRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
         form.add("code", req.getCode());
-        form.add("redirect_uri", req.getRedirectUri());
+        if (req.getRedirectUri() != null) {
+            form.add("redirect_uri", req.getRedirectUri());
+        }
         String authorizationHeader = Credentials.basic(req.getClientId(), req.getClientSecret());
         return postFormWithAuthorizationHeaderAndParseResponse(form, endpointUrlPrefix + Methods.OAUTH_V2_ACCESS, authorizationHeader, OAuthV2AccessResponse.class);
     }
