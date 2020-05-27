@@ -11,11 +11,7 @@ import com.slack.api.model.kotlin_extension.block.element.RadioButtonsElementBui
 interface BlockElementDsl : BlockElementInputDsl, BlockElementRichTextDsl {
     fun button(builder: ButtonElementBuilder.() -> Unit)
 
-    fun checkboxes(builder: CheckboxesElementBuilder.() -> Unit)
-
-    fun image(imageUrl: String? = null, altText: String? = null, fallback: String? = null, imageWidth: Int? = null, imageHeight: Int? = null, imageBytes: Int? = null)
-
     fun overflowMenu(builder: OverflowMenuElementBuilder.() -> Unit)
 
-    fun radioButtons(builder: RadioButtonsElementBuilder.() -> Unit)
+    fun image(imageUrl: String? = null, altText: String? = null, fallback: String? = null, imageWidth: Int? = null, imageHeight: Int? = null, imageBytes: Int? = null)
 }

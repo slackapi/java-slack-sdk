@@ -14,15 +14,15 @@ class ButtonElementBuilder : Builder<ButtonElement> {
     private var text: PlainTextObject? = null
     private var url: String? = null
     private var value: String? = null
-    private var style: ButtonStyle? = null
+    private var style: String? = null
     private var confirm: ConfirmationDialogObject? = null
 
     fun actionId(id: String) {
         actionId = id
     }
 
-    fun plainText(buttonText: String, emoji: Boolean? = null) {
-        text = PlainTextObject(buttonText, emoji)
+    fun text(text: String, emoji: Boolean? = null) {
+        this.text = PlainTextObject(text, emoji)
     }
 
     fun url(text: String) {
@@ -34,6 +34,10 @@ class ButtonElementBuilder : Builder<ButtonElement> {
     }
 
     fun style(style: ButtonStyle) {
+        this.style = style.value
+    }
+
+    fun style(style: String) {
         this.style = style
     }
 
@@ -47,7 +51,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
                 .url(url)
                 .value(value)
                 .text(text)
-                .style(style?.value)
+                .style(style)
                 .confirm(confirm)
                 .build()
     }

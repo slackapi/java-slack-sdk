@@ -41,6 +41,14 @@ class ConversationsSelectElementBuilder : Builder<ConversationsSelectElement> {
                 .build()
     }
 
+    fun conversationsFilter(vararg include: String, excludeExternalSharedChannels: Boolean = false, excludeBotUsers: Boolean = false) {
+        conversationsFilter = ConversationsFilter.builder()
+                .include(include.toList())
+                .excludeExternalSharedChannels(excludeExternalSharedChannels)
+                .excludeBotUsers(excludeBotUsers)
+                .build()
+    }
+
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }

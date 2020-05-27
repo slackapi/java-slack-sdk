@@ -1,6 +1,7 @@
 package com.slack.api.model.kotlin_extension.block
 
 import com.slack.api.model.block.ActionsBlock
+import com.slack.api.model.kotlin_extension.block.composition.dsl.TextObjectDsl
 import com.slack.api.model.kotlin_extension.block.element.container.MultiBlockElementContainer
 import com.slack.api.model.kotlin_extension.block.element.dsl.BlockElementDsl
 
@@ -15,6 +16,10 @@ class ActionsBlockBuilder private constructor(
 
     fun blockId(id: String) {
         blockId = id
+    }
+
+    fun elements(builder: BlockElementDsl.() -> Unit) {
+        elementsContainer.apply(builder)
     }
 
     override fun build(): ActionsBlock {

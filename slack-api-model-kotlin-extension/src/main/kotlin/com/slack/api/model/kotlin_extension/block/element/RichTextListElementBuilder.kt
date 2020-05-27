@@ -15,8 +15,16 @@ class RichTextListElementBuilder private constructor(
 
     constructor() : this(MultiRichTextElementContainer())
 
+    fun elements(builder: RichTextElementDsl.() -> Unit) {
+        this.apply(builder)
+    }
+
     fun style(listStyle: RichTextListStyle) {
         style = listStyle.value
+    }
+
+    fun style(listStyle: String) {
+        style = listStyle
     }
 
     fun indent(level: Int) {

@@ -2,6 +2,7 @@ package com.slack.api.model.kotlin_extension.block
 
 import com.slack.api.model.block.InputBlock
 import com.slack.api.model.block.composition.PlainTextObject
+import com.slack.api.model.kotlin_extension.block.composition.dsl.TextObjectDsl
 import com.slack.api.model.kotlin_extension.block.element.container.SingleBlockElementContainer
 import com.slack.api.model.kotlin_extension.block.element.dsl.BlockElementInputDsl
 
@@ -22,6 +23,10 @@ class InputBlockBuilder private constructor(
 
     fun label(text: String, emoji: Boolean? = null) {
         label = PlainTextObject(text, emoji)
+    }
+
+    fun element(builder: BlockElementInputDsl.() -> Unit) {
+        elementContainer.apply(builder)
     }
 
     fun hint(text: String, emoji: Boolean? = null) {

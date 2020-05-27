@@ -1,4 +1,4 @@
-package test_locally
+package test_locally.block
 
 import com.slack.api.Slack
 import com.slack.api.SlackConfig
@@ -13,7 +13,7 @@ import org.junit.Test
 import kotlin.test.assertEquals
 import com.slack.api.model.block.element.BlockElements.button as javaButton
 
-class BlockKitBuilderTest {
+class BasicUsageTest {
 
     @Test
     fun `Can construct a chat message request equivalent to the Java builder`() {
@@ -30,7 +30,7 @@ class BlockKitBuilderTest {
                             actionId("action-id-value")
                             url("https://www.google.com")
                             style(ButtonStyle.PRIMARY)
-                            plainText("Go to Google")
+                            text("Go to Google")
                             confirm {
                                 title("Confirm Navigation")
                                 markdownText("Are you *absolutely sure* you want to go to google?")
@@ -42,7 +42,7 @@ class BlockKitBuilderTest {
                             actionId("action-id-value")
                             url("https://www.google.com")
                             style(ButtonStyle.PRIMARY)
-                            plainText("Go to Google")
+                            text("Go to Google")
                             confirm {
                                 title("Confirm Navigation")
                                 markdownText("Are you *absolutely sure* you want to go to google?")
@@ -109,7 +109,7 @@ class BlockKitBuilderTest {
                         divider()
                         actions {
                             button {
-                                plainText("Go to Google")
+                                text("Go to Google")
                                 confirm {
                                     title("Confirm Navigation")
                                     markdownText("Are you *absolutely sure* you want to go to google?")

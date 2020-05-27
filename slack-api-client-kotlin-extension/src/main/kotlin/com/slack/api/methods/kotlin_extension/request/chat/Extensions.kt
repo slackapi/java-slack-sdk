@@ -1,24 +1,25 @@
 package com.slack.api.methods.kotlin_extension.request.chat
 
-import com.slack.api.methods.request.chat.ChatPostEphemeralRequest
-import com.slack.api.methods.request.chat.ChatPostMessageRequest
-import com.slack.api.methods.request.chat.ChatScheduleMessageRequest
-import com.slack.api.methods.request.chat.ChatUpdateRequest
+import com.slack.api.methods.request.chat.ChatPostEphemeralRequest.ChatPostEphemeralRequestBuilder
+import com.slack.api.methods.request.chat.ChatPostMessageRequest.ChatPostMessageRequestBuilder
+import com.slack.api.methods.request.chat.ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder
+import com.slack.api.methods.request.chat.ChatUpdateRequest.ChatUpdateRequestBuilder
 import com.slack.api.model.kotlin_extension.block.dsl.LayoutBlockDsl
 import com.slack.api.model.kotlin_extension.block.withBlocks
 
-fun ChatPostEphemeralRequest.ChatPostEphemeralRequestBuilder.buildBlocks(builder: LayoutBlockDsl.() -> Unit): ChatPostEphemeralRequest.ChatPostEphemeralRequestBuilder {
+
+fun ChatPostEphemeralRequestBuilder.blocks(builder: LayoutBlockDsl.() -> Unit): ChatPostEphemeralRequestBuilder {
     return this.blocks(withBlocks(builder))
 }
 
-fun ChatPostMessageRequest.ChatPostMessageRequestBuilder.buildBlocks(builder: LayoutBlockDsl.() -> Unit): ChatPostMessageRequest.ChatPostMessageRequestBuilder {
+fun ChatPostMessageRequestBuilder.blocks(builder: LayoutBlockDsl.() -> Unit): ChatPostMessageRequestBuilder {
     return this.blocks(withBlocks(builder))
 }
 
-fun ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder.buildBlocks(builder: LayoutBlockDsl.() -> Unit): ChatScheduleMessageRequest.ChatScheduleMessageRequestBuilder {
+fun ChatScheduleMessageRequestBuilder.blocks(builder: LayoutBlockDsl.() -> Unit): ChatScheduleMessageRequestBuilder {
     return this.blocks(withBlocks(builder))
 }
 
-fun ChatUpdateRequest.ChatUpdateRequestBuilder.buildBlocks(builder: LayoutBlockDsl.() -> Unit): ChatUpdateRequest.ChatUpdateRequestBuilder {
+fun ChatUpdateRequestBuilder.blocks(builder: LayoutBlockDsl.() -> Unit): ChatUpdateRequestBuilder {
     return this.blocks(withBlocks(builder))
 }

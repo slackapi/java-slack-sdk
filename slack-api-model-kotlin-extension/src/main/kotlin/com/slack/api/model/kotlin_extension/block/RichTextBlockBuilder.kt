@@ -12,6 +12,10 @@ class RichTextBlockBuilder private constructor(
 
     constructor() : this(MultiBlockElementContainer())
 
+    fun elements(builder: BlockElementRichTextDsl.() -> Unit) {
+        elementsContainer.apply(builder)
+    }
+
     fun blockId(id: String) {
         blockId = id
     }

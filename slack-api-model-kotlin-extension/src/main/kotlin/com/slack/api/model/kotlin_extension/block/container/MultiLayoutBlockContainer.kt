@@ -28,11 +28,19 @@ class MultiLayoutBlockContainer : LayoutBlockDsl {
         underlying += ContextBlockBuilder().apply(builder).build()
     }
 
-    override fun file(blockId: String?, externalId: String?, source: FileSource?) {
+    override fun file(externalId: String?, blockId: String?, source: FileSource?) {
         underlying += FileBlock.builder()
                 .blockId(blockId)
                 .externalId(externalId)
                 .source(source?.value)
+                .build()
+    }
+
+    override fun file(externalId: String?, blockId: String?, source: String?) {
+        underlying += FileBlock.builder()
+                .blockId(blockId)
+                .externalId(externalId)
+                .source(source)
                 .build()
     }
 

@@ -12,6 +12,10 @@ class RichTextQuoteElementBuilder private constructor(
 ) : Builder<RichTextQuoteElement>, RichTextElementDsl by elementsContainer {
     constructor() : this(MultiRichTextElementContainer())
 
+    fun elements(builder: RichTextElementDsl.() -> Unit) {
+        elementsContainer.apply(builder)
+    }
+
     override fun build(): RichTextQuoteElement {
         return RichTextQuoteElement.builder()
                 .elements(elementsContainer.underlying)

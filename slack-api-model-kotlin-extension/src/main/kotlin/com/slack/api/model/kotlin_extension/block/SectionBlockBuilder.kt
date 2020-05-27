@@ -29,6 +29,10 @@ class SectionBlockBuilder private constructor(
         fields = MultiTextObjectContainer().apply(builder).underlying
     }
 
+    fun accessory(builder: BlockElementDsl.() -> Unit) {
+        accessoryContainer.apply(builder)
+    }
+
     override fun build(): SectionBlock {
         return SectionBlock.builder()
                 .blockId(blockId)

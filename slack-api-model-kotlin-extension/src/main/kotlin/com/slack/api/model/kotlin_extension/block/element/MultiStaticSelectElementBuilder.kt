@@ -15,13 +15,13 @@ import com.slack.api.model.kotlin_extension.block.composition.dsl.OptionObjectDs
 
 @BlockLayoutBuilder
 class MultiStaticSelectElementBuilder : Builder<MultiStaticSelectElement> {
-    var placeholder: PlainTextObject? = null
-    var actionId: String? = null
-    var confirm: ConfirmationDialogObject? = null
-    var options: List<OptionObject>? = null
-    var optionGroups: List<OptionGroupObject>? = null
-    var initialOptions: List<OptionObject>? = null
-    var maxSelectedItems: Int? = null
+    private var placeholder: PlainTextObject? = null
+    private var actionId: String? = null
+    private var confirm: ConfirmationDialogObject? = null
+    private var options: List<OptionObject>? = null
+    private var optionGroups: List<OptionGroupObject>? = null
+    private var initialOptions: List<OptionObject>? = null
+    private var maxSelectedItems: Int? = null
 
     fun placeholder(text: String, emoji: Boolean? = null) {
         placeholder = PlainTextObject(text, emoji)

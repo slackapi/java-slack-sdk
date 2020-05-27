@@ -26,4 +26,8 @@ interface BlockElementInputDsl {
     fun staticSelect(builder: StaticSelectElementBuilder.() -> Unit)
 
     fun usersSelect(builder: UsersSelectElementBuilder.() -> Unit)
+
+    fun radioButtons(builder: RadioButtonsElementBuilder.() -> Unit)
+
+    fun checkboxes(builder: CheckboxesElementBuilder.() -> Unit)
 }

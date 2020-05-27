@@ -34,7 +34,19 @@ class MultiConversationsSelectElementBuilder : Builder<MultiConversationsSelectE
     }
 
     fun filter(vararg include: ConversationType, excludeExternalSharedChannels: Boolean? = null, excludeBotUsers: Boolean? = null) {
-        filter = ConversationsFilter(include.map { it.value }, excludeExternalSharedChannels, excludeBotUsers)
+        filter = ConversationsFilter.builder()
+                .include(include.map { it.value })
+                .excludeExternalSharedChannels(excludeExternalSharedChannels)
+                .excludeBotUsers(excludeBotUsers)
+                .build()
+    }
+
+    fun filter(vararg include: String, excludeExternalSharedChannels: Boolean? = null, excludeBotUsers: Boolean? = null) {
+        filter = ConversationsFilter.builder()
+                .include(include.toList())
+                .excludeExternalSharedChannels(excludeExternalSharedChannels)
+                .excludeBotUsers(excludeBotUsers)
+                .build()
     }
 
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {

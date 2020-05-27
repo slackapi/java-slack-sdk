@@ -16,6 +16,10 @@ class ContextBlockBuilder private constructor(
         blockId = id
     }
 
+    fun elements(builder: ContextBlockElementDsl.() -> Unit) {
+        this.elementsContainer.apply(builder)
+    }
+
     override fun build(): ContextBlock {
         return ContextBlock.builder()
                 .blockId(blockId)
