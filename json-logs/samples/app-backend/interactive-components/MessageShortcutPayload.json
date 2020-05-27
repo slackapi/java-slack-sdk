@@ -47,7 +47,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -79,7 +80,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "response_url_enabled": false
           },
@@ -111,7 +113,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123
           },
@@ -144,7 +147,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "response_url_enabled": false,
             "filter": {
@@ -183,7 +187,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123,
             "filter": {
@@ -223,7 +228,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -269,7 +275,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -301,7 +308,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123
           },
@@ -337,7 +345,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -382,7 +391,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -413,7 +423,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123
           },
@@ -446,7 +457,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -477,7 +489,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123
           }

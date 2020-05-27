@@ -17,4 +17,5 @@ public class ConfirmationDialogObject {
     private TextObject text;
     private PlainTextObject confirm;
     private PlainTextObject deny;
+    private String style;
 }
