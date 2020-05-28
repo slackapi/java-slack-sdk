@@ -5,7 +5,7 @@ public final class BoltLibraryVersion {
     }
 
     public static final String get() {
-        return "1.0.8";
+        return "1.0.9-SNAPSHOT";
     }
 }
 
