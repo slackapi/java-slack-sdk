@@ -371,9 +371,33 @@ ctx.ack { it.responseAction("push").view(newViewInStack) }
 
 #### Publishing Messages After Modal Submissions
 
-`view_submission` payloads don't have `response_url` by default. However, if you have an `input` block asking users a channel to post a message, payloads may provide `response_urls`.
+`view_submission` payloads don't have `response_url` by default. However, if you have an `input` block asking users a channel to post a message, payloads may provide `response_urls` (`List<ResponseUrl> responseUrls` in Java).
 
 To enable this, set the block element type as either [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) or [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) and add `"response_url_enabled": true`. Refer to [the API document](https://api.slack.com/surfaces/modals/using#modal_response_url) for details.
+
+Also, if you want to automatically set the channel a user is viewing when opening a modal to`initial_conversation(s)`, turn `default_to_current_conversation` on in [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) / [`multi_conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select) elements.
+
+```java
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.*;
+import static com.slack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.view.Views.*;
+
+View modalView = view(v -> v
+  .type("modal")
+  .callbackId("request-modal")
+  .submit(viewSubmit(vs -> vs.type("plain_text").text("Start")))
+  .blocks(asBlocks(
+    section(s -> s
+      .text(plainText("The channel we'll post the result"))
+      .accessory(conversationsSelect(conv -> conv
+        .actionId("notification_conv_id")
+        .responseUrlEnabled(true)
+        .defaultToCurrentConversation(true)
+      ))
+    )
+)));
+```
 
 ### `"view_closed"` requests (only when `notify_on_close` is `true`)
 
