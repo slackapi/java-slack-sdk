@@ -36,6 +36,12 @@ public class ConversationsSelectElement extends BlockElement {
     private String initialConversation;
 
     /**
+     * Pre-populates the select menu with the conversation that the user was viewing when they opened the modal,
+     * if available. If initial_conversation is also supplied, it will be ignored. Default is false.
+     */
+    private Boolean defaultToCurrentConversation;
+
+    /**
      * A confirm object that defines an optional confirmation dialog that appears after a menu item is selected.
      */
     private ConfirmationDialogObject confirm;

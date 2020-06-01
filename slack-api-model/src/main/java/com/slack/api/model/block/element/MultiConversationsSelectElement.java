@@ -38,6 +38,12 @@ public class MultiConversationsSelectElement extends BlockElement {
     private List<String> initialConversations;
 
     /**
+     * Pre-populates the select menu with the conversation that the user was viewing when they opened the modal,
+     * if available. If initial_conversation is also supplied, it will be ignored. Default is false.
+     */
+    private Boolean defaultToCurrentConversation;
+
+    /**
      * A confirm object that defines an optional confirmation dialog that appears
      * before the multi-select choices are submitted.
      */

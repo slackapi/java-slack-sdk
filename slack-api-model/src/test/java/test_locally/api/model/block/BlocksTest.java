@@ -322,4 +322,54 @@ public class BlocksTest {
         }
     }
 
+    @Test
+    public void defaultToCurrentConversation() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"section\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"mrkdwn\",\n" +
+                "        \"text\": \"Test block with multi conversations select\"\n" +
+                "      },\n" +
+                "      \"accessory\": {\n" +
+                "        \"type\": \"multi_conversations_select\",\n" +
+                "        \"placeholder\": {\n" +
+                "          \"type\": \"plain_text\",\n" +
+                "          \"text\": \"Select conversations\",\n" +
+                "          \"emoji\": true\n" +
+                "        },\n" +
+                "        \"default_to_current_conversation\": true\n" +
+                "      }\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"type\": \"section\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"mrkdwn\",\n" +
+                "        \"text\": \"Test block with multi conversations select\"\n" +
+                "      },\n" +
+                "      \"accessory\": {\n" +
+                "        \"type\": \"conversations_select\",\n" +
+                "        \"placeholder\": {\n" +
+                "          \"type\": \"plain_text\",\n" +
+                "          \"text\": \"Select conversations\",\n" +
+                "          \"emoji\": true\n" +
+                "        },\n" +
+                "        \"default_to_current_conversation\": true\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertNotNull(message);
+        assertEquals(2, message.getBlocks().size());
+        SectionBlock section1 = (SectionBlock) message.getBlocks().get(0);
+        MultiConversationsSelectElement elem1 = (MultiConversationsSelectElement) (section1).getAccessory();
+        assertTrue(elem1.getDefaultToCurrentConversation());
+        SectionBlock section2 = (SectionBlock) message.getBlocks().get(1);
+        ConversationsSelectElement elem2 = (ConversationsSelectElement) (section2).getAccessory();
+        assertTrue(elem2.getDefaultToCurrentConversation());
+    }
+
+
 }
