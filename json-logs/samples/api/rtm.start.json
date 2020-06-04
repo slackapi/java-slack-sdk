@@ -331,7 +331,8 @@
         "pt-BR": "",
         "ja-JP": ""
       },
-      "channel_sidebar_hide_browse_dms_link": false
+      "channel_sidebar_hide_browse_dms_link": false,
+      "enable_all_dms_view": false
     },
     "created": 12345,
     "first_login": 12345,
@@ -558,7 +559,8 @@
           ""
         ]
       },
-      "invites_limit": false
+      "invites_limit": false,
+      "ntlm_credential_domains": ""
     },
     "icon": {
       "image_34": "https://www.example.com/",

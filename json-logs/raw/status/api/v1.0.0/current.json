@@ -233,6 +233,10 @@
     {
       "date_created": "2020-05-26T11:19:03-07:00",
       "body": "Our team is investigating an issue that is causing custom emoji to go missing from some workspaces. We\u0027ll keep you updated as soon as we have more information."
+    },
+    {
+      "date_created": "2020-06-01T11:23:40-07:00",
+      "body": "Some Android users may notice that new messages are not showing up in channels and DMs immediately. We\u0027re actively investigating this issue and will keep you posted as more information becomes available. For now, quitting and reopening the Slack app should allow new messages to load. We\u0027re sorry for any disruption this brings to your day."
     }
   ]
 }

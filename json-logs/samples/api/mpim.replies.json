@@ -31,7 +31,8 @@
         },
         "team_id": "T00000000"
       },
-      "parent_user_id": "U00000000"
+      "parent_user_id": "U00000000",
+      "last_read": "0000000000.000000"
     }
   ],
   "has_more": false,
