@@ -667,7 +667,8 @@
           ],
           "count": 12345
         }
-      ]
+      ],
+      "client_msg_id": ""
     }
   ],
   "has_more": false,

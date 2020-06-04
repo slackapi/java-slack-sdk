@@ -657,7 +657,8 @@
       "display_as_bot": false,
       "x_files": [
         "F00000000"
-      ]
+      ],
+      "client_msg_id": ""
     }
   ],
   "has_more": false,
