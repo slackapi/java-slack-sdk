@@ -1,5 +1,8 @@
 package com.slack.api.rtm;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.slack.api.model.event.Event;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -40,8 +43,12 @@ public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
 
     @Override
     public void dispatch(String json) {
-        String eventType = detectEventType(json);
-        String eventSubType = detectEventSubType(json);
+        JsonElement jsonMessage = JsonParser.parseString(json);
+        if (jsonMessage.isJsonObject() == false)
+            return;
+
+        String eventType = detectEventType(jsonMessage.getAsJsonObject());
+        String eventSubType = detectEventSubType(jsonMessage.getAsJsonObject());
 
         if (eventType == null) {
             log.debug("Failed to detect event type from the given JSON data: {}", json);
@@ -59,7 +66,7 @@ public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
             if (rtmEventHandlers.isEmpty() == false) {
                 Class<?> clazz = rtmEventHandlers.get(0).getEventClass();
                 for (RTMEventHandler<?> handler : rtmEventHandlers) {
-                    Event event = (Event) GsonFactory.createSnakeCase().fromJson(json, clazz);
+                    Event event = (Event) GsonFactory.createSnakeCase().fromJson(jsonMessage, clazz);
                     handler.acceptUntypedObject(event);
                 }
             }
@@ -78,72 +85,20 @@ public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
         return messageHandler;
     }
 
-    public static String detectEventType(String json) {
-        StringBuilder sb = new StringBuilder();
-        char[] chars = json.toCharArray();
-        for (int idx = 0; idx < (chars.length - 6); idx++) {
-            if (chars[idx] == '"'
-                    && chars[idx + 1] == 't'
-                    && chars[idx + 2] == 'y'
-                    && chars[idx + 3] == 'p'
-                    && chars[idx + 4] == 'e'
-                    && chars[idx + 5] == '"'
-                    && chars[idx + 6] == ':') {
-                idx = idx + 7;
-                int doubleQuoteCount = 0;
-                boolean isPreviousCharEscape = false;
-                while (doubleQuoteCount < 2 && idx < chars.length) {
-                    char c = chars[idx];
-                    if (c == '"' && !isPreviousCharEscape) {
-                        doubleQuoteCount++;
-                    } else {
-                        if (doubleQuoteCount == 1) {
-                            sb.append(c);
-                        }
-                    }
-                    isPreviousCharEscape = c == '\\';
-                    idx++;
-                }
-                break;
-            }
-        }
-        return sb.toString();
+    public static String detectEventType(JsonObject json) {
+        JsonElement type = json.get("type");
+        if (type == null || type.isJsonPrimitive() == false)
+            return "";
+        return type.getAsString();
     }
 
 
-    public static String detectEventSubType(String json) {
-        StringBuilder sb = new StringBuilder();
-        char[] chars = json.toCharArray();
-        for (int idx = 0; idx < (chars.length - 9); idx++) {
-            if (chars[idx] == '"'
-                    && chars[idx + 1] == 's'
-                    && chars[idx + 2] == 'u'
-                    && chars[idx + 3] == 'b'
-                    && chars[idx + 4] == 't'
-                    && chars[idx + 5] == 'y'
-                    && chars[idx + 6] == 'p'
-                    && chars[idx + 7] == 'e'
-                    && chars[idx + 8] == '"'
-                    && chars[idx + 9] == ':') {
-                idx = idx + 10;
-                int doubleQuoteCount = 0;
-                boolean isPreviousCharEscape = false;
-                while (doubleQuoteCount < 2 && idx < chars.length) {
-                    char c = chars[idx];
-                    if (c == '"' && !isPreviousCharEscape) {
-                        doubleQuoteCount++;
-                    } else {
-                        if (doubleQuoteCount == 1) {
-                            sb.append(c);
-                        }
-                    }
-                    isPreviousCharEscape = c == '\\';
-                    idx++;
-                }
-                break;
-            }
-        }
-        return sb.toString();
+    public static String detectEventSubType(JsonObject json) {
+
+        JsonElement type = json.get("subtype");
+        if (type == null || type.isJsonPrimitive() == false)
+            return "";
+        return type.getAsString();
     }
 
 }
