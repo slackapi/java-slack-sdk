@@ -1,5 +1,7 @@
 package test_locally.api.rtm;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.slack.api.model.event.Event;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.rtm.RTMEventHandler;
@@ -15,8 +17,23 @@ public class RTMEventsDispatcherImplTest {
 
     @Test
     public void eventDetection() {
-        String type = RTMEventsDispatcherImpl.detectEventType("{\"type\": \"hello\"}");
+        JsonObject jsonMessage = JsonParser.parseString("{\"type\": \"hello\"}").getAsJsonObject();
+        String type = RTMEventsDispatcherImpl.detectEventType(jsonMessage);
         assertThat(type, is("hello"));
+    }
+
+    @Test
+    public void eventSubtypeDetection() {
+        JsonObject jsonMessage = JsonParser.parseString("{ \"type\": \"message\", \"subtype\": \"bot_message\" }").getAsJsonObject();
+        String subtype = RTMEventsDispatcherImpl.detectEventSubType(jsonMessage);
+        assertThat(subtype, is("bot_message"));
+    }
+
+    @Test
+    public void eventInnerSubtypeDetection() {
+        JsonObject jsonMessage = JsonParser.parseString("{\"type\": \"pin_added\", \"item\": { \"type\": \"message\", \"subtype\": \"bot_message\" } }").getAsJsonObject();
+        String subtype = RTMEventsDispatcherImpl.detectEventSubType(jsonMessage);
+        assertThat(subtype, is(""));
     }
 
     @Test
