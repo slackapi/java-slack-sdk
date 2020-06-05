@@ -560,7 +560,8 @@
         ]
       },
       "invites_limit": false,
-      "ntlm_credential_domains": ""
+      "ntlm_credential_domains": "",
+      "allow_admin_retention_override": 12345
     },
     "icon": {
       "image_34": "https://www.example.com/",
