@@ -3,6 +3,9 @@ package com.slack.api.methods;
 import com.google.gson.Gson;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistAddRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
@@ -157,6 +160,29 @@ public class RequestFormBuilder {
         if (req.getTargetTeamIds() != null) {
             setIfNotNull("target_team_ids", req.getTargetTeamIds().stream().collect(joining(",")), form);
         }
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsWhitelistAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("group_id", req.getGroupId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsWhitelistRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("group_id", req.getGroupId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsWhitelistListGroupsLinkedToChannelRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }

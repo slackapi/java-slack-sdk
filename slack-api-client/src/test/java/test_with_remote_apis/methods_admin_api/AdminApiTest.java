@@ -9,6 +9,9 @@ import com.slack.api.methods.request.admin.users.AdminUsersRemoveRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
@@ -46,6 +49,7 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 
 @Slf4j
 public class AdminApiTest {
@@ -381,7 +385,7 @@ public class AdminApiTest {
     }
 
     @Test
-    public void usergroups() throws Exception {
+    public void usergroups_channels() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null && idpUsergroupId != null) {
             List<String> channelIds = slack.methods(teamAdminUserToken).conversationsList(r -> r
                     .excludeArchived(true)
@@ -402,6 +406,51 @@ public class AdminApiTest {
             AdminUsergroupsRemoveChannelsResponse removeChannels = orgAdminClient.adminUsergroupsRemoveChannels(r -> r
                     .usergroupId(idpUsergroupId).channelIds(channelIds));
             assertThat(removeChannels.getError(), is(nullValue()));
+        }
+    }
+
+    static String getOrCreatePrivateChannel() throws Exception {
+        List<Conversation> privateChannels = slack.methods(teamAdminUserToken).conversationsList(r -> r
+                .excludeArchived(true).types(Arrays.asList(ConversationType.PRIVATE_CHANNEL)).limit(1)).getChannels();
+        if (privateChannels.size() == 0) {
+            String name = "private-test-" + System.currentTimeMillis();
+            ConversationsCreateResponse creation = slack.methods(teamAdminUserToken).conversationsCreate(r -> r.name(name).isPrivate(true));
+            return creation.getChannel().getId();
+        } else {
+            return privateChannels.get(0).getId();
+        }
+    }
+
+    @Test
+    public void conv_whitelist() throws Exception {
+        if (teamAdminUserToken != null && orgAdminUserToken != null && idpUsergroupId != null) {
+            String channelId = getOrCreatePrivateChannel();
+            MethodsClient orgAdminClient = slack.methods(orgAdminUserToken);
+            AdminConversationsWhitelistListGroupsLinkedToChannelResponse list =
+                    orgAdminClient.adminConversationsWhitelistListGroupsLinkedToChannel(r -> r.channelId(channelId).teamId(teamId));
+            assertThat(list.getError(), is(nullValue()));
+
+            Thread.sleep(10000L); // TO avoid rate limited errors
+            list = orgAdminClient.adminConversationsWhitelistListGroupsLinkedToChannel(r -> r.channelId("dummy").teamId(teamId));
+            assertThat(list.getError(), is("invalid_arguments"));
+
+            AdminConversationsWhitelistAddResponse add = orgAdminClient.adminConversationsWhitelistAdd(r -> r
+                    .teamId(teamId).channelId(channelId).groupId(idpUsergroupId));
+            assertThat(add.getError(), is(nullValue()));
+
+            Thread.sleep(10000L); // TO avoid rate limited errors
+            add = orgAdminClient.adminConversationsWhitelistAdd(r -> r
+                    .teamId(teamId).channelId("dummy").groupId(idpUsergroupId));
+            assertThat(add.getError(), is("invalid_arguments"));
+
+            AdminConversationsWhitelistRemoveResponse remove = orgAdminClient.adminConversationsWhitelistRemove(r -> r
+                    .teamId(teamId).channelId(channelId).groupId(idpUsergroupId));
+            assertThat(remove.getError(), is(nullValue()));
+
+            Thread.sleep(20000L); // TO avoid rate limited errors
+            remove = orgAdminClient.adminConversationsWhitelistRemove(r -> r
+                    .teamId(teamId).channelId("dummy").groupId(idpUsergroupId));
+            assertThat(remove.getError(), is("invalid_arguments"));
         }
     }
 

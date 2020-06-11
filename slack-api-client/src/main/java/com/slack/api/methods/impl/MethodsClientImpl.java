@@ -5,6 +5,9 @@ import com.slack.api.methods.*;
 import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistAddRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
@@ -84,6 +87,9 @@ import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
@@ -272,6 +278,42 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminConversationsSetTeamsResponse adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) throws IOException, SlackApiException {
         return adminConversationsSetTeams(req.configure(AdminConversationsSetTeamsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsWhitelistAddResponse adminConversationsWhitelistAdd(AdminConversationsWhitelistAddRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_WHITELIST_ADD, getToken(req), AdminConversationsWhitelistAddResponse.class);
+    }
+
+    @Override
+    public AdminConversationsWhitelistAddResponse adminConversationsWhitelistAdd(RequestConfigurator<AdminConversationsWhitelistAddRequest.AdminConversationsWhitelistAddRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsWhitelistAdd(req.configure(AdminConversationsWhitelistAddRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsWhitelistRemoveResponse adminConversationsWhitelistRemove(AdminConversationsWhitelistRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_WHITELIST_REMOVE, getToken(req), AdminConversationsWhitelistRemoveResponse.class);
+    }
+
+    @Override
+    public AdminConversationsWhitelistRemoveResponse adminConversationsWhitelistRemove(RequestConfigurator<AdminConversationsWhitelistRemoveRequest.AdminConversationsWhitelistRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsWhitelistRemove(req.configure(AdminConversationsWhitelistRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsWhitelistListGroupsLinkedToChannelResponse adminConversationsWhitelistListGroupsLinkedToChannel(
+            AdminConversationsWhitelistListGroupsLinkedToChannelRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req),
+                Methods.ADMIN_CONVERSATIONS_WHITELIST_LIST_GROUPS_LINKED_TO_CHANNEL, getToken(req),
+                AdminConversationsWhitelistListGroupsLinkedToChannelResponse.class);
+    }
+
+    @Override
+    public AdminConversationsWhitelistListGroupsLinkedToChannelResponse adminConversationsWhitelistListGroupsLinkedToChannel(
+            RequestConfigurator<AdminConversationsWhitelistListGroupsLinkedToChannelRequest.AdminConversationsWhitelistListGroupsLinkedToChannelRequestBuilder> req)
+            throws IOException, SlackApiException {
+        return adminConversationsWhitelistListGroupsLinkedToChannel(
+                req.configure(AdminConversationsWhitelistListGroupsLinkedToChannelRequest.builder()).build());
     }
 
     @Override
