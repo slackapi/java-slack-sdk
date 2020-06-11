@@ -27,6 +27,15 @@ public class Methods {
     public static final String ADMIN_CONVERSATIONS_SET_TEAMS = "admin.conversations.setTeams";
 
     // ------------------------------
+    // admin.conversations.whitelist
+    // ------------------------------
+
+    public static final String ADMIN_CONVERSATIONS_WHITELIST_ADD = "admin.conversations.whitelist.add";
+    public static final String ADMIN_CONVERSATIONS_WHITELIST_LIST_GROUPS_LINKED_TO_CHANNEL
+            = "admin.conversations.whitelist.listGroupsLinkedToChannel";
+    public static final String ADMIN_CONVERSATIONS_WHITELIST_REMOVE = "admin.conversations.whitelist.remove";
+
+    // ------------------------------
     // admin.emoji
     // ------------------------------
 

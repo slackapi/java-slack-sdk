@@ -7,6 +7,9 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistAddRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
@@ -73,6 +76,9 @@ import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
@@ -240,6 +246,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminConversationsSetTeamsResponse> adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) {
         return adminConversationsSetTeams(req.configure(AdminConversationsSetTeamsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistAddResponse> adminConversationsWhitelistAdd(AdminConversationsWhitelistAddRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_WHITELIST_ADD, toMap(req), () -> methods.adminConversationsWhitelistAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistAddResponse> adminConversationsWhitelistAdd(RequestConfigurator<AdminConversationsWhitelistAddRequest.AdminConversationsWhitelistAddRequestBuilder> req) {
+        return adminConversationsWhitelistAdd(req.configure(AdminConversationsWhitelistAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistRemoveResponse> adminConversationsWhitelistRemove(AdminConversationsWhitelistRemoveRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_WHITELIST_REMOVE, toMap(req), () -> methods.adminConversationsWhitelistRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistRemoveResponse> adminConversationsWhitelistRemove(RequestConfigurator<AdminConversationsWhitelistRemoveRequest.AdminConversationsWhitelistRemoveRequestBuilder> req) {
+        return adminConversationsWhitelistRemove(req.configure(AdminConversationsWhitelistRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistListGroupsLinkedToChannelResponse> adminConversationsWhitelistListGroupsLinkedToChannel(AdminConversationsWhitelistListGroupsLinkedToChannelRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_WHITELIST_LIST_GROUPS_LINKED_TO_CHANNEL, toMap(req), () -> methods.adminConversationsWhitelistListGroupsLinkedToChannel(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistListGroupsLinkedToChannelResponse> adminConversationsWhitelistListGroupsLinkedToChannel(RequestConfigurator<AdminConversationsWhitelistListGroupsLinkedToChannelRequest.AdminConversationsWhitelistListGroupsLinkedToChannelRequestBuilder> req) {
+        return adminConversationsWhitelistListGroupsLinkedToChannel(req.configure(AdminConversationsWhitelistListGroupsLinkedToChannelRequest.builder()).build());
     }
 
     @Override
