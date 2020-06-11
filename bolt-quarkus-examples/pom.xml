@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <quarkus.version>1.5.0.Final</quarkus.version>
+        <quarkus.version>1.5.1.Final</quarkus.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <maven.compiler.target>1.8</maven.compiler.target>

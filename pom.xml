@@ -42,7 +42,7 @@
         <lombok-maven-plugin.version>1.18.10.0</lombok-maven-plugin.version>
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
         <slf4j.version>1.7.30</slf4j.version>
-        <aws.s3.version>1.11.791</aws.s3.version>
+        <aws.s3.version>1.11.801</aws.s3.version>
         <junit.version>4.13</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
         <logback.version>1.2.3</logback.version>
