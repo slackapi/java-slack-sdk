@@ -2,6 +2,15 @@
   "ok": false,
   "no_op": false,
   "already_open": false,
+  "warning": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ],
+    "warnings": [
+      ""
+    ]
+  },
   "error": "",
   "needed": "",
   "provided": ""

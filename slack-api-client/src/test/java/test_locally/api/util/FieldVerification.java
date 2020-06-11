@@ -91,7 +91,8 @@ public class FieldVerification {
             "getError",
             "getWarning",
             "getNeeded",
-            "getProvided"
+            "getProvided",
+            "getResponseMetadata"
     );
 
 }

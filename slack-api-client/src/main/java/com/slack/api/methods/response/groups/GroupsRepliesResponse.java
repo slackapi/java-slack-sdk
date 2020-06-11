@@ -2,6 +2,7 @@ package com.slack.api.methods.response.groups;
 
 import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.Message;
+import com.slack.api.model.ResponseMetadata;
 import com.slack.api.model.ThreadInfo;
 import lombok.Data;
 
@@ -20,4 +21,5 @@ public class GroupsRepliesResponse implements SlackApiResponse {
     private List<Message> messages;
     private ThreadInfo threadInfo;
     private boolean hasMore;
+    private ResponseMetadata responseMetadata;
 }

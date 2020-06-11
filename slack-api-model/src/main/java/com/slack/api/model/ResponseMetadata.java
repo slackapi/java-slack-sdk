@@ -18,4 +18,6 @@ public class ResponseMetadata {
 
     // e.g., [ERROR] must be less than 100 [json-pointer:/limit]
     private List<String> messages;
+    // e.g., method_deprecated
+    private List<String> warnings;
 }

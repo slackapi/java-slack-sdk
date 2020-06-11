@@ -98,6 +98,10 @@ public class Actions {
         public static final String pref_display_real_names = "pref.display_real_names";
         public static final String pref_enterprise_mobile_device_check = "pref.enterprise_mobile_device_check";
         public static final String pref_required_minimum_mobile_version_changed = "pref.required_minimum_mobile_version_changed";
+        public static final String manual_export_downloaded = "manual_export_downloaded";
+        public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
+        public static final String channels_export_downloaded = "channels_export_downloaded";
+        public static final String manual_user_export_downloaded = "manual_user_export_downloaded";
     }
 
     public static class User {

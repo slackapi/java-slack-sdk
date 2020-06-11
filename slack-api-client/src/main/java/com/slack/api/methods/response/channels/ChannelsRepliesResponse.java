@@ -2,6 +2,7 @@ package com.slack.api.methods.response.channels;
 
 import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.Message;
+import com.slack.api.model.ResponseMetadata;
 import com.slack.api.model.ThreadInfo;
 import lombok.Data;
 
@@ -26,4 +27,6 @@ public class ChannelsRepliesResponse implements SlackApiResponse {
      */
     @Deprecated
     private ThreadInfo threadInfo;
+
+    private ResponseMetadata responseMetadata;
 }

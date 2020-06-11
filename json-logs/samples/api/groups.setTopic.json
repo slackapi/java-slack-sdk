@@ -1,6 +1,15 @@
 {
   "topic": "",
   "ok": false,
+  "warning": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ],
+    "warnings": [
+      ""
+    ]
+  },
   "error": "",
   "needed": "",
   "provided": ""
