@@ -2,6 +2,7 @@ package com.slack.api.methods.response.channels;
 
 import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.Channel;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
@@ -15,4 +16,5 @@ public class ChannelsCreateResponse implements SlackApiResponse {
     private String provided;
 
     private Channel channel;
+    private ResponseMetadata responseMetadata;
 }

@@ -50,7 +50,7 @@ public class FieldValidationTest {
         {
             AdminAppsRequestsListResponse obj = parse(prefix + "requests.list", AdminAppsRequestsListResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
             verifyIfAllGettersReturnNonNullRecursively(obj.getAppRequests());
         }
         {
@@ -130,7 +130,7 @@ public class FieldValidationTest {
         {
             AdminTeamsAdminsListResponse obj = parse(prefix + "admins.list", AdminTeamsAdminsListResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         }
         {
             AdminTeamsCreateResponse obj = parse(prefix + "create", AdminTeamsCreateResponse.class);
@@ -147,7 +147,7 @@ public class FieldValidationTest {
         {
             AdminTeamsOwnersListResponse obj = parse(prefix + "owners.list", AdminTeamsOwnersListResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         }
         {
             AdminTeamsSettingsInfoResponse obj = parse(prefix + "settings.info", AdminTeamsSettingsInfoResponse.class);

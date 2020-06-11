@@ -561,7 +561,15 @@
       },
       "invites_limit": false,
       "ntlm_credential_domains": "",
-      "allow_admin_retention_override": 12345
+      "allow_admin_retention_override": 12345,
+      "who_can_manage_private_channels_at_workspace_level": {
+        "user": [
+          ""
+        ],
+        "type": [
+          ""
+        ]
+      }
     },
     "icon": {
       "image_34": "https://www.example.com/",
