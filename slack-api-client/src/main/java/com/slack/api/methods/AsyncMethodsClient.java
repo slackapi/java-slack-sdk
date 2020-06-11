@@ -3,6 +3,9 @@ package com.slack.api.methods;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistAddRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
@@ -69,6 +72,9 @@ import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
@@ -180,6 +186,28 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminConversationsSetTeamsResponse> adminConversationsSetTeams(AdminConversationsSetTeamsRequest req);
 
     CompletableFuture<AdminConversationsSetTeamsResponse> adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req);
+
+    // ------------------------------
+    // admin.conversations.whitelist
+    // ------------------------------
+
+    CompletableFuture<AdminConversationsWhitelistAddResponse> adminConversationsWhitelistAdd(
+            AdminConversationsWhitelistAddRequest req);
+
+    CompletableFuture<AdminConversationsWhitelistAddResponse> adminConversationsWhitelistAdd(
+            RequestConfigurator<AdminConversationsWhitelistAddRequest.AdminConversationsWhitelistAddRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsWhitelistRemoveResponse> adminConversationsWhitelistRemove(
+            AdminConversationsWhitelistRemoveRequest req);
+
+    CompletableFuture<AdminConversationsWhitelistRemoveResponse> adminConversationsWhitelistRemove(
+            RequestConfigurator<AdminConversationsWhitelistRemoveRequest.AdminConversationsWhitelistRemoveRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsWhitelistListGroupsLinkedToChannelResponse> adminConversationsWhitelistListGroupsLinkedToChannel(
+            AdminConversationsWhitelistListGroupsLinkedToChannelRequest req);
+
+    CompletableFuture<AdminConversationsWhitelistListGroupsLinkedToChannelResponse> adminConversationsWhitelistListGroupsLinkedToChannel(
+            RequestConfigurator<AdminConversationsWhitelistListGroupsLinkedToChannelRequest.AdminConversationsWhitelistListGroupsLinkedToChannelRequestBuilder> req);
 
     // ------------------------------
     // admin.emoji
