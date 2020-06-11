@@ -379,9 +379,33 @@ ctx.ackWithPush(newViewInStack)
 
 #### モーダル送信後にメッセージを投稿
 
-`view_submission` のペイロードはデフォルトでは `response_url` を含んでいません。しかし、モーダルがユーザーにメッセージを投稿するためのチャンネルを入力するよう求める `input` タイプのブロックを含む場合、ペイロード内の `response_urls` として URL を受け取ることができます。
+`view_submission` のペイロードはデフォルトでは `response_url` を含んでいません。しかし、モーダルがユーザーにメッセージを投稿するためのチャンネルを入力するよう求める `input` タイプのブロックを含む場合、ペイロード内の `response_urls` (Java では `List<ResponseUrl> responseUrls` となります) として URL を受け取ることができます。
 
 これを有効にするためには [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) もしくは [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) のタイプのブロックエレメントを配置し、さらにその属性として `"response_url_enabled": true` を追加してください。より詳細な情報は [API ドキュメント（英語）](https://api.slack.com/surfaces/modals/using#modal_response_url)を参照してください。
+
+また、ユーザーがモーダルを開いたときに見ていたチャンネルや DM を `initial_conversation(s)` として自動的に反映したい場合は [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) / [`multi_conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select) エレメントの `default_to_current_conversation` を有効にしてください。
+
+```java
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.*;
+import static com.slack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.view.Views.*;
+
+View modalView = view(v -> v
+  .type("modal")
+  .callbackId("request-modal")
+  .submit(viewSubmit(vs -> vs.type("plain_text").text("Start")))
+  .blocks(asBlocks(
+    section(s -> s
+      .text(plainText("The channel we'll post the result"))
+      .accessory(conversationsSelect(conv -> conv
+        .actionId("notification_conv_id")
+        .responseUrlEnabled(true)
+        .defaultToCurrentConversation(true)
+      ))
+    )
+)));
+```
 
 ### `"view_closed"` リクエスト (`notify_on_close` が `true` のときのみ)
 

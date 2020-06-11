@@ -151,6 +151,7 @@
             },
             "action_id": "",
             "initial_conversation": "",
+            "default_to_current_conversation": false,
             "confirm": {
               "title": {
                 "type": "plain_text",
@@ -191,6 +192,7 @@
               "emoji": false
             },
             "action_id": "",
+            "default_to_current_conversation": false,
             "confirm": {
               "title": {
                 "type": "plain_text",

@@ -6,6 +6,7 @@ import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.ChannelsSelectElement;
 import com.slack.api.model.block.element.ConversationsSelectElement;
 import com.slack.api.model.block.element.MultiConversationsSelectElement;
+import com.slack.api.model.view.View;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
@@ -16,6 +17,8 @@ import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.view.Views.view;
+import static com.slack.api.model.view.Views.viewSubmit;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -321,5 +324,74 @@ public class BlocksTest {
             assertNull(element.getResponseUrlEnabled());
         }
     }
+
+    @Test
+    public void defaultToCurrentConversation() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"section\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"mrkdwn\",\n" +
+                "        \"text\": \"Test block with multi conversations select\"\n" +
+                "      },\n" +
+                "      \"accessory\": {\n" +
+                "        \"type\": \"multi_conversations_select\",\n" +
+                "        \"placeholder\": {\n" +
+                "          \"type\": \"plain_text\",\n" +
+                "          \"text\": \"Select conversations\",\n" +
+                "          \"emoji\": true\n" +
+                "        },\n" +
+                "        \"default_to_current_conversation\": true\n" +
+                "      }\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"type\": \"section\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"mrkdwn\",\n" +
+                "        \"text\": \"Test block with multi conversations select\"\n" +
+                "      },\n" +
+                "      \"accessory\": {\n" +
+                "        \"type\": \"conversations_select\",\n" +
+                "        \"placeholder\": {\n" +
+                "          \"type\": \"plain_text\",\n" +
+                "          \"text\": \"Select conversations\",\n" +
+                "          \"emoji\": true\n" +
+                "        },\n" +
+                "        \"default_to_current_conversation\": true\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertNotNull(message);
+        assertEquals(2, message.getBlocks().size());
+        SectionBlock section1 = (SectionBlock) message.getBlocks().get(0);
+        MultiConversationsSelectElement elem1 = (MultiConversationsSelectElement) (section1).getAccessory();
+        assertTrue(elem1.getDefaultToCurrentConversation());
+        SectionBlock section2 = (SectionBlock) message.getBlocks().get(1);
+        ConversationsSelectElement elem2 = (ConversationsSelectElement) (section2).getAccessory();
+        assertTrue(elem2.getDefaultToCurrentConversation());
+    }
+
+    @Test
+    public void codeInDocs() {
+        View modalView = view(v -> v
+                .type("modal")
+                .callbackId("view-id")
+                .submit(viewSubmit(vs -> vs.type("plain_text").text("Submit")))
+                .blocks(asBlocks(
+                        section(s -> s
+                                .text(plainText("Conversation to post the result"))
+                                .accessory(conversationsSelect(conv -> conv
+                                        .actionId("a")
+                                        .defaultToCurrentConversation(true)
+                                        .responseUrlEnabled(true))
+                                )
+                        )
+                )));
+        assertNotNull(modalView);
+    }
+
 
 }

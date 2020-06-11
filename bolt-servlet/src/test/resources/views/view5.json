@@ -1,0 +1,48 @@
+{
+  "callback_id": "view-callback-id",
+  "type": "modal",
+  "notify_on_close": true,
+  "title": {
+    "type": "plain_text",
+    "text": "My App",
+    "emoji": true
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit",
+    "emoji": true
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Cancel",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "type": "input",
+      "block_id": "b1",
+      "element": {
+        "type": "conversations_select",
+        "action_id": "a",
+        "default_to_current_conversation": true
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Single"
+      }
+    },
+    {
+      "type": "input",
+      "block_id": "b2",
+      "element": {
+        "type": "multi_conversations_select",
+        "action_id": "a",
+        "default_to_current_conversation": true
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Multi"
+      }
+    }
+  ]
+}
