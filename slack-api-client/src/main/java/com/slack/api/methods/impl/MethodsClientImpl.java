@@ -161,6 +161,7 @@ import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.*;
+import com.slack.api.methods.response.users.UsersLookupByEmailResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;

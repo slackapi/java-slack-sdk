@@ -4,6 +4,7 @@ import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.User;
 import lombok.Data;
 
+@Deprecated // use com.slack.api.methods.response.users.UsersLookupByEmailResponse instead
 @Data
 public class UsersLookupByEmailResponse implements SlackApiResponse {
 
