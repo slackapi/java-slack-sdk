@@ -60,6 +60,7 @@
               "initial_channel": "",
               "response_url_enabled": false,
               "initial_conversation": "",
+              "default_to_current_conversation": false,
               "filter": {
                 "exclude_external_shared_channels": false,
                 "exclude_bot_users": false
