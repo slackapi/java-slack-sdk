@@ -570,7 +570,8 @@
         "type": [
           ""
         ]
-      }
+      },
+      "has_compliance_export": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
