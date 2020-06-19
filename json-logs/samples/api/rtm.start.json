@@ -333,7 +333,8 @@
       },
       "channel_sidebar_hide_browse_dms_link": false,
       "enable_all_dms_view": false,
-      "seen_edit_mode": false
+      "seen_edit_mode": false,
+      "newxp_seen_help_message": 12345
     },
     "created": 12345,
     "first_login": 12345,
