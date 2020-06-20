@@ -12,6 +12,9 @@ class RichTextSectionElementBuilder private constructor(
 ) : Builder<RichTextSectionElement>, RichTextElementDsl by elementsContainer {
     constructor() : this(MultiRichTextElementContainer())
 
+    /**
+     * Rich text elements contained within this section.
+     */
     fun elements(builder: RichTextElementDsl.() -> Unit) {
         elementsContainer.apply(builder)
     }

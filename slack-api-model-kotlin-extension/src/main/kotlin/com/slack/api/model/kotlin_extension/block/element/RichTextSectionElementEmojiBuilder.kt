@@ -7,7 +7,7 @@ import com.slack.api.model.kotlin_extension.block.element.container.SingleRichTe
 import com.slack.api.model.kotlin_extension.block.element.dsl.RichTextStyleDsl
 
 @BlockLayoutBuilder
-class RichTextElementEmojiBuilder private constructor(
+class RichTextSectionElementEmojiBuilder private constructor(
         private val styleContainer: SingleRichTextStyleContainer
 ) : Builder<RichTextSectionElement.Emoji>, RichTextStyleDsl by styleContainer {
     private var name: String? = null
@@ -15,10 +15,16 @@ class RichTextElementEmojiBuilder private constructor(
 
     constructor() : this(SingleRichTextStyleContainer())
 
+    /**
+     * The name of the emoji to render.
+     */
     fun name(name: String) {
         this.name = name
     }
 
+    /**
+     * If this is an emoji that supports skin tones, this will be the index of the skin tone rendered.
+     */
     fun skinTone(tone: Int) {
         skinTone = tone
     }

@@ -7,27 +7,24 @@ import com.slack.api.model.kotlin_extension.block.element.container.SingleRichTe
 import com.slack.api.model.kotlin_extension.block.element.dsl.RichTextStyleDsl
 
 @BlockLayoutBuilder
-class RichTextElementLinkBuilder private constructor(
+class RichTextSectionElementTeamBuilder private constructor(
         private val styleContainer: SingleRichTextStyleContainer
-) : Builder<RichTextSectionElement.Link>, RichTextStyleDsl by styleContainer {
-    private var url: String? = null
-    private var text: String? = null
+) : Builder<RichTextSectionElement.Team>, RichTextStyleDsl by styleContainer {
+    private var teamId: String? = null
 
     constructor() : this(SingleRichTextStyleContainer())
 
-    fun url(url: String) {
-        this.url = url
+    /**
+     * The ID of the referenced team.
+     */
+    fun teamId(id: String) {
+        teamId = id
     }
 
-    fun text(text: String) {
-        this.text = text
-    }
-
-    override fun build(): RichTextSectionElement.Link {
-        return RichTextSectionElement.Link.builder()
+    override fun build(): RichTextSectionElement.Team {
+        return RichTextSectionElement.Team.builder()
                 .style(styleContainer.underlying)
-                .url(url)
-                .text(text)
+                .teamId(teamId)
                 .build()
     }
 }

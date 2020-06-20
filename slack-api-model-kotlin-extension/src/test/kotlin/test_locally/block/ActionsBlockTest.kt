@@ -22,7 +22,7 @@ class ActionsBlockTest {
                 }
                 conversationsSelect {
                     actionId("a-conv")
-                    conversationsFilter(ConversationType.PUBLIC, ConversationType.IM, excludeExternalSharedChannels = true, excludeBotUsers = true)
+                    filter(ConversationType.PUBLIC, ConversationType.IM, excludeExternalSharedChannels = true, excludeBotUsers = true)
                 }
             }
         }

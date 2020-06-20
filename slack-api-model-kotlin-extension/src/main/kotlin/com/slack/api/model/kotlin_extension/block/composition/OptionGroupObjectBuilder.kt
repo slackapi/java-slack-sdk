@@ -15,8 +15,24 @@ class OptionGroupObjectBuilder private constructor(
 
     constructor() : this(MultiOptionContainer())
 
+    /**
+     * Fills the label field of the option group object with a plain text object.
+     *
+     * The label shown above this group of options. Maximum length for the text in this field is 75 characters.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#option_group">Option group object documentation</a>
+     */
     fun label(text: String, emoji: Boolean? = null) {
         label = PlainTextObject(text, emoji)
+    }
+
+    /**
+     * An array of option objects that belong to this specific group. Maximum of 100 items.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#option_group">Option group object documentation</a>
+     */
+    fun options(builder: OptionObjectDsl.() -> Unit) {
+        this.optionContainer.apply(builder)
     }
 
     override fun build(): OptionGroupObject {

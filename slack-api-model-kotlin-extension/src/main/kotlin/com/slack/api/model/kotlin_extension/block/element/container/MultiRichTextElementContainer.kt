@@ -8,56 +8,56 @@ import com.slack.api.model.kotlin_extension.block.element.dsl.RichTextElementDsl
 class MultiRichTextElementContainer : RichTextElementDsl {
     val underlying = mutableListOf<RichTextElement>()
 
-    override fun text(builder: RichTextElementTextBuilder.() -> Unit) {
-        underlying += RichTextElementTextBuilder().apply(builder).build()
+    override fun text(builder: RichTextSectionElementTextBuilder.() -> Unit) {
+        underlying += RichTextSectionElementTextBuilder().apply(builder).build()
     }
 
     override fun text(value: String) {
-        underlying += RichTextElementTextBuilder().apply {
+        underlying += RichTextSectionElementTextBuilder().apply {
             text(value)
         }.build()
     }
 
-    override fun channel(builder: RichTextElementChannelBuilder.() -> Unit) {
-        underlying += RichTextElementChannelBuilder().apply(builder).build()
+    override fun channel(builder: RichTextSectionElementChannelBuilder.() -> Unit) {
+        underlying += RichTextSectionElementChannelBuilder().apply(builder).build()
     }
 
     override fun channel(channelId: String) {
-        underlying += RichTextElementChannelBuilder().apply {
+        underlying += RichTextSectionElementChannelBuilder().apply {
             channelId(channelId)
         }.build()
     }
 
-    override fun user(builder: RichTextElementUserBuilder.() -> Unit) {
-        underlying += RichTextElementUserBuilder().apply(builder).build()
+    override fun user(builder: RichTextSectionElementUserBuilder.() -> Unit) {
+        underlying += RichTextSectionElementUserBuilder().apply(builder).build()
     }
 
     override fun user(userId: String) {
-        underlying += RichTextElementUserBuilder().apply {
+        underlying += RichTextSectionElementUserBuilder().apply {
             userId(userId)
         }.build()
     }
 
-    override fun emoji(builder: RichTextElementEmojiBuilder.() -> Unit) {
-        underlying += RichTextElementEmojiBuilder().apply(builder).build()
+    override fun emoji(builder: RichTextSectionElementEmojiBuilder.() -> Unit) {
+        underlying += RichTextSectionElementEmojiBuilder().apply(builder).build()
     }
 
     override fun emoji(emojiName: String) {
-        underlying += RichTextElementEmojiBuilder().apply {
+        underlying += RichTextSectionElementEmojiBuilder().apply {
             name(emojiName)
         }.build()
     }
 
-    override fun link(builder: RichTextElementLinkBuilder.() -> Unit) {
-        underlying += RichTextElementLinkBuilder().apply(builder).build()
+    override fun link(builder: RichTextSectionElementLinkBuilder.() -> Unit) {
+        underlying += RichTextSectionElementLinkBuilder().apply(builder).build()
     }
 
-    override fun team(builder: RichTextElementTeamBuilder.() -> Unit) {
-        underlying += RichTextElementTeamBuilder().apply(builder).build()
+    override fun team(builder: RichTextSectionElementTeamBuilder.() -> Unit) {
+        underlying += RichTextSectionElementTeamBuilder().apply(builder).build()
     }
 
     override fun team(teamId: String) {
-        underlying += RichTextElementTeamBuilder().apply {
+        underlying += RichTextSectionElementTeamBuilder().apply {
             teamId(teamId)
         }.build()
     }

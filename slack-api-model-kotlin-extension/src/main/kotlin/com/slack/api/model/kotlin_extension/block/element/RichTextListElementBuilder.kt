@@ -15,18 +15,35 @@ class RichTextListElementBuilder private constructor(
 
     constructor() : this(MultiRichTextElementContainer())
 
+    /**
+     * The list items to render.
+     */
     fun elements(builder: RichTextElementDsl.() -> Unit) {
         this.apply(builder)
     }
 
+    /**
+     * The list style, e.g. "bulleted".
+     *
+     * This implementation uses a type safe enum for the list style.
+     */
     fun style(listStyle: RichTextListStyle) {
         style = listStyle.value
     }
 
+    /**
+     * The list style, e.g. "bulleted".
+     *
+     * This implementation uses a string for the list style. This may be preferable if a new
+     * list style is introduced and the enum is not sufficient.
+     */
     fun style(listStyle: String) {
         style = listStyle
     }
 
+    /**
+     * The indent level of the list items.
+     */
     fun indent(level: Int) {
         indent = level
     }
