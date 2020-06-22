@@ -64,11 +64,4 @@ interface LayoutBlockDsl {
      * @see <a href="https://api.slack.com/surfaces/modals/using#gathering_input">Using modals guide</a>
      */
     fun input(builder: InputBlockBuilder.() -> Unit)
-
-    /**
-     * A text block which defines more precise formatting than just writing out markdown.
-     *
-     * @see <a href="https://api.slack.com/changelog/2019-09-what-they-see-is-what-you-get-and-more-and-less">Rich text block blog post</a>
-     */
-    fun richText(builder: RichTextBlockBuilder.() -> Unit)
 }

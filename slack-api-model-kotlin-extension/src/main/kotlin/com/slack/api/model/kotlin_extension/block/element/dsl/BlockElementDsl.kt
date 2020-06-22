@@ -6,7 +6,7 @@ import com.slack.api.model.kotlin_extension.block.element.OverflowMenuElementBui
 
 // same name with the object + "Dsl" suffix
 @BlockLayoutBuilder
-interface BlockElementDsl : BlockElementInputDsl, BlockElementRichTextDsl {
+interface BlockElementDsl : BlockElementInputDsl {
     /**
      * An interactive component that inserts a button. The button can be a trigger for anything from opening a
      * simple link to starting a complex workflow.

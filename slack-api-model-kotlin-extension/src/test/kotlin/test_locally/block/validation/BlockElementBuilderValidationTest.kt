@@ -78,56 +78,6 @@ class BlockElementBuilderValidationTest {
     }
 
     @Test
-    fun testRichTextSectionElementChannelBuilder() {
-        validateMethodNames(RichTextSectionElement.Channel::class.java, RichTextSectionElementChannelBuilder::class.java)
-    }
-
-    @Test
-    fun testRichTextSectionElementEmojiBuilder() {
-        validateMethodNames(RichTextSectionElement.Emoji::class.java, RichTextSectionElementEmojiBuilder::class.java)
-    }
-
-    @Test
-    fun testRichTextSectionElementLinkBuilder() {
-        validateMethodNames(RichTextSectionElement.Link::class.java, RichTextSectionElementLinkBuilder::class.java)
-    }
-
-    @Test
-    fun testRichTextSectionElementTeamBuilder() {
-        validateMethodNames(RichTextSectionElement.Team::class.java, RichTextSectionElementTeamBuilder::class.java)
-    }
-
-    @Test
-    fun testRichTextSectionElementTextBuilder() {
-        validateMethodNames(RichTextSectionElement.Text::class.java, RichTextSectionElementTextBuilder::class.java)
-    }
-
-    @Test
-    fun testRichTextSectionElementUserBuilder() {
-        validateMethodNames(RichTextSectionElement.User::class.java, RichTextSectionElementUserBuilder::class.java)
-    }
-
-    @Test
-    fun testRichTextListElementBuilder() {
-        validateMethodNames(RichTextListElement::class.java, RichTextListElementBuilder::class.java)
-    }
-
-    @Test
-    fun testRichTextPreformattedElementBuilder() {
-        validateMethodNames(RichTextPreformattedElement::class.java, RichTextPreformattedElementBuilder::class.java)
-    }
-
-    @Test
-    fun testRichTextQuoteElementBuilder() {
-        validateMethodNames(RichTextQuoteElement::class.java, RichTextQuoteElementBuilder::class.java)
-    }
-
-    @Test
-    fun testRichTextSectionElementBuilder() {
-        validateMethodNames(RichTextSectionElement::class.java, RichTextSectionElementBuilder::class.java)
-    }
-
-    @Test
     fun testStaticSelectElementBuilder() {
         validateMethodNames(StaticSelectElement::class.java, StaticSelectElementBuilder::class.java)
     }

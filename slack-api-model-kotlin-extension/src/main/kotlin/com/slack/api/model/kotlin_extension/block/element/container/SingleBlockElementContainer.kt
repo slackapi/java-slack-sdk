@@ -78,22 +78,6 @@ class SingleBlockElementContainer : BlockElementDsl {
         underlying = RadioButtonsElementBuilder().apply(builder).build()
     }
 
-    override fun richTextList(builder: RichTextListElementBuilder.() -> Unit) {
-        underlying = RichTextListElementBuilder().apply(builder).build()
-    }
-
-    override fun richTextPreformatted(builder: RichTextPreformattedElementBuilder.() -> Unit) {
-        underlying = RichTextPreformattedElementBuilder().apply(builder).build()
-    }
-
-    override fun richTextQuote(builder: RichTextQuoteElementBuilder.() -> Unit) {
-        underlying = RichTextQuoteElementBuilder().apply(builder).build()
-    }
-
-    override fun richTextSection(builder: RichTextSectionElementBuilder.() -> Unit) {
-        underlying = RichTextSectionElementBuilder().apply(builder).build()
-    }
-
     override fun staticSelect(builder: StaticSelectElementBuilder.() -> Unit) {
         underlying = StaticSelectElementBuilder().apply(builder).build()
     }

@@ -3,9 +3,8 @@ package test_locally.methods
 import com.slack.api.methods.kotlin_extension.request.chat.blocks
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
 import com.slack.api.model.block.Blocks.asBlocks
-import com.slack.api.model.block.Blocks.richText
-import com.slack.api.model.block.element.BlockElements.*
-import com.slack.api.model.block.element.RichTextSectionElement
+import com.slack.api.model.block.Blocks.section
+import com.slack.api.model.block.composition.BlockCompositions.*
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -15,22 +14,11 @@ class ExtensionMethodsTest {
     fun `Can add blocks to message post request via extension`() {
         val messageRequest = ChatPostMessageRequest.builder()
                 .blocks {
-                    richText {
-                        richTextSection {
-                            text("You can get to ")
-                            text {
-                                text("google")
-                                style(bold = true)
-                            }
-                            text(" via ")
-                            link {
-                                url("https://www.google.com")
-                                text("this link")
-                            }
-                            text(" ")
-                            emoji("thumbsup")
-                            text(" ")
-                            emoji("tada")
+                    section {
+                        markdownText("You can get to **google** via <this link|https://www.google.com> :thumbsup: :tada:")
+                        fields {
+                            plainText("30 clicks")
+                            plainText("0.001 second load time")
                         }
                     }
                 }
@@ -38,23 +26,13 @@ class ExtensionMethodsTest {
 
         val expected = ChatPostMessageRequest.builder()
                 .blocks(asBlocks(
-                        richText { thisRichText ->
-                            thisRichText.elements(asElements(
-                                    richTextSection { thisSection ->
-                                        thisSection.elements(asRichTextElements(
-                                                RichTextSectionElement.Text.builder().text("You can get to ").build(),
-                                                RichTextSectionElement.Text.builder().text("google").style(
-                                                        RichTextSectionElement.TextStyle.builder().bold(true).build()
-                                                ).build(),
-                                                RichTextSectionElement.Text.builder().text(" via ").build(),
-                                                RichTextSectionElement.Link.builder().text("this link").url("https://www.google.com").build(),
-                                                RichTextSectionElement.Text.builder().text(" ").build(),
-                                                RichTextSectionElement.Emoji.builder().name("thumbsup").build(),
-                                                RichTextSectionElement.Text.builder().text(" ").build(),
-                                                RichTextSectionElement.Emoji.builder().name("tada").build()
-                                        ))
-                                    }
-                            ))
+                        section { thisSection ->
+                            thisSection
+                                    .text(markdownText("You can get to **google** via <this link|https://www.google.com> :thumbsup: :tada:"))
+                                    .fields(asSectionFields(
+                                            plainText("30 clicks"),
+                                            plainText("0.001 second load time")
+                                    ))
                         }
                 ))
                 .build()
