@@ -9,10 +9,10 @@ import java.util.List;
  * https://api.slack.com/changelog/2019-09-what-they-see-is-what-you-get-and-more-and-less
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class RichTextListElement extends BlockElement implements RichTextElement {
 
     public static final String TYPE = "rich_text_list";

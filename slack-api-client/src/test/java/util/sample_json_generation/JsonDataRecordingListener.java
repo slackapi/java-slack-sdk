@@ -21,7 +21,7 @@ public class JsonDataRecordingListener extends HttpResponseListener {
         if (remaining.size() > 0) {
             log.debug("remaining: {} ({})",
                     remaining.size(),
-                    remaining.stream().map(r -> "`" + r.substring(0, 30) + "...`").collect(joining(",", "[", "]")));
+                    remaining.stream().map(r -> "`" + (r.length() > 30 ? r.substring(0, 30) : r) + "...`").collect(joining(",", "[", "]")));
         }
         return remaining.size() == 0;
     }
@@ -29,13 +29,15 @@ public class JsonDataRecordingListener extends HttpResponseListener {
     @Override
     public void accept(State state) {
         executorService.submit(() -> {
-            String bodyPrefix = state.getParsedResponseBody().substring(0, 100) + "...";
-            if (remaining.contains(bodyPrefix)) {
-                // skip the same content
-                return;
+            String bodyPrefix = state.getParsedResponseBody();
+            if (bodyPrefix != null && bodyPrefix.length() > 100) {
+                bodyPrefix = state.getParsedResponseBody().substring(0, 100) + "...";
             }
-
             try {
+                if (remaining.contains(bodyPrefix)) {
+                    // skip the same content
+                    return;
+                }
                 remaining.add(bodyPrefix);
                 log.debug("Started for `{}` - remaining: {}", bodyPrefix, remaining.size());
                 JsonDataRecorder recorder = new JsonDataRecorder(state.getConfig(), "../json-logs");

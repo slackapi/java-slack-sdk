@@ -7,6 +7,9 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistAddRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
+import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
@@ -14,12 +17,20 @@ import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
 import com.slack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
 import com.slack.api.methods.request.admin.teams.settings.*;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
+import com.slack.api.methods.request.calls.CallsAddRequest;
+import com.slack.api.methods.request.calls.CallsEndRequest;
+import com.slack.api.methods.request.calls.CallsInfoRequest;
+import com.slack.api.methods.request.calls.CallsUpdateRequest;
+import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
@@ -65,6 +76,9 @@ import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
@@ -72,13 +86,20 @@ import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.slack.api.methods.response.admin.teams.settings.*;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
-import com.slack.api.methods.response.channels.UsersLookupByEmailResponse;
+import com.slack.api.methods.response.calls.CallsAddResponse;
+import com.slack.api.methods.response.calls.CallsEndResponse;
+import com.slack.api.methods.response.calls.CallsInfoResponse;
+import com.slack.api.methods.response.calls.CallsUpdateResponse;
+import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.*;
@@ -224,6 +245,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminConversationsSetTeamsResponse> adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) {
         return adminConversationsSetTeams(req.configure(AdminConversationsSetTeamsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistAddResponse> adminConversationsWhitelistAdd(AdminConversationsWhitelistAddRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_WHITELIST_ADD, toMap(req), () -> methods.adminConversationsWhitelistAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistAddResponse> adminConversationsWhitelistAdd(RequestConfigurator<AdminConversationsWhitelistAddRequest.AdminConversationsWhitelistAddRequestBuilder> req) {
+        return adminConversationsWhitelistAdd(req.configure(AdminConversationsWhitelistAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistRemoveResponse> adminConversationsWhitelistRemove(AdminConversationsWhitelistRemoveRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_WHITELIST_REMOVE, toMap(req), () -> methods.adminConversationsWhitelistRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistRemoveResponse> adminConversationsWhitelistRemove(RequestConfigurator<AdminConversationsWhitelistRemoveRequest.AdminConversationsWhitelistRemoveRequestBuilder> req) {
+        return adminConversationsWhitelistRemove(req.configure(AdminConversationsWhitelistRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistListGroupsLinkedToChannelResponse> adminConversationsWhitelistListGroupsLinkedToChannel(AdminConversationsWhitelistListGroupsLinkedToChannelRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_WHITELIST_LIST_GROUPS_LINKED_TO_CHANNEL, toMap(req), () -> methods.adminConversationsWhitelistListGroupsLinkedToChannel(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsWhitelistListGroupsLinkedToChannelResponse> adminConversationsWhitelistListGroupsLinkedToChannel(RequestConfigurator<AdminConversationsWhitelistListGroupsLinkedToChannelRequest.AdminConversationsWhitelistListGroupsLinkedToChannelRequestBuilder> req) {
+        return adminConversationsWhitelistListGroupsLinkedToChannel(req.configure(AdminConversationsWhitelistListGroupsLinkedToChannelRequest.builder()).build());
     }
 
     @Override
@@ -427,6 +478,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminUsergroupsAddChannelsResponse> adminUsergroupsAddChannels(AdminUsergroupsAddChannelsRequest req) {
+        return executor.execute(ADMIN_USERGROUPS_ADD_CHANNELS, toMap(req), () -> methods.adminUsergroupsAddChannels(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsAddChannelsResponse> adminUsergroupsAddChannels(RequestConfigurator<AdminUsergroupsAddChannelsRequest.AdminUsergroupsAddChannelsRequestBuilder> req) {
+        return adminUsergroupsAddChannels(req.configure(AdminUsergroupsAddChannelsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsListChannelsResponse> adminUsergroupsListChannels(AdminUsergroupsListChannelsRequest req) {
+        return executor.execute(ADMIN_USERGROUPS_LIST_CHANNELS, toMap(req), () -> methods.adminUsergroupsListChannels(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsListChannelsResponse> adminUsergroupsListChannels(RequestConfigurator<AdminUsergroupsListChannelsRequest.AdminUsergroupsListChannelsRequestBuilder> req) {
+        return adminUsergroupsListChannels(req.configure(AdminUsergroupsListChannelsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsRemoveChannelsResponse> adminUsergroupsRemoveChannels(AdminUsergroupsRemoveChannelsRequest req) {
+        return executor.execute(ADMIN_USERGROUPS_REMOVE_CHANNELS, toMap(req), () -> methods.adminUsergroupsRemoveChannels(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsRemoveChannelsResponse> adminUsergroupsRemoveChannels(RequestConfigurator<AdminUsergroupsRemoveChannelsRequest.AdminUsergroupsRemoveChannelsRequestBuilder> req) {
+        return adminUsergroupsRemoveChannels(req.configure(AdminUsergroupsRemoveChannelsRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminUsersAssignResponse> adminUsersAssign(AdminUsersAssignRequest req) {
         return executor.execute(ADMIN_USERS_ASSIGN, toMap(req), () -> methods.adminUsersAssign(req));
     }
@@ -564,6 +645,56 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<BotsInfoResponse> botsInfo(RequestConfigurator<BotsInfoRequest.BotsInfoRequestBuilder> req) {
         return botsInfo(req.configure(BotsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsAddResponse> callsAdd(CallsAddRequest req) {
+        return executor.execute(CALLS_ADD, toMap(req), () -> methods.callsAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsAddResponse> callsAdd(RequestConfigurator<CallsAddRequest.CallsAddRequestBuilder> req) {
+        return callsAdd(req.configure(CallsAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsEndResponse> callsEnd(CallsEndRequest req) {
+        return executor.execute(CALLS_END, toMap(req), () -> methods.callsEnd(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsEndResponse> callsEnd(RequestConfigurator<CallsEndRequest.CallsEndRequestBuilder> req) {
+        return callsEnd(req.configure(CallsEndRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsInfoResponse> callsInfo(CallsInfoRequest req) {
+        return executor.execute(CALLS_INFO, toMap(req), () -> methods.callsInfo(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsInfoResponse> callsInfo(RequestConfigurator<CallsInfoRequest.CallsInfoRequestBuilder> req) {
+        return callsInfo(req.configure(CallsInfoRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsUpdateResponse> callsUpdate(CallsUpdateRequest req) {
+        return executor.execute(CALLS_UPDATE, toMap(req), () -> methods.callsUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsUpdateResponse> callsUpdate(RequestConfigurator<CallsUpdateRequest.CallsUpdateRequestBuilder> req) {
+        return callsUpdate(req.configure(CallsUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsParticipantsAddResponse> callsParticipantsAdd(CallsParticipantsAddRequest req) {
+        return executor.execute(CALLS_PARTICIPANTS_ADD, toMap(req), () -> methods.callsParticipantsAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsParticipantsAddResponse> callsParticipantsAdd(RequestConfigurator<CallsParticipantsAddRequest.CallsParticipantsAddRequestBuilder> req) {
+        return callsParticipantsAdd(req.configure(CallsParticipantsAddRequest.builder()).build());
     }
 
     @Override

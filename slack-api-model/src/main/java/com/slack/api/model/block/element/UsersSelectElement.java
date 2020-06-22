@@ -8,10 +8,10 @@ import lombok.*;
  * https://api.slack.com/reference/block-kit/block-elements#users_select
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class UsersSelectElement extends BlockElement {
     public static final String TYPE = "users_select";
     private final String type = TYPE;

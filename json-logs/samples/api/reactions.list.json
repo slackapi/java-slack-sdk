@@ -60,7 +60,8 @@
                     "type": "",
                     "text": "",
                     "emoji": false
-                  }
+                  },
+                  "style": ""
                 },
                 "placeholder": {
                   "type": "",
@@ -70,6 +71,7 @@
                 "initial_channel": "",
                 "response_url_enabled": false,
                 "initial_conversation": "",
+                "default_to_current_conversation": false,
                 "filter": {
                   "exclude_external_shared_channels": false,
                   "exclude_bot_users": false
@@ -150,31 +152,10 @@
               "U00000000"
             ],
             "count": 12345
-          },
-          {
-            "name": "",
-            "users": [
-              "W00000000"
-            ],
-            "count": 12345,
-            "url": "https://www.example.com/"
           }
         ],
         "permalink": "https://www.example.com/",
         "client_msg_id": "",
-        "user_team": "E00000000",
-        "source_team": "E00000000",
-        "user_profile": {
-          "avatar_hash": "",
-          "image_72": "https://www.example.com/",
-          "first_name": "",
-          "real_name": "",
-          "display_name": "",
-          "team": "E00000000",
-          "name": "",
-          "is_restricted": false,
-          "is_ultra_restricted": false
-        },
         "thread_ts": "0000000000.000000",
         "reply_count": 12345,
         "reply_users_count": 12345,
@@ -182,14 +163,71 @@
         "reply_users": [
           "B00000000"
         ],
-        "replies": [
+        "subscribed": false,
+        "files": [
           {
-            "user": "",
-            "ts": ""
+            "id": "F00000000",
+            "created": 12345,
+            "timestamp": 12345,
+            "name": "",
+            "title": "",
+            "mimetype": "",
+            "filetype": "",
+            "pretty_type": "",
+            "user": "U00000000",
+            "editable": false,
+            "size": 12345,
+            "mode": "",
+            "is_external": false,
+            "external_type": "",
+            "is_public": false,
+            "public_url_shared": false,
+            "display_as_bot": false,
+            "username": "",
+            "url_private": "https://www.example.com/",
+            "url_private_download": "https://www.example.com/",
+            "permalink": "https://www.example.com/",
+            "permalink_public": "https://www.example.com/",
+            "preview": "",
+            "last_editor": "U00000000",
+            "non_owner_editable": false,
+            "updated": 12345,
+            "is_starred": false,
+            "has_rich_preview": false
+          },
+          {
+            "id": "F00000000",
+            "created": 12345,
+            "timestamp": 12345,
+            "name": "",
+            "title": "",
+            "mimetype": "",
+            "filetype": "",
+            "pretty_type": "",
+            "user": "U00000000",
+            "editable": false,
+            "size": 12345,
+            "mode": "",
+            "is_external": false,
+            "external_type": "",
+            "is_public": false,
+            "public_url_shared": false,
+            "display_as_bot": false,
+            "username": "",
+            "url_private": "https://www.example.com/",
+            "url_private_download": "https://www.example.com/",
+            "permalink": "https://www.example.com/",
+            "permalink_public": "https://www.example.com/",
+            "preview": "",
+            "last_editor": "U00000000",
+            "non_owner_editable": false,
+            "updated": 12345,
+            "is_starred": false,
+            "has_rich_preview": false
           }
         ],
-        "subscribed": false,
-        "last_read": "0000000000.000000"
+        "upload": false,
+        "display_as_bot": false
       }
     }
   ],

@@ -2,6 +2,7 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.response.users.UsersLookupByEmailResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -82,6 +83,17 @@ public class UsersTest {
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).usersProfileSet(r -> r.user("U123").name("name").value("value"))
                 .get().isOk(), is(true));
+    }
+
+    // NOTE: we can safely remove this tests since v1.1
+    @Test
+    public void test_deprecated_UsersLookupByEmailResponse() throws Exception {
+        UsersLookupByEmailResponse response = slack.methods(ValidToken).usersLookupByEmail(r -> r.email("foo@example.com"));
+        assertThat(response.isOk(), is(true));
+        // for backward-compatibility
+        com.slack.api.methods.response.channels.UsersLookupByEmailResponse deprecatedResponse
+                = slack.methods(ValidToken).usersLookupByEmail(r -> r.email("foo@example.com"));
+        assertThat(deprecatedResponse.isOk(), is(true));
     }
 
 }

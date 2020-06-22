@@ -121,7 +121,7 @@ public class RTMClient implements Closeable {
             this.wssUri = new URI(response.getUrl());
             this.connectedBotUser = response.getSelf();
         } else {
-            throw new IllegalStateException("Failed to the RTM endpoint URL (error: " + response.getError() + ")");
+            throw new IllegalStateException("Failed to connect to the RTM endpoint URL (error: " + response.getError() + ")");
         }
         // start a WebSocket session
         connect();

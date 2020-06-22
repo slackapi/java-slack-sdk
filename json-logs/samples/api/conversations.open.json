@@ -13,9 +13,7 @@
       "subtype": "",
       "text": "",
       "ts": "0000000000.000000",
-      "username": "",
       "bot_id": "B00000000",
-      "thread_ts": "0000000000.000000",
       "blocks": [
         {
           "type": "",
@@ -51,7 +49,8 @@
                   "type": "",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               },
               "placeholder": {
                 "type": "",
@@ -61,6 +60,7 @@
               "initial_channel": "",
               "response_url_enabled": false,
               "initial_conversation": "",
+              "default_to_current_conversation": false,
               "filter": {
                 "exclude_external_shared_channels": false,
                 "exclude_bot_users": false
@@ -141,8 +141,6 @@
     "is_open": false,
     "priority": 12345
   },
-  "no_op": false,
-  "already_open": false,
   "error": "",
   "needed": "",
   "provided": ""

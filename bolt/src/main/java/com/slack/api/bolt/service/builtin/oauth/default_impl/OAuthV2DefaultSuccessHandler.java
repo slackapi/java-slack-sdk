@@ -30,7 +30,10 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
         if (o.getEnterprise() != null) {
             context.setEnterpriseId(o.getEnterprise().getId());
         }
-        context.setTeamId(o.getTeam().getId());
+        // "team" can be null for org-level installation
+        String teamId = o.getTeam() != null ? o.getTeam().getId() : null;
+        String teamName = o.getTeam() != null ? o.getTeam().getName() : null;
+        context.setTeamId(teamId);
         context.setBotUserId(o.getBotUserId());
         context.setBotToken(o.getAccessToken());
         context.setRequestUserId(o.getAuthedUser().getId());
@@ -40,8 +43,8 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
                 .botUserId(o.getBotUserId())
                 .botAccessToken(o.getAccessToken())
                 .enterpriseId(o.getEnterprise() != null ? o.getEnterprise().getId() : null)
-                .teamId(o.getTeam().getId())
-                .teamName(o.getTeam().getName())
+                .teamId(teamId)
+                .teamName(teamName)
                 .scope(o.getScope())
                 .botScope(o.getScope())
                 .installedAt(System.currentTimeMillis());

@@ -10,6 +10,7 @@ lang: ja
 
 また、Java でのコーディングに入る前に「[An overview of message composition（英語）](https://api.slack.com/messaging/composing)」を一読して、Slack メッセージの組み立て方について理解を深めることをおすすめします。
 
+---
 ## テキストの整形
 
 text でメッセージを作成することが、Slack のチャンネルにメッセージを投稿するための最もシンプルなやり方です。
@@ -32,6 +33,7 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 
 見ての通り、`text` を使うのはとてもシンプルです。知らなければならないことは、正しい形式の文字列を指定する方法だけです。Slack でのマークアップ方式については「[Basic formatting with `mrkdwn`（英語）](https://api.slack.com/reference/surfaces/formatting#basics)」を参照してください。
 
+---
 ## Block を使ったリッチなレイアウト
 
 [Block Kit](https://api.slack.com/block-kit) は、メッセージやその他の[サーフェスエリア](https://api.slack.com/surfaces)で利用することができる Slack アプリのための UI フレームワークです。Block Kit は優れたバランスで UI の制御と柔軟性を提供します。

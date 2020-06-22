@@ -104,7 +104,10 @@ public class FieldValidation_d_to_m_Test {
                 "getTo",
                 "getFrom",
                 "getCc",
-                "getShares"
+                "getShares",
+                "getEditor",
+                "getLastEditor",
+                "getUpdated"
         );
     }
 
@@ -182,8 +185,10 @@ public class FieldValidation_d_to_m_Test {
                 "getPreview",
                 "getPreviewHighlight",
                 "getLines",
-                "getLinesMore"
-
+                "getLinesMore",
+                "getEditor",
+                "getLastEditor",
+                "getUpdated"
         );
     }
 
@@ -247,7 +252,8 @@ public class FieldValidation_d_to_m_Test {
                 "getBotLink",
                 "getXFiles",
                 "getUsername",
-                "getLastRead"
+                "getLastRead",
+                "getMembers"
         );
     }
 

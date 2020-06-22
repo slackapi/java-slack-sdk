@@ -29,7 +29,7 @@ public class FieldsTest {
         String json = reader.readWholeAsString("/v1/logs.json");
         LogsResponse obj = GsonFactory.createSnakeCase().fromJson(json, LogsResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
-        verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+        verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         verifyIfAllGettersReturnNonNull(obj.getEntries().get(0), "getDetails");
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getActor());
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getContext());

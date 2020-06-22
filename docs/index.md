@@ -5,34 +5,31 @@ title: "Overview"
 
 # Slack SDK for Java
 
-**Slack SDK for Java** supports all public Slack platform functionality in a Java idiomatic way. The SDK is completely written in Java, so that developers can use this SDK in any JVM language, including Kotlin, Groovy, and Scala without any hurdles.
+**Slack SDK for Java** supports the Slack platform in a Java idiomatic way. The SDK written in Java so developers can use it in any JVM language including Kotlin, Groovy, and Scala.
 
-The SDK offers two different modules depending on what platform features you intend to use:
+Within the SDK, there are two different modules:
 
-* [**Slack API Client**]({{ site.url | append: site.baseurl }}/guides/web-api-basics) for calling a variety of Slack APIs
-* [**Bolt for Java**]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt) Framework for Slack App development with full platform features
-
-If what you want to do is call Slack APIs in your existing services, we recommend using only the **Slack API Client**. If instead, you’re developing a new modern and interactive Slack app, we recommend **Bolt** for it. The framework enables developers to focus on the essential parts of their apps without being bothered by trifles.
+* [**Bolt for Java**]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), which is a framework with a simple API that makes it easy to write modern Slack apps in Java.
+* [**Slack API Client**]({{ site.url | append: site.baseurl }}/guides/web-api-basics), for when you need a more customized approach to building a Slack app in Java.
 
 ---
 
 ## Modules
 
-The table below shows all the available modules. All of them have the same latest version as we release all at the same time, even in the case that some don't have any changes apart from updates on their dependency side.
+The table below shows all the available modules in the Slack Java SDK. All of them have the same latest version as we release all at the same time, even in the case that some don't have any changes apart from updates on their dependency side.
 
 All released versions are available on the Maven Central repositories. The latest version is **{{ site.sdkLatestVersion }}**.
 
 |groupId:artifactId|Description|
 |---|---|
-|[**com.slack.api:slack-api-model**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/{{ site.sdkLatestVersion }}/slack-api-model-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This is a collection of the classes representing the [Slack core objects](https://api.slack.com/types) such as conversations, messages, users, blocks, and surfaces. As this is an essential part of the SDK, all other modules depend on this.|
-|[**com.slack.api:slack-api-client**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This is a collection of the Slack API clients. The supported are Basic API Methods, RTM (Real Time Messaging) API, SCIM API, Audit Logs API, and Status API.|
-|[**com.slack.api:slack-app-backend**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-app-backend) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-app-backend/{{ site.sdkLatestVersion }}/slack-app-backend-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This module is a set of Slack app server-side handlers and data classes for Events API, Interactive Components, Slash Commands, Actions, and OAuth flow. These are used by Bolt framework as the foundation of it in primitive layers.|
-|[**com.slack.api:bolt**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt/{{ site.sdkLatestVersion }}/bolt-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|Bolt is a framework that offers an abstraction layer to build Slack apps with full platform features.|
-|[**com.slack.api:bolt-servlet**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-servlet) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt-servlet/{{ site.sdkLatestVersion }}/bolt-servlet-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This is an adapter for Servlet environments.|
+|[**com.slack.api:bolt**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt/{{ site.sdkLatestVersion }}/bolt-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|Bolt is a framework that offers an abstraction layer to build Slack apps safely and quickly. The most commonly used Servlet environment is supported out-of-the-box.|
 |[**com.slack.api:bolt-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jetty) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt-jetty/{{ site.sdkLatestVersion }}/bolt-jetty-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This module offers a handy way to run Bolt apps on the [Jetty HTTP server](https://www.eclipse.org/jetty/).|
 |[**com.slack.api:bolt-aws-lambda**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-aws-lambda) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt-aws-lambda/{{ site.sdkLatestVersion }}/bolt-aws-lambda-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This module offers a handy way to run Bolt apps on AWS [API Gateway](https://aws.amazon.com/api-gateway/) + [Lambda](https://aws.amazon.com/lambda/).|
 |[**com.slack.api:bolt-micronaut**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-micronaut) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt-micronaut/{{ site.sdkLatestVersion }}/bolt-micronaut-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This is an adapter for [Micronaut](https://micronaut.io/) to run Bolt apps on top of it.|
 |[**com.slack.api:bolt-helidon**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-helidon) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/bolt-helidon/{{ site.sdkLatestVersion }}/bolt-helidon-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This is an adapter for [Helidon SE](https://helidon.io/docs/latest/) to run Bolt apps on top of it.|
+|[**com.slack.api:slack-api-model**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/{{ site.sdkLatestVersion }}/slack-api-model-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This is a collection of the classes representing the [Slack core objects](https://api.slack.com/types) such as conversations, messages, users, blocks, and surfaces. As this is an essential part of the SDK, all other modules depend on this.|
+|[**com.slack.api:slack-api-client**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This is a collection of the Slack API clients. The supported are Basic API Methods, RTM (Real Time Messaging) API, SCIM API, Audit Logs API, and Status API.|
+|[**com.slack.api:slack-app-backend**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-app-backend) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-app-backend/{{ site.sdkLatestVersion }}/slack-app-backend-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|This module is a set of Slack app server-side handlers and data classes for Events API, Interactive Components, Slash Commands, Actions, and OAuth flow. These are used by Bolt framework as the foundation of it in primitive layers.|
 
 ---
 

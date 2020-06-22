@@ -14,6 +14,7 @@ To enable this feature, visit the [Slack App configuration page](http://api.slac
 
 Then, install the app to your development workspace. Each time your app is installed, a new Webhook URL will be generated.
 
+---
 ## How To Use 
 
 Here is a **curl** command example demonstrating how to send a message via an Incoming Webhooks URL.

@@ -36,8 +36,11 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
@@ -314,26 +317,60 @@ public class App {
         }
     }
 
+    /**
+     * Get the Slack URL for beginning the OAuth flow, including the query
+     * params necessary to identify this application to Slack.
+     *
+     * Appends the optional `redirect_uri` query param based on the provided
+     * AppConfig to ensure that the correct OAuth redirect URI is selected in
+     * cases where a Slack application may have multiple redirect URIs
+     * associated with it.
+     *
+     * @param state The OAuth state param
+     * @return The Slack URL to redirect users to for beginning the OAuth flow
+     */
     public String getOauthInstallationUrl(String state) {
         AppConfig config = config();
+
         if (config.getClientId() == null || config.getScope() == null || state == null) {
             return null;
+        }
+
+        String scope = config.getScope() == null ? "" : config.getScope();
+        String redirectUriParam = redirectUriQueryParam(appConfig);
+
+        if (config.isClassicAppPermissionsEnabled()) {
+            // https://api.slack.com/authentication/migration
+            return "https://slack.com/oauth/authorize" +
+                    "?client_id=" + config.getClientId() +
+                    "&scope=" + scope +
+                    "&state=" + state +
+                    redirectUriParam;
         } else {
-            String scope = config.getScope() == null ? "" : config.getScope();
-            if (config.isClassicAppPermissionsEnabled()) {
-                // https://api.slack.com/authentication/migration
-                return "https://slack.com/oauth/authorize" +
-                        "?client_id=" + config.getClientId() +
-                        "&scope=" + scope +
-                        "&state=" + state;
-            } else {
-                String userScope = config.getUserScope() == null ? "" : config.getUserScope();
-                return "https://slack.com/oauth/v2/authorize" +
-                        "?client_id=" + config.getClientId() +
-                        "&scope=" + scope +
-                        "&user_scope=" + userScope +
-                        "&state=" + state;
-            }
+            String userScope = config.getUserScope() == null ? "" : config.getUserScope();
+            return "https://slack.com/oauth/v2/authorize" +
+                    "?client_id=" + config.getClientId() +
+                    "&scope=" + scope +
+                    "&user_scope=" + userScope +
+                    "&state=" + state +
+                    redirectUriParam;
+        }
+    }
+
+    private String redirectUriQueryParam(AppConfig appConfig) {
+        if (appConfig.getRedirectUri() == null) {
+            return "";
+        }
+
+        try {
+            String urlEncodedRedirectUri = URLEncoder.encode(
+                appConfig.getRedirectUri(),
+                StandardCharsets.UTF_8.name()
+            );
+
+            return String.format("&redirect_uri=%s", urlEncodedRedirectUri);
+        } catch (UnsupportedEncodingException e) {
+            return "";
         }
     }
 

@@ -2,6 +2,7 @@ package com.slack.api.methods.response.im;
 
 import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.Message;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
@@ -21,4 +22,5 @@ public class ImHistoryResponse implements SlackApiResponse {
     private boolean hasMore;
     private String channelActionsTs;
     private Integer channelActionsCount;
+    private ResponseMetadata responseMetadata;
 }

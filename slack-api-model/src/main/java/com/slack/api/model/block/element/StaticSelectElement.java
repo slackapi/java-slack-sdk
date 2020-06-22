@@ -12,10 +12,10 @@ import java.util.List;
  * https://api.slack.com/reference/messaging/block-elements#static-select
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class StaticSelectElement extends BlockElement {
     public static final String TYPE = "static_select";
     private final String type = TYPE;

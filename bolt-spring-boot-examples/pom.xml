@@ -6,16 +6,16 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.0.6-SNAPSHOT</version>
+        <version>1.0.12-SNAPSHOT</version>
     </parent>
 
     <properties>
-        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+        <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
     </properties>
 
     <groupId>com.slack.api</groupId>
     <artifactId>bolt-spring-boot-examples</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.0.12-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>

@@ -2,7 +2,6 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
-import com.slack.api.methods.response.api.ApiTestResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

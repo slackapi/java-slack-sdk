@@ -10,6 +10,7 @@ lang: en
 
 This guide covers all the basics of Bolt app development. If you're not yet familiar with Slack app development in general, we recommend reading [An introduction to Slack apps](https://api.slack.com/start/overview).
 
+---
 ## Start with the App class
 
 The **App** class is a place to write only essential parts of your Slack app without being bothered by trifles.
@@ -25,6 +26,7 @@ app.command("/echo", (req, ctx) -> {
 });
 ```
 
+---
 ## Dispatching Events
 
 Here is the list of the available methods to dispatch events.
@@ -45,6 +47,7 @@ Here is the list of the available methods to dispatch events.
 |**app.dialogCancellation**|callback_id **String** \| **Pattern**|**Dialogs**: Responds to the events where users close dialogs by clicking Cancel buttons.|
 |**app.attachmentAction**|callback_id: **String** \| **Pattern**|**Legacy Messaging**: Responds to user actions in **attachments**. These events can be triggered in only messages.|
 
+---
 ## Development Guides by Feature
 
 On these guide pages, you'll find a more concrete example code for each.
@@ -57,6 +60,7 @@ On these guide pages, you'll find a more concrete example code for each.
 * [**Events API**]({{ site.url | append: site.baseurl }}/guides/events-api)
 * [**App Distribution (OAuth Flow)**]({{ site.url | append: site.baseurl }}/guides/app-distribution)
 
+---
 ## Acknowledge Incoming Requests
 
 Actions, commands, and options events must always be acknowledged using the `ack()` method. All such utility methods are available as the instance methods of a **Context** object.
@@ -102,6 +106,7 @@ app.command("/ping", (req, ctx) -> {
 });
 ```
 
+---
 ## Respond to User Actions
 
 Are you already familiar with `response_url`? If not, we recommend reading [this guide](https://api.slack.com/interactivity/handling#message_responses) first.
@@ -123,6 +128,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
+---
 ## Use Web APIs / Reply using say utility
 
 When you need to call some Slack Web APIs in Bolt apps, use `ctx.client()` for it. The **MethodsClient** created by the method already holds a valid bot token. So, you don't need to give a token to it. Just calling a method with parameters as below works for you.
@@ -176,6 +182,7 @@ app.command("/my-search", (req, ctx) -> {
 });
 ```
 
+---
 ## Use Logger
 
 You can access [SLF4J](http://www.slf4j.org/) logger in **Context** objects.
@@ -204,6 +211,7 @@ If you use the [**ch.qos.logback:logback-classic**](https://search.maven.org/art
 </configuration>
 ```
 
+---
 ## Middleware
 
 Bolt offers chaining middleware supports. You can customize **App** behavior by weaving a kind of filter to all events.
@@ -264,10 +272,12 @@ A set of the built-in middleware precedes your custom middleware. So, if the app
 
 The most common would be the case where a request has been denied by **RequestVerification** middleware. After the denial, any middleware won't be executed, so that the above middleware also doesn't work for the case.
 
+---
 ## Supported Web Frameworks
 
 Refer to [this page]({{ site.url | append: site.baseurl }}/guides/supported-web-frameworks) for more details.
 
+---
 ## Deployments
 
 [We're planning](https://github.com/slackapi/java-slack-sdk/issues/348) to have some guide documents for deployments.

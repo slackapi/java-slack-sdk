@@ -22,21 +22,25 @@ public class OAuthFlowOperator {
     }
 
     public OAuthAccessResponse callOAuthAccessMethod(VerificationCodePayload payload) throws IOException, SlackApiException {
-        return slack.methods().oauthAccess(OAuthAccessRequest.builder()
+        OAuthAccessRequest.OAuthAccessRequestBuilder apiRequest = OAuthAccessRequest.builder()
                 .clientId(config.getClientId())
                 .clientSecret(config.getClientSecret())
-                .code(payload.getCode())
-                .redirectUri(config.getRedirectUri())
-                .build());
+                .code(payload.getCode());
+        if (config.getRedirectUri() != null) {
+            apiRequest = apiRequest.redirectUri(config.getRedirectUri());
+        }
+        return slack.methods().oauthAccess(apiRequest.build());
     }
 
     public OAuthV2AccessResponse callOAuthV2AccessMethod(VerificationCodePayload payload) throws IOException, SlackApiException {
-        return slack.methods().oauthV2Access(OAuthV2AccessRequest.builder()
+        OAuthV2AccessRequest.OAuthV2AccessRequestBuilder apiRequest = OAuthV2AccessRequest.builder()
                 .clientId(config.getClientId())
                 .clientSecret(config.getClientSecret())
-                .code(payload.getCode())
-                .redirectUri(config.getRedirectUri())
-                .build());
+                .code(payload.getCode());
+        if (config.getRedirectUri() != null) {
+            apiRequest = apiRequest.redirectUri(config.getRedirectUri());
+        }
+        return slack.methods().oauthV2Access(apiRequest.build());
     }
 
 }

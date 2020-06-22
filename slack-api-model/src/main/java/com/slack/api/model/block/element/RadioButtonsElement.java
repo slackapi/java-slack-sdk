@@ -10,10 +10,10 @@ import java.util.List;
  * https://api.slack.com/reference/block-kit/block-elements#radio
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class RadioButtonsElement extends BlockElement {
     public static final String TYPE = "radio_buttons";
     private final String type = TYPE;

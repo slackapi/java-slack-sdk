@@ -57,7 +57,29 @@ public class DialogSelectElement implements DialogElement {
     private boolean optional;
 
     /**
-     * Provide up to 100 option element attributes. Required for this type.
+     * Provide up to 100 option element attributes. Either options or option_groups is required for the static and external.
      */
     private List<DialogOption> options;
+
+    /**
+     * Provide a default selected value for dynamic select menus with a data_source of type external.
+     */
+    private List<DialogOption> selectedOptions;
+
+    /**
+     * Provide up to 100 option group element attributes. Either options or option_groups is required for the static and external.
+     */
+    private List<DialogOptionGroup> optionGroups;
+
+    /**
+     * Provide the number of characters that must be typed by a user.
+     */
+    private Integer minQueryLength;
+
+    /**
+     * Provide the data source type for the Element.
+     */
+    private DialogDataSourceType dataSource;
+
+
 }

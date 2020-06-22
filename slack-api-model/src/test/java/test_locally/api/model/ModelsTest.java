@@ -12,6 +12,7 @@ import com.slack.api.model.event.MessageEvent;
 import com.slack.api.model.view.ViewState;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -229,6 +230,21 @@ public class ModelsTest {
 
         ConfirmationDialogObject confirmationDialog = confirmationDialog(r -> r.text(markdownText("foo")));
         assertNotNull(confirmationDialog);
+    }
+
+    @Test
+    public void blockCompositions_radio_buttons_checkboxes() {
+        MarkdownTextObject mto = markdownText(r -> r.text("foo").verbatim(false));
+        assertNotNull(mto);
+
+        OptionObject opt = option(mto, "value");
+        assertNotNull(opt);
+
+        RadioButtonsElement radioButtons = radioButtons(r -> r.actionId("a").initialOption(opt).options(Arrays.asList(opt)));
+        assertNotNull(radioButtons);
+
+        CheckboxesElement checkboxes = checkboxes(r -> r.actionId("a").initialOptions(Arrays.asList(opt)).options(Arrays.asList(opt)));
+        assertNotNull(checkboxes);
     }
 
 }

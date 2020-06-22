@@ -18,7 +18,7 @@ node_modules/
 typescript-types/dist/
 
 logs/
-json-logs/raw
+json-logs/raw*
 
 .DS_Store
 

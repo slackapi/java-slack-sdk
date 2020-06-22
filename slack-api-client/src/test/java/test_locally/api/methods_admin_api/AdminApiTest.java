@@ -57,6 +57,18 @@ public class AdminApiTest {
     }
 
     @Test
+    public void adminConversationsWhitelist() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminConversationsWhitelistAdd(r -> r.channelId("C123").teamId("T123"))
+                .isOk(), is(true));
+        assertThat(methods.adminConversationsWhitelistRemove(r -> r.channelId("C123").teamId("T123"))
+                .isOk(), is(true));
+        assertThat(methods.adminConversationsWhitelistListGroupsLinkedToChannel(r -> r.channelId("C123").teamId("T123"))
+                .isOk(), is(true));
+    }
+
+    @Test
     public void adminEmoji() throws Exception {
         MethodsClient methods = slack.methods(ValidToken);
 
@@ -141,4 +153,15 @@ public class AdminApiTest {
                 .isOk(), is(true));
     }
 
+    @Test
+    public void adminUsergroups() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminUsergroupsAddChannels(r -> r.teamId("T123").usergroupId("S123").channelIds(Arrays.asList("C123", "C234")))
+                .isOk(), is(true));
+        assertThat(methods.adminUsergroupsListChannels(r -> r.teamId("T123").usergroupId("S123").includeNumMembers(true))
+                .isOk(), is(true));
+        assertThat(methods.adminUsergroupsRemoveChannels(r -> r.usergroupId("S123").channelIds(Arrays.asList("C123", "C234")))
+                .isOk(), is(true));
+    }
 }

@@ -1,11 +1,11 @@
 {
   "token": "",
-  "team_id": "T00000000",
-  "enterprise_id": "E00000000",
-  "api_app_id": "A00000000",
+  "team_id": "",
+  "enterprise_id": "",
+  "api_app_id": "",
   "event": {
     "type": "dnd_updated",
-    "user": "W00000000",
+    "user": "",
     "dnd_status": {
       "dnd_enabled": false,
       "next_dnd_start_ts": 12345,
@@ -20,6 +20,6 @@
   "event_id": "",
   "event_time": 12345,
   "authed_users": [
-    "W00000000"
+    ""
   ]
 }

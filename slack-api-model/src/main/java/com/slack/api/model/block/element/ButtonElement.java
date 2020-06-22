@@ -8,10 +8,10 @@ import lombok.*;
  * https://api.slack.com/reference/block-kit/block-elements#button
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class ButtonElement extends BlockElement {
     public static final String TYPE = "button";
     private final String type = TYPE;

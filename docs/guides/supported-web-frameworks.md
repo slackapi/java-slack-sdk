@@ -12,15 +12,17 @@ It works on Servlet containers out-of-the-box. So, developers can run Bolt apps 
 
 Even running Bolt apps on non-Servlet settings like [Micronaut](https://micronaut.io/) and [Helidon](https://helidon.io/) is feasible if there is an adapter that transforms its specific HTTP interpretation to Bolt interfaces.
 
+---
 ## Supported Frameworks
 
 In this section, I'll share some minimum working examples for the following popular frameworks.
 
 * [Spring Boot](https://spring.io/guides/gs/spring-boot/)
 * [Micronaut](https://micronaut.io/)
-* [Quarkus](https://quarkus.io/)
+* [Quarkus Undertow](https://quarkus.io/)
 * [Helidon SE](https://helidon.io/)
 
+---
 ## Spring Boot
 
 [Spring Boot](https://spring.io/guides/gs/spring-boot/) is the most popular Web framework in Java. Enabling **SlackAppServlet** in your Spring Boot application is the easiest way to run Bolt apps with the framework. Let's look at a tiny Gradle project.
@@ -160,7 +162,6 @@ ngrok http 3000 --subdomain {your-favorite-one}
 ```
 
 ---
-
 ## Micronaut
 
 If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add **bolt-micronaut**, NOT **bolt-jetty**. As the **bolt** dependency will be automatically resolved as the **bolt-micronaut**'s dependency, you don't need to add it. Needless to say, that's the same for Gradle projects.
@@ -241,29 +242,106 @@ That's all set! It's time to hit `mvn run` to boot the app.
 ```
 
 ---
-
-
-## Quarkus
+## Quarkus Undertow
 
 [Quarkus](https://quarkus.io/) is a Web application framework that supports packaging for GraalVM and HotSpot. In this section, I'll explain how to configure SlackAppServlet with the framework.
 
 You can generate a blank project from [code.quarkus.io](https://code.quarkus.io/). For simple Bolt apps, we recommend using **Undertow Servlet** in the **Web** component section. Nothing else is required. Just click **Generate your application** button and download the generated zip file.
 
-Although the RESTEasy dependency has to be included in a blank project, it's not necessary for a Bolt app. You can manually remove them from the build dependencies.
+After generating a blank project, **remove `quarkus-universe-bom` from the build settings**. The reason why we need to remove it is that, as of April 2020, `quarkus-universe-bom` adds [okhttp](https://search.maven.org/artifact/com.squareup.okhttp3/okhttp) 3.x to the project while this SDK requires okhttp 4.x. This means your application won't work due to binary compatibility issues with the setting. If you cannot remove `quarkus-universe-bom` for some reasons, including Bolt for Java in the project may not be a feasible idea. Consider separating the application built with Bolt for Java from the one.
 
-### pom.xml
+Also, if you don't have additional endpoints using RESTEasy, you can safely remove **quarkus-resteasy** (a dependency included by default).
+
+### Build Settings
+
+The following build setting files work as-is. Place either `pom.xml` (for Maven) or `build.gradle` + `settings.gradle` (for Gradle) in the root directory of your project.
+
+#### Maven - pom.xml
+
+The following settings are compatible with both of JDK 8 and 11. If you prefer using Java 11 features, set `11` to `maven.compiler.source` and `maven.compiler.target`,
 
 ```xml
-<dependency>
-  <groupId>io.quarkus</groupId>
-  <artifactId>quarkus-undertow</artifactId>
-  <version>${quarkus.version}</version>
-</dependency>
-<dependency>
-  <groupId>com.slack.api</groupId>
-  <artifactId>bolt-servlet</artifactId>
-  <version>{{ site.sdkLatestVersion }}</version>
-</dependency>
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+     xmlns="http://maven.apache.org/POM/4.0.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.acme</groupId>
+  <artifactId>code-with-quarkus</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <properties>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <quarkus-plugin.version>{{ site.quarkusVersion }}</quarkus-plugin.version>
+    <quarkus.platform.version>{{ site.quarkusVersion }}</quarkus.platform.version>
+    <slack.bolt.version>{{ site.sdkLatestVersion }}</slack.bolt.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-undertow</artifactId>
+      <version>${quarkus.platform.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.slack.api</groupId>
+      <artifactId>bolt-servlet</artifactId>
+      <version>${slack.bolt.version}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-maven-plugin</artifactId>
+        <version>${quarkus-plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+
+#### Gradle - 1) build.gradle
+
+For Gradle projects, the following two files are required at least.
+
+```groovy
+plugins {
+  id 'java'
+  id 'io.quarkus'
+}
+repositories {
+  mavenCentral()
+}
+dependencies {
+  implementation 'io.quarkus:quarkus-undertow:{{ site.quarkusVersion }}'
+  implementation 'com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}'
+}
+group 'org.acme'
+version '1.0.0-SNAPSHOT'
+```
+
+#### Gradle - 2) settings.gradle
+
+```groovy
+pluginManagement {
+  repositories {
+    mavenCentral()
+    gradlePluginPortal()
+  }
+  plugins {
+    id 'io.quarkus' version "{{ site.quarkusVersion }}"
+  }
+}
+rootProject.name='code-with-quarkus'
 ```
 
 ### src/main/java/hello/SlackApp.java
@@ -321,7 +399,7 @@ class SlackApp : SlackAppServlet(initSlackApp()) {
 }
 ```
 
-#### src/mian/kotlin/app.kt
+#### src/main/kotlin/app.kt
 
 For properly using Dependency Injection, having producers may be better.
 
@@ -351,10 +429,12 @@ class Components {
 
 ### src/main/resources/application.properties
 
-The default port Quarkus uses is 8080. You can change the port by having the following config.
+The default port Quarkus uses is 8080. You can change the port by having the following config. Enabling Bolt's debug logging would be greatly helpful for learning how it works and debugging some unintended behaviors.
 
 ```
 quarkus.http.port=3000
+quarkus.log.level=INFO
+quarkus.log.category."com.slack.api".level=DEBUG
 ```
 
 ### Run the App
@@ -363,33 +443,45 @@ That’s all set! It’s time to run the app in its the development mode.
 
 ```bash
 ./mvnw quarkus:dev
+./mvnw clean quarkus:dev # try clean when you don't see some updates
+```
+
+```bash
+./gradlew quarkusDev
 ```
 
 If your Quarkus project is correctly configured, the stdout should look like this.
 
 ```
 [INFO] --- quarkus-maven-plugin:{{ site.quarkusVersion }}:dev (default-cli) @ code-with-quarkus ---
-[INFO] Applied plugin: 'all-open'
 [INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /path-to-projet/target/classes
 Listening for transport dt_socket at address: 5005
-[io.quarkus] (main) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus {{ site.quarkusVersion }}) started in 0.902s. Listening on: http://0.0.0.0:3000
-[io.quarkus] (main) Profile dev activated. Live Coding activated.
-[io.quarkus] (main) Installed features: [cdi, kotlin, servlet]
+__  ____  __  _____   ___  __ ____  ______ 
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+INFO  [io.quarkus] (main) code-with-quarkus 1.0.0-SNAPSHOT (powered by Quarkus {{ site.quarkusVersion }})) started in 0.846s. Listening on: http://0.0.0.0:3000
+INFO  [io.quarkus] (main) Profile dev activated. Live Coding activated.
+INFO  [io.quarkus] (main) Installed features: [cdi, servlet]
 ```
 
 The hot reload mode is enabled by default.
 
 ```
-[io.qua.dev] (vert.x-worker-thread-2) Changed source files detected, recompiling [/path-to-project/src/main/kotlin/hello/SlackApp.kt]
-[io.quarkus] (vert.x-worker-thread-2) Quarkus stopped in 0.001s
-[io.quarkus] (vert.x-worker-thread-2) code-with-quarkus 1.0.0-SNAPSHOT (running on Quarkus {{ site.quarkusVersion }}) started in 0.163s. Listening on: http://0.0.0.0:3000
-[io.quarkus] (vert.x-worker-thread-2) Profile dev activated. Live Coding activated.
-[io.quarkus] (vert.x-worker-thread-2) Installed features: [cdi, kotlin, servlet]
-[io.qua.dev] (vert.x-worker-thread-2) Hot replace total time: 0.572s
+INFO  [io.qua.dev] (vert.x-worker-thread-0) Changed source files detected, recompiling [/path-to-project/src/main/java/hello/SlackApp.java]
+INFO  [io.quarkus] (vert.x-worker-thread-0) Quarkus stopped in 0.001s
+__  ____  __  _____   ___  __ ____  ______ 
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+INFO  [io.quarkus] (vert.x-worker-thread-0) code-with-quarkus 1.0.0-SNAPSHOT (powered by Quarkus {{ site.quarkusVersion }}) started in 0.021s. Listening on: http://0.0.0.0:3000
+INFO  [io.quarkus] (vert.x-worker-thread-0) Profile dev activated. Live Coding activated.
+INFO  [io.quarkus] (vert.x-worker-thread-0) Installed features: [cdi, servlet]
+INFO  [io.qua.dev] (vert.x-worker-thread-0) Hot replace total time: 0.232s 
 ```
 
 ---
-
 ## Helidon SE
 
 [Helidon SE](https://helidon.io/docs/latest/#/about/02_introduction) is the functional programming style web framework provided by all Helidon libraries. Let's start with a blank project.

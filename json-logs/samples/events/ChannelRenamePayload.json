@@ -1,12 +1,12 @@
 {
   "token": "",
-  "team_id": "T00000000",
-  "enterprise_id": "E00000000",
-  "api_app_id": "A00000000",
+  "team_id": "",
+  "enterprise_id": "",
+  "api_app_id": "",
   "event": {
     "type": "channel_rename",
     "channel": {
-      "id": "C00000000",
+      "id": "",
       "is_channel": false,
       "name": "",
       "name_normalized": "",
@@ -18,6 +18,6 @@
   "event_id": "",
   "event_time": 12345,
   "authed_users": [
-    "W00000000"
+    ""
   ]
 }

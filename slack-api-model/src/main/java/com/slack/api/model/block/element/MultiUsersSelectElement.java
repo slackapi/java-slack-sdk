@@ -10,10 +10,10 @@ import java.util.List;
  * https://api.slack.com/reference/block-kit/block-elements#users_multi_select
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class MultiUsersSelectElement extends BlockElement {
     public static final String TYPE = "multi_users_select";
     private final String type = TYPE;

@@ -62,9 +62,10 @@ lang: ja
 * `"view_submission"` のリクエストは、その応答 (= `ack()`) で `response_action` を指定することでモーダルの次の状態を指示します
 * [views.update](https://api.slack.com/methods/views.update)、[views.push](https://api.slack.com/methods/views.push) API メソッドはモーダル内での `"block_actions"` リクエストを受信したときに使用するものであり、`"view_submission"` 時にモーダルを操作するための API ではありません
 
+---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt ことはじめ]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
 
 まずはモーダルを新しく開くところから始めましょう。ここでは以下のようなモーダルを開いてみることにします。
 
@@ -103,7 +104,7 @@ lang: ja
 }
 ```
 
-**slack-api-client** は　blocks や views を構築するための扱いやすい SDL を提供しています。以下のコード例は型安全に **View** オブジェクトを生成している例です。
+**slack-api-client** は　blocks や views を構築するための扱いやすい DSL を提供しています。以下のコード例は型安全に **View** オブジェクトを生成している例です。
 
 ```java
 import com.slack.api.model.view.View;
@@ -181,7 +182,7 @@ app.command("/meeting", (req, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt ことはじめ > Koltin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 app.command("/meeting") { req, ctx ->
@@ -378,9 +379,33 @@ ctx.ackWithPush(newViewInStack)
 
 #### モーダル送信後にメッセージを投稿
 
-`view_submission` のペイロードはデフォルトでは `response_url` を含んでいません。しかし、モーダルがユーザーにメッセージを投稿するためのチャンネルを入力するよう求める `input` タイプのブロックを含む場合、ペイロード内の `response_urls` として URL を受け取ることができます。
+`view_submission` のペイロードはデフォルトでは `response_url` を含んでいません。しかし、モーダルがユーザーにメッセージを投稿するためのチャンネルを入力するよう求める `input` タイプのブロックを含む場合、ペイロード内の `response_urls` (Java では `List<ResponseUrl> responseUrls` となります) として URL を受け取ることができます。
 
 これを有効にするためには [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) もしくは [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) のタイプのブロックエレメントを配置し、さらにその属性として `"response_url_enabled": true` を追加してください。より詳細な情報は [API ドキュメント（英語）](https://api.slack.com/surfaces/modals/using#modal_response_url)を参照してください。
+
+また、ユーザーがモーダルを開いたときに見ていたチャンネルや DM を `initial_conversation(s)` として自動的に反映したい場合は [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) / [`multi_conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select) エレメントの `default_to_current_conversation` を有効にしてください。
+
+```java
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.*;
+import static com.slack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.view.Views.*;
+
+View modalView = view(v -> v
+  .type("modal")
+  .callbackId("request-modal")
+  .submit(viewSubmit(vs -> vs.type("plain_text").text("Start")))
+  .blocks(asBlocks(
+    section(s -> s
+      .text(plainText("The channel we'll post the result"))
+      .accessory(conversationsSelect(conv -> conv
+        .actionId("notification_conv_id")
+        .responseUrlEnabled(true)
+        .defaultToCurrentConversation(true)
+      ))
+    )
+)));
+```
 
 ### `"view_closed"` リクエスト (`notify_on_close` が `true` のときのみ)
 
@@ -420,6 +445,8 @@ import com.slack.api.app_backend.interactive_components.payload.BlockActionPaylo
 import com.slack.api.app_backend.interactive_components.payload.BlockSuggestionPayload;
 import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import com.slack.api.app_backend.views.payload.ViewClosedPayload;
+import com.slack.api.app_backend.util.JsonPayloadExtractor;
+import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
 import com.slack.api.util.json.GsonFactory;
 
 PseudoHttpResponse handle(PseudoHttpRequest request) {
@@ -434,9 +461,11 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 2. リクエストボディをパースして callback_id, action_id が処理対象か確認
   
   // リクエストボディは payload={URL エンコードされた JSON 文字列} の形式
-  String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
+  JsonPayloadExtractor payloadExtractor = new JsonPayloadExtractor();
+  String payloadString = payloadExtractor.extractIfExists(request.getBodyAsString());
   // このような値になります: { "type": "block_actions", "team": { "id": "T1234567", ... 
-  String payloadType != null &&  = PseudoActionTypeExtractor.extract(payloadString);
+  JsonPayloadTypeDetector typeDetector = new JsonPayloadTypeDetector();
+  String payloadType = typeDetector.detectType(payloadString);
   
   Gson gson = GsonFactory.createSnakeCase();
   if (payloadType != null && payloadType.equals("view_submission")) {

@@ -1,10 +1,10 @@
 ---
 layout: ja
-title: "Bolt ことはじめ"
+title: "Bolt 入門"
 lang: ja
 ---
 
-# Bolt ことはじめ
+# Bolt 入門
 
 **Bolt for Java** は、最新のプラットフォーム機能を使った Slack アプリの開発をスピーディに行うための抽象レイヤーを提供するフレームワークです。
 
@@ -18,14 +18,13 @@ lang: ja
   * 環境変数を設定して起動
   * `/hello` コマンドの有効化
   * (参考) Spring Boot での設定
-* Koltin での設定
+* Kotlin での設定
   * 動作確認
 * 次のステップ
 
 なお Slack アプリ開発全般についてまだ不慣れな方は、まず「[An introduction to Slack apps（英語）](https://api.slack.com/start/overview)」に軽く目を通した方がよいかもしれません。
 
 ---
-
 ## プロジェクトのセットアップ
 
 では、さっそく Bolt を使った Slack アプリ開発を始めましょう！このガイドでは Maven、Gradle を使ったプロジェクトセットアップの手順を説明します。
@@ -70,7 +69,6 @@ dependencies {
 ```
 
 ---
-
 ## 3 分間で動かす Bolt アプリ
 
 ### **bolt-jetty** の利用
@@ -231,8 +229,7 @@ public class SlackAppController extends SlackAppServlet {
 より詳細な情報は[こちらのガイド]({{ site.url | append: site.baseurl }}/guides/ja/supported-web-frameworks)を参考にしてください。
 
 ---
-
-## Koltin での設定
+## Kotlin での設定
 
 コードをより簡潔にするために Java の代わりに [Kotlin](https://kotlinlang.org/) で Bolt アプリを書くことはとても良い選択肢です。このセクションでは、Bolt アプリを Kotlin で開発するための設定手順を紹介します。
 
@@ -309,6 +306,7 @@ gradle run
 
 **Pro tip**: もしあなたがあまり IDE を使うことが好みでないとしても Kotlin を使うなら [IntelliJ IDEA](https://www.jetbrains.com/idea/) を使うことを強くおすすめします。この IDE を使うことがもっともスムースな Kotlin アプリ開発の方法です。
 
+---
 ## 次のステップ
 
 「[Bolt の概要]({{ site.url | append: site.baseurl }}/guides/ja/bolt-basics)」を読んでさらに理解を深めてください。

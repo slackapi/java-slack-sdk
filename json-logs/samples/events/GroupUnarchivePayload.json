@@ -1,18 +1,18 @@
 {
   "token": "",
-  "team_id": "T00000000",
-  "enterprise_id": "E00000000",
-  "api_app_id": "A00000000",
+  "team_id": "",
+  "enterprise_id": "",
+  "api_app_id": "",
   "event": {
     "type": "group_unarchive",
-    "channel": "G00000000",
-    "actor_id": "W00000000",
+    "channel": "",
+    "actor_id": "",
     "event_ts": "0000000000.000000"
   },
   "type": "event_callback",
   "event_id": "",
   "event_time": 12345,
   "authed_users": [
-    "W00000000"
+    ""
   ]
 }

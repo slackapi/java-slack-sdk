@@ -21,9 +21,6 @@
     },
     "unread_count": 12345,
     "unread_count_display": 12345,
-    "members": [
-      "U00000000"
-    ],
     "topic": {
       "value": "",
       "creator": "U00000000",
@@ -35,6 +32,15 @@
       "last_set": 12345
     },
     "priority": 12345
+  },
+  "warning": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ],
+    "warnings": [
+      ""
+    ]
   },
   "error": "",
   "needed": "",

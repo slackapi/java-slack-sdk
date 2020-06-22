@@ -64,6 +64,7 @@ In general, there are a few things to know when working with modals. They would 
 * You respond to `"view_submission"` requests with `response_action` to determine the next state of a modal
 * [views.update](https://api.slack.com/methods/views.update) and [views.push](https://api.slack.com/methods/views.push) API methods are supposed to be used when receiving `"block_actions"` requests in modals, NOT for `"view_submission"` requests
 
+---
 ## Examples
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
@@ -196,7 +197,7 @@ app.command("/meeting") { req, ctx ->
 }
 ```
 
-In Koltin, it's much easier to embed multi-line string data in source code. It may be handier to use `viewAsString(String)` method instead.
+In Kotlin, it's much easier to embed multi-line string data in source code. It may be handier to use `viewAsString(String)` method instead.
 
 ```kotlin
 // Build a view using string interpolation
@@ -370,9 +371,33 @@ ctx.ack { it.responseAction("push").view(newViewInStack) }
 
 #### Publishing Messages After Modal Submissions
 
-`view_submission` payloads don't have `response_url` by default. However, if you have an `input` block asking users a channel to post a message, payloads may provide `response_urls`.
+`view_submission` payloads don't have `response_url` by default. However, if you have an `input` block asking users a channel to post a message, payloads may provide `response_urls` (`List<ResponseUrl> responseUrls` in Java).
 
 To enable this, set the block element type as either [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) or [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) and add `"response_url_enabled": true`. Refer to [the API document](https://api.slack.com/surfaces/modals/using#modal_response_url) for details.
+
+Also, if you want to automatically set the channel a user is viewing when opening a modal to`initial_conversation(s)`, turn `default_to_current_conversation` on in [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) / [`multi_conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select) elements.
+
+```java
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.*;
+import static com.slack.api.model.block.element.BlockElements.*;
+import static com.slack.api.model.view.Views.*;
+
+View modalView = view(v -> v
+  .type("modal")
+  .callbackId("request-modal")
+  .submit(viewSubmit(vs -> vs.type("plain_text").text("Start")))
+  .blocks(asBlocks(
+    section(s -> s
+      .text(plainText("The channel we'll post the result"))
+      .accessory(conversationsSelect(conv -> conv
+        .actionId("notification_conv_id")
+        .responseUrlEnabled(true)
+        .defaultToCurrentConversation(true)
+      ))
+    )
+)));
+```
 
 ### `"view_closed"` requests (only when `notify_on_close` is `true`)
 
@@ -414,6 +439,8 @@ import com.slack.api.app_backend.interactive_components.payload.BlockActionPaylo
 import com.slack.api.app_backend.interactive_components.payload.BlockSuggestionPayload;
 import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import com.slack.api.app_backend.views.payload.ViewClosedPayload;
+import com.slack.api.app_backend.util.JsonPayloadExtractor;
+import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
 import com.slack.api.util.json.GsonFactory;
 
 PseudoHttpResponse handle(PseudoHttpRequest request) {
@@ -428,9 +455,11 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 2. Parse the request body and check the type, callback_id, action_id
 
   // payload={URL-encoded JSON} in the request body
-  String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
+  JsonPayloadExtractor payloadExtractor = new JsonPayloadExtractor();
+  String payloadString = payloadExtractor.extractIfExists(request.getBodyAsString());
   // The value looks like: { "type": "block_actions", "team": { "id": "T1234567", ... 
-  String payloadType != null &&  = PseudoActionTypeExtractor.extract(payloadString);
+  JsonPayloadTypeDetector typeDetector = new JsonPayloadTypeDetector();
+  String payloadType = typeDetector.detectType(payloadString);
   
   Gson gson = GsonFactory.createSnakeCase();
   if (payloadType != null && payloadType.equals("view_submission")) {

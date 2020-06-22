@@ -181,6 +181,66 @@
     {
       "date_created": "2020-04-02T17:49:13-07:00",
       "body": "Some of our customers are having trouble completing certain user-related actions, such as when deactivating members. We\u0027re currently investigating the cause of these delays, and we\u0027ll keep you posted as soon as we have more information. We\u0027re sorry for the disruption."
+    },
+    {
+      "date_created": "2020-04-14T17:50:51-07:00",
+      "body": "We\u0027ve been seeing improvements to the performance of accounts with Enterprise Key Management enabled though we are still investigating the root cause. Thank you for your patience as we get to the bottom of this."
+    },
+    {
+      "date_created": "2020-04-14T16:30:09-07:00",
+      "body": "Some customers with Enterprise Key Management enabled may be experiencing issues when trying to read or write messages. We’re looking into it and will provide another update as soon as it’s available."
+    },
+    {
+      "date_created": "2020-04-14T16:20:31-07:00",
+      "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
+    },
+    {
+      "date_created": "2020-04-24T17:56:21-07:00",
+      "body": "We have resolved the issue and everyone should be able to connect to Slack once more. We\u0027re very sorry for the disruption and we appreciate you bearing with us."
+    },
+    {
+      "date_created": "2020-04-24T16:42:42-07:00",
+      "body": "Users should start to see improvements and be able to connect again. We will provide another update as soon as the issue is fully resolved. Thank you for your patience."
+    },
+    {
+      "date_created": "2020-04-24T15:36:33-07:00",
+      "body": "Upon further investigation this issue is not exclusive to Android devices. Some users are unable to automatically receive new messages and may notice a grey banner on desktop. We’ll provide an update as soon as it’s available."
+    },
+    {
+      "date_created": "2020-04-24T15:06:02-07:00",
+      "body": "Some Android users have reported difficulty logging into Slack. We are investigating and will provide an update as soon as we know more."
+    },
+    {
+      "date_created": "2020-04-24T14:59:53-07:00",
+      "body": "Some people may be having an issue with Slack. We’re currently investigating and will have more information shortly. Thank you for your patience."
+    },
+    {
+      "date_created": "2020-04-30T10:49:51-07:00",
+      "body": "Information on the Analytics dashboard (https://my.slack.com/stats) is not up to date. We are currently investigating this issue and will be back as soon as we have more news to share. We\u0027re sorry for any inconvenience caused in the meantime."
+    },
+    {
+      "date_created": "2020-05-26T14:20:09-07:00",
+      "body": "We\u0027re still working towards a solution for this issue. We\u0027ll return back here with an update when we have more news to share on a fix."
+    },
+    {
+      "date_created": "2020-05-26T12:49:00-07:00",
+      "body": "We\u0027ve identified the likely cause of this issue and we\u0027re now exploring possible fixes. Thank you for your continued patience as we work to get things fixed up."
+    },
+    {
+      "date_created": "2020-05-26T11:49:48-07:00",
+      "body": "We\u0027re continuing to look into the issue causing custom emoji to not appear for some customers. We\u0027re sorry for the trouble and will continue to keep you posted."
+    },
+    {
+      "date_created": "2020-05-26T11:19:03-07:00",
+      "body": "Our team is investigating an issue that is causing custom emoji to go missing from some workspaces. We\u0027ll keep you updated as soon as we have more information."
+    },
+    {
+      "date_created": "2020-06-01T11:23:40-07:00",
+      "body": "Some Android users may notice that new messages are not showing up in channels and DMs immediately. We\u0027re actively investigating this issue and will keep you posted as more information becomes available. For now, quitting and reopening the Slack app should allow new messages to load. We\u0027re sorry for any disruption this brings to your day."
+    },
+    {
+      "date_created": "2020-06-11T05:55:18-07:00",
+      "body": "We\u0027re investigating problems with search indexing. In the meantime, people might notice some messages and files not showing up in search results. We apologize for the inconvenience."
     }
   ]
 }

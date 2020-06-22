@@ -1,15 +1,15 @@
 {
   "token": "",
-  "team_id": "T00000000",
-  "enterprise_id": "E00000000",
-  "api_app_id": "A00000000",
+  "team_id": "",
+  "enterprise_id": "",
+  "api_app_id": "",
   "event": {
     "type": "file_shared",
-    "channel_id": "C00000000",
-    "file_id": "F00000000",
-    "user_id": "W00000000",
+    "channel_id": "",
+    "file_id": "",
+    "user_id": "",
     "file": {
-      "id": "F00000000"
+      "id": ""
     },
     "event_ts": "0000000000.000000"
   },
@@ -17,6 +17,6 @@
   "event_id": "",
   "event_time": 12345,
   "authed_users": [
-    "W00000000"
+    ""
   ]
 }

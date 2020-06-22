@@ -12,6 +12,7 @@ The Audit Logs API can be used by security information and event management (SIE
 
 Follow the instructions in [the API document](https://api.slack.com/docs/audit-logs-api) to get a valid token for using Audit Logs API. Your Slack app for Audit Logs API needs to be installed on the Enterprise Grid Organization, not an individual workspace within the organization.
 
+---
 ## Call Audit Logs API in Java
 
 It's straight-forward to call Audit Logs API using **slack-api-client** library.

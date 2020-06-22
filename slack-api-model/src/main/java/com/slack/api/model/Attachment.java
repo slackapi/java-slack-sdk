@@ -51,6 +51,8 @@ public class Attachment {
     // -----------------------------------------
     // The author parameters will display a small section at the top of a message attachment that can contain the following fields:
 
+    private String authorId;
+
     /**
      * Small text used to display the author's name.
      */

@@ -66,7 +66,7 @@ public class BlockCompositions {
         return configurator.configure(OptionObject.builder()).build();
     }
 
-    public static OptionObject option(PlainTextObject text, String value) {
+    public static OptionObject option(TextObject text, String value) {
         return OptionObject.builder().text(text).value(value).build();
     }
 

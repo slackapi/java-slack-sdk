@@ -61,7 +61,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
             },
             {
@@ -93,7 +94,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               },
               "response_url_enabled": false
             },
@@ -106,6 +108,7 @@
               },
               "action_id": "",
               "initial_conversation": "",
+              "default_to_current_conversation": false,
               "confirm": {
                 "title": {
                   "type": "plain_text",
@@ -126,7 +129,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               },
               "response_url_enabled": false,
               "filter": {
@@ -163,7 +167,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
             },
             {
@@ -209,7 +214,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
             },
             {
@@ -244,7 +250,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
             },
             {
@@ -289,7 +296,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
             },
             {
@@ -321,7 +329,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
             }
           ],
@@ -402,6 +411,7 @@
           "service_url": "",
           "service_name": "",
           "service_icon": "",
+          "author_id": "",
           "author_name": "",
           "author_link": "",
           "author_icon": "",
@@ -522,6 +532,10 @@
       "user": "",
       "mode": "",
       "editable": false,
+      "non_owner_editable": false,
+      "editor": "",
+      "last_editor": "",
+      "updated": 123,
       "is_external": false,
       "external_type": "",
       "external_id": "",

@@ -2,7 +2,9 @@ package test_with_remote_apis.sample_json_generation;
 
 import com.google.gson.JsonElement;
 import com.slack.api.model.*;
-import com.slack.api.model.block.*;
+import com.slack.api.model.block.ActionsBlock;
+import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.composition.TextObject;
@@ -15,7 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.Blocks.asBlocks;
+import static com.slack.api.model.block.Blocks.section;
 import static com.slack.api.model.block.composition.BlockCompositions.*;
 import static com.slack.api.model.block.element.BlockElements.*;
 import static test_with_remote_apis.sample_json_generation.ObjectInitializer.initProperties;

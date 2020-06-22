@@ -1,20 +1,20 @@
 {
   "token": "",
-  "team_id": "T00000000",
-  "enterprise_id": "E00000000",
-  "api_app_id": "A00000000",
+  "team_id": "",
+  "enterprise_id": "",
+  "api_app_id": "",
   "event": {
     "type": "subteam_members_changed",
-    "subteam_id": "S00000000",
-    "team_id": "T00000000",
+    "subteam_id": "",
+    "team_id": "",
     "date_previous_update": 12345,
     "date_update": 12345,
     "added_users": [
-      "W00000000"
+      ""
     ],
     "added_users_count": 12345,
     "removed_users": [
-      "W00000000"
+      ""
     ],
     "removed_users_count": 12345,
     "event_ts": "0000000000.000000"
@@ -23,6 +23,6 @@
   "event_id": "",
   "event_time": 12345,
   "authed_users": [
-    "W00000000"
+    ""
   ]
 }

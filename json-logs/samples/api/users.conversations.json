@@ -28,16 +28,40 @@
         "team": "",
         "user": "",
         "username": "",
+        "parent_user_id": "",
         "text": "",
         "topic": "",
         "root": {
           "text": "",
+          "user": "",
+          "parent_user_id": "",
           "username": "",
+          "team": "",
           "bot_id": "",
           "mrkdwn": false,
           "type": "",
           "subtype": "",
           "thread_ts": "",
+          "icons": {
+            "emoji": "",
+            "image_36": "",
+            "image_48": "",
+            "image_64": "",
+            "image_72": ""
+          },
+          "bot_profile": {
+            "id": "",
+            "deleted": false,
+            "name": "",
+            "updated": 123,
+            "app_id": "",
+            "icons": {
+              "image_36": "",
+              "image_48": "",
+              "image_72": ""
+            },
+            "team_id": ""
+          },
           "reply_count": 123,
           "reply_users_count": 123,
           "latest_reply": "",
@@ -50,6 +74,19 @@
         "display_as_bot": false,
         "bot_id": "",
         "bot_link": "",
+        "bot_profile": {
+          "id": "",
+          "deleted": false,
+          "name": "",
+          "updated": 123,
+          "app_id": "",
+          "icons": {
+            "image_36": "",
+            "image_48": "",
+            "image_72": ""
+          },
+          "team_id": ""
+        },
         "thread_ts": "",
         "ts": "",
         "icons": {
@@ -69,6 +106,7 @@
       "unread_count_display": 123,
       "user": "",
       "priority": 12.3,
+      "date_connected": 123,
       "parent_conversation": "",
       "conversation_host_id": "",
       "is_channel": false,

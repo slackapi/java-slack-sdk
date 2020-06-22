@@ -39,6 +39,20 @@ public class AppTest {
     }
 
     @Test
+    public void getOauthInstallationUrl_v1_with_redirect_uri() {
+        AppConfig config = AppConfig.builder()
+            .signingSecret("secret")
+            .clientId("123")
+            .scope("commands,chat:write")
+            .classicAppPermissionsEnabled(true)
+            .redirectUri("https://my.app/oauth/callback")
+            .build();
+        App app = new App(config);
+        String url = app.getOauthInstallationUrl("state-value");
+        assertEquals("https://slack.com/oauth/authorize?client_id=123&scope=commands,chat:write&state=state-value&redirect_uri=https%3A%2F%2Fmy.app%2Foauth%2Fcallback", url);
+    }
+
+    @Test
     public void getOauthInstallationUrl_v2() {
         AppConfig config = AppConfig.builder()
                 .signingSecret("secret")
@@ -49,6 +63,20 @@ public class AppTest {
         App app = new App(config);
         String url = app.getOauthInstallationUrl("state-value");
         assertEquals("https://slack.com/oauth/v2/authorize?client_id=123&scope=commands,chat:write&user_scope=search:read&state=state-value", url);
+    }
+
+    @Test
+    public void getOauthInstallationUrl_v2_with_redirect_uri() {
+        AppConfig config = AppConfig.builder()
+            .signingSecret("secret")
+            .clientId("123")
+            .scope("commands,chat:write")
+            .userScope("search:read")
+            .redirectUri("https://my.app/oauth/callback")
+            .build();
+        App app = new App(config);
+        String url = app.getOauthInstallationUrl("state-value");
+        assertEquals("https://slack.com/oauth/v2/authorize?client_id=123&scope=commands,chat:write&user_scope=search:read&state=state-value&redirect_uri=https%3A%2F%2Fmy.app%2Foauth%2Fcallback", url);
     }
 
     @Test

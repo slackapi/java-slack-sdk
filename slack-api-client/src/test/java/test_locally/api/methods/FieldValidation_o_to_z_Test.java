@@ -1,6 +1,5 @@
 package test_locally.api.methods;
 
-import com.slack.api.methods.response.channels.UsersLookupByEmailResponse;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
@@ -270,7 +269,12 @@ public class FieldValidation_o_to_z_Test {
                 "getTo",
                 "getFrom",
                 "getCc",
-                "getShares"
+                "getShares",
+                "getReplies",
+                "getChannelCount",
+                "getEditor",
+                "getLastEditor",
+                "getUpdated"
         );
     }
 
@@ -313,7 +317,13 @@ public class FieldValidation_o_to_z_Test {
     public void team_integrationLogs() throws Exception {
         TeamIntegrationLogsResponse obj = parse("team.integrationLogs", TeamIntegrationLogsResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
-        verifyIfAllGettersReturnNonNullRecursively(obj.getLogs().get(0));
+        verifyIfAllGettersReturnNonNullRecursively(obj.getLogs().get(0),
+                "getChannel",
+                "getRssFeedChangeType",
+                "getRssFeedTitle",
+                "getRssFeedUrl",
+                "getReason"
+        );
     }
 
     @Test
@@ -334,7 +344,8 @@ public class FieldValidation_o_to_z_Test {
                 "getUsers",
                 "getAutoType",
                 "getDeletedBy",
-                "getUserCount"
+                "getUserCount",
+                "getChannelCount"
         );
     }
 
@@ -346,7 +357,8 @@ public class FieldValidation_o_to_z_Test {
                 "getUsers",
                 "getAutoType",
                 "getDeletedBy",
-                "getUserCount"
+                "getUserCount",
+                "getChannelCount"
         );
     }
 
@@ -355,7 +367,8 @@ public class FieldValidation_o_to_z_Test {
                 "getUsers",
                 "getAutoType",
                 "getDeletedBy",
-                "getUserCount"
+                "getUserCount",
+                "getChannelCount"
         );
 
     }
@@ -441,6 +454,14 @@ public class FieldValidation_o_to_z_Test {
     @Test
     public void users_lookupByEmail() throws Exception {
         UsersLookupByEmailResponse obj = parse("users.lookupByEmail", UsersLookupByEmailResponse.class);
+        verifyIfAllGettersReturnNonNull(obj);
+    }
+
+    // NOTE: com.slack.api.methods.response.channels.UsersLookupByEmailResponse will be removed in v1.1
+    @Test
+    public void users_lookupByEmail_deprecation() throws Exception {
+        com.slack.api.methods.response.channels.UsersLookupByEmailResponse obj =
+                parse("users.lookupByEmail", com.slack.api.methods.response.channels.UsersLookupByEmailResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
     }
 

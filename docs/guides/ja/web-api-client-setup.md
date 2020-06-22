@@ -8,12 +8,12 @@ lang: ja
 
 Slack API クライアントを利用するための最初のステップは、**slack-api-client** をあなたの Java プロジェクトにインストールすることです。このガイドでは、[Maven](https://maven.apache.org/)、[Gradle](https://gradle.org/) を使用したときのそれぞれのセットアップ手順と、このプロジェクトを手元でソースコードからビルドするときの手順を説明します。
 
+---
 ## <!--Prerequisites-->前提条件
 
 事前に OpenJDK 8 またはそれより新しい LTS バージョンが[インストール](https://openjdk.java.net/install/)されている必要があります。サポートされている JDK バージョンを利用している限り、この SDK は全ての OpenJDK ディストリビューションで動作するはずです。
 
 ---
-
 ## Maven
 
 Maven でのライブラリインストールをはじめましょう。**slack-api-client** はただの依存ライブラリですので、Maven のバージョンについては特に指定はありません。
@@ -82,7 +82,6 @@ ApiTestResponse(ok=true, args=ApiTestResponse.Args(foo=bar, error=null), warning
 * ✅ main メソッドを持つ `src/main/java/Example.java` を作成
 
 ---
-
 ## Gradle
 
 普段 Maven よりも Gradle をお使いですか？では Gralde を使って同様に設定してみましょう。手順は Maven にかなり似ていて、いくつか差分があるだけです。
@@ -117,7 +116,6 @@ Maven のセクションでも紹介した通り、main メソッドを持つ **
 
 
 ---
-
 ## <!--Gradle for Kotlin--> Gradle を使った Kotlin プロジェクトの設定
 
 このガイドの他のページでは、コードを簡潔にするために Kotlin のコードサンプルが出てくることがあります。それらのサンプルを試すために Gradle を使った以下の手順で Kotlin プロジェクトをセットアップしておきましょう。
@@ -168,7 +166,6 @@ fun main() {
 * ✅ main メソッドを持つ `src/main/kotlin/Example.kt` を作成
 
 ---
-
 ## <!--Build from Source-->ソースからビルド
 
 最新のリビジョンのソースコードからビルドして使いたいということがあるかもしれません。ソースからビルドするには以下の手順に従います。

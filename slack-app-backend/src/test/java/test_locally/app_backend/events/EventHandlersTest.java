@@ -330,6 +330,11 @@ public class EventHandlersTest {
                     @Override
                     public void handle(ImOpenPayload payload) {
                     }
+                },
+                new CallRejectedHandler() {
+                    @Override
+                    public void handle(CallRejectedPayload payload) {
+                    }
                 }
         );
         for (EventHandler<?> handler : handlers) {

@@ -8,10 +8,10 @@ import lombok.*;
  * https://api.slack.com/reference/block-kit/block-elements#conversation_select
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class ConversationsSelectElement extends BlockElement {
     public static final String TYPE = "conversations_select";
     private final String type = TYPE;
@@ -34,6 +34,12 @@ public class ConversationsSelectElement extends BlockElement {
      * The ID of any valid conversation to be pre-selected when the menu loads.
      */
     private String initialConversation;
+
+    /**
+     * Pre-populates the select menu with the conversation that the user was viewing when they opened the modal,
+     * if available. If initial_conversation is also supplied, it will be ignored. Default is false.
+     */
+    private Boolean defaultToCurrentConversation;
 
     /**
      * A confirm object that defines an optional confirmation dialog that appears after a menu item is selected.

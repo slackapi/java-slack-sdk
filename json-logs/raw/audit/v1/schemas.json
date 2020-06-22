@@ -57,18 +57,18 @@
       }
     },
     {
+      "type": "workflow",
+      "workflow": {
+        "id": "string",
+        "name": "string"
+      }
+    },
+    {
       "type": "message",
       "message": {
         "team": "string",
         "channel": "string",
         "timestamp": "string"
-      }
-    },
-    {
-      "type": "workflow",
-      "workflow": {
-        "id": "string",
-        "name": "string"
       }
     }
   ]

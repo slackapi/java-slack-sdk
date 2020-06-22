@@ -10,6 +10,7 @@ lang: en
 
 **NOTE**: RTM isn't available for modern scoped apps anymore. We recommend using the [Events API]({{ site.url | append: site.baseurl }}/guides/events-api) and [Web API]({{ site.url | append: site.baseurl }}/guides/web-api-basics) instead. If you need to use RTM (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
 
+---
 ## Subscribing Slack Events Over WebSocket
 
 Here is a minimum working example demonstrating how event handlers work.

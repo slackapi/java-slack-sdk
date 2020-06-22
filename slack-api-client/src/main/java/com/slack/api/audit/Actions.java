@@ -98,6 +98,11 @@ public class Actions {
         public static final String pref_display_real_names = "pref.display_real_names";
         public static final String pref_enterprise_mobile_device_check = "pref.enterprise_mobile_device_check";
         public static final String pref_required_minimum_mobile_version_changed = "pref.required_minimum_mobile_version_changed";
+        public static final String pref_admin_retention_override_changed = "pref.admin_retention_override_changed";
+        public static final String manual_export_downloaded = "manual_export_downloaded";
+        public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
+        public static final String channels_export_downloaded = "channels_export_downloaded";
+        public static final String manual_user_export_downloaded = "manual_user_export_downloaded";
     }
 
     public static class User {
@@ -124,6 +129,7 @@ public class Actions {
         public static final String user_logout_compromised = "user_logout_compromised";
         public static final String user_session_reset_by_admin = "user_session_reset_by_admin";
         public static final String user_logout_non_compliant_mobile_app_version = "user_logout_non_compliant_mobile_app_version";
+        public static final String user_force_upgrade_non_compliant_mobile_app_version = "user_force_upgrade_non_compliant_mobile_app_version";
     }
 
     public static class File {
@@ -170,6 +176,7 @@ public class Actions {
         public static final String channel_moved = "channel_moved";
         public static final String group_converted_to_channel = "group_converted_to_channel";
         public static final String channel_renamed = "channel_renamed";
+        public static final String channel_posting_pref_changed_from_org_level = "channel_posting_pref_changed_from_org_level";
     }
 
     public static class App {

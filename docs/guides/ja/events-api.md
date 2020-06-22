@@ -32,9 +32,10 @@ Bolt アプリがイベントへの応答のためにやらなければならな
 
 Bolt アプリは Slack API サーバーからのリクエストに対して 3 秒以内に `ack()` メソッドで応答する必要があります。3 秒以内に応答しなかった場合、Slack API は一定時間経過後にリトライします。
 
+---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt ことはじめ]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
@@ -63,7 +64,7 @@ app.event(ReactionAddedEvent.class, (payload, ctx) -> {
 });
 ```
 
-同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt ことはじめ > Koltin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt 入門 > Kotlin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 app.event(ReactionAddedEvent::class.java) { payload, ctx ->
@@ -145,6 +146,7 @@ app.message(":wave:", (payload, ctx) -> {
 import java.util.Map;
 import com.google.gson.Gson;
 import com.slack.api.Slack;
+import com.slack.api.app_backend.events.*;
 import com.slack.api.app_backend.events.payload.MessagePayload;
 import com.slack.api.util.json.GsonFactory;
 
@@ -159,7 +161,8 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 2. リクエストボディをパースして `event` の中の `type` が処理対象か確認
   // リクエストボディは全体が JSON 形式になっています
   String payloadString = request.getBodyAsString();
-  String eventType = PseudoEventTypeExtractor.extract(payloadString);
+  EventTypeExtractor eventTypeExtractor = new EventsDispatcherImpl();
+  String eventType = eventTypeExtractor.extractEventType(payloadString);
   if (eventType != null && eventType.equals("message")) {
     Gson gson = GsonFactory.createSnakeCase();
     MessagePayload payload = gson.fromJson(payloadString, MessagePayload.class);

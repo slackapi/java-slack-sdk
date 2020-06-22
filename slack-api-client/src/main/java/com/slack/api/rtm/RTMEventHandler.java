@@ -14,6 +14,7 @@ import java.lang.reflect.Type;
 public abstract class RTMEventHandler<E extends Event> {
 
     private String cachedEventName;
+    private String cachedEventSubName;
     private Class<E> cachedClazz;
 
     /**
@@ -31,6 +32,25 @@ public abstract class RTMEventHandler<E extends Event> {
             return cachedEventName;
         } catch (Exception e) {
             throw new IllegalStateException("A static field TYPE_NAME in " + clazz.getCanonicalName() + " is required");
+        }
+    }
+
+    /**
+     * Returns the subtype value of the event (e.g., MessageEvent.TYPE_NAME)
+     */
+    public String getEventSubType() {
+        if (cachedEventSubName != null) {
+            return cachedEventSubName;
+        }
+        Class<E> clazz = getEventClass();
+        try {
+            Field field = clazz.getField("SUBTYPE_NAME");
+            field.setAccessible(true);
+            cachedEventSubName = (String) field.get(null);
+            return cachedEventSubName;
+        } catch (Exception e) {
+            cachedEventSubName = "";
+            return cachedEventSubName;
         }
     }
 
@@ -70,5 +90,4 @@ public abstract class RTMEventHandler<E extends Event> {
     public void acceptUntypedObject(Object event) {
         handle((E) event);
     }
-
 }

@@ -2,6 +2,7 @@ package com.slack.api.methods.response.mpim;
 
 import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.Group;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public class MpimListResponse implements SlackApiResponse {
     private String provided;
 
     private List<Group> groups;
+    private ResponseMetadata responseMetadata;
 }

@@ -39,116 +39,13 @@
           "user": "U00000000"
         },
         "type": "",
+        "user": "U00000000",
         "username": "",
         "ts": "0000000000.000000",
         "text": "",
         "permalink": "https://www.example.com/",
+        "no_reactions": false,
         "attachments": [
-          {
-            "service_name": "",
-            "title": "",
-            "title_link": "https://www.example.com/",
-            "text": "",
-            "fallback": "",
-            "thumb_url": "https://www.example.com/",
-            "from_url": "https://www.example.com/",
-            "thumb_width": 12345,
-            "thumb_height": 12345,
-            "service_icon": "https://www.example.com/",
-            "id": 12345,
-            "original_url": "https://www.example.com/",
-            "msg_subtype": "",
-            "callback_id": "",
-            "color": "",
-            "pretext": "",
-            "service_url": "",
-            "author_name": "",
-            "author_link": "",
-            "author_icon": "",
-            "author_subname": "",
-            "channel_id": "",
-            "channel_name": "",
-            "bot_id": "",
-            "indent": false,
-            "is_msg_unfurl": false,
-            "is_reply_unfurl": false,
-            "is_thread_root_unfurl": false,
-            "is_app_unfurl": false,
-            "app_unfurl_url": "",
-            "fields": [
-              {
-                "title": "",
-                "value": "",
-                "short": false
-              }
-            ],
-            "image_url": "",
-            "image_width": 12345,
-            "image_height": 12345,
-            "image_bytes": 12345,
-            "video_html": "",
-            "video_html_width": 12345,
-            "video_html_height": 12345,
-            "footer": "",
-            "footer_icon": "",
-            "ts": "",
-            "mrkdwn_in": [
-              ""
-            ],
-            "actions": [
-              {
-                "id": "",
-                "name": "",
-                "text": "",
-                "style": "",
-                "type": "",
-                "value": "",
-                "confirm": {
-                  "title": "",
-                  "text": "",
-                  "ok_text": "",
-                  "dismiss_text": ""
-                },
-                "options": [
-                  {
-                    "text": "",
-                    "value": ""
-                  }
-                ],
-                "selected_options": [
-                  {
-                    "text": "",
-                    "value": ""
-                  }
-                ],
-                "data_source": "",
-                "min_query_length": 12345,
-                "option_groups": [
-                  {
-                    "text": ""
-                  }
-                ],
-                "url": ""
-              }
-            ],
-            "filename": "",
-            "size": 12345,
-            "mimetype": "",
-            "url": "",
-            "metadata": {
-              "thumb_64": false,
-              "thumb_80": false,
-              "thumb_160": false,
-              "original_w": 12345,
-              "original_h": 12345,
-              "thumb_360_w": 12345,
-              "thumb_360_h": 12345,
-              "format": "",
-              "extension": "",
-              "rotation": 12345,
-              "thumb_tiny": ""
-            }
-          },
           {
             "msg_subtype": "",
             "fallback": "",
@@ -158,6 +55,7 @@
             "service_url": "",
             "service_name": "",
             "service_icon": "",
+            "author_id": "",
             "author_name": "",
             "author_link": "",
             "author_icon": "",
@@ -253,9 +151,114 @@
               "rotation": 12345,
               "thumb_tiny": ""
             }
+          },
+          {
+            "service_name": "",
+            "title": "",
+            "title_link": "https://www.example.com/",
+            "text": "",
+            "fallback": "",
+            "thumb_url": "https://www.example.com/",
+            "from_url": "https://www.example.com/",
+            "thumb_width": 12345,
+            "thumb_height": 12345,
+            "service_icon": "https://www.example.com/",
+            "id": 12345,
+            "original_url": "https://www.example.com/",
+            "msg_subtype": "",
+            "callback_id": "",
+            "color": "",
+            "pretext": "",
+            "service_url": "",
+            "author_id": "",
+            "author_name": "",
+            "author_link": "",
+            "author_icon": "",
+            "author_subname": "",
+            "channel_id": "",
+            "channel_name": "",
+            "bot_id": "",
+            "indent": false,
+            "is_msg_unfurl": false,
+            "is_reply_unfurl": false,
+            "is_thread_root_unfurl": false,
+            "is_app_unfurl": false,
+            "app_unfurl_url": "",
+            "fields": [
+              {
+                "title": "",
+                "value": "",
+                "short": false
+              }
+            ],
+            "image_url": "",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345,
+            "video_html": "",
+            "video_html_width": 12345,
+            "video_html_height": 12345,
+            "footer": "",
+            "footer_icon": "",
+            "ts": "",
+            "mrkdwn_in": [
+              ""
+            ],
+            "actions": [
+              {
+                "id": "",
+                "name": "",
+                "text": "",
+                "style": "",
+                "type": "",
+                "value": "",
+                "confirm": {
+                  "title": "",
+                  "text": "",
+                  "ok_text": "",
+                  "dismiss_text": ""
+                },
+                "options": [
+                  {
+                    "text": "",
+                    "value": ""
+                  }
+                ],
+                "selected_options": [
+                  {
+                    "text": "",
+                    "value": ""
+                  }
+                ],
+                "data_source": "",
+                "min_query_length": 12345,
+                "option_groups": [
+                  {
+                    "text": ""
+                  }
+                ],
+                "url": ""
+              }
+            ],
+            "filename": "",
+            "size": 12345,
+            "mimetype": "",
+            "url": "",
+            "metadata": {
+              "thumb_64": false,
+              "thumb_80": false,
+              "thumb_160": false,
+              "original_w": 12345,
+              "original_h": 12345,
+              "thumb_360_w": 12345,
+              "thumb_360_h": 12345,
+              "format": "",
+              "extension": "",
+              "rotation": 12345,
+              "thumb_tiny": ""
+            }
           }
         ],
-        "user": "U00000000",
         "blocks": [
           {
             "type": "",
@@ -291,7 +294,8 @@
                     "type": "",
                     "text": "",
                     "emoji": false
-                  }
+                  },
+                  "style": ""
                 },
                 "placeholder": {
                   "type": "",
@@ -301,6 +305,7 @@
                 "initial_channel": "",
                 "response_url_enabled": false,
                 "initial_conversation": "",
+                "default_to_current_conversation": false,
                 "filter": {
                   "exclude_external_shared_channels": false,
                   "exclude_bot_users": false
@@ -415,7 +420,8 @@
                       "type": "",
                       "text": "",
                       "emoji": false
-                    }
+                    },
+                    "style": ""
                   },
                   "placeholder": {
                     "type": "",
@@ -425,6 +431,7 @@
                   "initial_channel": "",
                   "response_url_enabled": false,
                   "initial_conversation": "",
+                  "default_to_current_conversation": false,
                   "filter": {
                     "exclude_external_shared_channels": false,
                     "exclude_bot_users": false
@@ -507,15 +514,6 @@
                 "verbatim": false,
                 "emoji": false
               },
-              "accessory": {
-                "fallback": "",
-                "image_url": "https://www.example.com/",
-                "image_width": 12345,
-                "image_height": 12345,
-                "image_bytes": 12345,
-                "type": "",
-                "alt_text": ""
-              },
               "elements": [
                 {
                   "type": "",
@@ -548,7 +546,8 @@
                       "type": "",
                       "text": "",
                       "emoji": false
-                    }
+                    },
+                    "style": ""
                   },
                   "placeholder": {
                     "type": "",
@@ -558,6 +557,7 @@
                   "initial_channel": "",
                   "response_url_enabled": false,
                   "initial_conversation": "",
+                  "default_to_current_conversation": false,
                   "filter": {
                     "exclude_external_shared_channels": false,
                     "exclude_bot_users": false
@@ -614,7 +614,16 @@
                   "emoji": false,
                   "verbatim": false
                 }
-              ]
+              ],
+              "accessory": {
+                "type": "",
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345
+              }
             }
           ],
           "text": "",
@@ -630,6 +639,7 @@
               "service_url": "",
               "service_name": "",
               "service_icon": "",
+              "author_id": "",
               "author_name": "",
               "author_link": "",
               "author_icon": "",
@@ -649,6 +659,112 @@
               "title": "",
               "title_link": "",
               "text": "",
+              "fields": [
+                {
+                  "title": "",
+                  "value": "",
+                  "short": false
+                }
+              ],
+              "image_url": "",
+              "image_width": 12345,
+              "image_height": 12345,
+              "image_bytes": 12345,
+              "thumb_url": "",
+              "thumb_width": 12345,
+              "thumb_height": 12345,
+              "video_html": "",
+              "video_html_width": 12345,
+              "video_html_height": 12345,
+              "footer": "",
+              "footer_icon": "",
+              "ts": "",
+              "mrkdwn_in": [
+                ""
+              ],
+              "actions": [
+                {
+                  "id": "",
+                  "name": "",
+                  "text": "",
+                  "style": "",
+                  "type": "",
+                  "value": "",
+                  "confirm": {
+                    "title": "",
+                    "text": "",
+                    "ok_text": "",
+                    "dismiss_text": ""
+                  },
+                  "options": [
+                    {
+                      "text": "",
+                      "value": ""
+                    }
+                  ],
+                  "selected_options": [
+                    {
+                      "text": "",
+                      "value": ""
+                    }
+                  ],
+                  "data_source": "",
+                  "min_query_length": 12345,
+                  "option_groups": [
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "url": ""
+                }
+              ],
+              "filename": "",
+              "size": 12345,
+              "mimetype": "",
+              "url": "",
+              "metadata": {
+                "thumb_64": false,
+                "thumb_80": false,
+                "thumb_160": false,
+                "original_w": 12345,
+                "original_h": 12345,
+                "thumb_360_w": 12345,
+                "thumb_360_h": 12345,
+                "format": "",
+                "extension": "",
+                "rotation": 12345,
+                "thumb_tiny": ""
+              }
+            },
+            {
+              "title": "",
+              "title_link": "https://www.example.com/",
+              "text": "",
+              "fallback": "",
+              "from_url": "https://www.example.com/",
+              "service_icon": "https://www.example.com/",
+              "service_name": "",
+              "id": 12345,
+              "original_url": "https://www.example.com/",
+              "msg_subtype": "",
+              "callback_id": "",
+              "color": "",
+              "pretext": "",
+              "service_url": "",
+              "author_id": "",
+              "author_name": "",
+              "author_link": "",
+              "author_icon": "",
+              "author_subname": "",
+              "channel_id": "",
+              "channel_name": "",
+              "bot_id": "",
+              "indent": false,
+              "is_msg_unfurl": false,
+              "is_reply_unfurl": false,
+              "is_thread_root_unfurl": false,
+              "is_app_unfurl": false,
+              "app_unfurl_url": "",
               "fields": [
                 {
                   "title": "",
@@ -730,8 +846,133 @@
         },
         "previous_2": {
           "type": "",
+          "user": "U00000000",
           "username": "",
           "ts": "0000000000.000000",
+          "blocks": [
+            {
+              "type": "",
+              "elements": [
+                {
+                  "type": "",
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "action_id": "",
+                  "url": "",
+                  "value": "",
+                  "style": "",
+                  "confirm": {
+                    "title": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "confirm": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "deny": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "style": ""
+                  },
+                  "placeholder": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "initial_channel": "",
+                  "response_url_enabled": false,
+                  "initial_conversation": "",
+                  "default_to_current_conversation": false,
+                  "filter": {
+                    "exclude_external_shared_channels": false,
+                    "exclude_bot_users": false
+                  },
+                  "initial_date": "",
+                  "initial_option": {
+                    "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "value": "",
+                    "description": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "url": ""
+                  },
+                  "min_query_length": 12345,
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345,
+                  "initial_user": ""
+                },
+                {
+                  "type": "",
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345
+                }
+              ],
+              "block_id": "",
+              "fallback": "",
+              "image_url": "",
+              "image_width": 12345,
+              "image_height": 12345,
+              "image_bytes": 12345,
+              "alt_text": "",
+              "title": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "fields": [
+                {
+                  "type": "",
+                  "text": "",
+                  "emoji": false,
+                  "verbatim": false
+                }
+              ],
+              "accessory": {
+                "type": "",
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345
+              }
+            }
+          ],
+          "text": "",
+          "iid": "",
+          "permalink": "https://www.example.com/",
           "attachments": [
             {
               "msg_subtype": "",
@@ -742,6 +983,7 @@
               "service_url": "",
               "service_name": "",
               "service_icon": "",
+              "author_id": "",
               "author_name": "",
               "author_link": "",
               "author_icon": "",
@@ -838,250 +1080,8 @@
                 "thumb_tiny": ""
               }
             }
-          ],
-          "text": "",
-          "iid": "",
-          "permalink": "https://www.example.com/",
-          "user": "U00000000",
-          "blocks": [
-            {
-              "type": "",
-              "block_id": "",
-              "text": {
-                "type": "",
-                "text": "",
-                "verbatim": false,
-                "emoji": false
-              },
-              "accessory": {
-                "fallback": "",
-                "image_url": "https://www.example.com/",
-                "image_width": 12345,
-                "image_height": 12345,
-                "image_bytes": 12345,
-                "type": "",
-                "alt_text": ""
-              },
-              "elements": [
-                {
-                  "type": "",
-                  "text": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "action_id": "",
-                  "url": "",
-                  "value": "",
-                  "style": "",
-                  "confirm": {
-                    "title": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "confirm": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "deny": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    }
-                  },
-                  "placeholder": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "initial_channel": "",
-                  "response_url_enabled": false,
-                  "initial_conversation": "",
-                  "filter": {
-                    "exclude_external_shared_channels": false,
-                    "exclude_bot_users": false
-                  },
-                  "initial_date": "",
-                  "initial_option": {
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "value": "",
-                    "description": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "url": ""
-                  },
-                  "min_query_length": 12345,
-                  "image_url": "",
-                  "alt_text": "",
-                  "fallback": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345,
-                  "initial_user": ""
-                },
-                {
-                  "type": "",
-                  "image_url": "",
-                  "alt_text": "",
-                  "fallback": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345
-                }
-              ],
-              "fallback": "",
-              "image_url": "",
-              "image_width": 12345,
-              "image_height": 12345,
-              "image_bytes": 12345,
-              "alt_text": "",
-              "title": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "fields": [
-                {
-                  "type": "",
-                  "text": "",
-                  "emoji": false,
-                  "verbatim": false
-                }
-              ]
-            },
-            {
-              "type": "",
-              "elements": [
-                {
-                  "type": "",
-                  "text": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "action_id": "",
-                  "url": "",
-                  "value": "",
-                  "style": "",
-                  "confirm": {
-                    "title": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "confirm": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "deny": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    }
-                  },
-                  "placeholder": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "initial_channel": "",
-                  "response_url_enabled": false,
-                  "initial_conversation": "",
-                  "filter": {
-                    "exclude_external_shared_channels": false,
-                    "exclude_bot_users": false
-                  },
-                  "initial_date": "",
-                  "initial_option": {
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "value": "",
-                    "description": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "url": ""
-                  },
-                  "min_query_length": 12345,
-                  "image_url": "",
-                  "alt_text": "",
-                  "fallback": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345,
-                  "initial_user": ""
-                },
-                {
-                  "type": "",
-                  "image_url": "",
-                  "alt_text": "",
-                  "fallback": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345
-                }
-              ],
-              "block_id": "",
-              "fallback": "",
-              "image_url": "",
-              "image_width": 12345,
-              "image_height": 12345,
-              "image_bytes": 12345,
-              "alt_text": "",
-              "title": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "text": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "fields": [
-                {
-                  "type": "",
-                  "text": "",
-                  "emoji": false,
-                  "verbatim": false
-                }
-              ],
-              "accessory": {
-                "type": "",
-                "image_url": "",
-                "alt_text": "",
-                "fallback": "",
-                "image_width": 12345,
-                "image_height": 12345,
-                "image_bytes": 12345
-              }
-            }
           ]
-        },
-        "no_reactions": false
+        }
       }
     ]
   },

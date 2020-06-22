@@ -11,6 +11,7 @@ lang: ja
 
 Slack アプリは 3 秒以内に `ack()` メソッドでショッートカット実行のリクエストに対して応答をする必要があります。
 
+---
 ## グローバル / メッセージショートカット
 
 #### Slack アプリの設定
@@ -27,7 +28,7 @@ Slack アプリは 3 秒以内に `ack()` メソッドでショッートカッ�
 
 #### Bolt アプリがやること
 
-Bolt アプリがメッセージアクションへの応答のためにやらなければならないことは以下の通りです。
+Bolt アプリがショートカットへの応答のためにやらなければならないことは以下の通りです。
 
 1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
 1. リクエストボディをパースして `callback_id` が処理対象か確認
@@ -36,7 +37,7 @@ Bolt アプリがメッセージアクションへの応答のためにやらな
 
 ### コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt ことはじめ]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
@@ -87,7 +88,7 @@ View buildView(Message message) { return null; }
 View buildView() { return null; }
 ```
 
-同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt ことはじめ > Koltin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt 入門 > Kotlin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 // グローバルショートカットの処理
@@ -144,9 +145,11 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 2. リクエストボディをパースして `callback_id` が処理対象か確認
 
   // リクエストボディは payload={URL エンコードされた JSON 文字列} の形式
-  String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
+  JsonPayloadExtractor payloadExtractor = new JsonPayloadExtractor();
+  String payloadString = payloadExtractor.extractIfExists(request.getBodyAsString());
   // このような値になります: { "type": "shortcut", "team": { "id": "T1234567", ... 
-  String payloadType != null &&  = PseudoActionTypeExtractor.extract(payloadString);
+  JsonPayloadTypeDetector typeDetector = new JsonPayloadTypeDetector();
+  String payloadType = typeDetector.detectType(payloadString);
 
   Gson gson = GsonFactory.createSnakeCase();
   if (payloadType.equals("shortcut")) {

@@ -11,10 +11,10 @@ import java.util.List;
  * https://api.slack.com/reference/block-kit/block-elements#external_multi_select
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class MultiExternalSelectElement extends BlockElement {
     public static final String TYPE = "multi_external_select";
     private final String type = TYPE;

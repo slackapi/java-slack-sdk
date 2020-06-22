@@ -9,10 +9,10 @@ import lombok.*;
  * https://api.slack.com/reference/block-kit/block-elements#external_select
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class ExternalSelectElement extends BlockElement {
     public static final String TYPE = "external_select";
     private final String type = TYPE;

@@ -56,6 +56,9 @@ public class AsyncMethodsRateLimiter {
         String key = methodName + suffix;
 
         MethodsRateLimitTier tier = MethodsRateLimits.lookupRateLimitTier(methodName);
+        if (tier == null) {
+            log.warn("Rate Limit Tier for method: {} is not found", methodName);
+        }
         int allowedRequests = getAllowedRequestsPerMinute(tier);
         if (log.isDebugEnabled()) {
             int currentRequests = getNumberOfLastMinuteRequests(teamId, key);

@@ -51,6 +51,7 @@
       "pref.mobile_secondary_auth_timeout_changed",
       "pref.dlp_access_changed",
       "pref.ent_required_browser",
+      "pref.required_minimum_mobile_version_changed",
       "pref.enterprise_mobile_device_check",
       "pref.allow_calls",
       "pref.custom_tos",
@@ -86,7 +87,11 @@
       "pref.enterprise_team_creation_request",
       "pref.loading_only_admins",
       "pref.display_real_names",
-      "pref.required_minimum_mobile_version_changed"
+      "manual_export_downloaded",
+      "scheduled_export_downloaded",
+      "channels_export_downloaded",
+      "manual_user_export_downloaded",
+      "pref.admin_retention_override_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -108,7 +113,8 @@
       "guest_expired",
       "user_logout_compromised",
       "user_session_reset_by_admin",
-      "user_logout_non_compliant_mobile_app_version"
+      "user_logout_non_compliant_mobile_app_version",
+      "user_force_upgrade_non_compliant_mobile_app_version"
     ],
     "file": [
       "file_downloaded",
@@ -146,6 +152,7 @@
       "external_shared_channel_disconnected",
       "external_shared_channel_reconnected",
       "channel_moved",
+      "channel_posting_pref_changed_from_org_level",
       "channel_renamed"
     ],
     "app": [
@@ -161,17 +168,16 @@
       "bot_token_upgraded",
       "bot_token_downgraded"
     ],
-    "message": [
-      "message_tombstoned",
-      "message_restored"
-    ],
     "workflow_builder": [
       "workflow_created",
       "workflow_deleted",
       "workflow_published",
       "workflow_unpublished",
-      "workflow_responses_csv_download",
-      "workflow_unknown_action"
+      "workflow_responses_csv_download"
+    ],
+    "message": [
+      "message_tombstoned",
+      "message_restored"
     ]
   }
 }

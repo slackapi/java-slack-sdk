@@ -5,6 +5,7 @@ import com.slack.api.model.Message;
 import com.slack.api.model.block.InputBlock;
 import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.block.SectionBlock;
+import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.element.CheckboxesElement;
 import com.slack.api.model.block.element.RadioButtonsElement;
 import com.slack.api.model.block.element.RichTextSectionElement;
@@ -46,7 +47,7 @@ public class BlockKitTest {
         InputBlock inputBlock = (InputBlock) message.getBlocks().get(0);
         assertThat(inputBlock.getLabel(), is(notNullValue()));
         assertThat(inputBlock.getElement(), is(notNullValue()));
-        assertThat(inputBlock.getHint(),is(notNullValue()));
+        assertThat(inputBlock.getHint(), is(notNullValue()));
     }
 
     @Test
@@ -935,6 +936,33 @@ public class BlockKitTest {
         SectionBlock block = (SectionBlock) message.getBlocks().get(1);
         CheckboxesElement checkboxes2 = (CheckboxesElement) block.getAccessory();
         assertThat(checkboxes2.getActionId(), is("section-action-id"));
+    }
+
+    @Test
+    public void confirm_style() {
+        String json = "{\n" +
+                "  \"title\": {\n" +
+                "    \"type\": \"plain_text\",\n" +
+                "    \"text\": \"Are you sure?\"\n" +
+                "  },\n" +
+                "  \"text\": {\n" +
+                "    \"type\": \"mrkdwn\",\n" +
+                "    \"text\": \"Wouldn't you prefer a good game of _chess_?\"\n" +
+                "  },\n" +
+                "  \"confirm\": {\n" +
+                "    \"type\": \"plain_text\",\n" +
+                "    \"text\": \"Do it\"\n" +
+                "  },\n" +
+                "  \"deny\": {\n" +
+                "    \"type\": \"plain_text\",\n" +
+                "    \"text\": \"Stop, I've changed my mind!\"\n" +
+                "  },\n" +
+                "  \"style\":\"primary\"\n" +
+                "}";
+
+        ConfirmationDialogObject obj = GsonFactory.createSnakeCase().fromJson(json, ConfirmationDialogObject.class);
+        assertThat(obj, is(notNullValue()));
+        assertThat(obj.getStyle(), is("primary"));
     }
 
 }

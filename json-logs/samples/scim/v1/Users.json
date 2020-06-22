@@ -106,5 +106,26 @@
         "manager": {}
       }
     }
-  ]
+  ],
+  "Errors": {
+    "description": "",
+    "code": 12345
+  },
+  "addresses": [
+    {}
+  ],
+  "phoneNumbers": [
+    {
+      "type": "",
+      "primary": false
+    }
+  ],
+  "roles": [
+    {
+      "primary": false
+    }
+  ],
+  "urn:scim:schemas:extension:enterprise:1.0": {
+    "manager": {}
+  }
 }

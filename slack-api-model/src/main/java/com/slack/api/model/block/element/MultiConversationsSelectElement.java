@@ -10,10 +10,10 @@ import java.util.List;
  * https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class MultiConversationsSelectElement extends BlockElement {
     public static final String TYPE = "multi_conversations_select";
     private final String type = TYPE;
@@ -36,6 +36,12 @@ public class MultiConversationsSelectElement extends BlockElement {
      * An array of one or more IDs of any valid conversations to be pre-selected when the menu loads.
      */
     private List<String> initialConversations;
+
+    /**
+     * Pre-populates the select menu with the conversation that the user was viewing when they opened the modal,
+     * if available. If initial_conversation is also supplied, it will be ignored. Default is false.
+     */
+    private Boolean defaultToCurrentConversation;
 
     /**
      * A confirm object that defines an optional confirmation dialog that appears

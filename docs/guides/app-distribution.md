@@ -30,6 +30,7 @@ All your app needs to do to properly handle OAuth Flow are:
 * Provide the endpoints to navigate installers for the completion/cancellation of the installation flow
   * The URLs are usually somewhere else but Bolt has simple functionality to serve them
 
+---
 ## Examples
 
 Here is a Bolt app demonstrating how to implement OAuth flow. As the OAuth flow handling features are unnecessary for many custom apps, those are disabled by default. **App** instances need to explicitly call `asOAuthApp(true)` to turn on them.

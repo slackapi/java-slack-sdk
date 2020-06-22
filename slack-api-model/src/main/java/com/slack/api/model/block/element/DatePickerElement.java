@@ -8,10 +8,10 @@ import lombok.*;
  * https://api.slack.com/reference/block-kit/block-elements#datepicker
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class DatePickerElement extends BlockElement {
     public static final String TYPE = "datepicker";
     private final String type = TYPE;

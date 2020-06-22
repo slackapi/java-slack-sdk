@@ -10,6 +10,7 @@ lang: en
 
 Before trying the samples on this page, you need to set up your Java project first. If you haven't done it yet, check the [API Client Installation]({{ site.url | append: site.baseurl }}/guides/web-api-client-setup) guide and follow the instructions there.
 
+---
 ## Initialize Slack Object
 
 Everything in this library starts from a variety of instance methods in **com.slack.api.Slack** class.
@@ -35,6 +36,7 @@ Here is the list of the methods in a **Slack** object to create an API client.
 
 Are you looking for the [Incoming Webhooks](https://api.slack.com/messaging/webhooks)? Of course, it's also supported! Check [this guide]({{ site.url | append: site.baseurl }}/guides/incoming-webhooks) for it.
 
+---
 ## Call a Method
 
 The most popular Slack Web API method is called [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage), and it's used to send a message to a conversation.
@@ -195,6 +197,7 @@ try {
 }
 ```
 
+---
 ## There's More!
 
 Slack Web API offers [180+ methods](https://api.slack.com/methods). The way to use others is almost the same. Just calling methods in **MethodsClient** with a valid token and sufficient parameters works for you.
@@ -230,6 +233,7 @@ AwesomeMethodResponse response = slack.methods().postFormWithTokenAndParseRespon
 );
 ```
 
+---
 ## Rate Limits
 
 Slack platform features and APIs rely on [rate limits](https://api.slack.com/docs/rate-limits) to help provide a predictably pleasant experience for users. The limits would be applied on a "per app per workspace" basis. There are several tiers to determine how frequently your apps can call Web APIs. **slack-api-client** has a complete support for those tiers and **AsyncMethodsClient**, the async client, has great consideration for Rate Limits.
@@ -341,7 +345,6 @@ Slack slack = Slack.getInstance(config);
 ```
 
 ---
-
 ## Real Time Messaging (RTM)
 
 **NOTE**: The RTM API is not recommended unless your app has unique restrictions, like needs to receive events from behind a firewall.
@@ -351,7 +354,6 @@ The Real Time Messaging API is a WebSocket-based API that allows you to receive 
 Refer to [Real Time Messaging (RTM)]({{ site.url | append: site.baseurl }}/guides/rtm) for detals.
 
 ---
-
 ## SCIM API
 
 SCIM API is a set of APIs for provisioning and managing user accounts and groups. SCIM is used by Single Sign-On (SSO) services and identity providers to manage people across a variety of tools, including Slack.
@@ -359,7 +361,6 @@ SCIM API is a set of APIs for provisioning and managing user accounts and groups
 Refer to [SCIM API]({{ site.url | append: site.baseurl }}/guides/scim-api) for detals.
 
 ---
-
 ## Audit Logs API
 
 Audit Logs API is a set of APIs for monitoring what’s happening in your Enterprise Grid organization.
@@ -367,7 +368,6 @@ Audit Logs API is a set of APIs for monitoring what’s happening in your Enterp
 Refer to [Audit Logs API]({{ site.url | append: site.baseurl }}/guides/audit-logs-api) for detals.
 
 ---
-
 ## Slack Status API
 
 The Slack Status API describes the health of the Slack product. When there’s an incident, outage, or maintenance, the Slack Status API reflects all the information we have on the issue, including which features of Slack are affected and detailed updates over time.
@@ -375,7 +375,6 @@ The Slack Status API describes the health of the Slack product. When there’s a
 Refer to [Status API]({{ site.url | append: site.baseurl }}/guides/status-api) for detals.
 
 ---
-
 ## Customize Your Slack API Clients
 
 For customizing Slack API clients, the following options are available in **com.slack.api.SlackConfig**. You can create your own **SlackConfig** with preferred settings and give it to initialize a **Slack** instance.

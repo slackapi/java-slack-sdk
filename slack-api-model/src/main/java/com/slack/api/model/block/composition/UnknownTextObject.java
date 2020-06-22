@@ -6,10 +6,10 @@ import lombok.*;
  * https://api.slack.com/reference/messaging/composition-objects#text
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class UnknownTextObject extends TextObject {
     private String type;
     private String text;

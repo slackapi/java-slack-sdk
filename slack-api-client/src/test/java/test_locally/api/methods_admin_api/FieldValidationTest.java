@@ -2,6 +2,9 @@ package test_locally.api.methods_admin_api;
 
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
+import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
@@ -9,6 +12,9 @@ import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.slack.api.methods.response.admin.teams.settings.*;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +50,7 @@ public class FieldValidationTest {
         {
             AdminAppsRequestsListResponse obj = parse(prefix + "requests.list", AdminAppsRequestsListResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
             verifyIfAllGettersReturnNonNullRecursively(obj.getAppRequests());
         }
         {
@@ -67,6 +73,28 @@ public class FieldValidationTest {
             verifyIfAllGettersReturnNonNull(obj,
                     "getWarning",
                     "getResponseMetadata"
+            );
+        }
+    }
+
+    @Test
+    public void adminConversationsWhitelist() throws Exception {
+        {
+            AdminConversationsWhitelistAddResponse obj = parse("admin.conversations.whitelist.add", AdminConversationsWhitelistAddResponse.class);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning"
+            );
+        }
+        {
+            AdminConversationsWhitelistRemoveResponse obj = parse("admin.conversations.whitelist.remove", AdminConversationsWhitelistRemoveResponse.class);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning"
+            );
+        }
+        {
+            AdminConversationsWhitelistListGroupsLinkedToChannelResponse obj = parse("admin.conversations.whitelist.listGroupsLinkedToChannel", AdminConversationsWhitelistListGroupsLinkedToChannelResponse.class);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning"
             );
         }
     }
@@ -102,7 +130,7 @@ public class FieldValidationTest {
         {
             AdminTeamsAdminsListResponse obj = parse(prefix + "admins.list", AdminTeamsAdminsListResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         }
         {
             AdminTeamsCreateResponse obj = parse(prefix + "create", AdminTeamsCreateResponse.class);
@@ -111,13 +139,15 @@ public class FieldValidationTest {
         }
         {
             AdminTeamsListResponse obj = parse(prefix + "list", AdminTeamsListResponse.class);
-            verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
+            if (obj.getResponseMetadata() != null) {
+                verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            }
         }
         {
             AdminTeamsOwnersListResponse obj = parse(prefix + "owners.list", AdminTeamsOwnersListResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+            verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         }
         {
             AdminTeamsSettingsInfoResponse obj = parse(prefix + "settings.info", AdminTeamsSettingsInfoResponse.class);
@@ -224,4 +254,20 @@ public class FieldValidationTest {
         }
     }
 
+    @Test
+    public void adminUsergroups() throws Exception {
+        String prefix = "admin.usergroups.";
+        {
+            AdminUsergroupsAddChannelsResponse obj = parse(prefix + "addChannels", AdminUsergroupsAddChannelsResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata", "getInvalidChannels");
+        }
+        {
+            AdminUsergroupsListChannelsResponse obj = parse(prefix + "listChannels", AdminUsergroupsListChannelsResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+        {
+            AdminUsergroupsRemoveChannelsResponse obj = parse(prefix + "removeChannels", AdminUsergroupsRemoveChannelsResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+    }
 }

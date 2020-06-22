@@ -71,7 +71,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -103,7 +104,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "response_url_enabled": false
           },
@@ -135,7 +137,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123
           },
@@ -148,6 +151,7 @@
             },
             "action_id": "",
             "initial_conversation": "",
+            "default_to_current_conversation": false,
             "confirm": {
               "title": {
                 "type": "plain_text",
@@ -168,7 +172,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "response_url_enabled": false,
             "filter": {
@@ -187,6 +192,7 @@
               "emoji": false
             },
             "action_id": "",
+            "default_to_current_conversation": false,
             "confirm": {
               "title": {
                 "type": "plain_text",
@@ -207,7 +213,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123,
             "filter": {
@@ -247,7 +254,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -293,7 +301,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -325,7 +334,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123
           },
@@ -361,7 +371,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -406,7 +417,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -437,7 +449,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123
           },
@@ -470,7 +483,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             }
           },
           {
@@ -501,7 +515,8 @@
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
-              }
+              },
+              "style": ""
             },
             "max_selected_items": 123
           }
@@ -583,6 +598,7 @@
         "service_url": "",
         "service_name": "",
         "service_icon": "",
+        "author_id": "",
         "author_name": "",
         "author_link": "",
         "author_icon": "",
@@ -716,6 +732,10 @@
       "user": "",
       "mode": "",
       "editable": false,
+      "non_owner_editable": false,
+      "editor": "",
+      "last_editor": "",
+      "updated": 123,
       "is_external": false,
       "external_type": "",
       "external_id": "",
@@ -881,6 +901,10 @@
         "user": "",
         "mode": "",
         "editable": false,
+        "non_owner_editable": false,
+        "editor": "",
+        "last_editor": "",
+        "updated": 123,
         "is_external": false,
         "external_type": "",
         "external_id": "",
@@ -1087,10 +1111,12 @@
     "reply_users_count": 123,
     "latest_reply": "",
     "subscribed": false,
+    "hidden": false,
     "last_read": "",
     "root": {
       "text": "",
       "user": "",
+      "parent_user_id": "",
       "username": "",
       "team": "",
       "bot_id": "",
@@ -1098,6 +1124,13 @@
       "type": "",
       "subtype": "",
       "thread_ts": "",
+      "icons": {
+        "emoji": "",
+        "image_36": "",
+        "image_48": "",
+        "image_64": "",
+        "image_72": ""
+      },
       "bot_profile": {
         "id": "",
         "deleted": false,
@@ -1224,7 +1257,8 @@
           "type": "plain_text",
           "text": "",
           "emoji": false
-        }
+        },
+        "style": ""
       },
       "url": "",
       "initial_option": {

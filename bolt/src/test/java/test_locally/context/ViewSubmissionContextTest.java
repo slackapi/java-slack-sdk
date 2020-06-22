@@ -10,7 +10,6 @@ import com.slack.api.webhook.WebhookResponse;
 import org.junit.Test;
 import util.WebhookMockServer;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 

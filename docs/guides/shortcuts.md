@@ -6,11 +6,12 @@ lang: en
 
 # Shortcuts
 
-[Shortcuts](https://api.slack.com/interactivity/shortcuts) are an evolution of slash commands, surfaced in both the composer menu and the quick switcher. Shortcuts allow users to trigger your app's workflows from intuitive surface areas within Slack.
+**Shortcuts** are simple entry points for users to invoke your app. [**Global shortcuts**](https://api.slack.com/interactivity/shortcuts/using#global_shortcuts) are surfaced from everywhere in Slack, while [**message shortcuts**](https://api.slack.com/interactivity/shortcuts/using#message_shortcuts) are surfaced in the message context menu.
 
 Your app has 3 seconds to call `ack()`, which acknowledges a shortcut request is received from Slack.
 
-## Global / Message Shortcuts
+---
+## Global and Message Shortcuts
 
 ### Slack App Configuration
 
@@ -26,13 +27,14 @@ The specified **Callback ID** will be sent as `callback_id` in payloads from Sla
 
 ### What Your Bolt App Does
 
-All your app needs to do to handle message shortcuts requests are:
+All your app needs to do to handle shortcuts requests are:
 
 1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `callback_id` is the one you'd like to handle
 1. Build a reply message or do whatever you want to do
 1. Respond to the Slack API server with 200 OK as an acknowledgment
 
+---
 ## Examples
 
 **NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt]({{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt), first.
@@ -129,6 +131,8 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.app_backend.interactive_components.payload.MessageShortcutPayload;
+import com.slack.api.app_backend.util.JsonPayloadExtractor;
+import com.slack.api.app_backend.util.JsonPayloadTypeDetector;
 import com.slack.api.util.json.GsonFactory;
 
 PseudoHttpResponse handle(PseudoHttpRequest request) {
@@ -143,9 +147,11 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   // 2. Parse the request body and check if the `callback_id` is the one you'd like to handle
 
   // payload={URL-encoded JSON} in the request body
-  String payloadString = PseudoPayloadExtractor.extract(request.getBodyAsString());
+  JsonPayloadExtractor payloadExtractor = new JsonPayloadExtractor();
+  String payloadString = payloadExtractor.extractIfExists(request.getBodyAsString());
   // The value looks like: { "type": "shortcut", "team": { "id": "T1234567", ... 
-  String payloadType = PseudoActionTypeExtractor.extract(payloadString);
+  JsonPayloadTypeDetector typeDetector = new JsonPayloadTypeDetector();
+  String payloadType = typeDetector.detectType(payloadString);
 
   Gson gson = GsonFactory.createSnakeCase();
   if (payloadType.equals("shortcut")) {

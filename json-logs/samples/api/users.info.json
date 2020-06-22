@@ -48,8 +48,8 @@
     "is_bot": false,
     "is_app_user": false,
     "updated": 12345,
-    "has_2fa": false,
-    "locale": ""
+    "locale": "",
+    "has_2fa": false
   },
   "error": "",
   "needed": "",

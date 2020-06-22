@@ -10,10 +10,10 @@ import java.util.List;
  * https://api.slack.com/reference/block-kit/block-elements#overflow
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class OverflowMenuElement extends BlockElement {
     public static final String TYPE = "overflow";
     private final String type = TYPE;

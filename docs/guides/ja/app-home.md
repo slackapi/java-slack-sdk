@@ -31,9 +31,10 @@ Bolt アプリが Home タブの提供のためにやらなければならない
 
 よくある手法としては [`"app_home_opened"`](https://api.slack.com/events/app_home_opened) のイベントを使って [**views.publish**](https://api.slack.com/methods/views.publish) API メソッドを呼び出すきっかけに使うという実装があります。特に初回更新にはこのイベントの利用が必要です。しかし、それ以外のタイミング・手段で Home タブを更新することも全く問題ありません。
 
+---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt ことはじめ]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt)」を読んでください。
 
 以下のコードは、ユーザーが App Home にアクセスして [`"app_home_opened"` イベント](https://api.slack.com/events/app_home_opened)が発火したときに [**views.publish**](https://api.slack.com/methods/views.publish) API メソッドによって Home タブを更新しています。[**views.publish**](https://api.slack.com/methods/views.publish) の呼び出しが成功すれば、即座に Home タブの変更が反映されます。
 
@@ -68,7 +69,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt ことはじめ > Koltin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定]({{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 // static imports

@@ -40,6 +40,7 @@ public class Usergroup {
     private Prefs prefs;
     private List<String> users;
     private Integer userCount;
+    private Integer channelCount;
 
     @Data
     public static class Prefs {

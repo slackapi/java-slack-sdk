@@ -1,22 +1,10 @@
 {
-  "schemas": [
-    ""
-  ],
-  "id": "S00000000",
-  "displayName": "",
-  "members": [
-    {
-      "value": "W00000000",
-      "display": ""
-    }
-  ],
-  "meta": {
-    "created": "",
-    "location": "https://www.example.com/"
-  },
   "totalResults": 12345,
   "itemsPerPage": 12345,
   "startIndex": 12345,
+  "schemas": [
+    ""
+  ],
   "Resources": [
     {
       "schemas": [
@@ -69,5 +57,21 @@
         "location": "https://www.example.com/"
       }
     }
-  ]
+  ],
+  "id": "S00000000",
+  "displayName": "",
+  "members": [
+    {
+      "value": "W00000000",
+      "display": ""
+    }
+  ],
+  "meta": {
+    "created": "",
+    "location": "https://www.example.com/"
+  },
+  "Errors": {
+    "description": "",
+    "code": 12345
+  }
 }

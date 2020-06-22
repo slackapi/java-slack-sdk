@@ -8,6 +8,7 @@ lang: ja
 
 [ステータス API](https://api.slack.com/docs/slack-status) は、Slack サービスの稼働状態の情報を提供する API です。何らかの障害、サービス停止、メンテナンスが発生した場合、影響のある Slack の機能、時系列での詳細なアップデートなど、発生している問題に関する全ての情報が反映されます。
 
+---
 ## Java での利用
 
 ステータス API から返されるレスポンスのデータ構造は非常にシンプルです。Java で表現すると以下のようになります。
@@ -38,6 +39,7 @@ class Note {
 }
 ```
 
+---
 ## Current Status API を Java で利用
 
 他の API クライアントと同様 **Slack** クラスの `status()` というメソッドで API クライアントを生成し、そのクライアントの `current()` メソッドで API に対する HTTP リクエストを実行します。
@@ -50,6 +52,7 @@ Slack slack = Slack.getInstance();
 CurrentStatus status = slack.status().current();
 ```
 
+---
 ## History API を Java で利用
 
 上の `current()` と同じように `history()` メソッドの呼び出しで API に対して HTTP リクエストを送信します。

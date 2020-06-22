@@ -1,45 +1,45 @@
 {
   "token": "",
-  "team_id": "T00000000",
-  "enterprise_id": "E00000000",
-  "api_app_id": "A00000000",
+  "team_id": "",
+  "enterprise_id": "",
+  "api_app_id": "",
   "event": {
     "type": "pin_removed",
-    "user": "W00000000",
-    "channel_id": "C00000000",
+    "user": "",
+    "channel_id": "",
     "item": {
       "type": "message",
       "created": 12345,
-      "created_by": "W00000000",
-      "channel": "C00000000",
+      "created_by": "",
+      "channel": "",
       "message": {
-        "bot_id": "B00000000",
+        "bot_id": "",
         "type": "message",
         "text": "",
-        "user": "W00000000",
+        "user": "",
         "ts": "0000000000.000000",
-        "team": "T00000000",
+        "team": "",
         "bot_profile": {
-          "id": "B00000000",
+          "id": "",
           "deleted": false,
           "name": "",
           "updated": 12345,
-          "app_id": "A00000000",
+          "app_id": "",
           "icons": {
             "image_36": "https://www.example.com/",
             "image_48": "https://www.example.com/",
             "image_72": "https://www.example.com/"
           },
-          "team_id": "T00000000"
+          "team_id": ""
         },
         "permalink": "https://www.example.com/"
       }
     },
-    "item_user": "W00000000",
+    "item_user": "",
     "pin_count": 12345,
     "pinned_info": {
-      "channel": "C00000000",
-      "pinned_by": "W00000000",
+      "channel": "",
+      "pinned_by": "",
       "pinned_ts": 12345
     },
     "has_pins": false,
@@ -49,6 +49,6 @@
   "event_id": "",
   "event_time": 12345,
   "authed_users": [
-    "W00000000"
+    ""
   ]
 }

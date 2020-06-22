@@ -2,6 +2,7 @@ package com.slack.api.methods.response.mpim;
 
 import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.Message;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
@@ -18,4 +19,5 @@ public class MpimRepliesResponse implements SlackApiResponse {
 
     private List<Message> messages;
     private boolean hasMore;
+    private ResponseMetadata responseMetadata;
 }
