@@ -11,41 +11,129 @@ import com.slack.api.status.v2.model.CurrentStatus;
 import com.slack.api.util.http.SlackHttpClient;
 import config.Constants;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Ignore;
+import org.eclipse.jetty.proxy.ConnectHandler;
+import org.eclipse.jetty.proxy.ProxyServlet;
+import org.eclipse.jetty.server.Request;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import util.PortProvider;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
 
 @Slf4j
 public class ProxyTest {
 
-    static String proxyUrl = "http://localhost:8888";
-
     static SlackConfig config = new SlackConfig();
-
-    static {
-        config.setProxyUrl(proxyUrl);
-    }
-
-    static Slack slack = Slack.getInstance(config);
+    static Server server = new Server();
+    static ServerConnector connector = new ServerConnector(server);
 
     static String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
     static String rtmBotToken = System.getenv(Constants.SLACK_SDK_TEST_CLASSIC_APP_BOT_TOKEN);
     static String scimToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
     static String auditLogsToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
 
-    @Ignore
-    @Test
-    public void methods() throws Exception {
-        AuthTestResponse apiResponse = slack.methods().authTest(r -> r.token(botToken));
-        assertThat(apiResponse.getError(), is(nullValue()));
+    AtomicInteger callCount = new AtomicInteger(0);
+
+    @Before
+    public void setUp() throws Exception {
+        // https://github.com/eclipse/jetty.project/blob/jetty-9.2.x/examples/embedded/src/main/java/org/eclipse/jetty/embedded/ProxyServer.java
+        int port = PortProvider.getPort(ProxyTest.class.getName());
+        connector.setPort(port);
+        server.addConnector(connector);
+        ConnectHandler proxy = new ConnectHandler() {
+            @Override
+            public void handle(String target, Request br, HttpServletRequest request, HttpServletResponse res)
+                    throws ServletException, IOException {
+                log.info("ConnectHandler (target: {})", target);
+                callCount.incrementAndGet();
+                super.handle(target, br, request, res);
+            }
+        };
+        server.setHandler(proxy);
+        ServletContextHandler context = new ServletContextHandler(proxy, "/", ServletContextHandler.SESSIONS);
+        ServletHolder proxyServlet = new ServletHolder(ProxyServlet.class);
+        context.addServlet(proxyServlet, "/*");
+        server.start();
+
+        config.setProxyUrl("http://localhost:" + port);
     }
 
-    @Ignore
+    @After
+    public void tearDown() throws Exception {
+        server.removeConnector(connector);
+        server.stop();
+    }
+
+    @Test
+    public void methods() throws Exception {
+        Slack slack = Slack.getInstance(config);
+        AuthTestResponse apiResponse = slack.methods().authTest(r -> r.token(botToken));
+        assertThat(apiResponse.getError(), is(nullValue()));
+        assertThat(callCount.get(), is(1));
+    }
+
+    @Test
+    public void methods_system_properties() throws Exception {
+        String originalHttpProxyHost = System.getProperty("http.proxyHost");
+        String originalHttpProxyPort = System.getProperty("http.proxyPort");
+
+        String proxyUrl = config.getProxyUrl();
+        // verify if it works with the standard system properties
+        String[] elements = proxyUrl.replaceFirst("http://", "").split(":");
+        config.setProxyUrl(null);
+        System.setProperty("http.proxyHost", elements[0]);
+        System.setProperty("http.proxyPort", elements[1]);
+
+        try {
+            Slack slack = Slack.getInstance(new SlackConfig()); // with default config
+            AuthTestResponse apiResponse = slack.methods().authTest(r -> r.token(botToken));
+            assertThat(apiResponse.getError(), is(nullValue()));
+            assertThat(callCount.get(), is(1));
+
+            // verify if an invalid host given by system properties is reflected
+            System.setProperty("http.proxyHost", "invalid-host");
+            slack = Slack.getInstance(new SlackConfig()); // with default config again
+            try {
+                slack.methods().authTest(r -> r.token(botToken));
+                fail("A connection failure is expected here");
+            } catch (IOException e) {
+            }
+
+            // verify if the setProxyUrl is prioritized over the system properties
+            config.setProxyUrl(proxyUrl);
+            slack = Slack.getInstance(config);
+            apiResponse = slack.methods().authTest(r -> r.token(botToken));
+            assertThat(apiResponse.getError(), is(nullValue()));
+            assertThat(callCount.get(), is(2));
+
+        } finally {
+            if (originalHttpProxyHost != null) {
+                System.setProperty("http.proxyHost", originalHttpProxyHost);
+            } else {
+                System.clearProperty("http.proxyHost");
+            }
+            if (originalHttpProxyPort != null) {
+                System.setProperty("http.proxyPort", originalHttpProxyPort);
+            } else {
+                System.clearProperty("http.proxyPort");
+            }
+        }
+    }
+
     @Test
     public void rtm() throws Exception {
         SlackHttpClient httpClient = new SlackHttpClient();
@@ -64,30 +152,34 @@ public class ProxyTest {
             rtm.sendMessage("foo");
         }
         assertThat(received.get(), is(true));
+        assertThat(callCount.get(), is(1));
     }
 
-    @Ignore
     @Test
     public void audit() throws Exception {
         if (auditLogsToken != null) {
+            Slack slack = Slack.getInstance(config);
             SchemasResponse response = slack.audit(auditLogsToken).getSchemas();
             assertThat(response, is(notNullValue()));
+            assertThat(callCount.get(), is(1));
         }
     }
 
-    @Ignore
     @Test
     public void scim() throws IOException, SCIMApiException {
         if (scimToken != null) {
+            Slack slack = Slack.getInstance(config);
             ServiceProviderConfigsGetResponse response = slack.scim(scimToken).getServiceProviderConfigs(req -> req);
             assertThat(response.getAuthenticationSchemes(), is(notNullValue()));
+            assertThat(callCount.get(), is(1));
         }
     }
 
-    @Ignore
     @Test
     public void status() throws Exception {
+        Slack slack = Slack.getInstance(config);
         CurrentStatus current = slack.status().current();
         assertThat(current, is(notNullValue()));
+        assertThat(callCount.get(), is(1));
     }
 }
