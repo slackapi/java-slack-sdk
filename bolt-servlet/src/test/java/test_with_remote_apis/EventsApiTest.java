@@ -7,9 +7,11 @@ import com.slack.api.SlackConfig;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.middleware.Middleware;
+import com.slack.api.methods.request.files.FilesUploadRequest;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
+import com.slack.api.methods.response.chat.ChatUpdateResponse;
 import com.slack.api.methods.response.conversations.*;
 import com.slack.api.methods.response.dnd.DndEndSnoozeResponse;
 import com.slack.api.methods.response.dnd.DndSetSnoozeResponse;
@@ -42,6 +44,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -909,6 +912,96 @@ public class EventsApiTest {
             if (createdUsergroupId != null) {
                 String id = createdUsergroupId;
                 slack.methods(userToken).usergroupsDisable(r -> r.usergroup(id));
+            }
+        }
+    }
+
+    // ----------------------------
+    // Message with files
+    // ----------------------------
+
+    @Data
+    public static class FileMessageState {
+        private AtomicInteger fileShare = new AtomicInteger(0);
+        private AtomicInteger messageChanged = new AtomicInteger(0);
+
+        public boolean isAllDone() {
+            return fileShare.get() == 1 && messageChanged.get() == 1;
+        }
+    }
+
+    @Test
+    public void messageWithFiles() throws Exception {
+
+        App app = new App(appConfig);
+        app.use(recorderMiddleware());
+
+        String userToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_USER_TOKEN);
+        String botToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_BOT_TOKEN);
+
+        TestSlackAppServer server = new TestSlackAppServer(app);
+        FileMessageState state = new FileMessageState();
+
+        ConversationsCreateResponse publicChannel =
+                slack.methods(botToken).conversationsCreate(r -> r.name("test-" + System.currentTimeMillis()).isPrivate(false));
+        assertNull(publicChannel.getError());
+
+        final String channelId = publicChannel.getChannel().getId();
+
+        ConversationsJoinResponse joining = slack.methods(userToken).conversationsJoin(r -> r.channel(channelId));
+        assertNull(joining.getError());
+
+        try {
+            app.event(MessageFileShareEvent.class, (req, ctx) -> {
+                if (req.getEvent().getFiles() != null && req.getEvent().getFiles().size() > 0) {
+                    state.fileShare.incrementAndGet();
+                }
+                return ctx.ack();
+            });
+            app.event(MessageChangedEvent.class, (req, ctx) -> {
+                if (req.getEvent().getMessage().getFiles() != null && req.getEvent().getMessage().getFiles().size() > 0
+                    && req.getEvent().getPreviousMessage().getFiles() != null && req.getEvent().getPreviousMessage().getFiles().size() > 0) {
+                    state.messageChanged.incrementAndGet();
+                }
+                return ctx.ack();
+            });
+
+            // ------------------------------------------------------------------------------------
+            server.startAsDaemon();
+            waitForSlackAppConnection();
+            // ------------------------------------------------------------------------------------
+
+            Slack slack = Slack.getInstance(slackConfig);
+            FilesUploadRequest uploadRequest = FilesUploadRequest.builder()
+                    .title("test text")
+                    .content("test test test")
+                    .channels(Arrays.asList(channelId))
+                    .initialComment("Here you are")
+                    .build();
+            FilesUploadResponse userResult = slack.methods(userToken).filesUpload(uploadRequest);
+            assertNull(userResult.getError());
+
+            String ts = userResult.getFile().getShares().getPublicChannels().get(channelId).get(0).getTs();
+            ChatUpdateResponse updateReslt = slack.methods(userToken).chatUpdate(r -> r
+                    .channel(channelId)
+                    .ts(ts)
+                    .text("Here you are - let me know if you need other files as well"));
+            assertNull(updateReslt.getError());
+            // ------------------------------------------------------------------------------------
+
+            long waitTime = 0;
+            while (!state.isAllDone() && waitTime < 5_000L) {
+                long sleepTime = 100L;
+                Thread.sleep(sleepTime);
+                waitTime += sleepTime;
+            }
+            assertTrue(state.toString(), state.isAllDone());
+
+        } finally {
+            server.stop();
+
+            if (channelId != null) {
+                slack.methods(botToken).conversationsArchive(r -> r.channel(channelId));
             }
         }
     }

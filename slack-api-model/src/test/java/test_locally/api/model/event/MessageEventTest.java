@@ -1,12 +1,17 @@
 package test_locally.api.model.event;
 
 import com.google.gson.Gson;
+import com.slack.api.model.File;
 import com.slack.api.model.event.MessageBotEvent;
+import com.slack.api.model.event.MessageChangedEvent;
 import com.slack.api.model.event.MessageEvent;
+import com.slack.api.model.event.MessageFileShareEvent;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
-import static org.hamcrest.CoreMatchers.is;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MessageEventTest {
@@ -199,6 +204,166 @@ public class MessageEventTest {
         String generatedJson = gson.toJson(event);
         String expectedJson = "{\"type\":\"message\"}";
         assertThat(generatedJson, is(expectedJson));
+    }
+
+    @Test
+    public void deserialize_file_share() {
+        String json = "{\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"text\": \"Here you are\",\n" +
+                "  \"files\": [\n" +
+                "    {\n" +
+                "      \"id\": \"F111\",\n" +
+                "      \"created\": 1592795432,\n" +
+                "      \"timestamp\": 1592795432,\n" +
+                "      \"name\": \"test_text.txt\",\n" +
+                "      \"title\": \"test text\",\n" +
+                "      \"mimetype\": \"text/plain\",\n" +
+                "      \"filetype\": \"text\",\n" +
+                "      \"pretty_type\": \"Plain Text\",\n" +
+                "      \"user\": \"U111\",\n" +
+                "      \"editable\": true,\n" +
+                "      \"size\": 14,\n" +
+                "      \"mode\": \"snippet\",\n" +
+                "      \"is_external\": false,\n" +
+                "      \"external_type\": \"\",\n" +
+                "      \"is_public\": true,\n" +
+                "      \"public_url_shared\": false,\n" +
+                "      \"display_as_bot\": false,\n" +
+                "      \"username\": \"\",\n" +
+                "      \"url_private\": \"https://files.slack.com/files-pri/T111-F111/test_text.txt\",\n" +
+                "      \"url_private_download\": \"https://files.slack.com/files-pri/T111-F111/download/test_text.txt\",\n" +
+                "      \"permalink\": \"https://org-domain.enterprise.slack.com/files/U111/F111/test_text.txt\",\n" +
+                "      \"permalink_public\": \"https://slack-files.com/T111-F111-817003e111\",\n" +
+                "      \"edit_link\": \"https://org-domain.enterprise.slack.com/files/U111/F111/test_text.txt/edit\",\n" +
+                "      \"preview\": \"test test test\",\n" +
+                "      \"preview_highlight\": \"<div class=\\\"CodeMirror cm-s-default CodeMirrorServer\\\" oncopy=\\\"if(event.clipboardData){event.clipboardData.setData('text/plain',window.getSelection().toString().replace(/\\\\u200b/g,''));event.preventDefault();event.stopPropagation();}\\\">\\n<div class=\\\"CodeMirror-code\\\">\\n<div><pre>test test test</pre></div>\\n</div>\\n</div>\\n\",\n" +
+                "      \"lines\": 1,\n" +
+                "      \"lines_more\": 0,\n" +
+                "      \"preview_is_truncated\": false,\n" +
+                "      \"has_rich_preview\": false\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"upload\": true,\n" +
+                "  \"user\": \"U111\",\n" +
+                "  \"display_as_bot\": false,\n" +
+                "  \"ts\": \"1592795432.000500\",\n" +
+                "  \"channel\": \"C111\",\n" +
+                "  \"subtype\": \"file_share\",\n" +
+                "  \"event_ts\": \"1592795432.000500\",\n" +
+                "  \"channel_type\": \"channel\"\n" +
+                "}\n";
+        MessageFileShareEvent event = GsonFactory.createSnakeCase().fromJson(json, MessageFileShareEvent.class);
+        List<File> files = event.getFiles();
+        assertThat(files, is(notNullValue()));
+        assertThat(files.size(), is(1));
+        assertThat(files.get(0).getUrlPrivate(), is("https://files.slack.com/files-pri/T111-F111/test_text.txt"));
+    }
+
+    @Test
+    public void deserialize_message_changed_with_files() {
+        String json = "{\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"subtype\": \"message_changed\",\n" +
+                "  \"hidden\": true,\n" +
+                "  \"message\": {\n" +
+                "    \"type\": \"message\",\n" +
+                "    \"text\": \"Here you are - let me know if you need other files as well\",\n" +
+                "    \"files\": [\n" +
+                "      {\n" +
+                "        \"id\": \"F111\",\n" +
+                "        \"created\": 1592796885,\n" +
+                "        \"timestamp\": 1592796885,\n" +
+                "        \"name\": \"test_text.txt\",\n" +
+                "        \"title\": \"test text\",\n" +
+                "        \"mimetype\": \"text/plain\",\n" +
+                "        \"filetype\": \"text\",\n" +
+                "        \"pretty_type\": \"プレーンテキスト\",\n" +
+                "        \"user\": \"U111\",\n" +
+                "        \"editable\": true,\n" +
+                "        \"size\": 14,\n" +
+                "        \"mode\": \"snippet\",\n" +
+                "        \"is_external\": false,\n" +
+                "        \"external_type\": \"\",\n" +
+                "        \"is_public\": true,\n" +
+                "        \"public_url_shared\": false,\n" +
+                "        \"display_as_bot\": false,\n" +
+                "        \"username\": \"\",\n" +
+                "        \"url_private\": \"https://files.slack.com/files-pri/T111-F111/test_text.txt\",\n" +
+                "        \"url_private_download\": \"https://files.slack.com/files-pri/T111-F111/download/test_text.txt\",\n" +
+                "        \"permalink\": \"https://org-domain.enterprise.slack.com/files/U111/F111/test_text.txt\",\n" +
+                "        \"permalink_public\": \"https://slack-files.com/T111-F111-34cde344b2\",\n" +
+                "        \"edit_link\": \"https://org-domain.enterprise.slack.com/files/U111/F111/test_text.txt/edit\",\n" +
+                "        \"preview\": \"test test test\",\n" +
+                "        \"preview_highlight\": \"\\u003cdiv class\\u003d\\\"CodeMirror cm-s-default CodeMirrorServer\\\" oncopy\\u003d\\\"if(event.clipboardData){event.clipboardData.setData(\\u0027text/plain\\u0027,window.getSelection().toString().replace(/\\\\u200b/g,\\u0027\\u0027));event.preventDefault();event.stopPropagation();}\\\"\\u003e\\n\\u003cdiv class\\u003d\\\"CodeMirror-code\\\"\\u003e\\n\\u003cdiv\\u003e\\u003cpre\\u003etest test test\\u003c/pre\\u003e\\u003c/div\\u003e\\n\\u003c/div\\u003e\\n\\u003c/div\\u003e\\n\",\n" +
+                "        \"lines\": 1,\n" +
+                "        \"lines_more\": 0,\n" +
+                "        \"preview_is_truncated\": false,\n" +
+                "        \"has_rich_preview\": false\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"upload\": true,\n" +
+                "    \"user\": \"U111\",\n" +
+                "    \"display_as_bot\": false,\n" +
+                "    \"edited\": {\n" +
+                "      \"user\": \"U111\",\n" +
+                "      \"ts\": \"1592796886.000000\"\n" +
+                "    },\n" +
+                "    \"ts\": \"1592796885.000500\",\n" +
+                "    \"source_team\": \"E111\",\n" +
+                "    \"user_team\": \"E111\"\n" +
+                "  },\n" +
+                "  \"channel\": \"C111\",\n" +
+                "  \"previous_message\": {\n" +
+                "    \"type\": \"message\",\n" +
+                "    \"text\": \"Here you are\",\n" +
+                "    \"files\": [\n" +
+                "      {\n" +
+                "        \"id\": \"F111\",\n" +
+                "        \"created\": 1592796885,\n" +
+                "        \"timestamp\": 1592796885,\n" +
+                "        \"name\": \"test_text.txt\",\n" +
+                "        \"title\": \"test text\",\n" +
+                "        \"mimetype\": \"text/plain\",\n" +
+                "        \"filetype\": \"text\",\n" +
+                "        \"pretty_type\": \"プレーンテキスト\",\n" +
+                "        \"user\": \"U111\",\n" +
+                "        \"editable\": true,\n" +
+                "        \"size\": 14,\n" +
+                "        \"mode\": \"snippet\",\n" +
+                "        \"is_external\": false,\n" +
+                "        \"external_type\": \"\",\n" +
+                "        \"is_public\": true,\n" +
+                "        \"public_url_shared\": false,\n" +
+                "        \"display_as_bot\": false,\n" +
+                "        \"username\": \"\",\n" +
+                "        \"url_private\": \"https://files.slack.com/files-pri/T111-F111/test_text.txt\",\n" +
+                "        \"url_private_download\": \"https://files.slack.com/files-pri/T111-F111/download/test_text.txt\",\n" +
+                "        \"permalink\": \"https://org-domain.enterprise.slack.com/files/U111/F111/test_text.txt\",\n" +
+                "        \"permalink_public\": \"https://slack-files.com/T111-F111-34cde344b2\",\n" +
+                "        \"edit_link\": \"https://org-domain.enterprise.slack.com/files/U111/F111/test_text.txt/edit\",\n" +
+                "        \"preview\": \"test test test\",\n" +
+                "        \"preview_highlight\": \"\\u003cdiv class\\u003d\\\"CodeMirror cm-s-default CodeMirrorServer\\\" oncopy\\u003d\\\"if(event.clipboardData){event.clipboardData.setData(\\u0027text/plain\\u0027,window.getSelection().toString().replace(/\\\\u200b/g,\\u0027\\u0027));event.preventDefault();event.stopPropagation();}\\\"\\u003e\\n\\u003cdiv class\\u003d\\\"CodeMirror-code\\\"\\u003e\\n\\u003cdiv\\u003e\\u003cpre\\u003etest test test\\u003c/pre\\u003e\\u003c/div\\u003e\\n\\u003c/div\\u003e\\n\\u003c/div\\u003e\\n\",\n" +
+                "        \"lines\": 1,\n" +
+                "        \"lines_more\": 0,\n" +
+                "        \"preview_is_truncated\": false,\n" +
+                "        \"is_starred\": false,\n" +
+                "        \"has_rich_preview\": false\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"upload\": true,\n" +
+                "    \"user\": \"U111\",\n" +
+                "    \"display_as_bot\": false,\n" +
+                "    \"ts\": \"1592796885.000500\"\n" +
+                "  },\n" +
+                "  \"event_ts\": \"1592796886.000800\",\n" +
+                "  \"ts\": \"1592796886.000800\",\n" +
+                "  \"channel_type\": \"channel\"\n" +
+                "}";
+        MessageChangedEvent event = GsonFactory.createSnakeCase().fromJson(json, MessageChangedEvent.class);
+        assertThat(event.getMessage().getFiles(), is(notNullValue()));
+        assertThat(event.getPreviousMessage().getFiles(), is(notNullValue()));
+        assertThat(event.getMessage().getFiles(), is(equalTo(event.getPreviousMessage().getFiles())));
     }
 
 }
