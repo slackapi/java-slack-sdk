@@ -392,6 +392,7 @@ Slack slack = Slack.getInstance(config);
 
 |名称|型|説明（デフォルト値）|
 |-|-|-|
+|**proxyUrl**|**String**|全ての Slack への通信にプロキシサーバーを有効にしたい場合、`http://localhost:8888` のような完全な URL を表現する文字列の値を指定します。 (デフォルト値: null)|
 |**prettyResponseLoggingEnabled**|**boolean**|このフラグが true のとき Slack API から受け取ったレスポンスボディの JSON データを整形した上でデバッグレベルでログ出力します （デフォルト値: `false`）|
 |**failOnUnknownProperties**|**boolean**|このフラグが true のとき JSON パーサーは Slack API レスポンス内に未知のプロパティを検知したときに例外を throw します （デフォルト値: `false`）|
 |**tokenExistenceVerificationEnabled**|**boolean**|このフラグが true のとき **MethodsClient** はトークンが未設定の状態で API 呼び出しをしようとするとその前に例外を throw します （デフォルト値: `false`）|
