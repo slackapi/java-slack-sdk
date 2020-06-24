@@ -27,7 +27,7 @@ public class InputBlock implements LayoutBlock {
     private PlainTextObject label;
 
     /**
-     * An plain-text input element, a select menu element, or a multi-select menu element.
+     * A plain-text input element, a select menu element, a multi-select menu, or a datepicker element.
      */
     private BlockElement element;
 
