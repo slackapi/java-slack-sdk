@@ -1,3 +1,4 @@
 _site
 .env
 .jekyll-metadata
+vendor/

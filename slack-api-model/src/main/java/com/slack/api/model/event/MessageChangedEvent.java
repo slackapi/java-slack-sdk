@@ -2,6 +2,7 @@ package com.slack.api.model.event;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.Attachment;
+import com.slack.api.model.File;
 import com.slack.api.model.Reaction;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
@@ -45,6 +46,11 @@ public class MessageChangedEvent implements Event {
         private String text;
         private List<LayoutBlock> blocks;
         private List<Attachment> attachments;
+
+        private List<File> files;
+        private Boolean upload;
+        private Boolean displayAsBot;
+        private List<String> xFiles;
 
         private String ts;
         private String userTeam;
