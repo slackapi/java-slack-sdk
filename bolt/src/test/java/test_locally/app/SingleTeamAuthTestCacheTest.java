@@ -8,6 +8,7 @@ import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.GlobalShortcutRequest;
 import com.slack.api.bolt.response.Response;
+import com.slack.api.methods.MethodsConfig;
 import com.slack.api.methods.SlackApiException;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Server;
@@ -38,6 +39,11 @@ import static org.junit.Assert.fail;
 public class SingleTeamAuthTestCacheTest {
 
     static SlackConfig config = new SlackConfig();
+    static {
+        MethodsConfig methodsConfig = new MethodsConfig();
+        methodsConfig.setStatsEnabled(false); // To skip TeamIdCache requests
+        config.setMethodsConfig(methodsConfig);
+    }
     static Slack slack = Slack.getInstance(config);
     static CountdownAuthTestServer server = new CountdownAuthTestServer();
 
@@ -154,7 +160,7 @@ public class SingleTeamAuthTestCacheTest {
             @Override
             protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
                 String token = req.getHeader("Authorization").replaceFirst("Bearer ", "");
-                int count = remaining.computeIfAbsent(token, (t) -> new AtomicInteger(2)).getAndDecrement();
+                int count = remaining.computeIfAbsent(token, (t) -> new AtomicInteger(1)).getAndDecrement();
                 if (count <= 0) {
                     resp.setStatus(500);
                     return;
