@@ -69,6 +69,12 @@ public class AppConfig {
     @Builder.Default
     private boolean oAuthCallbackEnabled = false;
 
+
+    @Builder.Default
+    private boolean authTestCacheEnabled = false;
+    @Builder.Default
+    private long authTestCacheExpirationMillis = 3000L;
+
     @Builder.Default
     // https://api.slack.com/authentication/migration
     private boolean classicAppPermissionsEnabled = false;
