@@ -98,7 +98,23 @@ public class SlackConfig {
     /**
      * The proxy server URL supposed to be used for all api calls.
      */
-    private String proxyUrl = null;
+    private String proxyUrl = initProxyUrl();
+
+    // This method runs only once for SINGLETON instance.
+    // If you want to reflect dynamically updated system properties,
+    // create a new instance by invoking the default constructor.
+    private static String initProxyUrl() {
+        String host = System.getProperty("http.proxyHost");
+        if (host != null) {
+            String port = System.getProperty("http.proxyPort");
+            if (port != null) {
+                return "http://" + host + ":" + port;
+            } else {
+                return "http://" + host;
+            }
+        }
+        return null;
+    }
 
     private boolean prettyResponseLoggingEnabled = false;
 
