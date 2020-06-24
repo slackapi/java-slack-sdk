@@ -334,7 +334,8 @@
       "channel_sidebar_hide_browse_dms_link": false,
       "enable_all_dms_view": false,
       "seen_edit_mode": false,
-      "newxp_seen_help_message": 12345
+      "newxp_seen_help_message": 12345,
+      "calls_survey_last_seen": 12345
     },
     "created": 12345,
     "first_login": 12345,
@@ -1016,6 +1017,7 @@
   ],
   "url": "",
   "is_europe": false,
+  "mobile_app_requires_upgrade": false,
   "error": "",
   "needed": "",
   "provided": ""
