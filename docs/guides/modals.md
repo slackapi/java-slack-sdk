@@ -228,6 +228,57 @@ val res = ctx.client().viewsOpen { it
 }
 ```
 
+Alternatively, you can use the [Block Kit DSL]({{ site.url | append: site.baseurl }}/guides/composing-messages#block-kit-kotlin-dsl) in conjunction with the Java Builder to construct your view. The Java example above would look like this in Kotlin:
+
+```kotlin
+import com.slack.api.model.kotlin_extension.view.blocks
+import com.slack.api.model.view.Views.*
+
+fun buildView(): View {
+  return view { thisView -> thisView
+          .callbackId("meeting-arrangement")
+          .type("modal")
+          .notifyOnClose(true)
+          .title(viewTitle { it.type("plain_text").text("Meeting Arrangement").emoji(true) })
+          .submit(viewSubmit { it.type("plain_text").text("Submit").emoji(true) })
+          .close(viewClose { it.type("plain_text").text("Cancel").emoji(true) })
+          .privateMetadata("""{"response_url":"https://hooks.slack.com/actions/T1ABCD2E12/330361579271/0dAEyLY19ofpLwxqozy3firz"}""")
+          .blocks {
+            section {
+              blockId("category-block")
+              markdownText("Select a category of the meeting!")
+              staticSelect { 
+                actionId("category-selection-action")
+                placeholder("Select a category")
+                options {
+                  option {
+                    description("Customer")
+                    value("customer")
+                  }
+                  option {
+                    description("Partner")
+                    value("partner")
+                  }
+                  option {
+                    description("Internal")
+                    value("internal")
+                  }
+                }
+              }
+            }
+            input {
+              blockId("agenda-block")
+              plainTextInput { 
+                actionId("agenda-action")
+                multiline(true)
+              }
+              label("Detailed Agenda", emoji = true)
+            }
+          }
+  }
+}
+```
+
 ### `"block_actions"` requests
 
 Basically it's the same with [Interactive Components]({{ site.url | append: site.baseurl }}/guides/interactive-components) but the only difference is that a payload coming from a modal has `view` and also its `private_metadata`
