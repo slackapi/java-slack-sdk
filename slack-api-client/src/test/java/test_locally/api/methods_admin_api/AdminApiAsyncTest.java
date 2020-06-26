@@ -163,6 +163,8 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminUsergroupsRemoveChannels(r -> r.usergroupId("S123").channelIds(Arrays.asList("C123", "C234")))
                 .get().isOk(), is(true));
+        assertThat(methods.adminUsergroupsAddTeams(r -> r.usergroupId("S123").teamIds(Arrays.asList("T123", "T234")))
+                .get().isOk(), is(true));
     }
 
 }

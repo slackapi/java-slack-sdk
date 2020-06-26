@@ -13,6 +13,7 @@ import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.slack.api.methods.response.admin.teams.settings.*;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddTeamsResponse;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChannelsResponse;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
@@ -257,6 +258,10 @@ public class FieldValidationTest {
     @Test
     public void adminUsergroups() throws Exception {
         String prefix = "admin.usergroups.";
+        {
+            AdminUsergroupsAddTeamsResponse obj = parse(prefix + "addTeams", AdminUsergroupsAddTeamsResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
         {
             AdminUsergroupsAddChannelsResponse obj = parse(prefix + "addChannels", AdminUsergroupsAddChannelsResponse.class);
             verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata", "getInvalidChannels");

@@ -163,5 +163,8 @@ public class AdminApiTest {
                 .isOk(), is(true));
         assertThat(methods.adminUsergroupsRemoveChannels(r -> r.usergroupId("S123").channelIds(Arrays.asList("C123", "C234")))
                 .isOk(), is(true));
+        assertThat(methods.adminUsergroupsAddTeams(r -> r.usergroupId("S123").teamIds(Arrays.asList("T123", "T234")))
+                .isOk(), is(true));
+
     }
 }

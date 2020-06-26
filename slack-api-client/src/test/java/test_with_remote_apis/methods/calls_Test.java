@@ -7,6 +7,7 @@ import com.slack.api.methods.response.calls.CallsEndResponse;
 import com.slack.api.methods.response.calls.CallsInfoResponse;
 import com.slack.api.methods.response.calls.CallsUpdateResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
+import com.slack.api.methods.response.calls.participants.CallsParticipantsRemoveResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.model.CallParticipant;
 import com.slack.api.model.block.CallBlock;
@@ -102,10 +103,11 @@ public class calls_Test {
 
         validateCallBlockInLatestMessage(botToken, message.getChannel());
 
+        CallParticipant participant1 = CallParticipant.builder().slackId(userIds.get(1)).build();
         CallsParticipantsAddResponse addParticipants = slack.methods(botToken).callsParticipantsAdd(r -> r
                 .id(callId)
                 .users(Arrays.asList(
-                        CallParticipant.builder().slackId(userIds.get(1)).build(),
+                        participant1,
                         CallParticipant.builder()
                                 .avatarUrl("https://assets.brandfolder.com/pmix53-32t4so-a6439g/original/slackbot.png")
                                 .displayName("anonymous user 2")
@@ -114,6 +116,10 @@ public class calls_Test {
                 ))
         );
         assertThat(addParticipants.getError(), is(nullValue()));
+
+        CallsParticipantsRemoveResponse participantsRemoval = slack.methods(botToken).callsParticipantsRemove(r ->
+                r.id(callId).users(Arrays.asList(participant1)));
+        assertThat(participantsRemoval.getError(), is(nullValue()));
 
         validateCallBlockInLatestMessage(botToken, message.getChannel());
 

@@ -20,6 +20,7 @@ import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.slack.api.methods.response.admin.teams.settings.*;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddTeamsResponse;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChannelsResponse;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
@@ -49,7 +50,6 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThan;
 
 @Slf4j
 public class AdminApiTest {
@@ -451,6 +451,23 @@ public class AdminApiTest {
             remove = orgAdminClient.adminConversationsWhitelistRemove(r -> r
                     .teamId(teamId).channelId("dummy").groupId(idpUsergroupId));
             assertThat(remove.getError(), is("invalid_arguments"));
+        }
+    }
+
+    @Test
+    public void usergroups_teams() throws Exception {
+        if (teamAdminUserToken != null && orgAdminUserToken != null && idpUsergroupId != null) {
+            List<String> teamIds = slack.methods(orgAdminUserToken).adminTeamsList(r -> r.limit(1))
+                    .getTeams()
+                    .stream().map(t -> t.getId()).collect(Collectors.toList());
+            AdminUsergroupsAddTeamsResponse addTeams = slack.methods(orgAdminUserToken)
+                    .adminUsergroupsAddTeams(r -> r.teamIds(teamIds).usergroupId(idpUsergroupId));
+            assertThat(addTeams.getError(), is(nullValue()));
+
+            addTeams = slack.methodsAsync(orgAdminUserToken)
+                    .adminUsergroupsAddTeams(r -> r.teamIds(teamIds).usergroupId(idpUsergroupId))
+                    .get();
+            assertThat(addTeams.getError(), is(nullValue()));
         }
     }
 

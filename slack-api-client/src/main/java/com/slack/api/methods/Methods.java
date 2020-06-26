@@ -90,6 +90,7 @@ public class Methods {
     // ------------------------------
 
     public static final String ADMIN_USERGROUPS_ADD_CHANNELS = "admin.usergroups.addChannels";
+    public static final String ADMIN_USERGROUPS_ADD_TEAMS = "admin.usergroups.addTeams";
     public static final String ADMIN_USERGROUPS_LIST_CHANNELS = "admin.usergroups.listChannels";
     public static final String ADMIN_USERGROUPS_REMOVE_CHANNELS = "admin.usergroups.removeChannels";
 
@@ -173,6 +174,7 @@ public class Methods {
     // ------------------------------
 
     public static final String CALLS_PARTICIPANTS_ADD = "calls.participants.add";
+    public static final String CALLS_PARTICIPANTS_REMOVE = "calls.participants.remove";
 
     // ------------------------------
     // channels

@@ -88,6 +88,7 @@ public class MethodsRateLimits {
 
                 ADMIN_USERS_SESSION_RESET,
 
+                ADMIN_USERGROUPS_ADD_TEAMS,
                 ADMIN_USERGROUPS_LIST_CHANNELS,
                 ADMIN_USERGROUPS_REMOVE_CHANNELS
         );
@@ -141,6 +142,7 @@ public class MethodsRateLimits {
         setRateLimitTier(CALLS_INFO, Tier2);
         setRateLimitTier(CALLS_UPDATE, Tier2);
         setRateLimitTier(CALLS_PARTICIPANTS_ADD, Tier2);
+        setRateLimitTier(CALLS_PARTICIPANTS_REMOVE, Tier2);
 
         setRateLimitTier(CHAT_DELETE, Tier3);
         setRateLimitTier(CHAT_DELETE_SCHEDULED_MESSAGE, Tier3);
