@@ -35,6 +35,7 @@ public class CallsTest {
         assertThat(slack.methods(ValidToken).callsInfo(r -> r.id("R111")).isOk(), is(true));
         assertThat(slack.methods(ValidToken).callsUpdate(r -> r.id("R111")).isOk(), is(true));
         assertThat(slack.methods(ValidToken).callsParticipantsAdd(r -> r.id("R111")).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).callsParticipantsRemove(r -> r.id("R111")).isOk(), is(true));
     }
 
     @Test
@@ -44,6 +45,7 @@ public class CallsTest {
         assertThat(slack.methodsAsync(ValidToken).callsInfo(r -> r.id("R111")).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).callsUpdate(r -> r.id("R111")).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).callsParticipantsAdd(r -> r.id("R111")).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).callsParticipantsRemove(r -> r.id("R111")).get().isOk(), is(true));
     }
 
 }
