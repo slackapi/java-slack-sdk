@@ -101,6 +101,45 @@ public class SingleTeamAuthTestCacheTest {
     }
 
     @Test
+    public void permanentCacheEnabled() throws Exception {
+        App app = new App(AppConfig.builder()
+                .authTestCacheEnabled(true)
+                .authTestCacheExpirationMillis(-1L)
+                .signingSecret(secret)
+                .singleTeamBotToken("xoxb-1234567890-123456789012-12345678901234567890-permanent")
+                .slack(slack)
+                .build());
+        app.globalShortcut("test-global-shortcut", (req, ctx) -> ctx.ack());
+
+        String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        GlobalShortcutRequest req = new GlobalShortcutRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
+        assertEquals("seratch", req.getPayload().getUser().getUsername()); // a bit different from message_actions payload
+
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+
+        response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+
+        Thread.sleep(300L);
+        response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+
+        Thread.sleep(300L);
+        response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+
+        Thread.sleep(3000L);
+        response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+    }
+
+    @Test
     public void cacheDisabled() throws Exception {
         App app = buildApp(false);
         app.globalShortcut("test-global-shortcut", (req, ctx) -> ctx.ack());

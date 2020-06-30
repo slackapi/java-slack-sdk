@@ -15,14 +15,19 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.util.thread.ExecutorServiceFactory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static com.slack.api.bolt.middleware.MiddlewareOps.isNoAuthRequiredRequest;
 import static com.slack.api.bolt.response.ResponseTypes.ephemeral;
@@ -45,6 +50,7 @@ public class MultiTeamsAuthorization implements Middleware {
 
     // token -> auth.test response
     private final ConcurrentMap<String, CachedAuthTestResponse> tokenToAuthTestCache = new ConcurrentHashMap<>();
+    private final Optional<ScheduledExecutorService> tokenToAuthTestCacheCleaner;
 
     private boolean alwaysRequestUserTokenNeeded;
 
@@ -60,6 +66,40 @@ public class MultiTeamsAuthorization implements Middleware {
         this.config = config;
         this.installationService = installationService;
         setAlwaysRequestUserTokenNeeded(config.isAlwaysRequestUserTokenNeeded());
+        if (config.isAuthTestCacheEnabled()) {
+            boolean permanentCacheEnabled = config.getAuthTestCacheExpirationMillis() < 0;
+            if (permanentCacheEnabled) {
+                this.tokenToAuthTestCacheCleaner = Optional.empty();
+            } else {
+                this.tokenToAuthTestCacheCleaner = Optional.of(buildTokenToAuthTestCacheCleaner(() -> {
+                    long expirationMillis = System.currentTimeMillis() - config.getAuthTestCacheExpirationMillis();
+                    for (Map.Entry<String, CachedAuthTestResponse> each : tokenToAuthTestCache.entrySet()) {
+                        if (each.getValue() == null || each.getValue().getCachedMillis() < expirationMillis) {
+                            tokenToAuthTestCache.remove(each.getKey());
+                        }
+                    }
+                }));
+            }
+        } else {
+            this.tokenToAuthTestCacheCleaner = Optional.empty();
+        }
+    }
+
+    private ScheduledExecutorService buildTokenToAuthTestCacheCleaner(Runnable task) {
+        String threadGroupName = MultiTeamsAuthorization.class.getSimpleName();
+        ScheduledExecutorService tokenToAuthTestCacheCleaner =
+                ExecutorServiceFactory.createDaemonThreadScheduledExecutor(threadGroupName);
+        tokenToAuthTestCacheCleaner.scheduleAtFixedRate(task, 120_000, 30_000, TimeUnit.MILLISECONDS);
+        log.debug("The tokenToAuthTestCacheCleaner (daemon thread) started");
+        return tokenToAuthTestCacheCleaner;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        if (this.tokenToAuthTestCacheCleaner.isPresent()) {
+            this.tokenToAuthTestCacheCleaner.get().shutdown();
+        }
+        super.finalize();
     }
 
     @Override
@@ -150,6 +190,10 @@ public class MultiTeamsAuthorization implements Middleware {
         if (config.isAuthTestCacheEnabled()) {
             CachedAuthTestResponse cachedResponse = tokenToAuthTestCache.get(token);
             if (cachedResponse != null) {
+                boolean permanentCacheEnabled = config.getAuthTestCacheExpirationMillis() < 0;
+                if (permanentCacheEnabled) {
+                    return cachedResponse.getResponse();
+                }
                 long millisToExpire = cachedResponse.getCachedMillis() + config.getAuthTestCacheExpirationMillis();
                 if (millisToExpire > System.currentTimeMillis()) {
                     return cachedResponse.getResponse();

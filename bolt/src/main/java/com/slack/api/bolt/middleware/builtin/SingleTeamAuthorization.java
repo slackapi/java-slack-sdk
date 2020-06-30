@@ -84,9 +84,16 @@ public class SingleTeamAuthorization implements Middleware {
 
     protected AuthTestResponse callAuthTest(AppConfig config, MethodsClient client) throws IOException, SlackApiException {
         if (config.isAuthTestCacheEnabled()) {
-            long millisToExpire = lastCachedMillis.get() + config.getAuthTestCacheExpirationMillis();
-            if (cachedAuthTestResponse.isPresent() && millisToExpire > System.currentTimeMillis()) {
-                return cachedAuthTestResponse.get();
+            if (cachedAuthTestResponse.isPresent()) {
+                boolean permanentCacheEnabled = config.getAuthTestCacheExpirationMillis() < 0;
+                if (permanentCacheEnabled) {
+                    return cachedAuthTestResponse.get();
+                }
+                long millisToExpire = lastCachedMillis.get() + config.getAuthTestCacheExpirationMillis();
+                long currentMillis = System.currentTimeMillis();
+                if (millisToExpire > currentMillis) {
+                    return cachedAuthTestResponse.get();
+                }
             }
             AuthTestResponse response = client.authTest(r -> r.token(config.getSingleTeamBotToken()));
             cachedAuthTestResponse = Optional.of(response); // response here is not null for sure
