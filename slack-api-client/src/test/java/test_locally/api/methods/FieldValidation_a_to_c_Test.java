@@ -10,6 +10,7 @@ import com.slack.api.methods.response.calls.CallsEndResponse;
 import com.slack.api.methods.response.calls.CallsInfoResponse;
 import com.slack.api.methods.response.calls.CallsUpdateResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
+import com.slack.api.methods.response.calls.participants.CallsParticipantsRemoveResponse;
 import com.slack.api.methods.response.channels.*;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
@@ -94,6 +95,12 @@ public class FieldValidation_a_to_c_Test {
     @Test
     public void calls_participants_add() throws Exception {
         CallsParticipantsAddResponse obj = parse("calls.participants.add", CallsParticipantsAddResponse.class);
+        verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
+    }
+
+    @Test
+    public void calls_participants_remove() throws Exception {
+        CallsParticipantsRemoveResponse obj = parse("calls.participants.remove", CallsParticipantsRemoveResponse.class);
         verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
     }
 

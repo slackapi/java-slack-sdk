@@ -14,6 +14,7 @@ import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
 import com.slack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
 import com.slack.api.methods.request.admin.teams.settings.*;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddTeamsRequest;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannelsRequest;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
@@ -33,6 +34,7 @@ import com.slack.api.methods.request.calls.CallsEndRequest;
 import com.slack.api.methods.request.calls.CallsInfoRequest;
 import com.slack.api.methods.request.calls.CallsUpdateRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
+import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveRequest;
 import com.slack.api.methods.request.channels.*;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
@@ -340,6 +342,14 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminUsergroupsAddTeamsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_ids", req.getTeamIds().stream().collect(joining(",")), form);
+        setIfNotNull("usergroup_id", req.getUsergroupId(), form);
+        setIfNotNull("auto_provision", req.getAutoProvision(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminUsergroupsListChannelsRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
@@ -533,6 +543,16 @@ public class RequestFormBuilder {
     }
 
     public static FormBody.Builder toForm(CallsParticipantsAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("id", req.getId(), form);
+        if (req.getUsers() != null && req.getUsers().size() > 0) {
+            String usersJson = GSON.toJson(req.getUsers());
+            setIfNotNull("users", usersJson, form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CallsParticipantsRemoveRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("id", req.getId(), form);
         if (req.getUsers() != null && req.getUsers().size() > 0) {

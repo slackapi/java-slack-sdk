@@ -18,6 +18,7 @@ import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
 import com.slack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
 import com.slack.api.methods.request.admin.teams.settings.*;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddTeamsRequest;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannelsRequest;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
@@ -31,6 +32,7 @@ import com.slack.api.methods.request.calls.CallsEndRequest;
 import com.slack.api.methods.request.calls.CallsInfoRequest;
 import com.slack.api.methods.request.calls.CallsUpdateRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
+import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveRequest;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
@@ -87,6 +89,7 @@ import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.slack.api.methods.response.admin.teams.settings.*;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddTeamsResponse;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChannelsResponse;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
@@ -100,6 +103,7 @@ import com.slack.api.methods.response.calls.CallsEndResponse;
 import com.slack.api.methods.response.calls.CallsInfoResponse;
 import com.slack.api.methods.response.calls.CallsUpdateResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
+import com.slack.api.methods.response.calls.participants.CallsParticipantsRemoveResponse;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.*;
@@ -488,6 +492,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminUsergroupsAddTeamsResponse> adminUsergroupsAddTeams(AdminUsergroupsAddTeamsRequest req) {
+        return executor.execute(ADMIN_USERGROUPS_ADD_TEAMS, toMap(req), () -> methods.adminUsergroupsAddTeams(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsergroupsAddTeamsResponse> adminUsergroupsAddTeams(RequestConfigurator<AdminUsergroupsAddTeamsRequest.AdminUsergroupsAddTeamsRequestBuilder> req) {
+        return adminUsergroupsAddTeams(req.configure(AdminUsergroupsAddTeamsRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminUsergroupsListChannelsResponse> adminUsergroupsListChannels(AdminUsergroupsListChannelsRequest req) {
         return executor.execute(ADMIN_USERGROUPS_LIST_CHANNELS, toMap(req), () -> methods.adminUsergroupsListChannels(req));
     }
@@ -695,6 +709,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<CallsParticipantsAddResponse> callsParticipantsAdd(RequestConfigurator<CallsParticipantsAddRequest.CallsParticipantsAddRequestBuilder> req) {
         return callsParticipantsAdd(req.configure(CallsParticipantsAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CallsParticipantsRemoveResponse> callsParticipantsRemove(CallsParticipantsRemoveRequest req) {
+        return executor.execute(CALLS_PARTICIPANTS_REMOVE, toMap(req), () -> methods.callsParticipantsRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<CallsParticipantsRemoveResponse> callsParticipantsRemove(RequestConfigurator<CallsParticipantsRemoveRequest.CallsParticipantsRemoveRequestBuilder> req) {
+        return callsParticipantsRemove(req.configure(CallsParticipantsRemoveRequest.builder()).build());
     }
 
     @Override

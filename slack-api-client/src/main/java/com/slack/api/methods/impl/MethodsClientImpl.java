@@ -16,6 +16,7 @@ import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
 import com.slack.api.methods.request.admin.teams.owners.AdminTeamsOwnersListRequest;
 import com.slack.api.methods.request.admin.teams.settings.*;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddChannelsRequest;
+import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddTeamsRequest;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannelsRequest;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
@@ -35,6 +36,7 @@ import com.slack.api.methods.request.calls.CallsEndRequest;
 import com.slack.api.methods.request.calls.CallsInfoRequest;
 import com.slack.api.methods.request.calls.CallsUpdateRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
+import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveRequest;
 import com.slack.api.methods.request.channels.*;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
@@ -98,6 +100,7 @@ import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
 import com.slack.api.methods.response.admin.teams.owners.AdminTeamsOwnersListResponse;
 import com.slack.api.methods.response.admin.teams.settings.*;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddChannelsResponse;
+import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddTeamsResponse;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChannelsResponse;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
@@ -117,6 +120,7 @@ import com.slack.api.methods.response.calls.CallsEndResponse;
 import com.slack.api.methods.response.calls.CallsInfoResponse;
 import com.slack.api.methods.response.calls.CallsUpdateResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
+import com.slack.api.methods.response.calls.participants.CallsParticipantsRemoveResponse;
 import com.slack.api.methods.response.channels.*;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
@@ -160,8 +164,8 @@ import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
-import com.slack.api.methods.response.users.*;
 import com.slack.api.methods.response.users.UsersLookupByEmailResponse;
+import com.slack.api.methods.response.users.*;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
@@ -528,6 +532,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminUsergroupsAddTeamsResponse adminUsergroupsAddTeams(AdminUsergroupsAddTeamsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERGROUPS_ADD_TEAMS, getToken(req), AdminUsergroupsAddTeamsResponse.class);
+    }
+
+    @Override
+    public AdminUsergroupsAddTeamsResponse adminUsergroupsAddTeams(RequestConfigurator<AdminUsergroupsAddTeamsRequest.AdminUsergroupsAddTeamsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsergroupsAddTeams(req.configure(AdminUsergroupsAddTeamsRequest.builder()).build());
+    }
+
+    @Override
     public AdminUsergroupsListChannelsResponse adminUsergroupsListChannels(AdminUsergroupsListChannelsRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERGROUPS_LIST_CHANNELS, getToken(req), AdminUsergroupsListChannelsResponse.class);
     }
@@ -775,6 +789,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public CallsParticipantsAddResponse callsParticipantsAdd(RequestConfigurator<CallsParticipantsAddRequest.CallsParticipantsAddRequestBuilder> req) throws IOException, SlackApiException {
         return callsParticipantsAdd(req.configure(CallsParticipantsAddRequest.builder()).build());
+    }
+
+    @Override
+    public CallsParticipantsRemoveResponse callsParticipantsRemove(CallsParticipantsRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CALLS_PARTICIPANTS_REMOVE, getToken(req), CallsParticipantsRemoveResponse.class);
+    }
+
+    @Override
+    public CallsParticipantsRemoveResponse callsParticipantsRemove(RequestConfigurator<CallsParticipantsRemoveRequest.CallsParticipantsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return callsParticipantsRemove(req.configure(CallsParticipantsRemoveRequest.builder()).build());
     }
 
     @Override
