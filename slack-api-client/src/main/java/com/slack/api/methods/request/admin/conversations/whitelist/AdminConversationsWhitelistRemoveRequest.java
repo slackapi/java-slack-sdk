@@ -7,6 +7,7 @@ import lombok.Data;
 /**
  * https://api.slack.com/methods/admin.conversations.whitelist.remove
  */
+@Deprecated
 @Data
 @Builder
 public class AdminConversationsWhitelistRemoveRequest implements SlackApiRequest {

@@ -1,16 +1,15 @@
-package com.slack.api.methods.request.admin.conversations.whitelist;
+package com.slack.api.methods.request.admin.conversations.restrict_access;
 
 import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.conversations.whitelist.listGroupsLinkedToChannel
+ * https://api.slack.com/methods/admin.conversations.restrictAccess.listGroups
  */
-@Deprecated
 @Data
 @Builder
-public class AdminConversationsWhitelistListGroupsLinkedToChannelRequest implements SlackApiRequest {
+public class AdminConversationsRestrictAccessListGroupsRequest implements SlackApiRequest {
 
     /**
      * Authentication token bearing required scopes.

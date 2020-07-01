@@ -27,12 +27,22 @@ public class Methods {
     public static final String ADMIN_CONVERSATIONS_SET_TEAMS = "admin.conversations.setTeams";
 
     // ------------------------------
+    // admin.conversations.restrictAccess
+    // ------------------------------
+
+    public static final String ADMIN_CONVERSATIONS_RESTRICT_ACCESS_ADD_GROUP = "admin.conversations.restrictAccess.addGroup";
+    public static final String ADMIN_CONVERSATIONS_RESTRICT_ACCESS_LIST_GROUPS = "admin.conversations.restrictAccess.listGroups";
+    public static final String ADMIN_CONVERSATIONS_RESTRICT_ACCESS_REMOVE_GROUP = "admin.conversations.restrictAccess.removeGroup";
+
+    // ------------------------------
     // admin.conversations.whitelist
     // ------------------------------
 
+    @Deprecated // use admin.conversations.restrictAccess.addGroups instead
     public static final String ADMIN_CONVERSATIONS_WHITELIST_ADD = "admin.conversations.whitelist.add";
-    public static final String ADMIN_CONVERSATIONS_WHITELIST_LIST_GROUPS_LINKED_TO_CHANNEL
-            = "admin.conversations.whitelist.listGroupsLinkedToChannel";
+    @Deprecated // use admin.conversations.restrictAccess.listGroups instead
+    public static final String ADMIN_CONVERSATIONS_WHITELIST_LIST_GROUPS_LINKED_TO_CHANNEL = "admin.conversations.whitelist.listGroupsLinkedToChannel";
+    @Deprecated // use admin.conversations.restrictAccess.removeGroup instead
     public static final String ADMIN_CONVERSATIONS_WHITELIST_REMOVE = "admin.conversations.whitelist.remove";
 
     // ------------------------------
