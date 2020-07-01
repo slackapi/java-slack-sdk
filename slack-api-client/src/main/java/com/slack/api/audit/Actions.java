@@ -103,6 +103,8 @@ public class Actions {
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
         public static final String channels_export_downloaded = "channels_export_downloaded";
         public static final String manual_user_export_downloaded = "manual_user_export_downloaded";
+        public static final String approved_orgs_added = "approved_orgs_added";
+        public static final String approved_orgs_removed = "approved_orgs_removed";
     }
 
     public static class User {
