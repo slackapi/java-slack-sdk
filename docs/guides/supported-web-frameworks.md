@@ -167,6 +167,7 @@ ngrok http 3000 --subdomain {your-favorite-one}
 If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add **bolt-micronaut**, NOT **bolt-jetty**. As the **bolt** dependency will be automatically resolved as the **bolt-micronaut**'s dependency, you don't need to add it. Needless to say, that's the same for Gradle projects.
 
 ```xml
+<!-- Compatible with Micronaut {{ site.compatibleMicronautVersion }} -->
 <dependency>
   <groupId>com.slack.api</groupId>
   <artifactId>bolt-micronaut</artifactId>

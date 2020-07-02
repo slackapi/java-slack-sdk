@@ -166,6 +166,7 @@ ngrok http 3000 --subdomain {あなたのサブドメイン}
 ありふれた Servlet での実行環境ではなく、[Micronaut](https://micronaut.io/) を使いたい場合、**bolt-micronaut** というライブラリだけを追加します（**bolt** ライブラリもこれの依存ライブラリとして自動で解決されます）。**bolt-jetty** は必要ないので注意してください。以下は Maven の例ですが、もちろん Gradle でも同様です。
 
 ```xml
+<!-- Micronaut {{ site.compatibleMicronautVersion }} と互換性があります -->
 <dependency>
   <groupId>com.slack.api</groupId>
   <artifactId>bolt-micronaut</artifactId>
