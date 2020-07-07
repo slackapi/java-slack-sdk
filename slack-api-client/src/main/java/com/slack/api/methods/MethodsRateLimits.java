@@ -40,6 +40,7 @@ public class MethodsRateLimits {
 
         // Tier1
         final List<String> adminApiMethods_Tier1 = Arrays.asList(
+                ADMIN_CONVERSATIONS_RESTRICT_ACCESS_REMOVE_GROUP,
                 ADMIN_CONVERSATIONS_WHITELIST_REMOVE,
                 ADMIN_TEAMS_CREATE,
                 ADMIN_USERGROUPS_ADD_CHANNELS
@@ -58,6 +59,8 @@ public class MethodsRateLimits {
 
                 ADMIN_CONVERSATIONS_SET_TEAMS,
 
+                ADMIN_CONVERSATIONS_RESTRICT_ACCESS_ADD_GROUP,
+                ADMIN_CONVERSATIONS_RESTRICT_ACCESS_LIST_GROUPS,
                 ADMIN_CONVERSATIONS_WHITELIST_ADD,
                 ADMIN_CONVERSATIONS_WHITELIST_LIST_GROUPS_LINKED_TO_CHANNEL,
 

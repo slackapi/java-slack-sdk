@@ -9,6 +9,9 @@ import com.slack.api.methods.request.admin.users.AdminUsersRemoveRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
@@ -421,6 +424,7 @@ public class AdminApiTest {
         }
     }
 
+    @Ignore
     @Test
     public void conv_whitelist() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null && idpUsergroupId != null) {
@@ -449,6 +453,39 @@ public class AdminApiTest {
 
             Thread.sleep(20000L); // TO avoid rate limited errors
             remove = orgAdminClient.adminConversationsWhitelistRemove(r -> r
+                    .teamId(teamId).channelId("dummy").groupId(idpUsergroupId));
+            assertThat(remove.getError(), is("invalid_arguments"));
+        }
+    }
+
+    @Test
+    public void conv_restrictAccess() throws Exception {
+        if (teamAdminUserToken != null && orgAdminUserToken != null && idpUsergroupId != null) {
+            String channelId = getOrCreatePrivateChannel();
+            MethodsClient orgAdminClient = slack.methods(orgAdminUserToken);
+            AdminConversationsRestrictAccessListGroupsResponse list =
+                    orgAdminClient.adminConversationsRestrictAccessListGroups(r -> r.channelId(channelId).teamId(teamId));
+            assertThat(list.getError(), is(nullValue()));
+
+            Thread.sleep(10000L); // TO avoid rate limited errors
+            list = orgAdminClient.adminConversationsRestrictAccessListGroups(r -> r.channelId("dummy").teamId(teamId));
+            assertThat(list.getError(), is("invalid_arguments"));
+
+            AdminConversationsRestrictAccessAddGroupResponse add = orgAdminClient.adminConversationsRestrictAccessAddGroup(r -> r
+                    .teamId(teamId).channelId(channelId).groupId(idpUsergroupId));
+            assertThat(add.getError(), is(nullValue()));
+
+            Thread.sleep(10000L); // TO avoid rate limited errors
+            add = orgAdminClient.adminConversationsRestrictAccessAddGroup(r -> r
+                    .teamId(teamId).channelId("dummy").groupId(idpUsergroupId));
+            assertThat(add.getError(), is("invalid_arguments"));
+
+            AdminConversationsRestrictAccessRemoveGroupResponse remove = orgAdminClient.adminConversationsRestrictAccessRemoveGroup(r -> r
+                    .teamId(teamId).channelId(channelId).groupId(idpUsergroupId));
+            assertThat(remove.getError(), is(nullValue()));
+
+            Thread.sleep(20000L); // TO avoid rate limited errors
+            remove = orgAdminClient.adminConversationsRestrictAccessRemoveGroup(r -> r
                     .teamId(teamId).channelId("dummy").groupId(idpUsergroupId));
             assertThat(remove.getError(), is("invalid_arguments"));
         }

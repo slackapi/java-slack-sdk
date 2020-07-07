@@ -1,18 +1,15 @@
-package com.slack.api.methods.request.admin.conversations.whitelist;
+package com.slack.api.methods.request.admin.conversations.restrict_access;
 
 import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 /**
- * https://api.slack.com/methods/admin.conversations.whitelist.add
+ * https://api.slack.com/methods/admin.conversations.restrictAccess.removeGroup
  */
-@Deprecated
 @Data
 @Builder
-public class AdminConversationsWhitelistAddRequest implements SlackApiRequest {
+public class AdminConversationsRestrictAccessRemoveGroupRequest implements SlackApiRequest {
 
     /**
      * Authentication token bearing required scopes.
@@ -20,12 +17,12 @@ public class AdminConversationsWhitelistAddRequest implements SlackApiRequest {
     private String token;
 
     /**
-     * The channel to whitelist a group for.
+     * The channel to remove a whitelisted group for.
      */
     private String channelId;
 
     /**
-     * The IDP Group ID to whitelist for the private channel.
+     * The IDP Group ID to remove from the private channel whitelist.
      */
     private String groupId;
 

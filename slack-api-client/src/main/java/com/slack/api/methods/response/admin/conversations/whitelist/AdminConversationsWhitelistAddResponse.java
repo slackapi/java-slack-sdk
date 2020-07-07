@@ -4,6 +4,7 @@ import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
+@Deprecated
 @Data
 public class AdminConversationsWhitelistAddResponse implements SlackApiResponse {
 
