@@ -54,6 +54,8 @@ public class ConversationsTest {
         assertThat(slack.methods(ValidToken).conversationsList(r -> r
                 .limit(1).cursor("xxx").types(Arrays.asList(ConversationType.PUBLIC_CHANNEL)))
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsMark(r -> r.channel("C123").ts("111.222"))
+                .isOk(), is(true));
         assertThat(slack.methods(ValidToken).conversationsMembers(r -> r.limit(1).cursor("xxx"))
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).conversationsOpen(r -> r.users(Arrays.asList("U123")).channel("D123"))
@@ -92,6 +94,8 @@ public class ConversationsTest {
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).conversationsList(r -> r
                 .limit(1).cursor("xxx").types(Arrays.asList(ConversationType.PUBLIC_CHANNEL)))
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsMark(r -> r.channel("C123").ts("111.222"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).conversationsMembers(r -> r.limit(1).cursor("xxx"))
                 .get().isOk(), is(true));

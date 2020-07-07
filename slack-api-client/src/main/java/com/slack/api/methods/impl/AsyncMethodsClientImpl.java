@@ -961,6 +961,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<ConversationsMarkResponse> conversationsMark(ConversationsMarkRequest req) {
+        return executor.execute(CONVERSATIONS_MARK, toMap(req), () -> methods.conversationsMark(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsMarkResponse> conversationsMark(RequestConfigurator<ConversationsMarkRequest.ConversationsMarkRequestBuilder> req) {
+        return conversationsMark(req.configure(ConversationsMarkRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<ConversationsMembersResponse> conversationsMembers(ConversationsMembersRequest req) {
         return executor.execute(CONVERSATIONS_MEMBERS, toMap(req), () -> methods.conversationsMembers(req));
     }

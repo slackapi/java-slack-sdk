@@ -1,7 +1,7 @@
 package com.slack.api.methods.response.admin.conversations.whitelist;
 
 import com.slack.api.methods.SlackApiResponse;
-import com.slack.api.model.ErrorResponseMetadata;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 @Deprecated
@@ -14,5 +14,5 @@ public class AdminConversationsWhitelistAddResponse implements SlackApiResponse 
     private String needed;
     private String provided;
 
-    private ErrorResponseMetadata responseMetadata;
+    private ResponseMetadata responseMetadata;
 }

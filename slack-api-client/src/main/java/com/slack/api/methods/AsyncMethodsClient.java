@@ -574,6 +574,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<ConversationsListResponse> conversationsList(RequestConfigurator<ConversationsListRequest.ConversationsListRequestBuilder> req);
 
+    CompletableFuture<ConversationsMarkResponse> conversationsMark(ConversationsMarkRequest req);
+
+    CompletableFuture<ConversationsMarkResponse> conversationsMark(RequestConfigurator<ConversationsMarkRequest.ConversationsMarkRequestBuilder> req);
+
     CompletableFuture<ConversationsMembersResponse> conversationsMembers(ConversationsMembersRequest req);
 
     CompletableFuture<ConversationsMembersResponse> conversationsMembers(RequestConfigurator<ConversationsMembersRequest.ConversationsMembersRequestBuilder> req);

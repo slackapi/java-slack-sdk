@@ -255,6 +255,7 @@ public class Methods {
     public static final String CONVERSATIONS_KICK = "conversations.kick";
     public static final String CONVERSATIONS_LEAVE = "conversations.leave";
     public static final String CONVERSATIONS_LIST = "conversations.list";
+    public static final String CONVERSATIONS_MARK = "conversations.mark";
     public static final String CONVERSATIONS_MEMBERS = "conversations.members";
     public static final String CONVERSATIONS_OPEN = "conversations.open";
     public static final String CONVERSATIONS_RENAME = "conversations.rename";
