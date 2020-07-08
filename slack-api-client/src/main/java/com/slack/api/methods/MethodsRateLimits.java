@@ -230,6 +230,7 @@ public class MethodsRateLimits {
         setRateLimitTier(CHANNELS_UNARCHIVE, Tier2);
         setRateLimitTier(GROUPS_UNARCHIVE, Tier2);
 
+        setRateLimitTier(CONVERSATIONS_MARK, Tier3);
         setRateLimitTier(CHANNELS_MARK, Tier3);
         setRateLimitTier(GROUPS_MARK, Tier3);
         setRateLimitTier(IM_MARK, Tier3);

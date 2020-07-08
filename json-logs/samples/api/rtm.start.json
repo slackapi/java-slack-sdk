@@ -574,7 +574,8 @@
           ""
         ]
       },
-      "has_compliance_export": false
+      "has_compliance_export": false,
+      "workflow_extension_steps_beta_opt_in": false
     },
     "icon": {
       "image_34": "https://www.example.com/",

@@ -1198,6 +1198,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsMarkResponse conversationsMark(ConversationsMarkRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_MARK, getToken(req), ConversationsMarkResponse.class);
+    }
+
+    @Override
+    public ConversationsMarkResponse conversationsMark(RequestConfigurator<ConversationsMarkRequest.ConversationsMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsMark(req.configure(ConversationsMarkRequest.builder()).build());
+    }
+
+    @Override
     public ConversationsMembersResponse conversationsMembers(ConversationsMembersRequest req)
             throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_MEMBERS, getToken(req), ConversationsMembersResponse.class);
