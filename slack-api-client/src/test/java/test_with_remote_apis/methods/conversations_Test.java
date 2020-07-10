@@ -138,6 +138,13 @@ public class conversations_Test {
             assertThat(repliesResponse.getError(), is(nullValue()));
             assertThat(repliesResponse.isOk(), is(true));
             assertThat(repliesResponse.getResponseMetadata(), is(notNullValue()));
+
+            ConversationsMarkResponse markResponse = slack.methods().conversationsMark(r -> r
+                    .token(botToken)
+                    .channel(postMessageResponse.getChannel())
+                    .ts(postMessageResponse.getTs())
+            );
+            assertThat(markResponse.getError(), is(nullValue()));
         }
 
         {

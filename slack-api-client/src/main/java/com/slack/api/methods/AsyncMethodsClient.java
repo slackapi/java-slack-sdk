@@ -3,6 +3,9 @@ package com.slack.api.methods;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistAddRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
@@ -74,6 +77,9 @@ import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
@@ -183,6 +189,28 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req);
 
     // ------------------------------
+    // admin.conversations.restrictAccess
+    // ------------------------------
+
+    CompletableFuture<AdminConversationsRestrictAccessAddGroupResponse> adminConversationsRestrictAccessAddGroup(
+            AdminConversationsRestrictAccessAddGroupRequest req);
+
+    CompletableFuture<AdminConversationsRestrictAccessAddGroupResponse> adminConversationsRestrictAccessAddGroup(
+            RequestConfigurator<AdminConversationsRestrictAccessAddGroupRequest.AdminConversationsRestrictAccessAddGroupRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsRestrictAccessRemoveGroupResponse> adminConversationsRestrictAccessRemoveGroup(
+            AdminConversationsRestrictAccessRemoveGroupRequest req);
+
+    CompletableFuture<AdminConversationsRestrictAccessRemoveGroupResponse> adminConversationsRestrictAccessRemoveGroup(
+            RequestConfigurator<AdminConversationsRestrictAccessRemoveGroupRequest.AdminConversationsRestrictAccessRemoveGroupRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsRestrictAccessListGroupsResponse> adminConversationsRestrictAccessListGroups(
+            AdminConversationsRestrictAccessListGroupsRequest req);
+
+    CompletableFuture<AdminConversationsRestrictAccessListGroupsResponse> adminConversationsRestrictAccessListGroups(
+            RequestConfigurator<AdminConversationsRestrictAccessListGroupsRequest.AdminConversationsRestrictAccessListGroupsRequestBuilder> req);
+
+    // ------------------------------
     // admin.conversations
     // ------------------------------
 
@@ -194,21 +222,27 @@ public interface AsyncMethodsClient {
     // admin.conversations.whitelist
     // ------------------------------
 
+    @Deprecated
     CompletableFuture<AdminConversationsWhitelistAddResponse> adminConversationsWhitelistAdd(
             AdminConversationsWhitelistAddRequest req);
 
+    @Deprecated
     CompletableFuture<AdminConversationsWhitelistAddResponse> adminConversationsWhitelistAdd(
             RequestConfigurator<AdminConversationsWhitelistAddRequest.AdminConversationsWhitelistAddRequestBuilder> req);
 
+    @Deprecated
     CompletableFuture<AdminConversationsWhitelistRemoveResponse> adminConversationsWhitelistRemove(
             AdminConversationsWhitelistRemoveRequest req);
 
+    @Deprecated
     CompletableFuture<AdminConversationsWhitelistRemoveResponse> adminConversationsWhitelistRemove(
             RequestConfigurator<AdminConversationsWhitelistRemoveRequest.AdminConversationsWhitelistRemoveRequestBuilder> req);
 
+    @Deprecated
     CompletableFuture<AdminConversationsWhitelistListGroupsLinkedToChannelResponse> adminConversationsWhitelistListGroupsLinkedToChannel(
             AdminConversationsWhitelistListGroupsLinkedToChannelRequest req);
 
+    @Deprecated
     CompletableFuture<AdminConversationsWhitelistListGroupsLinkedToChannelResponse> adminConversationsWhitelistListGroupsLinkedToChannel(
             RequestConfigurator<AdminConversationsWhitelistListGroupsLinkedToChannelRequest.AdminConversationsWhitelistListGroupsLinkedToChannelRequestBuilder> req);
 
@@ -539,6 +573,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<ConversationsListResponse> conversationsList(ConversationsListRequest req);
 
     CompletableFuture<ConversationsListResponse> conversationsList(RequestConfigurator<ConversationsListRequest.ConversationsListRequestBuilder> req);
+
+    CompletableFuture<ConversationsMarkResponse> conversationsMark(ConversationsMarkRequest req);
+
+    CompletableFuture<ConversationsMarkResponse> conversationsMark(RequestConfigurator<ConversationsMarkRequest.ConversationsMarkRequestBuilder> req);
 
     CompletableFuture<ConversationsMembersResponse> conversationsMembers(ConversationsMembersRequest req);
 

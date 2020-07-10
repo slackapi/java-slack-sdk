@@ -69,6 +69,21 @@ public class AppConfig {
     @Builder.Default
     private boolean oAuthCallbackEnabled = false;
 
+
+    /**
+     * Returns true if auth.test call result cache in SingleTeamAuthorization or MultiTeamsAuthorization middleware
+     * is enabled. The default is false.
+     */
+    @Builder.Default
+    private boolean authTestCacheEnabled = false;
+
+    /**
+     * Returns the millisecond value to keep cached auth.test response in cache.
+     * Negative value indicates the cache is permanent. The default is 3000 milliseconds.
+     */
+    @Builder.Default
+    private long authTestCacheExpirationMillis = 3000L;
+
     @Builder.Default
     // https://api.slack.com/authentication/migration
     private boolean classicAppPermissionsEnabled = false;

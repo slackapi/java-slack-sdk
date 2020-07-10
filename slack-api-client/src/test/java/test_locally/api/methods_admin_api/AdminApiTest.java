@@ -69,6 +69,18 @@ public class AdminApiTest {
     }
 
     @Test
+    public void adminConversationsRestrictAccess() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminConversationsRestrictAccessAddGroup(r -> r.channelId("C123").teamId("T123"))
+                .isOk(), is(true));
+        assertThat(methods.adminConversationsRestrictAccessRemoveGroup(r -> r.channelId("C123").teamId("T123"))
+                .isOk(), is(true));
+        assertThat(methods.adminConversationsRestrictAccessListGroups(r -> r.channelId("C123").teamId("T123"))
+                .isOk(), is(true));
+    }
+
+    @Test
     public void adminEmoji() throws Exception {
         MethodsClient methods = slack.methods(ValidToken);
 

@@ -3,6 +3,9 @@ package com.slack.api.methods;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistAddRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
@@ -87,6 +90,9 @@ import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
@@ -265,26 +271,57 @@ public interface MethodsClient {
     AdminConversationsSetTeamsResponse adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
+    // admin.conversations.restrictAccess
+    // ------------------------------
+
+    AdminConversationsRestrictAccessAddGroupResponse adminConversationsRestrictAccessAddGroup(
+            AdminConversationsRestrictAccessAddGroupRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsRestrictAccessAddGroupResponse adminConversationsRestrictAccessAddGroup(
+            RequestConfigurator<AdminConversationsRestrictAccessAddGroupRequest.AdminConversationsRestrictAccessAddGroupRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AdminConversationsRestrictAccessRemoveGroupResponse adminConversationsRestrictAccessRemoveGroup(
+            AdminConversationsRestrictAccessRemoveGroupRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsRestrictAccessRemoveGroupResponse adminConversationsRestrictAccessRemoveGroup(
+            RequestConfigurator<AdminConversationsRestrictAccessRemoveGroupRequest.AdminConversationsRestrictAccessRemoveGroupRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    AdminConversationsRestrictAccessListGroupsResponse adminConversationsRestrictAccessListGroups(
+            AdminConversationsRestrictAccessListGroupsRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsRestrictAccessListGroupsResponse adminConversationsRestrictAccessListGroups(
+            RequestConfigurator<AdminConversationsRestrictAccessListGroupsRequest.AdminConversationsRestrictAccessListGroupsRequestBuilder> req)
+            throws IOException, SlackApiException;
+
+    // ------------------------------
     // admin.conversations.whitelist
     // ------------------------------
 
+    @Deprecated
     AdminConversationsWhitelistAddResponse adminConversationsWhitelistAdd(
             AdminConversationsWhitelistAddRequest req) throws IOException, SlackApiException;
 
+    @Deprecated
     AdminConversationsWhitelistAddResponse adminConversationsWhitelistAdd(
             RequestConfigurator<AdminConversationsWhitelistAddRequest.AdminConversationsWhitelistAddRequestBuilder> req)
             throws IOException, SlackApiException;
 
+    @Deprecated
     AdminConversationsWhitelistRemoveResponse adminConversationsWhitelistRemove(
             AdminConversationsWhitelistRemoveRequest req) throws IOException, SlackApiException;
 
+    @Deprecated
     AdminConversationsWhitelistRemoveResponse adminConversationsWhitelistRemove(
             RequestConfigurator<AdminConversationsWhitelistRemoveRequest.AdminConversationsWhitelistRemoveRequestBuilder> req)
             throws IOException, SlackApiException;
 
+    @Deprecated
     AdminConversationsWhitelistListGroupsLinkedToChannelResponse adminConversationsWhitelistListGroupsLinkedToChannel(
             AdminConversationsWhitelistListGroupsLinkedToChannelRequest req) throws IOException, SlackApiException;
 
+    @Deprecated
     AdminConversationsWhitelistListGroupsLinkedToChannelResponse adminConversationsWhitelistListGroupsLinkedToChannel(
             RequestConfigurator<AdminConversationsWhitelistListGroupsLinkedToChannelRequest.AdminConversationsWhitelistListGroupsLinkedToChannelRequestBuilder> req)
             throws IOException, SlackApiException;
@@ -820,6 +857,10 @@ public interface MethodsClient {
     ConversationsListResponse conversationsList(ConversationsListRequest req) throws IOException, SlackApiException;
 
     ConversationsListResponse conversationsList(RequestConfigurator<ConversationsListRequest.ConversationsListRequestBuilder> req) throws IOException, SlackApiException;
+
+    ConversationsMarkResponse conversationsMark(ConversationsMarkRequest req) throws IOException, SlackApiException;
+
+    ConversationsMarkResponse conversationsMark(RequestConfigurator<ConversationsMarkRequest.ConversationsMarkRequestBuilder> req) throws IOException, SlackApiException;
 
     ConversationsMembersResponse conversationsMembers(ConversationsMembersRequest req) throws IOException, SlackApiException;
 

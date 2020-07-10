@@ -91,7 +91,9 @@
       "scheduled_export_downloaded",
       "channels_export_downloaded",
       "manual_user_export_downloaded",
-      "pref.admin_retention_override_changed"
+      "pref.admin_retention_override_changed",
+      "approved_orgs_added",
+      "approved_orgs_removed"
     ],
     "user": [
       "custom_tos_accepted",

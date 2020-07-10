@@ -458,6 +458,10 @@ public class FieldValidation_a_to_c_Test {
             verifyIfAllGettersReturnNonNull(obj);
         }
         {
+            ConversationsMarkResponse obj = parse(prefix + "mark", ConversationsMarkResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
             ConversationsOpenResponse obj = parse(prefix + "open", ConversationsOpenResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
             verifyIfAllGettersReturnNonNullRecursively(obj.getChannel(),

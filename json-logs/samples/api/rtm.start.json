@@ -335,7 +335,8 @@
       "enable_all_dms_view": false,
       "seen_edit_mode": false,
       "newxp_seen_help_message": 12345,
-      "calls_survey_last_seen": 12345
+      "calls_survey_last_seen": 12345,
+      "seen_edit_mode_edu": false
     },
     "created": 12345,
     "first_login": 12345,
@@ -573,7 +574,8 @@
           ""
         ]
       },
-      "has_compliance_export": false
+      "has_compliance_export": false,
+      "workflow_extension_steps_beta_opt_in": false
     },
     "icon": {
       "image_34": "https://www.example.com/",

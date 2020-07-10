@@ -5,6 +5,9 @@ import com.slack.api.methods.*;
 import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistAddRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
@@ -89,6 +92,9 @@ import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
@@ -283,6 +289,36 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminConversationsSetTeamsResponse adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) throws IOException, SlackApiException {
         return adminConversationsSetTeams(req.configure(AdminConversationsSetTeamsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsRestrictAccessAddGroupResponse adminConversationsRestrictAccessAddGroup(AdminConversationsRestrictAccessAddGroupRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_RESTRICT_ACCESS_ADD_GROUP, getToken(req), AdminConversationsRestrictAccessAddGroupResponse.class);
+    }
+
+    @Override
+    public AdminConversationsRestrictAccessAddGroupResponse adminConversationsRestrictAccessAddGroup(RequestConfigurator<AdminConversationsRestrictAccessAddGroupRequest.AdminConversationsRestrictAccessAddGroupRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsRestrictAccessAddGroup(req.configure(AdminConversationsRestrictAccessAddGroupRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsRestrictAccessRemoveGroupResponse adminConversationsRestrictAccessRemoveGroup(AdminConversationsRestrictAccessRemoveGroupRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_RESTRICT_ACCESS_REMOVE_GROUP, getToken(req), AdminConversationsRestrictAccessRemoveGroupResponse.class);
+    }
+
+    @Override
+    public AdminConversationsRestrictAccessRemoveGroupResponse adminConversationsRestrictAccessRemoveGroup(RequestConfigurator<AdminConversationsRestrictAccessRemoveGroupRequest.AdminConversationsRestrictAccessRemoveGroupRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsRestrictAccessRemoveGroup(req.configure(AdminConversationsRestrictAccessRemoveGroupRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsRestrictAccessListGroupsResponse adminConversationsRestrictAccessListGroups(AdminConversationsRestrictAccessListGroupsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_RESTRICT_ACCESS_LIST_GROUPS, getToken(req), AdminConversationsRestrictAccessListGroupsResponse.class);
+    }
+
+    @Override
+    public AdminConversationsRestrictAccessListGroupsResponse adminConversationsRestrictAccessListGroups(RequestConfigurator<AdminConversationsRestrictAccessListGroupsRequest.AdminConversationsRestrictAccessListGroupsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsRestrictAccessListGroups(req.configure(AdminConversationsRestrictAccessListGroupsRequest.builder()).build());
     }
 
     @Override
@@ -1159,6 +1195,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsListResponse conversationsList(RequestConfigurator<ConversationsListRequest.ConversationsListRequestBuilder> req) throws IOException, SlackApiException {
         return conversationsList(req.configure(ConversationsListRequest.builder()).build());
+    }
+
+    @Override
+    public ConversationsMarkResponse conversationsMark(ConversationsMarkRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_MARK, getToken(req), ConversationsMarkResponse.class);
+    }
+
+    @Override
+    public ConversationsMarkResponse conversationsMark(RequestConfigurator<ConversationsMarkRequest.ConversationsMarkRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsMark(req.configure(ConversationsMarkRequest.builder()).build());
     }
 
     @Override

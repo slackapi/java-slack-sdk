@@ -7,6 +7,9 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsRequest;
+import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistAddRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
@@ -78,6 +81,9 @@ import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
@@ -239,6 +245,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) {
         return adminAppsRequestsList(req.configure(AdminAppsRequestsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRestrictAccessAddGroupResponse> adminConversationsRestrictAccessAddGroup(AdminConversationsRestrictAccessAddGroupRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_RESTRICT_ACCESS_ADD_GROUP, toMap(req), () -> methods.adminConversationsRestrictAccessAddGroup(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRestrictAccessAddGroupResponse> adminConversationsRestrictAccessAddGroup(RequestConfigurator<AdminConversationsRestrictAccessAddGroupRequest.AdminConversationsRestrictAccessAddGroupRequestBuilder> req) {
+        return adminConversationsRestrictAccessAddGroup(req.configure(AdminConversationsRestrictAccessAddGroupRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRestrictAccessRemoveGroupResponse> adminConversationsRestrictAccessRemoveGroup(AdminConversationsRestrictAccessRemoveGroupRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_RESTRICT_ACCESS_REMOVE_GROUP, toMap(req), () -> methods.adminConversationsRestrictAccessRemoveGroup(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRestrictAccessRemoveGroupResponse> adminConversationsRestrictAccessRemoveGroup(RequestConfigurator<AdminConversationsRestrictAccessRemoveGroupRequest.AdminConversationsRestrictAccessRemoveGroupRequestBuilder> req) {
+        return adminConversationsRestrictAccessRemoveGroup(req.configure(AdminConversationsRestrictAccessRemoveGroupRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRestrictAccessListGroupsResponse> adminConversationsRestrictAccessListGroups(AdminConversationsRestrictAccessListGroupsRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_RESTRICT_ACCESS_LIST_GROUPS, toMap(req), () -> methods.adminConversationsRestrictAccessListGroups(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRestrictAccessListGroupsResponse> adminConversationsRestrictAccessListGroups(RequestConfigurator<AdminConversationsRestrictAccessListGroupsRequest.AdminConversationsRestrictAccessListGroupsRequestBuilder> req) {
+        return adminConversationsRestrictAccessListGroups(req.configure(AdminConversationsRestrictAccessListGroupsRequest.builder()).build());
     }
 
     @Override
@@ -922,6 +958,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<ConversationsListResponse> conversationsList(RequestConfigurator<ConversationsListRequest.ConversationsListRequestBuilder> req) {
         return conversationsList(req.configure(ConversationsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ConversationsMarkResponse> conversationsMark(ConversationsMarkRequest req) {
+        return executor.execute(CONVERSATIONS_MARK, toMap(req), () -> methods.conversationsMark(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsMarkResponse> conversationsMark(RequestConfigurator<ConversationsMarkRequest.ConversationsMarkRequestBuilder> req) {
+        return conversationsMark(req.configure(ConversationsMarkRequest.builder()).build());
     }
 
     @Override

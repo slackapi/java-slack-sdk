@@ -1,11 +1,12 @@
 package com.slack.api.methods.response.admin.conversations.whitelist;
 
 import com.slack.api.methods.SlackApiResponse;
-import com.slack.api.model.ErrorResponseMetadata;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
 
+@Deprecated
 @Data
 public class AdminConversationsWhitelistListGroupsLinkedToChannelResponse implements SlackApiResponse {
 
@@ -16,5 +17,5 @@ public class AdminConversationsWhitelistListGroupsLinkedToChannelResponse implem
     private String provided;
 
     private List<String> groupIds;
-    private ErrorResponseMetadata responseMetadata;
+    private ResponseMetadata responseMetadata;
 }

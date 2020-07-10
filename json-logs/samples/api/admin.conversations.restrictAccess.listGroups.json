@@ -1,18 +1,14 @@
 {
   "ok": false,
-  "error": "",
   "group_ids": [
     ""
   ],
+  "error": "",
   "response_metadata": {
     "messages": [
       ""
-    ],
-    "warnings": [
-      ""
     ]
   },
-  "warning": "",
   "needed": "",
   "provided": ""
 }

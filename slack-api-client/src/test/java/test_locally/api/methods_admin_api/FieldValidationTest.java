@@ -2,6 +2,9 @@ package test_locally.api.methods_admin_api;
 
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
+import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistAddResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
@@ -94,6 +97,28 @@ public class FieldValidationTest {
         }
         {
             AdminConversationsWhitelistListGroupsLinkedToChannelResponse obj = parse("admin.conversations.whitelist.listGroupsLinkedToChannel", AdminConversationsWhitelistListGroupsLinkedToChannelResponse.class);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning"
+            );
+        }
+    }
+
+    @Test
+    public void adminConversationsRestrictAccess() throws Exception {
+        {
+            AdminConversationsRestrictAccessAddGroupResponse obj = parse("admin.conversations.restrictAccess.addGroup", AdminConversationsRestrictAccessAddGroupResponse.class);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning"
+            );
+        }
+        {
+            AdminConversationsRestrictAccessRemoveGroupResponse obj = parse("admin.conversations.restrictAccess.removeGroup", AdminConversationsRestrictAccessRemoveGroupResponse.class);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning"
+            );
+        }
+        {
+            AdminConversationsRestrictAccessListGroupsResponse obj = parse("admin.conversations.restrictAccess.listGroups", AdminConversationsRestrictAccessListGroupsResponse.class);
             verifyIfAllGettersReturnNonNull(obj,
                     "getWarning"
             );
