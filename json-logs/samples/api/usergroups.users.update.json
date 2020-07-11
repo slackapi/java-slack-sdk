@@ -26,7 +26,8 @@
     },
     "users": [
       "U00000000"
-    ]
+    ],
+    "channel_count": 12345
   },
   "error": "",
   "needed": "",
