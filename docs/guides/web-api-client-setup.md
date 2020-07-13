@@ -134,6 +134,10 @@ dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("com.slack.api:slack-api-client:{{ site.sdkLatestVersion }}")
+
+  // Add these dependencies if you want to use the Kotlin DSL for building rich messages
+  implementation("com.slack.api:slack-api-model-kotlin-extension:{{ site.sdkLatestVersion }}")
+  implementation("com.slack.api:slack-api-client-kotlin-extension:{{ site.sdkLatestVersion }}")
 }
 application {
   mainClassName = "ExampleKt" // add "Kt" suffix for main function source file
