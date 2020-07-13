@@ -108,16 +108,16 @@ You can also build the view in the above example with the [Block Kit Kotlin DSL]
 import com.slack.api.model.kotlin_extension.view.blocks
 import com.slack.api.model.view.Views.view
 
-val appHomeView = view {
-     it.type("home")
-     .blocks { 
-        section {
-          markdownText(":wave: Hello, App Home! (Last updated: ${now}")
-        }
-        image {
-          imageUrl("https://www.example.com/foo.png")
-        }
-     }
+val appHomeView = view { it
+  .type("home")
+  .blocks {
+    section {
+      markdownText(":wave: Hello, App Home! (Last updated: ${now}")
+    }
+    image {
+      imageUrl("https://www.example.com/foo.png")
+    }
+  }
 }
 ```
 

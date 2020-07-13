@@ -87,15 +87,15 @@ val response = slack.methods(token).chatPostMessage { req -> req
   .channel("C1234567")
   .blocks {
     section {
-      // "text" fields can be constructed via plainText() and markdownText()
+      // "text" fields can be constructed via `plainText()` and `markdownText()`
       markdownText("*Please select a restaurant:*")
     }
     divider()
     actions {
-      // To align with the JSON structure, you could put the elements { } block around the buttons but for brevity it can be omitted
+      // To align with the JSON structure, you could put the `elements { }` block around the buttons but for brevity it can be omitted
       // The same is true for things such as the section block's "accessory" container
       button {
-          // For instances where only plain text is acceptable, the field's name can be filled with plain text inputs
+          // For instances where only `plain_text` is acceptable, the field's name can be filled with `plain_text` inputs
           text("Farmhouse", emoji = true)
           value("v1")
       }
@@ -112,13 +112,10 @@ val response = slack.methods(token).chatPostMessage { req -> req
 
 You can add the Block Kit Kotlin DSL via 2 artifacts:
 
-  * The `slack-api-model` Kotlin extension, which adds the Kotlin DSL itself as well as the standalone `withBlocks { }` builder and `View.ViewBuilder`'s `.blocks { }` extension function
-  * The `slack-api-client` Kotlin extension, which adds the `.blocks { }` extension function to `MethodsClient`'s request object builders for seamless use of the DSL with the Java builders
-    * The `.blocks { }` extension function is available on the following Java builders:
-      * ChatPostEphemeralRequestBuilder
-      * ChatPostMessageRequestBuilder
-      * ChatScheduleMessageRequestBuilder
-      * ChatUpdateRequestBuilder
+|artifactId|Description|
+|---|---|
+|[**com.slack.api:slack-api-model-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model-kotlin-extension/{{ site.sdkLatestVersion }}/slack-api-model-kotlin-extension-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|The **slack-api-model** Kotlin extension, which adds the Kotlin DSL itself as well as the standalone `withBlocks { }` builder and `View.ViewBuilder`'s `.blocks { }` extension function.|
+|[**com.slack.api:slack-api-client-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client-kotlin-extension/{{ site.sdkLatestVersion }}/slack-api-client-kotlin-extension-{{ site.sdkLatestVersion }}-javadoc.jar/!/index.html#package)|The **slack-api-client** Kotlin extension, which adds the `.blocks { }` extension function to `MethodsClient`'s request object builders for seamless use of the DSL with the Java builders such as **ChatPostEphemeralRequestBuilder**, **ChatPostMessageRequestBuilder**, **ChatScheduleMessageRequestBuilder**, and **ChatUpdateRequestBuilder**.|
 
 **Adding via Gradle:**
 
@@ -140,9 +137,11 @@ dependencies {
 
 ### Notable examples and features
 
-**Standalone withBlocks builder which comes with the model extension**:
+In this section, I'll share some code snippets demonstrating how to use this DSL.
 
-You can create lists of blocks outside of the `slack-api-client` Kotlin extension functions with the `withBlocks { }` builder.
+#### Standalone `withBlocks { }` builder which comes with the model extension
+
+You can create lists of blocks outside of the **slack-api-client** Kotlin extension functions with the `withBlocks { }` builder.
 
 ```kotlin
 import com.slack.api.model.kotlin_extension.block.withBlocks
@@ -154,9 +153,11 @@ val blocks = withBlocks {
 }
 ```
 
-**Type safe enums for inputs which require specific string inputs**:
+#### Type safe enums for inputs which require specific string inputs
 
-Type-safe enums are available for properties of some block elements which require specific input strings. With this, you get the benefit of verifying your inputs are correct at compile time and you gain access to Kotlin enum features such as being able to iterate over or retrieve all possible values for these inputs. Versions of these inputs which accept strings are also available, if you prefer.
+Type-safe enums are available for properties of some block elements which require specific input strings. 
+
+With this, you get the benefit of verifying your inputs are correct at compile time, and you gain access to Kotlin enum features such as being able to iterate over or retrieve all possible values for these inputs. Versions of these inputs which accept strings are also available, if you prefer.
 
 ```kotlin
 import com.slack.api.model.kotlin_extension.block.element.ButtonStyle
@@ -170,7 +171,7 @@ val blocks = withBlocks {
     // "accessory" is provided here, but it can be omitted for brevity
     accessory { 
       conversationsSelect { 
-        // Or alternatively, provide strings via filter("im", "mpim") if you'd prefer
+        // Or alternatively, provide strings via `filter("im", "mpim")` if you'd prefer
         filter(ConversationType.IM, ConversationType.MULTIPARTY_IM)
         placeholder("Where should we send the cat?")
         
@@ -188,7 +189,7 @@ val blocks = withBlocks {
 }
 ```
 
-**Write DSL extension functions for message templating**:
+#### Write DSL extension functions for message templating
 
 Because it is a Kotlin DSL, you benefit from Kotlin language features while you are constructing your messages, one of which being able to create extension functions which reproduce common Block Kit structures. This makes your code less repetitive and easier to read. You also benefit from being able to use conditionals and loops as you construct your blocks.
 
@@ -218,7 +219,10 @@ val blocks = withBlocks {
     markdownText("Please select your favorite color.")
   }
   actions {
-    presentOptions("Green", "Red", "Blue", "Yellow", "Orange", "Black", prompt = "Pick a color...")
+    presentOptions(
+      "Green", "Red", "Blue", "Yellow", "Orange", "Black",
+      prompt = "Pick a color..."
+    )
   }
 }
 ```

@@ -127,6 +127,8 @@ val response = slack.methods(token).chatPostMessage { it
 }
 ```
 
+さらに、リッチなメッセージを構築するためのより Kotlin ネイティブなやり方として [Block Kit Kotlin DSL]({{ site.url | append: site.baseurl }}/guides/ja/composing-messages#block-kit-kotlin-dsl) もチェックしてみてください。
+
 ### レスポンスの扱い
 
 Slack Web API のレスポンス形式にまだ馴染みがなければ「[Evaluating responses（英語）](https://api.slack.com/web#responses)」を読んでみてください。すべての Web API レスポンスは JSON オブジェクトを持ち、そのトップレベルに真偽型の `"ok"` というリクエストの成功・失敗を伝えるためのプロパティがあります。
