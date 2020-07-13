@@ -10,7 +10,8 @@
     </parent>
 
     <properties>
-        <helidon.version>1.4.4</helidon.version>
+        <!--- TODO: upgrade to helidon 2.0 -->
+        <helidon.version>1.4.5</helidon.version>
     </properties>
 
     <groupId>com.slack.api</groupId>
