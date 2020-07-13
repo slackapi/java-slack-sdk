@@ -226,6 +226,58 @@ val res = ctx.client().viewsOpen { it
 }
 ```
 
+また、[Block Kit DSL]({{ site.url | append: site.baseurl }}/guides/ja/composing-messages#block-kit-kotlin-dsl) を Java のビルダーと連携させて利用することもできます。上記の Java のコード例は Kotlin ではこのようになります。
+
+```kotlin
+import com.slack.api.model.kotlin_extension.view.blocks
+import com.slack.api.model.view.Views.*
+
+fun buildView(): View {
+  return view { thisView -> thisView
+  .callbackId("meeting-arrangement")
+    .type("modal")
+    .notifyOnClose(true)
+    .title(viewTitle { it.type("plain_text").text("Meeting Arrangement").emoji(true) })
+    .submit(viewSubmit { it.type("plain_text").text("Submit").emoji(true) })
+    .close(viewClose { it.type("plain_text").text("Cancel").emoji(true) })
+    .privateMetadata("""{"response_url":"https://hooks.slack.com/actions/T1ABCD2E12/330361579271/0dAEyLY19ofpLwxqozy3firz"}""")
+    .blocks {
+      // このメソッドの中で Kotlin DSL を利用することができます
+      section {
+        blockId("category-block")
+        markdownText("Select a category of the meeting!")
+        staticSelect {
+          actionId("category-selection-action")
+          placeholder("Select a category")
+          options {
+            option {
+              description("Customer")
+              value("customer")
+            }
+            option {
+              description("Partner")
+              value("partner")
+            }
+            option {
+              description("Internal")
+              value("internal")
+            }
+          }
+        }
+      }
+      input {
+        blockId("agenda-block")
+        plainTextInput { 
+          actionId("agenda-action")
+          multiline(true)
+        }
+        label("Detailed Agenda", emoji = true)
+      }
+    }
+  }
+}
+```
+
 ### `"block_actions"` リクエスト
 
 基本的には「[インタラクティブコンポーネント]({{ site.url | append: site.baseurl }}/guides/ja/interactive-components)」で紹介したものと同じですが、違いとしてはそのペイロードに `view` としてモーダルの内容とその `private_metadata` が含まれていることが挙げられます。
@@ -459,14 +511,14 @@ PseudoHttpResponse handle(PseudoHttpRequest request) {
   }
 
   // 2. リクエストボディをパースして callback_id, action_id が処理対象か確認
-  
+
   // リクエストボディは payload={URL エンコードされた JSON 文字列} の形式
   JsonPayloadExtractor payloadExtractor = new JsonPayloadExtractor();
   String payloadString = payloadExtractor.extractIfExists(request.getBodyAsString());
   // このような値になります: { "type": "block_actions", "team": { "id": "T1234567", ... 
   JsonPayloadTypeDetector typeDetector = new JsonPayloadTypeDetector();
   String payloadType = typeDetector.detectType(payloadString);
-  
+
   Gson gson = GsonFactory.createSnakeCase();
   if (payloadType != null && payloadType.equals("view_submission")) {
     ViewSubmissionPayload payload = gson.fromJson(payloadString, ViewSubmissionPayload.class);

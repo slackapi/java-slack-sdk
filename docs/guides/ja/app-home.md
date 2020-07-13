@@ -101,6 +101,26 @@ app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
 }
 ```
 
+また、 Kotlin で開発しているなら、上記の例を [Block Kit Kotlin DSL]({{ site.url | append: site.baseurl }}/guides/composing-messages#block-kit-kotlin-dsl) を使って以下のように実装することもできます。
+
+```kotlin
+// これらの import が必要です
+import com.slack.api.model.kotlin_extension.view.blocks
+import com.slack.api.model.view.Views.view
+
+val appHomeView = view { it
+  .type("home")
+  .blocks {
+    section {
+      markdownText(":wave: Hello, App Home! (Last updated: ${now}")
+    }
+    image {
+      imageUrl("https://www.example.com/foo.png")
+    }
+  }
+}
+```
+
 ### Bolt がやっていること
 
 「[イベント API]({{ site.url | append: site.baseurl }}/guides/ja/events-api)」の同項目を参照してください。
