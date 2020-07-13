@@ -52,4 +52,4 @@ lang: ja
 何か困ったことがあったら、以下の場所でサポートを受けてみてください。
 
 * [GitHub Issue Tracker](https://github.com/slackapi/java-slack-sdk/issues) にバグや機能要望を報告する（**必ず英語でお願いします**）
-* [Slack Developer Community](https://slackcommunity.com/) で **Slack SDK for Java** の使い方についてヘルプを求めたり、他の開発者たちとつながる
+* [Slack Developer Community](https://slackcommunity.com/) でヘルプを求めたり、他の開発者たちとつながる
