@@ -20,7 +20,7 @@ lang: ja
 
 全てのリリースは Maven Central リポジトリで公開されています。最新のバージョンは **{{ site.sdkLatestVersion }}** です。
 
-#### Bolt とその標準拡張モジュール
+#### Bolt と拡張モジュール
 
 |groupId:artifactId|<!--Description-->説明|
 |---|---|
