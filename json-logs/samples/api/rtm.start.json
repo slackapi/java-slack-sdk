@@ -336,7 +336,10 @@
       "seen_edit_mode": false,
       "newxp_seen_help_message": 12345,
       "calls_survey_last_seen": 12345,
-      "seen_edit_mode_edu": false
+      "seen_edit_mode_edu": false,
+      "add_prompt_interacted": false,
+      "emoji_use_org": "",
+      "all_unreads_section_filter": ""
     },
     "created": 12345,
     "first_login": 12345,
@@ -575,7 +578,11 @@
         ]
       },
       "has_compliance_export": false,
-      "workflow_extension_steps_beta_opt_in": false
+      "workflow_extension_steps_beta_opt_in": false,
+      "notification_redaction_type": "",
+      "app_management_apps": [
+        ""
+      ]
     },
     "icon": {
       "image_34": "https://www.example.com/",
@@ -926,7 +933,8 @@
             }
           ]
         },
-        "user_count": 12345
+        "user_count": 12345,
+        "channel_count": 12345
       }
     ]
   },
