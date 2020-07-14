@@ -42,7 +42,8 @@ class MessageTemplateTest {
                 }
             }
         }
-        val original = """{
+        val original = """
+{
 	"blocks": [
 		{
 			"type": "section",
@@ -98,6 +99,274 @@ class MessageTemplateTest {
 					},
 					"style": "danger",
 					"value": "click_me_123"
+				}
+			]
+		}
+	]
+}
+"""
+        val json = gson.fromJson(original, JsonElement::class.java)
+        val expected = json.asJsonObject["blocks"]
+        val actual = gson.toJsonTree(blocks)
+        assertEquals(expected, actual, "\n" + expected.toString() + "\n" + actual.toString())
+    }
+
+    @Test
+    fun notification() {
+        val blocks = withBlocks {
+            section {
+                plainText("Looks like you have a scheduling conflict with this event:", emoji = true)
+            }
+            divider()
+            section {
+                markdownText("*<fakeLink.toUserProfiles.com|Iris / Zelda 1-1>*\nTuesday, January 21 4:00-4:30pm\nBuilding 2 - Havarti Cheese (3)\n2 guests")
+                accessory {
+                    image(imageUrl = "https://api.slack.com/img/blocks/bkb_template_images/notifications.png", altText = "calendar thumbnail")
+                }
+            }
+            context {
+                elements {
+                    image(imageUrl = "https://api.slack.com/img/blocks/bkb_template_images/notificationsWarningIcon.png", altText = "notifications warning icon")
+                }
+                markdownText("*Conflicts with Team Huddle: 4:15-4:30pm*")
+            }
+            divider()
+            section {
+                markdownText("*Propose a new time:*")
+            }
+            section {
+                markdownText("*Today - 4:30-5pm*\nEveryone is available: @iris, @zelda")
+                accessory {
+                    button {
+                        text(text = "Choose", emoji = true)
+                        value("click_me_123")
+                    }
+                }
+            }
+            section {
+                markdownText("*Tomorrow - 4-4:30pm*\nEveryone is available: @iris, @zelda")
+                accessory {
+                    button {
+                        text(text = "Choose", emoji = true)
+                        value("click_me_123")
+                    }
+                }
+            }
+            section {
+                markdownText("*Tomorrow - 6-6:30pm*\nSome people aren't available: @iris, ~@zelda~")
+                accessory {
+                    button {
+                        text(text = "Choose", emoji = true)
+                        value("click_me_123")
+                    }
+                }
+            }
+            section {
+                markdownText("*<fakelink.ToMoreTimes.com|Show more times>*")
+            }
+        }
+        val original = """
+{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": "Looks like you have a scheduling conflict with this event:",
+				"emoji": true
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*<fakeLink.toUserProfiles.com|Iris / Zelda 1-1>*\nTuesday, January 21 4:00-4:30pm\nBuilding 2 - Havarti Cheese (3)\n2 guests"
+			},
+			"accessory": {
+				"type": "image",
+				"image_url": "https://api.slack.com/img/blocks/bkb_template_images/notifications.png",
+				"alt_text": "calendar thumbnail"
+			}
+		},
+		{
+			"type": "context",
+			"elements": [
+				{
+					"type": "image",
+					"image_url": "https://api.slack.com/img/blocks/bkb_template_images/notificationsWarningIcon.png",
+					"alt_text": "notifications warning icon"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Conflicts with Team Huddle: 4:15-4:30pm*"
+				}
+			]
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Propose a new time:*"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Today - 4:30-5pm*\nEveryone is available: @iris, @zelda"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "Choose",
+					"emoji": true
+				},
+				"value": "click_me_123"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Tomorrow - 4-4:30pm*\nEveryone is available: @iris, @zelda"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "Choose",
+					"emoji": true
+				},
+				"value": "click_me_123"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Tomorrow - 6-6:30pm*\nSome people aren't available: @iris, ~@zelda~"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"text": "Choose",
+					"emoji": true
+				},
+				"value": "click_me_123"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*<fakelink.ToMoreTimes.com|Show more times>*"
+			}
+		}
+	]
+}
+"""
+        val json = gson.fromJson(original, JsonElement::class.java)
+        val expected = json.asJsonObject["blocks"]
+        val actual = gson.toJsonTree(blocks)
+        assertEquals(expected, actual, "\n" + expected.toString() + "\n" + actual.toString())
+    }
+
+    @Test
+    fun onboarding() {
+        val blocks = withBlocks {
+            section {
+                markdownText("Hey there \uD83D\uDC4B I'm TaskBot. I'm here to help you create and manage tasks in Slack.\nThere are two ways to quickly create tasks:")
+            }
+            section {
+                markdownText("*1️⃣ Use the `/task` command*. Type `/task` followed by a short description of your tasks and I'll ask for a due date (if applicable). Try it out by using the `/task` command in this channel.")
+            }
+            section {
+                markdownText("*2️⃣ Use the _Create a Task_ action.* If you want to create a task from a message, select `Create a Task` in a message's context menu. Try it out by selecting the _Create a Task_ action for this message (shown below).")
+            }
+            image {
+                title("image1", true)
+                imageUrl("https://api.slack.com/img/blocks/bkb_template_images/onboardingComplex.jpg")
+                altText("image1")
+            }
+            section {
+                markdownText("➕ To start tracking your team's tasks, *add me to a channel* and I'll introduce myself. I'm usually added to a team or project channel. Type `/invite @TaskBot` from the channel or pick a channel on the right.")
+                accessory {
+                    conversationsSelect {
+                        placeholder("Select a channel...", true)
+                    }
+                }
+            }
+            divider()
+            context {
+                markdownText("\uD83D\uDC40 View all tasks with `/task list`\n❓Get help at any time with `/task help` or type *help* in a DM with me")
+            }
+        }
+        val original = """
+{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Hey there 👋 I'm TaskBot. I'm here to help you create and manage tasks in Slack.\nThere are two ways to quickly create tasks:"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*1️⃣ Use the `/task` command*. Type `/task` followed by a short description of your tasks and I'll ask for a due date (if applicable). Try it out by using the `/task` command in this channel."
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*2️⃣ Use the _Create a Task_ action.* If you want to create a task from a message, select `Create a Task` in a message's context menu. Try it out by selecting the _Create a Task_ action for this message (shown below)."
+			}
+		},
+		{
+			"type": "image",
+			"title": {
+				"type": "plain_text",
+				"text": "image1",
+				"emoji": true
+			},
+			"image_url": "https://api.slack.com/img/blocks/bkb_template_images/onboardingComplex.jpg",
+			"alt_text": "image1"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "➕ To start tracking your team's tasks, *add me to a channel* and I'll introduce myself. I'm usually added to a team or project channel. Type `/invite @TaskBot` from the channel or pick a channel on the right."
+			},
+			"accessory": {
+				"type": "conversations_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select a channel...",
+					"emoji": true
+				}
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "context",
+			"elements": [
+				{
+					"type": "mrkdwn",
+					"text": "👀 View all tasks with `/task list`\n❓Get help at any time with `/task help` or type *help* in a DM with me"
 				}
 			]
 		}
