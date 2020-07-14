@@ -338,7 +338,8 @@
       "calls_survey_last_seen": 12345,
       "seen_edit_mode_edu": false,
       "add_prompt_interacted": false,
-      "emoji_use_org": ""
+      "emoji_use_org": "",
+      "all_unreads_section_filter": ""
     },
     "created": 12345,
     "first_login": 12345,

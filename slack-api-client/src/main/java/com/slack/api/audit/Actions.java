@@ -100,9 +100,13 @@ public class Actions {
         public static final String pref_required_minimum_mobile_version_changed = "pref.required_minimum_mobile_version_changed";
         public static final String pref_admin_retention_override_changed = "pref.admin_retention_override_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
+        public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
+        public static final String scheduled_export_deleted = "scheduled_export_deleted";
         public static final String channels_export_downloaded = "channels_export_downloaded";
+        public static final String channels_export_deleted = "channels_export_deleted";
         public static final String manual_user_export_downloaded = "manual_user_export_downloaded";
+        public static final String manual_user_export_deleted = "manual_user_export_deleted";
         public static final String approved_orgs_added = "approved_orgs_added";
         public static final String approved_orgs_removed = "approved_orgs_removed";
     }
