@@ -312,4 +312,227 @@ class ModalTemplateTest {
         assertEquals(expected, actual, "\n" + expected.toString() + "\n" + actual.toString())
     }
 
+    @Test
+    fun listOfInformation() {
+        val blocks = withBlocks {
+            section {
+                markdownText(":tada: You're all set! This is your booking summary.")
+            }
+            divider()
+            section {
+                fields {
+                    markdownText("*Attendee*\nKatie Chen")
+                    markdownText("*Date*\nOct 22-23")
+                }
+            }
+            context {
+                elements {
+                    markdownText(":house: Accommodation")
+                }
+            }
+            divider()
+            section {
+                markdownText("*Redwood Suite*\n*Share with 2 other person.* Studio home. Modern bathroom. TV. Heating. Full kitchen. Patio with lounge chairs and campfire style fire pit and grill.")
+                accessory {
+                    image(imageUrl = "https://api.slack.com/img/blocks/bkb_template_images/redwood-suite.png", altText = "Redwood Suite")
+                }
+            }
+            context {
+                elements {
+                    markdownText(":fork_and_knife: Food & Dietary restrictions")
+                }
+            }
+            divider()
+            section {
+                markdownText("*All-rounder*\nYou eat most meats, seafood, dairy and vegetables.")
+            }
+            context {
+                markdownText(":woman-running: Activities")
+            }
+            divider()
+            section {
+                markdownText("*Winery tour and tasting*")
+                fields {
+                    plainText("Wednesday, Oct 22 2019, 2pm-5pm", emoji = true)
+                    plainText("Hosted by Sandra Mullens", emoji = true)
+                }
+            }
+            section {
+                markdownText("*Sunrise hike to Mount Amazing*")
+                fields {
+                    plainText("Thursday, Oct 23 2019, 5:30am", emoji = true)
+                    plainText("Hosted by Jordan Smith", emoji = true)
+                }
+            }
+            section {
+                markdownText("*Design systems brainstorm*")
+                fields {
+                    plainText("Thursday, Oct 23 2019, 11a", emoji = true)
+                    plainText("Hosted by Mary Lee", emoji = true)
+                }
+            }
+        }
+        val original = """
+{
+	"type": "modal",
+	"submit": {
+		"type": "plain_text",
+		"text": "Submit",
+		"emoji": true
+	},
+	"close": {
+		"type": "plain_text",
+		"text": "Cancel",
+		"emoji": true
+	},
+	"title": {
+		"type": "plain_text",
+		"text": "Your itinerary",
+		"emoji": true
+	},
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": ":tada: You're all set! This is your booking summary."
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"fields": [
+				{
+					"type": "mrkdwn",
+					"text": "*Attendee*\nKatie Chen"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Date*\nOct 22-23"
+				}
+			]
+		},
+		{
+			"type": "context",
+			"elements": [
+				{
+					"type": "mrkdwn",
+					"text": ":house: Accommodation"
+				}
+			]
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Redwood Suite*\n*Share with 2 other person.* Studio home. Modern bathroom. TV. Heating. Full kitchen. Patio with lounge chairs and campfire style fire pit and grill."
+			},
+			"accessory": {
+				"type": "image",
+				"image_url": "https://api.slack.com/img/blocks/bkb_template_images/redwood-suite.png",
+				"alt_text": "Redwood Suite"
+			}
+		},
+		{
+			"type": "context",
+			"elements": [
+				{
+					"type": "mrkdwn",
+					"text": ":fork_and_knife: Food & Dietary restrictions"
+				}
+			]
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*All-rounder*\nYou eat most meats, seafood, dairy and vegetables."
+			}
+		},
+		{
+			"type": "context",
+			"elements": [
+				{
+					"type": "mrkdwn",
+					"text": ":woman-running: Activities"
+				}
+			]
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Winery tour and tasting*"
+			},
+			"fields": [
+				{
+					"type": "plain_text",
+					"text": "Wednesday, Oct 22 2019, 2pm-5pm",
+					"emoji": true
+				},
+				{
+					"type": "plain_text",
+					"text": "Hosted by Sandra Mullens",
+					"emoji": true
+				}
+			]
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Sunrise hike to Mount Amazing*"
+			},
+			"fields": [
+				{
+					"type": "plain_text",
+					"text": "Thursday, Oct 23 2019, 5:30am",
+					"emoji": true
+				},
+				{
+					"type": "plain_text",
+					"text": "Hosted by Jordan Smith",
+					"emoji": true
+				}
+			]
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Design systems brainstorm*"
+			},
+			"fields": [
+				{
+					"type": "plain_text",
+					"text": "Thursday, Oct 23 2019, 11a",
+					"emoji": true
+				},
+				{
+					"type": "plain_text",
+					"text": "Hosted by Mary Lee",
+					"emoji": true
+				}
+			]
+		}
+	]
+}
+        """.trimIndent()
+        val json = gson.fromJson(original, JsonElement::class.java)
+        val expected = json.asJsonObject["blocks"]
+        val actual = gson.toJsonTree(blocks)
+        assertEquals(expected, actual, "\n" + expected.toString() + "\n" + actual.toString())
+    }
+
 }
