@@ -339,7 +339,8 @@
       "seen_edit_mode_edu": false,
       "add_prompt_interacted": false,
       "emoji_use_org": "",
-      "all_unreads_section_filter": ""
+      "all_unreads_section_filter": "",
+      "mx_calendar_type": ""
     },
     "created": 12345,
     "first_login": 12345,

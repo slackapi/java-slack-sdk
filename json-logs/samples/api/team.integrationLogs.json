@@ -12,7 +12,12 @@
       "scope": "",
       "service_id": 12345,
       "service_type": "",
-      "reason": ""
+      "reason": "",
+      "rss_feed": false,
+      "rss_feed_change_type": "",
+      "rss_feed_title": "",
+      "rss_feed_url": "https://www.example.com/",
+      "channel": "C00000000"
     }
   ],
   "paging": {
