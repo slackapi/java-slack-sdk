@@ -165,11 +165,18 @@ public class ApiTest {
     @Test
     public void getLogs_paginated() throws IOException, AuditApiException {
         if (orgAdminUserToken != null) {
-            LogsResponse response = slack.audit(orgAdminUserToken).getLogs(req ->
-                    req.oldest(1521214343).action(Actions.User.user_login).limit(10));
+            LogsResponse response = slack.audit(orgAdminUserToken).getLogs(req -> req
+                    .oldest(1521214343)
+                    .action(Actions.User.user_login)
+                    .limit(1)
+            );
             String cursor = response.getResponseMetadata().getNextCursor();
-            response = slack.audit(orgAdminUserToken).getLogs(req ->
-                    req.oldest(1521214343).action(Actions.User.user_login).limit(10).cursor(cursor));
+            response = slack.audit(orgAdminUserToken).getLogs(req -> req
+                    .oldest(1521214343)
+                    .action(Actions.User.user_login)
+                    .limit(1)
+                    .cursor(cursor)
+            );
             assertThat(cursor, not(equalTo(response.getResponseMetadata().getNextCursor())));
             assertThat(response, is(notNullValue()));
         }
