@@ -13,9 +13,10 @@
   "event_id": "",
   "event_time": 123,
   "event": {
-    "type": "im_close",
-    "user": "",
-    "channel": "",
-    "event_ts": ""
+    "type": "call_rejected",
+    "call_id": "",
+    "user_id": "",
+    "channel_id": "",
+    "external_unique_id": ""
   }
 }

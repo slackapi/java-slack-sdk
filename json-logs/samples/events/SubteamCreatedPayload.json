@@ -1,26 +1,37 @@
 {
   "token": "",
-  "team_id": "",
   "enterprise_id": "",
+  "team_id": "",
   "api_app_id": "",
+  "type": "",
+  "authed_users": [
+    ""
+  ],
+  "authed_teams": [
+    ""
+  ],
+  "event_id": "",
+  "event_time": 123,
   "event": {
     "type": "subteam_created",
     "subteam": {
       "id": "",
+      "enterprise_subteam_id": "",
       "team_id": "",
-      "is_usergroup": false,
       "is_subteam": false,
+      "is_usergroup": false,
+      "auto_provision": false,
       "name": "",
       "description": "",
       "handle": "",
       "is_external": false,
-      "date_create": 12345,
-      "date_update": 12345,
-      "date_delete": 12345,
-      "auto_provision": false,
-      "enterprise_subteam_id": "",
+      "date_create": 123,
+      "date_update": 123,
+      "date_delete": 123,
+      "auto_type": "",
       "created_by": "",
       "updated_by": "",
+      "deleted_by": "",
       "prefs": {
         "channels": [
           ""
@@ -29,14 +40,9 @@
           ""
         ]
       },
-      "channel_count": 12345
+      "user_count": 123,
+      "channel_count": 123
     },
-    "event_ts": "0000000000.000000"
-  },
-  "type": "event_callback",
-  "event_id": "",
-  "event_time": 12345,
-  "authed_users": [
-    ""
-  ]
+    "event_ts": ""
+  }
 }
