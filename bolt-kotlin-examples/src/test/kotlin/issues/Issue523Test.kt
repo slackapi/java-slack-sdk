@@ -1,7 +1,6 @@
 package issues
 
 import com.slack.api.Slack
-import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNull
 import org.junit.Test
 import java.io.File
@@ -18,7 +17,8 @@ class Issue523Test {
         val response = slackMethods.filesUpload {
             it.fileData(file.readBytes()).filetype("text")
         }
-        assertEquals("no_file_data", response.error)
+        // assertEquals("no_file_data", response.error)
+        assertNull(response.error)
     }
 
     @Test
@@ -36,7 +36,8 @@ class Issue523Test {
         val response = slackMethods.filesUpload {
             it.fileData(file.readBytes()).filetype("jpg")
         }
-        assertEquals("no_file_data", response.error)
+        // assertEquals("no_file_data", response.error)
+        assertNull(response.error)
     }
 
     @Test

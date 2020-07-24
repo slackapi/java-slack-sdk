@@ -420,7 +420,8 @@ public class files_Test {
         File file = new File("src/test/resources/sample.txt");
         byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
         FilesUploadResponse response = slackMethods.filesUpload(r -> r.fileData(fileData));
-        assertThat(response.getError(), is("no_file_data"));
+        // assertThat(response.getError(), is("no_file_data"));
+        assertThat(response.getError(), is(nullValue()));
     }
 
     @Test
@@ -429,7 +430,8 @@ public class files_Test {
         File file = new File("src/test/resources/user_photo.jpg");
         byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
         FilesUploadResponse response = slackMethods.filesUpload(r -> r.fileData(fileData));
-        assertThat(response.getError(), is("no_file_data"));
+        // assertThat(response.getError(), is("no_file_data"));
+        assertThat(response.getError(), is(nullValue()));
     }
 
     @Test
