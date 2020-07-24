@@ -361,6 +361,11 @@ public class EventHandlersTest {
                     public void handle(MessageDeletedPayload payload) {
                     }
                 },
+                new MessageFileShareHandler() {
+                    @Override
+                    public void handle(MessageFileSharePayload payload) {
+                    }
+                },
                 new MessageBotHandler() {
                     @Override
                     public void handle(MessageBotPayload payload) {
