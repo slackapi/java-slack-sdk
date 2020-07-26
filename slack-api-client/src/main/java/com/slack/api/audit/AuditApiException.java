@@ -44,6 +44,7 @@ public class AuditApiException extends Exception {
         AuditApiErrorResponse parsedErrorResponse = null;
         try {
             parsedErrorResponse = GsonFactory.createSnakeCase(config).fromJson(responseBody, AuditApiErrorResponse.class);
+            parsedErrorResponse.setRawBody(responseBody);
         } catch (Exception e) {
             if (log.isDebugEnabled()) {
                 String responseToPrint = responseBody.length() > 1000 ? responseBody.subSequence(0, 1000) + " ..." : responseBody;

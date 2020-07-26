@@ -4,6 +4,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.slack.api.SlackConfig;
+import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.TextObject;
@@ -28,6 +29,7 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory())
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory())
                 .create();
     }
 
@@ -35,14 +37,17 @@ public class GsonFactory {
      * Most of the Slack APIs' key naming is snake-cased.
      */
     public static Gson createSnakeCase(SlackConfig config) {
+        boolean failOnUnknownProps = config.isFailOnUnknownProperties();
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(config.isFailOnUnknownProperties()))
-                .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(config.isFailOnUnknownProperties()))
-                .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(config.isFailOnUnknownProperties()))
-                .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(config.isFailOnUnknownProperties()))
-                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(config.isFailOnUnknownProperties()));
-        if (config.isFailOnUnknownProperties() || config.isLibraryMaintainerMode()) {
+                .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProps))
+                .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProps))
+                .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class,
+                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps));
+        if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
         if (config.isPrettyResponseLoggingEnabled()) {
@@ -55,13 +60,16 @@ public class GsonFactory {
      * Mainly used for SCIM APIs.
      */
     public static Gson createCamelCase(SlackConfig config) {
+        boolean failOnUnknownProps = config.isFailOnUnknownProperties();
         GsonBuilder gsonBuilder = new GsonBuilder()
-                .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(config.isFailOnUnknownProperties()))
-                .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(config.isFailOnUnknownProperties()))
-                .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(config.isFailOnUnknownProperties()))
-                .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(config.isFailOnUnknownProperties()))
-                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(config.isFailOnUnknownProperties()));
-        if (config.isFailOnUnknownProperties() || config.isLibraryMaintainerMode()) {
+                .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProps))
+                .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProps))
+                .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class,
+                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps));
+        if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
         if (config.isPrettyResponseLoggingEnabled()) {

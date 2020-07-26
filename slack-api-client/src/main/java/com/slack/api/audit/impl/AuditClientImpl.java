@@ -3,6 +3,7 @@ package com.slack.api.audit.impl;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.audit.AuditApiException;
 import com.slack.api.audit.AuditApiRequest;
+import com.slack.api.audit.AuditApiResponse;
 import com.slack.api.audit.AuditClient;
 import com.slack.api.audit.request.ActionsRequest;
 import com.slack.api.audit.request.LogsRequest;
@@ -114,16 +115,18 @@ public class AuditClientImpl implements AuditClient {
         }
     }
 
-    private <T> T doGet(String url, Map<String, String> query, String token, Class<T> clazz) throws IOException, AuditApiException {
+    private <T extends AuditApiResponse> T doGet(String url, Map<String, String> query, String token, Class<T> clazz) throws IOException, AuditApiException {
         Response response = slackHttpClient.get(url, query, token);
         return parseJsonResponseAndRunListeners(response, clazz);
     }
 
-    private <T> T parseJsonResponseAndRunListeners(Response response, Class<T> clazz) throws IOException, AuditApiException {
+    private <T extends AuditApiResponse> T parseJsonResponseAndRunListeners(Response response, Class<T> clazz) throws IOException, AuditApiException {
         String body = response.body().string();
         slackHttpClient.runHttpResponseListeners(response, body);
         if (response.isSuccessful()) {
-            return GsonFactory.createSnakeCase(slackHttpClient.getConfig()).fromJson(body, clazz);
+            T apiResponse = GsonFactory.createSnakeCase(slackHttpClient.getConfig()).fromJson(body, clazz);
+            apiResponse.setRawBody(body);
+            return apiResponse;
         } else {
             throw new AuditApiException(slackHttpClient.getConfig(), response, body);
         }
