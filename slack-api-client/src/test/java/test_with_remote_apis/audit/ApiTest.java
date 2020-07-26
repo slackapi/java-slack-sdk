@@ -243,4 +243,26 @@ public class ApiTest {
         }
     }
 
+    @Test
+    public void attachBody() throws Exception {
+        if (orgAdminUserToken != null) {
+            // false (default)
+            LogsResponse response = slack.audit(orgAdminUserToken).getLogs(req -> req
+                    .limit(1)
+                    .action(Actions.User.user_login)
+            );
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.getEntries().size(), is(not(0)));
+            assertThat(response.getRawBody(), is(nullValue())); // null
+            // true
+            response = slack.audit(orgAdminUserToken).attachRawBody(true).getLogs(req -> req
+                    .limit(1)
+                    .action(Actions.User.user_login)
+            );
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.getEntries().size(), is(not(0)));
+            assertThat(response.getRawBody(), is(notNullValue())); // non-null
+        }
+    }
+
 }

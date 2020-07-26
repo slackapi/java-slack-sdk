@@ -25,6 +25,7 @@ public class AuditClientImpl implements AuditClient {
 
     private final SlackHttpClient slackHttpClient;
     private final String token;
+    private boolean attachRawBody = false;
 
     public AuditClientImpl(SlackHttpClient slackHttpClient) {
         this(slackHttpClient, null);
@@ -41,6 +42,12 @@ public class AuditClientImpl implements AuditClient {
 
     public void setEndpointUrlPrefix(String endpointUrlPrefix) {
         this.endpointUrlPrefix = endpointUrlPrefix;
+    }
+
+    @Override
+    public AuditClient attachRawBody(boolean attachRawBody) {
+        this.attachRawBody = attachRawBody;
+        return this;
     }
 
     @Override
@@ -125,7 +132,9 @@ public class AuditClientImpl implements AuditClient {
         slackHttpClient.runHttpResponseListeners(response, body);
         if (response.isSuccessful()) {
             T apiResponse = GsonFactory.createSnakeCase(slackHttpClient.getConfig()).fromJson(body, clazz);
-            apiResponse.setRawBody(body);
+            if (attachRawBody) {
+                apiResponse.setRawBody(body);
+            }
             return apiResponse;
         } else {
             throw new AuditApiException(slackHttpClient.getConfig(), response, body);
