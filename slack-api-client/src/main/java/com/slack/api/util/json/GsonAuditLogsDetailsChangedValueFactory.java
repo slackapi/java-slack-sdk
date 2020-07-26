@@ -42,9 +42,7 @@ public class GsonAuditLogsDetailsChangedValueFactory implements JsonDeserializer
                     namedValues.put(name, parseStringArray(value));
                 } else {
                     if (failOnUnknownProperties) {
-                        // unsupported result
-                        String message = "Unsupported value (" + name + " -> " + value + ") here is detected. " +
-                                "Please report at https://github.com/slackapi/java-slack-sdk/issues";
+                        String message = "A non-array value (" + value + ") for " + name + " is detected. " + REPORT_THIS;
                         throw new JsonParseException(message);
                     }
                 }
@@ -52,8 +50,7 @@ public class GsonAuditLogsDetailsChangedValueFactory implements JsonDeserializer
             return result;
         } else {
             if (failOnUnknownProperties) {
-                // unsupported result
-                String message = "Unsupported whole value (" + json + ") is detected. " + REPORT_THIS;
+                String message = "The whole value (" + json + ") is unsupported. " + REPORT_THIS;
                 throw new JsonParseException(message);
             }
         }
@@ -67,8 +64,7 @@ public class GsonAuditLogsDetailsChangedValueFactory implements JsonDeserializer
                 values.add(elem.getAsString());
             } else {
                 if (failOnUnknownProperties) {
-                    // unsupported value
-                    String message = "The value (" + elem + ") here are not yet supported. " + REPORT_THIS;
+                    String message = "An unexpected element (" + elem + ") in an array is detected. " + REPORT_THIS;
                     throw new JsonParseException(message);
                 }
             }
