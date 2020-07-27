@@ -41,4 +41,9 @@ public class LogsRequest implements AuditApiRequest {
      */
     private String entity;
 
+    /**
+     * Used for pagination. May be null.
+     */
+    private String cursor;
+
 }
