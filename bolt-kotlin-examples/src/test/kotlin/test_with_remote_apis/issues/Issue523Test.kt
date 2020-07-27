@@ -1,4 +1,4 @@
-package issues
+package test_with_remote_apis.issues
 
 import com.slack.api.Slack
 import junit.framework.TestCase.assertNull
