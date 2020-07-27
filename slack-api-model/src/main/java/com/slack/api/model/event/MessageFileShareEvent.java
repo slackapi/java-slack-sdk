@@ -30,7 +30,9 @@ public class MessageFileShareEvent implements Event {
     private List<String> xFiles;
 
     private String user;
+    private String parentUserId;
     private String ts;
+    private String threadTs;
     private String channel;
     private String eventTs;
     private String channelType; // app_home, channel, group, im, mpim

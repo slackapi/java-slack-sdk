@@ -1,22 +1,25 @@
 {
   "token": "",
-  "team_id": "",
   "enterprise_id": "",
+  "team_id": "",
   "api_app_id": "",
+  "type": "",
+  "authed_users": [
+    ""
+  ],
+  "authed_teams": [
+    ""
+  ],
+  "event_id": "",
+  "event_time": 123,
   "event": {
     "type": "file_shared",
-    "channel_id": "",
     "file_id": "",
-    "user_id": "",
     "file": {
       "id": ""
     },
-    "event_ts": "0000000000.000000"
-  },
-  "type": "event_callback",
-  "event_id": "",
-  "event_time": 12345,
-  "authed_users": [
-    ""
-  ]
+    "channel_id": "",
+    "user_id": "",
+    "event_ts": ""
+  }
 }

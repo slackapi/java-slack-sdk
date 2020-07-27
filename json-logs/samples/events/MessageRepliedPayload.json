@@ -63,7 +63,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
             },
             {
@@ -95,18 +96,19 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
-              }
+                },
+                "style": ""
+              },
+              "response_url_enabled": false
             },
             {
-              "type": "conversations_select",
+              "type": "multi_channels_select",
               "placeholder": {
                 "type": "plain_text",
                 "text": "",
                 "emoji": false
               },
               "action_id": "",
-              "initial_conversation": "",
               "confirm": {
                 "title": {
                   "type": "plain_text",
@@ -127,7 +129,92 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
+              },
+              "max_selected_items": 123
+            },
+            {
+              "type": "conversations_select",
+              "placeholder": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "action_id": "",
+              "initial_conversation": "",
+              "default_to_current_conversation": false,
+              "confirm": {
+                "title": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "confirm": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "deny": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "style": ""
+              },
+              "response_url_enabled": false,
+              "filter": {
+                "include": [
+                  ""
+                ],
+                "exclude_external_shared_channels": false,
+                "exclude_bot_users": false
+              }
+            },
+            {
+              "type": "multi_conversations_select",
+              "placeholder": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "action_id": "",
+              "default_to_current_conversation": false,
+              "confirm": {
+                "title": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "confirm": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "deny": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "style": ""
+              },
+              "max_selected_items": 123,
+              "filter": {
+                "include": [
+                  ""
+                ],
+                "exclude_external_shared_channels": false,
+                "exclude_bot_users": false
               }
             },
             {
@@ -159,7 +246,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
             },
             {
@@ -205,8 +293,43 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
+            },
+            {
+              "type": "multi_external_select",
+              "placeholder": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "action_id": "",
+              "min_query_length": 123,
+              "confirm": {
+                "title": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "confirm": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "deny": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "style": ""
+              },
+              "max_selected_items": 123
             },
             {
               "type": "image",
@@ -240,7 +363,8 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
             },
             {
@@ -285,8 +409,42 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
+            },
+            {
+              "type": "multi_static_select",
+              "placeholder": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "action_id": "",
+              "confirm": {
+                "title": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "confirm": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "deny": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "style": ""
+              },
+              "max_selected_items": 123
             },
             {
               "type": "users_select",
@@ -317,8 +475,42 @@
                   "type": "plain_text",
                   "text": "",
                   "emoji": false
-                }
+                },
+                "style": ""
               }
+            },
+            {
+              "type": "multi_users_select",
+              "placeholder": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "action_id": "",
+              "confirm": {
+                "title": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "confirm": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "deny": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "style": ""
+              },
+              "max_selected_items": 123
             }
           ],
           "block_id": ""
@@ -398,6 +590,7 @@
           "service_url": "",
           "service_name": "",
           "service_icon": "",
+          "author_id": "",
           "author_name": "",
           "author_link": "",
           "author_icon": "",
