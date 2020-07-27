@@ -1129,6 +1129,9 @@ public class RequestFormBuilder {
         MultipartBody.Builder form = new MultipartBody.Builder();
 
         if (req.getFileData() != null) {
+            if (req.getFilename() == null) {
+                req.setFilename("uploaded_file"); // filename is required for multipart/form-data
+            }
             RequestBody file = RequestBody.create(req.getFileData(), MultipartBody.FORM);
             form.addFormDataPart("file", req.getFilename(), file);
         } else if (req.getFile() != null) {
