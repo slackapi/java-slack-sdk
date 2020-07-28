@@ -7,10 +7,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class LogsResponse implements AuditApiResponse {
+    private transient String rawBody;
+
     private boolean ok;
     private String warning;
     private String error;
@@ -56,6 +59,7 @@ public class LogsResponse implements AuditApiResponse {
         private Enterprise enterprise;
         private File file;
         private Channel channel;
+        private Workflow workflow;
     }
 
     @Data
@@ -66,6 +70,8 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean distributed;
         @SerializedName("is_directory_approved")
         private Boolean directoryApproved;
+        @SerializedName("is_workflow_app")
+        private Boolean workflowApp;
         private List<String> scopes;
     }
 
@@ -110,6 +116,12 @@ public class LogsResponse implements AuditApiResponse {
     }
 
     @Data
+    public static class Workflow {
+        private String id;
+        private String name;
+    }
+
+    @Data
     public static class Context {
         private Location location;
         private String ua;
@@ -124,40 +136,78 @@ public class LogsResponse implements AuditApiResponse {
         private String domain;
     }
 
+    /**
+     * The data structure for new_value, previous_value is greatly flexible.
+     * This class supports multiple patterns for those.
+     */
+    @Data
+    public static class DetailsChangedValue {
+        // e.g., ["C111", "C222"]
+        private List<String> stringValues;
+        // e.g., {"type": ["TOPLEVEL_ADMINS_AND_OWNERS_AND_SELECTED"]}
+        private Map<String, List<String>> namedStringValues;
+    }
+
     @Data
     public static class Details {
-        @SerializedName("is_internal_integration")
-        private Boolean internalIntegration;
+        private String type;
         private String appOwnerId;
+        private List<String> scopes; // app_scopes_expanded
+        private List<String> botScopes;
         private List<String> newScopes;
         private List<String> previousScopes;
-        private String type;
         private Inviter inviter;
-        private String newValue;
-        private String previousValue;
+        private DetailsChangedValue newValue; // pref.who_can_manage_shared_channels etc
+        private DetailsChangedValue previousValue; // pref.who_can_manage_shared_channels etc
         private Kicker kicker;
         private String installerUserId;
         private Boolean appPreviouslyApproved;
         private List<String> oldScopes;
         private String name;
         private String botId;
+        private List<String> channels;
         private List<Permission> permissions;
+        private String sharedTo; // channel_workspaces_updated
+        private String reason;
+        @SerializedName("is_internal_integration")
+        private Boolean internalIntegration;
+        @SerializedName("is_workflow")
+        private Boolean workflow; // user_channel_join
+        private Boolean mobileOnly; // user_session_reset_by_admin
+        private Boolean webOnly; // user_session_reset_by_admin
+        private Integer expiresOn; // guest_expiration_set
+        private String newVersionId; // workflow_published
+        private String trigger; // workflow_published
+        private Boolean granularBotToken; // app_scopes_expanded
+        private String originTeam; // external_shared_channel_invite_approved
+        private String targetTeam; // external_shared_channel_invite_approved
+        private String resolution; // app_approved
+        private Boolean appPreviouslyResolved; // app_approved
+        private String adminAppId; // app_approved
     }
 
     @Data
     public static class Inviter {
         private String type;
+
         private User user;
+
         private String id;
         private String name;
         private String email;
+        private String team;
     }
 
     @Data
     public static class Kicker {
+        private String type;
+
+        private User user;
+
         private String id;
         private String name;
         private String email;
+        private String team;
     }
 
     @Data

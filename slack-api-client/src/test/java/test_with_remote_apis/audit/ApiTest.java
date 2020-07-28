@@ -13,11 +13,13 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
@@ -179,6 +181,87 @@ public class ApiTest {
             );
             assertThat(cursor, not(equalTo(response.getResponseMetadata().getNextCursor())));
             assertThat(response, is(notNullValue()));
+        }
+    }
+
+    @Test
+    public void getLogs_all_actions() throws Exception {
+        if (orgAdminUserToken != null) {
+            verifyAllActions(orgAdminUserToken, Actions.WorkspaceOrOrg.class);
+            verifyAllActions(orgAdminUserToken, Actions.User.class);
+            verifyAllActions(orgAdminUserToken, Actions.File.class);
+            verifyAllActions(orgAdminUserToken, Actions.Channel.class);
+            verifyAllActions(orgAdminUserToken, Actions.App.class);
+        }
+    }
+
+    static void verifyAllActions(String token, Class<?> clazz) throws Exception {
+        List<Field> fields = Arrays.stream(clazz.getDeclaredFields())
+                .filter(f -> Modifier.isStatic(f.getModifiers()) && Modifier.isPublic(f.getModifiers()))
+                .collect(toList());
+        for (Field f : fields) {
+            String action = String.valueOf(f.get(clazz));
+            try {
+                LogsResponse response = slack.audit(token).getLogs(req -> req.limit(500).action(action));
+                assertThat(response.getError(), is(nullValue()));
+            } catch (AuditApiException e) {
+                if (e.getResponse().code() == 400) {
+                    log.info("{} seems to be no longer supported", action);
+                }
+            }
+            Thread.sleep(30); // To avoid rate limiting errors
+        }
+    }
+
+    @Test
+    public void getLogs_issue_525()
+            throws IOException, AuditApiException {
+        if (orgAdminUserToken != null) {
+            LogsResponse response = slack.audit(orgAdminUserToken).getLogs(req -> req
+                    .limit(10)
+                    .action(Actions.WorkspaceOrOrg.pref_enterprise_default_channels));
+
+            assertThat(response.getEntries().size(), is(not(0)));
+
+            for (LogsResponse.Entry entry : response.getEntries()) {
+                assertThat(entry.getDetails().getNewValue(), is(notNullValue()));
+                assertThat(entry.getDetails().getNewValue().getStringValues(), is(notNullValue()));
+                assertThat(entry.getDetails().getNewValue().getNamedStringValues(), is(nullValue()));
+            }
+
+            response = slack.audit(orgAdminUserToken).getLogs(req -> req
+                    .limit(10)
+                    .action(Actions.WorkspaceOrOrg.pref_who_can_manage_ext_shared_channels));
+
+            assertThat(response.getEntries().size(), is(not(0)));
+
+            for (LogsResponse.Entry entry : response.getEntries()) {
+                assertThat(entry.getDetails().getNewValue(), is(notNullValue()));
+                assertThat(entry.getDetails().getNewValue().getStringValues(), is(nullValue()));
+                assertThat(entry.getDetails().getNewValue().getNamedStringValues(), is(notNullValue()));
+            }
+        }
+    }
+
+    @Test
+    public void attachBody() throws Exception {
+        if (orgAdminUserToken != null) {
+            // false (default)
+            LogsResponse response = slack.audit(orgAdminUserToken).getLogs(req -> req
+                    .limit(1)
+                    .action(Actions.User.user_login)
+            );
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.getEntries().size(), is(not(0)));
+            assertThat(response.getRawBody(), is(nullValue())); // null
+            // true
+            response = slack.audit(orgAdminUserToken).attachRawBody(true).getLogs(req -> req
+                    .limit(1)
+                    .action(Actions.User.user_login)
+            );
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.getEntries().size(), is(not(0)));
+            assertThat(response.getRawBody(), is(notNullValue())); // non-null
         }
     }
 

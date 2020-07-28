@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class AuditApiErrorResponse implements AuditApiResponse {
+    private transient String rawBody;
 
     private boolean ok;
     private String warning;
