@@ -24,4 +24,7 @@ public interface AuditApiResponse {
 
     void setProvided(String provided);
 
+    String getRawBody();
+
+    void setRawBody(String rawBody);
 }

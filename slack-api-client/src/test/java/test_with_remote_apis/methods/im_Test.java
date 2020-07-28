@@ -53,6 +53,8 @@ public class im_Test {
         String channelId = openResponse.getChannel().getId();
 
         // without ts (worked before but it gets to fail because ts is required as of Jan 2019)
+        // It works as of July 28, 2020
+        /*
         {
             ImMarkResponse markResponse = slack.methods().imMark(r -> r
                     .token(userToken)
@@ -60,6 +62,7 @@ public class im_Test {
             assertThat(markResponse.isOk(), is(false));
             assertThat(markResponse.getError(), is("invalid_timestamp"));
         }
+        */
 
         ChatPostMessageResponse firstMessageResponse = slack.methods().chatPostMessage(r -> r
                 .token(userToken)

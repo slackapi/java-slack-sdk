@@ -20,7 +20,6 @@ public class EventsApiPayloadDumpTest {
 
     ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/events");
 
-    @Ignore
     @Test
     public void dumpAll() throws Exception {
         List<EventsApiPayload<?>> payloads = Arrays.asList(
@@ -73,6 +72,7 @@ public class EventsApiPayloadDumpTest {
                 buildMessageChangedPayload(),
                 buildMessageDeletedPayload(),
                 buildMessageEkmAccessDeniedPayload(),
+                buildMessageFileSharePayload(),
                 buildMessageMePayload(),
                 buildMessageRepliedPayload(),
                 buildMessageThreadBroadcastPayload(),
@@ -285,6 +285,16 @@ public class EventsApiPayloadDumpTest {
         message.setBlocks(SampleObjects.Blocks);
         event.setMessage(message);
         event.setPreviousMessage(message);
+        payload.setEvent(event);
+        return payload;
+    }
+
+    private MessageFileSharePayload buildMessageFileSharePayload() {
+        MessageFileSharePayload payload = new MessageFileSharePayload();
+        MessageFileShareEvent event = new MessageFileShareEvent();
+        event.setAttachments(SampleObjects.Attachments);
+        event.setBlocks(SampleObjects.Blocks);
+        event.setFiles(SampleObjects.Files);
         payload.setEvent(event);
         return payload;
     }

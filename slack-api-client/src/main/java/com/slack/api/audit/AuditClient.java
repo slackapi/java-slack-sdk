@@ -25,6 +25,8 @@ public interface AuditClient {
 
     String ENDPOINT_URL_PREFIX = "https://api.slack.com/audit/v1/";
 
+    AuditClient attachRawBody(boolean attachRawBody);
+
     SchemasResponse getSchemas() throws IOException, AuditApiException;
 
     SchemasResponse getSchemas(SchemasRequest req) throws IOException, AuditApiException;

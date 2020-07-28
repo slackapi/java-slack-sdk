@@ -10,7 +10,8 @@
       "name": "",
       "name_normalized": "",
       "is_group": false,
-      "created": 12345
+      "created": 12345,
+      "is_mpim": false
     },
     "event_ts": "0000000000.000000"
   },

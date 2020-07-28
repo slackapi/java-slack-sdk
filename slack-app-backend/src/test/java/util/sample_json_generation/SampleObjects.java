@@ -53,6 +53,8 @@ public class SampleObjects {
                     .build())
     );
 
+    public static List<File> Files = Arrays.asList(initProperties(File.builder().build()));
+
     public static TextObject TextObject = initProperties(PlainTextObject.builder().build());
 
     public static OptionObject Option = initProperties(OptionObject.builder()

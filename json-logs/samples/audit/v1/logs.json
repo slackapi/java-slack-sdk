@@ -20,6 +20,51 @@
           "name": "",
           "email": "",
           "team": "E00000000"
+        },
+        "usergroup": {
+          "id": "S00000000",
+          "name": ""
+        },
+        "channel": {
+          "id": "C00000000",
+          "privacy": "",
+          "name": "",
+          "is_shared": false,
+          "is_org_shared": false,
+          "teams_shared_with": [
+            "T00000000",
+            ""
+          ]
+        },
+        "enterprise": {
+          "id": "E00000000",
+          "name": "",
+          "domain": ""
+        },
+        "workspace": {
+          "id": "T00000000",
+          "name": "",
+          "domain": ""
+        },
+        "file": {
+          "id": "F00000000",
+          "name": "",
+          "filetype": "",
+          "title": ""
+        },
+        "app": {
+          "id": "A00000000",
+          "name": "",
+          "is_distributed": false,
+          "is_directory_approved": false,
+          "is_workflow_app": false,
+          "scopes": [
+            ""
+          ]
+        },
+        "workflow": {
+          "id": "12345",
+          "name": ""
         }
       },
       "context": {
@@ -31,6 +76,73 @@
         },
         "ua": "",
         "ip_address": ""
+      },
+      "details": {
+        "channels": [
+          "C00000000"
+        ],
+        "type": "",
+        "is_workflow": false,
+        "shared_to": "T00000000",
+        "reason": "",
+        "mobile_only": false,
+        "web_only": false,
+        "expires_on": 12345,
+        "name": "",
+        "kicker": {
+          "id": "W00000000",
+          "name": "",
+          "email": "",
+          "team": "T00000000",
+          "type": "",
+          "user": {
+            "id": "W00000000",
+            "name": "",
+            "email": "",
+            "team": "E00000000"
+          }
+        },
+        "inviter": {
+          "id": "W00000000",
+          "name": "",
+          "email": "",
+          "team": "E00000000",
+          "type": "",
+          "user": {
+            "id": "W00000000",
+            "name": "",
+            "email": "",
+            "team": "E00000000"
+          }
+        },
+        "is_internal_integration": false,
+        "app_owner_id": "W00000000",
+        "bot_scopes": [
+          ""
+        ],
+        "new_version_id": "12345",
+        "trigger": "",
+        "new_scopes": [
+          ""
+        ],
+        "previous_scopes": [
+          ""
+        ],
+        "granular_bot_token": false,
+        "origin_team": "T00000000",
+        "target_team": "T00000000",
+        "scopes": [
+          ""
+        ],
+        "resolution": "",
+        "app_previously_resolved": false,
+        "admin_app_id": "",
+        "new_value": [
+          "C00000000"
+        ],
+        "previous_value": [
+          ""
+        ]
       }
     }
   ],

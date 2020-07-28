@@ -20,7 +20,7 @@ public class FieldsTest {
     public void actions() throws Exception {
         String json = reader.readWholeAsString("/v1/actions.json");
         ActionsResponse obj = GsonFactory.createSnakeCase().fromJson(json, ActionsResponse.class);
-        verifyIfAllGettersReturnNonNull(obj);
+        verifyIfAllGettersReturnNonNull(obj, "getRawBody", "getWarning");
         verifyIfAllGettersReturnNonNullRecursively(obj.getActions());
     }
 
@@ -28,7 +28,7 @@ public class FieldsTest {
     public void logs() throws Exception {
         String json = reader.readWholeAsString("/v1/logs.json");
         LogsResponse obj = GsonFactory.createSnakeCase().fromJson(json, LogsResponse.class);
-        verifyIfAllGettersReturnNonNull(obj);
+        verifyIfAllGettersReturnNonNull(obj, "getRawBody", "getWarning");
         verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");
         verifyIfAllGettersReturnNonNull(obj.getEntries().get(0), "getDetails");
         verifyIfAllGettersReturnNonNullRecursively(obj.getEntries().get(0).getActor());
@@ -46,7 +46,7 @@ public class FieldsTest {
     public void schemas() throws Exception {
         String json = reader.readWholeAsString("/v1/schemas.json");
         SchemasResponse obj = GsonFactory.createSnakeCase().fromJson(json, SchemasResponse.class);
-        verifyIfAllGettersReturnNonNull(obj);
+        verifyIfAllGettersReturnNonNull(obj, "getRawBody", "getWarning");
         verifyIfAllGettersReturnNonNullRecursively(obj.getSchemas().get(0));
     }
 }

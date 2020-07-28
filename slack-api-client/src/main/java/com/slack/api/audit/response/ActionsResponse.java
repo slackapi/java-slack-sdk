@@ -9,6 +9,8 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ActionsResponse implements AuditApiResponse {
+    private transient String rawBody;
+
     private boolean ok;
     private String warning;
     private String error;

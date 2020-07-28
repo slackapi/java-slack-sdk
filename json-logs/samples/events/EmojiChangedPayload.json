@@ -1,19 +1,22 @@
 {
   "token": "",
-  "team_id": "",
   "enterprise_id": "",
+  "team_id": "",
   "api_app_id": "",
-  "event": {
-    "subtype": "",
-    "name": "",
-    "value": "https://www.example.com/",
-    "type": "emoji_changed",
-    "event_ts": "0000000000.000000"
-  },
-  "type": "event_callback",
-  "event_id": "",
-  "event_time": 12345,
+  "type": "",
   "authed_users": [
     ""
-  ]
+  ],
+  "authed_teams": [
+    ""
+  ],
+  "event_id": "",
+  "event_time": 123,
+  "event": {
+    "type": "emoji_changed",
+    "subtype": "",
+    "name": "",
+    "value": "",
+    "event_ts": ""
+  }
 }

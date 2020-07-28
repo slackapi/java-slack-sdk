@@ -25,6 +25,9 @@ import util.TestChannelGenerator;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -391,6 +394,44 @@ public class files_Test {
         } finally {
             channelGenerator.archiveChannel(channel);
         }
+    }
+
+    @Test
+    public void issue523_text() throws IOException, SlackApiException {
+        MethodsClient slackMethods = slack.methods(userToken);
+        File file = new File("src/test/resources/sample.txt");
+        byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
+        FilesUploadResponse response = slackMethods.filesUpload(r -> r.fileData(fileData).filename("sample.txt"));
+        assertThat(response.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void issue523_image() throws IOException, SlackApiException {
+        MethodsClient slackMethods = slack.methods(userToken);
+        File file = new File("src/test/resources/user_photo.jpg");
+        byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
+        FilesUploadResponse response = slackMethods.filesUpload(r -> r.fileData(fileData).filename("sample.jpg"));
+        assertThat(response.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void issue523_text_no_filename() throws IOException, SlackApiException {
+        MethodsClient slackMethods = slack.methods(userToken);
+        File file = new File("src/test/resources/sample.txt");
+        byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
+        FilesUploadResponse response = slackMethods.filesUpload(r -> r.fileData(fileData));
+        // assertThat(response.getError(), is("no_file_data"));
+        assertThat(response.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void issue523_image_no_filename() throws IOException, SlackApiException {
+        MethodsClient slackMethods = slack.methods(userToken);
+        File file = new File("src/test/resources/user_photo.jpg");
+        byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
+        FilesUploadResponse response = slackMethods.filesUpload(r -> r.fileData(fileData));
+        // assertThat(response.getError(), is("no_file_data"));
+        assertThat(response.getError(), is(nullValue()));
     }
 
     @Test
