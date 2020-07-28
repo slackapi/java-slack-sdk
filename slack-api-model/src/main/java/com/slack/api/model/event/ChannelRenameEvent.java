@@ -23,6 +23,7 @@ public class ChannelRenameEvent implements Event {
         private String name; // new name
         private String nameNormalized;
         private boolean isChannel;
+        private boolean isMpim;
         private Integer created;
     }
 }
