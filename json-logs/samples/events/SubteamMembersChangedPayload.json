@@ -1,31 +1,28 @@
 {
   "token": "",
-  "enterprise_id": "",
   "team_id": "",
+  "enterprise_id": "",
   "api_app_id": "",
-  "type": "",
-  "authed_users": [
-    ""
-  ],
-  "authed_teams": [
-    ""
-  ],
-  "event_id": "",
-  "event_time": 123,
   "event": {
     "type": "subteam_members_changed",
     "subteam_id": "",
     "team_id": "",
-    "date_previous_update": 123,
-    "date_update": 123,
+    "date_previous_update": 12345,
+    "date_update": 12345,
     "added_users": [
       ""
     ],
-    "added_users_count": 123,
+    "added_users_count": 12345,
     "removed_users": [
       ""
     ],
-    "removed_users_count": 123,
-    "event_ts": ""
-  }
+    "removed_users_count": 12345,
+    "event_ts": "0000000000.000000"
+  },
+  "type": "event_callback",
+  "event_id": "",
+  "event_time": 12345,
+  "authed_users": [
+    ""
+  ]
 }

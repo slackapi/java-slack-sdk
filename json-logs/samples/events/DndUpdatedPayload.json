@@ -1,28 +1,25 @@
 {
   "token": "",
-  "enterprise_id": "",
   "team_id": "",
+  "enterprise_id": "",
   "api_app_id": "",
-  "type": "",
-  "authed_users": [
-    ""
-  ],
-  "authed_teams": [
-    ""
-  ],
-  "event_id": "",
-  "event_time": 123,
   "event": {
     "type": "dnd_updated",
     "user": "",
     "dnd_status": {
       "dnd_enabled": false,
-      "snooze_remaining": 123,
-      "next_dnd_start_ts": 123,
-      "next_dnd_end_ts": 123,
+      "next_dnd_start_ts": 12345,
+      "next_dnd_end_ts": 12345,
       "snooze_enabled": false,
-      "snooze_endtime": 123
+      "snooze_endtime": 12345,
+      "snooze_remaining": 12345
     },
-    "event_ts": ""
-  }
+    "event_ts": "0000000000.000000"
+  },
+  "type": "event_callback",
+  "event_id": "",
+  "event_time": 12345,
+  "authed_users": [
+    ""
+  ]
 }
