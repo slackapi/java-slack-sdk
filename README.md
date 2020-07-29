@@ -1,6 +1,6 @@
 ## Slack SDK for Java
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.slack.api%22%20a%3A%22slack-api-client%22) [![Build Status](https://travis-ci.org/slackapi/java-slack-sdk.svg?branch=master)](https://travis-ci.org/slackapi/java-slack-sdk) [![codecov](https://codecov.io/gh/slackapi/java-slack-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/slackapi/java-slack-sdk)
+[![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.slack.api%22%20a%3A%22slack-api-client%22) [![Build Status](https://travis-ci.org/slackapi/java-slack-sdk.svg?branch=main)](https://travis-ci.org/slackapi/java-slack-sdk) [![codecov](https://codecov.io/gh/slackapi/java-slack-sdk/branch/main/graph/badge.svg)](https://codecov.io/gh/slackapi/java-slack-sdk)
 
 **Slack SDK for Java** supports the Slack platform in a Java idiomatic way. The SDK written in Java so developers can use it in any JVM language including Kotlin, Groovy, and Scala.
 
@@ -82,7 +82,7 @@ All released versions are available on the Maven Central repositories. The lates
 
 The SDK supports **OpenJDK 8 and higher LTS versions**.
 
-Users can expect every single patch release has been done after verifying functionality by running [the basic CI builds with all LTS versions](https://github.com/slackapi/java-slack-sdk/blob/master/.travis.yml) and all the unit tests have passed at least on the latest LTS version. We don't run comprehensive verifications with all OpenJDK distributions but it should be working with all of them.
+Users can expect every single patch release has been done after verifying functionality by running [the basic CI builds with all LTS versions](https://github.com/slackapi/java-slack-sdk/blob/main/.travis.yml) and all the unit tests have passed at least on the latest LTS version. We don't run comprehensive verifications with all OpenJDK distributions but it should be working with all of them.
 
 ## Getting Help
 
