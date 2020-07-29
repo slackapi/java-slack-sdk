@@ -340,7 +340,12 @@
       "add_prompt_interacted": false,
       "emoji_use_org": "",
       "all_unreads_section_filter": "",
-      "mx_calendar_type": ""
+      "mx_calendar_type": "",
+      "show_quick_reactions": false,
+      "enable_channel_browser_view": false,
+      "enable_file_browser_view": false,
+      "enable_people_browser_view": false,
+      "enable_app_browser_view": false
     },
     "created": 12345,
     "first_login": 12345,
