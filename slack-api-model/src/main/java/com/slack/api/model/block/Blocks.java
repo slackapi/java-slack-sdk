@@ -57,6 +57,12 @@ public class Blocks {
         return DividerBlock.builder().build();
     }
 
+    // HeaderBlock
+
+    public static HeaderBlock header(ModelConfigurator<HeaderBlock.HeaderBlockBuilder> configurator) {
+        return configurator.configure(HeaderBlock.builder()).build();
+    }
+
     // CallBlock
 
     public static CallBlock call(ModelConfigurator<CallBlock.CallBlockBuilder> configurator) {

@@ -16,6 +16,10 @@ class MultiLayoutBlockContainer : LayoutBlockDsl {
         underlying += SectionBlockBuilder().apply(builder).build()
     }
 
+    override fun header(builder: HeaderBlockBuilder.() -> Unit) {
+        underlying += HeaderBlockBuilder().apply(builder).build()
+    }
+
     override fun divider(blockId: String?) {
         underlying += DividerBlock(blockId)
     }
