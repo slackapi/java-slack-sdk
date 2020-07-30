@@ -345,7 +345,9 @@
       "enable_channel_browser_view": false,
       "enable_file_browser_view": false,
       "enable_people_browser_view": false,
-      "enable_app_browser_view": false
+      "enable_app_browser_view": false,
+      "has_created_channel_section": false,
+      "reached_all_dms_disclosure": false
     },
     "created": 12345,
     "first_login": 12345,
