@@ -245,6 +245,10 @@
     {
       "date_created": "2020-07-30T15:12:34-07:00",
       "body": "Some users might notice that their notifications settings for mobile are not being respected. We are taking a look and hope to have more news soon."
+    },
+    {
+      "date_created": "2020-07-24T10:45:08-07:00",
+      "body": "We\u0027re currently aware of some intermittent latency and timeouts with image attachments, certain API methods (including users.setPhoto, chat.postMessage and chat.update, views.*), and apps which use these features. We are currently investigating and will update when we believe these issues have been resolved. Sorry for the inconvenience."
     }
   ]
 }
