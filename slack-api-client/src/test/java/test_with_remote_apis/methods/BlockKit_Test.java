@@ -112,7 +112,7 @@ public class BlockKit_Test {
 
             assertThat(postResponse.getError(), is(nullValue()));
             assertThat(postResponse.isOk(), is(true));
-            assertThat(postResponse.getMessage().getBlocks().size(), is(7));
+            assertThat(postResponse.getMessage().getBlocks().size(), is(8));
         }
 
         // message modification
