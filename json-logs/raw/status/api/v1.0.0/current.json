@@ -241,6 +241,10 @@
     {
       "date_created": "2020-06-11T05:55:18-07:00",
       "body": "We\u0027re investigating problems with search indexing. In the meantime, people might notice some messages and files not showing up in search results. We apologize for the inconvenience."
+    },
+    {
+      "date_created": "2020-07-30T15:12:34-07:00",
+      "body": "Some users might notice that their notifications settings for mobile are not being respected. We are taking a look and hope to have more news soon."
     }
   ]
 }
