@@ -11,8 +11,8 @@ lang: en
 This guide explains how to start your first-ever Bolt app.
 
 * Project Setup
-  * Maven
-  * Gradle
+  * [Maven](#maven)
+  * [Gradle](#gradle)
 * Run Your Bolt App in 3 Minutes
   * Use **bolt-jetty**
   * Start the App with Two Env Variables
@@ -27,11 +27,11 @@ If you're not yet familiar with Slack app development in general, we recommend r
 ---
 ## Project Setup
 
-Let's start building a Slack app with Bolt! This guide shows how to set up a Bolt project with Maven, and Gradle.
+Let's start building a Slack app using Bolt! This guide includes instructions on how to set up a Bolt project with Maven and Gradle, so use whichever section you'd like.
 
 ### Maven
 
-The first thing to do is to add the **bolt** dependency to your `pom.xml` anyway. The **bolt** dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), and any others on top of Servlet environment, the **bolt-servlet** library is required for your app. Adding only **bolt-servlet** also works for you.
+After you create your Maven project, you need to add the **bolt** dependency to your `pom.xml` file. The **bolt** dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), and any others on top of Servlet environment, the **bolt-servlet** library is required for your app. Adding only **bolt-servlet** also works for you.
 
 ```xml
 <dependency>
@@ -58,7 +58,7 @@ If you run the Bolt app on the Jetty HTTP server without any frameworks, you can
 
 ### Gradle
 
-I don't repeat the Maven part. Just add necessary dependencies in your `build.gradle`.
+After you create your Gradle project, add the **bolt** dependencies to `build.gradle`.
 
 ```groovy
 dependencies {
