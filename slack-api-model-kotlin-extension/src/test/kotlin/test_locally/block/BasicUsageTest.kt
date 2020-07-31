@@ -21,6 +21,10 @@ class BasicUsageTest {
                 .channel("general")
                 .text("User did a thing!")
                 .blocks(withBlocks {
+                    header {
+                        blockId("header")
+                        text("This is the headline!", emoji = true)
+                    }
                     section {
                         plainText("This is the text in this section")
                     }
@@ -57,6 +61,9 @@ class BasicUsageTest {
                 .channel("general")
                 .text("User did a thing!")
                 .blocks(asBlocks(
+                        header { h ->
+                            h.blockId("header").text(plainText("This is the headline!", true))
+                        },
                         section { thisSection ->
                             thisSection.text(plainText("This is the text in this section"))
                         },

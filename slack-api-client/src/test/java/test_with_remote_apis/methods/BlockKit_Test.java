@@ -112,7 +112,7 @@ public class BlockKit_Test {
 
             assertThat(postResponse.getError(), is(nullValue()));
             assertThat(postResponse.isOk(), is(true));
-            assertThat(postResponse.getMessage().getBlocks().size(), is(7));
+            assertThat(postResponse.getMessage().getBlocks().size(), is(8));
         }
 
         // message modification
@@ -204,6 +204,7 @@ public class BlockKit_Test {
 
     private List<LayoutBlock> exampleBlocks() {
         return asBlocks(
+                header(h -> h.blockId("header").text(plainText("This is a test!"))),
                 section(s -> s.text(markdownText("Hello, Assistant to the Regional Manager Dwight! *Michael Scott* wants to know where you'd like to take the Paper Company investors to dinner tonight.\n\n*Please select a restaurant:*"))),
                 divider(),
                 section(s -> s.text(markdownText("*Farmhouse Thai Cuisine*\n:star::star::star::star: 1528 reviews\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"))

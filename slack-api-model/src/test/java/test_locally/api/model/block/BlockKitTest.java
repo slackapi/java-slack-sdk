@@ -2,6 +2,7 @@ package test_locally.api.model.block;
 
 import com.google.gson.JsonParseException;
 import com.slack.api.model.Message;
+import com.slack.api.model.block.HeaderBlock;
 import com.slack.api.model.block.InputBlock;
 import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.block.SectionBlock;
@@ -965,4 +966,24 @@ public class BlockKitTest {
         assertThat(obj.getStyle(), is("primary"));
     }
 
+    @Test
+    public void parseHeader() {
+        String json = "{\n" +
+                "  \"blocks\": [{\n" +
+                "    \"type\": \"header\",\n" +
+                "    \"block_id\": \"b\",\n" +
+                "    \"text\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Budget Performance\"\n" +
+                "    }\n" +
+                "  }]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+
+        HeaderBlock header = (HeaderBlock) message.getBlocks().get(0);
+        assertThat(header.getBlockId(), is("b"));
+        assertThat(header.getText().getType(), is("plain_text"));
+        assertThat(header.getText().getText(), is("Budget Performance"));
+    }
 }

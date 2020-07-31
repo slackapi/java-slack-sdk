@@ -79,6 +79,11 @@ public class BlocksTest {
     }
 
     @Test
+    public void testHeader() {
+        assertThat(header(h -> h.blockId("block-id").text(plainText("This is the headline!"))), is(notNullValue()));
+    }
+
+    @Test
     public void testRichText() {
         assertThat(richText(i -> i
                 .blockId("block-id")
