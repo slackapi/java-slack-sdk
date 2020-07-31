@@ -329,6 +329,42 @@
           "body": "We\u0027re investigating problems with search indexing. In the meantime, people might notice some messages and files not showing up in search results. We apologize for the inconvenience."
         }
       ]
+    },
+    {
+      "id": 878,
+      "date_created": "2020-07-30T15:12:34-07:00",
+      "date_updated": "2020-07-30T15:12:34-07:00",
+      "title": "We are investigating an issue with notification settings",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-07/ea58a170d343b2ad",
+      "services": [
+        "Notifications"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-07-30T15:12:34-07:00",
+          "body": "Some users might notice that their notifications settings for mobile are not being respected. We are taking a look and hope to have more news soon."
+        }
+      ]
+    },
+    {
+      "id": 879,
+      "date_created": "2020-07-24T10:45:08-07:00",
+      "date_updated": "2020-07-24T10:45:08-07:00",
+      "title": "We\u0027re looking into an issue with certain API calls",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-07/7d32ad54b0703c47",
+      "services": [
+        "Apps/Integrations/APIs"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-07-24T10:45:08-07:00",
+          "body": "We\u0027re currently aware of some intermittent latency and timeouts with image attachments, certain API methods (including users.setPhoto, chat.postMessage and chat.update, views.*), and apps which use these features. We are currently investigating and will update when we believe these issues have been resolved. Sorry for the inconvenience."
+        }
+      ]
     }
   ]
 }

@@ -55,7 +55,7 @@ public class ApiTest {
                 log.info("request body: {}", requestBody);
             }
             String endpoint = req.getRequestURI().replaceFirst("^/api/", "");
-            if (req.getMethod().equals("POST")) {
+            if (!req.getMethod().equals("GET") && !endpoint.endsWith("/00000000000")) {
                 endpoint += "/00000000000";
             }
             String body = reader.readWholeAsString(endpoint + ".json");

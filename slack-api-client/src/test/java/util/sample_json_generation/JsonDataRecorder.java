@@ -22,10 +22,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static util.sample_json_generation.SampleObjects.Json;
@@ -45,7 +42,10 @@ public class JsonDataRecorder {
 
     public void writeMergedResponse(Response response, String body) throws IOException {
         String path = response.request().url().url().getPath();
-        writeMergedJsonData(path, body);
+        String httpMethod = response.request().method();
+        if (httpMethod.toUpperCase(Locale.ENGLISH).equals("GET")) {
+            writeMergedJsonData(path, body);
+        }
     }
 
     public void writeMergedJsonData(String path, String body) throws IOException {
@@ -97,7 +97,6 @@ public class JsonDataRecorder {
             }
 
             if (path.startsWith("/scim")) {
-                boolean isGroup = false;
                 if (jsonObj.get("Resources") != null) {
                     for (JsonElement resource : jsonObj.get("Resources").getAsJsonArray()) {
                         JsonObject resourceObj = resource.getAsJsonObject();
@@ -108,12 +107,13 @@ public class JsonDataRecorder {
                             initializeSCIMGroup(resourceObj);
                         }
                     }
-                } else if (jsonObj.get("members") != null) {
-                    initializeSCIMGroup(jsonObj);
-                } else if (jsonObj.get("schemas") != null && jsonObj.get("userName") != null) {
-                    initializeSCIMUser(jsonObj);
-                } else if (jsonObj.get("Errors") != null) {
-                    initializeSCIMUser(jsonObj);
+                } else {
+                    if (jsonObj.get("userName") != null) {
+                        initializeSCIMUser(jsonObj);
+                    }
+                    if (jsonObj.get("members") != null) {
+                        initializeSCIMGroup(jsonObj);
+                    }
                 }
                 existingJson = gson().toJson(jsonObj);
                 Path filePath = new File(toMaskedFilePath(path).replaceFirst("/\\w{9}.json$", "/000000000.json")).toPath();
@@ -147,7 +147,8 @@ public class JsonDataRecorder {
         {
             JsonArray objects = resourceObj.get("members").getAsJsonArray();
             clearAllElements(objects);
-            User sampleObject = ObjectInitializer.initProperties(new User());
+            com.slack.api.scim.model.Group.Member sampleObject =
+                    ObjectInitializer.initProperties(new com.slack.api.scim.model.Group.Member());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
     }
@@ -198,12 +199,14 @@ public class JsonDataRecorder {
             User.Role sampleObject = ObjectInitializer.initProperties(new User.Role());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
-        if (resourceObj.get("groups") != null) {
-            JsonArray groups = new JsonArray();
-            User.Group group = new User.Group();
-            ObjectInitializer.initProperties(group);
-            groups.add(GsonFactory.createCamelCase(config).toJsonTree(group));
-            resourceObj.add("groups", groups);
+        if (resourceObj.get("groups") == null) {
+            resourceObj.add("groups", new JsonArray());
+        }
+        {
+            JsonArray objects = resourceObj.get("groups").getAsJsonArray();
+            clearAllElements(objects);
+            User.Group sampleObject = ObjectInitializer.initProperties(new User.Group());
+            objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
     }
 
@@ -268,7 +271,9 @@ public class JsonDataRecorder {
             }
             if (array.size() == 0) {
                 List<String> addressNames = Arrays.asList("from", "to", "cc");
-                if (addressNames.contains(name)) {
+                if (path.startsWith("/scim")) {
+                    // noop
+                } else if (addressNames.contains(name)) {
                     Address address = new Address();
                     address.setAddress("");
                     address.setName("");

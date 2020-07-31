@@ -260,6 +260,136 @@
               "verbatim": false
             }
           ]
+        },
+        {
+          "type": "",
+          "block_id": "",
+          "text": {
+            "type": "",
+            "text": "",
+            "verbatim": false,
+            "emoji": false
+          },
+          "accessory": {
+            "fallback": "",
+            "image_url": "https://www.example.com/",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345,
+            "type": "",
+            "alt_text": ""
+          },
+          "elements": [
+            {
+              "type": "",
+              "action_id": "",
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "value": ""
+            },
+            {
+              "type": "",
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "action_id": "",
+              "url": "",
+              "value": "",
+              "style": "",
+              "confirm": {
+                "title": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "confirm": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "deny": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "style": ""
+              },
+              "placeholder": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "initial_channel": "",
+              "response_url_enabled": false,
+              "initial_conversation": "",
+              "default_to_current_conversation": false,
+              "filter": {
+                "exclude_external_shared_channels": false,
+                "exclude_bot_users": false
+              },
+              "initial_date": "",
+              "initial_option": {
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              },
+              "min_query_length": 12345,
+              "image_url": "",
+              "alt_text": "",
+              "fallback": "",
+              "image_width": 12345,
+              "image_height": 12345,
+              "image_bytes": 12345,
+              "initial_user": ""
+            },
+            {
+              "type": "",
+              "image_url": "",
+              "alt_text": "",
+              "fallback": "",
+              "image_width": 12345,
+              "image_height": 12345,
+              "image_bytes": 12345
+            }
+          ],
+          "fallback": "",
+          "image_url": "",
+          "image_width": 12345,
+          "image_height": 12345,
+          "image_bytes": 12345,
+          "alt_text": "",
+          "title": {
+            "type": "",
+            "text": "",
+            "emoji": false
+          },
+          "fields": [
+            {
+              "type": "",
+              "text": "",
+              "emoji": false,
+              "verbatim": false
+            }
+          ]
         }
       ],
       "edited": {
@@ -645,6 +775,56 @@
           "thumb_1024_w": 12345,
           "thumb_1024_h": 12345,
           "image_exif_rotation": 12345,
+          "original_w": 12345,
+          "original_h": 12345,
+          "thumb_tiny": "",
+          "permalink": "https://www.example.com/",
+          "is_starred": false,
+          "external_id": "",
+          "external_url": "https://www.example.com/",
+          "has_rich_preview": false
+        },
+        {
+          "id": "F00000000",
+          "created": 12345,
+          "timestamp": 12345,
+          "name": "",
+          "title": "",
+          "mimetype": "",
+          "filetype": "",
+          "pretty_type": "",
+          "user": "U00000000",
+          "editable": false,
+          "size": 12345,
+          "mode": "",
+          "is_external": false,
+          "external_type": "",
+          "is_public": false,
+          "public_url_shared": false,
+          "display_as_bot": false,
+          "username": "",
+          "url_private": "https://www.example.com/",
+          "thumb_64": "https://www.example.com/",
+          "thumb_80": "https://www.example.com/",
+          "thumb_360": "https://www.example.com/",
+          "thumb_360_w": 12345,
+          "thumb_360_h": 12345,
+          "thumb_480": "https://www.example.com/",
+          "thumb_480_w": 12345,
+          "thumb_480_h": 12345,
+          "thumb_160": "https://www.example.com/",
+          "thumb_720": "https://www.example.com/",
+          "thumb_720_w": 12345,
+          "thumb_720_h": 12345,
+          "thumb_800": "https://www.example.com/",
+          "thumb_800_w": 12345,
+          "thumb_800_h": 12345,
+          "thumb_960": "https://www.example.com/",
+          "thumb_960_w": 12345,
+          "thumb_960_h": 12345,
+          "thumb_1024": "https://www.example.com/",
+          "thumb_1024_w": 12345,
+          "thumb_1024_h": 12345,
           "original_w": 12345,
           "original_h": 12345,
           "thumb_tiny": "",

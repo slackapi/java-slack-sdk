@@ -6,42 +6,8 @@
   "displayName": "",
   "members": [
     {
-      "schemas": [
-        "urn:scim:schemas:core:1.0",
-        "urn:scim:schemas:extension:enterprise:1.0"
-      ],
-      "id": "",
-      "externalId": "",
-      "meta": {
-        "created": "",
-        "location": ""
-      },
-      "userName": "",
-      "nickName": "",
-      "name": {
-        "givenName": "",
-        "familyName": "",
-        "honorificPrefix": ""
-      },
-      "displayName": "",
-      "profileUrl": "",
-      "userType": "",
-      "title": "",
-      "preferredLanguage": "",
-      "locale": "",
-      "timezone": "",
-      "active": false,
-      "password": "",
-      "urn:scim:schemas:extension:enterprise:1.0": {
-        "employeeNumber": "",
-        "costCenter": "",
-        "organization": "",
-        "division": "",
-        "department": "",
-        "manager": {
-          "managerId": ""
-        }
-      }
+      "value": "",
+      "display": ""
     }
   ],
   "meta": {
