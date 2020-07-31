@@ -29,11 +29,9 @@ If you're not yet familiar with Slack app development in general, we recommend r
 
 Let's start building a Slack app using Bolt! This guide includes instructions on how to set up a Bolt project with Maven and Gradle, so use whichever section you'd like.
 
-[Mav]
-
 ### Maven
 
-After you create your Maven project, you need to add the **bolt** dependency to `pom.xml`. The **bolt** dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), and any others on top of Servlet environment, the **bolt-servlet** library is required for your app. Adding only **bolt-servlet** also works for you.
+After you create your Maven project, you need to add the **bolt** dependency to your `pom.xml` file. The **bolt** dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), and any others on top of Servlet environment, the **bolt-servlet** library is required for your app. Adding only **bolt-servlet** also works for you.
 
 ```xml
 <dependency>
