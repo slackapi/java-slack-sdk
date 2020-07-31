@@ -11,8 +11,8 @@ lang: ja
 このガイドでは、初めての Bolt アプリを開発する手順を紹介します。
 
 * プロジェクトのセットアップ
-  * Maven
-  * Gradle
+  * [Maven](#maven)
+  * [Gradle](#gradle)
 * 3 分間で動かす Bolt アプリ
   * **bolt-jetty** の利用
   * 環境変数を設定して起動
@@ -31,7 +31,7 @@ lang: ja
 
 ### Maven
 
-まず最初にやることは **bolt** 依存ライブラリを `pom.xml` に追加することです。このライブラリ自体は特定の環境に依存していません。Bolt を [Spring Boot](https://spring.io/projects/spring-boot)、[Quarkus (Undertow)](https://quarkus.io/) やその他 Servlet 環境で利用する場合は **bolt-servlet** というライブラリも追加します。単に **bolt-servlet** だけを追加しても OK です。
+Maven プロジェクトを作成した後、まずは **bolt** 依存ライブラリを `pom.xml` に追加します。このライブラリ自体は特定の環境に依存していません。Bolt を [Spring Boot](https://spring.io/projects/spring-boot)、[Quarkus (Undertow)](https://quarkus.io/) やその他 Servlet 環境で利用する場合は **bolt-servlet** というライブラリも追加します。単に **bolt-servlet** だけを追加しても OK です。
 
 ```xml
 <dependency>
@@ -58,7 +58,7 @@ lang: ja
 
 ### Gradle
 
-Maven での説明を繰り返す必要はないでしょう。必要な依存ライブラリを `build.gradle` に追加してください。
+Gralde プロジェクトを作成した後 **bolt** 関連の依存ライブラリを `build.gradle` に追加してください。
 
 ```groovy
 dependencies {
