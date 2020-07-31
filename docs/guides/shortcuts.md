@@ -6,7 +6,7 @@ lang: en
 
 # Shortcuts
 
-**Shortcuts** are simple entry points for users to invoke your app. [**Global shortcuts**](https://api.slack.com/interactivity/shortcuts/using#global_shortcuts) are surfaced from everywhere in Slack, while [**message shortcuts**](https://api.slack.com/interactivity/shortcuts/using#message_shortcuts) are surfaced in the message context menu.
+**Shortcuts** are simple entry points for users to invoke your app. [**Global shortcuts**](https://api.slack.com/interactivity/shortcuts/using#global_shortcuts) are surfaced from within search in Slack, while [**message shortcuts**](https://api.slack.com/interactivity/shortcuts/using#message_shortcuts) are surfaced in the message context menu.
 
 Your app has 3 seconds to call `ack()`, which acknowledges a shortcut request is received from Slack.
 
