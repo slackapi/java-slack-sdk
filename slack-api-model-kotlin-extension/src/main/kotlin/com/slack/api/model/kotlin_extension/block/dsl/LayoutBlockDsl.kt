@@ -14,6 +14,14 @@ interface LayoutBlockDsl {
     fun section(builder: SectionBlockBuilder.() -> Unit)
 
     /**
+     * A header is a plain-text block that displays in a larger, bold font.
+     * Use it to delineate between different groups of content in your app's surfaces.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/blocks#header">Header documentation</a>
+     */
+    fun header(builder: HeaderBlockBuilder.() -> Unit)
+
+    /**
      * A content divider, like an <hr>, to split up different blocks inside of a message. The divider block is nice
      * and neat, requiring only a type.
      *
