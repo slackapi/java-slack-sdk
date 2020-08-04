@@ -59,7 +59,7 @@ public class EventsApiPayloadDumpTest {
                 // new GroupLeftPayload(),
                 new GroupOpenPayload(),
                 // new GroupRenamePayload(),
-                new GroupUnarchivePayload(),
+                // new GroupUnarchivePayload(),
                 new ImClosePayload(),
                 new ImCreatedPayload(),
                 new ImHistoryChangedPayload(),
