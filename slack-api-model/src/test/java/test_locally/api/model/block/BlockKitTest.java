@@ -1,11 +1,9 @@
 package test_locally.api.model.block;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.slack.api.model.Message;
-import com.slack.api.model.block.HeaderBlock;
-import com.slack.api.model.block.InputBlock;
-import com.slack.api.model.block.RichTextBlock;
-import com.slack.api.model.block.SectionBlock;
+import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.element.CheckboxesElement;
 import com.slack.api.model.block.element.RadioButtonsElement;
@@ -985,5 +983,74 @@ public class BlockKitTest {
         assertThat(header.getBlockId(), is("b"));
         assertThat(header.getText().getType(), is("plain_text"));
         assertThat(header.getText().getText(), is("Budget Performance"));
+    }
+
+    @Test
+    public void parseCallBlock() {
+        String json = "{\n" +
+                "  \"type\": \"call\",\n" +
+                "  \"call_id\": \"R111\",\n" +
+                "  \"block_id\": \"hH9L\",\n" +
+                "  \"api_decoration_available\": false,\n" +
+                "  \"call\": {\n" +
+                "    \"v1\": {\n" +
+                "      \"id\": \"R111\",\n" +
+                "      \"app_id\": \"A111\",\n" +
+                "      \"app_icon_urls\": {\n" +
+                "        \"image_32\": \"https://avatars.slack-edge.com/xxx_32.jpg\",\n" +
+                "        \"image_36\": \"https://avatars.slack-edge.com/xxx_36.jpg\",\n" +
+                "        \"image_48\": \"https://avatars.slack-edge.com/xxx_48.jpg\",\n" +
+                "        \"image_64\": \"https://avatars.slack-edge.com/xxx_64.jpg\",\n" +
+                "        \"image_72\": \"https://avatars.slack-edge.com/xxx_72.jpg\",\n" +
+                "        \"image_96\": \"https://avatars.slack-edge.com/xxx_96.jpg\",\n" +
+                "        \"image_128\": \"https://avatars.slack-edge.com/xxx_128.jpg\",\n" +
+                "        \"image_192\": \"https://avatars.slack-edge.com/xxx_192.jpg\",\n" +
+                "        \"image_512\": \"https://avatars.slack-edge.com/xxx_512.jpg\",\n" +
+                "        \"image_1024\": \"https://avatars.slack-edge.com/xxx_1024.jpg\",\n" +
+                "        \"image_original\": \"https://avatars.slack-edge.com/xxx_original.jpg\"\n" +
+                "      },\n" +
+                "      \"date_start\": 1596711312,\n" +
+                "      \"active_participants\": [\n" +
+                "        {\n" +
+                "          \"external_id\": \"anon-111\",\n" +
+                "          \"avatar_url\": \"https://assets.brandfolder.com/xxx/slackbot.png\",\n" +
+                "          \"display_name\": \"anonymous user 1\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"slack_id\": \"USLACKBOT\"\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"all_participants\": [\n" +
+                "        {\n" +
+                "          \"external_id\": \"anon-111\",\n" +
+                "          \"avatar_url\": \"https://assets.brandfolder.com/xxx/slackbot.png\",\n" +
+                "          \"display_name\": \"anonymous user 1\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"slack_id\": \"USLACKBOT\"\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"display_id\": \"ext-display-id-111\",\n" +
+                "      \"join_url\": \"https://www.example.com/calls-test\",\n" +
+                "      \"desktop_app_join_url\": \"https://www.example.com/calls-test\",\n" +
+                "      \"name\": \"Test call\",\n" +
+                "      \"created_by\": \"U111\",\n" +
+                "      \"date_end\": 0,\n" +
+                "      \"channels\": [\n" +
+                "        \"C03E94MKU\"\n" +
+                "      ],\n" +
+                "      \"is_dm_call\": false,\n" +
+                "      \"was_rejected\": false,\n" +
+                "      \"was_missed\": false,\n" +
+                "      \"was_accepted\": false,\n" +
+                "      \"has_ended\": false\n" +
+                "    },\n" +
+                "    \"media_backend_type\": \"platform_call\",\n" +
+                "    \"unknown_one_in_the_future\": 123\n" +
+                "  }\n" +
+                "}\n";
+        Gson prodGson = GsonFactory.createSnakeCase(false, false);
+        CallBlock block = prodGson.fromJson(json, CallBlock.class);
+        assertThat(block, is(notNullValue()));
     }
 }

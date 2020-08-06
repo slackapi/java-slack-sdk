@@ -23,7 +23,13 @@ public class CallBlock implements LayoutBlock {
     private String blockId;
     private String callId;
     private Boolean apiDecorationAvailable;
-    private Map<String, Call> call;
+    private CallData call;
+
+    @Data
+    public class CallData {
+        private Call v1;
+        private String mediaBackendType;
+    }
 
     @Data
     public class Call {
