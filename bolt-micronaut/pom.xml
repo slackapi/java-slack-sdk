@@ -10,7 +10,8 @@
     </parent>
 
     <properties>
-        <micronaut.version>2.0.0</micronaut.version>
+        <micronaut.bom.version>2.0.0</micronaut.bom.version>
+        <micronaut.version>2.0.1</micronaut.version>
         <micronaut-test-junit5.version>1.2.0</micronaut-test-junit5.version>
         <mockito-all.version>1.10.19</mockito-all.version>
     </properties>
@@ -25,7 +26,7 @@
             <dependency>
                 <groupId>io.micronaut</groupId>
                 <artifactId>micronaut-bom</artifactId>
-                <version>${micronaut.version}</version>
+                <version>${micronaut.bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
