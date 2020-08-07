@@ -249,6 +249,10 @@
     {
       "date_created": "2020-07-24T10:45:08-07:00",
       "body": "We\u0027re currently aware of some intermittent latency and timeouts with image attachments, certain API methods (including users.setPhoto, chat.postMessage and chat.update, views.*), and apps which use these features. We are currently investigating and will update when we believe these issues have been resolved. Sorry for the inconvenience."
+    },
+    {
+      "date_created": "2020-08-06T14:52:25-07:00",
+      "body": "Some users and app developers are currently seeing \"Request failed with status code 400\" errors when apps submit requests.  We are looking into this and will post when we have more information."
     }
   ]
 }
