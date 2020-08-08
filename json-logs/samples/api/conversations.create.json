@@ -1,8 +1,5 @@
 {
   "ok": false,
-  "error": "",
-  "needed": "",
-  "provided": "",
   "channel": {
     "id": "C00000000",
     "name": "",
@@ -15,14 +12,10 @@
     "unlinked": 12345,
     "name_normalized": "",
     "is_shared": false,
-    "creator": "W00000000",
-    "is_moved": 12345,
+    "creator": "U00000000",
     "is_ext_shared": false,
     "is_org_shared": false,
     "shared_team_ids": [
-      "T00000000"
-    ],
-    "internal_team_ids": [
       "T00000000"
     ],
     "pending_shared": [
@@ -50,7 +43,14 @@
       ""
     ],
     "priority": 12345,
+    "is_moved": 12345,
+    "internal_team_ids": [
+      "T00000000"
+    ],
     "is_open": false
   },
-  "detail": ""
+  "error": "",
+  "detail": "",
+  "needed": "",
+  "provided": ""
 }

@@ -219,7 +219,10 @@ public class FieldValidation_a_to_c_Test {
                     "getTopic",
                     "getPurpose",
                     "getFiles",
-                    "getXFiles"
+                    "getXFiles",
+                    "getUser", // MessageRoot
+                    "getTeam", // MessageRoot
+                    "getBotProfile" // MessageRoot
             );
         }
         {
@@ -328,7 +331,9 @@ public class FieldValidation_a_to_c_Test {
                 "getReplyUsersCount",
                 "getLatestReply",
                 "getRoot",
-                "getThreadTs"
+                "getThreadTs",
+                "getUsername",
+                "getSubtype"
         );
     }
 
@@ -391,7 +396,10 @@ public class FieldValidation_a_to_c_Test {
                 "getUnreadCountDisplay",
                 "getLatest",
                 "getLastRead",
-                "getDateConnected"
+                "getDateConnected",
+                "getSharedTeamIds",
+                "getPreviousNames",
+                "getPendingConnectedTeamIds"
         );
     }
 
@@ -409,7 +417,7 @@ public class FieldValidation_a_to_c_Test {
         }
         {
             ConversationsListResponse obj = parse(prefix + "list", ConversationsListResponse.class);
-            verifyIfAllGettersReturnNonNull(obj);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning");
             validateConversation(obj.getChannels().get(0));
         }
         {

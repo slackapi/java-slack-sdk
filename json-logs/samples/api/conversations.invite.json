@@ -31,12 +31,12 @@
     "last_read": "0000000000.000000",
     "topic": {
       "value": "",
-      "creator": "U00000000",
+      "creator": "",
       "last_set": 12345
     },
     "purpose": {
       "value": "",
-      "creator": "U00000000",
+      "creator": "",
       "last_set": 12345
     },
     "previous_names": [

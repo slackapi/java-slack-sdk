@@ -84,7 +84,6 @@
     "thumb_1024": "https://www.example.com/",
     "thumb_1024_w": 12345,
     "thumb_1024_h": 12345,
-    "image_exif_rotation": 12345,
     "original_w": 12345,
     "original_h": 12345,
     "thumb_tiny": ""

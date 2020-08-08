@@ -32,9 +32,11 @@
       "search_hide_deactivated_users": false,
       "emoji_mode": "",
       "emoji_use": "",
+      "emoji_use_org": "",
       "has_invited": false,
       "has_uploaded": false,
       "has_created_channel": false,
+      "has_created_channel_section": false,
       "has_searched": false,
       "search_exclude_channels": "",
       "messages_theme": "",
@@ -110,6 +112,7 @@
       "dnd_weekdays_off_allday": false,
       "dnd_custom_new_badge_seen": false,
       "dnd_notification_schedule_new_badge_seen": false,
+      "calls_survey_last_seen": "",
       "sidebar_behavior": "",
       "channel_sort": "",
       "separate_private_channels": false,
@@ -174,6 +177,7 @@
       "seen_threads_notification_banner": false,
       "seen_name_tagging_coachmark": false,
       "all_unreads_sort_order": "",
+      "all_unreads_section_filter": "",
       "locale": "",
       "seen_intl_channel_names_coachmark": false,
       "seen_p2_locale_change_message": 12345,
@@ -236,6 +240,8 @@
       "browsers_seen_initial_activity_education": false,
       "browsers_dismissed_initial_saved_education": false,
       "browsers_seen_initial_saved_education": false,
+      "seen_edit_mode": false,
+      "seen_edit_mode_edu": false,
       "a11y_animations": false,
       "seen_keyboard_shortcuts_coachmark": false,
       "needs_initial_password_set": false,
@@ -243,6 +249,7 @@
       "tractor_enabled": false,
       "tractor_experiment_group": "",
       "opened_slackbot_dm": false,
+      "newxp_seen_help_message": 12345,
       "newxp_suggested_channels": "",
       "onboarding_complete": false,
       "welcome_place_state": "",
@@ -301,11 +308,14 @@
       "seen_floating_sidebar_coachmark": false,
       "failover_proxy_check_completed": 12345,
       "chime_access_check_completed": 12345,
+      "mx_calendar_type": "",
       "edge_upload_proxy_check_completed": 12345,
       "app_subdomain_check_completed": 12345,
+      "add_prompt_interacted": false,
       "add_apps_prompt_dismissed": false,
       "add_channel_prompt_dismissed": false,
       "channel_sidebar_hide_invite": false,
+      "channel_sidebar_hide_browse_dms_link": false,
       "in_prod_surveys_enabled": false,
       "dismissed_installed_app_dm_suggestions": "",
       "seen_contextual_message_shortcuts_modal": false,
@@ -314,11 +324,18 @@
       "message_navigation_toast_was_seen": false,
       "up_to_browse_kb_shortcut": false,
       "channel_sections": "",
+      "show_quick_reactions": false,
       "has_received_mention_or_reaction": false,
       "has_starred_item": false,
       "has_drafted_message": false,
       "enable_mentions_and_reactions_view": false,
       "enable_saved_items_view": false,
+      "enable_all_dms_view": false,
+      "enable_channel_browser_view": false,
+      "enable_file_browser_view": false,
+      "enable_people_browser_view": false,
+      "enable_app_browser_view": false,
+      "reached_all_dms_disclosure": false,
       "has_acknowledged_shortcut_speedbump": false,
       "tz": "",
       "locales_enabled": {
@@ -330,24 +347,7 @@
         "fr-FR": "",
         "pt-BR": "",
         "ja-JP": ""
-      },
-      "channel_sidebar_hide_browse_dms_link": false,
-      "enable_all_dms_view": false,
-      "seen_edit_mode": false,
-      "newxp_seen_help_message": 12345,
-      "calls_survey_last_seen": 12345,
-      "seen_edit_mode_edu": false,
-      "add_prompt_interacted": false,
-      "emoji_use_org": "",
-      "all_unreads_section_filter": "",
-      "mx_calendar_type": "",
-      "show_quick_reactions": false,
-      "enable_channel_browser_view": false,
-      "enable_file_browser_view": false,
-      "enable_people_browser_view": false,
-      "enable_app_browser_view": false,
-      "has_created_channel_section": false,
-      "reached_all_dms_disclosure": false
+      }
     },
     "created": 12345,
     "first_login": 12345,
@@ -377,11 +377,11 @@
         ]
       },
       "welcome_place_enabled": false,
+      "msg_edit_window_mins": 12345,
+      "allow_message_deletion": false,
       "locale": "",
       "slackbot_responses_disabled": false,
       "hide_referers": false,
-      "msg_edit_window_mins": 12345,
-      "allow_message_deletion": false,
       "calling_app_name": "",
       "calls_apps": {
         "audio": [
@@ -415,6 +415,7 @@
           ""
         ]
       },
+      "workflow_extension_steps_beta_opt_in": false,
       "channel_email_addresses_enabled": false,
       "retention_type": 12345,
       "retention_duration": 12345,
@@ -425,6 +426,7 @@
       "file_retention_type": 12345,
       "file_retention_duration": 12345,
       "allow_retention_override": false,
+      "allow_admin_retention_override": 12345,
       "default_rxns": [
         ""
       ],
@@ -497,6 +499,8 @@
       ],
       "enterprise_mdm_disable_file_download": false,
       "mobile_passcode_timeout_in_seconds": 12345,
+      "notification_redaction_type": "",
+      "has_compliance_export": false,
       "has_hipaa_compliance": false,
       "self_serve_select": false,
       "loud_channel_mentions_limit": 12345,
@@ -517,6 +521,14 @@
           ""
         ]
       },
+      "who_can_manage_private_channels_at_workspace_level": {
+        "user": [
+          ""
+        ],
+        "type": [
+          ""
+        ]
+      },
       "enterprise_mobile_device_check": false,
       "default_channel_creation_enabled": false,
       "gg_enabled": false,
@@ -530,6 +542,10 @@
       ],
       "block_file_download": false,
       "single_user_exports": false,
+      "app_management_apps": [
+        ""
+      ],
+      "ntlm_credential_domains": "",
       "dnd_enabled": false,
       "dnd_start_hour": "",
       "dnd_end_hour": "",
@@ -574,23 +590,7 @@
           ""
         ]
       },
-      "invites_limit": false,
-      "ntlm_credential_domains": "",
-      "allow_admin_retention_override": 12345,
-      "who_can_manage_private_channels_at_workspace_level": {
-        "user": [
-          ""
-        ],
-        "type": [
-          ""
-        ]
-      },
-      "has_compliance_export": false,
-      "workflow_extension_steps_beta_opt_in": false,
-      "notification_redaction_type": "",
-      "app_management_apps": [
-        ""
-      ]
+      "invites_limit": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
@@ -794,6 +794,7 @@
     }
   ],
   "cache_ts": 12345,
+  "mobile_app_requires_upgrade": false,
   "read_only_channels": [
     ""
   ],
@@ -1035,7 +1036,6 @@
   ],
   "url": "",
   "is_europe": false,
-  "mobile_app_requires_upgrade": false,
   "error": "",
   "needed": "",
   "provided": ""

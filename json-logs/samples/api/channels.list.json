@@ -36,6 +36,7 @@
       "num_members": 12345
     }
   ],
+  "warning": "",
   "response_metadata": {
     "next_cursor": "",
     "messages": [
@@ -45,7 +46,6 @@
       ""
     ]
   },
-  "warning": "",
   "error": "",
   "needed": "",
   "provided": ""

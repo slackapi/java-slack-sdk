@@ -13,10 +13,10 @@
     "desktop_app_join_url": "https://www.example.com/",
     "users": [
       {
-        "slack_id": "U00000000",
         "external_id": "",
         "avatar_url": "https://www.example.com/",
-        "display_name": ""
+        "display_name": "",
+        "slack_id": "U00000000"
       }
     ]
   },

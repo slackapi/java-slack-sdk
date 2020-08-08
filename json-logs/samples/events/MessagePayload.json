@@ -4,15 +4,12 @@
   "enterprise_id": "",
   "api_app_id": "",
   "event": {
+    "bot_id": "",
     "type": "message",
     "text": "",
-    "user": "U00000000",
+    "user": "",
     "ts": "0000000000.000000",
     "team": "",
-    "channel": "",
-    "event_ts": "0000000000.000000",
-    "channel_type": "",
-    "bot_id": "",
     "bot_profile": {
       "id": "",
       "deleted": false,
@@ -25,15 +22,18 @@
         "image_72": "https://www.example.com/"
       },
       "team_id": ""
-    }
+    },
+    "channel": "",
+    "event_ts": "0000000000.000000",
+    "channel_type": ""
   },
   "type": "event_callback",
-  "authed_teams": [
-    ""
-  ],
   "event_id": "",
   "event_time": 12345,
   "authed_users": [
+    ""
+  ],
+  "authed_teams": [
     ""
   ]
 }

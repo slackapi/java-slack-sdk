@@ -1,66 +1,140 @@
 {
   "ok": false,
-  "error": "",
-  "needed": "",
-  "provided": "",
   "channels": [
     {
-      "id": "C00000000",
+      "enterprise_id": "",
+      "id": "",
       "name": "",
-      "is_channel": false,
-      "is_group": false,
-      "is_im": false,
-      "created": 12345,
-      "is_archived": false,
-      "is_general": false,
-      "unlinked": 12345,
+      "created": "",
+      "creator": "",
+      "unlinked": 123,
       "name_normalized": "",
-      "is_shared": false,
-      "creator": "W00000000",
-      "is_moved": 12345,
-      "is_ext_shared": false,
-      "is_org_shared": false,
-      "shared_team_ids": [
-        "T00000000"
-      ],
-      "internal_team_ids": [
-        "T00000000"
-      ],
-      "pending_shared": [
-        ""
-      ],
-      "pending_connected_team_ids": [
-        ""
-      ],
-      "is_pending_ext_shared": false,
-      "is_member": false,
-      "is_private": false,
-      "is_mpim": false,
+      "last_read": "",
       "topic": {
         "value": "",
-        "creator": "W00000000",
-        "last_set": 12345
+        "creator": "",
+        "last_set": 123
       },
       "purpose": {
         "value": "",
-        "creator": "W00000000",
-        "last_set": 12345
+        "creator": "",
+        "last_set": 123
       },
-      "previous_names": [
-        ""
-      ],
-      "num_members": 12345,
+      "num_members": 123,
+      "latest": {
+        "client_msg_id": "",
+        "type": "",
+        "subtype": "",
+        "team": "",
+        "user": "",
+        "username": "",
+        "parent_user_id": "",
+        "text": "",
+        "topic": "",
+        "root": {
+          "text": "",
+          "user": "",
+          "parent_user_id": "",
+          "username": "",
+          "team": "",
+          "bot_id": "",
+          "mrkdwn": false,
+          "type": "",
+          "subtype": "",
+          "thread_ts": "",
+          "icons": {
+            "emoji": "",
+            "image_36": "",
+            "image_48": "",
+            "image_64": "",
+            "image_72": ""
+          },
+          "bot_profile": {
+            "id": "",
+            "deleted": false,
+            "name": "",
+            "updated": 123,
+            "app_id": "",
+            "icons": {
+              "image_36": "",
+              "image_48": "",
+              "image_72": ""
+            },
+            "team_id": ""
+          },
+          "reply_count": 123,
+          "reply_users_count": 123,
+          "latest_reply": "",
+          "subscribed": false,
+          "last_read": "",
+          "unread_count": 123,
+          "ts": ""
+        },
+        "upload": false,
+        "display_as_bot": false,
+        "bot_id": "",
+        "bot_link": "",
+        "bot_profile": {
+          "id": "",
+          "deleted": false,
+          "name": "",
+          "updated": 123,
+          "app_id": "",
+          "icons": {
+            "image_36": "",
+            "image_48": "",
+            "image_72": ""
+          },
+          "team_id": ""
+        },
+        "thread_ts": "",
+        "ts": "",
+        "icons": {
+          "emoji": "",
+          "image_36": "",
+          "image_48": "",
+          "image_64": "",
+          "image_72": ""
+        },
+        "edited": {
+          "user": "",
+          "ts": ""
+        }
+      },
+      "locale": "",
+      "unread_count": 123,
+      "unread_count_display": 123,
+      "user": "",
+      "priority": 12.3,
+      "date_connected": 123,
+      "parent_conversation": "",
+      "conversation_host_id": "",
+      "is_channel": false,
+      "is_group": false,
+      "is_im": false,
+      "is_archived": false,
+      "is_general": false,
+      "is_read_only": false,
+      "is_thread_only": false,
+      "is_non_threadable": false,
+      "is_shared": false,
+      "is_ext_shared": false,
+      "is_org_shared": false,
+      "is_pending_ext_shared": false,
       "is_global_shared": false,
       "is_org_default": false,
       "is_org_mandatory": false,
-      "conversation_host_id": "E00000000",
-      "enterprise_id": "E00000000",
-      "last_read": "0000000000.000000",
+      "is_moved": 123,
+      "is_member": false,
       "is_open": false,
-      "priority": 12345
+      "is_private": false,
+      "is_mpim": false
     }
   ],
   "response_metadata": {
     "next_cursor": ""
-  }
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
 }

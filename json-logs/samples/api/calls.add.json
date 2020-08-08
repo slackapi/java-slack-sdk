@@ -1,21 +1,26 @@
 {
   "ok": false,
-  "error": "",
-  "response_metadata": {
-    "messages": [
-      ""
-    ]
-  },
   "call": {
     "id": "R00000000",
     "date_start": 12345,
     "external_unique_id": "",
     "join_url": "https://www.example.com/",
+    "external_display_id": "",
     "title": "",
     "users": [
       {
-        "slack_id": "U00000000"
+        "slack_id": "U00000000",
+        "external_id": "",
+        "display_name": "",
+        "avatar_url": "https://www.example.com/"
       }
+    ],
+    "desktop_app_join_url": "https://www.example.com/"
+  },
+  "error": "",
+  "response_metadata": {
+    "messages": [
+      ""
     ]
   },
   "needed": "",

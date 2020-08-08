@@ -59,7 +59,6 @@
         "thumb_1024": "https://www.example.com/",
         "thumb_1024_w": 12345,
         "thumb_1024_h": 12345,
-        "image_exif_rotation": 12345,
         "original_w": 12345,
         "original_h": 12345,
         "thumb_tiny": "",
@@ -104,18 +103,7 @@
         ],
         "external_id": "",
         "external_url": "https://www.example.com/",
-        "has_rich_preview": false,
-        "url_private_download": "https://www.example.com/",
-        "permalink_public": "https://www.example.com/",
-        "edit_link": "https://www.example.com/",
-        "preview": "",
-        "preview_highlight": "",
-        "lines": 12345,
-        "lines_more": 12345,
-        "preview_is_truncated": false,
-        "last_editor": "U00000000",
-        "non_owner_editable": false,
-        "updated": 12345
+        "has_rich_preview": false
       }
     ]
   },

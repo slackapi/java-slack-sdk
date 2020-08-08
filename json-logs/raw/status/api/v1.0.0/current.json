@@ -253,6 +253,14 @@
     {
       "date_created": "2020-08-06T14:52:25-07:00",
       "body": "Some users and app developers are currently seeing \"Request failed with status code 400\" errors when apps submit requests.  We are looking into this and will post when we have more information."
+    },
+    {
+      "date_created": "2020-08-07T15:34:00-07:00",
+      "body": "We\u0027ve determined this issue is only impacting confirmation emails sent after clicking an invite link to join a workspace, while other emails are working as intended. We\u0027ll continue to keep you posted as we work towards a fix. \r\n\r\nFor now, we recommend sending invitations directly via email, rather than sharing invite links with invitees."
+    },
+    {
+      "date_created": "2020-08-07T15:04:31-07:00",
+      "body": "Some customers may be unable to receive emails from Slack. We\u0027re currently investigating this issue, and we\u0027ll let you know as soon as we have more information. We apologize for the inconvenience in the meantime."
     }
   ]
 }

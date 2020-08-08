@@ -124,7 +124,7 @@ public class FieldValidation_o_to_z_Test {
     public void reactions_get() throws Exception {
         ReactionsGetResponse obj = parse("reactions.get", ReactionsGetResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
-        verifyIfAllGettersReturnNonNull(obj.getMessage());
+        verifyIfAllGettersReturnNonNull(obj.getMessage(), "getUsername", "getSubtype");
     }
 
     @Test

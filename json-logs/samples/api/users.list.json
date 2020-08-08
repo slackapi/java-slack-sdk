@@ -1,16 +1,14 @@
 {
   "ok": false,
-  "error": "",
-  "needed": "",
-  "provided": "",
   "members": [
     {
       "id": "U00000000",
       "team_id": "T00000000",
       "name": "",
       "deleted": false,
-      "color": "12345",
+      "color": "",
       "real_name": "",
+      "tz": "",
       "tz_label": "",
       "tz_offset": 12345,
       "profile": {
@@ -25,7 +23,9 @@
         "status_emoji": "",
         "status_expiration": 12345,
         "avatar_hash": "",
-        "always_active": false,
+        "image_original": "https://www.example.com/",
+        "is_custom_image": false,
+        "email": "",
         "first_name": "",
         "last_name": "",
         "image_24": "https://www.example.com/",
@@ -34,14 +34,12 @@
         "image_72": "https://www.example.com/",
         "image_192": "https://www.example.com/",
         "image_512": "https://www.example.com/",
+        "image_1024": "https://www.example.com/",
         "status_text_canonical": "",
         "team": "T00000000",
-        "email": "",
-        "api_app_id": "A00000000",
+        "api_app_id": "",
         "bot_id": "B00000000",
-        "image_original": "https://www.example.com/",
-        "is_custom_image": false,
-        "image_1024": "https://www.example.com/",
+        "always_active": false,
         "guest_invited_by": "U00000000",
         "guest_expiration_ts": 12345
       },
@@ -53,6 +51,8 @@
       "is_bot": false,
       "is_app_user": false,
       "updated": 12345,
+      "has_2fa": false,
+      "is_workflow_bot": false,
       "enterprise_user": {
         "id": "U00000000",
         "enterprise_id": "E00000000",
@@ -64,16 +64,16 @@
           "T00000000"
         ]
       },
-      "tz": "",
-      "has_2fa": false,
-      "is_workflow_bot": false,
-      "locale": "",
-      "is_invited_user": false
+      "is_invited_user": false,
+      "locale": ""
     }
   ],
   "cache_ts": 12345,
   "response_metadata": {
     "next_cursor": ""
   },
-  "offset": "U00000000"
+  "offset": "U00000000",
+  "error": "",
+  "needed": "",
+  "provided": ""
 }

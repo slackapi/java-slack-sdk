@@ -107,7 +107,8 @@ public class FieldValidation_d_to_m_Test {
                 "getShares",
                 "getEditor",
                 "getLastEditor",
-                "getUpdated"
+                "getUpdated",
+                "getImageExifRotation"
         );
     }
 
