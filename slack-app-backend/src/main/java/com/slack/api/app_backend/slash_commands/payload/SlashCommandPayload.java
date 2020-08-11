@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class SlashCommandPayload {
     private String token;
+    private String apiAppId;
     private String teamId;
     private String teamDomain;
     private String enterpriseId;
