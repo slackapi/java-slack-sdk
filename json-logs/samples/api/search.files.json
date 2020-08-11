@@ -103,7 +103,16 @@
         ],
         "external_id": "",
         "external_url": "https://www.example.com/",
-        "has_rich_preview": false
+        "has_rich_preview": false,
+        "url_private_download": "https://www.example.com/",
+        "permalink_public": "https://www.example.com/",
+        "edit_link": "https://www.example.com/",
+        "preview": "",
+        "preview_highlight": "",
+        "lines": 12345,
+        "lines_more": 12345,
+        "preview_is_truncated": false,
+        "image_exif_rotation": 12345
       }
     ]
   },
