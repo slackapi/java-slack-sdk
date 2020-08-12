@@ -97,7 +97,8 @@
       "manual_export_deleted",
       "scheduled_export_deleted",
       "channels_export_deleted",
-      "manual_user_export_deleted"
+      "manual_user_export_deleted",
+      "pref.notification_redaction_type"
     ],
     "user": [
       "custom_tos_accepted",
