@@ -167,7 +167,8 @@ public class FieldValidationTest {
             AdminTeamsListResponse obj = parse(prefix + "list", AdminTeamsListResponse.class);
             verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
             if (obj.getResponseMetadata() != null) {
-                verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+                verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(),
+                        "getMessages", "getWarnings");
             }
         }
         {

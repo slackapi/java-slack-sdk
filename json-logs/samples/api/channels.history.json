@@ -508,7 +508,9 @@
       "reply_users": [
         "U00000000"
       ],
-      "subscribed": false
+      "subscribed": false,
+      "client_msg_id": "",
+      "inviter": "U00000000"
     }
   ],
   "has_more": false,
