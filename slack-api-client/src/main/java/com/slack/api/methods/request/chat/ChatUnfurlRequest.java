@@ -34,7 +34,7 @@ public class ChatUnfurlRequest implements SlackApiRequest {
     private boolean userAuthRequired;
 
     /**
-     * URL-encoded JSON map with keys set to URLs featured in the the message, pointing to their unfurl message attachments.
+     * URL-encoded JSON map with keys set to URLs featured in the message, pointing to their unfurl message attachments.
      */
     private String rawUnfurls;
 
