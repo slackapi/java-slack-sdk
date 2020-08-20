@@ -10,6 +10,7 @@
     </parent>
 
     <properties>
+        <!-- TODO: upgrade once https://github.com/micronaut-projects/micronaut-core/issues/3933 is resolved -->
         <micronaut.bom.version>2.0.0</micronaut.bom.version>
         <micronaut.version>2.0.1</micronaut.version>
         <micronaut-test-junit5.version>1.2.0</micronaut-test-junit5.version>
