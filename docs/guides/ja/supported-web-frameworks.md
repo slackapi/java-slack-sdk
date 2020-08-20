@@ -34,7 +34,7 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 ```groovy
 plugins {
   id 'org.springframework.boot' version '{{ site.springBootVersion }}'
-  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.10.RELEASE'
   id 'java'
 }
 group = 'com.example'
@@ -44,6 +44,7 @@ repositories {
 }
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'com.squareup.okhttp3:okhttp:{{ site.okhttpVersion }}'
   implementation 'com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}'
 }
 ```
