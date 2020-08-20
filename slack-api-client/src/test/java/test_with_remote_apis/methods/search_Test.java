@@ -48,6 +48,21 @@ public class search_Test {
     }
 
     @Test
+    public void all_pagination() throws IOException, SlackApiException {
+        SearchAllResponse page1 = slack.methods().searchAll(r -> r
+                .token(userToken).query("test").page(1).count(1));
+        assertThat(page1.getError(), is(nullValue()));
+
+        SearchAllResponse page2 = slack.methods().searchAll(r -> r
+                .token(userToken).query("test").page(2).count(1));
+        assertThat(page2.getError(), is(nullValue()));
+
+        String msg1 = page1.getMessages().getMatches().get(0).getTs();
+        String msg2 = page2.getMessages().getMatches().get(0).getTs();
+        assertThat(msg1, is(not(equalTo(msg2))));
+    }
+
+    @Test
     public void all_async() throws Exception {
         SearchAllResponse response = slack.methodsAsync().searchAll(r -> r
                 .token(userToken).query("test").page(1).count(10)).get();
@@ -68,6 +83,21 @@ public class search_Test {
         assertThat(match.getUsername(), is(notNullValue()));
         // As of Nov 2019, user is not available
         // assertThat(match.getUser(), is(notNullValue()));
+    }
+
+    @Test
+    public void messages_pagination() throws IOException, SlackApiException {
+        SearchMessagesResponse page1 = slack.methods().searchMessages(r -> r
+                .token(userToken).query("test").page(1).count(1));
+        assertThat(page1.getError(), is(nullValue()));
+
+        SearchMessagesResponse page2 = slack.methods().searchMessages(r -> r
+                .token(userToken).query("test").page(2).count(1));
+        assertThat(page2.getError(), is(nullValue()));
+
+        String msg1 = page1.getMessages().getMatches().get(0).getTs();
+        String msg2 = page2.getMessages().getMatches().get(0).getTs();
+        assertThat(msg1, is(not(equalTo(msg2))));
     }
 
     @Test
@@ -95,6 +125,21 @@ public class search_Test {
         MatchedItem match = response.getFiles().getMatches().get(0);
         assertThat(match.getUser(), is(notNullValue()));
         assertThat(match.getUsername(), is(notNullValue()));
+    }
+
+    @Test
+    public void files_pagination() throws IOException, SlackApiException {
+        SearchFilesResponse page1 = slack.methods().searchFiles(r -> r
+                .token(userToken).query("test").page(1).count(1));
+        assertThat(page1.getError(), is(nullValue()));
+
+        SearchFilesResponse page2 = slack.methods().searchFiles(r -> r
+                .token(userToken).query("test").page(2).count(1));
+        assertThat(page2.getError(), is(nullValue()));
+
+        String f1 = page1.getFiles().getMatches().get(0).getId();
+        String f2 = page2.getFiles().getMatches().get(0).getId();
+        assertThat(f1, is(not(equalTo(f2))));
     }
 
     @Test
