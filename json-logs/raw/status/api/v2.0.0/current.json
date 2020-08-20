@@ -405,6 +405,24 @@
           "body": "Some customers may be unable to receive emails from Slack. We\u0027re currently investigating this issue, and we\u0027ll let you know as soon as we have more information. We apologize for the inconvenience in the meantime."
         }
       ]
+    },
+    {
+      "id": 887,
+      "date_created": "2020-08-20T10:50:22-07:00",
+      "date_updated": "2020-08-20T10:50:22-07:00",
+      "title": "Customers may have been logged out on desktop",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-08/4a28d1e1d213c970",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-08-20T10:50:22-07:00",
+          "body": "We\u0027ve received some reports of folks being suddenly signed out of Slack on desktop, and we\u0027re investigating this issue further. We apologize for any disruption this may have caused and will let you know once we have more details."
+        }
+      ]
     }
   ]
 }

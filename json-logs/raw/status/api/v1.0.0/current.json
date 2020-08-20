@@ -261,6 +261,10 @@
     {
       "date_created": "2020-08-07T15:04:31-07:00",
       "body": "Some customers may be unable to receive emails from Slack. We\u0027re currently investigating this issue, and we\u0027ll let you know as soon as we have more information. We apologize for the inconvenience in the meantime."
+    },
+    {
+      "date_created": "2020-08-20T10:50:22-07:00",
+      "body": "We\u0027ve received some reports of folks being suddenly signed out of Slack on desktop, and we\u0027re investigating this issue further. We apologize for any disruption this may have caused and will let you know once we have more details."
     }
   ]
 }
