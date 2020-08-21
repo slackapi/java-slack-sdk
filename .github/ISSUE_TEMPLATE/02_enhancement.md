@@ -17,7 +17,7 @@ assignees: ''
 * [ ] **slack-api-*-kotlin-extension** (Kotlin Extensions for Slack API Clients)
 * [ ] **slack-app-backend** (The primitive layer of Bolt for Java)
 
-### Requirements (place an `x` in each of the `[ ]`)
+### Requirements
 
 Please make sure if this topic is specific to this SDK. For general questions/issues about Slack API platform or its server-side, could you submit questions at https://my.slack.com/help/requests/new instead. :bow:
 
