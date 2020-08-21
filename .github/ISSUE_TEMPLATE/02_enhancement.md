@@ -1,6 +1,14 @@
-##  Summary
+---
+name: Enhancement / Feature Request
+about: Submit an enhancement/feature request
+title: (Set a clear title describing your idea)
+labels: 'enhancement'
+assignees: ''
+---
 
-(Describe the goal of this PR. Mention any related Issue numbers)
+## Description
+
+(Describe your issue and goal here)
 
 ### Category (place an `x` in each of the `[ ]`)
 
