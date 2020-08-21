@@ -2,11 +2,9 @@
 name: Bug
 about: Report the SDK bug
 title: (Set a clear title describing the issue)
-labels: 'bug'
+labels: 'untriaged'
 assignees: ''
 ---
-
-## Description
 
 (Describe your issue and goal here)
 
@@ -39,18 +37,16 @@ sw_vers && uname -v # or `ver`
 2.
 3.
 
-### Expected result:
+#### Expected result:
 
 (Tell what you expected to happen)
 
-### Actual result:
+#### Actual result:
 
 (Tell what actually happened with logs, screenshots)
 
-## Requirements (place an `x` in each of the `[ ]`)
+### Requirements (place an `x` in each of the `[ ]`)
 
-(For general questions/issues about Slack API platform or its server-side, could you submit questions at https://my.slack.com/help/requests/new instead. :bow:)
+Please make sure if this topic is specific to this SDK. For general questions/issues about Slack API platform or its server-side, could you submit questions at https://my.slack.com/help/requests/new instead. :bow:
 
-* [ ] I've read and understood the [Contributing guidelines](https://github.com/slackapi/java-slack-sdk/blob/main/.github/contributing.md) and have done my best effort to follow them.
-* [ ] I've read and agree to the [Code of Conduct](https://slackhq.github.io/code-of-conduct).
-* [ ] I've searched for any related issues and avoided creating a duplicate issue [here](https://github.com/slackapi/java-slack-sdk/issues).
+Please read the [Contributing guidelines](https://github.com/slackapi/java-slack-sdk/blob/main/.github/contributing.md) and [Code of Conduct](https://slackhq.github.io/code-of-conduct) before creating this issue or pull request. By submitting, you are agreeing to the those rules.
