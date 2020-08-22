@@ -2,7 +2,7 @@
 name: Question
 about: Submit a question about this SDK
 title: (Set a clear title describing your question)
-labels: 'question', 'untriaged'
+labels: 'untriaged'
 assignees: ''
 ---
 
