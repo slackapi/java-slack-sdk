@@ -348,7 +348,8 @@
         "pt-BR": "",
         "ja-JP": ""
       },
-      "joiner_notifications_muted": false
+      "joiner_notifications_muted": false,
+      "invite_accepted_notifications_muted": false
     },
     "created": 12345,
     "first_login": 12345,

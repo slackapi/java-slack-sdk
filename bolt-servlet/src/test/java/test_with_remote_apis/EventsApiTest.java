@@ -850,9 +850,7 @@ public class EventsApiTest {
         private boolean dndUpdatedUser;
 
         public boolean isAllDone() {
-            // TODO: receiving dnd_updated_user events
-            // return dndUpdated && dndUpdatedUser;
-            return dndUpdated;
+            return dndUpdated && dndUpdatedUser;
         }
     }
 
