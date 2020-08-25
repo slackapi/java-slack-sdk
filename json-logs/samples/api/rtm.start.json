@@ -349,7 +349,8 @@
         "ja-JP": ""
       },
       "joiner_notifications_muted": false,
-      "invite_accepted_notifications_muted": false
+      "invite_accepted_notifications_muted": false,
+      "suppress_external_invites_from_compose_warning": false
     },
     "created": 12345,
     "first_login": 12345,
