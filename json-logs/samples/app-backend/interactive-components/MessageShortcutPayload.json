@@ -789,6 +789,7 @@
         "public": {
           "C03E94MKU": [
             {
+              "share_user_id": "",
               "reply_users": [
                 ""
               ],
@@ -803,6 +804,7 @@
           ],
           "C03E94MKU_": [
             {
+              "share_user_id": "",
               "reply_users": [
                 ""
               ],
@@ -819,6 +821,7 @@
         "private": {
           "C03E94MKU": [
             {
+              "share_user_id": "",
               "reply_users": [
                 ""
               ],
@@ -833,6 +836,7 @@
           ],
           "C03E94MKU_": [
             {
+              "share_user_id": "",
               "reply_users": [
                 ""
               ],
@@ -958,6 +962,7 @@
           "public": {
             "C03E94MKU": [
               {
+                "share_user_id": "",
                 "reply_users": [
                   ""
                 ],
@@ -972,6 +977,7 @@
             ],
             "C03E94MKU_": [
               {
+                "share_user_id": "",
                 "reply_users": [
                   ""
                 ],
@@ -988,6 +994,7 @@
           "private": {
             "C03E94MKU": [
               {
+                "share_user_id": "",
                 "reply_users": [
                   ""
                 ],
@@ -1002,6 +1009,7 @@
             ],
             "C03E94MKU_": [
               {
+                "share_user_id": "",
                 "reply_users": [
                   ""
                 ],
