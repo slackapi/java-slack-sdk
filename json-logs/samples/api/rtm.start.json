@@ -594,7 +594,8 @@
           ""
         ]
       },
-      "invites_limit": false
+      "invites_limit": false,
+      "member_analytics_disabled": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
