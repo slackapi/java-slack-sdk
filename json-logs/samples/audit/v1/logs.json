@@ -119,7 +119,8 @@
         ],
         "resolution": "",
         "app_previously_resolved": false,
-        "admin_app_id": ""
+        "admin_app_id": "",
+        "bot_id": "B00000000"
       }
     }
   ],

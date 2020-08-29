@@ -595,7 +595,10 @@
         ]
       },
       "invites_limit": false,
-      "member_analytics_disabled": false
+      "member_analytics_disabled": false,
+      "calls_locations": [
+        ""
+      ]
     },
     "icon": {
       "image_34": "https://www.example.com/",
