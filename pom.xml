@@ -66,7 +66,7 @@
         <maven-versions-plugin.version>2.7</maven-versions-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
-        <dokka.version>0.10.1</dokka.version>
+        <dokka.version>1.4.0-rc</dokka.version>
     </properties>
 
     <licenses>
