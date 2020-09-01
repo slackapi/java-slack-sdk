@@ -1,5 +1,12 @@
 #!/bin/bash
 
+is_jdk_8=`echo $JAVA_HOME | grep openjdk-8.jdk`
+if [[ "${is_jdk_8}" != "" ]];
+then
+  echo "Please use OpenJDK 11 for releasing these libraries."
+  exit 1
+fi
+
 exclusion="-pl !bolt-kotlin-examples -pl !bolt-quarkus-examples -pl !bolt-spring-boot-examples"
 
 dir=`dirname $0`/..

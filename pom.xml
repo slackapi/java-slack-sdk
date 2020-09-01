@@ -269,6 +269,9 @@
                     <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven-javadoc-plugin.version}</version>
+                        <configuration>
+                            <source>8</source>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -337,6 +340,9 @@
                     <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven-javadoc-plugin.version}</version>
+                        <configuration>
+                            <source>8</source>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
