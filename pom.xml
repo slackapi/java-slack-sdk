@@ -36,6 +36,8 @@
     </parent>
 
     <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jetty-for-tests.version>9.2.27.v20190403</jetty-for-tests.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
