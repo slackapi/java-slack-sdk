@@ -10,6 +10,9 @@
     </parent>
 
     <properties>
+        <!-- functions-framework-api requires Java 11+ -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <aws-lambda-core.version>1.2.1</aws-lambda-core.version>
         <google-cloud-functions-api.version>1.0.2</google-cloud-functions-api.version>
     </properties>
