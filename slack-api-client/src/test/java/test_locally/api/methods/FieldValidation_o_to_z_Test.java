@@ -457,14 +457,6 @@ public class FieldValidation_o_to_z_Test {
         verifyIfAllGettersReturnNonNull(obj);
     }
 
-    // NOTE: com.slack.api.methods.response.channels.UsersLookupByEmailResponse will be removed in v1.1
-    @Test
-    public void users_lookupByEmail_deprecation() throws Exception {
-        com.slack.api.methods.response.channels.UsersLookupByEmailResponse obj =
-                parse("users.lookupByEmail", com.slack.api.methods.response.channels.UsersLookupByEmailResponse.class);
-        verifyIfAllGettersReturnNonNull(obj);
-    }
-
     @Test
     public void users_profile_get() throws Exception {
         UsersProfileGetResponse obj = parse("users.profile.get", UsersProfileGetResponse.class);
