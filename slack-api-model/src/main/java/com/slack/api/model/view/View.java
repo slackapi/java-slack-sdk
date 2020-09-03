@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * Represents a Slack Modal View
+ * Represents a surface in Slack (Modals, Home tabs)
  *
- * @see <a href="https://api.slack.com/block-kit/surfaces/modals">Modals</a>
+ * @see <a href="https://api.slack.com/surfaces">Slack Surfaces</a>
  */
 @Data
 @Builder
