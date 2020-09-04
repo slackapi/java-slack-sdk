@@ -2,7 +2,8 @@ package com.slack.api.methods;
 
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.apps.*;
-import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.*;
+import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupRequest;
@@ -76,7 +77,8 @@ import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
-import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.*;
+import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
@@ -150,6 +152,7 @@ import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
 
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -217,6 +220,62 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminConversationsSetTeamsResponse> adminConversationsSetTeams(AdminConversationsSetTeamsRequest req);
 
     CompletableFuture<AdminConversationsSetTeamsResponse> adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsArchiveResponse> adminConversationsArchive(AdminConversationsArchiveRequest req);
+
+    CompletableFuture<AdminConversationsArchiveResponse> adminConversationsArchive(RequestConfigurator<AdminConversationsArchiveRequest.AdminConversationsArchiveRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsConvertToPrivateResponse> adminConversationsConvertToPrivate(AdminConversationsConvertToPrivateRequest req);
+
+    CompletableFuture<AdminConversationsConvertToPrivateResponse> adminConversationsConvertToPrivate(RequestConfigurator<AdminConversationsConvertToPrivateRequest.AdminConversationsConvertToPrivateRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsCreateResponse> adminConversationsCreate(AdminConversationsCreateRequest req);
+
+    CompletableFuture<AdminConversationsCreateResponse> adminConversationsCreate(RequestConfigurator<AdminConversationsCreateRequest.AdminConversationsCreateRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsDeleteResponse> adminConversationsDelete(AdminConversationsDeleteRequest req);
+
+    CompletableFuture<AdminConversationsDeleteResponse> adminConversationsDelete(RequestConfigurator<AdminConversationsDeleteRequest.AdminConversationsDeleteRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsDisconnectSharedResponse> adminConversationsDisconnectShared(AdminConversationsDisconnectSharedRequest req);
+
+    CompletableFuture<AdminConversationsDisconnectSharedResponse> adminConversationsDisconnectShared(RequestConfigurator<AdminConversationsDisconnectSharedRequest.AdminConversationsDisconnectSharedRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsGetConversationPrefsResponse> adminConversationsGetConversationPrefs(AdminConversationsGetConversationPrefsRequest req);
+
+    CompletableFuture<AdminConversationsGetConversationPrefsResponse> adminConversationsGetConversationPrefs(RequestConfigurator<AdminConversationsGetConversationPrefsRequest.AdminConversationsGetConversationPrefsRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsGetTeamsResponse> adminConversationsGetTeams(AdminConversationsGetTeamsRequest req);
+
+    CompletableFuture<AdminConversationsGetTeamsResponse> adminConversationsGetTeams(RequestConfigurator<AdminConversationsGetTeamsRequest.AdminConversationsGetTeamsRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsInviteResponse> adminConversationsInvite(AdminConversationsInviteRequest req);
+
+    CompletableFuture<AdminConversationsInviteResponse> adminConversationsInvite(RequestConfigurator<AdminConversationsInviteRequest.AdminConversationsInviteRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsRenameResponse> adminConversationsRename(AdminConversationsRenameRequest req);
+
+    CompletableFuture<AdminConversationsRenameResponse> adminConversationsRename(RequestConfigurator<AdminConversationsRenameRequest.AdminConversationsRenameRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsSearchResponse> adminConversationsSearch(AdminConversationsSearchRequest req);
+
+    CompletableFuture<AdminConversationsSearchResponse> adminConversationsSearch(RequestConfigurator<AdminConversationsSearchRequest.AdminConversationsSearchRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsSetConversationPrefsResponse> adminConversationsSetConversationPrefs(AdminConversationsSetConversationPrefsRequest req);
+
+    CompletableFuture<AdminConversationsSetConversationPrefsResponse> adminConversationsSetConversationPrefs(RequestConfigurator<AdminConversationsSetConversationPrefsRequest.AdminConversationsSetConversationPrefsRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsUnarchiveResponse> adminConversationsUnarchive(AdminConversationsUnarchiveRequest req);
+
+    CompletableFuture<AdminConversationsUnarchiveResponse> adminConversationsUnarchive(RequestConfigurator<AdminConversationsUnarchiveRequest.AdminConversationsUnarchiveRequestBuilder> req);
+
+    // ------------------------------
+    // admin.conversations.ekm
+    // ------------------------------
+
+    CompletableFuture<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req);
+
+    CompletableFuture<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> adminConversationsEkmListOriginalConnectedChannelInfo(RequestConfigurator<AdminConversationsEkmListOriginalConnectedChannelInfoRequest.AdminConversationsEkmListOriginalConnectedChannelInfoRequestBuilder> req);
 
     // ------------------------------
     // admin.conversations.whitelist
