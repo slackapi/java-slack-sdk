@@ -2,7 +2,8 @@ package com.slack.api.methods;
 
 import com.google.gson.Gson;
 import com.slack.api.methods.request.admin.apps.*;
-import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.*;
+import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupRequest;
@@ -169,6 +170,118 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminConversationsArchiveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsConvertToPrivateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("is_private", req.getIsPrivate(), form);
+        setIfNotNull("name", req.getName(), form);
+        setIfNotNull("org_wide", req.getOrgWide(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsDisconnectSharedRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getLeavingTeamIds() != null) {
+            setIfNotNull("leaving_team_ids", req.getLeavingTeamIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsGetConversationPrefsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsGetTeamsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsInviteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsRenameRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("name", req.getName(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsSearchRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("query", req.getQuery(), form);
+        if (req.getSearchChannelTypes() != null) {
+            setIfNotNull("search_channel_types", req.getSearchChannelTypes().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("sort", req.getSort(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
+        if (req.getTeamIds() != null) {
+            setIfNotNull("team_ids", req.getTeamIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsSetConversationPrefsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getPrefsAsString() != null) {
+            setIfNotNull("prefs", req.getPrefsAsString(), form);
+        } else if (req.getPrefs() != null) {
+            setIfNotNull("prefs", req.getPrefs().toValue(), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsUnarchiveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getChannelIds() != null) {
+            setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        if (req.getTeamIds() != null) {
+            setIfNotNull("team_ids", req.getTeamIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminConversationsRestrictAccessAddGroupRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);
@@ -191,6 +304,7 @@ public class RequestFormBuilder {
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
+
     public static FormBody.Builder toForm(AdminConversationsWhitelistAddRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);

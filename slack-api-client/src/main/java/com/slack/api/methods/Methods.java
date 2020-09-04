@@ -25,6 +25,24 @@ public class Methods {
     // ------------------------------
 
     public static final String ADMIN_CONVERSATIONS_SET_TEAMS = "admin.conversations.setTeams";
+    public static final String ADMIN_CONVERSATIONS_ARCHIVE = "admin.conversations.archive";
+    public static final String ADMIN_CONVERSATIONS_CONVERT_TO_PRIVATE = "admin.conversations.convertToPrivate";
+    public static final String ADMIN_CONVERSATIONS_CREATE = "admin.conversations.create";
+    public static final String ADMIN_CONVERSATIONS_DELETE = "admin.conversations.delete";
+    public static final String ADMIN_CONVERSATIONS_DISCONNECT_SHARED = "admin.conversations.disconnectShared";
+    public static final String ADMIN_CONVERSATIONS_GET_CONVERSATION_PREFS = "admin.conversations.getConversationPrefs";
+    public static final String ADMIN_CONVERSATIONS_GET_TEAMS = "admin.conversations.getTeams";
+    public static final String ADMIN_CONVERSATIONS_INVITE = "admin.conversations.invite";
+    public static final String ADMIN_CONVERSATIONS_RENAME = "admin.conversations.rename";
+    public static final String ADMIN_CONVERSATIONS_SEARCH = "admin.conversations.search";
+    public static final String ADMIN_CONVERSATIONS_SET_CONVERSATION_PREFS = "admin.conversations.setConversationPrefs";
+    public static final String ADMIN_CONVERSATIONS_UNARCHIVE = "admin.conversations.unarchive";
+
+    // ------------------------------
+    // admin.conversations.ekm
+    // ------------------------------
+
+    public static final String ADMIN_CONVERSATIONS_EKM_LIST_ORIGINAL_CONNECTED_CHANNEL_INFO = "admin.conversations.ekm.listOriginalConnectedChannelInfo";
 
     // ------------------------------
     // admin.conversations.restrictAccess

@@ -4,7 +4,8 @@ import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.*;
 import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.methods.request.admin.apps.*;
-import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.*;
+import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupRequest;
@@ -91,7 +92,8 @@ import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
-import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.*;
+import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
@@ -289,6 +291,136 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminConversationsSetTeamsResponse adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) throws IOException, SlackApiException {
         return adminConversationsSetTeams(req.configure(AdminConversationsSetTeamsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsArchiveResponse adminConversationsArchive(AdminConversationsArchiveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_ARCHIVE, getToken(req), AdminConversationsArchiveResponse.class);
+    }
+
+    @Override
+    public AdminConversationsArchiveResponse adminConversationsArchive(RequestConfigurator<AdminConversationsArchiveRequest.AdminConversationsArchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsArchive(req.configure(AdminConversationsArchiveRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsConvertToPrivateResponse adminConversationsConvertToPrivate(AdminConversationsConvertToPrivateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_CONVERT_TO_PRIVATE, getToken(req), AdminConversationsConvertToPrivateResponse.class);
+    }
+
+    @Override
+    public AdminConversationsConvertToPrivateResponse adminConversationsConvertToPrivate(RequestConfigurator<AdminConversationsConvertToPrivateRequest.AdminConversationsConvertToPrivateRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsConvertToPrivate(req.configure(AdminConversationsConvertToPrivateRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsCreateResponse adminConversationsCreate(AdminConversationsCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_CREATE, getToken(req), AdminConversationsCreateResponse.class);
+    }
+
+    @Override
+    public AdminConversationsCreateResponse adminConversationsCreate(RequestConfigurator<AdminConversationsCreateRequest.AdminConversationsCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsCreate(req.configure(AdminConversationsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsDeleteResponse adminConversationsDelete(AdminConversationsDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_DELETE, getToken(req), AdminConversationsDeleteResponse.class);
+    }
+
+    @Override
+    public AdminConversationsDeleteResponse adminConversationsDelete(RequestConfigurator<AdminConversationsDeleteRequest.AdminConversationsDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsDelete(req.configure(AdminConversationsDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsDisconnectSharedResponse adminConversationsDisconnectShared(AdminConversationsDisconnectSharedRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_DISCONNECT_SHARED, getToken(req), AdminConversationsDisconnectSharedResponse.class);
+    }
+
+    @Override
+    public AdminConversationsDisconnectSharedResponse adminConversationsDisconnectShared(RequestConfigurator<AdminConversationsDisconnectSharedRequest.AdminConversationsDisconnectSharedRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsDisconnectShared(req.configure(AdminConversationsDisconnectSharedRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsGetConversationPrefsResponse adminConversationsGetConversationPrefs(AdminConversationsGetConversationPrefsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_GET_CONVERSATION_PREFS, getToken(req), AdminConversationsGetConversationPrefsResponse.class);
+    }
+
+    @Override
+    public AdminConversationsGetConversationPrefsResponse adminConversationsGetConversationPrefs(RequestConfigurator<AdminConversationsGetConversationPrefsRequest.AdminConversationsGetConversationPrefsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsGetConversationPrefs(req.configure(AdminConversationsGetConversationPrefsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsGetTeamsResponse adminConversationsGetTeams(AdminConversationsGetTeamsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_GET_TEAMS, getToken(req), AdminConversationsGetTeamsResponse.class);
+    }
+
+    @Override
+    public AdminConversationsGetTeamsResponse adminConversationsGetTeams(RequestConfigurator<AdminConversationsGetTeamsRequest.AdminConversationsGetTeamsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsGetTeams(req.configure(AdminConversationsGetTeamsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsInviteResponse adminConversationsInvite(AdminConversationsInviteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_INVITE, getToken(req), AdminConversationsInviteResponse.class);
+    }
+
+    @Override
+    public AdminConversationsInviteResponse adminConversationsInvite(RequestConfigurator<AdminConversationsInviteRequest.AdminConversationsInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsInvite(req.configure(AdminConversationsInviteRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsRenameResponse adminConversationsRename(AdminConversationsRenameRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_RENAME, getToken(req), AdminConversationsRenameResponse.class);
+    }
+
+    @Override
+    public AdminConversationsRenameResponse adminConversationsRename(RequestConfigurator<AdminConversationsRenameRequest.AdminConversationsRenameRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsRename(req.configure(AdminConversationsRenameRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsSearchResponse adminConversationsSearch(AdminConversationsSearchRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_SEARCH, getToken(req), AdminConversationsSearchResponse.class);
+    }
+
+    @Override
+    public AdminConversationsSearchResponse adminConversationsSearch(RequestConfigurator<AdminConversationsSearchRequest.AdminConversationsSearchRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsSearch(req.configure(AdminConversationsSearchRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsSetConversationPrefsResponse adminConversationsSetConversationPrefs(AdminConversationsSetConversationPrefsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_SET_CONVERSATION_PREFS, getToken(req), AdminConversationsSetConversationPrefsResponse.class);
+    }
+
+    @Override
+    public AdminConversationsSetConversationPrefsResponse adminConversationsSetConversationPrefs(RequestConfigurator<AdminConversationsSetConversationPrefsRequest.AdminConversationsSetConversationPrefsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsSetConversationPrefs(req.configure(AdminConversationsSetConversationPrefsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsUnarchiveResponse adminConversationsUnarchive(AdminConversationsUnarchiveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_UNARCHIVE, getToken(req), AdminConversationsUnarchiveResponse.class);
+    }
+
+    @Override
+    public AdminConversationsUnarchiveResponse adminConversationsUnarchive(RequestConfigurator<AdminConversationsUnarchiveRequest.AdminConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsUnarchive(req.configure(AdminConversationsUnarchiveRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsEkmListOriginalConnectedChannelInfoResponse adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_EKM_LIST_ORIGINAL_CONNECTED_CHANNEL_INFO, getToken(req), AdminConversationsEkmListOriginalConnectedChannelInfoResponse.class);
+    }
+
+    @Override
+    public AdminConversationsEkmListOriginalConnectedChannelInfoResponse adminConversationsEkmListOriginalConnectedChannelInfo(RequestConfigurator<AdminConversationsEkmListOriginalConnectedChannelInfoRequest.AdminConversationsEkmListOriginalConnectedChannelInfoRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsEkmListOriginalConnectedChannelInfo(req.configure(AdminConversationsEkmListOriginalConnectedChannelInfoRequest.builder()).build());
     }
 
     @Override
