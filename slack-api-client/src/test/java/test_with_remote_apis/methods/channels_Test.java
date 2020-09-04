@@ -96,23 +96,23 @@ public class channels_Test {
 
         {
             ChatPostMessageResponse reply1 = slack.methods().chatPostMessage(req -> req
-                            .channel(randomChannelId)
-                            .token(userToken)
-                            .asUser(false)
-                            .text("replied")
-                            .iconEmoji(":smile:")
-                            .threadTs(firstMessageCreation.getTs())
+                    .channel(randomChannelId)
+                    .token(userToken)
+                    .asUser(false)
+                    .text("replied")
+                    .iconEmoji(":smile:")
+                    .threadTs(firstMessageCreation.getTs())
             );
             assertThat(reply1.getError(), is("invalid_arguments"));
             assertThat(reply1.getDeprecatedArgument(), is("as_user"));
         }
 
         ChatPostMessageResponse reply1 = slack.methods().chatPostMessage(req -> req
-                        .channel(randomChannelId)
-                        .token(botToken)
-                        .text("replied")
-                        .iconEmoji(":smile:")
-                        .threadTs(firstMessageCreation.getTs())
+                .channel(randomChannelId)
+                .token(botToken)
+                .text("replied")
+                .iconEmoji(":smile:")
+                .threadTs(firstMessageCreation.getTs())
         );
         assertThat(reply1.getError(), is(nullValue()));
 

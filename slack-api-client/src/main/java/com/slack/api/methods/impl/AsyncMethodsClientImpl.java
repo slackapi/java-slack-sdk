@@ -4,7 +4,6 @@ import com.slack.api.RequestConfigurator;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
-import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.*;
@@ -158,7 +157,6 @@ import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
