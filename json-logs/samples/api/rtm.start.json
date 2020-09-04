@@ -351,7 +351,8 @@
       "joiner_notifications_muted": false,
       "invite_accepted_notifications_muted": false,
       "suppress_external_invites_from_compose_warning": false,
-      "file_picker_variant": 12345
+      "file_picker_variant": 12345,
+      "help_modal_open_timestamp": 12345
     },
     "created": 12345,
     "first_login": 12345,

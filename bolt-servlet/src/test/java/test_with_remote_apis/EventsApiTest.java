@@ -850,7 +850,9 @@ public class EventsApiTest {
         private boolean dndUpdatedUser;
 
         public boolean isAllDone() {
-            return dndUpdated && dndUpdatedUser;
+            // NOTE: As of Sep 3 2020, dnd_updated_user events are not sent to app
+            // return dndUpdated && dndUpdatedUser;
+            return dndUpdated;
         }
     }
 
