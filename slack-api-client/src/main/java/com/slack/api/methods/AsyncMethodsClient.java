@@ -152,7 +152,6 @@ import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**

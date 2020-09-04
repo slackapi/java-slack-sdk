@@ -5,10 +5,13 @@ import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
 
 public class GsonAuditLogsDetailsChangedValueFactoryTest {
 

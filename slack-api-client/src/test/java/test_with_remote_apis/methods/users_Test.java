@@ -4,7 +4,6 @@ import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.users.UsersLookupByEmailRequest;
 import com.slack.api.methods.request.users.UsersSetActiveRequest;
-import com.slack.api.methods.response.users.UsersLookupByEmailResponse;
 import com.slack.api.methods.response.users.*;
 import com.slack.api.model.User;
 import config.Constants;
