@@ -352,7 +352,9 @@
       "invite_accepted_notifications_muted": false,
       "suppress_external_invites_from_compose_warning": false,
       "file_picker_variant": 12345,
-      "help_modal_open_timestamp": 12345
+      "help_modal_open_timestamp": 12345,
+      "help_modal_consult_banner_dismissed": false,
+      "seen_channel_email_tooltip": false
     },
     "created": 12345,
     "first_login": 12345,
