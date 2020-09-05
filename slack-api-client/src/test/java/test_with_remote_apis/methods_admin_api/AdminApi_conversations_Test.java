@@ -53,6 +53,30 @@ public class AdminApi_conversations_Test {
     static AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
 
     @Test
+    public void search() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminConversationsSearchResponse search = methodsAsync.adminConversationsSearch(r -> r
+                    .limit(1)
+                    .sort("member_count")
+                    .sortDir("desc")
+                    .searchChannelTypes(Arrays.asList("exclude_archived", "private_exclude"))
+            ).get();
+            assertThat(search.getError(), is(nullValue()));
+            assertThat(search.getConversations().size(), is(1));
+
+            AdminConversationsSearchResponse search2 = methodsAsync.adminConversationsSearch(r -> r
+                    .limit(1)
+                    .sort("member_count")
+                    .sortDir("desc")
+                    .searchChannelTypes(Arrays.asList("exclude_archived", "private_exclude"))
+                    .cursor(search.getNextCursor())
+            ).get();
+            assertThat(search2.getError(), is(nullValue()));
+            assertThat(search2.getConversations().size(), is(1));
+        }
+    }
+
+    @Test
     public void basicOperations() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null) {
             String channelName = "test-" + System.currentTimeMillis();
@@ -85,14 +109,6 @@ public class AdminApi_conversations_Test {
             AdminConversationsRenameResponse renamed =
                     methodsAsync.adminConversationsRename(r -> r.channelId(channelId).name(channelName + "-renamed")).get();
             assertThat(renamed.getError(), is(nullValue()));
-
-            AdminConversationsSearchResponse search = methodsAsync.adminConversationsSearch(r -> r
-                    .limit(10)
-                    .sort("member_count")
-                    .sortDir("desc")
-                    .searchChannelTypes(Arrays.asList("exclude_archived", "private_exclude"))
-            ).get();
-            assertThat(search.getError(), is(nullValue()));
 
             AdminConversationsGetConversationPrefsResponse prefs =
                     methodsAsync.adminConversationsGetConversationPrefs(r -> r.channelId(channelId)).get();

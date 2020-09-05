@@ -4,7 +4,7 @@ import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
-import java.util.List;
+import java.util.Map;
 
 @Data
 public class AdminConversationsInviteResponse implements SlackApiResponse {
@@ -15,6 +15,6 @@ public class AdminConversationsInviteResponse implements SlackApiResponse {
     private String needed;
     private String provided;
 
-    private List<String> failedUserIds;
+    private Map<String, String> failedUserIds;
     private ErrorResponseMetadata responseMetadata;
 }
