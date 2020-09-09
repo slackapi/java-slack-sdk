@@ -40,7 +40,8 @@
           "teams_shared_with": [
             "T00000000",
             ""
-          ]
+          ],
+          "original_connected_channel_id": "G00000000"
         },
         "file": {
           "id": "F00000000",

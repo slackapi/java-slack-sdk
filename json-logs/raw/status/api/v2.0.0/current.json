@@ -423,6 +423,24 @@
           "body": "We\u0027ve received some reports of folks being suddenly signed out of Slack on desktop, and we\u0027re investigating this issue further. We apologize for any disruption this may have caused and will let you know once we have more details."
         }
       ]
+    },
+    {
+      "id": 893,
+      "date_created": "2020-09-09T14:23:48-07:00",
+      "date_updated": "2020-09-09T14:23:48-07:00",
+      "title": "Trouble signing in to Slack using Google SSO",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-09/03fcf2c4b34371ef",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-09-09T14:23:48-07:00",
+          "body": "Some users are unable to sign in to Slack using Google SSO. This issue appears to be isolated to desktop at this time. We\u0027re working to get things back to normal as quickly as possible, and we apologize for the disruption."
+        }
+      ]
     }
   ]
 }
