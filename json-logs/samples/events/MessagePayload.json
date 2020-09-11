@@ -132,6 +132,95 @@
           "thumb_tiny": ""
         }
       }
+    ],
+    "client_msg_id": "",
+    "blocks": [
+      {
+        "type": "actions",
+        "elements": [
+          {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "url": "https://www.example.com/",
+            "value": "",
+            "style": "",
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "response_url_enabled": false,
+            "default_to_current_conversation": false,
+            "filter": {
+              "exclude_external_shared_channels": false,
+              "exclude_bot_users": false
+            },
+            "options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": "https://www.example.com/"
+              }
+            ]
+          }
+        ],
+        "block_id": "",
+        "text": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "fields": [
+          {
+            "type": "plain_text",
+            "text": "",
+            "emoji": false,
+            "verbatim": false
+          }
+        ],
+        "accessory": {
+          "type": "image",
+          "image_url": "https://www.example.com/",
+          "alt_text": ""
+        }
+      }
     ]
   },
   "type": "event_callback",

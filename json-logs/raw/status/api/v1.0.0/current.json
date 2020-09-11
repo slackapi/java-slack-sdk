@@ -269,6 +269,18 @@
     {
       "date_created": "2020-09-09T14:23:48-07:00",
       "body": "Some users are unable to sign in to Slack using Google SSO. This issue appears to be isolated to desktop at this time. We\u0027re working to get things back to normal as quickly as possible, and we apologize for the disruption."
+    },
+    {
+      "date_created": "2020-09-10T16:47:57-07:00",
+      "body": "Issue Summary:\r\nFrom September 8, 2020 at 7:33 p.m. PDT until September 10, 2020 at 11:59 p.m. PDT, some customers saw a “Page not available” error message when trying to sign into Slack using Google Auth SSO.\r\n\r\nUpon investigation, we identified an error in an update we made to how we handle SSO authentication errors. We reverted the change which resolved the issue for all affected users."
+    },
+    {
+      "date_created": "2020-09-10T15:23:49-07:00",
+      "body": "We\u0027ve restored full functionality so that anyone using Google SSO to login to Slack should now be able to successfully access their Slack workspace(s). If you continue to have issues signing in with Google SSO, please let us know at feedback@slack.com. \r\n\r\nWe appreciate you bearing with us and our sincere apologies for any inconvenience this caused."
+    },
+    {
+      "date_created": "2020-09-09T19:03:10-07:00",
+      "body": "We\u0027ve identified the problem and made a fix that we expect to resolve this issue. We are seeing steady improvements, but we\u0027re continuing to monitor this closely as a small number of customers may still be encountering trouble signing in to Slack using Google SSO at the moment.\r\n\r\nWe\u0027ll be back with an update once we can confirm the issue is fully resolved."
     }
   ]
 }

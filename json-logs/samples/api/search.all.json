@@ -429,7 +429,10 @@
         "lines": 12345,
         "lines_more": 12345,
         "preview_is_truncated": false,
-        "image_exif_rotation": 12345
+        "image_exif_rotation": 12345,
+        "last_editor": "U00000000",
+        "non_owner_editable": false,
+        "updated": 12345
       }
     ]
   },
