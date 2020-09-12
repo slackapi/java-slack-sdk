@@ -68,7 +68,7 @@ public class EventsApiPayloadDumpTest {
                 buildLinkSharedPayload(),
                 // new MemberJoinedChannelPayload(),
                 // new MemberLeftChannelPayload(),
-                // buildMessagePayload(),
+                buildMessagePayload(),
                 buildMessageBotPayload(),
                 buildMessageChangedPayload(),
                 buildMessageDeletedPayload(),
@@ -184,6 +184,14 @@ public class EventsApiPayloadDumpTest {
         LinkSharedPayload payload = new LinkSharedPayload();
         payload.setEvent(new LinkSharedEvent());
         payload.getEvent().setLinks(Arrays.asList(initProperties(new LinkSharedEvent.Link())));
+        return payload;
+    }
+
+    private MessagePayload buildMessagePayload() {
+        MessagePayload payload = new MessagePayload();
+        payload.setEvent(new MessageEvent());
+        payload.getEvent().setAttachments(SampleObjects.Attachments);
+        payload.getEvent().setBlocks(SampleObjects.Blocks);
         return payload;
     }
 
