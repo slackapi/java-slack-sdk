@@ -604,7 +604,8 @@
       "member_analytics_disabled": false,
       "calls_locations": [
         ""
-      ]
+      ],
+      "workflow_extension_steps_enabled": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
