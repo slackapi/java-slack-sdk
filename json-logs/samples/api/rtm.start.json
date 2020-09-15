@@ -356,7 +356,8 @@
       "help_modal_consult_banner_dismissed": false,
       "seen_channel_email_tooltip": false,
       "join_calls_device_settings": "",
-      "a11y_dyslexic": false
+      "a11y_dyslexic": false,
+      "connect_dm_early_access": false
     },
     "created": 12345,
     "first_login": 12345,
