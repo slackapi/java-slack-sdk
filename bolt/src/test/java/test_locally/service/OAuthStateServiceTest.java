@@ -1,17 +1,25 @@
 package test_locally.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Test;
+
 import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.OAuthCallbackRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.OAuthStateService;
-import org.junit.Test;
-
-import java.util.*;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 public class OAuthStateServiceTest {
 
@@ -62,7 +70,9 @@ public class OAuthStateServiceTest {
         query.put("foo", Arrays.asList("bar", "baz"));
         query.put("state", Arrays.asList("123", "234"));
         Map<String, List<String>> rawHeaders = new HashMap<>();
-        rawHeaders.put("Cookie", Arrays.asList(service.getSessionCookieName() + "=123"));
+        rawHeaders.put("Cookie", Arrays.asList(
+          "__cookie1=ABC",
+          service.getSessionCookieName() + "=123"));
         RequestHeaders headers = new RequestHeaders(rawHeaders);
         VerificationCodePayload payload = new VerificationCodePayload();
         payload.setState("123");
@@ -96,6 +106,21 @@ public class OAuthStateServiceTest {
         payload.setState("234");
         boolean invalid = service.isValid(new OAuthCallbackRequest(query, "", payload, headers));
         assertFalse(invalid);
+    }
+
+    @Test
+    public void isValid_multiple_cookies() {
+        Map<String, List<String>> query = new HashMap<>();
+        query.put("foo", Arrays.asList("bar", "baz"));
+        query.put("state", Arrays.asList("123", "234"));
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        rawHeaders.put("Cookie", Arrays.asList(
+                "__cookie1=abc; _cookie2=def; " + service.getSessionCookieName() + "=123"));
+        RequestHeaders headers = new RequestHeaders(rawHeaders);
+        VerificationCodePayload payload = new VerificationCodePayload();
+        payload.setState("123");
+        boolean valid = service.isValid(new OAuthCallbackRequest(query, "", payload, headers));
+        assertTrue(valid);
     }
 
     @Test
