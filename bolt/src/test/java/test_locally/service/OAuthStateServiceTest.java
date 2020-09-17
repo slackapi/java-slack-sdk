@@ -1,25 +1,17 @@
 package test_locally.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Test;
-
 import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.OAuthCallbackRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.OAuthStateService;
+import org.junit.Test;
+
+import java.util.*;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 public class OAuthStateServiceTest {
 
@@ -71,8 +63,8 @@ public class OAuthStateServiceTest {
         query.put("state", Arrays.asList("123", "234"));
         Map<String, List<String>> rawHeaders = new HashMap<>();
         rawHeaders.put("Cookie", Arrays.asList(
-          "__cookie1=ABC",
-          service.getSessionCookieName() + "=123"));
+                "__cookie1=ABC",
+                service.getSessionCookieName() + "=123"));
         RequestHeaders headers = new RequestHeaders(rawHeaders);
         VerificationCodePayload payload = new VerificationCodePayload();
         payload.setState("123");
