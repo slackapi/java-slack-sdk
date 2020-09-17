@@ -46,14 +46,13 @@
         <lombok.version>1.18.12</lombok.version>
         <lombok-maven-plugin.version>1.18.10.0</lombok-maven-plugin.version>
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
-        <!-- TODO: Kotlin 1.4 - https://github.com/slackapi/java-slack-sdk/issues/545 -->
-        <kotlin.version>1.3.72</kotlin.version>
+        <kotlin.version>1.4.10</kotlin.version>
         <slf4j.version>1.7.30</slf4j.version>
-        <aws.s3.version>1.11.852</aws.s3.version>
+        <aws.s3.version>1.11.861</aws.s3.version>
         <junit.version>4.13</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
         <logback.version>1.2.3</logback.version>
-        <mockito-core.version>3.5.7</mockito-core.version>
+        <mockito-core.version>3.5.10</mockito-core.version>
         <duplicate-finder-maven-plugin.version>1.3.0</duplicate-finder-maven-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>

@@ -15,7 +15,6 @@
  */
 package util;
 
-import io.helidon.common.CollectionsHelper;
 import io.helidon.common.http.*;
 import io.helidon.webserver.RequestHeaders;
 
@@ -37,7 +36,7 @@ public class HashRequestHeaders extends ReadOnlyParameters implements RequestHea
     /**
      * Accepted types for {@link #HUC_ACCEPT_DEFAULT}.
      */
-    private static final List<MediaType> HUC_ACCEPT_DEFAULT_TYPES = CollectionsHelper.listOf(
+    private static final List<MediaType> HUC_ACCEPT_DEFAULT_TYPES = Arrays.asList(
             MediaType.TEXT_HTML,
             MediaType.parse("image/gif"),
             MediaType.parse("image/jpeg"),

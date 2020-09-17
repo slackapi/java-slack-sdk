@@ -10,8 +10,10 @@
     </parent>
 
     <properties>
-        <!--- TODO: upgrade to helidon 2.0 -->
-        <helidon.version>1.4.5</helidon.version>
+        <helidon.version>2.0.2</helidon.version>
+        <!-- Helidon 2.0 requires Java 11+ -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <groupId>com.slack.api</groupId>
@@ -71,7 +73,7 @@
         </dependency>
         <dependency>
             <groupId>io.helidon.metrics</groupId>
-            <artifactId>helidon-metrics2</artifactId>
+            <artifactId>helidon-metrics</artifactId>
             <version>${helidon.version}</version>
             <scope>test</scope>
         </dependency>
