@@ -1,9 +1,13 @@
 package com.slack.api.bolt.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.response.Response;
-
-import java.util.*;
 
 /**
  * Manages state parameters for Slack OAuth flow.
@@ -114,11 +118,10 @@ public interface OAuthStateService extends Service {
             return null;
         }
         for (String header : cookieHeaders) {
-            if (header.startsWith(getSessionCookieName() + "=")) {
-                String[] valueWithAttributes = header.split(getSessionCookieName() + "=");
-                if (valueWithAttributes != null && valueWithAttributes.length > 1) {
-                    String value = valueWithAttributes[1].split(";")[0];
-                    return value;
+            String[] cookies = header.split(";");
+            for (String cookie : cookies) {
+                if (cookie.trim().startsWith(getSessionCookieName() + "=")) {
+                    return cookie.trim().split("=")[1];
                 }
             }
         }
