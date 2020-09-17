@@ -1,7 +1,8 @@
 #!/bin/bash
 
-is_jdk_8=`echo $JAVA_HOME | grep openjdk-8.jdk`
-if [[ "${is_jdk_8}" != "" ]];
+is_jdk_8=`echo $JAVA_HOME | grep 8.`
+is_travis_jdk_8=`echo $TRAVIS_JDK | grep openjdk8`
+if [[ "${is_jdk_8}" != "" && "${is_travis_jdk_8}" != "" ]];
 then
   echo "Please use OpenJDK 11 for releasing these libraries."
   exit 1

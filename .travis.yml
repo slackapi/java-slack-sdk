@@ -4,23 +4,33 @@ cache:
   directories:
     - $HOME/.m2
 install:
+  - echo $JAVA_HOME
   - echo 'skipped'
 matrix:
   # LTS version
   - jdk: openjdk8
-    env: CODECOV="true"
+    env:
+      - CODECOV="true"
+      - TRAVIS_JDK="openjdk8"
     script: travis_retry ./scripts/run_no_prep_tests.sh
   # LTS version
   - jdk: openjdk11
-    env: CODECOV="false"
-    env: MAVEN_OPTS=-Djdk.tls.client.protocols=TLSv1.2
+    env:
+      - CODECOV="false"
+      - TRAVIS_JDK="openjdk11"
+      - MAVEN_OPTS=-Djdk.tls.client.protocols=TLSv1.2
     script: travis_retry ./scripts/run_no_prep_tests.sh
   # non-LTS but latest
   - jdk: openjdk14
-    env: CODECOV="false"
+    env:
+      - CODECOV="false"
+      - TRAVIS_JDK="openjdk14"
     script: travis_retry ./scripts/run_no_prep_tests.sh
   # To detect duplicated classes
-  - jdk: openjdk8
+  - jdk: openjdk11
+    env:
+      - CODECOV="false"
+      - TRAVIS_JDK="openjdk11"
     script:
       - travis_retry ./mvnw install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true --no-transfer-progress
       - travis_retry ./mvnw duplicate-finder:check --no-transfer-progress

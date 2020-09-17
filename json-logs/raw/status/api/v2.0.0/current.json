@@ -441,6 +441,24 @@
           "body": "Some users are unable to sign in to Slack using Google SSO. This issue appears to be isolated to desktop at this time. We\u0027re working to get things back to normal as quickly as possible, and we apologize for the disruption."
         }
       ]
+    },
+    {
+      "id": 898,
+      "date_created": "2020-09-15T01:39:42-07:00",
+      "date_updated": "2020-09-15T01:39:42-07:00",
+      "title": "Recurring Imports and Exports failure",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-09/65de18ed81f20a17",
+      "services": [
+        "Workspace/Org Administration"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-09-15T01:39:42-07:00",
+          "body": "Some users have reported issues with imports and exports failing to complete at this time. We\u0027re working to resolve the issue and will share more information as soon as it’s available. Thank you for your patience."
+        }
+      ]
     }
   ]
 }
