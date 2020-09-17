@@ -101,7 +101,7 @@ public class AuditClientImpl implements AuditClient {
         if (req.getEntity() != null) {
             query.put("entity", req.getEntity());
         }
-        if(req.getCursor() != null) {
+        if (req.getCursor() != null) {
             query.put("cursor", req.getCursor());
         }
         return doGet(getEndpointUrlPrefix() + "logs", query, getToken(req), LogsResponse.class);

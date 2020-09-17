@@ -49,7 +49,13 @@ public class EventDataRecorder {
     }
 
     public void writeMergedResponse(String eventType, String body) throws IOException {
-        writeMergedJsonData(toPayloadClassName(eventType), body);
+        String className = toPayloadClassName(eventType);
+        // TODO: This recorder doesn't generate JSON data that is compatible with
+        // test_locally.app_backend.events.payload.SamplePayloadParsingTest
+        if (className.equals("MessagePayload")) {
+            return;
+        }
+        writeMergedJsonData(className, body);
     }
 
     public void writeMergedJsonData(String payloadClassName, String body) throws IOException {

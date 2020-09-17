@@ -99,6 +99,7 @@ public class Actions {
         public static final String pref_enterprise_mobile_device_check = "pref.enterprise_mobile_device_check";
         public static final String pref_required_minimum_mobile_version_changed = "pref.required_minimum_mobile_version_changed";
         public static final String pref_admin_retention_override_changed = "pref.admin_retention_override_changed";
+        public static final String pref_notification_redaction_type = "pref.notification_redaction_type";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -183,6 +184,7 @@ public class Actions {
         public static final String group_converted_to_channel = "group_converted_to_channel";
         public static final String channel_renamed = "channel_renamed";
         public static final String channel_posting_pref_changed_from_org_level = "channel_posting_pref_changed_from_org_level";
+        public static final String external_shared_channel_invite_auto_revoked = "external_shared_channel_invite_auto_revoked";
     }
 
     public static class App {

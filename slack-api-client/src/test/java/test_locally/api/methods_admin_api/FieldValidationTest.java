@@ -1,7 +1,8 @@
 package test_locally.api.methods_admin_api;
 
 import com.slack.api.methods.response.admin.apps.*;
-import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.*;
+import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
@@ -72,13 +73,62 @@ public class FieldValidationTest {
 
     @Test
     public void adminConversations() throws Exception {
-        {
-            AdminConversationsSetTeamsResponse obj = parse("admin.conversations.setTeams", AdminConversationsSetTeamsResponse.class);
-            verifyIfAllGettersReturnNonNull(obj,
-                    "getWarning",
-                    "getResponseMetadata"
-            );
-        }
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.setTeams", AdminConversationsSetTeamsResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.archive", AdminConversationsArchiveResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.convertToPrivate", AdminConversationsConvertToPrivateResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.create", AdminConversationsCreateResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.delete", AdminConversationsDeleteResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.disconnectShared", AdminConversationsDisconnectSharedResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.getConversationPrefs", AdminConversationsGetConversationPrefsResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.getTeams", AdminConversationsGetTeamsResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.invite", AdminConversationsInviteResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.rename", AdminConversationsRenameResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.search", AdminConversationsSearchResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.setConversationPrefs", AdminConversationsSetConversationPrefsResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.unarchive", AdminConversationsUnarchiveResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.ekm.listOriginalConnectedChannelInfo", AdminConversationsEkmListOriginalConnectedChannelInfoResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
     }
 
     @Test
@@ -167,7 +217,8 @@ public class FieldValidationTest {
             AdminTeamsListResponse obj = parse(prefix + "list", AdminTeamsListResponse.class);
             verifyIfAllGettersReturnNonNull(obj, "getResponseMetadata", "getWarning");
             if (obj.getResponseMetadata() != null) {
-                verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages");
+                verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(),
+                        "getMessages", "getWarnings");
             }
         }
         {

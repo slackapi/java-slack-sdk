@@ -34,7 +34,7 @@ Let's start with putting `build.gradle` file in the root directory of your proje
 ```groovy
 plugins {
   id 'org.springframework.boot' version '{{ site.springBootVersion }}'
-  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.10.RELEASE'
   id 'java'
 }
 group = 'com.example'
@@ -45,6 +45,7 @@ repositories {
 }
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'com.squareup.okhttp3:okhttp:{{ site.okhttpVersion }}'
   implementation 'com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}'
 }
 ```
@@ -271,8 +272,9 @@ The following settings are compatible with both of JDK 8 and 11. If you prefer u
   <artifactId>code-with-quarkus</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
+    <!--- Quarkus 1.7+ requires Java 11+ -->
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus-plugin.version>{{ site.quarkusVersion }}</quarkus-plugin.version>

@@ -2,7 +2,8 @@ package com.slack.api.methods;
 
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.apps.*;
-import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.*;
+import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupRequest;
@@ -89,7 +90,8 @@ import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
-import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.*;
+import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
@@ -168,8 +170,8 @@ import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
-import com.slack.api.methods.response.users.*;
 import com.slack.api.methods.response.users.UsersLookupByEmailResponse;
+import com.slack.api.methods.response.users.*;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
@@ -269,6 +271,62 @@ public interface MethodsClient {
     AdminConversationsSetTeamsResponse adminConversationsSetTeams(AdminConversationsSetTeamsRequest req) throws IOException, SlackApiException;
 
     AdminConversationsSetTeamsResponse adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsArchiveResponse adminConversationsArchive(AdminConversationsArchiveRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsArchiveResponse adminConversationsArchive(RequestConfigurator<AdminConversationsArchiveRequest.AdminConversationsArchiveRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsConvertToPrivateResponse adminConversationsConvertToPrivate(AdminConversationsConvertToPrivateRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsConvertToPrivateResponse adminConversationsConvertToPrivate(RequestConfigurator<AdminConversationsConvertToPrivateRequest.AdminConversationsConvertToPrivateRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsCreateResponse adminConversationsCreate(AdminConversationsCreateRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsCreateResponse adminConversationsCreate(RequestConfigurator<AdminConversationsCreateRequest.AdminConversationsCreateRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsDeleteResponse adminConversationsDelete(AdminConversationsDeleteRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsDeleteResponse adminConversationsDelete(RequestConfigurator<AdminConversationsDeleteRequest.AdminConversationsDeleteRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsDisconnectSharedResponse adminConversationsDisconnectShared(AdminConversationsDisconnectSharedRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsDisconnectSharedResponse adminConversationsDisconnectShared(RequestConfigurator<AdminConversationsDisconnectSharedRequest.AdminConversationsDisconnectSharedRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsGetConversationPrefsResponse adminConversationsGetConversationPrefs(AdminConversationsGetConversationPrefsRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsGetConversationPrefsResponse adminConversationsGetConversationPrefs(RequestConfigurator<AdminConversationsGetConversationPrefsRequest.AdminConversationsGetConversationPrefsRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsGetTeamsResponse adminConversationsGetTeams(AdminConversationsGetTeamsRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsGetTeamsResponse adminConversationsGetTeams(RequestConfigurator<AdminConversationsGetTeamsRequest.AdminConversationsGetTeamsRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsInviteResponse adminConversationsInvite(AdminConversationsInviteRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsInviteResponse adminConversationsInvite(RequestConfigurator<AdminConversationsInviteRequest.AdminConversationsInviteRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsRenameResponse adminConversationsRename(AdminConversationsRenameRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsRenameResponse adminConversationsRename(RequestConfigurator<AdminConversationsRenameRequest.AdminConversationsRenameRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsSearchResponse adminConversationsSearch(AdminConversationsSearchRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsSearchResponse adminConversationsSearch(RequestConfigurator<AdminConversationsSearchRequest.AdminConversationsSearchRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsSetConversationPrefsResponse adminConversationsSetConversationPrefs(AdminConversationsSetConversationPrefsRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsSetConversationPrefsResponse adminConversationsSetConversationPrefs(RequestConfigurator<AdminConversationsSetConversationPrefsRequest.AdminConversationsSetConversationPrefsRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsUnarchiveResponse adminConversationsUnarchive(AdminConversationsUnarchiveRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsUnarchiveResponse adminConversationsUnarchive(RequestConfigurator<AdminConversationsUnarchiveRequest.AdminConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // admin.conversations.ekm
+    // ------------------------------
+
+    AdminConversationsEkmListOriginalConnectedChannelInfoResponse adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsEkmListOriginalConnectedChannelInfoResponse adminConversationsEkmListOriginalConnectedChannelInfo(RequestConfigurator<AdminConversationsEkmListOriginalConnectedChannelInfoRequest.AdminConversationsEkmListOriginalConnectedChannelInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // admin.conversations.restrictAccess

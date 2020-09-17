@@ -25,14 +25,19 @@ public class ResourceLoader {
     public static AppConfig loadAppConfig(String fileName) {
         AppConfig config = new AppConfig();
         ClassLoader classLoader = DialogSample.class.getClassLoader();
-        // https://github.com/slackapi/java-slack-sdk/blob/master/bolt/src/test/resources
-        try (InputStream is = classLoader.getResourceAsStream(fileName);
-             InputStreamReader isr = new InputStreamReader(is)) {
-            String json = new BufferedReader(isr).lines().collect(joining());
-            JsonObject j = new Gson().fromJson(json, JsonElement.class).getAsJsonObject();
-            config.setSigningSecret(j.get("signingSecret").getAsString());
-            if (j.get("singleTeamBotToken") != null) {
-                config.setSingleTeamBotToken(j.get("singleTeamBotToken").getAsString());
+        // https://github.com/slackapi/java-slack-sdk/blob/main/bolt-servlet/src/test/resources
+        try (InputStream is = classLoader.getResourceAsStream(fileName)) {
+            if (is != null) {
+                try (InputStreamReader isr = new InputStreamReader(is)) {
+                    String json = new BufferedReader(isr).lines().collect(joining());
+                    JsonObject j = new Gson().fromJson(json, JsonElement.class).getAsJsonObject();
+                    config.setSigningSecret(j.get("signingSecret").getAsString());
+                    if (j.get("singleTeamBotToken") != null) {
+                        config.setSingleTeamBotToken(j.get("singleTeamBotToken").getAsString());
+                    }
+                } catch (IOException e) {
+                    log.error(e.getMessage(), e);
+                }
             }
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -47,10 +52,17 @@ public class ResourceLoader {
     public static Map<String, String> loadValues() {
         ClassLoader classLoader = DialogSample.class.getClassLoader();
         // src/test/resources
-        try (InputStream is = classLoader.getResourceAsStream("appConfig.json");
-             InputStreamReader isr = new InputStreamReader(is)) {
-            String json = new BufferedReader(isr).lines().collect(joining());
-            return new Gson().fromJson(json, HashMap.class);
+        try (InputStream is = classLoader.getResourceAsStream("appConfig.json")) {
+            if (is == null) {
+                throw new RuntimeException("Place src/test/resources/appConfig.json!");
+            }
+            try (InputStreamReader isr = new InputStreamReader(is)) {
+                String json = new BufferedReader(isr).lines().collect(joining());
+                return new Gson().fromJson(json, HashMap.class);
+            } catch (IOException e) {
+                log.error(e.getMessage(), e);
+                throw new RuntimeException(e);
+            }
         } catch (IOException e) {
             log.error(e.getMessage(), e);
             throw new RuntimeException(e);

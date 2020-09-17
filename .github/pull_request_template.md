@@ -1,9 +1,14 @@
-###  Summary
+(Describe the goal of this PR. Mention any related Issue numbers)
 
-**TODO**:
-Describe the goal of this PR. Mention any related Issue numbers.
+### Category (place an `x` in each of the `[ ]`)
 
-### Requirements (place an `x` in each `[ ]`)
+* [ ] **bolt** (Bolt for Java)
+* [ ] **bolt-{sub modules}** (Bolt for Java - optional modules)
+* [ ] **slack-api-client** (Slack API Clients)
+* [ ] **slack-api-model** (Slack API Data Models)
+* [ ] **slack-api-*-kotlin-extension** (Kotlin Extensions for Slack API Clients)
+* [ ] **slack-app-backend** (The primitive layer of Bolt for Java)
 
-* [ ] I've read and understood the [Contributing Guidelines](https://github.com/slackapi/java-slack-sdk/blob/master/.github/contributing.md) and have done my best effort to follow them.
-* [ ] I've read and agree to the [Code of Conduct](https://slackhq.github.io/code-of-conduct).
+## Requirements
+
+Please read the [Contributing guidelines](https://github.com/slackapi/java-slack-sdk/blob/main/.github/contributing.md) and [Code of Conduct](https://slackhq.github.io/code-of-conduct) before creating this issue or pull request. By submitting, you are agreeing to the those rules.

@@ -6,22 +6,23 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.1.4-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
     </parent>
 
     <properties>
-        <quarkus.version>1.6.0.Final</quarkus.version>
+        <quarkus.version>1.7.1.Final</quarkus.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Quarkus 1.7+ requires Java 11+ -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
 
     <groupId>com.slack.api</groupId>
     <artifactId>bolt-quarkus-examples</artifactId>
-    <version>1.1.4-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>

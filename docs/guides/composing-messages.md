@@ -79,7 +79,7 @@ If you're using Kotlin, the Java Slack SDK also provides Kotlin-style builders w
 ```kotlin
 import com.slack.api.Slack
 import com.slack.api.model.block.Blocks.*
-import com.slack.api.model.kotlin_extension.request.chat.blocks
+import com.slack.api.methods.kotlin_extension.request.chat.blocks
 
 val slack = Slack.getInstance()
 val token = System.getenv("token")

@@ -43,7 +43,11 @@ public class JsonDataRecorder {
     public void writeMergedResponse(Response response, String body) throws IOException {
         String path = response.request().url().url().getPath();
         String httpMethod = response.request().method();
-        if (httpMethod.toUpperCase(Locale.ENGLISH).equals("GET")) {
+        if (path.startsWith("/scim")) {
+            if (httpMethod.toUpperCase(Locale.ENGLISH).equals("GET")) {
+                writeMergedJsonData(path, body);
+            }
+        } else {
             writeMergedJsonData(path, body);
         }
     }
@@ -280,6 +284,8 @@ public class JsonDataRecorder {
                     address.setOriginal("");
                     JsonElement elem = gson.toJsonTree(address);
                     array.add(elem);
+                } else if (path.equals("/api/conversations.list") && name.equals("channels")) {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Conversation())));
                 } else if (path.equals("/api/users.conversations") && name.equals("channels")) {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Conversation())));
                 } else if (path.equals("/api/rtm.start") && name.equals("groups")) {

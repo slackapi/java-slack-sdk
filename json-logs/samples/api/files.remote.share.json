@@ -34,7 +34,8 @@
             "reply_count": 12345,
             "ts": "0000000000.000000",
             "channel_name": "",
-            "team_id": "T00000000"
+            "team_id": "T00000000",
+            "share_user_id": "U00000000"
           }
         ],
         "C00000001": [
@@ -46,7 +47,8 @@
             "reply_count": 12345,
             "ts": "0000000000.000000",
             "channel_name": "",
-            "team_id": "T00000000"
+            "team_id": "T00000000",
+            "share_user_id": "U00000000"
           }
         ]
       }
@@ -62,7 +64,31 @@
     ],
     "external_id": "",
     "external_url": "https://www.example.com/",
-    "has_rich_preview": false
+    "has_rich_preview": false,
+    "thumb_64": "https://www.example.com/",
+    "thumb_80": "https://www.example.com/",
+    "thumb_360": "https://www.example.com/",
+    "thumb_360_w": 12345,
+    "thumb_360_h": 12345,
+    "thumb_480": "https://www.example.com/",
+    "thumb_480_w": 12345,
+    "thumb_480_h": 12345,
+    "thumb_160": "https://www.example.com/",
+    "thumb_720": "https://www.example.com/",
+    "thumb_720_w": 12345,
+    "thumb_720_h": 12345,
+    "thumb_800": "https://www.example.com/",
+    "thumb_800_w": 12345,
+    "thumb_800_h": 12345,
+    "thumb_960": "https://www.example.com/",
+    "thumb_960_w": 12345,
+    "thumb_960_h": 12345,
+    "thumb_1024": "https://www.example.com/",
+    "thumb_1024_w": 12345,
+    "thumb_1024_h": 12345,
+    "original_w": 12345,
+    "original_h": 12345,
+    "thumb_tiny": ""
   },
   "error": "",
   "needed": "",

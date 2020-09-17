@@ -59,7 +59,6 @@
         "thumb_1024": "https://www.example.com/",
         "thumb_1024_w": 12345,
         "thumb_1024_h": 12345,
-        "image_exif_rotation": 12345,
         "original_w": 12345,
         "original_h": 12345,
         "thumb_tiny": "",
@@ -77,6 +76,17 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000"
+              },
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000",
+                "share_user_id": "U00000000"
               }
             ],
             "C00000001": [
@@ -89,6 +99,17 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000"
+              },
+              {
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "0000000000.000000",
+                "channel_name": "",
+                "team_id": "T00000000",
+                "share_user_id": "U00000000"
               }
             ]
           }
@@ -113,6 +134,7 @@
         "lines": 12345,
         "lines_more": 12345,
         "preview_is_truncated": false,
+        "image_exif_rotation": 12345,
         "last_editor": "U00000000",
         "non_owner_editable": false,
         "updated": 12345

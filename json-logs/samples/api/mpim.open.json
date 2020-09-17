@@ -12,14 +12,11 @@
     "is_open": false,
     "last_read": "0000000000.000000",
     "latest": {
-      "type": "",
-      "subtype": "",
-      "text": "",
-      "ts": "0000000000.000000",
-      "username": "",
       "bot_id": "B00000000",
-      "thread_ts": "0000000000.000000",
+      "type": "",
+      "text": "",
       "user": "U00000000",
+      "ts": "0000000000.000000",
       "team": "T00000000",
       "bot_profile": {
         "id": "B00000000",
@@ -34,6 +31,7 @@
         },
         "team_id": "T00000000"
       },
+      "thread_ts": "0000000000.000000",
       "parent_user_id": "U00000000"
     },
     "unread_count": 12345,

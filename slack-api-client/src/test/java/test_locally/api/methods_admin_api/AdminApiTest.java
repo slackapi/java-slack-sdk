@@ -54,6 +54,20 @@ public class AdminApiTest {
         assertThat(methods.adminConversationsSetTeams(r ->
                 r.channelId("C123").teamId("T123").targetTeamIds(Arrays.asList("T123", "T234")))
                 .isOk(), is(true));
+        assertThat(methods.adminConversationsArchive(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsConvertToPrivate(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsCreate(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsDelete(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsDisconnectShared(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsEkmListOriginalConnectedChannelInfo(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsGetConversationPrefs(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsGetTeams(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsInvite(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsRename(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsSearch(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsSetConversationPrefs(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsSetTeams(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsUnarchive(r -> r).isOk(), is(true));
     }
 
     @Test

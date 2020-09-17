@@ -3,23 +3,11 @@
   "type": "",
   "channel": "C00000000",
   "message": {
-    "type": "",
-    "subtype": "",
-    "text": "",
-    "ts": "0000000000.000000",
-    "username": "",
     "bot_id": "B00000000",
-    "reactions": [
-      {
-        "name": "",
-        "users": [
-          "U00000000"
-        ],
-        "count": 12345
-      }
-    ],
-    "permalink": "https://www.example.com/",
+    "type": "",
+    "text": "",
     "user": "U00000000",
+    "ts": "0000000000.000000",
     "team": "T00000000",
     "bot_profile": {
       "id": "B00000000",
@@ -33,7 +21,17 @@
         "image_72": "https://www.example.com/"
       },
       "team_id": "T00000000"
-    }
+    },
+    "reactions": [
+      {
+        "name": "",
+        "users": [
+          "U00000000"
+        ],
+        "count": 12345
+      }
+    ],
+    "permalink": "https://www.example.com/"
   },
   "error": "",
   "needed": "",

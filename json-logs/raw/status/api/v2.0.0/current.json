@@ -383,6 +383,82 @@
           "body": "Some users and app developers are currently seeing \"Request failed with status code 400\" errors when apps submit requests.  We are looking into this and will post when we have more information."
         }
       ]
+    },
+    {
+      "id": 883,
+      "date_created": "2020-08-07T15:04:31-07:00",
+      "date_updated": "2020-08-07T15:34:00-07:00",
+      "title": "Trouble with confirmation emails for invite links",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-08/13b771ac46242904",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-08-07T15:34:00-07:00",
+          "body": "We\u0027ve determined this issue is only impacting confirmation emails sent after clicking an invite link to join a workspace, while other emails are working as intended. We\u0027ll continue to keep you posted as we work towards a fix. \r\n\r\nFor now, we recommend sending invitations directly via email, rather than sharing invite links with invitees."
+        },
+        {
+          "date_created": "2020-08-07T15:04:31-07:00",
+          "body": "Some customers may be unable to receive emails from Slack. We\u0027re currently investigating this issue, and we\u0027ll let you know as soon as we have more information. We apologize for the inconvenience in the meantime."
+        }
+      ]
+    },
+    {
+      "id": 887,
+      "date_created": "2020-08-20T10:50:22-07:00",
+      "date_updated": "2020-08-20T10:50:22-07:00",
+      "title": "Customers may have been logged out on desktop",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-08/4a28d1e1d213c970",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-08-20T10:50:22-07:00",
+          "body": "We\u0027ve received some reports of folks being suddenly signed out of Slack on desktop, and we\u0027re investigating this issue further. We apologize for any disruption this may have caused and will let you know once we have more details."
+        }
+      ]
+    },
+    {
+      "id": 893,
+      "date_created": "2020-09-09T14:23:48-07:00",
+      "date_updated": "2020-09-09T14:23:48-07:00",
+      "title": "Trouble signing in to Slack using Google SSO",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-09/03fcf2c4b34371ef",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-09-09T14:23:48-07:00",
+          "body": "Some users are unable to sign in to Slack using Google SSO. This issue appears to be isolated to desktop at this time. We\u0027re working to get things back to normal as quickly as possible, and we apologize for the disruption."
+        }
+      ]
+    },
+    {
+      "id": 898,
+      "date_created": "2020-09-15T01:39:42-07:00",
+      "date_updated": "2020-09-15T01:39:42-07:00",
+      "title": "Recurring Imports and Exports failure",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-09/65de18ed81f20a17",
+      "services": [
+        "Workspace/Org Administration"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-09-15T01:39:42-07:00",
+          "body": "Some users have reported issues with imports and exports failing to complete at this time. We\u0027re working to resolve the issue and will share more information as soon as it’s available. Thank you for your patience."
+        }
+      ]
     }
   ]
 }

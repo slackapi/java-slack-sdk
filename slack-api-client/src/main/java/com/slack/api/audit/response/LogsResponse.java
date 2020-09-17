@@ -113,6 +113,7 @@ public class LogsResponse implements AuditApiResponse {
         @SerializedName("is_org_shared")
         private Boolean orgShared;
         private List<String> teamsSharedWith;
+        private String originalConnectedChannelId;
     }
 
     @Data

@@ -7,25 +7,9 @@
 Within the SDK, there are two different modules:
 
 * [**Bolt for Java**](https://slack.dev/java-slack-sdk/guides/getting-started-with-bolt), which is a framework with a simple API that makes it easy to write modern Slack apps in Java.
-* [**Slack API Client**](https://slack.dev/java-slack-sdk/guides/web-api-basics), , for when you need a more customized approach to building a Slack app in Java.
+* [**Slack API Client**](https://slack.dev/java-slack-sdk/guides/web-api-basics), for when you need a more customized approach to building a Slack app in Java.
  
 If what you want to do is call Slack APIs in your existing services, we recommend using only the **Slack API Client**. If instead, you’re developing a new modern and interactive Slack app, we recommend **Bolt** for it. The framework enables developers to focus on the essential parts of their apps without being bothered by trifles.
-
-## Slack API Client
-
-**slack-api-client** contains simple, easy-to-use, and flexibly configurable HTTP clients for making requests to Slack APIs. Refer to [API Client Basics](https://slack.dev/java-slack-sdk/guides/web-api-basics) for details.
-
-```java
-import com.slack.api.Slack;
-import com.slack.api.methods.response.chat.ChatPostMessageResponse;
-
-Slack slack = Slack.getInstance();
-String token = System.getenv("SLACK_TOKEN");
-
-ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> req
-  .channel("C1234567") // Channel ID
-  .text(":wave: Hi from a bot written in Java!"));
-```
 
 ## Bolt for Java
 
@@ -50,6 +34,22 @@ public class MyApp {
     server.start(); // http://localhost:3000/slack/events
   }
 }
+```
+
+## Slack API Client
+
+**slack-api-client** contains simple, easy-to-use, and flexibly configurable HTTP clients for making requests to Slack APIs. Refer to [API Client Basics](https://slack.dev/java-slack-sdk/guides/web-api-basics) for details.
+
+```java
+import com.slack.api.Slack;
+import com.slack.api.methods.response.chat.ChatPostMessageResponse;
+
+Slack slack = Slack.getInstance();
+String token = System.getenv("SLACK_TOKEN");
+
+ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> req
+  .channel("C1234567") // Channel ID
+  .text(":wave: Hi from a bot written in Java!"));
 ```
 
 ## Modules

@@ -1,0 +1,24 @@
+{
+  "ok": false,
+  "prefs": {
+    "who_can_post": {
+      "type": [
+        ""
+      ],
+      "user": [
+        "W00000000"
+      ]
+    },
+    "can_thread": {
+      "type": [
+        ""
+      ],
+      "user": [
+        "W00000000"
+      ]
+    }
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

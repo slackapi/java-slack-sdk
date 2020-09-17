@@ -8,10 +8,10 @@
     "channel": {
       "id": "",
       "is_channel": false,
+      "is_mpim": false,
       "name": "",
       "name_normalized": "",
-      "created": 12345,
-      "is_mpim": false
+      "created": 12345
     },
     "event_ts": "0000000000.000000"
   },

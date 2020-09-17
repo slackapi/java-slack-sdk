@@ -8,16 +8,16 @@
       "change_type": "",
       "app_type": "",
       "app_id": "A00000000",
-      "resolution": "",
       "scope": "",
-      "service_id": 12345,
-      "service_type": "",
-      "reason": "",
       "rss_feed": false,
       "rss_feed_change_type": "",
       "rss_feed_title": "",
       "rss_feed_url": "https://www.example.com/",
-      "channel": "C00000000"
+      "service_id": 12345,
+      "service_type": "",
+      "channel": "C00000000",
+      "reason": "",
+      "resolution": ""
     }
   ],
   "paging": {

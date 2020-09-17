@@ -6,7 +6,8 @@ import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.apps.*;
-import com.slack.api.methods.request.admin.conversations.AdminConversationsSetTeamsRequest;
+import com.slack.api.methods.request.admin.conversations.*;
+import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupRequest;
@@ -80,7 +81,8 @@ import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.response.admin.apps.*;
-import com.slack.api.methods.response.admin.conversations.AdminConversationsSetTeamsResponse;
+import com.slack.api.methods.response.admin.conversations.*;
+import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessListGroupsResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessRemoveGroupResponse;
@@ -285,6 +287,136 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminConversationsSetTeamsResponse> adminConversationsSetTeams(RequestConfigurator<AdminConversationsSetTeamsRequest.AdminConversationsSetTeamsRequestBuilder> req) {
         return adminConversationsSetTeams(req.configure(AdminConversationsSetTeamsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsArchiveResponse> adminConversationsArchive(AdminConversationsArchiveRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_ARCHIVE, toMap(req), () -> methods.adminConversationsArchive(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsArchiveResponse> adminConversationsArchive(RequestConfigurator<AdminConversationsArchiveRequest.AdminConversationsArchiveRequestBuilder> req) {
+        return adminConversationsArchive(req.configure(AdminConversationsArchiveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsConvertToPrivateResponse> adminConversationsConvertToPrivate(AdminConversationsConvertToPrivateRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_CONVERT_TO_PRIVATE, toMap(req), () -> methods.adminConversationsConvertToPrivate(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsConvertToPrivateResponse> adminConversationsConvertToPrivate(RequestConfigurator<AdminConversationsConvertToPrivateRequest.AdminConversationsConvertToPrivateRequestBuilder> req) {
+        return adminConversationsConvertToPrivate(req.configure(AdminConversationsConvertToPrivateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsCreateResponse> adminConversationsCreate(AdminConversationsCreateRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_CREATE, toMap(req), () -> methods.adminConversationsCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsCreateResponse> adminConversationsCreate(RequestConfigurator<AdminConversationsCreateRequest.AdminConversationsCreateRequestBuilder> req) {
+        return adminConversationsCreate(req.configure(AdminConversationsCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsDeleteResponse> adminConversationsDelete(AdminConversationsDeleteRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_DELETE, toMap(req), () -> methods.adminConversationsDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsDeleteResponse> adminConversationsDelete(RequestConfigurator<AdminConversationsDeleteRequest.AdminConversationsDeleteRequestBuilder> req) {
+        return adminConversationsDelete(req.configure(AdminConversationsDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsDisconnectSharedResponse> adminConversationsDisconnectShared(AdminConversationsDisconnectSharedRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_DISCONNECT_SHARED, toMap(req), () -> methods.adminConversationsDisconnectShared(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsDisconnectSharedResponse> adminConversationsDisconnectShared(RequestConfigurator<AdminConversationsDisconnectSharedRequest.AdminConversationsDisconnectSharedRequestBuilder> req) {
+        return adminConversationsDisconnectShared(req.configure(AdminConversationsDisconnectSharedRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsGetConversationPrefsResponse> adminConversationsGetConversationPrefs(AdminConversationsGetConversationPrefsRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_GET_CONVERSATION_PREFS, toMap(req), () -> methods.adminConversationsGetConversationPrefs(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsGetConversationPrefsResponse> adminConversationsGetConversationPrefs(RequestConfigurator<AdminConversationsGetConversationPrefsRequest.AdminConversationsGetConversationPrefsRequestBuilder> req) {
+        return adminConversationsGetConversationPrefs(req.configure(AdminConversationsGetConversationPrefsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsGetTeamsResponse> adminConversationsGetTeams(AdminConversationsGetTeamsRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_GET_TEAMS, toMap(req), () -> methods.adminConversationsGetTeams(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsGetTeamsResponse> adminConversationsGetTeams(RequestConfigurator<AdminConversationsGetTeamsRequest.AdminConversationsGetTeamsRequestBuilder> req) {
+        return adminConversationsGetTeams(req.configure(AdminConversationsGetTeamsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsInviteResponse> adminConversationsInvite(AdminConversationsInviteRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_INVITE, toMap(req), () -> methods.adminConversationsInvite(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsInviteResponse> adminConversationsInvite(RequestConfigurator<AdminConversationsInviteRequest.AdminConversationsInviteRequestBuilder> req) {
+        return adminConversationsInvite(req.configure(AdminConversationsInviteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRenameResponse> adminConversationsRename(AdminConversationsRenameRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_RENAME, toMap(req), () -> methods.adminConversationsRename(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRenameResponse> adminConversationsRename(RequestConfigurator<AdminConversationsRenameRequest.AdminConversationsRenameRequestBuilder> req) {
+        return adminConversationsRename(req.configure(AdminConversationsRenameRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsSearchResponse> adminConversationsSearch(AdminConversationsSearchRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_SEARCH, toMap(req), () -> methods.adminConversationsSearch(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsSearchResponse> adminConversationsSearch(RequestConfigurator<AdminConversationsSearchRequest.AdminConversationsSearchRequestBuilder> req) {
+        return adminConversationsSearch(req.configure(AdminConversationsSearchRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsSetConversationPrefsResponse> adminConversationsSetConversationPrefs(AdminConversationsSetConversationPrefsRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_SET_CONVERSATION_PREFS, toMap(req), () -> methods.adminConversationsSetConversationPrefs(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsSetConversationPrefsResponse> adminConversationsSetConversationPrefs(RequestConfigurator<AdminConversationsSetConversationPrefsRequest.AdminConversationsSetConversationPrefsRequestBuilder> req) {
+        return adminConversationsSetConversationPrefs(req.configure(AdminConversationsSetConversationPrefsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsUnarchiveResponse> adminConversationsUnarchive(AdminConversationsUnarchiveRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_UNARCHIVE, toMap(req), () -> methods.adminConversationsUnarchive(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsUnarchiveResponse> adminConversationsUnarchive(RequestConfigurator<AdminConversationsUnarchiveRequest.AdminConversationsUnarchiveRequestBuilder> req) {
+        return adminConversationsUnarchive(req.configure(AdminConversationsUnarchiveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_EKM_LIST_ORIGINAL_CONNECTED_CHANNEL_INFO, toMap(req), () -> methods.adminConversationsEkmListOriginalConnectedChannelInfo(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> adminConversationsEkmListOriginalConnectedChannelInfo(RequestConfigurator<AdminConversationsEkmListOriginalConnectedChannelInfoRequest.AdminConversationsEkmListOriginalConnectedChannelInfoRequestBuilder> req) {
+        return adminConversationsEkmListOriginalConnectedChannelInfo(req.configure(AdminConversationsEkmListOriginalConnectedChannelInfoRequest.builder()).build());
     }
 
     @Override

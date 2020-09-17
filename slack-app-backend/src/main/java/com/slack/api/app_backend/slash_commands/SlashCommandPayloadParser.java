@@ -37,6 +37,9 @@ public class SlashCommandPayloadParser {
                         case "enterprise_name":
                             payload.setEnterpriseName(value);
                             break;
+                        case "api_app_id":
+                            payload.setApiAppId(value);
+                            break;
                         case "channel_id":
                             payload.setChannelId(value);
                             break;

@@ -39,7 +39,9 @@ public class FieldsTest {
                 "getFile",
                 "getUsergroup",
                 "getChannel",
-                "getWorkspace");
+                "getWorkspace",
+                "getWorkflow"
+        );
     }
 
     @Test

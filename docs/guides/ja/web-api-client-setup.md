@@ -32,6 +32,10 @@ Maven でのライブラリインストールをはじめましょう。**slack-
   <artifactId>awesome-slack-app</artifactId>
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
+  <properties>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.slack.api</groupId>

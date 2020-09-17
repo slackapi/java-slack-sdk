@@ -213,6 +213,7 @@ public class File {
 
     @Data
     public static class ShareDetail {
+        private String shareUserId;
         private List<String> replyUsers;
         private Integer replyUsersCount;
         private Integer replyCount;

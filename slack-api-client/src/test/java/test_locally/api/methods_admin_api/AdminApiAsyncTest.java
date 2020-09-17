@@ -54,6 +54,21 @@ public class AdminApiAsyncTest {
         assertThat(methods.adminConversationsSetTeams(r ->
                 r.channelId("C123").teamId("T123").targetTeamIds(Arrays.asList("T123", "T234")))
                 .get().isOk(), is(true));
+
+        assertThat(methods.adminConversationsArchive(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsConvertToPrivate(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsCreate(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsDelete(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsDisconnectShared(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsEkmListOriginalConnectedChannelInfo(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsGetConversationPrefs(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsGetTeams(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsInvite(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsRename(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsSearch(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsSetConversationPrefs(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsSetTeams(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsUnarchive(r -> r).get().isOk(), is(true));
     }
 
     @Test

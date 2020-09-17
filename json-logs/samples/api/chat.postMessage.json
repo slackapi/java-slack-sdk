@@ -22,6 +22,35 @@
       },
       "team_id": "T00000000"
     },
+    "thread_ts": "0000000000.000000",
+    "parent_user_id": "U00000000",
+    "subtype": "",
+    "username": "",
+    "icons": {
+      "emoji": "",
+      "image_64": "https://www.example.com/"
+    },
+    "root": {
+      "type": "",
+      "subtype": "",
+      "text": "",
+      "ts": "0000000000.000000",
+      "username": "",
+      "icons": {
+        "emoji": "",
+        "image_64": "https://www.example.com/"
+      },
+      "bot_id": "B00000000",
+      "thread_ts": "0000000000.000000",
+      "parent_user_id": "U00000000",
+      "reply_count": 12345,
+      "reply_users_count": 12345,
+      "latest_reply": "0000000000.000000",
+      "reply_users": [
+        ""
+      ],
+      "subscribed": false
+    },
     "blocks": [
       {
         "type": "",
@@ -55,12 +84,12 @@
           {
             "type": "",
             "text": "",
-            "emoji": false
+            "verbatim": false
           },
           {
             "type": "",
             "text": "",
-            "verbatim": false
+            "emoji": false
           },
           {
             "type": "",
@@ -143,64 +172,6 @@
             "image_bytes": 12345
           }
         ],
-        "call_id": "R00000000",
-        "api_decoration_available": false,
-        "call": {
-          "v1": {
-            "id": "R00000000",
-            "app_id": "A00000000",
-            "app_icon_urls": {
-              "image_32": "https://www.example.com/",
-              "image_36": "https://www.example.com/",
-              "image_48": "https://www.example.com/",
-              "image_64": "https://www.example.com/",
-              "image_72": "https://www.example.com/",
-              "image_96": "https://www.example.com/",
-              "image_128": "https://www.example.com/",
-              "image_192": "https://www.example.com/",
-              "image_512": "https://www.example.com/",
-              "image_1024": "https://www.example.com/",
-              "image_original": "https://www.example.com/"
-            },
-            "date_start": 12345,
-            "active_participants": [
-              {
-                "slack_id": "U00000000"
-              },
-              {
-                "slack_id": "U00000000",
-                "external_id": "",
-                "avatar_url": "https://www.example.com/",
-                "display_name": ""
-              }
-            ],
-            "all_participants": [
-              {
-                "slack_id": "U00000000"
-              },
-              {
-                "slack_id": "U00000000",
-                "external_id": "",
-                "avatar_url": "https://www.example.com/",
-                "display_name": ""
-              }
-            ],
-            "display_id": "",
-            "join_url": "https://www.example.com/",
-            "name": "",
-            "created_by": "U00000000",
-            "date_end": 12345,
-            "channels": [
-              "C00000000"
-            ],
-            "is_dm_call": false,
-            "was_rejected": false,
-            "was_missed": false,
-            "was_accepted": false,
-            "has_ended": false,
-            "desktop_app_join_url": "https://www.example.com/"
-          }
-        },
         "fallback": "",
         "image_url": "",
         "image_width": 12345,
@@ -222,51 +193,6 @@
         ]
       }
     ],
-    "subtype": "",
-    "username": "",
-    "icons": {
-      "emoji": "",
-      "image_64": "https://www.example.com/",
-      "image_48": "https://www.example.com/"
-    },
-    "thread_ts": "0000000000.000000",
-    "parent_user_id": "U00000000",
-    "root": {
-      "bot_id": "B00000000",
-      "type": "",
-      "text": "",
-      "user": "U00000000",
-      "ts": "0000000000.000000",
-      "team": "T00000000",
-      "bot_profile": {
-        "id": "B00000000",
-        "deleted": false,
-        "name": "",
-        "updated": 12345,
-        "app_id": "A00000000",
-        "icons": {
-          "image_36": "https://www.example.com/",
-          "image_48": "https://www.example.com/",
-          "image_72": "https://www.example.com/"
-        },
-        "team_id": "T00000000"
-      },
-      "thread_ts": "0000000000.000000",
-      "reply_count": 12345,
-      "reply_users_count": 12345,
-      "latest_reply": "0000000000.000000",
-      "reply_users": [
-        "U00000000"
-      ],
-      "subscribed": false,
-      "subtype": "",
-      "username": "",
-      "icons": {
-        "emoji": "",
-        "image_64": "https://www.example.com/"
-      },
-      "parent_user_id": "U00000000"
-    },
     "attachments": [
       {
         "text": "",
@@ -498,12 +424,12 @@
     ]
   },
   "error": "",
+  "deprecated_argument": "",
   "response_metadata": {
     "messages": [
       ""
     ]
   },
-  "deprecated_argument": "",
   "needed": "",
   "provided": ""
 }

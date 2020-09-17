@@ -97,7 +97,8 @@
       "manual_export_deleted",
       "scheduled_export_deleted",
       "channels_export_deleted",
-      "manual_user_export_deleted"
+      "manual_user_export_deleted",
+      "pref.notification_redaction_type"
     ],
     "user": [
       "custom_tos_accepted",
@@ -159,7 +160,8 @@
       "external_shared_channel_reconnected",
       "channel_moved",
       "channel_posting_pref_changed_from_org_level",
-      "channel_renamed"
+      "channel_renamed",
+      "external_shared_channel_invite_auto_revoked"
     ],
     "app": [
       "app_installed",

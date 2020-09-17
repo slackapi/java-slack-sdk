@@ -850,7 +850,9 @@ public class EventsApiTest {
         private boolean dndUpdatedUser;
 
         public boolean isAllDone() {
-            return dndUpdated && dndUpdatedUser;
+            // NOTE: As of Sep 3 2020, dnd_updated_user events are not sent to app
+            // return dndUpdated && dndUpdatedUser;
+            return dndUpdated;
         }
     }
 
@@ -865,9 +867,7 @@ public class EventsApiTest {
         TestSlackAppServer server = new TestSlackAppServer(app);
         DndTestState state = new DndTestState();
 
-        String createdUsergroupId = null;
         try {
-
             // Subscribe to events on behalf of users
 
             // dnd_updated
@@ -908,11 +908,6 @@ public class EventsApiTest {
 
         } finally {
             server.stop();
-
-            if (createdUsergroupId != null) {
-                String id = createdUsergroupId;
-                slack.methods(userToken).usergroupsDisable(r -> r.usergroup(id));
-            }
         }
     }
 

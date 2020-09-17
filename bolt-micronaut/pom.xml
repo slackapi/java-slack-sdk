@@ -6,10 +6,11 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.1.4-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
     </parent>
 
     <properties>
+        <!-- TODO: upgrade once https://github.com/micronaut-projects/micronaut-core/issues/3933 is resolved -->
         <micronaut.bom.version>2.0.0</micronaut.bom.version>
         <micronaut.version>2.0.1</micronaut.version>
         <micronaut-test-junit5.version>1.2.0</micronaut-test-junit5.version>
@@ -18,7 +19,7 @@
 
     <groupId>com.slack.api</groupId>
     <artifactId>bolt-micronaut</artifactId>
-    <version>1.1.4-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencyManagement>
