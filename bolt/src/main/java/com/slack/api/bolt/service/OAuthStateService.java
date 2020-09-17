@@ -1,13 +1,9 @@
 package com.slack.api.bolt.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.response.Response;
+
+import java.util.*;
 
 /**
  * Manages state parameters for Slack OAuth flow.

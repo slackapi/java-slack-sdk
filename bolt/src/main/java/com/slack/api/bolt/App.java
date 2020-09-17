@@ -320,7 +320,7 @@ public class App {
     /**
      * Get the Slack URL for beginning the OAuth flow, including the query
      * params necessary to identify this application to Slack.
-     *
+     * <p>
      * Appends the optional `redirect_uri` query param based on the provided
      * AppConfig to ensure that the correct OAuth redirect URI is selected in
      * cases where a Slack application may have multiple redirect URIs
@@ -364,8 +364,8 @@ public class App {
 
         try {
             String urlEncodedRedirectUri = URLEncoder.encode(
-                appConfig.getRedirectUri(),
-                StandardCharsets.UTF_8.name()
+                    appConfig.getRedirectUri(),
+                    StandardCharsets.UTF_8.name()
             );
 
             return String.format("&redirect_uri=%s", urlEncodedRedirectUri);

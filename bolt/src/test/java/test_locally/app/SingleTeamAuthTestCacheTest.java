@@ -39,11 +39,13 @@ import static org.junit.Assert.fail;
 public class SingleTeamAuthTestCacheTest {
 
     static SlackConfig config = new SlackConfig();
+
     static {
         MethodsConfig methodsConfig = new MethodsConfig();
         methodsConfig.setStatsEnabled(false); // To skip TeamIdCache requests
         config.setMethodsConfig(methodsConfig);
     }
+
     static Slack slack = Slack.getInstance(config);
     static CountdownAuthTestServer server = new CountdownAuthTestServer();
 

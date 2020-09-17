@@ -8,13 +8,11 @@ import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.model.builtin.DefaultBot;
-import com.slack.api.bolt.model.builtin.DefaultInstaller;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.GlobalShortcutRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
 import com.slack.api.methods.MethodsConfig;
-import com.slack.api.methods.SlackApiException;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
@@ -38,12 +36,12 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 @Slf4j
 public class MultiTeamsAuthTestCacheTest {
 
     static SlackConfig config = new SlackConfig();
+
     static {
         MethodsConfig methodsConfig = new MethodsConfig();
         methodsConfig.setStatsEnabled(false); // To skip TeamIdCache requests
