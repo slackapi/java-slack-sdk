@@ -99,6 +99,10 @@ public class SlackAppService implements Service {
             response.headers().add(header.getKey(), header.getValue());
         }
         response.headers().put("Content-Type", slackResponse.getContentType());
-        response.send(slackResponse.getBody());
+        String body = slackResponse.getBody();
+        if (body == null) {
+            body = "";
+        }
+        response.send(body);
     }
 }
