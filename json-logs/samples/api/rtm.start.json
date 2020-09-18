@@ -357,7 +357,9 @@
       "seen_channel_email_tooltip": false,
       "join_calls_device_settings": "",
       "a11y_dyslexic": false,
-      "connect_dm_early_access": false
+      "connect_dm_early_access": false,
+      "seen_connect_dm_coachmark": false,
+      "xws_sidebar_variant": 12345
     },
     "created": 12345,
     "first_login": 12345,
