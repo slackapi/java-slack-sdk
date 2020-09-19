@@ -285,6 +285,22 @@
     {
       "date_created": "2020-09-15T01:39:42-07:00",
       "body": "Some users have reported issues with imports and exports failing to complete at this time. We\u0027re working to resolve the issue and will share more information as soon as it’s available. Thank you for your patience."
+    },
+    {
+      "date_created": "2020-09-18T14:13:11-07:00",
+      "body": "We\u0027ve confirmed the issue with Org Owners and Admins being unable to edit user profiles is now fixed. Please refresh with Ctrl/Cmd + Shift + R, and let us know if anything seems unresolved.\r\n\r\nApologies for any disruptions to your work. We\u0027ll report back with a summary shortly."
+    },
+    {
+      "date_created": "2020-09-18T11:58:55-07:00",
+      "body": "We’re still investigating the issue, however we\u0027ve encountered a delay in reaching a possible solution. We’ll provide another update as soon as we have news."
+    },
+    {
+      "date_created": "2020-09-18T10:22:28-07:00",
+      "body": "We’ve identified a potential cause of the issue and we’re working on getting a fix out as soon as possible. We’ll be back with another update."
+    },
+    {
+      "date_created": "2020-09-18T09:51:40-07:00",
+      "body": "Some Org Owners and Admins on Enterprise Grid might have trouble editing user profiles through the Admin dashboard. We\u0027re investigating the issue, and we believe that this is a result of a recent change made on our end. If this is the case, we\u0027ll be reverting the change shortly. We\u0027ll follow up when we know more."
     }
   ]
 }

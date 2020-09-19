@@ -174,7 +174,9 @@
       "app_token_preserved",
       "workflow_app_token_preserved",
       "bot_token_upgraded",
-      "bot_token_downgraded"
+      "bot_token_downgraded",
+      "org_app_workspace_added",
+      "org_app_workspace_removed"
     ],
     "workflow_builder": [
       "workflow_created",

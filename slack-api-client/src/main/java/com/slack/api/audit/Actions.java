@@ -202,6 +202,8 @@ public class Actions {
         public static final String bot_token_downgraded = "bot_token_downgraded";
         public static final String app_restricted = "app_restricted";
         public static final String app_removed_from_whitelist = "app_removed_from_whitelist";
+        public static final String org_app_workspace_added = "org_app_workspace_added";
+        public static final String org_app_workspace_removed = "org_app_workspace_removed";
     }
 
     public static class Message {
