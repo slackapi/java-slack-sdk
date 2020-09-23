@@ -84,11 +84,13 @@ public class pins_Test {
                     .token(botToken)
                     .channel(channels.get(0))
                     .file(fileObj.getId()));
-//            // We are phasing out support for pinning files and file comments only.
-//            // This method will no longer accept the file and file_comment parameters beginning August 22, 2019.
-//            assertThat(response.getError(), is("not_pinnable"));
+            // We are phasing out support for pinning files and file comments only.
+            // This method will no longer accept the file and file_comment parameters beginning August 22, 2019.
+            // assertThat(response.getError(), is("not_pinnable"));
             // Since Oct 2019
-            assertThat(response.getError(), is(nullValue()));
+            // assertThat(response.getError(), is(nullValue()));
+            // Since Sep 2020
+            assertThat(response.getError(), is("no_item_specified"));
         }
         {
             // https://api.slack.com/methods/pins.add
@@ -98,9 +100,11 @@ public class pins_Test {
                     .file(fileObj.getId()));
             // We are phasing out support for pinning files and file comments only.
             // This method will no longer accept the file and file_comment parameters beginning August 22, 2019.
-//            assertThat(response.getError(), is("no_pin"));
+            // assertThat(response.getError(), is("no_pin"));
             // Since Oct 2019
-            assertThat(response.getError(), is(nullValue()));
+            // assertThat(response.getError(), is(nullValue()));
+            // Since Sep 2020
+            assertThat(response.getError(), is("no_pin"));
         }
 
         {
