@@ -176,7 +176,11 @@
       "bot_token_upgraded",
       "bot_token_downgraded",
       "org_app_workspace_added",
-      "org_app_workspace_removed"
+      "org_app_workspace_removed",
+      "org_app_installed",
+      "org_app_uninstalled",
+      "org_app_future_workspace_install_enabled",
+      "org_app_future_workspace_install_disabled"
     ],
     "workflow_builder": [
       "workflow_created",

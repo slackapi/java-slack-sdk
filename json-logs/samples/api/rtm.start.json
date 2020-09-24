@@ -359,7 +359,12 @@
       "a11y_dyslexic": false,
       "connect_dm_early_access": false,
       "seen_connect_dm_coachmark": false,
-      "xws_sidebar_variant": 12345
+      "xws_sidebar_variant": 12345,
+      "user_customized_quick_reactions_display_feature": 12345,
+      "user_customized_quick_reactions_has_customized": false,
+      "user_customized_quick_reactions_emoji_1": "",
+      "user_customized_quick_reactions_emoji_2": "",
+      "user_customized_quick_reactions_emoji_3": ""
     },
     "created": 12345,
     "first_login": 12345,
@@ -612,7 +617,10 @@
         "type": [
           ""
         ]
-      }
+      },
+      "admin_customized_quick_reactions": [
+        ""
+      ]
     },
     "icon": {
       "image_34": "https://www.example.com/",

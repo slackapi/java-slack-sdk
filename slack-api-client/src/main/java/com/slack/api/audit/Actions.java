@@ -204,6 +204,10 @@ public class Actions {
         public static final String app_removed_from_whitelist = "app_removed_from_whitelist";
         public static final String org_app_workspace_added = "org_app_workspace_added";
         public static final String org_app_workspace_removed = "org_app_workspace_removed";
+        public static final String org_app_installed = "org_app_installed";
+        public static final String org_app_uninstalled = "org_app_uninstalled";
+        public static final String org_app_future_workspace_install_enabled = "org_app_future_workspace_install_enabled";
+        public static final String org_app_future_workspace_install_disabled = "org_app_future_workspace_install_disabled";
     }
 
     public static class Message {
