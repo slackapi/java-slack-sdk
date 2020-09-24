@@ -11,7 +11,7 @@
 
     <properties>
         <micronaut.bom.version>2.0.2</micronaut.bom.version>
-        <micronaut.version>2.0.2</micronaut.version>
+        <micronaut.version>2.0.3</micronaut.version>
         <micronaut-test-junit5.version>1.2.0</micronaut-test-junit5.version>
         <mockito-all.version>1.10.19</mockito-all.version>
     </properties>
