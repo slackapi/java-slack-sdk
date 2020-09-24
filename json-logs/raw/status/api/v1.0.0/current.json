@@ -301,6 +301,26 @@
     {
       "date_created": "2020-09-18T09:51:40-07:00",
       "body": "Some Org Owners and Admins on Enterprise Grid might have trouble editing user profiles through the Admin dashboard. We\u0027re investigating the issue, and we believe that this is a result of a recent change made on our end. If this is the case, we\u0027ll be reverting the change shortly. We\u0027ll follow up when we know more."
+    },
+    {
+      "date_created": "2020-09-24T15:10:00-07:00",
+      "body": "The fix has been fully released and all images should now display correctly after reloading Slack via Ctrl/Command+Shift+O. Our sincere thanks for bearing with us and we\u0027re very sorry for any disruption this may have caused."
+    },
+    {
+      "date_created": "2020-09-24T14:46:16-07:00",
+      "body": "We\u0027re making progress towards a total fix, but new image uploads going forward should render as expected. Work is ongoing to fix the images that were affected during this incident.\r\n\r\nYou\u0027re welcome to re-upload images that were previously affected if you need them before the complete fix is ready."
+    },
+    {
+      "date_created": "2020-09-24T14:16:16-07:00",
+      "body": "No additional news to share just yet, but we\u0027re working as quickly as possible to identify and fix the issue of recently uploaded images not displaying properly on desktop. We appreciate your continued patience."
+    },
+    {
+      "date_created": "2020-09-24T13:46:16-07:00",
+      "body": "Newly uploaded images should display correctly on mobile devices, but we\u0027re still digging into why they\u0027re not rendering correctly on the desktop application. Thanks for bearing with us."
+    },
+    {
+      "date_created": "2020-09-24T13:16:16-07:00",
+      "body": "Some customers may see broken or empty placeholder images after they try to upload an image to a channel. We\u0027re looking into it and shall provide an update as we know more. Our apologies for the disruption."
     }
   ]
 }
