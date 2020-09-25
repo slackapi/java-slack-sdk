@@ -5,11 +5,16 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.util.http.SlackHttpClient;
 import okhttp3.FormBody;
+import okhttp3.MultipartBody;
 import okhttp3.Response;
 import org.junit.Test;
 
+import java.util.Collections;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class SlackHttpClientTest {
 
@@ -52,4 +57,53 @@ public class SlackHttpClientTest {
         }
     }
 
+    // https://github.com/slackapi/java-slack-sdk/issues/566
+    @Test
+    public void shouldNotRevealAuthorizationHeaderEvenIfItIsInvalid() throws Exception {
+        String url = "http://localhost:123/";
+        String expectedErrorMessage = "Invalid value detected for Authorization header";
+        String token = "xoxb-111-222-zzz\nfoo-bar";
+        try (SlackHttpClient httpClient = new SlackHttpClient()) {
+            FormBody body = new FormBody.Builder().build();
+            try {
+                httpClient.postFormWithBearerHeader(url, token, body);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals(expectedErrorMessage, e.getMessage());
+            }
+            try {
+                httpClient.postFormWithAuthorizationHeader(url, "Bearer " + token, body);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals(expectedErrorMessage, e.getMessage());
+            }
+            MultipartBody multipartBody = new MultipartBody.Builder()
+                    .addFormDataPart("foo", "bar")
+                    .build();
+            try {
+                httpClient.postMultipart(url, token, multipartBody);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals(expectedErrorMessage, e.getMessage());
+            }
+            try {
+                httpClient.postCamelCaseJsonBodyWithBearerHeader(url,  token, body);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals(expectedErrorMessage, e.getMessage());
+            }
+            try {
+                httpClient.patchCamelCaseJsonBodyWithBearerHeader(url,  token, body);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals(expectedErrorMessage, e.getMessage());
+            }
+            try {
+                httpClient.get(url, Collections.emptyMap(), token);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals(expectedErrorMessage, e.getMessage());
+            }
+        }
+    }
 }

@@ -65,7 +65,16 @@ public class SlackHttpClient implements AutoCloseable {
         final Request request;
         if (token != null) {
             String bearerHeaderValue = "Bearer " + token;
-            request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).get().build();
+            Request.Builder rb = new Request.Builder().url(url).get();
+            try {
+                // may throw an IllegalArgumentException saying
+                // "Unexpected char 0x0a at 23 in Authorization value: Bearer ..."
+                rb = rb.header("Authorization", bearerHeaderValue);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("Invalid value detected for Authorization header");
+            }
+            request = rb.build();
+            return okHttpClient.newCall(request).execute();
         } else {
             request = new Request.Builder().url(url).get().build();
         }
@@ -74,7 +83,15 @@ public class SlackHttpClient implements AutoCloseable {
 
     public Response postMultipart(String url, String token, MultipartBody multipartBody) throws IOException {
         String bearerHeaderValue = "Bearer " + token;
-        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).post(multipartBody).build();
+        Request.Builder rb = new Request.Builder().url(url).post(multipartBody);
+        try {
+            // may throw an IllegalArgumentException saying
+            // "Unexpected char 0x0a at 23 in Authorization value: Bearer ..."
+            rb = rb.header("Authorization", bearerHeaderValue);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid value detected for Authorization header");
+        }
+        Request request = rb.build();
         return okHttpClient.newCall(request).execute();
     }
 
@@ -89,7 +106,15 @@ public class SlackHttpClient implements AutoCloseable {
     }
 
     public Response postFormWithAuthorizationHeader(String url, String authorizationHeader, FormBody formBody) throws IOException {
-        Request request = new Request.Builder().url(url).header("Authorization", authorizationHeader).post(formBody).build();
+        Request.Builder rb = new Request.Builder().url(url).post(formBody);
+        try {
+            // may throw an IllegalArgumentException saying
+            // "Unexpected char 0x0a at 23 in Authorization value: Bearer ..."
+            rb = rb.header("Authorization", authorizationHeader);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid value detected for Authorization header");
+        }
+        Request request = rb.build();
         return okHttpClient.newCall(request).execute();
     }
 
@@ -102,21 +127,45 @@ public class SlackHttpClient implements AutoCloseable {
     public Response postCamelCaseJsonBodyWithBearerHeader(String url, String token, Object obj) throws IOException {
         String bearerHeaderValue = "Bearer " + token;
         RequestBody body = RequestBody.create(toCamelCaseJsonString(obj), MEDIA_TYPE_APPLICATION_JSON);
-        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).post(body).build();
+        Request.Builder rb = new Request.Builder().url(url).post(body);
+        try {
+            // may throw an IllegalArgumentException saying
+            // "Unexpected char 0x0a at 23 in Authorization value: Bearer ..."
+            rb = rb.header("Authorization", bearerHeaderValue);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid value detected for Authorization header");
+        }
+        Request request = rb.build();
         return okHttpClient.newCall(request).execute();
     }
 
     public Response patchCamelCaseJsonBodyWithBearerHeader(String url, String token, Object obj) throws IOException {
         String bearerHeaderValue = "Bearer " + token;
         RequestBody body = RequestBody.create(toCamelCaseJsonString(obj), MEDIA_TYPE_APPLICATION_JSON);
-        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).patch(body).build();
+        Request.Builder rb = new Request.Builder().url(url).patch(body);
+        try {
+            // may throw an IllegalArgumentException saying
+            // "Unexpected char 0x0a at 23 in Authorization value: Bearer ..."
+            rb = rb.header("Authorization", bearerHeaderValue);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid value detected for Authorization header");
+        }
+        Request request = rb.build();
         return okHttpClient.newCall(request).execute();
     }
 
     public Response putCamelCaseJsonBodyWithBearerHeader(String url, String token, Object obj) throws IOException {
         String bearerHeaderValue = "Bearer " + token;
         RequestBody body = RequestBody.create(toCamelCaseJsonString(obj), MEDIA_TYPE_APPLICATION_JSON);
-        Request request = new Request.Builder().url(url).header("Authorization", bearerHeaderValue).put(body).build();
+        Request.Builder rb = new Request.Builder().url(url).put(body);
+        try {
+            // may throw an IllegalArgumentException saying
+            // "Unexpected char 0x0a at 23 in Authorization value: Bearer ..."
+            rb = rb.header("Authorization", bearerHeaderValue);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid value detected for Authorization header");
+        }
+        Request request = rb.build();
         return okHttpClient.newCall(request).execute();
     }
 
