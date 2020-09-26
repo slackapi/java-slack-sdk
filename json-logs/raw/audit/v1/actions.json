@@ -123,7 +123,9 @@
       "user_logout_compromised",
       "user_session_reset_by_admin",
       "user_logout_non_compliant_mobile_app_version",
-      "user_force_upgrade_non_compliant_mobile_app_version"
+      "user_force_upgrade_non_compliant_mobile_app_version",
+      "user_login_failed",
+      "user_session_invalidated"
     ],
     "file": [
       "file_downloaded",
