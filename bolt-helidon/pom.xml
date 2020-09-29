@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.1.6-SNAPSHOT</version>
+        <version>1.1.6</version>
     </parent>
 
     <properties>
@@ -16,7 +16,7 @@
 
     <groupId>com.slack.api</groupId>
     <artifactId>bolt-helidon</artifactId>
-    <version>1.1.6-SNAPSHOT</version>
+    <version>1.1.6</version>
     <packaging>jar</packaging>
 
     <dependencies>
