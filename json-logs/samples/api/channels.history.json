@@ -545,7 +545,16 @@
       ],
       "subscribed": false,
       "client_msg_id": "",
-      "inviter": "U00000000"
+      "inviter": "U00000000",
+      "reactions": [
+        {
+          "name": "",
+          "users": [
+            "U00000000"
+          ],
+          "count": 12345
+        }
+      ]
     }
   ],
   "has_more": false,

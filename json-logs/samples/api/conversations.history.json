@@ -510,7 +510,17 @@
         }
       ],
       "topic": "",
-      "purpose": ""
+      "purpose": "",
+      "client_msg_id": "",
+      "reactions": [
+        {
+          "name": "",
+          "users": [
+            "U00000000"
+          ],
+          "count": 12345
+        }
+      ]
     }
   ],
   "has_more": false,

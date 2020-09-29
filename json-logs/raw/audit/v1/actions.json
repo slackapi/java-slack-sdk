@@ -98,7 +98,9 @@
       "scheduled_export_deleted",
       "channels_export_deleted",
       "manual_user_export_deleted",
-      "pref.notification_redaction_type"
+      "pref.notification_redaction_type",
+      "pref.session_duration_changed",
+      "pref.session_duration_type_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -121,7 +123,9 @@
       "user_logout_compromised",
       "user_session_reset_by_admin",
       "user_logout_non_compliant_mobile_app_version",
-      "user_force_upgrade_non_compliant_mobile_app_version"
+      "user_force_upgrade_non_compliant_mobile_app_version",
+      "user_login_failed",
+      "user_session_invalidated"
     ],
     "file": [
       "file_downloaded",
@@ -161,7 +165,9 @@
       "channel_moved",
       "channel_posting_pref_changed_from_org_level",
       "channel_renamed",
-      "external_shared_channel_invite_auto_revoked"
+      "external_shared_channel_invite_auto_revoked",
+      "channel_email_address_created",
+      "channel_email_address_deleted"
     ],
     "app": [
       "app_installed",
@@ -174,7 +180,14 @@
       "app_token_preserved",
       "workflow_app_token_preserved",
       "bot_token_upgraded",
-      "bot_token_downgraded"
+      "bot_token_downgraded",
+      "org_app_workspace_added",
+      "org_app_workspace_removed",
+      "org_app_installed",
+      "org_app_uninstalled",
+      "org_app_future_workspace_install_enabled",
+      "org_app_future_workspace_install_disabled",
+      "org_app_upgraded_to_org_install"
     ],
     "workflow_builder": [
       "workflow_created",

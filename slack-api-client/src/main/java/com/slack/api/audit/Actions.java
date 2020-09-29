@@ -100,6 +100,8 @@ public class Actions {
         public static final String pref_required_minimum_mobile_version_changed = "pref.required_minimum_mobile_version_changed";
         public static final String pref_admin_retention_override_changed = "pref.admin_retention_override_changed";
         public static final String pref_notification_redaction_type = "pref.notification_redaction_type";
+        public static final String pref_session_duration_changed = "pref.session_duration_changed";
+        public static final String pref_session_duration_type_changed = "pref.session_duration_type_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -128,8 +130,10 @@ public class Actions {
         public static final String user_created = "user_created";
         public static final String user_deactivated = "user_deactivated";
         public static final String user_login = "user_login";
+        public static final String user_login_failed = "user_login_failed";
         public static final String user_logout = "user_logout";
         public static final String user_reactivated = "user_reactivated";
+        public static final String user_session_invalidated = "user_session_invalidated";
         public static final String guest_expiration_set = "guest_expiration_set";
         public static final String guest_expiration_cleared = "guest_expiration_cleared";
         public static final String guest_expired = "guest_expired";
@@ -185,6 +189,8 @@ public class Actions {
         public static final String channel_renamed = "channel_renamed";
         public static final String channel_posting_pref_changed_from_org_level = "channel_posting_pref_changed_from_org_level";
         public static final String external_shared_channel_invite_auto_revoked = "external_shared_channel_invite_auto_revoked";
+        public static final String channel_email_address_created = "channel_email_address_created";
+        public static final String channel_email_address_deleted = "channel_email_address_deleted";
     }
 
     public static class App {
@@ -202,6 +208,13 @@ public class Actions {
         public static final String bot_token_downgraded = "bot_token_downgraded";
         public static final String app_restricted = "app_restricted";
         public static final String app_removed_from_whitelist = "app_removed_from_whitelist";
+        public static final String org_app_workspace_added = "org_app_workspace_added";
+        public static final String org_app_workspace_removed = "org_app_workspace_removed";
+        public static final String org_app_installed = "org_app_installed";
+        public static final String org_app_uninstalled = "org_app_uninstalled";
+        public static final String org_app_future_workspace_install_enabled = "org_app_future_workspace_install_enabled";
+        public static final String org_app_future_workspace_install_disabled = "org_app_future_workspace_install_disabled";
+        public static final String org_app_upgraded_to_org_install = "org_app_upgraded_to_org_install";
     }
 
     public static class Message {

@@ -185,6 +185,9 @@ public class LogsResponse implements AuditApiResponse {
         private String resolution; // app_approved
         private Boolean appPreviouslyResolved; // app_approved
         private String adminAppId; // app_approved
+        private String exportType; // manual_export_completed
+        private String exportStartTs; // manual_export_completed
+        private String exportEndTs; // manual_export_completed
     }
 
     @Data
