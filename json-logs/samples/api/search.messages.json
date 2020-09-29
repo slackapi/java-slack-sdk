@@ -36,7 +36,8 @@
             ""
           ],
           "is_pending_ext_shared": false,
-          "user": "U00000000"
+          "user": "U00000000",
+          "name_normalized": ""
         },
         "type": "",
         "user": "U00000000",
