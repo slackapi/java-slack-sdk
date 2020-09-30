@@ -468,6 +468,10 @@ public interface AsyncMethodsClient {
     // admin.users.session
     // ------------------------------
 
+    CompletableFuture<AdminUsersSessionInvalidateResponse> adminUsersSessionInvalidate(AdminUsersSessionInvalidateRequest req);
+
+    CompletableFuture<AdminUsersSessionInvalidateResponse> adminUsersSessionInvalidate(RequestConfigurator<AdminUsersSessionInvalidateRequest.AdminUsersSessionInvalidateRequestBuilder> req);
+
     CompletableFuture<AdminUsersSessionResetResponse> adminUsersSessionReset(AdminUsersSessionResetRequest req);
 
     CompletableFuture<AdminUsersSessionResetResponse> adminUsersSessionReset(RequestConfigurator<AdminUsersSessionResetRequest.AdminUsersSessionResetRequestBuilder> req);

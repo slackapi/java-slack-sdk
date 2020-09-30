@@ -117,6 +117,13 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminUsersSessionInvalidateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("session_id", req.getSessionId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminAppsApproveRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("app_id", req.getAppId(), form);
