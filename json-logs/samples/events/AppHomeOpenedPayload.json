@@ -45,9 +45,11 @@
       "hash": "",
       "clear_on_close": false,
       "notify_on_close": false,
+      "submit_disabled": false,
       "root_view_id": "",
       "previous_view_id": "",
       "app_id": "",
+      "app_installed_team_id": "",
       "bot_id": ""
     }
   }
