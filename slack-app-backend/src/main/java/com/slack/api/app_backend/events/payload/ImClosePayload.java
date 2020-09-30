@@ -17,6 +17,7 @@ public class ImClosePayload implements EventsApiPayload<ImCloseEvent> {
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private ImCloseEvent event;
 }

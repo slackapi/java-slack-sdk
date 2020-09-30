@@ -17,6 +17,7 @@ public class FileChangePayload implements EventsApiPayload<FileChangeEvent> {
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private FileChangeEvent event;
 }

@@ -17,6 +17,7 @@ public class UserResourceDeniedPayload implements EventsApiPayload<UserResourceD
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private UserResourceDeniedEvent event;
 }

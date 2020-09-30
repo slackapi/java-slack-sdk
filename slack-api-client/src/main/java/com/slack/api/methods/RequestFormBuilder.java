@@ -24,6 +24,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
+import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
 import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsResourcesListRequest;
@@ -587,6 +588,14 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("client_id", req.getClientId(), form);
         setIfNotNull("client_secret", req.getClientSecret(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsEventAuthorizationsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("event_context", req.getEventContext(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
         return form;
     }
 

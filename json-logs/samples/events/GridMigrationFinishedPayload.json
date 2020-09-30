@@ -12,6 +12,7 @@
   ],
   "event_id": "",
   "event_time": 123,
+  "event_context": "",
   "event": {
     "type": "grid_migration_finished",
     "enterprise_id": ""

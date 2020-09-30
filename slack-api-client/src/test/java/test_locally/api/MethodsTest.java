@@ -39,9 +39,7 @@ public class MethodsTest {
                 // still in beta - https://api.slack.com/workflows/steps
                 "workflows.stepCompleted",
                 "workflows.stepFailed",
-                "workflows.updateStep",
-                // TODO
-                "apps.event.authorizations.list"
+                "workflows.updateStep"
         );
         List<String> methodNames = new ArrayList<>();
         for (String methodName : allMethodNames) {

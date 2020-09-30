@@ -17,6 +17,7 @@ public class ChannelSharedPayload implements EventsApiPayload<ChannelSharedEvent
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private ChannelSharedEvent event;
 }

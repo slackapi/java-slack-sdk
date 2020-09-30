@@ -17,6 +17,7 @@ public class MessageThreadBroadcastPayload implements EventsApiPayload<MessageTh
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private MessageThreadBroadcastEvent event;
 }

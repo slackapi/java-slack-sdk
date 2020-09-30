@@ -17,6 +17,7 @@ public class TeamRenamePayload implements EventsApiPayload<TeamRenameEvent> {
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private TeamRenameEvent event;
 }

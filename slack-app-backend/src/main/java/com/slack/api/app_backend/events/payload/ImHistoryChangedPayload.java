@@ -17,6 +17,7 @@ public class ImHistoryChangedPayload implements EventsApiPayload<ImHistoryChange
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private ImHistoryChangedEvent event;
 }

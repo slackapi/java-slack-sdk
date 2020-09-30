@@ -17,6 +17,7 @@ public class EmojiChangedPayload implements EventsApiPayload<EmojiChangedEvent> 
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private EmojiChangedEvent event;
 }

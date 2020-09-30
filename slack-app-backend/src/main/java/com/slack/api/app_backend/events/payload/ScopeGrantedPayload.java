@@ -17,6 +17,7 @@ public class ScopeGrantedPayload implements EventsApiPayload<ScopeGrantedEvent> 
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private ScopeGrantedEvent event;
 }

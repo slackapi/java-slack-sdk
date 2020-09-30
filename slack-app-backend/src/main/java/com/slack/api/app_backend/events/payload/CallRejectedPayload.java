@@ -17,6 +17,7 @@ public class CallRejectedPayload implements EventsApiPayload<CallRejectedEvent> 
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private CallRejectedEvent event;
 }

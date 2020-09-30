@@ -17,6 +17,7 @@ public class PinAddedPayload implements EventsApiPayload<PinAddedEvent> {
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private PinAddedEvent event;
 }

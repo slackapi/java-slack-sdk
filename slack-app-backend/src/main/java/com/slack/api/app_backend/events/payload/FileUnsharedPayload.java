@@ -17,6 +17,7 @@ public class FileUnsharedPayload implements EventsApiPayload<FileUnsharedEvent> 
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private FileUnsharedEvent event;
 }

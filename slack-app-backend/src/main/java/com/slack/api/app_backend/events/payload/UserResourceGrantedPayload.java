@@ -17,6 +17,7 @@ public class UserResourceGrantedPayload implements EventsApiPayload<UserResource
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private UserResourceGrantedEvent event;
 }

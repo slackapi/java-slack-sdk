@@ -17,6 +17,7 @@ public class ReactionAddedPayload implements EventsApiPayload<ReactionAddedEvent
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private ReactionAddedEvent event;
 }

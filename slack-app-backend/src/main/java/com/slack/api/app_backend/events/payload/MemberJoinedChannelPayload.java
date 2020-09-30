@@ -17,6 +17,7 @@ public class MemberJoinedChannelPayload implements EventsApiPayload<MemberJoined
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private MemberJoinedChannelEvent event;
 }

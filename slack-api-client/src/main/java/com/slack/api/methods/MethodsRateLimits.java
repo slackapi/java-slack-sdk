@@ -147,6 +147,7 @@ public class MethodsRateLimits {
 
         setRateLimitTier(API_TEST, Tier4);
         setRateLimitTier(APPS_UNINSTALL, Tier1);
+        setRateLimitTier(APPS_EVENT_AUTHORIZATIONS_LIST, Tier4);
 
         setRateLimitTier(AUTH_REVOKE, Tier3);
         setRateLimitTier(AUTH_TEST, SpecialTier_auth_test);

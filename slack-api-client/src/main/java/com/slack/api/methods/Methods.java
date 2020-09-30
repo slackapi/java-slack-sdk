@@ -155,6 +155,12 @@ public class Methods {
     public static final String APPS_UNINSTALL = "apps.uninstall";
 
     // ------------------------------
+    // apps.event.authorizations
+    // ------------------------------
+
+    public static final String APPS_EVENT_AUTHORIZATIONS_LIST = "apps.event.authorizations.list";
+
+    // ------------------------------
     // apps.permissions
     // ------------------------------
 

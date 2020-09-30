@@ -17,6 +17,7 @@ public class AppHomeOpenedPayload implements EventsApiPayload<AppHomeOpenedEvent
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private AppHomeOpenedEvent event;
 }

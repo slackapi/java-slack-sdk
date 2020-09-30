@@ -17,6 +17,7 @@ public class AppRateLimitedPayload implements EventsApiPayload<AppRateLimitedEve
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private AppRateLimitedEvent event;
 }

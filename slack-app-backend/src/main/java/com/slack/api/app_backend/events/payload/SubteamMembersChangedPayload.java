@@ -17,6 +17,7 @@ public class SubteamMembersChangedPayload implements EventsApiPayload<SubteamMem
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private SubteamMembersChangedEvent event;
 }

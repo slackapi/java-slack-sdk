@@ -53,6 +53,12 @@ public interface EventsApiPayload<E extends Event> {
 
     void setEventTime(Integer eventTime);
 
+    // eventContext
+
+    String getEventContext();
+
+    void setEventContext(String eventContext);
+
     // authedUsers
 
     List<String> getAuthedUsers();

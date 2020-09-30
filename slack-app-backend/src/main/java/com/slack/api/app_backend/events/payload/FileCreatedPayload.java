@@ -17,6 +17,7 @@ public class FileCreatedPayload implements EventsApiPayload<FileCreatedEvent> {
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private FileCreatedEvent event;
 }
