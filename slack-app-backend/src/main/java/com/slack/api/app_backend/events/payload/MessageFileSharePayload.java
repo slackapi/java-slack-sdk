@@ -17,6 +17,7 @@ public class MessageFileSharePayload implements EventsApiPayload<MessageFileShar
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private MessageFileShareEvent event;
 }

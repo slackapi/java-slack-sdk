@@ -8,6 +8,7 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.middleware.Middleware;
 import com.slack.api.methods.request.files.FilesUploadRequest;
+import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -44,6 +45,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertNull;
@@ -955,7 +957,7 @@ public class EventsApiTest {
             });
             app.event(MessageChangedEvent.class, (req, ctx) -> {
                 if (req.getEvent().getMessage().getFiles() != null && req.getEvent().getMessage().getFiles().size() > 0
-                    && req.getEvent().getPreviousMessage().getFiles() != null && req.getEvent().getPreviousMessage().getFiles().size() > 0) {
+                        && req.getEvent().getPreviousMessage().getFiles() != null && req.getEvent().getPreviousMessage().getFiles().size() > 0) {
                     state.messageChanged.incrementAndGet();
                 }
                 return ctx.ack();
@@ -995,6 +997,73 @@ public class EventsApiTest {
         } finally {
             server.stop();
 
+            if (channelId != null) {
+                slack.methods(botToken).conversationsArchive(r -> r.channel(channelId));
+            }
+        }
+    }
+
+
+    // ----------------------------
+    // apps.event.authorizations.list
+    // ----------------------------
+
+    @Test
+    public void appsEventAuthorizationsListCalls() throws Exception {
+
+        App app = new App(appConfig);
+        app.use(recorderMiddleware());
+
+        String appLevelToken = System.getenv(Constants.SLACK_SDK_TEST_APP_TOKEN);
+        String userToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_USER_TOKEN);
+        String botToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_BOT_TOKEN);
+
+        TestSlackAppServer server = new TestSlackAppServer(app);
+
+        ConversationsCreateResponse publicChannel =
+                slack.methods(botToken).conversationsCreate(r -> r
+                        .name("test-" + System.currentTimeMillis()).isPrivate(false));
+        assertNull(publicChannel.getError());
+
+        final String channelId = publicChannel.getChannel().getId();
+        ConversationsJoinResponse joining = slack.methods(userToken).conversationsJoin(r -> r.channel(channelId));
+        assertNull(joining.getError());
+
+        final AtomicBoolean called = new AtomicBoolean(false);
+
+        try {
+            app.event(MessageEvent.class, (req, ctx) -> {
+                AppsEventAuthorizationsListResponse authorizations = ctx.client().appsEventAuthorizationsList(r -> r
+                        .token(appLevelToken)
+                        .eventContext(req.getEventContext())
+                        .limit(10)
+                );
+                called.set(authorizations.isOk());
+                return ctx.ack();
+            });
+
+            // ------------------------------------------------------------------------------------
+            server.startAsDaemon();
+            waitForSlackAppConnection();
+            // ------------------------------------------------------------------------------------
+
+            Slack slack = Slack.getInstance(slackConfig);
+            ChatPostMessageResponse chatPostMessageResponse =
+                    slack.methods(userToken).chatPostMessage(r -> r.channel(channelId).text("Hi there!"));
+            assertNull(chatPostMessageResponse.getError());
+
+            // ------------------------------------------------------------------------------------
+
+            long waitTime = 0;
+            while (!called.get() && waitTime < 5_000L) {
+                long sleepTime = 100L;
+                Thread.sleep(sleepTime);
+                waitTime += sleepTime;
+            }
+            assertTrue(called.get());
+
+        } finally {
+            server.stop();
             if (channelId != null) {
                 slack.methods(botToken).conversationsArchive(r -> r.channel(channelId));
             }

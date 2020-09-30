@@ -17,6 +17,7 @@ public class FileDeletedPayload implements EventsApiPayload<FileDeletedEvent> {
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private FileDeletedEvent event;
 }

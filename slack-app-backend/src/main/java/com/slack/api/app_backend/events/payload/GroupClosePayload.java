@@ -17,6 +17,7 @@ public class GroupClosePayload implements EventsApiPayload<GroupCloseEvent> {
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private GroupCloseEvent event;
 }

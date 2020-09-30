@@ -17,6 +17,7 @@ public class ReactionRemovedPayload implements EventsApiPayload<ReactionRemovedE
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private ReactionRemovedEvent event;
 }

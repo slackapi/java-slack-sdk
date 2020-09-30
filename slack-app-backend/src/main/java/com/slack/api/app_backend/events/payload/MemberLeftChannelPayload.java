@@ -17,6 +17,7 @@ public class MemberLeftChannelPayload implements EventsApiPayload<MemberLeftChan
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private MemberLeftChannelEvent event;
 }

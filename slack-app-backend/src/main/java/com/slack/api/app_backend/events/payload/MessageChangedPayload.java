@@ -17,6 +17,7 @@ public class MessageChangedPayload implements EventsApiPayload<MessageChangedEve
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private MessageChangedEvent event;
 }

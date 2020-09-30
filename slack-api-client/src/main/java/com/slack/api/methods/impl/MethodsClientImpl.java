@@ -26,6 +26,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
+import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
 import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsResourcesListRequest;
@@ -114,6 +115,7 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
+import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
 import com.slack.api.methods.response.apps.permissions.resources.AppsPermissionsResourcesListResponse;
@@ -847,6 +849,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AppsUninstallResponse appsUninstall(RequestConfigurator<AppsUninstallRequest.AppsUninstallRequestBuilder> req) throws IOException, SlackApiException {
         return appsUninstall(req.configure(AppsUninstallRequest.builder()).build());
+    }
+
+    @Override
+    public AppsEventAuthorizationsListResponse appsEventAuthorizationsList(AppsEventAuthorizationsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.APPS_EVENT_AUTHORIZATIONS_LIST, getToken(req), AppsEventAuthorizationsListResponse.class);
+    }
+
+    @Override
+    public AppsEventAuthorizationsListResponse appsEventAuthorizationsList(RequestConfigurator<AppsEventAuthorizationsListRequest.AppsEventAuthorizationsListRequestBuilder> req) throws IOException, SlackApiException {
+        return appsEventAuthorizationsList(req.configure(AppsEventAuthorizationsListRequest.builder()).build());
     }
 
     @Override

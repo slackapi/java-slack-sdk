@@ -17,6 +17,7 @@ public class GroupHistoryChangedPayload implements EventsApiPayload<GroupHistory
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private GroupHistoryChangedEvent event;
 }

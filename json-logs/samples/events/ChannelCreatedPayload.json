@@ -22,5 +22,6 @@
   "event_time": 12345,
   "authed_users": [
     ""
-  ]
+  ],
+  "event_context": ""
 }

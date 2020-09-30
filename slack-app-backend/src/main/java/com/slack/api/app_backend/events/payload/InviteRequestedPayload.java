@@ -17,6 +17,7 @@ public class InviteRequestedPayload implements EventsApiPayload<InviteRequestedE
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private InviteRequestedEvent event;
 }

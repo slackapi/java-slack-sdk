@@ -12,6 +12,7 @@
   ],
   "event_id": "",
   "event_time": 123,
+  "event_context": "",
   "event": {
     "type": "channel_history_changed",
     "latest": "",

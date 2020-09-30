@@ -17,6 +17,7 @@ public class ResourcesAddedPayload implements EventsApiPayload<ResourcesAddedEve
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private ResourcesAddedEvent event;
 }

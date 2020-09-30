@@ -17,6 +17,7 @@ public class TeamJoinPayload implements EventsApiPayload<TeamJoinEvent> {
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private TeamJoinEvent event;
 }

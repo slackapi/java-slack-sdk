@@ -12,6 +12,7 @@
   ],
   "event_id": "",
   "event_time": 123,
+  "event_context": "",
   "event": {
     "type": "app_uninstalled"
   }

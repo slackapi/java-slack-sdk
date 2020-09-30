@@ -17,6 +17,7 @@ public class ChannelUnarchivePayload implements EventsApiPayload<ChannelUnarchiv
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private ChannelUnarchiveEvent event;
 }

@@ -17,6 +17,7 @@ public class GridMigrationStartedPayload implements EventsApiPayload<GridMigrati
     private List<String> authedTeams;
     private String eventId;
     private Integer eventTime;
+    private String eventContext;
 
     private GridMigrationStartedEvent event;
 }

@@ -203,6 +203,7 @@ public class App {
         private List<String> authedTeams;
         private String eventId;
         private Integer eventTime;
+        private String eventContext;
 
         private transient Event event;
     }
