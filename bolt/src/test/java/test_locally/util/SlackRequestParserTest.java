@@ -126,7 +126,19 @@ public class SlackRequestParserTest {
     @Test
     public void testViewSubmissionRequest() throws UnsupportedEncodingException {
         SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
-                .requestBody("payload=" + URLEncoder.encode("{\"type\":\"view_submission\",\"team\":{},\"user\":{},\"view\":{}}", "UTF-8"))
+                .requestBody("payload=" + URLEncoder.encode("{\"type\":\"view_submission\",\"team\":{},\"user\":{},\"view\":{\"type\": \"modal\"}}", "UTF-8"))
+                .headers(new RequestHeaders(new HashMap<>()))
+                .build();
+
+        Request<?> slackRequest = parser.parse(request);
+        assertNotNull(slackRequest);
+        assertTrue(slackRequest instanceof ViewSubmissionRequest);
+    }
+
+    @Test
+    public void testViewSubmissionRequest_workflowStep() throws UnsupportedEncodingException {
+        SlackRequestParser.HttpRequest request = SlackRequestParser.HttpRequest.builder()
+                .requestBody("payload=" + URLEncoder.encode("{\"type\":\"view_submission\",\"team\":{},\"user\":{},\"view\":{\"type\": \"workflow_step\"}}", "UTF-8"))
                 .headers(new RequestHeaders(new HashMap<>()))
                 .build();
 
