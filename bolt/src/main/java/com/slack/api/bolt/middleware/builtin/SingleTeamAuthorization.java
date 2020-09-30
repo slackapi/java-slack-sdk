@@ -32,7 +32,15 @@ public class SingleTeamAuthorization implements Middleware {
     private AtomicLong lastCachedMillis = new AtomicLong(0L);
 
     public SingleTeamAuthorization(AppConfig appConfig, InstallationService installationService) {
+        this(appConfig, null, installationService);
+    }
+
+    public SingleTeamAuthorization(
+            AppConfig appConfig,
+            AuthTestResponse initialAuthTest,
+            InstallationService installationService) {
         this.appConfig = appConfig;
+        this.cachedAuthTestResponse = Optional.ofNullable(initialAuthTest);
         this.installationService = installationService;
     }
 
@@ -83,25 +91,21 @@ public class SingleTeamAuthorization implements Middleware {
     }
 
     protected AuthTestResponse callAuthTest(AppConfig config, MethodsClient client) throws IOException, SlackApiException {
-        if (config.isAuthTestCacheEnabled()) {
-            if (cachedAuthTestResponse.isPresent()) {
-                boolean permanentCacheEnabled = config.getAuthTestCacheExpirationMillis() < 0;
-                if (permanentCacheEnabled) {
-                    return cachedAuthTestResponse.get();
-                }
-                long millisToExpire = lastCachedMillis.get() + config.getAuthTestCacheExpirationMillis();
-                long currentMillis = System.currentTimeMillis();
-                if (millisToExpire > currentMillis) {
-                    return cachedAuthTestResponse.get();
-                }
+        if (cachedAuthTestResponse.isPresent()) {
+            boolean permanentCacheEnabled = config.getAuthTestCacheExpirationMillis() < 0;
+            if (permanentCacheEnabled) {
+                return cachedAuthTestResponse.get();
             }
-            AuthTestResponse response = client.authTest(r -> r.token(config.getSingleTeamBotToken()));
-            cachedAuthTestResponse = Optional.of(response); // response here is not null for sure
-            lastCachedMillis.set(System.currentTimeMillis());
-            return response;
-        } else {
-            return client.authTest(r -> r.token(config.getSingleTeamBotToken()));
+            long millisToExpire = lastCachedMillis.get() + config.getAuthTestCacheExpirationMillis();
+            long currentMillis = System.currentTimeMillis();
+            if (millisToExpire > currentMillis) {
+                return cachedAuthTestResponse.get();
+            }
         }
+        AuthTestResponse response = client.authTest(r -> r.token(config.getSingleTeamBotToken()));
+        cachedAuthTestResponse = Optional.of(response); // response here is not null for sure
+        lastCachedMillis.set(System.currentTimeMillis());
+        return response;
     }
 
 }

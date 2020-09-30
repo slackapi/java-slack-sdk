@@ -5,6 +5,10 @@ package com.slack.api.bolt.model;
  */
 public interface Bot {
 
+    String getAppId();
+
+    void setAppId(String appId);
+
     String getEnterpriseId();
 
     void setEnterpriseId(String enterpriseId);

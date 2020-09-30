@@ -9,6 +9,7 @@ import com.slack.api.bolt.helidon.SlackAppService;
 import io.helidon.config.Config;
 import io.helidon.webserver.*;
 import org.junit.Test;
+import util.AuthTestMockServer;
 import util.HashRequestHeaders;
 import util.PortProvider;
 
@@ -20,6 +21,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -57,22 +59,31 @@ public class SlackAppServiceTest {
     }
 
     @Test
-    public void sslCheck() {
-        App app = new App(AppConfig.builder()
-                .singleTeamBotToken("xoxb-xxxx")
-                .signingSecret("secret")
-                .build());
-        SlackAppService service = new SlackAppService(Config.create(), app);
-        assertNotNull(service);
+    public void sslCheck() throws Exception {
+        AuthTestMockServer slackApiServer = new AuthTestMockServer();
+        slackApiServer.start();
+        try {
+            SlackConfig slackConfig = new SlackConfig();
+            slackConfig.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+            Slack slack = Slack.getInstance(slackConfig);
+            App app = new App(AppConfig.builder()
+                    .slack(slack)
+                    .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                    .signingSecret("secret")
+                    .build());
 
-        ServerRequest request = mock(ServerRequest.class);
-        ServerResponse response = mock(ServerResponse.class);
-        ResponseHeaders headers = mock(ResponseHeaders.class);
-        when(response.headers()).thenReturn(headers);
+            ServerRequest request = mock(ServerRequest.class);
+            ServerResponse response = mock(ServerResponse.class);
+            ResponseHeaders headers = mock(ResponseHeaders.class);
+            when(response.headers()).thenReturn(headers);
 
-        service.runSlackApp(request, "token=xxx&ssl_check=1", response);
+            SlackAppService service = new SlackAppService(Config.create(), app);
+            assertNotNull(service);
+            service.runSlackApp(request, "token=xxx&ssl_check=1", response);
 
-        verify(response, times(1)).status(200);
+        } finally {
+            slackApiServer.stop();
+        }
     }
 
     String slashCommandPayload = "token=gIkuvaNzQIHg97ATvDxqgjtO" +

@@ -37,6 +37,7 @@ public class OAuthDefaultSuccessHandler implements OAuthSuccessHandler {
         context.setRequestUserToken(o.getAccessToken());
 
         DefaultInstaller.DefaultInstallerBuilder i = DefaultInstaller.builder()
+                .appId(null)
                 .enterpriseId(o.getEnterpriseId())
                 .teamId(o.getTeamId())
                 .teamName(o.getTeamName())
