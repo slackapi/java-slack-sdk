@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @see <a href="https://api.slack.com/block-kit/surfaces/modals">Modals</a>
  */
@@ -22,7 +24,7 @@ public class WorkflowStepSavePayload {
     private String token;
     private String triggerId;
     private View view;
-    private boolean isCleared;
+    private List<ResponseUrl> responseUrls;
     private WorkflowStep workflowStep;
 
     @Data
@@ -42,8 +44,17 @@ public class WorkflowStepSavePayload {
     }
 
     @Data
-    public static class WorkflowStep {
-        private String workflowStepEditId;
+    public static class ResponseUrl {
+        private String blockId;
+        private String actionId;
+        private String channelId;
+        private String responseUrl;
     }
 
+    @Data
+    public static class WorkflowStep {
+        private String workflowStepEditId;
+        private String workflowId;
+        private String stepId;
+    }
 }

@@ -37,5 +37,6 @@ public class View {
     private String rootViewId;
     private String previousViewId; // views.update
     private String appId;
+    private String appInstalledTeamId; // workflow_step
     private String botId;
 }
