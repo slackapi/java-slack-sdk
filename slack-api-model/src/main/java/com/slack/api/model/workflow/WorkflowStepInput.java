@@ -28,9 +28,9 @@ import java.util.Map;
 public class WorkflowStepInput {
 
     /**
-     * 	This is the input value. You can use {{variables}}
-     * 	which are included in the view_submission payload from a configuration modal.
-     * 	These variables refer to input from earlier workflow steps.
+     * This is the input value. You can use {{variables}}
+     * which are included in the view_submission payload from a configuration modal.
+     * These variables refer to input from earlier workflow steps.
      */
     private Object value;
 

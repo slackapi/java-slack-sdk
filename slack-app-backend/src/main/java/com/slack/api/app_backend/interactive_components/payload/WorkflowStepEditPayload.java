@@ -40,7 +40,7 @@ public class WorkflowStepEditPayload {
     @Data
     public static class User {
         private String id;
-        private String name;
+        private String username;
         private String teamId;
     }
 
