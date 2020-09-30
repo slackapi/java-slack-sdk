@@ -19,5 +19,8 @@ public enum RequestType {
     DialogCancellation,
     DialogSuggestion,
     ViewSubmission,
-    ViewClosed
+    ViewClosed,
+    WorkflowStepEdit,
+    WorkflowStepSave,
+    WorkflowStepExecute
 }

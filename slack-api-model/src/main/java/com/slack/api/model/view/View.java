@@ -21,7 +21,7 @@ public class View {
 
     private String id;
     private String teamId;
-    private String type; // modal, home
+    private String type; // modal, home, workflow_step
     private ViewTitle title;
     private ViewSubmit submit;
     private ViewClose close;
@@ -33,6 +33,7 @@ public class View {
     private String hash;
     private Boolean clearOnClose; // must be nullable for App Home
     private Boolean notifyOnClose;  // must be nullable for App Home
+    private Boolean submitDisabled; // workflow_step
     private String rootViewId;
     private String previousViewId; // views.update
     private String appId;

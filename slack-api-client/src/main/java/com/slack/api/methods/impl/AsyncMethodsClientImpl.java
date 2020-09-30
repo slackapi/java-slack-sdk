@@ -81,6 +81,9 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
@@ -157,6 +160,9 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
+import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
+import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -1902,6 +1908,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<ViewsPublishResponse> viewsPublish(RequestConfigurator<ViewsPublishRequest.ViewsPublishRequestBuilder> req) {
         return viewsPublish(req.configure(ViewsPublishRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsStepCompletedResponse> workflowsStepCompleted(WorkflowsStepCompletedRequest req) {
+        return executor.execute(WORKFLOWS_STEP_COMPLETED, toMap(req), () -> methods.workflowsStepCompleted(req));
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsStepCompletedResponse> workflowsStepCompleted(RequestConfigurator<WorkflowsStepCompletedRequest.WorkflowsStepCompletedRequestBuilder> req) {
+        return workflowsStepCompleted(req.configure(WorkflowsStepCompletedRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsStepFailedResponse> workflowsStepFailed(WorkflowsStepFailedRequest req) {
+        return executor.execute(WORKFLOWS_STEP_FAILED, toMap(req), () -> methods.workflowsStepFailed(req));
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsStepFailedResponse> workflowsStepFailed(RequestConfigurator<WorkflowsStepFailedRequest.WorkflowsStepFailedRequestBuilder> req) {
+        return workflowsStepFailed(req.configure(WorkflowsStepFailedRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(WorkflowsUpdateStepRequest req) {
+        return executor.execute(WORKFLOWS_UPDATE_STEP, toMap(req), () -> methods.workflowsUpdateStep(req));
+    }
+
+    @Override
+    public CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req) {
+        return workflowsUpdateStep(req.configure(WorkflowsUpdateStepRequest.builder()).build());
     }
 
 }

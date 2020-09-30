@@ -15,10 +15,12 @@ import com.slack.api.app_backend.ssl_check.SSLCheckPayloadDetector;
 import com.slack.api.app_backend.util.JsonPayloadExtractor;
 import com.slack.api.app_backend.views.payload.ViewClosedPayload;
 import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
+import com.slack.api.app_backend.views.payload.WorkflowStepSavePayload;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.*;
+import com.slack.api.model.event.WorkflowStepExecuteEvent;
 import com.slack.api.util.json.GsonFactory;
 import lombok.Builder;
 import lombok.Data;
@@ -89,7 +91,12 @@ public class SlackRequestParser {
                         slackRequest = new MessageShortcutRequest(requestBody, jsonPayload, headers);
                         break;
                     case EventsApiPayload.TYPE:
-                        slackRequest = new EventRequest(jsonPayload, headers);
+                        String type = payload.get("event").getAsJsonObject().get("type").getAsString();
+                        if (type.equals(WorkflowStepExecuteEvent.TYPE_NAME)) {
+                            slackRequest = new WorkflowStepExecuteRequest(jsonPayload, headers);
+                        } else {
+                            slackRequest = new EventRequest(jsonPayload, headers);
+                        }
                         break;
                     case UrlVerificationPayload.TYPE:
                         slackRequest = new UrlVerificationRequest(jsonPayload, headers);
@@ -104,10 +111,18 @@ public class SlackRequestParser {
                         slackRequest = new DialogSuggestionRequest(requestBody, jsonPayload, headers);
                         break;
                     case ViewSubmissionPayload.TYPE:
-                        slackRequest = new ViewSubmissionRequest(requestBody, jsonPayload, headers);
+                        String viewType = payload.get("view").getAsJsonObject().get("type").getAsString();
+                        if (viewType.equals("workflow_step")) {
+                            slackRequest = new WorkflowStepSaveRequest(requestBody, jsonPayload, headers);
+                        } else {
+                            slackRequest = new ViewSubmissionRequest(requestBody, jsonPayload, headers);
+                        }
                         break;
                     case ViewClosedPayload.TYPE:
                         slackRequest = new ViewClosedRequest(requestBody, jsonPayload, headers);
+                        break;
+                    case WorkflowStepEditPayload.TYPE:
+                        slackRequest = new WorkflowStepEditRequest(requestBody, jsonPayload, headers);
                         break;
                     default:
                         log.warn("No request pattern detected for {}", jsonPayload);

@@ -90,6 +90,9 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
@@ -180,6 +183,9 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
+import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
+import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 import okhttp3.FormBody;
 import okhttp3.MultipartBody;
 import okhttp3.Response;
@@ -1573,5 +1579,21 @@ public interface MethodsClient {
     ViewsPublishResponse viewsPublish(ViewsPublishRequest req) throws IOException, SlackApiException;
 
     ViewsPublishResponse viewsPublish(RequestConfigurator<ViewsPublishRequest.ViewsPublishRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // workflows
+    // ------------------------------
+
+    WorkflowsStepCompletedResponse workflowsStepCompleted(WorkflowsStepCompletedRequest req) throws IOException, SlackApiException;
+
+    WorkflowsStepCompletedResponse workflowsStepCompleted(RequestConfigurator<WorkflowsStepCompletedRequest.WorkflowsStepCompletedRequestBuilder> req) throws IOException, SlackApiException;
+
+    WorkflowsStepFailedResponse workflowsStepFailed(WorkflowsStepFailedRequest req) throws IOException, SlackApiException;
+
+    WorkflowsStepFailedResponse workflowsStepFailed(RequestConfigurator<WorkflowsStepFailedRequest.WorkflowsStepFailedRequestBuilder> req) throws IOException, SlackApiException;
+
+    WorkflowsUpdateStepResponse workflowsUpdateStep(WorkflowsUpdateStepRequest req) throws IOException, SlackApiException;
+
+    WorkflowsUpdateStepResponse workflowsUpdateStep(RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req) throws IOException, SlackApiException;
 
 }

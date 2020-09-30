@@ -1,7 +1,6 @@
 package com.slack.api.bolt;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.slack.api.Slack;
 import com.slack.api.app_backend.SlackSignature;
 import com.slack.api.app_backend.events.EventHandler;
@@ -35,19 +34,19 @@ import com.slack.api.util.json.GsonFactory;
 import com.slack.api.util.thread.ExecutorServiceFactory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
+
+import static com.slack.api.bolt.util.EventsApiPayloadParser.buildEventPayload;
+import static com.slack.api.bolt.util.EventsApiPayloadParser.getEventTypeAndSubtype;
 
 /**
  * A Slack App instance.
@@ -167,72 +166,7 @@ public class App {
      * Primitive Event API handler.
      */
     private final EventsDispatcher eventsDispatcher = EventsDispatcherFactory.getInstance();
-
-    /**
-     * Cached mapping between Event data types and their "{type}:{subtype}" values.
-     */
-    private final Map<Class<? extends Event>, String> eventTypeAndSubtypeValues = new HashMap<>();
-
-    private Class<? extends Event> getEventClass(String eventType) {
-        for (Map.Entry<Class<? extends Event>, String> entry : eventTypeAndSubtypeValues.entrySet()) {
-            if (entry.getValue().equals(eventType)) {
-                return entry.getKey();
-            }
-        }
-        return null;
-    }
-
-    private String getEventTypeAndSubtype(Class<? extends Event> clazz) {
-        String cached = eventTypeAndSubtypeValues.get(clazz);
-        if (cached != null) {
-            return cached;
-        } else {
-            for (Constructor<?> constructor : clazz.getDeclaredConstructors()) {
-                if (constructor.getParameterCount() == 0) {
-                    try {
-                        Event event = (Event) constructor.newInstance();
-                        String typeAndSubtype = event.getType();
-                        if (event.getSubtype() != null) {
-                            typeAndSubtype = event.getType() + ":" + event.getSubtype();
-                        }
-                        eventTypeAndSubtypeValues.put(clazz, typeAndSubtype);
-                        return typeAndSubtype;
-                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                        log.error("Unexpectedly failed to load event type for the class {}", clazz.getCanonicalName());
-                        break;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    private BoltEventPayload buildEventPayload(EventRequest request) {
-        BoltEventPayload payload = GSON.fromJson(request.getRequestBodyAsString(), BoltEventPayload.class);
-        Class<? extends Event> eventClass = getEventClass(request.getEventTypeAndSubtype());
-        if (eventClass != null) {
-            Event event = GSON.fromJson(GSON.fromJson(request.getRequestBodyAsString(), JsonElement.class).getAsJsonObject().get("event").getAsJsonObject(), eventClass);
-            payload.setEvent(event);
-        }
-        return payload;
-    }
-
-    @Data
-    static class BoltEventPayload implements EventsApiPayload<Event> {
-        private String token;
-        private String enterpriseId;
-        private String teamId;
-        private String apiAppId;
-        private String type;
-        private List<String> authedUsers;
-        private List<String> authedTeams;
-        private String eventId;
-        private Integer eventTime;
-        private String eventContext;
-
-        private transient Event event;
-    }
-
+    
     // -------------------------------------
     // Block Kit
     // https://api.slack.com/block-kit
@@ -275,6 +209,18 @@ public class App {
      * Registered handlers for message shortcuts (formerly message actions).
      */
     private final Map<Pattern, MessageShortcutHandler> messageShortcutHandlers = new HashMap<>();
+
+    // -------------------------------------
+    // Workflow Steps
+    // https://api.slack.com/workflows/steps
+    // -------------------------------------
+
+    /**
+     * Registered handlers for Workflow Steps from Apps.
+     */
+    private final Map<Pattern, WorkflowStepEditHandler> workflowStepEditHandlers = new HashMap<>();
+    private final Map<Pattern, WorkflowStepSaveHandler> workflowStepSaveHandlers = new HashMap<>();
+    private final Map<Pattern, WorkflowStepExecuteHandler> workflowStepExecuteHandlers = new HashMap<>();
 
     // -------------------------------------
     // Attachments
@@ -709,6 +655,50 @@ public class App {
     }
 
     // -------------
+    // Workflows: Steps from Apps
+    // https://api.slack.com/workflows/steps
+
+    public App step(WorkflowStep step) {
+        return this.use(step);
+    }
+
+    public App workflowStepEdit(String callbackId, WorkflowStepEditHandler handler) {
+        return workflowStepEdit(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
+    }
+
+    public App workflowStepEdit(Pattern callbackId, WorkflowStepEditHandler handler) {
+        if (workflowStepEditHandlers.get(callbackId) != null) {
+            log.warn("Replaced the handler for {}", callbackId);
+        }
+        workflowStepEditHandlers.put(callbackId, handler);
+        return this;
+    }
+
+    public App workflowStepSave(String callbackId, WorkflowStepSaveHandler handler) {
+        return workflowStepSave(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
+    }
+
+    public App workflowStepSave(Pattern callbackId, WorkflowStepSaveHandler handler) {
+        if (workflowStepSaveHandlers.get(callbackId) != null) {
+            log.warn("Replaced the handler for {}", callbackId);
+        }
+        workflowStepSaveHandlers.put(callbackId, handler);
+        return this;
+    }
+
+    public App workflowStepExecute(String pattern, WorkflowStepExecuteHandler handler) {
+        return workflowStepExecute(Pattern.compile("^.*" + Pattern.quote(pattern) + ".*$"), handler);
+    }
+
+    public App workflowStepExecute(Pattern pattern, WorkflowStepExecuteHandler handler) {
+        if (workflowStepExecuteHandlers.get(pattern) != null) {
+            log.warn("Replaced the handler for {}", pattern);
+        }
+        workflowStepExecuteHandlers.put(pattern, handler);
+        return this;
+    }
+
+    // -------------
     // Attachments
     // https://api.slack.com/messaging/composing/layouts#attachments
 
@@ -944,7 +934,7 @@ public class App {
                     EventRequest request = (EventRequest) slackRequest;
                     BoltEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
                     if (handler != null) {
-                        BoltEventPayload payload = buildEventPayload(request);
+                        EventsApiPayload<Event> payload = buildEventPayload(request);
                         return handler.apply(payload, request.getContext());
                     } else {
                         log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
@@ -1025,7 +1015,7 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No GlobalShortcutHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    log.warn("No GlobalShortcutHandler registered for callback_id: {}", callbackId);
                     break;
                 }
                 case MessageShortcut: {
@@ -1039,7 +1029,7 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No MessageShortcutHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    log.warn("No MessageShortcutHandler registered for callback_id: {}", callbackId);
                     break;
                 }
                 case DialogSubmission: {
@@ -1053,7 +1043,7 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No DialogSubmissionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    log.warn("No DialogSubmissionHandler registered for callback_id: {}", callbackId);
                     break;
                 }
                 case DialogCancellation: {
@@ -1067,7 +1057,7 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No DialogCancellationHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    log.warn("No DialogCancellationHandler registered for callback_id: {}", callbackId);
                     break;
                 }
                 case DialogSuggestion: {
@@ -1081,7 +1071,7 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No DialogSuggestionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    log.warn("No DialogSuggestionHandler registered for callback_id: {}", callbackId);
                     break;
                 }
                 case ViewSubmission: {
@@ -1095,7 +1085,7 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No ViewSubmissionHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
+                    log.warn("No ViewSubmissionHandler registered for callback_id: {}", callbackId);
                     break;
                 }
                 case ViewClosed: {
@@ -1109,8 +1099,61 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No ViewClosedHandler registered for callback_id: {}", request.getPayload().getView().getCallbackId());
+                    log.warn("No ViewClosedHandler registered for callback_id: {}", callbackId);
                     break;
+                }
+                case WorkflowStepEdit: {
+                    WorkflowStepEditRequest request = (WorkflowStepEditRequest) slackRequest;
+                    String callbackId = request.getPayload().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : workflowStepEditHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                WorkflowStepEditHandler handler = workflowStepEditHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
+                        }
+                    }
+                    log.warn("No WorkflowStepEditHandler registered for callback_id: {}", callbackId);
+                    break;
+                }
+                case WorkflowStepSave: {
+                    WorkflowStepSaveRequest request = (WorkflowStepSaveRequest) slackRequest;
+                    String callbackId = request.getPayload().getView().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : workflowStepSaveHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                WorkflowStepSaveHandler handler = workflowStepSaveHandlers.get(pattern);
+                                return handler.apply(request, request.getContext());
+                            }
+                        }
+                    }
+                    log.warn("No WorkflowStepSaveHandler registered for callback_id: {}", callbackId);
+                    break;
+                }
+                case WorkflowStepExecute: {
+                    WorkflowStepExecuteRequest stepRequest = (WorkflowStepExecuteRequest) slackRequest;
+                    String callbackId = stepRequest.getContext().getCallbackId();
+                    if (callbackId != null) {
+                        for (Pattern pattern : workflowStepExecuteHandlers.keySet()) {
+                            if (pattern.matcher(callbackId).matches()) {
+                                WorkflowStepExecuteHandler handler = workflowStepExecuteHandlers.get(pattern);
+                                return handler.apply(stepRequest, stepRequest.getContext());
+                            }
+                        }
+                    }
+                    // Fallback to Events API handlers
+                    if (eventsDispatcher.isRunning()) {
+                        eventsDispatcher.enqueue(slackRequest.getRequestBodyAsString());
+                    }
+                    EventRequest request = new EventRequest(stepRequest.getRequestBodyAsString(), stepRequest.getHeaders());
+                    BoltEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
+                    if (handler != null) {
+                        EventsApiPayload<Event> payload = buildEventPayload(request);
+                        return handler.apply(payload, request.getContext());
+                    } else {
+                        log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
+                        return Response.ok();
+                    }
                 }
                 default:
             }

@@ -89,6 +89,9 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.model.ConversationType;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -2022,6 +2025,42 @@ public class RequestFormBuilder {
             setIfNotNull("view", GsonFactory.createSnakeCase().toJson(req.getView()), form);
         }
         setIfNotNull("hash", req.getHash(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(WorkflowsStepCompletedRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("workflow_step_execute_id", req.getWorkflowStepExecuteId(), form);
+        if (req.getOutputsAsString() != null) {
+            setIfNotNull("outputs", req.getOutputsAsString(), form);
+        } else if (req.getOutputs() != null) {
+            setIfNotNull("outputs", GsonFactory.createSnakeCase().toJson(req.getOutputs()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(WorkflowsStepFailedRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("workflow_step_execute_id", req.getWorkflowStepExecuteId(), form);
+        setIfNotNull("error", GsonFactory.createSnakeCase().toJson(req.getError()), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(WorkflowsUpdateStepRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("workflow_step_edit_id", req.getWorkflowStepEditId(), form);
+        setIfNotNull("step_image_url", req.getStepImageUrl(), form);
+        setIfNotNull("step_name", req.getStepName(), form);
+        if (req.getOutputsAsString() != null) {
+            setIfNotNull("inputs", req.getInputsAsString(), form);
+        } else if (req.getOutputs() != null) {
+            setIfNotNull("inputs", GsonFactory.createSnakeCase().toJson(req.getInputs()), form);
+        }
+        if (req.getOutputsAsString() != null) {
+            setIfNotNull("outputs", req.getOutputsAsString(), form);
+        } else if (req.getOutputs() != null) {
+            setIfNotNull("outputs", GsonFactory.createSnakeCase().toJson(req.getOutputs()), form);
+        }
         return form;
     }
 
