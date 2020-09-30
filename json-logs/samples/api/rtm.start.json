@@ -364,7 +364,8 @@
       "user_customized_quick_reactions_has_customized": false,
       "user_customized_quick_reactions_emoji_1": "",
       "user_customized_quick_reactions_emoji_2": "",
-      "user_customized_quick_reactions_emoji_3": ""
+      "user_customized_quick_reactions_emoji_3": "",
+      "joiner_message_suggestion_dismissed": false
     },
     "created": 12345,
     "first_login": 12345,

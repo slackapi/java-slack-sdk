@@ -124,6 +124,7 @@ public class LogsResponse implements AuditApiResponse {
 
     @Data
     public static class Context {
+        private String sessionId;
         private Location location;
         private String ua;
         private String ipAddress;
