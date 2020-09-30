@@ -130,15 +130,12 @@ public class EventDataRecorder {
                     array.add(attachment);
                 }
             } else if (name != null && name.equals("blocks")) {
-                System.out.println(array.size());
                 for (int idx = 0; idx < array.size(); idx++) {
                     array.remove(idx);
                 }
-                System.out.println(array.size());
                 for (JsonElement block : SampleObjects.Json.Blocks) {
                     array.add(block);
                 }
-                System.out.println(array.size());
             } else if (name != null && name.equals("replies")) {
                 for (int idx = 0; idx < array.size(); idx++) {
                     array.remove(idx);

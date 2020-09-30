@@ -18,7 +18,6 @@ public class TeamIdCacheTest {
             teamIdCache.lookupOrResolve("xoxb-111-222-zzz\nsomething wrong");
             fail();
         } catch (Exception e) {
-            e.printStackTrace();
             assertFalse(e.getMessage(), e.getMessage().contains(token));
         }
     }
