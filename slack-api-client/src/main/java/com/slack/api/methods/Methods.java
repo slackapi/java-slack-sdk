@@ -139,6 +139,7 @@ public class Methods {
     // admin.users.session
     // ------------------------------
 
+    public static final String ADMIN_USERS_SESSION_INVALIDATE = "admin.users.session.invalidate";
     public static final String ADMIN_USERS_SESSION_RESET = "admin.users.session.reset";
 
     // ------------------------------

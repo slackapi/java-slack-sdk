@@ -560,6 +560,10 @@ public interface MethodsClient {
 
     AdminUsersSessionResetResponse adminUsersSessionReset(RequestConfigurator<AdminUsersSessionResetRequest.AdminUsersSessionResetRequestBuilder> req) throws IOException, SlackApiException;
 
+    AdminUsersSessionInvalidateResponse adminUsersSessionInvalidate(AdminUsersSessionInvalidateRequest req) throws IOException, SlackApiException;
+
+    AdminUsersSessionInvalidateResponse adminUsersSessionInvalidate(RequestConfigurator<AdminUsersSessionInvalidateRequest.AdminUsersSessionInvalidateRequestBuilder> req) throws IOException, SlackApiException;
+
     // ------------------------------
     // api
     // ------------------------------

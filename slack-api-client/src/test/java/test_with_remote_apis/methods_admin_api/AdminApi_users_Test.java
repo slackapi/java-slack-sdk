@@ -2,8 +2,10 @@ package test_with_remote_apis.methods_admin_api;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
+import com.slack.api.methods.request.admin.users.AdminUsersSessionInvalidateRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.slack.api.methods.response.admin.users.AdminUsersListResponse;
+import com.slack.api.methods.response.admin.users.AdminUsersSessionInvalidateResponse;
 import com.slack.api.methods.response.admin.users.AdminUsersSessionResetResponse;
 import com.slack.api.methods.response.admin.users.AdminUsersSetExpirationResponse;
 import com.slack.api.methods.response.users.UsersListResponse;
@@ -38,6 +40,18 @@ public class AdminApi_users_Test {
     static String teamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
 
     static AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
+
+    @Test
+    public void usersSessionInvalidate() throws Exception {
+        if (teamAdminUserToken != null && orgAdminUserToken != null) {
+            String userId = findUserId(Collections.emptyList());
+            assertThat(userId, is(notNullValue()));
+            AdminUsersSessionInvalidateResponse response = methodsAsync
+                    .adminUsersSessionInvalidate(r -> r.sessionId("sessionId").teamId(teamId))
+                    .get();
+            assertThat(response.getError(), is("invalid_arguments"));
+        }
+    }
 
     @Test
     public void usersSessionReset() throws Exception {

@@ -770,6 +770,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminUsersSessionInvalidateResponse> adminUsersSessionInvalidate(AdminUsersSessionInvalidateRequest req) {
+        return executor.execute(ADMIN_USERS_SESSION_INVALIDATE, toMap(req), () -> methods.adminUsersSessionInvalidate(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsersSessionInvalidateResponse> adminUsersSessionInvalidate(RequestConfigurator<AdminUsersSessionInvalidateRequest.AdminUsersSessionInvalidateRequestBuilder> req) {
+        return adminUsersSessionInvalidate(req.configure(AdminUsersSessionInvalidateRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminUsersSessionResetResponse> adminUsersSessionReset(AdminUsersSessionResetRequest req) {
         return executor.execute(ADMIN_USERS_SESSION_RESET, toMap(req), () -> methods.adminUsersSessionReset(req));
     }
