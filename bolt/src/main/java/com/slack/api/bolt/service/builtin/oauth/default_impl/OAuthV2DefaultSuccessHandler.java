@@ -40,6 +40,7 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
         context.setRequestUserToken(o.getAccessToken());
 
         DefaultInstaller.DefaultInstallerBuilder i = DefaultInstaller.builder()
+                .appId(o.getAppId())
                 .botUserId(o.getBotUserId())
                 .botAccessToken(o.getAccessToken())
                 .enterpriseId(o.getEnterprise() != null ? o.getEnterprise().getId() : null)

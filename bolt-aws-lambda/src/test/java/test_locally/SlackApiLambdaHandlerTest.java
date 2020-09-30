@@ -31,26 +31,36 @@ public class SlackApiLambdaHandlerTest {
     String signingSecret = "secret";
 
     @Test
-    public void invalidRequest() {
-        App app = new App(AppConfig.builder()
-                .singleTeamBotToken(AuthTestMockServer.ValidToken)
-                .signingSecret(signingSecret)
-                .build()
-        );
-        SlackApiLambdaHandler handler = new SlackApiLambdaHandler(app) {
-            @Override
-            protected boolean isWarmupRequest(ApiGatewayRequest awsReq) {
-                return false;
-            }
-        };
-        ApiGatewayRequest req = new ApiGatewayRequest();
-        initProperties(req);
-        req.setRequestContext(initProperties(new RequestContext()));
-        req.setBody("payload={}");
+    public void invalidRequest() throws Exception {
+        AuthTestMockServer slackApiServer = new AuthTestMockServer();
+        slackApiServer.start();
+        try {
+            SlackConfig slackConfig = new SlackConfig();
+            slackConfig.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+            Slack slack = Slack.getInstance(slackConfig);
+            App app = new App(AppConfig.builder().slack(slack)
+                    .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                    .signingSecret(signingSecret)
+                    .build()
+            );
+            SlackApiLambdaHandler handler = new SlackApiLambdaHandler(app) {
+                @Override
+                protected boolean isWarmupRequest(ApiGatewayRequest awsReq) {
+                    return false;
+                }
+            };
+            ApiGatewayRequest req = new ApiGatewayRequest();
+            initProperties(req);
+            req.setRequestContext(initProperties(new RequestContext()));
+            req.setBody("payload={}");
 
-        Context context = mock(Context.class);
-        ApiGatewayResponse response = handler.handleRequest(req, context);
-        assertEquals(400, response.getStatusCode());
+            Context context = mock(Context.class);
+            ApiGatewayResponse response = handler.handleRequest(req, context);
+            assertEquals(400, response.getStatusCode());
+
+        } finally {
+            slackApiServer.stop();
+        }
     }
 
     String blockActionsPayload = "{\n" +
@@ -93,47 +103,67 @@ public class SlackApiLambdaHandlerTest {
             "}";
 
     @Test
-    public void warmup() {
-        App app = new App(AppConfig.builder()
-                .singleTeamBotToken(AuthTestMockServer.ValidToken)
-                .signingSecret(signingSecret)
-                .build()
-        );
-        SlackApiLambdaHandler handler = new SlackApiLambdaHandler(app) {
-            @Override
-            protected boolean isWarmupRequest(ApiGatewayRequest awsReq) {
-                return awsReq.getBody().equals("warmup");
-            }
-        };
-        ApiGatewayRequest req = new ApiGatewayRequest();
-        initProperties(req);
-        req.setRequestContext(initProperties(new RequestContext()));
-        req.setBody("warmup");
-        Context context = mock(Context.class);
-        ApiGatewayResponse response = handler.handleRequest(req, context);
-        assertNull(response);
+    public void warmup() throws Exception {
+        AuthTestMockServer slackApiServer = new AuthTestMockServer();
+        slackApiServer.start();
+        try {
+            SlackConfig slackConfig = new SlackConfig();
+            slackConfig.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+            Slack slack = Slack.getInstance(slackConfig);
+            App app = new App(AppConfig.builder().slack(slack)
+                    .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                    .signingSecret(signingSecret)
+                    .build()
+            );
+            SlackApiLambdaHandler handler = new SlackApiLambdaHandler(app) {
+                @Override
+                protected boolean isWarmupRequest(ApiGatewayRequest awsReq) {
+                    return awsReq.getBody().equals("warmup");
+                }
+            };
+            ApiGatewayRequest req = new ApiGatewayRequest();
+            initProperties(req);
+            req.setRequestContext(initProperties(new RequestContext()));
+            req.setBody("warmup");
+            Context context = mock(Context.class);
+            ApiGatewayResponse response = handler.handleRequest(req, context);
+            assertNull(response);
+
+        } finally {
+            slackApiServer.stop();
+        }
     }
 
     @Test
-    public void signature_error() throws UnsupportedEncodingException {
-        App app = new App(AppConfig.builder()
-                .singleTeamBotToken(AuthTestMockServer.ValidToken)
-                .signingSecret(signingSecret)
-                .build()
-        );
-        SlackApiLambdaHandler handler = new SlackApiLambdaHandler(app) {
-            @Override
-            protected boolean isWarmupRequest(ApiGatewayRequest awsReq) {
-                return false;
-            }
-        };
-        ApiGatewayRequest req = new ApiGatewayRequest();
-        initProperties(req);
-        req.setRequestContext(initProperties(new RequestContext()));
-        req.setBody("payload=" + URLEncoder.encode(blockActionsPayload, "UTF-8"));
-        Context context = mock(Context.class);
-        ApiGatewayResponse response = handler.handleRequest(req, context);
-        assertEquals(401, response.getStatusCode());
+    public void signature_error() throws Exception {
+        AuthTestMockServer slackApiServer = new AuthTestMockServer();
+        slackApiServer.start();
+        try {
+            SlackConfig slackConfig = new SlackConfig();
+            slackConfig.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+            Slack slack = Slack.getInstance(slackConfig);
+            App app = new App(AppConfig.builder().slack(slack)
+                    .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                    .signingSecret(signingSecret)
+                    .build()
+            );
+            SlackApiLambdaHandler handler = new SlackApiLambdaHandler(app) {
+                @Override
+                protected boolean isWarmupRequest(ApiGatewayRequest awsReq) {
+                    return false;
+                }
+            };
+            ApiGatewayRequest req = new ApiGatewayRequest();
+            initProperties(req);
+            req.setRequestContext(initProperties(new RequestContext()));
+            req.setBody("payload=" + URLEncoder.encode(blockActionsPayload, "UTF-8"));
+            Context context = mock(Context.class);
+            ApiGatewayResponse response = handler.handleRequest(req, context);
+            assertEquals(401, response.getStatusCode());
+
+        } finally {
+            slackApiServer.stop();
+        }
     }
 
     @Test

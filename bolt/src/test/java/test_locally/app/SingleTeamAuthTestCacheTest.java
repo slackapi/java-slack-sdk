@@ -9,7 +9,6 @@ import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.GlobalShortcutRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.methods.MethodsConfig;
-import com.slack.api.methods.SlackApiException;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
@@ -33,7 +32,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 @Slf4j
 public class SingleTeamAuthTestCacheTest {
@@ -63,43 +61,6 @@ public class SingleTeamAuthTestCacheTest {
     @AfterClass
     public static void tearDown() throws Exception {
         server.stop();
-    }
-
-    @Test
-    public void cacheEnabled() throws Exception {
-        App app = buildApp(true);
-        app.globalShortcut("test-global-shortcut", (req, ctx) -> ctx.ack());
-
-        String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
-
-        Map<String, List<String>> rawHeaders = new HashMap<>();
-        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        setRequestHeaders(requestBody, rawHeaders, timestamp);
-
-        GlobalShortcutRequest req = new GlobalShortcutRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
-        assertEquals("seratch", req.getPayload().getUser().getUsername()); // a bit different from message_actions payload
-
-        Response response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
-
-        response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
-
-        Thread.sleep(300L);
-        response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
-
-        Thread.sleep(300L);
-        response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
-
-        Thread.sleep(3000L);
-        try {
-            app.run(req);
-            fail("Exception expected here");
-        } catch (SlackApiException e) {
-            assertEquals(500, e.getResponse().code());
-        }
     }
 
     @Test
@@ -139,40 +100,6 @@ public class SingleTeamAuthTestCacheTest {
         Thread.sleep(3000L);
         response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
-    }
-
-    @Test
-    public void cacheDisabled() throws Exception {
-        App app = buildApp(false);
-        app.globalShortcut("test-global-shortcut", (req, ctx) -> ctx.ack());
-
-        String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
-
-        Map<String, List<String>> rawHeaders = new HashMap<>();
-        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        setRequestHeaders(requestBody, rawHeaders, timestamp);
-
-        GlobalShortcutRequest req = new GlobalShortcutRequest(requestBody, realPayload, new RequestHeaders(rawHeaders));
-        assertEquals("seratch", req.getPayload().getUser().getUsername()); // a bit different from message_actions payload
-
-        Response response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
-
-        try {
-            app.run(req);
-            fail("Exception expected here");
-        } catch (SlackApiException e) {
-            assertEquals(500, e.getResponse().code());
-        }
-    }
-
-    App buildApp(boolean authTestCacheEnabled) {
-        return new App(AppConfig.builder()
-                .authTestCacheEnabled(authTestCacheEnabled)
-                .signingSecret(secret)
-                .singleTeamBotToken("xoxb-1234567890-123456789012-12345678901234567890" + authTestCacheEnabled)
-                .slack(slack)
-                .build());
     }
 
     void setRequestHeaders(String requestBody, Map<String, List<String>> rawHeaders, String timestamp) {

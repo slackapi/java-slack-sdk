@@ -6,6 +6,14 @@ package com.slack.api.bolt.model;
 public interface Installer {
 
     // ---------------------------------
+    // App
+    // ---------------------------------
+
+    String getAppId();
+
+    void setAppId(String appId);
+
+    // ---------------------------------
     // Organization / Workspace
     // ---------------------------------
 

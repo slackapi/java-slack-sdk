@@ -88,19 +88,8 @@ public class AppTest {
 
     @Test
     public void status() {
-        App app = new App(AppConfig.builder().signingSecret("secret").build());
+        App app = new App(AppConfig.builder().signingSecret("secret").singleTeamBotToken("xoxb-valid").build());
         assertThat(app.status(), is(App.Status.Stopped));
-        app.start();
-        assertThat(app.status(), is(App.Status.Running));
-        app.stop();
-        assertThat(app.status(), is(App.Status.Stopped));
-        app.start();
-        assertThat(app.status(), is(App.Status.Running));
-        app.stop();
-        assertThat(app.status(), is(App.Status.Stopped));
-        app.start();
-        app.start();
-        assertThat(app.status(), is(App.Status.Running));
     }
 
     @Test
@@ -156,8 +145,13 @@ public class AppTest {
         app.initializer("foo", (theApp) -> {
             called.set(true);
         });
-        app.start();
-        assertThat(called.get(), is(true));
+        try {
+            app.start();
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage(), is("The token is invalid (auth.test error: account_inactive)"));
+        }
+        // TODO: valid pattern test
     }
 
     @Test

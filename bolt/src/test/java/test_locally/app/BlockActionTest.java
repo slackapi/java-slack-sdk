@@ -22,9 +22,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class BlockActionTest {
@@ -69,6 +70,7 @@ public class BlockActionTest {
     @Test
     public void handled() throws Exception {
         App app = buildApp();
+        AtomicBoolean called = new AtomicBoolean(false);
         app.blockAction("action?foo$^", (req, ctx) -> ctx.ack());
 
         BlockActionPayload payload = buildPayload();
@@ -83,6 +85,39 @@ public class BlockActionTest {
         BlockActionRequest req = new BlockActionRequest(requestBody, p, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
+    }
+
+    @Test
+    public void executorService() throws Exception {
+        App app = buildApp();
+        AtomicBoolean called = new AtomicBoolean(false);
+        app.blockAction("action?foo$^", (req, ctx) -> {
+            app.executorService().execute(() -> {
+                try {
+                    Thread.sleep(500L);
+                    called.set(true);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
+            return ctx.ack();
+        });
+
+        BlockActionPayload payload = buildPayload();
+
+        String p = gson.toJson(payload);
+        String requestBody = "payload=" + URLEncoder.encode(p, "UTF-8");
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        BlockActionRequest req = new BlockActionRequest(requestBody, p, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertFalse(called.get());
+        Thread.sleep(1000L);
+        assertTrue(called.get());
     }
 
     @Test

@@ -26,10 +26,13 @@ import com.slack.api.bolt.service.builtin.DefaultOAuthCallbackService;
 import com.slack.api.bolt.service.builtin.FileInstallationService;
 import com.slack.api.bolt.service.builtin.oauth.*;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.*;
+import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.model.event.Event;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.util.json.GsonFactory;
+import com.slack.api.util.thread.ExecutorServiceFactory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,6 +45,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
@@ -68,6 +72,16 @@ public class App {
      */
     private final Slack slack;
 
+    /**
+     * The default Web API client without any tokens.
+     */
+    private final MethodsClient client;
+
+    /**
+     * The built-in handy way to run operations asynchronously. It's totally fine to use your own one instead.
+     */
+    private final ExecutorService executorService;
+
     // --------------------------------------
     // Middleware
     // --------------------------------------
@@ -93,7 +107,18 @@ public class App {
         if (appConfig.isDistributedApp()) {
             middlewareList.add(new MultiTeamsAuthorization(config(), installationService));
         } else if (appConfig.getSingleTeamBotToken() != null) {
-            middlewareList.add(new SingleTeamAuthorization(config(), installationService));
+            try {
+                AuthTestResponse initialAuthTest = client().authTest(r -> r.token(appConfig.getSingleTeamBotToken()));
+                if (initialAuthTest == null || !initialAuthTest.isOk()) {
+                    String error = initialAuthTest != null ? initialAuthTest.getError() : "";
+                    String message = "The token is invalid (auth.test error: " + error + ")";
+                    throw new IllegalArgumentException(message);
+                }
+                middlewareList.add(new SingleTeamAuthorization(config(), initialAuthTest, installationService));
+            } catch (IOException | SlackApiException e) {
+                String message = "The token is invalid (error: " + e.getMessage() + ")";
+                throw new IllegalArgumentException(message);
+            }
         } else {
             log.warn("Skipped adding any authorization middleware - you need to call `app.use(new YourOwnMultiTeamsAuthorization())`");
         }
@@ -405,6 +430,10 @@ public class App {
     public App(AppConfig appConfig, Slack slack, List<Middleware> middlewareList) {
         this.appConfig = appConfig;
         this.slack = slack;
+        this.client = this.slack.methods();
+        this.executorService = ExecutorServiceFactory.createDaemonThreadPoolExecutor(
+                "bolt-app-threads",
+                this.appConfig.getThreadPoolSize());
         this.middlewareList = middlewareList;
 
         this.oAuthStateService = new ClientOnlyOAuthStateService();
@@ -428,6 +457,21 @@ public class App {
 
     public AppConfig config() {
         return this.appConfig;
+    }
+
+    public Slack slack() {
+        return this.slack;
+    }
+
+    public MethodsClient client() {
+        return this.client;
+    }
+
+    /**
+     * The built-in handy way to run operations asynchronously. It's totally fine to use your own one instead.
+     */
+    public ExecutorService executorService() {
+        return this.executorService;
     }
 
     // ----------------------
