@@ -340,6 +340,10 @@ public class MethodsRateLimits {
         setRateLimitTier(VIEWS_PUBLISH, Tier4);
         setRateLimitTier(VIEWS_PUSH, Tier4);
         setRateLimitTier(VIEWS_UPDATE, Tier4);
+
+        setRateLimitTier(WORKFLOWS_STEP_COMPLETED, Tier2);
+        setRateLimitTier(WORKFLOWS_STEP_FAILED, Tier2);
+        setRateLimitTier(WORKFLOWS_UPDATE_STEP, Tier2);
     }
 
 }

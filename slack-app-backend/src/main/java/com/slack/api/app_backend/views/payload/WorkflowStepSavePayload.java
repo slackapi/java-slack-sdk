@@ -1,0 +1,49 @@
+package com.slack.api.app_backend.views.payload;
+
+import com.slack.api.model.view.View;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * @see <a href="https://api.slack.com/block-kit/surfaces/modals">Modals</a>
+ */
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class WorkflowStepSavePayload {
+    public static final String TYPE = "view_submission";
+    private final String type = TYPE;
+    private Team team;
+    private User user;
+    private String apiAppId;
+    private String token;
+    private String triggerId;
+    private View view;
+    private boolean isCleared;
+    private WorkflowStep workflowStep;
+
+    @Data
+    public static class Team {
+        private String id;
+        private String domain;
+        private String enterpriseId;
+        private String enterpriseName;
+    }
+
+    @Data
+    public static class User {
+        private String id;
+        private String username;
+        private String name;
+        private String teamId;
+    }
+
+    @Data
+    public static class WorkflowStep {
+        private String workflowStepEditId;
+    }
+
+}

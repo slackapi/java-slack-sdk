@@ -35,12 +35,7 @@ public class MethodsTest {
         }
 
         String[] allMethodNames = methods.split(",");
-        List<String> excludedMethodNames = Arrays.asList(
-                // still in beta - https://api.slack.com/workflows/steps
-                "workflows.stepCompleted",
-                "workflows.stepFailed",
-                "workflows.updateStep"
-        );
+        List<String> excludedMethodNames = Arrays.asList();
         List<String> methodNames = new ArrayList<>();
         for (String methodName : allMethodNames) {
             if (!excludedMethodNames.contains(methodName)) {

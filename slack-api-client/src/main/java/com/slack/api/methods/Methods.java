@@ -548,4 +548,11 @@ public class Methods {
     // https://api.slack.com/surfaces/tabs
     public static final String VIEWS_PUBLISH = "views.publish";
 
+    // ------------------------------
+    // workflows
+    // ------------------------------
+
+    public static final String WORKFLOWS_STEP_COMPLETED = "workflows.stepCompleted";
+    public static final String WORKFLOWS_STEP_FAILED = "workflows.stepFailed";
+    public static final String WORKFLOWS_UPDATE_STEP = "workflows.updateStep";
 }

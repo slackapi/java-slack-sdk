@@ -77,6 +77,9 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
@@ -153,6 +156,9 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
+import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
+import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -1033,5 +1039,21 @@ public interface AsyncMethodsClient {
     CompletableFuture<ViewsPublishResponse> viewsPublish(ViewsPublishRequest req);
 
     CompletableFuture<ViewsPublishResponse> viewsPublish(RequestConfigurator<ViewsPublishRequest.ViewsPublishRequestBuilder> req);
+
+    // ------------------------------
+    // workflows
+    // ------------------------------
+
+    CompletableFuture<WorkflowsStepCompletedResponse> workflowsStepCompleted(WorkflowsStepCompletedRequest req);
+
+    CompletableFuture<WorkflowsStepCompletedResponse> workflowsStepCompleted(RequestConfigurator<WorkflowsStepCompletedRequest.WorkflowsStepCompletedRequestBuilder> req);
+
+    CompletableFuture<WorkflowsStepFailedResponse> workflowsStepFailed(WorkflowsStepFailedRequest req);
+
+    CompletableFuture<WorkflowsStepFailedResponse> workflowsStepFailed(RequestConfigurator<WorkflowsStepFailedRequest.WorkflowsStepFailedRequestBuilder> req);
+
+    CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(WorkflowsUpdateStepRequest req);
+
+    CompletableFuture<WorkflowsUpdateStepResponse> workflowsUpdateStep(RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req);
 
 }

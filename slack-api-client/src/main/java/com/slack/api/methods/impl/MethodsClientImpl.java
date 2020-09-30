@@ -92,6 +92,9 @@ import com.slack.api.methods.request.views.ViewsOpenRequest;
 import com.slack.api.methods.request.views.ViewsPublishRequest;
 import com.slack.api.methods.request.views.ViewsPushRequest;
 import com.slack.api.methods.request.views.ViewsUpdateRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
+import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
@@ -182,6 +185,9 @@ import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
+import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
+import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
+import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -2464,6 +2470,36 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ViewsPublishResponse viewsPublish(RequestConfigurator<ViewsPublishRequest.ViewsPublishRequestBuilder> req) throws IOException, SlackApiException {
         return viewsPublish(req.configure(ViewsPublishRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsStepCompletedResponse workflowsStepCompleted(WorkflowsStepCompletedRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_STEP_COMPLETED, getToken(req), WorkflowsStepCompletedResponse.class);
+    }
+
+    @Override
+    public WorkflowsStepCompletedResponse workflowsStepCompleted(RequestConfigurator<WorkflowsStepCompletedRequest.WorkflowsStepCompletedRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsStepCompleted(req.configure(WorkflowsStepCompletedRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsStepFailedResponse workflowsStepFailed(WorkflowsStepFailedRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_STEP_FAILED, getToken(req), WorkflowsStepFailedResponse.class);
+    }
+
+    @Override
+    public WorkflowsStepFailedResponse workflowsStepFailed(RequestConfigurator<WorkflowsStepFailedRequest.WorkflowsStepFailedRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsStepFailed(req.configure(WorkflowsStepFailedRequest.builder()).build());
+    }
+
+    @Override
+    public WorkflowsUpdateStepResponse workflowsUpdateStep(WorkflowsUpdateStepRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.WORKFLOWS_UPDATE_STEP, getToken(req), WorkflowsUpdateStepResponse.class);
+    }
+
+    @Override
+    public WorkflowsUpdateStepResponse workflowsUpdateStep(RequestConfigurator<WorkflowsUpdateStepRequest.WorkflowsUpdateStepRequestBuilder> req) throws IOException, SlackApiException {
+        return workflowsUpdateStep(req.configure(WorkflowsUpdateStepRequest.builder()).build());
     }
 
     // ----------------------------------------------
