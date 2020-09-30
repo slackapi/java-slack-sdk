@@ -1,5 +1,7 @@
 package test_locally;
 
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.service.InstallationService;
@@ -14,7 +16,10 @@ import com.slack.api.bolt.service.builtin.oauth.OAuthV2SuccessHandler;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.OAuthDefaultExceptionHandler;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.OAuthDefaultStateErrorHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import util.AuthTestMockServer;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -24,6 +29,21 @@ import static org.junit.Assert.*;
 
 @Slf4j
 public class AppTest {
+
+    AuthTestMockServer server = new AuthTestMockServer();
+    SlackConfig config = new SlackConfig();
+    Slack slack = Slack.getInstance(config);
+
+    @Before
+    public void setup() throws Exception {
+        server.start();
+        config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        server.stop();
+    }
 
     @Test
     public void getOauthInstallationUrl_v1() {
@@ -88,13 +108,21 @@ public class AppTest {
 
     @Test
     public void status() {
-        App app = new App(AppConfig.builder().signingSecret("secret").singleTeamBotToken("xoxb-valid").build());
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                .slack(slack)
+                .build());
         assertThat(app.status(), is(App.Status.Stopped));
     }
 
     @Test
     public void builder_status() {
-        App app = new App(AppConfig.builder().signingSecret("secret").build());
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                .slack(slack)
+                .build());
         assertNotNull(app.status());
         assertThat(app.status(), is(App.Status.Stopped));
 
@@ -110,7 +138,11 @@ public class AppTest {
 
     @Test
     public void builder_config() {
-        App app = new App(AppConfig.builder().signingSecret("secret").build());
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                .slack(slack)
+                .build());
         assertNotNull(app.config());
 
         app = app.toBuilder().build();
@@ -125,7 +157,11 @@ public class AppTest {
 
     @Test
     public void initializer_called() {
-        App app = new App(AppConfig.builder().signingSecret("secret").build());
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                .slack(slack)
+                .build());
         final AtomicBoolean called = new AtomicBoolean(false);
         assertThat(called.get(), is(false));
 
@@ -138,25 +174,27 @@ public class AppTest {
 
     @Test
     public void initializer_start() {
-        App app = new App(AppConfig.builder().signingSecret("secret").build());
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                .slack(slack)
+                .build());
         final AtomicBoolean called = new AtomicBoolean(false);
         assertThat(called.get(), is(false));
 
         app.initializer("foo", (theApp) -> {
             called.set(true);
         });
-        try {
-            app.start();
-            fail();
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is("The token is invalid (auth.test error: account_inactive)"));
-        }
-        // TODO: valid pattern test
+        app.start();
     }
 
     @Test
     public void initializer_same_key() {
-        App app = new App(AppConfig.builder().signingSecret("secret").build());
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                .slack(slack)
+                .build());
         final AtomicBoolean called = new AtomicBoolean(false);
         assertThat(called.get(), is(false));
 
