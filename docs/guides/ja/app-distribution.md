@@ -50,9 +50,9 @@ apiApp.command("/hi", (req, ctx) -> {
 
 // OAuth フローを処理する App
 // 以下の環境変数が設定されている前提:
-//   SLACK_APP_CLIENT_ID, SLACK_APP_CLIENT_SECRET, SLACK_APP_REDIRECT_URI, SLACK_APP_SCOPE,
-//   SLACK_APP_OAUTH_START_PATH, SLACK_APP_OAUTH_CALLBACK_PATH
-//   SLACK_APP_OAUTH_COMPLETION_URL, SLACK_APP_OAUTH_CANCELLATION_URL
+//   SLACK_CLIENT_ID, SLACK_CLIENT_SECRET, SLACK_REDIRECT_URI, SLACK_SCOPES,
+//   SLACK_INSTALL_PATH, SLACK_REDIRECT_URI_PATH
+//   SLACK_OAUTH_COMPLETION_URL, SLACK_OAUTH_CANCELLATION_URL
 App oauthApp = new App().asOAuthApp(true);
 
 // これら二つの App をルーとパスの指定とともにマウント
@@ -73,15 +73,15 @@ server.start(); // http://localhost:3000
 |環境変数名|説明 (値を見つけられる場所)|
 |-|-|
 |**SLACK_SIGNING_SECRET**|**Signing Secret**: リクエスト検証のための秘密キー (**Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_APP_CLIENT_ID**|**OAuth 2.0 Client ID** (**Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_APP_CLIENT_SECRET**|**OAuth 2.0 Client Secret** (**Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_APP_REDIRECT_URI**|**OAUth 2.0 Redirect URI** (**Features** > **OAuth & Permissions** > **Redirect URLs**)|
-|**SLACK_APP_SCOPE**|**カンマ区切りの bot scope リスト**: `scope` パラメーターは `https://slack.com/oauth/authorize` や `https://slack.com/oauth/v2/authorize` にクエリパラメーターとして付加されます (**Settings** > **Manage Distribution** > **Sharable URL** から `scope` の値を取得)|
-|**SLACK_APP_USER_SCOPE** (v2 のみ)|**カンマ区切りの user scope リスト**: `user_scope` パラメーターは `https://slack.com/oauth/v2/authorize` にクエリパラメーターとして付加されます (**Settings** > **Manage Distribution** > **Sharable URL**, から `user_scope` の値を取得)|
-|**SLACK_APP_OAUTH_START_PATH**|**OAuth フローの開始点**: このエンドポイントはユーザーを `client_id`, `scope`, `user_scope` (v2 のみ), and `state` とともに Slack の Authorize エンドポイントにリダイレクトします。推奨するパスは `/slack/oauth/start` ですが、どのようなパスでも構いません。|
-|**SLACK_APP_OAUTH_CALLBACK_PATH**|**OAuth Redirect URI**: このエンドポイントは Slack の OAuth 許可確認画面からの callback リクエストを処理します。このパスは **SLACK_APP_REDIRECT_URI** の値と整合している必要があります。推奨のパスは `/slack/oauth/callback` ですが、どのようなパスでも構いません。|
-|**SLACK_APP_OAUTH_COMPLETION_URL**|**Installation Completion URL**: インストール完了画面の URL を指定します。どんな URL でも構いません。|
-|**SLACK_APP_OAUTH_CANCELLATION_URL**|**Installation Cancellation/Error URL**: キャンセルやエラーが発生したときの遷移先 URL を指定します。どんな URL でも構いません。|
+|**SLACK_CLIENT_ID**|**OAuth 2.0 Client ID** (**Settings** > **Basic Information** > **App Credentials**)|
+|**SLACK_CLIENT_SECRET**|**OAuth 2.0 Client Secret** (**Settings** > **Basic Information** > **App Credentials**)|
+|**SLACK_REDIRECT_URI**|**OAUth 2.0 Redirect URI** (**Features** > **OAuth & Permissions** > **Redirect URLs**)|
+|**SLACK_SCOPES**|**カンマ区切りの bot scope リスト**: `scope` パラメーターは `https://slack.com/oauth/authorize` や `https://slack.com/oauth/v2/authorize` にクエリパラメーターとして付加されます (**Settings** > **Manage Distribution** > **Sharable URL** から `scope` の値を取得)|
+|**SLACK_USER_SCOPES** (v2 のみ)|**カンマ区切りの user scope リスト**: `user_scope` パラメーターは `https://slack.com/oauth/v2/authorize` にクエリパラメーターとして付加されます (**Settings** > **Manage Distribution** > **Sharable URL**, から `user_scope` の値を取得)|
+|**SLACK_INSTALL_PATH**|**OAuth フローの開始点**: このエンドポイントはユーザーを `client_id`, `scope`, `user_scope` (v2 のみ), and `state` とともに Slack の Authorize エンドポイントにリダイレクトします。推奨するパスは `/slack/oauth/start` ですが、どのようなパスでも構いません。|
+|**SLACK_REDIRECT_URI_PATH**|**OAuth Redirect URI**: このエンドポイントは Slack の OAuth 許可確認画面からの callback リクエストを処理します。このパスは **SLACK_REDIRECT_URI** の値と整合している必要があります。推奨のパスは `/slack/oauth/callback` ですが、どのようなパスでも構いません。|
+|**SLACK_OAUTH_COMPLETION_URL**|**Installation Completion URL**: インストール完了画面の URL を指定します。どんな URL でも構いません。|
+|**SLACK_OAUTH_CANCELLATION_URL**|**Installation Cancellation/Error URL**: キャンセルやエラーが発生したときの遷移先 URL を指定します。どんな URL でも構いません。|
 
 ### ストレージサービスの選択
 
@@ -169,6 +169,57 @@ App app = new App(appConfig);
 ```
 
 **InstallationService** はレスポンス構造の差異を吸収してくれます。そのため、Class OAuth と V2 を切り替えるときにアプリケーション側では何も変更する必要がありません。
+
+#### Spring Boot で実装する
+
+Spring Boot を用いて Slack OAuth フローを実装するのは非常に簡単です。やらなければならないことは、 1) 必要な環境変数を読み込む 2) サービス、リスナーを登録した `App` インスタンスを Spring Bean として初期化する 3) リクエストをハンドリングする HTTP エンドポイントを 3 つ定義する、この三つだけです。
+
+```java
+package hello;
+
+// export SLACK_SIGNING_SECRET=xxx
+// export SLACK_CLIENT_ID=111.222
+// export SLACK_CLIENT_SECRET=xxx
+// export SLACK_SCOPES=commands,chat:write.public,chat:write
+// export SLACK_USER_SCOPES=
+// export SLACK_INSTALL_PATH=/slack/install
+// export SLACK_REDIRECT_URI_PATH=/slack/oauth_redirect
+// export SLACK_OAUTH_COMPLETION_URL=https://www.example.com/completion
+// export SLACK_OAUTH_CANCELLATION_URL=https://www.example.com/cancellation
+
+import com.slack.api.bolt.App;
+import javax.servlet.annotation.WebServlet;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SlackApp {
+  @Bean
+  public App initSlackApp() {
+    App app = new App().asOAuthApp(true); // `asOAuthApp(true)` をここで呼び出すのを忘れないようにしてください
+    app.command("/hello-oauth-app", (req, ctx) -> {
+      return ctx.ack("What's up?");
+    });
+    return app;
+  }
+}
+
+import com.slack.api.bolt.servlet.SlackAppServlet;
+import com.slack.api.bolt.servlet.SlackOAuthAppServlet;
+
+@WebServlet("/slack/events")
+public class SlackEventsController extends SlackAppServlet {
+  public SlackEventsController(App app) { super(app); }
+}
+@WebServlet("/slack/install")
+public class SlackOAuthInstallController extends SlackOAuthAppServlet {
+  public SlackOAuthInstallController(App app) { super(app); }
+}
+@WebServlet("/slack/oauth_redirect")
+public class SlackOAuthRedirectController extends SlackOAuthAppServlet {
+  public SlackOAuthRedirectController(App app) { super(app); }
+}
+```
 
 #### 完了・エラーページを Bolt アプリでサーブする
 

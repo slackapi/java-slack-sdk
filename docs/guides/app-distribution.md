@@ -51,14 +51,14 @@ apiApp.command("/hi", (req, ctx) -> {
 
 // OAuth Flow Handler App
 //  expected env variables:
-//   SLACK_APP_CLIENT_ID, SLACK_APP_CLIENT_SECRET, SLACK_APP_REDIRECT_URI, SLACK_APP_SCOPE,
-//   SLACK_APP_OAUTH_START_PATH, SLACK_APP_OAUTH_CALLBACK_PATH
-//   SLACK_APP_OAUTH_COMPLETION_URL, SLACK_APP_OAUTH_CANCELLATION_URL
+//   SLACK_CLIENT_ID, SLACK_CLIENT_SECRET, SLACK_REDIRECT_URI, SLACK_SCOPES,
+//   SLACK_INSTALL_PATH, SLACK_REDIRECT_URI_PATH
+//   SLACK_OAUTH_COMPLETION_URL, SLACK_OAUTH_CANCELLATION_URL
 App oauthApp = new App().asOAuthApp(true);
 
 // Mount the two apps with their root path
 SlackAppServer server = new SlackAppServer(Map.of(
-  entry("/slack/events", apiApp), // POST /slack/events (incomng API requests from the Slack Platform)
+  entry("/slack/events", apiApp), // POST /slack/events (incoming API requests from the Slack Platform)
   entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
 ));
 
@@ -74,15 +74,15 @@ Here is the list of the necessary configurations for distributing apps built wit
 |Env Variable Name|Description (Where to find the value)|
 |-|-|
 |**SLACK_SIGNING_SECRET**|**Signing Secret**: A secret key for verifying requests from Slack. (Find at **Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_APP_CLIENT_ID**|**OAuth 2.0 Client ID** (Find at **Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_APP_CLIENT_SECRET**|**OAuth 2.0 Client Secret** (Find at **Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_APP_REDIRECT_URI**|**OAUth 2.0 Redirect URI** (Configure at **Features** > **OAuth & Permissions** > **Redirect URLs**)|
-|**SLACK_APP_SCOPE**|**Command-separated list of scopes**: `scope` parameter that will be appended to `https://slack.com/oauth/authorize` and `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `scope`)|
-|**SLACK_APP_USER_SCOPE** (only for v2)|**Command-separated list of user scopes**: `user_scope` parameter that will be appended to `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `user_scope`)|
-|**SLACK_APP_OAUTH_START_PATH**|**Starting point of OAuth flow**: This endpoint redirects users to the Slack Authorize endpoint with required query parameters such as `client_id`, `scope`, `user_scope` (only for v2), and `state`. The suggested path is `/slack/oauth/start` but you can go with any path.|
-|**SLACK_APP_OAUTH_CALLBACK_PATH**|**Path for OAuth Redirect URI**: This endpoint handles callback requests after the Slack's OAuth confirmation. The path must be consistent with **SLACK_APP_REDIRECT_URI** value. The suggested path is `/slack/oauth/callback` but you can go with any path.|
-|**SLACK_APP_OAUTH_COMPLETION_URL**|**Installation Completion URL**: The complete public URL to redirect users when their installations have been successfully completed. You can go with any URLs.|
-|**SLACK_APP_OAUTH_CANCELLATION_URL**|**Installation Cancellation/Error URL**: The complete public URL to redirect users when their installations have been cancelled for some reasons. You can go with any URLs.|
+|**SLACK_CLIENT_ID**|**OAuth 2.0 Client ID** (Find at **Settings** > **Basic Information** > **App Credentials**)|
+|**SLACK_CLIENT_SECRET**|**OAuth 2.0 Client Secret** (Find at **Settings** > **Basic Information** > **App Credentials**)|
+|**SLACK_REDIRECT_URI**|**OAUth 2.0 Redirect URI** (Configure at **Features** > **OAuth & Permissions** > **Redirect URLs**)|
+|**SLACK_SCOPES**|**Command-separated list of scopes**: `scope` parameter that will be appended to `https://slack.com/oauth/authorize` and `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `scope`)|
+|**SLACK_USER_SCOPES** (only for v2)|**Command-separated list of user scopes**: `user_scope` parameter that will be appended to `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `user_scope`)|
+|**SLACK_INSTALL_PATH**|**Starting point of OAuth flow**: This endpoint redirects users to the Slack Authorize endpoint with required query parameters such as `client_id`, `scope`, `user_scope` (only for v2), and `state`. The suggested path is `/slack/oauth/start` but you can go with any path.|
+|**SLACK_REDIRECT_URI_PATH**|**Path for OAuth Redirect URI**: This endpoint handles callback requests after the Slack's OAuth confirmation. The path must be consistent with **SLACK_REDIRECT_URI** value. The suggested path is `/slack/oauth/callback` but you can go with any path.|
+|**SLACK_OAUTH_COMPLETION_URL**|**Installation Completion URL**: The complete public URL to redirect users when their installations have been successfully completed. You can go with any URLs.|
+|**SLACK_OAUTH_CANCELLATION_URL**|**Installation Cancellation/Error URL**: The complete public URL to redirect users when their installations have been cancelled for some reasons. You can go with any URLs.|
 
 ### Choose Proper Storage Services
 
@@ -172,9 +172,60 @@ App app = new App(appConfig);
 **InstallationService** absorbs the difference in the response structure. So, you don't need to change anything even when you switch from the classic OAuth to the V2.
 
 
+#### Build Slack OAuth using Spring Boot
+
+Implementing Slack OAuth flow app using Spring Boot is quite easy. All you need to do are to 1) load env variables, 2) to initialize `App` with services and listeners as a Spring Bean, and 3) to have three endpoints to handle HTTP requests.
+
+```java
+package hello;
+
+// export SLACK_SIGNING_SECRET=xxx
+// export SLACK_CLIENT_ID=111.222
+// export SLACK_CLIENT_SECRET=xxx
+// export SLACK_SCOPES=commands,chat:write.public,chat:write
+// export SLACK_USER_SCOPES=
+// export SLACK_INSTALL_PATH=/slack/install
+// export SLACK_REDIRECT_URI_PATH=/slack/oauth_redirect
+// export SLACK_OAUTH_COMPLETION_URL=https://www.example.com/completion
+// export SLACK_OAUTH_CANCELLATION_URL=https://www.example.com/cancellation
+
+import com.slack.api.bolt.App;
+import javax.servlet.annotation.WebServlet;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SlackApp {
+  @Bean
+  public App initSlackApp() {
+    App app = new App().asOAuthApp(true); // Do not forget calling `asOAuthApp(true)` here
+    app.command("/hello-oauth-app", (req, ctx) -> {
+      return ctx.ack("What's up?");
+    });
+    return app;
+  }
+}
+
+import com.slack.api.bolt.servlet.SlackAppServlet;
+import com.slack.api.bolt.servlet.SlackOAuthAppServlet;
+
+@WebServlet("/slack/events")
+public class SlackEventsController extends SlackAppServlet {
+  public SlackEventsController(App app) { super(app); }
+}
+@WebServlet("/slack/install")
+public class SlackOAuthInstallController extends SlackOAuthAppServlet {
+  public SlackOAuthInstallController(App app) { super(app); }
+}
+@WebServlet("/slack/oauth_redirect")
+public class SlackOAuthRedirectController extends SlackOAuthAppServlet {
+  public SlackOAuthRedirectController(App app) { super(app); }
+}
+```
+
 #### Serve the Completion/Cancellation Pages in Bolt Apps
 
-Most apps tend to choose static pages for the completion/cancellation URLs but it's also possible to dynamically serve those URLs in the same app. Bolt doesn't offer any features to render web pages. Use your favorite template engine for it.
+Although most apps tend to choose static pages for the completion/cancellation URLs, it's also possible to dynamically serve those URLs in the same app. Bolt doesn't offer any features to render web pages. Use your favorite template engine for it.
 
 ```java
 String renderCompletionPageHtml(String queryString) { return null; }
