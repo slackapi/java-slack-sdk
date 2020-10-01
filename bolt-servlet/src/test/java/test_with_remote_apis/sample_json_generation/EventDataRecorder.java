@@ -149,21 +149,23 @@ public class EventDataRecorder {
             }
             if (array.size() == 0) {
                 List<String> addressNames = Arrays.asList("from", "to", "cc");
-                if (addressNames.contains(name)) {
-                    Address address = new Address();
-                    address.setAddress("");
-                    address.setName("");
-                    address.setOriginal("");
-                    JsonElement elem = gson.toJsonTree(address);
-                    array.add(elem);
-                } else if (name.equals("app_requests")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new AppRequest())));
-                } else if (name.equals("replies")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Message.MessageRootReply())));
-                } else if (name.equals("comments")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new FileComment())));
-                } else {
-                    array.add(""); // in most cases, empty array can have string values
+                if (name != null) {
+                    if (addressNames.contains(name)) {
+                        Address address = new Address();
+                        address.setAddress("");
+                        address.setName("");
+                        address.setOriginal("");
+                        JsonElement elem = gson.toJsonTree(address);
+                        array.add(elem);
+                    } else if (name.equals("app_requests")) {
+                        array.add(gson.toJsonTree(ObjectInitializer.initProperties(new AppRequest())));
+                    } else if (name.equals("replies")) {
+                        array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Message.MessageRootReply())));
+                    } else if (name.equals("comments")) {
+                        array.add(gson.toJsonTree(ObjectInitializer.initProperties(new FileComment())));
+                    } else {
+                        array.add(""); // in most cases, empty array can have string values
+                    }
                 }
             } else {
                 JsonElement first = array.get(0);

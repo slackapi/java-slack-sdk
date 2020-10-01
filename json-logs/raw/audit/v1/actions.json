@@ -100,7 +100,10 @@
       "manual_user_export_deleted",
       "pref.notification_redaction_type",
       "pref.session_duration_changed",
-      "pref.session_duration_type_changed"
+      "pref.session_duration_type_changed",
+      "org_verified",
+      "org_unverified",
+      "org_public_url_updated"
     ],
     "user": [
       "custom_tos_accepted",

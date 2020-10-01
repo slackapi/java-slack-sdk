@@ -112,6 +112,9 @@ public class Actions {
         public static final String manual_user_export_deleted = "manual_user_export_deleted";
         public static final String approved_orgs_added = "approved_orgs_added";
         public static final String approved_orgs_removed = "approved_orgs_removed";
+        public static final String org_verified = "org_verified";
+        public static final String org_unverified = "org_unverified";
+        public static final String org_public_url_updated = "org_public_url_updated";
     }
 
     public static class User {
