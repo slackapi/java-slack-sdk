@@ -2,10 +2,9 @@ package test_with_remote_apis.sample_json_generation;
 
 import com.google.gson.JsonElement;
 import com.slack.api.model.*;
-import com.slack.api.model.block.ActionsBlock;
-import com.slack.api.model.block.LayoutBlock;
-import com.slack.api.model.block.SectionBlock;
+import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
+import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
@@ -17,15 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.slack.api.model.block.Blocks.asBlocks;
-import static com.slack.api.model.block.Blocks.section;
+import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.*;
 import static com.slack.api.model.block.element.BlockElements.*;
 import static test_with_remote_apis.sample_json_generation.ObjectInitializer.initProperties;
 
 public class SampleObjects {
-
-    private static final String imageUrl = "https://is5-ssl.mzstatic.com/image/thumb/Purple3/v4/d3/72/5c/d3725c8f-c642-5d69-1904-aa36e4297885/source/256x256bb.jpg";
 
     private SampleObjects() {
     }
@@ -42,8 +38,14 @@ public class SampleObjects {
                 GsonFactory.createSnakeCase().toJsonTree(initProperties(
                         ActionsBlock.builder().elements(BlockElements).build())),
                 GsonFactory.createSnakeCase().toJsonTree(initProperties(
+                        ContextBlock.builder().elements(ContextBlockElements).build())),
+                GsonFactory.createSnakeCase().toJsonTree(initProperties(
+                        DividerBlock.builder().build())),
+                GsonFactory.createSnakeCase().toJsonTree(initProperties(
+                        ImageBlock.builder().build())),
+                GsonFactory.createSnakeCase().toJsonTree(initProperties(
                         SectionBlock.builder()
-                                .accessory(initProperties(ImageElement.builder().imageUrl(imageUrl).build()))
+                                .accessory(initProperties(ImageElement.builder().build()))
                                 .text(TextObject)
                                 .fields(SectionBlockFieldElements)
                                 .build()))
@@ -64,27 +66,38 @@ public class SampleObjects {
 
     public static TextObject TextObject = initProperties(PlainTextObject.builder().build());
 
+    public static OptionObject Option = initProperties(OptionObject.builder()
+            .text(TextObject)
+            .description(PlainTextObject.builder().build())
+            .build());
+
     public static ConfirmationDialogObject Confirm = ConfirmationDialogObject.builder().text(TextObject).build();
 
     public static List<BlockElement> BlockElements = asElements(
-            initProperties(button(b -> b.actionId("button-action").confirm(Confirm))),
+            initProperties(button(b -> b.confirm(Confirm))),
             initProperties(channelsSelect(c -> c.confirm(Confirm))),
             initProperties(conversationsSelect(c -> c.confirm(Confirm))),
             initProperties(datePicker(d -> d.confirm(Confirm))),
-            initProperties(overflowMenu(o -> o
-                    .confirm(Confirm)
-                    .actionId("overflow-action")
-                    .options(asOptions(option(op -> op.text(plainText("l")).value("v"))))
-            )),
+            initProperties(externalSelect(e -> e.initialOption(Option).confirm(Confirm))),
+            initProperties(com.slack.api.model.block.element.BlockElements.image(i -> i)),
+            initProperties(overflowMenu(o -> o.confirm(Confirm))),
+            initProperties(staticSelect(s -> s.initialOption(Option).confirm(Confirm))),
             initProperties(usersSelect(u -> u.confirm(Confirm)))
+    );
+    public static List<ContextBlockElement> ContextBlockElements = asContextElements(
+            initProperties(ImageElement.builder().build())
     );
     public static List<TextObject> SectionBlockFieldElements = asSectionFields(
             initProperties(plainText(pt -> pt)),
             initProperties(markdownText(m -> m))
     );
     public static List<LayoutBlock> Blocks = asBlocks(
+            initProperties(actions(a -> a.elements(BlockElements))),
+            initProperties(context(c -> c.elements(ContextBlockElements))),
+            initProperties(divider()),
+            initProperties(com.slack.api.model.block.Blocks.image(i -> i)),
             initProperties(section(s -> s
-                    .accessory(initProperties(ImageElement.builder().imageUrl(imageUrl).build()))
+                    .accessory(initProperties(ImageElement.builder().build()))
                     .text(TextObject)
                     .fields(SectionBlockFieldElements)))
     );

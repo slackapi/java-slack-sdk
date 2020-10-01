@@ -622,7 +622,8 @@
       },
       "admin_customized_quick_reactions": [
         ""
-      ]
+      ],
+      "enable_connect_dm_early_access": false
     },
     "icon": {
       "image_34": "https://www.example.com/",

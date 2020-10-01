@@ -42,7 +42,11 @@
       ""
     ],
     "last_read": "0000000000.000000",
-    "priority": 12345
+    "priority": 12345,
+    "is_moved": 12345,
+    "internal_team_ids": [
+      "T00000000"
+    ]
   },
   "warning": "",
   "response_metadata": {

@@ -1,5 +1,6 @@
 package com.slack.api.app_backend.events.payload;
 
+import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.model.event.Event;
 
 import java.util.List;
@@ -59,17 +60,33 @@ public interface EventsApiPayload<E extends Event> {
 
     void setEventContext(String eventContext);
 
+    // isExtSharedChannel
+
+    boolean isExtSharedChannel();
+
+    void setExtSharedChannel(boolean isExtSharedChannel);
+
     // authedUsers
 
+    @Deprecated
     List<String> getAuthedUsers();
 
+    @Deprecated
     void setAuthedUsers(List<String> authedUsers);
 
     // authedTeams
 
+    @Deprecated
     List<String> getAuthedTeams();
 
+    @Deprecated
     void setAuthedTeams(List<String> authedTeams);
+
+    // authorizations
+
+    List<Authorization> getAuthorizations();
+
+    void setAuthorizations(List<Authorization> authorizations);
 
     // enterpriseId
 

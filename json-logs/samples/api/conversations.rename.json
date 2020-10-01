@@ -40,7 +40,12 @@
     },
     "previous_names": [
       ""
-    ]
+    ],
+    "is_moved": 12345,
+    "internal_team_ids": [
+      "T00000000"
+    ],
+    "is_open": false
   },
   "ok": false,
   "error": "",

@@ -29,6 +29,7 @@ import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResp
 import com.slack.api.model.event.*;
 import com.slack.api.util.json.GsonFactory;
 import config.Constants;
+import config.SlackTestConfig;
 import lombok.Data;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -54,9 +55,11 @@ import static org.junit.Assert.assertTrue;
 public class EventsApiTest {
 
     Map<String, String> configValues = new HashMap<>();
+    SlackConfig recorderSlackConfig = SlackTestConfig.getInstance().getConfig();
     SlackConfig slackConfig = new SlackConfig();
+    Slack recorderSlack = null;
     Slack slack = null;
-    AppConfig appConfig = new AppConfig();
+    AppConfig appConfig = ResourceLoader.loadAppConfig();
     Gson gson = null;
 
     EventDataRecorder recorder = new EventDataRecorder("../json-logs");
@@ -69,20 +72,18 @@ public class EventsApiTest {
                 JsonElement event = json.getAsJsonObject().get("event");
                 if (event != null) {
                     String eventType = event.getAsJsonObject().get("type").getAsString();
+                    String payload = gson.toJson(json);
                     if (eventType.equals("message")) {
-                        String payload = gson.toJson(json);
                         JsonElement subtype = event.getAsJsonObject().get("subtype");
                         if (subtype == null) {
                             recorder.writeMergedResponse(eventType, payload);
                         } else {
                             // TODO
                         }
-                        req.getContext().logger.info("Event payload: {}", payload);
                     } else {
-                        String payload = gson.toJson(json);
                         recorder.writeMergedResponse(eventType, payload);
-                        req.getContext().logger.info("Event payload: {}", payload);
                     }
+                    req.getContext().logger.info("Event payload: {}", payload);
                 }
             }
             return chain.next(req);
@@ -116,12 +117,13 @@ public class EventsApiTest {
 
     @Before
     public void setup() {
-        slackConfig.setPrettyResponseLoggingEnabled(true);
+        recorderSlackConfig.setPrettyResponseLoggingEnabled(true);
+        recorderSlack = Slack.getInstance(recorderSlackConfig);
         slack = Slack.getInstance(slackConfig);
         configValues = ResourceLoader.loadValues();
         appConfig.setSigningSecret(configValues.get("signingSecret"));
         appConfig.setSingleTeamBotToken(configValues.get("singleTeamBotToken"));
-        gson = GsonFactory.createSnakeCase(slackConfig);
+        gson = GsonFactory.createSnakeCase(recorderSlackConfig);
     }
 
     @Data
@@ -968,7 +970,6 @@ public class EventsApiTest {
             waitForSlackAppConnection();
             // ------------------------------------------------------------------------------------
 
-            Slack slack = Slack.getInstance(slackConfig);
             FilesUploadRequest uploadRequest = FilesUploadRequest.builder()
                     .title("test text")
                     .content("test test test")
@@ -979,11 +980,11 @@ public class EventsApiTest {
             assertNull(userResult.getError());
 
             String ts = userResult.getFile().getShares().getPublicChannels().get(channelId).get(0).getTs();
-            ChatUpdateResponse updateReslt = slack.methods(userToken).chatUpdate(r -> r
+            ChatUpdateResponse updateResult = slack.methods(userToken).chatUpdate(r -> r
                     .channel(channelId)
                     .ts(ts)
                     .text("Here you are - let me know if you need other files as well"));
-            assertNull(updateReslt.getError());
+            assertNull(updateResult.getError());
             // ------------------------------------------------------------------------------------
 
             long waitTime = 0;
@@ -1033,8 +1034,7 @@ public class EventsApiTest {
 
         try {
             app.event(MessageEvent.class, (req, ctx) -> {
-                AppsEventAuthorizationsListResponse authorizations = ctx.client().appsEventAuthorizationsList(r -> r
-                        .token(appLevelToken)
+                AppsEventAuthorizationsListResponse authorizations = recorderSlack.methods(appLevelToken).appsEventAuthorizationsList(r -> r
                         .eventContext(req.getEventContext())
                         .limit(10)
                 );
@@ -1047,7 +1047,6 @@ public class EventsApiTest {
             waitForSlackAppConnection();
             // ------------------------------------------------------------------------------------
 
-            Slack slack = Slack.getInstance(slackConfig);
             ChatPostMessageResponse chatPostMessageResponse =
                     slack.methods(userToken).chatPostMessage(r -> r.channel(channelId).text("Hi there!"));
             assertNull(chatPostMessageResponse.getError());

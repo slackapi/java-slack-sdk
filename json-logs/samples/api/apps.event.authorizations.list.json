@@ -1,6 +1,15 @@
 {
   "ok": false,
   "error": "",
+  "authorizations": [
+    {
+      "enterprise_id": "E00000000",
+      "team_id": "T00000000",
+      "user_id": "W00000000",
+      "is_bot": false,
+      "is_enterprise_install": false
+    }
+  ],
   "needed": "",
   "provided": ""
 }

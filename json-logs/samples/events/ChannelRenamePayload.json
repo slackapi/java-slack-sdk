@@ -18,7 +18,15 @@
   "type": "event_callback",
   "event_id": "",
   "event_time": 12345,
-  "authed_users": [
-    ""
-  ]
+  "authorizations": [
+    {
+      "enterprise_id": "",
+      "team_id": "",
+      "user_id": "",
+      "is_bot": false,
+      "is_enterprise_install": false
+    }
+  ],
+  "is_ext_shared_channel": false,
+  "event_context": ""
 }

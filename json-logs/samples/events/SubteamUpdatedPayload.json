@@ -33,15 +33,22 @@
         ""
       ],
       "channel_count": 12345,
-      "user_count": 12345,
-      "deleted_by": ""
+      "user_count": 12345
     },
     "event_ts": "0000000000.000000"
   },
   "type": "event_callback",
   "event_id": "",
   "event_time": 12345,
-  "authed_users": [
-    ""
-  ]
+  "authorizations": [
+    {
+      "enterprise_id": "",
+      "team_id": "",
+      "user_id": "",
+      "is_bot": false,
+      "is_enterprise_install": false
+    }
+  ],
+  "is_ext_shared_channel": false,
+  "event_context": ""
 }
