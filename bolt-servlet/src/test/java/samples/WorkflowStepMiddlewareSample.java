@@ -20,7 +20,7 @@ import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.plainTextInput;
 import static com.slack.api.model.workflow.WorkflowSteps.*;
 
-public class WorkflowStepSample {
+public class WorkflowStepMiddlewareSample {
 
     public static void main(String[] args) throws Exception {
         AppConfig config = ResourceLoader.loadAppConfig("appConfig_stepsFromApps.json");
@@ -62,9 +62,9 @@ public class WorkflowStepSample {
                     Map<String, Map<String, ViewState.Value>> stateValues =
                             req.getPayload().getView().getState().getValues();
                     Map<String, WorkflowStepInput> inputs = new HashMap<>();
-                    inputs.put("taskName", stepInput(i -> i.value(stateValues.get("task_name_input").get("task_name").getValue())));
-                    inputs.put("taskDescription", stepInput(i -> i.value(stateValues.get("task_description_input").get("task_description").getValue())));
-                    inputs.put("taskAuthorEmail", stepInput(i -> i.value(stateValues.get("task_author_input").get("task_author").getValue())));
+                    inputs.put("taskName", stepInput(i -> i.value(extract(stateValues, "task_name_input", "task_name"))));
+                    inputs.put("taskDescription", stepInput(i -> i.value(extract(stateValues, "task_description_input", "task_description"))));
+                    inputs.put("taskAuthorEmail", stepInput(i -> i.value(extract(stateValues, "task_author_input", "task_author"))));
                     List<WorkflowStepOutput> outputs = asStepOutputs(
                             stepOutput(o -> o.name("taskName").type("text").label("Task Name")),
                             stepOutput(o -> o.name("taskDescription").type("text").label("Task Description")),
@@ -92,6 +92,10 @@ public class WorkflowStepSample {
         app.step(step);
         TestSlackAppServer server = new TestSlackAppServer(app);
         server.start();
+    }
+
+    static String extract(Map<String, Map<String, ViewState.Value>> stateValues, String blockId, String actionId) {
+        return stateValues.get(blockId).get(actionId).getValue();
     }
 
 }
