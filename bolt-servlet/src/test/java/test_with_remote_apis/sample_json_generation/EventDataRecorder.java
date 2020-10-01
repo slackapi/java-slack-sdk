@@ -193,6 +193,8 @@ public class EventDataRecorder {
                                     MergeJsonBuilder.mergeJsonObjects(first.getAsJsonObject(), CONFLICT_STRATEGY, elem.getAsJsonObject());
                                 } catch (MergeJsonBuilder.JsonConflictException e) {
                                     log.error("Failed to merge {} into {}", elem, first);
+                                } catch (IllegalStateException e) {
+                                    log.error("Failed to merge {} into {}", elem, first);
                                 }
                             }
                         }

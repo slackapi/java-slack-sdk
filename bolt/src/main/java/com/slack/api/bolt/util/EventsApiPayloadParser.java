@@ -2,6 +2,7 @@ package com.slack.api.bolt.util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.slack.api.app_backend.events.payload.Authorization;
 import com.slack.api.app_backend.events.payload.EventsApiPayload;
 import com.slack.api.bolt.request.builtin.EventRequest;
 import com.slack.api.model.event.Event;
@@ -78,6 +79,8 @@ public class EventsApiPayloadParser {
         private String type;
         private List<String> authedUsers;
         private List<String> authedTeams;
+        private List<Authorization> authorizations;
+        private boolean isExtSharedChannel;
         private String eventId;
         private Integer eventTime;
         private String eventContext;

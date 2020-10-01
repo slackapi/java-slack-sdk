@@ -1,4 +1,5 @@
 {
   "publicUrl": "https://xxx.ngrok.io/slack/events",
-  "signingSecret": "abcabcabcabcabcabcabcabcabc"
+  "signingSecret": "abcabcabcabcabcabcabcabcabc",
+  "singleTeamBotToken": "xoxb-"
 }

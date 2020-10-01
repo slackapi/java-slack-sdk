@@ -15,6 +15,8 @@ public class TeamJoinPayload implements EventsApiPayload<TeamJoinEvent> {
     private String type;
     private List<String> authedUsers;
     private List<String> authedTeams;
+    private List<Authorization> authorizations;
+    private boolean isExtSharedChannel;
     private String eventId;
     private Integer eventTime;
     private String eventContext;
