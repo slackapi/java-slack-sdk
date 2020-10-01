@@ -11,6 +11,40 @@ lang: ja
 **注**: RTM API は最新の権限（Granular Permissions）を持ったアプリでは利用できません。移行先として [Events API]({{ site.url | append: site.baseurl }}/guides/ja/events-api) や [Web API]({{ site.url | append: site.baseurl }}/guides/ja/web-api-basics) を利用することを推奨します。ファイヤーウォールなどの制約により、止むを得ず RTM API を使う必要がある場合は、[この URL](https://api.slack.com/apps?new_classic_app=1) から Classic Permissions の Slack アプリをつくれば、新規のアプリでも引き続き RTM を利用できます。もし既存の RTM に依存したアプリを使っている場合、そのアプリの権限管理を新しい方式に移行すると RTM を使えなくなりますので注意してください。
 
 ---
+## Prerequisites
+
+RTM クライアントを使うためには、**slack-api-client** ライブラリに加えて、**javax.websocket-api** と **tyrus-standalone-client** も必要です。こちらは必要最低限の Maven 設定ファイルの例です。
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>awesome-slack-app</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.slack.api</groupId>
+      <artifactId>slack-api-client</artifactId>
+      <version>{{ site.sdkLatestVersion }}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.websocket</groupId>
+      <artifactId>javax.websocket-api</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.tyrus.bundles</groupId>
+      <artifactId>tyrus-standalone-client</artifactId>
+      <version>1.17</version>
+    </dependency>
+  </dependencies>
+</project>
+```
+
+---
 ## WebSocket 経由でイベント受信
 
 以下は最低限の動作するイベントハンドラー例です。

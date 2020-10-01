@@ -11,6 +11,40 @@ lang: en
 **NOTE**: RTM isn't available for modern scoped apps anymore. We recommend using the [Events API]({{ site.url | append: site.baseurl }}/guides/events-api) and [Web API]({{ site.url | append: site.baseurl }}/guides/web-api-basics) instead. If you need to use RTM (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
 
 ---
+## Prerequisites
+
+To use the RTM Client, in addition to the **slack-api-client** library, **javax.websocket-api** and **tyrus-standalone-client** are required. Here is a minimum Maven settings file.
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>awesome-slack-app</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.slack.api</groupId>
+      <artifactId>slack-api-client</artifactId>
+      <version>{{ site.sdkLatestVersion }}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.websocket</groupId>
+      <artifactId>javax.websocket-api</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.tyrus.bundles</groupId>
+      <artifactId>tyrus-standalone-client</artifactId>
+      <version>1.17</version>
+    </dependency>
+  </dependencies>
+</project>
+```
+
+---
 ## Subscribing Slack Events Over WebSocket
 
 Here is a minimum working example demonstrating how event handlers work.
