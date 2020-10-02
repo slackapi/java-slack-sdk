@@ -169,11 +169,11 @@ WorkflowStep step = WorkflowStep.builder()
     outputs.put("taskDescription", wfStep.getInputs().get("taskDescription").getValue());
     outputs.put("taskAuthorEmail", wfStep.getInputs().get("taskAuthorEmail").getValue());
     try {
-        ctx.complete(outputs);
+      ctx.complete(outputs);
     } catch (Exception e) {
-        Map<String, Object> error = new HashMap<>();
-        error.put("message", "Something wrong!");
-        ctx.fail(error);
+      Map<String, Object> error = new HashMap<>();
+      error.put("message", "Something wrong!");
+      ctx.fail(error);
     }
     return ctx.ack();
   })
