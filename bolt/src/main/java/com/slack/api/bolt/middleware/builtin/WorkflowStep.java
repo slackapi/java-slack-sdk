@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WorkflowStep implements Middleware {
+public class WorkflowStep implements Middleware, AutoCloseable {
 
     private String callbackId;
     private Pattern callbackIdPattern;
@@ -31,12 +31,13 @@ public class WorkflowStep implements Middleware {
     private WorkflowStepSaveHandler save;
     private WorkflowStepExecuteHandler execute;
     @Builder.Default
+    private boolean executeAutoAcknowledgement = true;
+    @Builder.Default
     private ExecutorService executorService = buildDefaultExecutorService();
 
     @Override
-    protected void finalize() throws Throwable {
+    public void close() {
         this.executorService.shutdown();
-        super.finalize();
     }
 
     @Override
@@ -75,19 +76,26 @@ public class WorkflowStep implements Middleware {
                     String requestCallbackId = request.getContext().getCallbackId();
                     if (requestCallbackId != null) {
                         if (isStepCallbackId(requestCallbackId)) {
-                            // As the workflows.stepCompleted is really slow (it always takes 3+ seconds),
-                            // This middleware automatically runs the API call asynchronously
-                            // If you want to use your own mechanism to handle this, use your own middleware
-                            // or add your primitive listener by App#worflowStepExecute() method
-                            this.executorService.execute(() -> {
-                                try {
-                                    execute.apply(request, request.getContext());
-                                } catch (Exception e) {
-                                    log.error("Failed to run listener for a workflow_step_execute event ({}): {}",
-                                            requestCallbackId, e.getMessage(), e);
-                                }
-                            });
-                            return new Response();
+                            if (isExecuteAutoAcknowledgement()) {
+                                // As the workflows.stepCompleted is really slow (it always takes 3+ seconds),
+                                // This middleware automatically runs the API call asynchronously
+                                // If you want to use your own mechanism to handle this, use your own middleware
+                                // or add your primitive listener by App#worflowStepExecute() method
+                                this.executorService.execute(() -> {
+                                    try {
+                                        execute.apply(request, request.getContext());
+                                    } catch (Exception e) {
+                                        log.error("Failed to run listener for a workflow_step_execute event ({}): {}",
+                                                requestCallbackId, e.getMessage(), e);
+                                    }
+                                });
+                                // Auto acknowledgement
+                                return new Response();
+                            } else {
+                                // In the execute handler, workflows.stepCompleted/stepFailed
+                                // needs to be called asynchronously
+                                return execute.apply(request, request.getContext());
+                            }
                         }
                         if (log.isDebugEnabled()) {
                             log.debug("callback_id: {} didn't match in the WorkflowStep middleware", requestCallbackId);

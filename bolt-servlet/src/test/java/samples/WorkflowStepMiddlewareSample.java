@@ -28,6 +28,7 @@ public class WorkflowStepMiddlewareSample {
 
         WorkflowStep step = WorkflowStep.builder()
                 .callbackId("copy_review")
+                .executeAutoAcknowledgement(true)
                 .edit((req, ctx) -> {
                     ViewsOpenResponse apiResponse = ctx.configure(asBlocks(
                             section(s -> s
