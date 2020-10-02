@@ -1,6 +1,5 @@
 package com.slack.api.app_backend.events.payload;
 
-import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.model.event.Event;
 
 import java.util.List;
