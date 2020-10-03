@@ -197,6 +197,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("is_private", req.getIsPrivate(), form);
         setIfNotNull("name", req.getName(), form);
+        setIfNotNull("description", req.getDescription(), form);
         setIfNotNull("org_wide", req.getOrgWide(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
