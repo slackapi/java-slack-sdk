@@ -930,16 +930,16 @@ public class App {
                 case Event: {
                     if (eventsDispatcher.isRunning()) {
                         eventsDispatcher.enqueue(slackRequest.getRequestBodyAsString());
+                        return Response.ok();
                     }
                     EventRequest request = (EventRequest) slackRequest;
                     BoltEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
                     if (handler != null) {
                         EventsApiPayload<Event> payload = buildEventPayload(request);
                         return handler.apply(payload, request.getContext());
-                    } else {
-                        log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
-                        return Response.ok();
                     }
+                    log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
+                    break;
                 }
                 case UrlVerification: {
                     // https://api.slack.com/events/url_verification
@@ -1144,16 +1144,16 @@ public class App {
                     // Fallback to Events API handlers
                     if (eventsDispatcher.isRunning()) {
                         eventsDispatcher.enqueue(slackRequest.getRequestBodyAsString());
+                        return Response.ok();
                     }
                     EventRequest request = new EventRequest(stepRequest.getRequestBodyAsString(), stepRequest.getHeaders());
                     BoltEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
                     if (handler != null) {
                         EventsApiPayload<Event> payload = buildEventPayload(request);
                         return handler.apply(payload, request.getContext());
-                    } else {
-                        log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
-                        return Response.ok();
                     }
+                    log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
+                    break;
                 }
                 default:
             }

@@ -193,7 +193,7 @@ public class MessageTest {
     }
 
     @Test
-    public void bot() throws Exception {
+    public void bot_subtype() throws Exception {
         App app = buildApp();
         AtomicBoolean userMessageReceived = new AtomicBoolean(false);
         app.message("sent by a bot user", (req, ctx) -> {
@@ -201,11 +201,14 @@ public class MessageTest {
             return ctx.ack();
         });
 
+        // "This is a message sent by a bot user."
         EventsApiPayload<MessageBotEvent> payload = buildUserBotMessagePayload();
 
         EventRequest req = buildRequest(gson.toJson(payload));
         Response response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
+        // NOTE: subtype: bot_message events are not handled by this
+        // while message events with bot_id / bot_profile are caught
+        assertEquals(404L, response.getStatusCode().longValue());
 
         assertFalse(userMessageReceived.get());
     }
@@ -219,11 +222,12 @@ public class MessageTest {
             return ctx.ack();
         });
 
+        // "This is a message sent by a bot user."
         EventsApiPayload<MessageBotEvent> payload = buildUserBotMessagePayload();
 
         EventRequest req = buildRequest(gson.toJson(payload));
         Response response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals(404L, response.getStatusCode().longValue());
 
         assertFalse(userMessageReceived.get());
     }
