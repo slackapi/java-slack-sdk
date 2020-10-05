@@ -79,6 +79,7 @@ public class Issue419UseCaseTest {
                 headers.put("additional-header", Arrays.asList("foo"));
                 return Response.builder().statusCode(200).headers(headers).build();
             });
+            app.message("Hello", (req, ctx) -> ctx.ack());
 
             SampleHandler handler = new SampleHandler(app);
 
