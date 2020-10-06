@@ -366,7 +366,8 @@
       "user_customized_quick_reactions_emoji_2": "",
       "user_customized_quick_reactions_emoji_3": "",
       "joiner_message_suggestion_dismissed": false,
-      "huddles_variant": 12345
+      "huddles_variant": 12345,
+      "stories_variant": ""
     },
     "created": 12345,
     "first_login": 12345,

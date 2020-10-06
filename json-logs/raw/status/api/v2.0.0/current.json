@@ -459,6 +459,36 @@
           "body": "Some users have reported issues with imports and exports failing to complete at this time. We\u0027re working to resolve the issue and will share more information as soon as it’s available. Thank you for your patience."
         }
       ]
+    },
+    {
+      "id": 909,
+      "date_created": "2020-10-05T18:56:21-07:00",
+      "date_updated": "2020-10-05T20:27:42-07:00",
+      "title": "Trouble processing messages with the RTM API",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2020-10/c5a4ba206320d9a7",
+      "services": [
+        "Apps/Integrations/APIs"
+      ],
+      "notes": [
+        {
+          "date_created": "2020-10-05T20:27:42-07:00",
+          "body": "We don\u0027t have any new information to share at the moment. We\u0027ll be back with an update as soon as we do. Thank you for your patience."
+        },
+        {
+          "date_created": "2020-10-05T19:56:48-07:00",
+          "body": "Our investigation of the RTM API issue is still ongoing. We will provide another update in 30 minutes."
+        },
+        {
+          "date_created": "2020-10-05T19:26:33-07:00",
+          "body": "No additional news to share at this stage, but we’re focused on getting things back to normal as quickly as possible. We’ll be back with another update in 30 minutes."
+        },
+        {
+          "date_created": "2020-10-05T18:56:21-07:00",
+          "body": "Some customers may be experiencing trouble processing messages with the RTM API, including issues interacting with apps and bots. We apologise for the disruption. We are investigating and will work to resolve this as fast as we can."
+        }
+      ]
     }
   ]
 }

@@ -321,6 +321,22 @@
     {
       "date_created": "2020-09-24T13:16:16-07:00",
       "body": "Some customers may see broken or empty placeholder images after they try to upload an image to a channel. We\u0027re looking into it and shall provide an update as we know more. Our apologies for the disruption."
+    },
+    {
+      "date_created": "2020-10-05T20:27:42-07:00",
+      "body": "We don\u0027t have any new information to share at the moment. We\u0027ll be back with an update as soon as we do. Thank you for your patience."
+    },
+    {
+      "date_created": "2020-10-05T19:56:48-07:00",
+      "body": "Our investigation of the RTM API issue is still ongoing. We will provide another update in 30 minutes."
+    },
+    {
+      "date_created": "2020-10-05T19:26:33-07:00",
+      "body": "No additional news to share at this stage, but we’re focused on getting things back to normal as quickly as possible. We’ll be back with another update in 30 minutes."
+    },
+    {
+      "date_created": "2020-10-05T18:56:21-07:00",
+      "body": "Some customers may be experiencing trouble processing messages with the RTM API, including issues interacting with apps and bots. We apologise for the disruption. We are investigating and will work to resolve this as fast as we can."
     }
   ]
 }
