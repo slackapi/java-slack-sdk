@@ -1,9 +1,11 @@
 package com.slack.api.model.kotlin_extension.block.element
 
 import com.slack.api.model.block.composition.PlainTextObject
+import com.slack.api.model.block.composition.DispatchActionConfig
 import com.slack.api.model.block.element.PlainTextInputElement
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 import com.slack.api.model.kotlin_extension.block.Builder
+import com.slack.api.model.kotlin_extension.block.composition.DispatchActionConfigBuilder
 
 @BlockLayoutBuilder
 class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
@@ -13,6 +15,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
     private var multiline: Boolean = false
     private var minLength: Int? = null
     private var maxLength: Int? = null
+    private var dispatchActionConfig: DispatchActionConfig? = null
 
     /**
      * An identifier for the input value when the parent modal is submitted. You can use this when you receive a
@@ -72,6 +75,10 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
         maxLength = length
     }
 
+    fun dispatchActionConfig(builder: DispatchActionConfigBuilder.() -> Unit) {
+        dispatchActionConfig = DispatchActionConfigBuilder().apply(builder).build()
+    }
+
     override fun build(): PlainTextInputElement {
         return PlainTextInputElement.builder()
                 .actionId(actionId)
@@ -80,6 +87,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
                 .multiline(multiline)
                 .minLength(minLength)
                 .maxLength(maxLength)
+                .dispatchActionConfig(dispatchActionConfig)
                 .build()
     }
 }
