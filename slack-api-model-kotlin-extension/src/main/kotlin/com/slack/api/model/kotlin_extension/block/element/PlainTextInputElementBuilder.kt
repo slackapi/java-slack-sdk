@@ -75,6 +75,11 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
         maxLength = length
     }
 
+    /**
+     * Determines when a plain-text input element will return a block_actions interaction payload.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config">The document</a>
+     */
     fun dispatchActionConfig(builder: DispatchActionConfigBuilder.() -> Unit) {
         dispatchActionConfig = DispatchActionConfigBuilder().apply(builder).build()
     }

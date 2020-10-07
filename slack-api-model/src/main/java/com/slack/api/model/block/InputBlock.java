@@ -35,7 +35,7 @@ public class InputBlock implements LayoutBlock {
      * A boolean that indicates whether or not use of element in this block
      * should dispatch a block_actions payload. Defaults to false.
      */
-    private boolean dispatchAction;
+    private Boolean dispatchAction;
 
     /**
      * An optional hint that appears below an input element in a lighter grey.

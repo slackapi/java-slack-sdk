@@ -13,7 +13,7 @@ class InputBlockBuilder private constructor(
     private var label: PlainTextObject? = null
     private var hint: PlainTextObject? = null
     private var optional: Boolean = false
-    private var dispatchAction: Boolean = false
+    private var dispatchAction: Boolean? = null
 
     constructor() : this(SingleBlockElementContainer())
 
