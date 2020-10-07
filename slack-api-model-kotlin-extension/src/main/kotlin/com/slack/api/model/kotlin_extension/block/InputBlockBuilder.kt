@@ -13,6 +13,7 @@ class InputBlockBuilder private constructor(
     private var label: PlainTextObject? = null
     private var hint: PlainTextObject? = null
     private var optional: Boolean = false
+    private var dispatchAction: Boolean = false
 
     constructor() : this(SingleBlockElementContainer())
 
@@ -66,6 +67,15 @@ class InputBlockBuilder private constructor(
         this.optional = optional
     }
 
+    /**
+     * A boolean that indicates whether the input element may be empty when a user submits the modal. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/blocks#input">Input block documentation</a>
+     */
+    fun dispatchAction(dispatchAction: Boolean) {
+        this.dispatchAction = dispatchAction
+    }
+
     override fun build(): InputBlock {
         return InputBlock.builder()
                 .blockId(blockId)
@@ -73,6 +83,7 @@ class InputBlockBuilder private constructor(
                 .element(elementContainer.underlying)
                 .hint(hint)
                 .optional(optional)
+                .dispatchAction(dispatchAction)
                 .build()
     }
 }

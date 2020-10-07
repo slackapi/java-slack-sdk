@@ -70,5 +70,11 @@ public class BlockCompositions {
         return OptionObject.builder().text(text).value(value).build();
     }
 
+    // DispatchActionConfig
+
+    public static DispatchActionConfig dispatchActionConfig(ModelConfigurator<DispatchActionConfig.DispatchActionConfigBuilder> configurator) {
+        return configurator.configure(DispatchActionConfig.builder()).build();
+    }
+
 }
 

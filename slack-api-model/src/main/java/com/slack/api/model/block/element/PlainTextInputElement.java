@@ -1,5 +1,6 @@
 package com.slack.api.model.block.element;
 
+import com.slack.api.model.block.composition.DispatchActionConfig;
 import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
@@ -50,4 +51,6 @@ public class PlainTextInputElement extends BlockElement {
      * The maximum length of input that the user can provide. If the user provides more, they will receive an error.
      */
     private Integer maxLength;
+
+    private DispatchActionConfig dispatchActionConfig;
 }
