@@ -1266,10 +1266,10 @@ public class RequestFormBuilder {
             if (req.getFilename() == null) {
                 req.setFilename("uploaded_file"); // filename is required for multipart/form-data
             }
-            RequestBody file = RequestBody.create(req.getFileData(), MultipartBody.FORM);
+            RequestBody file = RequestBody.create(MultipartBody.FORM, req.getFileData());
             form.addFormDataPart("file", req.getFilename(), file);
         } else if (req.getFile() != null) {
-            RequestBody file = RequestBody.create(req.getFile(), MultipartBody.FORM);
+            RequestBody file = RequestBody.create(MultipartBody.FORM, req.getFile());
             form.addFormDataPart("file", req.getFilename(), file);
         }
 
