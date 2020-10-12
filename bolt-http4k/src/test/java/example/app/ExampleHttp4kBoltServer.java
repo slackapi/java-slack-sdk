@@ -1,7 +1,7 @@
 package example.app;
 
 import com.slack.api.bolt.App;
-import com.slack.api.bolt.http4k.Http4kSlackAppServer;
+import test_locally.Http4kSlackAppServer;
 import org.http4k.server.SunHttp;
 
 import java.util.regex.Pattern;
