@@ -5,6 +5,7 @@ import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.SlackSignature;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
+import com.slack.api.bolt.http4k.Http4kSlackApp;
 import org.http4k.core.Request;
 import org.http4k.core.Response;
 import org.http4k.core.Status;

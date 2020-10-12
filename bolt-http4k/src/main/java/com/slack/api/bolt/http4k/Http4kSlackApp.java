@@ -1,4 +1,4 @@
-package test_locally;
+package com.slack.api.bolt.http4k;
 
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.request.RequestHeaders;
@@ -8,6 +8,8 @@ import kotlin.jvm.functions.Function1;
 import org.http4k.core.Request;
 import org.http4k.core.Response;
 import org.http4k.core.Status;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +20,8 @@ import static org.http4k.core.ParametersKt.toParameters;
 import static org.http4k.core.Status.INTERNAL_SERVER_ERROR;
 
 public class Http4kSlackApp implements Function1<Request, Response> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Http4kSlackApp.class);
 
     private final App app;
     private final SlackRequestParser requestParser;
@@ -35,7 +39,7 @@ public class Http4kSlackApp implements Function1<Request, Response> {
             LOGGER.error(e.getMessage(), e);
             return Response.Companion.create(INTERNAL_SERVER_ERROR)
                     .header("Content-type", "application/json")
-                    .body("{\"error\":\"Something is wrong\"}");
+                    .body("{\"error\":\"An error occurred during processing of the request\"}");
         }
     }
 

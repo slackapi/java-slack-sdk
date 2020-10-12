@@ -1,4 +1,4 @@
-package test_locally;
+package com.slack.api.bolt.http4k;
 
 import com.slack.api.bolt.App;
 import org.http4k.server.Http4kServer;
