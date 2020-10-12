@@ -23,6 +23,7 @@
         <module>bolt-aws-lambda</module>
         <module>bolt-google-cloud-functions</module>
         <module>bolt-micronaut</module>
+        <module>bolt-http4k</module>
         <module>bolt-helidon</module>
         <module>bolt-spring-boot-examples</module>
         <module>bolt-kotlin-examples</module>
