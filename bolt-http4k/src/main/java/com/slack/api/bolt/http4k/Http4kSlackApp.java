@@ -32,6 +32,7 @@ public class Http4kSlackApp implements Function1<Request, Response> {
         try {
             return toHttp4kResponse(app.run(toSlackRequest(request)));
         } catch (Exception e) {
+            e.printStackTrace();
             return Response.Companion.create(INTERNAL_SERVER_ERROR)
                     .header("Content-type", "application/json")
                     .body("{\"error\":\"Something is wrong\"}");
