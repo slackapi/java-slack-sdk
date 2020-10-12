@@ -68,6 +68,7 @@ All released versions are available on the Maven Central repositories. The lates
 |[**com.slack.api:bolt-google-cloud-functions**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-google-cloud-functions)|This module offers a handy way to run Bolt apps on [Google Cloud Functions](https://cloud.google.com/functions).|
 |[**com.slack.api:bolt-micronaut**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-micronaut)|This is an adapter for [Micronaut](https://micronaut.io/) to run Bolt apps on top of it.|
 |[**com.slack.api:bolt-helidon**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-helidon)|This is an adapter for [Helidon SE](https://helidon.io/docs/latest/) to run Bolt apps on top of it.|
+|[**com.slack.api:bolt-http4k**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-http4k)|This is an adapter for [http4k](https://http4k.org/) to run Bolt apps on top of it.|
 
 #### Foundation Modules
 
