@@ -17,22 +17,28 @@ import static java.util.stream.Collectors.toMap;
 import static org.http4k.core.ParametersKt.toParameters;
 import static org.http4k.core.Status.INTERNAL_SERVER_ERROR;
 
-public class Http4kSlackApp {
-    public static Function1<Request, Response> create(App app) {
-        final SlackRequestParser requestParser = new SlackRequestParser(app.config());
+public class Http4kSlackApp implements Function1<Request, Response> {
 
-        return req -> {
-            try {
-                return toHttp4k(app.run(toHttp4k(requestParser, req)));
-            } catch (Exception e) {
-                return Response.Companion.create(INTERNAL_SERVER_ERROR)
-                        .header("Content-type", "application/json")
-                        .body("{\"error\":\"Something is wrong\"}");
-            }
-        };
+    private final App app;
+    private final SlackRequestParser requestParser;
+
+    public Http4kSlackApp(App app) {
+        this.app = app;
+        requestParser = new SlackRequestParser(app.config());
     }
 
-    private static com.slack.api.bolt.request.Request<?> toHttp4k(SlackRequestParser requestParser, Request httpRequest) {
+    @Override
+    public Response invoke(Request request) {
+        try {
+            return toHttp4kResponse(app.run(toSlackRequest(request)));
+        } catch (Exception e) {
+            return Response.Companion.create(INTERNAL_SERVER_ERROR)
+                    .header("Content-type", "application/json")
+                    .body("{\"error\":\"Something is wrong\"}");
+        }
+    }
+
+    private com.slack.api.bolt.request.Request<?> toSlackRequest(Request httpRequest) {
         return requestParser.parse(SlackRequestParser.HttpRequest.builder()
                 .requestUri(httpRequest.getUri().getPath())
                 .queryString(
@@ -46,7 +52,7 @@ public class Http4kSlackApp {
                 .build());
     }
 
-    private static Response toHttp4k(com.slack.api.bolt.response.Response boltResponse) {
+    private Response toHttp4kResponse(com.slack.api.bolt.response.Response boltResponse) {
         List<Pair<String, String>> headers = boltResponse.getHeaders()
                 .entrySet().stream()
                 .flatMap(it -> it.getValue().stream().map(it2 -> new Pair<String, String>(it.getKey(), it2)))

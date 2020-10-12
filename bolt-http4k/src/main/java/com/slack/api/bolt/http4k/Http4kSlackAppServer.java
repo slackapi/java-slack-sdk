@@ -7,11 +7,14 @@ import org.jetbrains.annotations.NotNull;
 
 import static org.http4k.server.Http4kServerKt.asServer;
 
+/**
+ * Simple Slack App Server wrapper class for Http4k apps.
+ */
 public class Http4kSlackAppServer implements Http4kServer {
     private final Http4kServer server;
 
     public Http4kSlackAppServer(App apiApp, ServerConfig serverConfig) {
-        server = asServer(Http4kSlackApp.create(apiApp), serverConfig);
+        server = asServer(new Http4kSlackApp(apiApp), serverConfig);
     }
 
     @NotNull
