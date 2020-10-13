@@ -42,7 +42,7 @@ public class EventsApiPayloadDumpTest {
                 // new DndUpdatedPayload(),
                 // new DndUpdatedUserPayload(),
                 new EmailDomainChangedPayload(),
-                new EmojiChangedPayload(),
+                //new EmojiChangedPayload(),
                 new FileChangePayload(),
                 // new FileCreatedPayload(),
                 // new FileDeletedPayload(),
