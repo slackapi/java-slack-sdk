@@ -368,7 +368,11 @@
       "user_customized_quick_reactions_emoji_3": "",
       "joiner_message_suggestion_dismissed": false,
       "huddles_variant": 12345,
-      "stories_variant": ""
+      "stories_variant": "",
+      "emoji_packs_most_recent_available_time": 12345,
+      "emoji_packs_clicked_picker_cta": false,
+      "emoji_packs_clicked_collection_cta": false,
+      "seen_p3_locale_change_message_ko_kr": 12345
     },
     "created": 12345,
     "first_login": 12345,
