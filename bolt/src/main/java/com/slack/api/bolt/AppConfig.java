@@ -89,6 +89,10 @@ public class AppConfig {
     @Builder.Default
     private boolean oAuthInstallPathEnabled = false;
 
+    public boolean isOAuthInstallPathEnabled() {
+        return oAuthInstallPathEnabled || oAuthStartEnabled;
+    }
+
     @Deprecated // will be removed in v2.0 - use oAuthInstallPathEnabled
     @Builder.Default
     private boolean oAuthStartEnabled = false;
@@ -98,10 +102,19 @@ public class AppConfig {
         return isOAuthInstallPathEnabled();
     }
 
+    @Deprecated
+    public void setOAuthStartEnabled(boolean enabled) {
+        setOAuthInstallPathEnabled(enabled);
+    }
+
     // --------------------------
 
     @Builder.Default
     private boolean oAuthRedirectUriPathEnabled = false;
+
+    public boolean isOAuthRedirectUriPathEnabled() {
+        return oAuthRedirectUriPathEnabled || oAuthCallbackEnabled;
+    }
 
     @Deprecated // will be removed in v2.0 - use oAuthRedirectUriPathEnabled
     @Builder.Default
@@ -110,6 +123,11 @@ public class AppConfig {
     @Deprecated
     public boolean isOAuthCallbackEnabled() {
         return isOAuthRedirectUriPathEnabled();
+    }
+
+    @Deprecated
+    public void setOAuthCallbackEnabled(boolean enabled) {
+        setOAuthRedirectUriPathEnabled(enabled);
     }
 
     // --------------------------
