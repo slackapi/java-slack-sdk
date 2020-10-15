@@ -84,10 +84,35 @@ public class AppConfig {
         return clientId != null && clientSecret != null;
     }
 
+    // --------------------------
+
+    @Builder.Default
+    private boolean oAuthInstallPathEnabled = false;
+
+    @Deprecated // will be removed in v2.0 - use oAuthInstallPathEnabled
     @Builder.Default
     private boolean oAuthStartEnabled = false;
+
+    @Deprecated
+    public boolean isOAuthStartEnabled() {
+        return isOAuthInstallPathEnabled();
+    }
+
+    // --------------------------
+
+    @Builder.Default
+    private boolean oAuthRedirectUriPathEnabled = false;
+
+    @Deprecated // will be removed in v2.0 - use oAuthRedirectUriPathEnabled
     @Builder.Default
     private boolean oAuthCallbackEnabled = false;
+
+    @Deprecated
+    public boolean isOAuthCallbackEnabled() {
+        return isOAuthRedirectUriPathEnabled();
+    }
+
+    // --------------------------
 
     /**
      * Returns true if auth.test call result cache in MultiTeamsAuthorization middleware
@@ -113,16 +138,6 @@ public class AppConfig {
     @Builder.Default
     private int threadPoolSize = 10;
 
-    public void setOauthStartPath(String oauthStartPath) {
-        this.oauthStartPath = oauthStartPath;
-        this.oAuthStartEnabled = oauthStartPath != null;
-    }
-
-    public void setOauthCallbackPath(String oauthCallbackPath) {
-        this.oauthCallbackPath = oauthCallbackPath;
-        this.oAuthCallbackEnabled = oauthCallbackPath != null;
-    }
-
     @Builder.Default
     private String clientId = Optional.ofNullable(System.getenv(EnvVariableName.SLACK_CLIENT_ID))
             .orElse(System.getenv(EnvVariableName.SLACK_APP_CLIENT_ID));
@@ -141,30 +156,121 @@ public class AppConfig {
 
     private String appPath;
 
+    // --------------------------
+
+    @Deprecated // will be removed in v2.0 - use getOauthInstallRequestURI instead
     public String getOauthStartRequestURI() {
+        return getOauthInstallRequestURI();
+    }
+
+    public String getOauthInstallRequestURI() {
         if (appPath == null) {
-            return oauthStartPath;
+            return getOauthInstallPath();
         } else {
-            return appPath + oauthStartPath;
+            return appPath + getOauthInstallPath();
         }
     }
 
+    // --------------------------
+
+    @Deprecated // will be removed in v2.0 - use getOauthRedirectUriRequestURI instead
     public String getOauthCallbackRequestURI() {
+        return getOauthRedirectUriRequestURI();
+    }
+
+    public String getOauthRedirectUriRequestURI() {
         if (appPath == null) {
-            return oauthCallbackPath;
+            return getOauthRedirectUriPath();
         } else {
-            return appPath + oauthCallbackPath;
+            return appPath + getOauthRedirectUriPath();
         }
     }
 
+    // --------------------------
+
+    private static final String DEFAULT_OAUTH_INSTALL_PATH = "start";
+
+    @Deprecated // will be removed in v2.0 - use oauthInstallPath instead
     @Builder.Default
     private String oauthStartPath = Optional.ofNullable(System.getenv(EnvVariableName.SLACK_INSTALL_PATH))
             .orElse(Optional.ofNullable(System.getenv(EnvVariableName.SLACK_APP_OAUTH_START_PATH))
-                    .orElse("start"));
+                    .orElse(DEFAULT_OAUTH_INSTALL_PATH));
+
+    @Deprecated
+    public String getOauthStartPath() {
+        return getOauthInstallPath();
+    }
+
+    @Deprecated
+    public void setOauthStartPath(String oauthStartPath) {
+        setOauthInstallPath(oauthStartPath);
+    }
+
+    @Builder.Default
+    private String oauthInstallPath = Optional.ofNullable(System.getenv(EnvVariableName.SLACK_INSTALL_PATH))
+            .orElse(Optional.ofNullable(System.getenv(EnvVariableName.SLACK_APP_OAUTH_START_PATH))
+                    .orElse(DEFAULT_OAUTH_INSTALL_PATH));
+
+    public String getOauthInstallPath() {
+        String path = this.oauthInstallPath;
+        String legacyPath = this.oauthStartPath;
+        if (path != null
+                && path.equals(DEFAULT_OAUTH_INSTALL_PATH) == false
+                && legacyPath.equals(DEFAULT_OAUTH_INSTALL_PATH)) {
+            return path;
+        } else {
+            return legacyPath;
+        }
+    }
+
+    public void setOauthInstallPath(String oauthInstallPath) {
+        this.oauthInstallPath = oauthInstallPath;
+        this.oAuthInstallPathEnabled = oauthInstallPath != null;
+    }
+
+    // --------------------------
+
+    private static final String DEFAULT_OAUTH_REDIRECT_URI_PATH = "callback";
+
+    @Deprecated // will be removed in v2.0 - use oauthRedirectUriPath instead
     @Builder.Default
     private String oauthCallbackPath = Optional.ofNullable(System.getenv(EnvVariableName.SLACK_REDIRECT_URI_PATH))
             .orElse(Optional.ofNullable(System.getenv(EnvVariableName.SLACK_APP_OAUTH_CALLBACK_PATH))
-                    .orElse("callback"));
+                    .orElse(DEFAULT_OAUTH_REDIRECT_URI_PATH));
+
+    @Deprecated
+    public String getOauthCallbackPath() {
+        return getOauthRedirectUriPath();
+    }
+
+    @Deprecated
+    public void setOauthCallbackPath(String oauthCallbackPath) {
+        setOauthRedirectUriPath(oauthCallbackPath);
+    }
+
+    @Builder.Default
+    private String oauthRedirectUriPath = Optional.ofNullable(System.getenv(EnvVariableName.SLACK_REDIRECT_URI_PATH))
+            .orElse(Optional.ofNullable(System.getenv(EnvVariableName.SLACK_APP_OAUTH_CALLBACK_PATH))
+                    .orElse(DEFAULT_OAUTH_REDIRECT_URI_PATH));
+
+    public String getOauthRedirectUriPath() {
+        String path = this.oauthRedirectUriPath;
+        String legacyPath = this.oauthCallbackPath;
+        if (path != null
+                && path.equals(DEFAULT_OAUTH_REDIRECT_URI_PATH) == false
+                && legacyPath.equals(DEFAULT_OAUTH_REDIRECT_URI_PATH)) {
+            return path;
+        } else {
+            return legacyPath;
+        }
+    }
+
+    public void setOauthRedirectUriPath(String oauthRedirectUriPath) {
+        this.oauthRedirectUriPath = oauthRedirectUriPath;
+        this.oAuthRedirectUriPathEnabled = oauthRedirectUriPath != null;
+    }
+
+    // --------------------------
 
     @Builder.Default
     private String oauthCancellationUrl = Optional.ofNullable(System.getenv(EnvVariableName.SLACK_OAUTH_CANCELLATION_URL))

@@ -272,7 +272,7 @@ public class App {
     private OAuthCallbackService oAuthCallbackService; // will be initialized by initOAuthServicesIfNecessary()
 
     private void initOAuthServicesIfNecessary() {
-        if (appConfig.isDistributedApp() && appConfig.isOAuthCallbackEnabled()) {
+        if (appConfig.isDistributedApp() && appConfig.isOAuthRedirectUriPathEnabled()) {
             if (this.oAuthCallbackService == null) {
                 this.oAuthCallbackService = new DefaultOAuthCallbackService(
                         config(),
@@ -758,8 +758,8 @@ public class App {
     // OAuth App configuration methods
 
     public App asOAuthApp(boolean enabled) {
-        config().setOAuthStartEnabled(enabled);
-        config().setOAuthCallbackEnabled(enabled);
+        config().setOAuthInstallPathEnabled(enabled);
+        config().setOAuthRedirectUriPathEnabled(enabled);
         return this;
     }
 
@@ -820,17 +820,27 @@ public class App {
         return this;
     }
 
+    @Deprecated
     public App toOAuthStartApp() {
+        return toOAuthInstallPathEnabledApp();
+    }
+
+    public App toOAuthInstallPathEnabledApp() {
         App newApp = toBuilder().appConfig(config().toBuilder().build()).build();
-        newApp.config().setOAuthStartEnabled(true);
-        newApp.config().setOAuthCallbackEnabled(false);
+        newApp.config().setOAuthInstallPathEnabled(true);
+        newApp.config().setOAuthRedirectUriPathEnabled(false);
         return newApp;
     }
 
+    @Deprecated
     public App toOAuthCallbackApp() {
+        return toOAuthRedirectUriPathEnabledApp();
+    }
+
+    public App toOAuthRedirectUriPathEnabledApp() {
         App newApp = toBuilder().appConfig(config().toBuilder().build()).build();
-        newApp.config().setOAuthStartEnabled(false);
-        newApp.config().setOAuthCallbackEnabled(true);
+        newApp.config().setOAuthInstallPathEnabled(false);
+        newApp.config().setOAuthRedirectUriPathEnabled(true);
         return newApp;
     }
 

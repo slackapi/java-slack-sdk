@@ -132,10 +132,10 @@ public class SlackRequestParser {
                     slackRequest = new SlashCommandRequest(requestBody, headers);
                 } else if (sslCheckPayloadDetector.isSSLCheckRequest(requestBody)) {
                     slackRequest = new SSLCheckRequest(requestBody, headers);
-                } else if (appConfig.isOAuthStartEnabled() && appConfig.getOauthStartRequestURI().equals(requestUri)) {
+                } else if (appConfig.isOAuthInstallPathEnabled() && appConfig.getOauthInstallRequestURI().equals(requestUri)) {
                     slackRequest = new OAuthStartRequest(requestBody, headers);
-                } else if (appConfig.isOAuthCallbackEnabled()
-                        && appConfig.getOauthCallbackRequestURI().equals(requestUri)
+                } else if (appConfig.isOAuthRedirectUriPathEnabled()
+                        && appConfig.getOauthRedirectUriRequestURI().equals(requestUri)
                         && httpRequest.getQueryString() != null) {
                     Map<String, List<String>> queryString = new HashMap<>();
                     for (Map.Entry<String, List<String>> original : httpRequest.getQueryString().entrySet()) {

@@ -47,25 +47,25 @@ public class TestSlackAppServer {
             theApp.config().setAppPath(appPath);
             handler.addServlet(new ServletHolder(new SlackAppServlet(theApp)), appPath);
 
-            if (theApp.config().isOAuthStartEnabled()) {
+            if (theApp.config().isOAuthInstallPathEnabled()) {
                 if (theApp.config().isDistributedApp()) {
                     // start
-                    String oAuthStartPath = appPath + theApp.config().getOauthStartPath();
-                    App oAuthStartApp = theApp.toOAuthStartApp();
-                    handler.addServlet(new ServletHolder(new SlackOAuthAppServlet(oAuthStartApp)), oAuthStartPath);
-                    addedOnes.put(oAuthStartPath, oAuthStartApp);
+                    String installPath = appPath + theApp.config().getOauthInstallPath();
+                    App installPathApp = theApp.toOAuthInstallPathEnabledApp();
+                    handler.addServlet(new ServletHolder(new SlackOAuthAppServlet(installPathApp)), installPath);
+                    addedOnes.put(installPath, installPathApp);
                 } else {
                     log.warn("The app is not ready for handling your Slack App installation URL. Make sure if you set all the necessary values in AppConfig.");
                 }
             }
 
-            if (theApp.config().isOAuthCallbackEnabled()) {
+            if (theApp.config().isOAuthRedirectUriPathEnabled()) {
                 if (theApp.config().isDistributedApp()) {
                     // callback
-                    String oAuthCallbackPath = appPath + theApp.config().getOauthCallbackPath();
-                    App oAuthCallbackApp = theApp.toOAuthCallbackApp();
-                    handler.addServlet(new ServletHolder(new SlackOAuthAppServlet(oAuthCallbackApp)), oAuthCallbackPath);
-                    addedOnes.put(oAuthCallbackPath, oAuthCallbackApp);
+                    String redirectUriPath = appPath + theApp.config().getOauthRedirectUriPath();
+                    App oAuthCallbackApp = theApp.toOAuthRedirectUriPathEnabledApp();
+                    handler.addServlet(new ServletHolder(new SlackOAuthAppServlet(oAuthCallbackApp)), redirectUriPath);
+                    addedOnes.put(redirectUriPath, oAuthCallbackApp);
                 } else {
                     log.warn("The app is not ready for handling OAuth callback requests. Make sure if you set all the necessary values in AppConfig.");
                 }
