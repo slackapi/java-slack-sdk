@@ -206,6 +206,8 @@ public class AppConfig {
 
     // --------------------------
 
+    // NOTE: We should not change this default value in v1.x as it's a breaking change to existing users.
+    // We will be changing this in v2.0.
     private static final String DEFAULT_OAUTH_INSTALL_PATH = "start";
 
     @Deprecated // will be removed in v2.0 - use oauthInstallPath instead
@@ -248,6 +250,8 @@ public class AppConfig {
 
     // --------------------------
 
+    // NOTE: We should not change this default value in v1.x as it's a breaking change to existing users.
+    // We will be changing this in v2.0.
     private static final String DEFAULT_OAUTH_REDIRECT_URI_PATH = "callback";
 
     @Deprecated // will be removed in v2.0 - use oauthRedirectUriPath instead
