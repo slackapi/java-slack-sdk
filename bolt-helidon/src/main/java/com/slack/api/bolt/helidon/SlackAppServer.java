@@ -83,8 +83,8 @@ public class SlackAppServer {
         if (oauthApp != null) {
             SlackAppService oauthService = new SlackAppService(config, oauthApp);
             builder = builder
-                    .register(oauthApp.config().getOauthStartPath(), oauthService)
-                    .register(oauthApp.config().getOauthCallbackPath(), oauthService);
+                    .register(oauthApp.config().getOauthInstallPath(), oauthService)
+                    .register(oauthApp.config().getOauthRedirectUriPath(), oauthService);
         }
         return getAdditionalRoutingConfigurator().apply(builder).build();
     }
