@@ -8,7 +8,9 @@
     "name": "",
     "value": "https://www.example.com/",
     "type": "emoji_changed",
-    "event_ts": "0000000000.000000"
+    "event_ts": "0000000000.000000",
+    "old_name": "",
+    "new_name": ""
   },
   "type": "event_callback",
   "event_id": "",
