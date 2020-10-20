@@ -29,5 +29,8 @@ public class EmojiChangedEvent implements Event {
      */
     private String value; // only for subtype:add
 
+    private String oldName;
+    private String newName;
+
     private String eventTs;
 }
