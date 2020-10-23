@@ -14,7 +14,8 @@
       "image_132": "https://www.example.com/",
       "image_230": "https://www.example.com/",
       "image_original": "https://www.example.com/"
-    }
+    },
+    "is_verified": false
   },
   "error": "",
   "needed": "",

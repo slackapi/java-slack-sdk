@@ -20,6 +20,7 @@ public class Team {
     private String enterpriseId;
     private String enterpriseName;
     private List<String> defaultChannels;
+    private Boolean isVerified;
 
     @Data
     public static class Profile {

@@ -19,7 +19,8 @@
     "enterprise_name": "",
     "default_channels": [
       "C00000000"
-    ]
+    ],
+    "is_verified": false
   },
   "error": "",
   "needed": "",
