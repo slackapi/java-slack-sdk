@@ -838,6 +838,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminUsersSessionListResponse adminUsersSessionList(AdminUsersSessionListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_SESSION_LIST, getToken(req), AdminUsersSessionListResponse.class);
+    }
+
+    @Override
+    public AdminUsersSessionListResponse adminUsersSessionList(RequestConfigurator<AdminUsersSessionListRequest.AdminUsersSessionListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersSessionList(req.configure(AdminUsersSessionListRequest.builder()).build());
+    }
+
+    @Override
     public ApiTestResponse apiTest(ApiTestRequest req) throws IOException, SlackApiException {
         return postFormAndParseResponse(toForm(req), Methods.API_TEST, ApiTestResponse.class);
     }

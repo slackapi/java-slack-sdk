@@ -1,0 +1,23 @@
+{
+  "ok": false,
+  "error": "",
+  "active_sessions": [
+    {
+      "user_id": "W00000000",
+      "session_id": 12345,
+      "team_id": "E00000000",
+      "created": {
+        "device_hardware": "",
+        "os": "",
+        "os_version": "",
+        "slack_client_version": "",
+        "ip": ""
+      }
+    }
+  ],
+  "response_metadata": {
+    "next_cursor": ""
+  },
+  "needed": "",
+  "provided": ""
+}

@@ -300,6 +300,10 @@ public class FieldValidationTest {
             AdminUsersSetRegularResponse obj = parse(prefix + "setRegular", AdminUsersSetRegularResponse.class);
             verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
         }
+        {
+            AdminUsersSessionListResponse obj = parse(prefix + "session.list", AdminUsersSessionListResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
     }
 
     @Test

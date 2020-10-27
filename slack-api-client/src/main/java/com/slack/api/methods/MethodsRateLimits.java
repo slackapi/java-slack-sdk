@@ -102,6 +102,7 @@ public class MethodsRateLimits {
                 ADMIN_USERS_SET_REGULAR,
 
                 ADMIN_USERS_SESSION_INVALIDATE,
+                ADMIN_USERS_SESSION_LIST,
                 ADMIN_USERS_SESSION_RESET,
 
                 ADMIN_USERGROUPS_ADD_TEAMS,

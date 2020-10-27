@@ -4,10 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionInvalidateRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
-import com.slack.api.methods.response.admin.users.AdminUsersListResponse;
-import com.slack.api.methods.response.admin.users.AdminUsersSessionInvalidateResponse;
-import com.slack.api.methods.response.admin.users.AdminUsersSessionResetResponse;
-import com.slack.api.methods.response.admin.users.AdminUsersSetExpirationResponse;
+import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.users.UsersListResponse;
 import com.slack.api.model.User;
 import config.Constants;
@@ -60,6 +57,23 @@ public class AdminApi_users_Test {
             assertThat(userId, is(notNullValue()));
             AdminUsersSessionResetResponse response = methodsAsync
                     .adminUsersSessionReset(AdminUsersSessionResetRequest.builder().userId(userId).build())
+                    .get();
+            assertThat(response.getError(), is(nullValue()));
+        }
+    }
+
+    @Test
+    public void usersSessionList() throws Exception {
+        if (teamAdminUserToken != null && orgAdminUserToken != null) {
+            AdminUsersSessionListResponse response = methodsAsync
+                    .adminUsersSessionList(r -> r.limit(5))
+                    .get();
+            assertThat(response.getError(), is(nullValue()));
+
+            String userId = findUserId(Collections.emptyList());
+            assertThat(userId, is(notNullValue()));
+            response = methodsAsync
+                    .adminUsersSessionList(r -> r.limit(10).teamId(teamId).userId(userId))
                     .get();
             assertThat(response.getError(), is(nullValue()));
         }
