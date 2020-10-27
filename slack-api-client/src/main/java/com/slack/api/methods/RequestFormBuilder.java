@@ -128,6 +128,15 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminUsersSessionListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminAppsApproveRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("app_id", req.getAppId(), form);

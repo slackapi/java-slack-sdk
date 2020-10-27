@@ -564,13 +564,17 @@ public interface MethodsClient {
     // admin.users.session
     // ------------------------------
 
-    AdminUsersSessionResetResponse adminUsersSessionReset(AdminUsersSessionResetRequest req) throws IOException, SlackApiException;
-
-    AdminUsersSessionResetResponse adminUsersSessionReset(RequestConfigurator<AdminUsersSessionResetRequest.AdminUsersSessionResetRequestBuilder> req) throws IOException, SlackApiException;
-
     AdminUsersSessionInvalidateResponse adminUsersSessionInvalidate(AdminUsersSessionInvalidateRequest req) throws IOException, SlackApiException;
 
     AdminUsersSessionInvalidateResponse adminUsersSessionInvalidate(RequestConfigurator<AdminUsersSessionInvalidateRequest.AdminUsersSessionInvalidateRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminUsersSessionListResponse adminUsersSessionList(AdminUsersSessionListRequest req) throws IOException, SlackApiException;
+
+    AdminUsersSessionListResponse adminUsersSessionList(RequestConfigurator<AdminUsersSessionListRequest.AdminUsersSessionListRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminUsersSessionResetResponse adminUsersSessionReset(AdminUsersSessionResetRequest req) throws IOException, SlackApiException;
+
+    AdminUsersSessionResetResponse adminUsersSessionReset(RequestConfigurator<AdminUsersSessionResetRequest.AdminUsersSessionResetRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // api
