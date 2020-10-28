@@ -375,7 +375,8 @@
       "seen_p3_locale_change_message_ko_kr": 12345,
       "inbox_views_workspace_filter": "",
       "dismissed_connect_auto_approval_modal": "",
-      "help_menu_open_timestamp": 12345
+      "help_menu_open_timestamp": 12345,
+      "xws_dismissed_education": false
     },
     "created": 12345,
     "first_login": 12345,

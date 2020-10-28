@@ -12,6 +12,8 @@
       ""
     ]
   },
+  "no_op": false,
+  "already_open": false,
   "error": "",
   "needed": "",
   "provided": ""
