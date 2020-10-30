@@ -1,10 +1,10 @@
 package com.slack.api.methods.response.workflows;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class WorkflowsUpdateStepResponse implements SlackApiResponse {
+public class WorkflowsUpdateStepResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

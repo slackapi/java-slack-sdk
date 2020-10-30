@@ -1,6 +1,6 @@
 package com.slack.api.methods.response.reactions;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.BotProfile;
 import com.slack.api.model.Reaction;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ReactionsGetResponse implements SlackApiResponse {
+public class ReactionsGetResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

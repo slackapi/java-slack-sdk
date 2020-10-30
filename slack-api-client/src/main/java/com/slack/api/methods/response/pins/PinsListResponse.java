@@ -1,6 +1,6 @@
 package com.slack.api.methods.response.pins;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.File;
 import com.slack.api.model.FileComment;
 import com.slack.api.model.Message;
@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PinsListResponse implements SlackApiResponse {
+public class PinsListResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

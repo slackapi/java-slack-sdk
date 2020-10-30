@@ -53,6 +53,10 @@ public class FieldValidationTest {
             verifyIfAllGettersReturnNonNullRecursively(obj.getApprovedApps().get(0));
         }
         {
+            AdminAppsClearResolutionResponse obj = parse(prefix + "clearResolution", AdminAppsClearResolutionResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
             AdminAppsRequestsListResponse obj = parse(prefix + "requests.list", AdminAppsRequestsListResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
             verifyIfAllGettersReturnNonNullRecursively(obj.getResponseMetadata(), "getMessages", "getWarnings");

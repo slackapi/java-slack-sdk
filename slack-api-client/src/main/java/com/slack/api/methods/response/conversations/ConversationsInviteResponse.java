@@ -1,13 +1,13 @@
 package com.slack.api.methods.response.conversations;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Conversation;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class ConversationsInviteResponse implements SlackApiResponse {
+public class ConversationsInviteResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

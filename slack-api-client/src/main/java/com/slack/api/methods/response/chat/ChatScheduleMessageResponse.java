@@ -1,6 +1,6 @@
 package com.slack.api.methods.response.chat;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.BotProfile;
 import com.slack.api.model.block.LayoutBlock;
@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ChatScheduleMessageResponse implements SlackApiResponse {
+public class ChatScheduleMessageResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

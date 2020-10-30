@@ -212,7 +212,7 @@ If you need to call a method that **slack-api-client** doesn't support, you can 
 
 ```java
 import com.slack.api.Slack;
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 
 public class AwesomeMethodResponse implements SlackApiResponse {
   private boolean ok;

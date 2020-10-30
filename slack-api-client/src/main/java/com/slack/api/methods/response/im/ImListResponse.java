@@ -1,6 +1,6 @@
 package com.slack.api.methods.response.im;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Im;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Deprecated // https://api.slack.com/changelog/2020-01-deprecating-antecedents-to-the-conversations-api
 @Data
-public class ImListResponse implements SlackApiResponse {
+public class ImListResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

@@ -1,11 +1,11 @@
 package com.slack.api.methods.response.admin.users;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
 @Data
-public class AdminUsersInviteResponse implements SlackApiResponse {
+public class AdminUsersInviteResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

@@ -1,11 +1,11 @@
 package com.slack.api.methods.response.admin.usergroups;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
 @Data
-public class AdminUsergroupsAddTeamsResponse implements SlackApiResponse {
+public class AdminUsergroupsAddTeamsResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

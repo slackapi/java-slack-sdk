@@ -1,6 +1,7 @@
 package com.slack.api.methods;
 
 import com.slack.api.RequestConfigurator;
+import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.*;
 import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
@@ -93,6 +94,7 @@ import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
+import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
@@ -227,22 +229,30 @@ public interface MethodsClient {
     //  Methods to send requests and parse responses
     // ----------------------------------------------
 
-    <T extends SlackApiResponse> T postFormAndParseResponse(
+    <T extends SlackApiTextResponse> T postFormAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
             String methodName,
             Class<T> clazz) throws IOException, SlackApiException;
 
-    <T extends SlackApiResponse> T postFormWithTokenAndParseResponse(
+    <T extends SlackApiTextResponse> T postFormWithTokenAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
             String methodName,
             String token,
             Class<T> clazz) throws IOException, SlackApiException;
 
-    <T extends SlackApiResponse> T postFormWithAuthorizationHeaderAndParseResponse(
+    <T extends SlackApiTextResponse> T postFormWithAuthorizationHeaderAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
             String endpoint,
             String authorizationHeader,
             Class<T> clazz) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // admin.analytics
+    // ------------------------------
+
+    AdminAnalyticsGetFileResponse adminAnalyticsGetFile(AdminAnalyticsGetFileRequest req) throws IOException;
+
+    AdminAnalyticsGetFileResponse adminAnalyticsGetFile(RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req) throws IOException;
 
     // ------------------------------
     // admin.apps
@@ -263,6 +273,10 @@ public interface MethodsClient {
     AdminAppsRestrictedListResponse adminAppsRestrictedList(AdminAppsRestrictedListRequest req) throws IOException, SlackApiException;
 
     AdminAppsRestrictedListResponse adminAppsRestrictedList(RequestConfigurator<AdminAppsRestrictedListRequest.AdminAppsRestrictedListRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminAppsClearResolutionResponse adminAppsClearResolution(AdminAppsClearResolutionRequest req) throws IOException, SlackApiException;
+
+    AdminAppsClearResolutionResponse adminAppsClearResolution(RequestConfigurator<AdminAppsClearResolutionRequest.AdminAppsClearResolutionRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // admin.apps.requests

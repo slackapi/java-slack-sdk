@@ -1,11 +1,11 @@
 package com.slack.api.methods.response.admin.teams;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
 @Data
-public class AdminTeamsCreateResponse implements SlackApiResponse {
+public class AdminTeamsCreateResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

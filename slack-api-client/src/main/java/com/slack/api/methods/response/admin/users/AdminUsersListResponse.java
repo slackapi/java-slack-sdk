@@ -1,14 +1,14 @@
 package com.slack.api.methods.response.admin.users;
 
 import com.google.gson.annotations.SerializedName;
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class AdminUsersListResponse implements SlackApiResponse {
+public class AdminUsersListResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

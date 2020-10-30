@@ -2,7 +2,7 @@ package test_with_remote_apis;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.Data;
@@ -18,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserDefinedMethodsTest {
 
     @Data
-    public static class MyResponse implements SlackApiResponse {
+    public static class MyResponse implements SlackApiTextResponse {
         private boolean ok;
         private String warning;
         private String error;

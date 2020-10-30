@@ -1,10 +1,10 @@
 package com.slack.api.methods.response.files.comments;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class FilesCommentsDeleteResponse implements SlackApiResponse {
+public class FilesCommentsDeleteResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

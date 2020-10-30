@@ -51,7 +51,10 @@ public class MethodsRateLimits {
 
         // Tier2
         final List<String> adminApiMethods_Tier2 = Arrays.asList(
+                ADMIN_ANALYTICS_GET_FILE,
+
                 ADMIN_APPS_APPROVE,
+                ADMIN_APPS_CLEAR_RESOLUTION,
                 ADMIN_APPS_RESTRICT,
                 ADMIN_APPS_APPROVED_LIST,
                 ADMIN_APPS_RESTRICTED_LIST,

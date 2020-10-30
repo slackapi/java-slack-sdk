@@ -5,11 +5,14 @@ public class Methods {
     private Methods() {
     }
 
+    public static final String ADMIN_ANALYTICS_GET_FILE = "admin.analytics.getFile";
+
     // ------------------------------
     // admin.apps
     // ------------------------------
 
     public static final String ADMIN_APPS_APPROVE = "admin.apps.approve";
+    public static final String ADMIN_APPS_CLEAR_RESOLUTION = "admin.apps.clearResolution";
     public static final String ADMIN_APPS_RESTRICT = "admin.apps.restrict";
     public static final String ADMIN_APPS_APPROVED_LIST = "admin.apps.approved.list";
     public static final String ADMIN_APPS_RESTRICTED_LIST = "admin.apps.restricted.list";

@@ -5,6 +5,7 @@ import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
+import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.*;
 import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
@@ -84,6 +85,7 @@ import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
+import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
@@ -208,6 +210,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminAnalyticsGetFileResponse> adminAnalyticsGetFile(AdminAnalyticsGetFileRequest req) {
+        return executor.execute(ADMIN_ANALYTICS_GET_FILE, toMap(req), () -> methods.adminAnalyticsGetFile(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAnalyticsGetFileResponse> adminAnalyticsGetFile(RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req) {
+        return adminAnalyticsGetFile(req.configure(AdminAnalyticsGetFileRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminAppsApproveResponse> adminAppsApprove(AdminAppsApproveRequest req) {
         return executor.execute(ADMIN_APPS_APPROVE, toMap(req), () -> methods.adminAppsApprove(req));
     }
@@ -245,6 +257,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminAppsRestrictedListResponse> adminAppsRestrictedList(RequestConfigurator<AdminAppsRestrictedListRequest.AdminAppsRestrictedListRequestBuilder> req) {
         return adminAppsRestrictedList(req.configure(AdminAppsRestrictedListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsClearResolutionResponse> adminAppsClearResolution(AdminAppsClearResolutionRequest req) {
+        return executor.execute(ADMIN_APPS_CLEAR_RESOLUTION, toMap(req), () -> methods.adminAppsClearResolution(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsClearResolutionResponse> adminAppsClearResolution(RequestConfigurator<AdminAppsClearResolutionRequest.AdminAppsClearResolutionRequestBuilder> req) {
+        return adminAppsClearResolution(req.configure(AdminAppsClearResolutionRequest.builder()).build());
     }
 
     @Override

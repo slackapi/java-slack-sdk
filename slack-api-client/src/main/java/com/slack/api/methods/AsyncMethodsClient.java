@@ -1,6 +1,7 @@
 package com.slack.api.methods;
 
 import com.slack.api.RequestConfigurator;
+import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.*;
 import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
@@ -80,6 +81,7 @@ import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
+import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
@@ -171,6 +173,14 @@ public interface AsyncMethodsClient {
     MethodsClient underlying();
 
     // ------------------------------
+    // admin.analytics
+    // ------------------------------
+
+    CompletableFuture<AdminAnalyticsGetFileResponse> adminAnalyticsGetFile(AdminAnalyticsGetFileRequest req);
+
+    CompletableFuture<AdminAnalyticsGetFileResponse> adminAnalyticsGetFile(RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req);
+
+    // ------------------------------
     // admin.apps
     // ------------------------------
 
@@ -189,6 +199,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminAppsRestrictedListResponse> adminAppsRestrictedList(AdminAppsRestrictedListRequest req);
 
     CompletableFuture<AdminAppsRestrictedListResponse> adminAppsRestrictedList(RequestConfigurator<AdminAppsRestrictedListRequest.AdminAppsRestrictedListRequestBuilder> req);
+
+    CompletableFuture<AdminAppsClearResolutionResponse> adminAppsClearResolution(AdminAppsClearResolutionRequest req);
+
+    CompletableFuture<AdminAppsClearResolutionResponse> adminAppsClearResolution(RequestConfigurator<AdminAppsClearResolutionRequest.AdminAppsClearResolutionRequestBuilder> req);
 
     // ------------------------------
     // admin.apps.requests

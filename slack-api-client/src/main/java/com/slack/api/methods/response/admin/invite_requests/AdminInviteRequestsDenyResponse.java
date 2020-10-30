@@ -1,10 +1,10 @@
 package com.slack.api.methods.response.admin.invite_requests;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class AdminInviteRequestsDenyResponse implements SlackApiResponse {
+public class AdminInviteRequestsDenyResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

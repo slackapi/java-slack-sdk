@@ -1,11 +1,11 @@
 package com.slack.api.methods.response.bots;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.BotIcons;
 import lombok.Data;
 
 @Data
-public class BotsInfoResponse implements SlackApiResponse {
+public class BotsInfoResponse implements SlackApiTextResponse {
 
     @Data
     public static class Bot {

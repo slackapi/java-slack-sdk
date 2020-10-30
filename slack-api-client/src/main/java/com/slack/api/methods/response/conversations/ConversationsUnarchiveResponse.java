@@ -1,10 +1,10 @@
 package com.slack.api.methods.response.conversations;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class ConversationsUnarchiveResponse implements SlackApiResponse {
+public class ConversationsUnarchiveResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

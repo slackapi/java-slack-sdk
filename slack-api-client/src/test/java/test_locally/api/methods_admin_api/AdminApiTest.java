@@ -3,6 +3,7 @@ package test_locally.api.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsClient;
+import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import util.MockSlackApiServer;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
 
@@ -32,6 +34,14 @@ public class AdminApiTest {
     }
 
     @Test
+    public void adminAnalytics() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        AdminAnalyticsGetFileResponse response = methods.adminAnalyticsGetFile(r -> r.date("2020-10-20").type("member"));
+        assertThat(response.getFile(), is(notNullValue()));
+    }
+
+    @Test
     public void adminApps() throws Exception {
         MethodsClient methods = slack.methods(ValidToken);
 
@@ -44,6 +54,8 @@ public class AdminApiTest {
         assertThat(methods.adminAppsRequestsList(r -> r.teamId("T123"))
                 .isOk(), is(true));
         assertThat(methods.adminAppsRestrictedList(r -> r.teamId("T123"))
+                .isOk(), is(true));
+        assertThat(methods.adminAppsClearResolution(r -> r.appId("A123").teamId("T123"))
                 .isOk(), is(true));
     }
 

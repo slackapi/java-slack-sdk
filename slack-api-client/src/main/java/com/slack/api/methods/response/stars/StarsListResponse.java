@@ -1,7 +1,7 @@
 package com.slack.api.methods.response.stars;
 
 import com.google.gson.annotations.SerializedName;
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.File;
 import com.slack.api.model.Paging;
@@ -12,7 +12,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class StarsListResponse implements SlackApiResponse {
+public class StarsListResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;
