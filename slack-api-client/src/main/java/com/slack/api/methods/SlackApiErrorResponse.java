@@ -3,7 +3,7 @@ package com.slack.api.methods;
 import lombok.Data;
 
 @Data
-public class SlackApiErrorResponse implements SlackApiResponse {
+public class SlackApiErrorResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

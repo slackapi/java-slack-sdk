@@ -1,10 +1,10 @@
 package com.slack.api.methods.response.api;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class ApiTestResponse implements SlackApiResponse {
+public class ApiTestResponse implements SlackApiTextResponse {
     @Data
     public static class Args {
         private String foo;

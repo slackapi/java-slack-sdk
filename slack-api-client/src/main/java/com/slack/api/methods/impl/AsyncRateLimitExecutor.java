@@ -171,12 +171,12 @@ public class AsyncRateLimitExecutor {
         return UUID.randomUUID().toString();
     }
 
-    private static <T extends SlackApiResponse> T handleRuntimeException(String teamId, String methodName, RuntimeException e) {
+    private static <T extends SlackApiTextResponse> T handleRuntimeException(String teamId, String methodName, RuntimeException e) {
         log.error("Got an exception while calling {} API (team: {}, error: {})", methodName, teamId, e.getMessage(), e);
         throw new MethodsCompletionException(null, null, e);
     }
 
-    private static <T extends SlackApiResponse> T handleIOException(String teamId, String methodName, IOException e) {
+    private static <T extends SlackApiTextResponse> T handleIOException(String teamId, String methodName, IOException e) {
         log.error("Failed to connect to {} API (team: {}, error: {})", methodName, teamId, e.getMessage(), e);
         throw new MethodsCompletionException(e, null, null);
     }

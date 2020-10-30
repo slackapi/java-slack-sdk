@@ -3,6 +3,7 @@ package com.slack.api.methods.impl;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.*;
 import com.slack.api.methods.metrics.MetricsDatastore;
+import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.*;
 import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
@@ -95,6 +96,7 @@ import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
+import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
@@ -279,6 +281,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminAppsRestrictedListResponse adminAppsRestrictedList(RequestConfigurator<AdminAppsRestrictedListRequest.AdminAppsRestrictedListRequestBuilder> req) throws IOException, SlackApiException {
         return adminAppsRestrictedList(req.configure(AdminAppsRestrictedListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminAppsClearResolutionResponse adminAppsClearResolution(AdminAppsClearResolutionRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_APPS_CLEAR_RESOLUTION, getToken(req), AdminAppsClearResolutionResponse.class);
+    }
+
+    @Override
+    public AdminAppsClearResolutionResponse adminAppsClearResolution(RequestConfigurator<AdminAppsClearResolutionRequest.AdminAppsClearResolutionRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAppsClearResolution(req.configure(AdminAppsClearResolutionRequest.builder()).build());
     }
 
     @Override
@@ -2536,7 +2548,7 @@ public class MethodsClientImpl implements MethodsClient {
     // ----------------------------------------------
 
     @Override
-    public <T extends SlackApiResponse> T postFormAndParseResponse(
+    public <T extends SlackApiTextResponse> T postFormAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
             String methodName,
             Class<T> clazz) throws IOException, SlackApiException {
@@ -2548,7 +2560,7 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public <T extends SlackApiResponse> T postFormWithAuthorizationHeaderAndParseResponse(
+    public <T extends SlackApiTextResponse> T postFormWithAuthorizationHeaderAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
             String methodName,
             String authorizationHeader,
@@ -2562,7 +2574,20 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public <T extends SlackApiResponse> T postFormWithTokenAndParseResponse(
+    public AdminAnalyticsGetFileResponse adminAnalyticsGetFile(AdminAnalyticsGetFileRequest req) throws IOException {
+        Response httpResponse = postFormWithToken(toForm(req), Methods.ADMIN_ANALYTICS_GET_FILE, getToken(req));
+        AdminAnalyticsGetFileResponse response = new AdminAnalyticsGetFileResponse();
+        response.setFile(httpResponse.body().bytes());
+        return response;
+    }
+
+    @Override
+    public AdminAnalyticsGetFileResponse adminAnalyticsGetFile(RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req) throws IOException {
+        return adminAnalyticsGetFile(req.configure(AdminAnalyticsGetFileRequest.builder()).build());
+    }
+
+    @Override
+    public <T extends SlackApiTextResponse> T postFormWithTokenAndParseResponse(
             RequestConfigurator<FormBody.Builder> form,
             String endpoint,
             String token,
@@ -2575,7 +2600,7 @@ public class MethodsClientImpl implements MethodsClient {
         );
     }
 
-    protected <T extends SlackApiResponse> T postFormAndParseResponse(
+    protected <T extends SlackApiTextResponse> T postFormAndParseResponse(
             FormBody.Builder form,
             String methodName,
             Class<T> clazz) throws IOException, SlackApiException {
@@ -2583,7 +2608,7 @@ public class MethodsClientImpl implements MethodsClient {
         return parseJsonResponseAndRunListeners(null, methodName, response, clazz);
     }
 
-    protected <T extends SlackApiResponse> T postFormWithAuthorizationHeaderAndParseResponse(
+    protected <T extends SlackApiTextResponse> T postFormWithAuthorizationHeaderAndParseResponse(
             FormBody.Builder form,
             String methodName,
             String authorizationHeader,
@@ -2592,7 +2617,31 @@ public class MethodsClientImpl implements MethodsClient {
         return parseJsonResponseAndRunListeners(null, methodName, response, clazz);
     }
 
-    protected <T extends SlackApiResponse> T postFormWithTokenAndParseResponse(
+    protected Response postFormWithToken(
+            FormBody.Builder form,
+            String methodName,
+            String token) throws IOException {
+        String teamId = null;
+        if (statsEnabled) {
+            teamId = teamIdCache.lookupOrResolve(token);
+        }
+        try {
+            if (teamId != null) {
+                String key = buildMethodNameAndSuffix(form, methodName);
+                metricsDatastore.incrementAllCompletedCalls(executorName, teamId, methodName);
+                metricsDatastore.addToLastMinuteRequests(executorName, teamId, key, System.currentTimeMillis());
+            }
+            return runPostFormWithToken(form, methodName, token);
+
+        } catch (IOException e) {
+            if (teamId != null) {
+                metricsDatastore.incrementFailedCalls(executorName, teamId, methodName);
+            }
+            throw e;
+        }
+    }
+
+    protected <T extends SlackApiTextResponse> T postFormWithTokenAndParseResponse(
             FormBody.Builder form,
             String methodName,
             String token,
@@ -2634,7 +2683,7 @@ public class MethodsClientImpl implements MethodsClient {
         }
     }
 
-    protected <T extends SlackApiResponse> T postMultipartAndParseResponse(
+    protected <T extends SlackApiTextResponse> T postMultipartAndParseResponse(
             MultipartBody.Builder form,
             String methodName,
             String token,
@@ -2694,7 +2743,7 @@ public class MethodsClientImpl implements MethodsClient {
         }
     }
 
-    <T extends SlackApiResponse> T parseJsonResponseAndRunListeners(
+    <T extends SlackApiTextResponse> T parseJsonResponseAndRunListeners(
             String teamId,
             String methodName,
             Response response,

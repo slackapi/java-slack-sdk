@@ -1,10 +1,10 @@
 package com.slack.api.methods.response.oauth;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class OAuthTokenResponse implements SlackApiResponse {
+public class OAuthTokenResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

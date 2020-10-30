@@ -1,11 +1,11 @@
 package com.slack.api.methods.response.chat;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Message;
 import lombok.Data;
 
 @Data
-public class ChatUpdateResponse implements SlackApiResponse {
+public class ChatUpdateResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

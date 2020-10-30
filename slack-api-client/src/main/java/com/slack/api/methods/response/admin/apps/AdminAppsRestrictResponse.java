@@ -1,10 +1,10 @@
 package com.slack.api.methods.response.admin.apps;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class AdminAppsRestrictResponse implements SlackApiResponse {
+public class AdminAppsRestrictResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

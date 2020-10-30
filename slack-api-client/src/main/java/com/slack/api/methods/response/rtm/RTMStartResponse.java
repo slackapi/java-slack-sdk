@@ -1,6 +1,6 @@
 package com.slack.api.methods.response.rtm;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.*;
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @see <a href="https://api.slack.com/methods/rtm.start">rtm.start</a>
  */
 @Data
-public class RTMStartResponse implements SlackApiResponse {
+public class RTMStartResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

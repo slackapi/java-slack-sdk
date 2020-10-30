@@ -1,13 +1,13 @@
 package com.slack.api.methods.response.team.profile;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Team;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class TeamProfileGetResponse implements SlackApiResponse {
+public class TeamProfileGetResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

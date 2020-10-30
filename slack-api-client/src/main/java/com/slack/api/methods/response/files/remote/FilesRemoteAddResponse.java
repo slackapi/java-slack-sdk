@@ -1,11 +1,11 @@
 package com.slack.api.methods.response.files.remote;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.File;
 import lombok.Data;
 
 @Data
-public class FilesRemoteAddResponse implements SlackApiResponse {
+public class FilesRemoteAddResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

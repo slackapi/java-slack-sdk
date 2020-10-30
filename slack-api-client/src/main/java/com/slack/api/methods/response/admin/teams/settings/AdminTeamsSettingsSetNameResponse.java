@@ -1,10 +1,10 @@
 package com.slack.api.methods.response.admin.teams.settings;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class AdminTeamsSettingsSetNameResponse implements SlackApiResponse {
+public class AdminTeamsSettingsSetNameResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

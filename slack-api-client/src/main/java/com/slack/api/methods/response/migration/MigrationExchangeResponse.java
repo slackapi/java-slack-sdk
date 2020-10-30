@@ -1,13 +1,13 @@
 package com.slack.api.methods.response.migration;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
 
 @Data
-public class MigrationExchangeResponse implements SlackApiResponse {
+public class MigrationExchangeResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

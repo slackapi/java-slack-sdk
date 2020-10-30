@@ -1,12 +1,12 @@
 package com.slack.api.methods.response.calls.participants;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Call;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 @Data
-public class CallsParticipantsAddResponse implements SlackApiResponse {
+public class CallsParticipantsAddResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

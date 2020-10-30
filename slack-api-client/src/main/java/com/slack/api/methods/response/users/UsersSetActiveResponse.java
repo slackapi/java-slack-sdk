@@ -1,10 +1,10 @@
 package com.slack.api.methods.response.users;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class UsersSetActiveResponse implements SlackApiResponse {
+public class UsersSetActiveResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

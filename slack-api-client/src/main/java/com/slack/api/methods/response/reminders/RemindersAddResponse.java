@@ -1,11 +1,11 @@
 package com.slack.api.methods.response.reminders;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Reminder;
 import lombok.Data;
 
 @Data
-public class RemindersAddResponse implements SlackApiResponse {
+public class RemindersAddResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

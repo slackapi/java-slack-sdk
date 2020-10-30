@@ -1,6 +1,7 @@
 package com.slack.api.methods;
 
 import com.google.gson.Gson;
+import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.conversations.*;
 import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
@@ -113,6 +114,13 @@ public class RequestFormBuilder {
     private RequestFormBuilder() {
     }
 
+    public static FormBody.Builder toForm(AdminAnalyticsGetFileRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("date", req.getDate(), form);
+        setIfNotNull("type", req.getType(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminUsersSessionResetRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("user_id", req.getUserId(), form);
@@ -178,6 +186,15 @@ public class RequestFormBuilder {
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
+
+    public static FormBody.Builder toForm(AdminAppsClearResolutionRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
 
     public static FormBody.Builder toForm(AdminConversationsSetTeamsRequest req) {
         FormBody.Builder form = new FormBody.Builder();

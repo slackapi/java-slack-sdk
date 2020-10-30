@@ -1,12 +1,12 @@
 package com.slack.api.methods.response.apps.permissions;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class AppsPermissionsInfoResponse implements SlackApiResponse {
+public class AppsPermissionsInfoResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

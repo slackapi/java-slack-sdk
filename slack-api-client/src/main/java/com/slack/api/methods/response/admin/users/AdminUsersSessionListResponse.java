@@ -1,13 +1,13 @@
 package com.slack.api.methods.response.admin.users;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class AdminUsersSessionListResponse implements SlackApiResponse {
+public class AdminUsersSessionListResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

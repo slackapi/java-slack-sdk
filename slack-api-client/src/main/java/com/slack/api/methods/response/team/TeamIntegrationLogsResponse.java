@@ -1,6 +1,6 @@
 package com.slack.api.methods.response.team;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.IntegrationLog;
 import com.slack.api.model.Paging;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class TeamIntegrationLogsResponse implements SlackApiResponse {
+public class TeamIntegrationLogsResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

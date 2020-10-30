@@ -2,6 +2,7 @@ package test_with_remote_apis.methods_admin_api;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
+import com.slack.api.methods.request.admin.apps.AdminAppsClearResolutionRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.model.admin.AppRequest;
 import config.Constants;
@@ -28,6 +29,16 @@ public class AdminApi_apps_Test {
     static String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
     static String teamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
     static AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
+
+    // TODO: valid test
+    @Test
+    public void apps_clearResolution() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminAppsClearResolutionResponse response = methodsAsync
+                    .adminAppsClearResolution(r -> r.appId("A111").teamId(teamId)).get();
+            assertThat(response.getError(), is("missing_scope"));
+        }
+    }
 
     @Ignore
     @Test

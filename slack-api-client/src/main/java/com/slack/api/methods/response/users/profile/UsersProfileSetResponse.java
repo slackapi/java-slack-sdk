@@ -1,11 +1,11 @@
 package com.slack.api.methods.response.users.profile;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.User;
 import lombok.Data;
 
 @Data
-public class UsersProfileSetResponse implements SlackApiResponse {
+public class UsersProfileSetResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

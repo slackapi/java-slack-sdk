@@ -1,6 +1,6 @@
 package com.slack.api.methods.response.apps.event.authorizations;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  * https://api.slack.com/changelog/2020-09-15-events-api-truncate-authed-users
  */
 @Data
-public class AppsEventAuthorizationsListResponse implements SlackApiResponse {
+public class AppsEventAuthorizationsListResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

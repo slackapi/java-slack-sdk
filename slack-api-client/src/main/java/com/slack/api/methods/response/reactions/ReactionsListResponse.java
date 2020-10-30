@@ -1,7 +1,7 @@
 package com.slack.api.methods.response.reactions;
 
 import com.google.gson.annotations.SerializedName;
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.*;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ReactionsListResponse implements SlackApiResponse {
+public class ReactionsListResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

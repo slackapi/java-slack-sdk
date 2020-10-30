@@ -1,6 +1,6 @@
 package test_locally.api.model;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.util.json.GsonFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public interface Verifier {
         return LoggerFactory.getLogger(this.getClass());
     }
 
-    default <T extends SlackApiResponse> T verifyParsing(String api, Class<T> clazz) throws IOException {
+    default <T extends SlackApiTextResponse> T verifyParsing(String api, Class<T> clazz) throws IOException {
         String json = Files.readAllLines(
                 new File("../json-logs/samples/api/" + api + ".json").toPath())
                 .stream()

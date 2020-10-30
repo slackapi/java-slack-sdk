@@ -1,7 +1,7 @@
 package com.slack.api.methods.response.files;
 
 import com.google.gson.annotations.SerializedName;
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.File;
 import com.slack.api.model.FileComment;
 import com.slack.api.model.Paging;
@@ -10,7 +10,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class FilesInfoResponse implements SlackApiResponse {
+public class FilesInfoResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

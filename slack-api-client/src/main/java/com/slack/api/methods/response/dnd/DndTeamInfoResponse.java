@@ -1,12 +1,12 @@
 package com.slack.api.methods.response.dnd;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 import java.util.Map;
 
 @Data
-public class DndTeamInfoResponse implements SlackApiResponse {
+public class DndTeamInfoResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;

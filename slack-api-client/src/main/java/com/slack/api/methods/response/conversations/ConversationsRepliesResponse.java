@@ -1,6 +1,6 @@
 package com.slack.api.methods.response.conversations;
 
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Message;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ConversationsRepliesResponse implements SlackApiResponse {
+public class ConversationsRepliesResponse implements SlackApiTextResponse {
     private boolean ok;
     private String warning;
     private String error;

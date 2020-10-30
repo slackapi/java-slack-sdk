@@ -1,11 +1,11 @@
 package com.slack.api.methods.response.users;
 
 import com.google.gson.annotations.SerializedName;
-import com.slack.api.methods.SlackApiResponse;
+import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 @Data
-public class UsersIdentityResponse implements SlackApiResponse {
+public class UsersIdentityResponse implements SlackApiTextResponse {
 
     private boolean ok;
     private String warning;
