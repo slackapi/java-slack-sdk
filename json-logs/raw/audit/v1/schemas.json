@@ -70,6 +70,14 @@
         "channel": "string",
         "timestamp": "string"
       }
+    },
+    {
+      "type": "barrier",
+      "barrier": {
+        "id": "string",
+        "primary_usergroup": "string",
+        "barriered_from_usergroup": "string"
+      }
     }
   ]
 }

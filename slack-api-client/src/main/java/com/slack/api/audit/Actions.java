@@ -115,6 +115,9 @@ public class Actions {
         public static final String org_verified = "org_verified";
         public static final String org_unverified = "org_unverified";
         public static final String org_public_url_updated = "org_public_url_updated";
+        public static final String organization_verified = "organization_verified";
+        public static final String organization_unverified = "organization_unverified";
+        public static final String organization_public_url_updated = "organization_public_url_updated";
     }
 
     public static class User {
@@ -238,5 +241,14 @@ public class Actions {
         public static final String workflow_unpublished = "workflow_unpublished";
         public static final String workflow_responses_csv_download = "workflow_responses_csv_download";
         public static final String workflow_unknown_action = "workflow_unknown_action";
+    }
+
+    public static class Barrier {
+        private Barrier() {
+        }
+
+        public static final String barrier_created = "barrier_created";
+        public static final String barrier_updated = "barrier_updated";
+        public static final String barrier_deleted = "barrier_deleted";
     }
 }

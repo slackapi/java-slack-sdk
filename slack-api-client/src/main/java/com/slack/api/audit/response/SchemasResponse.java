@@ -30,6 +30,7 @@ public class SchemasResponse implements AuditApiResponse {
         private App app;
         private Message message;
         private Workflow workflow;
+        private Barrier barrier;
     }
 
     @Data
@@ -93,6 +94,13 @@ public class SchemasResponse implements AuditApiResponse {
     public static class Workflow {
         private String id;
         private String name;
+    }
+
+    @Data
+    public static class Barrier {
+        private String id;
+        private String primaryUsergroup;
+        private String barrieredFromUsergroup;
     }
 
 }
