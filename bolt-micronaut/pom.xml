@@ -10,9 +10,9 @@
     </parent>
 
     <properties>
-        <micronaut.bom.version>2.0.2</micronaut.bom.version>
-        <micronaut.version>2.0.3</micronaut.version>
-        <micronaut-test-junit5.version>1.2.0</micronaut-test-junit5.version>
+        <micronaut.bom.version>2.1.2</micronaut.bom.version>
+        <micronaut.version>2.1.2</micronaut.version>
+        <micronaut-test-junit5.version>2.1.1</micronaut-test-junit5.version>
         <mockito-all.version>1.10.19</mockito-all.version>
     </properties>
 
@@ -20,18 +20,6 @@
     <artifactId>bolt-micronaut</artifactId>
     <version>1.3.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.micronaut</groupId>
-                <artifactId>micronaut-bom</artifactId>
-                <version>${micronaut.bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -54,6 +42,7 @@
             <artifactId>bolt</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-server-netty</artifactId>
@@ -70,6 +59,18 @@
             <groupId>io.micronaut.test</groupId>
             <artifactId>micronaut-test-junit5</artifactId>
             <version>${micronaut-test-junit5.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-inject-java-test</artifactId>
+            <version>${micronaut.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-inject-java-test</artifactId>
+            <version>${micronaut.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
