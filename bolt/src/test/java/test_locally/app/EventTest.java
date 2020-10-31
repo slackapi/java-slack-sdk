@@ -4,17 +4,16 @@ import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.SlackSignature;
-import com.slack.api.app_backend.events.payload.EventsApiPayload;
-import com.slack.api.app_backend.events.payload.MessageBotPayload;
-import com.slack.api.app_backend.events.payload.MessagePayload;
+import com.slack.api.app_backend.events.payload.*;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
+import com.slack.api.bolt.model.Bot;
+import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.EventRequest;
 import com.slack.api.bolt.response.Response;
-import com.slack.api.model.event.AppMentionEvent;
-import com.slack.api.model.event.MessageBotEvent;
-import com.slack.api.model.event.MessageEvent;
+import com.slack.api.bolt.service.InstallationService;
+import com.slack.api.model.event.*;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
@@ -193,4 +192,100 @@ public class EventTest {
         return payload;
     }
 
+    class ErrorInstallationService implements InstallationService {
+
+        @Override
+        public boolean isHistoricalDataEnabled() {
+            return false;
+        }
+
+        @Override
+        public void setHistoricalDataEnabled(boolean isHistoricalDataEnabled) {
+        }
+
+        @Override
+        public void saveInstallerAndBot(Installer installer) {
+        }
+
+        @Override
+        public void deleteBot(Bot bot) {
+        }
+
+        @Override
+        public void deleteInstaller(Installer installer) {
+        }
+
+        @Override
+        public Bot findBot(String enterpriseId, String teamId) {
+            throw new RuntimeException("This method should not be called");
+        }
+
+        @Override
+        public Installer findInstaller(String enterpriseId, String teamId, String userId) {
+            throw new RuntimeException("This method should not be called");
+        }
+    }
+
+    @Test
+    public void uninstallation() throws Exception {
+        AppConfig config = AppConfig.builder()
+                .signingSecret(secret)
+                .clientId("111.222")
+                .clientSecret("secret-secret")
+                .build();
+        App app = new App(config).asOAuthApp(true);
+        app.service(new ErrorInstallationService());
+
+        AtomicBoolean uninstalled = new AtomicBoolean(false);
+        app.event(AppUninstalledEvent.class, (req, ctx) -> {
+            uninstalled.set(true);
+            return ctx.ack();
+        });
+        AtomicBoolean tokensRevoked = new AtomicBoolean(false);
+        app.event(TokensRevokedEvent.class, (req, ctx) -> {
+            tokensRevoked.set(true);
+            return ctx.ack();
+        });
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+
+        // Make sure if the auth middleware doesn't work
+        EventsApiPayload<MessageEvent> payload = buildUserMessagePayload();
+        String requestBody = gson.toJson(payload);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+        EventRequest req = new EventRequest(requestBody, new RequestHeaders(rawHeaders));
+        try {
+            app.run(req);
+            fail();
+        } catch (RuntimeException e) {
+            assertEquals("This method should not be called", e.getMessage());
+        }
+
+        // app_uninstalled events
+        EventsApiPayload<AppUninstalledEvent> payload1 = new AppUninstalledPayload();
+        payload1.setTeamId("T111");
+        payload1.setEvent(new AppUninstalledEvent());
+        requestBody = gson.toJson(payload1);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        req = new EventRequest(requestBody, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertTrue(uninstalled.get());
+
+        // tokens_revoked events
+        EventsApiPayload<TokensRevokedEvent> payload2 = new TokensRevokedPayload();
+        payload2.setTeamId("T111");
+        payload2.setEvent(new TokensRevokedEvent());
+        requestBody = gson.toJson(payload2);
+        setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+        req = new EventRequest(requestBody, new RequestHeaders(rawHeaders));
+        response = app.run(req);
+
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertTrue(tokensRevoked.get());
+    }
 }

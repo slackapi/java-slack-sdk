@@ -30,6 +30,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import static com.slack.api.bolt.middleware.MiddlewareOps.isNoAuthRequiredRequest;
+import static com.slack.api.bolt.middleware.MiddlewareOps.isNoTokenRequiredRequest;
 import static com.slack.api.bolt.response.ResponseTypes.ephemeral;
 
 /**
@@ -105,6 +106,11 @@ public class MultiTeamsAuthorization implements Middleware {
     @Override
     public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
         if (isNoAuthRequiredRequest(req.getRequestType())) {
+            return chain.next(req);
+        }
+        if (isNoTokenRequiredRequest(req)) {
+            // Nothing to do here
+            // enterprise_id / team_id are already set by Request object constructor
             return chain.next(req);
         }
 
