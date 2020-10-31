@@ -103,7 +103,10 @@
       "pref.session_duration_type_changed",
       "org_verified",
       "org_unverified",
-      "org_public_url_updated"
+      "org_public_url_updated",
+      "organization_verified",
+      "organization_unverified",
+      "organization_public_url_updated"
     ],
     "user": [
       "custom_tos_accepted",
@@ -202,6 +205,11 @@
     "message": [
       "message_tombstoned",
       "message_restored"
+    ],
+    "barrier": [
+      "barrier_created",
+      "barrier_updated",
+      "barrier_deleted"
     ]
   }
 }

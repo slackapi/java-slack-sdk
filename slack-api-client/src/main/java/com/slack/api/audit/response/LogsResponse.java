@@ -163,6 +163,8 @@ public class LogsResponse implements AuditApiResponse {
         private DetailsChangedValue previousValue; // pref.who_can_manage_shared_channels etc
         private Kicker kicker;
         private String installerUserId;
+        private String approverId;
+        private String approvalType;
         private Boolean appPreviouslyApproved;
         private List<String> oldScopes;
         private String name;

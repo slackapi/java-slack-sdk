@@ -48,6 +48,11 @@
         "team": "",
         "channel": "",
         "timestamp": ""
+      },
+      "barrier": {
+        "id": "",
+        "primary_usergroup": "",
+        "barriered_from_usergroup": ""
       }
     }
   ],
