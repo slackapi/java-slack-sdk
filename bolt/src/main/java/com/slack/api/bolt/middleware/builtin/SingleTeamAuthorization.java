@@ -18,6 +18,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static com.slack.api.bolt.middleware.MiddlewareOps.isNoAuthRequiredRequest;
+import static com.slack.api.bolt.middleware.MiddlewareOps.isNoTokenRequiredRequest;
 
 /**
  * Verifies if the given access token when booting this app is valid for incoming requests.
@@ -47,6 +48,11 @@ public class SingleTeamAuthorization implements Middleware {
     @Override
     public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
         if (isNoAuthRequiredRequest(req.getRequestType())) {
+            return chain.next(req);
+        }
+        if (isNoTokenRequiredRequest(req)) {
+            // Nothing to do here
+            // enterprise_id / team_id are already set by Request object constructor
             return chain.next(req);
         }
 
