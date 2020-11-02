@@ -345,6 +345,26 @@
     {
       "date_created": "2020-06-17T23:23:15-07:00",
       "body": "Our engineers have narrowed down the issues that are causing some new messages to not appear in our Android app. While these issues are not fully resolved yet, going forward we\u0027ll continue working on this as a bug that we\u0027ll track internally. If you\u0027re still experiencing this behaviour, please reach out to us at feedback@slack.com."
+    },
+    {
+      "date_created": "2020-11-02T13:50:47-08:00",
+      "body": "While affected users should still be able to search in Slack, recent updates, such as new messages, may not immediately appear in the results. We\u0027ll let you know once the issue is resolved, and we\u0027ll follow-up if the situation changes."
+    },
+    {
+      "date_created": "2020-11-02T13:02:09-08:00",
+      "body": "Affected users should be able to search and see the most optimal results. However, we\u0027re still working on this issue. We\u0027ll let you know if the situation changes, and we\u0027ll follow-up once this issue is resolved."
+    },
+    {
+      "date_created": "2020-11-02T12:16:02-08:00",
+      "body": "The majority of affected users should be able to search in Slack. Some users may not see the most optimal search results, and some users may see a \"Something went wrong\" error when searching for files. We\u0027ll continue to work to resolve this trouble.\r\n\r\nNote: We updated this note to mention some users could\u0027ve encountered a \"Something went wrong\" error when searching for files, so all affected users weren\u0027t able to search in Slack at this time."
+    },
+    {
+      "date_created": "2020-11-02T11:43:05-08:00",
+      "body": "At this time, some users may be unable to search for messages and files specifically. We\u0027re working to resolve this issue, and we appreciate your patience."
+    },
+    {
+      "date_created": "2020-11-02T11:13:11-08:00",
+      "body": "Some users are unable to search in Slack. We\u0027re investigating, and we\u0027ll follow-up here once we know more. We\u0027re sorry for the trouble."
     }
   ]
 }
