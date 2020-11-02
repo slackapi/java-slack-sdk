@@ -192,6 +192,7 @@ public class ApiTest {
             verifyAllActions(orgAdminUserToken, Actions.File.class);
             verifyAllActions(orgAdminUserToken, Actions.Channel.class);
             verifyAllActions(orgAdminUserToken, Actions.App.class);
+            verifyAllActions(orgAdminUserToken, Actions.Barrier.class);
         }
     }
 
