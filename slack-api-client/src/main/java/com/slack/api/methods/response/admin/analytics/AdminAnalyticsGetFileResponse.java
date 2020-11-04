@@ -3,6 +3,7 @@ package com.slack.api.methods.response.admin.analytics;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.slack.api.methods.SlackApiBinaryResponse;
+import com.slack.api.model.ResponseMetadata;
 import com.slack.api.util.json.GsonFactory;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -17,6 +18,10 @@ import java.util.zip.GZIPInputStream;
 @Slf4j
 @Data
 public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
+
+    private boolean ok;
+    private String error;
+    private ResponseMetadata responseMetadata;
 
     /**
      * This method is almost completely unlike other Web API methods you encounter.

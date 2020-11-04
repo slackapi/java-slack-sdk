@@ -30,6 +30,18 @@ public class AdminApi_analytics_Test {
     static AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
 
     @Test
+    public void getFile_error() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
+                    .date("2035-12-31")
+                    .type("member")
+            ).get();
+            assertEquals("file_not_yet_available", response.getError());
+            assertFalse(response.isOk());
+        }
+    }
+
+    @Test
     public void getFile() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
@@ -41,6 +53,7 @@ public class AdminApi_analytics_Test {
             response.forEach(data -> results.add(data));
             assertTrue(results.size() > 0);
             assertNull(response.getFileStream());
+            assertTrue(response.isOk());
 
             try {
                 response.asBytes();
@@ -67,6 +80,7 @@ public class AdminApi_analytics_Test {
             ).get();
             assertNotNull(response.getFileStream());
             assertTrue(response.asBytes().length > 0);
+            assertTrue(response.isOk());
             // can read the bytes
             response.forEach(data -> {
             });

@@ -1,5 +1,6 @@
 package com.slack.api.methods.impl;
 
+import com.google.gson.Gson;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.*;
 import com.slack.api.methods.metrics.MetricsDatastore;
@@ -193,10 +194,7 @@ import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.Credentials;
-import okhttp3.FormBody;
-import okhttp3.MultipartBody;
-import okhttp3.Response;
+import okhttp3.*;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -2574,15 +2572,34 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
-    public AdminAnalyticsGetFileResponse adminAnalyticsGetFile(AdminAnalyticsGetFileRequest req) throws IOException {
-        Response httpResponse = postFormWithToken(toForm(req), Methods.ADMIN_ANALYTICS_GET_FILE, getToken(req));
-        AdminAnalyticsGetFileResponse response = new AdminAnalyticsGetFileResponse();
-        response.setFileStream(httpResponse.body().byteStream());
-        return response;
+    public AdminAnalyticsGetFileResponse adminAnalyticsGetFile(AdminAnalyticsGetFileRequest req) throws IOException, SlackApiException {
+        Response response = postFormWithToken(toForm(req), Methods.ADMIN_ANALYTICS_GET_FILE, getToken(req));
+        MediaType contentType = response.body().contentType();
+        if (contentType != null && contentType.subtype().equals("json")) {
+            // This response has a text response with error info
+            String body = response.body().string();
+            if (response.isSuccessful()) {
+                try {
+                    Gson gson = GsonFactory.createSnakeCase(slackHttpClient.getConfig());
+                    return gson.fromJson(body, AdminAnalyticsGetFileResponse.class);
+                } finally {
+                    slackHttpClient.runHttpResponseListeners(response, body);
+                }
+            } else {
+                throw new SlackApiException(slackHttpClient.getConfig(), response, body);
+            }
+        } else {
+            // gzip data
+            runListenersForBinaryResponse(response);
+            AdminAnalyticsGetFileResponse apiResponse = new AdminAnalyticsGetFileResponse();
+            apiResponse.setOk(true);
+            apiResponse.setFileStream(response.body().byteStream());
+            return apiResponse;
+        }
     }
 
     @Override
-    public AdminAnalyticsGetFileResponse adminAnalyticsGetFile(RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req) throws IOException {
+    public AdminAnalyticsGetFileResponse adminAnalyticsGetFile(RequestConfigurator<AdminAnalyticsGetFileRequest.AdminAnalyticsGetFileRequestBuilder> req) throws IOException, SlackApiException {
         return adminAnalyticsGetFile(req.configure(AdminAnalyticsGetFileRequest.builder()).build());
     }
 
@@ -2765,6 +2782,16 @@ public class MethodsClientImpl implements MethodsClient {
             }
         } else {
             throw new SlackApiException(slackHttpClient.getConfig(), response, body);
+        }
+    }
+
+
+    void runListenersForBinaryResponse(
+            Response response) throws SlackApiException {
+        if (response.isSuccessful()) {
+            slackHttpClient.runHttpResponseListeners(response, "(binary data)");
+        } else {
+            throw new SlackApiException(slackHttpClient.getConfig(), response, "(binary data)");
         }
     }
 

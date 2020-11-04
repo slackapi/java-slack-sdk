@@ -11,8 +11,7 @@ import util.MockSlackApiServer;
 
 import java.util.Arrays;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
 
@@ -38,7 +37,8 @@ public class AdminApiTest {
         MethodsClient methods = slack.methods(ValidToken);
 
         AdminAnalyticsGetFileResponse response = methods.adminAnalyticsGetFile(r -> r.date("2020-10-20").type("member"));
-        assertThat(response.getFileStream(), is(notNullValue()));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getFileStream(), is(nullValue()));
     }
 
     @Test
