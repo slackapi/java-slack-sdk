@@ -38,7 +38,7 @@ public class AdminApiTest {
         MethodsClient methods = slack.methods(ValidToken);
 
         AdminAnalyticsGetFileResponse response = methods.adminAnalyticsGetFile(r -> r.date("2020-10-20").type("member"));
-        assertThat(response.getFile(), is(notNullValue()));
+        assertThat(response.getFileStream(), is(notNullValue()));
     }
 
     @Test

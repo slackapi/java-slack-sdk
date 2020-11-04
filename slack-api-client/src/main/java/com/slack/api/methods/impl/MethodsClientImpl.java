@@ -2577,7 +2577,7 @@ public class MethodsClientImpl implements MethodsClient {
     public AdminAnalyticsGetFileResponse adminAnalyticsGetFile(AdminAnalyticsGetFileRequest req) throws IOException {
         Response httpResponse = postFormWithToken(toForm(req), Methods.ADMIN_ANALYTICS_GET_FILE, getToken(req));
         AdminAnalyticsGetFileResponse response = new AdminAnalyticsGetFileResponse();
-        response.setFile(httpResponse.body().bytes());
+        response.setFileStream(httpResponse.body().byteStream());
         return response;
     }
 
