@@ -214,7 +214,7 @@ If you need to call a method that **slack-api-client** doesn't support, you can 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiTextResponse;
 
-public class AwesomeMethodResponse implements SlackApiResponse {
+public class AwesomeMethodResponse implements SlackApiTextResponse {
   private boolean ok;
   private String warning;
   private String error;

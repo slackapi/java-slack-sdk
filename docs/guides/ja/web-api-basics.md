@@ -214,7 +214,7 @@ Slack Web API は [180 以上の API メソッド](https://api.slack.com/methods
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiTextResponse;
 
-public class AwesomeMethodResponse implements SlackApiResponse {
+public class AwesomeMethodResponse implements SlackApiTextResponse {
   private boolean ok;
   private String warning;
   private String error;
