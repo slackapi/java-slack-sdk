@@ -376,7 +376,11 @@
       "inbox_views_workspace_filter": "",
       "dismissed_connect_auto_approval_modal": "",
       "help_menu_open_timestamp": 12345,
-      "xws_dismissed_education": false
+      "xws_dismissed_education": false,
+      "xws_seen_education": 12345,
+      "enable_slack_connect_view": false,
+      "tasks_view": "",
+      "dismissed_app_launcher_atlassian_promo": false
     },
     "created": 12345,
     "first_login": 12345,
