@@ -32,11 +32,11 @@ To create a workflow step, Bolt provides the `WorkflowStep` class.
 
 When instantiating a new `WorkflowStep`, pass in the step's `callback_id` and a configuration object.
 
-The configuration object contains three properties: `edit`, `save`, and `execute`. Each of these properties must be a single listener object. All listeners have access to a `payload` object that contains information about the workflow step event.
+The configuration object contains three properties: `edit`, `save`, and `execute`. Each of these properties must be a single listener object. All listeners have access to a `step` object that contains information about the workflow step event.
 
 After instantiating a `WorkflowStep`, you can pass it into `app.step()`. Behind the scenes, your app will listen and respond to the workflow step’s events using the callbacks provided in the configuration object.
 
-```javascript
+```java
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.middleware.builtin.WorkflowStep;
 
