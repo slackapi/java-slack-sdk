@@ -66,7 +66,7 @@ public class AppConfig {
     private static SlackHttpClient buildSlackHttpClient() {
         Map<String, String> userAgentCustomInfo = new HashMap<>();
         userAgentCustomInfo.put("bolt", BoltLibraryVersion.get());
-        SlackHttpClient client = new SlackHttpClient(userAgentCustomInfo);
+        SlackHttpClient client = new SlackHttpClient(SlackConfig.DEFAULT, userAgentCustomInfo);
         return client;
     }
 

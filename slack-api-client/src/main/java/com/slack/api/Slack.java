@@ -20,6 +20,7 @@ import com.slack.api.status.v1.impl.LegacyStatusClientImpl;
 import com.slack.api.status.v2.StatusClient;
 import com.slack.api.status.v2.impl.StatusClientImpl;
 import com.slack.api.util.http.SlackHttpClient;
+import com.slack.api.util.http.UserAgentInterceptor;
 import com.slack.api.webhook.Payload;
 import com.slack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,11 @@ import okhttp3.Response;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import static com.slack.api.util.http.SlackHttpClient.buildSlackHttpClient;
 
 /**
  * This class is a kind of facade of a variety of Slack API clients offered by this SDK.
@@ -55,11 +61,11 @@ public class Slack implements AutoCloseable {
     private final SlackConfig config;
 
     public Slack() {
-        this(SlackConfig.DEFAULT, buildHttpClient(SlackConfig.DEFAULT));
+        this(SlackConfig.DEFAULT, buildSlackHttpClient(SlackConfig.DEFAULT));
     }
 
     private Slack(SlackConfig config) {
-        this(config, buildHttpClient(config));
+        this(config, buildSlackHttpClient(config));
     }
 
     private Slack(SlackConfig config, SlackHttpClient httpClient) {
@@ -303,27 +309,6 @@ public class Slack implements AutoCloseable {
 
     public MethodsStats methodsStats(String executorName, String teamId) {
         return config.getMethodsConfig().getMetricsDatastore().getStats(executorName, teamId);
-    }
-
-    // -------------------------------------------------------
-
-    private static SlackHttpClient buildHttpClient(SlackConfig config) {
-        OkHttpClient okHttpClient;
-        if (config.getProxyUrl() != null && !config.getProxyUrl().trim().isEmpty()) {
-            try {
-                URL url = new URL(config.getProxyUrl());
-                InetSocketAddress address = new InetSocketAddress(url.getHost(), url.getPort());
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, address);
-                okHttpClient = new OkHttpClient.Builder().proxy(proxy).build();
-            } catch (MalformedURLException e) {
-                throw new IllegalArgumentException("Failed to parse the proxy URL: " + config.getProxyUrl());
-            }
-        } else {
-            okHttpClient = new OkHttpClient.Builder().build();
-        }
-        SlackHttpClient httpClient = new SlackHttpClient(okHttpClient);
-        httpClient.setConfig(config);
-        return httpClient;
     }
 
 }

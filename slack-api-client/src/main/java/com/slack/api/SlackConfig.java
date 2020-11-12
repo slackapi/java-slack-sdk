@@ -88,12 +88,47 @@ public class SlackConfig {
         public void setProxyUrl(String proxyUrl) {
             throwException();
         }
+
+        @Override
+        public void setHttpClientCallTimeoutMillis(Integer httpClientCallTimeoutMillis) {
+            throwException();
+        }
+
+        @Override
+        public void setHttpClientWriteTimeoutMillis(Integer httpClientWriteTimeoutMillis) {
+            throwException();
+        }
+
+        @Override
+        public void setHttpClientReadTimeoutMillis(Integer httpClientReadTimeoutMillis) {
+            throwException();
+        }
     };
 
     public SlackConfig() {
         getHttpClientResponseHandlers().add(new DetailedLoggingListener());
         getHttpClientResponseHandlers().add(new ResponsePrettyPrintingListener());
     }
+
+    /**
+     * The underlying HTTP client's read timeout (in milliseconds). The default is 10 seconds.
+     * https://square.github.io/okhttp/4.x/okhttp/okhttp3/-ok-http-client/read-timeout-millis/
+     */
+    private Integer httpClientReadTimeoutMillis;
+
+    /**
+     * The underlying HTTP client's write timeout (in milliseconds). The default is 10 seconds.
+     * https://square.github.io/okhttp/4.x/okhttp/okhttp3/-ok-http-client/write-timeout-millis/
+     */
+    private Integer httpClientWriteTimeoutMillis;
+
+    /**
+     * The underlying HTTP client's call timeout (in milliseconds).
+     * By default there is no timeout for complete calls,
+     * but there is for the connect, write, and read actions within a call.
+     * https://square.github.io/okhttp/4.x/okhttp/okhttp3/-ok-http-client/call-timeout-millis/
+     */
+    private Integer httpClientCallTimeoutMillis;
 
     /**
      * The proxy server URL supposed to be used for all api calls.

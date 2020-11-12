@@ -1,6 +1,7 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
 import com.slack.api.methods.Methods;
 import com.slack.api.methods.RequestFormBuilder;
 import com.slack.api.methods.SlackApiException;
@@ -20,6 +21,8 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.util.concurrent.ExecutionException;
 
+import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -89,6 +92,37 @@ public class api_test_Test {
         assertThat(response.code(), is(200));
         String body = response.body().string();
         assertThat(body, is("{\"ok\":true,\"args\":{\"foo\":\"fine\"}}"));
+    }
+
+    @Test
+    public void customTimeouts_read() throws Exception {
+        SlackConfig config = new SlackConfig();
+        config.setHttpClientReadTimeoutMillis(1);
+        try {
+            Slack.getInstance(config).methods().apiTest(r -> r.foo("bar"));
+            fail();
+        } catch (IOException e) {
+            assertTrue(e.getMessage().equals("Read timed out") || e.getMessage().equals("timeout"));
+        }
+    }
+
+    @Test
+    public void customTimeouts_write() throws Exception {
+        SlackConfig config = new SlackConfig();
+        config.setHttpClientWriteTimeoutMillis(1);
+        Slack.getInstance(config).methods().apiTest(r -> r.foo("bar"));
+    }
+
+    @Test
+    public void customTimeouts_call() throws Exception {
+        SlackConfig config = new SlackConfig();
+        config.setHttpClientCallTimeoutMillis(1);
+        try {
+            Slack.getInstance(config).methods().apiTest(r -> r.foo("bar"));
+            fail();
+        } catch (IOException e) {
+            assertTrue(e.getMessage().equals("Read timed out") || e.getMessage().equals("timeout"));
+        }
     }
 
 }
