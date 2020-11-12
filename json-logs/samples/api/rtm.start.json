@@ -640,7 +640,8 @@
       "enable_connect_dm_early_access": false,
       "display_external_email_addresses": false,
       "enable_info_barriers": false,
-      "enable_mpdm_to_private_channel_conversion": false
+      "enable_mpdm_to_private_channel_conversion": false,
+      "slack_connect_file_upload_sharing_enabled": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
