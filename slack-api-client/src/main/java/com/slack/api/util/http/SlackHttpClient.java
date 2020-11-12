@@ -8,8 +8,13 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
+import java.net.Proxy;
+import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The Slack API HTTP Client.
@@ -23,14 +28,55 @@ public class SlackHttpClient implements AutoCloseable {
 
     private SlackConfig config = SlackConfig.DEFAULT;
 
-    public SlackHttpClient(Map<String, String> userAgentCustomInfo) {
-        this.okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new UserAgentInterceptor(userAgentCustomInfo))
-                .build();
+    public static SlackHttpClient buildSlackHttpClient(SlackConfig config) {
+        return buildSlackHttpClient(config, Collections.emptyMap());
+    }
+
+    public static SlackHttpClient buildSlackHttpClient(SlackConfig config, Map<String, String> userAgentCustomInfo) {
+        SlackHttpClient httpClient = new SlackHttpClient(buildOkHttpClient(config, userAgentCustomInfo));
+        httpClient.setConfig(config);
+        return httpClient;
+    }
+
+    public static OkHttpClient buildOkHttpClient(SlackConfig config) {
+        return buildOkHttpClient(config, Collections.emptyMap());
+    }
+
+    public static OkHttpClient buildOkHttpClient(SlackConfig config, Map<String, String> userAgentCustomInfo) {
+        final OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+        okHttpClient.addInterceptor(new UserAgentInterceptor(userAgentCustomInfo));
+        if (config.getHttpClientReadTimeoutMillis() != null) {
+            okHttpClient.readTimeout(config.getHttpClientReadTimeoutMillis(), TimeUnit.MILLISECONDS);
+        }
+        if (config.getHttpClientWriteTimeoutMillis() != null) {
+            okHttpClient.writeTimeout(config.getHttpClientWriteTimeoutMillis(), TimeUnit.MILLISECONDS);
+        }
+        if (config.getHttpClientCallTimeoutMillis() != null) {
+            okHttpClient.callTimeout(config.getHttpClientCallTimeoutMillis(), TimeUnit.MILLISECONDS);
+        }
+        if (config.getProxyUrl() != null && !config.getProxyUrl().trim().isEmpty()) {
+            try {
+                URL url = new URL(config.getProxyUrl());
+                InetSocketAddress address = new InetSocketAddress(url.getHost(), url.getPort());
+                Proxy proxy = new Proxy(Proxy.Type.HTTP, address);
+                okHttpClient.proxy(proxy);
+            } catch (MalformedURLException e) {
+                throw new IllegalArgumentException("Failed to parse the proxy URL: " + config.getProxyUrl());
+            }
+        }
+        return okHttpClient.build();
     }
 
     public SlackHttpClient() {
         this(Collections.emptyMap());
+    }
+
+    public SlackHttpClient(Map<String, String> userAgentCustomInfo) {
+        this(SlackConfig.DEFAULT, userAgentCustomInfo);
+    }
+
+    public SlackHttpClient(SlackConfig config, Map<String, String> userAgentCustomInfo) {
+        this.okHttpClient = buildOkHttpClient(config, userAgentCustomInfo);
     }
 
     public SlackHttpClient(OkHttpClient okHttpClient) {
