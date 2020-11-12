@@ -18,8 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -61,7 +60,8 @@ public class AdapterTest {
         Request<?> slackRequest = adapter.toSlackRequest(req, "token=random&ssl_check=1");
 
         assertNotNull(slackRequest);
-        assertEquals("127.0.0.1", slackRequest.getClientIpAddress());
+        String ipAddress = slackRequest.getClientIpAddress();
+        assertTrue(ipAddress.equals("127.0.0.1") || ipAddress.equals("0.0.0.0000000000001"));
     }
 
     @Test
