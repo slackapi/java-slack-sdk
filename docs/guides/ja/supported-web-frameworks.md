@@ -598,7 +598,13 @@ bolt:
 
 ### Helidon アプリを起動
 
-2020 年 3 月現在、Helidon は、再起動なしの変更反映を[まだサポートしていません](https://github.com/oracle/helidon/issues/1207)。推奨される起動方法は、変更する度にアプリケーションをビルドして起動し直すやり方です。
+推奨される起動方法は [Helidon CLI](https://helidon.io/docs/latest/#/about/05_cli) の dev mode を使うか、
+
+```bash
+helidon dev
+```
+
+変更する度にアプリケーションをビルドして起動し直すやり方です。
 
 ```bash
 mvn exec:java -Dexec.mainClass="hello.Main"

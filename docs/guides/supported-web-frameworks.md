@@ -597,7 +597,13 @@ If you use logback library as the SLF4J logger implementation, a simple **logbac
 
 ### Run the App
 
-As of March 2020, Helidon [doesn't support live reloading yet](https://github.com/oracle/helidon/issues/1207). The recommended way to start your app is to build and run your app every time you've applied changes to it.
+The recommended way to start your app is either to use the [Helidon CLI](https://helidon.io/docs/latest/#/about/05_cli)'s dev mode 
+
+```bash
+helidon dev
+```
+
+or to build and run your app every time you've applied changes to it.
 
 ```bash
 mvn exec:java -Dexec.mainClass="hello.Main"
