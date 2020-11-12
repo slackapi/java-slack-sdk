@@ -53,6 +53,12 @@ public class BlockElements {
         return configurator.configure(DatePickerElement.builder()).build();
     }
 
+    // TimePickerElement
+
+    public static TimePickerElement timePicker(ModelConfigurator<TimePickerElement.TimePickerElementBuilder> configurator) {
+        return configurator.configure(TimePickerElement.builder()).build();
+    }
+
     // ImageElement
 
     public static ImageElement image(ModelConfigurator<ImageElement.ImageElementBuilder> configurator) {

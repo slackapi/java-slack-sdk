@@ -30,6 +30,8 @@ import static com.slack.api.model.Attachments.attachment;
 import static com.slack.api.model.block.Blocks.asBlocks;
 import static com.slack.api.model.block.Blocks.section;
 import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.element.BlockElements.timePicker;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNull;
@@ -742,6 +744,24 @@ public class chat_Test {
                 .text(":wave: Hello! 哈囉"));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.getMessage().getText(), is(":wave: Hello! 哈囉"));
+    }
+
+    @Test
+    public void post_messages_timepicker() throws Exception {
+        loadRandomChannelId();
+
+        ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(r -> r.channel(randomChannelId)
+                .blocks(Arrays.asList(section(s -> s.text(plainText("test")).blockId("b").accessory(
+                        timePicker(t -> t
+                                .actionId("a")
+                                .initialTime("09:10")
+                                .placeholder(plainText("It's time to start!")))
+                        ))
+                ))
+        );
+        // invalid_blocks means you haven't turned the beta feature on
+        // Go to https://api.slack.com/apps/{api_app_id}/developer-beta
+        assertThat(response.getError(), is(nullValue()));
     }
 
 }

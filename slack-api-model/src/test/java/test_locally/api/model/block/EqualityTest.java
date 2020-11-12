@@ -23,6 +23,7 @@ public class EqualityTest {
         assertEquals(new CheckboxesElement(), new CheckboxesElement());
         assertEquals(new ConversationsSelectElement(), new ConversationsSelectElement());
         assertEquals(new DatePickerElement(), new DatePickerElement());
+        assertEquals(new TimePickerElement(), new TimePickerElement());
         assertEquals(new ExternalSelectElement(), new ExternalSelectElement());
         assertEquals(new ImageElement(), new ImageElement());
         assertEquals(new MultiChannelsSelectElement(), new MultiChannelsSelectElement());

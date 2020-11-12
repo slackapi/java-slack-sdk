@@ -68,7 +68,14 @@
           "image_height": 12345,
           "image_bytes": 12345,
           "type": "",
-          "alt_text": ""
+          "alt_text": "",
+          "action_id": "",
+          "initial_time": "",
+          "placeholder": {
+            "type": "",
+            "text": "",
+            "emoji": false
+          }
         },
         "elements": [
           {
