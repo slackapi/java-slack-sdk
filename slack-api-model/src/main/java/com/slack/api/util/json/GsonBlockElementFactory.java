@@ -70,6 +70,8 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
                 return OverflowMenuElement.class;
             case DatePickerElement.TYPE:
                 return DatePickerElement.class;
+            case TimePickerElement.TYPE:
+                return TimePickerElement.class;
             case PlainTextInputElement.TYPE:
                 return PlainTextInputElement.class;
             case RichTextSectionElement.TYPE:

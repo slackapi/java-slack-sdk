@@ -1,11 +1,9 @@
 package test_locally.api.model.block;
 
+import com.google.gson.Gson;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.*;
-import com.slack.api.model.block.element.BlockElement;
-import com.slack.api.model.block.element.ChannelsSelectElement;
-import com.slack.api.model.block.element.ConversationsSelectElement;
-import com.slack.api.model.block.element.MultiConversationsSelectElement;
+import com.slack.api.model.block.element.*;
 import com.slack.api.model.view.View;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
@@ -19,8 +17,7 @@ import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.*;
 import static com.slack.api.model.view.Views.view;
 import static com.slack.api.model.view.Views.viewSubmit;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
@@ -398,5 +395,37 @@ public class BlocksTest {
         assertNotNull(modalView);
     }
 
+    @Test
+    public void timePickerElement() {
+        // https://api.slack.com/reference/block-kit/block-elements#timepicker
+        String json = "{\n" +
+                "  \"type\": \"section\",\n" +
+                "  \"block_id\": \"section1234\",\n" +
+                "  \"text\": {\n" +
+                "    \"type\": \"mrkdwn\",\n" +
+                "    \"text\": \"Pick a date for the deadline.\"\n" +
+                "  },\n" +
+                "  \"accessory\": {\n" +
+                "    \"type\": \"timepicker\",\n" +
+                "    \"action_id\": \"timepicker123\",\n" +
+                "    \"initial_time\": \"11:40\",\n" +
+                "    \"placeholder\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Select a time\"\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
+        Gson gson = GsonFactory.createSnakeCase();
+        SectionBlock section = gson.fromJson(json, SectionBlock.class);
+        assertThat(section.getBlockId(), is("section1234"));
+        TimePickerElement accessory = (TimePickerElement) section.getAccessory();
+        assertThat(accessory.getActionId(), is("timepicker123"));
+        assertThat(accessory.getInitialTime(), is("11:40"));
+        assertThat(accessory.getPlaceholder().getText(), is("Select a time"));
+        assertThat(accessory.getConfirm(), is(nullValue()));
+
+        String output = gson.toJson(section);
+        assertThat(output, is("{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"Pick a date for the deadline.\"},\"block_id\":\"section1234\",\"accessory\":{\"type\":\"timepicker\",\"action_id\":\"timepicker123\",\"placeholder\":{\"type\":\"plain_text\",\"text\":\"Select a time\"},\"initial_time\":\"11:40\"}}"));
+    }
 
 }
