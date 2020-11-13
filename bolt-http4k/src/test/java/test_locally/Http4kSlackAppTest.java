@@ -75,6 +75,7 @@ public class Http4kSlackAppTest {
     public void adaptsHttp4kToSlackInterface() {
         Response expected = Response.Companion
                 .create(Status.OK)
+                .header("Content-Type", "application/json; charset=utf-8")
                 .body("{\"text\":\"" +
                         "query: query " +
                         "headers: content-type,x-slack-request-timestamp,x-slack-signature " +
@@ -87,7 +88,7 @@ public class Http4kSlackAppTest {
 
     @Test
     public void emptyResponse() {
-        Response expected = Response.Companion.create(Status.OK).body("");
+        Response expected = Response.Companion.create(Status.OK).header("Content-Type", "plain/text").body("");
         Response response = http4kSlackApp.invoke(buildRequest("command=do-nothing"));
         assertThat(response, equalTo(expected));
     }
@@ -96,6 +97,7 @@ public class Http4kSlackAppTest {
     public void noHandlerRequestGets404() {
         Response expected = Response.Companion
                 .create(Status.NOT_FOUND)
+                .header("Content-Type", "application/json; charset=utf-8")
                 .body("{\"error\":\"no handler found\"}");
 
         Response response = http4kSlackApp.invoke(buildRequest("command=notaCommand"));

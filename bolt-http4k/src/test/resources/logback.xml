@@ -6,7 +6,7 @@
         </encoder>
     </appender>
     <logger name="com.slack.api" level="debug"/>
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="default"/>
     </root>
 </configuration>
