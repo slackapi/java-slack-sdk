@@ -4,6 +4,7 @@ import com.slack.api.bolt.App
 import com.slack.api.bolt.ktor.respond
 import com.slack.api.bolt.ktor.toBoltRequest
 import com.slack.api.bolt.util.SlackRequestParser
+import com.slack.api.model.event.AppMentionEvent
 import io.ktor.application.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
@@ -15,8 +16,18 @@ fun main() {
     val app = App()
     val requestParser = SlackRequestParser(app.config())
 
-    app.command("/hello-ktor") { _, ctx ->
-        ctx.ack("Hi!")
+    app.command("/hello-bolt-python") { req, ctx ->
+        if (req.payload.text != null && req.payload.text.isNotEmpty()) {
+            ctx.ack("You said: ${req.payload.text}")
+        } else {
+            ctx.ack()
+        }
+    }
+    app.event(AppMentionEvent::class.java) { _, ctx ->
+        ctx.ack()
+    }
+    app.globalShortcut("test-shortcut") { _, ctx ->
+        ctx.ack()
     }
 
     val server = embeddedServer(Netty, port = 3000) {
