@@ -58,12 +58,16 @@ public class Http4kSlackApp implements Function1<Request, Response> {
     }
 
     private Response toHttp4kResponse(com.slack.api.bolt.response.Response boltResponse) {
+        Status status = new Status(boltResponse.getStatusCode(), "");
         List<Pair<String, String>> headers = boltResponse.getHeaders()
                 .entrySet().stream()
                 .flatMap(it -> it.getValue().stream().map(it2 -> new Pair<String, String>(it.getKey(), it2)))
                 .collect(Collectors.toList());
-        return Response.Companion.create(new Status(boltResponse.getStatusCode(), ""))
+        String body = boltResponse.getBody();
+        return Response.Companion
+                .create(status)
                 .headers(headers)
-                .body(boltResponse.getBody());
+                // null here is not allowed by http4k
+                .body(body == null ? "" : body);
     }
 }
