@@ -48,6 +48,9 @@ public class Http4kSlackAppTest {
             String body = req.getRequestBodyAsString();
             return r.text("query: " + query + " headers: " + headers + " body: " + body);
         }));
+
+        app.command("do-nothing", (req, ctx) -> ctx.ack());
+
         this.http4kSlackApp = new Http4kSlackApp(app);
     }
 
@@ -79,6 +82,13 @@ public class Http4kSlackAppTest {
                         "\"}");
 
         Response response = http4kSlackApp.invoke(buildRequest("command=echo"));
+        assertThat(response, equalTo(expected));
+    }
+
+    @Test
+    public void emptyResponse() {
+        Response expected = Response.Companion.create(Status.OK).body("");
+        Response response = http4kSlackApp.invoke(buildRequest("command=do-nothing"));
         assertThat(response, equalTo(expected));
     }
 
