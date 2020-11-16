@@ -5,6 +5,7 @@ import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.util.SlackRequestParser;
 import kotlin.Pair;
 import kotlin.jvm.functions.Function1;
+import org.http4k.core.Method;
 import org.http4k.core.Request;
 import org.http4k.core.Response;
 import org.http4k.core.Status;
@@ -19,32 +20,94 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static org.http4k.core.ParametersKt.toParameters;
 import static org.http4k.core.Status.INTERNAL_SERVER_ERROR;
+import static org.http4k.core.Status.NOT_FOUND;
 
 public class Http4kSlackApp implements Function1<Request, Response> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Http4kSlackApp.class);
+    protected static final Logger LOGGER = LoggerFactory.getLogger(Http4kSlackApp.class);
 
-    private final App app;
-    private final SlackRequestParser requestParser;
+    protected final App app;
+    protected final String path;
+    protected final SlackRequestParser requestParser;
 
     public Http4kSlackApp(App app) {
+        this(app, "/slack/events");
+    }
+
+    public Http4kSlackApp(App app, String path) {
         this.app = app;
+        this.path = path;
         requestParser = new SlackRequestParser(app.config());
     }
 
     @Override
     public Response invoke(Request request) {
+        Method requestMethod = request.getMethod();
+        String requestPath = request.getUri().getPath();
+        if (requestMethod == null) {
+            // checking this, just in case
+            return notFound(request);
+        }
+        if (requestMethod == Method.POST && requestPath.equals(getSlackEventsRequestURI())) {
+            return handleEventRequest(request);
+        } else if (requestMethod == Method.GET) {
+            if (app.config().isOAuthInstallPathEnabled()
+                    && requestPath.equals(app.config().getOauthInstallRequestURI())) {
+                return handleOAuthRequest(request);
+            } else if (app.config().isOAuthInstallPathEnabled()
+                    && requestPath.equals(app.config().getOauthRedirectUriRequestURI())) {
+                return handleOAuthRequest(request);
+            }
+        }
+        return notFound(request);
+    }
+
+    // ----------------------------------------------------------
+
+    protected String getSlackEventsRequestURI() {
+        if (app.config().getAppPath() != null) {
+            return (app.config().getAppPath() + this.path).replaceAll("//", "/");
+        }
+        return this.path;
+    }
+
+    protected Response handleEventRequest(Request request) {
         try {
             return toHttp4kResponse(app.run(toSlackRequest(request)));
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
-            return Response.Companion.create(INTERNAL_SERVER_ERROR)
-                    .header("Content-type", "application/json; charset=utf-8")
-                    .body("{\"error\":\"An error occurred during processing of the request\"}");
+            return buildEventErrorResponse(request, e);
         }
     }
 
-    private com.slack.api.bolt.request.Request<?> toSlackRequest(Request httpRequest) {
+    protected Response handleOAuthRequest(Request request) {
+        try {
+            return toHttp4kResponse(app.run(toSlackRequest(request)));
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return buildOAuthPageErrorResponse(request, e);
+        }
+    }
+
+    protected Response buildEventErrorResponse(Request request, Exception e) {
+        return Response.Companion.create(INTERNAL_SERVER_ERROR)
+                .header("Content-type", "application/json; charset=utf-8")
+                .body("{\"error\":\"An error occurred during processing of the request\"}");
+    }
+
+    protected Response buildOAuthPageErrorResponse(Request request, Exception e) {
+        return Response.Companion.create(INTERNAL_SERVER_ERROR)
+                .header("Content-type", "text/plain; charset=utf-8")
+                .body("Internal Server Error");
+    }
+
+    protected Response notFound(Request request) {
+        return Response.Companion.create(NOT_FOUND)
+                .header("Content-type", "text/plain; charset=utf-8")
+                .body("Not Found");
+    }
+
+    protected com.slack.api.bolt.request.Request<?> toSlackRequest(Request httpRequest) {
         Map<String, List<String>> queryString = toParameters(httpRequest.getUri().getQuery())
                 .stream()
                 .collect(toMap(Pair::component1, it -> singletonList(it.component2())));
@@ -60,7 +123,7 @@ public class Http4kSlackApp implements Function1<Request, Response> {
                 .build());
     }
 
-    private Response toHttp4kResponse(com.slack.api.bolt.response.Response boltResponse) {
+    protected Response toHttp4kResponse(com.slack.api.bolt.response.Response boltResponse) {
         Status status = new Status(boltResponse.getStatusCode(), "");
         List<Pair<String, String>> headers = boltResponse.getHeaders()
                 .entrySet()
