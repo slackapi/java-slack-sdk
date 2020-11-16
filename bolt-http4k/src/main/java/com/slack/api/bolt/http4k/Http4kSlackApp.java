@@ -91,19 +91,19 @@ public class Http4kSlackApp implements Function1<Request, Response> {
 
     protected Response buildEventErrorResponse(Request request, Exception e) {
         return Response.Companion.create(INTERNAL_SERVER_ERROR)
-                .header("Content-type", "application/json; charset=utf-8")
+                .header("Content-Type", "application/json; charset=utf-8")
                 .body("{\"error\":\"An error occurred during processing of the request\"}");
     }
 
     protected Response buildOAuthPageErrorResponse(Request request, Exception e) {
         return Response.Companion.create(INTERNAL_SERVER_ERROR)
-                .header("Content-type", "text/plain; charset=utf-8")
+                .header("Content-Type", "text/plain; charset=utf-8")
                 .body("Internal Server Error");
     }
 
     protected Response notFound(Request request) {
         return Response.Companion.create(NOT_FOUND)
-                .header("Content-type", "text/plain; charset=utf-8")
+                .header("Content-Type", "text/plain; charset=utf-8")
                 .body("Not Found");
     }
 

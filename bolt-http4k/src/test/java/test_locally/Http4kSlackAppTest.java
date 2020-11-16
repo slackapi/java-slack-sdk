@@ -19,14 +19,17 @@ import static com.slack.api.app_backend.SlackSignature.HeaderNames.X_SLACK_SIGNA
 import static java.util.stream.Collectors.joining;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.http4k.core.Method.GET;
 import static org.http4k.core.Method.POST;
+import static org.junit.Assert.assertTrue;
 
 public class Http4kSlackAppTest {
 
     private static final String signingSecret = "secret";
 
     private AuthTestMockServer slackApiServer;
-    private Http4kSlackApp http4kSlackApp;
+    private Http4kSlackApp simpleSlackApp;
+    private Http4kSlackApp oauthSlackApp;
 
     @Before
     public void setUp() throws Exception {
@@ -51,7 +54,21 @@ public class Http4kSlackAppTest {
 
         app.command("do-nothing", (req, ctx) -> ctx.ack());
 
-        this.http4kSlackApp = new Http4kSlackApp(app);
+        this.simpleSlackApp = new Http4kSlackApp(app);
+
+        App oauthApp = new App(AppConfig.builder()
+                .slack(Slack.getInstance(slackConfig))
+                .signingSecret(signingSecret)
+                .clientId("111.222")
+                .clientSecret("cs")
+                .scope("commands,chat:write")
+                .oauthInstallPath("/slack/install")
+                .oauthRedirectUriPath("/slack/oauth_redirect")
+                .oauthCompletionUrl("https://www.example.com/success")
+                .oauthCancellationUrl("https://www.example.com/failure")
+                .build()
+        ).asOAuthApp(true);
+        this.oauthSlackApp = new Http4kSlackApp(oauthApp);
     }
 
     @After
@@ -59,20 +76,32 @@ public class Http4kSlackAppTest {
         this.slackApiServer.stop();
     }
 
-    private static Request buildRequest(String requestBody) {
+    private static Request slackEventRequest(String requestBody) {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         String signature = new SlackSignature.Generator(signingSecret).generate(timestamp, requestBody);
 
-        return Request.Companion.create(POST, "/")
+        return Request.Companion.create(POST, "/slack/events")
                 .header(X_SLACK_REQUEST_TIMESTAMP, timestamp)
                 .header(X_SLACK_SIGNATURE, signature)
-                .header("Content-type", "application/json")
+                .header("Content-Type", "application/json")
+                .query("query", "queryValue")
+                .body(requestBody);
+    }
+
+    private static Request invalidPathSlackEventRequest(String requestBody) {
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        String signature = new SlackSignature.Generator(signingSecret).generate(timestamp, requestBody);
+
+        return Request.Companion.create(POST, "/slack/events/foo/bar")
+                .header(X_SLACK_REQUEST_TIMESTAMP, timestamp)
+                .header(X_SLACK_SIGNATURE, signature)
+                .header("Content-Type", "application/json")
                 .query("query", "queryValue")
                 .body(requestBody);
     }
 
     @Test
-    public void adaptsHttp4kToSlackInterface() {
+    public void slackEvents() {
         Response expected = Response.Companion
                 .create(Status.OK)
                 .header("Content-Type", "application/json; charset=utf-8")
@@ -82,26 +111,67 @@ public class Http4kSlackAppTest {
                         "body: command\\u003decho" +
                         "\"}");
 
-        Response response = http4kSlackApp.invoke(buildRequest("command=echo"));
+        Response response = simpleSlackApp.invoke(slackEventRequest("command=echo"));
         assertThat(response, equalTo(expected));
     }
 
     @Test
-    public void emptyResponse() {
-        Response expected = Response.Companion.create(Status.OK).header("Content-Type", "plain/text").body("");
-        Response response = http4kSlackApp.invoke(buildRequest("command=do-nothing"));
+    public void slackEvents_invalidPath() {
+        Response expected = Response.Companion
+                .create(Status.NOT_FOUND)
+                .header("Content-Type", "text/plain; charset=utf-8")
+                .body("Not Found");
+        Response response = simpleSlackApp.invoke(invalidPathSlackEventRequest("command=echo"));
         assertThat(response, equalTo(expected));
     }
 
     @Test
-    public void noHandlerRequestGets404() {
+    public void slackEvents_commandNotFound() {
         Response expected = Response.Companion
                 .create(Status.NOT_FOUND)
                 .header("Content-Type", "application/json; charset=utf-8")
                 .body("{\"error\":\"no handler found\"}");
 
-        Response response = http4kSlackApp.invoke(buildRequest("command=notaCommand"));
+        Response response = simpleSlackApp.invoke(slackEventRequest("command=notaCommand"));
         assertThat(response, equalTo(expected));
     }
 
+    @Test
+    public void workWithEmptyOrNullResponseBody() {
+        Response expected = Response.Companion.create(Status.OK).header("Content-Type", "plain/text").body("");
+        Response response = simpleSlackApp.invoke(slackEventRequest("command=do-nothing"));
+        assertThat(response, equalTo(expected));
+    }
+
+    @Test
+    public void oauth() {
+        Request installRequest = Request.Companion.create(GET, "/slack/install");
+
+        Response notFound = simpleSlackApp.invoke(installRequest);
+        assertThat(notFound.getStatus().getCode(), equalTo(404));
+
+        Response installResponse = oauthSlackApp.invoke(installRequest);
+        assertThat(installResponse.getStatus().getCode(), equalTo(302));
+        assertTrue(installResponse.header("Location").startsWith(
+                "https://slack.com/oauth/v2/authorize?client_id=111.222&scope=commands,chat:write&user_scope=&state="));
+
+        assertThat(installResponse.getStatus().getCode(), equalTo(302));
+
+        String state = extractStateValue(installResponse.header("Location"));
+        Request redirectRequest = Request.Companion.create(GET, "/slack/oauth_redirect")
+                .query("code", "111.111.111")
+                .query("state", state)
+                .header("Cookie", "slack-app-oauth-state=" + state);
+        Response redirectResponse = oauthSlackApp.invoke(redirectRequest);
+        assertThat(redirectResponse.header("Location"), equalTo("https://www.example.com/success"));
+    }
+
+    private static String extractStateValue(String location) {
+        for (String element: location.split("&")) {
+            if (element.trim().startsWith("state=")) {
+                return element.trim().replaceFirst("state=", "");
+            }
+        }
+        return null;
+    }
 }

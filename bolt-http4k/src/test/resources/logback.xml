@@ -6,7 +6,8 @@
         </encoder>
     </appender>
     <logger name="com.slack.api" level="debug"/>
-    <root level="debug">
+    <logger name="org.eclipse.jetty" level="warn"/>
+    <root level="info">
         <appender-ref ref="default"/>
     </root>
 </configuration>
