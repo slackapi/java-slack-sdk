@@ -380,7 +380,9 @@
       "xws_seen_education": 12345,
       "enable_slack_connect_view": false,
       "tasks_view": "",
-      "dismissed_app_launcher_atlassian_promo": false
+      "dismissed_app_launcher_atlassian_promo": false,
+      "seen_toast_new_locale_launch": "",
+      "seen_toast_new_locale_launch_ts": 12345
     },
     "created": 12345,
     "first_login": 12345,
