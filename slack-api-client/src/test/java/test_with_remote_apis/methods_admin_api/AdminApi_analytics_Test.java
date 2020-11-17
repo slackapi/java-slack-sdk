@@ -42,7 +42,7 @@ public class AdminApi_analytics_Test {
     }
 
     @Test
-    public void getFile() throws Exception {
+    public void getFile_forEach() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
                     .date("2020-10-20")
@@ -79,9 +79,16 @@ public class AdminApi_analytics_Test {
                     .type("member")
             ).get();
             assertNotNull(response.getFileStream());
-            assertTrue(response.asBytes().length > 0);
+            byte[] bytes = response.asBytes();
+            assertTrue(bytes.length > 0);
             assertTrue(response.isOk());
-            // can read the bytes
+
+            // Even after consuming the input stream,
+            // #asBytes() should be available for multiple calls as the loaded bytes are cached
+            byte[] bytes2 = response.asBytes();
+            assertTrue(bytes.length == bytes2.length);
+
+            // can read the bytes as the loaded bytes are cached
             response.forEach(data -> {
             });
         }

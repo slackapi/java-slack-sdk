@@ -39,34 +39,41 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
 
     @Override
     public byte[] asBytes() throws IOException {
-        if (getFileStream() == null) {
-            throw new IOException("The byte stream has been already consumed.");
-        }
         synchronized (loadedBytes) {
             if (loadedBytes.length == 0) {
-                InputStream is = getFileStream();
-                ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-                byte[] data = new byte[1024];
-                int readSize;
-                while ((readSize = is.read(data, 0, data.length)) != -1) {
-                    buffer.write(data, 0, readSize);
+                try (InputStream is = getFileStream()) {
+                    if (is == null) {
+                        // tried to read the input stream but it seems to be already closed
+                        throw new IOException("The byte stream has been already consumed.");
+                    }
+                    try (ByteArrayOutputStream buffer = new ByteArrayOutputStream()) {
+                        byte[] data = new byte[1024];
+                        int readSize;
+                        while ((readSize = is.read(data, 0, data.length)) != -1) {
+                            buffer.write(data, 0, readSize);
+                        }
+                        buffer.flush();
+                        loadedBytes = buffer.toByteArray();
+                    }
+                } finally {
+                    // already consumed
+                    setFileStream(null);
                 }
-                buffer.flush();
-                loadedBytes = buffer.toByteArray();
             }
             return loadedBytes;
         }
     }
 
     public void forEach(Consumer<AnalyticsData> handler) throws IOException {
-        if (getFileStream() == null) {
-            throw new IOException("The byte stream has been already consumed.");
-        }
         Gson gson = GsonFactory.createSnakeCase();
         InputStream is = getFileStream();
         if (loadedBytes.length > 0) {
             // already the whole data is loaded in heap memory
             is = new ByteArrayInputStream(loadedBytes);
+        }
+        if (is == null) {
+            // the input stream is already consumed by either forEach or asBytes
+            throw new IOException("The byte stream has been already consumed.");
         }
         try (GZIPInputStream gis = new GZIPInputStream(is);
              InputStreamReader isr = new InputStreamReader(gis);
@@ -85,6 +92,12 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         } finally {
             // already consumed
             setFileStream(null);
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception ignore) {
+                }
+            }
         }
     }
 
