@@ -20,6 +20,7 @@ public class OAuthStartTest {
     @Test
     public void start() throws Exception {
         App app = new App(AppConfig.builder()
+                .signingSecret("secret")
                 .clientId("111.222")
                 .clientSecret("secret")
                 .scope("commands,chat:write")
