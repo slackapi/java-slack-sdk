@@ -3,6 +3,7 @@ package samples;
 import com.slack.api.SlackConfig;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
+import com.slack.api.model.event.AppMentionEvent;
 import com.slack.api.util.json.GsonFactory;
 import util.TestSlackAppServer;
 
@@ -17,7 +18,11 @@ public class EnterpriseGridOrgAppSample {
                 .stream().collect(Collectors.joining("\n"));
         AppConfig appConfig = GsonFactory.createCamelCase(SlackConfig.DEFAULT).fromJson(jsonString, AppConfig.class);
         App app = new App(appConfig).asOAuthApp(true);
-        TestSlackAppServer server = new TestSlackAppServer(app, "/slack/oauth/");
+        app.event(AppMentionEvent.class, (req, ctx) -> {
+            ctx.say("Hi");
+            return ctx.ack();
+        });
+        TestSlackAppServer server = new TestSlackAppServer(app);
         server.start();
     }
 }
