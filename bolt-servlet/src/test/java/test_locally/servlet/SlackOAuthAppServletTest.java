@@ -91,7 +91,8 @@ public class SlackOAuthAppServletTest {
 
         servlet.service(req, resp);
 
-        verify(resp, times(1)).setStatus(302);
+        verify(resp, times(1)).setStatus(200);
+        verify(resp, times(1)).setHeader("Content-Type","text/html; charset=utf-8");
     }
 
     @Test
