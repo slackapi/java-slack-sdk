@@ -194,6 +194,12 @@ public class Methods {
     public static final String AUTH_TEST = "auth.test";
 
     // ------------------------------
+    // auth.teams
+    // ------------------------------
+
+    public static final String AUTH_TEAMS_LIST = "auth.teams.list";
+
+    // ------------------------------
     // bots
     // ------------------------------
 

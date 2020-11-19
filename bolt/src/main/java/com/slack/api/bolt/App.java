@@ -166,7 +166,7 @@ public class App {
      * Primitive Event API handler.
      */
     private final EventsDispatcher eventsDispatcher = EventsDispatcherFactory.getInstance();
-    
+
     // -------------------------------------
     // Block Kit
     // https://api.slack.com/block-kit
@@ -301,7 +301,7 @@ public class App {
      * @param state The OAuth state param
      * @return The Slack URL to redirect users to for beginning the OAuth flow
      */
-    public String getOauthInstallationUrl(String state) {
+    public String buildAuthorizeUrl(String state) {
         AppConfig config = config();
 
         if (config.getClientId() == null || config.getScope() == null || state == null) {
@@ -327,6 +327,14 @@ public class App {
                     "&state=" + state +
                     redirectUriParam;
         }
+    }
+
+    /**
+     * Use #buildAuthorizeUrl(String) instead (this method will be removed in v2.0)
+     */
+    @Deprecated
+    public String getOauthInstallationUrl(String state) {
+        return buildAuthorizeUrl(state);
     }
 
     private String redirectUriQueryParam(AppConfig appConfig) {
@@ -386,14 +394,14 @@ public class App {
         this.oAuthStateService = new ClientOnlyOAuthStateService();
 
         this.installationService = new FileInstallationService(this.appConfig);
-        this.oAuthSuccessHandler = new OAuthDefaultSuccessHandler(this.installationService);
-        this.oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(this.installationService);
+        this.oAuthSuccessHandler = new OAuthDefaultSuccessHandler(this.appConfig, this.installationService);
+        this.oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(config(), this.installationService);
 
-        this.oAuthErrorHandler = new OAuthDefaultErrorHandler();
-        this.oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler();
-        this.oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler();
-        this.oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler();
-        this.oAuthExceptionHandler = new OAuthDefaultExceptionHandler();
+        this.oAuthErrorHandler = new OAuthDefaultErrorHandler(config());
+        this.oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler(config());
+        this.oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler(config());
+        this.oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler(config());
+        this.oAuthExceptionHandler = new OAuthDefaultExceptionHandler(config());
 
         this.oAuthCallbackService = null; // will be initialized by initOAuthServicesIfNecessary()
     }
@@ -779,9 +787,9 @@ public class App {
         this.installationService = installationService;
         putServiceInitializer(InstallationService.class, installationService.initializer());
         if (config().isClassicAppPermissionsEnabled()) {
-            return oauthCallback(new OAuthDefaultSuccessHandler(installationService));
+            return oauthCallback(new OAuthDefaultSuccessHandler(config(), installationService));
         } else {
-            return oauthCallback(new OAuthV2DefaultSuccessHandler(installationService));
+            return oauthCallback(new OAuthV2DefaultSuccessHandler(config(), installationService));
         }
     }
 
@@ -896,14 +904,31 @@ public class App {
                     if (config().isDistributedApp()) {
                         try {
                             Map<String, List<String>> responseHeaders = new HashMap<>();
-                            Response response = Response.builder().statusCode(302).headers(responseHeaders).build();
+                            Response response = Response.builder().statusCode(200).headers(responseHeaders).build();
                             String state = oAuthStateService.issueNewState(slackRequest, response);
-                            String url = getOauthInstallationUrl(state);
-                            if (url == null) {
-                                log.error("AppConfig#getOauthInstallationUrl(String) returned null due to some missing settings");
-                                responseHeaders.put("Location", Arrays.asList(config().getOauthCancellationUrl()));
+                            String authorizeUrl = buildAuthorizeUrl(state);
+                            if (authorizeUrl == null) {
+                                log.error("App#buildAuthorizeUrl(String) returned null due to some missing settings");
+                                if (config().getOauthCancellationUrl() == null) {
+                                    response.setContentType("text/html; charset=utf-8");
+                                    String installPath = config().getOauthInstallRequestURI();
+                                    String html = config().getOAuthRedirectUriPageRenderer()
+                                            .renderFailurePage(installPath, "invalid_app_config");
+                                    response.setBody(html);
+                                } else {
+                                    response.setStatusCode(302);
+                                    responseHeaders.put("Location", Arrays.asList(config().getOauthCancellationUrl()));
+                                }
                             } else {
-                                responseHeaders.put("Location", Arrays.asList(url));
+                                if (config().isOAuthInstallPageRenderingEnabled()) {
+                                    response.setStatusCode(200);
+                                    response.setContentType("text/html; charset=utf-8");
+                                    response.setBody(config().getOAuthInstallPageRenderer().render(authorizeUrl));
+                                } else {
+                                    //As with v1.0 - 1.3, this directly sends the installer to Slack's authorize URL
+                                    response.setStatusCode(302);
+                                    responseHeaders.put("Location", Arrays.asList(authorizeUrl));
+                                }
                             }
                             return response;
                         } catch (Exception e) {

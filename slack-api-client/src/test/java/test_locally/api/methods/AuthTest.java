@@ -40,4 +40,9 @@ public class AuthTest {
         assertThat(slack.methodsAsync(ValidToken).authTest(r -> r).get().getTeamId(), is("T1234567"));
     }
 
+    @Test
+    public void authTeamsList() throws Exception {
+        assertThat(slack.methods(ValidToken).authTeamsList(r -> r.limit(10)).isOk(), is(true));
+    }
+
 }

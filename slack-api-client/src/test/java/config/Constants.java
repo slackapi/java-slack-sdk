@@ -19,6 +19,8 @@ public class Constants {
     public static final String SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID = "SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID";
     // Shared channel ID for testing with Grid
     public static final String SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID = "SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID";
+    // Org level installed app
+    public static final String SLACK_SDK_TEST_GRID_ORG_LEVEL_APP_BOT_TOKEN = "SLACK_SDK_TEST_GRID_ORG_LEVEL_APP_BOT_TOKEN";
     // --------------------------------------------
 
     // normal user token / bot token

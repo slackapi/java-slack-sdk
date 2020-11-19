@@ -4,6 +4,7 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;
@@ -52,6 +53,12 @@ public class FieldValidation_a_to_c_Test {
     @Test
     public void auth_revoke() throws Exception {
         AuthRevokeResponse obj = parse("auth.revoke", AuthRevokeResponse.class);
+        verifyIfAllGettersReturnNonNull(obj);
+    }
+
+    @Test
+    public void auth_teams_list() throws Exception {
+        AuthTeamsListResponse obj = parse("auth.teams.list", AuthTeamsListResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
     }
 

@@ -24,4 +24,9 @@ public class GroupsCreateRequest implements SlackApiRequest {
      */
     private boolean validate;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

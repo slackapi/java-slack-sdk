@@ -26,6 +26,22 @@ public interface Installer {
     void setTeamId(String teamId);
 
     // ---------------------------------
+    // Org-level installation
+    // ---------------------------------
+
+    Boolean getIsEnterpriseInstall();
+
+    void setIsEnterpriseInstall(Boolean isEnterpriseInstall);
+
+    String getEnterpriseUrl();
+
+    void setEnterpriseUrl(String enterpriseUrl);
+
+    String getTokenType();
+
+    void setTokenType(String tokenType);
+
+    // ---------------------------------
     // Installer
     // ---------------------------------
 

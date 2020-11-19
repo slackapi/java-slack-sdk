@@ -36,4 +36,9 @@ public class ChatScheduledMessagesListRequest implements SlackApiRequest {
      */
     private String oldest;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

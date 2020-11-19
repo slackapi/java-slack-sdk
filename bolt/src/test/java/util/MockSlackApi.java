@@ -56,6 +56,8 @@ public class MockSlackApi extends HttpServlet {
                 body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");
                 body = body.replaceFirst("\"access_token\": \"\",", "\"access_token\": \"" + ValidToken + "\",");
                 body = body.replaceFirst("\"bot_access_token\": \"\",", "\"bot_access_token\": \"" + ValidToken + "\",");
+            } else {
+                body = body.replaceFirst("\"error\": \"\"", "\"error\": \"something-wrong\"");
             }
         } else {
             body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");

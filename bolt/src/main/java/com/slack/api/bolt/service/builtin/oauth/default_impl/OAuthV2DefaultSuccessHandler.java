@@ -1,5 +1,6 @@
 package com.slack.api.bolt.service.builtin.oauth.default_impl;
 
+import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.context.builtin.OAuthCallbackContext;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.model.builtin.DefaultInstaller;
@@ -7,6 +8,7 @@ import com.slack.api.bolt.request.builtin.OAuthCallbackRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
 import com.slack.api.bolt.service.builtin.oauth.OAuthV2SuccessHandler;
+import com.slack.api.bolt.service.builtin.oauth.view.OAuthRedirectUriPageRenderer;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
@@ -18,21 +20,29 @@ import java.util.Arrays;
 @Slf4j
 public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
 
-    private InstallationService installationService;
+    private final AppConfig appConfig;
+    private final InstallationService installationService;
+    private final OAuthRedirectUriPageRenderer pageRenderer;
 
-    public OAuthV2DefaultSuccessHandler(InstallationService installationService) {
+    public OAuthV2DefaultSuccessHandler(
+            AppConfig appConfig,
+            InstallationService installationService) {
+        this.appConfig = appConfig;
         this.installationService = installationService;
+        this.pageRenderer = appConfig.getOAuthRedirectUriPageRenderer();
     }
 
     @Override
     public Response handle(OAuthCallbackRequest request, Response response, OAuthV2AccessResponse o) {
         OAuthCallbackContext context = request.getContext();
-        if (o.getEnterprise() != null) {
-            context.setEnterpriseId(o.getEnterprise().getId());
-        }
+        // "enterprise" can be null for a workspace level installation
+        String enterpriseId = o.getEnterprise() != null ? o.getEnterprise().getId() : null;
+        String enterpriseName = o.getEnterprise() != null ? o.getEnterprise().getName() : null;
         // "team" can be null for org-level installation
         String teamId = o.getTeam() != null ? o.getTeam().getId() : null;
         String teamName = o.getTeam() != null ? o.getTeam().getName() : null;
+
+        context.setEnterpriseId(enterpriseId);
         context.setTeamId(teamId);
         context.setBotUserId(o.getBotUserId());
         context.setBotToken(o.getAccessToken());
@@ -43,7 +53,9 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
                 .appId(o.getAppId())
                 .botUserId(o.getBotUserId())
                 .botAccessToken(o.getAccessToken())
-                .enterpriseId(o.getEnterprise() != null ? o.getEnterprise().getId() : null)
+                .isEnterpriseInstall(o.isEnterpriseInstall())
+                .enterpriseId(enterpriseId)
+                .enterpriseName(enterpriseName)
                 .teamId(teamId)
                 .teamName(teamName)
                 .scope(o.getScope())
@@ -62,6 +74,9 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
                 AuthTestResponse authTest = context.client().authTest(r -> r);
                 if (authTest.isOk()) {
                     i = i.botId(authTest.getBotId());
+                    if (o.isEnterpriseInstall()) {
+                        i = i.enterpriseUrl(authTest.getUrl()); // https://{org domain}.enterprise.slack.com/
+                    }
                 } else {
                     log.warn("Failed to call auth.test to fetch botId for the user: {} - {}", o.getBotUserId(), authTest.getError());
                 }
@@ -78,13 +93,29 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
 
         Installer installer = i.build();
 
-        response.setStatusCode(302);
         try {
             installationService.saveInstallerAndBot(installer);
-            response.getHeaders().put("Location", Arrays.asList(context.getOauthCompletionUrl()));
+            String url = context.getOauthCompletionUrl();
+            if (url != null) {
+                response.setStatusCode(302);
+                response.getHeaders().put("Location", Arrays.asList(url));
+            } else {
+                response.setStatusCode(200);
+                response.setBody(pageRenderer.renderSuccessPage(installer, appConfig.getOauthCompletionUrl()));
+                response.setContentType("text/html; charset=utf-8");
+            }
         } catch (Exception e) {
             log.warn("Failed to store the installation - {}", e.getMessage(), e);
-            response.getHeaders().put("Location", Arrays.asList(context.getOauthCancellationUrl()));
+            String url = context.getOauthCancellationUrl();
+            if (url != null) {
+                response.setStatusCode(302);
+                response.getHeaders().put("Location", Arrays.asList(url));
+            } else {
+                String reason = e.getMessage();
+                response.setStatusCode(200);
+                response.setBody(pageRenderer.renderFailurePage(appConfig.getOauthInstallRequestURI(), reason));
+                response.setContentType("text/html; charset=utf-8");
+            }
         }
         return response;
     }

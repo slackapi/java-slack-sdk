@@ -103,6 +103,22 @@ public class AmazonS3InstallationService implements InstallationService {
     @Override
     public Bot findBot(String enterpriseId, String teamId) {
         AmazonS3 s3 = this.createS3Client();
+        if (enterpriseId != null) {
+            // try finding org-level bot token first - teamId is intentionally null here
+            String fullKey = getBotKey(enterpriseId, null);
+            if (isHistoricalDataEnabled()) {
+                fullKey = fullKey + "-latest";
+            }
+            if (getObjectMetadata(s3, fullKey) != null) {
+                S3Object s3Object = getObject(s3, fullKey);
+                try {
+                    return toBot(s3Object);
+                } catch (IOException e) {
+                    log.error("Failed to load org-level Bot installation for enterprise_id: {}", enterpriseId);
+                }
+            }
+            // not found - going to find workspace level installation
+        }
         String fullKey = getBotKey(enterpriseId, teamId);
         if (isHistoricalDataEnabled()) {
             fullKey = fullKey + "-latest";
@@ -136,6 +152,22 @@ public class AmazonS3InstallationService implements InstallationService {
     @Override
     public Installer findInstaller(String enterpriseId, String teamId, String userId) {
         AmazonS3 s3 = this.createS3Client();
+        if (enterpriseId != null) {
+            // try finding org-level user token first - teamId is intentionally null here
+            String fullKey = getInstallerKey(enterpriseId, null, userId);
+            if (isHistoricalDataEnabled()) {
+                fullKey = fullKey + "-latest";
+            }
+            if (getObjectMetadata(s3, fullKey) != null) {
+                S3Object s3Object = getObject(s3, fullKey);
+                try {
+                    return toInstaller(s3Object);
+                } catch (IOException e) {
+                    log.error("Failed to load org-level installation for enterprise_id: {}, user_id: {}", enterpriseId, userId);
+                }
+            }
+            // not found - going to find workspace level installation
+        }
         String fullKey = getInstallerKey(enterpriseId, teamId, userId);
         if (isHistoricalDataEnabled()) {
             fullKey = fullKey + "-latest";
@@ -224,8 +256,10 @@ public class AmazonS3InstallationService implements InstallationService {
 
     private String getInstallerKey(String enterpriseId, String teamId, String userId) {
         return "installer/"
-                + Optional.ofNullable(enterpriseId).orElse("none") + "-"
-                + teamId + "-"
+                + Optional.ofNullable(enterpriseId).orElse("none")
+                + "-"
+                + Optional.ofNullable(teamId).orElse("none")
+                + "-"
                 + userId;
     }
 
@@ -235,7 +269,8 @@ public class AmazonS3InstallationService implements InstallationService {
 
     private String getBotKey(String enterpriseId, String teamId) {
         return "bot/"
-                + Optional.ofNullable(enterpriseId).orElse("none") + "-"
-                + teamId;
+                + Optional.ofNullable(enterpriseId).orElse("none")
+                + "-"
+                + Optional.ofNullable(teamId).orElse("none");
     }
 }

@@ -3,6 +3,10 @@ package com.slack.api.bolt;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.bolt.meta.BoltLibraryVersion;
+import com.slack.api.bolt.service.builtin.oauth.view.OAuthInstallPageRenderer;
+import com.slack.api.bolt.service.builtin.oauth.view.OAuthRedirectUriPageRenderer;
+import com.slack.api.bolt.service.builtin.oauth.view.default_impl.OAuthDefaultInstallPageRenderer;
+import com.slack.api.bolt.service.builtin.oauth.view.default_impl.OAuthDefaultRedirectUriPageRenderer;
 import com.slack.api.util.http.SlackHttpClient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -61,7 +65,7 @@ public class AppConfig {
     }
 
     @Builder.Default
-    private Slack slack = Slack.getInstance(SlackConfig.DEFAULT, buildSlackHttpClient());
+    private transient Slack slack = Slack.getInstance(SlackConfig.DEFAULT, buildSlackHttpClient());
 
     private static SlackHttpClient buildSlackHttpClient() {
         Map<String, String> userAgentCustomInfo = new HashMap<>();
@@ -129,6 +133,29 @@ public class AppConfig {
     public void setOAuthCallbackEnabled(boolean enabled) {
         setOAuthRedirectUriPathEnabled(enabled);
     }
+
+    // --------------------------
+    // OAuth flow page renderer
+
+    /**
+     * If you prefer the behavior in v1.0 - 1.3, set this flag as false
+     */
+    @Builder.Default
+    private boolean oAuthInstallPageRenderingEnabled = true;
+
+    /**
+     * Renders the web page content to display to installers.
+     */
+    @Builder.Default
+    private transient OAuthInstallPageRenderer oAuthInstallPageRenderer =
+            new OAuthDefaultInstallPageRenderer();
+
+    /**
+     * Renders the web page content to display to installers.
+     */
+    @Builder.Default
+    private transient OAuthRedirectUriPageRenderer oAuthRedirectUriPageRenderer =
+            new OAuthDefaultRedirectUriPageRenderer();
 
     // --------------------------
 

@@ -335,6 +335,16 @@ public class EventHandlersTest {
                     @Override
                     public void handle(CallRejectedPayload payload) {
                     }
+                },
+                new TeamsAccessGrantedHandler() {
+                    @Override
+                    public void handle(TeamsAccessGrantedPayload payload) {
+                    }
+                },
+                new TeamsAccessRevokedHandler() {
+                    @Override
+                    public void handle(TeamsAccessRevokedPayload payload) {
+                    }
                 }
         );
         for (EventHandler<?> handler : handlers) {

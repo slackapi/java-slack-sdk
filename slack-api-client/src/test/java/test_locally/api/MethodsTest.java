@@ -43,6 +43,7 @@ public class MethodsTest {
             }
         }
 
+        methodNames.add("auth.teams.list");
         for (String method : methodNames) {
             if (!existingMethods.contains(method)) {
                 fail(method + " is not supported yet!");

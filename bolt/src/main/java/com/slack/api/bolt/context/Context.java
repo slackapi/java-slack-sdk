@@ -44,6 +44,11 @@ public abstract class Context {
     protected String teamId;
 
     /**
+     * Returns true if the token is issued by an enterprise install (= org-level installation)
+     */
+    protected boolean enterpriseInstall;
+
+    /**
      * A bot token associated with this request. The format must be starting with `xoxb-`.
      */
     protected String botToken;
@@ -68,11 +73,19 @@ public abstract class Context {
     protected final Map<String, String> additionalValues = new HashMap<>();
 
     public MethodsClient client() {
-        return getSlack().methods(botToken);
+        if (isEnterpriseInstall()) {
+            return getSlack().methods(botToken, teamId);
+        } else {
+            return getSlack().methods(botToken);
+        }
     }
 
     public AsyncMethodsClient asyncClient() {
-        return getSlack().methodsAsync(botToken);
+        if (isEnterpriseInstall()) {
+            return getSlack().methodsAsync(botToken, teamId);
+        } else {
+            return getSlack().methodsAsync(botToken);
+        }
     }
 
     public ChatPostMessageResponse say(BuilderConfigurator<ChatPostMessageRequest.ChatPostMessageRequestBuilder> request) throws IOException, SlackApiException {

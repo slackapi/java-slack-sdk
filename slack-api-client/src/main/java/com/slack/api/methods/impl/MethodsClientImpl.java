@@ -37,6 +37,7 @@ import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsers
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
+import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -130,6 +131,7 @@ import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUser
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersRequestResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;
@@ -211,18 +213,25 @@ public class MethodsClientImpl implements MethodsClient {
     private final boolean statsEnabled;
     private final SlackHttpClient slackHttpClient;
     private final Optional<String> token;
+    // for org-level installed apps
+    private final Optional<String> teamId;
     private final MetricsDatastore metricsDatastore;
     private final TeamIdCache teamIdCache;
 
     public MethodsClientImpl(SlackHttpClient slackHttpClient) {
-        this(slackHttpClient, null);
+        this(slackHttpClient, null, null);
     }
 
     public MethodsClientImpl(SlackHttpClient slackHttpClient, String token) {
+        this(slackHttpClient, token, null);
+    }
+
+    public MethodsClientImpl(SlackHttpClient slackHttpClient, String token, String teamId) {
         this.executorName = slackHttpClient.getConfig().getMethodsConfig().getExecutorName();
         this.statsEnabled = slackHttpClient.getConfig().getMethodsConfig().isStatsEnabled();
         this.slackHttpClient = slackHttpClient;
         this.token = Optional.ofNullable(token);
+        this.teamId = Optional.ofNullable(teamId);
         this.metricsDatastore = slackHttpClient.getConfig().getMethodsConfig().getMetricsDatastore();
         this.teamIdCache = new TeamIdCache(this);
     }
@@ -948,7 +957,20 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AuthTeamsListResponse authTeamsList(AuthTeamsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.AUTH_TEAMS_LIST, getToken(req), AuthTeamsListResponse.class);
+    }
+
+    @Override
+    public AuthTeamsListResponse authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req) throws IOException, SlackApiException {
+        return authTeamsList(req.configure(AuthTeamsListRequest.builder()).build());
+    }
+
+    @Override
     public BotsInfoResponse botsInfo(BotsInfoRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.BOTS_INFO, getToken(req), BotsInfoResponse.class);
     }
 
@@ -1029,6 +1051,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public ChannelsCreateResponse channelsCreate(ChannelsCreateRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.CHANNELS_CREATE, getToken(req), ChannelsCreateResponse.class);
     }
 
@@ -1069,6 +1094,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public ChannelsListResponse channelsList(ChannelsListRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.CHANNELS_LIST, getToken(req), ChannelsListResponse.class);
     }
 
@@ -1259,6 +1287,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public ChatScheduledMessagesListResponse chatScheduledMessagesList(ChatScheduledMessagesListRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_SCHEDULED_MESSAGES_LIST, getToken(req), ChatScheduledMessagesListResponse.class);
     }
 
@@ -1292,6 +1323,9 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsCreateResponse conversationsCreate(ConversationsCreateRequest req)
             throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_CREATE, getToken(req), ConversationsCreateResponse.class);
     }
 
@@ -1369,6 +1403,9 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsListResponse conversationsList(ConversationsListRequest req)
             throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_LIST, getToken(req), ConversationsListResponse.class);
     }
 
@@ -1557,6 +1594,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public FilesListResponse filesList(FilesListRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.FILES_LIST, getToken(req), FilesListResponse.class);
     }
 
@@ -1701,6 +1741,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public GroupsCreateResponse groupsCreate(GroupsCreateRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.GROUPS_CREATE, getToken(req), GroupsCreateResponse.class);
     }
 
@@ -1771,6 +1814,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public GroupsListResponse groupsList(GroupsListRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.GROUPS_LIST, getToken(req), GroupsListResponse.class);
     }
 
@@ -1901,6 +1947,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public MigrationExchangeResponse migrationExchange(MigrationExchangeRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.MIGRATION_EXCHANGE, getToken(req), MigrationExchangeResponse.class);
     }
 
@@ -2064,6 +2113,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public ReactionsListResponse reactionsList(ReactionsListRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.REACTIONS_LIST, getToken(req), ReactionsListResponse.class);
     }
 
@@ -2154,6 +2206,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public SearchAllResponse searchAll(SearchAllRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.SEARCH_ALL, getToken(req), SearchAllResponse.class);
     }
 
@@ -2164,6 +2219,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public SearchMessagesResponse searchMessages(SearchMessagesRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.SEARCH_MESSAGES, getToken(req), SearchMessagesResponse.class);
     }
 
@@ -2174,6 +2232,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public SearchFilesResponse searchFiles(SearchFilesRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.SEARCH_FILES, getToken(req), SearchFilesResponse.class);
     }
 
@@ -2214,6 +2275,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public TeamAccessLogsResponse teamAccessLogs(TeamAccessLogsRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.TEAM_ACCESS_LOGS, getToken(req), TeamAccessLogsResponse.class);
     }
 
@@ -2224,6 +2288,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public TeamBillableInfoResponse teamBillableInfo(TeamBillableInfoRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.TEAM_BILLABLE_INFO, getToken(req), TeamBillableInfoResponse.class);
     }
 
@@ -2244,6 +2311,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public TeamIntegrationLogsResponse teamIntegrationLogs(TeamIntegrationLogsRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.TEAM_INTEGRATION_LOGS, getToken(req), TeamIntegrationLogsResponse.class);
     }
 
@@ -2254,6 +2324,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public TeamProfileGetResponse teamProfileGet(TeamProfileGetRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.TEAM_PROFILE_GET, getToken(req), TeamProfileGetResponse.class);
     }
 
@@ -2334,6 +2407,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public UsersConversationsResponse usersConversations(UsersConversationsRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.USERS_CONVERSATIONS, getToken(req), UsersConversationsResponse.class);
     }
 
@@ -2384,6 +2460,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public UsersListResponse usersList(UsersListRequest req) throws IOException, SlackApiException {
+        this.teamId.ifPresent(currentTeamId -> {
+            if (req.getTeamId() == null) req.setTeamId(currentTeamId);
+        });
         return postFormWithTokenAndParseResponse(toForm(req), Methods.USERS_LIST, getToken(req), UsersListResponse.class);
     }
 

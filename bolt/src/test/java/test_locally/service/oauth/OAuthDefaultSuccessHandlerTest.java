@@ -21,7 +21,39 @@ public class OAuthDefaultSuccessHandlerTest {
     @Test
     public void completion() {
         InstallationService installationService = new FileInstallationService(new AppConfig(), "target/files");
-        OAuthDefaultSuccessHandler handler = new OAuthDefaultSuccessHandler(installationService);
+        OAuthDefaultSuccessHandler handler = new OAuthDefaultSuccessHandler(new AppConfig(), installationService);
+
+        RequestHeaders headers = new RequestHeaders(new HashMap<>());
+        OAuthCallbackRequest request = new OAuthCallbackRequest(new HashMap<>(), "", VerificationCodePayload.from(new HashMap<>()), headers);
+
+        Response response = new Response();
+        OAuthAccessResponse apiResponse = new OAuthAccessResponse();
+
+        Response processedResponse = handler.handle(request, response, apiResponse);
+        assertEquals(200, processedResponse.getStatusCode().longValue());
+        assertEquals("text/html; charset=utf-8", processedResponse.getContentType());
+        assertEquals("<html>\n" +
+                "<head>\n" +
+                "<meta http-equiv=\"refresh\" content=\"0; URL=slack://open\">\n" +
+                "<style>\n" +
+                "body {\n" +
+                "  padding: 10px 15px;\n" +
+                "  font-family: verdana;\n" +
+                "  text-align: center;\n" +
+                "}\n" +
+                "</style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<h2>Thank you!</h2>\n" +
+                "<p>Redirecting to the Slack App... click <a href=\"slack://open\">here</a></p>\n" +
+                "</body>\n" +
+                "</html>", processedResponse.getBody());
+    }
+
+    @Test
+    public void completion_with_urls() {
+        InstallationService installationService = new FileInstallationService(new AppConfig(), "target/files");
+        OAuthDefaultSuccessHandler handler = new OAuthDefaultSuccessHandler(new AppConfig(), installationService);
 
         RequestHeaders headers = new RequestHeaders(new HashMap<>());
         OAuthCallbackRequest request = new OAuthCallbackRequest(new HashMap<>(), "", VerificationCodePayload.from(new HashMap<>()), headers);
@@ -42,10 +74,47 @@ public class OAuthDefaultSuccessHandlerTest {
         InstallationService installationService = new FileInstallationService(new AppConfig(), "target/files") {
             @Override
             public void saveInstallerAndBot(Installer installer) {
+                throw new RuntimeException("something_wrong");
+            }
+        };
+        OAuthDefaultSuccessHandler handler = new OAuthDefaultSuccessHandler(new AppConfig(), installationService);
+
+        RequestHeaders headers = new RequestHeaders(new HashMap<>());
+        OAuthCallbackRequest request = new OAuthCallbackRequest(new HashMap<>(), "", VerificationCodePayload.from(new HashMap<>()), headers);
+
+        Response response = new Response();
+
+        OAuthAccessResponse apiResponse = new OAuthAccessResponse();
+
+        Response processedResponse = handler.handle(request, response, apiResponse);
+        assertEquals(200, processedResponse.getStatusCode().longValue());
+        assertEquals("text/html; charset=utf-8", processedResponse.getContentType());
+        assertEquals("<html>\n" +
+                "<head>\n" +
+                "<style>\n" +
+                "body {\n" +
+                "  padding: 10px 15px;\n" +
+                "  font-family: verdana;\n" +
+                "  text-align: center;\n" +
+                "}\n" +
+                "</style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<h2>Oops, Something Went Wrong!</h2>\n" +
+                "<p>Please try again from <a href=\"start\">here</a> or contact the app owner (reason: something_wrong)</p>\n" +
+                "</body>\n" +
+                "</html>", processedResponse.getBody());
+    }
+
+    @Test
+    public void failure_with_urls() {
+        InstallationService installationService = new FileInstallationService(new AppConfig(), "target/files") {
+            @Override
+            public void saveInstallerAndBot(Installer installer) {
                 throw new RuntimeException();
             }
         };
-        OAuthDefaultSuccessHandler handler = new OAuthDefaultSuccessHandler(installationService);
+        OAuthDefaultSuccessHandler handler = new OAuthDefaultSuccessHandler(new AppConfig(), installationService);
 
         RequestHeaders headers = new RequestHeaders(new HashMap<>());
         OAuthCallbackRequest request = new OAuthCallbackRequest(new HashMap<>(), "", VerificationCodePayload.from(new HashMap<>()), headers);

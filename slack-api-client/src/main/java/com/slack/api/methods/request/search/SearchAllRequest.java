@@ -37,4 +37,9 @@ public class SearchAllRequest implements SlackApiRequest {
 
     private Integer page;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

@@ -49,4 +49,9 @@ public class UsersConversationsRequest implements SlackApiRequest {
      */
     private List<ConversationType> types;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

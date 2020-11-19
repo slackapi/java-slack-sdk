@@ -34,6 +34,7 @@ import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsers
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
+import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -683,9 +684,17 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AuthTeamsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(BotsInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("bot", req.getBot(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -757,6 +766,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("name", req.getName(), form);
         setIfNotNull("validate", req.isValidate(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -791,6 +801,7 @@ public class RequestFormBuilder {
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("exclude_members", req.isExcludeMembers(), form);
         setIfNotNull("exclude_archived", req.isExcludeArchived(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -923,6 +934,7 @@ public class RequestFormBuilder {
         setIfNotNull("latest", req.getLatest(), form);
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("oldest", req.getOldest(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1054,6 +1066,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("name", req.getName(), form);
         setIfNotNull("is_private", req.isPrivate(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1117,6 +1130,7 @@ public class RequestFormBuilder {
             }
             setIfNotNull("types", typeValues.stream().collect(joining(",")), form);
         }
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1257,6 +1271,7 @@ public class RequestFormBuilder {
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
         setIfNotNull("show_files_hidden_by_limit", req.isShowFilesHiddenByLimit(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1424,6 +1439,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("name", req.getName(), form);
         setIfNotNull("validate", req.isValidate(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1476,6 +1492,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("exclude_archived", req.isExcludeArchived(), form);
         setIfNotNull("exclude_members", req.isExcludeMembers(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1571,6 +1588,7 @@ public class RequestFormBuilder {
         if (req.getUsers() != null) {
             setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
         }
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1688,6 +1706,7 @@ public class RequestFormBuilder {
         setIfNotNull("full", req.isFull(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1759,6 +1778,7 @@ public class RequestFormBuilder {
         setIfNotNull("highlight", req.isHighlight(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1770,6 +1790,7 @@ public class RequestFormBuilder {
         setIfNotNull("highlight", req.isHighlight(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1781,6 +1802,7 @@ public class RequestFormBuilder {
         setIfNotNull("highlight", req.isHighlight(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1814,12 +1836,14 @@ public class RequestFormBuilder {
         setIfNotNull("before", req.getBefore(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
     public static FormBody.Builder toForm(TeamBillableInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("user", req.getUser(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1835,12 +1859,14 @@ public class RequestFormBuilder {
         setIfNotNull("change_type", req.getChangeType(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
     public static FormBody.Builder toForm(TeamProfileGetRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("visibility", req.getVisibility(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1922,6 +1948,7 @@ public class RequestFormBuilder {
             }
             setIfNotNull("types", typeValues.stream().collect(joining(",")), form);
         }
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1954,6 +1981,7 @@ public class RequestFormBuilder {
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("include_locale", req.isIncludeLocale(), form);
         setIfNotNull("presence", req.isPresence(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 

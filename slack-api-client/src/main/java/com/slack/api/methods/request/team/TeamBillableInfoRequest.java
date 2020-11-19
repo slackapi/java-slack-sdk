@@ -18,4 +18,9 @@ public class TeamBillableInfoRequest implements SlackApiRequest {
      */
     private String user;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

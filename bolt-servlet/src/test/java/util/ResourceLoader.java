@@ -35,6 +35,21 @@ public class ResourceLoader {
                     if (j.get("singleTeamBotToken") != null) {
                         config.setSingleTeamBotToken(j.get("singleTeamBotToken").getAsString());
                     }
+                    if (j.get("clientId") != null) {
+                        config.setClientId(j.get("clientId").getAsString());
+                    }
+                    if (j.get("clientSecret") != null) {
+                        config.setClientSecret(j.get("clientSecret").getAsString());
+                    }
+                    if (j.get("scope") != null) {
+                        config.setScope(j.get("scope").getAsString());
+                    }
+                    if (j.get("userScope") != null) {
+                        config.setUserScope(j.get("userScope").getAsString());
+                    }
+                    if (j.get("oauthCompletionUrl") != null) {
+                        config.setOauthCompletionUrl(j.get("oauthCompletionUrl").getAsString());
+                    }
                 } catch (IOException e) {
                     log.error(e.getMessage(), e);
                 }

@@ -34,6 +34,7 @@ import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsers
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
+import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -127,6 +128,7 @@ import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUser
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersRequestResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;
@@ -697,6 +699,14 @@ public interface MethodsClient {
     AuthTestResponse authTest(AuthTestRequest req) throws IOException, SlackApiException;
 
     AuthTestResponse authTest(RequestConfigurator<AuthTestRequest.AuthTestRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // auth.teams
+    // ------------------------------
+
+    AuthTeamsListResponse authTeamsList(AuthTeamsListRequest req) throws IOException, SlackApiException;
+
+    AuthTeamsListResponse authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // bots
