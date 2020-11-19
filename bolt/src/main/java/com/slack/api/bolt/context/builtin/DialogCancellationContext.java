@@ -3,7 +3,7 @@ package com.slack.api.bolt.context.builtin;
 import com.slack.api.bolt.context.ActionRespondUtility;
 import com.slack.api.bolt.context.Context;
 import com.slack.api.bolt.context.SayUtility;
-import com.slack.api.bolt.response.Responder;
+import com.slack.api.bolt.util.Responder;
 import lombok.*;
 
 @Getter

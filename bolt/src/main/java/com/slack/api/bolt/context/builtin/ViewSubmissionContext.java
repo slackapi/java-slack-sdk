@@ -5,7 +5,7 @@ import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import com.slack.api.app_backend.views.response.ViewSubmissionResponse;
 import com.slack.api.bolt.context.Context;
 import com.slack.api.bolt.context.InputBlockRespondUtility;
-import com.slack.api.bolt.response.Responder;
+import com.slack.api.bolt.util.Responder;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.util.BuilderConfigurator;
 import com.slack.api.model.view.View;

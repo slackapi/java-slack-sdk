@@ -1,7 +1,7 @@
 package com.slack.api.bolt.context;
 
 import com.slack.api.Slack;
-import com.slack.api.bolt.response.Responder;
+import com.slack.api.bolt.util.Responder;
 
 public interface RespondUtility {
 

@@ -3,7 +3,7 @@ package test_locally.context;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.bolt.context.builtin.MessageShortcutContext;
-import com.slack.api.bolt.response.Responder;
+import com.slack.api.bolt.util.Responder;
 import com.slack.api.webhook.WebhookResponse;
 import org.junit.After;
 import org.junit.Before;

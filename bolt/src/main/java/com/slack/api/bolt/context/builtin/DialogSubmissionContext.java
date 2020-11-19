@@ -5,7 +5,7 @@ import com.slack.api.app_backend.dialogs.response.Error;
 import com.slack.api.bolt.context.ActionRespondUtility;
 import com.slack.api.bolt.context.Context;
 import com.slack.api.bolt.context.SayUtility;
-import com.slack.api.bolt.response.Responder;
+import com.slack.api.bolt.util.Responder;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.util.BuilderConfigurator;
 import lombok.*;

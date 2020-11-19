@@ -2,7 +2,7 @@ package test_locally;
 
 import com.slack.api.Slack;
 import com.slack.api.bolt.context.ActionRespondUtility;
-import com.slack.api.bolt.response.Responder;
+import com.slack.api.bolt.util.Responder;
 import com.slack.api.webhook.WebhookResponse;
 import org.junit.Test;
 import util.WebhookMockServer;
