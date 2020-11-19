@@ -29,6 +29,7 @@ public class MainTest {
             .redirectUri("https://www.example.com/slack/outh/callback")
             .oauthCompletionUrl("https://wwww.example.com/thank-you")
             .oauthCancellationUrl("https://www.example.com/something-wrong")
+            .oAuthInstallPageRenderingEnabled(false)
             .build();
 
     @Before

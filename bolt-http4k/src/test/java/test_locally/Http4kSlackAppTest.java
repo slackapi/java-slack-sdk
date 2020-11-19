@@ -66,6 +66,7 @@ public class Http4kSlackAppTest {
                 .oauthRedirectUriPath("/slack/oauth_redirect")
                 .oauthCompletionUrl("https://www.example.com/success")
                 .oauthCancellationUrl("https://www.example.com/failure")
+                .oAuthInstallPageRenderingEnabled(false)
                 .build()
         ).asOAuthApp(true);
         this.oauthSlackApp = new Http4kSlackApp(oauthApp);
