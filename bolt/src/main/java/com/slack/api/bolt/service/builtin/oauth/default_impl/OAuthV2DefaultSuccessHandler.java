@@ -54,6 +54,7 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
                 .botUserId(o.getBotUserId())
                 .botAccessToken(o.getAccessToken())
                 .isEnterpriseInstall(o.isEnterpriseInstall())
+                .tokenType(o.getTokenType())
                 .enterpriseId(enterpriseId)
                 .enterpriseName(enterpriseName)
                 .teamId(teamId)
