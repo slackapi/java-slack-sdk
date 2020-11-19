@@ -1301,7 +1301,9 @@
       "initial_channel": "",
       "min_query_length": 123,
       "selected_date": "",
-      "initial_date": ""
+      "initial_date": "",
+      "selected_time": "",
+      "initial_time": ""
     }
   ]
 }
