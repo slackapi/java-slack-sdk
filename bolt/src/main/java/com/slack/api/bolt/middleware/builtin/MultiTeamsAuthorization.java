@@ -175,8 +175,13 @@ public class MultiTeamsAuthorization implements Middleware {
             if (authTestResponse.isOk()) {
                 context.setBotToken(botToken);
                 context.setRequestUserToken(userToken);
-                context.setTeamId(authTestResponse.getTeamId());
+                if (!authTestResponse.isEnterpriseInstall()) {
+                    context.setTeamId(authTestResponse.getTeamId());
+                    // As the team_id here is the org's ID,
+                    // Request#updateContext() does this for enterprise_install
+                }
                 context.setEnterpriseId(authTestResponse.getEnterpriseId());
+                context.setEnterpriseInstall(authTestResponse.isEnterpriseInstall());
                 if (bot != null) {
                     context.setBotId(bot.getBotId());
                     context.setBotUserId(authTestResponse.getUserId());

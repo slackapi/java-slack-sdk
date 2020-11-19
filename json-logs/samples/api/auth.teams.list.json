@@ -1,0 +1,15 @@
+{
+  "ok": false,
+  "teams": [
+    {
+      "id": "T00000000",
+      "name": ""
+    }
+  ],
+  "error": "",
+  "response_metadata": {
+    "next_cursor": ""
+  },
+  "needed": "",
+  "provided": ""
+}

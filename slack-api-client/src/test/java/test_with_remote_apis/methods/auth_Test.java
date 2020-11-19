@@ -8,6 +8,7 @@ import com.slack.api.methods.MethodsStats;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
 import com.slack.api.util.json.GsonFactory;
 import config.Constants;
 import config.SlackTestConfig;
@@ -183,6 +184,36 @@ public class auth_Test {
         Integer oneMinuteLaterCount = oneMinuteLater.getLastMinuteRequests().get(Methods.AUTH_TEST);
         log.debug("Final stats: {}", gson.toJson(oneMinuteLater.getLastMinuteRequests()));
         assertThat(afterCount - oneMinuteLaterCount, is(greaterThanOrEqualTo(2)));
+    }
+
+    @Test
+    public void authTeamsList_non_org_level_app() throws Exception {
+        String token = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+        {
+            AuthTeamsListResponse response = slack.methods(token).authTeamsList(req -> req.limit(1));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+        {
+            AuthTeamsListResponse response = slack.methodsAsync(token).authTeamsList(req -> req.limit(1)).get();
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+    }
+
+    @Test
+    public void authTeamsList_org_level_app() throws Exception {
+        String token = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_LEVEL_APP_BOT_TOKEN);
+        {
+            AuthTeamsListResponse response = slack.methods(token).authTeamsList(req -> req.limit(1));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+        {
+            AuthTeamsListResponse response = slack.methodsAsync(token).authTeamsList(req -> req.limit(1)).get();
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.getTeams().size(), is(greaterThanOrEqualTo(1)));
+        }
     }
 
 }

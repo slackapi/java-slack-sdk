@@ -18,4 +18,9 @@ public class TeamProfileGetRequest implements SlackApiRequest {
      */
     private String visibility;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

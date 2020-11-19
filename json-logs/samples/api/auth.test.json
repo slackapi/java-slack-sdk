@@ -10,6 +10,7 @@
   "error": "",
   "app_name": "",
   "app_id": "A00000000",
+  "is_enterprise_install": false,
   "needed": "",
   "provided": ""
 }

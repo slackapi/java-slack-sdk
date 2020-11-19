@@ -23,6 +23,7 @@ public class OAuthV2AccessResponse implements SlackApiTextResponse {
     private String botUserId;
     private Team team;
     private Enterprise enterprise;
+    private boolean isEnterpriseInstall;
     private IncomingWebhook incomingWebhook;
 
     @Data

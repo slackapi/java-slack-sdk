@@ -32,6 +32,7 @@ import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
+import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -112,6 +113,7 @@ import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;
@@ -877,6 +879,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AuthTestResponse> authTest(RequestConfigurator<AuthTestRequest.AuthTestRequestBuilder> req) {
         return authTest(req.configure(AuthTestRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AuthTeamsListResponse> authTeamsList(AuthTeamsListRequest req) {
+        return executor.execute(AUTH_TEAMS_LIST, toMap(req), () -> methods.authTeamsList(req));
+    }
+
+    @Override
+    public CompletableFuture<AuthTeamsListResponse> authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req) {
+        return authTeamsList(req.configure(AuthTeamsListRequest.builder()).build());
     }
 
     @Override

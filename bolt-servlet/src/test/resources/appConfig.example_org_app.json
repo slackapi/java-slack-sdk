@@ -1,0 +1,10 @@
+{
+  "clientId": "111.222",
+  "clientSecret": "xxx",
+  "signingSecret": "xxx",
+  "oauthStartPath": "start",
+  "oauthCallbackPath": "callback",
+  "redirectUri": "https://your-subdomain.ngrok.io/slack/oauth/callback",
+  "scope": "app_mentions:read,channels:history,channels:read,chat:write,groups:history,im:history,mpim:history,groups:read,team:read",
+  "installation_url_memo": "https://your-subdomain.ngrok.io/slack/oauth/start"
+}

@@ -6,6 +6,7 @@ import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.OAuthCallbackRequest;
+import com.slack.api.bolt.request.builtin.OAuthStartRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
 import com.slack.api.bolt.service.OAuthStateService;
@@ -50,15 +51,16 @@ public class DefaultOAuthCallbackServiceTest {
                 .build();
     }
 
-    InstallationService installationService = new FileInstallationService(AppConfig.builder().build(), "target/files");
+    AppConfig appConfig = new AppConfig();
+    InstallationService installationService = new FileInstallationService(appConfig, "target/files");
     OAuthStateService stateService = new ClientOnlyOAuthStateService();
-    OAuthSuccessHandler successHandler = new OAuthDefaultSuccessHandler(installationService);
-    OAuthV2SuccessHandler successV2Handler = new OAuthV2DefaultSuccessHandler(installationService);
-    OAuthErrorHandler errorHandler = new OAuthDefaultErrorHandler();
-    OAuthStateErrorHandler stateErrorHandler = new OAuthDefaultStateErrorHandler();
-    OAuthAccessErrorHandler accessErrorHandler = new OAuthDefaultAccessErrorHandler();
-    OAuthV2AccessErrorHandler accessV2ErrorHandler = new OAuthV2DefaultAccessErrorHandler();
-    OAuthExceptionHandler exceptionHandler = new OAuthDefaultExceptionHandler();
+    OAuthSuccessHandler successHandler = new OAuthDefaultSuccessHandler(appConfig, installationService);
+    OAuthV2SuccessHandler successV2Handler = new OAuthV2DefaultSuccessHandler(appConfig, installationService);
+    OAuthErrorHandler errorHandler = new OAuthDefaultErrorHandler(appConfig);
+    OAuthStateErrorHandler stateErrorHandler = new OAuthDefaultStateErrorHandler(appConfig);
+    OAuthAccessErrorHandler accessErrorHandler = new OAuthDefaultAccessErrorHandler(appConfig);
+    OAuthV2AccessErrorHandler accessV2ErrorHandler = new OAuthV2DefaultAccessErrorHandler(appConfig);
+    OAuthExceptionHandler exceptionHandler = new OAuthDefaultExceptionHandler(appConfig);
 
     DefaultOAuthCallbackService service(Slack slack) {
         return new DefaultOAuthCallbackService(
@@ -123,6 +125,33 @@ public class DefaultOAuthCallbackServiceTest {
         VerificationCodePayload payload = new VerificationCodePayload();
         payload.setError("something_wrong");
         OAuthCallbackRequest request = new OAuthCallbackRequest(query, null, payload, null);
+        Response response = service(slack).handle(request);
+        assertNotNull(response);
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals("text/html; charset=utf-8", response.getContentType());
+        assertEquals("<html>\n" +
+                "<head>\n" +
+                "<style>\n" +
+                "body {\n" +
+                "  padding: 10px 15px;\n" +
+                "  font-family: verdana;\n" +
+                "  text-align: center;\n" +
+                "}\n" +
+                "</style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<h2>Oops, Something Went Wrong!</h2>\n" +
+                "<p>Please try again from <a href=\"start\">here</a> or contact the app owner (reason: something_wrong)</p>\n" +
+                "</body>\n" +
+                "</html>", response.getBody());
+    }
+
+    @Test
+    public void error_with_cancellation_url() {
+        Map<String, List<String>> query = buildMultiValueMap("error", "something_wrong");
+        VerificationCodePayload payload = new VerificationCodePayload();
+        payload.setError("something_wrong");
+        OAuthCallbackRequest request = new OAuthCallbackRequest(query, null, payload, null);
         request.getContext().setOauthCancellationUrl("expected");
         Response response = service(slack).handle(request);
         assertNotNull(response);
@@ -132,7 +161,34 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void invalid_state() {
-        Map<String, List<String>> query = buildValidQueryString("foo");
+        Map<String, List<String>> query = buildValidQueryString("foo-bar");
+        VerificationCodePayload payload = buildValidPayload("foo");
+        Map<String, List<String>> headers = buildMultiValueMap("Cookie", stateService.getSessionCookieName() + "=foo");
+        OAuthCallbackRequest request = new OAuthCallbackRequest(query, null, payload, new RequestHeaders(headers));
+        Response response = service(slack).handle(request);
+        assertNotNull(response);
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals("text/html; charset=utf-8", response.getContentType());
+        assertEquals("<html>\n" +
+                "<head>\n" +
+                "<style>\n" +
+                "body {\n" +
+                "  padding: 10px 15px;\n" +
+                "  font-family: verdana;\n" +
+                "  text-align: center;\n" +
+                "}\n" +
+                "</style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<h2>Oops, Something Went Wrong!</h2>\n" +
+                "<p>Please try again from <a href=\"start\">here</a> or contact the app owner (reason: invalid_state)</p>\n" +
+                "</body>\n" +
+                "</html>", response.getBody());
+    }
+
+    @Test
+    public void invalid_state_with_cancellation_url() {
+        Map<String, List<String>> query = buildValidQueryString("foo-bar");
         VerificationCodePayload payload = buildValidPayload("foo");
         Map<String, List<String>> headers = buildMultiValueMap("Cookie", stateService.getSessionCookieName() + "=foo");
         OAuthCallbackRequest request = new OAuthCallbackRequest(query, null, payload, new RequestHeaders(headers));
@@ -145,7 +201,7 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void classicApp() throws Exception {
-        OAuthCallbackRequest dummy = new OAuthCallbackRequest(null, null, null, null);
+        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
         String state = stateService.issueNewState(dummy, Response.builder().build());
 
         Map<String, List<String>> query = buildValidQueryString(state);
@@ -178,7 +234,7 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void classicApp_error() throws Exception {
-        OAuthCallbackRequest dummy = new OAuthCallbackRequest(null, null, null, null);
+        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
         String state = stateService.issueNewState(dummy, Response.builder().build());
 
         Map<String, List<String>> query = buildValidQueryString(state);
@@ -213,7 +269,7 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void app() throws Exception {
-        OAuthCallbackRequest dummy = new OAuthCallbackRequest(null, null, null, null);
+        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
         String state = stateService.issueNewState(dummy, Response.builder().build());
 
         Map<String, List<String>> query = buildValidQueryString(state);
@@ -246,7 +302,56 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void app_error() throws Exception {
-        OAuthCallbackRequest dummy = new OAuthCallbackRequest(null, null, null, null);
+        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
+        String state = stateService.issueNewState(dummy, Response.builder().build());
+
+        Map<String, List<String>> query = buildValidQueryString(state);
+        query.put("code", Arrays.asList("invalid"));
+        VerificationCodePayload payload = buildValidPayload(state);
+        payload.setCode("invalid");
+        Map<String, List<String>> headers = new HashMap<>();
+        headers.put("Cookie", Arrays.asList(stateService.getSessionCookieName() + "=" + state));
+        OAuthCallbackRequest request = new OAuthCallbackRequest(query, null, payload, new RequestHeaders(headers));
+
+        slackApiServer.start();
+
+        try {
+            SlackConfig config = new SlackConfig();
+            config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+            Slack mockSlack = Slack.getInstance(config);
+            AppConfig appConfig = new AppConfig();
+            appConfig.setSlack(mockSlack);
+            request.updateContext(appConfig);
+
+            Response response = service(mockSlack).handle(request);
+
+            assertNotNull(response);
+            assertEquals(200L, response.getStatusCode().longValue());
+            assertEquals("text/html; charset=utf-8", response.getContentType());
+            assertEquals("<html>\n" +
+                    "<head>\n" +
+                    "<style>\n" +
+                    "body {\n" +
+                    "  padding: 10px 15px;\n" +
+                    "  font-family: verdana;\n" +
+                    "  text-align: center;\n" +
+                    "}\n" +
+                    "</style>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "<h2>Oops, Something Went Wrong!</h2>\n" +
+                    "<p>Please try again from <a href=\"start\">here</a> or contact the app owner (reason: something-wrong)</p>\n" +
+                    "</body>\n" +
+                    "</html>", response.getBody());
+
+        } finally {
+            slackApiServer.stop();
+        }
+    }
+
+    @Test
+    public void app_error_with_cancellation_url() throws Exception {
+        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
         String state = stateService.issueNewState(dummy, Response.builder().build());
 
         Map<String, List<String>> query = buildValidQueryString(state);

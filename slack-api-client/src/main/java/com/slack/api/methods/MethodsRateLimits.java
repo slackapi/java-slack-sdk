@@ -155,6 +155,7 @@ public class MethodsRateLimits {
 
         setRateLimitTier(AUTH_REVOKE, Tier3);
         setRateLimitTier(AUTH_TEST, SpecialTier_auth_test);
+        setRateLimitTier(AUTH_TEAMS_LIST, Tier2);
 
         setRateLimitTier(BOTS_INFO, Tier3);
 

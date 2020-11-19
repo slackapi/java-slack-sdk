@@ -38,4 +38,9 @@ public class UsersListRequest implements SlackApiRequest {
     @Deprecated
     private boolean presence;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

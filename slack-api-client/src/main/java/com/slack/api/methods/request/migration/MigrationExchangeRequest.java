@@ -28,4 +28,9 @@ public class MigrationExchangeRequest implements SlackApiRequest {
      */
     private List<String> users;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

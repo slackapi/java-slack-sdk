@@ -18,4 +18,9 @@ public class BotsInfoRequest implements SlackApiRequest {
      */
     private String bot;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

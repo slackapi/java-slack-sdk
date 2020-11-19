@@ -10,10 +10,14 @@ import lombok.Data;
 public class DefaultBot implements Bot {
 
     private String appId;
-
     private String enterpriseId;
+    private String enterpriseName;
     private String teamId;
     private String teamName;
+
+    private Boolean isEnterpriseInstall;
+    private String enterpriseUrl;
+    private String tokenType;
 
     private String scope;
 

@@ -21,4 +21,5 @@ public class AuthTestResponse implements SlackApiTextResponse {
     private String enterpriseId;
     private String appId; // only for app-level tokens
     private String appName; // only for app-level tokens
+    private boolean isEnterpriseInstall;
 }

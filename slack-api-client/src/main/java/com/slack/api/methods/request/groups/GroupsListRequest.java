@@ -24,4 +24,9 @@ public class GroupsListRequest implements SlackApiRequest {
      */
     private boolean excludeArchived;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

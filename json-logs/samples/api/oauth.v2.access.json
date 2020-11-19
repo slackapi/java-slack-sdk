@@ -23,6 +23,7 @@
     "id": "",
     "name": ""
   },
+  "is_enterprise_install": false,
   "incoming_webhook": {
     "url": "",
     "channel": "",

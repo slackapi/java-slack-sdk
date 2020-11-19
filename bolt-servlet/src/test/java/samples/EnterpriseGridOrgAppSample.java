@@ -10,10 +10,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
-public class GridOrgAdminAppSample {
+public class EnterpriseGridOrgAppSample {
 
     public static void main(String[] args) throws Exception {
-        String jsonString = Files.readAllLines(Paths.get("bolt-servlet/src/test/resources/appConfig_org_admin_app.json"))
+        String jsonString = Files.readAllLines(Paths.get("bolt-servlet/src/test/resources/appConfig_org_app.json"))
                 .stream().collect(Collectors.joining("\n"));
         AppConfig appConfig = GsonFactory.createCamelCase(SlackConfig.DEFAULT).fromJson(jsonString, AppConfig.class);
         App app = new App(appConfig).asOAuthApp(true);

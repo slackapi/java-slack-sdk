@@ -23,4 +23,9 @@ public class ConversationsCreateRequest implements SlackApiRequest {
      */
     private boolean isPrivate;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }

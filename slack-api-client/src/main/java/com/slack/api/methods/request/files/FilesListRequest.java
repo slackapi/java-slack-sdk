@@ -63,4 +63,9 @@ public class FilesListRequest implements SlackApiRequest {
      */
     private boolean showFilesHiddenByLimit;
 
+    /**
+     * Required for org-wide apps.
+     */
+    private String teamId;
+
 }
