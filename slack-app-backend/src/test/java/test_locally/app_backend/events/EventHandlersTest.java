@@ -15,7 +15,7 @@ public class EventHandlersTest {
 
     @Test
     public void handlers() {
-        List<EventHandler<?>> handlers = Arrays.asList(
+        List<EventHandler<?>> handlersWithoutSubtype = Arrays.asList(
                 new ImCloseHandler() {
                     @Override
                     public void handle(ImClosePayload payload) {
@@ -335,11 +335,40 @@ public class EventHandlersTest {
                     @Override
                     public void handle(CallRejectedPayload payload) {
                     }
+                },
+                new GroupTopicMessageHandler() {
+                    @Override
+                    public void handle(GroupTopicMessagePayload payload) {
+                    }
+                },
+                new ChannelTopicMessageHandler() {
+                    @Override
+                    public void handle(ChannelTopicMessagePayload payload) {
+                    }
                 }
         );
-        for (EventHandler<?> handler : handlers) {
+
+        for (EventHandler<?> handler : handlersWithoutSubtype) {
             assertNotNull(handler.getEventType());
             assertNull(handler.getEventSubtype());
+        }
+
+        List<EventHandler<?>> handlersWithSubtype = Arrays.asList(
+                new GroupTopicMessageHandler() {
+                    @Override
+                    public void handle(GroupTopicMessagePayload payload) {
+                    }
+                },
+                new ChannelTopicMessageHandler() {
+                    @Override
+                    public void handle(ChannelTopicMessagePayload payload) {
+                    }
+                }
+        );
+
+        for (EventHandler<?> handler : handlersWithSubtype) {
+            assertNotNull(handler.getEventType());
+            assertNotNull(handler.getEventSubtype());
         }
     }
 
