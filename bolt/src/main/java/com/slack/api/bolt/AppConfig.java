@@ -61,7 +61,7 @@ public class AppConfig {
     }
 
     @Builder.Default
-    private Slack slack = Slack.getInstance(SlackConfig.DEFAULT, buildSlackHttpClient());
+    private transient Slack slack = Slack.getInstance(SlackConfig.DEFAULT, buildSlackHttpClient());
 
     private static SlackHttpClient buildSlackHttpClient() {
         Map<String, String> userAgentCustomInfo = new HashMap<>();
