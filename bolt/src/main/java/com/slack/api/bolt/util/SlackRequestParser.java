@@ -11,19 +11,21 @@ import com.slack.api.app_backend.events.payload.UrlVerificationPayload;
 import com.slack.api.app_backend.interactive_components.payload.*;
 import com.slack.api.app_backend.oauth.payload.VerificationCodePayload;
 import com.slack.api.app_backend.slash_commands.SlashCommandPayloadDetector;
+import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
 import com.slack.api.app_backend.ssl_check.SSLCheckPayloadDetector;
 import com.slack.api.app_backend.util.JsonPayloadExtractor;
 import com.slack.api.app_backend.views.payload.ViewClosedPayload;
 import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
-import com.slack.api.app_backend.views.payload.WorkflowStepSavePayload;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.*;
 import com.slack.api.model.event.WorkflowStepExecuteEvent;
 import com.slack.api.util.json.GsonFactory;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -52,23 +54,42 @@ public class SlackRequestParser {
 
     @Data
     @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class HttpRequest {
         private String requestUri;
         private Map<String, List<String>> queryString;
         private String requestBody;
         private RequestHeaders headers;
         private String remoteAddress;
+        private boolean socketMode;
     }
 
-    public Request<?> parse(HttpRequest httpRequest) {
-        String requestUri = httpRequest.getRequestUri();
-        String requestBody = httpRequest.getRequestBody();
-        RequestHeaders headers = httpRequest.getHeaders();
+    public Request<?> parse(HttpRequest rawRequest) {
+        String requestBody = rawRequest.getRequestBody();
+        RequestHeaders headers = rawRequest.getHeaders();
         Request<?> slackRequest = null;
         try {
-            String jsonPayload = jsonPayloadExtractor.extractIfExists(requestBody);
+            String jsonPayload;
+            if (rawRequest.isSocketMode()) {
+                jsonPayload = rawRequest.getRequestBody();
+            } else {
+                jsonPayload = jsonPayloadExtractor.extractIfExists(requestBody);
+            }
             if (jsonPayload != null) {
                 JsonObject payload = gson.fromJson(jsonPayload, JsonElement.class).getAsJsonObject();
+
+                // Slash commands in Socket Mode
+                if (rawRequest.isSocketMode()) {
+                    JsonElement commandElm = payload.get("command");
+                    if (commandElm != null && !commandElm.isJsonNull()) {
+                        SlashCommandPayload command = gson.fromJson(jsonPayload, SlashCommandPayload.class);
+                        SlashCommandRequest req = new SlashCommandRequest(requestBody, command, headers);
+                        req.setSocketMode(true);
+                        return req;
+                    }
+                }
+
                 JsonElement typeElem = payload.get("type");
                 if (typeElem == null) {
                     return null;
@@ -128,6 +149,7 @@ public class SlackRequestParser {
                         log.warn("No request pattern detected for {}", jsonPayload);
                 }
             } else {
+                String requestUri = rawRequest.getRequestUri();
                 if (commandRequestDetector.isCommand(requestBody)) {
                     slackRequest = new SlashCommandRequest(requestBody, headers);
                 } else if (sslCheckPayloadDetector.isSSLCheckRequest(requestBody)) {
@@ -136,9 +158,9 @@ public class SlackRequestParser {
                     slackRequest = new OAuthStartRequest(requestBody, headers);
                 } else if (appConfig.isOAuthRedirectUriPathEnabled()
                         && appConfig.getOauthRedirectUriRequestURI().equals(requestUri)
-                        && httpRequest.getQueryString() != null) {
+                        && rawRequest.getQueryString() != null) {
                     Map<String, List<String>> queryString = new HashMap<>();
-                    for (Map.Entry<String, List<String>> original : httpRequest.getQueryString().entrySet()) {
+                    for (Map.Entry<String, List<String>> original : rawRequest.getQueryString().entrySet()) {
                         if (original.getValue() != null) {
                             // To ensure the value is mutable
                             queryString.put(original.getKey(), new ArrayList<>(original.getValue()));
@@ -150,13 +172,16 @@ public class SlackRequestParser {
                     log.warn("No request pattern detected for {}", requestBody);
                 }
             }
+            if (slackRequest != null) {
+                slackRequest.setSocketMode(rawRequest.isSocketMode());
+            }
             return slackRequest;
 
         } finally {
             if (slackRequest != null) {
                 slackRequest.updateContext(appConfig);
 
-                Map<String, List<String>> queryString = httpRequest.getQueryString();
+                Map<String, List<String>> queryString = rawRequest.getQueryString();
                 if (queryString != null) {
                     for (Map.Entry<String, List<String>> each : queryString.entrySet()) {
                         List<String> values = slackRequest.getQueryString().get(each.getKey());
@@ -170,7 +195,7 @@ public class SlackRequestParser {
 
                 String ipAddress = headers.getFirstValue("X-FORWARDED-FOR");
                 if (ipAddress == null) {
-                    ipAddress = httpRequest.getRemoteAddress();
+                    ipAddress = rawRequest.getRemoteAddress();
                 }
                 slackRequest.setClientIpAddress(ipAddress);
             }

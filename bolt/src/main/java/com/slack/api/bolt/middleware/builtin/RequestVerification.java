@@ -23,7 +23,7 @@ public class RequestVerification implements Middleware {
 
     @Override
     public Response apply(Request req, Response resp, MiddlewareChain chain) throws Exception {
-        if (isNoSlackSignatureRequest(req.getRequestType())) {
+        if (req.isSocketMode() || isNoSlackSignatureRequest(req.getRequestType())) {
             return chain.next(req);
         }
         if (req.isValid(verifier)) {
