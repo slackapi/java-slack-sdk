@@ -29,6 +29,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChann
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
+import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
@@ -114,6 +115,7 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChan
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
+import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
@@ -547,6 +549,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<AppsUninstallResponse> appsUninstall(AppsUninstallRequest req);
 
     CompletableFuture<AppsUninstallResponse> appsUninstall(RequestConfigurator<AppsUninstallRequest.AppsUninstallRequestBuilder> req);
+
+    // ------------------------------
+    // apps.connections
+    // ------------------------------
+
+    CompletableFuture<AppsConnectionsOpenResponse> appsConnectionsOpen(AppsConnectionsOpenRequest req);
+
+    CompletableFuture<AppsConnectionsOpenResponse> appsConnectionsOpen(RequestConfigurator<AppsConnectionsOpenRequest.AppsConnectionsOpenRequestBuilder> req);
 
     // ------------------------------
     // apps.event.authorizations

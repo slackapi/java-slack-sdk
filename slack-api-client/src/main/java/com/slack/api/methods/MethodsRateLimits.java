@@ -155,6 +155,8 @@ public class MethodsRateLimits {
         // --------------------------
 
         setRateLimitTier(API_TEST, Tier4);
+        // TODO: set the final value when GAed
+        setRateLimitTier(APPS_CONNECTIONS_OPEN, Tier2);
         setRateLimitTier(APPS_UNINSTALL, Tier1);
         setRateLimitTier(APPS_EVENT_AUTHORIZATIONS_LIST, Tier4);
 

@@ -8,6 +8,7 @@ import com.slack.api.methods.impl.MethodsClientImpl;
 import com.slack.api.methods.request.rtm.RTMConnectRequest;
 import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.users.UsersInfoRequest;
+import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.rtm.RTMConnectResponse;
 import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.users.UsersInfoResponse;
@@ -15,23 +16,21 @@ import com.slack.api.model.User;
 import com.slack.api.rtm.RTMClient;
 import com.slack.api.scim.SCIMClient;
 import com.slack.api.scim.impl.SCIMClientImpl;
+import com.slack.api.socket_mode.SocketModeClient;
+import com.slack.api.socket_mode.impl.SocketModeClientJavaWSImpl;
+import com.slack.api.socket_mode.impl.SocketModeClientTyrusImpl;
 import com.slack.api.status.v1.LegacyStatusClient;
 import com.slack.api.status.v1.impl.LegacyStatusClientImpl;
 import com.slack.api.status.v2.StatusClient;
 import com.slack.api.status.v2.impl.StatusClientImpl;
 import com.slack.api.util.http.SlackHttpClient;
-import com.slack.api.util.http.UserAgentInterceptor;
 import com.slack.api.webhook.Payload;
 import com.slack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
 import java.io.IOException;
-import java.net.*;
-import java.util.Collections;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
+import java.net.URISyntaxException;
 
 import static com.slack.api.util.http.SlackHttpClient.buildSlackHttpClient;
 
@@ -133,6 +132,43 @@ public class Slack implements AutoCloseable {
                 .message(httpResponse.message())
                 .body(body)
                 .build();
+    }
+
+    public SocketModeClient socketMode(String appToken) throws IOException {
+        return socketMode(appToken, SocketModeClient.Backend.Tyrus);
+    }
+
+    public SocketModeClient socketMode(String appToken, SocketModeClient.Backend backend) throws IOException {
+        String url = issueSocketModeUrl(appToken);
+        try {
+            switch (backend) {
+                case JavaWebSocket:
+                    return new SocketModeClientJavaWSImpl(this, appToken, url);
+                default:
+                    return new SocketModeClientTyrusImpl(this, appToken, url);
+            }
+        } catch (URISyntaxException e) {
+            String message = "Failed to connect to the Socket Mode API endpoint. (message: " + e.getMessage() + ")";
+            throw new IOException(message, e);
+        }
+    }
+
+    public String issueSocketModeUrl(String appToken) throws IOException {
+        try {
+            AppsConnectionsOpenResponse response = methods().appsConnectionsOpen(r -> r.token(appToken));
+            if (response.isOk()) {
+                return response.getUrl();
+            } else {
+                String message = "Failed to connect to the Socket Mode endpoint URL (error: " + response.getError() + ")";
+                throw new IllegalStateException(message);
+            }
+        } catch (SlackApiException e) {
+            String message = "Failed to connect to the Socket Mode API endpoint. (" +
+                    "status: " + e.getResponse().code() + ", " +
+                    "error: " + e.getError().getError() +
+                    ")";
+            throw new IOException(message, e);
+        }
     }
 
     /**
