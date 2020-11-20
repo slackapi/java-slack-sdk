@@ -95,4 +95,14 @@ public abstract class Request<CTX extends Context> {
         return verifier.isValid(requestTimestamp, getRequestBodyAsString(), requestSignature, nowInMillis);
     }
 
+    private boolean socketMode;
+
+    public boolean isSocketMode() {
+        return socketMode;
+    }
+
+    public void setSocketMode(boolean socketMode) {
+        this.socketMode = socketMode;
+    }
+
 }

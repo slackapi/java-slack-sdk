@@ -7,6 +7,10 @@ public class Constants {
     // For Socket Mode, Event Auth APIs
     public static final String SLACK_SDK_TEST_APP_TOKEN = "SLACK_SDK_TEST_APP_TOKEN";
 
+    // Socket Mode
+    public static final String SLACK_SDK_TEST_SOCKET_MODE_APP_TOKEN = "SLACK_SDK_TEST_SOCKET_MODE_APP_TOKEN";
+    public static final String SLACK_SDK_TEST_SOCKET_MODE_BOT_TOKEN = "SLACK_SDK_TEST_SOCKET_MODE_BOT_TOKEN";
+
     // --------------------------------------------
     // Enterprise Grid
     // Workspace admin user's token in Grid

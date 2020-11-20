@@ -1,0 +1,13 @@
+<configuration>
+    <appender name="default" class="ch.qos.logback.core.FileAppender">
+        <file>bolt-socket-mode/logs/console.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{64} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="default"/>
+    </root>
+
+</configuration>

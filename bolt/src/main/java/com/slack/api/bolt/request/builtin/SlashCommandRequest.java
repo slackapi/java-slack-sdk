@@ -22,9 +22,16 @@ public class SlashCommandRequest extends Request<SlashCommandContext> {
     public SlashCommandRequest(
             String requestBody,
             RequestHeaders headers) {
+        this(requestBody, PAYLOAD_PARSER.parse(requestBody), headers);
+    }
+
+    public SlashCommandRequest(
+            String requestBody,
+            SlashCommandPayload payload,
+            RequestHeaders headers) {
         this.requestBody = requestBody;
         this.headers = headers;
-        this.payload = PAYLOAD_PARSER.parse(requestBody);
+        this.payload = payload;
         getContext().setResponseUrl(payload.getResponseUrl());
         getContext().setTriggerId(payload.getTriggerId());
         getContext().setChannelId(payload.getChannelId());

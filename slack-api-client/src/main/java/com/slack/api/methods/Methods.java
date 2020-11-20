@@ -168,6 +168,12 @@ public class Methods {
     public static final String APPS_UNINSTALL = "apps.uninstall";
 
     // ------------------------------
+    // apps.connections
+    // ------------------------------
+
+    public static final String APPS_CONNECTIONS_OPEN = "apps.connections.open";
+
+    // ------------------------------
     // apps.event.authorizations
     // ------------------------------
 
