@@ -101,7 +101,9 @@ public class EventsApiPayloadDumpTest {
                 new UserChangePayload(),
                 buildUserResourceDeniedPayload(),
                 buildUserResourceGrantedPayload(),
-                new UserResourceRemovedPayload()
+                new UserResourceRemovedPayload(),
+                new MessageGroupTopicPayload(),
+                new MessageChannelTopicPayload()
         );
         for (EventsApiPayload<?> payload : payloads) {
             try {
