@@ -3,6 +3,9 @@ package samples;
 import com.slack.api.bolt.App;
 import util.TestSlackAppServer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class OAuthSample {
 
     public static void main(String[] args) throws Exception {
@@ -13,7 +16,10 @@ public class OAuthSample {
             return resp;
         });
 
-        TestSlackAppServer server = new TestSlackAppServer(app);
+        Map<String, App> apps = new HashMap<>();
+        apps.put("/slack/events", app);
+        apps.put("/slack/oauth/", new App().asOAuthApp(true));
+        TestSlackAppServer server = new TestSlackAppServer(apps);
         server.start();
     }
 
