@@ -8,7 +8,7 @@ import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestType;
-import com.slack.api.bolt.response.Responder;
+import com.slack.api.bolt.util.Responder;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
 import com.slack.api.methods.MethodsClient;

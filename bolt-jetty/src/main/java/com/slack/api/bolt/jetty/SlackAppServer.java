@@ -83,7 +83,7 @@ public class SlackAppServer {
             theApp.config().setAppPath(appPath);
             handler.addServlet(new ServletHolder(new SlackAppServlet(theApp)), appPath);
 
-            if (theApp.config().isOAuthStartEnabled()) {
+            if (theApp.config().isOAuthInstallPathEnabled() || theApp.config().isOAuthStartEnabled()) {
                 if (theApp.config().isDistributedApp()) {
                     // start
                     String installPath = appPath + theApp.config().getOauthInstallPath();
@@ -95,7 +95,7 @@ public class SlackAppServer {
                 }
             }
 
-            if (theApp.config().isOAuthRedirectUriPathEnabled()) {
+            if (theApp.config().isOAuthRedirectUriPathEnabled() || theApp.config().isOAuthCallbackEnabled()) {
                 if (theApp.config().isDistributedApp()) {
                     // callback
                     String redirectUriPath = appPath + theApp.config().getOauthRedirectUriPath();

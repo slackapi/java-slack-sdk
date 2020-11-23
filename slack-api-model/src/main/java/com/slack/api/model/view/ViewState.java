@@ -22,6 +22,7 @@ public class ViewState {
         private String type;
         private String value;
         private String selectedDate;
+        private String selectedTime;
         private String selectedConversation;
         private String selectedChannel;
         private String selectedUser;

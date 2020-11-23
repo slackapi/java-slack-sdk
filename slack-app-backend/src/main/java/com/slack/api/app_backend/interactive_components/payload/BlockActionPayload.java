@@ -114,6 +114,10 @@ public class BlockActionPayload {
         private String selectedDate;
         private String initialDate;
 
+        // timepicker
+        private String selectedTime;
+        private String initialTime;
+
         // multi_static_select
         // multi_external_select
         private List<OptionObject> initialOptions;

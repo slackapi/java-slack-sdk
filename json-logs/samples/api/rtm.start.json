@@ -382,7 +382,8 @@
       "tasks_view": "",
       "dismissed_app_launcher_atlassian_promo": false,
       "seen_toast_new_locale_launch": "",
-      "seen_toast_new_locale_launch_ts": 12345
+      "seen_toast_new_locale_launch_ts": 12345,
+      "emoji_packs_clicked_picker_post_install_cta": false
     },
     "created": 12345,
     "first_login": 12345,
@@ -644,7 +645,8 @@
       "enable_info_barriers": false,
       "enable_mpdm_to_private_channel_conversion": false,
       "slack_connect_file_upload_sharing_enabled": false,
-      "slack_connect_dm_only_verified_orgs": false
+      "slack_connect_dm_only_verified_orgs": false,
+      "joiner_notifications_enabled": false
     },
     "icon": {
       "image_34": "https://www.example.com/",

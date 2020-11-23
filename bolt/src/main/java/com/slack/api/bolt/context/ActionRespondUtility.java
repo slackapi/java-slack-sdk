@@ -1,7 +1,7 @@
 package com.slack.api.bolt.context;
 
 import com.slack.api.app_backend.interactive_components.response.ActionResponse;
-import com.slack.api.bolt.response.Responder;
+import com.slack.api.bolt.util.Responder;
 import com.slack.api.bolt.util.BuilderConfigurator;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.webhook.WebhookResponse;
