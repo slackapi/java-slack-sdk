@@ -646,7 +646,12 @@
       "enable_mpdm_to_private_channel_conversion": false,
       "slack_connect_file_upload_sharing_enabled": false,
       "slack_connect_dm_only_verified_orgs": false,
-      "joiner_notifications_enabled": false
+      "joiner_notifications_enabled": false,
+      "slack_connect_allowed_workspaces": {
+        "type": [
+          ""
+        ]
+      }
     },
     "icon": {
       "image_34": "https://www.example.com/",
