@@ -1,12 +1,12 @@
 package com.slack.api.app_backend.events.payload;
 
-import com.slack.api.model.event.TeamsAccessGrantedEvent;
+import com.slack.api.model.event.TeamAccessGrantedEvent;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class TeamsAccessGrantedPayload implements EventsApiPayload<TeamsAccessGrantedEvent> {
+public class TeamAccessGrantedPayload implements EventsApiPayload<TeamAccessGrantedEvent> {
 
     private String token;
     private String enterpriseId;
@@ -21,5 +21,5 @@ public class TeamsAccessGrantedPayload implements EventsApiPayload<TeamsAccessGr
     private String eventContext;
     private boolean isExtSharedChannel;
 
-    private TeamsAccessGrantedEvent event;
+    private TeamAccessGrantedEvent event;
 }

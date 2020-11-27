@@ -16,12 +16,20 @@ import lombok.NoArgsConstructor;
 public class ViewClosedPayload {
     public static final String TYPE = "view_closed";
     private final String type = TYPE;
+    private Enterprise enterprise;
     private Team team;
     private User user;
     private String apiAppId;
     private String token;
     private View view;
+    private boolean isEnterpriseInstall;
     private boolean isCleared;
+
+    @Data
+    public static class Enterprise {
+        private String id;
+        private String name;
+    }
 
     @Data
     public static class Team {

@@ -5,14 +5,14 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/teams_access_revoked
+ * https://api.slack.com/events/team_access_revoked
  */
 @Data
-public class TeamsAccessRevokedEvent implements Event {
+public class TeamAccessRevokedEvent implements Event {
 
-    public static final String TYPE_NAME = "teams_access_revoked";
+    public static final String TYPE_NAME = "team_access_revoked";
 
     private final String type = TYPE_NAME;
     private List<String> teamIds; // teams removed, up to 1000 teams
-
+    private String eventTs;
 }

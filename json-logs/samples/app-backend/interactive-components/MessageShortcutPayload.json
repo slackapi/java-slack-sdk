@@ -1172,6 +1172,10 @@
       "comment": ""
     }
   },
+  "enterprise": {
+    "id": "",
+    "name": ""
+  },
   "team": {
     "id": "",
     "domain": "",
@@ -1188,5 +1192,6 @@
     "name": ""
   },
   "token": "",
-  "action_ts": ""
+  "action_ts": "",
+  "is_enterprise_install": false
 }

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Locale;
 
 @Slf4j
 public class SlashCommandPayloadParser {
@@ -63,6 +64,11 @@ public class SlashCommandPayloadParser {
                             break;
                         case "trigger_id":
                             payload.setTriggerId(value);
+                            break;
+                        case "is_enterprise_install":
+                            boolean isEnterpriseInstall = value != null
+                                    && value.trim().toLowerCase(Locale.ENGLISH).equals("true");
+                            payload.setEnterpriseInstall(isEnterpriseInstall);
                             break;
                         default:
                     }

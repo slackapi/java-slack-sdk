@@ -12,5 +12,6 @@
   "command": "",
   "text": "",
   "response_url": "",
-  "trigger_id": ""
+  "trigger_id": "",
+  "is_enterprise_install": false
 }

@@ -68,10 +68,14 @@ public class EventRequest extends Request<EventContext> {
             // NOTE: When this app works in shared channels,
             // these IDs could be unusable for authorize function
             // as it may be the source of the events, not the installed org/workspace
-            if (payload.get("enterprise_id") != null && !payload.get("enterprise_id").isJsonNull()) {
-                enterpriseId = payload.get("enterprise_id").getAsString();
+            JsonElement enterpriseIdElement = payload.get("enterprise_id");
+            if (enterpriseIdElement != null && !enterpriseIdElement.isJsonNull()) {
+                enterpriseId = enterpriseIdElement.getAsString();
             }
-            teamId = payload.get("team_id").getAsString();
+            JsonElement teamIdElement = payload.get("team_id");
+            if (teamIdElement != null && !teamIdElement.isJsonNull()) {
+                teamId = teamIdElement.getAsString();
+            }
         }
         this.getContext().setEnterpriseId(enterpriseId);
         this.getContext().setTeamId(teamId);

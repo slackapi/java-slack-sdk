@@ -26,6 +26,7 @@ public class BlockActionPayload {
     public static final String TYPE = "block_actions";
 
     private final String type = TYPE;
+    private Enterprise enterprise;
     private Team team;
     private User user;
     private String apiAppId;
@@ -38,9 +39,16 @@ public class BlockActionPayload {
     private View view;
     private ViewState state; // for actions in a message
     private List<Action> actions;
+    private boolean isEnterpriseInstall;
 
     // TODO: app_unfurl
     // https://github.com/slackapi/bolt/blob/8f9245f9b9dce0771bb615b42192e7adb6228444/src/types/actions/block-action.ts#L154-L155
+
+    @Data
+    public static class Enterprise {
+        private String id;
+        private String name;
+    }
 
     @Data
     public static class Team {

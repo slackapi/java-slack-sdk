@@ -19,12 +19,20 @@ public class DialogCancellationPayload {
     private final String type = TYPE;
     private String token;
     private String actionTs;
+    private Enterprise enterprise;
     private Team team;
     private User user;
     private Channel channel;
     private String callbackId;
     private String responseUrl;
     private String state;
+    private boolean isEnterpriseInstall;
+
+    @Data
+    public static class Enterprise {
+        private String id;
+        private String name;
+    }
 
     @Data
     public static class Team {

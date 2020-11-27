@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ViewSubmissionPayloadTest {
@@ -178,5 +179,97 @@ public class ViewSubmissionPayloadTest {
         assertThat(payload.getToken(), is("random value"));
         String keys = payload.getView().getState().getValues().keySet().stream().collect(Collectors.joining(","));
         assertThat(keys, is("date-of-visit,rating,comment"));
+    }
+
+    String orgAppPayload = "{\n" +
+            "  \"type\": \"view_submission\",\n" +
+            "  \"team\": null,\n" +
+            "  \"user\": {\n" +
+            "    \"id\": \"W111\",\n" +
+            "    \"username\": \"primary-owner\",\n" +
+            "    \"name\": \"primary-owner\",\n" +
+            "    \"team_id\": \"T111\"\n" +
+            "  },\n" +
+            "  \"api_app_id\": \"A111\",\n" +
+            "  \"token\": \"j2wEI4Nh7GpSUztLsd0YEO5z\",\n" +
+            "  \"trigger_id\": \"111.222.xxx\",\n" +
+            "  \"view\": {\n" +
+            "    \"id\": \"V111\",\n" +
+            "    \"team_id\": \"T111\",\n" +
+            "    \"type\": \"modal\",\n" +
+            "    \"blocks\": [\n" +
+            "      {\n" +
+            "        \"type\": \"input\",\n" +
+            "        \"block_id\": \"agenda-block\",\n" +
+            "        \"label\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Detailed Agenda\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"optional\": false,\n" +
+            "        \"dispatch_action\": false,\n" +
+            "        \"element\": {\n" +
+            "          \"type\": \"plain_text_input\",\n" +
+            "          \"action_id\": \"agenda-action\",\n" +
+            "          \"multiline\": true,\n" +
+            "          \"dispatch_action_config\": {\n" +
+            "            \"trigger_actions_on\": [\n" +
+            "              \"on_enter_pressed\"\n" +
+            "            ]\n" +
+            "          }\n" +
+            "        }\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"private_metadata\": \"\",\n" +
+            "    \"callback_id\": \"test-view\",\n" +
+            "    \"state\": {\n" +
+            "      \"values\": {\n" +
+            "        \"agenda-block\": {\n" +
+            "          \"agenda-action\": {\n" +
+            "            \"type\": \"plain_text_input\",\n" +
+            "            \"value\": \"test\"\n" +
+            "          }\n" +
+            "        }\n" +
+            "      }\n" +
+            "    },\n" +
+            "    \"hash\": \"1606467248.46xb6k1W\",\n" +
+            "    \"title\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Org App Modal\",\n" +
+            "      \"emoji\": false\n" +
+            "    },\n" +
+            "    \"clear_on_close\": false,\n" +
+            "    \"notify_on_close\": false,\n" +
+            "    \"close\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Close\",\n" +
+            "      \"emoji\": false\n" +
+            "    },\n" +
+            "    \"submit\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Submit\",\n" +
+            "      \"emoji\": false\n" +
+            "    },\n" +
+            "    \"previous_view_id\": null,\n" +
+            "    \"root_view_id\": \"V111\",\n" +
+            "    \"app_id\": \"A111\",\n" +
+            "    \"external_id\": \"\",\n" +
+            "    \"app_installed_team_id\": \"E111\",\n" +
+            "    \"bot_id\": \"B111\"\n" +
+            "  },\n" +
+            "  \"response_urls\": [],\n" +
+            "  \"is_enterprise_install\": true,\n" +
+            "  \"enterprise\": {\n" +
+            "    \"id\": \"E111\",\n" +
+            "    \"name\": \"TestOrg\"\n" +
+            "  }\n" +
+            "}";
+
+    @Test
+    public void orgApp() {
+        ViewSubmissionPayload payload = gson.fromJson(orgAppPayload, ViewSubmissionPayload.class);
+        assertThat(payload.getEnterprise().getId(), is("E111"));
+        assertThat(payload.getTeam(), is(nullValue()));
+        assertThat(payload.isEnterpriseInstall(), is(true));
     }
 }

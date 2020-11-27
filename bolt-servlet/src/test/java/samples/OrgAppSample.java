@@ -3,7 +3,6 @@ package samples;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
-import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.model.event.AppMentionEvent;
 import util.ResourceLoader;
