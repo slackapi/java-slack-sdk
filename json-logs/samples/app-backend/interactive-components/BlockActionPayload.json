@@ -1230,6 +1230,7 @@
     "app_installed_team_id": "",
     "bot_id": ""
   },
+  "state": {},
   "actions": [
     {
       "action_id": "",
