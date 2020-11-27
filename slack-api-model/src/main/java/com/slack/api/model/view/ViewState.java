@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.Map;
 
+// For historical reasons, this class is under view package but it can be used for payloads
+// representing block_actions events in messages too.
 @Data
 @Builder
 @NoArgsConstructor
