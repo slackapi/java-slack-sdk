@@ -20,11 +20,19 @@ public class MessageShortcutPayload {
     private String messageTs;
     private String responseUrl;
     private Message message;
+    private Enterprise enterprise;
     private Team team;
     private User user;
     private Channel channel;
     private String token;
     private String actionTs;
+    private boolean isEnterpriseInstall;
+
+    @Data
+    public static class Enterprise {
+        private String id;
+        private String name;
+    }
 
     @Data
     public static class Team {

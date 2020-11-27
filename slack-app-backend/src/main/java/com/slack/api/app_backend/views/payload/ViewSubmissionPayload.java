@@ -18,12 +18,14 @@ import java.util.List;
 public class ViewSubmissionPayload {
     public static final String TYPE = "view_submission";
     private final String type = TYPE;
+    private Enterprise enterprise;
     private Team team;
     private User user;
     private String apiAppId;
     private String token;
     private String triggerId;
     private View view;
+    private boolean isEnterpriseInstall;
     private boolean isCleared;
 
     /**
@@ -31,6 +33,12 @@ public class ViewSubmissionPayload {
      * (possible block element types: conversations_select, channels_select)
      */
     private List<ResponseUrl> responseUrls;
+
+    @Data
+    public static class Enterprise {
+        private String id;
+        private String name;
+    }
 
     @Data
     public static class Team {

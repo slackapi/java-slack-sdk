@@ -22,12 +22,20 @@ public class DialogSubmissionPayload {
     private String callbackId;
     private Map<String, String> submission;
     private String state;
+    private Enterprise enterprise;
     private Team team;
     private User user;
     private Channel channel;
     private String actionTs;
     private String token;
     private String responseUrl;
+    private boolean isEnterpriseInstall;
+
+    @Data
+    public static class Enterprise {
+        private String id;
+        private String name;
+    }
 
     @Data
     public static class Team {

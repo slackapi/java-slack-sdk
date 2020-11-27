@@ -1,5 +1,9 @@
 {
   "type": "block_actions",
+  "enterprise": {
+    "id": "",
+    "name": ""
+  },
   "team": {
     "id": "",
     "domain": "",
@@ -1306,5 +1310,6 @@
       "selected_time": "",
       "initial_time": ""
     }
-  ]
+  ],
+  "is_enterprise_install": false
 }

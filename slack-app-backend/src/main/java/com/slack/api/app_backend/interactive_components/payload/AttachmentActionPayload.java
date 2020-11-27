@@ -27,6 +27,7 @@ public class AttachmentActionPayload {
     private final String type = TYPE;
     private List<Action> actions;
     private String callbackId;
+    private Enterprise enterprise;
     private Team team;
     private Channel channel;
     private User user;
@@ -39,6 +40,7 @@ public class AttachmentActionPayload {
     private OriginalMessage originalMessage;
     private String responseUrl;
     private String triggerId;
+    private boolean isEnterpriseInstall;
 
     @Data
     public static class Action {
@@ -51,6 +53,12 @@ public class AttachmentActionPayload {
         public static class SelectedOption {
             private String value;
         }
+    }
+
+    @Data
+    public static class Enterprise {
+        private String id;
+        private String name;
     }
 
     @Data

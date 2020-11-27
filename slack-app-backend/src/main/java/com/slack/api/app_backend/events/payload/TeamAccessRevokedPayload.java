@@ -1,12 +1,12 @@
 package com.slack.api.app_backend.events.payload;
 
-import com.slack.api.model.event.TeamsAccessRevokedEvent;
+import com.slack.api.model.event.TeamAccessRevokedEvent;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class TeamsAccessRevokedPayload implements EventsApiPayload<TeamsAccessRevokedEvent> {
+public class TeamAccessRevokedPayload implements EventsApiPayload<TeamAccessRevokedEvent> {
 
     private String token;
     private String enterpriseId;
@@ -21,5 +21,5 @@ public class TeamsAccessRevokedPayload implements EventsApiPayload<TeamsAccessRe
     private String eventContext;
     private boolean isExtSharedChannel;
 
-    private TeamsAccessRevokedEvent event;
+    private TeamAccessRevokedEvent event;
 }

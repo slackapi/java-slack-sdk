@@ -18,4 +18,5 @@ public class SlashCommandPayload {
     private String text;
     private String responseUrl;
     private String triggerId;
+    private boolean isEnterpriseInstall;
 }

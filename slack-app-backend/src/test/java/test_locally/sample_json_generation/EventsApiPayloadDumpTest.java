@@ -95,6 +95,8 @@ public class EventsApiPayloadDumpTest {
                 new TeamDomainChangePayload(),
                 new TeamJoinPayload(),
                 new TeamRenamePayload(),
+                buildTeamAccessGrantedPayload(),
+                buildTeamAccessRevokedPayload(),
                 buildTokensRevokedPayload(),
                 new UserChangePayload(),
                 buildUserResourceDeniedPayload(),
@@ -121,6 +123,20 @@ public class EventsApiPayloadDumpTest {
             initProperties(payload);
             dumper.dump(payload.getClass().getSimpleName(), payload);
         }
+    }
+
+    private TeamAccessGrantedPayload buildTeamAccessGrantedPayload() {
+        TeamAccessGrantedPayload payload = new TeamAccessGrantedPayload();
+        payload.setEvent(new TeamAccessGrantedEvent());
+        payload.getEvent().setTeamIds(Arrays.asList(""));
+        return payload;
+    }
+
+    private TeamAccessRevokedPayload buildTeamAccessRevokedPayload() {
+        TeamAccessRevokedPayload payload = new TeamAccessRevokedPayload();
+        payload.setEvent(new TeamAccessRevokedEvent());
+        payload.getEvent().setTeamIds(Arrays.asList(""));
+        return payload;
     }
 
     private UserResourceGrantedPayload buildUserResourceGrantedPayload() {

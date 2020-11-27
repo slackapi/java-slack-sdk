@@ -18,6 +18,7 @@ import java.util.List;
 public class WorkflowStepSavePayload {
     public static final String TYPE = "view_submission";
     private final String type = TYPE;
+    private Enterprise enterprise;
     private Team team;
     private User user;
     private String apiAppId;
@@ -26,6 +27,13 @@ public class WorkflowStepSavePayload {
     private View view;
     private List<ResponseUrl> responseUrls;
     private WorkflowStep workflowStep;
+    private boolean isEnterpriseInstall;
+
+    @Data
+    public static class Enterprise {
+        private String id;
+        private String name;
+    }
 
     @Data
     public static class Team {

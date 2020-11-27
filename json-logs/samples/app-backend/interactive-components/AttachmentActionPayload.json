@@ -8,6 +8,10 @@
     }
   ],
   "callback_id": "",
+  "enterprise": {
+    "id": "",
+    "name": ""
+  },
   "team": {
     "id": "",
     "domain": "",
@@ -69,5 +73,6 @@
     "parent_user_id": ""
   },
   "response_url": "",
-  "trigger_id": ""
+  "trigger_id": "",
+  "is_enterprise_install": false
 }

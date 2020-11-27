@@ -46,6 +46,22 @@ public class SlashCommandPayloadTest {
             "response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT111%2F111%2Fxxx&" +
             "trigger_id=111.222.xxx";
 
+    String orgLevelApp = "token=xxx&" +
+            "team_id=T111&" +
+            "team_domain=test-workspace&" +
+            "channel_id=C111&" +
+            "channel_name=dev&" +
+            "user_id=W111&" +
+            "user_name=primary-owner&" +
+            "command=%2Forg-level-command&" +
+            "text=test&" +
+            "api_app_id=A111&" +
+            "is_enterprise_install=true&" +
+            "enterprise_id=E111&" +
+            "enterprise_name=Sandbox+Org&" +
+            "response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT111%2F111%2Fxxx&" +
+            "trigger_id=111.222.xxx";
+
     @Test
     public void parse_1() {
         SlashCommandPayload payload = parser.parse(body1);
@@ -84,6 +100,7 @@ public class SlashCommandPayloadTest {
         assertThat(payload.getText(), is(nullValue()));
         assertThat(payload.getResponseUrl(), is("https://hooks.slack.com/commands/T111/111/xxx"));
         assertThat(payload.getTriggerId(), is("111.222.xxx"));
+        assertThat(payload.isEnterpriseInstall(), is(false));
     }
 
     @Test
@@ -91,4 +108,24 @@ public class SlashCommandPayloadTest {
         SlashCommandPayloadDetector detector = new SlashCommandPayloadDetector();
         assertTrue(detector.isCommand(body1));
     }
-}
+
+    @Test
+    public void parse_org_level_app() {
+        SlashCommandPayload payload = parser.parse(orgLevelApp);
+
+        assertThat(payload.getToken(), is("xxx"));
+        assertThat(payload.getTeamId(), is("T111"));
+        assertThat(payload.getTeamDomain(), is("test-workspace"));
+        assertThat(payload.getEnterpriseId(), is("E111"));
+        assertThat(payload.getEnterpriseName(), is("Sandbox Org"));
+        assertThat(payload.getApiAppId(), is("A111"));
+        assertThat(payload.getChannelId(), is("C111"));
+        assertThat(payload.getChannelName(), is("dev"));
+        assertThat(payload.getUserId(), is("W111"));
+        assertThat(payload.getUserName(), is("primary-owner"));
+        assertThat(payload.getCommand(), is("/org-level-command"));
+        assertThat(payload.getText(), is("test"));
+        assertThat(payload.getResponseUrl(), is("https://hooks.slack.com/commands/T111/111/xxx"));
+        assertThat(payload.getTriggerId(), is("111.222.xxx"));
+        assertThat(payload.isEnterpriseInstall(), is(true));
+    }}

@@ -2,6 +2,10 @@
   "type": "dialog_suggestion",
   "token": "",
   "action_ts": "",
+  "enterprise": {
+    "id": "",
+    "name": ""
+  },
   "team": {
     "id": "",
     "domain": "",
@@ -19,5 +23,6 @@
   },
   "name": "",
   "value": "",
-  "callback_id": ""
+  "callback_id": "",
+  "is_enterprise_install": false
 }

@@ -336,14 +336,14 @@ public class EventHandlersTest {
                     public void handle(CallRejectedPayload payload) {
                     }
                 },
-                new TeamsAccessGrantedHandler() {
+                new TeamAccessGrantedHandler() {
                     @Override
-                    public void handle(TeamsAccessGrantedPayload payload) {
+                    public void handle(TeamAccessGrantedPayload payload) {
                     }
                 },
-                new TeamsAccessRevokedHandler() {
+                new TeamAccessRevokedHandler() {
                     @Override
-                    public void handle(TeamsAccessRevokedPayload payload) {
+                    public void handle(TeamAccessRevokedPayload payload) {
                     }
                 }
         );

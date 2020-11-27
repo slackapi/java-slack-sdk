@@ -1,5 +1,9 @@
 {
   "type": "view_submission",
+  "enterprise": {
+    "id": "",
+    "name": ""
+  },
   "team": {
     "id": "",
     "domain": "",
@@ -48,5 +52,6 @@
     "app_installed_team_id": "",
     "bot_id": ""
   },
+  "is_enterprise_install": false,
   "is_cleared": false
 }

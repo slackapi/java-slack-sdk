@@ -24,8 +24,14 @@ public class GlobalShortcutRequest extends Request<GlobalShortcutContext> {
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, GlobalShortcutPayload.class);
 
         getContext().setTriggerId(payload.getTriggerId());
-        getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
-        getContext().setTeamId(payload.getTeam().getId());
+        if (payload.getEnterprise() != null) {
+            getContext().setEnterpriseId(payload.getEnterprise().getId());
+        } else if (payload.getTeam() != null) {
+            getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
+        }
+        if (payload.getTeam() != null) {
+            getContext().setTeamId(payload.getTeam().getId());
+        }
         getContext().setRequestUserId(payload.getUser().getId());
     }
 

@@ -25,8 +25,13 @@ public class WorkflowStepExecuteRequest extends Request<WorkflowStepExecuteConte
         this.headers = headers;
         this.payload = GSON.fromJson(requestBody, WorkflowStepExecutePayload.class);
         if (this.payload != null) {
-            getContext().setTeamId(payload.getTeamId());
-            getContext().setEnterpriseId(payload.getEnterpriseId());
+            if (payload.getAuthorizations() != null && payload.getAuthorizations().size() > 0) {
+                getContext().setEnterpriseId(payload.getAuthorizations().get(0).getEnterpriseId());
+                getContext().setTeamId(payload.getAuthorizations().get(0).getTeamId());
+            } else {
+                getContext().setEnterpriseId(payload.getEnterpriseId());
+                getContext().setTeamId(payload.getTeamId());
+            }
             getContext().setRequestUserId(null);
             getContext().setCallbackId(payload.getEvent().getCallbackId());
             getContext().setWorkflowStepExecuteId(payload.getEvent().getWorkflowStep().getWorkflowStepExecuteId());

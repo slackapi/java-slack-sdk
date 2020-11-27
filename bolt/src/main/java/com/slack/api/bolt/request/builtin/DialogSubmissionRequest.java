@@ -23,8 +23,14 @@ public class DialogSubmissionRequest extends Request<DialogSubmissionContext> {
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, DialogSubmissionPayload.class);
         getContext().setResponseUrl(payload.getResponseUrl());
-        getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
-        getContext().setTeamId(payload.getTeam().getId());
+        if (payload.getEnterprise() != null) {
+            getContext().setEnterpriseId(payload.getEnterprise().getId());
+        } else if (payload.getTeam() != null) {
+            getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
+        }
+        if (payload.getTeam() != null) {
+            getContext().setTeamId(payload.getTeam().getId());
+        }
         if (payload.getChannel() != null) {
             getContext().setChannelId(payload.getChannel().getId());
         }

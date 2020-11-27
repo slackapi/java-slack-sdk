@@ -25,8 +25,14 @@ public class BlockActionRequest extends Request<ActionContext> {
         if (this.payload != null) {
             getContext().setResponseUrl(payload.getResponseUrl());
             getContext().setTriggerId(payload.getTriggerId());
-            getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
-            getContext().setTeamId(payload.getTeam().getId());
+            if (payload.getEnterprise() != null) {
+                getContext().setEnterpriseId(payload.getEnterprise().getId());
+            } else if (payload.getTeam() != null) {
+                getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
+            }
+            if (payload.getTeam() != null) {
+                getContext().setTeamId(payload.getTeam().getId());
+            }
             getContext().setRequestUserId(payload.getUser().getId());
         }
     }
