@@ -160,4 +160,76 @@ public class BlockActionPayloadTest {
         assertThat(payload.getContainer(), is(notNullValue()));
     }
 
+    String jsonWithState = "{\n" +
+            "  \"type\": \"block_actions\",\n" +
+            "  \"user\": {\n" +
+            "    \"id\": \"U111\",\n" +
+            "    \"username\": \"seratch\",\n" +
+            "    \"name\": \"seratch\",\n" +
+            "    \"team_id\": \"T111\"\n" +
+            "  },\n" +
+            "  \"api_app_id\": \"A111\",\n" +
+            "  \"token\": \"xxx\",\n" +
+            "  \"container\": {\n" +
+            "    \"type\": \"message\",\n" +
+            "    \"message_ts\": \"1606455372.001200\",\n" +
+            "    \"channel_id\": \"C111\",\n" +
+            "    \"is_ephemeral\": true\n" +
+            "  },\n" +
+            "  \"trigger_id\": \"111.222.xxx\",\n" +
+            "  \"team\": {\n" +
+            "    \"id\": \"T111\",\n" +
+            "    \"domain\": \"xxx\"\n" +
+            "  },\n" +
+            "  \"channel\": {\n" +
+            "    \"id\": \"C111\",\n" +
+            "    \"name\": \"random\"\n" +
+            "  },\n" +
+            "  \"state\": {\n" +
+            "    \"values\": {\n" +
+            "      \"block_1\": {\n" +
+            "        \"action_1\": {\n" +
+            "          \"type\": \"external_select\",\n" +
+            "          \"selected_option\": {\n" +
+            "            \"text\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"Schedule\",\n" +
+            "              \"emoji\": true\n" +
+            "            },\n" +
+            "            \"value\": \"schedule\"\n" +
+            "          }\n" +
+            "        }\n" +
+            "      }\n" +
+            "    }\n" +
+            "  },\n" +
+            "  \"response_url\": \"https://hooks.slack.com/actions/T111/111/xxx\",\n" +
+            "  \"actions\": [\n" +
+            "    {\n" +
+            "      \"action_id\": \"save\",\n" +
+            "      \"block_id\": \"block_1\",\n" +
+            "      \"text\": {\n" +
+            "        \"type\": \"plain_text\",\n" +
+            "        \"text\": \"Save\",\n" +
+            "        \"emoji\": true\n" +
+            "      },\n" +
+            "      \"value\": \"1\",\n" +
+            "      \"type\": \"button\",\n" +
+            "      \"action_ts\": \"1606455407.603639\"\n" +
+            "    }\n" +
+            "  ]\n" +
+            "}";
+
+    @Test
+    public void state_in_messages() {
+        BlockActionPayload payload = GsonFactory.createSnakeCase().fromJson(jsonWithState, BlockActionPayload.class);
+        assertThat(payload.getType(), is("block_actions"));
+        assertThat(payload.getActions().size(), is(1));
+
+        assertThat(payload.getState().getValues()
+                .get("block_1")
+                .get("action_1")
+                .getSelectedOption().getValue(),
+                is("schedule"));
+    }
+
 }
