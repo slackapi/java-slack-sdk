@@ -6,6 +6,7 @@ import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.view.View;
+import com.slack.api.model.view.ViewState;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class BlockActionPayload {
     private Message message;
     private String responseUrl;
     private View view;
+    private ViewState state; // for actions in a message
     private List<Action> actions;
 
     // TODO: app_unfurl
