@@ -17,6 +17,8 @@ To enable App Distribution, visit the [Slack App configuration page](http://api.
 
 For **Redirect URL**, Bolt apps respond to `https://{your app's public URL domain}/slack/oauth/callback` if you go with recommended settings. To know how to configure such settings, consult the list of the available env variables below in this page.
 
+Bolt for Java automatically includes support for [org wide installations](https://api.slack.com/enterprise/apps) since version `1.4.0`. Org wide installations can be enabled in your app configuration settings under **Org Level Apps**.
+
 ### What Your Bolt App Does
 
 All your app needs to do to properly handle OAuth Flow are:
