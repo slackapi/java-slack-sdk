@@ -3,6 +3,10 @@ package com.slack.api.methods;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersDeleteRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersListRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersUpdateRequest;
 import com.slack.api.methods.request.admin.conversations.*;
 import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
@@ -84,6 +88,10 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersCreateResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersDeleteResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersListResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersUpdateResponse;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
@@ -213,6 +221,26 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(AdminAppsRequestsListRequest req);
 
     CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req);
+
+    // ------------------------------
+    // admin.barriers
+    // ------------------------------
+
+    CompletableFuture<AdminBarriersCreateResponse> adminBarriersCreate(AdminBarriersCreateRequest req);
+
+    CompletableFuture<AdminBarriersCreateResponse> adminBarriersCreate(RequestConfigurator<AdminBarriersCreateRequest.AdminBarriersCreateRequestBuilder> req);
+
+    CompletableFuture<AdminBarriersDeleteResponse> adminBarriersDelete(AdminBarriersDeleteRequest req);
+
+    CompletableFuture<AdminBarriersDeleteResponse> adminBarriersDelete(RequestConfigurator<AdminBarriersDeleteRequest.AdminBarriersDeleteRequestBuilder> req);
+
+    CompletableFuture<AdminBarriersListResponse> adminBarriersList(AdminBarriersListRequest req);
+
+    CompletableFuture<AdminBarriersListResponse> adminBarriersList(RequestConfigurator<AdminBarriersListRequest.AdminBarriersListRequestBuilder> req);
+
+    CompletableFuture<AdminBarriersUpdateResponse> adminBarriersUpdate(AdminBarriersUpdateRequest req);
+
+    CompletableFuture<AdminBarriersUpdateResponse> adminBarriersUpdate(RequestConfigurator<AdminBarriersUpdateRequest.AdminBarriersUpdateRequestBuilder> req);
 
     // ------------------------------
     // admin.conversations.restrictAccess

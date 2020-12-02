@@ -17,6 +17,7 @@ public class Constants {
     public static final String SLACK_SDK_TEST_GRID_TEAM_ID = "SLACK_SDK_TEST_GRID_TEAM_ID";
     // IDP User Group connected to SLACK_SDK_TEST_GRID_TEAM_ID
     public static final String SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID = "SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID";
+    public static final String SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID_2 = "SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID_2";
     // Shared channel ID for testing with Grid
     public static final String SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID = "SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID";
     // Org level installed app

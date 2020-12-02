@@ -3,6 +3,10 @@ package com.slack.api.methods;
 import com.google.gson.Gson;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersDeleteRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersListRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersUpdateRequest;
 import com.slack.api.methods.request.admin.conversations.*;
 import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
@@ -196,6 +200,43 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminBarriersCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getBarrieredFromUsergroupIds() != null) {
+            setIfNotNull("barriered_from_usergroup_ids", req.getBarrieredFromUsergroupIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("primary_usergroup_id", req.getPrimaryUsergroupId(), form);
+        if (req.getRestrictedSubjects() != null) {
+            setIfNotNull("restricted_subjects", req.getRestrictedSubjects().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminBarriersDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("barrier_id", req.getBarrierId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminBarriersListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminBarriersUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("barrier_id", req.getBarrierId(), form);
+        if (req.getBarrieredFromUsergroupIds() != null) {
+            setIfNotNull("barriered_from_usergroup_ids", req.getBarrieredFromUsergroupIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("primary_usergroup_id", req.getPrimaryUsergroupId(), form);
+        if (req.getRestrictedSubjects() != null) {
+            setIfNotNull("restricted_subjects", req.getRestrictedSubjects().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
 
     public static FormBody.Builder toForm(AdminConversationsSetTeamsRequest req) {
         FormBody.Builder form = new FormBody.Builder();

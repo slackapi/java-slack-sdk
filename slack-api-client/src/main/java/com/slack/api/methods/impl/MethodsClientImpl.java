@@ -6,6 +6,10 @@ import com.slack.api.methods.*;
 import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersDeleteRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersListRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersUpdateRequest;
 import com.slack.api.methods.request.admin.conversations.*;
 import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
@@ -100,6 +104,10 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersCreateResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersDeleteResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersListResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersUpdateResponse;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
@@ -308,6 +316,46 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminAppsRequestsListResponse adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) throws IOException, SlackApiException {
         return adminAppsRequestsList(req.configure(AdminAppsRequestsListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminBarriersCreateResponse adminBarriersCreate(AdminBarriersCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_BARRIERS_CREATE, getToken(req), AdminBarriersCreateResponse.class);
+    }
+
+    @Override
+    public AdminBarriersCreateResponse adminBarriersCreate(RequestConfigurator<AdminBarriersCreateRequest.AdminBarriersCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return adminBarriersCreate(req.configure(AdminBarriersCreateRequest.builder()).build());
+    }
+
+    @Override
+    public AdminBarriersDeleteResponse adminBarriersDelete(AdminBarriersDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_BARRIERS_DELETE, getToken(req), AdminBarriersDeleteResponse.class);
+    }
+
+    @Override
+    public AdminBarriersDeleteResponse adminBarriersDelete(RequestConfigurator<AdminBarriersDeleteRequest.AdminBarriersDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return adminBarriersDelete(req.configure(AdminBarriersDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public AdminBarriersListResponse adminBarriersList(AdminBarriersListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_BARRIERS_LIST, getToken(req), AdminBarriersListResponse.class);
+    }
+
+    @Override
+    public AdminBarriersListResponse adminBarriersList(RequestConfigurator<AdminBarriersListRequest.AdminBarriersListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminBarriersList(req.configure(AdminBarriersListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminBarriersUpdateResponse adminBarriersUpdate(AdminBarriersUpdateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_BARRIERS_UPDATE, getToken(req), AdminBarriersUpdateResponse.class);
+    }
+
+    @Override
+    public AdminBarriersUpdateResponse adminBarriersUpdate(RequestConfigurator<AdminBarriersUpdateRequest.AdminBarriersUpdateRequestBuilder> req) throws IOException, SlackApiException {
+        return adminBarriersUpdate(req.configure(AdminBarriersUpdateRequest.builder()).build());
     }
 
     @Override

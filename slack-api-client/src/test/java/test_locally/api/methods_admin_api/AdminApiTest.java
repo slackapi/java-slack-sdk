@@ -42,6 +42,16 @@ public class AdminApiTest {
     }
 
     @Test
+    public void barriers() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminBarriersCreate(r -> r).isOk(), is(true));
+        assertThat(methods.adminBarriersDelete(r -> r).isOk(), is(true));
+        assertThat(methods.adminBarriersList(r -> r).isOk(), is(true));
+        assertThat(methods.adminBarriersUpdate(r -> r).isOk(), is(true));
+    }
+
+    @Test
     public void adminApps() throws Exception {
         MethodsClient methods = slack.methods(ValidToken);
 

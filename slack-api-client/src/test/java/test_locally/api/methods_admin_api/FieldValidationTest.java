@@ -1,6 +1,10 @@
 package test_locally.api.methods_admin_api;
 
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersCreateResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersDeleteResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersListResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersUpdateResponse;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
@@ -73,6 +77,26 @@ public class FieldValidationTest {
                     obj.getRestrictedApps().get(0),
                     "getImageOriginal");
         }
+    }
+
+    @Test
+    public void adminBarriers() throws Exception {
+        verifyIfAllGettersReturnNonNull(parse("admin.barriers.create", AdminBarriersCreateResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.barriers.delete", AdminBarriersDeleteResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.barriers.list", AdminBarriersListResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.barriers.update", AdminBarriersUpdateResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
     }
 
     @Test

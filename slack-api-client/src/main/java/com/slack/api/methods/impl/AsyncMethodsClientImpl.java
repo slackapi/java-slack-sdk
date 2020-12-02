@@ -7,6 +7,10 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersDeleteRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersListRequest;
+import com.slack.api.methods.request.admin.barriers.AdminBarriersUpdateRequest;
 import com.slack.api.methods.request.admin.conversations.*;
 import com.slack.api.methods.request.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoRequest;
 import com.slack.api.methods.request.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupRequest;
@@ -88,6 +92,10 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersCreateResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersDeleteResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersListResponse;
+import com.slack.api.methods.response.admin.barriers.AdminBarriersUpdateResponse;
 import com.slack.api.methods.response.admin.conversations.*;
 import com.slack.api.methods.response.admin.conversations.ekm.AdminConversationsEkmListOriginalConnectedChannelInfoResponse;
 import com.slack.api.methods.response.admin.conversations.restrict_access.AdminConversationsRestrictAccessAddGroupResponse;
@@ -279,6 +287,47 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) {
         return adminAppsRequestsList(req.configure(AdminAppsRequestsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminBarriersCreateResponse> adminBarriersCreate(AdminBarriersCreateRequest req) {
+        return executor.execute(ADMIN_BARRIERS_CREATE, toMap(req), () -> methods.adminBarriersCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminBarriersCreateResponse> adminBarriersCreate(RequestConfigurator<AdminBarriersCreateRequest.AdminBarriersCreateRequestBuilder> req) {
+        return adminBarriersCreate(req.configure(AdminBarriersCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminBarriersDeleteResponse> adminBarriersDelete(AdminBarriersDeleteRequest req) {
+        return executor.execute(ADMIN_BARRIERS_DELETE, toMap(req), () -> methods.adminBarriersDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminBarriersDeleteResponse> adminBarriersDelete(RequestConfigurator<AdminBarriersDeleteRequest.AdminBarriersDeleteRequestBuilder> req) {
+        return adminBarriersDelete(req.configure(AdminBarriersDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminBarriersListResponse> adminBarriersList(AdminBarriersListRequest req) {
+
+        return executor.execute(ADMIN_BARRIERS_LIST, toMap(req), () -> methods.adminBarriersList(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminBarriersListResponse> adminBarriersList(RequestConfigurator<AdminBarriersListRequest.AdminBarriersListRequestBuilder> req) {
+        return adminBarriersList(req.configure(AdminBarriersListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminBarriersUpdateResponse> adminBarriersUpdate(AdminBarriersUpdateRequest req) {
+        return executor.execute(ADMIN_BARRIERS_UPDATE, toMap(req), () -> methods.adminBarriersUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminBarriersUpdateResponse> adminBarriersUpdate(RequestConfigurator<AdminBarriersUpdateRequest.AdminBarriersUpdateRequestBuilder> req) {
+        return adminBarriersUpdate(req.configure(AdminBarriersUpdateRequest.builder()).build());
     }
 
     @Override

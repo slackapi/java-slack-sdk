@@ -3,6 +3,7 @@ package test_locally.api.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
+import com.slack.api.methods.MethodsClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +46,16 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminAppsRestrictedList(r -> r.teamId("T123"))
                 .get().isOk(), is(true));
+    }
+
+    @Test
+    public void barriers() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminBarriersCreate(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminBarriersDelete(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminBarriersList(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminBarriersUpdate(r -> r).get().isOk(), is(true));
     }
 
     @Test

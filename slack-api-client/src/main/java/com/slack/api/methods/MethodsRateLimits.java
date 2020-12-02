@@ -60,6 +60,11 @@ public class MethodsRateLimits {
                 ADMIN_APPS_RESTRICTED_LIST,
                 ADMIN_APPS_REQUESTS_LIST,
 
+                ADMIN_BARRIERS_CREATE,
+                ADMIN_BARRIERS_DELETE,
+                ADMIN_BARRIERS_LIST,
+                ADMIN_BARRIERS_UPDATE,
+
                 ADMIN_CONVERSATIONS_RESTRICT_ACCESS_ADD_GROUP,
                 ADMIN_CONVERSATIONS_RESTRICT_ACCESS_LIST_GROUPS,
                 ADMIN_CONVERSATIONS_WHITELIST_ADD,

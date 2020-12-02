@@ -15,7 +15,7 @@ public class AppsEventAuthorizationsListRequest implements SlackApiRequest {
 
     /**
      * You'll receive an event_context identifying an event in each event payload sent to your app.
-     *
+     * <p>
      * https://api.slack.com/events-api#begin
      */
     private String eventContext;
