@@ -1,6 +1,6 @@
 ## Slack SDK for Java
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.slack.api%22%20a%3A%22slack-api-client%22) [![Build Status](https://travis-ci.org/slackapi/java-slack-sdk.svg?branch=main)](https://travis-ci.org/slackapi/java-slack-sdk) [![codecov](https://codecov.io/gh/slackapi/java-slack-sdk/branch/main/graph/badge.svg)](https://codecov.io/gh/slackapi/java-slack-sdk)
+[![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.slack.api%22%20a%3A%22slack-api-client%22) [![CI Build](https://github.com/slackapi/java-slack-sdk/workflows/CI%20Build/badge.svg)](https://github.com/slackapi/java-slack-sdk/actions?query=workflow%3A%22CI+Build%22) [![codecov](https://codecov.io/gh/slackapi/java-slack-sdk/branch/main/graph/badge.svg)](https://codecov.io/gh/slackapi/java-slack-sdk)
 
 **Slack SDK for Java** supports the Slack platform in a Java idiomatic way. The SDK written in Java so developers can use it in any JVM language including Kotlin, Groovy, and Scala.
 
