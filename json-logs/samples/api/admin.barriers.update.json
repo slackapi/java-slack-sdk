@@ -1,0 +1,24 @@
+{
+  "ok": false,
+  "error": "",
+  "barrier": {
+    "id": "",
+    "enterprise_id": "E00000000",
+    "primary_usergroup": {
+      "id": "S00000000",
+      "name": ""
+    },
+    "barriered_from_usergroups": [
+      {
+        "id": "S00000000",
+        "name": ""
+      }
+    ],
+    "restricted_subjects": [
+      ""
+    ],
+    "date_update": 12345
+  },
+  "needed": "",
+  "provided": ""
+}

@@ -24,6 +24,15 @@ public class Methods {
     public static final String ADMIN_APPS_REQUESTS_LIST = "admin.apps.requests.list";
 
     // ------------------------------
+    // admin.barriers
+    // ------------------------------
+
+    public static final String ADMIN_BARRIERS_CREATE = "admin.barriers.create";
+    public static final String ADMIN_BARRIERS_DELETE = "admin.barriers.delete";
+    public static final String ADMIN_BARRIERS_LIST = "admin.barriers.list";
+    public static final String ADMIN_BARRIERS_UPDATE = "admin.barriers.update";
+
+    // ------------------------------
     // admin.conversations
     // ------------------------------
 
