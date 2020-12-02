@@ -311,7 +311,6 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
 
     @Override
     public CompletableFuture<AdminBarriersListResponse> adminBarriersList(AdminBarriersListRequest req) {
-
         return executor.execute(ADMIN_BARRIERS_LIST, toMap(req), () -> methods.adminBarriersList(req));
     }
 
