@@ -1,0 +1,34 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: ['8', '11', '14']
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: ${{ matrix.java-version }}
+    - name: Run all tests
+      run: |
+        if [ ${{ matrix.java-version }} == "8" ]; then
+          export TRAVIS_JDK=openjdk8
+        fi
+        ./scripts/run_no_prep_tests.sh
+        if [ ${{ matrix.java-version }} == "8" ]; then
+          bash <(curl -s https://codecov.io/bash)
+        fi
+
