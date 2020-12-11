@@ -336,14 +336,14 @@ public class EventHandlersTest {
                     public void handle(CallRejectedPayload payload) {
                     }
                 },
-                new GroupTopicMessageHandler() {
+                new MessageGroupTopicHandler() {
                     @Override
-                    public void handle(GroupTopicMessagePayload payload) {
+                    public void handle(MessageGroupTopicPayload payload) {
                     }
                 },
-                new ChannelTopicMessageHandler() {
+                new MessageChannelTopicHandler() {
                     @Override
-                    public void handle(ChannelTopicMessagePayload payload) {
+                    public void handle(MessageChannelTopicPayload payload) {
                     }
                 },
                 new TeamAccessGrantedHandler() {
@@ -364,14 +364,14 @@ public class EventHandlersTest {
         }
 
         List<EventHandler<?>> handlersWithSubtype = Arrays.asList(
-                new GroupTopicMessageHandler() {
+                new MessageGroupTopicHandler() {
                     @Override
-                    public void handle(GroupTopicMessagePayload payload) {
+                    public void handle(MessageGroupTopicPayload payload) {
                     }
                 },
-                new ChannelTopicMessageHandler() {
+                new MessageChannelTopicHandler() {
                     @Override
-                    public void handle(ChannelTopicMessagePayload payload) {
+                    public void handle(MessageChannelTopicPayload payload) {
                     }
                 }
         );
