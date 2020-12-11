@@ -40,7 +40,8 @@ public class FieldsTest {
                 "getUsergroup",
                 "getChannel",
                 "getWorkspace",
-                "getWorkflow"
+                "getWorkflow",
+                "getBarrier"
         );
     }
 

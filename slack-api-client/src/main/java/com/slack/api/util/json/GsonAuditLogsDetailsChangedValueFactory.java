@@ -29,7 +29,10 @@ public class GsonAuditLogsDetailsChangedValueFactory implements JsonDeserializer
     public LogsResponse.DetailsChangedValue deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
         LogsResponse.DetailsChangedValue result = new LogsResponse.DetailsChangedValue();
-        if (json.isJsonArray()) {
+        if (json.isJsonPrimitive()) {
+            result.setStringValue(json.getAsString());
+            return result;
+        } else if (json.isJsonArray()) {
             result.setStringValues(parseStringArray(json));
             return result;
         } else if (json.isJsonObject()) {
@@ -74,7 +77,9 @@ public class GsonAuditLogsDetailsChangedValueFactory implements JsonDeserializer
 
     @Override
     public JsonElement serialize(LogsResponse.DetailsChangedValue src, Type typeOfSrc, JsonSerializationContext context) {
-        if (src.getStringValues() != null) {
+        if (src.getStringValue() != null) {
+            return new JsonPrimitive(src.getStringValue());
+        } else if (src.getStringValues() != null) {
             JsonArray array = new JsonArray();
             for (String value : src.getStringValues()) {
                 array.add(value);

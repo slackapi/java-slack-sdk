@@ -31,6 +31,7 @@ public class UserDefinedMethodsTest {
         private String teamId;
         private String userId;
         private String botId;
+        private Boolean isEnterpriseInstall;
     }
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
