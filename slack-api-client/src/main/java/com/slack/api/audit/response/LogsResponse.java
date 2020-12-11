@@ -3,6 +3,8 @@ package com.slack.api.audit.response;
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.audit.AuditApiResponse;
 import com.slack.api.model.ResponseMetadata;
+import com.slack.api.model.admin.IdpUserGroup;
+import com.slack.api.model.admin.InformationBarrier;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -60,6 +62,7 @@ public class LogsResponse implements AuditApiResponse {
         private File file;
         private Channel channel;
         private Workflow workflow;
+        private InformationBarrier barrier;
     }
 
     @Data
@@ -138,12 +141,22 @@ public class LogsResponse implements AuditApiResponse {
         private String domain;
     }
 
+    @Data
+    public class InformationBarrier {
+        private String id;
+        private String primaryUsergroup;
+        private List<String> barrieredFromUsergroups;
+        private List<String> restrictedSubjects;
+    }
+
     /**
      * The data structure for new_value, previous_value is greatly flexible.
      * This class supports multiple patterns for those.
      */
     @Data
     public static class DetailsChangedValue {
+        // e.g., RETAIN_ONLY_MSGS
+        private String stringValue;
         // e.g., ["C111", "C222"]
         private List<String> stringValues;
         // e.g., {"type": ["TOPLEVEL_ADMINS_AND_OWNERS_AND_SELECTED"]}
@@ -191,6 +204,10 @@ public class LogsResponse implements AuditApiResponse {
         private String exportType; // manual_export_completed
         private String exportStartTs; // manual_export_completed
         private String exportEndTs; // manual_export_completed
+        private String barrierId; // information barrier
+        private String primaryUsergroupId; // information barrier
+        private List<String> barrieredFromUsergroupIds; // information barrier
+        private List<String> restrictedSubjects; // information barrier
     }
 
     @Data

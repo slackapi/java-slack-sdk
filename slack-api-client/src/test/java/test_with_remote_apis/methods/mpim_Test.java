@@ -58,7 +58,7 @@ public class mpim_Test {
         {
             MpimMarkResponse markResponse = slack.methods(userToken).mpimMark(r -> r.channel(channelId));
             // ts is missing
-            assertThat(markResponse.getError(), is("internal_error"));
+            assertThat(markResponse.getError(), is("invalid_arguments"));
         }
 
         {
