@@ -200,6 +200,7 @@ public class GsonAuditLogsDetailsChangedValueFactoryTest {
         assertThat(response.getEntries().size(), is(2));
         assertThat(response.getEntries().get(0).getDetails().getNewValue().toString(),
                 is("LogsResponse.DetailsChangedValue(" +
+                        "stringValue=null, " +
                         "stringValues=[C111], " +
                         "namedStringValues=null)"));
     }
@@ -210,6 +211,7 @@ public class GsonAuditLogsDetailsChangedValueFactoryTest {
         assertThat(response.getEntries().size(), is(2));
         assertThat(response.getEntries().get(0).getDetails().getNewValue().toString(),
                 is("LogsResponse.DetailsChangedValue(" +
+                        "stringValue=null, " +
                         "stringValues=null, " +
                         "namedStringValues={type=[TOPLEVEL_ADMINS_AND_OWNERS_AND_SELECTED]})"));
     }

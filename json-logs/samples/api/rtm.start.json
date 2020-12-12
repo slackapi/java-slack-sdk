@@ -347,7 +347,8 @@
         "fr-FR": "",
         "pt-BR": "",
         "ja-JP": "",
-        "ko-KR": ""
+        "ko-KR": "",
+        "it-IT": ""
       },
       "joiner_notifications_muted": false,
       "invite_accepted_notifications_muted": false,
@@ -383,7 +384,10 @@
       "dismissed_app_launcher_atlassian_promo": false,
       "seen_toast_new_locale_launch": "",
       "seen_toast_new_locale_launch_ts": 12345,
-      "emoji_packs_clicked_picker_post_install_cta": false
+      "emoji_packs_clicked_picker_post_install_cta": false,
+      "huddles_mute_by_default": false,
+      "show_sidebar_avatars": false,
+      "seen_connect_section_coachmark": false
     },
     "created": 12345,
     "first_login": 12345,
@@ -669,7 +673,8 @@
     "onboarding_channel_id": "C00000000",
     "date_create": 12345,
     "limit_ts": 12345,
-    "avatar_base_url": "https://www.example.com/"
+    "avatar_base_url": "https://www.example.com/",
+    "is_verified": false
   },
   "accept_tos_url": "https://www.example.com/",
   "latest_event_ts": "0000000000.000000",
