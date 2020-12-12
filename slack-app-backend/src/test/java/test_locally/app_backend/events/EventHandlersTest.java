@@ -336,16 +336,6 @@ public class EventHandlersTest {
                     public void handle(CallRejectedPayload payload) {
                     }
                 },
-                new MessageGroupTopicHandler() {
-                    @Override
-                    public void handle(MessageGroupTopicPayload payload) {
-                    }
-                },
-                new MessageChannelTopicHandler() {
-                    @Override
-                    public void handle(MessageChannelTopicPayload payload) {
-                    }
-                },
                 new TeamAccessGrantedHandler() {
                     @Override
                     public void handle(TeamAccessGrantedPayload payload) {
