@@ -1156,6 +1156,10 @@
         },
         "team_id": ""
       },
+      "edited": {
+        "user": "",
+        "ts": ""
+      },
       "reply_count": 123,
       "reply_users_count": 123,
       "latest_reply": "",
