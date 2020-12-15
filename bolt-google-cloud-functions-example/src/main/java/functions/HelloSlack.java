@@ -1,6 +1,7 @@
 package functions;
 
 import com.slack.api.bolt.App;
+import com.slack.api.bolt.google_cloud_functions.SlackApiFunction;
 
 // export SLACK_BOT_TOKEN=
 // export SLACK_SIGNING_SECRET=
