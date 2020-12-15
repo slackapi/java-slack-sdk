@@ -7,8 +7,8 @@
     <artifactId>bolt-google-cloud-functions-example</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <google-cloud-functions.version>1.0.2</google-cloud-functions.version>
-        <bolt.version>[1.1,)</bolt.version>
+        <google-cloud-functions.version>1.0.3</google-cloud-functions.version>
+        <bolt.version>[1.4,)</bolt.version>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
     </properties>
@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.slack.api</groupId>
-            <artifactId>bolt</artifactId>
+            <artifactId>bolt-google-cloud-functions</artifactId>
             <version>${bolt.version}</version>
         </dependency>
     </dependencies>
