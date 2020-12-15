@@ -118,6 +118,7 @@ public class Message {
 
         private Icons icons;
         private BotProfile botProfile;
+        private Edited edited;
 
         // https://api.slack.com/messaging/retrieving#threading
         // Parent messages in a thread will no longer explicitly list their replies.
