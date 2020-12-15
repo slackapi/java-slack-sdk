@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <spring-boot.version>2.4.0</spring-boot.version>
+        <spring-boot.version>2.4.1</spring-boot.version>
     </properties>
 
     <groupId>com.slack.api</groupId>
