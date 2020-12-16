@@ -48,15 +48,20 @@ public class ApiTest {
 
     @Test
     public void customTimeouts_read() throws Exception {
-        SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
-        config.setHttpClientReadTimeoutMillis(1);
-        try {
-            Slack.getInstance(config).methods().apiTest(r -> r.foo("bar"));
-            fail();
-        } catch (IOException e) {
-            assertTrue(e.getMessage().equals("Read timed out") || e.getMessage().equals("timeout"));
+        int retryCount = 0;
+        while (retryCount <= 10) {
+            SlackConfig config = new SlackConfig();
+            config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
+            config.setHttpClientReadTimeoutMillis(1);
+            try {
+                Slack.getInstance(config).methods().apiTest(r -> r.foo("bar"));
+            } catch (IOException e) {
+                assertTrue(e.getMessage().equals("Read timed out") || e.getMessage().equals("timeout"));
+                break;
+            }
+            retryCount++;
         }
+        assertTrue(retryCount <= 10);
     }
 
     @Test
@@ -69,15 +74,20 @@ public class ApiTest {
 
     @Test
     public void customTimeouts_call() throws Exception {
-        SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
-        config.setHttpClientCallTimeoutMillis(1);
-        try {
-            Slack.getInstance(config).methods().apiTest(r -> r.foo("bar"));
-            fail();
-        } catch (IOException e) {
-            assertTrue(e.getMessage().equals("Read timed out") || e.getMessage().equals("timeout"));
+        int retryCount = 0;
+        while (retryCount <= 10) {
+            SlackConfig config = new SlackConfig();
+            config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
+            config.setHttpClientCallTimeoutMillis(1);
+            try {
+                Slack.getInstance(config).methods().apiTest(r -> r.foo("bar"));
+            } catch (IOException e) {
+                assertTrue(e.getMessage().equals("Read timed out") || e.getMessage().equals("timeout"));
+                break;
+            }
+            retryCount++;
         }
+        assertTrue(retryCount <= 10);
     }
 
 }

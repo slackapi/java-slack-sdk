@@ -29,7 +29,11 @@ public class RedisMetricsDatastoreTest {
     public void setup() throws Exception {
         redisServer = RedisServer.newRedisServer();  // bind to a random port
         redisServer.start();
-        jedisPool = new JedisPool(redisServer.getHost(), redisServer.getBindPort());
+        String host = redisServer.getHost();
+        if (host.equals("0.0.0.0")) { // workaround for macOS
+            host = "127.0.0.1";
+        }
+        jedisPool = new JedisPool(host, redisServer.getBindPort());
 
         SlackConfig config = new SlackConfig();
 
