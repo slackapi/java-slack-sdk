@@ -271,6 +271,11 @@ public class Attachment {
     // --------------------------
     // Files
 
+    // files in a message included in this attachment
+    private List<File> files;
+
+    // single file data
+
     private String filename;
     private Integer size;
     private String mimetype;
