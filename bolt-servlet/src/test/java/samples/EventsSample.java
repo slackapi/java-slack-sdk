@@ -4,9 +4,7 @@ import com.slack.api.app_backend.events.handler.MessageHandler;
 import com.slack.api.app_backend.events.payload.MessagePayload;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
-import com.slack.api.model.event.MessageBotEvent;
-import com.slack.api.model.event.MessageDeletedEvent;
-import com.slack.api.model.event.MessageEvent;
+import com.slack.api.model.event.*;
 import lombok.extern.slf4j.Slf4j;
 import util.ResourceLoader;
 import util.TestSlackAppServer;
@@ -29,6 +27,14 @@ public class EventsSample {
         });
         app.event(MessageDeletedEvent.class, (event, ctx) -> {
             ctx.logger.info("message deleted - {}", event);
+            return ctx.ack();
+        });
+        app.event(MessageChannelTopicEvent.class, (event, ctx) -> {
+            ctx.logger.info("channel topic - {}", event);
+            return ctx.ack();
+        });
+        app.event(MessageGroupTopicEvent.class, (event, ctx) -> {
+            ctx.logger.info("group topic - {}", event);
             return ctx.ack();
         });
 
