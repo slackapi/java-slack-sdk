@@ -15,11 +15,11 @@ public class MessageChannelTopicEvent implements Event {
 	private final String subtype = SUBTYPE_NAME;
 
 	private String user;
-	private String team;
 	private String channel;
+	private String channelType; // "channel"
 
-	private String topic;
 	private String text;
+	private String topic;
 
 	private String ts;
 	private String eventTs;

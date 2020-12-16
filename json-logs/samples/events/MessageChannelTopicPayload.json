@@ -18,10 +18,10 @@
     "type": "message",
     "subtype": "channel_topic",
     "user": "",
-    "team": "",
     "channel": "",
-    "topic": "",
+    "channel_type": "",
     "text": "",
+    "topic": "",
     "ts": "",
     "event_ts": ""
   }
