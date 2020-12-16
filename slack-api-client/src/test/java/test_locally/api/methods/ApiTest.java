@@ -49,7 +49,7 @@ public class ApiTest {
     @Test
     public void customTimeouts_read() throws Exception {
         int retryCount = 0;
-        while (retryCount <= 10) {
+        while (retryCount <= 100) {
             SlackConfig config = new SlackConfig();
             config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
             config.setHttpClientReadTimeoutMillis(1);
@@ -61,7 +61,7 @@ public class ApiTest {
             }
             retryCount++;
         }
-        assertTrue(retryCount <= 10);
+        assertTrue(retryCount <= 100);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class ApiTest {
     @Test
     public void customTimeouts_call() throws Exception {
         int retryCount = 0;
-        while (retryCount <= 10) {
+        while (retryCount <= 100) {
             SlackConfig config = new SlackConfig();
             config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
             config.setHttpClientCallTimeoutMillis(1);
@@ -87,7 +87,7 @@ public class ApiTest {
             }
             retryCount++;
         }
-        assertTrue(retryCount <= 10);
+        assertTrue(retryCount <= 100);
     }
 
 }
