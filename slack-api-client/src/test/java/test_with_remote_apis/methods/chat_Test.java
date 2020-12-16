@@ -9,6 +9,7 @@ import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.conversations.ConversationsMembersResponse;
+import com.slack.api.methods.response.files.FilesUploadResponse;
 import com.slack.api.model.*;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
@@ -762,6 +763,32 @@ public class chat_Test {
         // invalid_blocks means you haven't turned the beta feature on
         // Go to https://api.slack.com/apps/{api_app_id}/developer-beta
         assertThat(response.getError(), is(nullValue()));
+    }
+
+    // https://github.com/slackapi/java-slack-sdk/issues/647
+    @Test
+    public void share_message_with_files_issue_647() throws Exception {
+        loadRandomChannelId();
+
+        FilesUploadResponse fileUpload = slack.methods(botToken).filesUpload(r -> r
+                .content("This is a test")
+                .initialComment("Uploading a file...")
+                .channels(Arrays.asList(randomChannelId))
+        );
+        assertThat(fileUpload.isOk(), is(true));
+
+        File.ShareDetail share = fileUpload.getFile().getShares().getPublicChannels().get(randomChannelId).get(0);
+        String permalink = slack.methods(botToken).chatGetPermalink(r -> r
+                .channel(randomChannelId)
+                .messageTs(share.getTs())
+        ).getPermalink();
+
+        ChatPostMessageResponse message = slack.methods(botToken).chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .unfurlLinks(true)
+                .text("Here is the uploaded file: " + permalink)
+        );
+        assertThat(message.isOk(), is(true));
     }
 
 }
