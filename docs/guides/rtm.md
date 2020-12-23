@@ -70,8 +70,10 @@ dispatcher.register(userTyping);
 String botToken = System.getenv("SLACK_BOT_TOKEN");
 Slack slack = Slack.getInstance();
 
-// Establish a WebSocket connection and start subscribing Slack events
+// Initialize the client with a valid WSS URL
 RTMClient rtm = slack.rtmConnect(botToken);
+// Establish a WebSocket connection and start subscribing Slack events
+rtm.connect();
 
 // Enable an event dispatcher
 rtm.addMessageHandler(dispatcher.toMessageHandler());
