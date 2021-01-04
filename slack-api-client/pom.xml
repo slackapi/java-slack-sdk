@@ -18,7 +18,7 @@
         <javax.websocket-api.version>1.1</javax.websocket-api.version>
         <!-- TODO upgrade to 2.0 in the next minor version -->
         <tyrus-standalone-client.version>1.17</tyrus-standalone-client.version>
-        <jedis.version>3.4.0</jedis.version>
+        <jedis.version>3.4.1</jedis.version>
         <jedis-mock.version>0.1.16</jedis-mock.version>
     </properties>
 

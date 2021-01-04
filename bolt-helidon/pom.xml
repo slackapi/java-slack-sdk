@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <helidon.version>2.1.0</helidon.version>
+        <helidon.version>2.2.0</helidon.version>
         <!-- Helidon 2.x requires Java 11+ -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
