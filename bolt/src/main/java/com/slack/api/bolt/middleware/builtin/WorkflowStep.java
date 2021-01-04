@@ -58,6 +58,7 @@ public class WorkflowStep implements Middleware, AutoCloseable {
                             log.debug("callback_id: {} didn't match in the WorkflowStep middleware", requestCallbackId);
                         }
                     }
+                    break;
                 }
                 case WorkflowStepSave: {
                     WorkflowStepSaveRequest request = (WorkflowStepSaveRequest) req;
@@ -70,6 +71,7 @@ public class WorkflowStep implements Middleware, AutoCloseable {
                             log.debug("callback_id: {} didn't match in the WorkflowStep middleware", requestCallbackId);
                         }
                     }
+                    break;
                 }
                 case WorkflowStepExecute: {
                     WorkflowStepExecuteRequest request = (WorkflowStepExecuteRequest) req;
@@ -101,6 +103,7 @@ public class WorkflowStep implements Middleware, AutoCloseable {
                             log.debug("callback_id: {} didn't match in the WorkflowStep middleware", requestCallbackId);
                         }
                     }
+                    break;
                 }
                 default:
             }
