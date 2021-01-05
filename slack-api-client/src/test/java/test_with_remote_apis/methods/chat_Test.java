@@ -791,4 +791,28 @@ public class chat_Test {
         assertThat(message.isOk(), is(true));
     }
 
+    // 2021-01-05 14:38:54,767 WARN [main] com.slack.api.methods.RequestFormBuilder The `text` argument is missing in the request payload for a chat.postMessage call - It's a best practice to always provide a text argument when posting a message. The `text` is used in places where `blocks` cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.
+    // 2021-01-05 14:38:55,055 WARN [main] com.slack.api.methods.RequestFormBuilder The `text` argument is missing in the request payload for a chat.update call - It's a best practice to always provide a text argument when posting a message. The `text` is used in places where `blocks` cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.
+    @Test
+    public void textWarnings() throws Exception {
+        loadRandomChannelId();
+
+        ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .token(botToken)
+                .channel(randomChannelId)
+                .text(null)
+                .blocksAsString(blocksAsString)
+                .build());
+        assertThat(postResponse.getError(), is(nullValue()));
+
+        ChatUpdateResponse updateMessage = slack.methods().chatUpdate(ChatUpdateRequest.builder()
+                .channel(randomChannelId)
+                .token(botToken)
+                .ts(postResponse.getTs())
+                .text(null)
+                .blocksAsString(blocksAsString)
+                .build());
+        assertThat(updateMessage.getError(), is(nullValue()));
+    }
+
 }
