@@ -932,6 +932,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(ChatMeMessageRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
+        // We don't use #setTextAndWarnIfMissing for this because text here is required
         setIfNotNull("text", req.getText(), form);
         return form;
     }
@@ -940,7 +941,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("post_at", req.getPostAt(), form);
-        setIfNotNull("text", req.getText(), form);
+        setTextAndWarnIfMissing("chat.scheduleMessage",req.getText(), form);
         setIfNotNull("as_user", req.isAsUser(), form);
 
         if (req.getBlocksAsString() != null) {
@@ -982,7 +983,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(ChatPostEphemeralRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
-        setIfNotNull("text", req.getText(), form);
+        setTextAndWarnIfMissing("chat.postEphemeral", req.getText(), form);
         setIfNotNull("user", req.getUser(), form);
         setIfNotNull("as_user", req.isAsUser(), form);
 
@@ -1015,7 +1016,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
-        setIfNotNull("text", req.getText(), form);
+        setTextAndWarnIfMissing("chat.postMessage", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
         setIfNotNull("mrkdwn", req.isMrkdwn(), form);
@@ -1051,7 +1052,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("ts", req.getTs(), form);
         setIfNotNull("channel", req.getChannel(), form);
-        setIfNotNull("text", req.getText(), form);
+        setTextAndWarnIfMissing("chat.update", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
 
@@ -2163,6 +2164,13 @@ public class RequestFormBuilder {
     // ----------------------------------------------------------------------------------
     // internal methods
     // ----------------------------------------------------------------------------------
+
+    private static void setTextAndWarnIfMissing(String endpointName, String value, FormBody.Builder form) {
+        if (value == null || value.trim().isEmpty()) {
+            log.warn("The `text` argument is missing in the request payload for a {} call - It's a best practice to always provide a text argument when posting a message. The `text` is used in places where `blocks` cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.", endpointName);
+        }
+        setIfNotNull("text", value, form);
+    }
 
     private static void setIfNotNull(String name, Object value, FormBody.Builder form) {
         if (value != null) {
