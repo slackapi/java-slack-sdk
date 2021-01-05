@@ -78,6 +78,17 @@
         "primary_usergroup": "string",
         "barriered_from_usergroup": "string"
       }
+    },
+    {
+      "type": "channel",
+      "channel": {
+        "id": "string",
+        "name": "string",
+        "privacy": "string",
+        "is_shared": "bool",
+        "is_org_shared": "bool",
+        "teams_shared_with": "Optional: varray\u003cstring\u003e"
+      }
     }
   ]
 }
