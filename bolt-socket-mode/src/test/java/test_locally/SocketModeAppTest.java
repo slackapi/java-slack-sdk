@@ -4,6 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
+import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.socket_mode.SocketModeApp;
 import com.slack.api.socket_mode.SocketModeClient;
 import org.junit.After;
@@ -44,21 +45,27 @@ public class SocketModeAppTest {
     // -------------------------------------------------
 
     @Test
-    public void commands() throws Exception {
+    public void payloadHandling() throws Exception {
         App app = new App(AppConfig.builder()
                 .slack(slack)
                 .singleTeamBotToken(VALID_BOT_TOKEN)
                 .build());
-        AtomicBoolean called = new AtomicBoolean(false);
+        AtomicBoolean commandCalled = new AtomicBoolean(false);
+        AtomicBoolean actionCalled = new AtomicBoolean(false);
         app.command("/hi-socket-mode", (req, ctx) -> {
-            called.set(true);
+            commandCalled.set(true);
             return ctx.ack("Hello!");
+        });
+        app.blockAction("a", (req, ctx) -> {
+            actionCalled.set(true);
+            return Response.builder().body("Thanks").build();
         });
         SocketModeApp socketModeApp = new SocketModeApp(VALID_APP_TOKEN, app);
         socketModeApp.startAsync();
         try {
-            Thread.sleep(1000L);
-            assertTrue(called.get());
+            Thread.sleep(1500L);
+            assertTrue(commandCalled.get());
+            assertTrue(actionCalled.get());
         } finally {
             socketModeApp.stop();
         }
@@ -69,21 +76,31 @@ public class SocketModeAppTest {
     // -------------------------------------------------
 
     @Test
-    public void commands_JavaWebSocket() throws Exception {
+    public void payloadHandling_JavaWebSocket() throws Exception {
         App app = new App(AppConfig.builder()
                 .slack(slack)
                 .singleTeamBotToken(VALID_BOT_TOKEN)
                 .build());
-        AtomicBoolean called = new AtomicBoolean(false);
+        AtomicBoolean commandCalled = new AtomicBoolean(false);
+        AtomicBoolean actionCalled = new AtomicBoolean(false);
         app.command("/hi-socket-mode", (req, ctx) -> {
-            called.set(true);
+            commandCalled.set(true);
             return ctx.ack("Hello!");
         });
-        SocketModeApp socketModeApp = new SocketModeApp(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket, app);
+        app.blockAction("a", (req, ctx) -> {
+            actionCalled.set(true);
+            return Response.builder().body("Thanks").build();
+        });
+        SocketModeApp socketModeApp = new SocketModeApp(
+                VALID_APP_TOKEN,
+                SocketModeClient.Backend.JavaWebSocket,
+                app
+        );
         socketModeApp.startAsync();
         try {
-            Thread.sleep(1000L);
-            assertTrue(called.get());
+            Thread.sleep(1500L);
+            assertTrue(commandCalled.get());
+            assertTrue(actionCalled.get());
         } finally {
             socketModeApp.stop();
         }

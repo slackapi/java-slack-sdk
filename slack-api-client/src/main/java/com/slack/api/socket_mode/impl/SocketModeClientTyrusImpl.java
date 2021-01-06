@@ -195,8 +195,10 @@ public class SocketModeClientTyrusImpl implements SocketModeClient {
     @Override
     public void disconnect() throws IOException {
         setAutoReconnectEnabled(false);
-        synchronized (currentSession) {
-            closeSession(currentSession);
+        if (currentSession != null) {
+            synchronized (currentSession) {
+                closeSession(currentSession);
+            }
         }
     }
 
