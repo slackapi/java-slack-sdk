@@ -105,7 +105,7 @@ public class AdminApi_users_Test {
             }
             assertThat("Create a guest user for this test", user, is(notNullValue()));
             final String guestUserId = user.getId();
-            long defaultExpirationTs = ZonedDateTime.now().toEpochSecond() / 1000;
+            long defaultExpirationTs = ZonedDateTime.now().toEpochSecond();
             // same timestamp results in "failed_to_validate_expiration" error
             final Long expirationTs = user.getExpirationTs() != null && user.getExpirationTs() != 0 ?
                     user.getExpirationTs() + 1 : defaultExpirationTs + 3600;
