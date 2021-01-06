@@ -8,6 +8,7 @@ then
     test-compile \
     '-Dtest=test_locally.**.*Test' test \
     -DfailIfNoTests=false \
+    -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 else
@@ -16,6 +17,7 @@ else
     test-compile \
     '-Dtest=test_locally.**.*Test' test \
     -DfailIfNoTests=false \
+    -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 fi

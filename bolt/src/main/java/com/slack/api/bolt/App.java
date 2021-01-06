@@ -98,7 +98,13 @@ public class App {
 
         // request verification
         // https://api.slack.com/docs/verifying-requests-from-slack
-        SlackSignature.Verifier verifier = new SlackSignature.Verifier(new SlackSignature.Generator(appConfig.getSigningSecret()));
+        String signingSecret = appConfig.getSigningSecret();
+        if (signingSecret == null || signingSecret.trim().isEmpty()) {
+            // This is just a random value to avoid SlackSignature.Generator's initialization error.
+            // When this App runs through Socket Mode connections, it skips request signature verification.
+            signingSecret = "---";
+        }
+        SlackSignature.Verifier verifier = new SlackSignature.Verifier(new SlackSignature.Generator(signingSecret));
         RequestVerification requestVerification = new RequestVerification(verifier);
         middlewareList.add(requestVerification);
 

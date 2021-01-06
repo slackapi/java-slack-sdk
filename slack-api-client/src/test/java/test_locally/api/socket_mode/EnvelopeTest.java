@@ -1,4 +1,4 @@
-package test_locally.api.socketmode;
+package test_locally.api.socket_mode;
 
 import com.google.gson.Gson;
 import com.slack.api.socket_mode.request.EventsApiEnvelope;
