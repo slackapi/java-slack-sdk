@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class SocketModeClientTest {
@@ -52,6 +53,18 @@ public class SocketModeClientTest {
     // -------------------------------------------------
 
     @Test
+    public void attributes() throws Exception {
+        try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN)) {
+            assertNotNull(client.getAppToken());
+            assertNotNull(client.getMessageQueue());
+            assertNotNull(client.getGson());
+            assertNotNull(client.getLogger());
+            assertNotNull(client.getSlack());
+            assertNotNull(client.getWssUri());
+        }
+    }
+
+    @Test
     public void connect() throws Exception {
         try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN)) {
             AtomicBoolean received = new AtomicBoolean(false);
@@ -66,6 +79,9 @@ public class SocketModeClientTest {
             Thread.sleep(500L);
             assertTrue(received.get());
 
+            client.disconnect();
+            client.runCloseListenersAndAutoReconnectAsNecessary(1000, null);
+
             client.removeWebSocketMessageListener(client.getWebSocketMessageListeners().get(0));
             client.removeWebSocketErrorListener(client.getWebSocketErrorListeners().get(0));
             client.removeWebSocketCloseListener(client.getWebSocketCloseListeners().get(0));
@@ -73,6 +89,14 @@ public class SocketModeClientTest {
             client.removeEventsApiEnvelopeListener(client.getEventsApiEnvelopeListeners().get(0));
             client.removeInteractiveEnvelopeListener(client.getInteractiveEnvelopeListeners().get(0));
             client.removeSlashCommandsEnvelopeListener(client.getSlashCommandsEnvelopeListeners().get(0));
+        }
+    }
+
+    @Test
+    public void maintainCurrentSession() throws Exception {
+        try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN)) {
+            client.connect();
+            client.maintainCurrentSession();
         }
     }
 
@@ -124,6 +148,18 @@ public class SocketModeClientTest {
     // -------------------------------------------------
 
     @Test
+    public void attributes_JavaWebSocket() throws Exception {
+        try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket)) {
+            assertNotNull(client.getAppToken());
+            assertNotNull(client.getMessageQueue());
+            assertNotNull(client.getGson());
+            assertNotNull(client.getLogger());
+            assertNotNull(client.getSlack());
+            assertNotNull(client.getWssUri());
+        }
+    }
+
+    @Test
     public void connect_JavaWebSocket() throws Exception {
         try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket)) {
             AtomicBoolean received = new AtomicBoolean(false);
@@ -137,6 +173,9 @@ public class SocketModeClientTest {
             client.connect();
             Thread.sleep(500L);
             assertTrue(received.get());
+
+            client.disconnect();
+            client.runCloseListenersAndAutoReconnectAsNecessary(1000, null);
 
             client.removeWebSocketMessageListener(client.getWebSocketMessageListeners().get(0));
             client.removeWebSocketErrorListener(client.getWebSocketErrorListeners().get(0));
@@ -158,6 +197,14 @@ public class SocketModeClientTest {
             client.connectToNewEndpoint();
             Thread.sleep(500L);
             assertTrue(received.get());
+        }
+    }
+
+    @Test
+    public void maintainCurrentSession_JavaWebSocket() throws Exception {
+        try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket)) {
+            client.connect();
+            client.maintainCurrentSession();
         }
     }
 
