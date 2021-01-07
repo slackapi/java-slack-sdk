@@ -13,7 +13,7 @@ import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.plainTextInput;
 import static com.slack.api.model.view.Views.*;
 
-public class Examples {
+public class SimpleApp {
 
     public static void main(String[] args) throws Exception {
         App app = new App(AppConfig.builder()

@@ -67,6 +67,10 @@ public class SocketModeApp {
         return client;
     }
 
+    public SocketModeApp(App app) throws IOException {
+        this(System.getenv("SLACK_APP_TOKEN"), SocketModeClient.Backend.Tyrus, app);
+    }
+
     public SocketModeApp(String appToken, App app) throws IOException {
         this(appToken, SocketModeClient.Backend.Tyrus, app);
     }

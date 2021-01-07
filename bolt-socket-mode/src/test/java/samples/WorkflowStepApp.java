@@ -20,7 +20,7 @@ import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.plainTextInput;
 import static com.slack.api.model.workflow.WorkflowSteps.*;
 
-public class WorkflowStepExample {
+public class WorkflowStepApp {
 
     public static void main(String[] args) throws Exception {
         App app = new App(AppConfig.builder()

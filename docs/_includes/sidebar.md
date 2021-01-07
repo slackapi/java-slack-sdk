@@ -5,6 +5,7 @@
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/">Overview</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt">Getting Started with Bolt</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/getting-started-with-bolt-socket-mode">Getting Started with Bolt (Socket Mode)</a></li>
     </ul>
   </li>
 </ul>
@@ -12,6 +13,7 @@
   <li class="toctree-l1 current"><div class="toctree-h">Bolt for Java</div>
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/bolt-basics">Basic Concepts</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/socket-mode">Socket Mode</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/shortcuts">Shortcuts</a></li>      
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/interactive-components">Interactive Components</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/modals">Modals</a></li>
