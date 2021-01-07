@@ -6,9 +6,9 @@ markdown: kramdown
 baseurl: /java-slack-sdk
 url: https://slack.dev
 
-sdkLatestVersion: 1.4.2
+sdkLatestVersion: 1.5.0-M2
 okhttpVersion: 4.9.0
-kotlinVersion: 1.4.21
+kotlinVersion: 1.4.21-2
 springBootVersion: 2.4.1
 compatibleMicronautVersion: 2.x
 quarkusVersion: 1.9.2.Final

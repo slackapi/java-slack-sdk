@@ -2,6 +2,7 @@ package com.slack.api.socket_mode.impl;
 
 import com.google.gson.Gson;
 import com.slack.api.Slack;
+import com.slack.api.methods.SlackApiException;
 import com.slack.api.socket_mode.SocketModeClient;
 import com.slack.api.socket_mode.listener.EnvelopeListener;
 import com.slack.api.socket_mode.listener.WebSocketCloseListener;
@@ -24,7 +25,9 @@ import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -62,6 +65,14 @@ public class SocketModeClientTyrusImpl implements SocketModeClient {
      * Provides asynchronous clean up for old sessions.
      */
     private final ExecutorService sessionCleanerExecutor;
+
+    public SocketModeClientTyrusImpl(String appToken) throws URISyntaxException, IOException, SlackApiException {
+        this(Slack.getInstance(), appToken);
+    }
+
+    public SocketModeClientTyrusImpl(Slack slack, String appToken) throws URISyntaxException, IOException, SlackApiException {
+        this(slack, appToken, slack.methods(appToken).appsConnectionsOpen(r -> r).getUrl());
+    }
 
     public SocketModeClientTyrusImpl(
             Slack slack,

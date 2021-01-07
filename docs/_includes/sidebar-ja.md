@@ -5,6 +5,7 @@
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/">SDK の概要</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt">Bolt️ 入門</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/getting-started-with-bolt-socket-mode">Bolt️ 入門 (ソケットモード)</a></li>
     </ul>
   </li>
 </ul>
@@ -12,6 +13,7 @@
   <li class="toctree-l1 current"><div class="toctree-h">Bolt for Java</div>
     <ul>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/bolt-basics">Bolt️ の概要</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/socket-mode">ソケットモード</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/shortcuts">ショートカット</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/interactive-components">インタラクティブコンポーネント</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/ja/modals">モーダル</a></li>
