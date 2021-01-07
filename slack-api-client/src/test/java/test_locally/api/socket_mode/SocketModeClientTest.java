@@ -9,7 +9,6 @@ import com.slack.api.socket_mode.listener.WebSocketMessageListener;
 import com.slack.api.socket_mode.response.AckResponse;
 import com.slack.api.socket_mode.response.MessagePayload;
 import com.slack.api.socket_mode.response.MessageResponse;
-import com.slack.api.socket_mode.response.SocketModeResponse;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.After;
 import org.junit.Before;

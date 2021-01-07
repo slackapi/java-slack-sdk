@@ -2,6 +2,7 @@ package com.slack.api.socket_mode.impl;
 
 import com.google.gson.Gson;
 import com.slack.api.Slack;
+import com.slack.api.methods.SlackApiException;
 import com.slack.api.socket_mode.SocketModeClient;
 import com.slack.api.socket_mode.listener.EnvelopeListener;
 import com.slack.api.socket_mode.listener.WebSocketCloseListener;
@@ -23,7 +24,6 @@ import java.net.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -49,6 +49,14 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
     private final List<WebSocketCloseListener> webSocketCloseListeners = new CopyOnWriteArrayList<>();
 
     private UnderlyingWebSocketSession currentSession;
+
+    public SocketModeClientJavaWSImpl(String appToken) throws IOException, SlackApiException, URISyntaxException {
+        this(Slack.getInstance(), appToken);
+    }
+
+    public SocketModeClientJavaWSImpl(Slack slack, String appToken) throws IOException, SlackApiException, URISyntaxException {
+        this(slack, appToken, slack.methods(appToken).appsConnectionsOpen(r -> r).getUrl());
+    }
 
     public SocketModeClientJavaWSImpl(
             Slack slack,

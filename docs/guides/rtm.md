@@ -13,7 +13,7 @@ lang: en
 ---
 ## Prerequisites
 
-To use the RTM Client, in addition to the **slack-api-client** library, **javax.websocket-api** and **tyrus-standalone-client** are required. Here is a minimum Maven settings file.
+To use the RTM Client, in addition to the **slack-api-client** library, **javax.websocket-api** and **tyrus-standalone-client (1.x)** are required. Here is a minimum Maven settings file.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
