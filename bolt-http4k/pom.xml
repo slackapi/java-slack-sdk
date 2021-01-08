@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <http4k.version>3.285.1</http4k.version>
+        <http4k.version>3.285.2</http4k.version>
     </properties>
 
     <groupId>com.slack.api</groupId>
