@@ -178,11 +178,11 @@ import com.slack.api.socket_mode.response.SocketModeResponse;
 
 String appLevelToken = "xapp-A111-222-xxx";
 
-// Issues a new WSS URL and set the value to the client
+// Issue a new WSS URL and set the value to the client
 try (SocketModeClient client = Slack.getInstance().socketMode(appLevelToken)) {
   // SocketModeClient has #close() method
 
-  // Adds a listener function to handle all raw WebSocket text messages
+  // Add a listener function to handle all raw WebSocket text messages
   // You can handle not only envelopes but also any others such as "hello" messages.
   client.addWebSocketMessageListener((String message) -> {
     // TODO: Do something with the raw WebSocket text message
@@ -192,7 +192,7 @@ try (SocketModeClient client = Slack.getInstance().socketMode(appLevelToken)) {
     // TODO: Do something with a thrown exception
   });
   
-  // Adds a listener function that handles only type: events envelopes
+  // Add a listener function that handles only type: events envelopes
   client.addEventsApiEnvelopeListener((EventsApiEnvelope envelope) -> {
     // TODO: Do something with an Events API payload
 
@@ -201,10 +201,10 @@ try (SocketModeClient client = Slack.getInstance().socketMode(appLevelToken)) {
     client.sendSocketModeResponse(ack);
   });
   
-  client.connect(); // Starts receiving messages from the Socket Mode server
+  client.connect(); // Start receiving messages from the Socket Mode server
   
-  client.disconnect(); // Disconnects from the server
+  client.disconnect(); // Disconnect from the server
 
-  client.connectToNewEndpoint(); // Issues a new WSS URL and connects to the URL
+  client.connectToNewEndpoint(); // Issue a new WSS URL and connects to the URL
 }
 ```
