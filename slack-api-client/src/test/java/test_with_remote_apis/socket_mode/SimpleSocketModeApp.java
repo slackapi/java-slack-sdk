@@ -30,7 +30,7 @@ public class SimpleSocketModeApp {
         Slack slack = Slack.getInstance();
         MethodsClient apiClient = slack.methods(botToken);
         ChatPostMessageResponse chatPostMessageResponse = apiClient.chatPostMessage(r -> r
-                // Invite this app to #randome beforehand
+                // Invite this app to #random beforehand
                 .channel("#random")
                 .blocks(asBlocks(
                         actions(a -> a.blockId("b").elements(asElements(
