@@ -5,7 +5,7 @@ public final class SlackApiModelLibraryVersion {
     }
 
     public static final String get() {
-        return "1.5.0-M2";
+        return "1.5.0-RC1";
     }
 }
 

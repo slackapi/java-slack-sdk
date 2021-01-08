@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.5.0-M2</version>
+        <version>1.5.0-RC1</version>
     </parent>
 
     <groupId>com.slack.api</groupId>
     <artifactId>bolt-kotlin-examples</artifactId>
-    <version>1.5.0-M2</version>
+    <version>1.5.0-RC1</version>
     <packaging>jar</packaging>
 
     <dependencies>
