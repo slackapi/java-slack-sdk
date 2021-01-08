@@ -36,6 +36,29 @@ public class MyApp {
 }
 ```
 
+For Socket Mode enabled apps, [Getting Started with Bolt (Socket Mode)](https://slack.dev/java-slack-sdk/guides/getting-started-with-bolt-socket-mode) is available.
+
+```java
+package hello;
+
+import com.slack.api.bolt.App;
+import com.slack.api.bolt.socket_mode.SocketModeApp;
+
+public class MyApp {
+  public static void main(String[] args) throws Exception {
+    // App expects an env variable: SLACK_BOT_TOKEN
+    App app = new App();
+
+    app.command("/hello", (req, ctx) -> {
+      return ctx.ack(":wave: Hello!");
+    });
+
+    // SocketModeApp expects an env variable: SLACK_APP_TOKEN
+    new SocketModeApp(app).start();
+  }
+}
+```
+
 ## Slack API Client
 
 **slack-api-client** contains simple, easy-to-use, and flexibly configurable HTTP clients for making requests to Slack APIs. Refer to [API Client Basics](https://slack.dev/java-slack-sdk/guides/web-api-basics) for details.
@@ -64,6 +87,7 @@ All released versions are available on the Maven Central repositories. The lates
 |---|---|
 |[**com.slack.api:bolt**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt)|Bolt is a framework that offers an abstraction layer to build Slack apps safely and quickly. The most commonly used Servlet environment is supported out-of-the-box.|
 |[**com.slack.api:bolt-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jetty)|This module offers a handy way to run Bolt apps on the [Jetty HTTP server](https://www.eclipse.org/jetty/).|
+|[**com.slack.api:bolt-jetty**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-jetty)|This module offers a handy way to run Bolt apps through [Socket Mode](https://api.slack.com/) connections.|
 |[**com.slack.api:bolt-aws-lambda**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-aws-lambda)|This module offers a handy way to run Bolt apps on AWS [API Gateway](https://aws.amazon.com/api-gateway/) + [Lambda](https://aws.amazon.com/lambda/).|
 |[**com.slack.api:bolt-google-cloud-functions**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-google-cloud-functions)|This module offers a handy way to run Bolt apps on [Google Cloud Functions](https://cloud.google.com/functions).|
 |[**com.slack.api:bolt-micronaut**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:bolt-micronaut)|This is an adapter for [Micronaut](https://micronaut.io/) to run Bolt apps on top of it.|
