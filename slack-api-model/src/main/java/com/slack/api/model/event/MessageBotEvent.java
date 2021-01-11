@@ -29,6 +29,7 @@ public class MessageBotEvent implements Event {
     private List<LayoutBlock> blocks;
     private List<Attachment> attachments;
 
+    private String threadTs;
     private String ts;
 
     private String eventTs;
