@@ -30,7 +30,7 @@ lang: ja
 
 ### Maven
 
-Maven プロジェクトを作成した後、まずは **bolt** 依存ライブラリを `pom.xml` に追加します。このライブラリ自体は特定の環境に依存していません。ソケットモードを有効にするためには **bolt-socket-mode** というライブラリとその provided スコープの必要な依存ライブラリも合わせて追加してください。
+Maven プロジェクトを作成した後、まずは **bolt** 依存ライブラリを `pom.xml` に追加します。このライブラリ自体は特定の環境に依存していません。[ソケットモード](https://api.slack.com/apis/connections/socket)を有効にするためには **bolt-socket-mode** というライブラリとその provided スコープの必要な依存ライブラリも合わせて追加してください。
 
 ```xml
 <dependency>
@@ -83,7 +83,7 @@ dependencies {
 
 ### **bolt-socket-mode** の利用
 
-**bolt-socket-mode** は ソケットモードの Slack アプリを起動する手軽な手段です。このモジュールを使えば、開発者は **App** インスタンスを初期化して処理をスタートする main メソッドを書くだけで WebSocket コネクションを確立することができます。
+**bolt-socket-mode** は[ソケットモード](https://api.slack.com/apis/connections/socket)の Slack アプリを起動する手軽な手段です。このモジュールを使えば、開発者は **App** インスタンスを初期化して処理をスタートする main メソッドを書くだけで WebSocket コネクションを確立することができます。
 
 #### build.gradle
 

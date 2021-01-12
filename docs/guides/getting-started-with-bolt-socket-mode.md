@@ -30,7 +30,7 @@ Let's start building a Slack app using Bolt! This guide includes instructions on
 
 ### Maven
 
-After you create your Maven project, you need to add the **bolt** dependency to your `pom.xml` file. The **bolt** dependency is a framework-agnostic module. To enable Socket Mode, the **bolt-socket-mode** library and its provided-scope dependencies are also required for your app.
+After you create your Maven project, you need to add the **bolt** dependency to your `pom.xml` file. The **bolt** dependency is a framework-agnostic module. To enable [Socket Mode](https://api.slack.com/apis/connections/socket), the **bolt-socket-mode** library and its provided-scope dependencies are also required for your app.
 
 ```xml
 <dependency>
@@ -82,7 +82,7 @@ dependencies {
 
 ### Use **bolt-socket-mode**
 
-**bolt-socket-mode** is a handy way to start your Socket Mode app. It allows developers to build a Slack app backend service by writing only a main method initializes **App** and establishes a WebSocket connection to the Socket Mode servers.
+**bolt-socket-mode** is a handy way to start your [Socket Mode](https://api.slack.com/apis/connections/socket) app. It allows developers to build a Slack app backend service by writing only a main method initializes **App** and establishes a WebSocket connection to the Socket Mode servers.
 
 #### build.gradle
 

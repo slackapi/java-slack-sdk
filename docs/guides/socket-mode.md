@@ -6,7 +6,7 @@ lang: en
 
 # Socket Mode
 
-With Socket Mode, instead of creating a server with endpoints that Slack sends payloads to, the app will instead connect to Slack via a WebSocket connection and receive data from Slack over the socket connection. In this SDK, **bolt-socket-mode**, a Bolt framework extension for building Socket Mode enabled apps, is available since version 1.5.
+With [Socket Mode](https://api.slack.com/apis/connections/socket), instead of creating a server with endpoints that Slack sends payloads to, the app will instead connect to Slack via a WebSocket connection and receive data from Slack over the socket connection. In this SDK, **bolt-socket-mode**, a Bolt framework extension for building Socket Mode enabled apps, is available since version 1.5.
 
 ### Slack App Configuration
 
