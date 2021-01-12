@@ -673,6 +673,7 @@
         }
       }
     ],
+    "thread_ts": "",
     "ts": "",
     "event_ts": "",
     "channel_type": ""
