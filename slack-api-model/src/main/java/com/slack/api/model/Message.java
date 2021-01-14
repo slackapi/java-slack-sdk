@@ -76,6 +76,8 @@ public class Message {
     private List<MessageRootReply> replies;
     private Integer replyCount;
 
+    // NOTE: This is a bit confusing but an ID in "reply_users" can be either bot_id or user_id.
+    // A bot_id starts with "B" while a user_id can start with either "U" or "W".
     private List<String> replyUsers;
     private Integer replyUsersCount;
 
