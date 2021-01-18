@@ -2,6 +2,7 @@ package com.slack.api.model.event;
 
 import com.slack.api.model.Attachment;
 import com.slack.api.model.BotProfile;
+import com.slack.api.model.File;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
@@ -35,6 +36,7 @@ public class MessageEvent implements Event {
     private String text;
     private List<LayoutBlock> blocks;
     private List<Attachment> attachments;
+    private List<File> files;
 
     private String ts;
 
