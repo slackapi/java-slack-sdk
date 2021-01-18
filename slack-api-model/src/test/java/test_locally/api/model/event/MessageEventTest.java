@@ -393,4 +393,59 @@ public class MessageEventTest {
         assertThat(event.getMessage().getFiles(), is(equalTo(event.getPreviousMessage().getFiles())));
     }
 
+    @Test
+    public void deserialize_message_with_text_snippet() {
+        String json = "{\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"text\": \"Check this snippet\",\n" +
+                "  \"files\": [\n" +
+                "    {\n" +
+                "      \"id\": \"F111\",\n" +
+                "      \"created\": 1592795432,\n" +
+                "      \"timestamp\": 1592795432,\n" +
+                "      \"name\": \"test_text.txt\",\n" +
+                "      \"title\": \"test text\",\n" +
+                "      \"mimetype\": \"text/plain\",\n" +
+                "      \"filetype\": \"text\",\n" +
+                "      \"pretty_type\": \"Plain Text\",\n" +
+                "      \"user\": \"U111\",\n" +
+                "      \"editable\": true,\n" +
+                "      \"size\": 14,\n" +
+                "      \"mode\": \"snippet\",\n" +
+                "      \"is_external\": false,\n" +
+                "      \"external_type\": \"\",\n" +
+                "      \"is_public\": true,\n" +
+                "      \"public_url_shared\": false,\n" +
+                "      \"display_as_bot\": false,\n" +
+                "      \"username\": \"\",\n" +
+                "      \"url_private\": \"https://files.slack.com/files-pri/T111-F111/test_text.txt\",\n" +
+                "      \"url_private_download\": \"https://files.slack.com/files-pri/T111-F111/download/test_text.txt\",\n" +
+                "      \"permalink\": \"https://org-domain.enterprise.slack.com/files/U111/F111/test_text.txt\",\n" +
+                "      \"permalink_public\": \"https://slack-files.com/T111-F111-817003e111\",\n" +
+                "      \"edit_link\": \"https://org-domain.enterprise.slack.com/files/U111/F111/test_text.txt/edit\",\n" +
+                "      \"preview\": \"test test test\",\n" +
+                "      \"preview_highlight\": \"<div class=\\\"CodeMirror cm-s-default CodeMirrorServer\\\" oncopy=\\\"if(event.clipboardData){event.clipboardData.setData('text/plain',window.getSelection().toString().replace(/\\\\u200b/g,''));event.preventDefault();event.stopPropagation();}\\\">\\n<div class=\\\"CodeMirror-code\\\">\\n<div><pre>test test test</pre></div>\\n</div>\\n</div>\\n\",\n" +
+                "      \"lines\": 1,\n" +
+                "      \"lines_more\": 0,\n" +
+                "      \"preview_is_truncated\": false,\n" +
+                "      \"has_rich_preview\": false\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"user\": \"U111\",\n" +
+                "  \"ts\": \"1592795432.000500\",\n" +
+                "  \"channel\": \"C111\",\n" +
+                "  \"event_ts\": \"1592795432.000500\",\n" +
+                "  \"channel_type\": \"channel\"\n" +
+                "}\n";
+        MessageEvent event = GsonFactory.createSnakeCase().fromJson(json, MessageEvent.class);
+        List<File> files = event.getFiles();
+        assertThat(files, is(notNullValue()));
+        assertThat(files.size(), is(1));
+        assertThat(files.get(0).getUrlPrivate(), is("https://files.slack.com/files-pri/T111-F111/test_text.txt"));
+        assertThat(event.getType(), is("message"));
+        assertThat(event.getChannel(), is("C111"));
+        assertThat(event.getUser(), is("U111"));
+        assertThat(event.getText(), is("Check this snippet"));
+        assertThat(event.getTs(), is("1592795432.000500"));
+    }
 }
