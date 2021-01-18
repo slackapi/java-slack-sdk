@@ -19,7 +19,7 @@ public interface OAuthRedirectUriPageRenderer {
     /**
      * Returns an HTML content for the error page.
      *
-     * @param installPath the defualt is /slack/install
+     * @param installPath the default is /slack/install
      * @param reason      error reason
      * @return html content
      */
