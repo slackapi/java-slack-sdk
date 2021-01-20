@@ -22,7 +22,7 @@ lang: ja
 
 #### `"block_actions"` リクエスト
 
-ユーザーがモーダル内の[インタラクティブなコンポーネント](https://api.slack.com/reference/block-kit/interactive-components)を使用して何かアクションを起こしたとき、アプリは [`"block_actions"` という type のペイロード]((https://api.slack.com/reference/interaction-payloads/block-actions))を受信します。このリクエストを処理するためにやらなければならないことは以下の通りです。
+ユーザーがモーダル内の[インタラクティブなコンポーネント](https://api.slack.com/reference/block-kit/interactive-components)を使用して何かアクションを起こしたとき、アプリは [`"block_actions"` という type のペイロード](https://api.slack.com/reference/interaction-payloads/block-actions)を受信します。このリクエストを処理するためにやらなければならないことは以下の通りです。
 
 1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
 1. リクエストボディをパースして `type` が `"block_actions"` かつ `action_id` が処理対象か確認
