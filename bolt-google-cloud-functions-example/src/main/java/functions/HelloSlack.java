@@ -7,7 +7,7 @@ import com.slack.api.bolt.google_cloud_functions.SlackApiFunction;
 // export SLACK_SIGNING_SECRET=
 
 // Local Development
-// mvn function:run
+// mvn function:run -Drun.functionTarget=functions.HelloSlack
 // ngrok http 8080 --subdomain your-domain
 
 // Deployment
