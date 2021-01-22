@@ -8,7 +8,9 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <google-cloud-functions.version>1.0.3</google-cloud-functions.version>
-        <bolt.version>[1.4,)</bolt.version>
+        <google-cloud-storage.version>1.113.9</google-cloud-storage.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <bolt.version>[1.5,)</bolt.version>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
     </properties>
@@ -21,20 +23,31 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-storage</artifactId>
+            <version>${google-cloud-storage.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.slack.api</groupId>
             <artifactId>bolt-google-cloud-functions</artifactId>
             <version>${bolt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <!-- mvn function:run -Drun.functionTarget=functions.HelloSlack -->
+                <!-- mvn function:run -Drun.functionTarget=functions.SlackOAuth -->
                 <groupId>com.google.cloud.functions</groupId>
                 <artifactId>function-maven-plugin</artifactId>
                 <configuration>
-                    <functionTarget>functions.HelloSlack</functionTarget>
+                    <!--<functionTarget>functions.HelloSlack</functionTarget>-->
+                    <!--<functionTarget>functions.SlackOAuth</functionTarget>-->
                 </configuration>
             </plugin>
         </plugins>

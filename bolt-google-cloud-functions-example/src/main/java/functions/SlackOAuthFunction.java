@@ -1,4 +1,4 @@
-package com.slack.api.bolt.google_cloud_functions;
+package functions;
 
 import com.google.cloud.functions.HttpFunction;
 import com.google.cloud.functions.HttpRequest;
@@ -19,12 +19,12 @@ import static java.util.stream.Collectors.joining;
 /**
  * An HttpFunction that handles incoming requests from Slack.
  */
-public class SlackApiFunction implements HttpFunction {
+public class SlackOAuthFunction implements HttpFunction {
 
     private final App app;
     private final SlackRequestParser requestParser;
 
-    public SlackApiFunction(App app) {
+    public SlackOAuthFunction(App app) {
         this.app = app;
         this.requestParser = new SlackRequestParser(this.app.config());
     }
@@ -71,4 +71,3 @@ public class SlackApiFunction implements HttpFunction {
         httpResponse.getWriter().write(boltResponse.getBody());
     }
 }
-
