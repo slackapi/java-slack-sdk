@@ -1,4 +1,4 @@
-package com.slack.api.model;
+package com.slack.api.model.workflow;
 
 import lombok.Data;
 
