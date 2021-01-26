@@ -30,7 +30,8 @@
         "U00000000"
       ],
       "subscribed": false,
-      "last_read": "0000000000.000000"
+      "last_read": "0000000000.000000",
+      "is_starred": false
     }
   ],
   "has_more": false,

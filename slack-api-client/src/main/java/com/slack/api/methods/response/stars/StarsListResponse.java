@@ -2,10 +2,7 @@ package com.slack.api.methods.response.stars;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiTextResponse;
-import com.slack.api.model.Attachment;
-import com.slack.api.model.File;
-import com.slack.api.model.Paging;
-import com.slack.api.model.Reaction;
+import com.slack.api.model.*;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
@@ -41,10 +38,14 @@ public class StarsListResponse implements SlackApiTextResponse {
         private String text;
         private String ts;
         private String botId;
+        private BotProfile botProfile;
+        private Boolean displayAsBot;
         private String team;
 
         private List<Attachment> attachments;
         private List<LayoutBlock> blocks;
+        private List<File> files;
+        private Boolean upload;
 
         private String permalink;
         @SerializedName("is_starred")
@@ -70,12 +71,19 @@ public class StarsListResponse implements SlackApiTextResponse {
         private boolean subscribed;
         private String lastRead;
         private List<Reaction> reactions;
+        private Edited edited;
 
         /**
          * A reply message information in a MessageRoot.
          */
         @Data
         public static class MessageRootReply {
+            private String user;
+            private String ts;
+        }
+
+        @Data
+        public static class Edited {
             private String user;
             private String ts;
         }
