@@ -103,7 +103,8 @@ public class EventsApiPayloadDumpTest {
                 buildUserResourceGrantedPayload(),
                 new UserResourceRemovedPayload(),
                 new MessageGroupTopicPayload(),
-                new MessageChannelTopicPayload()
+                new MessageChannelTopicPayload(),
+                new WorkflowStepExecutePayload()
         );
         for (EventsApiPayload<?> payload : payloads) {
             try {

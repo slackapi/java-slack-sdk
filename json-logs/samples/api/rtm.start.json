@@ -387,7 +387,17 @@
       "emoji_packs_clicked_picker_post_install_cta": false,
       "huddles_mute_by_default": false,
       "show_sidebar_avatars": false,
-      "seen_connect_section_coachmark": false
+      "seen_connect_section_coachmark": false,
+      "has_dismissed_google_directory_coachmark": false,
+      "huddles_global_mute": false,
+      "huddle_survey_last_seen": "",
+      "huddles_mini_panel": false,
+      "sidebar_pref_dismissed_tip": false,
+      "enable_media_captions": false,
+      "set_a11y_prefs_new_user": false,
+      "seen_sc_page_banner": false,
+      "seen_sc_menu_coachmark": false,
+      "seen_sc_page": false
     },
     "created": 12345,
     "first_login": 12345,
@@ -655,7 +665,9 @@
         "type": [
           ""
         ]
-      }
+      },
+      "show_legacy_paid_benefits_page": false,
+      "enable_domain_allowlist_for_cea": false
     },
     "icon": {
       "image_34": "https://www.example.com/",
@@ -800,6 +812,10 @@
               "image_72": ""
             },
             "team_id": ""
+          },
+          "edited": {
+            "user": "",
+            "ts": ""
           },
           "reply_count": 123,
           "reply_users_count": 123,
@@ -962,6 +978,10 @@
                       "image_72": ""
                     },
                     "team_id": ""
+                  },
+                  "edited": {
+                    "user": "",
+                    "ts": ""
                   },
                   "reply_count": 123,
                   "reply_users_count": 123,
