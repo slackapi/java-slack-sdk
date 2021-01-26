@@ -4,6 +4,10 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
+import com.slack.api.model.event.WorkflowDeletedEvent;
+import com.slack.api.model.event.WorkflowPublishedEvent;
+import com.slack.api.model.event.WorkflowStepDeletedEvent;
+import com.slack.api.model.event.WorkflowUnpublishedEvent;
 import com.slack.api.model.view.ViewState;
 import com.slack.api.model.workflow.WorkflowStepExecution;
 import com.slack.api.model.workflow.WorkflowStepInput;
@@ -93,6 +97,26 @@ public class WorkflowStepListenersSample {
                     }
                 }
             });
+            return ctx.ack();
+        });
+
+        app.event(WorkflowDeletedEvent.class, (req, ctx) -> {
+            ctx.logger.info("workflow deleted - {}", req);
+            return ctx.ack();
+        });
+
+        app.event(WorkflowPublishedEvent.class, (req, ctx) -> {
+            ctx.logger.info("workflow published - {}", req);
+            return ctx.ack();
+        });
+
+        app.event(WorkflowUnpublishedEvent.class, (req, ctx) -> {
+            ctx.logger.info("workflow unpublished - {}", req);
+            return ctx.ack();
+        });
+
+        app.event(WorkflowStepDeletedEvent.class, (req, ctx) -> {
+            ctx.logger.info("workflow step deleted - {}", req);
             return ctx.ack();
         });
 
