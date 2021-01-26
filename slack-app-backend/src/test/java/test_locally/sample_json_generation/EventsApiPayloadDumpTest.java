@@ -104,7 +104,11 @@ public class EventsApiPayloadDumpTest {
                 new UserResourceRemovedPayload(),
                 new MessageGroupTopicPayload(),
                 new MessageChannelTopicPayload(),
-                new WorkflowStepExecutePayload()
+                new WorkflowStepExecutePayload(),
+                new WorkflowDeletedPayload(),
+                new WorkflowPublishedPayload(),
+                new WorkflowUnpublishedPayload(),
+                new WorkflowStepDeletedPayload()
         );
         for (EventsApiPayload<?> payload : payloads) {
             try {

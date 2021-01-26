@@ -345,6 +345,31 @@ public class EventHandlersTest {
                     @Override
                     public void handle(TeamAccessRevokedPayload payload) {
                     }
+                },
+                new WorkflowStepExecuteHandler() {
+                    @Override
+                    public void handle(WorkflowStepExecutePayload payload) {
+                    }
+                },
+                new WorkflowDeletedHandler() {
+                    @Override
+                    public void handle(WorkflowDeletedPayload payload) {
+                    }
+                },
+                new WorkflowPublishedHandler() {
+                    @Override
+                    public void handle(WorkflowPublishedPayload payload) {
+                    }
+                },
+                new WorkflowUnpublishedHandler() {
+                    @Override
+                    public void handle(WorkflowPublishedPayload payload) {
+                    }
+                },
+                new WorkflowStepDeletedHandler() {
+                    @Override
+                    public void handle(WorkflowStepDeletedPayload payload) {
+                    }
                 }
         );
 
