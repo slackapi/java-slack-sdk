@@ -4,6 +4,7 @@ import com.google.cloud.storage.*;
 import com.google.gson.Gson;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
+import com.slack.api.bolt.google_cloud_functions.SlackApiFunction;
 import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.model.builtin.DefaultBot;
@@ -31,7 +32,8 @@ import java.nio.charset.StandardCharsets;
 /**
  * Refer to https://cloud.google.com/functions/docs/first-java for details.
  */
-public class SlackOAuth extends SlackOAuthFunction {
+public class SlackOAuth extends SlackApiFunction {
+
     private static final App app = new App(AppConfig.builder()
             .clientId(System.getenv("SLACK_CLIENT_ID"))
             .clientSecret(System.getenv("SLACK_CLIENT_SECRET"))
