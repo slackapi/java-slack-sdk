@@ -10,6 +10,8 @@ import com.slack.api.bolt.request.RequestType;
 import com.slack.api.util.json.GsonFactory;
 import lombok.ToString;
 
+import java.util.Locale;
+
 @ToString(callSuper = true)
 public class EventRequest extends Request<EventContext> {
 
@@ -79,6 +81,23 @@ public class EventRequest extends Request<EventContext> {
         }
         this.getContext().setEnterpriseId(enterpriseId);
         this.getContext().setTeamId(teamId);
+        // set retry related header values to the context
+        if (this.headers != null && this.headers.getNames().size() > 0) {
+            for (String name : this.headers.getNames()) {
+                String normalizedName = name.toLowerCase(Locale.ENGLISH);
+                String value = this.headers.getFirstValue(name);
+                if (normalizedName.equals("x-slack-retry-num")) {
+                    try {
+                        Integer num = Integer.parseInt(value);
+                        this.getContext().setRetryNum(num);
+                    } catch (NumberFormatException e) {
+                    }
+                }
+                if (normalizedName.equals("x-slack-retry-reason")) {
+                    this.getContext().setRetryReason(value);
+                }
+            }
+        }
 
         if (event.get("channel") != null && event.get("channel").isJsonPrimitive()) {
             this.getContext().setChannelId(event.get("channel").getAsString());

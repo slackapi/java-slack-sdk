@@ -217,8 +217,8 @@ public class MockSocketMode extends WebSocketAdapter {
             "  },\n" +
             "  \"type\": \"events_api\",\n" +
             "  \"accepts_response_payload\": false,\n" +
-            "  \"retry_attempt\": 0,\n" +
-            "  \"retry_reason\": \"\"\n" +
+            "  \"retry_attempt\": 2,\n" +
+            "  \"retry_reason\": \"timeout\"\n" +
             "}\n";
 
     String commandEnvelope = "{\n" +
