@@ -12,9 +12,7 @@ import com.slack.api.socket_mode.request.SocketModeEnvelope;
 import com.slack.api.util.json.GsonFactory;
 import lombok.Data;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class SocketModeRequestParser {
     private static final Gson GSON = GsonFactory.createSnakeCase();
@@ -43,6 +41,13 @@ public class SocketModeRequestParser {
     public SocketModeRequest parse(String message) {
         GenericSocketModeEnvelope envelope = GSON.fromJson(message, GenericSocketModeEnvelope.class);
         if (ENVELOPE_TYPES.contains(envelope.getType())) {
+            Map<String, List<String>> headers = new HashMap<>();
+            if (envelope.getRetryAttempt() != null) {
+                headers.put("X-Slack-Retry-Num", Arrays.asList(String.valueOf(envelope.getRetryAttempt())));
+            }
+            if (envelope.getRetryReason() != null) {
+                headers.put("X-Slack-Retry-Reason", Arrays.asList(envelope.getRetryReason()));
+            }
             return SocketModeRequest.builder()
                     .envelope(envelope)
                     .boltRequest(slackRequestParser.parse(SlackRequestParser.HttpRequest.builder()
@@ -51,7 +56,7 @@ public class SocketModeRequestParser {
                             .remoteAddress("")
                             .queryString(Collections.emptyMap())
                             .requestBody(GSON.toJson(envelope.getPayload()))
-                            .headers(new RequestHeaders(Collections.emptyMap())) // TODO: retries in Events API
+                            .headers(new RequestHeaders(headers))
                             .build()))
                     .build();
         }

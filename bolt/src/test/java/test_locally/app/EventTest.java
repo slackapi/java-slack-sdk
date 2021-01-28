@@ -288,4 +288,29 @@ public class EventTest {
         assertEquals(200L, response.getStatusCode().longValue());
         assertTrue(tokensRevoked.get());
     }
+
+    @Test
+    public void retryHeaders() throws Exception {
+        App app = buildApp();
+        AtomicBoolean numReceived = new AtomicBoolean(false);
+        AtomicBoolean reasonReceived = new AtomicBoolean(false);
+        app.event(MessageEvent.class, (req, ctx) -> {
+            numReceived.set(ctx.getRetryNum() == 1);
+            reasonReceived.set(ctx.getRetryReason().equals("timeout"));
+            return ctx.ack();
+        });
+
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        rawHeaders.put("X-Slack-Retry-Num", Arrays.asList("1"));
+        rawHeaders.put("X-Slack-Retry-Reason", Arrays.asList("timeout"));
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(messagePayload, rawHeaders, timestamp);
+
+        EventRequest req = new EventRequest(messagePayload, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+
+        assertTrue(numReceived.get());
+        assertTrue(reasonReceived.get());
+    }
 }
