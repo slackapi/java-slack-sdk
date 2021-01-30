@@ -5,8 +5,8 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsConfig;
-import com.slack.api.methods.MethodsStats;
-import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
+import com.slack.api.methods.metrics.RedisMetricsDatastore;
+import com.slack.api.rate_limits.metrics.RequestStats;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,11 +66,11 @@ public class RedisMetricsDatastoreTest {
         for (int i = 0; i < 3; i++) {
             client.authTest(r -> r.token(ValidToken)).get();
         }
-        Map<String, Map<String, MethodsStats>> allStats = datastore.getAllStats();
+        Map<String, Map<String, RequestStats>> allStats = datastore.getAllStats();
         assertNotNull(allStats);
         assertEquals(1, allStats.get("DEFAULT_SINGLETON_EXECUTOR").size());
 
-        MethodsStats teamStats = allStats.get("DEFAULT_SINGLETON_EXECUTOR").values().iterator().next();
+        RequestStats teamStats = allStats.get("DEFAULT_SINGLETON_EXECUTOR").values().iterator().next();
         assertEquals(3L, teamStats.getAllCompletedCalls().get("auth.test").longValue());
         assertEquals(3L, teamStats.getSuccessfulCalls().get("auth.test").longValue());
         assertEquals(3L, teamStats.getLastMinuteRequests().get("auth.test").longValue());

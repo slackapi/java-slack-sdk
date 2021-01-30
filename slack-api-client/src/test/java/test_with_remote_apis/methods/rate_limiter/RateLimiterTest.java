@@ -2,10 +2,10 @@ package test_with_remote_apis.methods.rate_limiter;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.Methods;
-import com.slack.api.methods.MethodsStats;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.util.json.GsonFactory;
+import com.slack.api.rate_limits.metrics.RequestStats;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +49,7 @@ public class RateLimiterTest {
         }
 
         String teamId = slack.methods().teamInfo(r -> r.token(botToken)).getTeam().getId();
-        MethodsStats stats = testConfig.getMetricsDatastore().getStats(teamId);
+        RequestStats stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
         assertThat(stats.getSuccessfulCalls().get(Methods.CONVERSATIONS_LIST), is(greaterThanOrEqualTo(3L)));
         assertThat(stats.getLastMinuteRequests().get(Methods.CONVERSATIONS_LIST), is(greaterThanOrEqualTo(3)));
     }
@@ -60,7 +60,7 @@ public class RateLimiterTest {
         assertThat(botToken, is(notNullValue()));
 
         String teamId = slack.methods().teamInfo(r -> r.token(botToken)).getTeam().getId();
-        MethodsStats stats = testConfig.getMetricsDatastore().getStats(teamId);
+        RequestStats stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
         Integer beforeRequestsPerMinute = stats.getLastMinuteRequests().get(Methods.CONVERSATIONS_LIST);
         if (beforeRequestsPerMinute == null) {
             beforeRequestsPerMinute = 0;
@@ -83,13 +83,13 @@ public class RateLimiterTest {
         // (60 seconds / 20) * 30 = 90
         log.info("spent: {} milliseconds", spentMillis);
 
-        stats = testConfig.getMetricsDatastore().getStats(teamId);
+        stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
         Integer currentSize = stats.getCurrentQueueSize().get(Methods.CONVERSATIONS_LIST);
         log.info("current queue size: {}", currentSize);
 
         // Make sure if the cleanup background job works
         Thread.sleep(5000L);
-        stats = testConfig.getMetricsDatastore().getStats(teamId);
+        stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
         Integer requestsPerMinute = stats.getLastMinuteRequests().get(Methods.CONVERSATIONS_LIST);
         assertThat(requestsPerMinute - beforeRequestsPerMinute, is(lessThanOrEqualTo(30)));
 
@@ -130,10 +130,10 @@ public class RateLimiterTest {
             // intentionally rate limited
         }
         String teamId = slack.methods().teamInfo(r -> r.token(botToken)).getTeam().getId();
-        MethodsStats stats = testConfig.getMetricsDatastore().getStats(teamId);
+        RequestStats stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
         Long rateLimited = stats.getRateLimitedMethods().get("chat.postMessage_#random");
         while (rateLimited != null) {
-            stats = testConfig.getMetricsDatastore().getStats(teamId);
+            stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
             rateLimited = stats.getRateLimitedMethods().get("chat.postMessage_#random");
             log.info("stats - {}", GsonFactory.createCamelCase(testConfig.getConfig()).toJson(stats));
             Thread.sleep(2000L);
@@ -157,7 +157,7 @@ public class RateLimiterTest {
         long spentMillis = end - start;
         log.info("Spent time: {} milliseconds", spentMillis);
 
-        stats = testConfig.getMetricsDatastore().getStats(teamId);
+        stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
         log.info("Final stats - {}", GsonFactory.createCamelCase(testConfig.getConfig()).toJson(stats));
 
         assertThat(stats.getSuccessfulCalls().get("chat.postMessage"), is(greaterThanOrEqualTo(66L)));

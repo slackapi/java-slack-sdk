@@ -1,7 +1,7 @@
 package test_locally.api.methods.metrics;
 
-import com.slack.api.methods.MethodsStats;
-import com.slack.api.methods.metrics.impl.MemoryMetricsDatastore;
+import com.slack.api.methods.metrics.MemoryMetricsDatastore;
+import com.slack.api.rate_limits.metrics.RequestStats;
 import org.junit.Test;
 
 import java.util.Map;
@@ -20,21 +20,21 @@ public class MemoryMetricsDatastoreTest {
     @Test
     public void getAllStats() {
         MemoryMetricsDatastore datastore = new MemoryMetricsDatastore(1);
-        Map<String, Map<String, MethodsStats>> allStats = datastore.getAllStats();
+        Map<String, Map<String, RequestStats>> allStats = datastore.getAllStats();
         assertNotNull(allStats);
     }
 
     @Test
     public void getStats_teamId() {
         MemoryMetricsDatastore datastore = new MemoryMetricsDatastore(1);
-        MethodsStats stats = datastore.getStats("T123");
+        RequestStats stats = datastore.getStats("T123");
         assertNotNull(stats);
     }
 
     @Test
     public void getStats() {
         MemoryMetricsDatastore datastore = new MemoryMetricsDatastore(1);
-        MethodsStats stats = datastore.getStats(DEFAULT_SINGLETON_EXECUTOR_NAME, "T123");
+        RequestStats stats = datastore.getStats(DEFAULT_SINGLETON_EXECUTOR_NAME, "T123");
         assertNotNull(stats);
     }
 

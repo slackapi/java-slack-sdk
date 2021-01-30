@@ -1,10 +1,10 @@
 package config;
 
 import com.slack.api.SlackConfig;
-import com.slack.api.methods.metrics.MetricsDatastore;
-import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
+import com.slack.api.methods.metrics.RedisMetricsDatastore;
 import com.slack.api.util.http.listener.HttpResponseListener;
 import com.slack.api.util.json.GsonFactory;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.JedisPool;
 import util.sample_json_generation.JsonDataRecordingListener;
@@ -21,8 +21,12 @@ public class SlackTestConfig {
 
     private final SlackConfig config;
 
-    public MetricsDatastore getMetricsDatastore() {
+    public MetricsDatastore getMethodsMetricsDatastore() {
         return getConfig().getMethodsConfig().getMetricsDatastore();
+    }
+
+    public MetricsDatastore getAuditMetricsDatastore() {
+        return getConfig().getAuditConfig().getMetricsDatastore();
     }
 
     private SlackTestConfig(SlackConfig config) {
@@ -30,8 +34,22 @@ public class SlackTestConfig {
         CONFIG.getHttpClientResponseHandlers().add(new HttpResponseListener() {
             @Override
             public void accept(State state) {
-                String json = GsonFactory.createSnakeCase(CONFIG).toJson(getMetricsDatastore().getAllStats());
-                log.debug("--- (MethodsStats) ---\n" + json);
+                String json = GsonFactory.createSnakeCase(CONFIG).toJson(getMethodsMetricsDatastore().getAllStats());
+                log.debug("--- (API Methods Stats) ---\n" + json);
+            }
+        });
+        CONFIG.getHttpClientResponseHandlers().add(new HttpResponseListener() {
+            @Override
+            public void accept(State state) {
+                String json = GsonFactory.createSnakeCase(CONFIG).toJson(getAuditMetricsDatastore().getAllStats());
+                log.debug("--- (Audit Logs Stats) ---\n" + json);
+            }
+        });
+        CONFIG.getHttpClientResponseHandlers().add(new HttpResponseListener() {
+            @Override
+            public void accept(State state) {
+                String json = GsonFactory.createSnakeCase(CONFIG).toJson(getAuditMetricsDatastore().getAllStats());
+                log.debug("--- (Audit Logs Stats) ---\n" + json);
             }
         });
 

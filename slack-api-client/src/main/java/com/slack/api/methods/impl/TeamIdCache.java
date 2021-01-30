@@ -37,6 +37,7 @@ public class TeamIdCache {
                         log.debug("Created cache for an auth.test API call (token: {}, team_id: {})",
                                 token.substring(0, 16) + "...", authTest.getTeamId());
                     }
+                    // for org admin user's token, this value can be an enterprise_id
                     return authTest.getTeamId();
                 } else {
                     log.error("Got an unsuccessful response from auth.test API (error: {})", authTest.getError());

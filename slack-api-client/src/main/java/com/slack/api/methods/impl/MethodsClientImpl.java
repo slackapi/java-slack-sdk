@@ -3,7 +3,6 @@ package com.slack.api.methods.impl;
 import com.google.gson.Gson;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.*;
-import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
@@ -205,6 +204,7 @@ import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 

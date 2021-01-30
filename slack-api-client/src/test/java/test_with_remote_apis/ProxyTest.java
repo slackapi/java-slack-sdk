@@ -171,7 +171,7 @@ public class ProxyTest {
             Slack slack = Slack.getInstance(config);
             ServiceProviderConfigsGetResponse response = slack.scim(scimToken).getServiceProviderConfigs(req -> req);
             assertThat(response.getAuthenticationSchemes(), is(notNullValue()));
-            assertThat(callCount.get(), is(1));
+            assertThat(callCount.get(), is(2)); // auth.test & scim
         }
     }
 

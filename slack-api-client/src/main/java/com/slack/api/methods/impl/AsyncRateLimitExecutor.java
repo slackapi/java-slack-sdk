@@ -2,14 +2,15 @@ package com.slack.api.methods.impl;
 
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.*;
-import com.slack.api.methods.metrics.MetricsDatastore;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import com.slack.api.rate_limits.queue.MessageIdGenerator;
+import com.slack.api.rate_limits.queue.MessageIdGeneratorUUIDImpl;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.*;
 
 @Slf4j
@@ -20,11 +21,13 @@ public class AsyncRateLimitExecutor {
     private MethodsConfig config;
     private MetricsDatastore metricsDatastore; // intentionally mutable
     private final TeamIdCache teamIdCache;
+    private final MessageIdGenerator messageIdGenerator;
 
     private AsyncRateLimitExecutor(MethodsClientImpl clientImpl, SlackConfig config) {
         this.config = config.getMethodsConfig();
         this.metricsDatastore = config.getMethodsConfig().getMetricsDatastore();
         this.teamIdCache = new TeamIdCache(clientImpl);
+        this.messageIdGenerator = new MessageIdGeneratorUUIDImpl();
     }
 
     public static AsyncRateLimitExecutor get(String executorName) {
@@ -63,7 +66,7 @@ public class AsyncRateLimitExecutor {
             if (NO_TOKEN_METHOD_NAMES.contains(methodName) || teamId == null) {
                 return runWithoutQueue(teamId, methodName, methodsSupplier);
             } else {
-                String messageId = generateMessageId();
+                String messageId = messageIdGenerator.generate();
                 String methodNameWithSuffix = toMethodNameWithSuffix(methodName, params);
                 addMessageId(teamId, methodNameWithSuffix, messageId);
                 initCurrentQueueSizeStatsIfAbsent(teamId, methodNameWithSuffix);
@@ -141,7 +144,8 @@ public class AsyncRateLimitExecutor {
             while (supplier == null && consumedMillis < config.getMaxIdleMills()) {
                 Thread.sleep(10);
                 consumedMillis += 10;
-                supplier = activeQueue.dequeueIfReady(messageId, teamId, methodName, params);
+                supplier = (AsyncExecutionSupplier<T>) activeQueue.dequeueIfReady(
+                        messageId, teamId, methodName, params);
                 removeMessageId(teamId, toMethodNameWithSuffix(methodName, params), messageId);
             }
             if (supplier == null) {
@@ -165,10 +169,6 @@ public class AsyncRateLimitExecutor {
             log.error("Got an InterruptedException (error: {})", e.getMessage(), e);
             throw new RuntimeException(e);
         }
-    }
-
-    private static String generateMessageId() {
-        return UUID.randomUUID().toString();
     }
 
     private static <T extends SlackApiTextResponse> T handleRuntimeException(String teamId, String methodName, RuntimeException e) {

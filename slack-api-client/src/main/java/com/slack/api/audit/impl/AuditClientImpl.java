@@ -1,16 +1,16 @@
 package com.slack.api.audit.impl;
 
 import com.slack.api.RequestConfigurator;
-import com.slack.api.audit.AuditApiException;
-import com.slack.api.audit.AuditApiRequest;
-import com.slack.api.audit.AuditApiResponse;
-import com.slack.api.audit.AuditClient;
+import com.slack.api.SlackConfig;
+import com.slack.api.audit.*;
 import com.slack.api.audit.request.ActionsRequest;
 import com.slack.api.audit.request.LogsRequest;
 import com.slack.api.audit.request.SchemasRequest;
 import com.slack.api.audit.response.ActionsResponse;
 import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.audit.response.SchemasResponse;
+import com.slack.api.methods.impl.TeamIdCache;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
 import okhttp3.Response;
@@ -23,17 +23,23 @@ public class AuditClientImpl implements AuditClient {
 
     private String endpointUrlPrefix = getEndpointUrlPrefix();
 
+    private final AuditConfig config;
     private final SlackHttpClient slackHttpClient;
     private final String token;
+    private final boolean statsEnabled;
+    private final TeamIdCache teamIdCache;
     private boolean attachRawBody = false;
 
-    public AuditClientImpl(SlackHttpClient slackHttpClient) {
-        this(slackHttpClient, null);
+    public AuditClientImpl(SlackConfig config, SlackHttpClient slackHttpClient, TeamIdCache teamIdCache) {
+        this(config, slackHttpClient, teamIdCache, null);
     }
 
-    public AuditClientImpl(SlackHttpClient slackHttpClient, String token) {
+    public AuditClientImpl(SlackConfig config, SlackHttpClient slackHttpClient, TeamIdCache teamIdCache, String token) {
+        this.config = config.getAuditConfig();
         this.slackHttpClient = slackHttpClient;
         this.token = token;
+        this.statsEnabled = config.getAuditConfig().isStatsEnabled();
+        this.teamIdCache = teamIdCache;
     }
 
     public String getEndpointUrlPrefix() {
@@ -123,8 +129,48 @@ public class AuditClientImpl implements AuditClient {
     }
 
     private <T extends AuditApiResponse> T doGet(String url, Map<String, String> query, String token, Class<T> clazz) throws IOException, AuditApiException {
-        Response response = slackHttpClient.get(url, query, token);
-        return parseJsonResponseAndRunListeners(response, clazz);
+        String enterpriseId = null;
+        if (statsEnabled) {
+            // In the case where you verify org admin user's token,
+            // the team_id in an auth.test API response is an enterprise_id value
+            enterpriseId = teamIdCache.lookupOrResolve(token);
+        }
+        MetricsDatastore datastore = config.getMetricsDatastore();
+        String executorName = config.getExecutorName();
+        String[] elements = url.split("/");
+        String key = elements[elements.length - 1];
+        try {
+            Response response = slackHttpClient.get(url, query, token);
+            T result = parseJsonResponseAndRunListeners(response, clazz);
+            datastore.incrementSuccessfulCalls(executorName, enterpriseId, key);
+            return result;
+        } catch (AuditApiException e) {
+            if (enterpriseId != null) {
+                datastore.incrementUnsuccessfulCalls(executorName, enterpriseId, key);
+            }
+            if (e.getResponse().code() == 429) {
+                // rate limited
+                final String retryAfterSeconds = e.getResponse().header("Retry-After");
+                if (retryAfterSeconds != null) {
+                    long secondsToWait = Long.valueOf(retryAfterSeconds);
+                    long epochMillisToRetry = System.currentTimeMillis() + (secondsToWait * 1000L);
+                    if (enterpriseId != null) {
+                        datastore.setRateLimitedMethodRetryEpochMillis(executorName, enterpriseId, key, epochMillisToRetry);
+                    }
+                }
+            }
+            throw e;
+        } catch (IOException e) {
+            if (enterpriseId != null) {
+                datastore.incrementFailedCalls(executorName, enterpriseId, key);
+            }
+            throw e;
+        } finally {
+            if (enterpriseId != null) {
+                datastore.incrementAllCompletedCalls(executorName, enterpriseId, key);
+                datastore.addToLastMinuteRequests(executorName, enterpriseId, key, System.currentTimeMillis());
+            }
+        }
     }
 
     private <T extends AuditApiResponse> T parseJsonResponseAndRunListeners(Response response, Class<T> clazz) throws IOException, AuditApiException {

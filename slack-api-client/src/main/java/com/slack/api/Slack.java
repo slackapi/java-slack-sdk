@@ -1,10 +1,14 @@
 package com.slack.api;
 
+import com.slack.api.audit.AsyncAuditClient;
 import com.slack.api.audit.AuditClient;
+import com.slack.api.audit.AuditConfig;
+import com.slack.api.audit.impl.AsyncAuditClientImpl;
 import com.slack.api.audit.impl.AuditClientImpl;
 import com.slack.api.methods.*;
 import com.slack.api.methods.impl.AsyncMethodsClientImpl;
 import com.slack.api.methods.impl.MethodsClientImpl;
+import com.slack.api.methods.impl.TeamIdCache;
 import com.slack.api.methods.request.rtm.RTMConnectRequest;
 import com.slack.api.methods.request.rtm.RTMStartRequest;
 import com.slack.api.methods.request.users.UsersInfoRequest;
@@ -14,7 +18,10 @@ import com.slack.api.methods.response.rtm.RTMStartResponse;
 import com.slack.api.methods.response.users.UsersInfoResponse;
 import com.slack.api.model.User;
 import com.slack.api.rtm.RTMClient;
+import com.slack.api.scim.AsyncSCIMClient;
 import com.slack.api.scim.SCIMClient;
+import com.slack.api.scim.SCIMConfig;
+import com.slack.api.scim.impl.AsyncSCIMClientImpl;
 import com.slack.api.scim.impl.SCIMClientImpl;
 import com.slack.api.socket_mode.SocketModeClient;
 import com.slack.api.socket_mode.impl.SocketModeClientJavaWSImpl;
@@ -24,6 +31,7 @@ import com.slack.api.status.v1.impl.LegacyStatusClientImpl;
 import com.slack.api.status.v2.StatusClient;
 import com.slack.api.status.v2.impl.StatusClientImpl;
 import com.slack.api.util.http.SlackHttpClient;
+import com.slack.api.rate_limits.metrics.RequestStats;
 import com.slack.api.webhook.Payload;
 import com.slack.api.webhook.WebhookResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -298,9 +306,35 @@ public class Slack implements AutoCloseable {
     }
 
     public SCIMClient scim(String token) {
-        SCIMClientImpl client = new SCIMClientImpl(httpClient, token);
+        MethodsClientImpl methods = new MethodsClientImpl(httpClient, token);
+        methods.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
+        SCIMClientImpl client = new SCIMClientImpl(
+                config,
+                httpClient,
+                new TeamIdCache(methods), // will create a cache with enterprise_id
+                token);
         client.setEndpointUrlPrefix(config.getScimEndpointUrlPrefix());
         return client;
+    }
+
+    public AsyncSCIMClient scimAsync(String token) {
+        MethodsClientImpl methods = new MethodsClientImpl(httpClient, token);
+        methods.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
+        SCIMClientImpl client = new SCIMClientImpl(
+                config,
+                httpClient,
+                new TeamIdCache(methods), // will create a cache with enterprise_id
+                token);
+        client.setEndpointUrlPrefix(config.getScimEndpointUrlPrefix());
+        return new AsyncSCIMClientImpl(token, client, methods, config);
+    }
+
+    public RequestStats scimStats(String enterpriseId) {
+        return scimStats(SCIMConfig.DEFAULT_SINGLETON_EXECUTOR_NAME, enterpriseId);
+    }
+
+    public RequestStats scimStats(String executorName, String enterpriseId) {
+        return config.getSCIMConfig().getMetricsDatastore().getStats(executorName, enterpriseId);
     }
 
     /**
@@ -311,9 +345,37 @@ public class Slack implements AutoCloseable {
     }
 
     public AuditClient audit(String token) {
-        AuditClientImpl client = new AuditClientImpl(httpClient, token);
-        client.setEndpointUrlPrefix(config.getAuditEndpointUrlPrefix());
-        return client;
+        MethodsClientImpl methods = new MethodsClientImpl(httpClient, token);
+        methods.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
+        AuditClientImpl audit = new AuditClientImpl(
+                config,
+                httpClient,
+                new TeamIdCache(methods), // will create a cache with enterprise_id
+                token
+        );
+        audit.setEndpointUrlPrefix(config.getAuditEndpointUrlPrefix());
+        return audit;
+    }
+
+    public AsyncAuditClient auditAsync(String token) {
+        MethodsClientImpl methods = new MethodsClientImpl(httpClient, token);
+        methods.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
+        AuditClientImpl audit = new AuditClientImpl(
+                config,
+                httpClient,
+                new TeamIdCache(methods), // will create a cache with enterprise_id
+                token
+        );
+        audit.setEndpointUrlPrefix(config.getAuditEndpointUrlPrefix());
+        return new AsyncAuditClientImpl(token, audit, methods, config);
+    }
+
+    public RequestStats auditStats(String enterpriseId) {
+        return auditStats(AuditConfig.DEFAULT_SINGLETON_EXECUTOR_NAME, enterpriseId);
+    }
+
+    public RequestStats auditStats(String executorName, String enterpriseId) {
+        return config.getAuditConfig().getMetricsDatastore().getStats(executorName, enterpriseId);
     }
 
     /**
@@ -347,11 +409,11 @@ public class Slack implements AutoCloseable {
         return new AsyncMethodsClientImpl(token, client, config);
     }
 
-    public MethodsStats methodsStats(String teamId) {
+    public RequestStats methodsStats(String teamId) {
         return methodsStats(MethodsConfig.DEFAULT_SINGLETON_EXECUTOR_NAME, teamId);
     }
 
-    public MethodsStats methodsStats(String executorName, String teamId) {
+    public RequestStats methodsStats(String executorName, String teamId) {
         return config.getMethodsConfig().getMetricsDatastore().getStats(executorName, teamId);
     }
 

@@ -1,9 +1,10 @@
-package com.slack.api.methods.metrics.impl;
+package com.slack.api.rate_limits.metrics.impl;
 
-import com.slack.api.methods.MethodsStats;
-import com.slack.api.methods.impl.AsyncRateLimitQueue;
-import com.slack.api.methods.metrics.LastMinuteRequests;
-import com.slack.api.methods.metrics.MetricsDatastore;
+import com.slack.api.rate_limits.metrics.LastMinuteRequests;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import com.slack.api.rate_limits.metrics.RequestStats;
+import com.slack.api.rate_limits.queue.QueueMessage;
+import com.slack.api.rate_limits.queue.RateLimitQueue;
 import com.slack.api.util.thread.ExecutorServiceFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -14,29 +15,30 @@ import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
 
-public class RedisMetricsDatastore implements MetricsDatastore {
+public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessage> implements MetricsDatastore, AutoCloseable {
 
     private final ScheduledExecutorService cleanerExecutor;
 
     private final String appName;
     private final JedisPool jedisPool;
 
-    public RedisMetricsDatastore(String appName, JedisPool jedisPool) {
+    public BaseRedisMetricsDatastore(String appName, JedisPool jedisPool) {
         this.appName = appName;
         this.jedisPool = jedisPool;
         this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(getThreadGroupName());
         this.cleanerExecutor.scheduleAtFixedRate(new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
     }
 
+    public abstract RateLimitQueue<SUPPLIER, MSG> getRateLimitQueue(String executorName, String teamId);
+
     public Jedis jedis() {
         return jedisPool.getResource();
     }
 
     @Override
-    protected void finalize() throws Throwable {
+    public void close() throws Exception {
         this.cleanerExecutor.shutdown();
         this.jedisPool.destroy();
-        super.finalize();
     }
 
     public String getThreadGroupName() {
@@ -56,8 +58,8 @@ public class RedisMetricsDatastore implements MetricsDatastore {
     }
 
     @Override
-    public Map<String, Map<String, MethodsStats>> getAllStats() {
-        Map<String, Map<String, MethodsStats>> result = new HashMap<>();
+    public Map<String, Map<String, RequestStats>> getAllStats() {
+        Map<String, Map<String, RequestStats>> result = new HashMap<>();
         try (Jedis jedis = jedis()) {
             if (jedis == null) {
                 return result;
@@ -79,9 +81,9 @@ public class RedisMetricsDatastore implements MetricsDatastore {
                     result.put(executorName, new HashMap<>());
                 }
                 if (!result.get(executorName).containsKey(teamId)) {
-                    result.get(executorName).put(teamId, new MethodsStats());
+                    result.get(executorName).put(teamId, new RequestStats());
                 }
-                MethodsStats stats = result.get(executorName).get(teamId);
+                RequestStats stats = result.get(executorName).get(teamId);
                 String value = jedis.get(statsKey);
                 if (value != null && !value.trim().isEmpty()) {
                     if (operation.equals("AllCompletedCalls")) {
@@ -106,8 +108,8 @@ public class RedisMetricsDatastore implements MetricsDatastore {
     }
 
     @Override
-    public MethodsStats getStats(String executorName, String teamId) {
-        Map<String, MethodsStats> executor = getAllStats().get(executorName);
+    public RequestStats getStats(String executorName, String teamId) {
+        Map<String, RequestStats> executor = getAllStats().get(executorName);
         return executor != null ? executor.get(teamId) : null;
     }
 
@@ -166,7 +168,7 @@ public class RedisMetricsDatastore implements MetricsDatastore {
         try (Jedis jedis = jedis()) {
             String key = toWaitingMessageIdsKey(jedis, executorName, teamId, methodName);
             Integer totalSize = jedis.llen(key).intValue();
-            AsyncRateLimitQueue queue = AsyncRateLimitQueue.get(executorName, teamId);
+            RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
             if (queue != null) {
                 totalSize += queue.getCurrentActiveQueueSize(methodName);
             }
@@ -265,9 +267,9 @@ public class RedisMetricsDatastore implements MetricsDatastore {
     }
 
     public static class MaintenanceJob implements Runnable {
-        private final RedisMetricsDatastore store;
+        private final BaseRedisMetricsDatastore store;
 
-        public MaintenanceJob(RedisMetricsDatastore store) {
+        public MaintenanceJob(BaseRedisMetricsDatastore store) {
             this.store = store;
         }
 
@@ -275,11 +277,12 @@ public class RedisMetricsDatastore implements MetricsDatastore {
 
         @Override
         public void run() {
-            for (Map.Entry<String, Map<String, MethodsStats>> executor : store.getAllStats().entrySet()) {
+            Map<String, Map<String, RequestStats>> allStats = store.getAllStats();
+            for (Map.Entry<String, Map<String, RequestStats>> executor : allStats.entrySet()) {
                 String executorName = executor.getKey();
-                for (Map.Entry<String, MethodsStats> team : executor.getValue().entrySet()) {
+                for (Map.Entry<String, RequestStats> team : executor.getValue().entrySet()) {
                     String teamId = team.getKey();
-                    MethodsStats stats = team.getValue();
+                    RequestStats stats = team.getValue();
                     // Last Minute Requests
                     for (String methodName : stats.getLastMinuteRequests().keySet()) {
                         store.updateNumberOfLastMinuteRequests(executorName, teamId, methodName);

@@ -1,14 +1,15 @@
-package com.slack.api.methods.metrics.impl;
+package com.slack.api.rate_limits.metrics.impl;
 
 import com.google.gson.Gson;
-import com.slack.api.methods.MethodsStats;
-import com.slack.api.methods.impl.AsyncRateLimitQueue;
-import com.slack.api.methods.metrics.LastMinuteRequests;
-import com.slack.api.methods.metrics.MetricsDatastore;
-import com.slack.api.methods.metrics.WaitingMessageIds;
+import com.slack.api.rate_limits.metrics.LastMinuteRequests;
+import com.slack.api.rate_limits.metrics.LiveRequestStats;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import com.slack.api.rate_limits.metrics.RequestStats;
+import com.slack.api.rate_limits.queue.QueueMessage;
+import com.slack.api.rate_limits.queue.RateLimitQueue;
+import com.slack.api.rate_limits.queue.WaitingMessageIds;
 import com.slack.api.util.json.GsonFactory;
 import com.slack.api.util.thread.ExecutorServiceFactory;
-import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,25 +18,26 @@ import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class MemoryMetricsDatastore implements MetricsDatastore {
+public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMessage> implements MetricsDatastore, AutoCloseable {
 
     private final ScheduledExecutorService cleanerExecutor;
     private final int numberOfNodes;
 
-    public MemoryMetricsDatastore(int numberOfNodes) {
+    public BaseMemoryMetricsDatastore(int numberOfNodes) {
         this.numberOfNodes = numberOfNodes;
         this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(getThreadGroupName());
         this.cleanerExecutor.scheduleAtFixedRate(new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
     }
 
     @Override
-    protected void finalize() throws Throwable {
+    public void close() throws Exception {
         cleanerExecutor.shutdown();
-        super.finalize();
     }
 
+    protected abstract String getMetricsType();
+
     public String getThreadGroupName() {
-        return "slack-methods-metrics-memory:" + Integer.toHexString(hashCode());
+        return "slack-api-client-metrics-memory:" + Integer.toHexString(hashCode());
     }
 
     // -----------------------------------------------------------
@@ -48,12 +50,12 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
     }
 
     @Override
-    public Map<String, Map<String, MethodsStats>> getAllStats() {
-        Map<String, Map<String, MethodsStats>> result = new HashMap<>();
-        for (Map.Entry<String, ConcurrentMap<String, LiveMethodsStats>> executor : ALL_LIVE_STATS.entrySet()) {
-            Map<String, MethodsStats> allTeams = new HashMap<>();
-            for (Map.Entry<String, LiveMethodsStats> team : executor.getValue().entrySet()) {
-                MethodsStats stats = GSON.fromJson(GSON.toJson(team.getValue()), MethodsStats.class);
+    public Map<String, Map<String, RequestStats>> getAllStats() {
+        Map<String, Map<String, RequestStats>> result = new HashMap<>();
+        for (Map.Entry<String, ConcurrentMap<String, LiveRequestStats>> executor : ALL_LIVE_STATS.entrySet()) {
+            Map<String, RequestStats> allTeams = new HashMap<>();
+            for (Map.Entry<String, LiveRequestStats> team : executor.getValue().entrySet()) {
+                RequestStats stats = GSON.fromJson(GSON.toJson(team.getValue()), RequestStats.class);
                 allTeams.put(team.getKey(), stats);
             }
             result.put(executor.getKey(), allTeams);
@@ -62,9 +64,9 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
     }
 
     @Override
-    public MethodsStats getStats(String executorName, String teamId) {
-        LiveMethodsStats internal = getOrCreateTeamLiveStats(executorName, teamId);
-        MethodsStats stats = GSON.fromJson(GSON.toJson(internal), MethodsStats.class);
+    public RequestStats getStats(String executorName, String teamId) {
+        LiveRequestStats internal = getOrCreateTeamLiveStats(executorName, teamId);
+        RequestStats stats = GSON.fromJson(GSON.toJson(internal), RequestStats.class);
         return stats;
     }
 
@@ -72,7 +74,7 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
 
     @Override
     public void incrementAllCompletedCalls(String executorName, String teamId, String methodName) {
-        LiveMethodsStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+        LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
         if (stats.getAllCompletedCalls().get(methodName) == null) {
             stats.getAllCompletedCalls().putIfAbsent(methodName, new AtomicLong(0));
         }
@@ -81,7 +83,7 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
 
     @Override
     public void incrementSuccessfulCalls(String executorName, String teamId, String methodName) {
-        LiveMethodsStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+        LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
         if (stats.getSuccessfulCalls().get(methodName) == null) {
             stats.getSuccessfulCalls().putIfAbsent(methodName, new AtomicLong(0));
         }
@@ -90,7 +92,7 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
 
     @Override
     public void incrementUnsuccessfulCalls(String executorName, String teamId, String methodName) {
-        LiveMethodsStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+        LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
         if (stats.getUnsuccessfulCalls().get(methodName) == null) {
             stats.getUnsuccessfulCalls().putIfAbsent(methodName, new AtomicLong(0));
         }
@@ -99,18 +101,20 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
 
     @Override
     public void incrementFailedCalls(String executorName, String teamId, String methodName) {
-        LiveMethodsStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+        LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
         if (stats.getFailedCalls().get(methodName) == null) {
             stats.getFailedCalls().putIfAbsent(methodName, new AtomicLong(0));
         }
         stats.getFailedCalls().get(methodName).incrementAndGet();
     }
 
+    public abstract RateLimitQueue<SUPPLIER, MSG> getRateLimitQueue(String executorName, String teamId);
+
     @Override
     public void updateCurrentQueueSize(String executorName, String teamId, String methodName) {
         CopyOnWriteArrayList<String> messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
         Integer totalSize = messageIds.size();
-        AsyncRateLimitQueue queue = AsyncRateLimitQueue.get(executorName, teamId);
+        RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
         if (queue != null) {
             totalSize += queue.getCurrentActiveQueueSize(methodName);
         }
@@ -121,7 +125,7 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
     public void setCurrentQueueSize(String executorName, String teamId, String methodName, Integer size) {
         CopyOnWriteArrayList<String> messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
         Integer totalSize = messageIds.size();
-        AsyncRateLimitQueue queue = AsyncRateLimitQueue.get(executorName, teamId);
+        RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
         if (queue != null) {
             totalSize += queue.getCurrentActiveQueueSize(methodName);
         }
@@ -201,31 +205,24 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
     // -----------------------------------------------------------
 
     // Executor Name -> Team ID -> Stats
-    private static final ConcurrentMap<String, ConcurrentMap<String, LiveMethodsStats>>
+    private static final ConcurrentMap<String, ConcurrentMap<String, LiveRequestStats>>
             ALL_LIVE_STATS = new ConcurrentHashMap<>();
 
-    @Data
-    public class LiveMethodsStats {
-        private final ConcurrentMap<String, AtomicLong> allCompletedCalls = new ConcurrentHashMap<>();
-        private final ConcurrentMap<String, AtomicLong> successfulCalls = new ConcurrentHashMap<>();
-        private final ConcurrentMap<String, AtomicLong> unsuccessfulCalls = new ConcurrentHashMap<>();
-        private final ConcurrentMap<String, AtomicLong> failedCalls = new ConcurrentHashMap<>();
-        private final ConcurrentMap<String, Integer> currentQueueSize = new ConcurrentHashMap<>();
-        private final ConcurrentMap<String, Integer> lastMinuteRequests = new ConcurrentHashMap<>();
-        private final ConcurrentMap<String, Long> rateLimitedMethods = new ConcurrentHashMap<>();
-    }
-
-    private ConcurrentMap<String, LiveMethodsStats> getOrCreateExecutorLiveStats(String executorName) {
-        if (ALL_LIVE_STATS.get(executorName) == null) {
-            ALL_LIVE_STATS.putIfAbsent(executorName, new ConcurrentHashMap<>());
+    private ConcurrentMap<String, LiveRequestStats> getOrCreateExecutorLiveStats(String executorName) {
+        String key = getMetricsType() + "/" + executorName;
+        if (ALL_LIVE_STATS.get(key) == null) {
+            ALL_LIVE_STATS.putIfAbsent(key, new ConcurrentHashMap<>());
         }
-        return ALL_LIVE_STATS.get(executorName);
+        return ALL_LIVE_STATS.get(key);
     }
 
-    private LiveMethodsStats getOrCreateTeamLiveStats(String executorName, String teamId) {
-        ConcurrentMap<String, LiveMethodsStats> executor = getOrCreateExecutorLiveStats(executorName);
+    private LiveRequestStats getOrCreateTeamLiveStats(String executorName, String teamId) {
+        ConcurrentMap<String, LiveRequestStats> executor = getOrCreateExecutorLiveStats(executorName);
+        if (teamId == null) {
+            teamId = "-";
+        }
         if (executor.get(teamId) == null) {
-            executor.putIfAbsent(teamId, new LiveMethodsStats());
+            executor.putIfAbsent(teamId, new LiveRequestStats());
         }
         return executor.get(teamId);
     }
@@ -272,19 +269,27 @@ public class MemoryMetricsDatastore implements MetricsDatastore {
     // -----------------------------------------------------------
 
     private static class MaintenanceJob implements Runnable {
-        private final MemoryMetricsDatastore store;
+        private final BaseMemoryMetricsDatastore store;
 
-        MaintenanceJob(MemoryMetricsDatastore store) {
+        MaintenanceJob(BaseMemoryMetricsDatastore store) {
             this.store = store;
         }
 
         @Override
         public void run() {
-            for (ConcurrentMap.Entry<String, ConcurrentMap<String, LiveMethodsStats>> executor : ALL_LIVE_STATS.entrySet()) {
-                String executorName = executor.getKey();
-                for (ConcurrentMap.Entry<String, LiveMethodsStats> team : executor.getValue().entrySet()) {
+            for (ConcurrentMap.Entry<String, ConcurrentMap<String, LiveRequestStats>> executor : ALL_LIVE_STATS.entrySet()) {
+                String[] elements = executor.getKey().split("/");
+                if (elements.length < 2) {
+                    continue;
+                }
+                String type = elements[0];
+                if (type == null || !type.equals(store.getMetricsType())) {
+                    continue;
+                }
+                String executorName = executor.getKey().replaceFirst("^" + type + "/", "");
+                for (ConcurrentMap.Entry<String, LiveRequestStats> team : executor.getValue().entrySet()) {
                     String teamId = team.getKey();
-                    LiveMethodsStats stats = team.getValue();
+                    LiveRequestStats stats = team.getValue();
                     // Last Minute Requests
                     for (String methodName : stats.getLastMinuteRequests().keySet()) {
                         store.updateNumberOfLastMinuteRequests(executorName, teamId, methodName);

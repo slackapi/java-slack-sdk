@@ -1,4 +1,4 @@
-package com.slack.api.methods;
+package com.slack.api.rate_limits.metrics;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import java.util.Map;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MethodsStats {
+public class RequestStats {
 
     /**
      * Method name -> # of calls
