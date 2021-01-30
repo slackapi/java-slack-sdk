@@ -3,12 +3,12 @@ package test_locally;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.audit.AuditClient;
-import com.slack.api.methods.MethodsStats;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.rtm.RTMClient;
 import com.slack.api.scim.SCIMClient;
 import com.slack.api.util.http.SlackHttpClient;
+import com.slack.api.rate_limits.metrics.RequestStats;
 import com.slack.api.webhook.WebhookResponse;
 import org.junit.Test;
 import util.MockSlackApi;
@@ -127,11 +127,35 @@ public class SlackTest {
     @Test
     public void methodsStats() {
         {
-            MethodsStats stats = Slack.getInstance().methodsStats("T1234567");
+            RequestStats stats = Slack.getInstance().methodsStats("T1234567");
             assertNotNull(stats);
         }
         {
-            MethodsStats stats = Slack.getInstance().methodsStats("executor", "T1234567");
+            RequestStats stats = Slack.getInstance().methodsStats("executor", "T1234567");
+            assertNotNull(stats);
+        }
+    }
+
+    @Test
+    public void auditStats() {
+        {
+            RequestStats stats = Slack.getInstance().auditStats("E1234567");
+            assertNotNull(stats);
+        }
+        {
+            RequestStats stats = Slack.getInstance().auditStats("executor", "T1234567");
+            assertNotNull(stats);
+        }
+    }
+
+    @Test
+    public void scimStats() {
+        {
+            RequestStats stats = Slack.getInstance().scimStats("E1234567");
+            assertNotNull(stats);
+        }
+        {
+            RequestStats stats = Slack.getInstance().scimStats("executor", "E1234567");
             assertNotNull(stats);
         }
     }

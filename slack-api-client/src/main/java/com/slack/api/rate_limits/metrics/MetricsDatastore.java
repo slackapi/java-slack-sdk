@@ -1,23 +1,22 @@
-package com.slack.api.methods.metrics;
-
-import com.slack.api.methods.MethodsConfig;
-import com.slack.api.methods.MethodsStats;
+package com.slack.api.rate_limits.metrics;
 
 import java.util.Map;
 
 public interface MetricsDatastore {
 
+    String DEFAULT_SINGLETON_EXECUTOR_NAME = "DEFAULT_SINGLETON_EXECUTOR";
+
     default int getNumberOfNodes() {
         return 1;
     }
 
-    Map<String, Map<String, MethodsStats>> getAllStats();
+    Map<String, Map<String, RequestStats>> getAllStats();
 
-    default MethodsStats getStats(String teamId) {
-        return getStats(MethodsConfig.DEFAULT_SINGLETON_EXECUTOR_NAME, teamId);
+    default RequestStats getStats(String teamId) {
+        return getStats(DEFAULT_SINGLETON_EXECUTOR_NAME, teamId);
     }
 
-    MethodsStats getStats(String executorName, String teamId);
+    RequestStats getStats(String executorName, String teamId);
 
     void incrementAllCompletedCalls(String executorName, String teamId, String methodName);
 

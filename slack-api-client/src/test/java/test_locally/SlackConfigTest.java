@@ -81,6 +81,16 @@ public class SlackConfigTest {
             fail();
         } catch (UnsupportedOperationException ignored) {
         }
+        try {
+            SlackConfig.DEFAULT.setAuditConfig(null);
+            fail();
+        } catch (UnsupportedOperationException ignored) {
+        }
+        try {
+            SlackConfig.DEFAULT.setSCIMConfig(null);
+            fail();
+        } catch (UnsupportedOperationException ignored) {
+        }
     }
 
 }

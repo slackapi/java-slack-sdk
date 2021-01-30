@@ -1,7 +1,7 @@
 package com.slack.api.methods;
 
-import com.slack.api.methods.metrics.MetricsDatastore;
-import com.slack.api.methods.metrics.impl.MemoryMetricsDatastore;
+import com.slack.api.methods.metrics.MemoryMetricsDatastore;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class MethodsConfig {
      * If you don't have a special reason, we recommend going with the singleton executor to track all the traffic
      * your app generated towards the Slack Platform in one place (= in one metrics datastore).
      */
-    public static final String DEFAULT_SINGLETON_EXECUTOR_NAME = "DEFAULT_SINGLETON_EXECUTOR";
+    public static final String DEFAULT_SINGLETON_EXECUTOR_NAME = MetricsDatastore.DEFAULT_SINGLETON_EXECUTOR_NAME;
 
     /**
      * The default configuration. It's not allowed to modify this runtime for any reasons.

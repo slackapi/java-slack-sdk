@@ -1,13 +1,15 @@
 package com.slack.api.scim.impl;
 
 import com.slack.api.RequestConfigurator;
-import com.slack.api.scim.SCIMApiException;
-import com.slack.api.scim.SCIMApiRequest;
-import com.slack.api.scim.SCIMClient;
+import com.slack.api.SlackConfig;
+import com.slack.api.methods.impl.TeamIdCache;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import com.slack.api.scim.*;
 import com.slack.api.scim.request.*;
 import com.slack.api.scim.response.*;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
+import kotlin.jvm.functions.Function0;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -15,20 +17,37 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.slack.api.scim.SCIMEndpointName.*;
+
 public class SCIMClientImpl implements SCIMClient {
 
     private String endpointUrlPrefix = ENDPOINT_URL_PREFIX;
 
     private final SlackHttpClient slackHttpClient;
     private final String token;
+    private final SCIMConfig config;
+    private final String executorName;
+    private final TeamIdCache teamIdCache;
 
-    public SCIMClientImpl(SlackHttpClient slackHttpClient) {
-        this(slackHttpClient, null);
+    public SCIMClientImpl(
+            SlackConfig config,
+            SlackHttpClient slackHttpClient,
+            TeamIdCache teamIdCache
+    ) {
+        this(config, slackHttpClient, teamIdCache, null);
     }
 
-    public SCIMClientImpl(SlackHttpClient slackHttpClient, String token) {
+    public SCIMClientImpl(
+            SlackConfig config,
+            SlackHttpClient slackHttpClient,
+            TeamIdCache teamIdCache,
+            String token
+    ) {
         this.slackHttpClient = slackHttpClient;
         this.token = token;
+        this.config = config.getSCIMConfig();
+        this.executorName = this.config.getExecutorName();
+        this.teamIdCache = teamIdCache;
     }
 
     // ------------------------------------------
@@ -47,7 +66,7 @@ public class SCIMClientImpl implements SCIMClient {
 
     @Override
     public ServiceProviderConfigsGetResponse getServiceProviderConfigs(ServiceProviderConfigsGetRequest req) throws IOException, SCIMApiException {
-        return doGet(endpointUrlPrefix + "ServiceProviderConfigs", null, getToken(req), ServiceProviderConfigsGetResponse.class);
+        return doGet(getServiceProviderConfigs, endpointUrlPrefix + "ServiceProviderConfigs", null, getToken(req), ServiceProviderConfigsGetResponse.class);
     }
 
     @Override
@@ -67,7 +86,7 @@ public class SCIMClientImpl implements SCIMClient {
         if (req.getStartIndex() != null) {
             query.put("startIndex", String.valueOf(req.getStartIndex()));
         }
-        return doGet(getUsersResourceURL(), query, getToken(req), UsersSearchResponse.class);
+        return doGet(searchUsers, getUsersResourceURL(), query, getToken(req), UsersSearchResponse.class);
     }
 
     public UsersSearchResponse searchUsers(RequestConfigurator<UsersSearchRequest.UsersSearchRequestBuilder> req) throws IOException, SCIMApiException {
@@ -76,7 +95,7 @@ public class SCIMClientImpl implements SCIMClient {
 
     @Override
     public UsersReadResponse readUser(UsersReadRequest req) throws IOException, SCIMApiException {
-        return doGet(getUsersResourceURL() + "/" + req.getId(), null, getToken(req), UsersReadResponse.class);
+        return doGet(readUser, getUsersResourceURL() + "/" + req.getId(), null, getToken(req), UsersReadResponse.class);
     }
 
     public UsersReadResponse readUser(RequestConfigurator<UsersReadRequest.UsersReadRequestBuilder> req) throws IOException, SCIMApiException {
@@ -85,7 +104,7 @@ public class SCIMClientImpl implements SCIMClient {
 
     @Override
     public UsersCreateResponse createUser(UsersCreateRequest req) throws IOException, SCIMApiException {
-        return doPost(getUsersResourceURL(), req.getUser(), getToken(req), UsersCreateResponse.class);
+        return doPost(createUser, getUsersResourceURL(), req.getUser(), getToken(req), UsersCreateResponse.class);
     }
 
     @Override
@@ -95,7 +114,7 @@ public class SCIMClientImpl implements SCIMClient {
 
     @Override
     public UsersPatchResponse patchUser(UsersPatchRequest req) throws IOException, SCIMApiException {
-        return doPatch(getUsersResourceURL() + "/" + req.getId(), req.getUser(), getToken(req), UsersPatchResponse.class);
+        return doPatch(patchUser, getUsersResourceURL() + "/" + req.getId(), req.getUser(), getToken(req), UsersPatchResponse.class);
     }
 
     @Override
@@ -105,7 +124,7 @@ public class SCIMClientImpl implements SCIMClient {
 
     @Override
     public UsersUpdateResponse updateUser(UsersUpdateRequest req) throws IOException, SCIMApiException {
-        return doPut(getUsersResourceURL() + "/" + req.getId(), req.getUser(), getToken(req), UsersUpdateResponse.class);
+        return doPut(updateUser, getUsersResourceURL() + "/" + req.getId(), req.getUser(), getToken(req), UsersUpdateResponse.class);
     }
 
     @Override
@@ -117,7 +136,7 @@ public class SCIMClientImpl implements SCIMClient {
     public UsersDeleteResponse deleteUser(UsersDeleteRequest req) throws IOException, SCIMApiException {
         Request.Builder requestBuilder = withAuthorizationHeader(new Request.Builder(), getToken(req))
                 .url(getUsersResourceURL() + "/" + req.getId());
-        return doDelete(requestBuilder, UsersDeleteResponse.class);
+        return doDelete(deleteUser, requestBuilder, UsersDeleteResponse.class);
     }
 
     @Override
@@ -137,7 +156,7 @@ public class SCIMClientImpl implements SCIMClient {
         if (req.getStartIndex() != null) {
             query.put("startIndex", String.valueOf(req.getStartIndex()));
         }
-        return doGet(getGroupsResourceURL(), query, getToken(req), GroupsSearchResponse.class);
+        return doGet(searchGroups, getGroupsResourceURL(), query, getToken(req), GroupsSearchResponse.class);
     }
 
     @Override
@@ -147,7 +166,7 @@ public class SCIMClientImpl implements SCIMClient {
 
     @Override
     public GroupsReadResponse readGroup(GroupsReadRequest req) throws IOException, SCIMApiException {
-        return doGet(getGroupsResourceURL() + "/" + req.getId(), null, getToken(req), GroupsReadResponse.class);
+        return doGet(readGroup, getGroupsResourceURL() + "/" + req.getId(), null, getToken(req), GroupsReadResponse.class);
     }
 
     @Override
@@ -157,7 +176,7 @@ public class SCIMClientImpl implements SCIMClient {
 
     @Override
     public GroupsCreateResponse createGroup(GroupsCreateRequest req) throws IOException, SCIMApiException {
-        return doPost(getGroupsResourceURL(), req.getGroup(), getToken(req), GroupsCreateResponse.class);
+        return doPost(createGroup, getGroupsResourceURL(), req.getGroup(), getToken(req), GroupsCreateResponse.class);
     }
 
     @Override
@@ -167,7 +186,7 @@ public class SCIMClientImpl implements SCIMClient {
 
     @Override
     public GroupsPatchResponse patchGroup(GroupsPatchRequest req) throws IOException, SCIMApiException {
-        return doPatch(getGroupsResourceURL() + "/" + req.getId(), req.getGroup(), getToken(req), GroupsPatchResponse.class);
+        return doPatch(patchGroup, getGroupsResourceURL() + "/" + req.getId(), req.getGroup(), getToken(req), GroupsPatchResponse.class);
     }
 
     @Override
@@ -177,7 +196,7 @@ public class SCIMClientImpl implements SCIMClient {
 
     @Override
     public GroupsUpdateResponse updateGroup(GroupsUpdateRequest req) throws IOException, SCIMApiException {
-        return doPut(getGroupsResourceURL() + "/" + req.getId(), req.getGroup(), getToken(req), GroupsUpdateResponse.class);
+        return doPut(updateGroup, getGroupsResourceURL() + "/" + req.getId(), req.getGroup(), getToken(req), GroupsUpdateResponse.class);
     }
 
     @Override
@@ -189,7 +208,7 @@ public class SCIMClientImpl implements SCIMClient {
     public GroupsDeleteResponse deleteGroup(GroupsDeleteRequest req) throws IOException, SCIMApiException {
         Request.Builder requestBuilder = withAuthorizationHeader(new Request.Builder(), getToken(req))
                 .url(getGroupsResourceURL() + "/" + req.getId());
-        return doDelete(requestBuilder, GroupsDeleteResponse.class);
+        return doDelete(deleteGroup, requestBuilder, GroupsDeleteResponse.class);
     }
 
     @Override
@@ -223,38 +242,158 @@ public class SCIMClientImpl implements SCIMClient {
         return endpointUrlPrefix + "Groups";
     }
 
-    private <T> T doGet(String url, Map<String, String> query, String token, Class<T> clazz) throws IOException, SCIMApiException {
-        Response response = slackHttpClient.get(url, query, token);
-        return parseCamelCaseJsonResponseAndRunListeners(response, clazz);
+    private String getEnterpriseIdForMetrics() {
+        String enterpriseId = null;
+        if (config.isStatsEnabled()) {
+            // In the case where you verify org admin user's token,
+            // the team_id in an auth.test API response is an enterprise_id value
+            enterpriseId = teamIdCache.lookupOrResolve(token);
+        }
+        return enterpriseId;
     }
 
-    private <T> T doPost(String url, Object body, String token, Class<T> clazz) throws IOException, SCIMApiException {
-        Response response = slackHttpClient.postCamelCaseJsonBodyWithBearerHeader(url, token, body);
-        return parseCamelCaseJsonResponseAndRunListeners(response, clazz);
+    private <T> T handle(
+            SCIMEndpointName name,
+            Class<T> clazz,
+            Function0<Response> performRequest
+    ) throws IOException, SCIMApiException {
+        String enterpriseId = getEnterpriseIdForMetrics();
+        MetricsDatastore datastore = config.getMetricsDatastore();
+        try {
+            Response response = performRequest.invoke();
+            T result = parseCamelCaseJsonResponseAndRunListeners(response, clazz);
+            if (enterpriseId != null) {
+                datastore.incrementSuccessfulCalls(executorName, enterpriseId, name.name());
+            }
+            return result;
+        } catch (SCIMApiException e) {
+            if (enterpriseId != null) {
+                datastore.incrementUnsuccessfulCalls(executorName, enterpriseId, name.name());
+            }
+            if (e.getResponse().code() == 429) {
+                // rate limited
+                final String retryAfterSeconds = e.getResponse().header("Retry-After");
+                if (retryAfterSeconds != null) {
+                    long secondsToWait = Long.valueOf(retryAfterSeconds);
+                    long epochMillisToRetry = System.currentTimeMillis() + (secondsToWait * 1000L);
+                    if (enterpriseId != null) {
+                        datastore.setRateLimitedMethodRetryEpochMillis(
+                                executorName, enterpriseId, name.name(), epochMillisToRetry);
+                    }
+                }
+            }
+            throw e;
+
+        } catch (RuntimeException e) {
+            if (enterpriseId != null) {
+                datastore.incrementFailedCalls(executorName, enterpriseId, name.name());
+            }
+            if (e.getCause() instanceof IOException) {
+                IOException ioe = (IOException) e.getCause();
+                throw ioe;
+            } else {
+                throw e;
+            }
+        } finally {
+            if (enterpriseId != null) {
+                datastore.incrementAllCompletedCalls(executorName, enterpriseId, name.name());
+                datastore.addToLastMinuteRequests(
+                        executorName, enterpriseId, name.name(), System.currentTimeMillis());
+            }
+        }
     }
 
-    private <T> T doPatch(String url, Object body, String token, Class<T> clazz) throws IOException, SCIMApiException {
-        Response response = slackHttpClient.patchCamelCaseJsonBodyWithBearerHeader(url, token, body);
-        return parseCamelCaseJsonResponseAndRunListeners(response, clazz);
+    private <T> T doGet(
+            SCIMEndpointName name,
+            String url,
+            Map<String, String> query,
+            String token,
+            Class<T> clazz
+    ) throws IOException, SCIMApiException {
+        return handle(name, clazz, () -> {
+            try {
+                return slackHttpClient.get(url, query, token);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
-    private <T> T doPut(String url, Object body, String token, Class<T> clazz) throws IOException, SCIMApiException {
-        Response response = slackHttpClient.putCamelCaseJsonBodyWithBearerHeader(url, token, body);
-        return parseCamelCaseJsonResponseAndRunListeners(response, clazz);
+    private <T> T doPost(
+            SCIMEndpointName name,
+            String url,
+            Object body,
+            String token,
+            Class<T> clazz
+    ) throws IOException, SCIMApiException {
+        return handle(name, clazz, () -> {
+            try {
+                return slackHttpClient.postCamelCaseJsonBodyWithBearerHeader(url, token, body);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
-    private <T> T doDelete(Request.Builder requestBuilder, Class<T> clazz) throws IOException, SCIMApiException {
-        Response response = slackHttpClient.delete(requestBuilder);
-        return parseCamelCaseJsonResponseAndRunListeners(response, clazz);
+    private <T> T doPatch(
+            SCIMEndpointName name,
+            String url,
+            Object body,
+            String token,
+            Class<T> clazz
+    ) throws IOException, SCIMApiException {
+        return handle(name, clazz, () -> {
+            try {
+                return slackHttpClient.patchCamelCaseJsonBodyWithBearerHeader(url, token, body);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
-    private <T> T parseCamelCaseJsonResponseAndRunListeners(Response response, Class<T> clazz) throws IOException, SCIMApiException {
+    private <T> T doPut(
+            SCIMEndpointName name,
+            String url,
+            Object body,
+            String token,
+            Class<T> clazz
+    ) throws IOException, SCIMApiException {
+        return handle(name, clazz, () -> {
+            try {
+                return slackHttpClient.putCamelCaseJsonBodyWithBearerHeader(url, token, body);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    private <T> T doDelete(
+            SCIMEndpointName name,
+            Request.Builder requestBuilder,
+            Class<T> clazz
+    ) throws IOException, SCIMApiException {
+        return handle(name, clazz, () -> {
+            try {
+                return slackHttpClient.delete(requestBuilder);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    private <T> T parseCamelCaseJsonResponseAndRunListeners(
+            Response response,
+            Class<T> clazz
+    ) throws IOException, SCIMApiException {
         String body = response.body().string();
-        slackHttpClient.runHttpResponseListeners(response, body);
-        if (response.isSuccessful()) {
-            return GsonFactory.createCamelCase(slackHttpClient.getConfig()).fromJson(body, clazz);
-        } else {
-            throw new SCIMApiException(slackHttpClient.getConfig(), response, body);
+        try {
+            if (response.isSuccessful()) {
+                return GsonFactory.createCamelCase(slackHttpClient.getConfig()).fromJson(body, clazz);
+            } else {
+                throw new SCIMApiException(slackHttpClient.getConfig(), response, body);
+            }
+        } finally {
+            slackHttpClient.runHttpResponseListeners(response, body);
         }
     }
 

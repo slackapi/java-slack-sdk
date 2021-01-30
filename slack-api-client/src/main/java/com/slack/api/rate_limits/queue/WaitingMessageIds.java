@@ -1,4 +1,4 @@
-package com.slack.api.methods.metrics;
+package com.slack.api.rate_limits.queue;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

@@ -1,9 +1,9 @@
 package config;
 
 import com.slack.api.SlackConfig;
-import com.slack.api.methods.metrics.MetricsDatastore;
 import com.slack.api.util.http.listener.HttpResponseListener;
 import com.slack.api.util.json.GsonFactory;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import lombok.extern.slf4j.Slf4j;
 import test_with_remote_apis.sample_json_generation.JsonDataRecordingListener;
 

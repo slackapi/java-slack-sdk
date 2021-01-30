@@ -4,12 +4,12 @@ import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.Methods;
-import com.slack.api.methods.MethodsStats;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
 import com.slack.api.util.json.GsonFactory;
+import com.slack.api.rate_limits.metrics.RequestStats;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -138,7 +138,7 @@ public class auth_Test {
             if (currentQueueSizeWorking) {
                 break;
             }
-            MethodsStats stats = testConfig.getMetricsDatastore().getStats(authTest.getTeamId());
+            RequestStats stats = testConfig.getMethodsMetricsDatastore().getStats(authTest.getTeamId());
             currentQueueSizeWorking = stats.getCurrentQueueSize().get(Methods.AUTH_TEST) > 0;
             Thread.sleep(10L);
         }
@@ -148,7 +148,7 @@ public class auth_Test {
             future.get();
         }
 
-        MethodsStats stats = testConfig.getMetricsDatastore().getStats(authTest.getTeamId());
+        RequestStats stats = testConfig.getMethodsMetricsDatastore().getStats(authTest.getTeamId());
         log.info("stats: {}", GsonFactory.createCamelCase(testConfig.getConfig()).toJson(stats));
         assertThat(stats.getRateLimitedMethods().containsKey("auth.test"), is(false));
     }
@@ -157,14 +157,14 @@ public class auth_Test {
     @Test
     public void lastMinuteRequests() throws Exception {
         String teamId = slack.methods().authTest(r -> r.token(botToken)).getTeamId();
-        MethodsStats before = testConfig.getMetricsDatastore().getStats(teamId);
+        RequestStats before = testConfig.getMethodsMetricsDatastore().getStats(teamId);
 
         AuthTestResponse sync = slack.methods().authTest(r -> r.token(botToken));
         assertThat(sync.getError(), is(nullValue()));
         AuthTestResponse async = slack.methodsAsync().authTest(r -> r.token(botToken)).get();
         assertThat(async.getError(), is(nullValue()));
 
-        MethodsStats after = testConfig.getMetricsDatastore().getStats(teamId);
+        RequestStats after = testConfig.getMethodsMetricsDatastore().getStats(teamId);
         Integer beforeCount = before.getLastMinuteRequests().get(Methods.AUTH_TEST);
         if (beforeCount == null) {
             beforeCount = 0;
@@ -174,13 +174,13 @@ public class auth_Test {
 
         Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
         for (int i = 0; i < 6; i++) {
-            MethodsStats stats = testConfig.getMetricsDatastore().getStats(teamId);
+            RequestStats stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
             log.debug("Waiting for the last minute requests update... {}", gson.toJson(stats.getLastMinuteRequests()));
             Thread.sleep(10000);
         }
         Thread.sleep(3000);
 
-        MethodsStats oneMinuteLater = testConfig.getMetricsDatastore().getStats(teamId);
+        RequestStats oneMinuteLater = testConfig.getMethodsMetricsDatastore().getStats(teamId);
         Integer oneMinuteLaterCount = oneMinuteLater.getLastMinuteRequests().get(Methods.AUTH_TEST);
         log.debug("Final stats: {}", gson.toJson(oneMinuteLater.getLastMinuteRequests()));
         assertThat(afterCount - oneMinuteLaterCount, is(greaterThanOrEqualTo(2)));

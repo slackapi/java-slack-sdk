@@ -7,12 +7,16 @@ import com.slack.api.scim.model.Group;
 import com.slack.api.scim.model.User;
 import com.slack.api.scim.request.GroupsPatchRequest;
 import com.slack.api.scim.response.*;
+import com.slack.api.util.http.listener.HttpResponseListener;
+import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import util.FileReader;
 import util.PortProvider;
 
@@ -39,6 +43,8 @@ public class ApiTest {
 
     private static final FileReader reader = new FileReader("../json-logs/samples/scim/v1/");
 
+    private static final Logger logger = LoggerFactory.getLogger(ApiTest.class);
+
     @Slf4j
     @WebServlet
     public static class SCIMMockApi extends HttpServlet {
@@ -55,6 +61,24 @@ public class ApiTest {
                 log.info("request body: {}", requestBody);
             }
             String endpoint = req.getRequestURI().replaceFirst("^/api/", "");
+            if (endpoint.equals("auth.test")) {
+                String body = "{\n" +
+                        "  \"ok\": true,\n" +
+                        "  \"url\": \"https://java-slack-sdk-test.slack.com/\",\n" +
+                        "  \"team\": \"java-slack-sdk-test\",\n" +
+                        "  \"user\": \"test_user\",\n" +
+                        "  \"team_id\": \"E12345678\",\n" +
+                        "  \"user_id\": \"U1234567\",\n" +
+                        "  \"bot_id\": \"B12345678\",\n" +
+                        "  \"enterprise_id\": \"E12345678\",\n" +
+                        "  \"error\": \"\"\n" +
+                        "}";
+                resp.setStatus(200);
+                resp.getWriter().write(body);
+                resp.setContentType("application/json");
+                return;
+            }
+
             if (!req.getMethod().equals("GET") && !endpoint.endsWith("/00000000000")) {
                 endpoint += "/00000000000";
             }
@@ -84,7 +108,17 @@ public class ApiTest {
     @Before
     public void setup() throws Exception {
         server.start();
+        config = new SlackConfig();
+        config.setPrettyResponseLoggingEnabled(true);
+        config.setMethodsEndpointUrlPrefix("http://localhost:" + port + "/api/");
         config.setScimEndpointUrlPrefix("http://localhost:" + port + "/api/");
+        config.getHttpClientResponseHandlers().add(new HttpResponseListener() {
+            @Override
+            public void accept(State state) {
+                logger.debug("--- (SCIM Stats) ---\n" + GsonFactory.createSnakeCase(config).toJson(
+                        config.getSCIMConfig().getMetricsDatastore().getAllStats()));
+            }
+        });
     }
 
     @After

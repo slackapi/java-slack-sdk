@@ -2,7 +2,9 @@ package test_with_remote_apis.audit;
 
 import com.slack.api.Slack;
 import com.slack.api.audit.Actions;
+import com.slack.api.audit.AuditApiCompletionException;
 import com.slack.api.audit.AuditApiException;
+import com.slack.api.audit.request.LogsRequest;
 import com.slack.api.audit.response.ActionsResponse;
 import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.audit.response.SchemasResponse;
@@ -10,6 +12,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -17,6 +20,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -203,14 +207,16 @@ public class ApiTest {
         for (Field f : fields) {
             String action = String.valueOf(f.get(clazz));
             try {
-                LogsResponse response = slack.audit(token).getLogs(req -> req.limit(500).action(action));
+                LogsResponse response = slack.auditAsync(token).getLogs(req -> req.limit(500).action(action)).get();
                 assertThat(response.getError(), is(nullValue()));
-            } catch (AuditApiException e) {
-                if (e.getResponse().code() == 400) {
+            } catch (ExecutionException e) {
+                if (((AuditApiCompletionException) e.getCause()).
+                        getAuditApiException().getResponse().code() == 400) {
                     log.info("{} seems to be no longer supported", action);
+                } else {
+                    throw e;
                 }
             }
-            Thread.sleep(30); // To avoid rate limiting errors
         }
     }
 
@@ -263,6 +269,27 @@ public class ApiTest {
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.getEntries().size(), is(not(0)));
             assertThat(response.getRawBody(), is(notNullValue())); // non-null
+        }
+    }
+
+    @Ignore
+    @Test
+    public void demonstrateRateLimitedError() throws ExecutionException, InterruptedException, IOException {
+        LogsRequest req = LogsRequest.builder()
+                .limit(1)
+                .action(Actions.User.user_login)
+                .build();
+        while (true) {
+            try {
+                slack.audit(orgAdminUserToken).attachRawBody(true).getLogs(req);
+            } catch (AuditApiException e) {
+                if (e.getResponse().code() == 429) {
+                    break;
+                }
+            }
+        }
+        while (true) {
+            slack.auditAsync(orgAdminUserToken).attachRawBody(true).getLogs(req).get();
         }
     }
 
