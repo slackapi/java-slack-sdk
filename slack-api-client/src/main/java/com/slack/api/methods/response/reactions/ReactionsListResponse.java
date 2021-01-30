@@ -47,6 +47,7 @@ public class ReactionsListResponse implements SlackApiTextResponse {
             private Integer replyCount;
             private Integer replyUsersCount;
             private String latestReply;
+            private String parentUserId;
             private List<String> replyUsers;
 
             // https://api.slack.com/messaging/retrieving#threading
