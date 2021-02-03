@@ -397,7 +397,9 @@
       "set_a11y_prefs_new_user": false,
       "seen_sc_page_banner": false,
       "seen_sc_menu_coachmark": false,
-      "seen_sc_page": false
+      "seen_sc_page": false,
+      "notification_center_filters": "",
+      "media_playback_speed": 12345
     },
     "created": 12345,
     "first_login": 12345,

@@ -365,6 +365,14 @@
     {
       "date_created": "2020-11-02T11:13:11-08:00",
       "body": "Some users are unable to search in Slack. We\u0027re investigating, and we\u0027ll follow-up here once we know more. We\u0027re sorry for the trouble."
+    },
+    {
+      "date_created": "2021-02-02T17:52:55-08:00",
+      "body": "We\u0027re still investigating issues with editing user groups and transferring workspace ownership in a browser. No additional information to share just yet, but we\u0027ll keep you posted as soon as we have a further update."
+    },
+    {
+      "date_created": "2021-02-02T16:55:34-08:00",
+      "body": "We have confirmed that this issue specifically affects Slack in a web browser, and we\u0027re working to resolve this. \r\n\r\nIn the meantime, you should be able to edit user group names from within the desktop app. You can download our desktop clients here: https://slack.com/downloads\r\n\r\nWe\u0027re sorry for the disruption."
     }
   ]
 }
