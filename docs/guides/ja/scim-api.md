@@ -120,3 +120,31 @@ try {
   e.getError().getErrors().getDescription(); // "invalid_authentication"
 }
 ```
+
+---
+## Rate Limits
+
+Slack の SCIM API は、期待通りの快適なユーザー体験を提供するために、その [Rate Limits](https://api.slack.com/docs/rate-limits) に依拠しています。この制限は他の Slack API の制限とは異なり、アプリ単位ではなく、一つの OrG に設定されている全ての SCIM API 利用アプリ全体に対して適用されることにご注意ください。詳細は [API ドキュメント](https://api.slack.com/admins/scim#ratelimits)を参考にしてください。
+
+**AsyncSCIMClient** （非同期クライアント）はその実行において Rate Limits を考慮します。
+
+非同期クライアントは、可能な限りバーストリクエストを発生させないために、内部にキューの仕組みを持っています。一方、**SCIMClient** （同期クライアント）はそのような考慮はなく、常に即時でリクエストを送信します。幸いにもこれらの同期・非同期クライアントは協調して **MetricsDatastore** 内のメトリクスを更新します。これにより、非同期クライアントは、今どれくらいのトラフックを Slack プラットフォームに送っているかを正確に把握し、残っている呼び出し量を推測することができます。
+
+このデータストアのデフォルトの実装は、JVM のヒープメモリを使用したインメモリデータベースです。デフォルトの **SlackConfig** はこのインメモリ実装を有効にします。これはほとんどのケースで良い具合に動作するでしょう。この設定で問題ないなら、特に追加で何か設定する必要はありません。
+
+**AsyncSCIMClient** はそのメトリクスデータを考慮しながら動作します。アプリケーション内の API クライアントがすでに大量のリクエストを短時間の間に送信していると判断した場合、エラーにならないように API リクエストの実行を遅延させることがあります。
+
+```java
+import com.slack.api.Slack;
+import com.slack.api.scim.response.*;
+import java.util.concurrent.CompletableFuture;
+
+Slack slack = Slack.getInstance();
+String token = "xoxp-***"; // OrG 管理者のユーザートークン
+
+CompletableFuture<UsersSearchResponse> users = slack.scimAsync(token).searchUsers(req -> req
+  .startIndex(1)
+  .count(100)
+  .filter("userName Eq \"Carly\"")
+);
+```
