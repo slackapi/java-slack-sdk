@@ -73,3 +73,32 @@ ActionsResponse response = audit.getActions();
 ```
 
 Refer to [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/{{ site.sdkLatestVersion }}/slack-api-client-{{ site.sdkLatestVersion }}-javadoc.jar/!/com/slack/api/audit/response/ActionsResponse.html) to know the response data structure.
+
+
+---
+## Rate Limits
+
+The Audit Logs API methods conform to Slack's [rate limits](https://api.slack.com/docs/rate-limits) and all methods are rated Tier 3. This allows for up to 50 calls per minute, with an allowance for sporadic bursts. Refer to [the API document](https://api.slack.com/admins/audit-logs#how_to_call_the_audit_logs_api) for more details.
+
+**AsyncAuditClient**, the async client, has great consideration for Rate Limits.
+
+The async client internally has its queue systems to avoid burst traffics as much as possible while **AuditClient**, the synchronous client, always blindly sends requests. The good thing is that both sync and async clients maintain the metrics data in a **MetricsDatastore** together. This allows the async client to accurately know the current traffic they generated toward the Slack Platform and estimate the remaining amount to call.
+
+The default implementation of the datastore is in-memory one using the JVM heap memory. The default **SlackConfig** enables the in-memory one. It should work nicely for most cases. If your app is fine with it, you don't need to configure anything.
+
+**AsyncAuditClient** considers the metrics data very well. It may delay API requests to avoid rate-limited errors if the clients in the app already sent too many requests within a short period.
+
+```java
+import com.slack.api.audit.*;
+import com.slack.api.audit.response.LogsResponse;
+import java.util.concurrent.CompletableFuture;
+
+String token = System.getenv("SLACK_ADMIN_ACCESS_TOKN"); // `auditlogs:read` scope required
+AsyncAuditClient audit = Slack.getInstance().auditAsync(token);
+
+CompletableFuture<LogsResponse> response = audit.getLogs(req -> req
+  .oldest(1521214343) // Unix timestamp of the least recent audit event to include (inclusive)
+  .action(Actions.User.user_login) // A team member logged in
+  .limit(10) // Number of results to optimistically return
+);
+```

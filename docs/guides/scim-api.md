@@ -120,3 +120,31 @@ try {
   e.getError().getErrors().getDescription(); // "invalid_authentication"
 }
 ```
+
+---
+## Rate Limits
+
+Slack uses rate limits for the SCIM API to help provide a predictably pleasant experience. Please note: unlike many of the other Slack API rate limits, the limits below apply to all SCIM apps in an org, not on a per-app basis. Refer to [the API document](https://api.slack.com/admins/scim#ratelimits) for more details.
+
+**AsyncSCIMClient**, the async client, has great consideration for Rate Limits.
+
+The async client internally has its queue systems to avoid burst traffics as much as possible while **SCIMClient**, the synchronous client, always blindly sends requests. The good thing is that both sync and async clients maintain the metrics data in a **MetricsDatastore** together. This allows the async client to accurately know the current traffic they generated toward the Slack Platform and estimate the remaining amount to call.
+
+The default implementation of the datastore is in-memory one using the JVM heap memory. The default **SlackConfig** enables the in-memory one. It should work nicely for most cases. If your app is fine with it, you don't need to configure anything.
+
+**AsyncSCIMClient** considers the metrics data very well. It may delay API requests to avoid rate-limited errors if the clients in the app already sent too many requests within a short period.
+
+```java
+import com.slack.api.Slack;
+import com.slack.api.scim.response.*;
+import java.util.concurrent.CompletableFuture;
+
+Slack slack = Slack.getInstance();
+String token = "xoxp-***"; // Org admin user token
+
+CompletableFuture<UsersSearchResponse> users = slack.scimAsync(token).searchUsers(req -> req
+  .startIndex(1)
+  .count(100)
+  .filter("userName Eq \"Carly\"")
+);
+```
