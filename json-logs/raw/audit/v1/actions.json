@@ -131,7 +131,8 @@
       "user_logout_non_compliant_mobile_app_version",
       "user_force_upgrade_non_compliant_mobile_app_version",
       "user_login_failed",
-      "user_session_invalidated"
+      "user_session_invalidated",
+      "user_session_settings_changed"
     ],
     "file": [
       "file_downloaded",

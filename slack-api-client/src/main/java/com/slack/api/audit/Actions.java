@@ -140,6 +140,7 @@ public class Actions {
         public static final String user_logout = "user_logout";
         public static final String user_reactivated = "user_reactivated";
         public static final String user_session_invalidated = "user_session_invalidated";
+        public static final String user_session_settings_changed = "user_session_settings_changed";
         public static final String guest_expiration_set = "guest_expiration_set";
         public static final String guest_expiration_cleared = "guest_expiration_cleared";
         public static final String guest_expired = "guest_expired";
