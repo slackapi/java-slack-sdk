@@ -15,6 +15,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The basic configuration of this SDK. Some settings can be propagated to sub modules such as Bolt.
@@ -102,6 +103,11 @@ public class SlackConfig {
         }
 
         @Override
+        public void setProxyHeaders(Map<String, String> proxyHeaders) {
+            throwException();
+        }
+
+        @Override
         public void setHttpClientCallTimeoutMillis(Integer httpClientCallTimeoutMillis) {
             throwException();
         }
@@ -162,6 +168,11 @@ public class SlackConfig {
         }
         return null;
     }
+
+    /**
+     * Additional headers for proxy (e.g., Proxy-Authorization)
+     */
+    private Map<String, String> proxyHeaders;
 
     private boolean prettyResponseLoggingEnabled = false;
 

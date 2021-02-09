@@ -24,6 +24,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
@@ -150,6 +151,10 @@ public class SocketModeClientTyrusImpl implements SocketModeClient {
                     getLogger().debug("The SocketMode client's going to use an HTTP proxy: {}", proxyUrl);
                 }
                 clientManager.getProperties().put(ClientProperties.PROXY_URI, proxyUrl);
+            }
+            Map<String, String> proxyHeaders = getSlack().getHttpClient().getConfig().getProxyHeaders();
+            if (proxyHeaders != null && !proxyHeaders.isEmpty()) {
+                clientManager.getProperties().put(ClientProperties.PROXY_HEADERS, proxyHeaders);
             }
             try {
                 setAutoReconnectEnabled(true);

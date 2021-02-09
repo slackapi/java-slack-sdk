@@ -64,6 +64,18 @@ public class SlackHttpClient implements AutoCloseable {
                 throw new IllegalArgumentException("Failed to parse the proxy URL: " + config.getProxyUrl());
             }
         }
+        if (config.getProxyHeaders() != null) {
+            Authenticator authenticator = (route, response) -> {
+                Headers headers = response.request().headers();
+                Headers modifiedHeaders = headers.newBuilder()
+                        .addAll(Headers.of(config.getProxyHeaders()))
+                        .build();
+                return response.request().newBuilder()
+                        .headers(modifiedHeaders)
+                        .build();
+            };
+            okHttpClient.proxyAuthenticator(authenticator);
+        }
         return okHttpClient.build();
     }
 
