@@ -29,6 +29,12 @@ public class ChatUnfurlRequest implements SlackApiRequest {
     private String userAuthMessage;
 
     /**
+     * Provide an array of blocks to send as an ephemeral message to the user
+     * as invitation to authenticate further and enable full unfurling behavior
+     */
+    private List<LayoutBlock> userAuthBlocks;
+
+    /**
      * Set to `true` or `1` to indicate the user must install your Slack app to trigger unfurls for this domain
      */
     private boolean userAuthRequired;
