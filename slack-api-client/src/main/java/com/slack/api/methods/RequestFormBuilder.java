@@ -1094,6 +1094,7 @@ public class RequestFormBuilder {
         }
         setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
         setIfNotNull("user_auth_message", req.getUserAuthMessage(), form);
+        setIfNotNull("user_auth_blocks", req.getUserAuthBlocks(), form);
         setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
         return form;
     }
