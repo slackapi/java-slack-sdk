@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Real Time Messaging (RTM) API
@@ -88,6 +89,10 @@ public class RTMClient implements Closeable {
                 log.debug("The RTM client's going to use an HTTP proxy: {}", proxy);
             }
             client.getProperties().put(ClientProperties.PROXY_URI, proxy);
+        }
+        Map<String, String> proxyHeaders = slack.getHttpClient().getConfig().getProxyHeaders();
+        if (proxyHeaders != null && !proxyHeaders.isEmpty()) {
+            client.getProperties().put(ClientProperties.PROXY_HEADERS, proxyHeaders);
         }
         client.connectToServer(this, wssUri);
         log.debug("client connected to the server: {}", wssUri);

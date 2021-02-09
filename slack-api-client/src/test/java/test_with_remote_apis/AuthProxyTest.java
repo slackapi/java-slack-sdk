@@ -9,9 +9,9 @@ import com.slack.api.scim.SCIMApiException;
 import com.slack.api.scim.response.ServiceProviderConfigsGetResponse;
 import com.slack.api.socket_mode.SocketModeClient;
 import com.slack.api.status.v2.model.CurrentStatus;
-import com.slack.api.util.http.SlackHttpClient;
 import config.Constants;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.Credentials;
 import org.eclipse.jetty.proxy.ConnectHandler;
 import org.eclipse.jetty.proxy.ProxyServlet;
 import org.eclipse.jetty.server.Request;
@@ -29,6 +29,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.ProtocolException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -37,7 +42,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
 @Slf4j
-public class ProxyTest {
+public class AuthProxyTest {
 
     static SlackConfig config = new SlackConfig();
     static Server server = new Server();
@@ -54,7 +59,7 @@ public class ProxyTest {
     @Before
     public void setUp() throws Exception {
         // https://github.com/eclipse/jetty.project/blob/jetty-9.2.30.v20200428/examples/embedded/src/main/java/org/eclipse/jetty/embedded/ProxyServer.java
-        int port = PortProvider.getPort(ProxyTest.class.getName());
+        int port = PortProvider.getPort(AuthProxyTest.class.getName());
         connector.setPort(port);
         server.addConnector(connector);
         ConnectHandler proxy = new ConnectHandler() {
@@ -62,8 +67,21 @@ public class ProxyTest {
             public void handle(String target, Request br, HttpServletRequest request, HttpServletResponse res)
                     throws ServletException, IOException {
                 log.info("Proxy server handles a new connection (target: {})", target);
-                callCount.incrementAndGet();
                 super.handle(target, br, request, res);
+                if (res.getStatus() != 407) {
+                    callCount.incrementAndGet();
+                }
+            }
+
+            @Override
+            protected boolean handleAuthentication(HttpServletRequest request, HttpServletResponse response, String address) {
+                for (String name : Collections.list(request.getHeaderNames())) {
+                    log.info("{}: {}", name, request.getHeader(name));
+                    if (name.toLowerCase(Locale.ENGLISH).equals("proxy-authorization")) {
+                        return request.getHeader(name).equals("Basic bXktdXNlcm5hbWU6bXktcGFzc3dvcmQ=");
+                    }
+                }
+                return false;
             }
         };
         server.setHandler(proxy);
@@ -73,12 +91,33 @@ public class ProxyTest {
         server.start();
 
         config.setProxyUrl("http://localhost:" + port);
+
+        Map<String, String> proxyHeaders = new HashMap<>();
+        String username = "my-username";
+        String password = "my-password";
+        proxyHeaders.put("Proxy-Authorization", Credentials.basic(username, password));
+        config.setProxyHeaders(proxyHeaders);
     }
 
     @After
     public void tearDown() throws Exception {
         server.removeConnector(connector);
         server.stop();
+    }
+
+    @Test
+    public void failure() throws Exception {
+        Slack slack = Slack.getInstance(config);
+        Map<String, String> proxyHeaders = new HashMap<>();
+        String username = "xxx";
+        String password = "invalid";
+        proxyHeaders.put("Proxy-Authorization", Credentials.basic(username, password));
+        config.setProxyHeaders(proxyHeaders);
+        try {
+            slack.methods().authTest(r -> r.token(botToken));
+            fail();
+        } catch (ProtocolException e) {
+        }
     }
 
     @Test
@@ -103,9 +142,13 @@ public class ProxyTest {
 
         try {
             Slack slack = Slack.getInstance(new SlackConfig()); // with default config
-            AuthTestResponse apiResponse = slack.methods().authTest(r -> r.token(botToken));
-            assertThat(apiResponse.getError(), is(nullValue()));
-            assertThat(callCount.get(), is(1));
+            try {
+                slack.methods().authTest(r -> r.token(botToken));
+                fail();
+            } catch (IOException e) {
+            }
+            // this should be rejected
+            assertThat(callCount.get(), is(0));
 
             // verify if an invalid host given by system properties is reflected
             System.setProperty("http.proxyHost", "invalid-host");
@@ -119,9 +162,9 @@ public class ProxyTest {
             // verify if the setProxyUrl is prioritized over the system properties
             config.setProxyUrl(proxyUrl);
             slack = Slack.getInstance(config);
-            apiResponse = slack.methods().authTest(r -> r.token(botToken));
+            AuthTestResponse apiResponse = slack.methods().authTest(r -> r.token(botToken));
             assertThat(apiResponse.getError(), is(nullValue()));
-            assertThat(callCount.get(), is(2));
+            assertThat(callCount.get(), is(1));
 
         } finally {
             if (originalHttpProxyHost != null) {
@@ -139,8 +182,7 @@ public class ProxyTest {
 
     @Test
     public void rtm() throws Exception {
-        SlackHttpClient httpClient = new SlackHttpClient();
-        Slack slack = Slack.getInstance(config, httpClient);
+        Slack slack = Slack.getInstance(config);
         final AtomicBoolean received = new AtomicBoolean(false);
         try (RTMClient rtm = slack.rtmConnect(rtmBotToken)) { // slack-msgs.com
             rtm.addMessageHandler((msg) -> {
@@ -155,7 +197,7 @@ public class ProxyTest {
             rtm.sendMessage("foo");
         }
         assertThat(received.get(), is(true));
-        assertThat(callCount.get(), is(1));
+        assertThat(callCount.get(), is(2));
     }
 
     @Test
@@ -204,7 +246,6 @@ public class ProxyTest {
     public void socketMode_JavaWebSocket() throws Exception {
         Slack slack = Slack.getInstance(config);
         SocketModeClient socketModeClient = slack.socketMode(appLevelToken, SocketModeClient.Backend.JavaWebSocket);
-        socketModeClient.setAutoReconnectEnabled(false);
         socketModeClient.connect();
         try {
             assertThat(callCount.get(), is(2));

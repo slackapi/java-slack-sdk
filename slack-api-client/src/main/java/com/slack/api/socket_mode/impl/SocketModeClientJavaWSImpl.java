@@ -2,6 +2,7 @@ package com.slack.api.socket_mode.impl;
 
 import com.google.gson.Gson;
 import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.socket_mode.SocketModeClient;
 import com.slack.api.socket_mode.listener.EnvelopeListener;
@@ -21,7 +22,9 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ScheduledExecutorService;
@@ -203,11 +206,17 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
         public boolean isPongReceived() {
             return Math.abs(System.currentTimeMillis() - lastPongReceived.get()) < 1_000L;
         }
-
         public UnderlyingWebSocketSession(URI serverUri, SocketModeClient smc) {
-            super(serverUri);
+            this(serverUri, new HashMap<>(), smc);
+        }
+
+        public UnderlyingWebSocketSession(URI serverUri, Map<String, String> httpHeaders, SocketModeClient smc) {
+            super(serverUri, httpHeaders);
             this.smc = smc;
-            String proxyUrl = smc.getSlack().getHttpClient().getConfig().getProxyUrl();
+
+            // FIXME: the proxy settings here may not work
+            SlackConfig slackConfig = smc.getSlack().getHttpClient().getConfig();
+            String proxyUrl = slackConfig.getProxyUrl();
             if (proxyUrl != null) {
                 if (smc.getLogger().isDebugEnabled()) {
                     smc.getLogger().debug("The SocketMode client's going to use an HTTP proxy: {}", proxyUrl);
@@ -215,9 +224,15 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
                 try {
                     URL p = new URL(proxyUrl);
                     InetSocketAddress proxyAddress = new InetSocketAddress(p.getHost(), p.getPort());
-                    setProxy(new Proxy(Proxy.Type.HTTP, proxyAddress));
+                    this.setProxy(new Proxy(Proxy.Type.HTTP, proxyAddress));
                 } catch (MalformedURLException e) {
                     throw new IllegalStateException("The proxy setting is invalid: " + proxyUrl);
+                }
+            }
+            if (slackConfig.getProxyHeaders() != null) {
+                Map<String, String> proxyHeaders = slackConfig.getProxyHeaders();
+                for (Map.Entry<String, String> each : proxyHeaders.entrySet()) {
+                    this.addHeader(each.getKey(), each.getValue());
                 }
             }
         }
