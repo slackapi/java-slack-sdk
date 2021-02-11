@@ -70,6 +70,7 @@
       "is_app_user": false,
       "updated": 123,
       "has_2fa": false,
+      "is_email_confirmed": false,
       "presence": "",
       "enterprise_user": {
         "id": "",
