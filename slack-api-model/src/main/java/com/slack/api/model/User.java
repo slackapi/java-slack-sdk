@@ -52,6 +52,8 @@ public class User {
     private Long updated;
     @SerializedName("has_2fa")
     private boolean has2fa;
+    @SerializedName("is_email_confirmed")
+    private boolean emailConfirmed;
     private String presence; // away, etc
     private EnterpriseUser enterpriseUser;
     private String twoFactorType;

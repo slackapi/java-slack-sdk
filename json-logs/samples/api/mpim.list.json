@@ -23,7 +23,9 @@
         "creator": "U00000000",
         "last_set": 12345
       },
-      "priority": 12345
+      "priority": 12345,
+      "is_open": false,
+      "last_read": "0000000000.000000"
     }
   ],
   "warning": "",

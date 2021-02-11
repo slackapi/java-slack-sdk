@@ -49,7 +49,8 @@
     "is_app_user": false,
     "updated": 12345,
     "locale": "",
-    "has_2fa": false
+    "has_2fa": false,
+    "is_email_confirmed": false
   },
   "error": "",
   "needed": "",
