@@ -15,7 +15,7 @@ public class EventHandlersTest {
 
     @Test
     public void handlers() {
-        List<EventHandler<?>> handlersWithoutSubtype = Arrays.asList(
+        List<EventHandler<?>> handlers = Arrays.asList(
                 new ImCloseHandler() {
                     @Override
                     public void handle(ImClosePayload payload) {
@@ -370,35 +370,22 @@ public class EventHandlersTest {
                     @Override
                     public void handle(WorkflowStepDeletedPayload payload) {
                     }
+                },
+                new ChannelIdChangedHandler() {
+                    @Override
+                    public void handle(ChannelIdChangedPayload payload) {
+                    }
                 }
         );
 
-        for (EventHandler<?> handler : handlersWithoutSubtype) {
+        for (EventHandler<?> handler : handlers) {
             assertNotNull(handler.getEventType());
             assertNull(handler.getEventSubtype());
-        }
-
-        List<EventHandler<?>> handlersWithSubtype = Arrays.asList(
-                new MessageGroupTopicHandler() {
-                    @Override
-                    public void handle(MessageGroupTopicPayload payload) {
-                    }
-                },
-                new MessageChannelTopicHandler() {
-                    @Override
-                    public void handle(MessageChannelTopicPayload payload) {
-                    }
-                }
-        );
-
-        for (EventHandler<?> handler : handlersWithSubtype) {
-            assertNotNull(handler.getEventType());
-            assertNotNull(handler.getEventSubtype());
         }
     }
 
     @Test
-    public void messageHandlers() {
+    public void messageHandlers_with_subtype() {
         List<EventHandler<?>> handlers = Arrays.asList(
                 new MessageChangedHandler() {
                     @Override
@@ -433,6 +420,21 @@ public class EventHandlersTest {
                 new MessageEkmAccessDeniedHandler() {
                     @Override
                     public void handle(MessageEkmAccessDeniedPayload payload) {
+                    }
+                },
+                new MessageGroupTopicHandler() {
+                    @Override
+                    public void handle(MessageGroupTopicPayload payload) {
+                    }
+                },
+                new MessageChannelTopicHandler() {
+                    @Override
+                    public void handle(MessageChannelTopicPayload payload) {
+                    }
+                },
+                new MessageChannelJoinHandler() {
+                    @Override
+                    public void handle(MessageChannelJoinPayload payload) {
                     }
                 }
         );
