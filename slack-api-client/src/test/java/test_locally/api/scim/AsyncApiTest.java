@@ -39,8 +39,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AsyncApiTest {
 
-    public static final String ValidToken = "xoxb-this-is-valid";
-    public static final String InvalidToken = "xoxb-this-is-INVALID";
+    public static final String ValidToken = "xoxb-this-is-valid-scim";
 
     private static final FileReader reader = new FileReader("../json-logs/samples/scim/v1/");
 
@@ -69,10 +68,9 @@ public class AsyncApiTest {
                         "  \"team\": \"java-slack-sdk-test\",\n" +
                         "  \"user\": \"test_user\",\n" +
                         "  \"team_id\": \"E12345678\",\n" +
-                        "  \"user_id\": \"U1234567\",\n" +
-                        "  \"bot_id\": \"B12345678\",\n" +
                         "  \"enterprise_id\": \"E12345678\",\n" +
-                        "  \"error\": \"\"\n" +
+                        "  \"is_enterprise_install\": true,\n" +
+                        "  \"user_id\": \"U1234567\"\n" +
                         "}";
                 resp.setStatus(200);
                 resp.getWriter().write(body);

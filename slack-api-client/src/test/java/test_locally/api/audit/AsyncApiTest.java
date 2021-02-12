@@ -34,8 +34,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class AsyncApiTest {
 
-    public static final String ValidToken = "xoxb-this-is-valid";
-    public static final String InvalidToken = "xoxb-this-is-INVALID";
+    public static final String ValidToken = "xoxb-this-is-valid-audit-logs";
 
     private static final FileReader reader = new FileReader("../json-logs/samples/audit/v1/");
 
@@ -50,11 +49,10 @@ public class AsyncApiTest {
                         "  \"url\": \"https://java-slack-sdk-test.slack.com/\",\n" +
                         "  \"team\": \"java-slack-sdk-test\",\n" +
                         "  \"user\": \"test_user\",\n" +
-                        "  \"team_id\": \"T1234567\",\n" +
-                        "  \"user_id\": \"U1234567\",\n" +
-                        "  \"bot_id\": \"B12345678\",\n" +
+                        "  \"team_id\": \"E12345678\",\n" +
                         "  \"enterprise_id\": \"E12345678\",\n" +
-                        "  \"error\": \"\"\n" +
+                        "  \"is_enterprise_install\": true,\n" +
+                        "  \"user_id\": \"U1234567\"\n" +
                         "}";
                 resp.setStatus(200);
                 resp.getWriter().write(body);
@@ -112,14 +110,14 @@ public class AsyncApiTest {
         config.setAuditConfig(new AuditConfig());
         config.getAuditConfig().setExecutorName("getActions" + System.currentTimeMillis());
         MetricsDatastore datastore = config.getAuditConfig().getMetricsDatastore();
-        RequestStats stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "T1234567");
+        RequestStats stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "E12345678");
         assertThat(stats.getAllCompletedCalls().get("logs"), is(nullValue()));
 
         AsyncAuditClient audit = Slack.getInstance(config).auditAsync(ValidToken);
         LogsResponse response = audit.getLogs(r -> r.action("something")).get();
         assertThat(response.isOk(), is(true));
 
-        stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "T1234567");
+        stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "E12345678");
         assertThat(stats.getAllCompletedCalls().get("logs"), is(1L));
     }
 
@@ -132,13 +130,13 @@ public class AsyncApiTest {
         config.setAuditConfig(new AuditConfig());
         config.getAuditConfig().setExecutorName("getActions" + System.currentTimeMillis());
         MetricsDatastore datastore = config.getAuditConfig().getMetricsDatastore();
-        RequestStats stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "T1234567");
+        RequestStats stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "E12345678");
         assertThat(stats.getAllCompletedCalls().get("schemas"), is(nullValue()));
 
         AsyncAuditClient audit = Slack.getInstance(config).auditAsync(ValidToken);
         assertThat(audit.getSchemas().get().isOk(), is(true));
 
-        stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "T1234567");
+        stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "E12345678");
         assertThat(stats.getAllCompletedCalls().get("schemas"), is(1L));
     }
 
@@ -151,13 +149,13 @@ public class AsyncApiTest {
         config.setAuditConfig(new AuditConfig());
         config.getAuditConfig().setExecutorName("getActions" + System.currentTimeMillis());
         MetricsDatastore datastore = config.getAuditConfig().getMetricsDatastore();
-        RequestStats stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "T1234567");
+        RequestStats stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "E12345678");
         assertThat(stats.getAllCompletedCalls().get("actions"), is(nullValue()));
 
         AsyncAuditClient audit = Slack.getInstance(config).auditAsync(ValidToken);
         assertThat(audit.getActions().get().isOk(), is(true));
 
-        stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "T1234567");
+        stats = datastore.getStats(config.getAuditConfig().getExecutorName(), "E12345678");
         assertThat(stats.getAllCompletedCalls().get("actions"), is(1L));
     }
 
