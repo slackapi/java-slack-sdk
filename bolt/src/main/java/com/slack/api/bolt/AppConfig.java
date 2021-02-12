@@ -334,4 +334,19 @@ public class AppConfig {
     @Builder.Default
     private boolean appInitializersEnabled = true;
 
+    // ---------------------------------
+    // Default middleware configuration
+    // ---------------------------------
+
+    // This middleware works only for HTTP Mode
+    @Builder.Default
+    private boolean sslCheckEnabled = true;
+
+    // This middleware works only for HTTP Mode
+    @Builder.Default
+    private boolean requestVerificationEnabled = true;
+
+    @Builder.Default
+    private boolean ignoringSelfEventsEnabled = true;
+
 }
