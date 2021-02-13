@@ -271,6 +271,31 @@ Bolt に標準で組み込まれているミドルウェアはアプリ側で追
 
 最もよくあるパターンは **RequestVerification** ミドルウェアでリクエストが拒否される場合です。この拒否のあとは、他のどのミドルウェアも実行されないため、上記のサンプル例のミドルウェアも同様に動作しません。
 
+#### 組み込みミドルウェアをカスタマイズする
+
+Bolt は、デフォルトで以下のミドルウェアを有効にします。
+
+* [RequestVerification](https://github.com/slackapi/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/middleware/builtin/RequestVerification.java) は HTTP モードでリクエストの署名を検証します
+* [SingleTeamAuthorization](https://github.com/slackapi/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/middleware/builtin/SingleTeamAuthorization.java) または [MultiTeamsAuthorization](https://github.com/slackapi/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/middleware/builtin/MultiTeamsAuthorization.java) はリクエストに対応する OAuth アクセストークンをルックアップします
+* [IgnoringSelfEvents](https://github.com/slackapi/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/middleware/builtin/IgnoringSelfEvents.java) はそのアプリの bot user が発生させたイベントをスキップします（これは無限ループを起こすようなコーディングミスを防止するために有用です）
+* [SSLCheck](https://github.com/slackapi/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/middleware/builtin/SSLCheck.java) は Slack からの `ssl_check=1` リクエストをハンドリングします
+
+一般的にこれらのミドルウェアは共通で必要となるもなので無効化することを推奨しませんが、`AppConfig` オブジェクトの `ignoringSelfEventsEnabled` などのフラグを設定して無効化することができます。
+
+```java
+AppConfig appConfig = new AppConfig();
+
+appConfig.setIgnoringSelfEvents(false); // デフォルトは true
+appConfig.setSslCheck(false); // デフォルトは true
+
+// 代替となるソリューションなしで無効化しないでください！
+appConfig.setRequestVerification(false); // デフォルトは true
+
+App app = new App(appConfig);
+```
+
+組み込みのミドルウェアを無効化するときはそれが十分安全か確認するようにしてください。**特に、よりよいアプリのセキュリティを確保するために `RequestVerification` を使うことを強く推奨しています**。もし Bolt アプリの前段にリクエストの署名を検証してくれるプロキシサーバーを持っているなら、 `RequestVerification` を無効化することは全く問題ないでしょう。しかし、ただ開発が簡単になるからという理由だけで、このミドルウェアを無効化しないでください。
+
 ---
 ## 対応している Web フレームワーク
 
