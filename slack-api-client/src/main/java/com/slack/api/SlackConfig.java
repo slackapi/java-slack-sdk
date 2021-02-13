@@ -159,6 +159,16 @@ public class SlackConfig {
     private static String initProxyUrl() {
         String host = System.getProperty("http.proxyHost");
         if (host != null) {
+            String user = System.getProperty("http.proxyUser");
+            String password = System.getProperty("http.proxyPassword");
+            if (user != null && password != null) {
+                String port = System.getProperty("http.proxyPort");
+                if (port != null) {
+                    return "http://" + user + ":" + password + "@" + host + ":" + port;
+                } else {
+                    return "http://" + user + ":" + password + "@" + host;
+                }
+            }
             String port = System.getProperty("http.proxyPort");
             if (port != null) {
                 return "http://" + host + ":" + port;

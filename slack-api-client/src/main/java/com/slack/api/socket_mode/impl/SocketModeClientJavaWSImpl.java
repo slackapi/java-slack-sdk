@@ -14,7 +14,9 @@ import com.slack.api.socket_mode.queue.impl.ConcurrentLinkedMessageQueue;
 import com.slack.api.socket_mode.request.EventsApiEnvelope;
 import com.slack.api.socket_mode.request.InteractiveEnvelope;
 import com.slack.api.socket_mode.request.SlashCommandsEnvelope;
+import com.slack.api.util.http.ProxyUrlUtil;
 import com.slack.api.util.json.GsonFactory;
+import okhttp3.Credentials;
 import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.framing.Framedata;
@@ -216,21 +218,18 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
 
             // FIXME: the proxy settings here may not work
             SlackConfig slackConfig = smc.getSlack().getHttpClient().getConfig();
+            Map<String, String> proxyHeaders = slackConfig.getProxyHeaders();
             String proxyUrl = slackConfig.getProxyUrl();
             if (proxyUrl != null) {
                 if (smc.getLogger().isDebugEnabled()) {
                     smc.getLogger().debug("The SocketMode client's going to use an HTTP proxy: {}", proxyUrl);
                 }
-                try {
-                    URL p = new URL(proxyUrl);
-                    InetSocketAddress proxyAddress = new InetSocketAddress(p.getHost(), p.getPort());
-                    this.setProxy(new Proxy(Proxy.Type.HTTP, proxyAddress));
-                } catch (MalformedURLException e) {
-                    throw new IllegalStateException("The proxy setting is invalid: " + proxyUrl);
-                }
+                ProxyUrlUtil.ProxyUrl parsedProxy = ProxyUrlUtil.parse(proxyUrl);
+                InetSocketAddress proxyAddress = new InetSocketAddress(parsedProxy.getHost(), parsedProxy.getPort());
+                this.setProxy(new Proxy(Proxy.Type.HTTP, proxyAddress));
+                ProxyUrlUtil.setProxyAuthorizationHeader(proxyHeaders, parsedProxy);
             }
             if (slackConfig.getProxyHeaders() != null) {
-                Map<String, String> proxyHeaders = slackConfig.getProxyHeaders();
                 for (Map.Entry<String, String> each : proxyHeaders.entrySet()) {
                     this.addHeader(each.getKey(), each.getValue());
                 }

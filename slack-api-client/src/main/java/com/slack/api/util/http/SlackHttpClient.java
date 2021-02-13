@@ -9,10 +9,9 @@ import okhttp3.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
 import java.net.Proxy;
-import java.net.URL;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -54,21 +53,25 @@ public class SlackHttpClient implements AutoCloseable {
         if (config.getHttpClientCallTimeoutMillis() != null) {
             okHttpClient.callTimeout(config.getHttpClientCallTimeoutMillis(), TimeUnit.MILLISECONDS);
         }
+        Map<String, String> proxyHeaders = config.getProxyHeaders();
         if (config.getProxyUrl() != null && !config.getProxyUrl().trim().isEmpty()) {
-            try {
-                URL url = new URL(config.getProxyUrl());
-                InetSocketAddress address = new InetSocketAddress(url.getHost(), url.getPort());
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, address);
-                okHttpClient.proxy(proxy);
-            } catch (MalformedURLException e) {
-                throw new IllegalArgumentException("Failed to parse the proxy URL: " + config.getProxyUrl());
+            ProxyUrlUtil.ProxyUrl parsedProxy = ProxyUrlUtil.parse(config.getProxyUrl());
+            InetSocketAddress address = new InetSocketAddress(parsedProxy.getHost(), parsedProxy.getPort());
+            Proxy proxy = new Proxy(Proxy.Type.HTTP, address);
+            if (parsedProxy.getUsername() != null && parsedProxy.getPassword() != null) {
+                if (proxyHeaders == null) {
+                    proxyHeaders = new HashMap<>();
+                }
+                ProxyUrlUtil.setProxyAuthorizationHeader(proxyHeaders, parsedProxy);
             }
+            okHttpClient.proxy(proxy);
         }
-        if (config.getProxyHeaders() != null) {
+        if (proxyHeaders != null && !proxyHeaders.isEmpty()) {
+            final Map<String, String> _proxyHeaders = proxyHeaders;
             Authenticator authenticator = (route, response) -> {
                 Headers headers = response.request().headers();
                 Headers modifiedHeaders = headers.newBuilder()
-                        .addAll(Headers.of(config.getProxyHeaders()))
+                        .addAll(Headers.of(_proxyHeaders))
                         .build();
                 return response.request().newBuilder()
                         .headers(modifiedHeaders)
