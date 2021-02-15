@@ -5,7 +5,9 @@ import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.rtm.RTMConnectRequest;
 import com.slack.api.methods.response.rtm.RTMConnectResponse;
 import com.slack.api.model.User;
+import com.slack.api.util.http.ProxyUrlUtil;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.Credentials;
 import org.glassfish.tyrus.client.ClientManager;
 import org.glassfish.tyrus.client.ClientProperties;
 
@@ -15,7 +17,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Real Time Messaging (RTM) API
@@ -81,13 +85,23 @@ public class RTMClient implements Closeable {
      */
     public void connect() throws IOException, DeploymentException {
         ClientManager client = ClientManager.createClient();
-        String proxy = null;
-        proxy = slack.getHttpClient().getConfig().getProxyUrl();
+        String proxy = slack.getHttpClient().getConfig().getProxyUrl();
+        Map<String, String> proxyHeaders = slack.getHttpClient().getConfig().getProxyHeaders();
         if (proxy != null) {
+            ProxyUrlUtil.ProxyUrl parsedProxy = ProxyUrlUtil.parse(proxy);
             if (log.isDebugEnabled()) {
                 log.debug("The RTM client's going to use an HTTP proxy: {}", proxy);
             }
-            client.getProperties().put(ClientProperties.PROXY_URI, proxy);
+            client.getProperties().put(ClientProperties.PROXY_URI, parsedProxy.toUrlWithoutUserAndPassword());
+            if (parsedProxy.getUsername() != null && parsedProxy.getPassword() != null) {
+                if (proxyHeaders == null) {
+                    proxyHeaders = new HashMap<>();
+                }
+                ProxyUrlUtil.setProxyAuthorizationHeader(proxyHeaders, parsedProxy);
+            }
+        }
+        if (proxyHeaders != null && !proxyHeaders.isEmpty()) {
+            client.getProperties().put(ClientProperties.PROXY_HEADERS, proxyHeaders);
         }
         client.connectToServer(this, wssUri);
         log.debug("client connected to the server: {}", wssUri);

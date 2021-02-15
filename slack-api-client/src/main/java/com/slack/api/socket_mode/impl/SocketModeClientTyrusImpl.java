@@ -13,6 +13,7 @@ import com.slack.api.socket_mode.queue.impl.ConcurrentLinkedMessageQueue;
 import com.slack.api.socket_mode.request.EventsApiEnvelope;
 import com.slack.api.socket_mode.request.InteractiveEnvelope;
 import com.slack.api.socket_mode.request.SlashCommandsEnvelope;
+import com.slack.api.util.http.ProxyUrlUtil;
 import com.slack.api.util.json.GsonFactory;
 import com.slack.api.util.thread.ExecutorServiceFactory;
 import org.glassfish.tyrus.client.ClientManager;
@@ -23,7 +24,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
@@ -144,12 +147,23 @@ public class SocketModeClientTyrusImpl implements SocketModeClient {
     public void connect() {
         try {
             ClientManager clientManager = ClientManager.createClient();
+            Map<String, String> proxyHeaders = getSlack().getHttpClient().getConfig().getProxyHeaders();
             String proxyUrl = getSlack().getHttpClient().getConfig().getProxyUrl();
             if (proxyUrl != null) {
                 if (getLogger().isDebugEnabled()) {
                     getLogger().debug("The SocketMode client's going to use an HTTP proxy: {}", proxyUrl);
                 }
-                clientManager.getProperties().put(ClientProperties.PROXY_URI, proxyUrl);
+                ProxyUrlUtil.ProxyUrl parsedProxy = ProxyUrlUtil.parse(proxyUrl);
+                clientManager.getProperties().put(ClientProperties.PROXY_URI, parsedProxy.toUrlWithoutUserAndPassword());
+                if (parsedProxy.getUsername() != null && parsedProxy.getPassword() != null) {
+                    if (proxyHeaders == null) {
+                        proxyHeaders = new HashMap<>();
+                    }
+                    ProxyUrlUtil.setProxyAuthorizationHeader(proxyHeaders, parsedProxy);
+                }
+            }
+            if (proxyHeaders != null && !proxyHeaders.isEmpty()) {
+                clientManager.getProperties().put(ClientProperties.PROXY_HEADERS, proxyHeaders);
             }
             try {
                 setAutoReconnectEnabled(true);
