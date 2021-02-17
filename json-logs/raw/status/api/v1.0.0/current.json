@@ -373,6 +373,10 @@
     {
       "date_created": "2021-02-02T16:55:34-08:00",
       "body": "We have confirmed that this issue specifically affects Slack in a web browser, and we\u0027re working to resolve this. \r\n\r\nIn the meantime, you should be able to edit user group names from within the desktop app. You can download our desktop clients here: https://slack.com/downloads\r\n\r\nWe\u0027re sorry for the disruption."
+    },
+    {
+      "date_created": "2021-02-16T14:51:58-08:00",
+      "body": "Some people may be having an issue importing files from Google Drive. Our team is looking into this and will share more details as they are uncovered."
     }
   ]
 }
