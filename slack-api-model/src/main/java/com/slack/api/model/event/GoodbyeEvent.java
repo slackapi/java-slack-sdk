@@ -3,11 +3,16 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * The file_unshared event is sent when a file is unshared.
- * It is sent to all connected clients for all users that had permission to see the file.
- * The file property includes the file ID, as well as a top-level file_id.
- * To obtain additional information about the unshared file, use the files.info API method.
+ * The server intends to close the connection soon.
  * <p>
+ * The goodbye event may be sent by a server that expects it will close the connection after an unspecified amount of time.
+ * A well formed client should reconnect to avoid data loss.
+ * <p>
+ * Other scenarios where you might encounter the goodbye event are:
+ * <ul>
+ * <li>reaching the maximum duration of a RTM web socket connection (8 hours)
+ * <li>your workspace has been inactive for over two minutes
+ * </ul>
  * https://api.slack.com/events/goodbye
  */
 @Data
