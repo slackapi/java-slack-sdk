@@ -280,7 +280,7 @@ Bolt は、デフォルトで以下のミドルウェアを有効にします。
 * [IgnoringSelfEvents](https://github.com/slackapi/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/middleware/builtin/IgnoringSelfEvents.java) はそのアプリの bot user が発生させたイベントをスキップします（これは無限ループを起こすようなコーディングミスを防止するために有用です）
 * [SSLCheck](https://github.com/slackapi/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/middleware/builtin/SSLCheck.java) は Slack からの `ssl_check=1` リクエストをハンドリングします
 
-一般的にこれらのミドルウェアは共通で必要となるもなので無効化することを推奨しませんが、`AppConfig` オブジェクトの `ignoringSelfEventsEnabled` などのフラグを設定して無効化することができます。
+一般的にこれらのミドルウェアは共通で必要となるものなので無効化することを推奨しませんが、`AppConfig` オブジェクトの `ignoringSelfEventsEnabled` などのフラグを設定して無効化することができます。
 
 ```java
 AppConfig appConfig = new AppConfig();
