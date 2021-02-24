@@ -174,7 +174,8 @@
       "channel_renamed",
       "external_shared_channel_invite_auto_revoked",
       "channel_email_address_created",
-      "channel_email_address_deleted"
+      "channel_email_address_deleted",
+      "channel_retention_changed"
     ],
     "app": [
       "app_installed",

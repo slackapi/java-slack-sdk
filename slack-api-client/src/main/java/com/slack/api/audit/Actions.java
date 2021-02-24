@@ -198,6 +198,7 @@ public class Actions {
         public static final String external_shared_channel_invite_auto_revoked = "external_shared_channel_invite_auto_revoked";
         public static final String channel_email_address_created = "channel_email_address_created";
         public static final String channel_email_address_deleted = "channel_email_address_deleted";
+        public static final String channel_retention_changed = "channel_retention_changed";
     }
 
     public static class App {

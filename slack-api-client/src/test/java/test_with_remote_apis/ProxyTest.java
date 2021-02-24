@@ -34,6 +34,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.fail;
 
 @Slf4j
@@ -174,7 +176,8 @@ public class ProxyTest {
             Slack slack = Slack.getInstance(config);
             ServiceProviderConfigsGetResponse response = slack.scim(scimToken).getServiceProviderConfigs(req -> req);
             assertThat(response.getAuthenticationSchemes(), is(notNullValue()));
-            assertThat(callCount.get(), is(2)); // auth.test & scim
+            // auth.test can be cached
+            assertThat(callCount.get(), is(greaterThanOrEqualTo(1))); // auth.test & scim
         }
     }
 
