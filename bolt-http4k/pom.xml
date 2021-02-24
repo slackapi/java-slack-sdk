@@ -13,7 +13,6 @@
         <http4k.version>4.2.0.0</http4k.version>
     </properties>
 
-    <groupId>com.slack.api</groupId>
     <artifactId>bolt-http4k</artifactId>
     <version>1.6.2-SNAPSHOT</version>
     <packaging>jar</packaging>
