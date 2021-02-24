@@ -15,7 +15,6 @@
         <mockito-all.version>1.10.19</mockito-all.version>
     </properties>
 
-    <groupId>com.slack.api</groupId>
     <artifactId>bolt-micronaut</artifactId>
     <version>1.6.2-SNAPSHOT</version>
     <packaging>jar</packaging>
