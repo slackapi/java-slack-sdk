@@ -63,12 +63,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.glassfish.tyrus.bundles</groupId>
-            <artifactId>tyrus-standalone-client</artifactId>
-            <version>${tyrus-standalone-client.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.java-websocket</groupId>
             <artifactId>Java-WebSocket</artifactId>
             <version>${java-websocket.version}</version>
