@@ -411,25 +411,6 @@ public class conversations_Test {
                 }
             }
 
-            // channels.replies
-            {
-                ChannelsRepliesResponse response = slack.methods().channelsReplies(r -> r
-                        .token(botToken)
-                        .threadTs(threadTs)
-                        .channel(channel.getId()));
-                assertThat(response.getError(), is(nullValue()));
-                assertThat(response.isOk(), is(true));
-
-                List<Message> messages = response.getMessages();
-                Message firstMessage = messages.get(0);
-                assertThat(firstMessage.getReplyUsersCount(), is(1));
-                // NOTE: As of April 2020, this field is no longer available
-                // assertThat(firstMessage.getReplies().size(), is(5));
-                assertThat(firstMessage.getReplies(), is(nullValue()));
-                assertThat(firstMessage.getReplyCount(), is(5));
-                assertThat(firstMessage.getLatestReply(), is(messages.get(5).getTs()));
-            }
-
             // conversations.replies
             {
                 ConversationsRepliesResponse response = slack.methods().conversationsReplies(r -> r
