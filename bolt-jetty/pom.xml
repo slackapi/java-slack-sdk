@@ -13,7 +13,6 @@
         <jetty.version>9.4.35.v20201120</jetty.version>
     </properties>
 
-    <groupId>com.slack.api</groupId>
     <artifactId>bolt-jetty</artifactId>
     <version>1.6.2-SNAPSHOT</version>
     <packaging>jar</packaging>

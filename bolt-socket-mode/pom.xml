@@ -16,7 +16,6 @@
         <java-websocket.version>1.5.1</java-websocket.version>
     </properties>
 
-    <groupId>com.slack.api</groupId>
     <artifactId>bolt-socket-mode</artifactId>
     <version>1.6.2-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -60,19 +59,6 @@
             <artifactId>Java-WebSocket</artifactId>
             <version>${java-websocket.version}</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.glassfish.tyrus.bundles</groupId>
-            <artifactId>tyrus-standalone-client</artifactId>
-            <version>${tyrus-standalone-client.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.java-websocket</groupId>
-            <artifactId>Java-WebSocket</artifactId>
-            <version>${java-websocket.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>

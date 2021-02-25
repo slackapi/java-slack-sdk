@@ -15,7 +15,6 @@
         <mockito-all.version>1.10.19</mockito-all.version>
     </properties>
 
-    <groupId>com.slack.api</groupId>
     <artifactId>bolt-micronaut</artifactId>
     <version>1.6.2-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -58,12 +57,6 @@
             <groupId>io.micronaut.test</groupId>
             <artifactId>micronaut-test-junit5</artifactId>
             <version>${micronaut-test-junit5.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut</groupId>
-            <artifactId>micronaut-inject-java-test</artifactId>
-            <version>${micronaut.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

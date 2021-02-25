@@ -16,7 +16,6 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
-    <groupId>com.slack.api</groupId>
     <artifactId>bolt-helidon</artifactId>
     <version>1.6.2-SNAPSHOT</version>
     <packaging>jar</packaging>

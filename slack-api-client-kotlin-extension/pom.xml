@@ -8,7 +8,6 @@
         <version>1.6.2-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.slack.api</groupId>
     <artifactId>slack-api-client-kotlin-extension</artifactId>
     <version>1.6.2-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -46,12 +45,6 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit</artifactId>
             <version>${kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

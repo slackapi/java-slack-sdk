@@ -8,7 +8,6 @@
         <version>1.6.2-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.slack.api</groupId>
     <artifactId>bolt-ktor</artifactId>
     <version>1.6.2-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -55,12 +54,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-server-netty</artifactId>
             <version>${ktor.version}</version>
@@ -70,12 +63,6 @@
             <groupId>io.ktor</groupId>
             <artifactId>ktor-server-tests</artifactId>
             <version>${ktor.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

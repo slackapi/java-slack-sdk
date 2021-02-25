@@ -14,7 +14,6 @@
         <jetty.version>9.4.24.v20191120</jetty.version>
     </properties>
 
-    <groupId>com.slack.api</groupId>
     <artifactId>bolt-servlet</artifactId>
     <version>1.6.2-SNAPSHOT</version>
     <packaging>jar</packaging>
