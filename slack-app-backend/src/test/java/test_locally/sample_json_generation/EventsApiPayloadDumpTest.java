@@ -106,6 +106,7 @@ public class EventsApiPayloadDumpTest {
                 new UserResourceRemovedPayload(),
                 new MessageGroupTopicPayload(),
                 new MessageChannelTopicPayload(),
+                new MessageChannelPostingPermissionsPayload(),
                 new WorkflowStepExecutePayload(),
                 new WorkflowDeletedPayload(),
                 new WorkflowPublishedPayload(),

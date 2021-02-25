@@ -436,6 +436,11 @@ public class EventHandlersTest {
                     @Override
                     public void handle(MessageChannelJoinPayload payload) {
                     }
+                },
+                new MessageChannelPostingPermissionsHandler() {
+                    @Override
+                    public void handle(MessageChannelPostingPermissionsPayload payload) {
+                    }
                 }
         );
         for (EventHandler<?> handler : handlers) {
