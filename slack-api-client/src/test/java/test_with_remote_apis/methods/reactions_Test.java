@@ -37,7 +37,7 @@ public class reactions_Test {
 
     @Test
     public void test_bot() throws IOException, SlackApiException {
-        String channel = slack.methods().channelsList(r -> r.token(botToken).excludeArchived(true))
+        String channel = slack.methods().conversationsList(r -> r.token(botToken).excludeArchived(true))
                 .getChannels().get(0).getId();
 
         ChatPostMessageResponse postMessage = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
@@ -78,7 +78,7 @@ public class reactions_Test {
 
     @Test
     public void test_user() throws IOException, SlackApiException {
-        String channel = slack.methods().channelsList(r -> r.token(userToken).excludeArchived(true))
+        String channel = slack.methods().conversationsList(r -> r.token(userToken).excludeArchived(true))
                 .getChannels().get(0).getId();
 
         ConversationsJoinResponse join = slack.methods().conversationsJoin(r -> r.channel(channel).token(userToken));

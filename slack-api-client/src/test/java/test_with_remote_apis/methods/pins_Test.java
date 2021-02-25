@@ -6,7 +6,7 @@ import com.slack.api.methods.response.files.FilesUploadResponse;
 import com.slack.api.methods.response.pins.PinsAddResponse;
 import com.slack.api.methods.response.pins.PinsListResponse;
 import com.slack.api.methods.response.pins.PinsRemoveResponse;
-import com.slack.api.model.Channel;
+import com.slack.api.model.Conversation;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -36,9 +36,9 @@ public class pins_Test {
 
     @Test
     public void list() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(botToken)).getChannels();
+        List<Conversation> channels_ = slack.methods().conversationsList(r -> r.token(botToken)).getChannels();
         List<String> channels = new ArrayList<>();
-        for (Channel c : channels_) {
+        for (Conversation c : channels_) {
             if (c.getName().equals("random")) {
                 channels.add(c.getId());
                 break;
@@ -54,9 +54,9 @@ public class pins_Test {
 
     @Test
     public void add() throws IOException, SlackApiException {
-        List<Channel> channels_ = slack.methods().channelsList(r -> r.token(botToken)).getChannels();
+        List<Conversation> channels_ = slack.methods().conversationsList(r -> r.token(botToken)).getChannels();
         List<String> channels = new ArrayList<>();
-        for (Channel c : channels_) {
+        for (Conversation c : channels_) {
             if (c.getName().equals("random")) {
                 channels.add(c.getId());
                 break;
