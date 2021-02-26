@@ -124,6 +124,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("date", req.getDate(), form);
         setIfNotNull("type", req.getType(), form);
+        setIfNotNull("metadata_only", req.getMetadataOnly(), form);
         return form;
     }
 

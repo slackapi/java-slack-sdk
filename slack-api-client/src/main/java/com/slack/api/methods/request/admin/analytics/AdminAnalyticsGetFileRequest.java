@@ -26,4 +26,12 @@ public class AdminAnalyticsGetFileRequest implements SlackApiRequest {
      */
     private String type;
 
+    /**
+     * Retrieve metadata for the type of analytics indicated.
+     * Can be used only with type set to public_channel analytics.
+     * See detail below. Omit the date parameter when using this argument.
+     * Default: false
+     */
+    private Boolean metadataOnly;
+
 }
