@@ -12,6 +12,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.zip.GZIPInputStream;
 
@@ -101,6 +102,18 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         }
     }
 
+    @Data
+    public static class OriginatingTeam {
+        private String teamId;
+        private String name;
+    }
+
+    @Data
+    public static class SharedWith {
+        private String teamId;
+        private String name;
+    }
+
     /**
      * Parsed Analytics Data
      */
@@ -108,7 +121,11 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
     public static class AnalyticsData {
 
         /**
+         * (member)
+         * (public_channel)
          * The date this row of data is representative of
+         * (public_channel + metadata_only)
+         * These details are current as of this date, which is also when you're making this API call
          * Example: 2020-09-13
          */
         private String date;
@@ -138,18 +155,21 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         private String enterpriseEmployeeNumber;
 
         /**
+         * (member)
          * User is classified as a guest (not a full workspace member) on the date in the API request
          * Example: false
          */
         private Boolean isGuest;
 
         /**
+         * (member)
          * User is classified as a billable user (included in the bill) on the the date in the API request
          * Example: false
          */
         private Boolean isBillableSeat;
 
         /**
+         * (member)
          * User has posted a message or read at least one channel
          * or direct message on the date in the API request
          * Example: true
@@ -157,6 +177,7 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         private Boolean isActive;
 
         /**
+         * (member)
          * User has posted a message or read at least one channel
          * or direct message on the date in the API request via the Slack iOS App
          * Example: true
@@ -164,6 +185,7 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         private Boolean isActiveIos;
 
         /**
+         * (member)
          * User has posted a message or read at least one channel
          * or direct message on the date in the API request via the Slack Android App
          * Example: false
@@ -171,6 +193,7 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         private Boolean isActiveAndroid;
 
         /**
+         * (member)
          * User has posted a message or read at least one channel
          * or direct message on the date in the API request via the Slack Desktop App
          * Example: true
@@ -178,22 +201,29 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         private Boolean isActiveDesktop;
 
         /**
+         * (member)
          * Total reactions added to any message type in any conversation type
          * by the user on the date in the API request. Removing reactions is not included.
          * This metric is not de-duplicated by message—if a user adds 3 different reactions
          * to a single message, we will report 3 reactions
+         * (public_channel)
+         * 	A count of emoji reactions left on any message in channel on that given day by human users
          * Example: 20
          */
         private Integer reactionsAddedCount;
 
         /**
+         * (member)
          * Total messages posted by the user on the date in the API request to all message and conversation types,
          * whether public, private, multi-person direct message, etc.
+         * (public_channel)
+         * A count of total messages posted, including messages from apps and integration on the given day
          * Example: 40
          */
         private Integer messagesPostedCount;
 
         /**
+         * (member)
          * Total messages posted by the user in private channels and public channels on the date in the API request,
          * not including direct messages
          * Example: 30
@@ -201,9 +231,158 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         private Integer channelMessagesPostedCount;
 
         /**
+         * (member)
          * Total files uploaded by the user on the date in the API request
          * Example: 5
          */
         private Integer filesAddedCount;
+
+        // public_channel type
+
+        /**
+         * (public_channel)
+         * A JSON object with the team_id and name of
+         * the workspace that created this public channel
+         * Example: {"team_id":"T4C3G041C","name":"arcane"}
+         */
+        private OriginatingTeam originatingTeam;
+
+        /**
+         * (public_channel)
+         * The unique id belonging to this channel.
+         * The metadata_only mode will give you information like the channel's name
+         * Example: CNGL0K091
+         * (public_channel + metadata_only)
+         * The channel's unique identifier
+         */
+        private String channelId;
+
+        /**
+         * (public_channel)
+         * Indicates which kind of public channel this is:
+         * single_workspace_channel, multi_workspace_channel, or org_wide_channel.
+         * Example: "single_workspace_channel"
+         */
+        private String channelType;
+
+        /**
+         * (public_channel)
+         * Indicates whether the channel is public or private.
+         * Only public channel analytics is available at this time.
+         * Example: "public"
+         */
+        private String visibility;
+
+        /**
+         * (public_channel)
+         * Indicates which, if any, workspaces in the same organization this channel is shared with.
+         * Presented as an array of JSON objects containing a team_id and a name.
+         * Only works with channel_type set to multi_channel_workspace.
+         * One of the included team_id values corresponds to the organization itself, such as this E123457 example.
+         * Example: [{"team_id":"T123456","name":"pentameter"},{"team_id":"E123457","name":"markov corp"}]
+         */
+        private List<SharedWith> sharedWith;
+
+        /**
+         * (public_channel)
+         * A boolean value revealing whether the channel is shared with
+         * workspaces outside of this organization when set to true.
+         * Shared channel analytics are not yet available.
+         * Example: false
+         */
+        private Boolean isSharedExternally;
+
+        /**
+         * (public_channel)
+         * The date and time the channel was first created,
+         * presented in seconds since the epoch (UNIX time).
+         * Example: 1452719593
+         */
+        private Integer dateCreated;
+
+        /**
+         * (public_channel)
+         * The date and time the channel last had a message posted in it,
+         * presented in seconds since the epoch (UNIX time).
+         * Example: 1584820530
+         */
+        private Integer dateLastActive;
+
+        /**
+         * (public_channel)
+         * A count of total full members & guests
+         * Example: 7
+         */
+        private Integer totalMembersCount;
+
+        /**
+         * (public_channel)
+         * A count of people in this channel who have a Full Member account.
+         * Example: 6
+         */
+        private Integer fullMembersCount;
+
+        /**
+         * (public_channel)
+         * A count of people in this channel who have read or posted a message.
+         * Example: 6
+         */
+        private Integer activeMembersCount;
+
+        /**
+         * (public_channel)
+         * A count of people in this channel who have a guest account.
+         * Example: 1
+         */
+        private Integer guestMembersCount;
+
+        /**
+         * (public_channel)
+         * A count of total messages posted from Slack Members & guests (human users only)
+         * on the given day
+         * Example: 193
+         */
+        private Integer messagesPostedByMembersCount;
+
+        /**
+         * (public_channel)
+         * A count of the unique number of human users (guests & full members)
+         * who posted a message on the given day
+         * Example: 3
+         */
+        private Integer membersWhoPostedCount;
+
+        /**
+         * (public_channel)
+         * A count of the unique human users (guests & full members)
+         * who read a message on the given day
+         * Example: 225
+         */
+        private Integer membersWhoViewedCount;
+
+        // public_channel type + metadata_only
+
+        /**
+         * (public_channel + metadata_only)
+         * The latest name of the channel
+         * Example: "ama"
+         */
+        private String name;
+
+        /**
+         * (public_channel + metadata_only)
+         * The latest channel topic
+         * Example: "Are Jack Kerouac's paragraphs too long?"
+         */
+        private String topic;
+
+        /**
+         * (public_channel + metadata_only)
+         * A longer description about the purpose of the channel
+         * Example: "Ask our editors all about their favorite literature"
+         */
+        private String description;
+
     }
+
 }

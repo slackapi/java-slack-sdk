@@ -48,12 +48,12 @@ public class AdminApi_analytics_Test {
                     .date("2020-10-20")
                     .type("member")
             ).get();
+            assertNull(response.getError());
             assertNotNull(response.getFileStream());
             List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
             response.forEach(data -> results.add(data));
             assertTrue(results.size() > 0);
             assertNull(response.getFileStream());
-            assertTrue(response.isOk());
 
             try {
                 response.asBytes();
@@ -91,6 +91,76 @@ public class AdminApi_analytics_Test {
             // can read the bytes as the loaded bytes are cached
             response.forEach(data -> {
             });
+        }
+    }
+
+    @Test
+    public void getFile_public_channel() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
+                    .date("2020-10-20")
+                    .type("public_channel")
+            ).get();
+            assertNull(response.getError());
+            assertNotNull(response.getFileStream());
+            List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
+            response.forEach(data -> results.add(data));
+            assertTrue(results.size() > 0);
+
+            assertNotNull(results.get(0).getChannelId());
+
+            assertNull(response.getFileStream());
+
+            try {
+                response.asBytes();
+                fail();
+            } catch (IOException e) {
+                assertEquals("The byte stream has been already consumed.", e.getMessage());
+            }
+            try {
+                response.forEach(data -> {
+                });
+                fail();
+            } catch (IOException e) {
+                assertEquals("The byte stream has been already consumed.", e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    public void getFile_public_channel_metadata_only() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
+                    .type("public_channel")
+                    .metadataOnly(true)
+            ).get();
+            assertNull(response.getError());
+            assertNotNull(response.getFileStream());
+            List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
+            response.forEach(data -> results.add(data));
+            assertTrue(results.size() > 0);
+
+            assertNotNull(results.get(0).getChannelId());
+            assertNotNull(results.get(0).getName());
+            assertNotNull(results.get(0).getTopic());
+            assertNotNull(results.get(0).getDescription());
+            assertNotNull(results.get(0).getDate());
+
+            assertNull(response.getFileStream());
+
+            try {
+                response.asBytes();
+                fail();
+            } catch (IOException e) {
+                assertEquals("The byte stream has been already consumed.", e.getMessage());
+            }
+            try {
+                response.forEach(data -> {
+                });
+                fail();
+            } catch (IOException e) {
+                assertEquals("The byte stream has been already consumed.", e.getMessage());
+            }
         }
     }
 }
