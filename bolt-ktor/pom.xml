@@ -15,7 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <ktor.version>1.5.1</ktor.version>
+        <ktor.version>1.5.2</ktor.version>
     </properties>
 
     <pluginRepositories>

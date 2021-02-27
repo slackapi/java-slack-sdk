@@ -15,10 +15,10 @@ export SLACK_BOT_TOKEN={xoxb-1234123412-123412341212-abcabcabc}
 
 ```bash
 docker build -t your-repo/hello-bolt .
-docker run -p 8080:8080 -it your-repo/hello-bolt \
-  -e \
-  SLACK_SIGNING_SECRET=$SLACK_SIGNING_SECRET \
-  SLACK_BOT_TOKEN=$SLACK_BOT_TOKEN
+docker run \
+  -e SLACK_SIGNING_SECRET=$SLACK_SIGNING_SECRET \
+  -e SLACK_BOT_TOKEN=$SLACK_BOT_TOKEN \
+  -p 8080:8080 -it your-repo/hello-bolt
 # runs at localhost:8080
 ```
 

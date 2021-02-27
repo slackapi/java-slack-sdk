@@ -1,4 +1,4 @@
-FROM gradle:5.6.3-jdk11 AS build
+FROM gradle:6.8.3-jdk11 AS build
 COPY . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle build
