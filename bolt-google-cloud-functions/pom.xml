@@ -13,7 +13,7 @@
         <!-- functions-framework-api requires Java 11+ -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <google-cloud-functions-api.version>1.0.3</google-cloud-functions-api.version>
+        <google-cloud-functions-api.version>1.0.4</google-cloud-functions-api.version>
     </properties>
 
     <artifactId>bolt-google-cloud-functions</artifactId>
