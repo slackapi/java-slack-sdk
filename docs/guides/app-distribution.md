@@ -8,7 +8,7 @@ lang: en
 
 A newly created Slack app can only be installed in its development workspace in the beginning. By setting an OAuth Redirect URL and enabling [App Distribution](https://api.slack.com/start/distributing), the app becomes to be ready for installation in any other workspaces.
 
-* [Using OAuth 2.0](https://api.slack.com/docs/oauth)
+* [Installing with OAuth](https://api.slack.com/authentication/oauth-v2)
 * [Distributing Slack Apps](https://api.slack.com/start/distributing)
 
 ### Slack App Configuration
@@ -28,7 +28,7 @@ All your app needs to do to properly handle OAuth Flow are:
   * Append `client_id`, `scope`, `user_scope` (only for v2), and `state` to the URL
 * Provide an endpoint to handle user redirection from Slack
   * Make sure if the `state` parameter is valid
-  * Complete the installation by calling [oauth.v2.access](https://api.slack.com/methods/oauth.v2.access) (or [oauth.access](https://api.slack.com/methods/oauth.access)) method and store the acquired tokens
+  * Complete the installation by calling [oauth.v2.access](https://api.slack.com/methods/oauth.v2.access) (or [oauth.access](https://api.slack.com/methods/oauth.access) if you maintain legacy OAuth apps) method and store the acquired tokens
 * Provide the endpoints to navigate installers for the completion/cancellation of the installation flow
   * The URLs are usually somewhere else but Bolt has simple functionality to serve them
 

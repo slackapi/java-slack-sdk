@@ -8,7 +8,7 @@ lang: ja
 
 新しく作られた Slack アプリは、はじめは開発用ワークスペース（Development Workspace）にだけインストールすることができます。OAuth Redirect URL を設定して [App Distribution](https://api.slack.com/start/distributing) を有効にすると、そのアプリは他のどのワークスペースにもインストールできるようになります。
 
-* 「[Using OAuth 2.0（英語）](https://api.slack.com/docs/oauth)」
+* 「[Installing with OAuth（英語）](https://api.slack.com/authentication/oauth-v2)」
 * 「[Distributing Slack Apps（英語）](https://api.slack.com/start/distributing)」
 
 ### Slack アプリの設定
@@ -28,7 +28,7 @@ Bolt アプリが OAuth フローをハンドルするためにやらなけれ�
   * `client_id`, `scope`, `user_scope` (v2 のみ), `state` パラメーターを URL に付加する
 * Slack からリダイレクトされてきたユーザーリクエストを処理するエンドポイントを提供する
   * `state` パラメーターが正当かを検証する
-  * [oauth.v2.access](https://api.slack.com/methods/oauth.v2.access) (または [oauth.access](https://api.slack.com/methods/oauth.access)) API メソッドを呼び出してトークンを発行し、それを保存することでインストールを完了させる
+  * [oauth.v2.access](https://api.slack.com/methods/oauth.v2.access) (レガシーアプリの場合は [oauth.access](https://api.slack.com/methods/oauth.access)) API メソッドを呼び出してトークンを発行し、それを保存することでインストールを完了させる
 * インストールを実行したユーザーを誘導する完了・エラーページを用意する
   * これらの URL は通常別のどこかであることが多いが、Bolt アプリがそれをサーブすることも可能
 
