@@ -229,28 +229,28 @@ If you want to use different implementations of `InstallationService` and `OAuth
 
 ```java
 public class SlackApp {
-    // Please be careful about the security policies on this bucket.
-    private static final String S3_BUCKET_NAME = "your-s3-bucket-name";
+  // Please be careful about the security policies on this bucket.
+  private static final String S3_BUCKET_NAME = "your-s3-bucket-name";
 
-    @Bean
-    public InstallationService initInstallationService() {
-        InstallationService installationService = new AmazonS3InstallationService(S3_BUCKET_NAME);
-        installationService.setHistoricalDataEnabled(true);
-        return installationService;
-    }
+  @Bean
+  public InstallationService initInstallationService() {
+    InstallationService installationService = new AmazonS3InstallationService(S3_BUCKET_NAME);
+    installationService.setHistoricalDataEnabled(true);
+    return installationService;
+  }
 
-    @Bean
-    public OAuthStateService initStateService() {
-        return new AmazonS3OAuthStateService(S3_BUCKET_NAME);
-    }
+  @Bean
+  public OAuthStateService initStateService() {
+    return new AmazonS3OAuthStateService(S3_BUCKET_NAME);
+  }
 
-    @Bean
-    public App initSlackApp(InstallationService installationService, OAuthStateService stateService) {
-        App app = new App().asOAuthApp(true);
-
-        app.service(installationService);
-        app.service(stateService);
-    }
+  @Bean
+  public App initSlackApp(InstallationService installationService, OAuthStateService stateService) {
+    App app = new App().asOAuthApp(true);
+    app.service(installationService);
+    app.service(stateService);
+    return app;
+  }
 }
 ```
 

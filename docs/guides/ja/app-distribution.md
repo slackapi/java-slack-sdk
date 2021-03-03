@@ -244,6 +244,7 @@ public class SlackApp {
     App app = new App().asOAuthApp(true);
     app.service(installationService);
     app.service(stateService);
+    return app;
   }
 }
 ```
