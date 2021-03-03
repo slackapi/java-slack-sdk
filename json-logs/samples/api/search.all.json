@@ -963,7 +963,8 @@
               "thumb_tiny": ""
             }
           }
-        ]
+        ],
+        "is_mpim": false
       }
     ]
   },
