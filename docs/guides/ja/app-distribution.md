@@ -223,6 +223,31 @@ public class SlackOAuthRedirectController extends SlackOAuthAppServlet {
 }
 ```
 
+もし `InstallationService` や `OAuthStateService` の他の実装を使用したい場合は、以下のように Spring のコンポーネントを設定してください。
+
+```java
+public class SlackApp {
+  // この bucket のセキュリティポリシーには十二分にご注意ください
+  private static final String S3_BUCKET_NAME = "your-s3-bucket-name";
+  @Bean
+  public InstallationService initInstallationService() {
+    InstallationService installationService = new AmazonS3InstallationService(S3_BUCKET_NAME);
+    installationService.setHistoricalDataEnabled(true);
+    return installationService;
+  }
+  @Bean
+  public OAuthStateService initStateService() {
+    return new AmazonS3OAuthStateService(S3_BUCKET_NAME);
+  }
+  @Bean
+  public App initSlackApp(InstallationService installationService, OAuthStateService stateService) {
+    App app = new App().asOAuthApp(true);
+    app.service(installationService);
+    app.service(stateService);
+  }
+}
+```
+
 #### 完了・エラーページを Bolt アプリでサーブする
 
 ほとんどのアプリは、完了・エラーページに静的なページを選択するかとは思いますが、これらの URL を Bolt アプリで動的に応答することも可能です。Bolt は Web ページをレンダリングするための機能は何も提供しません。お好みのテンプレートエンジンを使ってください。
