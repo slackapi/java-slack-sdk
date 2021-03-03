@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * https://api.slack.com/incoming-webhooks
  * <p>
- * Implementation of <a href="https://api.slack.com/reference/messaging/payload">RTMMessage Payloads</a>
+ * Implementation of <a href="https://api.slack.com/reference/messaging/payload">Incoming Webhook Payloads</a>
  */
 @Data
 @Builder
@@ -30,6 +30,7 @@ public class Payload {
 
     /**
      * NOTE: No longer works if your webhook is managed in a Slack app
+     * while it's still available for the custom integration (https://slack.com/apps/A0F7XDUAZ) in App Directory.
      * <p>
      * Incoming webhooks output to a default channel and can only send messages to a single channel at a time.
      * You can override a custom integration's configured channel by specifying the channel field in your JSON payload.
@@ -41,6 +42,7 @@ public class Payload {
 
     /**
      * NOTE: No longer works if your webhook is managed in a Slack app
+     * while it's still available for the custom integration (https://slack.com/apps/A0F7XDUAZ) in App Directory.
      * <p>
      * Incoming webhooks originate from a default identity you configured when originally creating your webhook.
      * You can override a custom integration's configured name with the username field in your JSON payload.
@@ -50,6 +52,7 @@ public class Payload {
 
     /**
      * NOTE: No longer works if your webhook is managed in a Slack app
+     * while it's still available for the custom integration (https://slack.com/apps/A0F7XDUAZ) in App Directory.
      * <p>
      * You can also override the bot icon either with icon_url or icon_emoji.
      */
@@ -57,6 +60,7 @@ public class Payload {
     private String iconUrl;
     /**
      * NOTE: No longer works if your webhook is managed in a Slack app
+     * while it's still available for the custom integration (https://slack.com/apps/A0F7XDUAZ) in App Directory.
      * <p>
      * You can also override the bot icon either with icon_url or icon_emoji.
      */
