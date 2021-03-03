@@ -225,6 +225,35 @@ public class SlackOAuthRedirectController extends SlackOAuthAppServlet {
 }
 ```
 
+If you want to use different implementations of `InstallationService` and `OAuthStateService`, you can have them as Spring components this way:
+
+```java
+public class SlackApp {
+    // Please be careful about the security policies on this bucket.
+    private static final String S3_BUCKET_NAME = "your-s3-bucket-name";
+
+    @Bean
+    public InstallationService initInstallationService() {
+        InstallationService installationService = new AmazonS3InstallationService(S3_BUCKET_NAME);
+        installationService.setHistoricalDataEnabled(true);
+        return installationService;
+    }
+
+    @Bean
+    public OAuthStateService initStateService() {
+        return new AmazonS3OAuthStateService(S3_BUCKET_NAME);
+    }
+
+    @Bean
+    public App initSlackApp(InstallationService installationService, OAuthStateService stateService) {
+        App app = new App().asOAuthApp(true);
+
+        app.service(installationService);
+        app.service(stateService);
+    }
+}
+```
+
 #### Serve the Completion/Cancellation Pages in Bolt Apps
 
 Although most apps tend to choose static pages for the completion/cancellation URLs, it's also possible to dynamically serve those URLs in the same app. Bolt doesn't offer any features to render web pages. Use your favorite template engine for it.
