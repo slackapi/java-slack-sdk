@@ -60,4 +60,12 @@ public interface InstallationService extends Service {
         return null;
     }
 
+    /**
+     * Deletes all installation data for given workspace or organization.
+     */
+    default void deleteAll(String enterpriseId, String teamId) {
+        throw new UnsupportedOperationException(
+                "You can implement this method for better app_uninstalled event handling");
+    }
+
 }

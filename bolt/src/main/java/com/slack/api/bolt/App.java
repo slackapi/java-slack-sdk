@@ -28,8 +28,10 @@ import com.slack.api.bolt.service.builtin.oauth.default_impl.*;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
+import com.slack.api.model.event.AppUninstalledEvent;
 import com.slack.api.model.event.Event;
 import com.slack.api.model.event.MessageEvent;
+import com.slack.api.model.event.TokensRevokedEvent;
 import com.slack.api.util.json.GsonFactory;
 import com.slack.api.util.thread.ExecutorServiceFactory;
 import lombok.AllArgsConstructor;
@@ -268,6 +270,22 @@ public class App {
 
     private InstallationService installationService; // will be initialized in the constructor
 
+    private DefaultTokensRevokedEventHandler tokensRevokedEventHandler; // will be initialized in the constructor
+    private DefaultAppUninstalledEventHandler appUninstalledEventHandler; // will be initialized in the constructor
+
+    public BoltEventHandler<TokensRevokedEvent> defaultTokensRevokedEventHandler() {
+        return tokensRevokedEventHandler;
+    }
+    public BoltEventHandler<AppUninstalledEvent> defaultAppUninstalledEventHandler() {
+        return appUninstalledEventHandler;
+    }
+
+    public App enableTokenRevocationHandlers() {
+        this.event(TokensRevokedEvent.class, defaultTokensRevokedEventHandler());
+        this.event(AppUninstalledEvent.class, defaultAppUninstalledEventHandler());
+        return this;
+    }
+
     // -------------------------------------
     // OAuth Flow
     // -------------------------------------
@@ -406,6 +424,8 @@ public class App {
         this.oAuthStateService = new ClientOnlyOAuthStateService();
 
         this.installationService = new FileInstallationService(this.appConfig);
+        this.tokensRevokedEventHandler = new DefaultTokensRevokedEventHandler(this.installationService, this.executorService);
+        this.appUninstalledEventHandler = new DefaultAppUninstalledEventHandler(this.installationService, this.executorService);
         this.oAuthSuccessHandler = new OAuthDefaultSuccessHandler(this.appConfig, this.installationService);
         this.oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(config(), this.installationService);
 
@@ -797,6 +817,8 @@ public class App {
 
     public App service(InstallationService installationService) {
         this.installationService = installationService;
+        this.tokensRevokedEventHandler = new DefaultTokensRevokedEventHandler(this.installationService, this.executorService);
+        this.appUninstalledEventHandler = new DefaultAppUninstalledEventHandler(this.installationService, this.executorService);
         putServiceInitializer(InstallationService.class, installationService.initializer());
         if (config().isClassicAppPermissionsEnabled()) {
             return oauthCallback(new OAuthDefaultSuccessHandler(config(), installationService));

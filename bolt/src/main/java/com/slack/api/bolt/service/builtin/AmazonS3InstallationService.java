@@ -4,10 +4,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.AmazonS3Exception;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.*;
 import com.amazonaws.util.IOUtils;
 import com.slack.api.bolt.Initializer;
 import com.slack.api.bolt.model.Bot;
@@ -197,6 +194,25 @@ public class AmazonS3InstallationService implements InstallationService {
             log.error("Failed to save a new Installer data for enterprise_id: {}, team_id: {}, user_id: {}",
                     enterpriseId, teamId, userId);
             return null;
+        }
+    }
+
+    @Override
+    public void deleteAll(String enterpriseId, String teamId) {
+        AmazonS3 s3 = this.createS3Client();
+        deleteAllObjectsMatchingPrefix(s3, "installer/"
+                + Optional.ofNullable(enterpriseId).orElse("none")
+                + "-"
+                + Optional.ofNullable(teamId).orElse("none"));
+        deleteAllObjectsMatchingPrefix(s3, "bot/"
+                + Optional.ofNullable(enterpriseId).orElse("none")
+                + "-"
+                + Optional.ofNullable(teamId).orElse("none"));
+    }
+
+    private void deleteAllObjectsMatchingPrefix(AmazonS3 s3, String prefix) {
+        for (S3ObjectSummary obj : s3.listObjects(bucketName, prefix).getObjectSummaries()) {
+            s3.deleteObject(bucketName, obj.getKey());
         }
     }
 
