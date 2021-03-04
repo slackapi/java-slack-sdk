@@ -30,7 +30,7 @@ public class TokensRevokedEvent implements Event {
 
     @Data
     public static class Tokens {
-        private List<String> oauth;
-        private List<String> bot;
+        private List<String> oauth; // an array of user IDs
+        private List<String> bot; // an array of bot user IDs
     }
 }

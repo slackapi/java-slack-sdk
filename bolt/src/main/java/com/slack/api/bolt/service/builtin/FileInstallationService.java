@@ -64,7 +64,6 @@ public class FileInstallationService implements InstallationService {
     @Override
     public void deleteInstaller(Installer installer) throws Exception {
         Files.deleteIfExists(Paths.get(getInstallerPath(installer)));
-        Files.deleteIfExists(Paths.get(getBotPath(installer.getEnterpriseId(), installer.getTeamId())));
     }
 
     @Override
@@ -142,6 +141,31 @@ public class FileInstallationService implements InstallationService {
         } catch (IOException e) {
             log.warn("Failed to load an installer user (enterprise_id: {}, team_id: {})", enterpriseId, teamId);
             return null;
+        }
+    }
+
+    @Override
+    public void deleteAll(String enterpriseId, String teamId) {
+        String keyPrefix = Optional.ofNullable(enterpriseId).orElse("none")
+                + "-"
+                + Optional.ofNullable(teamId).orElse("none");
+        deleteAllFilesMatchingPrefix(keyPrefix, getBaseDir() + File.separator + "installer");
+        deleteAllFilesMatchingPrefix(keyPrefix, getBaseDir() + File.separator + "bot");
+    }
+
+    private static void deleteAllFilesMatchingPrefix(String keyPrefix, String dir) {
+        try {
+            Files.walk(Paths.get(dir)).filter(Files::isRegularFile).forEach(path -> {
+                if (path.getFileName().startsWith(keyPrefix)) {
+                    try {
+                        Files.delete(path);
+                    } catch (IOException e) {
+                        log.error("Failed to delete a file: {}", path.toString(), e);
+                    }
+                }
+            });
+        } catch (IOException e) {
+            log.error("Failed to scan files under installer directory: {}", dir);
         }
     }
 
