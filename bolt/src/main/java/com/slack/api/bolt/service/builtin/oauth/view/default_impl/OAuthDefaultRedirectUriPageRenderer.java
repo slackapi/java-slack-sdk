@@ -5,7 +5,7 @@ import com.slack.api.bolt.service.builtin.oauth.view.OAuthRedirectUriPageRendere
 
 public class OAuthDefaultRedirectUriPageRenderer implements OAuthRedirectUriPageRenderer {
 
-    // variables: __URL__
+    // variables: __URL__, __BROWSER_URL__
     public static final String SUCCESS_PAGE_TEMPLATE = "<html>\n" +
             "<head>\n" +
             "<meta http-equiv=\"refresh\" content=\"0; URL=__URL__\">\n" +
@@ -19,7 +19,7 @@ public class OAuthDefaultRedirectUriPageRenderer implements OAuthRedirectUriPage
             "</head>\n" +
             "<body>\n" +
             "<h2>Thank you!</h2>\n" +
-            "<p>Redirecting to the Slack App... click <a href=\"__URL__\">here</a></p>\n" +
+            "<p>Redirecting to the Slack App... click <a href=\"__URL__\">here</a>. If you use the browser version of Slack, click <a href=\"__BROWSER_URL__\" target=\"_blank\">this link</a> instead.</p>\n" +
             "</body>\n" +
             "</html>";
 
@@ -58,7 +58,10 @@ public class OAuthDefaultRedirectUriPageRenderer implements OAuthRedirectUriPage
                 url = "slack://app?team=" + installer.getTeamId() + "&id=" + installer.getAppId();
             }
         }
-        return SUCCESS_PAGE_TEMPLATE.replaceAll("__URL__", url == null ? "" : url);
+        String browserUrl = "https://app.slack.com/client/" + installer.getTeamId();
+        return SUCCESS_PAGE_TEMPLATE
+                .replaceAll("__URL__", url == null ? "" : url)
+                .replaceAll("__BROWSER_URL__", browserUrl);
     }
 
     @Override
