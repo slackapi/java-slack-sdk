@@ -29,6 +29,7 @@ public class OAuthV2DefaultSuccessHandlerTest {
         Response response = new Response();
         OAuthV2AccessResponse apiResponse = new OAuthV2AccessResponse();
         apiResponse.setTeam(new OAuthV2AccessResponse.Team());
+        apiResponse.getTeam().setId("T111");
         apiResponse.setAuthedUser(new OAuthV2AccessResponse.AuthedUser());
 
         Response processedResponse = handler.handle(request, response, apiResponse);
@@ -47,7 +48,7 @@ public class OAuthV2DefaultSuccessHandlerTest {
                 "</head>\n" +
                 "<body>\n" +
                 "<h2>Thank you!</h2>\n" +
-                "<p>Redirecting to the Slack App... click <a href=\"slack://open\">here</a></p>\n" +
+                "<p>Redirecting to the Slack App... click <a href=\"slack://open\">here</a>. If you use the browser version of Slack, click <a href=\"https://app.slack.com/client/T111\" target=\"_blank\">this link</a> instead.</p>\n" +
                 "</body>\n" +
                 "</html>", processedResponse.getBody());
     }
