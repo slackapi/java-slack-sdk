@@ -3,6 +3,7 @@ package test_with_remote_apis.methods;
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
+import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import config.Constants;
 import config.SlackTestConfig;
@@ -14,8 +15,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @Slf4j
@@ -25,6 +25,7 @@ public class apps_Test {
     static Slack slack = Slack.getInstance(testConfig.getConfig());
 
     String appLevelToken = System.getenv(Constants.SLACK_SDK_TEST_APP_TOKEN);
+    String socketModeToken = System.getenv(Constants.SLACK_SDK_TEST_SOCKET_MODE_APP_TOKEN);
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
@@ -63,6 +64,12 @@ public class apps_Test {
                 .limit(120)
         ).get();
         assertThat(response.getError(), is(notNullValue()));
+    }
+
+    @Test
+    public void appsConnectionsOpen() throws Exception {
+        AppsConnectionsOpenResponse response = slack.methodsAsync(socketModeToken).appsConnectionsOpen(req -> req).get();
+        assertThat(response.getError(), is(nullValue()));
     }
 
 }
