@@ -5,6 +5,8 @@ import com.slack.api.model.ErrorResponseMetadata;
 import com.slack.api.model.Message;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ChatPostMessageResponse implements SlackApiTextResponse {
 
@@ -14,6 +16,10 @@ public class ChatPostMessageResponse implements SlackApiTextResponse {
     private String needed;
     private String provided;
     private String deprecatedArgument;
+
+    // "error": "invalid_attachments",
+    // "errors": ["invalid_keys"],
+    private List<String> errors;
 
     private ErrorResponseMetadata responseMetadata;
 

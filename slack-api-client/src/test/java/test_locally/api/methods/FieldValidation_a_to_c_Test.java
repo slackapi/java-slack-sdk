@@ -296,7 +296,7 @@ public class FieldValidation_a_to_c_Test {
         }
         {
             ChatPostMessageResponse obj = parse(prefix + "postMessage", ChatPostMessageResponse.class);
-            verifyIfAllGettersReturnNonNull(obj, "getDeprecatedArgument", "getWarning");
+            verifyIfAllGettersReturnNonNull(obj, "getDeprecatedArgument", "getWarning", "getErrors");
             validateMessage(obj.getMessage());
             verifyIfAllGettersReturnNonNull(obj.getResponseMetadata());
         }
