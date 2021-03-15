@@ -185,7 +185,7 @@ gradle run
 
 * ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
 * ✅ Gradle をインストール（もしまだであれば macOS は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
-* ✅ `build.gradle` に **bolt-socket-mode** 依存ライブラリを追加、適切な **application** プラグイン設定も追加
+* ✅ `build.gradle` に **bolt-socket-mode** と **tyrus-standalone-client** の依存ライブラリを追加、適切な **application** プラグイン設定も追加
 * ✅ main メソッドを持つ `src/main/java/hello/MyApp.java` を作成
 * ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`commands`](https://api.slack.com/scopes/commands) という Bot Token Scope を追加、**`connections:write` スコープを設定したアプリレベルトークンを作成**、アプリを開発用ワークスペースにインストール
 * ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) と [**App-Level Token**](https://api.slack.com/docs/token-types#app) の値をコピーしてきて環境変数に設定
@@ -214,7 +214,7 @@ Bolt アプリは起動できました！しかし、コードの中で定義し
 
 #### build.gradle
 
-ここでのビルド設定のほとんどは Kotlin 言語を有効にするために必要なものです。**bolt-socket-mode** 依存ライブラリを追加していることが唯一 Bolt に固有の設定です。
+ここでのビルド設定のほとんどは Kotlin 言語を有効にするために必要なものです。**bolt-socket-mode** と **tyrus-standalone-client** を依存ライブラリを追加していることが唯一 Bolt に固有の設定です。
 
 ```groovy
 plugins {
@@ -262,7 +262,7 @@ fun main() {
 
 * ✅ JDK 8 またはそれよりも新しいバージョンをインストール（もしまだであれば macOS は `brew install openjdk@11` を実行 / 他の OS 環境の場合は [OpenJDK のウェブサイト](https://openjdk.java.net/install/) へアクセス）
 * ✅ Gradle をインストール（もしまだであれば macOS は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
-* ✅ `build.gradle` に適切な Kotlin の言語設定と **bolt-socket-mode** 依存ライブラリを追加
+* ✅ `build.gradle` に適切な Kotlin の言語設定と **bolt-socket-mode** と **tyrus-standalone-client** を依存ライブラリを追加
 * ✅ main メソッドを持つ `src/main/kotlin/MyApp.kt` を作成
 * ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`commands`](https://api.slack.com/scopes/commands) という Bot Token Scope を追加、**`connections:write` スコープを設定したアプリレベルトークンを作成**、アプリを開発用ワークスペースにインストール
 * ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) と [**App-Level Token**](https://api.slack.com/docs/token-types#app) の値をコピーしてきて環境変数に設定

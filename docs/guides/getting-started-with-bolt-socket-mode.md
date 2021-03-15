@@ -184,7 +184,7 @@ If you get stuck this setup, go through the following checklist:
 
 * ✅ JDK 8 or higher installed (if not, run `brew install openjdk@11` for macOS / visit [OpenJDK website](https://openjdk.java.net/install/) for others)
 * ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
-* ✅ `build.gradle` has **bolt-jetty** dependency and valid application plugin settings
+* ✅ `build.gradle` has **bolt-socket-mode** and **tyrus-standalone-client** in the dependencies and valid application plugin settings
 * ✅ `src/main/java/hello/MyApp.java` with a class having its main method
 * ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`commands`](https://api.slack.com/scopes/commands) bot scope, add **an app-level token with `connections:write` scope**, and install the app to your development workspace
 * ✅ Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**App-Level Token**](https://api.slack.com/docs/token-types#app) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
@@ -213,7 +213,7 @@ For code simplicity, [Kotlin](https://kotlinlang.org/) language would be a great
 
 #### build.gradle
 
-Most of the build settings are necessary for enabling Kotlin language. Adding **bolt-jetty** dependency is the only one that is specific to Bolt.
+Most of the build settings are necessary for enabling Kotlin language. Adding **bolt-socket-mode** && **tyrus-standalone-client** to the dependencies is the only one that is specific to Bolt.
 
 ```groovy
 plugins {
@@ -261,7 +261,7 @@ OK, you should be done. Just in case, here is the checklist:
 
 * ✅ JDK 8 or higher installed (if not, run `brew install openjdk@11` for macOS / visit [OpenJDK website](https://openjdk.java.net/install/) for others)
 * ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
-* ✅ `build.gradle` with valid Kotlin language settings and **bolt-jetty** dependency
+* ✅ `build.gradle` with valid Kotlin language settings and **bolt-socket-mode** and **tyrus-standalone-client** in the dependencies
 * ✅ `src/main/kotlin/MyApp.kt` with a main method
 * ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`commands`](https://api.slack.com/scopes/commands) bot scope, add **an app-level token with `connections:write` scope**, and install the app to your development workspace
 * ✅ Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**App-Level Token**](https://api.slack.com/docs/token-types#app) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
