@@ -159,6 +159,7 @@ public class chat_Test {
                 .channel(randomChannelId)
                 .text("You can also do slack.methods(token)"));
         assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getMessage().getText(), is("You can also do slack.methods(token)"));
     }
 
     @Test
@@ -168,6 +169,7 @@ public class chat_Test {
                 .channel(randomChannelId)
                 .text("You can also do slack.methods(token)"));
         assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getMessage().getText(), is("You can also do slack.methods(token)"));
     }
 
     // https://github.com/slackapi/java-slack-sdk/issues/157
@@ -222,6 +224,8 @@ public class chat_Test {
                 .linkNames(true));
         assertThat(postResponse.getError(), is(nullValue()));
         assertThat(postResponse.isOk(), is(true));
+        assertThat(postResponse.getMessage().getText(),
+                is("Hi, this is a test message from Java Slack SDK's unit tests"));
 
         ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(req -> req
                 .token(botToken)
@@ -249,6 +253,8 @@ public class chat_Test {
                 .linkNames(true));
         assertThat(postResponse.getError(), is(nullValue()));
         assertThat(postResponse.isOk(), is(true));
+        assertThat(postResponse.getMessage().getText(),
+                is("Hi, this is a test message from Java Slack SDK's unit tests"));
 
         ChatGetPermalinkResponse permalink = slack.methods().chatGetPermalink(req -> req
                 .token(userToken)
@@ -278,6 +284,8 @@ public class chat_Test {
                 .get();
         assertThat(postResponse.getError(), is(nullValue()));
         assertThat(postResponse.isOk(), is(true));
+        assertThat(postResponse.getMessage().getText(),
+                is("Hi, this is a test message from Java Slack SDK's unit tests"));
 
         ChatGetPermalinkResponse permalink = slack.methodsAsync().chatGetPermalink(req -> req
                 .token(botToken)
@@ -331,6 +339,7 @@ public class chat_Test {
                 .unfurlMedia(true)
                 .build());
         assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.getMessage().getText(), is("<" + url + ">"));
 
         String ts = postResponse.getTs();
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
@@ -362,6 +371,7 @@ public class chat_Test {
                 .unfurlMedia(true)
                 .build());
         assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.getMessage().getText(), is("<" + url + ">"));
 
         String ts = postResponse.getTs();
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
@@ -393,6 +403,7 @@ public class chat_Test {
                 .unfurlMedia(true)
                 .build());
         assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.getMessage().getText(), is("<" + url + ">"));
 
         String ts = postResponse.getTs();
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
@@ -422,6 +433,7 @@ public class chat_Test {
                 .unfurlMedia(true)
                 .build());
         assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.getMessage().getText(), is("<" + url + ">"));
 
         String ts = postResponse.getTs();
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
@@ -457,6 +469,7 @@ public class chat_Test {
                 .unfurlMedia(true)
                 .build());
         assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.getMessage().getText(), is("<" + url + ">"));
 
         String ts = postResponse.getTs();
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
@@ -507,6 +520,7 @@ public class chat_Test {
                 .unfurlMedia(true)
                 .build());
         assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.getMessage().getText(), is("<" + url + ">"));
 
         String ts = postResponse.getTs();
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
@@ -550,8 +564,10 @@ public class chat_Test {
         loadRandomChannelId();
         ChatPostMessageResponse creation = slack.methods(botToken).chatPostMessage(r -> r.channel(randomChannelId).text("This is original"));
         assertThat(creation.getError(), is(nullValue()));
+        assertThat(creation.getMessage().getText(), is("This is original"));
         ChatUpdateResponse modified = slack.methods(botToken).chatUpdate(r -> r.channel(randomChannelId).text("modified").ts(creation.getTs()));
         assertThat(modified.getError(), is(nullValue()));
+        assertThat(modified.getMessage().getText(), is("modified"));
     }
 
     @Test
@@ -565,6 +581,7 @@ public class chat_Test {
                 .blocksAsString(blocksAsString)
                 .build());
         assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.getMessage().getText(), is("test"));
 
         ChatUpdateResponse updateMessage = slack.methods().chatUpdate(ChatUpdateRequest.builder()
                 .channel(randomChannelId)
@@ -574,6 +591,7 @@ public class chat_Test {
                 .blocksAsString(blocksAsString)
                 .build());
         assertThat(updateMessage.getError(), is(nullValue()));
+        assertThat(updateMessage.getMessage().getText(), is("modified"));
 
         // To show the text instead of blocks
         ChatUpdateResponse updateMessage2 = slack.methods().chatUpdate(ChatUpdateRequest.builder()
@@ -584,6 +602,7 @@ public class chat_Test {
                 .text("modified2")
                 .build());
         assertThat(updateMessage2.getError(), is(nullValue()));
+        assertThat(updateMessage2.getMessage().getText(), is("modified2"));
     }
 
     @Test
@@ -597,6 +616,7 @@ public class chat_Test {
                 .blocksAsString(blocksAsString)
                 .build());
         assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.getMessage().getText(), is("test"));
 
         ChatUpdateResponse updateMessage = slack.methods().chatUpdate(ChatUpdateRequest.builder()
                 .channel(randomChannelId)
@@ -606,6 +626,7 @@ public class chat_Test {
                 .blocksAsString(blocksAsString)
                 .build());
         assertThat(updateMessage.getError(), is(nullValue()));
+        assertThat(updateMessage.getMessage().getText(), is("modified"));
 
         // To show the text instead of blocks
         ChatUpdateResponse updateMessage2 = slack.methods().chatUpdate(ChatUpdateRequest.builder()
@@ -616,6 +637,7 @@ public class chat_Test {
                 .text("modified2")
                 .build());
         assertThat(updateMessage2.getError(), is(nullValue()));
+        assertThat(updateMessage2.getMessage().getText(), is("modified2"));
     }
 
     @Test
@@ -626,12 +648,14 @@ public class chat_Test {
                 .channel(randomChannelId)
                 .text("first message"));
         assertThat(first.getError(), is(nullValue()));
+        assertThat(first.getMessage().getText(), is("first message"));
 
         ChatPostMessageResponse second = slack.methods(botToken).chatPostMessage(r -> r
                 .channel(randomChannelId)
                 .threadTs(first.getTs())
                 .text("reply to create an active thread"));
         assertThat(second.getError(), is(nullValue()));
+        assertThat(second.getMessage().getText(), is("reply to create an active thread"));
 
         ChatPostEphemeralResponse third = slack.methods(botToken).chatPostEphemeral(r -> r
                 .user(userId)
