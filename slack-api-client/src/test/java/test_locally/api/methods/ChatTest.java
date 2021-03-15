@@ -2,6 +2,7 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.model.Attachment;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +10,8 @@ import util.MockSlackApiServer;
 
 import static com.slack.api.model.Attachments.asAttachments;
 import static com.slack.api.model.block.Blocks.asBlocks;
+import static com.slack.api.model.block.Blocks.section;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
@@ -204,6 +207,90 @@ public class ChatTest {
         assertThat(
                 slack.methodsAsync(ValidToken).chatScheduledMessagesList(r -> r.channel("C123"))
                         .get().isOk(), is(true));
+    }
+
+    @Test
+    public void warnings() throws Exception {
+        // missing text
+        slack.methods(ValidToken).chatPostMessage(r -> r.blocks(asBlocks(
+                section(s -> s.blockId("b").text(plainText(t -> t.text("Hi"))))
+        )));
+        slack.methods(ValidToken).chatPostMessage(r -> r.blocksAsString("[\n" +
+                "  {\n" +
+                "    \"type\": \"section\",\n" +
+                "    \"text\": {\n" +
+                "      \"type\": \"mrkdwn\",\n" +
+                "      \"text\": \"This is a section block with a button.\"\n" +
+                "    }\n" +
+                "  }\n" +
+                "]"));
+        // missing fallback
+        slack.methods(ValidToken).chatPostMessage(r -> r.attachments(asAttachments(
+                Attachment.builder()
+                        .text("Hi there!")
+                        .color("#FF5733")
+                        .build()
+        )));
+        slack.methods(ValidToken).chatPostMessage(r -> r.attachmentsAsString("[\n" +
+                "  {\n" +
+                "    \"color\": \"#FF5733\",\n" +
+                "    \"blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"section\",\n" +
+                "        \"text\": {\n" +
+                "          \"type\": \"mrkdwn\",\n" +
+                "          \"text\": \"test*\"\n" +
+                "        }\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]"));
+        slack.methods(ValidToken).chatPostMessage(r -> r.attachments(asAttachments(
+                Attachment.builder()
+                        .text("Hi there!")
+                        .color("#FF5733")
+                        .build()
+        )).text("fallback-for-blocks"));
+    }
+
+    @Test
+    public void noWarnings() throws Exception {
+        // missing text
+        slack.methods(ValidToken).chatPostMessage(r -> r.blocks(asBlocks(
+                section(s -> s.blockId("b").text(plainText(t -> t.text("Hi"))))
+        )).text("fallback"));
+        slack.methods(ValidToken).chatPostMessage(r -> r.blocksAsString("[\n" +
+                "  {\n" +
+                "    \"type\": \"section\",\n" +
+                "    \"text\": {\n" +
+                "      \"type\": \"mrkdwn\",\n" +
+                "      \"text\": \"This is a section block with a button.\"\n" +
+                "    }\n" +
+                "  }\n" +
+                "]").text("fallback"));
+        // missing fallback
+        slack.methods(ValidToken).chatPostMessage(r -> r.attachments(asAttachments(
+                Attachment.builder()
+                        .fallback("fallback")
+                        .text("Hi there!")
+                        .color("#FF5733")
+                        .build()
+        )));
+        slack.methods(ValidToken).chatPostMessage(r -> r.attachmentsAsString("[\n" +
+                "  {\n" +
+                "    \"color\": \"#FF5733\",\n" +
+                "    \"fallback\": \"fallback\",\n" +
+                "    \"blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"section\",\n" +
+                "        \"text\": {\n" +
+                "          \"type\": \"mrkdwn\",\n" +
+                "          \"text\": \"test*\"\n" +
+                "        }\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }\n" +
+                "]"));
     }
 
 }

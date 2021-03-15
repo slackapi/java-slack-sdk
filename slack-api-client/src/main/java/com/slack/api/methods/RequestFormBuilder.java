@@ -99,6 +99,7 @@ import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
+import com.slack.api.model.Attachment;
 import com.slack.api.model.ConversationType;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -108,6 +109,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
@@ -945,10 +947,16 @@ public class RequestFormBuilder {
     }
 
     public static FormBody.Builder toForm(ChatScheduleMessageRequest req) {
+        warnIfEitherTextOrAttachmentFallbackIsMissing(
+                "chat.scheduleMessage",
+                req.getText(),
+                req.getAttachments(),
+                req.getAttachmentsAsString()
+        );
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("post_at", req.getPostAt(), form);
-        setTextAndWarnIfMissing("chat.scheduleMessage",req.getText(), form);
+        setIfNotNull("text", req.getText(), form);
         setIfNotNull("as_user", req.isAsUser(), form);
 
         if (req.getBlocksAsString() != null) {
@@ -988,9 +996,15 @@ public class RequestFormBuilder {
     }
 
     public static FormBody.Builder toForm(ChatPostEphemeralRequest req) {
+        warnIfEitherTextOrAttachmentFallbackIsMissing(
+                "chat.postEphemeral",
+                req.getText(),
+                req.getAttachments(),
+                req.getAttachmentsAsString()
+        );
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
-        setTextAndWarnIfMissing("chat.postEphemeral", req.getText(), form);
+        setIfNotNull("text", req.getText(), form);
         setIfNotNull("user", req.getUser(), form);
         setIfNotNull("as_user", req.isAsUser(), form);
 
@@ -1020,10 +1034,16 @@ public class RequestFormBuilder {
     }
 
     public static FormBody.Builder toForm(ChatPostMessageRequest req) {
+        warnIfEitherTextOrAttachmentFallbackIsMissing(
+                "chat.postMessage",
+                req.getText(),
+                req.getAttachments(),
+                req.getAttachmentsAsString()
+        );
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
-        setTextAndWarnIfMissing("chat.postMessage", req.getText(), form);
+        setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
         setIfNotNull("mrkdwn", req.isMrkdwn(), form);
@@ -1056,10 +1076,16 @@ public class RequestFormBuilder {
     }
 
     public static FormBody.Builder toForm(ChatUpdateRequest req) {
+        warnIfEitherTextOrAttachmentFallbackIsMissing(
+                "chat.update",
+                req.getText(),
+                req.getAttachments(),
+                req.getAttachmentsAsString()
+        );
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("ts", req.getTs(), form);
         setIfNotNull("channel", req.getChannel(), form);
-        setTextAndWarnIfMissing("chat.update", req.getText(), form);
+        setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
 
@@ -2173,11 +2199,43 @@ public class RequestFormBuilder {
     // internal methods
     // ----------------------------------------------------------------------------------
 
-    private static void setTextAndWarnIfMissing(String endpointName, String value, FormBody.Builder form) {
-        if (value == null || value.trim().isEmpty()) {
-            log.warn("The `text` argument is missing in the request payload for a {} call - It's a best practice to always provide a text argument when posting a message. The `text` is used in places where `blocks` cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.", endpointName);
+    private static final String TEXT_FALLBACK_WARN_MESSAGE_TEMPLATE =
+            "The `{}` argument is missing in the request payload for a {} call - It's a best practice to always provide a {} argument when posting a message. The `{}` is used in places where content cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.";
+
+    private static void warnIfAttachmentWithoutFallbackDetected(String endpointName, List<Attachment> attachments) {
+        boolean fallbackMissing = false;
+        for (Attachment a : attachments) {
+            if (a.getFallback() == null || a.getFallback().trim().length() == 0) {
+                fallbackMissing = true;
+                break;
+            }
         }
-        setIfNotNull("text", value, form);
+        if (fallbackMissing) {
+            log.warn(TEXT_FALLBACK_WARN_MESSAGE_TEMPLATE,
+                    "fallback", endpointName, "fallback", "fallback");
+        }
+    }
+
+    private static void warnIfEitherTextOrAttachmentFallbackIsMissing(
+            String endpointName,
+            String text,
+            List<Attachment> attachments,
+            String attachmentsAsString) {
+
+        if (attachments != null && attachments.size() > 0) {
+            // attachments
+            warnIfAttachmentWithoutFallbackDetected(endpointName, attachments);
+        } else if (attachmentsAsString != null && attachmentsAsString.trim().length() > 0) {
+            // attachments
+            warnIfAttachmentWithoutFallbackDetected(
+                    endpointName,
+                    Arrays.asList(GSON.fromJson(attachmentsAsString, Attachment[].class))
+            );
+        } else if (text == null || text.trim().isEmpty()) {
+            // only text or text + blocks
+            log.warn(TEXT_FALLBACK_WARN_MESSAGE_TEMPLATE,
+                    "text", endpointName, "text", "text");
+        }
     }
 
     private static void setIfNotNull(String name, Object value, FormBody.Builder form) {
