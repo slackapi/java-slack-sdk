@@ -254,6 +254,35 @@ public class SlackApp {
 }
 ```
 
+#### Use the Built-in tokens_revoked / app_uninstalled Event Handlers
+
+For secure data management for your customers and end-users, properly handling [tokens_revoked](https://api.slack.com/events/tokens_revoked) and [app_uninstalled](https://api.slack.com/events/app_uninstalled) events is crucial. Bolt for Java provides the built-in event handlers for these events, which seamlessly integrated with your `InstallationService`'s deletion methods.
+
+```java
+App app = new App();
+InstallationService installationService = new MyInstallationService();
+app.service(installationService);
+// Turn the event handlers on
+app.enableTokenRevocationHandlers();
+```
+
+The above code is equivalent to the following:
+
+```java
+App app = new App();
+InstallationService installationService = new MyInstallationService();
+app.service(installationService);
+// Turn the event handlers on
+app.event(TokensRevokedEvent.class, app.defaultTokensRevokedEventHandler());
+app.event(AppUninstalledEvent.class, app.defaultAppUninstalledEventHandler());
+```
+
+To enable your own custom `InstallationService` classes to work with the built-in event handlers, the classes need to implement the following methods in [the `InstallationService` interface](https://github.com/seratch/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/service/InstallationService.java):
+
+* `void deleteBot(Bot bot)`
+* `void deleteInstaller(Installer installer)`
+* `void deleteAll(String enterpriseId, String teamId)`
+
 #### Serve the Completion/Cancellation Pages in Bolt Apps
 
 Although most apps tend to choose static pages for the completion/cancellation URLs, it's also possible to dynamically serve those URLs in the same app. Bolt doesn't offer any features to render web pages. Use your favorite template engine for it.

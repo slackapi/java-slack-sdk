@@ -249,6 +249,35 @@ public class SlackApp {
 }
 ```
 
+#### 組み込みの tokens_revoked / app_uninstalled イベントハンドラーを利用する
+
+あなたの顧客やエンドユーザーのデータを安全に管理するために [tokens_revoked](https://api.slack.com/events/tokens_revoked) と [app_uninstalled](https://api.slack.com/events/app_uninstalled) というイベントを適切にハンドリングすることは非常に重要です。Bolt for Java は、これらのイベントのための組み込みのハンドラーを提供しており、それは `InstallationService` が提供するデータ削除系メソッドとシームレスに連携します。
+
+```java
+App app = new App();
+InstallationService installationService = new MyInstallationService();
+app.service(installationService);
+// 組み込みのイベントハンドラーを有効にします
+app.enableTokenRevocationHandlers();
+```
+
+上記のコードは以下のコード例と等価です：
+
+```java
+App app = new App();
+InstallationService installationService = new MyInstallationService();
+app.service(installationService);
+// 組み込みのイベントハンドラーを有効にします
+app.event(TokensRevokedEvent.class, app.defaultTokensRevokedEventHandler());
+app.event(AppUninstalledEvent.class, app.defaultAppUninstalledEventHandler());
+```
+
+あなたが実装したカスタムの `InstallationService` の実装クラスをこれらの組み込みのイベントハンドラーと連携して動作させるためには、[`InstallationService` インターフェース](https://github.com/seratch/java-slack-sdk/blob/main/bolt/src/main/java/com/slack/api/bolt/service/InstallationService.java)に定義されている以下のメソッドを適切に実装してください：
+
+* `void deleteBot(Bot bot)`
+* `void deleteInstaller(Installer installer)`
+* `void deleteAll(String enterpriseId, String teamId)`
+
 #### 完了・エラーページを Bolt アプリでサーブする
 
 ほとんどのアプリは、完了・エラーページに静的なページを選択するかとは思いますが、これらの URL を Bolt アプリで動的に応答することも可能です。Bolt は Web ページをレンダリングするための機能は何も提供しません。お好みのテンプレートエンジンを使ってください。
