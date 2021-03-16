@@ -25,7 +25,7 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 ---
 ## Spring Boot
 
-[Spring Boot](https://spring.io/guides/gs/spring-boot/) は Java の世界で最も人気のある Web フレームワークの一つです。**SlackAppServlet** を Spring Boot アプリ内で有効にするのが最も簡単なやり方です。それでは小さな Gradle プロジェクトの例を見てみましょう。
+[Spring Boot](https://spring.io/guides/gs/spring-boot/) は Java の世界で最も人気のある Web フレームワークの一つです。**SlackAppServlet** を Spring Boot アプリ内で有効にするのが最も簡単なやり方です。それでは小さな Gradle プロジェクトの例を見てみましょう。**Bolt は Spring Boot 2.2 以上のバージョンで動作しますので、バージョンにご注意ください。**
 
 #### build.gradle
 

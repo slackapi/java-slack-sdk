@@ -25,7 +25,7 @@ In this section, I'll share some minimum working examples for the following popu
 ---
 ## Spring Boot
 
-[Spring Boot](https://spring.io/guides/gs/spring-boot/) is the most popular Web framework in Java. Enabling **SlackAppServlet** in your Spring Boot application is the easiest way to run Bolt apps with the framework. Let's look at a tiny Gradle project.
+[Spring Boot](https://spring.io/guides/gs/spring-boot/) is the most popular Web framework in Java. Enabling **SlackAppServlet** in your Spring Boot application is the easiest way to run Bolt apps with the framework. Let's look at a tiny Gradle project. **Please note that Bolt properly works with Spring Boot 2.2 or newer versions.**
 
 #### build.gradle
 

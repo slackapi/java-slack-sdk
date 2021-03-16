@@ -176,7 +176,7 @@ App app = new App(appConfig);
 
 #### Build Slack OAuth using Spring Boot
 
-Implementing Slack OAuth flow app using Spring Boot is quite easy. All you need to do are to 1) load env variables, 2) to initialize `App` with services and listeners as a Spring Bean, and 3) to have three endpoints to handle HTTP requests.
+Implementing Slack OAuth flow app using Spring Boot is quite easy. All you need to do are to 1) load env variables, 2) to initialize `App` with services and listeners as a Spring Bean, and 3) to have three endpoints to handle HTTP requests. **Please note that Bolt properly works with Spring Boot 2.2 or newer versions.**
 
 ```java
 package hello;
