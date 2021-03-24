@@ -14,7 +14,7 @@ public class TeamInfoRequest implements SlackApiRequest {
     private String token;
 
     /**
-     * Id of the team to get info on, if omitted, will return information about the current team.
+     * Team to get info on, if omitted, will return information about the current team. Will only return team that the authenticated token is allowed to see through external shared channels
      */
     private String team;
 
