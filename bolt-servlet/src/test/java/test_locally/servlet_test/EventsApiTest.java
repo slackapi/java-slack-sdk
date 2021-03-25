@@ -123,7 +123,7 @@ public class EventsApiTest {
         HttpTester.Response response3 = HttpTester.parseResponse(tester.getResponses(request.generate()));
 
         // wait for the async execution
-        Thread.sleep(200L);
+        Thread.sleep(1_000L);
 
         assertThat(response1.getStatus(), is(equalTo(200)));
         assertThat(response2.getStatus(), is(equalTo(200)));
@@ -151,7 +151,7 @@ public class EventsApiTest {
         HttpTester.Response response = HttpTester.parseResponse(tester.getResponses(request.generate()));
 
         // wait for the async execution
-        Thread.sleep(200L);
+        Thread.sleep(1_000L);
 
         assertThat(response.getStatus(), is(equalTo(200)));
         assertThat(appUninstallsCalls.get(), is(1));
@@ -177,7 +177,7 @@ public class EventsApiTest {
         HttpTester.Response response = HttpTester.parseResponse(tester.getResponses(request.generate()));
 
         // wait for the async execution
-        Thread.sleep(200L);
+        Thread.sleep(1_000L);
 
         assertThat(response.getStatus(), is(equalTo(200)));
         assertThat(goodbyeCalls.get(), is(1));
