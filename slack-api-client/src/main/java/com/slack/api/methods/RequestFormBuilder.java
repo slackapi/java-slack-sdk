@@ -154,6 +154,32 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminUsersSessionGetSettingsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersSessionSetSettingsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("desktop_app_browser_quit", req.getDesktopAppBrowserQuit(), form);
+        setIfNotNull("duration", req.getDuration(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersSessionClearSettingsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminAppsApproveRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("app_id", req.getAppId(), form);

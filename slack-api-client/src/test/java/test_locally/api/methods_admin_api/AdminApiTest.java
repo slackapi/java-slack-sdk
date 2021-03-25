@@ -201,6 +201,12 @@ public class AdminApiTest {
                 .isOk(), is(true));
         assertThat(methods.adminUsersSessionList(r -> r.cursor("XXXX").limit(10).teamId("T123").userId("U123"))
                 .isOk(), is(true));
+        assertThat(methods.adminUsersSessionGetSettings(r -> r.userIds(Arrays.asList("U123")))
+                .isOk(), is(true));
+        assertThat(methods.adminUsersSessionSetSettings(r -> r.userIds(Arrays.asList("U123")))
+                .isOk(), is(true));
+        assertThat(methods.adminUsersSessionClearSettings(r -> r.userIds(Arrays.asList("U123")))
+                .isOk(), is(true));
     }
 
     @Test

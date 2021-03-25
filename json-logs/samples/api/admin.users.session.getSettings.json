@@ -1,0 +1,16 @@
+{
+  "ok": false,
+  "session_settings": [
+    {
+      "user_id": "",
+      "desktop_app_browser_quit": false,
+      "duration": 123
+    }
+  ],
+  "no_settings_applied": [
+    "U00000000"
+  ],
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

@@ -2,6 +2,7 @@ package util.sample_json_generation;
 
 import com.google.gson.*;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsResponse;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.FileComment;
@@ -284,6 +285,9 @@ public class JsonDataRecorder {
                     address.setOriginal("");
                     JsonElement elem = gson.toJsonTree(address);
                     array.add(elem);
+                } else if (path.equals("/api/admin.users.session.getSettings") && name.equals("session_settings")) {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(
+                            new AdminUsersSessionGetSettingsResponse.SessionSetting())));
                 } else if (path.equals("/api/conversations.list") && name.equals("channels")) {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Conversation())));
                 } else if (path.equals("/api/users.conversations") && name.equals("channels")) {

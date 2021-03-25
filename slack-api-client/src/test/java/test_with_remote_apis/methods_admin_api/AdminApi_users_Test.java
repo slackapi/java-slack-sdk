@@ -2,7 +2,6 @@ package test_with_remote_apis.methods_admin_api;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
-import com.slack.api.methods.request.admin.users.AdminUsersSessionInvalidateRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.users.UsersListResponse;
@@ -14,6 +13,7 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -59,6 +59,34 @@ public class AdminApi_users_Test {
                     .adminUsersSessionReset(AdminUsersSessionResetRequest.builder().userId(userId).build())
                     .get();
             assertThat(response.getError(), is(nullValue()));
+        }
+    }
+
+    @Test
+    public void usersSessionSettings() throws Exception {
+        if (teamAdminUserToken != null && orgAdminUserToken != null) {
+            List<String> userIds = findUserIds(3, Collections.emptyList());
+            // get
+            AdminUsersSessionGetSettingsResponse get = methodsAsync
+                    .adminUsersSessionGetSettings(r -> r.userIds(userIds)).get();
+            assertThat(get.getError(), is(nullValue()));
+
+            // set
+            AdminUsersSessionSetSettingsResponse set = methodsAsync
+                    .adminUsersSessionSetSettings(r -> r
+                            .userIds(userIds)
+                            .duration(60 * 60 * 24 * 30)
+                    )
+                    .get();
+            assertThat(set.getError(), is(nullValue()));
+
+            get = methodsAsync.adminUsersSessionGetSettings(r -> r.userIds(userIds)).get();
+            assertThat(get.getError(), is(nullValue()));
+
+            // clear
+            AdminUsersSessionClearSettingsResponse clear = methodsAsync
+                    .adminUsersSessionClearSettings(r -> r.userIds(userIds)).get();
+            assertThat(clear.getError(), is(nullValue()));
         }
     }
 
@@ -120,21 +148,27 @@ public class AdminApi_users_Test {
     }
 
     private String findUserId(List<String> idsToSkip) throws Exception {
-        String userId = null;
+        return findUserIds(1, idsToSkip).get(0);
+    }
+
+    private List<String> findUserIds(int num, List<String> idsToSkip) throws Exception {
+        List<String> userIds = new ArrayList<>();
         UsersListResponse usersListResponse = slack.methodsAsync(teamAdminUserToken).usersList(req -> req).get();
         assertThat(usersListResponse.getError(), is(nullValue()));
         List<User> members = usersListResponse.getMembers();
         for (User member : members) {
+            if (num == userIds.size()) {
+                return userIds;
+            }
             if (member.isBot() || member.isDeleted() || member.isAppUser() || member.isOwner() || member.isStranger()) {
                 continue;
             } else {
                 if (!idsToSkip.contains(member.getId())) {
-                    userId = member.getId();
-                    break;
+                    userIds.add(member.getId());
                 }
             }
         }
-        return userId;
+        return userIds;
     }
 
 }
