@@ -39,12 +39,8 @@ public class MethodsTest {
                 // TODO: https://github.com/slackapi/java-slack-sdk/issues/634
                 "admin.conversations.getCustomRetention",
                 "admin.conversations.removeCustomRetention",
-                "admin.conversations.setCustomRetention",
-                // TODO: https://github.com/slackapi/python-slack-sdk/issues/982
-                "admin.users.session.clearSettings",
-                "admin.users.session.getSettings",
-                "admin.users.session.setSettings"
-                );
+                "admin.conversations.setCustomRetention"
+        );
         List<String> methodNames = new ArrayList<>();
         for (String methodName : allMethodNames) {
             if (!excludedMethodNames.contains(methodName)) {

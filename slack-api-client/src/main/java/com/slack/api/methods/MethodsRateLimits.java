@@ -135,6 +135,16 @@ public class MethodsRateLimits {
             setRateLimitTier(methods, Tier3);
         }
 
+        // Tier4
+        final List<String> adminApiMethods_Tier4 = Arrays.asList(
+                ADMIN_USERS_SESSION_GET_SETTINGS,
+                ADMIN_USERS_SESSION_SET_SETTINGS,
+                ADMIN_USERS_SESSION_CLEAR_SETTINGS
+        );
+        for (String methods : adminApiMethods_Tier4) {
+            setRateLimitTier(methods, Tier4);
+        }
+
         // --------------------------
         // Workspace App APIs
         // --------------------------

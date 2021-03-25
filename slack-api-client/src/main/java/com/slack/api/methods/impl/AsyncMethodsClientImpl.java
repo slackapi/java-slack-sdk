@@ -882,6 +882,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminUsersSessionGetSettingsResponse> adminUsersSessionGetSettings(AdminUsersSessionGetSettingsRequest req) {
+        return executor.execute(ADMIN_USERS_SESSION_GET_SETTINGS, toMap(req), () -> methods.adminUsersSessionGetSettings(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsersSessionGetSettingsResponse> adminUsersSessionGetSettings(RequestConfigurator<AdminUsersSessionGetSettingsRequest.AdminUsersSessionGetSettingsRequestBuilder> req) {
+        return adminUsersSessionGetSettings(req.configure(AdminUsersSessionGetSettingsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminUsersSessionSetSettingsResponse> adminUsersSessionSetSettings(AdminUsersSessionSetSettingsRequest req) {
+        return executor.execute(ADMIN_USERS_SESSION_SET_SETTINGS, toMap(req), () -> methods.adminUsersSessionSetSettings(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsersSessionSetSettingsResponse> adminUsersSessionSetSettings(RequestConfigurator<AdminUsersSessionSetSettingsRequest.AdminUsersSessionSetSettingsRequestBuilder> req) {
+        return adminUsersSessionSetSettings(req.configure(AdminUsersSessionSetSettingsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminUsersSessionClearSettingsResponse> adminUsersSessionClearSettings(AdminUsersSessionClearSettingsRequest req) {
+        return executor.execute(ADMIN_USERS_SESSION_CLEAR_SETTINGS, toMap(req), () -> methods.adminUsersSessionClearSettings(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminUsersSessionClearSettingsResponse> adminUsersSessionClearSettings(RequestConfigurator<AdminUsersSessionClearSettingsRequest.AdminUsersSessionClearSettingsRequestBuilder> req) {
+        return adminUsersSessionClearSettings(req.configure(AdminUsersSessionClearSettingsRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<ApiTestResponse> apiTest(ApiTestRequest req) {
         return executor.execute(API_TEST, toMap(req), () -> methods.apiTest(req));
     }

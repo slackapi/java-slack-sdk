@@ -534,6 +534,18 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminUsersSessionResetResponse> adminUsersSessionReset(RequestConfigurator<AdminUsersSessionResetRequest.AdminUsersSessionResetRequestBuilder> req);
 
+    CompletableFuture<AdminUsersSessionGetSettingsResponse> adminUsersSessionGetSettings(AdminUsersSessionGetSettingsRequest req);
+
+    CompletableFuture<AdminUsersSessionGetSettingsResponse> adminUsersSessionGetSettings(RequestConfigurator<AdminUsersSessionGetSettingsRequest.AdminUsersSessionGetSettingsRequestBuilder> req);
+
+    CompletableFuture<AdminUsersSessionSetSettingsResponse> adminUsersSessionSetSettings(AdminUsersSessionSetSettingsRequest req);
+
+    CompletableFuture<AdminUsersSessionSetSettingsResponse> adminUsersSessionSetSettings(RequestConfigurator<AdminUsersSessionSetSettingsRequest.AdminUsersSessionSetSettingsRequestBuilder> req);
+
+    CompletableFuture<AdminUsersSessionClearSettingsResponse> adminUsersSessionClearSettings(AdminUsersSessionClearSettingsRequest req);
+
+    CompletableFuture<AdminUsersSessionClearSettingsResponse> adminUsersSessionClearSettings(RequestConfigurator<AdminUsersSessionClearSettingsRequest.AdminUsersSessionClearSettingsRequestBuilder> req);
+
     // ------------------------------
     // api
     // ------------------------------

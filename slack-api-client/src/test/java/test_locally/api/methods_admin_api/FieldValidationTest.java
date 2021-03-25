@@ -332,6 +332,18 @@ public class FieldValidationTest {
             AdminUsersSessionListResponse obj = parse(prefix + "session.list", AdminUsersSessionListResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
         }
+        {
+            AdminUsersSessionGetSettingsResponse obj = parse(prefix + "session.getSettings", AdminUsersSessionGetSettingsResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
+            AdminUsersSessionSetSettingsResponse obj = parse(prefix + "session.setSettings", AdminUsersSessionSetSettingsResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
+            AdminUsersSessionClearSettingsResponse obj = parse(prefix + "session.clearSettings", AdminUsersSessionClearSettingsResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
     }
 
     @Test

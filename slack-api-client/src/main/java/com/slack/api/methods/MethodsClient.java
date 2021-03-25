@@ -622,6 +622,18 @@ public interface MethodsClient {
 
     AdminUsersSessionResetResponse adminUsersSessionReset(RequestConfigurator<AdminUsersSessionResetRequest.AdminUsersSessionResetRequestBuilder> req) throws IOException, SlackApiException;
 
+    AdminUsersSessionGetSettingsResponse adminUsersSessionGetSettings(AdminUsersSessionGetSettingsRequest req) throws IOException, SlackApiException;
+
+    AdminUsersSessionGetSettingsResponse adminUsersSessionGetSettings(RequestConfigurator<AdminUsersSessionGetSettingsRequest.AdminUsersSessionGetSettingsRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminUsersSessionSetSettingsResponse adminUsersSessionSetSettings(AdminUsersSessionSetSettingsRequest req) throws IOException, SlackApiException;
+
+    AdminUsersSessionSetSettingsResponse adminUsersSessionSetSettings(RequestConfigurator<AdminUsersSessionSetSettingsRequest.AdminUsersSessionSetSettingsRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminUsersSessionClearSettingsResponse adminUsersSessionClearSettings(AdminUsersSessionClearSettingsRequest req) throws IOException, SlackApiException;
+
+    AdminUsersSessionClearSettingsResponse adminUsersSessionClearSettings(RequestConfigurator<AdminUsersSessionClearSettingsRequest.AdminUsersSessionClearSettingsRequestBuilder> req) throws IOException, SlackApiException;
+
     // ------------------------------
     // api
     // ------------------------------

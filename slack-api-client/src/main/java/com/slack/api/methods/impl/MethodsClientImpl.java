@@ -897,6 +897,36 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminUsersSessionGetSettingsResponse adminUsersSessionGetSettings(AdminUsersSessionGetSettingsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_SESSION_GET_SETTINGS, getToken(req), AdminUsersSessionGetSettingsResponse.class);
+    }
+
+    @Override
+    public AdminUsersSessionGetSettingsResponse adminUsersSessionGetSettings(RequestConfigurator<AdminUsersSessionGetSettingsRequest.AdminUsersSessionGetSettingsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersSessionGetSettings(req.configure(AdminUsersSessionGetSettingsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersSessionSetSettingsResponse adminUsersSessionSetSettings(AdminUsersSessionSetSettingsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_SESSION_SET_SETTINGS, getToken(req), AdminUsersSessionSetSettingsResponse.class);
+    }
+
+    @Override
+    public AdminUsersSessionSetSettingsResponse adminUsersSessionSetSettings(RequestConfigurator<AdminUsersSessionSetSettingsRequest.AdminUsersSessionSetSettingsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersSessionSetSettings(req.configure(AdminUsersSessionSetSettingsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminUsersSessionClearSettingsResponse adminUsersSessionClearSettings(AdminUsersSessionClearSettingsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_SESSION_CLEAR_SETTINGS, getToken(req), AdminUsersSessionClearSettingsResponse.class);
+    }
+
+    @Override
+    public AdminUsersSessionClearSettingsResponse adminUsersSessionClearSettings(RequestConfigurator<AdminUsersSessionClearSettingsRequest.AdminUsersSessionClearSettingsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersSessionClearSettings(req.configure(AdminUsersSessionClearSettingsRequest.builder()).build());
+    }
+
+    @Override
     public AdminUsersSessionInvalidateResponse adminUsersSessionInvalidate(AdminUsersSessionInvalidateRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_SESSION_INVALIDATE, getToken(req), AdminUsersSessionInvalidateResponse.class);
     }
