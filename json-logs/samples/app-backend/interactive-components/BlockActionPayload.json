@@ -1116,6 +1116,7 @@
     "unfurl_links": false,
     "unfurl_media": false,
     "is_thread_broadcast": false,
+    "is_locked": false,
     "reply_count": 123,
     "reply_users": [
       ""
