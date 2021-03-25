@@ -316,7 +316,8 @@
           }
         ],
         "upload": false,
-        "display_as_bot": false
+        "display_as_bot": false,
+        "is_locked": false
       },
       "file": {
         "id": "F00000000",

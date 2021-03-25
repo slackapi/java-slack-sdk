@@ -65,6 +65,8 @@ public class Message {
 
     @SerializedName("is_thread_broadcast")
     private boolean threadBroadcast;
+    @SerializedName("is_locked")
+    private boolean locked;
 
     // https://api.slack.com/messaging/retrieving#threading
     // Parent messages in a thread will no longer explicitly list their replies.

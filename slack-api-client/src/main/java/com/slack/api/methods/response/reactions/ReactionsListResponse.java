@@ -42,6 +42,8 @@ public class ReactionsListResponse implements SlackApiTextResponse {
             private List<File> files;
             private boolean upload;
             private boolean displayAsBot;
+            @SerializedName("is_locked")
+            private boolean locked;
             private List<Reaction> reactions;
             private String threadTs;
             private Integer replyCount;

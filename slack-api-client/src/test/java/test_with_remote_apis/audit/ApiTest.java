@@ -210,9 +210,17 @@ public class ApiTest {
                 LogsResponse response = slack.auditAsync(token).getLogs(req -> req.limit(500).action(action)).get();
                 assertThat(response.getError(), is(nullValue()));
             } catch (ExecutionException e) {
-                if (((AuditApiCompletionException) e.getCause()).
-                        getAuditApiException().getResponse().code() == 400) {
-                    log.info("{} seems to be no longer supported", action);
+                if (e.getCause() != null && e.getCause() instanceof AuditApiCompletionException) {
+                    AuditApiCompletionException apiEx = ((AuditApiCompletionException) e.getCause());
+                    if (apiEx.getAuditApiException() != null && apiEx.getAuditApiException().getResponse() != null) {
+                        if (apiEx.getAuditApiException().getResponse().code() == 400) {
+                            log.info("{} seems to be no longer supported", action);
+                        } else {
+                            throw apiEx;
+                        }
+                    } else {
+                        throw apiEx;
+                    }
                 } else {
                     throw e;
                 }
