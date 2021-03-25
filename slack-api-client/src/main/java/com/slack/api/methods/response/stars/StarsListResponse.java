@@ -50,6 +50,8 @@ public class StarsListResponse implements SlackApiTextResponse {
         private String permalink;
         @SerializedName("is_starred")
         private boolean starred;
+        @SerializedName("is_locked")
+        private boolean locked;
 
         private String clientMsgId;
         private String user;

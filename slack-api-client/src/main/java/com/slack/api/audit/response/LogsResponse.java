@@ -206,6 +206,8 @@ public class LogsResponse implements AuditApiResponse {
         private String primaryUsergroupId; // information barrier
         private List<String> barrieredFromUsergroupIds; // information barrier
         private List<String> restrictedSubjects; // information barrier
+        private Integer duration; // user_session_settings_changed
+        private Boolean desktopAppBrowserQuit; // user_session_settings_changed
     }
 
     @Data

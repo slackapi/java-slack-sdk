@@ -199,6 +199,7 @@ public class Actions {
         public static final String channel_email_address_created = "channel_email_address_created";
         public static final String channel_email_address_deleted = "channel_email_address_deleted";
         public static final String channel_retention_changed = "channel_retention_changed";
+        public static final String channel_membership_limit_changed_from_org_level = "channel_membership_limit_changed_from_org_level";
     }
 
     public static class App {

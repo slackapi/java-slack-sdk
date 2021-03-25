@@ -377,6 +377,14 @@
     {
       "date_created": "2021-02-16T14:51:58-08:00",
       "body": "Some people may be having an issue importing files from Google Drive. Our team is looking into this and will share more details as they are uncovered."
+    },
+    {
+      "date_created": "2021-03-25T14:51:04-07:00",
+      "body": "Our investigation of the email verification sign in glitch is still ongoing at this time. We’ll be back with another update as soon as we have news."
+    },
+    {
+      "date_created": "2021-03-25T14:21:19-07:00",
+      "body": "Some SSO users may be running into a \"There\u0027s been a glitch\" error screen when logging in using the email verification sign in method. In the meantime, manually entering the workspace URL in your browser address bar and then signing in should work as normal. Our team are investigating, and will share updates as soon as they are available."
     }
   ]
 }

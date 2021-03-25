@@ -28,7 +28,8 @@
         "U00000000"
       ],
       "subscribed": false,
-      "parent_user_id": "U00000000"
+      "parent_user_id": "U00000000",
+      "is_locked": false
     }
   ],
   "has_more": false,
