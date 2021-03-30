@@ -29,5 +29,6 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> message;
         private List<String> workflowBuilder;
         private List<String> barrier;
+        private List<String> huddle;
     }
 }

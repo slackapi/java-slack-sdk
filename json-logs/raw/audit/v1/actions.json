@@ -213,6 +213,9 @@
       "barrier_created",
       "barrier_updated",
       "barrier_deleted"
+    ],
+    "huddle": [
+      "huddle_ended"
     ]
   }
 }
