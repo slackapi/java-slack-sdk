@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <jetty.version>9.4.38.v20210224</jetty.version>
+        <jetty.version>11.0.2</jetty.version>
     </properties>
 
     <artifactId>bolt-jetty</artifactId>
