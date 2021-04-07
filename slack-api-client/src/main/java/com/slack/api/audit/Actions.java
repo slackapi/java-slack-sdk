@@ -160,6 +160,7 @@ public class Actions {
         public static final String file_public_link_revoked = "file_public_link_revoked";
         public static final String file_shared = "file_shared";
         public static final String file_downloaded_blocked = "file_downloaded_blocked";
+        public static final String file_malicious_content_detected = "file_malicious_content_detected";
     }
 
     public static class Channel {
