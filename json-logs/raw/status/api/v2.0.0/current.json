@@ -581,6 +581,32 @@
           "body": "Some SSO users may be running into a \"There\u0027s been a glitch\" error screen when logging in using the email verification sign in method. In the meantime, manually entering the workspace URL in your browser address bar and then signing in should work as normal. Our team are investigating, and will share updates as soon as they are available."
         }
       ]
+    },
+    {
+      "id": 971,
+      "date_created": "2021-04-07T01:57:07-07:00",
+      "date_updated": "2021-04-07T03:56:29-07:00",
+      "title": "Mobile notifications are delayed",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2021-04/c129ecdbf34ce5c4",
+      "services": [
+        "Notifications"
+      ],
+      "notes": [
+        {
+          "date_created": "2021-04-07T03:56:29-07:00",
+          "body": "We believe we\u0027ve identified the issue and are working to fix. Early signs are positive but old notifications will continue to come through as we work on it.\r\nWe will update as this work progresses."
+        },
+        {
+          "date_created": "2021-04-07T03:24:50-07:00",
+          "body": "We continue to investigate the issue and will update when there\u0027s anything to share. This looks to mainly affect Android devices. We apologize again for the inconvenience caused."
+        },
+        {
+          "date_created": "2021-04-07T01:57:07-07:00",
+          "body": "Some people are experiencing delays with mobile notifications. We\u0027re working hard to resolve the issue, and we\u0027ll update you as soon as we have more information.\r\nWe apologize for the inconvenience caused."
+        }
+      ]
     }
   ]
 }

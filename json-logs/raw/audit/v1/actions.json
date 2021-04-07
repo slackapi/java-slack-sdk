@@ -140,7 +140,8 @@
       "file_public_link_created",
       "file_public_link_revoked",
       "file_shared",
-      "file_downloaded_blocked"
+      "file_downloaded_blocked",
+      "file_malicious_content_detected"
     ],
     "channel": [
       "user_channel_join",

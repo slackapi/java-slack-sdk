@@ -18,5 +18,6 @@ public class UserChangeEvent implements Event {
 
     private final String type = TYPE_NAME;
     private User user; // TODO: make sure the available attributes
+    private Integer cacheTs;
 
 }
