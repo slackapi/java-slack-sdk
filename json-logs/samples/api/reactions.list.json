@@ -232,7 +232,8 @@
         "subtype": "",
         "username": "",
         "parent_user_id": "U00000000",
-        "is_locked": false
+        "is_locked": false,
+        "inviter": "U00000000"
       }
     }
   ],

@@ -43,6 +43,7 @@ public class SubteamCreatedEvent implements Event {
         private Prefs prefs;
         private Integer userCount;
         private Integer channelCount;
+        private List<String> users;
     }
 
     @Data

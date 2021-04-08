@@ -24,7 +24,10 @@
         ""
       ]
     },
-    "channel_count": 12345
+    "channel_count": 12345,
+    "users": [
+      ""
+    ]
   },
   "error": "",
   "needed": "",
