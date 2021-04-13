@@ -385,6 +385,10 @@
     {
       "date_created": "2021-03-25T14:21:19-07:00",
       "body": "Some SSO users may be running into a \"There\u0027s been a glitch\" error screen when logging in using the email verification sign in method. In the meantime, manually entering the workspace URL in your browser address bar and then signing in should work as normal. Our team are investigating, and will share updates as soon as they are available."
+    },
+    {
+      "date_created": "2021-04-12T09:53:44-07:00",
+      "body": "Some customers using the latest version of our iOS app are seeing their messages remain marked as unread and the channels bolded even after reading the channel and navigating away. Our team are currently investigating and we\u0027ll be back with any updates as they happen."
     }
   ]
 }

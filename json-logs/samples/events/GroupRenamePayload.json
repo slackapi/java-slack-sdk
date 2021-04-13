@@ -11,7 +11,8 @@
       "name_normalized": "",
       "is_group": false,
       "is_mpim": false,
-      "created": 12345
+      "created": 12345,
+      "is_channel": false
     },
     "event_ts": "0000000000.000000"
   },

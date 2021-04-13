@@ -22,6 +22,7 @@ public class GroupRenameEvent implements Event {
         private String id;
         private String name;
         private String nameNormalized;
+        private boolean isChannel;
         private boolean isGroup;
         private boolean isMpim;
         private Integer created;
