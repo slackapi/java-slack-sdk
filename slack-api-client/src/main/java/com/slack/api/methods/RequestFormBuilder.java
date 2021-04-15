@@ -764,6 +764,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("include_icon", req.getIncludeIcon(), form);
         return form;
     }
 
@@ -954,6 +955,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("ts", req.getTs(), form);
+        setIfNotNull("as_user", req.isAsUser(), form);
         return form;
     }
 
@@ -961,6 +963,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("scheduled_message_id", req.getScheduledMessageId(), form);
+        setIfNotNull("as_user", req.isAsUser(), form);
         return form;
     }
 

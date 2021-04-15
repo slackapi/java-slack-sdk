@@ -11,5 +11,6 @@ public class AuthTeamsListRequest implements SlackApiRequest {
     private String token;
     private String cursor;
     private Integer limit;
+    private Boolean includeIcon;
 
 }
