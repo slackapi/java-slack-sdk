@@ -29,6 +29,7 @@ Slack slack = Slack.getInstance();
 |-|-|-|
 |**Slack#methods(String)**|**com.slack.api.methods.MethodsClient**|[API メソッド](https://api.slack.com/methods)クライアント|
 |**Slack#methodsAsync(String)**|**com.slack.api.methods.AsyncMethodsClient**|[Rate Limits](https://api.slack.com/docs/rate-limits) を十分に考慮した [API メソッド](https://api.slack.com/methods)非同期クライアント|
+|**Slack#socketMode(String)**|**com.slack.api.socket_mode.SocketModeClient**|[ソケットモード](https://api.slack.com/apis/connections/socket) の WebSocket クライアント|
 |**Slack#rtm(String)**|**com.slack.api.rtm.RTMClient**|[Real Time Messaging (RTM) API](https://api.slack.com/rtm) の WebSocket クライアント|
 |**Slack#scim(String)**|**com.slack.api.scim.SCIMClient**|[SCIM API](https://api.slack.com/scim) クライアント|
 |**Slack#audit(String)**|**com.slack.api.audit.AuditClient**|[Audit Logs API](https://api.slack.com/docs/audit-logs-api) クライアント|
@@ -346,6 +347,13 @@ config.getMethodsConfig().setMetricsDatastore(new RedisMetricsDatastore("test", 
 
 Slack slack = Slack.getInstance(config);
 ```
+
+---
+## ソケットモード
+
+ソケットモードを使った Slack アプリは、イベント API やインタラクティブコンポーネントを HTTP リクエスト URL を公開することなく、利用できるようになります。
+
+詳細は [Bolt のドキュメントの "Bolt がやっていること" というセクション]({{ site.url | append: site.baseurl }}/guides/ja/socket-mode)を参考にしてください。
 
 ---
 ## Real Time Messaging (RTM)

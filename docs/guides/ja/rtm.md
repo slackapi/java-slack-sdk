@@ -6,7 +6,7 @@ lang: ja
 
 # Real Time Messaging (RTM)
 
-[Real Time Messaging API](https://api.slack.com/rtm) は Slack からリアルタイムでイベントを受信したり、ユーザとしてメッセージを送信するための WebSocket ベースの API です。単に “RTM API” と呼ばれることもあります。
+[Real Time Messaging API](https://api.slack.com/rtm) は Slack からリアルタイムでイベントを受信したり、ユーザとしてメッセージを送信するための WebSocket ベースの API です。単に "RTM API” と呼ばれることもあります。
 
 **注**: RTM API は最新の権限（Granular Permissions）を持ったアプリでは利用できません。移行先として [Events API]({{ site.url | append: site.baseurl }}/guides/ja/events-api) や [Web API]({{ site.url | append: site.baseurl }}/guides/ja/web-api-basics) を利用することを推奨します。ファイヤーウォールなどの制約により、止むを得ず RTM API を使う必要がある場合は、[この URL](https://api.slack.com/apps?new_classic_app=1) から Classic Permissions の Slack アプリをつくれば、新規のアプリでも引き続き RTM を利用できます。もし既存の RTM に依存したアプリを使っている場合、そのアプリの権限管理を新しい方式に移行すると RTM を使えなくなりますので注意してください。
 

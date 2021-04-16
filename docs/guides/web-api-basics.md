@@ -29,6 +29,7 @@ Here is the list of the methods in a **Slack** object to create an API client.
 |-|-|-|
 |**Slack#methods(String)**|**com.slack.api.methods.MethodsClient**|Creates a HTTP client for [API Methods](https://api.slack.com/methods)|
 |**Slack#methodsAsync(String)**|**com.slack.api.methods.AsyncMethodsClient**|Creates an async HTTP client for [API Methods](https://api.slack.com/methods) with a great [Rate Limits](https://api.slack.com/docs/rate-limits) supports|
+|**Slack#socketMode(String)**|**com.slack.api.socket_mode.SocketModeClient**|Creates a WebSocket client for [Socket Mode](https://api.slack.com/apis/connections/socket)|
 |**Slack#rtm(String)**|**com.slack.api.rtm.RTMClient**|Creates a WebSocket client for [Real Time Messaging (RTM) API](https://api.slack.com/rtm)|
 |**Slack#scim(String)**|**com.slack.api.scim.SCIMClient**|Creates a HTTP client for [SCIM API](https://api.slack.com/scim)|
 |**Slack#audit(String)**|**com.slack.api.audit.AuditClient**|Creates a HTTP client for [Audit Logs API](https://api.slack.com/docs/audit-logs-api)|
@@ -347,34 +348,41 @@ Slack slack = Slack.getInstance(config);
 ```
 
 ---
+## Socket Mode
+
+Socket Mode allows your app to use the Events API and interactive components of the platform—without exposing a public HTTP Request URL.
+
+Refer to ["Under the Hood" part in the Bolt document]({{ site.url | append: site.baseurl }}/guides/socket-mode) for details.
+
+---
 ## Real Time Messaging (RTM)
 
 **NOTE**: The RTM API is not recommended unless your app has unique restrictions, like needs to receive events from behind a firewall.
 
-The Real Time Messaging API is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users. It’s sometimes referred to just as the “RTM API”.
+The Real Time Messaging API is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users. It’s sometimes referred to just as the "RTM API”.
 
-Refer to [Real Time Messaging (RTM)]({{ site.url | append: site.baseurl }}/guides/rtm) for detals.
+Refer to [Real Time Messaging (RTM)]({{ site.url | append: site.baseurl }}/guides/rtm) for details.
 
 ---
 ## SCIM API
 
 SCIM API is a set of APIs for provisioning and managing user accounts and groups. SCIM is used by Single Sign-On (SSO) services and identity providers to manage people across a variety of tools, including Slack.
 
-Refer to [SCIM API]({{ site.url | append: site.baseurl }}/guides/scim-api) for detals.
+Refer to [SCIM API]({{ site.url | append: site.baseurl }}/guides/scim-api) for details.
 
 ---
 ## Audit Logs API
 
 Audit Logs API is a set of APIs for monitoring what’s happening in your Enterprise Grid organization.
 
-Refer to [Audit Logs API]({{ site.url | append: site.baseurl }}/guides/audit-logs-api) for detals.
+Refer to [Audit Logs API]({{ site.url | append: site.baseurl }}/guides/audit-logs-api) for details.
 
 ---
 ## Slack Status API
 
 The Slack Status API describes the health of the Slack product. When there’s an incident, outage, or maintenance, the Slack Status API reflects all the information we have on the issue, including which features of Slack are affected and detailed updates over time.
 
-Refer to [Status API]({{ site.url | append: site.baseurl }}/guides/status-api) for detals.
+Refer to [Status API]({{ site.url | append: site.baseurl }}/guides/status-api) for details.
 
 ---
 ## Customize Your Slack API Clients
