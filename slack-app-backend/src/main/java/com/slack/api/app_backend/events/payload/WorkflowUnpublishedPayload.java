@@ -1,6 +1,5 @@
 package com.slack.api.app_backend.events.payload;
 
-import com.slack.api.model.event.WorkflowStepDeletedEvent;
 import com.slack.api.model.event.WorkflowUnpublishedEvent;
 import lombok.Data;
 

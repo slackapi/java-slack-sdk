@@ -441,6 +441,31 @@ public class EventHandlersTest {
                     @Override
                     public void handle(MessageChannelPostingPermissionsPayload payload) {
                     }
+                },
+                new MessageChannelArchiveHandler() {
+                    @Override
+                    public void handle(MessageChannelArchivePayload payload) {
+                    }
+                },
+                new MessageChannelUnarchiveHandler() {
+                    @Override
+                    public void handle(MessageChannelUnarchivePayload payload) {
+                    }
+                },
+                new MessageChannelLeaveHandler() {
+                    @Override
+                    public void handle(MessageChannelLeavePayload payload) {
+                    }
+                },
+                new MessageChannelNameHandler() {
+                    @Override
+                    public void handle(MessageChannelNamePayload payload) {
+                    }
+                },
+                new MessageChannelPurposeHandler() {
+                    @Override
+                    public void handle(MessageChannelPurposePayload payload) {
+                    }
                 }
         );
         for (EventHandler<?> handler : handlers) {

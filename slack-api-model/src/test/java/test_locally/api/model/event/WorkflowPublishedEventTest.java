@@ -5,8 +5,8 @@ import com.slack.api.model.event.WorkflowPublishedEvent;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class WorkflowPublishedEventTest {
 

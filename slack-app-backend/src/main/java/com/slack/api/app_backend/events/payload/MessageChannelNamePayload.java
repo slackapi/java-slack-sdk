@@ -1,12 +1,12 @@
 package com.slack.api.app_backend.events.payload;
 
-import com.slack.api.model.event.MessageChannelTopicEvent;
+import com.slack.api.model.event.MessageChannelNameEvent;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class MessageChannelTopicPayload implements EventsApiPayload<MessageChannelTopicEvent> {
+public class MessageChannelNamePayload implements EventsApiPayload<MessageChannelNameEvent> {
 
     private String token;
     private String enterpriseId;
@@ -21,5 +21,5 @@ public class MessageChannelTopicPayload implements EventsApiPayload<MessageChann
     private Integer eventTime;
     private String eventContext;
 
-    private MessageChannelTopicEvent event;
+    private MessageChannelNameEvent event;
 }

@@ -1,12 +1,11 @@
 package com.slack.api.model.event;
 
-import com.slack.api.model.workflow.WorkflowDraftConfiguration;
 import com.slack.api.model.workflow.WorkflowPublishedConfiguration;
 import lombok.Data;
 
 /**
  * A workflow that contains a step supported by your app was published
- *
+ * <p>
  * https://api.slack.com/events/workflow_published
  */
 @Data
