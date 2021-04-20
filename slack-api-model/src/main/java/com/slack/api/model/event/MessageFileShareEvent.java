@@ -1,7 +1,6 @@
 package com.slack.api.model.event;
 
 import com.slack.api.model.Attachment;
-import com.slack.api.model.BotProfile;
 import com.slack.api.model.File;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;

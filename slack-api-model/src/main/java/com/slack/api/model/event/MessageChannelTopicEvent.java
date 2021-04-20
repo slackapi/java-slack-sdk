@@ -8,19 +8,19 @@ import lombok.Data;
 @Data
 public class MessageChannelTopicEvent implements Event {
 
-	public static final String TYPE_NAME = "message";
-	public static final String SUBTYPE_NAME = "channel_topic";
+    public static final String TYPE_NAME = "message";
+    public static final String SUBTYPE_NAME = "channel_topic";
 
-	private final String type = TYPE_NAME;
-	private final String subtype = SUBTYPE_NAME;
+    private final String type = TYPE_NAME;
+    private final String subtype = SUBTYPE_NAME;
 
-	private String user;
-	private String channel;
-	private String channelType; // "channel"
+    private String user;
+    private String channel;
+    private String channelType; // "channel"
 
-	private String text;
-	private String topic;
+    private String text;
+    private String topic;
 
-	private String ts;
-	private String eventTs;
+    private String ts;
+    private String eventTs;
 }

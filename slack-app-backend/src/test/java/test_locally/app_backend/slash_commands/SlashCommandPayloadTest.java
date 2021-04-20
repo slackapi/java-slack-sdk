@@ -128,4 +128,5 @@ public class SlashCommandPayloadTest {
         assertThat(payload.getResponseUrl(), is("https://hooks.slack.com/commands/T111/111/xxx"));
         assertThat(payload.getTriggerId(), is("111.222.xxx"));
         assertThat(payload.isEnterpriseInstall(), is(true));
-    }}
+    }
+}

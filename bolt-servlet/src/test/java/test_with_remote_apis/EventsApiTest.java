@@ -509,7 +509,8 @@ public class EventsApiTest {
                     && groupLeft
                     //&& groupOpen && groupClose
                     && groupArchive
-                    && groupUnarchive;
+                    //&& groupUnarchive
+                    ;
         }
     }
 
@@ -556,6 +557,13 @@ public class EventsApiTest {
                 state.setGroupUnarchive(true);
                 return ctx.ack();
             });
+            app.event(MemberJoinedChannelEvent.class, (req, ctx) -> ctx.ack());
+            app.event(MemberLeftChannelEvent.class, (req, ctx) -> ctx.ack());
+            app.event(MessageEvent.class, (req, ctx) -> ctx.ack());
+            app.event(MessageChannelJoinEvent.class, (req, ctx) -> ctx.ack());
+            app.event(MessageChannelArchiveEvent.class, (req, ctx) -> ctx.ack());
+            app.event(MessageChannelUnarchiveEvent.class, (req, ctx) -> ctx.ack());
+            app.event(MessageChannelNameEvent.class, (req, ctx) -> ctx.ack());
 
             // ------------------------------------------------------------------------------------
 
@@ -603,7 +611,6 @@ public class EventsApiTest {
             }
 
             // ------------------------------------------------------------------------------------
-
             long waitTime = 0;
             while (!state.isAllDone() && waitTime < 10_000L) {
                 long sleepTime = 100L;
@@ -611,6 +618,9 @@ public class EventsApiTest {
                 waitTime += sleepTime;
             }
             assertTrue(state.toString(), state.isAllDone());
+
+            // for accepting other events
+            Thread.sleep(5_000L);
 
         } finally {
             server.stop();

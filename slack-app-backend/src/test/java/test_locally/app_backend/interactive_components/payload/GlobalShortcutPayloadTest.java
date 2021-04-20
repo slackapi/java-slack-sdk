@@ -1,11 +1,11 @@
 package test_locally.app_backend.interactive_components.payload;
 
-import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
 import com.slack.api.app_backend.interactive_components.payload.GlobalShortcutPayload;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GlobalShortcutPayloadTest {

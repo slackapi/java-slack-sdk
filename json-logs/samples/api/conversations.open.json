@@ -141,6 +141,8 @@
     "is_open": false,
     "priority": 12345
   },
+  "no_op": false,
+  "already_open": false,
   "error": "",
   "needed": "",
   "provided": ""

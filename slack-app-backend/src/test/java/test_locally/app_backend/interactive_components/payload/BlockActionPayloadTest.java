@@ -226,9 +226,9 @@ public class BlockActionPayloadTest {
         assertThat(payload.getActions().size(), is(1));
 
         assertThat(payload.getState().getValues()
-                .get("block_1")
-                .get("action_1")
-                .getSelectedOption().getValue(),
+                        .get("block_1")
+                        .get("action_1")
+                        .getSelectedOption().getValue(),
                 is("schedule"));
     }
 

@@ -6,13 +6,13 @@ import com.slack.api.model.event.MessageChannelTopicEvent;
 
 public abstract class MessageChannelTopicHandler extends EventHandler<MessageChannelTopicPayload> {
 
-	@Override
-	public String getEventType() {
-		return MessageChannelTopicEvent.TYPE_NAME;
-	}
+    @Override
+    public String getEventType() {
+        return MessageChannelTopicEvent.TYPE_NAME;
+    }
 
-	@Override
-	public String getEventSubtype() {
-		return MessageChannelTopicEvent.SUBTYPE_NAME;
-	}
+    @Override
+    public String getEventSubtype() {
+        return MessageChannelTopicEvent.SUBTYPE_NAME;
+    }
 }

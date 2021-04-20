@@ -5,13 +5,15 @@ import com.slack.api.model.event.WorkflowUnpublishedEvent;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class WorkflowUnpublishedEventTest {
 
     @Test
-    public void typeName() {assertThat(WorkflowUnpublishedEvent.TYPE_NAME, is("workflow_unpublished"));}
+    public void typeName() {
+        assertThat(WorkflowUnpublishedEvent.TYPE_NAME, is("workflow_unpublished"));
+    }
 
     @Test
     public void deserialize() {

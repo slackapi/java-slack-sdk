@@ -5,13 +5,15 @@ import com.slack.api.model.event.WorkflowStepDeletedEvent;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class WorkflowStepDeletedEventTest {
 
     @Test
-    public void typeName() {assertThat(WorkflowStepDeletedEvent.TYPE_NAME, is("workflow_step_deleted"));}
+    public void typeName() {
+        assertThat(WorkflowStepDeletedEvent.TYPE_NAME, is("workflow_step_deleted"));
+    }
 
     @Test
     public void deserialize() {

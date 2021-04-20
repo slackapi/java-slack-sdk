@@ -6,13 +6,13 @@ import com.slack.api.model.event.MessageGroupTopicEvent;
 
 public abstract class MessageGroupTopicHandler extends EventHandler<MessageGroupTopicPayload> {
 
-	@Override
-	public String getEventType() {
-		return MessageGroupTopicEvent.TYPE_NAME;
-	}
+    @Override
+    public String getEventType() {
+        return MessageGroupTopicEvent.TYPE_NAME;
+    }
 
-	@Override
-	public String getEventSubtype() {
-		return MessageGroupTopicEvent.SUBTYPE_NAME;
-	}
+    @Override
+    public String getEventSubtype() {
+        return MessageGroupTopicEvent.SUBTYPE_NAME;
+    }
 }
