@@ -11,6 +11,7 @@ import com.slack.api.bolt.util.SlackRequestParser
 import com.slack.api.model.event.AppMentionEvent
 import io.ktor.application.*
 import io.ktor.http.*
+import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.testing.*
 import org.junit.After
@@ -77,6 +78,9 @@ class KtorAppTest {
         }
         with(req) {
             assertEquals(HttpStatusCode.OK, response.status())
+            // assert that response is properly flushed and closed
+            // we can check it by content-length header, for example
+            assertEquals("0", response.headers["content-length"])
         }
     }
 
