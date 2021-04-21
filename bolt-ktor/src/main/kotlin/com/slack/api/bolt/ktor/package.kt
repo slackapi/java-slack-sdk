@@ -33,8 +33,8 @@ suspend fun respond(call: ApplicationCall, boltResponse: Response) {
             call.response.header(header.key, value)
         }
     }
-    call.response.status(HttpStatusCode.fromValue(boltResponse.statusCode))
+    val status = HttpStatusCode.fromValue(boltResponse.statusCode)
     if (boltResponse.body != null) {
-        call.respond(TextContent(boltResponse.body, ContentType.parse(boltResponse.contentType)))
-    }
+        call.respondText(boltResponse.body, ContentType.parse(boltResponse.contentType), status)
+    } else call.respond(status)
 }
