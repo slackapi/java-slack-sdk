@@ -12,7 +12,7 @@ jobs:
   build:
     # ubuntu-20.04 may be a bit unstable for this build
     runs-on: ubuntu-18.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     strategy:
       matrix:
         java-version: ['8', '11', '14']
