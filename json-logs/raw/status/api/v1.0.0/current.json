@@ -15,7 +15,8 @@
     "Workspace/Org Administration",
     "Link Previews",
     "Apps/Integrations/APIs",
-    "Search"
+    "Search",
+    "Calls"
   ],
   "notes": [
     {
@@ -389,6 +390,14 @@
     {
       "date_created": "2021-04-12T09:53:44-07:00",
       "body": "Some customers using the latest version of our iOS app are seeing their messages remain marked as unread and the channels bolded even after reading the channel and navigating away. Our team are currently investigating and we\u0027ll be back with any updates as they happen."
+    },
+    {
+      "date_created": "2021-04-22T14:43:50-07:00",
+      "body": "Thank you for your patience while we looked into this. The issue with calls, Workflow Builder, and Block Kit should now be resolved.\r\n \r\nPlease perform a hard refresh by hitting Command + Shift + R (Mac) / Ctrl + Shift + R (Windows) to apply the fix. \r\n\r\nWe apologize for any inconvenience caused by this issue. Please let us know if you have any further problems we can help with, or if you have any other questions or concerns."
+    },
+    {
+      "date_created": "2021-04-22T14:16:25-07:00",
+      "body": "Some users may be having trouble with calls, using Workflow builder, and using Block Kit. Our team is currently investigating and we\u0027ll be back with any updates as they happen."
     }
   ]
 }
