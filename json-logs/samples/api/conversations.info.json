@@ -57,7 +57,10 @@
     "is_moved": 12345,
     "is_global_shared": false,
     "is_org_default": false,
-    "is_org_mandatory": false
+    "is_org_mandatory": false,
+    "connected_limited_team_ids": [
+      ""
+    ]
   },
   "error": "",
   "needed": "",

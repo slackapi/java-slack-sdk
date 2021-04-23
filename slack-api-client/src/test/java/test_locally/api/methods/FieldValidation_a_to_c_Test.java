@@ -406,7 +406,8 @@ public class FieldValidation_a_to_c_Test {
                 "getDateConnected",
                 "getSharedTeamIds",
                 "getPreviousNames",
-                "getPendingConnectedTeamIds"
+                "getPendingConnectedTeamIds",
+                "getConnectedLimitedTeamIds"
         );
     }
 
@@ -490,6 +491,7 @@ public class FieldValidation_a_to_c_Test {
                     "getSharedTeamIds",
                     "getPreviousNames",
                     "getPendingConnectedTeamIds",
+                    "getConnectedLimitedTeamIds",
 
                     "getParentConversation",
                     "getConversationHostId",
