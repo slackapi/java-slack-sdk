@@ -1,8 +1,10 @@
 package test_with_remote_apis.methods_admin_api;
 
+import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
+import com.slack.api.util.json.GsonFactory;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ public class AdminApi_analytics_Test {
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
+    static Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
 
     @AfterClass
     public static void tearDown() throws InterruptedException {
@@ -30,7 +33,7 @@ public class AdminApi_analytics_Test {
     static AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
 
     @Test
-    public void getFile_error() throws Exception {
+    public void getFile_member_error() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
                     .date("2035-12-31")
@@ -42,7 +45,7 @@ public class AdminApi_analytics_Test {
     }
 
     @Test
-    public void getFile_forEach() throws Exception {
+    public void getFile_member_forEach() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
                     .date("2020-10-20")
@@ -72,7 +75,23 @@ public class AdminApi_analytics_Test {
     }
 
     @Test
-    public void getFile_asBytes() throws Exception {
+    public void getFile_member_forEach_validation() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
+                    .date("2020-10-20")
+                    .type("member")
+            ).get();
+            assertNull(response.getError());
+            assertNotNull(response.getFileStream());
+            List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
+            response.forEach(gson, data -> results.add(data));
+            assertTrue(results.size() > 0);
+            assertNull(response.getFileStream());
+        }
+    }
+
+    @Test
+    public void getFile_member_asBytes() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
                     .date("2020-10-20")
@@ -128,6 +147,21 @@ public class AdminApi_analytics_Test {
     }
 
     @Test
+    public void getFile_public_channel_validation() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
+                    .date("2020-10-20")
+                    .type("public_channel")
+            ).get();
+            assertNull(response.getError());
+            assertNotNull(response.getFileStream());
+            List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
+            response.forEach(gson, data -> results.add(data));
+            assertTrue(results.size() > 0);
+        }
+    }
+
+    @Test
     public void getFile_public_channel_metadata_only() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
@@ -161,6 +195,21 @@ public class AdminApi_analytics_Test {
             } catch (IOException e) {
                 assertEquals("The byte stream has been already consumed.", e.getMessage());
             }
+        }
+    }
+
+    @Test
+    public void getFile_public_channel_metadata_only_validation() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
+                    .type("public_channel")
+                    .metadataOnly(true)
+            ).get();
+            assertNull(response.getError());
+            assertNotNull(response.getFileStream());
+            List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
+            response.forEach(gson, data -> results.add(data));
+            assertTrue(results.size() > 0);
         }
     }
 }

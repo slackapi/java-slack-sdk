@@ -66,7 +66,10 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
     }
 
     public void forEach(Consumer<AnalyticsData> handler) throws IOException {
-        Gson gson = GsonFactory.createSnakeCase();
+        this.forEach(GsonFactory.createSnakeCase(), handler);
+    }
+
+    public void forEach(Gson gson, Consumer<AnalyticsData> handler) throws IOException {
         InputStream is = getFileStream();
         if (loadedBytes.length > 0) {
             // already the whole data is loaded in heap memory
@@ -114,6 +117,12 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         private String name;
     }
 
+    @Data
+    public static class Organization {
+        private String name;
+        private String domain;
+    }
+
     /**
      * Parsed Analytics Data
      */
@@ -141,6 +150,11 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
          * Example: W1F83A9F9
          */
         private String enterpriseUserId;
+
+        /**
+         * User ID
+         */
+        private String userId;
 
         /**
          * The email address of record for the same user
@@ -207,7 +221,7 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
          * This metric is not de-duplicated by message—if a user adds 3 different reactions
          * to a single message, we will report 3 reactions
          * (public_channel)
-         * 	A count of emoji reactions left on any message in channel on that given day by human users
+         * A count of emoji reactions left on any message in channel on that given day by human users
          * Example: 20
          */
         private Integer reactionsAddedCount;
@@ -236,6 +250,50 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
          * Example: 5
          */
         private Integer filesAddedCount;
+
+        /**
+         * (member)
+         * Returns true when this member has interacted with a Slack app
+         * or custom integration on the given day,
+         * or if such an app or integration has performed an action on the user's behalf,
+         * such as updating their custom status
+         */
+        private Boolean isActiveApps;
+
+        /**
+         * (member)
+         * Returns true when this member has interacted with at least one workflow on a given day
+         */
+        private Boolean isActiveWorkflows;
+
+        /**
+         * (member)
+         * Returns true when the member is considered active on Slack Connect,
+         * in that they've read or posted a message to a channel
+         * or direct message shared with at least one external workspace
+         */
+        private Boolean isActiveSlackConnect;
+
+        /**
+         * (member)
+         * Total number of Slack calls made or joined on a given day,
+         * excluding any calls using third party software besides Slack calls
+         */
+        private Integer slackCallsCount;
+
+        /**
+         * (member)
+         * The number of searches this user performed in Slack on a given day
+         */
+        private Integer searchCount;
+
+        /**
+         * (member)
+         * The date of the very first time the member signed in
+         * to any workspace within the grid organization,
+         * presented in seconds since the epoch (UNIX time)
+         */
+        private Integer dateClaimed;
 
         // public_channel type
 
@@ -382,6 +440,15 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
          * Example: "Ask our editors all about their favorite literature"
          */
         private String description;
+
+        /**
+         * (public_channel)
+         * Indicates which, if any, external organizations this channel is shared with.
+         * Presented as an array of JSON objects containing an organization name and a slack domain.
+         * Only works with is_shared_externally set to true.
+         * Example: [{"name":"Away Org","domain":"away.enterprise.slack.com"}]
+         */
+        private List<Organization> externallySharedWithOrganizations;
 
     }
 
