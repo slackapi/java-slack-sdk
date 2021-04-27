@@ -398,6 +398,14 @@
     {
       "date_created": "2021-04-22T14:16:25-07:00",
       "body": "Some users may be having trouble with calls, using Workflow builder, and using Block Kit. Our team is currently investigating and we\u0027ll be back with any updates as they happen."
+    },
+    {
+      "date_created": "2021-04-26T18:28:14-07:00",
+      "body": "We\u0027ve deployed a fix and we believe this issue should now be resolved. Please reach out to us at feedback@slack.com if you have any further trouble.\r\n\r\nThank you for bearing with us. We\u0027ll be back with an issue summary soon."
+    },
+    {
+      "date_created": "2021-04-26T17:55:29-07:00",
+      "body": "Some customers may be experiencing errors when searching for or listing files via Slack or the API. We\u0027re very sorry for the disruption, and we\u0027re working to resolve this."
     }
   ]
 }

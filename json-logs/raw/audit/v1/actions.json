@@ -106,7 +106,10 @@
       "org_public_url_updated",
       "organization_verified",
       "organization_unverified",
-      "organization_public_url_updated"
+      "organization_public_url_updated",
+      "pref.slack_connect_allowed_workspaces",
+      "pref.slack_connect_dm_only_verified_orgs",
+      "pref.who_can_dm_anyone"
     ],
     "user": [
       "custom_tos_accepted",

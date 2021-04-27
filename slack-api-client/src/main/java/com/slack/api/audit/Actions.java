@@ -85,6 +85,7 @@ public class Actions {
         public static final String pref_enterprise_default_channels = "pref.enterprise_default_channels";
         public static final String pref_who_can_create_delete_user_groups = "pref.who_can_create_delete_user_groups";
         public static final String pref_who_can_edit_user_groups = "pref.who_can_edit_user_groups";
+        public static final String pref_who_can_dm_anyone = "pref.who_can_dm_anyone";
         public static final String pref_stats_only_admins = "pref.stats_only_admins";
         public static final String pref_emoji_only_admins = "pref.emoji_only_admins";
         public static final String pref_slackbot_responses_disabled = "pref.slackbot_responses_disabled";
@@ -102,6 +103,8 @@ public class Actions {
         public static final String pref_notification_redaction_type = "pref.notification_redaction_type";
         public static final String pref_session_duration_changed = "pref.session_duration_changed";
         public static final String pref_session_duration_type_changed = "pref.session_duration_type_changed";
+        public static final String pref_slack_connect_allowed_workspaces = "pref.slack_connect_allowed_workspaces";
+        public static final String pref_slack_connect_dm_only_verified_orgs = "pref.slack_connect_dm_only_verified_orgs";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
