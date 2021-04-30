@@ -12,6 +12,8 @@ import org.junit.AfterClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -36,6 +38,15 @@ public class AdminApi_apps_Test {
         if (orgAdminUserToken != null) {
             AdminAppsClearResolutionResponse response = methodsAsync
                     .adminAppsClearResolution(r -> r.appId("A111").teamId(teamId)).get();
+            assertThat(response.getError(), is("missing_scope"));
+        }
+    }
+
+    @Test
+    public void apps_uninstall() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminAppsUninstallResponse response = methodsAsync
+                    .adminAppsUninstall(r -> r.appId("A111").teamIds(Arrays.asList(teamId))).get();
             assertThat(response.getError(), is("missing_scope"));
         }
     }

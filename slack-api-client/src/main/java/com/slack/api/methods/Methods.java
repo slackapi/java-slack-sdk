@@ -16,6 +16,7 @@ public class Methods {
     public static final String ADMIN_APPS_RESTRICT = "admin.apps.restrict";
     public static final String ADMIN_APPS_APPROVED_LIST = "admin.apps.approved.list";
     public static final String ADMIN_APPS_RESTRICTED_LIST = "admin.apps.restricted.list";
+    public static final String ADMIN_APPS_UNINSTALL = "admin.apps.uninstall";
 
     // ------------------------------
     // admin.apps.requests

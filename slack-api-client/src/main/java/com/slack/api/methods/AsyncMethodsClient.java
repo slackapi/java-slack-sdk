@@ -216,6 +216,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminAppsClearResolutionResponse> adminAppsClearResolution(RequestConfigurator<AdminAppsClearResolutionRequest.AdminAppsClearResolutionRequestBuilder> req);
 
+    CompletableFuture<AdminAppsUninstallResponse> adminAppsUninstall(AdminAppsUninstallRequest req);
+
+    CompletableFuture<AdminAppsUninstallResponse> adminAppsUninstall(RequestConfigurator<AdminAppsUninstallRequest.AdminAppsUninstallRequestBuilder> req);
+
     // ------------------------------
     // admin.apps.requests
     // ------------------------------

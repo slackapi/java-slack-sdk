@@ -282,6 +282,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminAppsUninstallResponse> adminAppsUninstall(AdminAppsUninstallRequest req) {
+        return executor.execute(ADMIN_APPS_UNINSTALL, toMap(req), () -> methods.adminAppsUninstall(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsUninstallResponse> adminAppsUninstall(RequestConfigurator<AdminAppsUninstallRequest.AdminAppsUninstallRequestBuilder> req) {
+        return adminAppsUninstall(req.configure(AdminAppsUninstallRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(AdminAppsRequestsListRequest req) {
         return executor.execute(ADMIN_APPS_REQUESTS_LIST, toMap(req), () -> methods.adminAppsRequestsList(req));
     }
