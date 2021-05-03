@@ -50,7 +50,17 @@
     "updated": 12345,
     "locale": "",
     "has_2fa": false,
-    "is_email_confirmed": false
+    "is_email_confirmed": false,
+    "enterprise_user": {
+      "id": "U00000000",
+      "enterprise_id": "E00000000",
+      "enterprise_name": "",
+      "is_admin": false,
+      "is_owner": false,
+      "teams": [
+        ""
+      ]
+    }
   },
   "error": "",
   "needed": "",

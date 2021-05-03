@@ -29,6 +29,8 @@ public class users_Test {
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+    String enterpriseGridTeamAdminUserToken = System.getenv(
+            Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
 
     @AfterClass
     public static void tearDown() throws InterruptedException {
@@ -67,6 +69,20 @@ public class users_Test {
                 .get();
         assertThat(usersInfo.getError(), is(nullValue()));
         assertThat(usersInfo.getUser().getLocale(), is(notNullValue()));
+    }
+
+    @Test
+    public void enterpriseGrid() throws IOException, SlackApiException {
+        if (enterpriseGridTeamAdminUserToken != null) {
+            UsersListResponse users = slack.methods(enterpriseGridTeamAdminUserToken)
+                    .usersList(r -> r.includeLocale(true).limit(10));
+            assertThat(users.getError(), is(nullValue()));
+
+            UsersInfoResponse usersInfo = slack.methods(enterpriseGridTeamAdminUserToken)
+                    .usersInfo(r -> r.user(users.getMembers().get(0).getId()).includeLocale(true));
+            assertThat(usersInfo.getError(), is(nullValue()));
+            assertThat(usersInfo.getUser().getLocale(), is(notNullValue()));
+        }
     }
 
     @Test
