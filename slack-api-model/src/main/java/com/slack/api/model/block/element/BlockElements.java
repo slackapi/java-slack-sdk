@@ -149,25 +149,40 @@ public class BlockElements {
     // ------------------------------------------------
 
     // RichTextListElement
-
+    /**
+     * @deprecated The SDK cannot send rich text blocks. Use markdown text instead.
+     */
+    @Deprecated
     public static RichTextListElement richTextList(ModelConfigurator<RichTextListElement.RichTextListElementBuilder> configurator) {
         return configurator.configure(RichTextListElement.builder()).build();
     }
 
     // RichTextPreformattedElement
 
+    /**
+     * @deprecated The SDK cannot send rich text blocks. Use markdown text instead.
+     */
+    @Deprecated
     public static RichTextPreformattedElement richTextPreformatted(ModelConfigurator<RichTextPreformattedElement.RichTextPreformattedElementBuilder> configurator) {
         return configurator.configure(RichTextPreformattedElement.builder()).build();
     }
 
     // RichTextQuoteElement
 
+    /**
+     * @deprecated The SDK cannot send rich text blocks. Use markdown text instead.
+     */
+    @Deprecated
     public static RichTextQuoteElement richTextQuote(ModelConfigurator<RichTextQuoteElement.RichTextQuoteElementBuilder> configurator) {
         return configurator.configure(RichTextQuoteElement.builder()).build();
     }
 
     // RichTextSectionElement
 
+    /**
+     * @deprecated The SDK cannot send rich text blocks. Use markdown text instead.
+     */
+    @Deprecated
     public static RichTextSectionElement richTextSection(ModelConfigurator<RichTextSectionElement.RichTextSectionElementBuilder> configurator) {
         return configurator.configure(RichTextSectionElement.builder()).build();
     }
