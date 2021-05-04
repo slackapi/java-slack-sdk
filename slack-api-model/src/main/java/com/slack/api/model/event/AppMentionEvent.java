@@ -1,7 +1,11 @@
 package com.slack.api.model.event;
 
+import com.slack.api.model.Attachment;
 import com.slack.api.model.BotProfile;
+import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * This app event allows your app to subscribe to message events that directly mention your bot user.
@@ -33,6 +37,8 @@ public class AppMentionEvent implements Event {
     private BotProfile botProfile;
     private String subtype;
     private String text;
+    private List<LayoutBlock> blocks;
+    private List<Attachment> attachments;
     private String ts;
     private String team;
     private String channel;
