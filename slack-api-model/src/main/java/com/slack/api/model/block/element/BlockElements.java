@@ -144,32 +144,5 @@ public class BlockElements {
         return configurator.configure(MultiStaticSelectElement.builder()).build();
     }
 
-    // ------------------------------------------------
-    // Rich Text Elements
-    // ------------------------------------------------
-
-    // RichTextListElement
-
-    public static RichTextListElement richTextList(ModelConfigurator<RichTextListElement.RichTextListElementBuilder> configurator) {
-        return configurator.configure(RichTextListElement.builder()).build();
-    }
-
-    // RichTextPreformattedElement
-
-    public static RichTextPreformattedElement richTextPreformatted(ModelConfigurator<RichTextPreformattedElement.RichTextPreformattedElementBuilder> configurator) {
-        return configurator.configure(RichTextPreformattedElement.builder()).build();
-    }
-
-    // RichTextQuoteElement
-
-    public static RichTextQuoteElement richTextQuote(ModelConfigurator<RichTextQuoteElement.RichTextQuoteElementBuilder> configurator) {
-        return configurator.configure(RichTextQuoteElement.builder()).build();
-    }
-
-    // RichTextSectionElement
-
-    public static RichTextSectionElement richTextSection(ModelConfigurator<RichTextSectionElement.RichTextSectionElementBuilder> configurator) {
-        return configurator.configure(RichTextSectionElement.builder()).build();
-    }
 
 }

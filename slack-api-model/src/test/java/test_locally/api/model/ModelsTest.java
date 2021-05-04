@@ -197,18 +197,6 @@ public class ModelsTest {
 
         MultiUsersSelectElement multiUsersSelect = multiUsersSelect(r -> r.actionId("action"));
         assertNotNull(multiUsersSelect);
-
-        RichTextListElement richTextList = richTextList(r -> r.style("link"));
-        assertNotNull(richTextList);
-
-        RichTextPreformattedElement richTextPreformatted = richTextPreformatted(r -> r);
-        assertNotNull(richTextPreformatted);
-
-        RichTextQuoteElement richTextQuote = richTextQuote(r -> r);
-        assertNotNull(richTextQuote);
-
-        RichTextSectionElement richTextSection = richTextSection(r -> r);
-        assertNotNull(richTextSection);
     }
 
     @Test
