@@ -87,6 +87,12 @@ public class Blocks {
         return configurator.configure(InputBlock.builder()).build();
     }
 
+    // RichTextBlock
+
+    public static RichTextBlock richText(ModelConfigurator<RichTextBlock.RichTextBlockBuilder> configurator) {
+        return configurator.configure(RichTextBlock.builder()).build();
+    }
+
     // SectionBlock
 
     public static SectionBlock section(ModelConfigurator<SectionBlock.SectionBlockBuilder> configurator) {

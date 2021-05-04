@@ -80,6 +80,14 @@ public class BlocksTest {
         assertThat(header(h -> h.blockId("block-id").text(plainText("This is the headline!"))), is(notNullValue()));
     }
 
+    @Test
+    public void testRichText() {
+        assertThat(richText(i -> i
+                .blockId("block-id")
+                .elements(asElements(button(b -> b.value("v"))))
+        ), is(notNullValue()));
+    }
+
     String richTextSkinTone = "{ \"blocks\": [\n" +
             "  {\n" +
             "    \"type\": \"rich_text\",\n" +
