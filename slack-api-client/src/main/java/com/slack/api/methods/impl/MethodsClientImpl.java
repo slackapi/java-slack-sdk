@@ -311,6 +311,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminAppsUninstallResponse adminAppsUninstall(AdminAppsUninstallRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_APPS_UNINSTALL, getToken(req), AdminAppsUninstallResponse.class);
+    }
+
+    @Override
+    public AdminAppsUninstallResponse adminAppsUninstall(RequestConfigurator<AdminAppsUninstallRequest.AdminAppsUninstallRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAppsUninstall(req.configure(AdminAppsUninstallRequest.builder()).build());
+    }
+
+    @Override
     public AdminAppsRequestsListResponse adminAppsRequestsList(AdminAppsRequestsListRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_APPS_REQUESTS_LIST, getToken(req), AdminAppsRequestsListResponse.class);
     }

@@ -230,6 +230,16 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminAppsUninstallRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
+        if (req.getTeamIds() != null) {
+            setIfNotNull("team_ids", req.getTeamIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminBarriersCreateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         if (req.getBarrieredFromUsergroupIds() != null) {

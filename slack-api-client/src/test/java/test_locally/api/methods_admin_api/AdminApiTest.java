@@ -67,6 +67,8 @@ public class AdminApiTest {
                 .isOk(), is(true));
         assertThat(methods.adminAppsClearResolution(r -> r.appId("A123").teamId("T123"))
                 .isOk(), is(true));
+        assertThat(methods.adminAppsUninstall(r -> r.appId("A123").enterpriseId("E111").teamIds(Arrays.asList("T123")))
+                .isOk(), is(true));
     }
 
     @Test

@@ -46,6 +46,8 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminAppsRestrictedList(r -> r.teamId("T123"))
                 .get().isOk(), is(true));
+        assertThat(methods.adminAppsUninstall(r -> r.appId("A111").enterpriseId("E111").teamIds(Arrays.asList("T123")))
+                .get().isOk(), is(true));
     }
 
     @Test
