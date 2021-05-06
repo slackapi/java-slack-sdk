@@ -26,6 +26,8 @@ import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
 import com.slack.api.methods.response.usergroups.UsergroupsCreateResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
+import com.slack.api.model.block.SectionBlock;
+import com.slack.api.model.block.composition.MarkdownTextObject;
 import com.slack.api.model.event.*;
 import com.slack.api.util.json.GsonFactory;
 import config.Constants;
@@ -350,9 +352,21 @@ public class EventsApiTest {
                 assertNull(joining.getError());
 
                 // app_mention
+                String mentionText = "<@" + botUserId + "> Hello!";
                 ChatPostMessageResponse mention = slack.methods(userToken).chatPostMessage(r ->
-                        r.text("<@" + botUserId + "> Hello!").channel(channelId).asUser(true));
+                        r.text(mentionText).channel(channelId));
                 assertNull(mention.getError());
+
+                // app_mention with blocks
+                ChatPostMessageResponse mention2 = slack.methods(userToken).chatPostMessage(r ->
+                        r.text(mentionText).blocks(Arrays.asList(
+                                SectionBlock.builder()
+                                        .blockId("block-id-value")
+                                        // this needs to be a mrkdwn-type text object
+                                        .text(MarkdownTextObject.builder().text(mentionText).build())
+                                        .build()
+                        )).channel(channelId));
+                assertNull(mention2.getError());
 
                 // link_shared
                 // NOTE: Add "www.youtube.com" to Event Subscriptions > App unfurl domains
