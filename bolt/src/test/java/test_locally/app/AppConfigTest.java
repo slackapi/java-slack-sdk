@@ -47,6 +47,43 @@ public class AppConfigTest {
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
 
+    String blockActionsPayload = "{\n" +
+            "  \"type\": \"block_actions\",\n" +
+            "  \"user\": {\n" +
+            "    \"id\": \"W111\",\n" +
+            "    \"username\": \"primary-owner\",\n" +
+            "    \"name\": \"primary-owner\",\n" +
+            "    \"team_id\": \"T111\"\n" +
+            "  },\n" +
+            "  \"api_app_id\": \"A111\",\n" +
+            "  \"token\": \"verification_token\",\n" +
+            "  \"container\": {\n" +
+            "    \"type\": \"message\",\n" +
+            "    \"message_ts\": \"111.222\",\n" +
+            "    \"channel_id\": \"C111\",\n" +
+            "    \"is_ephemeral\": true\n" +
+            "  },\n" +
+            "  \"trigger_id\": \"111.222.valid\",\n" +
+            "  \"team\": {\n" +
+            "    \"id\": \"T111\",\n" +
+            "    \"domain\": \"workspace-domain\",\n" +
+            "    \"enterprise_id\": \"E111\",\n" +
+            "    \"enterprise_name\": \"Sandbox Org\"\n" +
+            "  },\n" +
+            "  \"channel\": {\"id\": \"C111\", \"name\": \"test-channel\"},\n" +
+            "  \"response_url\": \"https://hooks.slack.com/actions/T111/111/random-value\",\n" +
+            "  \"actions\": [\n" +
+            "    {\n" +
+            "      \"action_id\": \"a\",\n" +
+            "      \"block_id\": \"b\",\n" +
+            "      \"text\": {\"type\": \"plain_text\", \"text\": \"Button\", \"emoji\": true},\n" +
+            "      \"value\": \"click_me_123\",\n" +
+            "      \"type\": \"button\",\n" +
+            "      \"action_ts\": \"1596530385.194939\"\n" +
+            "    }\n" +
+            "  ]\n" +
+            "}";
+
     @Test
     public void disableRequestVerification() throws Exception {
         App app = new App(AppConfig.builder()
@@ -57,46 +94,9 @@ public class AppConfigTest {
                 .build());
         app.blockAction("a", (req, ctx) -> ctx.ack());
 
-
-        String payload = "{\n" +
-                "  \"type\": \"block_actions\",\n" +
-                "  \"user\": {\n" +
-                "    \"id\": \"W111\",\n" +
-                "    \"username\": \"primary-owner\",\n" +
-                "    \"name\": \"primary-owner\",\n" +
-                "    \"team_id\": \"T111\"\n" +
-                "  },\n" +
-                "  \"api_app_id\": \"A111\",\n" +
-                "  \"token\": \"verification_token\",\n" +
-                "  \"container\": {\n" +
-                "    \"type\": \"message\",\n" +
-                "    \"message_ts\": \"111.222\",\n" +
-                "    \"channel_id\": \"C111\",\n" +
-                "    \"is_ephemeral\": true\n" +
-                "  },\n" +
-                "  \"trigger_id\": \"111.222.valid\",\n" +
-                "  \"team\": {\n" +
-                "    \"id\": \"T111\",\n" +
-                "    \"domain\": \"workspace-domain\",\n" +
-                "    \"enterprise_id\": \"E111\",\n" +
-                "    \"enterprise_name\": \"Sandbox Org\"\n" +
-                "  },\n" +
-                "  \"channel\": {\"id\": \"C111\", \"name\": \"test-channel\"},\n" +
-                "  \"response_url\": \"https://hooks.slack.com/actions/T111/111/random-value\",\n" +
-                "  \"actions\": [\n" +
-                "    {\n" +
-                "      \"action_id\": \"a\",\n" +
-                "      \"block_id\": \"b\",\n" +
-                "      \"text\": {\"type\": \"plain_text\", \"text\": \"Button\", \"emoji\": true},\n" +
-                "      \"value\": \"click_me_123\",\n" +
-                "      \"type\": \"button\",\n" +
-                "      \"action_ts\": \"1596530385.194939\"\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}";
-        String requestBody = "payload=" + URLEncoder.encode(payload, "UTF-8");
+        String requestBody = "payload=" + URLEncoder.encode(blockActionsPayload, "UTF-8");
         Map<String, List<String>> rawHeaders = new HashMap<>();
-        BlockActionRequest req = new BlockActionRequest(requestBody, payload, new RequestHeaders(rawHeaders));
+        BlockActionRequest req = new BlockActionRequest(requestBody, blockActionsPayload, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(200L, response.getStatusCode().longValue());
     }
@@ -192,6 +192,23 @@ public class AppConfigTest {
             assertEquals(200L, response.getStatusCode().longValue());
             assertTrue(called.get());
         }
+    }
+
+    @Test
+    public void unmatchedHandler() throws Exception {
+        App app = new App(AppConfig.builder()
+                .signingSecret(secret)
+                .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                .slack(slack)
+                .requestVerificationEnabled(false)
+                .unmatchedRequestHandler((req) -> Response.builder().statusCode(400).build())
+                .build());
+
+        String requestBody = "payload=" + URLEncoder.encode(blockActionsPayload, "UTF-8");
+        Map<String, List<String>> rawHeaders = new HashMap<>();
+        BlockActionRequest req = new BlockActionRequest(requestBody, blockActionsPayload, new RequestHeaders(rawHeaders));
+        Response response = app.run(req);
+        assertEquals(400L, response.getStatusCode().longValue());
     }
 
 }

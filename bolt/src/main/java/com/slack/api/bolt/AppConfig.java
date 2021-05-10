@@ -2,6 +2,8 @@ package com.slack.api.bolt;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.bolt.handler.UnmatchedRequestHandler;
+import com.slack.api.bolt.handler.builtin.DefaultUnmatchedRequestHandler;
 import com.slack.api.bolt.meta.BoltLibraryVersion;
 import com.slack.api.bolt.service.builtin.oauth.view.OAuthInstallPageRenderer;
 import com.slack.api.bolt.service.builtin.oauth.view.OAuthRedirectUriPageRenderer;
@@ -156,6 +158,13 @@ public class AppConfig {
     @Builder.Default
     private transient OAuthRedirectUriPageRenderer oAuthRedirectUriPageRenderer =
             new OAuthDefaultRedirectUriPageRenderer();
+
+    /**
+     * Handles unmatched requests (default behavior is simply returning 404 Not Found).
+     */
+    @Builder.Default
+    private transient UnmatchedRequestHandler unmatchedRequestHandler =
+            new DefaultUnmatchedRequestHandler();
 
     // --------------------------
 
