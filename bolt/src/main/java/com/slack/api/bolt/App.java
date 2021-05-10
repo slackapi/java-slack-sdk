@@ -25,6 +25,7 @@ import com.slack.api.bolt.service.builtin.DefaultOAuthCallbackService;
 import com.slack.api.bolt.service.builtin.FileInstallationService;
 import com.slack.api.bolt.service.builtin.oauth.*;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.*;
+import com.slack.api.bolt.util.ListenerCodeSuggestion;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
@@ -993,7 +994,9 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No SlashCommandHandler registered for command: {}", request.getPayload().getCommand());
+                    command = request.getPayload().getCommand();
+                    log.warn("No SlashCommandHandler registered for command: {}\n{}",
+                            command, ListenerCodeSuggestion.command(command));
                     break;
                 }
                 case Event: {
@@ -1007,7 +1010,8 @@ public class App {
                         EventsApiPayload<Event> payload = buildEventPayload(request);
                         return handler.apply(payload, request.getContext());
                     }
-                    log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
+                    log.warn("No BoltEventHandler registered for event: {}\n{}",
+                            request.getEventTypeAndSubtype(), ListenerCodeSuggestion.event(request.getEventTypeAndSubtype()));
                     break;
                 }
                 case UrlVerification: {
@@ -1029,7 +1033,9 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No AttachmentActionHandler registered for callback_id: {}", request.getPayload().getCallbackId());
+                    callbackId = request.getPayload().getCallbackId();
+                    log.warn("No AttachmentActionHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.attachmentAction(callbackId));
                     break;
                 }
                 case BlockAction: {
@@ -1048,7 +1054,9 @@ public class App {
                                 }
                             }
                         }
-                        log.warn("No BlockActionHandler registered for action_id: {}", actions.get(0).getActionId());
+                        actionId = actions.get(0).getActionId();
+                        log.warn("No BlockActionHandler registered for action_id: {}\n{}",
+                                actionId, ListenerCodeSuggestion.blockAction(actionId));
                     } else {
                         for (BlockActionPayload.Action action : request.getPayload().getActions()) {
                             // Returned response values will be ignored
@@ -1070,7 +1078,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No BlockSuggestionHandler registered for action_id: {}", actionId);
+                    log.warn("No BlockSuggestionHandler registered for action_id: {}\n{}",
+                            actionId, ListenerCodeSuggestion.blockSuggestion(actionId));
                     break;
                 }
                 case GlobalShortcut: {
@@ -1084,7 +1093,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No GlobalShortcutHandler registered for callback_id: {}", callbackId);
+                    log.warn("No GlobalShortcutHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.globalShortcut(callbackId));
                     break;
                 }
                 case MessageShortcut: {
@@ -1098,7 +1108,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No MessageShortcutHandler registered for callback_id: {}", callbackId);
+                    log.warn("No MessageShortcutHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.messageShortcut(callbackId));
                     break;
                 }
                 case DialogSubmission: {
@@ -1112,7 +1123,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No DialogSubmissionHandler registered for callback_id: {}", callbackId);
+                    log.warn("No DialogSubmissionHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.dialogSubmission(callbackId));
                     break;
                 }
                 case DialogCancellation: {
@@ -1126,7 +1138,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No DialogCancellationHandler registered for callback_id: {}", callbackId);
+                    log.warn("No DialogCancellationHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.dialogCancellation(callbackId));
                     break;
                 }
                 case DialogSuggestion: {
@@ -1140,7 +1153,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No DialogSuggestionHandler registered for callback_id: {}", callbackId);
+                    log.warn("No DialogSuggestionHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.dialogSuggestion(callbackId));
                     break;
                 }
                 case ViewSubmission: {
@@ -1154,7 +1168,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No ViewSubmissionHandler registered for callback_id: {}", callbackId);
+                    log.warn("No ViewSubmissionHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.viewSubmission(callbackId));
                     break;
                 }
                 case ViewClosed: {
@@ -1168,7 +1183,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No ViewClosedHandler registered for callback_id: {}", callbackId);
+                    log.warn("No ViewClosedHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.viewClosed(callbackId));
                     break;
                 }
                 case WorkflowStepEdit: {
@@ -1182,7 +1198,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No WorkflowStepEditHandler registered for callback_id: {}", callbackId);
+                    log.warn("No WorkflowStepEditHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.WORKFLOW_STEP);
                     break;
                 }
                 case WorkflowStepSave: {
@@ -1196,7 +1213,8 @@ public class App {
                             }
                         }
                     }
-                    log.warn("No WorkflowStepSaveHandler registered for callback_id: {}", callbackId);
+                    log.warn("No WorkflowStepSaveHandler registered for callback_id: {}\n{}",
+                            callbackId, ListenerCodeSuggestion.WORKFLOW_STEP);
                     break;
                 }
                 case WorkflowStepExecute: {
@@ -1221,12 +1239,13 @@ public class App {
                         EventsApiPayload<Event> payload = buildEventPayload(request);
                         return handler.apply(payload, request.getContext());
                     }
-                    log.warn("No BoltEventHandler registered for event: {}", request.getEventTypeAndSubtype());
+                    log.warn("No BoltEventHandler registered for event: {}\n{}",
+                            request.getEventTypeAndSubtype(), ListenerCodeSuggestion.WORKFLOW_STEP);
                     break;
                 }
                 default:
             }
-            return Response.json(404, "{\"error\":\"no handler found\"}");
+            return appConfig.getUnmatchedRequestHandler().handle(slackRequest);
         } finally {
             if (log.isDebugEnabled()) {
                 log.debug("The handler completed (request type: {})", slackRequest.getRequestType());
