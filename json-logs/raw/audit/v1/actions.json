@@ -109,7 +109,9 @@
       "organization_public_url_updated",
       "pref.slack_connect_allowed_workspaces",
       "pref.slack_connect_dm_only_verified_orgs",
-      "pref.who_can_dm_anyone"
+      "pref.who_can_dm_anyone",
+      "pref.content_review_enabled",
+      "pref.flagged_content_review_channel"
     ],
     "user": [
       "custom_tos_accepted",
@@ -211,7 +213,11 @@
     ],
     "message": [
       "message_tombstoned",
-      "message_restored"
+      "message_restored",
+      "message_flagged",
+      "message_moderated",
+      "thread_replies_disabled",
+      "thread_replies_enabled"
     ],
     "barrier": [
       "barrier_created",

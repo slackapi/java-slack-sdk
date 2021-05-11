@@ -105,6 +105,8 @@ public class Actions {
         public static final String pref_session_duration_type_changed = "pref.session_duration_type_changed";
         public static final String pref_slack_connect_allowed_workspaces = "pref.slack_connect_allowed_workspaces";
         public static final String pref_slack_connect_dm_only_verified_orgs = "pref.slack_connect_dm_only_verified_orgs";
+        public static final String pref_content_review_enabled = "pref.content_review_enabled";
+        public static final String pref_flagged_content_review_channel = "pref.flagged_content_review_channel";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -236,6 +238,10 @@ public class Actions {
 
         public static final String message_tombstoned = "message_tombstoned";
         public static final String message_restored = "message_restored";
+        public static final String message_flagged = "message_flagged";
+        public static final String message_moderated = "message_moderated";
+        public static final String thread_replies_disabled = "thread_replies_disabled";
+        public static final String thread_replies_enabled = "thread_replies_enabled";
     }
 
     public static class WorkflowBuilder {

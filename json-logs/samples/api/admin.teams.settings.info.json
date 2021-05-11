@@ -20,7 +20,8 @@
     "default_channels": [
       "C00000000"
     ],
-    "is_verified": false
+    "is_verified": false,
+    "enterprise_domain": ""
   },
   "error": "",
   "needed": "",

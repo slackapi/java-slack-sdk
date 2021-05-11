@@ -19,6 +19,7 @@ public class Team {
 
     private String enterpriseId;
     private String enterpriseName;
+    private String enterpriseDomain;
     private List<String> defaultChannels;
     private Boolean isVerified;
 
