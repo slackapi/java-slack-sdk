@@ -309,7 +309,8 @@ public class FieldValidation_o_to_z_Test {
         verifyIfAllGettersReturnNonNullRecursively(obj.getTeam(),
                 "getEnterpriseId",
                 "getEnterpriseName",
-                "getDefaultChannels"
+                "getDefaultChannels",
+                "getEnterpriseDomain"
         );
     }
 
