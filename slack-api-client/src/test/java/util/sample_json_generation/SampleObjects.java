@@ -3,12 +3,11 @@ package util.sample_json_generation;
 import com.google.gson.JsonElement;
 import com.slack.api.model.*;
 import com.slack.api.model.block.*;
-import com.slack.api.model.block.composition.ConfirmationDialogObject;
-import com.slack.api.model.block.composition.OptionObject;
-import com.slack.api.model.block.composition.PlainTextObject;
-import com.slack.api.model.block.composition.TextObject;
+import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.ImageElement;
+import com.slack.api.model.block.element.PlainTextInputElement;
+import com.slack.api.model.block.element.RadioButtonsElement;
 import com.slack.api.util.json.GsonFactory;
 
 import java.util.Arrays;
@@ -78,6 +77,7 @@ public class SampleObjects {
             initProperties(channelsSelect(c -> c.confirm(Confirm))),
             initProperties(conversationsSelect(c -> c.confirm(Confirm))),
             initProperties(datePicker(d -> d.confirm(Confirm))),
+            initProperties(timePicker(d -> d.confirm(Confirm))),
             initProperties(externalSelect(e -> e.initialOption(Option).confirm(Confirm))),
             initProperties(com.slack.api.model.block.element.BlockElements.image(i -> i)),
             initProperties(overflowMenu(o -> o.confirm(Confirm))),
@@ -92,6 +92,44 @@ public class SampleObjects {
             initProperties(markdownText(m -> m))
     );
     public static List<LayoutBlock> Blocks = asBlocks(
+            initProperties(actions(a -> a.elements(BlockElements))),
+            initProperties(context(c -> c.elements(ContextBlockElements))),
+            initProperties(divider()),
+            initProperties(com.slack.api.model.block.Blocks.image(i -> i)),
+            initProperties(section(s -> s
+                    .accessory(initProperties(ImageElement.builder().build()))
+                    .text(TextObject)
+                    .fields(SectionBlockFieldElements)))
+    );
+
+    public static PlainTextInputElement plainTextInputElement = initProperties(PlainTextInputElement.builder()
+            .placeholder(initProperties(PlainTextObject.builder().build()))
+            .dispatchActionConfig(initProperties(DispatchActionConfig.builder().triggerActionsOn(Arrays.asList("")).build()))
+            .build());
+    public static RadioButtonsElement radioButtonsElement = initProperties(RadioButtonsElement.builder()
+            .confirm(initProperties(ConfirmationDialogObject.builder()
+                    .text(initProperties(PlainTextObject.builder().build()))
+                    .build()))
+            .options(Arrays.asList(
+                    initProperties(OptionObject.builder().text(initProperties(PlainTextObject.builder().build())).build()),
+                    initProperties(OptionObject.builder().text(initProperties(MarkdownTextObject.builder().build())).build())
+            ))
+            .initialOption(initProperties(OptionObject.builder().text(initProperties(PlainTextObject.builder().build())).build()))
+            .build());
+
+    public static List<LayoutBlock> ModalBlocks = asBlocks(
+            initProperties(input(i -> i.element(plainTextInputElement))),
+            initProperties(input(i -> i.element(radioButtonsElement))),
+            initProperties(input(i -> i.element(initProperties(button(b -> b.confirm(Confirm)))))),
+            initProperties(input(i -> i.element(initProperties(channelsSelect(c -> c.confirm(Confirm)))))),
+            initProperties(input(i -> i.element(initProperties(conversationsSelect(c -> c.confirm(Confirm)))))),
+            initProperties(input(i -> i.element(initProperties(datePicker(d -> d.confirm(Confirm)))))),
+            initProperties(input(i -> i.element(initProperties(timePicker(d -> d.confirm(Confirm)))))),
+            initProperties(input(i -> i.element(initProperties(externalSelect(e -> e.initialOption(Option).confirm(Confirm)))))),
+            initProperties(input(ip -> ip.element(initProperties(com.slack.api.model.block.element.BlockElements.image(i -> i))))),
+            initProperties(input(i -> i.element(initProperties(overflowMenu(o -> o.confirm(Confirm)))))),
+            initProperties(input(i -> i.element(initProperties(staticSelect(s -> s.initialOption(Option).confirm(Confirm)))))),
+            initProperties(input(i -> i.element(initProperties(usersSelect(u -> u.confirm(Confirm)))))),
             initProperties(actions(a -> a.elements(BlockElements))),
             initProperties(context(c -> c.elements(ContextBlockElements))),
             initProperties(divider()),
