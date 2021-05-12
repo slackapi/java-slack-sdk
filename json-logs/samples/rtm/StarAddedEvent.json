@@ -173,6 +173,39 @@
               }
             },
             {
+              "type": "timepicker",
+              "action_id": "",
+              "placeholder": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "initial_time": "",
+              "confirm": {
+                "title": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "confirm": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "deny": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "style": ""
+              }
+            },
+            {
               "type": "external_select",
               "placeholder": {
                 "type": "plain_text",

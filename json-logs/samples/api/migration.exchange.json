@@ -1,16 +1,13 @@
 {
   "ok": false,
-  "error": "not_enterprise_team",
-  "team_id": "T1KR7PE1W",
-  "enterprise_id": "E1KQTNXE1",
-  "user_id_map": {
-    "U06UBSUN5": "W06M56XJM",
-    "U06UEB62U": "W06PTT6GH",
-    "U06UBSVB3": "W06PUUDLY",
-    "U06UBSVDX": "W06PUUDMW",
-    "W06UAZ65Q": "W06UAZ65Q"
-  },
+  "warning": "",
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "team_id": "",
+  "enterprise_id": "",
   "invalid_user_ids": [
-    "U21ABZZXX"
-  ]
+    ""
+  ],
+  "user_id_map": {}
 }
