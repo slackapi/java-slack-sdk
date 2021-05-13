@@ -23,7 +23,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class views_Test {
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
-    static Slack slack = Slack.getInstance(testConfig.getConfig());
+    // we don't store the result by this API call
+    // see also: test_locally.sample_json_generation.MethodsResponseDumpTest
+    static Slack slack = Slack.getInstance();
 
     @AfterClass
     public static void tearDown() throws InterruptedException {

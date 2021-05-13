@@ -101,6 +101,9 @@ public class users_Test {
         }
 
         {
+            // we don't store the result by this API call
+            // see also: test_locally.sample_json_generation.MethodsResponseDumpTest
+            Slack slack = Slack.getInstance();
             UsersIdentityResponse response = slack.methods().usersIdentity(r -> r.token(botToken));
             assertThat(response.getError(), is("not_allowed_token_type"));
             assertThat(response.isOk(), is(false));
@@ -147,6 +150,9 @@ public class users_Test {
         }
 
         {
+            // we don't store the result by this API call
+            // see also: test_locally.sample_json_generation.MethodsResponseDumpTest
+            Slack slack = Slack.getInstance();
             UsersGetPresenceResponse response = slack.methods().usersGetPresence(r -> r.token(botToken).user(userId));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
@@ -191,6 +197,9 @@ public class users_Test {
         }
 
         {
+            // we don't store the result by this API call
+            // see also: test_locally.sample_json_generation.MethodsResponseDumpTest
+            Slack slack = Slack.getInstance();
             UsersIdentityResponse response = slack.methods().usersIdentity(r -> r.token(userToken));
             // TODO: test preparation?
             // {"ok":false,"error":"missing_scope","needed":"identity.basic","provided":"identify,read,post,client,apps,admin"}
@@ -239,6 +248,9 @@ public class users_Test {
         }
 
         {
+            // we don't store the result by this API call
+            // see also: test_locally.sample_json_generation.MethodsResponseDumpTest
+            Slack slack = Slack.getInstance();
             UsersGetPresenceResponse response = slack.methods().usersGetPresence(r -> r.token(userToken).user(userId));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));

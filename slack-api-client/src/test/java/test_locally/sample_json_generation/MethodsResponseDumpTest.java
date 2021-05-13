@@ -4,7 +4,6 @@ import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.migration.MigrationExchangeResponse;
 import com.slack.api.methods.response.users.UsersGetPresenceResponse;
 import com.slack.api.methods.response.users.UsersIdentityResponse;
-import com.slack.api.methods.response.users.UsersSetPhotoResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
 import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;

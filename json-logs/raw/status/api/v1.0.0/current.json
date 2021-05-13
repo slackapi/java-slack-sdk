@@ -406,6 +406,22 @@
     {
       "date_created": "2021-04-26T17:55:29-07:00",
       "body": "Some customers may be experiencing errors when searching for or listing files via Slack or the API. We\u0027re very sorry for the disruption, and we\u0027re working to resolve this."
+    },
+    {
+      "date_created": "2021-05-12T18:49:51-07:00",
+      "body": "Issue summary:\r\nOn May 11, 2021 around 10:56 a.m. to 11:41 a.m. PDT, some users were unable to connect entirely or experienced degraded performance, such as channel history failing to load. Some apps making API requests may have also encountered failures, such as messages failing to send in Slack.\r\n\r\nA hardware issue caused a problem for some of our infrastructure. The automated process that should\u0027ve resolved this encountered a bug, which prevented a quick resolution. We manually replaced the failed hardware to resolve the trouble.\r\n\r\nNote: We\u0027ve updated the title to reflect the trouble affected users may have encountered. On the side of this page, we\u0027ve also added additional services that may have been impacted."
+    },
+    {
+      "date_created": "2021-05-11T12:31:33-07:00",
+      "body": "We\u0027re happy to report that this issue should now be resolved. We apologize for keeping you away from your work and causing this disruption. We\u0027ll report back with an Issue Summary shortly."
+    },
+    {
+      "date_created": "2021-05-11T12:18:52-07:00",
+      "body": "We\u0027re starting to see some steady improvements and most users should be able to connect to Slack again. We\u0027ll confirm as soon as things are working as they should."
+    },
+    {
+      "date_created": "2021-05-11T11:40:28-07:00",
+      "body": "We\u0027re aware of an issue where some users may be encountering connection errors or degraded performance. Some users will be unable to connect, and some apps making API requests may encounter failures.\r\n\r\nWe\u0027re working to resolve this and will reach back out when we have more information to share.\r\n\r\nNote: We\u0027ve updated this message to clarify what affected users may have encountered and that apps making API requests may have encountered failures."
     }
   ]
 }

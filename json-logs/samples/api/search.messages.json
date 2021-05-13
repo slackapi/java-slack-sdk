@@ -214,6 +214,7 @@
                     "exclude_bot_users": false
                   },
                   "initial_date": "",
+                  "initial_time": "",
                   "initial_option": {
                     "text": {
                       "type": "",
@@ -558,6 +559,7 @@
                     "exclude_bot_users": false
                   },
                   "initial_date": "",
+                  "initial_time": "",
                   "initial_option": {
                     "text": {
                       "type": "",
@@ -680,6 +682,7 @@
                   "exclude_bot_users": false
                 },
                 "initial_date": "",
+                "initial_time": "",
                 "initial_option": {
                   "text": {
                     "type": "",

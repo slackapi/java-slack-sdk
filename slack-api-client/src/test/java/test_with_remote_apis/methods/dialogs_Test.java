@@ -21,13 +21,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Slf4j
 public class dialogs_Test {
 
-    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
-    static Slack slack = Slack.getInstance(testConfig.getConfig());
-
-    @AfterClass
-    public static void tearDown() throws InterruptedException {
-        SlackTestConfig.awaitCompletion(testConfig);
-    }
+    // We intentionally don't use the test config for this test as we generate response data in
+    // `test_locally.sample_json_generation.MethodsResponseDumpTest`
+    // static SlackTestConfig testConfig = SlackTestConfig.getInstance();
+    static Slack slack = Slack.getInstance();
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
