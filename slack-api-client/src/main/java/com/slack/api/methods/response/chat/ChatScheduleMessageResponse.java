@@ -3,6 +3,7 @@ package com.slack.api.methods.response.chat;
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.BotProfile;
+import com.slack.api.model.ErrorResponseMetadata;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
@@ -21,6 +22,8 @@ public class ChatScheduleMessageResponse implements SlackApiTextResponse {
     private String channel;
     private Integer postAt;
     private ScheduledMessage message;
+
+    private ErrorResponseMetadata responseMetadata;
 
     @Data
     public static class ScheduledMessage {

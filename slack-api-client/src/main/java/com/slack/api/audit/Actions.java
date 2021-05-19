@@ -206,6 +206,9 @@ public class Actions {
         public static final String channel_email_address_deleted = "channel_email_address_deleted";
         public static final String channel_retention_changed = "channel_retention_changed";
         public static final String channel_membership_limit_changed_from_org_level = "channel_membership_limit_changed_from_org_level";
+        public static final String connect_dm_invite_generated = "connect_dm_invite_generated";
+        public static final String connect_dm_invite_revoked = "connect_dm_invite_revoked";
+        public static final String connect_dm_invite_accepted = "connect_dm_invite_accepted";
     }
 
     public static class App {

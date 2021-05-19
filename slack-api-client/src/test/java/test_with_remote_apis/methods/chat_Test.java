@@ -35,8 +35,7 @@ import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.timePicker;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class chat_Test {
@@ -716,8 +715,19 @@ public class chat_Test {
                 SectionBlock.builder().text(PlainTextObject.builder().text("foo").build()).build()
         );
         ChatScheduleMessageResponse message2 = slack.methods(botToken).chatScheduleMessage(r ->
-                r.channel(randomChannelId).postAt(postAt).blocks(blocks));
-        assertNull(message2.getError());
+                r.channel(randomChannelId).postAt(postAt)
+                        // the `text` field is required since May 2021
+                        //.text("fallback")
+                        .blocks(blocks));
+        assertEquals("invalid_arguments", message2.getError());
+        assertEquals("[ERROR] missing required field: text", message2.getResponseMetadata().getMessages().get(0));
+
+        ChatScheduleMessageResponse message3 = slack.methods(botToken).chatScheduleMessage(r ->
+                r.channel(randomChannelId).postAt(postAt)
+                        // the `text` field is required since May 2021
+                        .text("fallback")
+                        .blocks(blocks));
+        assertNull(message3.getError());
 
         ChatScheduledMessagesListResponse after = slack.methods(botToken).chatScheduledMessagesList(r -> r.limit(100));
         assertNull(after.getError());

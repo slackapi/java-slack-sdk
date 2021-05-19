@@ -182,7 +182,10 @@
       "channel_email_address_created",
       "channel_email_address_deleted",
       "channel_retention_changed",
-      "channel_membership_limit_changed_from_org_level"
+      "channel_membership_limit_changed_from_org_level",
+      "connect_dm_invite_generated",
+      "connect_dm_invite_revoked",
+      "connect_dm_invite_accepted"
     ],
     "app": [
       "app_installed",
