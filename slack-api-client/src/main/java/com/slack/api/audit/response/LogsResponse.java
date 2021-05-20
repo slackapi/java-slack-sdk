@@ -208,6 +208,12 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> restrictedSubjects; // information barrier
         private Integer duration; // user_session_settings_changed
         private Boolean desktopAppBrowserQuit; // user_session_settings_changed
+        private String inviteId; // connect_dm_invite_generated
+        private String externalOrganizationId; // connect_dm_invite_accepted
+        private String externalOrganizationName; // connect_dm_invite_accepted
+        private String externalUserId; // connect_dm_invite_accepted
+        private String externalUserEmail; // connect_dm_invite_accepted
+        private String channelId; // connect_dm_invite_accepted
     }
 
     @Data
