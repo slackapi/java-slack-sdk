@@ -144,7 +144,7 @@ public class FieldValidation_o_to_z_Test {
     public void reminders_add() throws Exception {
         RemindersAddResponse obj = parse("reminders.add", RemindersAddResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
-        verifyIfAllGettersReturnNonNullRecursively(obj.getReminder());
+        verifyIfAllGettersReturnNonNullRecursively(obj.getReminder(), "getChannel");
     }
 
     @Test
@@ -163,7 +163,7 @@ public class FieldValidation_o_to_z_Test {
     public void reminders_info() throws Exception {
         RemindersInfoResponse obj = parse("reminders.info", RemindersInfoResponse.class);
         verifyIfAllGettersReturnNonNull(obj);
-        verifyIfAllGettersReturnNonNullRecursively(obj.getReminder());
+        verifyIfAllGettersReturnNonNullRecursively(obj.getReminder(), "getChannel");
     }
 
     @Test
