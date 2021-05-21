@@ -318,7 +318,8 @@
         ],
         "upload": false,
         "display_as_bot": false,
-        "is_locked": false
+        "is_locked": false,
+        "inviter": "U00000000"
       },
       "file": {
         "id": "F00000000",

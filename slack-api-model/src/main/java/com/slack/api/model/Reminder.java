@@ -17,6 +17,7 @@ public class Reminder {
     private String id;
     private String creator;
     private String user;
+    private String channel;
     private String text;
     private boolean recurring;
     private Integer time;
