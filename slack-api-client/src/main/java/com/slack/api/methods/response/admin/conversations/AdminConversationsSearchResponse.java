@@ -41,6 +41,7 @@ public class AdminConversationsSearchResponse implements SlackApiTextResponse {
         private String internalTeamIdsSampleTeam;
         private List<String> pendingConnectedTeamIds;
         private List<String> connectedTeamIds;
+        private List<String> connectedLimitedTeamIds;
         private List<String> channelEmailAddresses;
         private Boolean isPendingExtShared;
         private String conversationHostId;

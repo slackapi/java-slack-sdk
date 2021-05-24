@@ -31,6 +31,9 @@
       "conversation_host_id": "E00000000",
       "channel_email_addresses": [
         ""
+      ],
+      "connected_limited_team_ids": [
+        ""
       ]
     }
   ],
