@@ -214,6 +214,7 @@ public class LogsResponse implements AuditApiResponse {
         private String externalUserId; // connect_dm_invite_accepted
         private String externalUserEmail; // connect_dm_invite_accepted
         private String channelId; // connect_dm_invite_accepted
+        private String addedTeamId; // approved_orgs_added
     }
 
     @Data
