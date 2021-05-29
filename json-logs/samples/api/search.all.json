@@ -1108,7 +1108,8 @@
         "image_exif_rotation": 12345,
         "last_editor": "U00000000",
         "non_owner_editable": false,
-        "updated": 12345
+        "updated": 12345,
+        "thumb_video": "https://www.example.com/"
       }
     ]
   },

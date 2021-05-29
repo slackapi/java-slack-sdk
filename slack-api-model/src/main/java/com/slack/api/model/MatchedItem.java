@@ -199,6 +199,8 @@ public class MatchedItem {
 
     private String thumbTiny;
 
+    private String thumbVideo;
+
     private String thumbPdf;
     @SerializedName("thumb_pdf_w")
     private String thumbPdfWidth;
