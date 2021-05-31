@@ -26,6 +26,7 @@
         "url": ""
       }
     ],
+    "is_bot_user_member": false,
     "event_ts": ""
   }
 }

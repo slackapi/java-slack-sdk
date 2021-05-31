@@ -52,7 +52,7 @@ public class LinkSharedEventTest {
         Gson gson = GsonFactory.createSnakeCase();
         LinkSharedEvent event = new LinkSharedEvent();
         String generatedJson = gson.toJson(event);
-        String expectedJson = "{\"type\":\"link_shared\"}";
+        String expectedJson = "{\"type\":\"link_shared\",\"is_bot_user_member\":false}";
         assertThat(generatedJson, is(expectedJson));
     }
 

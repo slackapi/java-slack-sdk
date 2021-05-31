@@ -1,5 +1,6 @@
 package com.slack.api.model.event;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class LinkSharedEvent implements Event {
     private String messageTs;
     private String threadTs;
     private List<Link> links;
+    @SerializedName("is_bot_user_member")
+    private boolean botUserMember;
     private String eventTs;
 
     @Data
