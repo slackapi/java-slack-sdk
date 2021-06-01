@@ -1412,6 +1412,9 @@ public class RequestFormBuilder {
         if (req.getChannels() != null) {
             setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
         }
+        if (req.getThreadTs() != null) {
+            setIfNotNull("thread_ts", req.getThreadTs(), form);
+        }
         return form;
     }
 
