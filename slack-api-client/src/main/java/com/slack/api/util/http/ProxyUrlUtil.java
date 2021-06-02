@@ -48,14 +48,14 @@ public class ProxyUrlUtil {
                     .username(userAndPassword[0])
                     .password(userAndPassword[1])
                     .host(hostAndPort[0])
-                    .port(hostAndPort.length == 2 ? Integer.valueOf(hostAndPort[1]) : null)
+                    .port(hostAndPort.length == 2 ? Integer.parseInt(hostAndPort[1]) : 80)
                     .build();
         } else {
             String[] hostAndPort = proxyUrl.split("://")[1].split(":");
             return ProxyUrl.builder()
                     .schema(schema)
                     .host(hostAndPort[0])
-                    .port(hostAndPort.length == 2 ? Integer.valueOf(hostAndPort[1]) : null)
+                    .port(hostAndPort.length == 2 ? Integer.parseInt(hostAndPort[1]) : 80)
                     .build();
         }
     }
