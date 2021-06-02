@@ -479,4 +479,39 @@ public class files_Test {
         }
     }
 
+    @Test
+    public void uploadInThreads() throws Exception {
+        MethodsClient slackMethods = slack.methods(userToken);
+
+        ChatPostMessageResponse message = slackMethods.chatPostMessage(r -> r
+                .channel("#random")
+                .text("Uploading a file in thread..."));
+        assertThat(message.getError(), is(nullValue()));
+        String threadTs = message.getTs();
+        String channelId = message.getChannel();
+
+        FilesUploadResponse upload1 = slackMethods.filesUpload(r -> r
+                .channels(Arrays.asList(channelId))
+                .threadTs(threadTs)
+                .content("in thread")
+        );
+        assertThat(upload1.getError(), is(nullValue()));
+        com.slack.api.model.File.ShareDetail share1 = upload1
+                .getFile().getShares().getPublicChannels().get(channelId).get(0);
+        assertThat(share1.getThreadTs(), is(threadTs));
+
+        FilesUploadResponse upload2 = slackMethods.filesUpload(r -> r
+                .channels(Arrays.asList(channelId))
+                .threadTs(threadTs)
+                .file(new File("src/test/resources/sample.txt"))
+                .initialComment("test")
+                .filetype("text")
+                .filename("sample.txt")
+                .title("file title"));
+        assertThat(upload2.getError(), is(nullValue()));
+        com.slack.api.model.File.ShareDetail share2 = upload2
+                .getFile().getShares().getPublicChannels().get(channelId).get(0);
+        assertThat(share2.getThreadTs(), is(threadTs));
+    }
+
 }
