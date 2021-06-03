@@ -23,7 +23,7 @@ public class Conversation {
     private String enterpriseId;
     private String id;
     private String name;
-    private String created;
+    private Integer created;
     private String creator;
     private Integer unlinked;
     @SerializedName("name_normalized")
@@ -45,6 +45,7 @@ public class Conversation {
     @SerializedName("unread_count_display")
     private Integer unreadCountDisplay;
     private String user; // conversations.open
+    private Boolean isUserDeleted; // users.conversations
     private Double priority;
 
     private Integer dateConnected;
