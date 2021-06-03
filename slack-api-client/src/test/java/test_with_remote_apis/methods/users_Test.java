@@ -4,7 +4,9 @@ import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.users.UsersLookupByEmailRequest;
 import com.slack.api.methods.request.users.UsersSetActiveRequest;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.users.*;
+import com.slack.api.model.ConversationType;
 import com.slack.api.model.User;
 import config.Constants;
 import config.SlackTestConfig;
@@ -14,11 +16,13 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertTrue;
 
 @Slf4j
@@ -335,5 +339,61 @@ public class users_Test {
         assertThat(response.getError(), is(nullValue()));
         assertTrue(response.isOk());
         assertEquals(randomUserWhoHasEmail.getId(), response.getUser().getId());
+    }
+
+    @Test
+    public void usersConversations() throws Exception {
+        AuthTestResponse authTestResult = slack.methods().authTest(r -> r.token(botToken));
+        assertThat(authTestResult.getError(), is(nullValue()));
+        String cursor = null;
+        int pageNum = 0;
+        while (cursor != "" && pageNum < 10) {
+            UsersConversationsResponse conversations = slack.methods().usersConversations(r -> r
+                    .token(botToken)
+                    .user(authTestResult.getUserId())
+                    .types(Arrays.asList(
+                            ConversationType.PUBLIC_CHANNEL,
+                            ConversationType.PRIVATE_CHANNEL,
+                            ConversationType.MPIM,
+                            ConversationType.IM
+                    ))
+                    .excludeArchived(false)
+                    .limit(1000)
+            );
+            assertThat(conversations.getError(), is(nullValue()));
+            pageNum++;
+            cursor = conversations.getResponseMetadata().getNextCursor();
+            if (cursor != "") {
+                assertThat(conversations.getChannels().size(), is(greaterThan(0)));
+            }
+        }
+    }
+
+    @Test
+    public void usersConversations_EnterpriseGrid() throws Exception {
+        AuthTestResponse authTestResult = slack.methods().authTest(r -> r.token(enterpriseGridTeamAdminUserToken));
+        assertThat(authTestResult.getError(), is(nullValue()));
+        String cursor = null;
+        int pageNum = 0;
+        while (cursor != "" && pageNum < 10) {
+            UsersConversationsResponse conversations = slack.methods().usersConversations(r -> r
+                    .token(enterpriseGridTeamAdminUserToken)
+                    .user(authTestResult.getUserId())
+                    .types(Arrays.asList(
+                            ConversationType.PUBLIC_CHANNEL,
+                            ConversationType.PRIVATE_CHANNEL,
+                            ConversationType.MPIM,
+                            ConversationType.IM
+                    ))
+                    .excludeArchived(false)
+                    .limit(1000)
+            );
+            assertThat(conversations.getError(), is(nullValue()));
+            pageNum++;
+            cursor = conversations.getResponseMetadata().getNextCursor();
+            if (cursor != "") {
+                assertThat(conversations.getChannels().size(), is(greaterThan(0)));
+            }
+        }
     }
 }
