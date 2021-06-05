@@ -32,6 +32,49 @@ public class AppMentionEventTest {
     }
 
     @Test
+    public void deserialize_edited() {
+        String json = "{\n" +
+                "  \"client_msg_id\": \"xxx\",\n" +
+                "  \"type\": \"app_mention\",\n" +
+                "  \"text\": \"<@U111> edited message\",\n" +
+                "  \"user\": \"U222\",\n" +
+                "  \"ts\": \"1622877872.008800\",\n" +
+                "  \"team\": \"T111\",\n" +
+                "  \"edited\": {\n" +
+                "    \"user\": \"U222\",\n" +
+                "    \"ts\": \"1622877902.000000\"\n" +
+                "  },\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"3B2\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"user\",\n" +
+                "              \"user_id\": \"U111\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \" edited message\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"channel\": \"C111\",\n" +
+                "  \"event_ts\": \"1622877872.008800\"\n" +
+                "}";
+        AppMentionEvent event = GsonFactory.createSnakeCase().fromJson(json, AppMentionEvent.class);
+        assertThat(event.getType(), is("app_mention"));
+        assertThat(event.getEdited().getTs(), is("1622877902.000000"));
+        assertThat(event.getEdited().getUser(), is("U222"));
+    }
+
+    @Test
     public void serialize() {
         Gson gson = GsonFactory.createSnakeCase();
         AppMentionEvent event = new AppMentionEvent();
