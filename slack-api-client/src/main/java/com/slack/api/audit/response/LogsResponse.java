@@ -190,6 +190,7 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean workflow; // user_channel_join
         private Boolean mobileOnly; // user_session_reset_by_admin
         private Boolean webOnly; // user_session_reset_by_admin
+        private Boolean nonSsoOnly; // user_session_reset_by_admin
         private Integer expiresOn; // guest_expiration_set
         private String newVersionId; // workflow_published
         private String trigger; // workflow_published

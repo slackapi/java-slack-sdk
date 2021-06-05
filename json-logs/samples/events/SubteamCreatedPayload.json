@@ -32,7 +32,8 @@
       "channel_count": 12345,
       "users": [
         ""
-      ]
+      ],
+      "user_count": 12345
     },
     "event_ts": "0000000000.000000"
   },
