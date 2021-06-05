@@ -48,6 +48,9 @@ public class JsonDataRecorder {
             if (httpMethod.toUpperCase(Locale.ENGLISH).equals("GET")) {
                 writeMergedJsonData(path, body);
             }
+        } else if (path.equals("/audit/v1/logs")) {
+            // As generating logs.json is not so easy,
+            // test_with_remote_apis.audit.ApiTest generates the file
         } else {
             writeMergedJsonData(path, body);
         }
