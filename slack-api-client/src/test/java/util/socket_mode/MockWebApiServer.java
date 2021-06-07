@@ -25,7 +25,7 @@ public class MockWebApiServer {
         this.server = new Server(this.port);
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);
-        handler.addServletWithMapping(MockSlackApi.class, "/*");
+        handler.addServletWithMapping(MockWebApi.class, "/*");
     }
 
     public String getMethodsEndpointPrefix() {
