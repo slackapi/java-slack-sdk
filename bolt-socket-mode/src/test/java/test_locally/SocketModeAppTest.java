@@ -69,7 +69,7 @@ public class SocketModeAppTest {
         SocketModeApp socketModeApp = new SocketModeApp(VALID_APP_TOKEN, app);
         socketModeApp.startAsync();
         try {
-            Thread.sleep(1500L);
+            Thread.sleep(3_000L);
             assertTrue(commandCalled.get());
             assertTrue(actionCalled.get());
             assertTrue(eventCalled.get());
@@ -105,7 +105,7 @@ public class SocketModeAppTest {
         );
         socketModeApp.startAsync();
         try {
-            Thread.sleep(1500L);
+            Thread.sleep(3_000L);
             assertTrue(commandCalled.get());
             assertTrue(actionCalled.get());
         } finally {
