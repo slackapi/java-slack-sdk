@@ -140,7 +140,7 @@ public class LogsResponse implements AuditApiResponse {
     }
 
     @Data
-    public class InformationBarrier {
+    public static class InformationBarrier {
         private String id;
         private String primaryUsergroup;
         private List<String> barrieredFromUsergroups;

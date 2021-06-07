@@ -1,6 +1,7 @@
 package test_with_remote_apis.audit;
 
 import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
 import com.slack.api.audit.Actions;
 import com.slack.api.audit.AuditApiCompletionException;
 import com.slack.api.audit.AuditApiException;
@@ -8,16 +9,22 @@ import com.slack.api.audit.request.LogsRequest;
 import com.slack.api.audit.response.ActionsResponse;
 import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.audit.response.SchemasResponse;
+import com.slack.api.util.json.GsonFactory;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import util.ObjectInitializer;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -41,6 +48,54 @@ public class ApiTest {
     }
 
     String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
+
+    public static void main(String[] args) throws Exception {
+        regenerateLogsSampleJSONData("json-logs/samples/audit/v1/logs.json");
+    }
+
+    public static void regenerateLogsSampleJSONData(String path) throws Exception {
+        // Re-generates new sample JSON with the valid data classes
+        Path filePath = Paths.get(path);
+        LogsResponse logs = ObjectInitializer.initProperties(new LogsResponse());
+
+        LogsResponse.Entry entry = ObjectInitializer.initProperties(new LogsResponse.Entry());
+
+        LogsResponse.Actor actor = ObjectInitializer.initProperties(new LogsResponse.Actor());
+        entry.setActor(actor);
+
+        LogsResponse.Entity entity = ObjectInitializer.initProperties(new LogsResponse.Entity());
+        entity.getApp().setScopes(Arrays.asList(""));
+        entity.getChannel().setTeamsSharedWith(Arrays.asList(""));
+        entity.getBarrier().setBarrieredFromUsergroups(Arrays.asList(""));
+        entity.getBarrier().setRestrictedSubjects(Arrays.asList(""));
+        entry.setEntity(entity);
+
+        LogsResponse.Context context = ObjectInitializer.initProperties(new LogsResponse.Context());
+        entry.setContext(context);
+
+        LogsResponse.Details details = ObjectInitializer.initProperties(new LogsResponse.Details());
+        details.setNewValue(null); // as this property is dynamic, an example is not usable
+        details.setPreviousValue(null); // as this property is dynamic, an example is not usable
+        details.setScopes(Arrays.asList(""));
+        details.setBotScopes(Arrays.asList(""));
+        details.setNewScopes(Arrays.asList(""));
+        details.setPreviousScopes(Arrays.asList(""));
+        details.setOldScopes(Arrays.asList(""));
+        details.setChannels(Arrays.asList(""));
+        LogsResponse.Permission permission = ObjectInitializer.initProperties(new LogsResponse.Permission());
+        permission.setScopes(Arrays.asList(""));
+        details.setPermissions(Arrays.asList(permission));
+        details.setBarrieredFromUsergroupIds(Arrays.asList(""));
+        details.setRestrictedSubjects(Arrays.asList(""));
+        entry.setDetails(details);
+
+        logs.setEntries(Arrays.asList(entry));
+
+        SlackConfig slackConfig = new SlackConfig();
+        slackConfig.setPrettyResponseLoggingEnabled(true);
+        String json = GsonFactory.createSnakeCase(slackConfig).toJson(logs);
+        Files.write(filePath, json.getBytes(StandardCharsets.UTF_8));
+    }
 
     @Test
     public void getSchemas() throws IOException, AuditApiException {
@@ -197,6 +252,10 @@ public class ApiTest {
             verifyAllActions(orgAdminUserToken, Actions.Channel.class);
             verifyAllActions(orgAdminUserToken, Actions.App.class);
             verifyAllActions(orgAdminUserToken, Actions.Barrier.class);
+
+            // As all the properties are available in LogsResponse class,
+            // we'll re-generate the sample JSON file.
+            regenerateLogsSampleJSONData("../json-logs/samples/audit/v1/logs.json");
         }
     }
 

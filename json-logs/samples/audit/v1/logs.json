@@ -1,56 +1,30 @@
 {
+  "ok": false,
+  "warning": "",
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "response_metadata": {
+    "next_cursor": ""
+  },
   "entries": [
     {
       "id": "",
-      "date_create": 12345,
+      "date_create": 123,
       "action": "",
       "actor": {
         "type": "",
         "user": {
-          "id": "W00000000",
+          "id": "",
           "name": "",
           "email": "",
-          "team": "E00000000"
+          "team": ""
         }
       },
       "entity": {
         "type": "",
-        "user": {
-          "id": "W00000000",
-          "name": "",
-          "email": "",
-          "team": "E00000000"
-        },
-        "workspace": {
-          "id": "T00000000",
-          "name": "",
-          "domain": ""
-        },
-        "enterprise": {
-          "id": "E00000000",
-          "name": "",
-          "domain": ""
-        },
-        "channel": {
-          "id": "C00000000",
-          "privacy": "",
-          "name": "",
-          "is_shared": false,
-          "is_org_shared": false,
-          "teams_shared_with": [
-            "T00000000",
-            ""
-          ],
-          "original_connected_channel_id": "G00000000"
-        },
-        "file": {
-          "id": "F00000000",
-          "name": "",
-          "filetype": "",
-          "title": ""
-        },
         "app": {
-          "id": "A00000000",
+          "id": "",
           "name": "",
           "is_distributed": false,
           "is_directory_approved": false,
@@ -58,12 +32,64 @@
           "scopes": [
             ""
           ]
+        },
+        "user": {
+          "id": "",
+          "name": "",
+          "email": "",
+          "team": ""
+        },
+        "usergroup": {
+          "id": "",
+          "name": ""
+        },
+        "workspace": {
+          "id": "",
+          "name": "",
+          "domain": ""
+        },
+        "enterprise": {
+          "id": "",
+          "name": "",
+          "domain": ""
+        },
+        "file": {
+          "id": "",
+          "name": "",
+          "filetype": "",
+          "title": ""
+        },
+        "channel": {
+          "id": "",
+          "name": "",
+          "privacy": "",
+          "is_shared": false,
+          "is_org_shared": false,
+          "teams_shared_with": [
+            ""
+          ],
+          "original_connected_channel_id": ""
+        },
+        "workflow": {
+          "id": "",
+          "name": ""
+        },
+        "barrier": {
+          "id": "",
+          "primary_usergroup": "",
+          "barriered_from_usergroups": [
+            ""
+          ],
+          "restricted_subjects": [
+            ""
+          ]
         }
       },
       "context": {
+        "session_id": "",
         "location": {
           "type": "",
-          "id": "T00000000",
+          "id": "",
           "name": "",
           "domain": ""
         },
@@ -71,40 +97,11 @@
         "ip_address": ""
       },
       "details": {
-        "name": "",
-        "new_value": {
-          "type": [
-            ""
-          ]
-        },
-        "previous_value": {
-          "type": [
-            ""
-          ]
-        },
-        "expires_on": 12345,
-        "mobile_only": false,
-        "web_only": false,
         "type": "",
-        "is_workflow": false,
-        "inviter": {
-          "id": "W00000000",
-          "name": "",
-          "email": "",
-          "team": "E00000000"
-        },
-        "kicker": {
-          "id": "W00000000",
-          "name": "",
-          "email": "",
-          "team": "E00000000"
-        },
-        "shared_to": "T00000000",
-        "reason": "",
-        "origin_team": "T00000000",
-        "target_team": "T00000000",
-        "is_internal_integration": false,
-        "app_owner_id": "W00000000",
+        "app_owner_id": "",
+        "scopes": [
+          ""
+        ],
         "bot_scopes": [
           ""
         ],
@@ -114,22 +111,98 @@
         "previous_scopes": [
           ""
         ],
-        "granular_bot_token": false,
-        "scopes": [
+        "inviter": {
+          "type": "",
+          "user": {
+            "id": "",
+            "name": "",
+            "email": "",
+            "team": ""
+          },
+          "id": "",
+          "name": "",
+          "email": "",
+          "team": ""
+        },
+        "kicker": {
+          "type": "",
+          "user": {
+            "id": "",
+            "name": "",
+            "email": "",
+            "team": ""
+          },
+          "id": "",
+          "name": "",
+          "email": "",
+          "team": ""
+        },
+        "installer_user_id": "",
+        "approver_id": "",
+        "approval_type": "",
+        "app_previously_approved": false,
+        "old_scopes": [
           ""
         ],
+        "name": "",
+        "bot_id": "",
+        "channels": [
+          ""
+        ],
+        "permissions": [
+          {
+            "resource": {
+              "type": "",
+              "grant": {
+                "type": "",
+                "resource_id": "",
+                "wildcard": {
+                  "type": ""
+                }
+              }
+            },
+            "scopes": [
+              ""
+            ]
+          }
+        ],
+        "shared_to": "",
+        "reason": "",
+        "is_internal_integration": false,
+        "is_workflow": false,
+        "mobile_only": false,
+        "web_only": false,
+        "non_sso_only": false,
+        "expires_on": 123,
+        "new_version_id": "",
+        "trigger": "",
+        "granular_bot_token": false,
+        "origin_team": "",
+        "target_team": "",
         "resolution": "",
         "app_previously_resolved": false,
         "admin_app_id": "",
-        "bot_id": "B00000000"
+        "export_type": "",
+        "export_start_ts": "",
+        "export_end_ts": "",
+        "barrier_id": "",
+        "primary_usergroup_id": "",
+        "barriered_from_usergroup_ids": [
+          ""
+        ],
+        "restricted_subjects": [
+          ""
+        ],
+        "duration": 123,
+        "desktop_app_browser_quit": false,
+        "invite_id": "",
+        "external_organization_id": "",
+        "external_organization_name": "",
+        "external_user_id": "",
+        "external_user_email": "",
+        "channel_id": "",
+        "added_team_id": ""
       }
     }
-  ],
-  "response_metadata": {
-    "next_cursor": ""
-  },
-  "ok": false,
-  "error": "",
-  "needed": "",
-  "provided": ""
+  ]
 }
