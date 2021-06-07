@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.SocketException;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -139,16 +140,20 @@ public class SingleTeamAuthTestCacheTest {
             }
         }
 
-        private final int port;
-        private final Server server;
+        private int port;
+        private Server server;
 
         public CountdownAuthTestServer() {
             this(PortProvider.getPort(CountdownAuthTestServer.class.getName()));
         }
 
         public CountdownAuthTestServer(int port) {
+            setup(port);
+        }
+
+        private void setup(int port) {
             this.port = port;
-            server = new Server(this.port);
+            this.server = new Server(this.port);
             ServletHandler handler = new ServletHandler();
             server.setHandler(handler);
             handler.addServletWithMapping(CountdownAuthTestMockEndpoint.class, "/*");
@@ -159,9 +164,19 @@ public class SingleTeamAuthTestCacheTest {
         }
 
         public void start() throws Exception {
-            server.start();
+            int retryCount = 0;
+            while (retryCount < 5) {
+                try {
+                    server.start();
+                    return;
+                } catch (SocketException e) {
+                    // java.net.SocketException: Permission denied may arise
+                    // only on the GitHub Actions environment.
+                    setup(PortProvider.getPort(CountdownAuthTestServer.class.getName()));
+                    retryCount++;
+                }
+            }
         }
-
         public void stop() throws Exception {
             server.stop();
         }

@@ -8,14 +8,19 @@ import org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter;
 import util.PortProvider;
 
 import javax.servlet.ServletException;
+import java.net.SocketException;
 
 public class MockWebSocketServer {
 
     public static final String WEB_SOCKET_SERVER_PORT = "WEB_SOCKET_SERVER_PORT";
 
-    private final Server server;
+    private Server server;
 
     public MockWebSocketServer() {
+        setup();
+    }
+
+    public void setup() {
         server = new Server();
         ServerConnector connector = new ServerConnector(server);
         int port = PortProvider.getPort(MockWebSocketServer.class.getName());
@@ -39,7 +44,18 @@ public class MockWebSocketServer {
     }
 
     public void start() throws Exception {
-        server.start();
+        int retryCount = 0;
+        while (retryCount < 5) {
+            try {
+                server.start();
+                return;
+            } catch (SocketException e) {
+                // java.net.SocketException: Permission denied may arise
+                // only on the GitHub Actions environment.
+                setup();
+                retryCount++;
+            }
+        }
     }
 
     public void stop() throws Exception {
