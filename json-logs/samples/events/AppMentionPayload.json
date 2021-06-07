@@ -16,6 +16,7 @@
   "event_context": "",
   "event": {
     "type": "app_mention",
+    "client_msg_id": "",
     "user": "",
     "username": "",
     "bot_id": "",
@@ -589,6 +590,10 @@
     "ts": "",
     "team": "",
     "channel": "",
+    "edited": {
+      "user": "",
+      "ts": ""
+    },
     "event_ts": "",
     "thread_ts": ""
   }

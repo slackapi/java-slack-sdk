@@ -356,6 +356,12 @@ public class EventsApiTest {
                 ChatPostMessageResponse mention = slack.methods(userToken).chatPostMessage(r ->
                         r.text(mentionText).channel(channelId));
                 assertNull(mention.getError());
+                ChatUpdateResponse editedMention = slack.methods(userToken).chatUpdate(r -> r
+                        .channel(channelId)
+                        .ts(mention.getTs())
+                        .text(mentionText + "(edited)")
+                );
+                assertNull(editedMention.getError());
 
                 // app_mention with blocks
                 ChatPostMessageResponse mention2 = slack.methods(userToken).chatPostMessage(r ->

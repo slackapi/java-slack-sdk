@@ -31,6 +31,7 @@ public class AppMentionEvent implements Event {
     public static final String TYPE_NAME = "app_mention";
 
     private final String type = TYPE_NAME;
+    private String clientMsgId;
     private String user;
     private String username;
     private String botId;
@@ -42,8 +43,14 @@ public class AppMentionEvent implements Event {
     private String ts;
     private String team;
     private String channel;
+    private Edited edited;
     private String eventTs;
 
     private String threadTs;
 
+    @Data
+    public static class Edited {
+        private String user;
+        private String ts;
+    }
 }
