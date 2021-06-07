@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.SocketException;
 
 public class AuthTestMockServer {
 
@@ -43,16 +44,20 @@ public class AuthTestMockServer {
         }
     }
 
-    private final int port;
-    private final Server server;
+    private int port;
+    private Server server;
 
     public AuthTestMockServer() {
         this(PortProvider.getPort(AuthTestMockServer.class.getName()));
     }
 
     public AuthTestMockServer(int port) {
+        setup(port);
+    }
+
+    private void setup(int port) {
         this.port = port;
-        server = new Server(this.port);
+        this.server = new Server(this.port);
         ServletHandler handler = new ServletHandler();
         server.setHandler(handler);
         handler.addServletWithMapping(AuthTestMockEndpoint.class, "/*");
@@ -63,7 +68,18 @@ public class AuthTestMockServer {
     }
 
     public void start() throws Exception {
-        server.start();
+        int retryCount = 0;
+        while (retryCount < 5) {
+            try {
+                server.start();
+                return;
+            } catch (SocketException e) {
+                // java.net.SocketException: Permission denied may arise
+                // only on the GitHub Actions environment.
+                setup(PortProvider.getPort(AuthTestMockServer.class.getName()));
+                retryCount++;
+            }
+        }
     }
 
     public void stop() throws Exception {
