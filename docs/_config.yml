@@ -8,8 +8,8 @@ url: https://slack.dev
 
 sdkLatestVersion: 1.8.1
 okhttpVersion: 4.9.1
-kotlinVersion: 1.5.10
-springBootVersion: 2.5.0
+kotlinVersion: 1.5.20
+springBootVersion: 2.5.2
 compatibleMicronautVersion: 2.x
 quarkusVersion: 1.9.2.Final
-helidonVersion: 2.3.0
+helidonVersion: 2.3.1

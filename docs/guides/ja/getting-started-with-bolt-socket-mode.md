@@ -100,7 +100,7 @@ dependencies {
   implementation("com.slack.api:bolt-socket-mode:{{ site.sdkLatestVersion }}")
   implementation("javax.websocket:javax.websocket-api:1.1")
   implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17")
-  implementation("org.slf4j:slf4j-simple:1.7.30")
+  implementation("org.slf4j:slf4j-simple:1.7.31")
 }
 application {
   mainClassName = "hello.MyApp"
@@ -230,7 +230,7 @@ dependencies {
   implementation("com.slack.api:bolt-socket-mode:{{ site.sdkLatestVersion }}")
   implementation("javax.websocket:javax.websocket-api:1.1")
   implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17")
-  implementation("org.slf4j:slf4j-simple:1.7.30") // または logback-classic など
+  implementation("org.slf4j:slf4j-simple:1.7.31") // または logback-classic など
 }
 application {
   mainClassName = "MyAppKt" // ソースファイル名の末尾、拡張子の代わりに "Kt" をつけた命名になります

@@ -99,7 +99,7 @@ dependencies {
   implementation("com.slack.api:bolt-socket-mode:{{ site.sdkLatestVersion }}")
   implementation("javax.websocket:javax.websocket-api:1.1")
   implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17")
-  implementation("org.slf4j:slf4j-simple:1.7.30")
+  implementation("org.slf4j:slf4j-simple:1.7.31")
 }
 application {
   mainClassName = "hello.MyApp"
@@ -229,7 +229,7 @@ dependencies {
   implementation("com.slack.api:bolt-socket-mode:{{ site.sdkLatestVersion }}")
   implementation("javax.websocket:javax.websocket-api:1.1")
   implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17")
-  implementation("org.slf4j:slf4j-simple:1.7.30") // or logback-classic
+  implementation("org.slf4j:slf4j-simple:1.7.31") // or logback-classic
 }
 application {
   mainClassName = "MyAppKt" // add "Kt" suffix for main function source file
