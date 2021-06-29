@@ -22,6 +22,7 @@ public class MatchedItem {
     private String ts;
     private String title;
     private String text;
+    private List<File> files;
     private List<Attachment> attachments;
     private List<LayoutBlock> blocks;
     private String permalink;
