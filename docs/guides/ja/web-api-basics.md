@@ -52,7 +52,7 @@ import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 
 // 環境変数を読み込みます
-// トークンがボットトークンであれば `xoxb-`、ユーザートークンであれば `xoxbp-` で始まっているはずです
+// トークンがボットトークンであれば `xoxb-`、ユーザートークンであれば `xoxp-` で始まっているはずです
 String token = System.getenv("SLACK_TOKEN");
 
 // API メソッドのクライアントを上のトークンと共に初期化します
