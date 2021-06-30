@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <spring-boot.version>2.5.0</spring-boot.version>
+        <spring-boot.version>2.5.2</spring-boot.version>
     </properties>
 
     <artifactId>bolt-spring-boot-examples</artifactId>
