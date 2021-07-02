@@ -3,6 +3,9 @@ package com.slack.api.methods;
 import com.google.gson.Gson;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersDeleteRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersListRequest;
@@ -236,6 +239,35 @@ public class RequestFormBuilder {
         setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
         if (req.getTeamIds() != null) {
             setIfNotNull("team_ids", req.getTeamIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAuthPolicyAssignEntitiesRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("entity_type", req.getEntityType(), form);
+        setIfNotNull("policy_name", req.getPolicyName(), form);
+        if (req.getEntityIds() != null) {
+            setIfNotNull("entity_ids", req.getEntityIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAuthPolicyGetEntitiesRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("entity_type", req.getEntityType(), form);
+        setIfNotNull("policy_name", req.getPolicyName(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAuthPolicyRemoveEntitiesRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("entity_type", req.getEntityType(), form);
+        setIfNotNull("policy_name", req.getPolicyName(), form);
+        if (req.getEntityIds() != null) {
+            setIfNotNull("entity_ids", req.getEntityIds().stream().collect(joining(",")), form);
         }
         return form;
     }

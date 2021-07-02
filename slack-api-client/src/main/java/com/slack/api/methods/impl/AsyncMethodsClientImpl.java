@@ -7,6 +7,9 @@ import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersDeleteRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersListRequest;
@@ -93,6 +96,9 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersCreateResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersDeleteResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersListResponse;
@@ -299,6 +305,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) {
         return adminAppsRequestsList(req.configure(AdminAppsRequestsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAuthPolicyAssignEntitiesResponse> adminAuthPolicyAssignEntities(AdminAuthPolicyAssignEntitiesRequest req) {
+        return executor.execute(ADMIN_AUTH_POLICY_ASSIGN_ENTITIES, toMap(req), () -> methods.adminAuthPolicyAssignEntities(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAuthPolicyAssignEntitiesResponse> adminAuthPolicyAssignEntities(RequestConfigurator<AdminAuthPolicyAssignEntitiesRequest.AdminAuthPolicyAssignEntitiesRequestBuilder> req) {
+        return adminAuthPolicyAssignEntities(req.configure(AdminAuthPolicyAssignEntitiesRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAuthPolicyGetEntitiesResponse> adminAuthPolicyGetEntities(AdminAuthPolicyGetEntitiesRequest req) {
+        return executor.execute(ADMIN_AUTH_POLICY_GET_ENTITIES, toMap(req), () -> methods.adminAuthPolicyGetEntities(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAuthPolicyGetEntitiesResponse> adminAuthPolicyGetEntities(RequestConfigurator<AdminAuthPolicyGetEntitiesRequest.AdminAuthPolicyGetEntitiesRequestBuilder> req) {
+        return adminAuthPolicyGetEntities(req.configure(AdminAuthPolicyGetEntitiesRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAuthPolicyRemoveEntitiesResponse> adminAuthPolicyRemoveEntities(AdminAuthPolicyRemoveEntitiesRequest req) {
+        return executor.execute(ADMIN_AUTH_POLICY_REMOVE_ENTITIES, toMap(req), () -> methods.adminAuthPolicyRemoveEntities(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAuthPolicyRemoveEntitiesResponse> adminAuthPolicyRemoveEntities(RequestConfigurator<AdminAuthPolicyRemoveEntitiesRequest.AdminAuthPolicyRemoveEntitiesRequestBuilder> req) {
+        return adminAuthPolicyRemoveEntities(req.configure(AdminAuthPolicyRemoveEntitiesRequest.builder()).build());
     }
 
     @Override

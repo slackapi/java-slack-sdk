@@ -11,7 +11,8 @@ import util.MockSlackApiServer;
 
 import java.util.Arrays;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static util.MockSlackApi.ValidToken;
 
@@ -42,7 +43,22 @@ public class AdminApiTest {
     }
 
     @Test
-    public void barriers() throws Exception {
+    public void adminAuthPolicy() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminAuthPolicyAssignEntities(r -> r
+                .policyName("user_password").entityIds(Arrays.asList("U1"))
+        ).isOk(), is(true));
+        assertThat(methods.adminAuthPolicyGetEntities(r -> r
+                .policyName("user_password")
+        ).isOk(), is(true));
+        assertThat(methods.adminAuthPolicyRemoveEntities(r -> r
+                .policyName("user_password").entityIds(Arrays.asList("U1"))
+        ).isOk(), is(true));
+    }
+
+    @Test
+    public void adminBarriers() throws Exception {
         MethodsClient methods = slack.methods(ValidToken);
 
         assertThat(methods.adminBarriersCreate(r -> r).isOk(), is(true));

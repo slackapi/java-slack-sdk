@@ -1,0 +1,14 @@
+{
+  "ok": false,
+  "error": "",
+  "entities": [
+    {
+      "entity_id": "W00000000",
+      "entity_type": "",
+      "date_added": 12345
+    }
+  ],
+  "entity_total_count": 12345,
+  "needed": "",
+  "provided": ""
+}

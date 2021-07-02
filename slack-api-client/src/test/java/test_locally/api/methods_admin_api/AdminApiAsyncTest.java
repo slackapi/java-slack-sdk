@@ -51,7 +51,16 @@ public class AdminApiAsyncTest {
     }
 
     @Test
-    public void barriers() throws Exception {
+    public void adminAuthPolicy() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminAuthPolicyAssignEntities(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminAuthPolicyGetEntities(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminAuthPolicyRemoveEntities(r -> r).get().isOk(), is(true));
+    }
+
+    @Test
+    public void adminBarriers() throws Exception {
         AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
 
         assertThat(methods.adminBarriersCreate(r -> r).get().isOk(), is(true));

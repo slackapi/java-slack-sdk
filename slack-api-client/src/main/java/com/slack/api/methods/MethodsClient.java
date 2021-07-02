@@ -3,6 +3,9 @@ package com.slack.api.methods;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersDeleteRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersListRequest;
@@ -102,6 +105,9 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersCreateResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersDeleteResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersListResponse;
@@ -301,6 +307,22 @@ public interface MethodsClient {
     AdminAppsRequestsListResponse adminAppsRequestsList(AdminAppsRequestsListRequest req) throws IOException, SlackApiException;
 
     AdminAppsRequestsListResponse adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // admin.auth.policy
+    // ------------------------------
+
+    AdminAuthPolicyAssignEntitiesResponse adminAuthPolicyAssignEntities(AdminAuthPolicyAssignEntitiesRequest req) throws IOException, SlackApiException;
+
+    AdminAuthPolicyAssignEntitiesResponse adminAuthPolicyAssignEntities(RequestConfigurator<AdminAuthPolicyAssignEntitiesRequest.AdminAuthPolicyAssignEntitiesRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminAuthPolicyGetEntitiesResponse adminAuthPolicyGetEntities(AdminAuthPolicyGetEntitiesRequest req) throws IOException, SlackApiException;
+
+    AdminAuthPolicyGetEntitiesResponse adminAuthPolicyGetEntities(RequestConfigurator<AdminAuthPolicyGetEntitiesRequest.AdminAuthPolicyGetEntitiesRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminAuthPolicyRemoveEntitiesResponse adminAuthPolicyRemoveEntities(AdminAuthPolicyRemoveEntitiesRequest req) throws IOException, SlackApiException;
+
+    AdminAuthPolicyRemoveEntitiesResponse adminAuthPolicyRemoveEntities(RequestConfigurator<AdminAuthPolicyRemoveEntitiesRequest.AdminAuthPolicyRemoveEntitiesRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // admin.barriers
