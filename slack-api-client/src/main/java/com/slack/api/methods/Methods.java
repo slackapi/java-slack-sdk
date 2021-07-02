@@ -25,6 +25,14 @@ public class Methods {
     public static final String ADMIN_APPS_REQUESTS_LIST = "admin.apps.requests.list";
 
     // ------------------------------
+    // admin.auth.policy
+    // ------------------------------
+
+    public static final String ADMIN_AUTH_POLICY_ASSIGN_ENTITIES = "admin.auth.policy.assignEntities";
+    public static final String ADMIN_AUTH_POLICY_GET_ENTITIES = "admin.auth.policy.getEntities";
+    public static final String ADMIN_AUTH_POLICY_REMOVE_ENTITIES = "admin.auth.policy.removeEntities";
+
+    // ------------------------------
     // admin.barriers
     // ------------------------------
 

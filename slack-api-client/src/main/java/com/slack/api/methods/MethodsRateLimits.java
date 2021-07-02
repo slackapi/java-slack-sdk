@@ -140,7 +140,10 @@ public class MethodsRateLimits {
         final List<String> adminApiMethods_Tier4 = Arrays.asList(
                 ADMIN_USERS_SESSION_GET_SETTINGS,
                 ADMIN_USERS_SESSION_SET_SETTINGS,
-                ADMIN_USERS_SESSION_CLEAR_SETTINGS
+                ADMIN_USERS_SESSION_CLEAR_SETTINGS,
+                ADMIN_AUTH_POLICY_ASSIGN_ENTITIES,
+                ADMIN_AUTH_POLICY_GET_ENTITIES,
+                ADMIN_AUTH_POLICY_REMOVE_ENTITIES
         );
         for (String methods : adminApiMethods_Tier4) {
             setRateLimitTier(methods, Tier4);

@@ -1,6 +1,9 @@
 package test_locally.api.methods_admin_api;
 
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersCreateResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersDeleteResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersListResponse;
@@ -77,6 +80,22 @@ public class FieldValidationTest {
                     obj.getRestrictedApps().get(0),
                     "getImageOriginal");
         }
+    }
+
+    @Test
+    public void adminAuthPolicy() throws Exception {
+        verifyIfAllGettersReturnNonNull(parse("admin.auth.policy.assignEntities", AdminAuthPolicyAssignEntitiesResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.auth.policy.getEntities", AdminAuthPolicyGetEntitiesResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.auth.policy.removeEntities", AdminAuthPolicyRemoveEntitiesResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
     }
 
     @Test

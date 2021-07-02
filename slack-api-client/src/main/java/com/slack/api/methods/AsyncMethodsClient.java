@@ -3,6 +3,9 @@ package com.slack.api.methods;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersDeleteRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersListRequest;
@@ -89,6 +92,9 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersCreateResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersDeleteResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersListResponse;
@@ -174,6 +180,7 @@ import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -227,6 +234,22 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(AdminAppsRequestsListRequest req);
 
     CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req);
+
+    // ------------------------------
+    // admin.auth.policy
+    // ------------------------------
+
+    CompletableFuture<AdminAuthPolicyAssignEntitiesResponse> adminAuthPolicyAssignEntities(AdminAuthPolicyAssignEntitiesRequest req);
+
+    CompletableFuture<AdminAuthPolicyAssignEntitiesResponse> adminAuthPolicyAssignEntities(RequestConfigurator<AdminAuthPolicyAssignEntitiesRequest.AdminAuthPolicyAssignEntitiesRequestBuilder> req);
+
+    CompletableFuture<AdminAuthPolicyGetEntitiesResponse> adminAuthPolicyGetEntities(AdminAuthPolicyGetEntitiesRequest req);
+
+    CompletableFuture<AdminAuthPolicyGetEntitiesResponse> adminAuthPolicyGetEntities(RequestConfigurator<AdminAuthPolicyGetEntitiesRequest.AdminAuthPolicyGetEntitiesRequestBuilder> req);
+
+    CompletableFuture<AdminAuthPolicyRemoveEntitiesResponse> adminAuthPolicyRemoveEntities(AdminAuthPolicyRemoveEntitiesRequest req);
+
+    CompletableFuture<AdminAuthPolicyRemoveEntitiesResponse> adminAuthPolicyRemoveEntities(RequestConfigurator<AdminAuthPolicyRemoveEntitiesRequest.AdminAuthPolicyRemoveEntitiesRequestBuilder> req);
 
     // ------------------------------
     // admin.barriers

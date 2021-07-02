@@ -5,6 +5,9 @@ import com.slack.api.RequestConfigurator;
 import com.slack.api.methods.*;
 import com.slack.api.methods.request.admin.analytics.AdminAnalyticsGetFileRequest;
 import com.slack.api.methods.request.admin.apps.*;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyAssignEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyGetEntitiesRequest;
+import com.slack.api.methods.request.admin.auth.policy.AdminAuthPolicyRemoveEntitiesRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersCreateRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersDeleteRequest;
 import com.slack.api.methods.request.admin.barriers.AdminBarriersListRequest;
@@ -104,6 +107,9 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.methods.response.admin.analytics.AdminAnalyticsGetFileResponse;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyAssignEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyGetEntitiesResponse;
+import com.slack.api.methods.response.admin.auth.policy.AdminAuthPolicyRemoveEntitiesResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersCreateResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersDeleteResponse;
 import com.slack.api.methods.response.admin.barriers.AdminBarriersListResponse;
@@ -328,6 +334,36 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminAppsRequestsListResponse adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) throws IOException, SlackApiException {
         return adminAppsRequestsList(req.configure(AdminAppsRequestsListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminAuthPolicyAssignEntitiesResponse adminAuthPolicyAssignEntities(AdminAuthPolicyAssignEntitiesRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_AUTH_POLICY_ASSIGN_ENTITIES, getToken(req), AdminAuthPolicyAssignEntitiesResponse.class);
+    }
+
+    @Override
+    public AdminAuthPolicyAssignEntitiesResponse adminAuthPolicyAssignEntities(RequestConfigurator<AdminAuthPolicyAssignEntitiesRequest.AdminAuthPolicyAssignEntitiesRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAuthPolicyAssignEntities(req.configure(AdminAuthPolicyAssignEntitiesRequest.builder()).build());
+    }
+
+    @Override
+    public AdminAuthPolicyGetEntitiesResponse adminAuthPolicyGetEntities(AdminAuthPolicyGetEntitiesRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_AUTH_POLICY_GET_ENTITIES, getToken(req), AdminAuthPolicyGetEntitiesResponse.class);
+    }
+
+    @Override
+    public AdminAuthPolicyGetEntitiesResponse adminAuthPolicyGetEntities(RequestConfigurator<AdminAuthPolicyGetEntitiesRequest.AdminAuthPolicyGetEntitiesRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAuthPolicyGetEntities(req.configure(AdminAuthPolicyGetEntitiesRequest.builder()).build());
+    }
+
+    @Override
+    public AdminAuthPolicyRemoveEntitiesResponse adminAuthPolicyRemoveEntities(AdminAuthPolicyRemoveEntitiesRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_AUTH_POLICY_REMOVE_ENTITIES, getToken(req), AdminAuthPolicyRemoveEntitiesResponse.class);
+    }
+
+    @Override
+    public AdminAuthPolicyRemoveEntitiesResponse adminAuthPolicyRemoveEntities(RequestConfigurator<AdminAuthPolicyRemoveEntitiesRequest.AdminAuthPolicyRemoveEntitiesRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAuthPolicyRemoveEntities(req.configure(AdminAuthPolicyRemoveEntitiesRequest.builder()).build());
     }
 
     @Override
