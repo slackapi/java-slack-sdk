@@ -155,13 +155,13 @@ Slack has two types of OAuth flows for Slack app installations. The V2 (this is 
 
 |-|-|
 |Authorization URL|`https://slack.com/oauth/v2/authorize`|
-|Web API to issue access tokens|[`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/master/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
+|Web API to issue access tokens|[`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
 
 #### [Classic OAuth Flow](https://api.slack.com/docs/oauth)
 
 |-|-|
 |Authorization URL|`https://slack.com/oauth/authorize`|
-|Web API to issue access tokens|[`oauth.access`](https://api.slack.com/methods/oauth.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/master/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
+|Web API to issue access tokens|[`oauth.access`](https://api.slack.com/methods/oauth.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
 
 By default, Bolt enables the V2 OAuth Flow over the classic one. It's configurable by **AppConfig**'s the setter method for `classicAppPermissionsEnabled`. The value is set to `false` by default. Change the flag to `true` to authorize your classic OAuth apps.
 

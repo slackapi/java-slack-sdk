@@ -154,13 +154,13 @@ Slack アプリインストールには、二つの OAuth フローがありま�
 
 |-|-|
 |Authorization URL|`https://slack.com/oauth/v2/authorize`|
-|トークン発行の API メソッド|[`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/master/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
+|トークン発行の API メソッド|[`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
 
 #### [Classic OAuth フロー](https://api.slack.com/docs/oauth)
 
 |-|-|
 |Authorization URL|`https://slack.com/oauth/authorize`|
-|トークン発行の API メソッド|[`oauth.access`](https://api.slack.com/methods/oauth.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/master/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
+|トークン発行の API メソッド|[`oauth.access`](https://api.slack.com/methods/oauth.access) ([レスポンス](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
 
 デフォルトでは Classic OAuth ではなく V2 の OAuth フローが有効になっています。Classic OAuth に対応させるためには **AppConfig** の setter メソッドで `classicAppPermissionsEnabled` を true に設定します。
 

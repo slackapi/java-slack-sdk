@@ -314,8 +314,8 @@ If you want to know ways to run Bolt app with Spring Boot, Micronaut, Quarkus, o
 
 Also, many examples are available in the GitHub repository.
 
-* [Example apps with Spring Boot](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-spring-boot-examples)
-* [Example apps with Micronaut](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-micronaut/src/test/java/example)
-* [Example apps with Quarkus](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-quarkus-examples)
-* [Example apps in Kotlin](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-kotlin-examples)
-* [Example apps with Docker](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-docker-examples)
+* [Example apps with Spring Boot](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-spring-boot-examples)
+* [Example apps with Micronaut](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-micronaut/src/test/java/example)
+* [Example apps with Quarkus](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-quarkus-examples)
+* [Example apps in Kotlin](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-kotlin-examples)
+* [Example apps with Docker](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-docker-examples)

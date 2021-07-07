@@ -67,9 +67,9 @@
 
 <div id="footer">
     <ul id="footer_nav">
-        <li><a href="https://github.com/SlackAPI/java-slack-sdk/blob/master/LICENSE">ライセンス（英語）</a></li>
+        <li><a href="https://github.com/SlackAPI/java-slack-sdk/blob/main/LICENSE">ライセンス（英語）</a></li>
         <li><a href="https://slackhq.github.io/code-of-conduct">Code of Conduct（英語）</a></li>
-        <li><a href="https://github.com/slackapi/java-slack-sdk/blob/master/.github/contributing.md">コントリビューション（英語）</a></li>
+        <li><a href="https://github.com/slackapi/java-slack-sdk/blob/main/.github/contributing.md">コントリビューション（英語）</a></li>
         <li><a href="https://docs.google.com/a/slack-corp.com/forms/d/e/1FAIpQLSfzjVoCM7ohBnjWf7eDYQxzti1EPpinsIJQA5RAUBwJKRUQHg/viewform">Contributor License Agreement（英語）</a></li>
     </ul>
     <p id="footer_signature">この OSS は Slack チームと素敵なコミュニティの皆さんの<i class="ts_icon ts_icon_heart"></i>で出来ています

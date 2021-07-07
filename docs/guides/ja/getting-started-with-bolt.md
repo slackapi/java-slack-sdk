@@ -315,8 +315,8 @@ Spring Boot や Micronaut、Quarkus、Helidon SE で動かす方法を知りた�
 
 また、以下のように、多くのサンプル例がプロジェクトの GitHub リポジトリ内にあるので、あわせて参考にしてみてください。
 
-* [Spring Boot を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-spring-boot-examples)
-* [Micronaut を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-micronaut/src/test/java/example)
-* [Quarkus を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-quarkus-examples)
-* [Kotlin で書かれたサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-kotlin-examples)
-* [Docker を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/master/bolt-docker-examples)
+* [Spring Boot を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-spring-boot-examples)
+* [Micronaut を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-micronaut/src/test/java/example)
+* [Quarkus を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-quarkus-examples)
+* [Kotlin で書かれたサンプル例](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-kotlin-examples)
+* [Docker を使ったサンプル例](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-docker-examples)
