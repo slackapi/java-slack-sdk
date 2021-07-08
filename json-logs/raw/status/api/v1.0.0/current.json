@@ -422,6 +422,26 @@
     {
       "date_created": "2021-05-11T11:40:28-07:00",
       "body": "We\u0027re aware of an issue where some users may be encountering connection errors or degraded performance. Some users will be unable to connect, and some apps making API requests may encounter failures.\r\n\r\nWe\u0027re working to resolve this and will reach back out when we have more information to share.\r\n\r\nNote: We\u0027ve updated this message to clarify what affected users may have encountered and that apps making API requests may have encountered failures."
+    },
+    {
+      "date_created": "2021-07-07T09:04:30-07:00",
+      "body": "Upon further investigation we\u0027ve learned that this issue is not fully resolved. We\u0027re continuing to investigate this and we will provide an update as soon as we have more information.\r\n\r\nThank you for your ongoing patience and apologies for the confusion."
+    },
+    {
+      "date_created": "2021-07-07T07:05:30-07:00",
+      "body": "We believe the issue should now be resolved. Users should no longer have trouble using certain apps and integrations in Slack. We\u0027ll post the summary of this issue as soon as possible."
+    },
+    {
+      "date_created": "2021-07-07T05:34:25-07:00",
+      "body": "We\u0027re still investigating the issue around using certain apps and integrations in Slack. No additional news to share just yet, but we’ll provide new information as soon as it’s available."
+    },
+    {
+      "date_created": "2021-07-07T05:04:30-07:00",
+      "body": "Our investigation is still ongoing at this time and we don’t have any new information to share just yet. We’ll be back with another update in 30 minutes."
+    },
+    {
+      "date_created": "2021-07-07T03:58:20-07:00",
+      "body": "Some customers may be experiencing issues using certain apps and integrations in Slack. Workflow Builder and other apps may be impacted. Our team is currently investigating and we\u0027ll keep you posted as soon as we have more information. We\u0027re sorry for the disruption."
     }
   ]
 }
