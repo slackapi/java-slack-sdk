@@ -201,7 +201,8 @@
         "external_user_id": "",
         "external_user_email": "",
         "channel_id": "",
-        "added_team_id": ""
+        "added_team_id": "",
+        "is_token_rotation_enabled_app": ""
       }
     }
   ]
