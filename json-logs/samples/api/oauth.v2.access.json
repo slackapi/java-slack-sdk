@@ -9,11 +9,15 @@
     "id": "",
     "scope": "",
     "token_type": "",
-    "access_token": ""
+    "access_token": "",
+    "refresh_token": "",
+    "expires_in": 123
   },
   "scope": "",
   "token_type": "",
   "access_token": "",
+  "refresh_token": "",
+  "expires_in": 123,
   "bot_user_id": "",
   "team": {
     "id": "",

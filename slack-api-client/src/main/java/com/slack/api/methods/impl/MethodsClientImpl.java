@@ -2174,9 +2174,17 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public OAuthV2AccessResponse oauthV2Access(OAuthV2AccessRequest req) throws IOException, SlackApiException {
         FormBody.Builder form = new FormBody.Builder();
-        form.add("code", req.getCode());
+        if (req.getCode() != null) {
+            form.add("code", req.getCode());
+        }
         if (req.getRedirectUri() != null) {
             form.add("redirect_uri", req.getRedirectUri());
+        }
+        if (req.getGrantType() != null) {
+            form.add("grant_type", req.getGrantType());
+        }
+        if (req.getRefreshToken() != null) {
+            form.add("refresh_token", req.getRefreshToken());
         }
         String authorizationHeader = Credentials.basic(req.getClientId(), req.getClientSecret());
         return postFormWithAuthorizationHeaderAndParseResponse(form, endpointUrlPrefix + Methods.OAUTH_V2_ACCESS, authorizationHeader, OAuthV2AccessResponse.class);
