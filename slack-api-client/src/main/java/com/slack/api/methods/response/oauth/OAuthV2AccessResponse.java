@@ -20,6 +20,8 @@ public class OAuthV2AccessResponse implements SlackApiTextResponse {
     private String scope;
     private String tokenType; // "bot"
     private String accessToken; // xoxb-xxx-yyy
+    private String refreshToken; // only when enabling token rotation
+    private Integer expiresIn; // in seconds; only when enabling token rotation
     private String botUserId;
     private Team team;
     private Enterprise enterprise;
@@ -32,6 +34,8 @@ public class OAuthV2AccessResponse implements SlackApiTextResponse {
         private String scope;
         private String tokenType; // "user"
         private String accessToken; // xoxp-xxx-yyy
+        private String refreshToken; // only when enabling token rotation
+        private Integer expiresIn; // in seconds; only when enabling token rotation
     }
 
     @Data

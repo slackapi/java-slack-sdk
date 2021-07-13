@@ -32,6 +32,16 @@ public class OAuthV2AccessRequest implements SlackApiRequest {
      */
     private String redirectUri;
 
+    /**
+     * The grant_type param as described in the OAuth spec.
+     */
+    private String grantType;
+
+    /**
+     * The refresh_token param as described in the OAuth spec.
+     */
+    private String refreshToken;
+
     @Override
     public String getToken() {
         return null;
