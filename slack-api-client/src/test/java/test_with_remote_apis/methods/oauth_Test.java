@@ -2,9 +2,12 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
+import com.slack.api.model.ErrorResponseMetadata;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
@@ -56,6 +59,17 @@ public class oauth_Test {
         }
     }
 
+    @Test
+    public void accessV2Exchange() throws IOException, SlackApiException {
+        OAuthV2ExchangeResponse response = slack.methods().oauthV2Exchange(r -> r
+                .token("xoxb-111")
+                .clientId("3485157640.XXXX")
+                .clientSecret("XXXXX")
+        );
+        assertThat(response.getError(), is("invalid_arguments"));
+        assertThat(response.isOk(), is(false));
+    }
+
     // TODO: valid test; currently just checking the API access
     @Test
     public void token() throws IOException, SlackApiException {
@@ -101,6 +115,22 @@ public class oauth_Test {
         response.setTeam(new OAuthV2AccessResponse.Team());
         ObjectInitializer.initProperties(response);
         dumper.dump("oauth.v2.access", response);
+    }
+
+    @Test
+    public void dumpFullJsonV2Exchange() throws IOException {
+        ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/api");
+        OAuthV2ExchangeResponse response = new OAuthV2ExchangeResponse();
+        response.setAuthedUser(new OAuthV2ExchangeResponse.AuthedUser());
+        response.setIncomingWebhook(new OAuthV2ExchangeResponse.IncomingWebhook());
+        response.setEnterprise(new OAuthV2ExchangeResponse.Enterprise());
+        response.setTeam(new OAuthV2ExchangeResponse.Team());
+        ErrorResponseMetadata responseMetadata = new ErrorResponseMetadata();
+        // e.g., [ERROR] missing required field: token
+        responseMetadata.setMessages(Arrays.asList(""));
+        response.setResponseMetadata(responseMetadata);
+        ObjectInitializer.initProperties(response);
+        dumper.dump("oauth.v2.exchange", response);
     }
 
 }

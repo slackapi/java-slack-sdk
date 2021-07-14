@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
 import com.slack.api.util.json.GsonFactory;
 import config.SlackTestConfig;
 import org.junit.After;
@@ -66,7 +67,7 @@ public class OAuthTest {
                 .get().isOk(), is(true));
     }
 
-    String oauth_v2_access_token_rotation_json = "{\n" +
+    static String oauth_v2_access_token_rotation_json = "{\n" +
             "  \"ok\": true,\n" +
             "  \"app_id\": \"A111\",\n" +
             "  \"authed_user\": {\n" +
@@ -104,6 +105,36 @@ public class OAuthTest {
         assertThat(response.getExpiresIn(), is(43201));
         assertThat(response.getAuthedUser().getRefreshToken(), is("xoxe-1-xxx"));
         assertThat(response.getAuthedUser().getExpiresIn(), is(43200));
+    }
+
+    static String exchange_json = "{\n" +
+            "    \"ok\": true,\n" +
+            "    \"app_id\": \"A111\",\n" +
+            "    \"token_type\": \"bot\",\n" +
+            "    \"scope\": \"commands\",\n" +
+            "    \"access_token\": \"xoxe.xoxb-1-xxx\",\n" +
+            "    \"expires_in\": 43200,\n" +
+            "    \"refresh_token\": \"xoxe-1-xxx\",\n" +
+            "    \"bot_user_id\": \"U111\",\n" +
+            "    \"team\": {\n" +
+            "        \"id\": \"T111\",\n" +
+            "        \"name\": \"Testing Workspace\"\n" +
+            "    },\n" +
+            "    \"enterprise\": {\n" +
+            "        \"id\": \"E111\",\n" +
+            "        \"name\": \"Sandbox Org\"\n" +
+            "    }\n" +
+            "}";
+
+    @Test
+    public void exchange() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+        OAuthV2ExchangeResponse response = gson.fromJson(exchange_json, OAuthV2ExchangeResponse.class);
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getAccessToken(), is("xoxe.xoxb-1-xxx"));
+        assertThat(response.getRefreshToken(), is("xoxe-1-xxx"));
+        assertThat(response.getExpiresIn(), is(43200));
     }
 
 }
