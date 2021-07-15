@@ -28,7 +28,7 @@ jobs:
           export TRAVIS_JDK=openjdk8
         fi
         ./scripts/run_no_prep_tests.sh
-        if [ ${{ matrix.java-version }} == "8" ]; then
+        if [ ${{ matrix.java-version }} == "14" ]; then
           bash <(curl -s https://codecov.io/bash)
         fi
 
