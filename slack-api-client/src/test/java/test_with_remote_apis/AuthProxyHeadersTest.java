@@ -92,7 +92,7 @@ public class AuthProxyHeadersTest {
         context.addServlet(proxyServlet, "/*");
         server.start();
 
-        config.setProxyUrl("http://localhost:" + port);
+        config.setProxyUrl("http://127.0.0.1:" + port);
 
         Map<String, String> proxyHeaders = new HashMap<>();
         String username = "my-username";
@@ -144,7 +144,7 @@ public class AuthProxyHeadersTest {
 
         try {
             SlackConfig config = new SlackConfig();
-            config.setProxyUrl("http://localhost:" + port);
+            config.setProxyUrl("http://127.0.0.1:" + port);
             Slack slack = Slack.getInstance(config);
             try {
                 slack.methods().authTest(r -> r.token(botToken));

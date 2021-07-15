@@ -31,7 +31,7 @@ public class PortProvider {
     }
 
     private static boolean isAvailable(int port) {
-        try (Socket ignored = new Socket("localhost", port)) {
+        try (Socket ignored = new Socket("127.0.0.1", port)) {
             return false;
         } catch (IOException ignored) {
             return true;

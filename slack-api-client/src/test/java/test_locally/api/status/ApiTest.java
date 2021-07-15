@@ -90,7 +90,7 @@ public class ApiTest {
     @Test
     public void current() throws Exception {
         SlackConfig config = new SlackConfig();
-        config.setStatusEndpointUrlPrefix("http://localhost:" + port + "/api/");
+        config.setStatusEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
 
         CurrentStatus response = Slack.getInstance(config).status().current();
         assertThat(response, is(notNullValue()));
@@ -99,7 +99,7 @@ public class ApiTest {
     @Test
     public void history() throws Exception {
         SlackConfig config = new SlackConfig();
-        config.setStatusEndpointUrlPrefix("http://localhost:" + port + "/api/");
+        config.setStatusEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
 
         List<SlackIssue> response = Slack.getInstance(config).status().history();
         assertThat(response, is(notNullValue()));

@@ -108,8 +108,8 @@ public class ApiTest {
         server.start();
         config = new SlackConfig();
         config.setPrettyResponseLoggingEnabled(true);
-        config.setMethodsEndpointUrlPrefix("http://localhost:" + port + "/api/");
-        config.setScimEndpointUrlPrefix("http://localhost:" + port + "/api/");
+        config.setMethodsEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
+        config.setScimEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
         config.getHttpClientResponseHandlers().add(new HttpResponseListener() {
             @Override
             public void accept(State state) {

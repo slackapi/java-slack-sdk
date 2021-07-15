@@ -37,7 +37,7 @@ public class WebhookMockServer {
     }
 
     public String getWebhookUrl() {
-        return "http://localhost:" + port;
+        return "http://127.0.0.1:" + port;
     }
 
     public void start() throws Exception {

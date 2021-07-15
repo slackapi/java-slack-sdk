@@ -64,7 +64,7 @@ public class ActionContextTest {
     public void delayedInit() {
         ActionContext context = new ActionContext();
         context.setSlack(Slack.getInstance());
-        context.setResponseUrl("http://localhost/foo/bar");
+        context.setResponseUrl("http://127.0.0.1/foo/bar");
         try {
             context.respond(":wave: hello!");
             fail("respond should have failed.");

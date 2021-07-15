@@ -36,7 +36,7 @@ public class MockWebApi extends HttpServlet {
             if (methodName.equals("apps.connections.open")) {
                 resp.setStatus(200);
                 String port = System.getProperty(WEB_SOCKET_SERVER_PORT);
-                resp.getWriter().write("{\"ok\":true,\"url\":\"ws:\\/\\/localhost:" +  port + "\\/\"}");
+                resp.getWriter().write("{\"ok\":true,\"url\":\"ws:\\/\\/127.0.0.1:" +  port + "\\/\"}");
                 resp.setContentType("application/json");
                 return;
             }

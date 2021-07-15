@@ -90,7 +90,7 @@ public class AuthProxyUserPasswordTest {
         context.addServlet(proxyServlet, "/*");
         server.start();
 
-        config.setProxyUrl("http://my-username:my-password@localhost:" + port);
+        config.setProxyUrl("http://my-username:my-password@127.0.0.1:" + port);
     }
 
     @After
@@ -101,7 +101,7 @@ public class AuthProxyUserPasswordTest {
 
     @Test
     public void failure() throws Exception {
-        config.setProxyUrl("http://my-username:invalid-password@localhost:" + port);
+        config.setProxyUrl("http://my-username:invalid-password@127.0.0.1:" + port);
         Slack slack = Slack.getInstance(config);
         try {
             slack.methods().authTest(r -> r.token(botToken));
@@ -136,7 +136,7 @@ public class AuthProxyUserPasswordTest {
 
         try {
             SlackConfig config = new SlackConfig();
-            config.setProxyUrl("http://localhost:" + port);
+            config.setProxyUrl("http://127.0.0.1:" + port);
             Slack slack = Slack.getInstance(config);
             try {
                 slack.methods().authTest(r -> r.token(botToken));

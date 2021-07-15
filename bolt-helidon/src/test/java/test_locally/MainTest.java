@@ -45,7 +45,7 @@ public class MainTest {
     }
 
     private HttpURLConnection connect(String method, String path) throws Exception {
-        URL url = new URL("http://localhost:" + server.getPort() + path);
+        URL url = new URL("http://127.0.0.1:" + server.getPort() + path);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod(method);
         return conn;

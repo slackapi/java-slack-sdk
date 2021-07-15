@@ -107,7 +107,7 @@ public class SlackAppServiceTest {
 
         try {
             SlackConfig config = new SlackConfig();
-            config.setMethodsEndpointUrlPrefix("http://localhost:" + slackApiServer.configuration().port() + "/api");
+            config.setMethodsEndpointUrlPrefix("http://127.0.0.1:" + slackApiServer.configuration().port() + "/api");
             App app = new App(AppConfig.builder()
                     .singleTeamBotToken("xoxb-xxxx")
                     .signingSecret("secret")
