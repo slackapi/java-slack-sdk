@@ -52,6 +52,9 @@ public class MessageChangedEvent implements Event {
         private Boolean displayAsBot;
         private List<String> xFiles;
 
+        private String threadTs;
+        private String parentUserId;
+
         private String ts;
         private String userTeam;
         private String sourceTeam;
