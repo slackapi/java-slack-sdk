@@ -24,6 +24,16 @@ public class DetailedLoggingListener extends HttpResponseListener {
         if (log.isDebugEnabled()) {
             Response response = state.getResponse();
             String body = state.getParsedResponseBody();
+            if (!state.getConfig().isLibraryMaintainerMode()) {
+                if (body.contains("\"access_token\":")) {
+                    body = body.replaceFirst(
+                            "\"access_token\":\"[^\"]+?\"", "\"access_token\":\"(redacted)\"");
+                }
+                if (body.contains("\"refresh_token\":")) {
+                    body = body.replaceFirst(
+                            "\"refresh_token\":\"[^\"]+?\"", "\"refresh_token\":\"(redacted)\"");
+                }
+            }
 
             Buffer requestBody = new Buffer();
             RequestBody requestBodyObj = response.request().body();
@@ -38,6 +48,12 @@ public class DetailedLoggingListener extends HttpResponseListener {
             String textRequestBody = null;
             try {
                 textRequestBody = requestBody.buffer().readUtf8();
+                if (!state.getConfig().isLibraryMaintainerMode()) {
+                    if (textRequestBody.contains("refresh_token=")) {
+                        textRequestBody = textRequestBody.replaceFirst(
+                                "refresh_token=[^\\&]+", "refresh_token=(redacted)");
+                    }
+                }
             } catch (Exception e) {
                 log.debug("Failed to read request body because {}, error: {}", e.getMessage(), e.getClass().getCanonicalName());
             }

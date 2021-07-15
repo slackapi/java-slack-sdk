@@ -27,6 +27,14 @@ public interface InstallationService extends Service {
     void saveInstallerAndBot(Installer installer) throws Exception;
 
     /**
+     * Saves an bot installation data.
+     */
+    default void saveBot(Bot bot) throws Exception {
+        throw new UnsupportedOperationException(
+                "To run this app, your InstallationService must implement this method properly.");
+    }
+
+    /**
      * Deletes a bot permission data only.
      */
     void deleteBot(Bot bot) throws Exception;

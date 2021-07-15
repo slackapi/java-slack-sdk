@@ -9,6 +9,7 @@ import com.slack.api.bolt.service.builtin.oauth.view.OAuthInstallPageRenderer;
 import com.slack.api.bolt.service.builtin.oauth.view.OAuthRedirectUriPageRenderer;
 import com.slack.api.bolt.service.builtin.oauth.view.default_impl.OAuthDefaultInstallPageRenderer;
 import com.slack.api.bolt.service.builtin.oauth.view.default_impl.OAuthDefaultRedirectUriPageRenderer;
+import com.slack.api.token_rotation.TokenRotator;
 import com.slack.api.util.http.SlackHttpClient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -207,6 +208,9 @@ public class AppConfig {
     @Builder.Default
     private String userScope = Optional.ofNullable(System.getenv(EnvVariableName.SLACK_USER_SCOPES))
             .orElse(System.getenv(EnvVariableName.SLACK_APP_USER_SCOPE));
+
+    @Builder.Default
+    private long tokenRotationExpirationMillis = TokenRotator.DEFAULT_MILLISECONDS_BEFORE_EXPIRATION;
 
     private String appPath;
 

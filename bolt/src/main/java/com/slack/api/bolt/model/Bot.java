@@ -45,6 +45,14 @@ public interface Bot {
 
     void setBotAccessToken(String botAccessToken);
 
+    String getBotRefreshToken();
+
+    void setBotRefreshToken(String botRefreshToken);
+
+    Long getBotTokenExpiresAt();
+
+    void setBotTokenExpiresAt(Long botTokenExpiresAt);
+
     Long getInstalledAt();
 
     void setInstalledAt(Long installedAt);

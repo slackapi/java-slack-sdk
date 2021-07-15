@@ -29,6 +29,8 @@ public class DefaultInstaller implements Installer {
     private String installerUserId;
     private String installerUserScope;
     private String installerUserAccessToken;
+    private String installerUserRefreshToken;
+    private Long installerUserTokenExpiresAt;
 
     @Deprecated
     private String scope;
@@ -38,6 +40,8 @@ public class DefaultInstaller implements Installer {
     private String botUserId;
 
     private String botAccessToken;
+    private String botRefreshToken;
+    private Long botTokenExpiresAt;
 
     private String incomingWebhookUrl;
     private String incomingWebhookChannelId;
@@ -63,6 +67,8 @@ public class DefaultInstaller implements Installer {
         bot.setBotId(botId);
         bot.setBotUserId(botUserId);
         bot.setBotAccessToken(botAccessToken);
+        bot.setBotRefreshToken(botRefreshToken);
+        bot.setBotTokenExpiresAt(botTokenExpiresAt);
         bot.setInstalledAt(installedAt);
         return bot;
     }

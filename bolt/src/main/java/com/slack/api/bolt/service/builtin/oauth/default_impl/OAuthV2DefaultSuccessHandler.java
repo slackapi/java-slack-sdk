@@ -53,6 +53,9 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
                 .appId(o.getAppId())
                 .botUserId(o.getBotUserId())
                 .botAccessToken(o.getAccessToken())
+                .botRefreshToken(o.getRefreshToken())
+                .botTokenExpiresAt(o.getExpiresIn() == null ?
+                        null : System.currentTimeMillis() + (o.getExpiresIn() * 1000))
                 .isEnterpriseInstall(o.isEnterpriseInstall())
                 .tokenType(o.getTokenType())
                 .enterpriseId(enterpriseId)
@@ -67,6 +70,9 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
             // we can assume authed_user should exist but just in case
             i = i.installerUserId(o.getAuthedUser().getId())
                     .installerUserAccessToken(o.getAuthedUser().getAccessToken())
+                    .botRefreshToken(o.getAuthedUser().getRefreshToken())
+                    .botTokenExpiresAt(o.getAuthedUser().getExpiresIn() == null ?
+                            null : System.currentTimeMillis() + (o.getAuthedUser().getExpiresIn() * 1000))
                     .installerUserScope(o.getAuthedUser().getScope());
         }
 

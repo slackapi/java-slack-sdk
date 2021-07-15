@@ -8,13 +8,15 @@ import com.slack.api.bolt.model.Bot;
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestType;
-import com.slack.api.bolt.util.Responder;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.service.InstallationService;
+import com.slack.api.bolt.util.Responder;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.token_rotation.RefreshedToken;
+import com.slack.api.token_rotation.TokenRotator;
 import com.slack.api.util.thread.ExecutorServiceFactory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,6 +43,7 @@ public class MultiTeamsAuthorization implements Middleware {
 
     private final AppConfig config;
     private final InstallationService installationService;
+    private final TokenRotator tokenRotator;
 
     @Data
     @AllArgsConstructor
@@ -66,6 +69,12 @@ public class MultiTeamsAuthorization implements Middleware {
     public MultiTeamsAuthorization(AppConfig config, InstallationService installationService) {
         this.config = config;
         this.installationService = installationService;
+        this.tokenRotator = new TokenRotator(
+                config.getSlack().methods(),
+                config.getTokenRotationExpirationMillis(),
+                config.getClientId(),
+                config.getClientSecret()
+        );
         setAlwaysRequestUserTokenNeeded(config.isAlwaysRequestUserTokenNeeded());
         if (config.isAuthTestCacheEnabled()) {
             boolean permanentCacheEnabled = config.getAuthTestCacheExpirationMillis() < 0;
@@ -122,6 +131,20 @@ public class MultiTeamsAuthorization implements Middleware {
         Bot bot = installationService.findBot(context.getEnterpriseId(), context.getTeamId());
         Installer installer = null;
         if (bot != null) {
+            if (bot.getBotRefreshToken() != null) {
+                Optional<RefreshedToken> maybeRefreshed = this.tokenRotator.performTokenRotation(r -> r
+                        .accessToken(bot.getBotAccessToken())
+                        .refreshToken(bot.getBotRefreshToken())
+                        .expiresAt(bot.getBotTokenExpiresAt())
+                );
+                if (maybeRefreshed.isPresent()) {
+                    RefreshedToken newOne = maybeRefreshed.get();
+                    bot.setBotAccessToken(newOne.getAccessToken());
+                    bot.setBotRefreshToken(newOne.getRefreshToken());
+                    bot.setBotTokenExpiresAt(newOne.getExpiresAt());
+                    installationService.saveBot(bot);
+                }
+            }
             botToken = bot.getBotAccessToken();
         }
 
@@ -133,6 +156,40 @@ public class MultiTeamsAuthorization implements Middleware {
                     context.getRequestUserId()
             );
             if (installer != null) {
+                boolean refreshed = false;
+                if (installer.getInstallerUserRefreshToken() != null) {
+                    final Installer _i = installer;
+                    Optional<RefreshedToken> maybeRefreshed = this.tokenRotator.performTokenRotation(r -> r
+                            .accessToken(_i.getInstallerUserAccessToken())
+                            .refreshToken(_i.getInstallerUserRefreshToken())
+                            .expiresAt(_i.getInstallerUserTokenExpiresAt())
+                    );
+                    refreshed = refreshed || maybeRefreshed.isPresent();
+                    if (maybeRefreshed.isPresent()) {
+                        RefreshedToken newOne = maybeRefreshed.get();
+                        installer.setInstallerUserAccessToken(newOne.getAccessToken());
+                        installer.setInstallerUserRefreshToken(newOne.getRefreshToken());
+                        installer.setInstallerUserTokenExpiresAt(newOne.getExpiresAt());
+                    }
+                }
+                if (installer.getBotRefreshToken() != null) {
+                    final Installer _i = installer;
+                    Optional<RefreshedToken> maybeRefreshed = this.tokenRotator.performTokenRotation(r -> r
+                            .accessToken(_i.getBotAccessToken())
+                            .refreshToken(_i.getBotRefreshToken())
+                            .expiresAt(_i.getBotTokenExpiresAt())
+                    );
+                    refreshed = refreshed || maybeRefreshed.isPresent();
+                    if (maybeRefreshed.isPresent()) {
+                        RefreshedToken newOne = maybeRefreshed.get();
+                        installer.setBotAccessToken(newOne.getAccessToken());
+                        installer.setBotRefreshToken(newOne.getRefreshToken());
+                        installer.setBotTokenExpiresAt(newOne.getExpiresAt());
+                    }
+                }
+                if (refreshed) {
+                    installationService.saveInstallerAndBot(installer);
+                }
                 userToken = installer.getInstallerUserAccessToken();
             }
         }

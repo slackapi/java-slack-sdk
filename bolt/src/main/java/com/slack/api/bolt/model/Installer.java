@@ -57,6 +57,14 @@ public interface Installer {
 
     void setInstallerUserAccessToken(String userAccessToken);
 
+    String getInstallerUserRefreshToken();
+
+    void setInstallerUserRefreshToken(String installerUserRefreshToken);
+
+    Long getInstallerUserTokenExpiresAt();
+
+    void setInstallerUserTokenExpiresAt(Long installerUserTokenExpiresAt);
+
     // ---------------------------------
     // Bot
     // ---------------------------------
@@ -76,6 +84,14 @@ public interface Installer {
     String getBotAccessToken();
 
     void setBotAccessToken(String botAccessToken);
+
+    String getBotRefreshToken();
+
+    void setBotRefreshToken(String botRefreshToken);
+
+    Long getBotTokenExpiresAt();
+
+    void setBotTokenExpiresAt(Long botTokenExpiresAt);
 
     Bot toBot();
 

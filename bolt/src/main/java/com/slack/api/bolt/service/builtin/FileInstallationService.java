@@ -57,6 +57,11 @@ public class FileInstallationService implements InstallationService {
     }
 
     @Override
+    public void saveBot(Bot bot) throws Exception {
+        save(getBotPath(bot.getEnterpriseId(), bot.getTeamId()), bot.getInstalledAt(), JsonOps.toJsonString(bot));
+    }
+
+    @Override
     public void deleteBot(Bot bot) throws Exception {
         Files.deleteIfExists(Paths.get(getBotPath(bot.getEnterpriseId(), bot.getTeamId())));
     }
