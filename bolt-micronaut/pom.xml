@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <micronaut.version>2.5.7</micronaut.version>
+        <micronaut.version>2.5.9</micronaut.version>
         <micronaut-test-junit5.version>2.3.7</micronaut-test-junit5.version>
         <mockito-all.version>1.10.19</mockito-all.version>
     </properties>
