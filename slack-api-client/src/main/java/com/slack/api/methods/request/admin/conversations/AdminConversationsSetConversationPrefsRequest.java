@@ -39,6 +39,7 @@ public class AdminConversationsSetConversationPrefsRequest implements SlackApiRe
     public static class Pref {
         private List<String> types = new ArrayList<>();
         private List<String> users = new ArrayList<>();
+        private List<String> subteams = new ArrayList<>();
 
         public String toValue() {
             List<String> elements = new ArrayList<>();
@@ -50,6 +51,11 @@ public class AdminConversationsSetConversationPrefsRequest implements SlackApiRe
             if (getUsers() != null) {
                 for (String user : getUsers()) {
                     elements.add("user:" + user);
+                }
+            }
+            if (getSubteams() != null) {
+                for (String subteam : getSubteams()) {
+                    elements.add("subteam:" + subteam);
                 }
             }
             return elements.stream().collect(Collectors.joining(","));
