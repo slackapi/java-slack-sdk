@@ -44,7 +44,7 @@ public class TokenRotatorTest {
         Optional<RefreshedToken> refreshedToken = tokenRotator.performTokenRotation(r -> r
                 .accessToken("xoxe.xoxb-1-initial")
                 .refreshToken("xoxe-1-xxx")
-                .expiresAt(System.currentTimeMillis())
+                .expiresAt(System.currentTimeMillis() + 10_000L)
         );
         assertThat(refreshedToken.get().getRefreshToken(), is(notNullValue()));
     }
@@ -53,14 +53,14 @@ public class TokenRotatorTest {
     public void skipRefreshing() throws Exception {
         TokenRotator tokenRotator = new TokenRotator(
                 slack.methods(),
-                1000,
+                1_000,
                 "111.222",
                 "secret"
         );
         Optional<RefreshedToken> refreshedToken = tokenRotator.performTokenRotation(r -> r
                 .accessToken("xoxe.xoxb-1-initial")
                 .refreshToken("xoxe-1-xxx")
-                .expiresAt(System.currentTimeMillis())
+                .expiresAt(System.currentTimeMillis() + 10_000L)
         );
         assertFalse(refreshedToken.isPresent());
     }
