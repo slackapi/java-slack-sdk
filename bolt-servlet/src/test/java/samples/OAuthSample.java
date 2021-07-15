@@ -13,6 +13,7 @@ public class OAuthSample {
 
     public static void main(String[] args) throws Exception {
         AppConfig config = ResourceLoader.loadAppConfig("appConfig_oauth.json");
+        config.setTokenRotationExpirationMillis(1000 * 60 * 60 * 24 * 365); // for testing
         App app = new App(config).asOAuthApp(true)
                 // Enable built-in tokens_revoked / app_uninstalled event handlers
                 .enableTokenRevocationHandlers();
@@ -31,6 +32,8 @@ public class OAuthSample {
             });
             return ctx.ack();
         });
+
+        app.command("/token-rotation-modal", (req, ctx) -> ctx.ack("Hi!"));
 
         app.oauthCallbackError((req, resp) -> {
             req.getContext().logger.error("query string: {}", req.getQueryString());

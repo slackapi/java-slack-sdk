@@ -70,6 +70,18 @@ public class AmazonS3InstallationService implements InstallationService {
         }
     }
 
+    @Override
+    public void saveBot(Bot bot) throws Exception {
+        AmazonS3 s3 = this.createS3Client();
+        String keyPrefix = getBotKey(bot.getEnterpriseId(), bot.getTeamId());
+        if (isHistoricalDataEnabled()) {
+            save(s3, keyPrefix + "-latest", JsonOps.toJsonString(bot), "AWS S3 putObject result of Bot data - {}, {}");
+            save(s3, keyPrefix + "-" + bot.getInstalledAt(), JsonOps.toJsonString(bot), "AWS S3 putObject result of Bot data - {}, {}");
+        } else {
+            save(s3, keyPrefix, JsonOps.toJsonString(bot), "AWS S3 putObject result of Bot data - {}, {}");
+        }
+    }
+
     private void save(AmazonS3 s3, String s3Key, String json, String logMessage) {
         PutObjectResult botPutResult = s3.putObject(bucketName, s3Key, json);
         if (log.isDebugEnabled()) {
