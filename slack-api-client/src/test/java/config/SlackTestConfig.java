@@ -58,7 +58,7 @@ public class SlackTestConfig {
         if (redisEnabled != null && redisEnabled.equals("1")) {
             // brew install redis
             // redis-server /usr/local/etc/redis.conf --loglevel verbose
-            JedisPool jedis = new JedisPool("localhost");
+            JedisPool jedis = new JedisPool("127.0.0.1");
             CONFIG.getMethodsConfig().setMetricsDatastore(new RedisMetricsDatastore("test", jedis));
         }
     }

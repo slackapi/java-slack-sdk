@@ -268,7 +268,7 @@ public class MultiTeamsAuthTestCacheTest {
         }
 
         public String getMethodsEndpointPrefix() {
-            return "http://localhost:" + port + "/api/";
+            return "http://127.0.0.1:" + port + "/api/";
         }
 
         public void start() throws Exception {

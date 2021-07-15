@@ -104,8 +104,8 @@ public class ApiTest {
     @Test
     public void getLogs() throws Exception {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix("http://localhost:" + port + "/api/");
-        config.setAuditEndpointUrlPrefix("http://localhost:" + port + "/api/");
+        config.setMethodsEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
+        config.setAuditEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
 
         config.setAuditConfig(new AuditConfig());
         config.getAuditConfig().setExecutorName("getLogs" + System.currentTimeMillis());
@@ -124,8 +124,8 @@ public class ApiTest {
     @Test
     public void getSchemas() throws Exception {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix("http://localhost:" + port + "/api/");
-        config.setAuditEndpointUrlPrefix("http://localhost:" + port + "/api/");
+        config.setMethodsEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
+        config.setAuditEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
 
         config.setAuditConfig(new AuditConfig());
         config.getAuditConfig().setExecutorName("getSchemas" + System.currentTimeMillis());
@@ -143,8 +143,8 @@ public class ApiTest {
     @Test
     public void getActions() throws Exception {
         SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix("http://localhost:" + port + "/api/");
-        config.setAuditEndpointUrlPrefix("http://localhost:" + port + "/api/");
+        config.setMethodsEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
+        config.setAuditEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
 
         config.setAuditConfig(new AuditConfig());
         config.getAuditConfig().setExecutorName("getActions" + System.currentTimeMillis());

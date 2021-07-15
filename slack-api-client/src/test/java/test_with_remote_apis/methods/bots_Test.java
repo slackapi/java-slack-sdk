@@ -35,7 +35,7 @@ public class bots_Test {
     static SlackConfig invalidConfig = new SlackConfig();
 
     static {
-        invalidConfig.setMethodsEndpointUrlPrefix("https://localhost:9999/");
+        invalidConfig.setMethodsEndpointUrlPrefix("https://127.0.0.1:9999/");
     }
 
     Slack brokenSlack = Slack.getInstance(invalidConfig);

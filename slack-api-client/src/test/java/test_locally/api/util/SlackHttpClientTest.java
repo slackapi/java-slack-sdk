@@ -60,7 +60,7 @@ public class SlackHttpClientTest {
     // https://github.com/slackapi/java-slack-sdk/issues/566
     @Test
     public void shouldNotRevealAuthorizationHeaderEvenIfItIsInvalid() throws Exception {
-        String url = "http://localhost:123/";
+        String url = "http://127.0.0.1:123/";
         String expectedErrorMessage = "Invalid value detected for Authorization header";
         String token = "xoxb-111-222-zzz\nfoo-bar";
         try (SlackHttpClient httpClient = new SlackHttpClient()) {

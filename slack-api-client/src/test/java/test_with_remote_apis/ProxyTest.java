@@ -74,7 +74,7 @@ public class ProxyTest {
         context.addServlet(proxyServlet, "/*");
         server.start();
 
-        config.setProxyUrl("http://localhost:" + port);
+        config.setProxyUrl("http://127.0.0.1:" + port);
     }
 
     @After

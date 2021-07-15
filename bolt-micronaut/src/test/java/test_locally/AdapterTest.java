@@ -54,7 +54,7 @@ public class AdapterTest {
 
         HttpRequest<String> req = mock(HttpRequest.class);
 
-        InetSocketAddress isa = new InetSocketAddress("localhost", 443);
+        InetSocketAddress isa = new InetSocketAddress("127.0.0.1", 443);
         when(req.getRemoteAddress()).thenReturn(isa);
 
         Request<?> slackRequest = adapter.toSlackRequest(req, "token=random&ssl_check=1");

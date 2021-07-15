@@ -87,7 +87,7 @@ public class LegacyApiTest {
     @Test
     public void current() throws Exception {
         SlackConfig config = new SlackConfig();
-        config.setLegacyStatusEndpointUrlPrefix("http://localhost:" + port + "/api/");
+        config.setLegacyStatusEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
         LegacyCurrentStatus response = Slack.getInstance(config).statusLegacy().current();
         assertThat(response, is(notNullValue()));
     }
@@ -95,7 +95,7 @@ public class LegacyApiTest {
     @Test
     public void history() throws Exception {
         SlackConfig config = new SlackConfig();
-        config.setLegacyStatusEndpointUrlPrefix("http://localhost:" + port + "/api/");
+        config.setLegacyStatusEndpointUrlPrefix("http://127.0.0.1:" + port + "/api/");
         List<LegacySlackIssue> response = Slack.getInstance(config).statusLegacy().history();
         assertThat(response, is(notNullValue()));
     }
