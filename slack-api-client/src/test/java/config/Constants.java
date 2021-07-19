@@ -25,6 +25,7 @@ public class Constants {
     public static final String SLACK_SDK_TEST_GRID_USER_ID_ADMIN_AUTH = "SLACK_SDK_TEST_GRID_USER_ID_ADMIN_AUTH";
     // Shared channel ID for testing with Grid
     public static final String SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID = "SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID";
+    public static final String SLACK_SDK_TEST_GRID_SHARED_CHANNEL_OTHER_ORG_USER_ID = "SLACK_SDK_TEST_GRID_SHARED_CHANNEL_OTHER_ORG_USER_ID";
     // Org level installed app
     public static final String SLACK_SDK_TEST_GRID_ORG_LEVEL_APP_BOT_TOKEN = "SLACK_SDK_TEST_GRID_ORG_LEVEL_APP_BOT_TOKEN";
     // --------------------------------------------
