@@ -19,10 +19,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import static config.Constants.SLACK_SDK_TEST_GRID_SHARED_CHANNEL_OTHER_ORG_USER_ID;
 import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 @Slf4j
@@ -395,5 +397,15 @@ public class users_Test {
                 assertThat(conversations.getChannels().size(), is(greaterThan(0)));
             }
         }
+    }
+
+    // https://github.com/slackapi/java-slack-sdk/issues/768
+    @Test
+    public void issue_768_strangerLookup() throws Exception {
+        // is_stranger property is only available with user IDs in other org/workspace
+        String userId = System.getenv(SLACK_SDK_TEST_GRID_SHARED_CHANNEL_OTHER_ORG_USER_ID);
+        UsersInfoResponse user = slack.methods(enterpriseGridTeamAdminUserToken).usersInfo(r ->
+                r.user(userId));
+        assertNull(user.getError());
     }
 }
