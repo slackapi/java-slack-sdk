@@ -7,6 +7,7 @@ import com.slack.api.methods.request.chat.ChatUnfurlRequest;
 import com.slack.api.methods.request.chat.ChatUpdateRequest;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
+import com.slack.api.methods.response.conversations.ConversationsHistoryResponse;
 import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.conversations.ConversationsMembersResponse;
 import com.slack.api.methods.response.files.FilesUploadResponse;
@@ -847,6 +848,36 @@ public class chat_Test {
                 .blocksAsString(blocksAsString)
                 .build());
         assertThat(updateMessage.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void issue_785() throws Exception {
+        loadRandomChannelId();
+
+        String ts = null;
+        try {
+            ChatPostMessageResponse newMessage = slack.methods(botToken).chatPostMessage(r -> r
+                    .text("Here is the link: https://i.imgur.com/brgYmPX.gifv")
+                    .unfurlLinks(true)
+                    .unfurlMedia(true)
+                    .channel(randomChannelId)
+            );
+            assertThat(newMessage.getError(), is(nullValue()));
+            ts = newMessage.getTs();
+            Thread.sleep(3_000L);
+
+            ConversationsHistoryResponse history = slack.methods(botToken).conversationsHistory(r -> r
+                    .channel(randomChannelId).limit(1));
+            assertThat(history.getError(), is(nullValue()));
+            Attachment.VideoHtml videoHtml = history.getMessages().get(0).getAttachments().get(0).getVideoHtml();
+            assertThat(videoHtml.getHtml(), is(nullValue()));
+            assertThat(videoHtml.getSource(), is(notNullValue()));
+        } finally {
+            if (ts != null) {
+                final String _ts = ts;
+                slack.methods(botToken).chatDelete(r -> r.channel(randomChannelId).ts(_ts));
+            }
+        }
     }
 
 }
