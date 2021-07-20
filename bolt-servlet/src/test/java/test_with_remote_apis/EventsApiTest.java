@@ -991,7 +991,7 @@ public class EventsApiTest {
             });
             app.event(MessageChangedEvent.class, (req, ctx) -> {
                 if (req.getEvent().getMessage().getFiles() != null && req.getEvent().getMessage().getFiles().size() > 0
-                        && req.getEvent().getPreviousMessage().getFiles() != null && req.getEvent().getPreviousMessage().getFiles().size() > 0) {
+                        && req.getEvent().getPreviousMessage().getMessage().getFiles() != null && req.getEvent().getPreviousMessage().getMessage().getFiles().size() > 0) {
                     state.messageChanged.incrementAndGet();
                 }
                 return ctx.ack();
