@@ -25,6 +25,20 @@
       "subtype": "",
       "user": "",
       "team": "",
+      "bot_id": "",
+      "bot_profile": {
+        "id": "",
+        "deleted": false,
+        "name": "",
+        "updated": 123,
+        "app_id": "",
+        "icons": {
+          "image_36": "",
+          "image_48": "",
+          "image_72": ""
+        },
+        "team_id": ""
+      },
       "edited": {
         "user": "",
         "ts": ""
@@ -680,10 +694,17 @@
       "display_as_bot": false,
       "thread_ts": "",
       "parent_user_id": "",
+      "hidden": false,
+      "is_locked": false,
+      "subscribed": false,
       "ts": "",
       "user_team": "",
       "source_team": "",
-      "is_starred": false
+      "is_starred": false,
+      "reply_count": 123,
+      "reply_users_count": 123,
+      "latest_reply": "",
+      "last_read": ""
     },
     "previous_message": {
       "client_msg_id": "",
@@ -691,6 +712,20 @@
       "subtype": "",
       "user": "",
       "team": "",
+      "bot_id": "",
+      "bot_profile": {
+        "id": "",
+        "deleted": false,
+        "name": "",
+        "updated": 123,
+        "app_id": "",
+        "icons": {
+          "image_36": "",
+          "image_48": "",
+          "image_72": ""
+        },
+        "team_id": ""
+      },
       "edited": {
         "user": "",
         "ts": ""
@@ -1346,10 +1381,17 @@
       "display_as_bot": false,
       "thread_ts": "",
       "parent_user_id": "",
+      "hidden": false,
+      "is_locked": false,
+      "subscribed": false,
       "ts": "",
       "user_team": "",
       "source_team": "",
-      "is_starred": false
+      "is_starred": false,
+      "reply_count": 123,
+      "reply_users_count": 123,
+      "latest_reply": "",
+      "last_read": ""
     },
     "event_ts": "",
     "ts": "",

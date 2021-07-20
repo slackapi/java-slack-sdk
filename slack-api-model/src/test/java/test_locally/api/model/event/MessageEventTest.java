@@ -389,8 +389,8 @@ public class MessageEventTest {
                 "}";
         MessageChangedEvent event = GsonFactory.createSnakeCase().fromJson(json, MessageChangedEvent.class);
         assertThat(event.getMessage().getFiles(), is(notNullValue()));
-        assertThat(event.getPreviousMessage().getFiles(), is(notNullValue()));
-        assertThat(event.getMessage().getFiles(), is(equalTo(event.getPreviousMessage().getFiles())));
+        assertThat(event.getPreviousMessage().getMessage().getFiles(), is(notNullValue()));
+        assertThat(event.getMessage().getFiles(), is(equalTo(event.getPreviousMessage().getMessage().getFiles())));
     }
 
     @Test

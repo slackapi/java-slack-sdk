@@ -2,6 +2,8 @@ package com.slack.api.model.event;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.Attachment;
+import com.slack.api.model.BotProfile;
+import com.slack.api.model.File;
 import com.slack.api.model.Reaction;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
@@ -36,6 +38,7 @@ public class MessageDeletedEvent implements Event {
 
         private final String type = TYPE_NAME;
         private String subtype;
+
         private String user;
         private String team;
 
@@ -45,12 +48,35 @@ public class MessageDeletedEvent implements Event {
         private List<LayoutBlock> blocks;
         private List<Attachment> attachments;
 
+        private List<File> files;
+        private Boolean upload;
+        private Boolean displayAsBot;
+        private List<String> xFiles;
+
+        private String threadTs;
+        private String parentUserId;
+
+        private String botId;
+        private BotProfile botProfile;
+
+        private Boolean hidden;
+        private Boolean isLocked;
+        private Boolean subscribed;
+
+        private String ts;
+        private String userTeam;
+        private String sourceTeam;
+
         @SerializedName("is_starred")
         private boolean starred;
         private List<String> pinnedTo;
         private List<Reaction> reactions;
 
-        private String ts;
+        private Integer replyCount;
+        private Integer replyUsersCount;
+        private String latestReply;
+        private List<String> replyUsers;
+        private String lastRead;
     }
 
     @Data

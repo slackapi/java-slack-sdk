@@ -2,13 +2,11 @@ package com.slack.api.util.json;
 
 import com.google.gson.*;
 import com.slack.api.model.Attachment;
-import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 public class GsonMessageAttachmentVideoHtmlFactory implements JsonDeserializer<Attachment.VideoHtml>, JsonSerializer<Attachment.VideoHtml> {
 
     private static final String REPORT_THIS = "Please report this issue at https://github.com/slackapi/java-slack-sdk/issues";
@@ -69,7 +67,6 @@ public class GsonMessageAttachmentVideoHtmlFactory implements JsonDeserializer<A
             json.add("source", new JsonPrimitive(src.getSource()));
             return json;
         } else {
-            log.warn("Unsupported field in Attachment.VideoHtml is detected ({})", src);
             return JsonNull.INSTANCE;
         }
     }

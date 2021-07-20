@@ -3,11 +3,13 @@ package test_locally.unit;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.slack.api.model.Attachment;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.RichTextElement;
+import com.slack.api.model.event.MessageChangedEvent;
 import com.slack.api.util.json.*;
 
 public class GsonFactory {
@@ -29,7 +31,11 @@ public class GsonFactory {
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProperties))
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProperties))
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProperties))
-                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProperties));
+                .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProperties))
+                .registerTypeAdapter(Attachment.VideoHtml.class,
+                        new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProperties))
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
+                        new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProperties));
 
         if (unknownPropertyDetection) {
             return builder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory()).create();
