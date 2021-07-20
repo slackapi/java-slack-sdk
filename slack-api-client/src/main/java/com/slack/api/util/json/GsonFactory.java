@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.slack.api.SlackConfig;
 import com.slack.api.audit.response.LogsResponse;
+import com.slack.api.model.Attachment;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.TextObject;
@@ -30,6 +31,7 @@ public class GsonFactory {
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory())
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory())
+                .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory())
                 .create();
     }
 
@@ -46,7 +48,9 @@ public class GsonFactory {
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class,
-                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps));
+                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(Attachment.VideoHtml.class,
+                        new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProps));
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }

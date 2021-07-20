@@ -220,7 +220,14 @@ public class Attachment {
     private Integer thumbWidth;
     private Integer thumbHeight;
 
-    private String videoHtml;
+    private String videoUrl;
+    private VideoHtml videoHtml;
+
+    @Data
+    public static class VideoHtml {
+        private String html;
+        private String source;
+    }
 
     private Integer videoHtmlWidth;
     private Integer videoHtmlHeight;
