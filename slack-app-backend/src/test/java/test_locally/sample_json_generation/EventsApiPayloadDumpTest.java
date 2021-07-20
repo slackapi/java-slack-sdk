@@ -249,7 +249,8 @@ public class EventsApiPayloadDumpTest {
         message.setAttachments(SampleObjects.Attachments);
         message.setBlocks(SampleObjects.Blocks);
         event.setMessage(message);
-        event.setPreviousMessage(message);
+        event.setPreviousMessage(new MessageChangedEvent.PreviousMessage());
+        event.getPreviousMessage().setMessage(message);
         payload.setEvent(event);
         return payload;
     }

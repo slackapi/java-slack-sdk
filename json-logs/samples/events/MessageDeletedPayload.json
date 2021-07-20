@@ -677,8 +677,35 @@
           }
         }
       ],
+      "upload": false,
+      "display_as_bot": false,
+      "thread_ts": "",
+      "parent_user_id": "",
+      "bot_id": "",
+      "bot_profile": {
+        "id": "",
+        "deleted": false,
+        "name": "",
+        "updated": 123,
+        "app_id": "",
+        "icons": {
+          "image_36": "",
+          "image_48": "",
+          "image_72": ""
+        },
+        "team_id": ""
+      },
+      "hidden": false,
+      "is_locked": false,
+      "subscribed": false,
+      "ts": "",
+      "user_team": "",
+      "source_team": "",
       "is_starred": false,
-      "ts": ""
+      "reply_count": 123,
+      "reply_users_count": 123,
+      "latest_reply": "",
+      "last_read": ""
     },
     "event_ts": "",
     "ts": "",

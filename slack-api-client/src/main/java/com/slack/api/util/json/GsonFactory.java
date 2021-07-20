@@ -11,6 +11,7 @@ import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.RichTextElement;
+import com.slack.api.model.event.MessageChangedEvent;
 
 /**
  * Gson Factory for the entire SDK. This factory enables some Slack-specific settings.
@@ -50,7 +51,9 @@ public class GsonFactory {
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class,
                         new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(Attachment.VideoHtml.class,
-                        new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProps));
+                        new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProps))
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
+                        new GsonMessageChangedEventPreviousMessageFactory());
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
@@ -72,7 +75,13 @@ public class GsonFactory {
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class,
-                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps));
+                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
+                        new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class,
+                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
+                        new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps));
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
