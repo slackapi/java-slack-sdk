@@ -4,7 +4,7 @@ This document describes tools, tasks and workflow that one needs to be familiar 
 
 ## Tools
 
-Maintaining this project requires installing [OpenJDK](https://openjdk.java.net/) in your development environment (for best results on Mac, use OpenJDK v11 via `brew install openjdk@11`). Also, [Apache Maven](https://maven.apache.org/) needs to be installed to build this project. All of the remaining tools are downloaded as `dependencies`, which means you'll have them available once you run `mvn test-compile` in a working copy of this repository.
+Maintaining this project requires installing [OpenJDK](https://openjdk.java.net/) in your development environment (for best results on macOS, use OpenJDK v11 via `brew install openjdk@11`). Also, [Apache Maven](https://maven.apache.org/) needs to be installed to build this project. All of the remaining tools are downloaded as `dependencies`, which means you'll have them available once you run `mvn test-compile` in a working copy of this repository.
 
 ## Tasks
 
