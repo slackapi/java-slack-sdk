@@ -124,7 +124,4 @@ The [jSlack](https://search.maven.org/artifact/com.github.seratch/jslack) projec
 
 ### Contributing
 
-We welcome contributions from everyone! Please check out our
-[Contributor's Guide](.github/contributing.md) for how to contribute in a
-helpful and collaborative way.
-
+We welcome contributions from everyone! Please check out our [Contributor's Guide](.github/contributing.md) for how to contribute in a helpful and collaborative way.
