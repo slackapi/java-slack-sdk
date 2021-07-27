@@ -8,7 +8,7 @@ Within the SDK, there are two different modules:
 
 * [**Bolt for Java**](https://slack.dev/java-slack-sdk/guides/getting-started-with-bolt), which is a framework with a simple API that makes it easy to write modern Slack apps in Java.
 * [**Slack API Client**](https://slack.dev/java-slack-sdk/guides/web-api-basics), for when you need a more customized approach to building a Slack app in Java.
- 
+
 If what you want to do is call Slack APIs in your existing services, we recommend using only the **Slack API Client**. If instead, you’re developing a new modern and interactive Slack app, we recommend **Bolt** for it. The framework enables developers to focus on the essential parts of their apps without being bothered by trifles.
 
 ## Bolt for Java
@@ -121,3 +121,10 @@ If you get stuck, we’re here to help. The following are the best ways to get a
 ## Important Notice for jSlack users
 
 The [jSlack](https://search.maven.org/artifact/com.github.seratch/jslack) project has been transferred to [@slackapi](http://github.com/slackapi). The jSlack maintenance releases for security issues or major bugfixes will be continued at https://github.com/seratch/jslack-maintenance-releases .
+
+### Contributing
+
+We welcome contributions from everyone! Please check out our
+[Contributor's Guide](.github/contributing.md) for how to contribute in a
+helpful and collaborative way.
+
