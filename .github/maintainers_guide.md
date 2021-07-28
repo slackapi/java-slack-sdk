@@ -4,13 +4,13 @@ This document describes tools, tasks and workflow that one needs to be familiar 
 
 ## Tools
 
-Maintaining this project requires installing [OpenJDK](https://openjdk.java.net/) in your development environment. Also, [Apache Maven](https://maven.apache.org/) needs to be installed to build this project. All of the remaining tools are downloaded as `dependencies`, which means you'll have them available once you run `mvn test-compile` in a working copy of this repository.
+Maintaining this project requires installing [OpenJDK](https://openjdk.java.net/) in your development environment (for best results on macOS, use OpenJDK v11 via `brew install openjdk@11`). Also, [Apache Maven](https://maven.apache.org/) needs to be installed to build this project. All of the remaining tools are downloaded as `dependencies`, which means you'll have them available once you run `mvn test-compile` in a working copy of this repository.
 
 ## Tasks
 
 ### Testing
 
-This project has tests for individual packages inside of each's respective `src/test/java` directory. All the tests under `test_locally` package are executed in every single Travis CI build as below.
+This project has tests for individual packages inside of each's respective `src/test/java` directory. All the tests under `test_locally` package are executed in every single GitHub Actions CI build as below.
 
 ```bash
 ./scripts/run_no_prep_tests.sh
@@ -116,7 +116,7 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
 
 * Preparation
   * `git pull --rebase slackapi master`
-  * Make sure if there is no build failures at https://travis-ci.org/slackapi/java-slack-sdk
+  * Make sure there are no build failures at https://github.com/slackapi/java-slack-sdk/actions
 * Set a new version
   * If you don't have `gnu-sed`, run `brew install gnu-sed` first
   * Run `scripts/set_version.sh (the version)` (e.g., `scripts/set_version.sh 1.0.0`)
