@@ -44,21 +44,27 @@ public class OAuthDefaultRedirectUriPageRenderer implements OAuthRedirectUriPage
     public String renderSuccessPage(Installer installer, String completionUrl) {
         String url = completionUrl;
         if (url == null || url.isEmpty()) {
-            if (installer.getIsEnterpriseInstall() != null
-                    && installer.getIsEnterpriseInstall()
-                    && installer.getEnterpriseUrl() != null
-                    && installer.getAppId() != null
-            ) {
-                // org-level installation
-                String rootUrl = installer.getEnterpriseUrl(); // https://{org domain}.enterprise.slack.com/
-                url = rootUrl + "manage/organization/apps/profile/" + installer.getAppId() + "/workspaces/add";
-            } else if (installer.getTeamId() == null || installer.getAppId() == null) {
+            if (installer == null) {
                 url = "slack://open";
             } else {
-                url = "slack://app?team=" + installer.getTeamId() + "&id=" + installer.getAppId();
+                if (installer.getIsEnterpriseInstall() != null
+                        && installer.getIsEnterpriseInstall()
+                        && installer.getEnterpriseUrl() != null
+                        && installer.getAppId() != null
+                ) {
+                    // org-level installation
+                    String rootUrl = installer.getEnterpriseUrl(); // https://{org domain}.enterprise.slack.com/
+                    url = rootUrl + "manage/organization/apps/profile/" + installer.getAppId() + "/workspaces/add";
+                } else if (installer.getTeamId() == null || installer.getAppId() == null) {
+                    url = "slack://open";
+                } else {
+                    url = "slack://app?team=" + installer.getTeamId() + "&id=" + installer.getAppId();
+                }
             }
         }
-        String browserUrl = "https://app.slack.com/client/" + installer.getTeamId();
+        String browserUrl = installer == null || installer.getTeamId() == null
+                ? "https://slack.com/"
+                : "https://app.slack.com/client/" + installer.getTeamId();
         return SUCCESS_PAGE_TEMPLATE
                 .replaceAll("__URL__", url == null ? "" : url)
                 .replaceAll("__BROWSER_URL__", browserUrl);
