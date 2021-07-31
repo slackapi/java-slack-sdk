@@ -1,6 +1,7 @@
 package test_locally.api.methods;
 
 import com.google.gson.Gson;
+import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
@@ -14,11 +15,13 @@ import util.MockSlackApiServer;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static util.MockSlackApi.ValidToken;
 
 public class OpenIDConnectTest {
 
     MockSlackApiServer server = new MockSlackApiServer();
     SlackConfig config = new SlackConfig();
+    Slack slack = Slack.getInstance(config);
 
     @Before
     public void setup() throws Exception {
@@ -29,6 +32,15 @@ public class OpenIDConnectTest {
     @After
     public void tearDown() throws Exception {
         server.stop();
+    }
+
+    @Test
+    public void test() throws Exception {
+        assertThat(slack.methods(ValidToken).openIDConnectToken(r ->
+                r.clientId("abc").clientSecret("xyz").code("xxx").redirectUri("https://www.example.com"))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).openIDConnectUserInfo(r -> r)
+                .isOk(), is(true));
     }
 
     static String token_response_json = "{\n" +
@@ -49,7 +61,25 @@ public class OpenIDConnectTest {
         assertThat(response.getIdToken(), is("eyJhbGcMjY5OTA2MzcWNrLmNvbVwvdGVhbV9p..."));
     }
 
-    // TODO: token rotation pattern
+    static String token_rotation_json = "{\n" +
+            "    \"ok\": true,\n" +
+            "    \"access_token\": \"xoxe.xoxp-1-xxx\",\n" +
+            "    \"token_type\": \"Bearer\",\n" +
+            "    \"refresh_token\": \"xoxe-1-xxx\",\n" +
+            "    \"id_token\": \"eyJhbGcMjY5OTA2MzcWNrLmNvbVwvdGVhbV9p...\"\n" +
+            "}";
+
+    @Test
+    public void token_rotation() {
+        SlackTestConfig testConfig = SlackTestConfig.getInstance();
+        Gson gson = GsonFactory.createSnakeCase(testConfig.getConfig());
+        OpenIDConnectTokenResponse response = gson.fromJson(token_rotation_json, OpenIDConnectTokenResponse.class);
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getAccessToken(), is("xoxe.xoxp-1-xxx"));
+        assertThat(response.getTokenType(), is("Bearer"));
+        assertThat(response.getRefreshToken(), is("xoxe-1-xxx"));
+        assertThat(response.getIdToken(), is("eyJhbGcMjY5OTA2MzcWNrLmNvbVwvdGVhbV9p..."));
+    }
 
     String user_info_json = "{\n" +
             "  \"ok\": true,\n" +
