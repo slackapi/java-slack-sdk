@@ -989,6 +989,7 @@ public class EventsApiTest {
                 }
                 return ctx.ack();
             });
+            // FIXME: this is not called as of July 30, 2021
             app.event(MessageChangedEvent.class, (req, ctx) -> {
                 if (req.getEvent().getMessage().getFiles() != null && req.getEvent().getMessage().getFiles().size() > 0
                         && req.getEvent().getPreviousMessage().getMessage().getFiles() != null && req.getEvent().getPreviousMessage().getMessage().getFiles().size() > 0) {
@@ -1025,6 +1026,7 @@ public class EventsApiTest {
                 Thread.sleep(sleepTime);
                 waitTime += sleepTime;
             }
+            // FIXME: failing as of July 30, 2021
             assertTrue(state.toString(), state.isAllDone());
 
         } finally {

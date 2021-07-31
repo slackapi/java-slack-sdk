@@ -211,6 +211,7 @@ public class Message {
         @SerializedName("preview_is_truncated")
         private boolean previewTruncated;
         private boolean hasRichPreview;
+        private String mediaDisplayType;
 
         private String mimetype;
         private String filetype;

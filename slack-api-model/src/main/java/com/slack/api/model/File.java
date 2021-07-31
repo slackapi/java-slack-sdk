@@ -157,6 +157,7 @@ public class File {
     private String editLink;
 
     private boolean hasRichPreview;
+    private String mediaDisplayType;
     @SerializedName("preview_is_truncated")
     private boolean previewTruncated;
     private String preview;

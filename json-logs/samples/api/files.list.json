@@ -67,7 +67,8 @@
       "thumb_1024": "https://www.example.com/",
       "thumb_1024_w": 12345,
       "thumb_1024_h": 12345,
-      "thumb_video": "https://www.example.com/"
+      "thumb_video": "https://www.example.com/",
+      "media_display_type": ""
     }
   ],
   "paging": {

@@ -442,6 +442,10 @@
     {
       "date_created": "2021-07-07T03:58:20-07:00",
       "body": "Some customers may be experiencing issues using certain apps and integrations in Slack. Workflow Builder and other apps may be impacted. Our team is currently investigating and we\u0027ll keep you posted as soon as we have more information. We\u0027re sorry for the disruption."
+    },
+    {
+      "date_created": "2021-07-29T11:56:50-07:00",
+      "body": "Some customers may be experiencing issues with the \"Slack for Gmail\" add-on not being visible in Gmail. We\u0027re currently investigating and we\u0027ll provide another update as soon as we have more information to share."
     }
   ]
 }

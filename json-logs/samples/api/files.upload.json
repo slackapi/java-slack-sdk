@@ -83,7 +83,8 @@
     "thumb_160": "https://www.example.com/",
     "original_w": 12345,
     "original_h": 12345,
-    "thumb_tiny": ""
+    "thumb_tiny": "",
+    "media_display_type": ""
   },
   "error": "",
   "needed": "",

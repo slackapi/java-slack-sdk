@@ -660,6 +660,24 @@
           "body": "Some customers may be experiencing issues using certain apps and integrations in Slack. Workflow Builder and other apps may be impacted. Our team is currently investigating and we\u0027ll keep you posted as soon as we have more information. We\u0027re sorry for the disruption."
         }
       ]
+    },
+    {
+      "id": 1005,
+      "date_created": "2021-07-29T11:56:50-07:00",
+      "date_updated": "2021-07-29T11:56:50-07:00",
+      "title": "Trouble with \"Slack for Gmail\"",
+      "type": "notice",
+      "status": "active",
+      "url": "https://status.slack.com/2021-07/bde69e3bb5fd905d",
+      "services": [
+        "Apps/Integrations/APIs"
+      ],
+      "notes": [
+        {
+          "date_created": "2021-07-29T11:56:50-07:00",
+          "body": "Some customers may be experiencing issues with the \"Slack for Gmail\" add-on not being visible in Gmail. We\u0027re currently investigating and we\u0027ll provide another update as soon as we have more information to share."
+        }
+      ]
     }
   ]
 }

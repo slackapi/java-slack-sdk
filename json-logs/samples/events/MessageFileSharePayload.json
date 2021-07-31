@@ -743,6 +743,7 @@
         "permalink_public": "",
         "edit_link": "",
         "has_rich_preview": false,
+        "media_display_type": "",
         "preview_is_truncated": false,
         "preview": "",
         "preview_highlight": "",

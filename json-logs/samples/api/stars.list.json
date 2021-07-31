@@ -56,6 +56,7 @@
             "thumb_url": "",
             "thumb_width": 12345,
             "thumb_height": 12345,
+            "video_url": "",
             "video_html": "",
             "video_html_width": 12345,
             "video_html_height": 12345,
@@ -446,7 +447,8 @@
           "user": "U00000000",
           "is_intro": false,
           "comment": ""
-        }
+        },
+        "media_display_type": ""
       },
       "comment": {
         "id": "",
