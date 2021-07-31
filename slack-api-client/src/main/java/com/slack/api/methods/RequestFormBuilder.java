@@ -670,6 +670,7 @@ public class RequestFormBuilder {
         setIfNotNull("email", req.getEmail(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
         setIfNotNull("custom_message", req.getCustomMessage(), form);
+        setIfNotNull("email_password_policy_enabled", req.getEmailPasswordPolicyEnabled(), form);
         setIfNotNull("guest_expiration_ts", req.getGuestExpirationTs(), form);
         setIfNotNull("is_restricted", req.isRestricted(), form);
         setIfNotNull("is_ultra_restricted", req.isUltraRestricted(), form);
