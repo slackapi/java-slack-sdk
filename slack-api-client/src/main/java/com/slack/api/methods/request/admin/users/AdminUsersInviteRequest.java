@@ -39,6 +39,13 @@ public class AdminUsersInviteRequest implements SlackApiRequest {
     private String customMessage;
 
     /**
+     * Allow invited user to sign in via email and password.
+     * Only available for Enterprise Grid teams via admin invite.
+     * (As this parameter does not have the default value, we don't use the primitive value type)
+     */
+    private Boolean emailPasswordPolicyEnabled;
+
+    /**
      * Timestamp when guest account should be disabled.
      * Only include this timestamp if you inviting a guest user and you want their account to expire on a certain date.
      */
