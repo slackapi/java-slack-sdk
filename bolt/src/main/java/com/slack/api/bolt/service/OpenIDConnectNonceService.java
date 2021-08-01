@@ -45,7 +45,7 @@ public interface OpenIDConnectNonceService extends Service {
     /**
      * Adds a newly generated Nonce value to the server-side datastore.
      */
-    void addNewNonceToDatastore(String Nonce) throws Exception;
+    void addNewNonceToDatastore(String nonce) throws Exception;
 
     // -----------------------------------------------------------
 
@@ -64,7 +64,7 @@ public interface OpenIDConnectNonceService extends Service {
     /**
      * Verifies the Nonce value is available in the datastore and returns true if it's valid.
      */
-    boolean isAvailableInDatabase(String Nonce);
+    boolean isAvailableInDatabase(String nonce);
 
     // -----------------------------------------------------------
 
@@ -79,6 +79,6 @@ public interface OpenIDConnectNonceService extends Service {
     /**
      * Deletes a given Nonce value from the server-side datastore.
      */
-    void deleteNonceFromDatastore(String Nonce) throws Exception;
+    void deleteNonceFromDatastore(String nonce) throws Exception;
 
 }

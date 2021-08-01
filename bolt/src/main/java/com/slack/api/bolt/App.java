@@ -348,7 +348,10 @@ public class App {
     public String buildAuthorizeUrl(String state, String nonce) {
         AppConfig config = config();
 
-        if (config.getClientId() == null || config.getScope() == null || state == null) {
+        if (config.getClientId() == null
+                // OpenID Connect does not use require the bot scopes
+                || (!config.isOpenIDConnectEnabled() && config.getScope() == null)
+                || state == null) {
             return null;
         }
 
