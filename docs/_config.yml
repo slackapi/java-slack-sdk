@@ -8,6 +8,7 @@ url: https://slack.dev
 
 sdkLatestVersion: 1.9.0
 okhttpVersion: 4.9.1
+slf4jApiVersion: 1.7.32
 kotlinVersion: 1.5.21
 springBootVersion: 2.5.2
 compatibleMicronautVersion: 2.x
