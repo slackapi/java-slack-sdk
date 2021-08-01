@@ -66,6 +66,7 @@ public class OpenIDConnectTest {
             "    \"access_token\": \"xoxe.xoxp-1-xxx\",\n" +
             "    \"token_type\": \"Bearer\",\n" +
             "    \"refresh_token\": \"xoxe-1-xxx\",\n" +
+            "    \"expires_in\": 1234,\n" +
             "    \"id_token\": \"eyJhbGcMjY5OTA2MzcWNrLmNvbVwvdGVhbV9p...\"\n" +
             "}";
 
@@ -78,6 +79,7 @@ public class OpenIDConnectTest {
         assertThat(response.getAccessToken(), is("xoxe.xoxp-1-xxx"));
         assertThat(response.getTokenType(), is("Bearer"));
         assertThat(response.getRefreshToken(), is("xoxe-1-xxx"));
+        assertThat(response.getExpiresIn(), is(1234));
         assertThat(response.getIdToken(), is("eyJhbGcMjY5OTA2MzcWNrLmNvbVwvdGVhbV9p..."));
     }
 
