@@ -88,7 +88,7 @@ repositories {
 }
 dependencies {
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
-  implementation("org.slf4j:slf4j-simple:1.7.31")
+  implementation("org.slf4j:slf4j-simple:{{ site.slf4jApiVersion }}")
 }
 application {
   mainClassName = "hello.MyApp"
@@ -249,7 +249,7 @@ dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
-  implementation("org.slf4j:slf4j-simple:1.7.31") // または logback-classic など
+  implementation("org.slf4j:slf4j-simple:{{ site.slf4jApiVersion }}") // または logback-classic など
 }
 application {
   mainClassName = "MyAppKt" // ソースファイル名の末尾、拡張子の代わりに "Kt" をつけた命名になります
