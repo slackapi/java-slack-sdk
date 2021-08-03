@@ -459,7 +459,7 @@ public class App {
         this.openIDConnectSuccessHandler = (request, response, apiResponse) -> {
             log.warn("This OpenIDConnectSuccessHandler does nothing. " +
                     "Implement your own handler and register it " +
-                    "by calling App#openIDConenctSuccess(handler)");
+                    "by calling App#openIDConnectSuccess(handler)");
             return response;
         };
 
