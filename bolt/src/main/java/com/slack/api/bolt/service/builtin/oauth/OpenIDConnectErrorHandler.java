@@ -5,7 +5,7 @@ import com.slack.api.bolt.response.Response;
 import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
 
 /**
- * An error handler for errors with `oauth.v2.access` API calls.
+ * An error handler for errors with `openid.connect.*` API calls.
  */
 @FunctionalInterface
 public interface OpenIDConnectErrorHandler {
