@@ -61,6 +61,8 @@ import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
 import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
 import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
+import com.slack.api.methods.request.openid.connect.OpenIDConnectTokenRequest;
+import com.slack.api.methods.request.openid.connect.OpenIDConnectUserInfoRequest;
 import com.slack.api.methods.request.pins.PinsAddRequest;
 import com.slack.api.methods.request.pins.PinsListRequest;
 import com.slack.api.methods.request.pins.PinsRemoveRequest;
@@ -151,6 +153,8 @@ import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
+import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
+import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
 import com.slack.api.methods.response.pins.PinsAddResponse;
 import com.slack.api.methods.response.pins.PinsListResponse;
 import com.slack.api.methods.response.pins.PinsRemoveResponse;
@@ -1620,6 +1624,26 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<OAuthTokenResponse> oauthToken(RequestConfigurator<OAuthTokenRequest.OAuthTokenRequestBuilder> req) {
         return oauthToken(req.configure(OAuthTokenRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<OpenIDConnectTokenResponse> openIDConnectToken(OpenIDConnectTokenRequest req) {
+        return executor.execute(OPENID_CONNECT_TOKEN, toMap(req), () -> methods.openIDConnectToken(req));
+    }
+
+    @Override
+    public CompletableFuture<OpenIDConnectTokenResponse> openIDConnectToken(RequestConfigurator<OpenIDConnectTokenRequest.OpenIDConnectTokenRequestBuilder> req) {
+        return openIDConnectToken(req.configure(OpenIDConnectTokenRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<OpenIDConnectUserInfoResponse> openIDConnectUserInfo(OpenIDConnectUserInfoRequest req) {
+        return executor.execute(OPENID_CONNECT_USER_INFO, toMap(req), () -> methods.openIDConnectUserInfo(req));
+    }
+
+    @Override
+    public CompletableFuture<OpenIDConnectUserInfoResponse> openIDConnectUserInfo(RequestConfigurator<OpenIDConnectUserInfoRequest.OpenIDConnectUserInfoRequestBuilder> req) {
+        return openIDConnectUserInfo(req.configure(OpenIDConnectUserInfoRequest.builder()).build());
     }
 
     @Override

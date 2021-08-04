@@ -8,6 +8,7 @@ import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
 
 import java.io.IOException;
 
@@ -41,6 +42,15 @@ public class OAuthFlowOperator {
             apiRequest = apiRequest.redirectUri(config.getRedirectUri());
         }
         return slack.methods().oauthV2Access(apiRequest.build());
+    }
+
+    public OpenIDConnectTokenResponse callOpenIDConnectToken(VerificationCodePayload payload) throws IOException, SlackApiException {
+        return slack.methods().openIDConnectToken(r -> r
+                .clientId(config.getClientId())
+                .clientSecret(config.getClientSecret())
+                .code(payload.getCode())
+                .redirectUri(config.getRedirectUri())
+        );
     }
 
 }

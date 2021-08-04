@@ -11,6 +11,7 @@ import com.slack.api.bolt.service.OAuthStateService;
 import com.slack.api.bolt.service.builtin.oauth.*;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
+import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -21,10 +22,12 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
     private final OAuthStateService stateService;
     private final OAuthSuccessHandler successHandler;
     private final OAuthV2SuccessHandler successV2Handler;
+    private final OpenIDConnectSuccessHandler openIDConnectSuccessHandler;
     private final OAuthErrorHandler errorHandler;
     private final OAuthStateErrorHandler stateErrorHandler;
     private final OAuthAccessErrorHandler accessErrorHandler;
     private final OAuthV2AccessErrorHandler accessV2ErrorHandler;
+    private final OpenIDConnectErrorHandler openIDConnectErrorHandler;
     private final OAuthExceptionHandler exceptionHandler;
 
     public DefaultOAuthCallbackService(
@@ -37,15 +40,45 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
             OAuthAccessErrorHandler accessErrorHandler,
             OAuthV2AccessErrorHandler accessV2ErrorHandler,
             OAuthExceptionHandler exceptionHandler) {
+        this(
+                config,
+                stateService,
+                successHandler,
+                successV2Handler,
+                errorHandler,
+                stateErrorHandler,
+                accessErrorHandler,
+                accessV2ErrorHandler,
+                exceptionHandler,
+                (request, response, apiResponse) -> response,
+                (request, response, apiResponse) -> response
+        );
+    }
+
+    public DefaultOAuthCallbackService(
+            AppConfig config,
+            OAuthStateService stateService,
+            OAuthSuccessHandler successHandler,
+            OAuthV2SuccessHandler successV2Handler,
+            OAuthErrorHandler errorHandler,
+            OAuthStateErrorHandler stateErrorHandler,
+            OAuthAccessErrorHandler accessErrorHandler,
+            OAuthV2AccessErrorHandler accessV2ErrorHandler,
+            OAuthExceptionHandler exceptionHandler,
+            OpenIDConnectSuccessHandler openIDConnectSuccessHandler,
+            OpenIDConnectErrorHandler openIDConnectErrorHandler
+    ) {
         this.config = config;
         this.stateService = stateService;
         this.successHandler = successHandler;
         this.successV2Handler = successV2Handler;
+        this.openIDConnectSuccessHandler = openIDConnectSuccessHandler;
         this.errorHandler = errorHandler;
         this.stateErrorHandler = stateErrorHandler;
         this.accessErrorHandler = accessErrorHandler;
         this.accessV2ErrorHandler = accessV2ErrorHandler;
         this.exceptionHandler = exceptionHandler;
+        this.openIDConnectErrorHandler = openIDConnectErrorHandler;
 
         SlackAppConfig slackAppConfig = SlackAppConfig.builder()
                 .clientId(config.getClientId())
@@ -70,6 +103,14 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
                         return successHandler.handle(request, response, oauthAccess);
                     } else {
                         return accessErrorHandler.handle(request, response, oauthAccess);
+                    }
+                } else if (config.isOpenIDConnectEnabled()) {
+                    OpenIDConnectTokenResponse token = operator.callOpenIDConnectToken(payload);
+                    if (token.isOk()) {
+                        stateService.consume(request, response);
+                        return openIDConnectSuccessHandler.handle(request, response, token);
+                    } else {
+                        return openIDConnectErrorHandler.handle(request, response, token);
                     }
                 } else {
                     OAuthV2AccessResponse oauthAccess = operator.callOAuthV2AccessMethod(payload);

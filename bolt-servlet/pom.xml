@@ -12,6 +12,7 @@
     <properties>
         <!-- TODO: Upgrade to 11.x in the next major version - v2 -->
         <jetty.version>9.4.24.v20191120</jetty.version>
+        <java-jwt.version>3.18.1</java-jwt.version>
     </properties>
 
     <artifactId>bolt-servlet</artifactId>
@@ -69,6 +70,12 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-s3</artifactId>
             <version>${aws.s3.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${java-jwt.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

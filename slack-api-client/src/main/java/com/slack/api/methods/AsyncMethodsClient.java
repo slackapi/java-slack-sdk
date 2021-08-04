@@ -57,6 +57,8 @@ import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
 import com.slack.api.methods.request.oauth.OAuthV2AccessRequest;
 import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
+import com.slack.api.methods.request.openid.connect.OpenIDConnectTokenRequest;
+import com.slack.api.methods.request.openid.connect.OpenIDConnectUserInfoRequest;
 import com.slack.api.methods.request.pins.PinsAddRequest;
 import com.slack.api.methods.request.pins.PinsListRequest;
 import com.slack.api.methods.request.pins.PinsRemoveRequest;
@@ -147,6 +149,8 @@ import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
 import com.slack.api.methods.response.oauth.OAuthV2ExchangeResponse;
+import com.slack.api.methods.response.openid.connect.OpenIDConnectTokenResponse;
+import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
 import com.slack.api.methods.response.pins.PinsAddResponse;
 import com.slack.api.methods.response.pins.PinsListResponse;
 import com.slack.api.methods.response.pins.PinsRemoveResponse;
@@ -914,6 +918,18 @@ public interface AsyncMethodsClient {
     CompletableFuture<OAuthTokenResponse> oauthToken(OAuthTokenRequest req);
 
     CompletableFuture<OAuthTokenResponse> oauthToken(RequestConfigurator<OAuthTokenRequest.OAuthTokenRequestBuilder> req);
+
+    // ------------------------------
+    // openid.connect
+    // ------------------------------
+
+    CompletableFuture<OpenIDConnectTokenResponse> openIDConnectToken(OpenIDConnectTokenRequest req);
+
+    CompletableFuture<OpenIDConnectTokenResponse> openIDConnectToken(RequestConfigurator<OpenIDConnectTokenRequest.OpenIDConnectTokenRequestBuilder> req);
+
+    CompletableFuture<OpenIDConnectUserInfoResponse> openIDConnectUserInfo(OpenIDConnectUserInfoRequest req);
+
+    CompletableFuture<OpenIDConnectUserInfoResponse> openIDConnectUserInfo(RequestConfigurator<OpenIDConnectUserInfoRequest.OpenIDConnectUserInfoRequestBuilder> req);
 
     // ------------------------------
     // pins

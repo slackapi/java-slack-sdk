@@ -50,6 +50,15 @@ public class ResourceLoader {
                     if (j.get("oauthCompletionUrl") != null) {
                         config.setOauthCompletionUrl(j.get("oauthCompletionUrl").getAsString());
                     }
+                    if (j.get("oauthInstallPath") != null) {
+                        config.setOauthInstallPath(j.get("oauthInstallPath").getAsString());
+                    }
+                    if (j.get("oauthRedirectUriPath") != null) {
+                        config.setOauthRedirectUriPath(j.get("oauthRedirectUriPath").getAsString());
+                    }
+                    if (j.get("redirectUri") != null) {
+                        config.setRedirectUri(j.get("redirectUri").getAsString());
+                    }
                 } catch (IOException e) {
                     log.error(e.getMessage(), e);
                 }

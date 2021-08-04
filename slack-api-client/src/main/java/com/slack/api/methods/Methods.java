@@ -471,6 +471,13 @@ public class Methods {
     public static final String OAUTH_TOKEN = "oauth.token";
 
     // ------------------------------
+    // openid.connect
+    // ------------------------------
+
+    public static final String OPENID_CONNECT_TOKEN = "openid.connect.token";
+    public static final String OPENID_CONNECT_USER_INFO = "openid.connect.userInfo";
+
+    // ------------------------------
     // pins
     // ------------------------------
 

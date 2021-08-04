@@ -69,6 +69,7 @@ import com.slack.api.methods.request.mpim.*;
 import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
 import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
+import com.slack.api.methods.request.openid.connect.OpenIDConnectUserInfoRequest;
 import com.slack.api.methods.request.pins.PinsAddRequest;
 import com.slack.api.methods.request.pins.PinsListRequest;
 import com.slack.api.methods.request.pins.PinsRemoveRequest;
@@ -103,6 +104,7 @@ import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
+import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.ConversationType;
 import com.slack.api.util.json.GsonFactory;
@@ -1812,6 +1814,11 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("client_id", req.getClientId(), form);
         setIfNotNull("client_secret", req.getClientSecret(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(OpenIDConnectUserInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
         return form;
     }
 

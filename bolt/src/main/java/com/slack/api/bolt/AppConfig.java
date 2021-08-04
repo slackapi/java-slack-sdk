@@ -117,6 +117,11 @@ public class AppConfig {
     // --------------------------
 
     @Builder.Default
+    private boolean openIDConnectEnabled = false;
+
+    // --------------------------
+
+    @Builder.Default
     private boolean oAuthRedirectUriPathEnabled = false;
 
     public boolean isOAuthRedirectUriPathEnabled() {

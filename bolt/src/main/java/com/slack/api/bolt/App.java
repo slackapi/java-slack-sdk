@@ -16,13 +16,11 @@ import com.slack.api.bolt.middleware.builtin.*;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.builtin.*;
 import com.slack.api.bolt.response.Response;
-import com.slack.api.bolt.service.InstallationService;
-import com.slack.api.bolt.service.OAuthCallbackService;
-import com.slack.api.bolt.service.OAuthStateService;
-import com.slack.api.bolt.service.Service;
+import com.slack.api.bolt.service.*;
 import com.slack.api.bolt.service.builtin.ClientOnlyOAuthStateService;
 import com.slack.api.bolt.service.builtin.DefaultOAuthCallbackService;
 import com.slack.api.bolt.service.builtin.FileInstallationService;
+import com.slack.api.bolt.service.builtin.NullOpenIDConnectNonceService;
 import com.slack.api.bolt.service.builtin.oauth.*;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.*;
 import com.slack.api.bolt.util.ListenerCodeSuggestion;
@@ -277,6 +275,7 @@ public class App {
     public BoltEventHandler<TokensRevokedEvent> defaultTokensRevokedEventHandler() {
         return tokensRevokedEventHandler;
     }
+
     public BoltEventHandler<AppUninstalledEvent> defaultAppUninstalledEventHandler() {
         return appUninstalledEventHandler;
     }
@@ -292,11 +291,14 @@ public class App {
     // -------------------------------------
 
     private OAuthStateService oAuthStateService; // will be initialized in the constructor
+    private OpenIDConnectNonceService openIDConnectNonceService; // will be initialized in the constructor
     private OAuthSuccessHandler oAuthSuccessHandler; // will be initialized in the constructor
     private OAuthV2SuccessHandler oAuthV2SuccessHandler; // will be initialized in the constructor
+    private OpenIDConnectSuccessHandler openIDConnectSuccessHandler; // will be initialized in the constructor
     private OAuthErrorHandler oAuthErrorHandler; // will be initialized in the constructor
     private OAuthAccessErrorHandler oAuthAccessErrorHandler; // will be initialized in the constructor
     private OAuthV2AccessErrorHandler oAuthV2AccessErrorHandler; // will be initialized in the constructor
+    private OpenIDConnectErrorHandler openIDConnectErrorHandler; // will be initialized in the constructor
     private OAuthStateErrorHandler oAuthStateErrorHandler; // will be initialized in the constructor
     private OAuthExceptionHandler oAuthExceptionHandler; // will be initialized in the constructor
 
@@ -314,7 +316,9 @@ public class App {
                         oAuthStateErrorHandler,
                         oAuthAccessErrorHandler,
                         oAuthV2AccessErrorHandler,
-                        oAuthExceptionHandler
+                        oAuthExceptionHandler,
+                        openIDConnectSuccessHandler,
+                        openIDConnectErrorHandler
                 );
             }
         }
@@ -333,9 +337,21 @@ public class App {
      * @return The Slack URL to redirect users to for beginning the OAuth flow
      */
     public String buildAuthorizeUrl(String state) {
+        return buildAuthorizeUrl(state, null);
+    }
+
+    /**
+     * @param state The OAuth state param
+     * @param nonce The OAUth nonce param
+     * @return
+     */
+    public String buildAuthorizeUrl(String state, String nonce) {
         AppConfig config = config();
 
-        if (config.getClientId() == null || config.getScope() == null || state == null) {
+        if (config.getClientId() == null
+                // OpenID Connect does not use require the bot scopes
+                || (!config.isOpenIDConnectEnabled() && config.getScope() == null)
+                || state == null) {
             return null;
         }
 
@@ -349,6 +365,16 @@ public class App {
                     "&scope=" + scope +
                     "&state=" + state +
                     redirectUriParam;
+        } else if (config.isOpenIDConnectEnabled()) {
+            return "https://slack.com/openid/connect/authorize" +
+                    "?client_id=" + config.getClientId() +
+                    "&response_type=code" +
+                    "&scope=" + (config.getUserScope() != null ? config.getUserScope() : scope) +
+                    "&state=" + state +
+                    redirectUriParam +
+                    // The nonce parameter is an optional one in the OpenID Connect Spec
+                    // https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
+                    (nonce != null ? "&nonce=" + nonce : "");
         } else {
             String userScope = config.getUserScope() == null ? "" : config.getUserScope();
             return "https://slack.com/oauth/v2/authorize" +
@@ -423,16 +449,24 @@ public class App {
         this.middlewareList = middlewareList;
 
         this.oAuthStateService = new ClientOnlyOAuthStateService();
+        this.openIDConnectNonceService = new NullOpenIDConnectNonceService();
 
         this.installationService = new FileInstallationService(this.appConfig);
         this.tokensRevokedEventHandler = new DefaultTokensRevokedEventHandler(this.installationService, this.executorService);
         this.appUninstalledEventHandler = new DefaultAppUninstalledEventHandler(this.installationService, this.executorService);
         this.oAuthSuccessHandler = new OAuthDefaultSuccessHandler(this.appConfig, this.installationService);
         this.oAuthV2SuccessHandler = new OAuthV2DefaultSuccessHandler(config(), this.installationService);
+        this.openIDConnectSuccessHandler = (request, response, apiResponse) -> {
+            log.warn("This OpenIDConnectSuccessHandler does nothing. " +
+                    "Implement your own handler and register it " +
+                    "by calling App#openIDConnectSuccess(handler)");
+            return response;
+        };
 
         this.oAuthErrorHandler = new OAuthDefaultErrorHandler(config());
         this.oAuthAccessErrorHandler = new OAuthDefaultAccessErrorHandler(config());
         this.oAuthV2AccessErrorHandler = new OAuthV2DefaultAccessErrorHandler(config());
+        this.openIDConnectErrorHandler = new OpenIDConnectDefaultErrorHandler(config());
         this.oAuthStateErrorHandler = new OAuthDefaultStateErrorHandler(config());
         this.oAuthExceptionHandler = new OAuthDefaultExceptionHandler(config());
 
@@ -804,6 +838,12 @@ public class App {
         return this;
     }
 
+    public App asOpenIDConnectApp(boolean enabled) {
+        config().setOpenIDConnectEnabled(enabled);
+        this.asOAuthApp(enabled);
+        return this;
+    }
+
     public App service(OAuthCallbackService oAuthCallbackService) {
         this.oAuthCallbackService = oAuthCallbackService;
         putServiceInitializer(OAuthCallbackService.class, oAuthCallbackService.initializer());
@@ -813,6 +853,12 @@ public class App {
     public App service(OAuthStateService oAuthStateService) {
         this.oAuthStateService = oAuthStateService;
         putServiceInitializer(OAuthStateService.class, oAuthStateService.initializer());
+        return this;
+    }
+
+    public App service(OpenIDConnectNonceService openIDConnectNonceService) {
+        this.openIDConnectNonceService = openIDConnectNonceService;
+        putServiceInitializer(OpenIDConnectNonceService.class, openIDConnectNonceService.initializer());
         return this;
     }
 
@@ -855,6 +901,16 @@ public class App {
 
     public App oauthCallbackAccessError(OAuthV2AccessErrorHandler handler) {
         oAuthV2AccessErrorHandler = handler;
+        return this;
+    }
+
+    public App openIDConnectSuccess(OpenIDConnectSuccessHandler handler) {
+        openIDConnectSuccessHandler = handler;
+        return this;
+    }
+
+    public App openIDConnectError(OpenIDConnectErrorHandler handler) {
+        openIDConnectErrorHandler = handler;
         return this;
     }
 
@@ -941,7 +997,8 @@ public class App {
                             Map<String, List<String>> responseHeaders = new HashMap<>();
                             Response response = Response.builder().statusCode(200).headers(responseHeaders).build();
                             String state = oAuthStateService.issueNewState(slackRequest, response);
-                            String authorizeUrl = buildAuthorizeUrl(state);
+                            String nonce = openIDConnectNonceService.issueNewNonce(slackRequest, response);
+                            String authorizeUrl = buildAuthorizeUrl(state, nonce);
                             if (authorizeUrl == null) {
                                 log.error("App#buildAuthorizeUrl(String) returned null due to some missing settings");
                                 if (config().getOauthCancellationUrl() == null) {
