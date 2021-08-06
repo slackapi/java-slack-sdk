@@ -13,4 +13,7 @@ import com.slack.api.model.block.element.ImageElement;
  * Block's elements</a>
  */
 public interface ContextBlockElement {
+
+    String getType();
+
 }

@@ -16,4 +16,10 @@ public interface LayoutBlock {
      * and image.
      */
     String getType();
+
+    /**
+     * Returns the block_id string; the value can be null if the object is manually crafted.
+     */
+    String getBlockId();
+
 }
