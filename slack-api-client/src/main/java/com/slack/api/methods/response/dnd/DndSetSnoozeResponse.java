@@ -15,4 +15,5 @@ public class DndSetSnoozeResponse implements SlackApiTextResponse {
     private boolean snoozeEnabled;
     private Integer snoozeEndtime;
     private Integer snoozeRemaining;
+    private boolean snoozeIsIndefinite;
 }
