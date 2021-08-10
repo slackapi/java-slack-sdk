@@ -14,7 +14,9 @@ import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
 import com.slack.api.methods.response.files.*;
+import com.slack.api.methods.response.users.UsersConversationsResponse;
 import com.slack.api.model.Conversation;
+import com.slack.api.model.ConversationType;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +33,7 @@ import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 
 @Slf4j
 public class files_Test {
@@ -434,7 +437,7 @@ public class files_Test {
     }
 
     @Test
-    public void uploadAndPostMessage() throws IOException, SlackApiException {
+    public void uploadAndPostMessage() throws IOException, SlackApiException, InterruptedException {
         MethodsClient slackMethods = slack.methods(userToken);
 
         ChatPostMessageResponse message = slackMethods.chatPostMessage(r -> r
@@ -444,6 +447,14 @@ public class files_Test {
         assertThat(message.getError(), is(nullValue()));
 
         String channelId = message.getChannel();
+
+        // Share the file in a private channel
+        UsersConversationsResponse userPrivateChannels = slackMethods.usersConversations(r -> r
+                .types(Arrays.asList(ConversationType.PRIVATE_CHANNEL)));
+        assertThat(userPrivateChannels.getError(), is(nullValue()));
+        assertThat(userPrivateChannels.getChannels().size(), is(greaterThan(0)));
+
+        String privateChannelId = userPrivateChannels.getChannels().get(0).getId();
 
         File file = new File("src/test/resources/sample.txt");
         com.slack.api.model.File fileObj;
@@ -477,6 +488,36 @@ public class files_Test {
                     .build());
             assertThat(newMessage.getError(), is(nullValue()));
         }
+
+        {
+            ChatPostMessageResponse newMessage = slackMethods.chatPostMessage(ChatPostMessageRequest.builder()
+                    .channel(privateChannelId)
+                    .text(fileObj.getPermalink())
+                    .unfurlLinks(true)
+                    .unfurlMedia(true)
+                    .build());
+            assertThat(newMessage.getError(), is(nullValue()));
+        }
+
+        Thread.sleep(2_000L);
+
+        // verify if the shares is expected
+        FilesInfoResponse fileInfo = slackMethods.filesInfo(r -> r.file(fileObj.getId()));
+        assertThat(fileInfo.getError(), is(nullValue()));
+        assertThat(fileInfo.getFile().getShares().getPublicChannels(), is(notNullValue()));
+        assertThat(fileInfo.getFile().getShares().getPrivateChannels(), is(notNullValue()));
+
+        FilesUploadResponse uploadAndSharedInTwoTypesOfChannels = slackMethods.filesUpload(r -> r
+                .file(file)
+                .initialComment("test")
+                .filetype("text")
+                .filename("sample.txt")
+                .title("file title")
+                .channels(Arrays.asList(channelId, privateChannelId))
+        );
+        assertThat(uploadAndSharedInTwoTypesOfChannels.getError(), is(nullValue()));
+        assertThat(uploadAndSharedInTwoTypesOfChannels.getFile().getShares().getPublicChannels(), is(notNullValue()));
+        assertThat(uploadAndSharedInTwoTypesOfChannels.getFile().getShares().getPrivateChannels(), is(notNullValue()));
     }
 
     @Test
