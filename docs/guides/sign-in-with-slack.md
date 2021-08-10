@@ -15,7 +15,7 @@ When you create a new Slack app, set the following user scopes:
 ```yaml
 oauth_config:
   redirect_urls:
-    - https://{your-domain}/slack/oauth_redirect
+    - https://example.com/replace-this-with-your-own-redirect-uri
   scopes:
     user:
       - openid   # required
@@ -59,8 +59,11 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 // SLACK_CLIENT_ID, SLACK_CLIENT_SECRET, SLACK_REDIRECT_URI, SLACK_USER_SCOPES
 App app = new App().asOpenIDConnectApp(true);
 
+// You can handle the OpenID Connect code authorization flow with this callback function
 app.openIDConnectSuccess((req, resp, token) -> {
   var logger = req.getContext().getLogger();
+  
+  // TODO: Store the given "token" response (openid.connect.token API response)
 
   // Decode id_token in an openid.connect.token response
   DecodedJWT decoded = JWT.decode(token.getIdToken());
@@ -69,12 +72,50 @@ app.openIDConnectSuccess((req, resp, token) -> {
 
   var teamId = claims.get("https://slack.com/team_id").asString();
 
-  // Call openid.connect.userInfo using the given access token
+  // Code example demonstrating how to call openid.connect.userInfo using the given access token
+  var client = Slack.getInstance().methods();
+  try {
+    var userInfo = client.openIDConnectUserInfo(r -> r.token(token.getAccessToken()));
+    logger.info("userInfo: {}", userInfo);
+
+  } catch (Exception e) {
+    throw new RuntimeException(e);
+  }
+
+  // Render a web page for the user (or you can redirect the user to the next step such as OAuth with other services)
+  var html = app.config().getOAuthRedirectUriPageRenderer().renderSuccessPage(
+    null, req.getContext().getOauthCompletionUrl());
+  resp.setBody(html);
+  resp.setContentType("text/html; charset=utf-8");
+  return resp;
+});
+
+Map<String, App> apps = new HashMap<>();
+apps.put("/slack/", app);
+SlackAppServer server = new SlackAppServer(apps);
+server.start();
+```
+
+If you enable [the token rotation](https://api.slack.com/authentication/rotation) along with the OpenID Connect, the code can be like this:
+
+```java
+// You can handle the OpenID Connect code authorization flow with this callback function
+app.openIDConnectSuccess((req, resp, token) -> {
+  var logger = req.getContext().getLogger();
+
+  // TODO: Store the given "token" response (openid.connect.token API response)
+
+  // Decode id_token in an openid.connect.token response
+  DecodedJWT decoded = JWT.decode(token.getIdToken());
+  Map<String, Claim> claims = decoded.getClaims();
+  logger.info("claims: {}", claims);
+
+  var teamId = claims.get("https://slack.com/team_id").asString();
+
+  // Code example demonstrating how to call openid.connect.userInfo using the given access token
   var client = Slack.getInstance().methods();
   try {
     if (token.getRefreshToken() != null) {
-      // If the token rotation is enabled (if not, you can safely remove this part)
-
       // run the first token rotation
       var refreshedToken = client.openIDConnectToken(r -> r
           .clientId(config.getClientId())
@@ -88,23 +129,18 @@ app.openIDConnectSuccess((req, resp, token) -> {
       logger.info("userInfo: {}", userInfo);
 
     } else {
-      var userInfo = client.openIDConnectUserInfo(r -> r.token(token.getAccessToken()));
-      logger.info("userInfo: {}", userInfo);
+      throw new RuntimeException("Unexpectedly refresh token is absent");
     }
 
   } catch (Exception e) {
     throw new RuntimeException(e);
   }
 
+  // Render a web page for the user (or you can redirect the user to the next step such as OAuth with other services)
   var html = app.config().getOAuthRedirectUriPageRenderer().renderSuccessPage(
     null, req.getContext().getOauthCompletionUrl());
   resp.setBody(html);
   resp.setContentType("text/html; charset=utf-8");
   return resp;
 });
-
-Map<String, App> apps = new HashMap<>();
-apps.put("/slack/", app);
-SlackAppServer server = new SlackAppServer(apps);
-server.start();
 ```

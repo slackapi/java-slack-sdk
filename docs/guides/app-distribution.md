@@ -147,6 +147,8 @@ SlackAppServer server = new SlackAppServer(Map.of(
 server.start(); // http://localhost:3000
 ```
 
+If you want to turn [the token rotation feature](https://api.slack.com/authentication/rotation) on, your `InstallationService` should be compatible with it. Refer to the [v1.9.0 release notes](https://github.com/slackapi/java-slack-sdk/releases/tag/v1.9.0) for more details.
+
 ### Granular Permission Apps or Classic Apps
 
 Slack has two types of OAuth flows for Slack app installations. The V2 (this is a bit confusing but it's not the version of OAuth spec, but the version of the Slack OAuth flow) OAuth flow enables Slack apps to request more granular permissions than the classic ones, especially for bot users. The differences between the two types are having `v2` in the endpoint to issue access tokens and the OAuth Authorization URL, plus some changes to the response data structure returned by the `oauth(.v2).access` endpoint.

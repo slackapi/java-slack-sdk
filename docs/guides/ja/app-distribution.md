@@ -80,7 +80,7 @@ server.start(); // http://localhost:3000
 |**SLACK_REDIRECT_URI**|**OAUth 2.0 Redirect URI** (**Features** > **OAuth & Permissions** > **Redirect URLs**)|
 |**SLACK_SCOPES**|**カンマ区切りの bot scope リスト**: `scope` パラメーターは `https://slack.com/oauth/authorize` や `https://slack.com/oauth/v2/authorize` にクエリパラメーターとして付加されます (**Settings** > **Manage Distribution** > **Sharable URL** から `scope` の値を取得)|
 |**SLACK_USER_SCOPES** (v2 のみ)|**カンマ区切りの user scope リスト**: `user_scope` パラメーターは `https://slack.com/oauth/v2/authorize` にクエリパラメーターとして付加されます (**Settings** > **Manage Distribution** > **Sharable URL**, から `user_scope` の値を取得)|
-|**SLACK_INSTALL_PATH**|**OAuth フローの開始点**: このエンドポイントはユーザーを `client_id`, `scope`, `user_scope` (v2 のみ), and `state` とともに Slack の Authorize エンドポイントにリダイレクトします。推奨するパスは `/slack/oauth/start` ですが、どのようなパスでも構いません。|
+|**SLACK_INSTALL_PATH**|**OAuth フローの開始点**: このエンドポイントはユーザーを `client_id`, `scope`, `user_scope` (v2 のみ), `state` とともに Slack の Authorize エンドポイントにリダイレクトします。推奨するパスは `/slack/oauth/start` ですが、どのようなパスでも構いません。|
 |**SLACK_REDIRECT_URI_PATH**|**OAuth Redirect URI**: このエンドポイントは Slack の OAuth 許可確認画面からの callback リクエストを処理します。このパスは **SLACK_REDIRECT_URI** の値と整合している必要があります。推奨のパスは `/slack/oauth/callback` ですが、どのようなパスでも構いません。|
 |**SLACK_OAUTH_COMPLETION_URL**|**Installation Completion URL**: インストール完了画面の URL を指定します。どんな URL でも構いません。|
 |**SLACK_OAUTH_CANCELLATION_URL**|**Installation Cancellation/Error URL**: キャンセルやエラーが発生したときの遷移先 URL を指定します。どんな URL でも構いません。|
@@ -145,6 +145,8 @@ SlackAppServer server = new SlackAppServer(Map.of(
 
 server.start(); // http://localhost:3000
 ```
+
+もし[トークンローテーション](https://api.slack.com/authentication/rotation)を有効にしたいという場合は、あなたの `InstallationService` がトークンローテーション互換である必要があります。詳細は [v1.9.0 のリリースノート（英語）](https://github.com/slackapi/java-slack-sdk/releases/tag/v1.9.0)を参考にしてください。
 
 ### Granular Permission Apps と Classic Apps
 
