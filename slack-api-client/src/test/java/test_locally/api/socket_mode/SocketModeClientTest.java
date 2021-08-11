@@ -68,11 +68,16 @@ public class SocketModeClientTest {
         try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN)) {
             AtomicBoolean received = new AtomicBoolean(false);
             client.addWebSocketMessageListener(helloListener(received));
-            client.addWebSocketErrorListener(error -> {});
-            client.addWebSocketCloseListener((code, reason) -> {});
-            client.addEventsApiEnvelopeListener(envelope -> {});
-            client.addInteractiveEnvelopeListener(envelope -> {});
-            client.addSlashCommandsEnvelopeListener(envelope -> {});
+            client.addWebSocketErrorListener(error -> {
+            });
+            client.addWebSocketCloseListener((code, reason) -> {
+            });
+            client.addEventsApiEnvelopeListener(envelope -> {
+            });
+            client.addInteractiveEnvelopeListener(envelope -> {
+            });
+            client.addSlashCommandsEnvelopeListener(envelope -> {
+            });
 
             client.connect();
             Thread.sleep(500L);
@@ -146,15 +151,6 @@ public class SocketModeClientTest {
     // JavaWebSocket implementation
     // -------------------------------------------------
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void proxyAuth() throws Exception {
-        SlackConfig config = new SlackConfig();
-        config.setMethodsEndpointUrlPrefix(webApiServer.getMethodsEndpointPrefix());
-        config.setProxyUrl("http://user:pass@localhost:9000/");
-        Slack slack = Slack.getInstance(config);
-        slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket);
-    }
-
     @Test
     public void attributes_JavaWebSocket() throws Exception {
         try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket)) {
@@ -172,11 +168,16 @@ public class SocketModeClientTest {
         try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket)) {
             AtomicBoolean received = new AtomicBoolean(false);
             client.addWebSocketMessageListener(helloListener(received));
-            client.addWebSocketErrorListener(error -> {});
-            client.addWebSocketCloseListener((code, reason) -> {});
-            client.addEventsApiEnvelopeListener(envelope -> {});
-            client.addInteractiveEnvelopeListener(envelope -> {});
-            client.addSlashCommandsEnvelopeListener(envelope -> {});
+            client.addWebSocketErrorListener(error -> {
+            });
+            client.addWebSocketCloseListener((code, reason) -> {
+            });
+            client.addEventsApiEnvelopeListener(envelope -> {
+            });
+            client.addInteractiveEnvelopeListener(envelope -> {
+            });
+            client.addSlashCommandsEnvelopeListener(envelope -> {
+            });
 
             client.connect();
             Thread.sleep(500L);
