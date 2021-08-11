@@ -51,7 +51,7 @@
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
         <kotlin.version>1.5.21</kotlin.version>
         <slf4j.version>1.7.32</slf4j.version>
-        <aws.s3.version>1.12.37</aws.s3.version>
+        <aws.s3.version>1.12.44</aws.s3.version>
         <junit.version>4.13.2</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
         <logback.version>1.2.5</logback.version>
