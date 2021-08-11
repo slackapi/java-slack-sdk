@@ -33,6 +33,7 @@ public class GsonFactory {
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory())
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory())
                 .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory())
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory())
                 .create();
     }
 
