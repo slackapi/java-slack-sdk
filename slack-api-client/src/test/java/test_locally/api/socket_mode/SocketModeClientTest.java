@@ -68,11 +68,16 @@ public class SocketModeClientTest {
         try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN)) {
             AtomicBoolean received = new AtomicBoolean(false);
             client.addWebSocketMessageListener(helloListener(received));
-            client.addWebSocketErrorListener(error -> {});
-            client.addWebSocketCloseListener((code, reason) -> {});
-            client.addEventsApiEnvelopeListener(envelope -> {});
-            client.addInteractiveEnvelopeListener(envelope -> {});
-            client.addSlashCommandsEnvelopeListener(envelope -> {});
+            client.addWebSocketErrorListener(error -> {
+            });
+            client.addWebSocketCloseListener((code, reason) -> {
+            });
+            client.addEventsApiEnvelopeListener(envelope -> {
+            });
+            client.addInteractiveEnvelopeListener(envelope -> {
+            });
+            client.addSlashCommandsEnvelopeListener(envelope -> {
+            });
 
             client.connect();
             Thread.sleep(500L);
@@ -163,11 +168,16 @@ public class SocketModeClientTest {
         try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket)) {
             AtomicBoolean received = new AtomicBoolean(false);
             client.addWebSocketMessageListener(helloListener(received));
-            client.addWebSocketErrorListener(error -> {});
-            client.addWebSocketCloseListener((code, reason) -> {});
-            client.addEventsApiEnvelopeListener(envelope -> {});
-            client.addInteractiveEnvelopeListener(envelope -> {});
-            client.addSlashCommandsEnvelopeListener(envelope -> {});
+            client.addWebSocketErrorListener(error -> {
+            });
+            client.addWebSocketCloseListener((code, reason) -> {
+            });
+            client.addEventsApiEnvelopeListener(envelope -> {
+            });
+            client.addInteractiveEnvelopeListener(envelope -> {
+            });
+            client.addSlashCommandsEnvelopeListener(envelope -> {
+            });
 
             client.connect();
             Thread.sleep(500L);

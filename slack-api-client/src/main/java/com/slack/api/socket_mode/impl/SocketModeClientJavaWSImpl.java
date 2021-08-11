@@ -219,17 +219,29 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
             // FIXME: the proxy settings here may not work
             SlackConfig slackConfig = smc.getSlack().getHttpClient().getConfig();
             Map<String, String> proxyHeaders = slackConfig.getProxyHeaders();
+            if (proxyHeaders == null) {
+                proxyHeaders = new HashMap<>();
+            }
+
             String proxyUrl = slackConfig.getProxyUrl();
             if (proxyUrl != null) {
                 if (smc.getLogger().isDebugEnabled()) {
                     smc.getLogger().debug("The SocketMode client's going to use an HTTP proxy: {}", proxyUrl);
                 }
                 ProxyUrlUtil.ProxyUrl parsedProxy = ProxyUrlUtil.parse(proxyUrl);
+                if (parsedProxy.getUsername() != null && parsedProxy.getPassword() != null) {
+                    // see also: https://github.com/slackapi/java-slack-sdk/issues/792#issuecomment-895961176
+                    String message = "Unfortunately, " +
+                            "having username:password with the Java-WebSocket library is not yet supported. " +
+                            "Consider using other implementations such SocketModeClient.Backend.Tyrus.";
+                    throw new UnsupportedOperationException(message);
+                }
+
                 InetSocketAddress proxyAddress = new InetSocketAddress(parsedProxy.getHost(), parsedProxy.getPort());
                 this.setProxy(new Proxy(Proxy.Type.HTTP, proxyAddress));
                 ProxyUrlUtil.setProxyAuthorizationHeader(proxyHeaders, parsedProxy);
             }
-            if (slackConfig.getProxyHeaders() != null) {
+            if (proxyHeaders != null && !proxyHeaders.isEmpty()) {
                 for (Map.Entry<String, String> each : proxyHeaders.entrySet()) {
                     this.addHeader(each.getKey(), each.getValue());
                 }

@@ -173,7 +173,7 @@ public class Slack implements AutoCloseable {
         } catch (SlackApiException e) {
             String message = "Failed to connect to the Socket Mode API endpoint. (" +
                     "status: " + e.getResponse().code() + ", " +
-                    "error: " + e.getError().getError() +
+                    "error: " + (e.getError() != null ? e.getError().getError() : "") +
                     ")";
             throw new IOException(message, e);
         }
