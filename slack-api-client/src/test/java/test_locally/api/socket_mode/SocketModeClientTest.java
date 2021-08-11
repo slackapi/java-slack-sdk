@@ -146,6 +146,15 @@ public class SocketModeClientTest {
     // JavaWebSocket implementation
     // -------------------------------------------------
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void proxyAuth() throws Exception {
+        SlackConfig config = new SlackConfig();
+        config.setMethodsEndpointUrlPrefix(webApiServer.getMethodsEndpointPrefix());
+        config.setProxyUrl("http://user:pass@localhost:9000/");
+        Slack slack = Slack.getInstance(config);
+        slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket);
+    }
+
     @Test
     public void attributes_JavaWebSocket() throws Exception {
         try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket)) {
