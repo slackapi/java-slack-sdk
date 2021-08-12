@@ -292,6 +292,14 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
          * (member)
          * Total number of Slack Huddles made or joined on a given day
          */
+        private Integer slackHuddlesCount;
+
+        /**
+         * (member)
+         * Total number of Slack Huddles made or joined on a given day
+         * NOTE: "slack_huddles_count" field used to be "huddles_count"
+         */
+        @Deprecated
         private Integer huddlesCount;
 
         /**
