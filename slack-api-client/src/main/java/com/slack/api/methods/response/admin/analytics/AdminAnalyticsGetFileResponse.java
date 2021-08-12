@@ -276,10 +276,23 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
 
         /**
          * (member)
+         * Total number of calls made or joined on a given day, including Huddles,
+         * Slack native calls and calls made using third party software besides Slack calls
+         */
+        private Integer totalCallsCount;
+
+        /**
+         * (member)
          * Total number of Slack calls made or joined on a given day,
          * excluding any calls using third party software besides Slack calls
          */
         private Integer slackCallsCount;
+
+        /**
+         * (member)
+         * Total number of Slack Huddles made or joined on a given day
+         */
+        private Integer huddlesCount;
 
         /**
          * (member)
