@@ -71,7 +71,7 @@ Technically, it's possible to use a single **App** for both Slack API requests a
 
 ### Slack Config for Distributing Your Slack App
 
-Here is the list of the necessary configurations for distributing apps built with Bolt. If you prefer using other env variable names or other solutions to load this information, implement your own way to load **SlackConfig** instead.
+Here is the list of the necessary configurations for distributing apps built with Bolt. If you prefer using other env variable names or other solutions to load this information, implement your own way to load **AppConfig** instead.
 
 |Env Variable Name|Description (Where to find the value)|
 |-|-|
@@ -146,6 +146,8 @@ SlackAppServer server = new SlackAppServer(Map.of(
 
 server.start(); // http://localhost:3000
 ```
+
+If you want to turn [the token rotation feature](https://api.slack.com/authentication/rotation) on, your `InstallationService` should be compatible with it. Refer to the [v1.9.0 release notes](https://github.com/slackapi/java-slack-sdk/releases/tag/v1.9.0) for more details.
 
 ### Granular Permission Apps or Classic Apps
 
