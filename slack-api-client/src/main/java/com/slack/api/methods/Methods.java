@@ -332,7 +332,6 @@ public class Methods {
     public static final String CONVERSATIONS_APPROVE_SHARED_INVITE = "conversations.approveSharedInvite";
     public static final String CONVERSATIONS_DECLINE_SHARED_INVITE = "conversations.declineSharedInvite";
     public static final String CONVERSATIONS_LIST_CONNECT_INVITES = "conversations.listConnectInvites";
-    public static final String CONVERSATIONS_DISCONNECT_SHARED = "conversations.disconnectShared";
 
     // ------------------------------
     // dialog
