@@ -276,7 +276,7 @@ public class MethodsRateLimits {
         setRateLimitTier(MPIM_MARK, Tier3);
         setRateLimitTier(GROUPS_CREATE_CHILD, Tier2);
 
-        setRateLimitTier(CONVERSATIONS_INVITE_SHARED, Tier1);
+        setRateLimitTier(CONVERSATIONS_INVITE_SHARED, Tier2);
         setRateLimitTier(CONVERSATIONS_ACCEPT_SHARED_INVITE, Tier1);
         setRateLimitTier(CONVERSATIONS_APPROVE_SHARED_INVITE, Tier1);
         setRateLimitTier(CONVERSATIONS_DECLINE_SHARED_INVITE, Tier1);

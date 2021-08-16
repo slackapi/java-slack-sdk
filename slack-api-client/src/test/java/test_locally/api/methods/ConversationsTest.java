@@ -2,7 +2,9 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.MethodsConfig;
 import com.slack.api.model.ConversationType;
+import com.slack.api.scim.metrics.MemoryMetricsDatastore;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,13 +19,17 @@ import static util.MockSlackApi.ValidToken;
 public class ConversationsTest {
 
     MockSlackApiServer server = new MockSlackApiServer();
-    SlackConfig config = new SlackConfig();
-    Slack slack = Slack.getInstance(config);
+    Slack slack = null;
 
     @Before
     public void setup() throws Exception {
         server.start();
+        SlackConfig config = new SlackConfig();
         config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
+        config.setMethodsConfig(new MethodsConfig());
+        // skip the burst traffic detection for these tests
+        config.getMethodsConfig().setStatsEnabled(false);
+        slack = Slack.getInstance(config);
     }
 
     @After
