@@ -70,6 +70,16 @@ public class ConversationsTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).conversationsUnarchive(r -> r.channel("C123"))
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsInviteShared(r -> r)
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsAcceptSharedInvite(r -> r)
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsApproveSharedInvite(r -> r)
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsDeclineSharedInvite(r -> r)
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsListConnectInvites(r -> r)
+                .isOk(), is(true));
     }
 
     @Test
@@ -110,6 +120,16 @@ public class ConversationsTest {
         assertThat(slack.methodsAsync(ValidToken).conversationsSetTopic(r -> r.channel("C123").topic("something"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).conversationsUnarchive(r -> r.channel("C123"))
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsInviteShared(r -> r)
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsAcceptSharedInvite(r -> r)
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsApproveSharedInvite(r -> r)
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsDeclineSharedInvite(r -> r)
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsListConnectInvites(r -> r)
                 .get().isOk(), is(true));
     }
 

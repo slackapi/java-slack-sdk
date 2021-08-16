@@ -326,6 +326,14 @@ public class Methods {
     public static final String CONVERSATIONS_SET_TOPIC = "conversations.setTopic";
     public static final String CONVERSATIONS_UNARCHIVE = "conversations.unarchive";
 
+    // Slack Connect APIs
+    public static final String CONVERSATIONS_INVITE_SHARED = "conversations.inviteShared";
+    public static final String CONVERSATIONS_ACCEPT_SHARED_INVITE = "conversations.acceptSharedInvite";
+    public static final String CONVERSATIONS_APPROVE_SHARED_INVITE = "conversations.approveSharedInvite";
+    public static final String CONVERSATIONS_DECLINE_SHARED_INVITE = "conversations.declineSharedInvite";
+    public static final String CONVERSATIONS_LIST_CONNECT_INVITES = "conversations.listConnectInvites";
+    public static final String CONVERSATIONS_DISCONNECT_SHARED = "conversations.disconnectShared";
+
     // ------------------------------
     // dialog
     // ------------------------------

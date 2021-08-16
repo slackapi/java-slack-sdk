@@ -1387,6 +1387,56 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<ConversationsInviteSharedResponse> conversationsInviteShared(ConversationsInviteSharedRequest req) {
+        return executor.execute(CONVERSATIONS_INVITE_SHARED, toMap(req), () -> methods.conversationsInviteShared(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsInviteSharedResponse> conversationsInviteShared(RequestConfigurator<ConversationsInviteSharedRequest.ConversationsInviteSharedRequestBuilder> req) {
+        return conversationsInviteShared(req.configure(ConversationsInviteSharedRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ConversationsAcceptSharedInviteResponse> conversationsAcceptSharedInvite(ConversationsAcceptSharedInviteRequest req) {
+        return executor.execute(CONVERSATIONS_ACCEPT_SHARED_INVITE, toMap(req), () -> methods.conversationsAcceptSharedInvite(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsAcceptSharedInviteResponse> conversationsAcceptSharedInvite(RequestConfigurator<ConversationsAcceptSharedInviteRequest.ConversationsAcceptSharedInviteRequestBuilder> req) {
+        return conversationsAcceptSharedInvite(req.configure(ConversationsAcceptSharedInviteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ConversationsApproveSharedInviteResponse> conversationsApproveSharedInvite(ConversationsApproveSharedInviteRequest req) {
+        return executor.execute(CONVERSATIONS_APPROVE_SHARED_INVITE, toMap(req), () -> methods.conversationsApproveSharedInvite(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsApproveSharedInviteResponse> conversationsApproveSharedInvite(RequestConfigurator<ConversationsApproveSharedInviteRequest.ConversationsApproveSharedInviteRequestBuilder> req) {
+        return conversationsApproveSharedInvite(req.configure(ConversationsApproveSharedInviteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ConversationsDeclineSharedInviteResponse> conversationsDeclineSharedInvite(ConversationsDeclineSharedInviteRequest req) {
+        return executor.execute(CONVERSATIONS_DECLINE_SHARED_INVITE, toMap(req), () -> methods.conversationsDeclineSharedInvite(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsDeclineSharedInviteResponse> conversationsDeclineSharedInvite(RequestConfigurator<ConversationsDeclineSharedInviteRequest.ConversationsDeclineSharedInviteRequestBuilder> req) {
+        return conversationsDeclineSharedInvite(req.configure(ConversationsDeclineSharedInviteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ConversationsListConnectInvitesResponse> conversationsListConnectInvites(ConversationsListConnectInvitesRequest req) {
+        return executor.execute(CONVERSATIONS_LIST_CONNECT_INVITES, toMap(req), () -> methods.conversationsListConnectInvites(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsListConnectInvitesResponse> conversationsListConnectInvites(RequestConfigurator<ConversationsListConnectInvitesRequest.ConversationsListConnectInvitesRequestBuilder> req) {
+        return conversationsListConnectInvites(req.configure(ConversationsListConnectInvitesRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<DialogOpenResponse> dialogOpen(DialogOpenRequest req) {
         return executor.execute(DIALOG_OPEN, toMap(req), () -> methods.dialogOpen(req));
     }

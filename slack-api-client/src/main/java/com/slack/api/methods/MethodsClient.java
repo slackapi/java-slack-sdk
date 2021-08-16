@@ -1078,6 +1078,29 @@ public interface MethodsClient {
 
     ConversationsUnarchiveResponse conversationsUnarchive(RequestConfigurator<ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
 
+    // -------------
+    // Slack Connect
+
+    ConversationsInviteSharedResponse conversationsInviteShared(ConversationsInviteSharedRequest req) throws IOException, SlackApiException;
+
+    ConversationsInviteSharedResponse conversationsInviteShared(RequestConfigurator<ConversationsInviteSharedRequest.ConversationsInviteSharedRequestBuilder> req) throws IOException, SlackApiException;
+
+    ConversationsAcceptSharedInviteResponse conversationsAcceptSharedInvite(ConversationsAcceptSharedInviteRequest req) throws IOException, SlackApiException;
+
+    ConversationsAcceptSharedInviteResponse conversationsAcceptSharedInvite(RequestConfigurator<ConversationsAcceptSharedInviteRequest.ConversationsAcceptSharedInviteRequestBuilder> req) throws IOException, SlackApiException;
+
+    ConversationsApproveSharedInviteResponse conversationsApproveSharedInvite(ConversationsApproveSharedInviteRequest req) throws IOException, SlackApiException;
+
+    ConversationsApproveSharedInviteResponse conversationsApproveSharedInvite(RequestConfigurator<ConversationsApproveSharedInviteRequest.ConversationsApproveSharedInviteRequestBuilder> req) throws IOException, SlackApiException;
+
+    ConversationsDeclineSharedInviteResponse conversationsDeclineSharedInvite(ConversationsDeclineSharedInviteRequest req) throws IOException, SlackApiException;
+
+    ConversationsDeclineSharedInviteResponse conversationsDeclineSharedInvite(RequestConfigurator<ConversationsDeclineSharedInviteRequest.ConversationsDeclineSharedInviteRequestBuilder> req) throws IOException, SlackApiException;
+
+    ConversationsListConnectInvitesResponse conversationsListConnectInvites(ConversationsListConnectInvitesRequest req) throws IOException, SlackApiException;
+
+    ConversationsListConnectInvitesResponse conversationsListConnectInvites(RequestConfigurator<ConversationsListConnectInvitesRequest.ConversationsListConnectInvitesRequestBuilder> req) throws IOException, SlackApiException;
+
     // ------------------------------
     // dialog
     // ------------------------------

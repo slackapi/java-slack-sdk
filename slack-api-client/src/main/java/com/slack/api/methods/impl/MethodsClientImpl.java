@@ -1644,6 +1644,56 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsInviteSharedResponse conversationsInviteShared(ConversationsInviteSharedRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_INVITE_SHARED, getToken(req), ConversationsInviteSharedResponse.class);
+    }
+
+    @Override
+    public ConversationsInviteSharedResponse conversationsInviteShared(RequestConfigurator<ConversationsInviteSharedRequest.ConversationsInviteSharedRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsInviteShared(req.configure(ConversationsInviteSharedRequest.builder()).build());
+    }
+
+    @Override
+    public ConversationsAcceptSharedInviteResponse conversationsAcceptSharedInvite(ConversationsAcceptSharedInviteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_ACCEPT_SHARED_INVITE, getToken(req), ConversationsAcceptSharedInviteResponse.class);
+    }
+
+    @Override
+    public ConversationsAcceptSharedInviteResponse conversationsAcceptSharedInvite(RequestConfigurator<ConversationsAcceptSharedInviteRequest.ConversationsAcceptSharedInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsAcceptSharedInvite(req.configure(ConversationsAcceptSharedInviteRequest.builder()).build());
+    }
+
+    @Override
+    public ConversationsApproveSharedInviteResponse conversationsApproveSharedInvite(ConversationsApproveSharedInviteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_APPROVE_SHARED_INVITE, getToken(req), ConversationsApproveSharedInviteResponse.class);
+    }
+
+    @Override
+    public ConversationsApproveSharedInviteResponse conversationsApproveSharedInvite(RequestConfigurator<ConversationsApproveSharedInviteRequest.ConversationsApproveSharedInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsApproveSharedInvite(req.configure(ConversationsApproveSharedInviteRequest.builder()).build());
+    }
+
+    @Override
+    public ConversationsDeclineSharedInviteResponse conversationsDeclineSharedInvite(ConversationsDeclineSharedInviteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_DECLINE_SHARED_INVITE, getToken(req), ConversationsDeclineSharedInviteResponse.class);
+    }
+
+    @Override
+    public ConversationsDeclineSharedInviteResponse conversationsDeclineSharedInvite(RequestConfigurator<ConversationsDeclineSharedInviteRequest.ConversationsDeclineSharedInviteRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsDeclineSharedInvite(req.configure(ConversationsDeclineSharedInviteRequest.builder()).build());
+    }
+
+    @Override
+    public ConversationsListConnectInvitesResponse conversationsListConnectInvites(ConversationsListConnectInvitesRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_LIST_CONNECT_INVITES, getToken(req), ConversationsListConnectInvitesResponse.class);
+    }
+
+    @Override
+    public ConversationsListConnectInvitesResponse conversationsListConnectInvites(RequestConfigurator<ConversationsListConnectInvitesRequest.ConversationsListConnectInvitesRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsListConnectInvites(req.configure(ConversationsListConnectInvitesRequest.builder()).build());
+    }
+
+    @Override
     public DialogOpenResponse dialogOpen(DialogOpenRequest req)
             throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.DIALOG_OPEN, getToken(req), DialogOpenResponse.class);
