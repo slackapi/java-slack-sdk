@@ -1349,6 +1349,51 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(ConversationsInviteSharedRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel", req.getChannel(), form);
+        if (req.getEmails() != null) {
+            setIfNotNull("emails", req.getEmails().stream().collect(joining(",")), form);
+        }
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ConversationsAcceptSharedInviteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_name", req.getChannelName(), form);
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("free_trial_accept", req.getFreeTrialAccept(), form);
+        setIfNotNull("invite_id", req.getInviteId(), form);
+        setIfNotNull("is_private", req.getIsPrivate(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ConversationsApproveSharedInviteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("invite_id", req.getInviteId(), form);
+        setIfNotNull("target_team", req.getTargetTeam(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ConversationsDeclineSharedInviteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("invite_id", req.getInviteId(), form);
+        setIfNotNull("target_team", req.getTargetTeam(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ConversationsListConnectInvitesRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("count", req.getCount(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(DialogOpenRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("trigger_id", req.getTriggerId(), form);

@@ -375,6 +375,27 @@ public class EventHandlersTest {
                     @Override
                     public void handle(ChannelIdChangedPayload payload) {
                     }
+                },
+                // Slack Connect
+                new SharedChannelInviteAcceptedHandler() {
+                    @Override
+                    public void handle(SharedChannelInviteAcceptedPayload payload) {
+                    }
+                },
+                new SharedChannelInviteApprovedHandler() {
+                    @Override
+                    public void handle(SharedChannelInviteApprovedPayload payload) {
+                    }
+                },
+                new SharedChannelInviteReceivedHandler() {
+                    @Override
+                    public void handle(SharedChannelInviteReceivedPayload payload) {
+                    }
+                },
+                new SharedChannelInviteDeclinedHandler() {
+                    @Override
+                    public void handle(SharedChannelInviteDeclinedPayload payload) {
+                    }
                 }
         );
 

@@ -795,6 +795,29 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<ConversationsUnarchiveResponse> conversationsUnarchive(RequestConfigurator<ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req);
 
+    // -------------
+    // Slack Connect
+
+    CompletableFuture<ConversationsInviteSharedResponse> conversationsInviteShared(ConversationsInviteSharedRequest req);
+
+    CompletableFuture<ConversationsInviteSharedResponse> conversationsInviteShared(RequestConfigurator<ConversationsInviteSharedRequest.ConversationsInviteSharedRequestBuilder> req);
+
+    CompletableFuture<ConversationsAcceptSharedInviteResponse> conversationsAcceptSharedInvite(ConversationsAcceptSharedInviteRequest req);
+
+    CompletableFuture<ConversationsAcceptSharedInviteResponse> conversationsAcceptSharedInvite(RequestConfigurator<ConversationsAcceptSharedInviteRequest.ConversationsAcceptSharedInviteRequestBuilder> req);
+
+    CompletableFuture<ConversationsApproveSharedInviteResponse> conversationsApproveSharedInvite(ConversationsApproveSharedInviteRequest req);
+
+    CompletableFuture<ConversationsApproveSharedInviteResponse> conversationsApproveSharedInvite(RequestConfigurator<ConversationsApproveSharedInviteRequest.ConversationsApproveSharedInviteRequestBuilder> req);
+
+    CompletableFuture<ConversationsDeclineSharedInviteResponse> conversationsDeclineSharedInvite(ConversationsDeclineSharedInviteRequest req);
+
+    CompletableFuture<ConversationsDeclineSharedInviteResponse> conversationsDeclineSharedInvite(RequestConfigurator<ConversationsDeclineSharedInviteRequest.ConversationsDeclineSharedInviteRequestBuilder> req);
+
+    CompletableFuture<ConversationsListConnectInvitesResponse> conversationsListConnectInvites(ConversationsListConnectInvitesRequest req);
+
+    CompletableFuture<ConversationsListConnectInvitesResponse> conversationsListConnectInvites(RequestConfigurator<ConversationsListConnectInvitesRequest.ConversationsListConnectInvitesRequestBuilder> req);
+
     // ------------------------------
     // dialog
     // ------------------------------

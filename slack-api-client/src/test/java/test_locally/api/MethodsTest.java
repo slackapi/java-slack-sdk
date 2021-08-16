@@ -39,13 +39,7 @@ public class MethodsTest {
                 // TODO: https://github.com/slackapi/java-slack-sdk/issues/634
                 "admin.conversations.getCustomRetention",
                 "admin.conversations.removeCustomRetention",
-                "admin.conversations.setCustomRetention",
-                // TODO: https://github.com/slackapi/java-slack-sdk/issues/773
-                "conversations.acceptSharedInvite",
-                "conversations.approveSharedInvite",
-                "conversations.declineSharedInvite",
-                "conversations.inviteShared",
-                "conversations.listConnectInvites"
+                "admin.conversations.setCustomRetention"
         );
         List<String> methodNames = new ArrayList<>();
         for (String methodName : allMethodNames) {
