@@ -16,10 +16,12 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static config.Constants.SLACK_SDK_TEST_GRID_SHARED_CHANNEL_OTHER_ORG_USER_ID;
+import static java.util.stream.Collectors.toList;
 import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -52,6 +54,18 @@ public class users_Test {
                 .usersInfo(r -> r.user(users.getMembers().get(0).getId()).includeLocale(true));
         assertThat(usersInfo.getError(), is(nullValue()));
         assertThat(usersInfo.getUser().getLocale(), is(notNullValue()));
+    }
+
+    @Test
+    public void traverseAllUsers() throws Exception {
+        List<String> userIds = new ArrayList<>();
+        String nextCursor = null;
+        while (nextCursor == null || !nextCursor.equals("")) {
+            UsersListResponse response = slack.methods(userToken).usersList(r -> r.includeLocale(true).limit(3000));
+            nextCursor = response.getResponseMetadata().getNextCursor();
+            userIds.addAll(response.getMembers().stream().map(u -> u.getId()).collect(toList()));
+        }
+        assertThat(userIds.size(), is(greaterThan(0)));
     }
 
     @Test

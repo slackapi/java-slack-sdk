@@ -82,7 +82,8 @@
       "two_factor_type": "",
       "has_files": false,
       "locale": "",
-      "is_workflow_bot": false
+      "is_workflow_bot": false,
+      "who_can_share_contact_card": false
     },
     "cache_ts": 123
   }

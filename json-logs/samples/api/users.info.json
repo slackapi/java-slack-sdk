@@ -61,7 +61,8 @@
         ""
       ]
     },
-    "is_stranger": false
+    "is_stranger": false,
+    "who_can_share_contact_card": ""
   },
   "error": "",
   "needed": "",
