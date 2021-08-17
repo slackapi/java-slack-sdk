@@ -77,6 +77,12 @@ public class stars_Test {
         }
 
         {
+            // To remove the star before calling stars.add
+            slack.methods().starsRemove(r -> r
+                    .token(userToken)
+                    .channel(channelIds.get(0))
+                    .file(fileObj.getId()));
+
             StarsAddResponse response = slack.methods().starsAdd(r -> r
                     .token(userToken)
                     .channel(channelIds.get(0))
