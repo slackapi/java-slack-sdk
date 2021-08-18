@@ -27,7 +27,7 @@ public class LinkSharedEvent implements Event {
     // https://api.slack.com/changelog/2021-08-changes-to-unfurls
     private String unfurlId;
     // https://api.slack.com/changelog/2021-08-changes-to-unfurls
-    private String source; // "composer"
+    private String source; // "composer" / "conversations_history"
 
     private String eventTs;
 
