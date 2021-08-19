@@ -4,6 +4,7 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
+// https://api.slack.com/methods/usergroups.enable
 @Data
 @Builder
 public class UsergroupsEnableRequest implements SlackApiRequest {
@@ -22,4 +23,9 @@ public class UsergroupsEnableRequest implements SlackApiRequest {
      * Include the number of users in the User Group.
      */
     private boolean includeCount;
+
+    /**
+     * encoded team id where the user group exists, required if org token is used
+     */
+    private String teamId;
 }

@@ -27,7 +27,12 @@ public class AdminAppsApproveRequest implements SlackApiRequest {
     private String requestId;
 
     /**
-     * Workspace Id
+     * The ID of the enterprise to approve the app on
+     */
+    private String enterpriseId;
+
+    /**
+     * The ID of the workspace to approve the app on
      */
     private String teamId;
 

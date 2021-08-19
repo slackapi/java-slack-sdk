@@ -190,6 +190,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("app_id", req.getAppId(), form);
         setIfNotNull("request_id", req.getRequestId(), form);
+        setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
@@ -207,6 +208,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("app_id", req.getAppId(), form);
         setIfNotNull("request_id", req.getRequestId(), form);
+        setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
@@ -663,6 +665,11 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
         setIfNotNull("user_id", req.getUserId(), form);
+        if (req.getChannelIds() != null && req.getChannelIds().size() > 0) {
+            setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("is_restricted", req.isRestricted(), form);
+        setIfNotNull("is_ultra_restricted", req.isUltraRestricted(), form);
         return form;
     }
 
@@ -1419,6 +1426,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(DndInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("user", req.getUser(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1433,6 +1441,7 @@ public class RequestFormBuilder {
         if (req.getUsers() != null) {
             setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
         }
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1917,6 +1926,7 @@ public class RequestFormBuilder {
         setIfNotNull("full", req.isFull(), form);
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
+        setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
@@ -1936,29 +1946,34 @@ public class RequestFormBuilder {
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("time", req.getTime(), form);
         setIfNotNull("user", req.getUser(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
     public static FormBody.Builder toForm(RemindersCompleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("reminder", req.getReminder(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
     public static FormBody.Builder toForm(RemindersDeleteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("reminder", req.getReminder(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
     public static FormBody.Builder toForm(RemindersInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("reminder", req.getReminder(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
     public static FormBody.Builder toForm(RemindersListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -1996,6 +2011,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(SearchMessagesRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("query", req.getQuery(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("sort", req.getSort(), form);
         setIfNotNull("sort_dir", req.getSortDir(), form);
         setIfNotNull("highlight", req.isHighlight(), form);
@@ -2029,7 +2045,10 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(StarsListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("count", req.getCount(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("page", req.getPage(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -2091,6 +2110,7 @@ public class RequestFormBuilder {
             setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
         }
         setIfNotNull("include_count", req.isIncludeCount(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -2098,6 +2118,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("usergroup", req.getUsergroup(), form);
         setIfNotNull("include_count", req.isIncludeCount(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -2105,6 +2126,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("usergroup", req.getUsergroup(), form);
         setIfNotNull("include_count", req.isIncludeCount(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -2113,6 +2135,7 @@ public class RequestFormBuilder {
         setIfNotNull("include_disabled", req.isIncludeDisabled(), form);
         setIfNotNull("include_count", req.isIncludeCount(), form);
         setIfNotNull("include_users", req.isIncludeUsers(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -2126,6 +2149,7 @@ public class RequestFormBuilder {
             setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
         }
         setIfNotNull("include_count", req.isIncludeCount(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -2133,6 +2157,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("usergroup", req.getUsergroup(), form);
         setIfNotNull("include_disabled", req.isIncludeDisabled(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 
@@ -2143,6 +2168,7 @@ public class RequestFormBuilder {
             setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
         }
         setIfNotNull("include_count", req.isIncludeCount(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }
 

@@ -30,4 +30,6 @@ public class RemindersAddRequest implements SlackApiRequest {
      */
     private String user;
 
+    private String teamId;
+
 }

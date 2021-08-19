@@ -21,11 +21,13 @@ public class PinsAddRequest implements SlackApiRequest {
     /**
      * File to pin.
      */
+    @Deprecated
     private String file;
 
     /**
      * File comment to pin.
      */
+    @Deprecated
     private String fileComment;
 
     /**

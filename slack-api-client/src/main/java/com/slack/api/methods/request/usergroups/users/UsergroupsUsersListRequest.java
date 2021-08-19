@@ -4,6 +4,7 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
+// https://api.slack.com/methods/usergroups.users.list
 @Data
 @Builder
 public class UsergroupsUsersListRequest implements SlackApiRequest {
@@ -22,5 +23,10 @@ public class UsergroupsUsersListRequest implements SlackApiRequest {
      * Allow results that involve disabled User Groups.
      */
     private boolean includeDisabled;
+
+    /**
+     * encoded team id where the user group exists, required if org token is used
+     */
+    private String teamId;
 
 }

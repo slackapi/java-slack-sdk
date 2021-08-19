@@ -4,6 +4,8 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * https://api.slack.com/methods/admin.users.assign
  */
@@ -25,6 +27,11 @@ public class AdminUsersAssignRequest implements SlackApiRequest {
      * The ID of the user to add to the workspace.
      */
     private String userId;
+
+    /**
+     * Comma separated values of channel IDs to add user in the new workspace.
+     */
+    private List<String> channelIds;
 
     /**
      * True if user should be added to the workspace as a guest.
