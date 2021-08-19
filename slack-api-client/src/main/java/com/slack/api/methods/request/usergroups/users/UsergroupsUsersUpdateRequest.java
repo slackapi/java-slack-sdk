@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.util.List;
 
+// https://api.slack.com/methods/usergroups.users.update
 @Data
 @Builder
 public class UsergroupsUsersUpdateRequest implements SlackApiRequest {
@@ -29,5 +30,10 @@ public class UsergroupsUsersUpdateRequest implements SlackApiRequest {
      * Include the number of users in the User Group.
      */
     private boolean includeCount;
+
+    /**
+     * encoded team id where the user group exists, required if org token is used
+     */
+    private String teamId;
 
 }

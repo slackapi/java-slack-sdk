@@ -18,4 +18,6 @@ public class RemindersDeleteRequest implements SlackApiRequest {
      */
     private String reminder;
 
+    private String teamId;
+
 }

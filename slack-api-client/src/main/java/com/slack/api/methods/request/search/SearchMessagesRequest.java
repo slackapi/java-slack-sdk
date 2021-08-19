@@ -33,6 +33,8 @@ public class SearchMessagesRequest implements SlackApiRequest {
      */
     private boolean highlight;
 
+    private String cursor;
+
     private Integer count;
 
     private Integer page;

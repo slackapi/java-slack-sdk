@@ -17,4 +17,7 @@ public class RemindersCompleteRequest implements SlackApiRequest {
      * The ID of the reminder to be marked as complete
      */
     private String reminder;
+
+    private String teamId;
+
 }

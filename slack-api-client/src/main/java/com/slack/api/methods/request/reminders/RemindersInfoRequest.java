@@ -18,4 +18,6 @@ public class RemindersInfoRequest implements SlackApiRequest {
      */
     private String reminder;
 
+    private String teamId;
+
 }

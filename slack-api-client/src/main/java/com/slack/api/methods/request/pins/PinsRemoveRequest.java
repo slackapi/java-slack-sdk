@@ -21,11 +21,13 @@ public class PinsRemoveRequest implements SlackApiRequest {
     /**
      * File to un-pin.
      */
+    @Deprecated
     private String file;
 
     /**
      * File comment to un-pin.
      */
+    @Deprecated
     private String fileComment;
 
     /**

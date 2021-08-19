@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.util.List;
 
+// https://api.slack.com/methods/usergroups.create
 @Data
 @Builder
 public class UsergroupsCreateRequest implements SlackApiRequest {
@@ -39,5 +40,10 @@ public class UsergroupsCreateRequest implements SlackApiRequest {
      * Include the number of users in each User Group.
      */
     private boolean includeCount;
+
+    /**
+     * encoded team id where the user group exists, required if org token is used
+     */
+    private String teamId;
 
 }

@@ -20,4 +20,6 @@ public class DndTeamInfoRequest implements SlackApiRequest {
      */
     private List<String> users;
 
+    private String teamId;
+
 }

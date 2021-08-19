@@ -21,11 +21,13 @@ public class ReactionsAddRequest implements SlackApiRequest {
     /**
      * File to add reaction to.
      */
+    @Deprecated
     private String file;
 
     /**
      * File comment to add reaction to.
      */
+    @Deprecated
     private String fileComment;
 
     /**

@@ -13,4 +13,5 @@ public class RemindersListRequest implements SlackApiRequest {
      */
     private String token;
 
+    private String teamId;
 }
