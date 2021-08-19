@@ -2,8 +2,7 @@ package com.slack.api.methods;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -21,6 +20,14 @@ public class MethodsRateLimits {
         } else {
             return methodNameToTier.get(methodName);
         }
+    }
+
+    public TreeMap<String, String> toMap() {
+        TreeMap<String, String> result = new TreeMap<>(); // using TreeMap to sort the keys
+        for (Map.Entry<String, MethodsRateLimitTier> e : methodNameToTier.entrySet()) {
+            result.put(e.getKey(), e.getValue().name());
+        }
+        return result;
     }
 
     public static void setRateLimitTier(String methodName, MethodsRateLimitTier tier) {
