@@ -56,4 +56,34 @@ public class LinkSharedEventTest {
         assertThat(generatedJson, is(expectedJson));
     }
 
+    @Test
+    public void newUnfurls_2021_08() {
+        // https://api.slack.com/changelog/2021-08-changes-to-unfurls
+        String json = "{\n" +
+                "    \"type\": \"link_shared\",\n" +
+                "    \"channel\": \"COMPOSER\",\n" +
+                "    \"is_bot_user_member\": true,\n" +
+                "    \"user\": \"Uxxxxxxx\",\n" +
+                "    \"message_ts\": \"Uxxxxxxx-909b5454-75f8-4ac4-b325-1b40e230bbd8-gryl3kb80b3wm49ihzoo35fyqoq08n2y\",\n" +
+                "    \"unfurl_id\": \"Uxxxxxxx-909b5454-75f8-4ac4-b325-1b40e230bbd8-gryl3kb80b3wm49ihzoo35fyqoq08n2y\",\n" +
+                "    \"source\": \"composer\",\n" +
+                "    \"links\": [\n" +
+                "        {\n" +
+                "            \"domain\": \"example.com\",\n" +
+                "            \"url\": \"https://example.com/12345\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"domain\": \"example.com\",\n" +
+                "            \"url\": \"https://example.com/67890\"\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"domain\": \"another-example.com\",\n" +
+                "            \"url\": \"https://yet.another-example.com/v/abcde\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}\n";
+        LinkSharedEvent event = GsonFactory.createSnakeCase().fromJson(json, LinkSharedEvent.class);
+        assertThat(event.getType(), is("link_shared"));
+    }
+
 }

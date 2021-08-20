@@ -16,13 +16,19 @@ public class LinkSharedEvent implements Event {
     public static final String TYPE_NAME = "link_shared";
 
     private final String type = TYPE_NAME;
-    private String channel;
+    private String channel; // This can be "COMPOSER"
     private String user;
     private String messageTs;
     private String threadTs;
     private List<Link> links;
     @SerializedName("is_bot_user_member")
     private boolean botUserMember;
+
+    // https://api.slack.com/changelog/2021-08-changes-to-unfurls
+    private String unfurlId;
+    // https://api.slack.com/changelog/2021-08-changes-to-unfurls
+    private String source; // "composer" / "conversations_history"
+
     private String eventTs;
 
     @Data
