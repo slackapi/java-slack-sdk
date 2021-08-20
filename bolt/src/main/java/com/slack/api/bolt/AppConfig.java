@@ -352,6 +352,20 @@ public class AppConfig {
     @Builder.Default
     private boolean appInitializersEnabled = true;
 
+    /**
+     * Automatically acknowledge message events that have subtype if true.
+     * Find the list of available subtypes at https://api.slack.com/events/message
+     */
+    @Builder.Default
+    private boolean subtypedMessageEventsAutoAckEnabled = false;
+
+    /**
+     * Automatically acknowledge all Event API events if true.
+     * This behavior is compatible with bolt-js.
+     */
+    @Builder.Default
+    private boolean allEventsApiAutoAckEnabled = false;
+
     // ---------------------------------
     // Default middleware configuration
     // ---------------------------------

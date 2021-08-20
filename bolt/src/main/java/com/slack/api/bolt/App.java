@@ -1067,6 +1067,20 @@ public class App {
                         EventsApiPayload<Event> payload = buildEventPayload(request);
                         return handler.apply(payload, request.getContext());
                     }
+                    if (config().isAllEventsApiAutoAckEnabled()) {
+                        // If the flag is true, Bolt acknowledges all the events anyway
+                        // This behavior is compatible with bolt-js.
+                        log.debug("{} is auto-acknowledged as AppConfig#isAllEventsApiAutoAckEnabled() is true",
+                                request.getEventTypeAndSubtype());
+                        return request.getContext().ack();
+                    }
+                    boolean isSubtypedMessageEvents = request.getEventTypeAndSubtype() != null
+                            && request.getEventTypeAndSubtype().startsWith(MessageEvent.TYPE_NAME + ":");
+                    if (config().isSubtypedMessageEventsAutoAckEnabled() && isSubtypedMessageEvents) {
+                        log.debug("{} is auto-acknowledged as AppConfig#isSubtypedMessageEventsAutoAckEnabled() is true",
+                                request.getEventTypeAndSubtype());
+                        return request.getContext().ack();
+                    }
                     log.warn("No BoltEventHandler registered for event: {}\n{}",
                             request.getEventTypeAndSubtype(), ListenerCodeSuggestion.event(request.getEventTypeAndSubtype()));
                     break;
