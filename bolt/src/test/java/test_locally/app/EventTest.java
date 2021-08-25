@@ -159,6 +159,118 @@ public class EventTest {
         assertTrue(botMessageReceived.get());
     }
 
+    @Test
+    public void allEventsAutoAck() throws Exception {
+        App app = buildApp();
+        app.config().setAllEventsApiAutoAckEnabled(true);
+
+        {
+            // human message
+            EventsApiPayload<MessageEvent> payload = buildUserMessagePayload();
+
+            String requestBody = gson.toJson(payload);
+            Map<String, List<String>> rawHeaders = new HashMap<>();
+            String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+            setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+            EventRequest req = new EventRequest(requestBody, new RequestHeaders(rawHeaders));
+            Response response = app.run(req);
+            // Although no listener is registered in App, this request must be acknowledged.
+            assertEquals(200L, response.getStatusCode().longValue());
+        }
+        {
+            // bot
+            EventsApiPayload<MessageBotEvent> payload = buildUserBotMessagePayload();
+            String requestBody = gson.toJson(payload);
+            Map<String, List<String>> rawHeaders = new HashMap<>();
+            String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+            setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+            EventRequest req = new EventRequest(requestBody, new RequestHeaders(rawHeaders));
+            Response response = app.run(req);
+
+            // Although no listener is registered in App, this request must be acknowledged.
+            assertEquals(200L, response.getStatusCode().longValue());
+        }
+        {
+            // bot handled by listener
+            AtomicBoolean called = new AtomicBoolean(false);
+            app.event(MessageBotEvent.class, (req, ctx) -> {
+                called.set(true);
+                return ctx.ack();
+            });
+
+            EventsApiPayload<MessageBotEvent> payload = buildUserBotMessagePayload();
+            String requestBody = gson.toJson(payload);
+            Map<String, List<String>> rawHeaders = new HashMap<>();
+            String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+            setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+            EventRequest req = new EventRequest(requestBody, new RequestHeaders(rawHeaders));
+            Response response = app.run(req);
+
+            // Although no listener is registered in App, this request must be acknowledged.
+            assertEquals(200L, response.getStatusCode().longValue());
+            assertTrue(called.get());
+        }
+    }
+
+    @Test
+    public void subtypedMessageEventsAutoAck() throws Exception {
+        App app = buildApp();
+        app.config().setSubtypedMessageEventsAutoAckEnabled(true);
+
+        {
+            // human message
+            EventsApiPayload<MessageEvent> payload = buildUserMessagePayload();
+
+            String requestBody = gson.toJson(payload);
+            Map<String, List<String>> rawHeaders = new HashMap<>();
+            String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+            setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+            EventRequest req = new EventRequest(requestBody, new RequestHeaders(rawHeaders));
+            Response response = app.run(req);
+            // non-subtyped one should be handled by listeners.
+            assertEquals(404L, response.getStatusCode().longValue());
+        }
+        {
+            // bot
+            EventsApiPayload<MessageBotEvent> payload = buildUserBotMessagePayload();
+            String requestBody = gson.toJson(payload);
+            Map<String, List<String>> rawHeaders = new HashMap<>();
+            String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+            setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+            EventRequest req = new EventRequest(requestBody, new RequestHeaders(rawHeaders));
+            Response response = app.run(req);
+
+            // Although no listener is registered in App, this request must be acknowledged.
+            assertEquals(200L, response.getStatusCode().longValue());
+        }
+        {
+            // bot handled by listener
+            AtomicBoolean called = new AtomicBoolean(false);
+            app.event(MessageBotEvent.class, (req, ctx) -> {
+                called.set(true);
+                return ctx.ack();
+            });
+
+            EventsApiPayload<MessageBotEvent> payload = buildUserBotMessagePayload();
+            String requestBody = gson.toJson(payload);
+            Map<String, List<String>> rawHeaders = new HashMap<>();
+            String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+            setRequestHeaders(requestBody, rawHeaders, timestamp);
+
+            EventRequest req = new EventRequest(requestBody, new RequestHeaders(rawHeaders));
+            Response response = app.run(req);
+
+            // Although no listener is registered in App, this request must be acknowledged.
+            assertEquals(200L, response.getStatusCode().longValue());
+            assertTrue(called.get());
+        }
+    }
+
     App buildApp() {
         return new App(AppConfig.builder()
                 .signingSecret(secret)
