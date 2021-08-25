@@ -354,7 +354,7 @@ public class AppConfig {
 
     /**
      * Automatically acknowledge message events that have subtype if true.
-     * Find the list of available subtypes at https://api.slack.com/events/message
+     * Find the list of available subtypes at https://api.slack.com/events/message#subtypes
      */
     @Builder.Default
     private boolean subtypedMessageEventsAutoAckEnabled = false;
