@@ -1,6 +1,6 @@
 <footer>
   <p class="light tiny align_center">
-    © 2020 Slack Technologies, Inc. and contributors
+    © 2020- Slack Technologies, LLC and contributors
   </p>
 </footer>
 <script>
