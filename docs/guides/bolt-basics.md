@@ -286,11 +286,11 @@ Although we generally do not recommend disabling these middleware as they are co
 ```java
 AppConfig appConfig = new AppConfig();
 
-appConfig.setIgnoringSelfEvents(false); // the default is true
-appConfig.setSslCheck(false); // the default is true
+appConfig.setIgnoringSelfEventsEnabled(false); // the default is true
+appConfig.setSslCheckEnabled(false); // the default is true
 
 // Please don't do this without an alternative solution
-appConfig.setRequestVerification(false); // the default is true
+appConfig.setRequestVerificationEnabled(false); // the default is true
 
 App app = new App(appConfig);
 ```

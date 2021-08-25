@@ -285,11 +285,11 @@ Bolt は、デフォルトで以下のミドルウェアを有効にします。
 ```java
 AppConfig appConfig = new AppConfig();
 
-appConfig.setIgnoringSelfEvents(false); // デフォルトは true
-appConfig.setSslCheck(false); // デフォルトは true
+appConfig.setIgnoringSelfEventsEnabled(false); // デフォルトは true
+appConfig.setSslCheckEnabled(false); // デフォルトは true
 
 // 代替となるソリューションなしで無効化しないでください！
-appConfig.setRequestVerification(false); // デフォルトは true
+appConfig.setRequestVerificationEnabled(false); // デフォルトは true
 
 App app = new App(appConfig);
 ```
