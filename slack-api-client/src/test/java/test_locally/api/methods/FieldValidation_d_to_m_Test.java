@@ -108,7 +108,11 @@ public class FieldValidation_d_to_m_Test {
                 "getEditor",
                 "getLastEditor",
                 "getUpdated",
-                "getImageExifRotation"
+                "getImageExifRotation",
+                "getDeanimate",
+                "getGroups",
+                "getChannels",
+                "getIms"
         );
     }
 
@@ -189,7 +193,11 @@ public class FieldValidation_d_to_m_Test {
                 "getLinesMore",
                 "getEditor",
                 "getLastEditor",
-                "getUpdated"
+                "getUpdated",
+                "getDeanimate",
+                "getGroups",
+                "getChannels",
+                "getIms"
         );
     }
 
