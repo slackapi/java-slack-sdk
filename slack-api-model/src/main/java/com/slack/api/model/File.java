@@ -130,6 +130,8 @@ public class File {
 
     private String thumbVideo;
 
+    @SerializedName("thumb_gif")
+    private String thumbGif;
     @SerializedName("thumb_pdf")
     private String thumbPdf;
     @SerializedName("thumb_pdf_w")
@@ -148,6 +150,7 @@ public class File {
     @SerializedName("original_h")
     private String originalHeight;
 
+    private String deanimate;
     private String deanimateGif;
     private String pjpeg;
 
