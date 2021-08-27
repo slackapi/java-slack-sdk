@@ -555,4 +555,18 @@ public class files_Test {
         assertThat(share2.getThreadTs(), is(threadTs));
     }
 
+    @Test
+    public void issue824_gif_files() throws IOException, SlackApiException {
+        MethodsClient client = slack.methods(userToken);
+        File file = new File("src/test/resources/slack-logo.gif");
+        byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
+        FilesUploadResponse upload = client.filesUpload(r -> r
+                .fileData(fileData).channels(Arrays.asList(channelId)));
+        assertThat(upload.getError(), is(nullValue()));
+        FilesListResponse files = client.filesList(r -> r.channel(channelId).count(1));
+        assertThat(files.getError(), is(nullValue()));
+        FilesInfoResponse fileInfo = client.filesInfo(r -> r.file(upload.getFile().getId()));
+        assertThat(fileInfo.getError(), is(nullValue()));
+    }
+
 }

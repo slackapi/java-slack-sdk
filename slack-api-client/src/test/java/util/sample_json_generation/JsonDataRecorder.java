@@ -276,6 +276,11 @@ public class JsonDataRecorder {
                     array.remove(idx);
                 }
                 array.add(gson.toJsonTree(ObjectInitializer.initProperties(new FileComment())));
+            } else if (name != null && name.equals("files")) {
+                for (int idx = 0; idx < array.size(); idx++) {
+                    array.remove(idx);
+                }
+                array.add(gson.toJsonTree(ObjectInitializer.initProperties(new com.slack.api.model.File())));
             }
             if (array.size() == 0) {
                 List<String> addressNames = Arrays.asList("from", "to", "cc");
@@ -353,6 +358,25 @@ public class JsonDataRecorder {
                 }
             }
         } else if (element.isJsonObject()) {
+            if (name != null && name.equals("file")) {
+                try {
+                    JsonObject file = element.getAsJsonObject();
+                    // To avoid concurrent modification of the underlying objects
+                    List<String> oldKeys = new ArrayList<>(file.keySet());
+                    for (String key : oldKeys) {
+                        file.remove(key);
+                    }
+                    JsonObject fullFile = GsonFactory.createSnakeCase().toJsonTree(
+                            ObjectInitializer.initProperties(new com.slack.api.model.File())
+                    ).getAsJsonObject();
+                    for (String newKey : fullFile.keySet()) {
+                        file.add(newKey, fullFile.get(newKey));
+                    }
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+                return;
+            }
             List<Map.Entry<String, JsonElement>> entries = new ArrayList<>(element.getAsJsonObject().entrySet());
             if (entries.size() > 0) {
                 if (entries.get(0).getKey().matches("^[A-Z].{8,10}$")) {
