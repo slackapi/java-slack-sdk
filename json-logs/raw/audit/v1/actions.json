@@ -185,7 +185,8 @@
       "channel_membership_limit_changed_from_org_level",
       "connect_dm_invite_generated",
       "connect_dm_invite_revoked",
-      "connect_dm_invite_accepted"
+      "connect_dm_invite_accepted",
+      "connect_dm_invite_ignored"
     ],
     "app": [
       "app_installed",
