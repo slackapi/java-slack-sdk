@@ -30,5 +30,6 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> workflowBuilder;
         private List<String> barrier;
         private List<String> huddle;
+        private List<String> anomaly;
     }
 }
