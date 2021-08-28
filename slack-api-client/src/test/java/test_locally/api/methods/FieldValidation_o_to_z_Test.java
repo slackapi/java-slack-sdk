@@ -275,7 +275,10 @@ public class FieldValidation_o_to_z_Test {
                 "getEditor",
                 "getLastEditor",
                 "getUpdated",
-                "getDeanimate"
+                "getDeanimate",
+                "getGroups",
+                "getChannels",
+                "getIms"
         );
     }
 
