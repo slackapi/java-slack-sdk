@@ -351,7 +351,7 @@ public class App {
         if (config.getClientId() == null
                 // OpenID Connect does not use require the bot scopes
                 || (!config.isOpenIDConnectEnabled() && config.getScope() == null)
-                || state == null) {
+                || (config.isStateValidationEnabled() && state == null)) {
             return null;
         }
 
@@ -996,7 +996,8 @@ public class App {
                         try {
                             Map<String, List<String>> responseHeaders = new HashMap<>();
                             Response response = Response.builder().statusCode(200).headers(responseHeaders).build();
-                            String state = oAuthStateService.issueNewState(slackRequest, response);
+                            String state = config().isStateValidationEnabled() ?
+                                    oAuthStateService.issueNewState(slackRequest, response) : "";
                             String nonce = openIDConnectNonceService.issueNewNonce(slackRequest, response);
                             String authorizeUrl = buildAuthorizeUrl(state, nonce);
                             if (authorizeUrl == null) {

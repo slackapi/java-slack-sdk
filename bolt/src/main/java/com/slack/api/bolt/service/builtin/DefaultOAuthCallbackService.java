@@ -95,11 +95,13 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
             if (payload.getError() != null) {
                 return errorHandler.handle(request, response);
             }
-            if (stateService.isValid(request)) {
+            if (!config.isStateValidationEnabled() || stateService.isValid(request)) {
                 if (config.isClassicAppPermissionsEnabled()) {
                     OAuthAccessResponse oauthAccess = operator.callOAuthAccessMethod(payload);
                     if (oauthAccess.isOk()) {
-                        stateService.consume(request, response);
+                        if (config.isStateValidationEnabled()) {
+                            stateService.consume(request, response);
+                        }
                         return successHandler.handle(request, response, oauthAccess);
                     } else {
                         return accessErrorHandler.handle(request, response, oauthAccess);
@@ -107,7 +109,9 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
                 } else if (config.isOpenIDConnectEnabled()) {
                     OpenIDConnectTokenResponse token = operator.callOpenIDConnectToken(payload);
                     if (token.isOk()) {
-                        stateService.consume(request, response);
+                        if (config.isStateValidationEnabled()) {
+                            stateService.consume(request, response);
+                        }
                         return openIDConnectSuccessHandler.handle(request, response, token);
                     } else {
                         return openIDConnectErrorHandler.handle(request, response, token);
@@ -115,7 +119,9 @@ public class DefaultOAuthCallbackService implements OAuthCallbackService {
                 } else {
                     OAuthV2AccessResponse oauthAccess = operator.callOAuthV2AccessMethod(payload);
                     if (oauthAccess.isOk()) {
-                        stateService.consume(request, response);
+                        if (config.isStateValidationEnabled()) {
+                            stateService.consume(request, response);
+                        }
                         return successV2Handler.handle(request, response, oauthAccess);
                     } else {
                         return accessV2ErrorHandler.handle(request, response, oauthAccess);

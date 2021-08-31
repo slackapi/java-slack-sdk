@@ -63,8 +63,12 @@ public class DefaultOAuthCallbackServiceTest {
     OAuthExceptionHandler exceptionHandler = new OAuthDefaultExceptionHandler(appConfig);
 
     DefaultOAuthCallbackService service(Slack slack) {
+        return service(appConfig(slack));
+    }
+
+    DefaultOAuthCallbackService service(AppConfig config) {
         return new DefaultOAuthCallbackService(
-                appConfig(slack),
+                config,
                 stateService,
                 successHandler,
                 successV2Handler,
@@ -187,6 +191,36 @@ public class DefaultOAuthCallbackServiceTest {
     }
 
     @Test
+    public void state_validation_disabled() throws Exception {
+        // intentionally setting an invalid state value here
+        Map<String, List<String>> query = buildValidQueryString("xxx");
+        VerificationCodePayload payload = buildValidPayload("xxx");
+        Map<String, List<String>> headers = new HashMap<>();
+        OAuthCallbackRequest request = new OAuthCallbackRequest(query, null, payload, new RequestHeaders(headers));
+        request.getContext().setOauthCompletionUrl("expected");
+
+        slackApiServer.start();
+
+        try {
+            SlackConfig config = new SlackConfig();
+            config.setMethodsEndpointUrlPrefix(slackApiServer.getMethodsEndpointPrefix());
+            Slack mockSlack = Slack.getInstance(config);
+            AppConfig appConfig = appConfig(mockSlack);
+            appConfig.setStateValidationEnabled(false); // disabled
+            request.updateContext(appConfig);
+
+            Response response = service(appConfig).handle(request);
+
+            assertNotNull(response);
+            assertEquals(302L, response.getStatusCode().longValue());
+            assertEquals("expected", response.getHeaders().get("Location").get(0));
+
+        } finally {
+            slackApiServer.stop();
+        }
+    }
+
+    @Test
     public void invalid_state_with_cancellation_url() {
         Map<String, List<String>> query = buildValidQueryString("foo-bar");
         VerificationCodePayload payload = buildValidPayload("foo");
@@ -201,8 +235,8 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void classicApp() throws Exception {
-        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
-        String state = stateService.issueNewState(dummy, Response.builder().build());
+        OAuthStartRequest testReq = new OAuthStartRequest(null, null);
+        String state = stateService.issueNewState(testReq, Response.builder().build());
 
         Map<String, List<String>> query = buildValidQueryString(state);
         VerificationCodePayload payload = buildValidPayload(state);
@@ -234,8 +268,8 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void classicApp_error() throws Exception {
-        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
-        String state = stateService.issueNewState(dummy, Response.builder().build());
+        OAuthStartRequest testReq = new OAuthStartRequest(null, null);
+        String state = stateService.issueNewState(testReq, Response.builder().build());
 
         Map<String, List<String>> query = buildValidQueryString(state);
         query.put("code", Arrays.asList("invalid"));
@@ -269,8 +303,8 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void app() throws Exception {
-        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
-        String state = stateService.issueNewState(dummy, Response.builder().build());
+        OAuthStartRequest testReq = new OAuthStartRequest(null, null);
+        String state = stateService.issueNewState(testReq, Response.builder().build());
 
         Map<String, List<String>> query = buildValidQueryString(state);
         VerificationCodePayload payload = buildValidPayload(state);
@@ -302,8 +336,8 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void app_error() throws Exception {
-        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
-        String state = stateService.issueNewState(dummy, Response.builder().build());
+        OAuthStartRequest testReq = new OAuthStartRequest(null, null);
+        String state = stateService.issueNewState(testReq, Response.builder().build());
 
         Map<String, List<String>> query = buildValidQueryString(state);
         query.put("code", Arrays.asList("invalid"));
@@ -351,8 +385,8 @@ public class DefaultOAuthCallbackServiceTest {
 
     @Test
     public void app_error_with_cancellation_url() throws Exception {
-        OAuthStartRequest dummy = new OAuthStartRequest(null, null);
-        String state = stateService.issueNewState(dummy, Response.builder().build());
+        OAuthStartRequest testReq = new OAuthStartRequest(null, null);
+        String state = stateService.issueNewState(testReq, Response.builder().build());
 
         Map<String, List<String>> query = buildValidQueryString(state);
         query.put("code", Arrays.asList("invalid"));

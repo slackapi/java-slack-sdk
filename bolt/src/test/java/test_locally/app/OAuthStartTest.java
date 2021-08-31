@@ -52,4 +52,34 @@ public class OAuthStartTest {
                 "</body>\n" +
                 "</html>", response.getBody());
     }
+
+    @Test
+    public void start_state_validation_disabled() throws Exception {
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .clientId("111.222")
+                .clientSecret("secret")
+                .scope("commands,chat:write")
+                .stateValidationEnabled(false)
+                .build());
+        OAuthStartRequest req = new OAuthStartRequest(null, new RequestHeaders(Collections.emptyMap()));
+        Response response = app.run(req);
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals("text/html; charset=utf-8", response.getContentType());
+        assertEquals("<html>\n" +
+                "<head>\n" +
+                "<style>\n" +
+                "body {\n" +
+                "  padding: 10px 15px;\n" +
+                "  font-family: verdana;\n" +
+                "  text-align: center;\n" +
+                "}\n" +
+                "</style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<h2>Slack App Installation</h2>\n" +
+                "<p><a href=\"https://slack.com/oauth/v2/authorize?client_id=111.222&scope=commands,chat:write&user_scope=&state=\"><img alt=\"\"Add to Slack\"\" height=\"40\" width=\"139\" src=\"https://platform.slack-edge.com/img/add_to_slack.png\" srcset=\"https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x\" /></a></p>\n" +
+                "</body>\n" +
+                "</html>", response.getBody());
+    }
 }
