@@ -56,6 +56,7 @@
       "previous_resolution": {
         "status": ""
       },
+      "is_user_app_collaborator": false,
       "message": "",
       "date_created": 123
     }
