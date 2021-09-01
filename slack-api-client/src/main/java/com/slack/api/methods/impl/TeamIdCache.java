@@ -32,7 +32,7 @@ public class TeamIdCache {
                 FormBody.Builder form = toForm(AuthTestRequest.builder().token(newToken).build());
                 Response response = methodsImpl.runPostFormWithToken(form, Methods.AUTH_TEST, token);
                 AuthTestResponse authTest = methodsImpl.parseJsonResponseAndRunListeners(null, null, response, AuthTestResponse.class);
-                if (authTest.isOk()) {
+                if (authTest != null && authTest.isOk()) {
                     if (log.isDebugEnabled()) {
                         log.debug("Created cache for an auth.test API call (token: {}, team_id: {})",
                                 token.substring(0, 16) + "...", authTest.getTeamId());
@@ -40,7 +40,8 @@ public class TeamIdCache {
                     // for org admin user's token, this value can be an enterprise_id
                     return authTest.getTeamId();
                 } else {
-                    log.error("Got an unsuccessful response from auth.test API (error: {})", authTest.getError());
+                    String error = authTest != null ? authTest.getError() : "(empty response)";
+                    log.error("Got an unsuccessful response from auth.test API (error: {})", error);
                 }
             } catch (IOException | SlackApiException e) {
                 log.error("Failed to call auth.test API (error: {})", e.getMessage(), e);

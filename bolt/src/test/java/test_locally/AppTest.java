@@ -232,4 +232,22 @@ public class AppTest {
         });
     }
 
+    @Test
+    public void clientConfig() {
+        SlackConfig slackConfig = new SlackConfig();
+        slackConfig.setMethodsEndpointUrlPrefix("http://localhost:8080/old");
+        Slack slack = Slack.getInstance(slackConfig);
+        AppConfig appConfig = AppConfig.builder().slack(slack).build();
+        App app = new App(appConfig);
+
+        assertThat(app.slack().getConfig().getMethodsEndpointUrlPrefix(),
+                is("http://localhost:8080/old"));
+
+        slackConfig.setMethodsEndpointUrlPrefix("http://localhost:8080/new");
+        Slack newSlack = Slack.getInstance(slackConfig);
+        appConfig.setSlack(newSlack);
+        assertThat(app.slack().getConfig().getMethodsEndpointUrlPrefix(),
+                is("http://localhost:8080/new"));
+    }
+
 }
