@@ -340,9 +340,9 @@ public class AppConfig {
     // --------------------------
 
     /**
-     * Enables the state parameter in the OAuth flow. Enabling the validation is highly recommended
-     * for better security in general. The only exception is to support the use case where Enterprise Grid
-     * Org admins install apps from app management page.
+     * Enables validation of the state parameter in the OAuth flow.
+     * It is highly recommended to enable this validation for better security.
+     * A valid exception is when Enterprise Grid Org admins install apps from the app management page.
      */
     @Builder.Default
     private boolean stateValidationEnabled = true;
