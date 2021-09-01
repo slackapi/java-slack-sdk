@@ -12,6 +12,7 @@ public class AppRequest {
     private Team team;
     private List<AppScope> scopes;
     private PreviousResolution previousResolution;
+    private Boolean isUserAppCollaborator;
     private String message;
     private Integer dateCreated;
 

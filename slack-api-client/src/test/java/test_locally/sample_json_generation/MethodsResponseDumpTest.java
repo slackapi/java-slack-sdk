@@ -1,5 +1,6 @@
 package test_locally.sample_json_generation;
 
+import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.migration.MigrationExchangeResponse;
 import com.slack.api.methods.response.users.UsersGetPresenceResponse;
@@ -9,6 +10,11 @@ import com.slack.api.methods.response.views.ViewsPublishResponse;
 import com.slack.api.methods.response.views.ViewsPushResponse;
 import com.slack.api.methods.response.views.ViewsUpdateResponse;
 import com.slack.api.model.ErrorResponseMetadata;
+import com.slack.api.model.ResponseMetadata;
+import com.slack.api.model.admin.AppRequest;
+import com.slack.api.model.admin.AppScope;
+import com.slack.api.model.admin.ApprovedApp;
+import com.slack.api.model.admin.RestrictedApp;
 import com.slack.api.model.dialog.DialogResponseMetadata;
 import com.slack.api.model.view.View;
 import org.junit.Test;
@@ -26,9 +32,12 @@ public class MethodsResponseDumpTest {
 
     ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/api");
 
+    static ResponseMetadata responseMetadata = ObjectInitializer.initProperties(new ResponseMetadata());
     static ErrorResponseMetadata errorResponseMetadata = ObjectInitializer.initProperties(new ErrorResponseMetadata());
     static View view = ObjectInitializer.initProperties(new View());
     static {
+        responseMetadata.setMessages(Arrays.asList(""));
+        responseMetadata.setWarnings(Arrays.asList(""));
         errorResponseMetadata.setMessages(Arrays.asList(""));
         view.setBlocks(SampleObjects.ModalBlocks);
     }
@@ -100,5 +109,55 @@ public class MethodsResponseDumpTest {
         response.setResponseMetadata(metadata);
         ObjectInitializer.initProperties(response);
         dumper.dump("dialog.open", response);
+    }
+
+    @Test
+    public void admin_apps() throws Exception {
+        {
+            AdminAppsRequestsListResponse response = new AdminAppsRequestsListResponse();
+            response.setResponseMetadata(responseMetadata);
+            response.setAppRequests(Arrays.asList(ObjectInitializer.initProperties(new AppRequest())));
+            ObjectInitializer.initProperties(response);
+            dumper.dump("admin.apps.requests.list", response);
+        }
+        {
+            AdminAppsApprovedListResponse response = new AdminAppsApprovedListResponse();
+            response.setResponseMetadata(responseMetadata);
+            ApprovedApp app = ObjectInitializer.initProperties(new ApprovedApp());
+            app.setScopes(Arrays.asList(ObjectInitializer.initProperties(new AppScope())));
+            response.setApprovedApps(Arrays.asList(app));
+            ObjectInitializer.initProperties(response);
+            dumper.dump("admin.apps.approved.list", response);
+        }
+        {
+            AdminAppsRestrictedListResponse response = new AdminAppsRestrictedListResponse();
+            ObjectInitializer.initProperties(response);
+            response.setResponseMetadata(responseMetadata);
+            RestrictedApp app = ObjectInitializer.initProperties(new RestrictedApp());
+            app.setScopes(Arrays.asList(ObjectInitializer.initProperties(new AppScope())));
+            response.setRestrictedApps(Arrays.asList(app));
+            ObjectInitializer.initProperties(response);
+            dumper.dump("admin.apps.restricted.list", response);
+        }
+        {
+            AdminAppsApproveResponse response = new AdminAppsApproveResponse();
+            ObjectInitializer.initProperties(response);
+            dumper.dump("admin.apps.approve", response);
+        }
+        {
+            AdminAppsRestrictResponse response = new AdminAppsRestrictResponse();
+            ObjectInitializer.initProperties(response);
+            dumper.dump("admin.apps.restrict", response);
+        }
+        {
+            AdminAppsClearResolutionResponse response = new AdminAppsClearResolutionResponse();
+            ObjectInitializer.initProperties(response);
+            dumper.dump("admin.apps.clearResolution", response);
+        }
+        {
+            AdminAppsUninstallResponse response = new AdminAppsUninstallResponse();
+            ObjectInitializer.initProperties(response);
+            dumper.dump("admin.apps.uninstall", response);
+        }
     }
 }

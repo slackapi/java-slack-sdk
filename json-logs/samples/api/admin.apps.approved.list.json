@@ -1,32 +1,35 @@
 {
   "ok": false,
+  "warning": "",
   "error": "",
+  "needed": "",
+  "provided": "",
   "approved_apps": [
     {
       "app": {
-        "id": "A00000000",
+        "id": "",
         "name": "",
         "description": "",
         "help_url": "",
         "privacy_policy_url": "",
         "app_homepage_url": "",
-        "app_directory_url": "https://www.example.com/",
+        "app_directory_url": "",
         "is_app_directory_approved": false,
         "is_internal": false,
+        "additional_info": "",
         "icons": {
-          "image_32": "https://www.example.com/",
-          "image_36": "https://www.example.com/",
-          "image_48": "https://www.example.com/",
-          "image_64": "https://www.example.com/",
-          "image_72": "https://www.example.com/",
-          "image_96": "https://www.example.com/",
-          "image_128": "https://www.example.com/",
-          "image_192": "https://www.example.com/",
-          "image_512": "https://www.example.com/",
-          "image_1024": "https://www.example.com/",
-          "image_original": "https://www.example.com/"
-        },
-        "additional_info": ""
+          "image_32": "",
+          "image_36": "",
+          "image_48": "",
+          "image_64": "",
+          "image_72": "",
+          "image_96": "",
+          "image_128": "",
+          "image_192": "",
+          "image_512": "",
+          "image_1024": "",
+          "image_original": ""
+        }
       },
       "scopes": [
         {
@@ -36,16 +39,20 @@
           "token_type": ""
         }
       ],
-      "date_updated": 12345,
+      "date_updated": 123,
       "last_resolved_by": {
-        "actor_id": "W00000000",
+        "actor_id": "",
         "actor_type": ""
       }
     }
   ],
   "response_metadata": {
-    "next_cursor": ""
-  },
-  "needed": "",
-  "provided": ""
+    "next_cursor": "",
+    "messages": [
+      ""
+    ],
+    "warnings": [
+      ""
+    ]
+  }
 }
