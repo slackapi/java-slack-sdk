@@ -70,12 +70,16 @@ public class App {
     /**
      * Slack instance and its configurations to be used for API calls.
      */
-    private final Slack slack;
+    public Slack getSlack() {
+        return config().getSlack();
+    }
 
     /**
      * The default Web API client without any tokens.
      */
-    private final MethodsClient client;
+    public MethodsClient getClient() {
+        return config().getSlack().methods();
+    }
 
     /**
      * The built-in handy way to run operations asynchronously. It's totally fine to use your own one instead.
@@ -441,8 +445,6 @@ public class App {
 
     public App(AppConfig appConfig, Slack slack, List<Middleware> middlewareList) {
         this.appConfig = appConfig;
-        this.slack = slack;
-        this.client = this.slack.methods();
         this.executorService = ExecutorServiceFactory.createDaemonThreadPoolExecutor(
                 "bolt-app-threads",
                 this.appConfig.getThreadPoolSize());
@@ -482,11 +484,11 @@ public class App {
     }
 
     public Slack slack() {
-        return this.slack;
+        return getSlack();
     }
 
     public MethodsClient client() {
-        return this.client;
+        return getClient();
     }
 
     /**
@@ -560,7 +562,7 @@ public class App {
         if (request == null || request.getContext() == null) {
             return Response.builder().statusCode(400).body("Invalid Request").build();
         }
-        request.getContext().setSlack(this.slack); // use the properly configured API client
+        request.getContext().setSlack(slack()); // use the properly configured API client
 
         if (neverStarted.get()) {
             start();
