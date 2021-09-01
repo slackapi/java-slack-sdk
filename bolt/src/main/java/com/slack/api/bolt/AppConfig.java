@@ -339,6 +339,14 @@ public class AppConfig {
 
     // --------------------------
 
+    /**
+     * Enables validation of the state parameter in the OAuth flow.
+     * It is highly recommended to enable this validation for better security.
+     * A valid exception is when Enterprise Grid Org admins install apps from the app management page.
+     */
+    @Builder.Default
+    private boolean stateValidationEnabled = true;
+
     @Builder.Default
     private String oauthCancellationUrl = Optional.ofNullable(System.getenv(EnvVariableName.SLACK_OAUTH_CANCELLATION_URL))
             .orElse(System.getenv(EnvVariableName.SLACK_APP_OAUTH_CANCELLATION_URL));
