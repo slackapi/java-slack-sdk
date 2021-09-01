@@ -40,7 +40,7 @@ public class TeamIdCache {
                     // for org admin user's token, this value can be an enterprise_id
                     return authTest.getTeamId();
                 } else {
-                    String error = authTest != null ? authTest.getError() : "";
+                    String error = authTest != null ? authTest.getError() : "(empty response)";
                     log.error("Got an unsuccessful response from auth.test API (error: {})", error);
                 }
             } catch (IOException | SlackApiException e) {
