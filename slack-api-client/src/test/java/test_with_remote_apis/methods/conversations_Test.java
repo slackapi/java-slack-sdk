@@ -4,13 +4,14 @@ import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.conversations.ConversationsCreateRequest;
 import com.slack.api.methods.request.conversations.ConversationsListRequest;
-import com.slack.api.methods.response.channels.ChannelsRepliesResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.conversations.*;
 import com.slack.api.methods.response.users.UsersListResponse;
 import com.slack.api.model.*;
 import com.slack.api.model.block.ContextBlock;
 import com.slack.api.model.block.ContextBlockElement;
+import com.slack.api.model.block.DividerBlock;
+import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.MarkdownTextObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import config.Constants;
@@ -485,6 +486,54 @@ public class conversations_Test {
                         .isPrivate(true)
                         .build());
         assertThat(createPublicResponse.getError(), is("invalid_name_maxlength"));
+    }
+
+    @Test
+    public void blocks_attachments_in_thread_replies() throws Exception {
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(testConfig, botToken);
+        Conversation channel = channelGenerator.createNewPublicChannel("test" + System.currentTimeMillis());
+        try {
+            ChatPostMessageResponse thread = slack.methods(botToken)
+                    .chatPostMessage(r -> r.channel(channel.getId()).text("Replies in :thread:"));
+            assertThat(thread.getError(), is(nullValue()));
+
+            String threadTs = thread.getTs();
+            ChatPostMessageResponse reply = slack.methods(botToken).chatPostMessage(r -> r
+                    .channel(channel.getId())
+                    .threadTs(threadTs)
+                    .text("Hi there!")
+                    .blocks(Arrays.asList(
+                            DividerBlock.builder()
+                                    .blockId("b1")
+                                    .build(),
+                            SectionBlock.builder()
+                                    .blockId("b2")
+                                    .text(PlainTextObject.builder().text("Hi there!").build())
+                                    .build()
+                    ))
+            );
+            assertThat(reply.getError(), is(nullValue()));
+            ChatPostMessageResponse reply2 = slack.methods(botToken).chatPostMessage(r -> r
+                    .channel(channel.getId())
+                    .threadTs(threadTs)
+                    .text("Hi there!")
+                    .attachments(Arrays.asList(Attachment.builder()
+                            .callbackId("callback")
+                            .text("Hi there!")
+                            .footer("This is a test")
+                            .build()
+                    ))
+            );
+            assertThat(reply2.getError(), is(nullValue()));
+
+            ConversationsRepliesResponse replies = slack.methods(botToken).conversationsReplies(r -> r
+                    .channel(channel.getId())
+                    .ts(threadTs)
+            );
+            assertThat(replies.getError(), is(nullValue()));
+        } finally {
+            channelGenerator.archiveChannel(channel);
+        }
     }
 
 }
