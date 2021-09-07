@@ -223,6 +223,31 @@ public class FieldValidationTest {
     }
 
     @Test
+    public void adminConversationsCustomRetention() throws Exception {
+        {
+            AdminConversationsGetCustomRetentionResponse obj = parse("admin.conversations.getCustomRetention", AdminConversationsGetCustomRetentionResponse.class);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning",
+                    "getResponseMetadata"
+            );
+        }
+        {
+            AdminConversationsSetCustomRetentionResponse obj = parse("admin.conversations.setCustomRetention", AdminConversationsSetCustomRetentionResponse.class);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning",
+                    "getResponseMetadata"
+            );
+        }
+        {
+            AdminConversationsRemoveCustomRetentionResponse obj = parse("admin.conversations.removeCustomRetention", AdminConversationsRemoveCustomRetentionResponse.class);
+            verifyIfAllGettersReturnNonNull(obj,
+                    "getWarning",
+                    "getResponseMetadata"
+            );
+        }
+    }
+
+    @Test
     public void adminInviteRequests() throws Exception {
         String prefix = "admin.inviteRequests.";
         {

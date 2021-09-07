@@ -36,10 +36,6 @@ public class MethodsTest {
 
         String[] allMethodNames = methods.split(",");
         List<String> excludedMethodNames = Arrays.asList(
-                // TODO: https://github.com/slackapi/java-slack-sdk/issues/634
-                "admin.conversations.getCustomRetention",
-                "admin.conversations.removeCustomRetention",
-                "admin.conversations.setCustomRetention"
         );
         List<String> methodNames = new ArrayList<>();
         for (String methodName : allMethodNames) {

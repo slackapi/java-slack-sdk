@@ -355,6 +355,18 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminConversationsUnarchiveResponse> adminConversationsUnarchive(RequestConfigurator<AdminConversationsUnarchiveRequest.AdminConversationsUnarchiveRequestBuilder> req);
 
+    CompletableFuture<AdminConversationsGetCustomRetentionResponse> adminConversationsGetCustomRetention(RequestConfigurator<AdminConversationsGetCustomRetentionRequest.AdminConversationsGetCustomRetentionRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsGetCustomRetentionResponse> adminConversationsGetCustomRetention(AdminConversationsGetCustomRetentionRequest req);
+
+    CompletableFuture<AdminConversationsRemoveCustomRetentionResponse> adminConversationsRemoveCustomRetention(AdminConversationsRemoveCustomRetentionRequest req);
+
+    CompletableFuture<AdminConversationsRemoveCustomRetentionResponse> adminConversationsRemoveCustomRetention(RequestConfigurator<AdminConversationsRemoveCustomRetentionRequest.AdminConversationsRemoveCustomRetentionRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsSetCustomRetentionResponse> adminConversationsSetCustomRetention(AdminConversationsSetCustomRetentionRequest req);
+
+    CompletableFuture<AdminConversationsSetCustomRetentionResponse> adminConversationsSetCustomRetention(RequestConfigurator<AdminConversationsSetCustomRetentionRequest.AdminConversationsSetCustomRetentionRequestBuilder> req);
+
     // ------------------------------
     // admin.conversations.ekm
     // ------------------------------

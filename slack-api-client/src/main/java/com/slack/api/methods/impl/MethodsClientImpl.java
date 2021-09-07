@@ -543,6 +543,36 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminConversationsGetCustomRetentionResponse adminConversationsGetCustomRetention(RequestConfigurator<AdminConversationsGetCustomRetentionRequest.AdminConversationsGetCustomRetentionRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsGetCustomRetention(req.configure(AdminConversationsGetCustomRetentionRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsGetCustomRetentionResponse adminConversationsGetCustomRetention(AdminConversationsGetCustomRetentionRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_GET_CUSTOM_RETENTION, getToken(req), AdminConversationsGetCustomRetentionResponse.class);
+    }
+
+    @Override
+    public AdminConversationsRemoveCustomRetentionResponse adminConversationsRemoveCustomRetention(AdminConversationsRemoveCustomRetentionRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_REMOVE_CUSTOM_RETENTION, getToken(req), AdminConversationsRemoveCustomRetentionResponse.class);
+    }
+
+    @Override
+    public AdminConversationsRemoveCustomRetentionResponse adminConversationsRemoveCustomRetention(RequestConfigurator<AdminConversationsRemoveCustomRetentionRequest.AdminConversationsRemoveCustomRetentionRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsRemoveCustomRetention(req.configure(AdminConversationsRemoveCustomRetentionRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsSetCustomRetentionResponse adminConversationsSetCustomRetention(AdminConversationsSetCustomRetentionRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_SET_CUSTOM_RETENTION, getToken(req), AdminConversationsSetCustomRetentionResponse.class);
+    }
+
+    @Override
+    public AdminConversationsSetCustomRetentionResponse adminConversationsSetCustomRetention(RequestConfigurator<AdminConversationsSetCustomRetentionRequest.AdminConversationsSetCustomRetentionRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsSetCustomRetention(req.configure(AdminConversationsSetCustomRetentionRequest.builder()).build());
+    }
+
+    @Override
     public AdminConversationsEkmListOriginalConnectedChannelInfoResponse adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_EKM_LIST_ORIGINAL_CONNECTED_CHANNEL_INFO, getToken(req), AdminConversationsEkmListOriginalConnectedChannelInfoResponse.class);
     }

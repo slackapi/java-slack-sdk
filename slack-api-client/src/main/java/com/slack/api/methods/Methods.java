@@ -58,6 +58,9 @@ public class Methods {
     public static final String ADMIN_CONVERSATIONS_SEARCH = "admin.conversations.search";
     public static final String ADMIN_CONVERSATIONS_SET_CONVERSATION_PREFS = "admin.conversations.setConversationPrefs";
     public static final String ADMIN_CONVERSATIONS_UNARCHIVE = "admin.conversations.unarchive";
+    public static final String ADMIN_CONVERSATIONS_GET_CUSTOM_RETENTION = "admin.conversations.getCustomRetention";
+    public static final String ADMIN_CONVERSATIONS_REMOVE_CUSTOM_RETENTION = "admin.conversations.removeCustomRetention";
+    public static final String ADMIN_CONVERSATIONS_SET_CUSTOM_RETENTION = "admin.conversations.setCustomRetention";
 
     // ------------------------------
     // admin.conversations.ekm

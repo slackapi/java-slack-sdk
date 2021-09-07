@@ -208,16 +208,16 @@ public class AdminApi_conversations_Test {
                     .collect(Collectors.toList());
 
             AdminConversationsSetTeamsResponse shareResp = methodsAsync.adminConversationsSetTeams(r -> r
-                    .teamId(originalTeamId)
-                    .channelId(channelId)
-                    .targetTeamIds(newTeams))
+                            .teamId(originalTeamId)
+                            .channelId(channelId)
+                            .targetTeamIds(newTeams))
                     .get();
             assertThat(shareResp.getError(), is(nullValue()));
 
             AdminConversationsSetTeamsResponse revertResp = methodsAsync.adminConversationsSetTeams(r -> r
-                    .teamId(originalTeamId)
-                    .channelId(channelId)
-                    .targetTeamIds(channel.getSharedTeamIds()))
+                            .teamId(originalTeamId)
+                            .channelId(channelId)
+                            .targetTeamIds(channel.getSharedTeamIds()))
                     .get();
             assertThat(revertResp.getError(), is(nullValue()));
         }
@@ -232,6 +232,41 @@ public class AdminApi_conversations_Test {
             return creation.getChannel().getId();
         } else {
             return privateChannels.get(0).getId();
+        }
+    }
+
+    @Test
+    public void customRetention() throws Exception {
+        if (orgAdminUserToken != null) {
+            String channelId = getOrCreatePrivateChannel();
+            MethodsClient client = slack.methods(orgAdminUserToken);
+            try {
+                AdminConversationsGetCustomRetentionResponse get =
+                        client.adminConversationsGetCustomRetention(r -> r.channelId(channelId));
+                assertThat(get.getError(), is(nullValue()));
+                assertThat(get.isPolicyEnabled(), is(false));
+                assertThat(get.getDurationDays(), is(0));
+
+                AdminConversationsSetCustomRetentionResponse set =
+                        client.adminConversationsSetCustomRetention(r -> r.channelId(channelId).durationDays(365));
+                assertThat(set.getError(), is(nullValue()));
+
+                get = client.adminConversationsGetCustomRetention(r -> r.channelId(channelId));
+                assertThat(get.getError(), is(nullValue()));
+                assertThat(get.isPolicyEnabled(), is(true));
+                assertThat(get.getDurationDays(), is(365));
+
+                AdminConversationsRemoveCustomRetentionResponse remove =
+                        client.adminConversationsRemoveCustomRetention(r -> r.channelId(channelId));
+                assertThat(set.getError(), is(nullValue()));
+
+                get = client.adminConversationsGetCustomRetention(r -> r.channelId(channelId));
+                assertThat(get.isPolicyEnabled(), is(false));
+                assertThat(get.getDurationDays(), is(0));
+
+            } finally {
+                client.adminConversationsDelete(r -> r.channelId(channelId));
+            }
         }
     }
 
