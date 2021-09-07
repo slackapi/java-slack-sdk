@@ -41,7 +41,7 @@ public class SlackApiFunction implements HttpFunction {
         String requestUri = httpRequest.getPath();
         String method = httpRequest.getMethod().toLowerCase(Locale.ENGLISH);
         if (method.equals("get")) {
-            // To handle OAuth flow by the same Cloud Function
+            // To handle Slack OAuth flow by the same Cloud Function
             Map<String, List<String>> q = httpRequest.getQueryParameters();
             if (q.get("code") != null || q.get("error") != null) {
                 requestUri = app.config().getOauthRedirectUriRequestURI();
@@ -59,16 +59,25 @@ public class SlackApiFunction implements HttpFunction {
         return this.requestParser.parse(req);
     }
 
-    private void writeResponse(Response boltResponse, HttpResponse httpResponse) throws IOException {
+    public static void writeResponse(Response boltResponse, HttpResponse httpResponse) throws IOException {
         httpResponse.setStatusCode(boltResponse.getStatusCode());
         httpResponse.setContentType(boltResponse.getContentType());
-        for (Map.Entry<String, List<String>> nameAndValues : boltResponse.getHeaders().entrySet()) {
-            String headerName = nameAndValues.getKey();
-            for (String value : nameAndValues.getValue()) {
-                httpResponse.appendHeader(headerName, value);
+        if (boltResponse.getHeaders() != null) {
+            for (Map.Entry<String, List<String>> nameAndValues : boltResponse.getHeaders().entrySet()) {
+                String headerName = nameAndValues.getKey();
+                for (String value : nameAndValues.getValue()) {
+                    httpResponse.appendHeader(headerName, value);
+                }
             }
         }
-        httpResponse.getWriter().write(boltResponse.getBody());
+        httpResponse.getWriter().write(buildNotNullResponseBody(boltResponse));
+    }
+
+    public static String buildNotNullResponseBody(Response boltResponse) {
+        if (boltResponse != null && boltResponse.getBody() != null) {
+            return boltResponse.getBody();
+        }
+        return "";
     }
 }
 
