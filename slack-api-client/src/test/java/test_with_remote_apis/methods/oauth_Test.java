@@ -2,7 +2,6 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
-import com.slack.api.methods.request.oauth.OAuthV2ExchangeRequest;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
 import com.slack.api.methods.response.oauth.OAuthV2AccessResponse;
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @Slf4j
@@ -66,7 +66,7 @@ public class oauth_Test {
                 .clientId("3485157640.XXXX")
                 .clientSecret("XXXXX")
         );
-        assertThat(response.getError(), is("invalid_arguments"));
+        assertThat(response.getError(), is(not("invalid_arguments")));
         assertThat(response.isOk(), is(false));
     }
 
