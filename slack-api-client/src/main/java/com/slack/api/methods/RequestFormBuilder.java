@@ -1869,6 +1869,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("client_id", req.getClientId(), form);
         setIfNotNull("client_secret", req.getClientSecret(), form);
+        setIfNotNull("token", req.getToken(), form);
         return form;
     }
 
