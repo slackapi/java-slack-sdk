@@ -1206,6 +1206,7 @@ public class RequestFormBuilder {
         setIfNotNull("user_auth_blocks", req.getUserAuthBlocks(), form);
         setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
         setIfNotNull("unfurl_id", req.getUnfurlId(), form);
+        setIfNotNull("source", req.getSource(), form);
         return form;
     }
 
