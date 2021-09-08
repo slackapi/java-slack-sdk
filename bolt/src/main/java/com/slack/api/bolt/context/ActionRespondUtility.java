@@ -9,6 +9,11 @@ import com.slack.api.webhook.WebhookResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This utility provides respond method functionality for
+ * various types of requests such as `block_actions`
+ * and `message_action` (=message shortcut).
+ */
 public interface ActionRespondUtility extends RespondUtility {
 
     default WebhookResponse respond(String text) throws IOException {

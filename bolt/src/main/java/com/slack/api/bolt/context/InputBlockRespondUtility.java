@@ -11,6 +11,13 @@ import com.slack.api.webhook.WebhookResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This utility provides respond method functionality for
+ * view_submission request handlers.
+ * <p>
+ * The `response_urls` in a view_submission payload can exist
+ * only when the modal view has an input block with response_url_enabled: true.
+ */
 public interface InputBlockRespondUtility {
 
     Slack getSlack();
