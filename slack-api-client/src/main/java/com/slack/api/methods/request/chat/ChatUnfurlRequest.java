@@ -65,6 +65,9 @@ public class ChatUnfurlRequest implements SlackApiRequest {
     // https://api.slack.com/changelog/2021-08-changes-to-unfurls
     private String unfurlId;
 
+    // https://api.slack.com/changelog/2021-08-changes-to-unfurls
+    private String source;
+
     // https://api.slack.com/docs/message-link-unfurling#unfurls_parameter
     @Data
     public static class UnfurlDetail {

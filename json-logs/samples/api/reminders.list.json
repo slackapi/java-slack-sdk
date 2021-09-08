@@ -9,7 +9,13 @@
       "recurring": false,
       "time": 12345,
       "complete_ts": 12345,
-      "channel": "C00000000"
+      "channel": "C00000000",
+      "recurrence": {
+        "frequency": "",
+        "weekdays": [
+          ""
+        ]
+      }
     }
   ],
   "error": "",

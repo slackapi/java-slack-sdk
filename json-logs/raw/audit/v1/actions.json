@@ -137,7 +137,11 @@
       "user_force_upgrade_non_compliant_mobile_app_version",
       "user_login_failed",
       "user_session_invalidated",
-      "user_session_settings_changed"
+      "user_session_settings_changed",
+      "connect_dm_invite_generated",
+      "connect_dm_invite_revoked",
+      "connect_dm_invite_accepted",
+      "connect_dm_invite_ignored"
     ],
     "file": [
       "file_downloaded",

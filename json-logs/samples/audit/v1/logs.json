@@ -202,7 +202,15 @@
         "external_user_email": "",
         "channel_id": "",
         "added_team_id": "",
-        "is_token_rotation_enabled_app": ""
+        "is_token_rotation_enabled_app": "",
+        "old_retention_policy": {
+          "type": "",
+          "duration_days": 123
+        },
+        "new_retention_policy": {
+          "type": "",
+          "duration_days": 123
+        }
       }
     }
   ]

@@ -217,6 +217,8 @@ public class LogsResponse implements AuditApiResponse {
         private String channelId; // connect_dm_invite_accepted
         private String addedTeamId; // approved_orgs_added
         private String isTokenRotationEnabledApp; // app_scopes_expanded
+        private MessageRetentionPolicy oldRetentionPolicy; // channel_retention_changed
+        private MessageRetentionPolicy newRetentionPolicy; // channel_retention_changed
     }
 
     @Data
@@ -265,6 +267,12 @@ public class LogsResponse implements AuditApiResponse {
     @Data
     public static class WildCard {
         private String type;
+    }
+
+    @Data
+    public static class MessageRetentionPolicy {
+        private String type;
+        private Integer durationDays;
     }
 
 }
