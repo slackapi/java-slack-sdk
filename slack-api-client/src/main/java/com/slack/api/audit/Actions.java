@@ -153,6 +153,10 @@ public class Actions {
         public static final String user_session_reset_by_admin = "user_session_reset_by_admin";
         public static final String user_logout_non_compliant_mobile_app_version = "user_logout_non_compliant_mobile_app_version";
         public static final String user_force_upgrade_non_compliant_mobile_app_version = "user_force_upgrade_non_compliant_mobile_app_version";
+        public static final String connect_dm_invite_generated = "connect_dm_invite_generated";
+        public static final String connect_dm_invite_revoked = "connect_dm_invite_revoked";
+        public static final String connect_dm_invite_accepted = "connect_dm_invite_accepted";
+        public static final String connect_dm_invite_ignored = "connect_dm_invite_ignored";
     }
 
     public static class File {

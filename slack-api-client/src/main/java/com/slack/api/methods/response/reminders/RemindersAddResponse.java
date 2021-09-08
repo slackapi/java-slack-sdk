@@ -2,6 +2,7 @@ package com.slack.api.methods.response.reminders;
 
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Reminder;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 @Data
@@ -14,4 +15,5 @@ public class RemindersAddResponse implements SlackApiTextResponse {
     private String provided;
 
     private Reminder reminder;
+    private ResponseMetadata responseMetadata;
 }
