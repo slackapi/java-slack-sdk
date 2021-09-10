@@ -216,7 +216,8 @@ public class LogsResponse implements AuditApiResponse {
         private String externalUserEmail; // connect_dm_invite_accepted
         private String channelId; // connect_dm_invite_accepted
         private String addedTeamId; // approved_orgs_added
-        private String isTokenRotationEnabledApp; // app_scopes_expanded
+        @SerializedName("is_token_rotation_enabled_app")
+        private Boolean tokenRotationEnabledApp; // app_scopes_expanded
         private MessageRetentionPolicy oldRetentionPolicy; // channel_retention_changed
         private MessageRetentionPolicy newRetentionPolicy; // channel_retention_changed
     }
