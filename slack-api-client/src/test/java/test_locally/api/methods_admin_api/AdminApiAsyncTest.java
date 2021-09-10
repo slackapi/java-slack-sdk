@@ -106,6 +106,18 @@ public class AdminApiAsyncTest {
     }
 
     @Test
+    public void adminConversationsCustomRetention() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminConversationsGetCustomRetention(r -> r.channelId("C123"))
+                .get().isOk(), is(true));
+        assertThat(methods.adminConversationsSetCustomRetention(r -> r.channelId("C123").durationDays(10))
+                .get().isOk(), is(true));
+        assertThat(methods.adminConversationsRemoveCustomRetention(r -> r.channelId("C123"))
+                .get().isOk(), is(true));
+    }
+
+    @Test
     public void adminConversationsRestrictAccess() throws Exception {
         AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
 

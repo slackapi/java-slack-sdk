@@ -544,6 +544,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminConversationsGetCustomRetentionResponse> adminConversationsGetCustomRetention(RequestConfigurator<AdminConversationsGetCustomRetentionRequest.AdminConversationsGetCustomRetentionRequestBuilder> req) {
+        return adminConversationsGetCustomRetention(req.configure(AdminConversationsGetCustomRetentionRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsGetCustomRetentionResponse> adminConversationsGetCustomRetention(AdminConversationsGetCustomRetentionRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_GET_CUSTOM_RETENTION, toMap(req), () -> methods.adminConversationsGetCustomRetention(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRemoveCustomRetentionResponse> adminConversationsRemoveCustomRetention(AdminConversationsRemoveCustomRetentionRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_REMOVE_CUSTOM_RETENTION, toMap(req), () -> methods.adminConversationsRemoveCustomRetention(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsRemoveCustomRetentionResponse> adminConversationsRemoveCustomRetention(RequestConfigurator<AdminConversationsRemoveCustomRetentionRequest.AdminConversationsRemoveCustomRetentionRequestBuilder> req) {
+        return adminConversationsRemoveCustomRetention(req.configure(AdminConversationsRemoveCustomRetentionRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsSetCustomRetentionResponse> adminConversationsSetCustomRetention(AdminConversationsSetCustomRetentionRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_SET_CUSTOM_RETENTION, toMap(req), () -> methods.adminConversationsSetCustomRetention(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsSetCustomRetentionResponse> adminConversationsSetCustomRetention(RequestConfigurator<AdminConversationsSetCustomRetentionRequest.AdminConversationsSetCustomRetentionRequestBuilder> req) {
+        return adminConversationsSetCustomRetention(req.configure(AdminConversationsSetCustomRetentionRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) {
         return executor.execute(ADMIN_CONVERSATIONS_EKM_LIST_ORIGINAL_CONNECTED_CHANNEL_INFO, toMap(req), () -> methods.adminConversationsEkmListOriginalConnectedChannelInfo(req));
     }

@@ -406,6 +406,18 @@ public interface MethodsClient {
 
     AdminConversationsUnarchiveResponse adminConversationsUnarchive(RequestConfigurator<AdminConversationsUnarchiveRequest.AdminConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
 
+    AdminConversationsGetCustomRetentionResponse adminConversationsGetCustomRetention(RequestConfigurator<AdminConversationsGetCustomRetentionRequest.AdminConversationsGetCustomRetentionRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsGetCustomRetentionResponse adminConversationsGetCustomRetention(AdminConversationsGetCustomRetentionRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsRemoveCustomRetentionResponse adminConversationsRemoveCustomRetention(AdminConversationsRemoveCustomRetentionRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsRemoveCustomRetentionResponse adminConversationsRemoveCustomRetention(RequestConfigurator<AdminConversationsRemoveCustomRetentionRequest.AdminConversationsRemoveCustomRetentionRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsSetCustomRetentionResponse adminConversationsSetCustomRetention(AdminConversationsSetCustomRetentionRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsSetCustomRetentionResponse adminConversationsSetCustomRetention(RequestConfigurator<AdminConversationsSetCustomRetentionRequest.AdminConversationsSetCustomRetentionRequestBuilder> req) throws IOException, SlackApiException;
+
     // ------------------------------
     // admin.conversations.ekm
     // ------------------------------

@@ -123,6 +123,18 @@ public class AdminApiTest {
     }
 
     @Test
+    public void adminConversationsCustomRetention() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminConversationsGetCustomRetention(r -> r.channelId("C123"))
+                .isOk(), is(true));
+        assertThat(methods.adminConversationsRemoveCustomRetention(r -> r.channelId("C123"))
+                .isOk(), is(true));
+        assertThat(methods.adminConversationsSetCustomRetention(r -> r.channelId("C123").durationDays(365))
+                .isOk(), is(true));
+    }
+
+    @Test
     public void adminConversationsRestrictAccess() throws Exception {
         MethodsClient methods = slack.methods(ValidToken);
 

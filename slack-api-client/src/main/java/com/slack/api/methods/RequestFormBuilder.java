@@ -439,6 +439,25 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminConversationsGetCustomRetentionRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsRemoveCustomRetentionRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsSetCustomRetentionRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("duration_days", req.getDurationDays(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminConversationsRestrictAccessAddGroupRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel_id", req.getChannelId(), form);
