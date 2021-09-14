@@ -169,6 +169,7 @@
         "shared_to": "",
         "reason": "",
         "is_internal_integration": false,
+        "cleared_resolution": "",
         "is_workflow": false,
         "mobile_only": false,
         "web_only": false,

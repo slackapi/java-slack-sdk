@@ -186,6 +186,7 @@ public class LogsResponse implements AuditApiResponse {
         private String reason;
         @SerializedName("is_internal_integration")
         private Boolean internalIntegration;
+        private String clearedResolution; // app_removed_from_whitelist
         @SerializedName("is_workflow")
         private Boolean workflow; // user_channel_join
         private Boolean mobileOnly; // user_session_reset_by_admin
