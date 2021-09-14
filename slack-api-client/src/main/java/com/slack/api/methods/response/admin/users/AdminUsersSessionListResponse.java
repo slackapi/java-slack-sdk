@@ -24,10 +24,20 @@ public class AdminUsersSessionListResponse implements SlackApiTextResponse {
         private String sessionId;
         private String teamId;
         private ActiveSessionCreated created;
+        private ActiveSessionRecent recent;
     }
 
     @Data
     public static class ActiveSessionCreated {
+        private String deviceHardware;
+        private String os;
+        private String osVersion;
+        private String slackClientVersion;
+        private String ip;
+    }
+
+    @Data
+    public static class ActiveSessionRecent {
         private String deviceHardware;
         private String os;
         private String osVersion;

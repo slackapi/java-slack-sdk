@@ -12,6 +12,13 @@
         "os_version": "",
         "slack_client_version": "",
         "ip": ""
+      },
+      "recent": {
+        "device_hardware": "",
+        "os": "",
+        "os_version": "0000000000.000000",
+        "slack_client_version": "",
+        "ip": ""
       }
     }
   ],
