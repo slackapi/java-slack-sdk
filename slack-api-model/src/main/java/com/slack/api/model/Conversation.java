@@ -101,4 +101,6 @@ public class Conversation {
     private boolean isPrivate;
     @SerializedName("is_mpim")
     private boolean isMpim;
+    @SerializedName("is_starred")
+    private boolean isStarred;
 }
