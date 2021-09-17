@@ -15,7 +15,7 @@ Reading [Composing Messages]({{ site.url | append: site.baseurl }}/guides/compos
 To enable Interactive Components, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactivity & Shortcuts** on the left pane. There are three things to do on the page.
 
 * Turn on the feature
-* Set the **Request URL** to `https://{your app's public URL domain}/slack/events`
+* Set the **Request URL** to `https://{your app's public URL domain}/slack/events` (this step is not required for Socket Mode apps)
 * Click the **Save Changes** button at the bottom for sure
 
 ### What Your Bolt App Does

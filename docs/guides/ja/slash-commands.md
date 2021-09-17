@@ -17,7 +17,7 @@ lang: ja
 * **Create New Command** ボタンをクリック
 * ダイアログ内で必要なコマンドの情報を入力
   * **Command**: `/hello`
-  * **Request URL**: `https://{あなたのドメイン}/slack/events` (ngrok だと `https://{ランダム}.ngrok.io/slack/events`)
+  * **Request URL**: `https://{あなたのドメイン}/slack/events` (ngrok を使っている場合は `https://{ランダム}.ngrok.io/slack/events` となります。また、ソケットモードの場合にはこの手順は不要です。)
   * **Short Description**: お好きな内容で
 * **Save** ボタンをクリック
 

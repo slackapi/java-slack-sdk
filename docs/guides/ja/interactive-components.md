@@ -15,7 +15,7 @@ lang: ja
 インタラクティブコンポーネントを有効にするには [Slack アプリ管理画面](http://api.slack.com/apps)にアクセスし、開発中のアプリを選択、左ペインの **Features** > **Interactivity & Shortcuts** へ遷移します。このページで以下の設定を行います。
 
 * **Interactivity** を Off から On にする
-* `https://{あなたのドメイン}/slack/events` を **Request URL** に設定
+* `https://{あなたのドメイン}/slack/events` を **Request URL** に設定 (ソケットモードの場合、この手順は不要です)
 * 最下部にある **Save Changes** ボタンをクリック
 
 ### Bolt アプリがやること

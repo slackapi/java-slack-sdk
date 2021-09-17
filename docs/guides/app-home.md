@@ -15,7 +15,7 @@ To enable Home tabs, visit the [Slack App configuration page](http://api.slack.c
 To enable Events API, go to **Features** > **Event Subscriptions** on the left pane. There are a few things to do on the page.
 
 * Turn on **Enable Events**
-* Set the **Request URL** to `https://{your app's public URL domain}/slack/events`
+* Set the **Request URL** to `https://{your app's public URL domain}/slack/events` (this step is not required for Socket Mode apps)
 * Add subscriptions to bot events
   * Click **Subscribe to bot events**
   * Click **Add Bot User Event** button

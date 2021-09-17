@@ -17,7 +17,7 @@ To enable slash commands, visit the [Slack App configuration page](http://api.sl
 * Click **Create New Command** button
 * Input the command information on the dialog:
   * **Command**: `/hello`
-  * **Request URL**: `https://{your domain here}/slack/events` - if you use ngrok for development, the URL would be `https://{random}.ngrok.io/slack/events`
+  * **Request URL**: `https://{your domain here}/slack/events` - if you use ngrok for development, the URL would be `https://{random}.ngrok.io/slack/events` (this step is not required for Socket Mode apps)
   * **Short Description**: whatever you like
 * Click **Save** Button
 

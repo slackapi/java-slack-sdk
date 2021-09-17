@@ -15,7 +15,7 @@ Home タブを有効にするには [Slack アプリ管理画面](http://api.sla
 イベント API を有効にするには、左ペインの **Features** > **Event Subscriptions** へ遷移します。この画面でいくつかやることがあります。
 
 * **Enable Events** を Off から On にする
-* `https://{あなたのドメイン}/slack/events` を **Request URL** に設定
+* `https://{あなたのドメイン}/slack/events` を **Request URL** に設定 (ソケットモードの場合、この手順は不要です)
 * Bot User Event を設定
   * **Subscribe to bot events** をクリック
   * **Add Bot User Event** ボタンをクリック
