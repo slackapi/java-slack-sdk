@@ -446,6 +446,26 @@
     {
       "date_created": "2021-07-29T11:56:50-07:00",
       "body": "Some customers may be experiencing issues with the \"Slack for Gmail\" add-on not being visible in Gmail. We\u0027re currently investigating and we\u0027ll provide another update as soon as we have more information to share."
+    },
+    {
+      "date_created": "2021-09-21T15:23:00-07:00",
+      "body": "We\u0027re seeing signs of improvement and continuing to evaluate. We will provide another update as soon as we have more information to share."
+    },
+    {
+      "date_created": "2021-09-21T14:51:54-07:00",
+      "body": "We are continuing to look into this issue. We\u0027ll provide another status update in 30 minutes."
+    },
+    {
+      "date_created": "2021-09-21T14:07:17-07:00",
+      "body": "We previously stated that this was only impacting Android users, but have now determined that this is occurring on both the Android and iOS mobile apps.  \r\n\r\nOur team is working hard to resolve this issue, and we\u0027ll be in touch once we have more information to share."
+    },
+    {
+      "date_created": "2021-09-21T13:31:23-07:00",
+      "body": "We\u0027re still investigating the issue, but we don\u0027t have additional information just yet. We\u0027ll be back in 30 minutes with another update."
+    },
+    {
+      "date_created": "2021-09-21T12:58:42-07:00",
+      "body": "Some customers may be experiencing an issue where they\u0027re being logged out of Slack on their Android mobile device. We\u0027re currently investigating and will be back with an update shortly."
     }
   ]
 }
