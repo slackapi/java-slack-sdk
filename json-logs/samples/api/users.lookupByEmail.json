@@ -35,7 +35,8 @@
       "image_512": "https://www.example.com/",
       "image_1024": "https://www.example.com/",
       "status_text_canonical": "",
-      "team": "T00000000"
+      "team": "T00000000",
+      "status_emoji_url": ""
     },
     "is_admin": false,
     "is_owner": false,

@@ -111,6 +111,8 @@ public class User {
         @SerializedName("is_custom_image")
         private boolean customImage;
 
+        private String statusEmojiUrl;
+
         private Map<String, Field> fields;
 
         @Data

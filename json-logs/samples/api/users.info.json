@@ -38,7 +38,8 @@
       "email": "",
       "first_name": "",
       "last_name": "",
-      "image_1024": "https://www.example.com/"
+      "image_1024": "https://www.example.com/",
+      "status_emoji_url": ""
     },
     "is_admin": false,
     "is_owner": false,
