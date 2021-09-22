@@ -2,7 +2,6 @@ package test_with_remote_apis.methods_admin_api;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
-import com.slack.api.methods.request.admin.apps.AdminAppsClearResolutionRequest;
 import com.slack.api.methods.response.admin.apps.*;
 import com.slack.api.model.admin.AppRequest;
 import config.Constants;
@@ -33,6 +32,7 @@ public class AdminApi_apps_Test {
     static AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
 
     // TODO: valid test
+    @Ignore
     @Test
     public void apps_clearResolution() throws Exception {
         if (orgAdminUserToken != null) {
@@ -42,6 +42,7 @@ public class AdminApi_apps_Test {
         }
     }
 
+    @Ignore
     @Test
     public void apps_uninstall() throws Exception {
         if (orgAdminUserToken != null) {

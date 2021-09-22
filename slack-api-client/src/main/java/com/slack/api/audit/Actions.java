@@ -107,6 +107,7 @@ public class Actions {
         public static final String pref_slack_connect_dm_only_verified_orgs = "pref.slack_connect_dm_only_verified_orgs";
         public static final String pref_content_review_enabled = "pref.content_review_enabled";
         public static final String pref_flagged_content_review_channel = "pref.flagged_content_review_channel";
+        public static final String pref_slack_connect_approval_type = "pref.slack_connect_approval_type";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";

@@ -111,7 +111,8 @@
       "pref.slack_connect_dm_only_verified_orgs",
       "pref.who_can_dm_anyone",
       "pref.content_review_enabled",
-      "pref.flagged_content_review_channel"
+      "pref.flagged_content_review_channel",
+      "pref.slack_connect_approval_type"
     ],
     "user": [
       "custom_tos_accepted",
