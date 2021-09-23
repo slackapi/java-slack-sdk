@@ -10,6 +10,8 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -24,6 +26,7 @@ public class UserDefinedMethodsTest {
         private String error;
         private String needed;
         private String provided;
+        private transient Map<String, List<String>> httpResponseHeaders;
 
         private String url;
         private String team;

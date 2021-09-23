@@ -7,8 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import java.util.List;
+import java.util.Map;
+
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static util.MockSlackApi.ValidToken;
 
 public class AuthTest {
@@ -26,6 +31,22 @@ public class AuthTest {
     @After
     public void tearDown() throws Exception {
         server.stop();
+    }
+
+    @Test
+    public void headers() throws Exception {
+        Map<String, List<String>> headers =
+                slack.methods(ValidToken).authTest(r -> r).getHttpResponseHeaders();
+        assertThat(headers, is(notNullValue()));
+        assertThat(headers.size(), is(greaterThan(0)));
+    }
+
+    @Test
+    public void headers_async() throws Exception {
+        Map<String, List<String>> headers =
+                slack.methodsAsync(ValidToken).authTest(r -> r).get().getHttpResponseHeaders();
+        assertThat(headers, is(notNullValue()));
+        assertThat(headers.size(), is(greaterThan(0)));
     }
 
     @Test

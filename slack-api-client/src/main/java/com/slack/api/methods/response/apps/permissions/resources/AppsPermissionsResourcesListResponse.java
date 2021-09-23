@@ -5,6 +5,7 @@ import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class AppsPermissionsResourcesListResponse implements SlackApiTextResponse {
@@ -17,6 +18,7 @@ public class AppsPermissionsResourcesListResponse implements SlackApiTextRespons
 
     private List<Resource> resources;
     private ResponseMetadata responseMetadata;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     @Data
     public static class Resource {

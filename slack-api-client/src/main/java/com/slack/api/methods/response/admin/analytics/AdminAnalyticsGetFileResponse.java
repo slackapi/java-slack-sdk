@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.zip.GZIPInputStream;
 
@@ -23,6 +24,7 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
     private boolean ok;
     private String error;
     private ResponseMetadata responseMetadata;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     /**
      * This method is almost completely unlike other Web API methods you encounter.

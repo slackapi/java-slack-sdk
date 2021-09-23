@@ -4,6 +4,9 @@ import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * https://api.slack.com/methods/oauth.v2.exchange
  */
@@ -15,6 +18,7 @@ public class OAuthV2ExchangeResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private String appId;
     private AuthedUser authedUser;

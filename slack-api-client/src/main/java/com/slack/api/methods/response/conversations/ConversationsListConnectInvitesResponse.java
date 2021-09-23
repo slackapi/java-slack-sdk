@@ -6,6 +6,7 @@ import com.slack.api.model.connect.ConnectInvite;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class ConversationsListConnectInvitesResponse implements SlackApiTextResponse {
@@ -15,6 +16,8 @@ public class ConversationsListConnectInvitesResponse implements SlackApiTextResp
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
+
     private String arg; // for missing argument error (e.g., "team_id")
 
     private ResponseMetadata responseMetadata;

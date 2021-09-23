@@ -5,6 +5,9 @@ import com.slack.api.model.ErrorResponseMetadata;
 import com.slack.api.model.view.View;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 @Data
 public class ViewsUpdateResponse implements SlackApiTextResponse {
 
@@ -13,6 +16,7 @@ public class ViewsUpdateResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private View view;
 

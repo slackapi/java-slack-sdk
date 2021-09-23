@@ -221,7 +221,7 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.IOException;
-import java.util.Optional;
+import java.util.*;
 
 import static com.slack.api.methods.RequestFormBuilder.toForm;
 import static com.slack.api.methods.RequestFormBuilder.toMultipartBody;
@@ -2934,7 +2934,10 @@ public class MethodsClientImpl implements MethodsClient {
             if (response.isSuccessful()) {
                 try {
                     Gson gson = GsonFactory.createSnakeCase(slackHttpClient.getConfig());
-                    return gson.fromJson(body, AdminAnalyticsGetFileResponse.class);
+                    AdminAnalyticsGetFileResponse apiResponse =
+                            gson.fromJson(body, AdminAnalyticsGetFileResponse.class);
+                    apiResponse.setHttpResponseHeaders(toLowerCasedKeyMap(response.headers()));
+                    return apiResponse;
                 } finally {
                     slackHttpClient.runHttpResponseListeners(response, body);
                 }
@@ -2947,6 +2950,7 @@ public class MethodsClientImpl implements MethodsClient {
             AdminAnalyticsGetFileResponse apiResponse = new AdminAnalyticsGetFileResponse();
             apiResponse.setOk(true);
             apiResponse.setFileStream(response.body().byteStream());
+            apiResponse.setHttpResponseHeaders(toLowerCasedKeyMap(response.headers()));
             return apiResponse;
         }
     }
@@ -3129,6 +3133,7 @@ public class MethodsClientImpl implements MethodsClient {
                         metricsDatastore.incrementUnsuccessfulCalls(executorName, teamId, methodName);
                     }
                 }
+                apiResponse.setHttpResponseHeaders(toLowerCasedKeyMap(response.headers()));
                 return apiResponse;
             } finally {
                 slackHttpClient.runHttpResponseListeners(response, body);
@@ -3164,6 +3169,15 @@ public class MethodsClientImpl implements MethodsClient {
             }
         }
         return null;
+    }
+
+    private static Map<String, List<String>> toLowerCasedKeyMap(Headers headers) {
+        Map<String, List<String>> converted = new HashMap<>();
+        Map<String, List<String>> map = headers.toMultimap();
+        for (Map.Entry<String, List<String>> each : map.entrySet()) {
+            converted.put(each.getKey().toLowerCase(Locale.ENGLISH), each.getValue());
+        }
+        return converted;
     }
 
 }

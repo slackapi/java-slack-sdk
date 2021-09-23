@@ -8,6 +8,7 @@ import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class ChatScheduleMessageResponse implements SlackApiTextResponse {
@@ -17,6 +18,7 @@ public class ChatScheduleMessageResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private String scheduledMessageId;
     private String channel;

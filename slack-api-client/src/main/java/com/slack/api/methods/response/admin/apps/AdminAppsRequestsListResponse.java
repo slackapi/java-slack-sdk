@@ -6,6 +6,7 @@ import com.slack.api.model.admin.AppRequest;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class AdminAppsRequestsListResponse implements SlackApiTextResponse {
@@ -15,6 +16,7 @@ public class AdminAppsRequestsListResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private List<AppRequest> appRequests;
     private ResponseMetadata responseMetadata;

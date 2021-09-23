@@ -4,6 +4,7 @@ import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * https://api.slack.com/methods/apps.event.authorizations.list
@@ -17,6 +18,7 @@ public class AppsEventAuthorizationsListResponse implements SlackApiTextResponse
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private List<Authorization> authorizations;
     private String cursorNext;
