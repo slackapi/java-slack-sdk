@@ -216,4 +216,12 @@ public class auth_Test {
         }
     }
 
+    @Test
+    public void authTest_x_oauth_scopes() throws IOException, SlackApiException {
+        AuthTestResponse response = slack.methods().authTest(req -> req.token(botToken));
+        assertThat(response.getError(), is(nullValue()));
+        String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+        assertThat(scopes, is(notNullValue()));
+    }
+
 }

@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * https://api.slack.com/methods/openid.connect.userInfo
  */
@@ -15,6 +18,7 @@ public class OpenIDConnectUserInfoResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private String sub; // W1234567890
     @SerializedName("https://slack.com/user_id")

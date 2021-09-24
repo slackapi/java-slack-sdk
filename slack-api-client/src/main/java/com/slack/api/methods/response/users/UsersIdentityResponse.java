@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiTextResponse;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 @Data
 public class UsersIdentityResponse implements SlackApiTextResponse {
 
@@ -12,6 +15,7 @@ public class UsersIdentityResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private User user;
     private Team team;

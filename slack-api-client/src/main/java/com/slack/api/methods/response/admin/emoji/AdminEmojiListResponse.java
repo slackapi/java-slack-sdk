@@ -5,6 +5,7 @@ import com.slack.api.model.ResponseMetadata;
 import com.slack.api.model.admin.Emoji;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -15,6 +16,7 @@ public class AdminEmojiListResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private Map<String, Emoji> emoji;
     private ResponseMetadata responseMetadata;

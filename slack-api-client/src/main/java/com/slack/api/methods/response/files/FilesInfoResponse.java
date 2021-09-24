@@ -8,6 +8,7 @@ import com.slack.api.model.Paging;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class FilesInfoResponse implements SlackApiTextResponse {
@@ -17,6 +18,7 @@ public class FilesInfoResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private File file;
     private String content;

@@ -5,6 +5,7 @@ import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class AdminConversationsRestrictAccessListGroupsResponse implements SlackApiTextResponse {
@@ -14,6 +15,7 @@ public class AdminConversationsRestrictAccessListGroupsResponse implements Slack
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private List<String> groupIds;
     private ErrorResponseMetadata responseMetadata;

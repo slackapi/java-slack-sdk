@@ -9,11 +9,16 @@ import org.junit.Test;
 import util.MockSlackApiServer;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+import static util.MockSlackApi.ValidToken;
 
 public class ApiTest {
 
@@ -30,6 +35,20 @@ public class ApiTest {
     @After
     public void tearDown() throws Exception {
         server.stop();
+    }
+
+    @Test
+    public void headers() throws Exception {
+        Map<String, List<String>> headers = slack.methods().apiTest(r -> r).getHttpResponseHeaders();
+        assertThat(headers, is(notNullValue()));
+        assertThat(headers.size(), is(greaterThan(0)));
+    }
+
+    @Test
+    public void headers_async() throws Exception {
+        Map<String, List<String>> headers = slack.methodsAsync().apiTest(r -> r).get().getHttpResponseHeaders();
+        assertThat(headers, is(notNullValue()));
+        assertThat(headers.size(), is(greaterThan(0)));
     }
 
     @Test

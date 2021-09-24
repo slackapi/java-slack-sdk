@@ -5,6 +5,9 @@ import com.slack.api.model.Conversation;
 import com.slack.api.model.WarningResponseMetadata;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 @Data
 public class ConversationsJoinResponse implements SlackApiTextResponse {
 
@@ -13,6 +16,7 @@ public class ConversationsJoinResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private Conversation channel;
     private WarningResponseMetadata responseMetadata;

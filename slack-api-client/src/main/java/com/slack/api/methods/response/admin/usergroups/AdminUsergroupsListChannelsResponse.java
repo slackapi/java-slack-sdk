@@ -6,6 +6,7 @@ import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class AdminUsergroupsListChannelsResponse implements SlackApiTextResponse {
@@ -15,6 +16,7 @@ public class AdminUsergroupsListChannelsResponse implements SlackApiTextResponse
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private List<Conversation> channels;
 

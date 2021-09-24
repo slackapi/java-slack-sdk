@@ -5,6 +5,7 @@ import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Deprecated
 @Data
@@ -15,6 +16,7 @@ public class AdminConversationsWhitelistListGroupsLinkedToChannelResponse implem
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private List<String> groupIds;
     private ResponseMetadata responseMetadata;

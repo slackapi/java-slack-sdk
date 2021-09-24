@@ -5,6 +5,9 @@ import com.slack.api.model.Call;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 @Data
 public class CallsParticipantsAddResponse implements SlackApiTextResponse {
 
@@ -13,6 +16,7 @@ public class CallsParticipantsAddResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private Call call;
 

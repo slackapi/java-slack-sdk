@@ -42,6 +42,7 @@ public class FieldVerification {
             _skipGetterNames.add(name);
         }
         _skipGetterNames.add("getBytes"); // String#getBytes()
+        _skipGetterNames.add("getHttpResponseHeaders");
 
         for (Method method : methods) {
             int m = method.getModifiers();

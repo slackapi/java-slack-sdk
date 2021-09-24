@@ -6,6 +6,7 @@ import com.slack.api.model.Reaction;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class ReactionsGetResponse implements SlackApiTextResponse {
@@ -15,6 +16,7 @@ public class ReactionsGetResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private String type;
     private String channel;

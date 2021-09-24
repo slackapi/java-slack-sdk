@@ -5,6 +5,7 @@ import com.slack.api.model.Conversation;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class ConversationsInviteResponse implements SlackApiTextResponse {
@@ -15,6 +16,7 @@ public class ConversationsInviteResponse implements SlackApiTextResponse {
     private List<Error> errors;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private Conversation channel;
 

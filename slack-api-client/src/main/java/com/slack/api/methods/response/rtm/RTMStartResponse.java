@@ -5,6 +5,7 @@ import com.slack.api.model.*;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @see <a href="https://api.slack.com/methods/rtm.start">rtm.start</a>
@@ -17,6 +18,7 @@ public class RTMStartResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private String url;
     private User self;

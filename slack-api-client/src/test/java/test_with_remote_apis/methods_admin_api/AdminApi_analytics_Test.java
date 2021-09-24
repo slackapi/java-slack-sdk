@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 @Slf4j
@@ -41,6 +44,8 @@ public class AdminApi_analytics_Test {
             ).get();
             assertEquals("file_not_yet_available", response.getError());
             assertFalse(response.isOk());
+            String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+            assertThat(scopes, is(notNullValue()));
         }
     }
 
@@ -53,6 +58,9 @@ public class AdminApi_analytics_Test {
             ).get();
             assertNull(response.getError());
             assertNotNull(response.getFileStream());
+            String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+            assertThat(scopes, is(notNullValue()));
+
             List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
             response.forEach(data -> results.add(data));
             assertTrue(results.size() > 0);
@@ -83,6 +91,9 @@ public class AdminApi_analytics_Test {
             ).get();
             assertNull(response.getError());
             assertNotNull(response.getFileStream());
+            String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+            assertThat(scopes, is(notNullValue()));
+
             List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
             response.forEach(gson, data -> results.add(data));
             assertTrue(results.size() > 0);
@@ -101,6 +112,8 @@ public class AdminApi_analytics_Test {
             byte[] bytes = response.asBytes();
             assertTrue(bytes.length > 0);
             assertTrue(response.isOk());
+            String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+            assertThat(scopes, is(notNullValue()));
 
             // Even after consuming the input stream,
             // #asBytes() should be available for multiple calls as the loaded bytes are cached
@@ -122,6 +135,9 @@ public class AdminApi_analytics_Test {
             ).get();
             assertNull(response.getError());
             assertNotNull(response.getFileStream());
+            String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+            assertThat(scopes, is(notNullValue()));
+
             List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
             response.forEach(data -> results.add(data));
             assertTrue(results.size() > 0);
@@ -155,6 +171,9 @@ public class AdminApi_analytics_Test {
             ).get();
             assertNull(response.getError());
             assertNotNull(response.getFileStream());
+            String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+            assertThat(scopes, is(notNullValue()));
+
             List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
             response.forEach(gson, data -> results.add(data));
             assertTrue(results.size() > 0);
@@ -170,6 +189,9 @@ public class AdminApi_analytics_Test {
             ).get();
             assertNull(response.getError());
             assertNotNull(response.getFileStream());
+            String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+            assertThat(scopes, is(notNullValue()));
+
             List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
             response.forEach(data -> results.add(data));
             assertTrue(results.size() > 0);
@@ -207,6 +229,9 @@ public class AdminApi_analytics_Test {
             ).get();
             assertNull(response.getError());
             assertNotNull(response.getFileStream());
+            String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+            assertThat(scopes, is(notNullValue()));
+
             List<AdminAnalyticsGetFileResponse.AnalyticsData> results = new ArrayList<>();
             response.forEach(gson, data -> results.add(data));
             assertTrue(results.size() > 0);

@@ -5,6 +5,9 @@ import com.slack.api.model.Reminder;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 @Data
 public class RemindersAddResponse implements SlackApiTextResponse {
 
@@ -13,6 +16,7 @@ public class RemindersAddResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private Reminder reminder;
     private ResponseMetadata responseMetadata;

@@ -14,6 +14,7 @@ public class MigrationExchangeResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     /**
      * The workspace/team ID containing the mapped users

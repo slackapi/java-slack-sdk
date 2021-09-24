@@ -5,6 +5,7 @@ import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class AdminConversationsGetConversationPrefsResponse implements SlackApiTextResponse {
@@ -14,6 +15,7 @@ public class AdminConversationsGetConversationPrefsResponse implements SlackApiT
     private String error;
     private String needed;
     private String provided;
+    private transient Map<String, List<String>> httpResponseHeaders;
 
     private ConversationPrefs prefs;
     private ErrorResponseMetadata responseMetadata;

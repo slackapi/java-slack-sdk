@@ -160,6 +160,9 @@ public class chat_Test {
                 .text("You can also do slack.methods(token)"));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.getMessage().getText(), is("You can also do slack.methods(token)"));
+
+        String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+        assertThat(scopes, is(notNullValue()));
     }
 
     @Test
@@ -170,6 +173,9 @@ public class chat_Test {
                 .text("You can also do slack.methods(token)"));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.getMessage().getText(), is("You can also do slack.methods(token)"));
+
+        String scopes = response.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+        assertThat(scopes, is(notNullValue()));
     }
 
     // https://github.com/slackapi/java-slack-sdk/issues/157
@@ -286,6 +292,9 @@ public class chat_Test {
         assertThat(postResponse.isOk(), is(true));
         assertThat(postResponse.getMessage().getText(),
                 is("Hi, this is a test message from Java Slack SDK's unit tests"));
+
+        String scopes = postResponse.getHttpResponseHeaders().get("x-oauth-scopes").get(0);
+        assertThat(scopes, is(notNullValue()));
 
         ChatGetPermalinkResponse permalink = slack.methodsAsync().chatGetPermalink(req -> req
                 .token(botToken)
