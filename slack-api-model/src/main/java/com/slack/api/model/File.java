@@ -33,6 +33,8 @@ public class File {
     private String lastEditor; // application/vnd.slack-docs
     private Integer updated; // application/vnd.slack-docs
 
+    private Integer originalAttachmentCount;
+
     @SerializedName("is_external")
     private boolean external;
     private String externalType;
@@ -247,9 +249,20 @@ public class File {
         private Integer pinnedTs;
     }
 
-
     private String channelActionsTs;
     private Integer channelActionsCount;
+
+    private Headers headers;
+    private String simplifiedHtml;
+
+    // for Email App's attachments
+    @Data
+    public static class Headers {
+        private String date;
+        private String inReplyTo;
+        private String replyTo;
+        private String messageId;
+    }
 
     // ---------------------------------------
     // file comments

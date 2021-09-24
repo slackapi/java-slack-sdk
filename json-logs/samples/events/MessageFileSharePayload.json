@@ -682,6 +682,7 @@
         "editor": "",
         "last_editor": "",
         "updated": 123,
+        "original_attachment_count": 123,
         "is_external": false,
         "external_type": "",
         "external_id": "",
@@ -761,6 +762,13 @@
         "shares": {},
         "channel_actions_ts": "",
         "channel_actions_count": 123,
+        "headers": {
+          "date": "",
+          "in_reply_to": "",
+          "reply_to": "",
+          "message_id": ""
+        },
+        "simplified_html": "",
         "bot_id": "",
         "initial_comment": {
           "id": "",

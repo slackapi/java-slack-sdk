@@ -72,6 +72,13 @@ public class files_Test {
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getFiles(), is(notNullValue()));
+
+            MethodsClient client = slack.methods(userToken);
+            for (com.slack.api.model.File f : response.getFiles()) {
+                // To check if there is no missing field
+                FilesInfoResponse infoResponse = client.filesInfo(r -> r.file(f.getId()));
+                assertThat(infoResponse.getError(), is(nullValue()));
+            }
         }
     }
 

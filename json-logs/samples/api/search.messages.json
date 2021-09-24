@@ -991,6 +991,7 @@
             "editor": "",
             "last_editor": "",
             "updated": 12345,
+            "original_attachment_count": 12345,
             "is_external": false,
             "external_type": "",
             "external_id": "",
@@ -1070,6 +1071,13 @@
             "shares": {},
             "channel_actions_ts": "",
             "channel_actions_count": 12345,
+            "headers": {
+              "date": "",
+              "in_reply_to": "",
+              "reply_to": "",
+              "message_id": ""
+            },
+            "simplified_html": "",
             "bot_id": "",
             "initial_comment": {
               "id": "",

@@ -75,14 +75,155 @@
       "deanimate": "https://www.example.com/",
       "deanimate_gif": "https://www.example.com/",
       "subject": "",
+      "to": [
+        {
+          "address": "",
+          "name": "",
+          "original": ""
+        }
+      ],
+      "from": [
+        {
+          "address": "",
+          "name": "",
+          "original": ""
+        }
+      ],
+      "cc": [
+        {
+          "address": "",
+          "name": "",
+          "original": ""
+        }
+      ],
+      "attachments": [
+        {
+          "msg_subtype": "",
+          "fallback": "",
+          "callback_id": "",
+          "color": "",
+          "pretext": "",
+          "service_url": "",
+          "service_name": "",
+          "service_icon": "",
+          "author_id": "",
+          "author_name": "",
+          "author_link": "",
+          "author_icon": "",
+          "from_url": "",
+          "original_url": "",
+          "author_subname": "",
+          "channel_id": "",
+          "channel_name": "",
+          "id": 12345,
+          "bot_id": "",
+          "indent": false,
+          "is_msg_unfurl": false,
+          "is_reply_unfurl": false,
+          "is_thread_root_unfurl": false,
+          "is_app_unfurl": false,
+          "app_unfurl_url": "",
+          "title": "",
+          "title_link": "",
+          "text": "",
+          "fields": [
+            {
+              "title": "",
+              "value": "",
+              "short": false
+            }
+          ],
+          "image_url": "",
+          "image_width": 12345,
+          "image_height": 12345,
+          "image_bytes": 12345,
+          "thumb_url": "",
+          "thumb_width": 12345,
+          "thumb_height": 12345,
+          "video_url": "",
+          "video_html": "",
+          "video_html_width": 12345,
+          "video_html_height": 12345,
+          "footer": "",
+          "footer_icon": "",
+          "ts": "",
+          "mrkdwn_in": [
+            ""
+          ],
+          "actions": [
+            {
+              "id": "",
+              "name": "",
+              "text": "",
+              "style": "",
+              "type": "",
+              "value": "",
+              "confirm": {
+                "title": "",
+                "text": "",
+                "ok_text": "",
+                "dismiss_text": ""
+              },
+              "options": [
+                {
+                  "text": "",
+                  "value": ""
+                }
+              ],
+              "selected_options": [
+                {
+                  "text": "",
+                  "value": ""
+                }
+              ],
+              "data_source": "",
+              "min_query_length": 12345,
+              "option_groups": [
+                {
+                  "text": ""
+                }
+              ],
+              "url": ""
+            }
+          ],
+          "filename": "",
+          "size": 12345,
+          "mimetype": "",
+          "url": "",
+          "metadata": {
+            "thumb_64": false,
+            "thumb_80": false,
+            "thumb_160": false,
+            "original_w": 12345,
+            "original_h": 12345,
+            "thumb_360_w": 12345,
+            "thumb_360_h": 12345,
+            "format": "",
+            "extension": "",
+            "rotation": 12345,
+            "thumb_tiny": ""
+          }
+        }
+      ],
+      "original_attachment_count": 12345,
+      "plain_text": "",
+      "preview_plain_text": "",
+      "headers": {
+        "date": "",
+        "reply_to": "",
+        "message_id": "",
+        "in_reply_to": ""
+      },
+      "app_id": "A00000000",
+      "app_name": "",
+      "has_more": false,
+      "sent_to_self": false,
       "non_owner_editable": false,
       "editor": "",
       "last_editor": "",
       "updated": 12345,
       "external_id": "",
       "external_url": "",
-      "app_id": "",
-      "app_name": "",
       "thumb_64_gif": "",
       "thumb_64_w": "",
       "thumb_64_h": "",
@@ -104,13 +245,10 @@
       "converted_pdf": "",
       "pjpeg": "",
       "has_rich_preview": false,
-      "plain_text": "",
-      "preview_plain_text": "",
-      "has_more": false,
-      "sent_to_self": false,
       "shares": {},
       "channel_actions_ts": "",
       "channel_actions_count": 12345,
+      "simplified_html": "",
       "bot_id": "",
       "initial_comment": {
         "id": "",

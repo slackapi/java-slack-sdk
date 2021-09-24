@@ -280,7 +280,9 @@ public class JsonDataRecorder {
                 for (int idx = 0; idx < array.size(); idx++) {
                     array.remove(idx);
                 }
-                array.add(gson.toJsonTree(ObjectInitializer.initProperties(new com.slack.api.model.File())));
+                com.slack.api.model.File f = ObjectInitializer.initProperties(new com.slack.api.model.File());
+                f.setHeaders(ObjectInitializer.initProperties(new com.slack.api.model.File.Headers()));
+                array.add(gson.toJsonTree(f));
             }
             if (array.size() == 0) {
                 List<String> addressNames = Arrays.asList("from", "to", "cc");
@@ -366,9 +368,9 @@ public class JsonDataRecorder {
                     for (String key : oldKeys) {
                         file.remove(key);
                     }
-                    JsonObject fullFile = GsonFactory.createSnakeCase().toJsonTree(
-                            ObjectInitializer.initProperties(new com.slack.api.model.File())
-                    ).getAsJsonObject();
+                    com.slack.api.model.File f = ObjectInitializer.initProperties(new com.slack.api.model.File());
+                    f.setHeaders(ObjectInitializer.initProperties(new com.slack.api.model.File.Headers()));
+                    JsonObject fullFile = GsonFactory.createSnakeCase().toJsonTree(f).getAsJsonObject();
                     for (String newKey : fullFile.keySet()) {
                         file.add(newKey, fullFile.get(newKey));
                     }
