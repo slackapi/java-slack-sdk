@@ -63,7 +63,7 @@ lang: ja
 実装を切り替える場合、`SocketModeClient.Backend.*` を **slack-api-client** の `SocketModeClient` か **bolt-socket-mode** の `SocketModeApp` のコンストラクターに渡します。まt、それ以外の実装が `SocketModeClient` インターフェースを実装しているなら、直接インスタンス化してもよいでしょう。
 
 ```java
-Stirng appToken = "xapp-";
+String appToken = "xapp-";
 App app = new App();
 SocketModeApp socketModeApp = new SocketModeApp(
   appToken,

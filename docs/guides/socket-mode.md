@@ -63,7 +63,7 @@ To manage the Socket Mode connections, in addition to the **bolt-socket-mode** l
 To switch the underlying implementation, you can pass a `SocketModeClient.Backend.*` to either `SocketModeClient` in **slack-api-client** or `SocketModeApp` in **bolt-socket-mode**. If your own one implements `SocketModeClient` interface, you can just instantiate the class.
 
 ```java
-Stirng appToken = "xapp-";
+String appToken = "xapp-";
 App app = new App();
 SocketModeApp socketModeApp = new SocketModeApp(
   appToken,
