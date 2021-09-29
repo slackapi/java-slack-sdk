@@ -34,7 +34,8 @@
     "image_512": "https://www.example.com/",
     "image_1024": "https://www.example.com/",
     "status_text_canonical": "",
-    "status_emoji_url": ""
+    "status_emoji_url": "",
+    "pronouns": ""
   },
   "ok": false,
   "username": "",

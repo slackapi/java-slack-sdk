@@ -34,6 +34,7 @@
         "status_text": "",
         "status_text_canonical": "",
         "status_emoji": "",
+        "status_emoji_url": "",
         "status_expiration": 123,
         "display_name": "",
         "display_name_normalized": "",
@@ -56,7 +57,7 @@
         "image_512": "",
         "image_1024": "",
         "is_custom_image": false,
-        "status_emoji_url": "",
+        "pronouns": "",
         "first_name": "",
         "last_name": ""
       },
