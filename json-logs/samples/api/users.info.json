@@ -39,7 +39,8 @@
       "first_name": "",
       "last_name": "",
       "image_1024": "https://www.example.com/",
-      "status_emoji_url": ""
+      "status_emoji_url": "",
+      "pronouns": ""
     },
     "is_admin": false,
     "is_owner": false,

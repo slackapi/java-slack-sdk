@@ -74,6 +74,7 @@ public class User {
         private String statusText;
         private String statusTextCanonical;
         private String statusEmoji;
+        private String statusEmojiUrl;
         private Long statusExpiration;
 
         private String displayName;
@@ -111,7 +112,7 @@ public class User {
         @SerializedName("is_custom_image")
         private boolean customImage;
 
-        private String statusEmojiUrl;
+        private String pronouns;
 
         private Map<String, Field> fields;
 
