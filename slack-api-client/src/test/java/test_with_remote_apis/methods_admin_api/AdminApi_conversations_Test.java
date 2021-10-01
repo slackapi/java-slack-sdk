@@ -160,7 +160,7 @@ public class AdminApi_conversations_Test {
                     methodsAsync.adminConversationsDisconnectShared(r -> r
                             .channelId(channelId).leavingTeamIds(Arrays.asList(teamId))).get();
             // TODO: Fix this
-            assertThat(disconnectShared.getError(), is("not_allowed_token_type"));
+            assertThat(disconnectShared.getError(), is("not_supported"));
 
             Thread.sleep(2000L); // To avoid channel_not_found
 

@@ -712,6 +712,52 @@
           "body": "Some customers may be experiencing an issue where they\u0027re being logged out of Slack on their Android mobile device. We\u0027re currently investigating and will be back with an update shortly."
         }
       ]
+    },
+    {
+      "id": 1025,
+      "date_created": "2021-09-30T09:30:07-07:00",
+      "date_updated": "2021-09-30T14:30:57-07:00",
+      "title": "Less than 1% of users may be experiencing trouble connecting to Slack",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2021-09/06c1e17de93e7dc2",
+      "services": [
+        "Connections"
+      ],
+      "notes": [
+        {
+          "date_created": "2021-09-30T14:30:57-07:00",
+          "body": "We\u0027re seeing some signs of improvement, and reloading Slack (Ctrl/Command + R) may allow Slack to load again. The issue is not resolved for everyone, however, and we\u0027ll be back again once we have another update to share.\r\n\r\nNote: We\u0027ve edited the title of this incident to accurately reflect the scope of this issue."
+        },
+        {
+          "date_created": "2021-09-30T13:34:54-07:00",
+          "body": "Thank you all for your patience today as we work on resolving this connection issue. We will be back with a final update once the issues have been resolved."
+        },
+        {
+          "date_created": "2021-09-30T12:50:49-07:00",
+          "body": "We are aware of connectivity issues related to DNS that are impacting a small subset of users. This issue was caused by our own change and not related to any third-party DNS software and services. In order to resolve this faster, your ISP (Internet Service Provider) will need to flush their DNS record for slack.com. Please reach out to your networking team to provide them with this information.\r\nWe expect all customers’ connectivity issues to be resolved within the next 24 hours. We know how important it is for people to stay connected and we apologize for this disruption."
+        },
+        {
+          "date_created": "2021-09-30T12:19:00-07:00",
+          "body": "Our investigation of this connection issue is still ongoing at this time. We’ll be back with another update and apologize for this disruption. Thank you for your continued patience here!"
+        },
+        {
+          "date_created": "2021-09-30T11:17:00-07:00",
+          "body": "We are continuing to investigate the connection issue and will keep you posted as soon as we have more information available. We apologize for any disruption this has caused and thank you for your continued patience."
+        },
+        {
+          "date_created": "2021-09-30T10:46:08-07:00",
+          "body": "We are still digging in to this connection issue and we will keep you up to date as more information becomes available. Thank you for your patience today."
+        },
+        {
+          "date_created": "2021-09-30T10:05:17-07:00",
+          "body": "We continue to investigate this connection issue and we’ll continue to keep you posted as soon as we have more information. Thanks for your patience and we apologize for any disruption this may have caused."
+        },
+        {
+          "date_created": "2021-09-30T09:30:07-07:00",
+          "body": "We’re currently investigating this connection issue and we’ll keep you posted as soon as we have more information. Thanks for your patience and we apologize for the disruption."
+        }
+      ]
     }
   ]
 }
