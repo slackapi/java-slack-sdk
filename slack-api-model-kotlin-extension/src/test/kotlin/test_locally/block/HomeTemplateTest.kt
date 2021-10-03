@@ -201,7 +201,7 @@ class HomeTemplateTest {
     fun calendar() {
         val blocks = withBlocks {
             section {
-                markdownText("*Today, 22 October*")
+                markdownText("*Today, 22 October, 12:35pm*")
                 accessory {
                     button {
                         text("Manage App Settings", emoji = true)
@@ -214,6 +214,10 @@ class HomeTemplateTest {
                     datePicker {
                         initialDate("2019-10-22")
                         placeholder("Select a date", emoji = true)
+                    }
+                    timePicker {
+                        initialTime("12:35")
+                        placeholder("Select a time", emoji = true)
                     }
                 }
             }
@@ -337,7 +341,7 @@ class HomeTemplateTest {
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": "*Today, 22 October*"
+				"text": "*Today, 22 October, 12:35pm*"
 			},
 			"accessory": {
 				"type": "button",
@@ -358,6 +362,15 @@ class HomeTemplateTest {
 					"placeholder": {
 						"type": "plain_text",
 						"text": "Select a date",
+						"emoji": true
+					}
+				},
+				{
+					"type": "timepicker",
+					"initial_time": "12:35",
+					"placeholder": {
+						"type": "plain_text",
+						"text": "Select a time",
 						"emoji": true
 					}
 				}

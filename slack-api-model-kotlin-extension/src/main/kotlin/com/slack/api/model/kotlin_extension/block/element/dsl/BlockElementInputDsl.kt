@@ -30,6 +30,17 @@ interface BlockElementInputDsl {
     fun datePicker(builder: DatePickerElementBuilder.() -> Unit)
 
     /**
+     * An element which allows selection of a time of day.
+     *
+     * On desktop clients, this time picker will take the form of a dropdown list with free-text entry for precise choices.
+     * On mobile clients, the time picker will use native time picker UIs.
+     *
+     * @see <a href="https://api.slack.com/interactivity/handling">Enabling interactivity guide</a>
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#timepicker">Time picker element documentation</a>
+     */
+    fun timePicker(builder: TimePickerElementBuilder.() -> Unit)
+
+    /**
      * This select menu will load its options from an external data source, allowing for a dynamic list of options.
      *
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_select">External select element documentation</a>
