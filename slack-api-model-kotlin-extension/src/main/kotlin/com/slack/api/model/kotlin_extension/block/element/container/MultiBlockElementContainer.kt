@@ -31,6 +31,10 @@ class MultiBlockElementContainer : BlockElementDsl {
         underlying += DatePickerElementBuilder().apply(builder).build()
     }
 
+    override fun timePicker(builder: TimePickerElementBuilder.() -> Unit) {
+        underlying += TimePickerElementBuilder().apply(builder).build()
+    }
+
     override fun externalSelect(builder: ExternalSelectElementBuilder.() -> Unit) {
         underlying += ExternalSelectElementBuilder().apply(builder).build()
     }

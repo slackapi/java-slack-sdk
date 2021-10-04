@@ -12,7 +12,7 @@ object ValidationUtil {
                 .filter { it.name.startsWith("set") and Modifier.isPublic(it.modifiers) }
                 .map {
                     val name = it.name.replaceFirst("set", "")
-                    name.first().toLowerCase() + name.substring(1)
+                    name.first().lowercaseChar() + name.substring(1)
                 }
 
         val builderMethodNames = builder

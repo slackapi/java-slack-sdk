@@ -99,7 +99,7 @@ class ActionsBlockTest {
     }
 
     @Test
-    fun `single-selects and datepicker`() {
+    fun `single-selects with date and time pickers`() {
         val gson = GsonFactory.createSnakeCase()
         val blocks = withBlocks {
             section {
@@ -163,6 +163,17 @@ class ActionsBlockTest {
                     confirm {
                         title("Are you sure?")
                         plainText("Check your calendar. Are you sure you are free on this date?")
+                        confirm("Yes, I am free.")
+                        deny("No, I can't make it.")
+                    }
+                }
+                timePicker {
+                    actionId("timepick-appt")
+                    initialTime("12:35")
+                    placeholder("Select appointment time...")
+                    confirm {
+                        title("Are you sure?")
+                        plainText("Check your calendar. Are you sure you are free at this time?")
                         confirm("Yes, I am free.")
                         deny("No, I can't make it.")
                     }
@@ -302,6 +313,33 @@ class ActionsBlockTest {
                         "deny": {
                           "type": "plain_text",
                           "text": "No, I can't make it."
+                        }
+                      }
+                    },
+                    {
+                      "type": "timepicker",
+                      "action_id": "timepick-appt",
+                      "placeholder": {
+                        "type": "plain_text",
+                        "text": "Select appointment time..."
+                      },
+                      "initial_time": "12:35",
+                      "confirm": {
+                        "title": {
+                          "type": "plain_text",
+                          "text": "Are you sure?"
+                        },
+                        "text": {
+                          "type": "plain_text",
+                          "text": "Check your calendar. Are you sure you are free at this time?"
+                        },
+                        "confirm": {
+                          "type": "plain_text",
+                          "text": "Yes, I am free."
+                        },
+                        "deny": {
+                          "type": "plain_text",
+                          "text": "No, I can\u0027t make it."
                         }
                       }
                     },

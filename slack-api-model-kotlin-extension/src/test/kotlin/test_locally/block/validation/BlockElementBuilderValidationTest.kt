@@ -33,6 +33,11 @@ class BlockElementBuilderValidationTest {
     }
 
     @Test
+    fun testTimePickerElementBuilder() {
+        validateMethodNames(TimePickerElement::class.java, TimePickerElementBuilder::class.java)
+    }
+
+    @Test
     fun testExternalSelectElementBuilder() {
         validateMethodNames(ExternalSelectElement::class.java, ExternalSelectElementBuilder::class.java)
     }
