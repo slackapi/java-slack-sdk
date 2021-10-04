@@ -3,7 +3,7 @@ is_jdk_8=`echo $JAVA_HOME | grep 8.`
 is_travis_jdk_8=`echo $TRAVIS_JDK | grep openjdk8`
 if [[ "${is_jdk_8}" != "" && "${is_travis_jdk_8}" != "" ]];
 then
-  ./mvnw ${MAVEN_OPTS} -pl !bolt-google-cloud-functions -pl !bolt-helidon \
+  ./mvnw ${MAVEN_OPTS} -pl !bolt-google-cloud-functions -pl !bolt-helidon -pl !bolt-quarkus-examples \
     clean \
     test-compile \
     '-Dtest=test_locally.**.*Test' test \
