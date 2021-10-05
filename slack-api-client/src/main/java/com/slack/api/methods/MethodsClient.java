@@ -1573,8 +1573,10 @@ public interface MethodsClient {
 
     RTMConnectResponse rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req) throws IOException, SlackApiException;
 
+    @Deprecated
     RTMStartResponse rtmStart(RTMStartRequest req) throws IOException, SlackApiException;
 
+    @Deprecated
     RTMStartResponse rtmStart(RequestConfigurator<RTMStartRequest.RTMStartRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------

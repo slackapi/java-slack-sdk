@@ -519,6 +519,7 @@ public class Methods {
     // ------------------------------
 
     public static final String RTM_CONNECT = "rtm.connect";
+    @Deprecated // https://api.slack.com/changelog/2021-10-rtm-start-to-stop
     public static final String RTM_START = "rtm.start";
 
     // ------------------------------

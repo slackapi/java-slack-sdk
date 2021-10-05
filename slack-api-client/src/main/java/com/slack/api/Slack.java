@@ -241,7 +241,9 @@ public class Slack implements AutoCloseable {
      *
      * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
      * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Limits</a>
+     * @deprecated Use #rtmConnect() instead
      */
+    @Deprecated
     public RTMClient rtmStart(String apiToken) throws IOException {
         return rtmStart(apiToken, true);
     }
@@ -251,7 +253,9 @@ public class Slack implements AutoCloseable {
      *
      * @see <a href="https://api.slack.com/rtm">Slack RTM API</a>
      * @see <a href="https://api.slack.com/docs/rate-limits#rtm">RTM's Rate Limits</a>
+     * @deprecated Use #rtmConnect() instead
      */
+    @Deprecated
     public RTMClient rtmStart(String apiToken, boolean fullUserInfoRequired) throws IOException {
         try {
             RTMStartResponse response = methods().rtmStart(RTMStartRequest.builder().token(apiToken).build());

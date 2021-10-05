@@ -6,9 +6,11 @@ import lombok.Data;
 
 /**
  * @see <a href="https://api.slack.com/methods/rtm.start">rtm.start</a>
+ * @deprecated Use `rtm.connect` API method instead
  */
 @Data
 @Builder
+@Deprecated
 public class RTMStartRequest implements SlackApiRequest {
 
 
