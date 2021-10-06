@@ -1034,8 +1034,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<RTMConnectResponse> rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req);
 
+    @Deprecated
     CompletableFuture<RTMStartResponse> rtmStart(RTMStartRequest req);
 
+    @Deprecated
     CompletableFuture<RTMStartResponse> rtmStart(RequestConfigurator<RTMStartRequest.RTMStartRequestBuilder> req);
 
     // ------------------------------

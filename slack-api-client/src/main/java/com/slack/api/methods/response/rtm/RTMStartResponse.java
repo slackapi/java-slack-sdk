@@ -9,8 +9,10 @@ import java.util.Map;
 
 /**
  * @see <a href="https://api.slack.com/methods/rtm.start">rtm.start</a>
+ * @deprecated Use `rtm.connect` API method instead
  */
 @Data
+@Deprecated
 public class RTMStartResponse implements SlackApiTextResponse {
 
     private boolean ok;

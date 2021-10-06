@@ -1857,11 +1857,13 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    @Deprecated
     public CompletableFuture<RTMStartResponse> rtmStart(RTMStartRequest req) {
         return executor.execute(RTM_START, toMap(req), () -> methods.rtmStart(req));
     }
 
     @Override
+    @Deprecated
     public CompletableFuture<RTMStartResponse> rtmStart(RequestConfigurator<RTMStartRequest.RTMStartRequestBuilder> req) {
         return rtmStart(req.configure(RTMStartRequest.builder()).build());
     }
