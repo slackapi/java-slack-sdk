@@ -40,7 +40,14 @@
       "last_name": "",
       "image_1024": "https://www.example.com/",
       "status_emoji_url": "",
-      "pronouns": ""
+      "pronouns": "",
+      "status_emoji_display_info": [
+        {
+          "emoji_name": "",
+          "display_alias": "",
+          "display_url": ""
+        }
+      ]
     },
     "is_admin": false,
     "is_owner": false,

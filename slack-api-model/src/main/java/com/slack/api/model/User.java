@@ -113,6 +113,14 @@ public class User {
         private boolean customImage;
 
         private String pronouns;
+        private List<StatusEmojiDisplayInfo> statusEmojiDisplayInfo;
+
+        @Data
+        public static class StatusEmojiDisplayInfo {
+            private String emojiName;
+            private String displayAlias;
+            private String displayUrl;
+        }
 
         private Map<String, Field> fields;
 

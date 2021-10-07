@@ -283,6 +283,13 @@ public class JsonDataRecorder {
                 com.slack.api.model.File f = ObjectInitializer.initProperties(new com.slack.api.model.File());
                 f.setHeaders(ObjectInitializer.initProperties(new com.slack.api.model.File.Headers()));
                 array.add(gson.toJsonTree(f));
+            } else if (name != null && name.equals("status_emoji_display_info")) {
+                for (int idx = 0; idx < array.size(); idx++) {
+                    array.remove(idx);
+                }
+                array.add(gson.toJsonTree(
+                        ObjectInitializer.initProperties(new com.slack.api.model.User.Profile.StatusEmojiDisplayInfo())
+                ));
             }
             if (array.size() == 0) {
                 List<String> addressNames = Arrays.asList("from", "to", "cc");

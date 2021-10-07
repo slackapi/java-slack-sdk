@@ -36,7 +36,14 @@
     "image_1024": "https://www.example.com/",
     "status_text_canonical": "",
     "status_emoji_url": "",
-    "pronouns": ""
+    "pronouns": "",
+    "status_emoji_display_info": [
+      {
+        "emoji_name": "",
+        "display_alias": "",
+        "display_url": ""
+      }
+    ]
   },
   "error": "",
   "needed": "",
