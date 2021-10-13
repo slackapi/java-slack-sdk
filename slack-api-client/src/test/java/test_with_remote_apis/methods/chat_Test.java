@@ -879,8 +879,8 @@ public class chat_Test {
                     .channel(randomChannelId).limit(1));
             assertThat(history.getError(), is(nullValue()));
             Attachment.VideoHtml videoHtml = history.getMessages().get(0).getAttachments().get(0).getVideoHtml();
-            assertThat(videoHtml.getHtml(), is(nullValue()));
-            assertThat(videoHtml.getSource(), is(notNullValue()));
+            assertThat(videoHtml.getHtml(), is("<video muted loop controls autoplay preload=\"auto\" playsinline height=\"540\" width=\"960\" poster=\"https://i.imgur.com/brgYmPXh.jpg\" src=\"https://i.imgur.com/brgYmPX.mp4\"></video>"));
+            assertThat(videoHtml.getSource(), is(nullValue()));
         } finally {
             if (ts != null) {
                 final String _ts = ts;

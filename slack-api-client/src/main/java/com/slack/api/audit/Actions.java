@@ -108,6 +108,7 @@ public class Actions {
         public static final String pref_content_review_enabled = "pref.content_review_enabled";
         public static final String pref_flagged_content_review_channel = "pref.flagged_content_review_channel";
         public static final String pref_slack_connect_approval_type = "pref.slack_connect_approval_type";
+        public static final String pref_hermes_has_accepted_tos = "pref.hermes_has_accepted_tos";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -206,6 +207,8 @@ public class Actions {
         public static final String group_converted_to_channel = "group_converted_to_channel";
         public static final String channel_renamed = "channel_renamed";
         public static final String channel_posting_pref_changed_from_org_level = "channel_posting_pref_changed_from_org_level";
+        public static final String channel_enable_at_channel_pref_changed_from_org_level = "channel_enable_at_channel_pref_changed_from_org_level";
+        public static final String channel_enable_at_here_pref_changed_from_org_level = "channel_enable_at_here_pref_changed_from_org_level";
         public static final String external_shared_channel_invite_auto_revoked = "external_shared_channel_invite_auto_revoked";
         public static final String channel_email_address_created = "channel_email_address_created";
         public static final String channel_email_address_deleted = "channel_email_address_deleted";

@@ -112,7 +112,8 @@
       "pref.who_can_dm_anyone",
       "pref.content_review_enabled",
       "pref.flagged_content_review_channel",
-      "pref.slack_connect_approval_type"
+      "pref.slack_connect_approval_type",
+      "pref.hermes_has_accepted_tos"
     ],
     "user": [
       "custom_tos_accepted",
@@ -192,7 +193,9 @@
       "connect_dm_invite_revoked",
       "connect_dm_invite_accepted",
       "connect_dm_invite_ignored",
-      "channel_can_huddle_pref_changed_from_org_level"
+      "channel_can_huddle_pref_changed_from_org_level",
+      "channel_enable_at_channel_pref_changed_from_org_level",
+      "channel_enable_at_here_pref_changed_from_org_level"
     ],
     "app": [
       "app_installed",

@@ -23,6 +23,7 @@ public class OAuthTokenResponse implements SlackApiTextResponse {
     private String userId;
     private IncomingWebhook incomingWebhook;
     private Bot bot;
+    private String reqMethod;
 
     @Data
     public static class IncomingWebhook {
