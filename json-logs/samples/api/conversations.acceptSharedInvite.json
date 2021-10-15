@@ -4,6 +4,7 @@
   "implicit_approval": false,
   "channel_id": "C00000000",
   "invite_id": "I00000000",
+  "can_open_scdm": false,
   "needed": "",
   "provided": ""
 }

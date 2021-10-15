@@ -17,6 +17,7 @@ public class ConversationsAcceptSharedInviteResponse implements SlackApiTextResp
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private boolean implicitApproval;
+    private Boolean canOpenScdm;
     private String channelId;
     private String inviteId;
 }
