@@ -16,6 +16,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -75,6 +76,8 @@ public class WorkspaceAppApiTest {
         assertThat(response.isOk(), is(false));
     }
 
+    // the endpoint is no longer available
+    @Ignore
     @Test
     public void appsPermissionsUsersList() throws IOException, SlackApiException {
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
@@ -86,6 +89,8 @@ public class WorkspaceAppApiTest {
         assertThat(response.isOk(), is(false));
     }
 
+    // the endpoint is no longer available
+    @Ignore
     @Test
     public void appsPermissionsUsersRequest() throws IOException, SlackApiException {
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
