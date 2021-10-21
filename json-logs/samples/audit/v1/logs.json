@@ -212,8 +212,22 @@
           "type": "",
           "duration_days": 123
         },
-        "who_can_post": {},
-        "can_thread": {}
+        "who_can_post": {
+          "type": [
+            ""
+          ],
+          "user": [
+            ""
+          ]
+        },
+        "can_thread": {
+          "type": [
+            ""
+          ],
+          "user": [
+            ""
+          ]
+        }
       }
     }
   ]

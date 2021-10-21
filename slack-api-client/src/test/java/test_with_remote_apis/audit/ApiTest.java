@@ -87,6 +87,11 @@ public class ApiTest {
         details.setPermissions(Arrays.asList(permission));
         details.setBarrieredFromUsergroupIds(Arrays.asList(""));
         details.setRestrictedSubjects(Arrays.asList(""));
+        LogsResponse.ConversationPref conversationPref = new LogsResponse.ConversationPref();
+        conversationPref.setType(Arrays.asList(""));
+        conversationPref.setUser(Arrays.asList(""));
+        details.setWhoCanPost(conversationPref);
+        details.setCanThread(conversationPref);
         entry.setDetails(details);
 
         logs.setEntries(Arrays.asList(entry));
