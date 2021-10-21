@@ -221,6 +221,8 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean tokenRotationEnabledApp; // app_scopes_expanded
         private MessageRetentionPolicy oldRetentionPolicy; // channel_retention_changed
         private MessageRetentionPolicy newRetentionPolicy; // channel_retention_changed
+        private ConversationPref whoCanPost; // channel_posting_permissions_updated
+        private ConversationPref canThread; // channel_posting_permissions_updated
     }
 
     @Data
@@ -275,6 +277,12 @@ public class LogsResponse implements AuditApiResponse {
     public static class MessageRetentionPolicy {
         private String type;
         private Integer durationDays;
+    }
+
+    @Data
+    public static class ConversationPref {
+        private List<String> type;
+        private List<String> user;
     }
 
 }

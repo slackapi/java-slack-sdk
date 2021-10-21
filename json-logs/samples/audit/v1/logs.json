@@ -211,7 +211,9 @@
         "new_retention_policy": {
           "type": "",
           "duration_days": 123
-        }
+        },
+        "who_can_post": {},
+        "can_thread": {}
       }
     }
   ]
