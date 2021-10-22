@@ -105,6 +105,7 @@ public class MatchedItem {
     private Integer size;
     private String mode;
     private String comment;
+    private Integer commentsCount;
 
     @SerializedName("previous_2")
     private OtherItem previous2;

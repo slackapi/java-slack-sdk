@@ -139,7 +139,8 @@
         "non_owner_editable": false,
         "updated": 12345,
         "thumb_video": "https://www.example.com/",
-        "media_display_type": ""
+        "media_display_type": "",
+        "comments_count": 12345
       }
     ]
   },
