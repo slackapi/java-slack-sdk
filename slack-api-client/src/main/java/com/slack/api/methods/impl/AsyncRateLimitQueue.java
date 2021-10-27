@@ -21,12 +21,7 @@ public class AsyncRateLimitQueue extends RateLimitQueue<
     private static final ConcurrentMap<String, ConcurrentMap<String, AsyncRateLimitQueue>> ALL_QUEUES = new ConcurrentHashMap<>();
 
     private static ConcurrentMap<String, AsyncRateLimitQueue> getInstance(String executorName) {
-        ConcurrentMap<String, AsyncRateLimitQueue> teamIdToQueue = ALL_QUEUES.get(executorName);
-        if (teamIdToQueue == null) {
-            teamIdToQueue = new ConcurrentHashMap<>();
-            ALL_QUEUES.put(executorName, teamIdToQueue);
-        }
-        return teamIdToQueue;
+        return ALL_QUEUES.computeIfAbsent(executorName, key -> new ConcurrentHashMap<>());
     }
 
     private AsyncMethodsRateLimiter rateLimiter; // intentionally mutable
@@ -51,17 +46,18 @@ public class AsyncRateLimitQueue extends RateLimitQueue<
         if (teamId == null) {
             throw new IllegalArgumentException("`teamId` is required");
         }
+
         ConcurrentMap<String, AsyncRateLimitQueue> teamIdToQueue = getInstance(config.getExecutorName());
-        AsyncRateLimitQueue queue = teamIdToQueue.get(teamId);
-        if (queue != null && queue.getRateLimiter().getMetricsDatastore() != config.getMetricsDatastore()) {
-            // As the metrics datastore has been changed, we should replace the executor
-            queue.setRateLimiter(new AsyncMethodsRateLimiter(config));
-        }
-        if (queue == null) {
-            queue = new AsyncRateLimitQueue(config);
-            teamIdToQueue.put(teamId, queue);
-        }
-        return queue;
+
+        teamIdToQueue.computeIfPresent(teamId, (key, value) -> {
+            if (value.getRateLimiter().getMetricsDatastore() != config.getMetricsDatastore()) {
+                value.setRateLimiter(new AsyncMethodsRateLimiter(config));
+            }
+
+            return value;
+        });
+
+        return teamIdToQueue.computeIfAbsent(teamId, key -> new AsyncRateLimitQueue(config));
     }
 
     @Data

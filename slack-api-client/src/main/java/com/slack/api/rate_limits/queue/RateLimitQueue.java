@@ -18,14 +18,7 @@ public abstract class RateLimitQueue<SUPPLIER, MSG extends QueueMessage> {
     protected final ConcurrentMap<String, LinkedBlockingQueue<MSG>> methodNameToActiveQueue = new ConcurrentHashMap<>();
 
     protected LinkedBlockingQueue<MSG> getOrCreateActiveQueue(String methodName) {
-        LinkedBlockingQueue<MSG> queue = methodNameToActiveQueue.get(methodName);
-        if (queue != null) {
-            return queue;
-        } else {
-            LinkedBlockingQueue<MSG> newQueue = new LinkedBlockingQueue<>();
-            methodNameToActiveQueue.putIfAbsent(methodName, newQueue);
-            return newQueue;
-        }
+        return methodNameToActiveQueue.computeIfAbsent(methodName, key -> new LinkedBlockingQueue<>());
     }
 
     public synchronized SUPPLIER dequeueIfReady(
