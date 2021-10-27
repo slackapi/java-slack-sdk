@@ -36,6 +36,7 @@ public class WorkspaceAppApiTest {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
+    @Ignore
     @Test
     public void appsPermissionsRequest() throws IOException, SlackApiException {
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
@@ -46,6 +47,7 @@ public class WorkspaceAppApiTest {
         assertThat(response.isOk(), is(false));
     }
 
+    @Ignore
     @Test
     public void appsPermissionsInfo() throws IOException, SlackApiException {
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
@@ -55,6 +57,7 @@ public class WorkspaceAppApiTest {
         assertThat(response.isOk(), is(false));
     }
 
+    @Ignore
     @Test
     public void appsPermissionsResourcesList() throws IOException, SlackApiException {
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
@@ -66,6 +69,7 @@ public class WorkspaceAppApiTest {
         assertThat(response.isOk(), is(false));
     }
 
+    @Ignore
     @Test
     public void appsPermissionsScopesList() throws IOException, SlackApiException {
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);

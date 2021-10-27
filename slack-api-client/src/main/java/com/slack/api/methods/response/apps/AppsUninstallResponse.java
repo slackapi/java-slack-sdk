@@ -1,6 +1,7 @@
 package com.slack.api.methods.response.apps;
 
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public class AppsUninstallResponse implements SlackApiTextResponse {
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
 
+    private ResponseMetadata responseMetadata;
 }
