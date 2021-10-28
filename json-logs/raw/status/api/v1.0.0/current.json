@@ -498,6 +498,18 @@
     {
       "date_created": "2021-09-30T09:30:07-07:00",
       "body": "We’re currently investigating this connection issue and we’ll keep you posted as soon as we have more information. Thanks for your patience and we apologize for the disruption."
+    },
+    {
+      "date_created": "2021-10-27T16:06:44-07:00",
+      "body": "Issue summary:\r\nOn October 27, 2021 from around 5:47 a.m. to 2:24 p.m. PDT, some users may have experienced difficulties receiving two-factor authentication (2FA) codes from our SMS service provider, preventing them from signing into Slack.\r\n\r\nWe monitored the situation until the problem was resolved and the affected users were able to receive the codes again."
+    },
+    {
+      "date_created": "2021-10-27T15:26:49-07:00",
+      "body": "The issue is now be resolved and customers should receive 2FA codes normally."
+    },
+    {
+      "date_created": "2021-10-27T10:31:44-07:00",
+      "body": "Our SMS service provider is currently experiencing high filtering on SMS towards the AT\u0026T network in the United States. We recommend using your backup codes, switching to an Authentication app, or reaching out to your Admins to temporarily disable 2FA for you."
     }
   ]
 }
