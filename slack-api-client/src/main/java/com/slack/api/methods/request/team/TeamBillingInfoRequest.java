@@ -9,7 +9,7 @@ import lombok.Data;
 public class TeamBillingInfoRequest implements SlackApiRequest {
 
     /**
-     * Authentication token. Requires scope: `admin`
+     * Authentication token. Requires scope: `team.billing:read`
      */
     private String token;
 

@@ -9,7 +9,7 @@ import lombok.Data;
 public class TeamPreferencesListRequest implements SlackApiRequest {
 
     /**
-     * Authentication token. Requires scope: `admin`
+     * Authentication token. Requires scope: `team.preferences:read`
      */
     private String token;
 
