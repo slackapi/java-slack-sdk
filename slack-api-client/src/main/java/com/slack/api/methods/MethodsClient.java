@@ -88,10 +88,7 @@ import com.slack.api.methods.request.search.SearchMessagesRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
-import com.slack.api.methods.request.team.TeamAccessLogsRequest;
-import com.slack.api.methods.request.team.TeamBillableInfoRequest;
-import com.slack.api.methods.request.team.TeamInfoRequest;
-import com.slack.api.methods.request.team.TeamIntegrationLogsRequest;
+import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
@@ -193,10 +190,7 @@ import com.slack.api.methods.response.search.SearchMessagesResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
-import com.slack.api.methods.response.team.TeamAccessLogsResponse;
-import com.slack.api.methods.response.team.TeamBillableInfoResponse;
-import com.slack.api.methods.response.team.TeamInfoResponse;
-import com.slack.api.methods.response.team.TeamIntegrationLogsResponse;
+import com.slack.api.methods.response.team.*;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
@@ -1634,6 +1628,14 @@ public interface MethodsClient {
     TeamProfileGetResponse teamProfileGet(TeamProfileGetRequest req) throws IOException, SlackApiException;
 
     TeamProfileGetResponse teamProfileGet(RequestConfigurator<TeamProfileGetRequest.TeamProfileGetRequestBuilder> req) throws IOException, SlackApiException;
+
+    TeamBillingInfoResponse teamBillingInfo(TeamBillingInfoRequest req) throws IOException, SlackApiException;
+
+    TeamBillingInfoResponse teamBillingInfo(RequestConfigurator<TeamBillingInfoRequest.TeamBillingInfoRequestBuilder> req) throws IOException, SlackApiException;
+
+    TeamPreferencesListResponse teamPreferencesList(TeamPreferencesListRequest req) throws IOException, SlackApiException;
+
+    TeamPreferencesListResponse teamPreferencesList(RequestConfigurator<TeamPreferencesListRequest.TeamPreferencesListRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // usergroups

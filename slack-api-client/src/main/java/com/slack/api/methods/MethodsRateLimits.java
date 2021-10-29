@@ -359,6 +359,8 @@ public class MethodsRateLimits {
         setRateLimitTier(TEAM_INFO, Tier3);
         setRateLimitTier(TEAM_INTEGRATION_LOGS, Tier2);
         setRateLimitTier(TEAM_PROFILE_GET, Tier3);
+        setRateLimitTier(TEAM_BILLING_INFO, Tier3);
+        setRateLimitTier(TEAM_PREFERENCES_LIST, Tier3);
 
         setRateLimitTier(USERGROUPS_CREATE, Tier2);
         setRateLimitTier(USERGROUPS_DISABLE, Tier2);

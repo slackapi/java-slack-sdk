@@ -1,0 +1,11 @@
+{
+  "ok": false,
+  "msg_edit_window_mins": 12345,
+  "allow_message_deletion": false,
+  "display_real_names": false,
+  "disable_file_uploads": "",
+  "who_can_post_general": "",
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

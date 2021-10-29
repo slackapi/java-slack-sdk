@@ -42,10 +42,7 @@ public class MethodsTest {
                 "apps.manifest.export",
                 "apps.manifest.update",
                 "apps.manifest.validate",
-                "tooling.tokens.rotate",
-                // TODO: Add new endpoints for rtm.start users
-                "team.billing.info",
-                "team.preferences.list"
+                "tooling.tokens.rotate"
         );
         List<String> methodNames = new ArrayList<>();
         for (String methodName : allMethodNames) {

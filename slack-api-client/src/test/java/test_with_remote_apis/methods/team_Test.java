@@ -1,10 +1,8 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
-import com.slack.api.methods.response.team.TeamAccessLogsResponse;
-import com.slack.api.methods.response.team.TeamBillableInfoResponse;
-import com.slack.api.methods.response.team.TeamInfoResponse;
-import com.slack.api.methods.response.team.TeamIntegrationLogsResponse;
+import com.slack.api.methods.request.team.TeamBillingInfoRequest;
+import com.slack.api.methods.response.team.*;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.User;
 import config.Constants;
@@ -142,6 +140,35 @@ public class team_Test {
     @Test
     public void teamProfileGet_async() throws Exception {
         TeamProfileGetResponse response = slack.methodsAsync().teamProfileGet(r -> r.token(botToken)).get();
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void teamBilling() throws Exception {
+        TeamBillingInfoResponse response = slack.methods().teamBillingInfo(r -> r.token(botToken));
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void teamBilling_async() throws Exception {
+        TeamBillingInfoResponse response = slack.methodsAsync().teamBillingInfo(r -> r.token(botToken)).get();
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void teamPreferencesList() throws Exception {
+        TeamPreferencesListResponse response = slack.methods().teamPreferencesList(r -> r.token(botToken));
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void teamPreferencesList_async() throws Exception {
+        TeamPreferencesListResponse response = slack.methodsAsync()
+                .teamPreferencesList(r -> r.token(botToken)).get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
