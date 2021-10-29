@@ -86,10 +86,7 @@ import com.slack.api.methods.request.search.SearchMessagesRequest;
 import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
-import com.slack.api.methods.request.team.TeamAccessLogsRequest;
-import com.slack.api.methods.request.team.TeamBillableInfoRequest;
-import com.slack.api.methods.request.team.TeamInfoRequest;
-import com.slack.api.methods.request.team.TeamIntegrationLogsRequest;
+import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
@@ -2120,6 +2117,16 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("visibility", req.getVisibility(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(TeamBillingInfoRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        return form;
+    }
+
+    public static FormBody.Builder toForm(TeamPreferencesListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
         return form;
     }
 

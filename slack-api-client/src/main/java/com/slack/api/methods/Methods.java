@@ -546,6 +546,8 @@ public class Methods {
     public static final String TEAM_BILLABLE_INFO = "team.billableInfo";
     public static final String TEAM_INFO = "team.info";
     public static final String TEAM_INTEGRATION_LOGS = "team.integrationLogs";
+    public static final String TEAM_BILLING_INFO = "team.billing.info";
+    public static final String TEAM_PREFERENCES_LIST = "team.preferences.list";
 
     // ------------------------------
     // team.profile
