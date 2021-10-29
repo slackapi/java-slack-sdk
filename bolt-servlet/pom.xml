@@ -6,17 +6,17 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.12.2-SNAPSHOT</version>
+        <version>1.13.0-SNAPSHOT</version>
     </parent>
 
     <properties>
         <!-- TODO: Upgrade to 11.x in the next major version - v2 -->
         <jetty.version>9.4.24.v20191120</jetty.version>
-        <java-jwt.version>3.18.1</java-jwt.version>
+        <java-jwt.version>3.18.2</java-jwt.version>
     </properties>
 
     <artifactId>bolt-servlet</artifactId>
-    <version>1.12.2-SNAPSHOT</version>
+    <version>1.13.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>
