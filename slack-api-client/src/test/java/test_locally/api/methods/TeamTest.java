@@ -40,6 +40,8 @@ public class TeamTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).teamProfileGet(r -> r.visibility("v"))
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).teamBillingInfo(r -> r).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).teamPreferencesList(r -> r).isOk(), is(true));
     }
 
     @Test
@@ -54,6 +56,8 @@ public class TeamTest {
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).teamProfileGet(r -> r.visibility("v"))
                 .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).teamBillingInfo(r -> r).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).teamPreferencesList(r -> r).get().isOk(), is(true));
     }
 
 }

@@ -22,10 +22,7 @@ import com.slack.api.methods.response.search.SearchMessagesResponse;
 import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
-import com.slack.api.methods.response.team.TeamAccessLogsResponse;
-import com.slack.api.methods.response.team.TeamBillableInfoResponse;
-import com.slack.api.methods.response.team.TeamInfoResponse;
-import com.slack.api.methods.response.team.TeamIntegrationLogsResponse;
+import com.slack.api.methods.response.team.*;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
@@ -339,6 +336,18 @@ public class FieldValidation_o_to_z_Test {
                 "getOptions",
                 "getPossibleValues"
         );
+    }
+
+    @Test
+    public void team_billing_info() throws Exception {
+        TeamBillingInfoResponse obj = parse("team.billing.info", TeamBillingInfoResponse.class);
+        verifyIfAllGettersReturnNonNull(obj);
+    }
+
+    @Test
+    public void team_preferences_list() throws Exception {
+        TeamPreferencesListResponse obj = parse("team.preferences.list", TeamPreferencesListResponse.class);
+        verifyIfAllGettersReturnNonNull(obj);
     }
 
     @Test
