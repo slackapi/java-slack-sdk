@@ -109,6 +109,7 @@ public class Actions {
         public static final String pref_flagged_content_review_channel = "pref.flagged_content_review_channel";
         public static final String pref_slack_connect_approval_type = "pref.slack_connect_approval_type";
         public static final String pref_hermes_has_accepted_tos = "pref.hermes_has_accepted_tos";
+        public static final String pref_allow_sponsored_slack_connections = "pref.allow_sponsored_slack_connections";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
