@@ -139,8 +139,8 @@ oauthApp.service(stateService);
 
 // ルーとパスとともに二つの App をマウント
 SlackAppServer server = new SlackAppServer(Map.of(
-  entry("/slack/events", apiApp), // POST /slack/events (Slack API からのリクエストのみ)
-  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (ユーザーがブラウザーでアクセス)
+  "/slack/events", apiApp, // POST /slack/events (Slack API からのリクエストのみ)
+  "/slack/oauth", oauthApp // GET  /slack/oauth/start, /slack/oauth/callback (ユーザーがブラウザーでアクセス)
 ));
 
 server.start(); // http://localhost:3000
