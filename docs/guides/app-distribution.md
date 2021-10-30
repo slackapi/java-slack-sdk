@@ -140,8 +140,8 @@ oauthApp.service(stateService);
 
 // Mount the two apps with their root path
 SlackAppServer server = new SlackAppServer(Map.of(
-  entry("/slack/events", apiApp), // POST /slack/events (incomng API requests from the Slack Platform)
-  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
+  "/slack/events", apiApp, // POST /slack/events (incomng API requests from the Slack Platform)
+  "/slack/oauth", oauthApp // GET  /slack/oauth/start, /slack/oauth/callback (user access)
 ));
 
 server.start(); // http://localhost:3000
