@@ -510,6 +510,14 @@
     {
       "date_created": "2021-10-27T10:31:44-07:00",
       "body": "Our SMS service provider is currently experiencing high filtering on SMS towards the AT\u0026T network in the United States. We recommend using your backup codes, switching to an Authentication app, or reaching out to your Admins to temporarily disable 2FA for you."
+    },
+    {
+      "date_created": "2021-11-01T17:02:51-07:00",
+      "body": "We\u0027re still investigating, but don\u0027t have any new information yet. We\u0027ll provide another update once we have more to share."
+    },
+    {
+      "date_created": "2021-11-01T12:51:01-07:00",
+      "body": "Some Enterprise Grid customers are seeing messages temporarily disappear. Refreshing (Ctrl / Command + Shift + R) may resurface the messages, but affected users may need to refresh more than once during the day. \r\n\r\nWe\u0027re sorry for the trouble. We\u0027re investigating, and we\u0027ll report back once we have next steps."
     }
   ]
 }
