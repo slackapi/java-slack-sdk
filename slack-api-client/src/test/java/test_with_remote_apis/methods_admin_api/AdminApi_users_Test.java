@@ -2,6 +2,7 @@ package test_with_remote_apis.methods_admin_api;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
+import com.slack.api.methods.request.admin.users.AdminUsersSessionResetBulkRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.users.UsersListResponse;
@@ -13,10 +14,7 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -57,6 +55,20 @@ public class AdminApi_users_Test {
             assertThat(userId, is(notNullValue()));
             AdminUsersSessionResetResponse response = methodsAsync
                     .adminUsersSessionReset(AdminUsersSessionResetRequest.builder().userId(userId).build())
+                    .get();
+            assertThat(response.getError(), is(nullValue()));
+        }
+    }
+
+    @Test
+    public void usersSessionResetBulk() throws Exception {
+        if (teamAdminUserToken != null && orgAdminUserToken != null) {
+            String userId = findUserId(Collections.emptyList());
+            assertThat(userId, is(notNullValue()));
+            AdminUsersSessionResetBulkResponse response = methodsAsync
+                    .adminUsersSessionResetBulk(AdminUsersSessionResetBulkRequest.builder()
+                            .userIds(Arrays.asList(userId))
+                            .build())
                     .get();
             assertThat(response.getError(), is(nullValue()));
         }

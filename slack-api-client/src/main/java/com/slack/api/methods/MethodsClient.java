@@ -660,6 +660,10 @@ public interface MethodsClient {
 
     AdminUsersSessionResetResponse adminUsersSessionReset(RequestConfigurator<AdminUsersSessionResetRequest.AdminUsersSessionResetRequestBuilder> req) throws IOException, SlackApiException;
 
+    AdminUsersSessionResetBulkResponse adminUsersSessionResetBulk(AdminUsersSessionResetBulkRequest req) throws IOException, SlackApiException;
+
+    AdminUsersSessionResetBulkResponse adminUsersSessionResetBulk(RequestConfigurator<AdminUsersSessionResetBulkRequest.AdminUsersSessionResetBulkRequestBuilder> req) throws IOException, SlackApiException;
+
     AdminUsersSessionGetSettingsResponse adminUsersSessionGetSettings(AdminUsersSessionGetSettingsRequest req) throws IOException, SlackApiException;
 
     AdminUsersSessionGetSettingsResponse adminUsersSessionGetSettings(RequestConfigurator<AdminUsersSessionGetSettingsRequest.AdminUsersSessionGetSettingsRequestBuilder> req) throws IOException, SlackApiException;

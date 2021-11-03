@@ -123,6 +123,7 @@ public class MethodsRateLimits {
                 ADMIN_USERS_SESSION_INVALIDATE,
                 ADMIN_USERS_SESSION_LIST,
                 ADMIN_USERS_SESSION_RESET,
+                ADMIN_USERS_SESSION_RESET_BULK,
 
                 ADMIN_USERGROUPS_ADD_TEAMS,
                 ADMIN_USERGROUPS_LIST_CHANNELS,

@@ -141,6 +141,16 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminUsersSessionResetBulkRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("mobile_only", req.isMobileOnly(), form);
+        setIfNotNull("web_only", req.isWebOnly(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminUsersSessionInvalidateRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("session_id", req.getSessionId(), form);
