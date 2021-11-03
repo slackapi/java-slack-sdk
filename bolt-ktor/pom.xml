@@ -15,7 +15,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <ktor.version>[1.6.3,1.7.0)</ktor.version>
+        <!-- TODO: Upgrade to a newer version
+        once a binary compatibility issue on the ktor side has been resolved
+        java.lang.NoSuchMethodError: java.nio.ByteBuffer.limit(I)Ljava/nio/ByteBuffer;
+        -->
+        <ktor.version>1.6.4</ktor.version>
     </properties>
 
     <pluginRepositories>
