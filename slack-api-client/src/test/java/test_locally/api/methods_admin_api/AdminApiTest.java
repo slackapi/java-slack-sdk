@@ -229,6 +229,8 @@ public class AdminApiTest {
 
         assertThat(methods.adminUsersSessionReset(r -> r.userId("U123").mobileOnly(false))
                 .isOk(), is(true));
+        assertThat(methods.adminUsersSessionResetBulk(r -> r.userIds(Arrays.asList("U123")).mobileOnly(false))
+                .isOk(), is(true));
         assertThat(methods.adminUsersSessionList(r -> r.cursor("XXXX").limit(10).teamId("T123").userId("U123"))
                 .isOk(), is(true));
         assertThat(methods.adminUsersSessionGetSettings(r -> r.userIds(Arrays.asList("U123")))

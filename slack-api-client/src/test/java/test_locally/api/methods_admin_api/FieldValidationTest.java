@@ -357,6 +357,10 @@ public class FieldValidationTest {
             verifyIfAllGettersReturnNonNull(obj);
         }
         {
+            AdminUsersSessionResetBulkResponse obj = parse(prefix + "session.resetBulk", AdminUsersSessionResetBulkResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
             AdminUsersSetAdminResponse obj = parse(prefix + "setAdmin", AdminUsersSetAdminResponse.class);
             verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
         }

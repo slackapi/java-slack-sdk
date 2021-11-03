@@ -70,6 +70,7 @@
   "admin.users.session.invalidate": "Tier2",
   "admin.users.session.list": "Tier2",
   "admin.users.session.reset": "Tier2",
+  "admin.users.session.resetBulk": "Tier2",
   "admin.users.session.setSettings": "Tier4",
   "admin.users.setAdmin": "Tier2",
   "admin.users.setExpiration": "Tier2",

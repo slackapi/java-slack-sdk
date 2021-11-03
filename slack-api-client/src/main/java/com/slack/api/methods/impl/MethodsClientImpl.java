@@ -973,6 +973,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminUsersSessionResetBulkResponse adminUsersSessionResetBulk(AdminUsersSessionResetBulkRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_SESSION_RESET_BULK, getToken(req), AdminUsersSessionResetBulkResponse.class);
+    }
+
+    @Override
+    public AdminUsersSessionResetBulkResponse adminUsersSessionResetBulk(RequestConfigurator<AdminUsersSessionResetBulkRequest.AdminUsersSessionResetBulkRequestBuilder> req) throws IOException, SlackApiException {
+        return adminUsersSessionResetBulk(req.configure(AdminUsersSessionResetBulkRequest.builder()).build());
+    }
+
+    @Override
     public AdminUsersSessionGetSettingsResponse adminUsersSessionGetSettings(AdminUsersSessionGetSettingsRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_USERS_SESSION_GET_SETTINGS, getToken(req), AdminUsersSessionGetSettingsResponse.class);
     }

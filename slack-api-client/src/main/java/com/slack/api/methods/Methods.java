@@ -166,6 +166,7 @@ public class Methods {
     public static final String ADMIN_USERS_SESSION_INVALIDATE = "admin.users.session.invalidate";
     public static final String ADMIN_USERS_SESSION_LIST = "admin.users.session.list";
     public static final String ADMIN_USERS_SESSION_RESET = "admin.users.session.reset";
+    public static final String ADMIN_USERS_SESSION_RESET_BULK = "admin.users.session.resetBulk";
     public static final String ADMIN_USERS_SESSION_SET_SETTINGS = "admin.users.session.setSettings";
     public static final String ADMIN_USERS_SESSION_GET_SETTINGS = "admin.users.session.getSettings";
     public static final String ADMIN_USERS_SESSION_CLEAR_SETTINGS = "admin.users.session.clearSettings";

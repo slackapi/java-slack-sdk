@@ -573,6 +573,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminUsersSessionResetResponse> adminUsersSessionReset(RequestConfigurator<AdminUsersSessionResetRequest.AdminUsersSessionResetRequestBuilder> req);
 
+    CompletableFuture<AdminUsersSessionResetBulkResponse> adminUsersSessionResetBulk(AdminUsersSessionResetBulkRequest req);
+
+    CompletableFuture<AdminUsersSessionResetBulkResponse> adminUsersSessionResetBulk(RequestConfigurator<AdminUsersSessionResetBulkRequest.AdminUsersSessionResetBulkRequestBuilder> req);
+
     CompletableFuture<AdminUsersSessionGetSettingsResponse> adminUsersSessionGetSettings(AdminUsersSessionGetSettingsRequest req);
 
     CompletableFuture<AdminUsersSessionGetSettingsResponse> adminUsersSessionGetSettings(RequestConfigurator<AdminUsersSessionGetSettingsRequest.AdminUsersSessionGetSettingsRequestBuilder> req);
