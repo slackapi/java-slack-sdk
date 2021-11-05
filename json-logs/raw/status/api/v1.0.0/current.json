@@ -518,6 +518,14 @@
     {
       "date_created": "2021-11-01T12:51:01-07:00",
       "body": "Some Enterprise Grid customers are seeing messages temporarily disappear. Refreshing (Ctrl / Command + Shift + R) may resurface the messages, but affected users may need to refresh more than once during the day. \r\n\r\nWe\u0027re sorry for the trouble. We\u0027re investigating, and we\u0027ll report back once we have next steps."
+    },
+    {
+      "date_created": "2021-11-04T17:45:29-07:00",
+      "body": "Thank you for your patience. The issue has been resolved. Customers should no longer have any trouble signing in on the desktop app. We’re sorry for any inconvenience this may have caused."
+    },
+    {
+      "date_created": "2021-11-04T16:37:38-07:00",
+      "body": "Some users are unable to sign in on the desktop app. We\u0027re investigating and will have more information to share in 30 minutes. Our apologies for the disruption."
     }
   ]
 }
