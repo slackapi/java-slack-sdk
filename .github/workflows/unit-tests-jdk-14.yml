@@ -1,0 +1,25 @@
+name: JDK 14 Build & Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        java-version: ['14']
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: ${{ matrix.java-version }}
+    - name: Run all tests
+      run: |
+        ./scripts/run_no_prep_tests.sh
+        bash <(curl -s https://codecov.io/bash)

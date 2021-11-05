@@ -1,12 +1,9 @@
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: CI Build
+name: JDK 1.8 Build & Tests
 
 on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -14,7 +11,7 @@ jobs:
     timeout-minutes: 15
     strategy:
       matrix:
-        java-version: ['8', '14']
+        java-version: ['8']
 
     steps:
     - uses: actions/checkout@v2
@@ -28,7 +25,3 @@ jobs:
           export TRAVIS_JDK=openjdk8
         fi
         ./scripts/run_no_prep_tests.sh
-        if [ ${{ matrix.java-version }} == "14" ]; then
-          bash <(curl -s https://codecov.io/bash)
-        fi
-
