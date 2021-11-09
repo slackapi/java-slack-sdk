@@ -886,6 +886,26 @@ public class App {
         return this;
     }
 
+    public App oauthPersistenceCallback(OAuthV2SuccessPersistenceCallback persistenceCallback) {
+        if (this.oAuthV2SuccessHandler instanceof OAuthV2DefaultSuccessHandler) {
+            ((OAuthV2DefaultSuccessHandler) this.oAuthV2SuccessHandler).setPersistenceCallback(persistenceCallback);
+        } else {
+            throw new IllegalStateException("As you've set your own OAuthV2SuccessHandler, " +
+                    "you cannot set persistenceCallback for this App instance.");
+        }
+        return this;
+    }
+
+    public App oauthPersistenceErrorCallback(OAuthV2SuccessPersistenceErrorCallback persistenceErrorCallback) {
+        if (this.oAuthV2SuccessHandler instanceof OAuthV2DefaultSuccessHandler) {
+            ((OAuthV2DefaultSuccessHandler) this.oAuthV2SuccessHandler).setPersistenceErrorCallback(persistenceErrorCallback);
+        } else {
+            throw new IllegalStateException("As you've set your own OAuthV2SuccessHandler, " +
+                    "you cannot set persistenceErrorCallback for this App instance.");
+        }
+        return this;
+    }
+
     public App oauthCallbackError(OAuthErrorHandler handler) {
         oAuthErrorHandler = handler;
         return this;
