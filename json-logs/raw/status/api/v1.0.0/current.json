@@ -526,6 +526,34 @@
     {
       "date_created": "2021-11-04T16:37:38-07:00",
       "body": "Some users are unable to sign in on the desktop app. We\u0027re investigating and will have more information to share in 30 minutes. Our apologies for the disruption."
+    },
+    {
+      "date_created": "2021-11-09T18:00:04-08:00",
+      "body": "We\u0027re still monitoring the situation and will post updates as they become available."
+    },
+    {
+      "date_created": "2021-11-09T17:29:26-08:00",
+      "body": "Thanks again for your patience as we continue to investigate outbound email and file download failures."
+    },
+    {
+      "date_created": "2021-11-09T16:52:29-08:00",
+      "body": "Our investigation is ongoing. We\u0027ll be back with another update in 30 minutes."
+    },
+    {
+      "date_created": "2021-11-09T16:22:58-08:00",
+      "body": "We appreciate your patience while we continue to address these issues.\r\n\r\nWe\u0027re also continuing to investigate file download failures, although this is only expected to impact a small number of users."
+    },
+    {
+      "date_created": "2021-11-09T15:50:36-08:00",
+      "body": "We are still working to address the issues with outbound email failures.\r\nA small number of file downloads may be failing, this remains part of our investigation."
+    },
+    {
+      "date_created": "2021-11-09T15:21:14-08:00",
+      "body": "We are continuing to look into reports of outbound email failures. If you\u0027re awaiting a confirmation code for login, manually signing in with email address and password will work in the interim. \r\n\r\nWe\u0027re also monitoring issues with downloading files."
+    },
+    {
+      "date_created": "2021-11-09T14:51:32-08:00",
+      "body": "We\u0027re investigating failures in sending outbound emails including invitations, confirmation codes for workspace creation, email notifications."
     }
   ]
 }

@@ -197,7 +197,8 @@
       "channel_can_huddle_pref_changed_from_org_level",
       "channel_enable_at_channel_pref_changed_from_org_level",
       "channel_enable_at_here_pref_changed_from_org_level",
-      "channel_posting_permissions_updated"
+      "channel_posting_permissions_updated",
+      "external_shared_channel_access_upgraded"
     ],
     "app": [
       "app_installed",
