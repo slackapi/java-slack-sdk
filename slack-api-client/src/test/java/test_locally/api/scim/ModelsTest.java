@@ -12,6 +12,8 @@ public class ModelsTest {
 
     @Test
     public void extensions() {
+        assertEquals(User.SlackGuest.Types.MULTI, "multi");
+
         User user = new User();
         user.setId("W1234567890");
         User.Extension enterprise = new User.Extension();

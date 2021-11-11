@@ -153,6 +153,9 @@ public class User {
     @AllArgsConstructor
     public static class SlackGuest {
         public static class Types {
+            private Types() {
+            }
+
             public static final String MULTI = "multi";
         }
 
