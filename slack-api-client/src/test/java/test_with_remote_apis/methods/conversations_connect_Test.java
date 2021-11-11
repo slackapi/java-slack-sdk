@@ -95,6 +95,7 @@ public class conversations_connect_Test {
             ConversationsDeclineSharedInviteResponse decline = receiver.conversationsDeclineSharedInvite(r -> r
                     .inviteId(invitation.getInviteId())
             );
+            // TODO: Getting "internal_error" (2021-11-10)
             assertThat(decline.getError(), is(nullValue()));
 
         } finally {
