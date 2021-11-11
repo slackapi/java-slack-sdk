@@ -1,7 +1,10 @@
 package com.slack.api.scim.model;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +12,11 @@ import java.util.List;
 @Data
 public class User {
 
-    private List<String> schemas = Arrays.asList(Schemas.SCHEMA_CORE, Schemas.SCHEMA_EXTENSION_ENTERPRISE);
+    private List<String> schemas = Arrays.asList(
+            Schemas.SCHEMA_CORE,
+            Schemas.SCHEMA_EXTENSION_ENTERPRISE,
+            Schemas.SCHEMA_EXTENSION_SLACK_GUEST
+    );
 
     private String id;
     private String externalId;
@@ -37,16 +44,24 @@ public class User {
 
     @SerializedName(Schemas.SCHEMA_EXTENSION_ENTERPRISE)
     private Extension extension;
+    @SerializedName(Schemas.SCHEMA_EXTENSION_SLACK_GUEST)
+    private SlackGuest slackGuest;
 
     private List<Group> groups;
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Meta {
         private String created;
         private String location;
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Name {
         private String givenName;
         private String familyName;
@@ -54,6 +69,9 @@ public class User {
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Email {
         private String value;
         private String type;
@@ -61,6 +79,9 @@ public class User {
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Address {
         private String streetAddress;
         private String locality;
@@ -71,6 +92,9 @@ public class User {
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class PhoneNumber {
         private String value;
         private String type;
@@ -78,12 +102,18 @@ public class User {
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Photo {
         private String value;
         private String type;
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Role {
         private String value;
         private String type;
@@ -91,6 +121,9 @@ public class User {
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Extension {
         private String employeeNumber;
         private String costCenter;
@@ -106,9 +139,33 @@ public class User {
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Group {
         private String value;
         private String display;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class SlackGuest {
+        public static class Types {
+            public static final String MULTI = "multi";
+        }
+
+        /**
+         * This value is mandatory.
+         * possible values: "multi"
+         */
+        private String type;
+        /**
+         * This value is optional.
+         * possible values: ISO 8601 date time string (e.g., "2020-11-30T23:59:59Z")
+         */
+        private String expiration;
     }
 
 }

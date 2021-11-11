@@ -68,5 +68,9 @@
   ],
   "urn:scim:schemas:extension:enterprise:1.0": {
     "manager": {}
+  },
+  "urn:scim:schemas:extension:slack:guest:1.0": {
+    "type": "",
+    "expiration": ""
   }
 }
