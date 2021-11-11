@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 
+import static com.slack.api.methods.impl.TeamIdCache.METHOD_NAMES_TO_SKIP_TEAM_ID_CACHE_RESOLUTION;
+
 @Slf4j
 public class AsyncRateLimitExecutor {
 
@@ -60,7 +62,9 @@ public class AsyncRateLimitExecutor {
             Map<String, String> params,
             AsyncExecutionSupplier<T> methodsSupplier) {
         String token = params.get("token");
-        final String teamId = token != null ? teamIdCache.lookupOrResolve(token) : null;
+        final String teamId = (token != null
+                && METHOD_NAMES_TO_SKIP_TEAM_ID_CACHE_RESOLUTION.contains(methodName)) ?
+                teamIdCache.lookupOrResolve(token) : null;
         final ExecutorService executorService = teamId != null ? ThreadPools.getOrCreate(config, teamId) : ThreadPools.getDefault(config);
         return CompletableFuture.supplyAsync(() -> {
             if (NO_TOKEN_METHOD_NAMES.contains(methodName) || teamId == null) {
