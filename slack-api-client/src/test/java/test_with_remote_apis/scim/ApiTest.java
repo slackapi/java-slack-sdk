@@ -12,7 +12,11 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
+import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,7 +34,15 @@ public class ApiTest {
 
     String orgAdminToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
 
-    private UsersCreateResponse createNewUser() throws IOException, SCIMApiException {
+    private UsersCreateResponse createNewFullUser() throws IOException, SCIMApiException {
+        return createNewUser(true);
+    }
+
+    private UsersCreateResponse createNewGuestUser() throws IOException, SCIMApiException {
+        return createNewUser(false);
+    }
+
+    private UsersCreateResponse createNewUser(boolean isFullMember) throws IOException, SCIMApiException {
         String userName = "user" + System.currentTimeMillis();
         User newUser = new User();
         newUser.setName(new User.Name());
@@ -40,6 +52,15 @@ public class ApiTest {
         User.Email email = new User.Email();
         email.setValue("seratch+" + System.currentTimeMillis() + "@gmail.com");
         newUser.setEmails(Arrays.asList(email));
+        if (!isFullMember) {
+            // guest
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+            String expiration = df.format(Date.from(ZonedDateTime.now().plusDays(14).toInstant()));
+            newUser.setSlackGuest(User.SlackGuest.builder()
+                    .type(User.SlackGuest.Types.MULTI)
+                    .expiration(expiration)
+                    .build());
+        }
         return slack.scim(orgAdminToken).createUser(req -> req.user(newUser));
     }
 
@@ -101,9 +122,9 @@ public class ApiTest {
     }
 
     @Test
-    public void createAndDeleteUser() throws Exception {
+    public void createAndDeleteFullUser() throws Exception {
         if (orgAdminToken != null) {
-            UsersCreateResponse creation = createNewUser();
+            UsersCreateResponse creation = createNewFullUser();
             assertThat(creation.getId(), is(notNullValue()));
 
             UsersReadResponse readResp = slack.scim(orgAdminToken).readUser(req -> req.id(creation.getId()));
@@ -166,6 +187,78 @@ public class ApiTest {
     }
 
     @Test
+    public void createAndDeleteGuestUser() throws Exception {
+        if (orgAdminToken != null) {
+            UsersCreateResponse creation = createNewGuestUser();
+            assertThat(creation.getId(), is(notNullValue()));
+
+            UsersReadResponse readResp = slack.scim(orgAdminToken).readUser(req -> req.id(creation.getId()));
+            assertThat(readResp.getId(), is(creation.getId()));
+            assertThat(readResp.getUserName(), is(creation.getUserName()));
+            assertThat(readResp.getSlackGuest().getType(), is(User.SlackGuest.Types.MULTI));
+            assertThat(readResp.getSlackGuest().getExpiration(), is(notNullValue()));
+
+            try {
+                // https://api.slack.com/scim#filter
+                // filter query matching the created data
+                String userName = creation.getUserName();
+                UsersSearchResponse searchResp = slack.scim(orgAdminToken).searchUsers(req -> req.count(1).filter("userName eq \"" + userName + "\""));
+                assertThat(searchResp.getItemsPerPage(), is(1));
+                assertThat(searchResp.getResources().size(), is(1));
+                assertThat(searchResp.getResources().get(0).getId(), is(creation.getId()));
+                assertThat(searchResp.getResources().get(0).getUserName(), is(creation.getUserName()));
+                assertThat(searchResp.getResources().get(0).getSlackGuest(), is(notNullValue()));
+
+                String originalUserName = creation.getUserName();
+
+                User user = new User();
+                user.setUserName(originalUserName + "_ed");
+                slack.scim(orgAdminToken).patchUser(req -> req.id(creation.getId()).user(user));
+
+                readResp = slack.scim(orgAdminToken).readUser(req -> req.id(creation.getId()));
+                assertThat(readResp.getId(), is(creation.getId()));
+                assertThat(readResp.getUserName(), is(originalUserName + "_ed"));
+
+                User modifiedUser = readResp;
+                modifiedUser.setUserName(originalUserName + "_rv");
+                modifiedUser.setNickName(originalUserName + "_rv"); // required
+                slack.scim(orgAdminToken).updateUser(req -> req.id(modifiedUser.getId()).user(modifiedUser));
+
+                readResp = slack.scim(orgAdminToken).readUser(req -> req.id(modifiedUser.getId()));
+                assertThat(readResp.getId(), is(creation.getId()));
+                assertThat(readResp.getUserName(), is(originalUserName + "_rv"));
+                assertThat(readResp.getSlackGuest().getType(), is(User.SlackGuest.Types.MULTI));
+                assertThat(readResp.getSlackGuest().getExpiration(), is(notNullValue()));
+
+            } finally {
+                UsersDeleteResponse deletion = slack.scim(orgAdminToken).deleteUser(req -> req.id(creation.getId()));
+                assertThat(deletion, is(nullValue()));
+
+                // can call twice
+                UsersDeleteResponse deletion2 = slack.scim(orgAdminToken).deleteUser(req -> req.id(creation.getId()));
+                assertThat(deletion2, is(nullValue()));
+
+                // Verify if the deletion is completed (there is some delay)
+                int counter = 0;
+                UsersReadResponse supposedToBeDeleted = null;
+                while (counter < 10) {
+                    Thread.sleep(1000);
+                    supposedToBeDeleted = slack.scim(orgAdminToken).readUser(req -> req.id(creation.getId()));
+                    if (!supposedToBeDeleted.getActive()) {
+                        break;
+                    }
+                }
+                assertThat(supposedToBeDeleted, is(notNullValue()));
+                assertThat(supposedToBeDeleted.getActive(), is(false));
+
+                // can call again
+                UsersDeleteResponse deletion3 = slack.scim(orgAdminToken).deleteUser(req -> req.id(creation.getId()));
+                assertThat(deletion3, is(nullValue()));
+            }
+        }
+    }
+
+    @Test
     public void groups() throws IOException, SCIMApiException {
         if (orgAdminToken != null) {
             GroupsSearchResponse groups = slack.scim(orgAdminToken).searchGroups(req -> req.count(1000));
@@ -174,7 +267,7 @@ public class ApiTest {
                 newGroup.setDisplayName("Test Group" + System.currentTimeMillis());
 
                 Group.Member member = new Group.Member();
-                UsersCreateResponse newUser = createNewUser();
+                UsersCreateResponse newUser = createNewFullUser();
                 assertThat(newUser.getId(), is(notNullValue()));
                 member.setValue(newUser.getId());
                 newGroup.setMembers(Arrays.asList(member));
@@ -210,7 +303,7 @@ public class ApiTest {
         if (orgAdminToken != null) {
             Group newGroup = new Group();
             newGroup.setDisplayName("Test Group" + System.currentTimeMillis());
-            UsersCreateResponse newUser = createNewUser();
+            UsersCreateResponse newUser = createNewFullUser();
             assertThat(newUser.getId(), is(notNullValue()));
             try {
                 Group.Member member = new Group.Member();

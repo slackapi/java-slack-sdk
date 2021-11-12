@@ -17,7 +17,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
@@ -37,7 +41,15 @@ public class AsyncApiTest {
 
     String orgAdminToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
 
-    private UsersCreateResponse createNewUser() throws ExecutionException, InterruptedException {
+    private UsersCreateResponse createNewFullUser() throws Exception {
+        return createNewUser(true);
+    }
+
+    private UsersCreateResponse createNewGuestUser() throws Exception {
+        return createNewUser(false);
+    }
+
+    private UsersCreateResponse createNewUser(boolean isFullMember) throws Exception {
         String userName = "user" + System.currentTimeMillis();
         User newUser = new User();
         newUser.setName(new User.Name());
@@ -47,6 +59,15 @@ public class AsyncApiTest {
         User.Email email = new User.Email();
         email.setValue("seratch+" + System.currentTimeMillis() + "@gmail.com");
         newUser.setEmails(Arrays.asList(email));
+        if (!isFullMember) {
+            // guest
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+            String expiration = df.format(Date.from(ZonedDateTime.now().plusDays(14).toInstant()));
+            newUser.setSlackGuest(User.SlackGuest.builder()
+                    .type(User.SlackGuest.Types.MULTI)
+                    .expiration(expiration)
+                    .build());
+        }
         return slack.scimAsync(orgAdminToken).createUser(req -> req.user(newUser)).get();
     }
 
@@ -113,9 +134,9 @@ public class AsyncApiTest {
     }
 
     @Test
-    public void createAndDeleteUser() throws Exception {
+    public void createAndDeleteFullUser() throws Exception {
         if (orgAdminToken != null) {
-            UsersCreateResponse creation = createNewUser();
+            UsersCreateResponse creation = createNewFullUser();
             assertThat(creation.getId(), is(notNullValue()));
 
             UsersReadResponse readResp = slack.scimAsync(orgAdminToken)
@@ -159,6 +180,87 @@ public class AsyncApiTest {
                 UsersDeleteResponse deletion = slack.scimAsync(orgAdminToken)
                         .deleteUser(req -> req.id(creation.getId())).get();
                 assertThat(deletion, is(nullValue()));
+
+                // can call twice
+                UsersDeleteResponse deletion2 = slack.scimAsync(orgAdminToken)
+                        .deleteUser(req -> req.id(creation.getId())).get();
+                assertThat(deletion2, is(nullValue()));
+
+                // Verify if the deletion is completed (there is some delay)
+                int counter = 0;
+                UsersReadResponse supposedToBeDeleted = null;
+                while (counter < 10) {
+                    Thread.sleep(1000);
+                    supposedToBeDeleted = slack.scimAsync(orgAdminToken)
+                            .readUser(req -> req.id(creation.getId())).get();
+                    if (!supposedToBeDeleted.getActive()) {
+                        break;
+                    }
+                }
+                assertThat(supposedToBeDeleted, is(notNullValue()));
+                assertThat(supposedToBeDeleted.getActive(), is(false));
+
+                // can call again
+                UsersDeleteResponse deletion3 = slack.scimAsync(orgAdminToken)
+                        .deleteUser(req -> req.id(creation.getId())).get();
+                assertThat(deletion3, is(nullValue()));
+            }
+        }
+    }
+
+    @Test
+    public void createAndDeleteGuestUser() throws Exception {
+        if (orgAdminToken != null) {
+            UsersCreateResponse creation = createNewGuestUser();
+            assertThat(creation.getId(), is(notNullValue()));
+
+            UsersReadResponse readResp = slack.scimAsync(orgAdminToken)
+                    .readUser(req -> req.id(creation.getId())).get();
+            assertThat(readResp.getId(), is(creation.getId()));
+            assertThat(readResp.getUserName(), is(creation.getUserName()));
+            assertThat(readResp.getSlackGuest().getType(), is(User.SlackGuest.Types.MULTI));
+            assertThat(readResp.getSlackGuest().getExpiration(), is(notNullValue()));
+
+            try {
+                // https://api.slack.com/scim#filter
+                // filter query matching the created data
+                String userName = creation.getUserName();
+                UsersSearchResponse searchResp = slack.scimAsync(orgAdminToken)
+                        .searchUsers(req -> req.count(1).filter("userName eq \"" + userName + "\"")).get();
+                assertThat(searchResp.getItemsPerPage(), is(1));
+                assertThat(searchResp.getResources().size(), is(1));
+                assertThat(searchResp.getResources().get(0).getId(), is(creation.getId()));
+                assertThat(searchResp.getResources().get(0).getUserName(), is(creation.getUserName()));
+                assertThat(searchResp.getResources().get(0).getUserName(), is(creation.getUserName()));
+                assertThat(searchResp.getResources().get(0).getSlackGuest(), is(notNullValue()));
+
+                String originalUserName = creation.getUserName();
+
+                User user = new User();
+                user.setUserName(originalUserName + "_ed");
+                slack.scimAsync(orgAdminToken).patchUser(req -> req.id(creation.getId()).user(user));
+
+                Thread.sleep(500L);
+                readResp = slack.scimAsync(orgAdminToken).readUser(req -> req.id(creation.getId())).get();
+                assertThat(readResp.getId(), is(creation.getId()));
+                assertThat(readResp.getUserName(), is(originalUserName + "_ed"));
+
+                User modifiedUser = readResp;
+                modifiedUser.setUserName(originalUserName + "_rv");
+                modifiedUser.setNickName(originalUserName + "_rv"); // required
+                slack.scimAsync(orgAdminToken).updateUser(req -> req.id(modifiedUser.getId()).user(modifiedUser));
+
+                Thread.sleep(500L);
+                readResp = slack.scimAsync(orgAdminToken).readUser(req -> req.id(modifiedUser.getId())).get();
+                assertThat(readResp.getId(), is(creation.getId()));
+                assertThat(readResp.getUserName(), is(originalUserName + "_rv"));
+                assertThat(readResp.getSlackGuest().getType(), is(User.SlackGuest.Types.MULTI));
+                assertThat(readResp.getSlackGuest().getExpiration(), is(notNullValue()));
+
+            } finally {
+                UsersDeleteResponse deletion = slack.scimAsync(orgAdminToken)
+                        .deleteUser(req -> req.id(creation.getId())).get();
+                assertThat(deletion, is(nullValue()));
                 // can call twice
                 UsersDeleteResponse deletion2 = slack.scimAsync(orgAdminToken)
                         .deleteUser(req -> req.id(creation.getId())).get();
@@ -186,7 +288,7 @@ public class AsyncApiTest {
     }
 
     @Test
-    public void groups() throws ExecutionException, InterruptedException {
+    public void groups() throws Exception {
         if (orgAdminToken != null) {
             GroupsSearchResponse groups = slack.scimAsync(orgAdminToken)
                     .searchGroups(req -> req.count(1000)).get();
@@ -195,7 +297,7 @@ public class AsyncApiTest {
                 newGroup.setDisplayName("Test Group" + System.currentTimeMillis());
 
                 Group.Member member = new Group.Member();
-                UsersCreateResponse newUser = createNewUser();
+                UsersCreateResponse newUser = createNewFullUser();
                 assertThat(newUser.getId(), is(notNullValue()));
                 member.setValue(newUser.getId());
                 newGroup.setMembers(Arrays.asList(member));
@@ -229,11 +331,11 @@ public class AsyncApiTest {
     }
 
     @Test
-    public void groupAndUsers() throws ExecutionException, InterruptedException {
+    public void groupAndUsers() throws Exception {
         if (orgAdminToken != null) {
             Group newGroup = new Group();
             newGroup.setDisplayName("Test Group" + System.currentTimeMillis());
-            UsersCreateResponse newUser = createNewUser();
+            UsersCreateResponse newUser = createNewFullUser();
             assertThat(newUser.getId(), is(notNullValue()));
             try {
                 Group.Member member = new Group.Member();
