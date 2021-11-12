@@ -9,6 +9,8 @@ import okhttp3.FormBody;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
@@ -17,6 +19,14 @@ import static com.slack.api.methods.RequestFormBuilder.toForm;
 
 @Slf4j
 public class TeamIdCache {
+
+    // As the tokens issued for "Sign in with Slack" does not work with auth.test API method,
+    // we skip creating team_id cache for these API methods.
+    public static final List<String> METHOD_NAMES_TO_SKIP_TEAM_ID_CACHE_RESOLUTION = Arrays.asList(
+            "auth.revoke",
+            "openid.connect.token",
+            "openid.connect.userInfo"
+    );
 
     private static final ConcurrentMap<String, String> TOKEN_TO_TEAM_ID = new ConcurrentHashMap<>();
 

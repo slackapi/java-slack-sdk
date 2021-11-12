@@ -49,6 +49,10 @@ public class OpenIDConnectSample {
                     OpenIDConnectUserInfoResponse userInfo = teamIdWiredClient.openIDConnectUserInfo(r -> r
                             .token(refreshedToken.getAccessToken()));
                     logger.info("userInfo: {}", userInfo);
+
+                    // To revoke this, you can use auth.revoke API method
+                    // Slack.getInstance().methods().authRevoke(r -> r.token(refreshedToken.getAccessToken()));
+
                 } else {
                     OpenIDConnectUserInfoResponse userInfo = client.openIDConnectUserInfo(r -> r
                             .token(token.getAccessToken()));

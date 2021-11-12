@@ -219,6 +219,7 @@ import java.util.*;
 
 import static com.slack.api.methods.RequestFormBuilder.toForm;
 import static com.slack.api.methods.RequestFormBuilder.toMultipartBody;
+import static com.slack.api.methods.impl.TeamIdCache.METHOD_NAMES_TO_SKIP_TEAM_ID_CACHE_RESOLUTION;
 
 @Slf4j
 public class MethodsClientImpl implements MethodsClient {
@@ -3022,7 +3023,8 @@ public class MethodsClientImpl implements MethodsClient {
             String methodName,
             String token) throws IOException {
         String teamId = this.teamId.orElse(null);
-        if (statsEnabled && teamId == null) {
+        if (statsEnabled && teamId == null
+                && !METHOD_NAMES_TO_SKIP_TEAM_ID_CACHE_RESOLUTION.contains(methodName)) {
             teamId = teamIdCache.lookupOrResolve(token);
         }
         try {
@@ -3047,7 +3049,8 @@ public class MethodsClientImpl implements MethodsClient {
             String token,
             Class<T> clazz) throws IOException, SlackApiException {
         String teamId = this.teamId.orElse(null);
-        if (statsEnabled && teamId == null) {
+        if (statsEnabled && teamId == null
+                && !METHOD_NAMES_TO_SKIP_TEAM_ID_CACHE_RESOLUTION.contains(methodName)) {
             teamId = teamIdCache.lookupOrResolve(token);
         }
         try {
@@ -3089,7 +3092,8 @@ public class MethodsClientImpl implements MethodsClient {
             String token,
             Class<T> clazz) throws IOException, SlackApiException {
         String teamId = this.teamId.orElse(null);
-        if (statsEnabled && teamId == null) {
+        if (statsEnabled && teamId == null
+                && !METHOD_NAMES_TO_SKIP_TEAM_ID_CACHE_RESOLUTION.contains(methodName)) {
             teamId = teamIdCache.lookupOrResolve(token);
         }
         try {
