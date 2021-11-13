@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class HashRequestHeaders extends ReadOnlyParameters implements RequestHeaders {
 
     /**
-     * Header value of the non compliant {@code Accept} header sent by
+     * Header value of the non-compliant {@code Accept} header sent by
      * {@link java.net.HttpURLConnection} when none is set.
      *
      * @see <a href="https://bugs.openjdk.java.net/browse/JDK-8163921">JDK-8163921</a>

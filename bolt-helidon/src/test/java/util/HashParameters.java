@@ -104,13 +104,13 @@ class HashParameters implements Parameters {
      * @return a concatenation, never {@code null}.
      */
     public static HashParameters concat(Iterable<Parameters> parameters) {
-        ArrayList<Map<String, List<String>>> prms = new ArrayList<>();
+        ArrayList<Map<String, List<String>>> _params = new ArrayList<>();
         for (Parameters p : parameters) {
             if (p != null) {
-                prms.add(p.toMap());
+                _params.add(p.toMap());
             }
         }
-        return concat(prms);
+        return concat(_params);
     }
 
     private static HashParameters concat(List<Map<String, List<String>>> prms) {
@@ -240,9 +240,9 @@ class HashParameters implements Parameters {
     }
 
     @Override
-    public void putAll(Parameters parameters) {
+    public Parameters putAll(Parameters parameters) {
         if (parameters == null) {
-            return;
+            return null;
         }
 
         for (Map.Entry<String, List<String>> entry : parameters.toMap().entrySet()) {
@@ -251,19 +251,20 @@ class HashParameters implements Parameters {
                 content.put(entry.getKey(), Collections.unmodifiableList(values));
             }
         }
+        return parameters;
     }
 
     @Override
-    public void add(String key, String... values) {
+    public Parameters add(String key, String... values) {
         Objects.requireNonNull(key, "Parameter 'key' is null!");
         if (values == null || values.length == 0) {
             // do not necessarily create an entry in the map, simply immediately return
-            return;
+            return null;
         }
 
         content.compute(key, (s, list) -> {
             if (list == null) {
-                return Collections.unmodifiableList(new ArrayList<>(Arrays.asList(values)));
+                return List.of(values);
             } else {
                 ArrayList<String> newValues = new ArrayList<>(list.size() + values.length);
                 newValues.addAll(list);
@@ -271,20 +272,21 @@ class HashParameters implements Parameters {
                 return Collections.unmodifiableList(newValues);
             }
         });
+        return null;
     }
 
     @Override
-    public void add(String key, Iterable<String> values) {
+    public Parameters add(String key, Iterable<String> values) {
         Objects.requireNonNull(key, "Parameter 'key' is null!");
         List<String> vls = internalListCopy(values);
         if (vls == null) {
             // do not necessarily create an entry in the map, simply immediately return
-            return;
+            return null;
         }
 
         content.compute(key, (s, list) -> {
             if (list == null) {
-                return Collections.unmodifiableList(vls);
+                return vls;
             } else {
                 ArrayList<String> newValues = new ArrayList<>(list.size() + vls.size());
                 newValues.addAll(list);
@@ -292,17 +294,19 @@ class HashParameters implements Parameters {
                 return Collections.unmodifiableList(newValues);
             }
         });
+        return null;
     }
 
     @Override
-    public void addAll(Parameters parameters) {
+    public Parameters addAll(Parameters parameters) {
         if (parameters == null) {
-            return;
+            return null;
         }
         Map<String, List<String>> map = parameters.toMap();
         for (Map.Entry<String, List<String>> entry : map.entrySet()) {
             add(entry.getKey(), entry.getValue());
         }
+        return parameters;
     }
 
     @Override
