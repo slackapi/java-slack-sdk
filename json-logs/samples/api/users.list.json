@@ -13,7 +13,7 @@
       "tz_offset": 12345,
       "profile": {
         "title": "",
-        "phone": "",
+        "phone": "12345",
         "skype": "",
         "real_name": "",
         "real_name_normalized": "",
@@ -21,11 +21,19 @@
         "display_name_normalized": "",
         "status_text": "",
         "status_emoji": "",
+        "status_emoji_display_info": [
+          {
+            "emoji_name": "",
+            "display_alias": "",
+            "display_url": ""
+          }
+        ],
         "status_expiration": 12345,
         "avatar_hash": "",
         "image_original": "https://www.example.com/",
         "is_custom_image": false,
         "email": "",
+        "pronouns": "",
         "first_name": "",
         "last_name": "",
         "image_24": "https://www.example.com/",
@@ -51,8 +59,11 @@
       "is_bot": false,
       "is_app_user": false,
       "updated": 12345,
-      "has_2fa": false,
+      "is_email_confirmed": false,
+      "who_can_share_contact_card": "",
       "is_workflow_bot": false,
+      "has_2fa": false,
+      "locale": "",
       "enterprise_user": {
         "id": "U00000000",
         "enterprise_id": "E00000000",
@@ -64,15 +75,14 @@
           "T00000000"
         ]
       },
-      "is_invited_user": false,
-      "locale": ""
+      "is_invited_user": false
     }
   ],
   "cache_ts": 12345,
+  "offset": "U00000000",
   "response_metadata": {
     "next_cursor": ""
   },
-  "offset": "U00000000",
   "error": "",
   "needed": "",
   "provided": ""
