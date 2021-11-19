@@ -824,6 +824,28 @@
           "body": "We\u0027re investigating failures in sending outbound emails including invitations, confirmation codes for workspace creation, email notifications."
         }
       ]
+    },
+    {
+      "id": 1036,
+      "date_created": "2021-11-18T15:41:18-08:00",
+      "date_updated": "2021-11-18T16:13:07-08:00",
+      "title": "Sign up pages are blank",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2021-11/b9ac93b1a9265e54",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2021-11-18T16:13:07-08:00",
+          "body": "We\u0027ve identified the source of the issue and we\u0027re working on a fix. Refreshing the page continues to help as a temporary workaround. \r\n\r\nThank you very much for bearing with us"
+        },
+        {
+          "date_created": "2021-11-18T15:41:18-08:00",
+          "body": "We\u0027re investigating reports that Slack sign up/join redirect may not be working for some users. A temporary workaround is to refresh either of those pages and on the second time, it will load. \r\n\r\nWe\u0027re investigating now and will be back with more information as soon as it\u0027s available, or in 30 minutes."
+        }
+      ]
     }
   ]
 }
