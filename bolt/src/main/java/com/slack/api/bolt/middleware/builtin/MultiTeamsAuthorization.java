@@ -132,6 +132,7 @@ public class MultiTeamsAuthorization implements Middleware {
         Installer installer = null;
         if (bot != null) {
             if (bot.getBotRefreshToken() != null) {
+                // A refresh token exists if token rotation is enabled
                 Optional<RefreshedToken> maybeRefreshed = this.tokenRotator.performTokenRotation(r -> r
                         .accessToken(bot.getBotAccessToken())
                         .refreshToken(bot.getBotRefreshToken())
@@ -149,7 +150,10 @@ public class MultiTeamsAuthorization implements Middleware {
         }
 
         if ((isAlwaysRequestUserTokenNeeded() || bot == null) && context.getRequestUserId() != null) {
-            // no bot for this app - try to fetch installer's access token instead
+            // There are two patterns here:
+            // 1) No bot token was found for this request -- trying to find installer's token instead
+            // 2) A bot was found but this app needs to check if there is a user token
+            //    which is associated with the user_id in this incoming request
             installer = installationService.findInstaller(
                     context.getEnterpriseId(),
                     context.getTeamId(),
@@ -158,6 +162,7 @@ public class MultiTeamsAuthorization implements Middleware {
             if (installer != null) {
                 boolean refreshed = false;
                 if (installer.getInstallerUserRefreshToken() != null) {
+                    // A refresh token exists if token rotation is enabled
                     final Installer _i = installer;
                     Optional<RefreshedToken> maybeRefreshed = this.tokenRotator.performTokenRotation(r -> r
                             .accessToken(_i.getInstallerUserAccessToken())
@@ -173,6 +178,7 @@ public class MultiTeamsAuthorization implements Middleware {
                     }
                 }
                 if (installer.getBotRefreshToken() != null) {
+                    // A refresh token exists if token rotation is enabled
                     final Installer _i = installer;
                     Optional<RefreshedToken> maybeRefreshed = this.tokenRotator.performTokenRotation(r -> r
                             .accessToken(_i.getBotAccessToken())
@@ -188,6 +194,7 @@ public class MultiTeamsAuthorization implements Middleware {
                     }
                 }
                 if (refreshed) {
+                    // Save the refresh results for following data accesses
                     installationService.saveInstallerAndBot(installer);
                 }
                 userToken = installer.getInstallerUserAccessToken();
