@@ -16,6 +16,7 @@ public class Team {
     private String domain;
     private String emailDomain;
     private TeamIcon icon;
+    private String url;
 
     private String enterpriseId;
     private String enterpriseName;

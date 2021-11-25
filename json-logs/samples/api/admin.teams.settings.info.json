@@ -21,7 +21,8 @@
       "C00000000"
     ],
     "is_verified": false,
-    "enterprise_domain": ""
+    "enterprise_domain": "",
+    "url": "https://www.example.com/"
   },
   "error": "",
   "needed": "",
