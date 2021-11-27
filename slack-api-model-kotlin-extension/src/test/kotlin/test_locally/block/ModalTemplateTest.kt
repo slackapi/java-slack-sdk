@@ -105,6 +105,7 @@ class ModalTemplateTest {
                 element {
                     plainTextInput {
                         multiline(true)
+                        focusOnLoad(true)
                     }
                 }
                 optional(true)
@@ -299,7 +300,8 @@ class ModalTemplateTest {
 			},
 			"element": {
 				"type": "plain_text_input",
-				"multiline": true
+				"multiline": true,
+                "focus_on_load":true
 			},
 			"optional": true
 		}

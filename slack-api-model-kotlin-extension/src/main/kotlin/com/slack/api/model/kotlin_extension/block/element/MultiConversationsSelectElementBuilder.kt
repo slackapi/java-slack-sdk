@@ -17,6 +17,7 @@ class MultiConversationsSelectElementBuilder : Builder<MultiConversationsSelectE
     private var defaultToCurrentConversation: Boolean? = null
     private var filter: ConversationsFilter? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * Adds a plain text object in the placeholder field.
@@ -109,6 +110,16 @@ class MultiConversationsSelectElementBuilder : Builder<MultiConversationsSelectE
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select">Multi conversations select element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): MultiConversationsSelectElement {
         return MultiConversationsSelectElement.builder()
                 .placeholder(placeholder)
@@ -118,6 +129,7 @@ class MultiConversationsSelectElementBuilder : Builder<MultiConversationsSelectE
                 .maxSelectedItems(maxSelectedItems)
                 .defaultToCurrentConversation(defaultToCurrentConversation)
                 .filter(filter)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

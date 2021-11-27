@@ -16,6 +16,7 @@ class RadioButtonsElementBuilder : Builder<RadioButtonsElement> {
     private var options: List<OptionObject>? = null
     private var initialOption: OptionObject? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * An identifier for the action triggered when the radio button group is changed. You can use this when you
@@ -57,12 +58,23 @@ class RadioButtonsElementBuilder : Builder<RadioButtonsElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#radio">Radio buttons element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): RadioButtonsElement {
         return RadioButtonsElement.builder()
                 .actionId(actionId)
                 .options(options)
                 .initialOption(initialOption)
                 .confirm(confirm)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

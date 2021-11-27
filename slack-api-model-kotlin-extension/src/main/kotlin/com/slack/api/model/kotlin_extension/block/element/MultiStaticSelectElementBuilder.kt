@@ -22,6 +22,7 @@ class MultiStaticSelectElementBuilder : Builder<MultiStaticSelectElement> {
     private var optionGroups: List<OptionGroupObject>? = null
     private var initialOptions: List<OptionObject>? = null
     private var maxSelectedItems: Int? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * Adds a plain text object in the placeholder field.
@@ -93,6 +94,16 @@ class MultiStaticSelectElementBuilder : Builder<MultiStaticSelectElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#static_multi_select">Multi static select element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): MultiStaticSelectElement {
         return MultiStaticSelectElement.builder()
                 .placeholder(placeholder)
@@ -102,6 +113,7 @@ class MultiStaticSelectElementBuilder : Builder<MultiStaticSelectElement> {
                 .initialOptions(initialOptions)
                 .confirm(confirm)
                 .maxSelectedItems(maxSelectedItems)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

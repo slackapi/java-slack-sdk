@@ -47,6 +47,20 @@ public class StaticSelectElement extends BlockElement {
      */
     private List<OptionGroupObject> optionGroups;
 
+    /**
+     * A single option that exactly matches one of the options within options or option_groups.
+     * This option will be selected when the menu initially loads.
+     */
     private OptionObject initialOption;
+
+    /**
+     * A confirm object that defines an optional confirmation dialog that appears after a menu item is selected.
+     */
     private ConfirmationDialogObject confirm;
+
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     */
+    private Boolean focusOnLoad;
 }

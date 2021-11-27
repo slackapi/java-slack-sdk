@@ -135,7 +135,8 @@
               },
               "style": ""
             },
-            "response_url_enabled": false
+            "response_url_enabled": false,
+            "focus_on_load": false
           },
           {
             "type": "multi_channels_select",
@@ -168,7 +169,8 @@
               },
               "style": ""
             },
-            "max_selected_items": 123
+            "max_selected_items": 123,
+            "focus_on_load": false
           },
           {
             "type": "conversations_select",
@@ -210,7 +212,8 @@
               ],
               "exclude_external_shared_channels": false,
               "exclude_bot_users": false
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "multi_conversations_select",
@@ -251,7 +254,8 @@
               ],
               "exclude_external_shared_channels": false,
               "exclude_bot_users": false
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "datepicker",
@@ -284,7 +288,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "external_select",
@@ -331,7 +336,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "multi_external_select",
@@ -365,7 +371,8 @@
               },
               "style": ""
             },
-            "max_selected_items": 123
+            "max_selected_items": 123,
+            "focus_on_load": false
           },
           {
             "type": "image",
@@ -447,7 +454,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "multi_static_select",
@@ -480,7 +488,8 @@
               },
               "style": ""
             },
-            "max_selected_items": 123
+            "max_selected_items": 123,
+            "focus_on_load": false
           },
           {
             "type": "users_select",
@@ -513,7 +522,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "multi_users_select",
@@ -546,7 +556,8 @@
               },
               "style": ""
             },
-            "max_selected_items": 123
+            "max_selected_items": 123,
+            "focus_on_load": false
           }
         ],
         "block_id": ""

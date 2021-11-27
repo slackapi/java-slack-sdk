@@ -15,6 +15,7 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
     private var initialChannel: String? = null
     private var responseUrlEnabled: Boolean? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * Fills the placeholder field with a plain text object.
@@ -69,6 +70,16 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#channel_select">Channels select element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): ChannelsSelectElement {
         return ChannelsSelectElement.builder()
                 .actionId(actionId)
@@ -76,6 +87,7 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
                 .initialChannel(initialChannel)
                 .confirm(confirm)
                 .responseUrlEnabled(responseUrlEnabled)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

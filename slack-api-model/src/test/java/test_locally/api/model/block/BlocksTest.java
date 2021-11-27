@@ -428,4 +428,56 @@ public class BlocksTest {
         assertThat(output, is("{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"Pick a date for the deadline.\"},\"block_id\":\"section1234\",\"accessory\":{\"type\":\"timepicker\",\"action_id\":\"timepicker123\",\"placeholder\":{\"type\":\"plain_text\",\"text\":\"Select a time\"},\"initial_time\":\"11:40\"}}"));
     }
 
+    @Test
+    public void focusOnLoad() {
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"input\",\n" +
+                "    \"element\": {\n" +
+                "      \"type\": \"conversations_select\",\n" +
+                "      \"placeholder\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Select a conversation\"\n" +
+                "      },\n" +
+                "      \"focus_on_load\": true\n" +
+                "    },\n" +
+                "    \"label\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Choose the conversation to publish your result to:\"\n" +
+                "    }\n" +
+                "  }\n" +
+                "]}";
+        View view = GsonFactory.createSnakeCase().fromJson(json, View.class);
+        assertNotNull(view);
+        assertEquals(1, view.getBlocks().size());
+        InputBlock block = (InputBlock) view.getBlocks().get(0);
+        ConversationsSelectElement element = (ConversationsSelectElement) block.getElement();
+        assertTrue(element.getFocusOnLoad());
+    }
+
+    @Test
+    public void noFocusOnLoad() {
+        String json = "{\"blocks\":[\n" +
+                "  {\n" +
+                "    \"type\": \"input\",\n" +
+                "    \"element\": {\n" +
+                "      \"type\": \"conversations_select\",\n" +
+                "      \"placeholder\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Select a conversation\"\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"label\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Choose the conversation to publish your result to:\"\n" +
+                "    }\n" +
+                "  }\n" +
+                "]}";
+        View view = GsonFactory.createSnakeCase().fromJson(json, View.class);
+        assertNotNull(view);
+        assertEquals(1, view.getBlocks().size());
+        InputBlock block = (InputBlock) view.getBlocks().get(0);
+        ConversationsSelectElement element = (ConversationsSelectElement) block.getElement();
+        assertNull(element.getFocusOnLoad());
+    }
 }

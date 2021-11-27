@@ -14,6 +14,7 @@ class MultiChannelsSelectElementBuilder : Builder<MultiChannelsSelectElement> {
     private var initialChannels: List<String>? = null
     private var maxSelectedItems: Int? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * Adds a plain text object in the placeholder field.
@@ -65,6 +66,16 @@ class MultiChannelsSelectElementBuilder : Builder<MultiChannelsSelectElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#channel_multi_select">Multi channels select element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): MultiChannelsSelectElement {
         return MultiChannelsSelectElement.builder()
                 .placeholder(placeholder)
@@ -72,6 +83,7 @@ class MultiChannelsSelectElementBuilder : Builder<MultiChannelsSelectElement> {
                 .initialChannels(initialChannels)
                 .confirm(confirm)
                 .maxSelectedItems(maxSelectedItems)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

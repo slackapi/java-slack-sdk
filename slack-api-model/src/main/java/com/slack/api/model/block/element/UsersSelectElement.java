@@ -39,4 +39,10 @@ public class UsersSelectElement extends BlockElement {
      * A confirm object that defines an optional confirmation dialog that appears after a menu item is selected.
      */
     private ConfirmationDialogObject confirm;
+
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     */
+    private Boolean focusOnLoad;
 }

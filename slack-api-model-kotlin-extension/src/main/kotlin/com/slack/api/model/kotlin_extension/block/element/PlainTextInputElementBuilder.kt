@@ -16,6 +16,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
     private var minLength: Int? = null
     private var maxLength: Int? = null
     private var dispatchActionConfig: DispatchActionConfig? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * An identifier for the input value when the parent modal is submitted. You can use this when you receive a
@@ -84,6 +85,16 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
         dispatchActionConfig = DispatchActionConfigBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config">The document</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): PlainTextInputElement {
         return PlainTextInputElement.builder()
                 .actionId(actionId)
@@ -93,6 +104,7 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
                 .minLength(minLength)
                 .maxLength(maxLength)
                 .dispatchActionConfig(dispatchActionConfig)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

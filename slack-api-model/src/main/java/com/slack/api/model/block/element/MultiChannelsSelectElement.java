@@ -49,4 +49,9 @@ public class MultiChannelsSelectElement extends BlockElement {
      */
     private Integer maxSelectedItems;
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     */
+    private Boolean focusOnLoad;
 }

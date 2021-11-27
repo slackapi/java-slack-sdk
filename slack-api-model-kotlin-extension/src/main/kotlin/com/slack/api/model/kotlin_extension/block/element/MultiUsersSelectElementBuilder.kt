@@ -14,6 +14,7 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
     private var initialUsers: List<String>? = null
     private var confirm: ConfirmationDialogObject? = null
     private var maxSelectedItems: Int? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * Adds a plain text element to the placeholder field.
@@ -64,6 +65,16 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
         maxSelectedItems = max
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#users_multi_select">Multi users select element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): MultiUsersSelectElement {
         return MultiUsersSelectElement.builder()
                 .placeholder(placeholder)
@@ -71,6 +82,7 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
                 .initialUsers(initialUsers)
                 .confirm(confirm)
                 .maxSelectedItems(maxSelectedItems)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }
