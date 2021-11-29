@@ -47,4 +47,10 @@ public class ChannelsSelectElement extends BlockElement {
      * The target conversation for the message will be determined by the value of this select menu.
      */
     private Boolean responseUrlEnabled;
+
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     */
+    private Boolean focusOnLoad;
 }

@@ -22,6 +22,7 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
     private var optionGroups: List<OptionGroupObject>? = null
     private var initialOption: OptionObject? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * Adds a plain text object to the placeholder field.
@@ -84,6 +85,16 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#static_select">Static select element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): StaticSelectElement {
         return StaticSelectElement.builder()
                 .placeholder(placeholder)
@@ -92,6 +103,7 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
                 .optionGroups(optionGroups)
                 .initialOption(initialOption)
                 .confirm(confirm)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

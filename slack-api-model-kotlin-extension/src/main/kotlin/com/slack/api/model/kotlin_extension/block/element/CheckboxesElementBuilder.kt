@@ -16,6 +16,7 @@ class CheckboxesElementBuilder : Builder<CheckboxesElement> {
     private var options: List<OptionObject>? = null
     private var initialOptions: List<OptionObject>? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * An identifier for the action triggered when the checkbox group is changed. You can use this when you receive
@@ -55,12 +56,23 @@ class CheckboxesElementBuilder : Builder<CheckboxesElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#checkboxes">Checkboxes element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): CheckboxesElement {
         return CheckboxesElement.builder()
                 .actionId(actionId)
                 .options(options)
                 .initialOptions(initialOptions)
                 .confirm(confirm)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

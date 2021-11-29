@@ -48,7 +48,8 @@
             "trigger_actions_on": [
               ""
             ]
-          }
+          },
+          "focus_on_load": false
         },
         "dispatch_action": false,
         "hint": {
@@ -135,7 +136,8 @@
               "emoji": false
             },
             "style": ""
-          }
+          },
+          "focus_on_load": false
         },
         "dispatch_action": false,
         "hint": {
@@ -236,7 +238,8 @@
             },
             "style": ""
           },
-          "response_url_enabled": false
+          "response_url_enabled": false,
+          "focus_on_load": false
         },
         "dispatch_action": false,
         "hint": {
@@ -291,7 +294,8 @@
           "filter": {
             "exclude_external_shared_channels": false,
             "exclude_bot_users": false
-          }
+          },
+          "focus_on_load": false
         },
         "dispatch_action": false,
         "hint": {
@@ -340,7 +344,8 @@
               "emoji": false
             },
             "style": ""
-          }
+          },
+          "focus_on_load": false
         },
         "dispatch_action": false,
         "hint": {
@@ -389,7 +394,8 @@
               "emoji": false
             },
             "style": ""
-          }
+          },
+          "focus_on_load": false
         },
         "dispatch_action": false,
         "hint": {
@@ -452,7 +458,8 @@
               "emoji": false
             },
             "style": ""
-          }
+          },
+          "focus_on_load": false
         },
         "dispatch_action": false,
         "hint": {
@@ -582,7 +589,8 @@
               "emoji": false
             },
             "style": ""
-          }
+          },
+          "focus_on_load": false
         },
         "dispatch_action": false,
         "hint": {
@@ -631,7 +639,8 @@
               "emoji": false
             },
             "style": ""
-          }
+          },
+          "focus_on_load": false
         },
         "dispatch_action": false,
         "hint": {
@@ -711,7 +720,8 @@
               },
               "style": ""
             },
-            "response_url_enabled": false
+            "response_url_enabled": false,
+            "focus_on_load": false
           },
           {
             "type": "conversations_select",
@@ -750,7 +760,8 @@
             "filter": {
               "exclude_external_shared_channels": false,
               "exclude_bot_users": false
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "datepicker",
@@ -783,7 +794,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "timepicker",
@@ -816,7 +828,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "external_select",
@@ -863,7 +876,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "image",
@@ -945,7 +959,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "focus_on_load": false
           },
           {
             "type": "users_select",
@@ -978,7 +993,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "focus_on_load": false
           }
         ],
         "block_id": ""

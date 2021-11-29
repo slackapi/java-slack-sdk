@@ -18,6 +18,7 @@ class MultiExternalSelectElementBuilder : Builder<MultiExternalSelectElement> {
     private var minQueryLength: Int? = null
     private var maxSelectedItems: Int? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * Adds a plain text object in the placeholder field.
@@ -81,6 +82,16 @@ class MultiExternalSelectElementBuilder : Builder<MultiExternalSelectElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_multi_select">Multi external select element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): MultiExternalSelectElement {
         return MultiExternalSelectElement.builder()
                 .placeholder(placeholder)
@@ -89,6 +100,7 @@ class MultiExternalSelectElementBuilder : Builder<MultiExternalSelectElement> {
                 .minQueryLength(minQueryLength)
                 .maxSelectedItems(maxSelectedItems)
                 .confirm(confirm)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

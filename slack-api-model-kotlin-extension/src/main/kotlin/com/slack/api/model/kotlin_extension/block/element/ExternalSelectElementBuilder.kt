@@ -16,6 +16,7 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
     private var initialOption: OptionObject? = null
     private var minQueryLength: Int? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * Adds a plain text object to the placeholder field.
@@ -69,6 +70,16 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_select">External select element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): ExternalSelectElement {
         return ExternalSelectElement.builder()
                 .placeholder(placeholder)
@@ -76,6 +87,7 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
                 .initialOption(initialOption)
                 .minQueryLength(minQueryLength)
                 .confirm(confirm)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }

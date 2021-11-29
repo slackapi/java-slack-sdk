@@ -13,6 +13,7 @@ class DatePickerElementBuilder : Builder<DatePickerElement> {
     private var actionId: String? = null
     private var initialDate: String? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _focusOnLoad: Boolean? = null
 
     /**
      * Creates a plain text object in the placeholder field.
@@ -54,12 +55,23 @@ class DatePickerElementBuilder : Builder<DatePickerElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * Indicates whether the element will be set to auto focus within the view object.
+     * Only one element can be set to true. Defaults to false.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#datepicker">Date picker element documentation</a>
+     */
+    fun focusOnLoad(focusOnLoad: Boolean) {
+        _focusOnLoad = focusOnLoad
+    }
+
     override fun build(): DatePickerElement {
         return DatePickerElement.builder()
                 .actionId(actionId)
                 .placeholder(placeholder)
                 .initialDate(initialDate)
                 .confirm(confirm)
+                .focusOnLoad(_focusOnLoad)
                 .build()
     }
 }
