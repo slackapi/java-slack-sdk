@@ -28,6 +28,8 @@ public class ChatUnfurlRequest implements SlackApiRequest {
      */
     private String userAuthMessage;
 
+    private String rawUserAuthBlocks;
+
     /**
      * Provide an array of blocks to send as an ephemeral message to the user
      * as invitation to authenticate further and enable full unfurling behavior
@@ -40,6 +42,12 @@ public class ChatUnfurlRequest implements SlackApiRequest {
     private boolean userAuthRequired;
 
     /**
+     * Send users to this custom URL where they will complete authentication in your app to fully trigger unfurling.
+     * Value should be properly URL-encoded.
+     */
+    private String userAuthUrl;
+
+    /**
      * URL-encoded JSON map with keys set to URLs featured in the message, pointing to their unfurl message attachments.
      */
     private String rawUnfurls;
@@ -50,12 +58,6 @@ public class ChatUnfurlRequest implements SlackApiRequest {
      * Timestamp of the message to add unfurl behavior to.
      */
     private String ts;
-
-    /**
-     * Send users to this custom URL where they will complete authentication in your app to fully trigger unfurling.
-     * Value should be properly URL-encoded.
-     */
-    private String userAuthUrl;
 
     /**
      * Channel ID of the message

@@ -1229,7 +1229,12 @@ public class RequestFormBuilder {
         }
         setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
         setIfNotNull("user_auth_message", req.getUserAuthMessage(), form);
-        setIfNotNull("user_auth_blocks", req.getUserAuthBlocks(), form);
+        if (req.getRawUserAuthBlocks() != null) {
+            setIfNotNull("user_auth_blocks", req.getRawUserAuthBlocks(), form);
+        } else if (req.getUserAuthBlocks() != null) {
+            String json = GSON.toJson(req.getUserAuthBlocks());
+            setIfNotNull("user_auth_blocks", json, form);
+        }
         setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
         setIfNotNull("unfurl_id", req.getUnfurlId(), form);
         setIfNotNull("source", req.getSource(), form);
