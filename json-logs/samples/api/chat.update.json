@@ -103,6 +103,7 @@
             },
             "initial_channel": "",
             "response_url_enabled": false,
+            "focus_on_load": false,
             "initial_conversation": "",
             "default_to_current_conversation": false,
             "filter": {

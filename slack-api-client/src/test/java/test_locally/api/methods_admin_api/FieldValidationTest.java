@@ -301,7 +301,7 @@ public class FieldValidationTest {
         {
             AdminTeamsSettingsInfoResponse obj = parse(prefix + "settings.info", AdminTeamsSettingsInfoResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
-            verifyIfAllGettersReturnNonNullRecursively(obj.getTeam());
+            verifyIfAllGettersReturnNonNullRecursively(obj.getTeam(), "getDiscoverable");
         }
         {
             AdminTeamsSettingsSetDefaultChannelsResponse obj = parse(prefix + "settings.setDefaultChannels",

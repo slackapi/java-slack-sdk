@@ -31,6 +31,9 @@ public class team_Test {
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
+    String gridWorkspaceUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
+    String gridTeamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
+
     @Test
     public void teamAccessLogs() throws Exception {
         TeamAccessLogsResponse response = slack.methods().teamAccessLogs(r -> r.token(userToken));
@@ -101,6 +104,17 @@ public class team_Test {
         TeamInfoResponse response = slack.methods().teamInfo(r -> r.token(botToken));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void teamInfo_Grid_Workspace() throws Exception {
+        if (gridWorkspaceUserToken != null) {
+            TeamInfoResponse response = slack.methods().teamInfo(r -> r
+                    .token(gridWorkspaceUserToken)
+                    .team(gridTeamId)
+            );
+            assertThat(response.getError(), is(nullValue()));
+        }
     }
 
     @Test

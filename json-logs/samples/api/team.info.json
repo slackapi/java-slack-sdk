@@ -16,7 +16,11 @@
       "image_original": "https://www.example.com/"
     },
     "is_verified": false,
-    "url": "https://www.example.com/"
+    "url": "https://www.example.com/",
+    "enterprise_id": "E00000000",
+    "enterprise_name": "",
+    "enterprise_domain": "",
+    "discoverable": ""
   },
   "error": "",
   "needed": "",

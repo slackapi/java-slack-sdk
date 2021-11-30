@@ -23,6 +23,7 @@ public class Team {
     private String enterpriseDomain;
     private List<String> defaultChannels;
     private Boolean isVerified;
+    private Boolean discoverable;
 
     @Data
     public static class Profile {
