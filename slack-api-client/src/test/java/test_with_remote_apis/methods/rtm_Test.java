@@ -153,7 +153,6 @@ public class rtm_Test {
 
     @Test
     public void rtmStart() throws Exception {
-        // TODO: "prefs" support
         SlackConfig config = new SlackConfig();
         config.setLibraryMaintainerMode(false);
         config.getHttpClientResponseHandlers().add(new JsonDataRecordingListener());
