@@ -50,7 +50,10 @@
       ],
       "previous_names": [
         ""
-      ]
+      ],
+      "user": "U00000000",
+      "is_user_deleted": false,
+      "priority": 12345
     }
   ],
   "response_metadata": {

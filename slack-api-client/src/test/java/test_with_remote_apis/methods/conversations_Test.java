@@ -536,4 +536,13 @@ public class conversations_Test {
         }
     }
 
+    @Test
+    public void listIm() throws Exception {
+        ConversationsListResponse response = slack.methods(botToken).conversationsList(r -> r
+                .types(Arrays.asList(ConversationType.IM))
+                .limit(20)
+        );
+        assertThat(response.getError(), is(nullValue()));
+    }
+
 }

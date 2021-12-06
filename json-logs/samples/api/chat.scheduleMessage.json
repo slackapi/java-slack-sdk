@@ -25,12 +25,6 @@
     "blocks": [
       {
         "type": "",
-        "block_id": "",
-        "text": {
-          "type": "",
-          "text": "",
-          "emoji": false
-        },
         "elements": [
           {
             "type": "",
@@ -115,6 +109,7 @@
             "image_bytes": 12345
           }
         ],
+        "block_id": "",
         "fallback": "",
         "image_url": "",
         "image_width": 12345,
@@ -122,6 +117,11 @@
         "image_bytes": 12345,
         "alt_text": "",
         "title": {
+          "type": "",
+          "text": "",
+          "emoji": false
+        },
+        "text": {
           "type": "",
           "text": "",
           "emoji": false

@@ -17,17 +17,7 @@
       "blocks": [
         {
           "type": "",
-          "block_id": "",
           "elements": [
-            {
-              "type": "",
-              "elements": [
-                {
-                  "type": "",
-                  "text": ""
-                }
-              ]
-            },
             {
               "type": "",
               "text": {
@@ -111,6 +101,7 @@
               "image_bytes": 12345
             }
           ],
+          "block_id": "",
           "fallback": "",
           "image_url": "",
           "image_width": 12345,

@@ -61,9 +61,9 @@ public class JsonDataRecorder {
             // given body is not in JSON format
             return;
         }
-        JsonElement newJson = JsonParser.parseString(body);
+        JsonElement newRawJson = JsonParser.parseString(body);
 
-        String existingJson = null;
+        // Adjust the path value for SCIM and Status API
         if (path.startsWith("/scim")) {
             path = path.replaceFirst("/\\w{9,11}$", "/00000000000");
         }
@@ -71,42 +71,74 @@ public class JsonDataRecorder {
         if (path.startsWith("/api/v1.0.0") || path.startsWith("/api/v2.0.0")) {
             path = "/status" + path;
         }
+
+        // Read the existing JSON data
+        String existingRawJson = null;
         try {
             Path jsonFilePath = new File(toRawFilePath(path)).toPath();
-            existingJson = Files.readAllLines(jsonFilePath, UTF_8).stream().collect(Collectors.joining());
+            existingRawJson = Files.readAllLines(jsonFilePath, UTF_8).stream().collect(Collectors.joining());
         } catch (NoSuchFileException e) {
         }
-        if (existingJson == null || existingJson.trim().isEmpty()) {
+        if (existingRawJson == null || existingRawJson.trim().isEmpty()) {
             if (body.trim().startsWith("[")) {
-                existingJson = body;
+                existingRawJson = body;
             } else {
-                existingJson = "{}";
+                existingRawJson = "{}";
             }
         }
-        JsonElement jsonElem = JsonParser.parseString(existingJson);
-        JsonObject jsonObj = jsonElem.isJsonObject() ? jsonElem.getAsJsonObject() : null;
+        JsonElement existingRawJsonElem = JsonParser.parseString(existingRawJson);
+        JsonObject rawJsonObj = existingRawJsonElem.isJsonObject() ? existingRawJsonElem.getAsJsonObject() : null;
 
-        if (newJson.isJsonObject()) {
+        // Merge the new JSON data into the existing raw data
+        if (newRawJson.isJsonObject() && rawJsonObj != null) {
             try {
-                JsonObject newJsonObj = newJson.getAsJsonObject();
-                MergeJsonBuilder.mergeJsonObjects(jsonObj, MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ, newJsonObj);
+                JsonObject newJsonObj = newRawJson.getAsJsonObject();
+                MergeJsonBuilder.mergeJsonObjects(rawJsonObj, MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ, newJsonObj);
             } catch (MergeJsonBuilder.JsonConflictException e) {
                 log.warn("Failed to merge JSON objects because {}", e.getMessage(), e);
             }
         }
+        // Update the existing raw data
         Path rawFilePath = new File(toRawFilePath(path)).toPath();
         Files.createDirectories(rawFilePath.getParent());
-        existingJson = gson().toJson(jsonElem);
-        Files.write(rawFilePath, existingJson.getBytes(UTF_8));
+        Files.write(rawFilePath, gson().toJson(existingRawJsonElem).getBytes(UTF_8));
 
-        if (jsonElem.isJsonObject() && jsonObj != null) {
-            for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
-                scanToNormalizeValues(path, jsonObj, entry.getKey(), entry.getValue());
+        if (existingRawJsonElem != null
+                && existingRawJsonElem.isJsonObject()
+                && rawJsonObj != null) {
+            // Normalize the property values in the JSON data
+            for (Map.Entry<String, JsonElement> entry : rawJsonObj.entrySet()) {
+                scanToNormalizeValues(path, rawJsonObj, entry.getKey(), entry.getValue());
+            }
+            // Merge the raw data into the existing masked (sample) data
+            String existingSampleJson = null;
+            try {
+                Path jsonFilePath = new File(toMaskedFilePath(path)).toPath();
+                existingSampleJson = Files.readAllLines(jsonFilePath, UTF_8).stream().collect(Collectors.joining());
+            } catch (NoSuchFileException e) {
+            }
+            JsonObject mergedJsonObj = rawJsonObj;
+            if (existingSampleJson != null || existingSampleJson.trim().isEmpty()) {
+                JsonElement existingSampleJsonElem = JsonParser.parseString(existingSampleJson);
+                JsonObject sampleJsonObj = existingSampleJsonElem.isJsonObject() ? existingSampleJsonElem.getAsJsonObject() : null;
+                if (sampleJsonObj != null && sampleJsonObj.isJsonObject()) {
+                    mergedJsonObj = sampleJsonObj;
+                    try {
+                        MergeJsonBuilder.mergeJsonObjects(mergedJsonObj, MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ, rawJsonObj);
+                    } catch (MergeJsonBuilder.JsonConflictException e) {
+                        log.warn("Failed to merge JSON objects because {}", e.getMessage(), e);
+                    }
+                }
+            }
+            // Normalize the merged data (especially for cleaning up array data in nested JSON data)
+            for (Map.Entry<String, JsonElement> entry : mergedJsonObj.entrySet()) {
+                scanToNormalizeValues(path, mergedJsonObj, entry.getKey(), entry.getValue());
             }
 
             if (path.startsWith("/scim")) {
-                if (jsonObj.get("Resources") != null) {
-                    for (JsonElement resource : jsonObj.get("Resources").getAsJsonArray()) {
+                // Manually build complete objects for SCIM API response
+                if (mergedJsonObj.get("Resources") != null) {
+                    for (JsonElement resource : mergedJsonObj.get("Resources").getAsJsonArray()) {
                         JsonObject resourceObj = resource.getAsJsonObject();
                         if (resourceObj.get("userName") != null) {
                             initializeSCIMUser(resourceObj);
@@ -116,35 +148,35 @@ public class JsonDataRecorder {
                         }
                     }
                 } else {
-                    if (jsonObj.get("userName") != null) {
-                        initializeSCIMUser(jsonObj);
+                    if (mergedJsonObj.get("userName") != null) {
+                        initializeSCIMUser(mergedJsonObj);
                     }
-                    if (jsonObj.get("members") != null) {
-                        initializeSCIMGroup(jsonObj);
+                    if (mergedJsonObj.get("members") != null) {
+                        initializeSCIMGroup(mergedJsonObj);
                     }
                 }
-                existingJson = gson().toJson(jsonObj);
                 Path filePath = new File(toMaskedFilePath(path).replaceFirst("/\\w{9}.json$", "/000000000.json")).toPath();
                 Files.createDirectories(filePath.getParent());
-                Files.write(filePath, existingJson.getBytes(UTF_8));
+                Files.write(filePath, gson().toJson(mergedJsonObj).getBytes(UTF_8));
 
             } else {
                 if (!path.startsWith("/status")) {
-                    addCommonPropertiesAtTopLevel(jsonObj);
+                    // ok, error etc. do not exist in the Status (Current) API response
+                    addCommonPropertiesAtTopLevel(mergedJsonObj);
                 }
 
-                existingJson = gson().toJson(jsonObj);
+                // Write the masked (sample) JSON data
                 Path filePath = new File(toMaskedFilePath(path)).toPath();
                 Files.createDirectories(filePath.getParent());
-                Files.write(filePath, existingJson.getBytes(UTF_8));
+                Files.write(filePath, gson().toJson(mergedJsonObj).getBytes(UTF_8));
             }
-        } else if (jsonElem.isJsonArray()) {
-            JsonArray jsonArray = jsonElem.getAsJsonArray();
+        } else if (existingRawJsonElem.isJsonArray()) {
+            // The Status History API
+            JsonArray jsonArray = existingRawJsonElem.getAsJsonArray();
             scanToNormalizeValues(path, null, null, jsonArray);
-            existingJson = gson().toJson(jsonArray);
             Path filePath = new File(toMaskedFilePath(path)).toPath();
             Files.createDirectories(filePath.getParent());
-            Files.write(filePath, existingJson.getBytes(UTF_8));
+            Files.write(filePath, gson().toJson(jsonArray).getBytes(UTF_8));
         }
     }
 
@@ -440,7 +472,6 @@ public class JsonDataRecorder {
         if (value.matches("^[\\d]{10}$")) {
             return "1234567890"; // epoch
         }
-        // bmV4dF90czoxNTU2MDYwMTAzMDAwNDAw
         if (value.startsWith("http://") || value.startsWith("https://")) {
             return "https://www.example.com/";
         }
