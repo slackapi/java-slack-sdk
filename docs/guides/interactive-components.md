@@ -56,7 +56,7 @@ Let's say, a message has a simple `"actions"`-typed block that has a button.
 }
 ```
 
-When a user clicks the button, `"block_actions"`-typed event with the `action_id` the element with the value `"button-action"` has will come to your Bolt app.
+When a user clicks the button, `"block_actions"`-typed request with the `action_id` the element with the value `"button-action"` has will come to your Bolt app.
 
 ```java
 // when a user clicks a button in the actions block

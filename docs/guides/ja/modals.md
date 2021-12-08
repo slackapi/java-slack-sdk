@@ -43,7 +43,7 @@ lang: ja
 
 #### `"view_closed"` リクエスト (`notify_on_close` が `true` のときのみ)
 
-ユーザーがモーダルの Cancel ボタンや x ボタンを押したとき、[`"view_closed"` という type のペイロード](https://api.slack.com/reference/interaction-payloads/views#view_closed) を受信する場合があります。これらのボタンは blocks ではなく、標準で配置されているものです。このイベントを受信するためには [views.open](https://api.slack.com/methods/views.open) や [views.push](https://api.slack.com/methods/views.push) の API メソッドでモーダルを生成したときに `notify_on_close` を `true` に設定しておく必要があります。このリクエストを処理するためにやらなければならないことは以下の通りです。
+ユーザーがモーダルの Cancel ボタンや x ボタンを押したとき、[`"view_closed"` という type のペイロード](https://api.slack.com/reference/interaction-payloads/views#view_closed) を受信する場合があります。これらのボタンは blocks ではなく、標準で配置されているものです。このリクエストを受信するためには [views.open](https://api.slack.com/methods/views.open) や [views.push](https://api.slack.com/methods/views.push) の API メソッドでモーダルを生成したときに `notify_on_close` を `true` に設定しておく必要があります。このリクエストを処理するためにやらなければならないことは以下の通りです。
 
 1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
 1. リクエストボディをパースして `type` が `"view_closed"` かつ `callback_id` が処理対象かを確認

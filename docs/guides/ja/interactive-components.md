@@ -56,7 +56,7 @@ Bolt は Slack アプリに必要な共通処理の多くを巻き取ります�
 }
 ```
 
-ユーザがそのボタンをクリックすると `"block_actions"` タイプのイベントが `"button-action"` という `action_id` とともに Bolt アプリに送信されます。
+ユーザがそのボタンをクリックすると `"block_actions"` タイプのリクエストが `"button-action"` という `action_id` とともに Bolt アプリに送信されます。
 
 ```java
 // ユーザが actions ブロック内のボタンをクリックしたとき
@@ -98,7 +98,7 @@ app.blockAction("button-action") { req, ctx ->
 }
 ```
 
-このようなタイプのセレクトメニューでは、Bolt アプリは `"topics-action"` という `action_id` で `block_suggestion`、`block_actions` タイプのイベントのハンドリングをすることが必要です。
+このようなタイプのセレクトメニューでは、Bolt アプリは `"topics-action"` という `action_id` で `block_suggestion`、`block_actions` タイプのリクエストのハンドリングをすることが必要です。
 
 ```java
 import com.slack.api.app_backend.interactive_components.response.Option;
