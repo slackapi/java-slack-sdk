@@ -102,7 +102,7 @@ app.step(step);
 ---
 ## Saving step configurations
 
-After the configuration modal is opened, your app will listen for the `view_submission` event. The `save` callback in your `WorkflowStep` configuration will be run when this event is received.
+After the configuration modal is opened, your app will listen for the `view_submission` request. The `save` callback in your `WorkflowStep` configuration will be run when this request is received.
 
 Within the `save` callback, the `update()` method can be used to save the builder's step configuration by passing in the following arguments:
 
