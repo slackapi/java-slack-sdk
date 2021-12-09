@@ -846,6 +846,54 @@
           "body": "We\u0027re investigating reports that Slack sign up/join redirect may not be working for some users. A temporary workaround is to refresh either of those pages and on the second time, it will load. \r\n\r\nWe\u0027re investigating now and will be back with more information as soon as it\u0027s available, or in 30 minutes."
         }
       ]
+    },
+    {
+      "id": 1042,
+      "date_created": "2021-12-08T17:46:27-08:00",
+      "date_updated": "2021-12-08T18:14:59-08:00",
+      "title": "Some customers in Korea aren\u0027t receiving 2FA codes correctly",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2021-12/568c99194714c678",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2021-12-08T18:14:59-08:00",
+          "body": "We are continuing to investigate issues with receiving 2FA codes when the language is set to Korean. Customers using English should be receiving 2FA codes correctly. Our apologies for the disruption."
+        },
+        {
+          "date_created": "2021-12-08T17:46:27-08:00",
+          "body": "Some customers in Korea aren\u0027t receiving 2FA codes set to Korean, or they may be receiving 2FA codes with garbled text.\r\n\r\nWe\u0027re investigating now and will be back with more information as soon as it\u0027s available, or in 30 minutes."
+        }
+      ]
+    },
+    {
+      "id": 1041,
+      "date_created": "2021-12-08T08:11:30-08:00",
+      "date_updated": "2021-12-08T10:28:23-08:00",
+      "title": "Some users are appearing in a huddle after the huddle has ended",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2021-12/f5acbbef4d8a57ac",
+      "services": [
+        "Calls"
+      ],
+      "notes": [
+        {
+          "date_created": "2021-12-08T10:28:23-08:00",
+          "body": "We are still investigating the huddles issue that\u0027s causing the huddles status to remain as well as the inability to join new huddles."
+        },
+        {
+          "date_created": "2021-12-08T09:21:36-08:00",
+          "body": "Some users may be unable to initiate new huddles in addition to appearing on previous huddles after they have left. We\u0027re investigating this issue and we thank you for your continued patience."
+        },
+        {
+          "date_created": "2021-12-08T08:11:30-08:00",
+          "body": "Some users may appear to still be on a huddle once the huddle has ended. We’re investigating the issue and will be back with an update shortly. Thank you for your patience."
+        }
+      ]
     }
   ]
 }

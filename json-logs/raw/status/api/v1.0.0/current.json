@@ -562,6 +562,14 @@
     {
       "date_created": "2021-11-18T15:41:18-08:00",
       "body": "We\u0027re investigating reports that Slack sign up/join redirect may not be working for some users. A temporary workaround is to refresh either of those pages and on the second time, it will load. \r\n\r\nWe\u0027re investigating now and will be back with more information as soon as it\u0027s available, or in 30 minutes."
+    },
+    {
+      "date_created": "2021-12-08T18:14:59-08:00",
+      "body": "We are continuing to investigate issues with receiving 2FA codes when the language is set to Korean. Customers using English should be receiving 2FA codes correctly. Our apologies for the disruption."
+    },
+    {
+      "date_created": "2021-12-08T17:46:27-08:00",
+      "body": "Some customers in Korea aren\u0027t receiving 2FA codes set to Korean, or they may be receiving 2FA codes with garbled text.\r\n\r\nWe\u0027re investigating now and will be back with more information as soon as it\u0027s available, or in 30 minutes."
     }
   ]
 }
