@@ -15,5 +15,8 @@ public class GroupDeletedEvent implements Event {
 
     private final String type = TYPE_NAME;
     private String channel;
+    private Integer dateDeleted;
+    private String actorId;
+    private String eventTs;
 
 }
