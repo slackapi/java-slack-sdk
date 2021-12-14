@@ -1,21 +1,27 @@
 {
   "token": "",
-  "enterprise_id": "",
   "team_id": "",
+  "enterprise_id": "",
   "api_app_id": "",
-  "type": "",
-  "authed_users": [
-    ""
-  ],
-  "authed_teams": [
-    ""
-  ],
-  "is_ext_shared_channel": false,
-  "event_id": "",
-  "event_time": 123,
-  "event_context": "",
   "event": {
     "type": "group_deleted",
-    "channel": ""
-  }
+    "channel": "",
+    "date_deleted": 12345,
+    "actor_id": "",
+    "event_ts": "0000000000.000000"
+  },
+  "type": "event_callback",
+  "event_id": "",
+  "event_time": 12345,
+  "authorizations": [
+    {
+      "enterprise_id": "",
+      "team_id": "",
+      "user_id": "",
+      "is_bot": false,
+      "is_enterprise_install": false
+    }
+  ],
+  "is_ext_shared_channel": false,
+  "event_context": ""
 }

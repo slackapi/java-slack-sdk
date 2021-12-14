@@ -928,6 +928,44 @@
           "body": "Some users may appear to still be on a huddle once the huddle has ended. We’re investigating the issue and will be back with an update shortly. Thank you for your patience."
         }
       ]
+    },
+    {
+      "id": 1041,
+      "date_created": "2021-12-08T08:11:30-08:00",
+      "date_updated": "2021-12-10T15:36:37-08:00",
+      "title": "Less than 1% of users are appearing in a huddle after the huddle has ended",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2021-12/f5acbbef4d8a57ac",
+      "services": [
+        "Calls"
+      ],
+      "notes": [
+        {
+          "date_created": "2021-12-10T15:36:37-08:00",
+          "body": "We’re continuing to work towards resolving this issue for the very small number of users who are still impacted. We appreciate your continued patience, and will let you know as soon as we have another update to share."
+        },
+        {
+          "date_created": "2021-12-09T08:01:03-08:00",
+          "body": "While we have deployed a fix, some customers may continue to appear in a huddle once a huddle has ended.  We are continuing to investigate this issue and will keep you updated."
+        },
+        {
+          "date_created": "2021-12-08T22:28:54-08:00",
+          "body": "We\u0027ve deployed a fix, and customers should no longer be experiencing this issue. If you continue to have any trouble, please let us know via feedback@slack.com"
+        },
+        {
+          "date_created": "2021-12-08T10:28:23-08:00",
+          "body": "We are still investigating the huddles issue that\u0027s causing the huddles status to remain as well as the inability to join new huddles."
+        },
+        {
+          "date_created": "2021-12-08T09:21:36-08:00",
+          "body": "Some users may be unable to initiate new huddles in addition to appearing on previous huddles after they have left. We\u0027re investigating this issue and we thank you for your continued patience."
+        },
+        {
+          "date_created": "2021-12-08T08:11:30-08:00",
+          "body": "Some users may appear to still be on a huddle once the huddle has ended. We’re investigating the issue and will be back with an update shortly. Thank you for your patience."
+        }
+      ]
     }
   ]
 }
