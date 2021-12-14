@@ -1,4 +1,7 @@
 {
   "type": "group_deleted",
-  "channel": ""
+  "channel": "",
+  "date_deleted": 123,
+  "actor_id": "",
+  "event_ts": ""
 }
