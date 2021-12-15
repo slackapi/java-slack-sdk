@@ -167,7 +167,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     public void updateCurrentQueueSize(String executorName, String teamId, String methodName) {
         try (Jedis jedis = jedis()) {
             String key = toWaitingMessageIdsKey(jedis, executorName, teamId, methodName);
-            Integer totalSize = jedis.llen(key).intValue();
+            Integer totalSize = Math.toIntExact(jedis.llen(key));
             RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
             if (queue != null) {
                 totalSize += queue.getCurrentActiveQueueSize(methodName);
@@ -194,7 +194,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
                     jedis.lrem(key, 1, str);
                 }
             }
-            setNumberOfLastMinuteRequests(executorName, teamId, methodName, jedis.llen(key).intValue());
+            setNumberOfLastMinuteRequests(executorName, teamId, methodName, Math.toIntExact(jedis.llen(key)));
         }
     }
 
@@ -202,7 +202,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     public Integer getNumberOfLastMinuteRequests(String executorName, String teamId, String methodName) {
         try (Jedis jedis = jedis()) {
             String key = toLastMinuteRequestsKey(jedis, executorName, teamId, methodName);
-            return jedis.llen(key).intValue();
+            return Math.toIntExact(jedis.llen(key));
         }
     }
 
@@ -235,7 +235,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
         try (Jedis jedis = jedis()) {
             String key = toLastMinuteRequestsKey(jedis, executorName, teamId, methodName);
             jedis.rpush(key, String.valueOf(currentMillis));
-            setNumberOfLastMinuteRequests(executorName, teamId, methodName, jedis.llen(key).intValue());
+            setNumberOfLastMinuteRequests(executorName, teamId, methodName, Math.toIntExact(jedis.llen(key)));
         }
     }
 
