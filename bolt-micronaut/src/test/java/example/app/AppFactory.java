@@ -6,8 +6,8 @@ import com.google.gson.JsonObject;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import io.micronaut.context.annotation.Factory;
+import jakarta.inject.Singleton;
 
-import javax.inject.Singleton;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
