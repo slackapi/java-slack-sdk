@@ -13,6 +13,7 @@ import com.slack.api.methods.request.files.FilesSharedPublicURLRequest;
 import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
+import com.slack.api.methods.response.conversations.ConversationsRepliesResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.users.UsersConversationsResponse;
 import com.slack.api.model.Conversation;
@@ -560,6 +561,12 @@ public class files_Test {
         com.slack.api.model.File.ShareDetail share2 = upload2
                 .getFile().getShares().getPublicChannels().get(channelId).get(0);
         assertThat(share2.getThreadTs(), is(threadTs));
+
+        ConversationsRepliesResponse replies = slackMethods.conversationsReplies(r -> r
+                .channel(message.getChannel())
+                .ts(message.getTs()));
+        assertThat(replies.getError(), is(nullValue()));
+        assertThat(replies.getMessages().get(1).getFile(), is(nullValue()));
     }
 
     @Test

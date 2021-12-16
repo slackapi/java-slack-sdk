@@ -38,6 +38,7 @@ public class StarRemovedEvent implements Event {
     public static class Message {
         private String clientMsgId;
         private String type;
+        private String appId;
         private String team;
         private String user;
         private String botId;

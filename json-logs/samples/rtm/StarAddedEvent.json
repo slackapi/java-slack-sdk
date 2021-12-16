@@ -9,6 +9,7 @@
     "message": {
       "client_msg_id": "",
       "type": "",
+      "app_id": "",
       "team": "",
       "user": "",
       "bot_id": "",
