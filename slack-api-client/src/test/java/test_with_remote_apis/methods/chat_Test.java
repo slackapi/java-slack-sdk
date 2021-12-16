@@ -878,9 +878,13 @@ public class chat_Test {
             ConversationsHistoryResponse history = slack.methods(botToken).conversationsHistory(r -> r
                     .channel(randomChannelId).limit(1));
             assertThat(history.getError(), is(nullValue()));
-            Attachment.VideoHtml videoHtml = history.getMessages().get(0).getAttachments().get(0).getVideoHtml();
-            assertThat(videoHtml.getHtml(), is("<video muted loop controls autoplay preload=\"auto\" playsinline height=\"540\" width=\"960\" poster=\"https://i.imgur.com/brgYmPXh.jpg\" src=\"https://i.imgur.com/brgYmPX.mp4\"></video>"));
-            assertThat(videoHtml.getSource(), is(nullValue()));
+            List<Attachment> attachments = history.getMessages().get(0).getAttachments();
+            // the attachments can be null
+            if (attachments != null && attachments.get(0) != null) {
+                Attachment.VideoHtml videoHtml = attachments.get(0).getVideoHtml();
+                assertThat(videoHtml.getHtml(), is("<video muted loop controls autoplay preload=\"auto\" playsinline height=\"540\" width=\"960\" poster=\"https://i.imgur.com/brgYmPXh.jpg\" src=\"https://i.imgur.com/brgYmPX.mp4\"></video>"));
+                assertThat(videoHtml.getSource(), is(nullValue()));
+            }
         } finally {
             if (ts != null) {
                 final String _ts = ts;
