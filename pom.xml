@@ -5,7 +5,7 @@
 
     <groupId>com.slack.api</groupId>
     <artifactId>slack-sdk-parent</artifactId>
-    <version>1.15.1-SNAPSHOT</version>
+    <version>1.16.0</version>
     <packaging>pom</packaging>
 
     <name>Java Slack SDK Project</name>
@@ -253,6 +253,7 @@
                         <configuration>
                             <serverId>sonatype-nexus-staging</serverId>
                             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <stagingProgressTimeoutMinutes>20</stagingProgressTimeoutMinutes>
                         </configuration>
                     </plugin>
                     <plugin>
