@@ -43,7 +43,7 @@ public class EventRequest extends Request<EventContext> {
 
         // To properly support events generated in a shared channel, we should prioritize
         // enterprise_id / team_id in authorizations over the ones at the top-level.
-        // Th reason why we should do that is that the top-level enterprise_id / team_id
+        // The reason why we should do that is that the top-level enterprise_id / team_id
         // can be the one for a workspace that originated the shared channel,
         // not the ID of the workspace where this app was installed.
         //

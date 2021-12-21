@@ -62,25 +62,25 @@ public abstract class Context {
     protected String botUserId;
 
     /**
-     * An install user's user_id associated with this request.
+     * The user's ID associated with this request.
      */
     protected String requestUserId;
     /**
-     * An install user's access token associated with this request.
+     * The user token that is associated with the request user ID.
      */
     protected String requestUserToken;
 
     protected final Map<String, String> additionalValues = new HashMap<>();
 
     public MethodsClient client() {
-        // We used to pass teamId only for org-wide installations but we changed this behavior since version 1.10.
+        // We used to pass teamId only for org-wide installations, but we changed this behavior since version 1.10.
         // The reasons are 1) having teamId in the MethodsClient can reduce TeamIdCache's auth.test API calls
         // 2) OpenID Connect + token rotation allows only refresh token to perform auth.test API calls.
         return getSlack().methods(botToken, teamId);
     }
 
     public AsyncMethodsClient asyncClient() {
-        // We used to pass teamId only for org-wide installations but we changed this behavior since version 1.10.
+        // We used to pass teamId only for org-wide installations, but we changed this behavior since version 1.10.
         // The reasons are 1) having teamId in the MethodsClient can reduce TeamIdCache's auth.test API calls
         // 2) OpenID Connect + token rotation allows only refresh token to perform auth.test API calls.
         return getSlack().methodsAsync(botToken, teamId);
