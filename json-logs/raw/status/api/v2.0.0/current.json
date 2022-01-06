@@ -966,6 +966,28 @@
           "body": "Some users may appear to still be on a huddle once the huddle has ended. We’re investigating the issue and will be back with an update shortly. Thank you for your patience."
         }
       ]
+    },
+    {
+      "id": 1050,
+      "date_created": "2022-01-04T16:02:09-08:00",
+      "date_updated": "2022-01-05T17:29:38-08:00",
+      "title": "Recently initiated free trials are not functioning correctly for some workspaces",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-01/ff85ab358eeed876",
+      "services": [
+        "Workspace/Org Administration"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-01-05T17:29:38-08:00",
+          "body": "Most users should now be seeing signs of improvement, but we\u0027re still working towards a full resolution. We\u0027ll be back with another update as soon as the issue is resolved. Thanks for bearing with us."
+        },
+        {
+          "date_created": "2022-01-04T16:02:09-08:00",
+          "body": "Some teams that have recently initiated a free trial are experiencing delays in accessing the full suite of benefits included in a trial of our paid plans. We are working on getting this resolved as soon as possible."
+        }
+      ]
     }
   ]
 }
