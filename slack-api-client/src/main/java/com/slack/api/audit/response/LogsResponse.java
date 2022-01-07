@@ -223,6 +223,8 @@ public class LogsResponse implements AuditApiResponse {
         private MessageRetentionPolicy newRetentionPolicy; // channel_retention_changed
         private ConversationPref whoCanPost; // channel_posting_permissions_updated
         private ConversationPref canThread; // channel_posting_permissions_updated
+        @SerializedName("is_external_limited")
+        private Boolean externalLimited; // external_shared_channel_invite_accepted
     }
 
     @Data
