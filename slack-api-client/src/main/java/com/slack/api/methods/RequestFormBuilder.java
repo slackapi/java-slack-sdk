@@ -229,6 +229,14 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminAppsRequestsCancelRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("request_id", req.getRequestId(), form);
+        setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminAppsRequestsListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("cursor", req.getCursor(), form);

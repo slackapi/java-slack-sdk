@@ -298,6 +298,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminAppsRequestsCancelResponse> adminAppsRequestsCancel(AdminAppsRequestsCancelRequest req) {
+        return executor.execute(ADMIN_APPS_REQUESTS_CANCEL, toMap(req), () -> methods.adminAppsRequestsCancel(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsRequestsCancelResponse> adminAppsRequestsCancel(RequestConfigurator<AdminAppsRequestsCancelRequest.AdminAppsRequestsCancelRequestBuilder> req) {
+        return adminAppsRequestsCancel(req.configure(AdminAppsRequestsCancelRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(AdminAppsRequestsListRequest req) {
         return executor.execute(ADMIN_APPS_REQUESTS_LIST, toMap(req), () -> methods.adminAppsRequestsList(req));
     }

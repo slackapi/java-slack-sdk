@@ -3,6 +3,7 @@
   "admin.apps.approve": "Tier2",
   "admin.apps.approved.list": "Tier2",
   "admin.apps.clearResolution": "Tier2",
+  "admin.apps.requests.cancel": "Tier2",
   "admin.apps.requests.list": "Tier2",
   "admin.apps.restrict": "Tier2",
   "admin.apps.restricted.list": "Tier2",

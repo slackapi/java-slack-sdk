@@ -328,6 +328,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminAppsRequestsCancelResponse adminAppsRequestsCancel(AdminAppsRequestsCancelRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_APPS_REQUESTS_CANCEL, getToken(req), AdminAppsRequestsCancelResponse.class);
+    }
+
+    @Override
+    public AdminAppsRequestsCancelResponse adminAppsRequestsCancel(RequestConfigurator<AdminAppsRequestsCancelRequest.AdminAppsRequestsCancelRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAppsRequestsCancel(req.configure(AdminAppsRequestsCancelRequest.builder()).build());
+    }
+
+    @Override
     public AdminAppsRequestsListResponse adminAppsRequestsList(AdminAppsRequestsListRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_APPS_REQUESTS_LIST, getToken(req), AdminAppsRequestsListResponse.class);
     }
