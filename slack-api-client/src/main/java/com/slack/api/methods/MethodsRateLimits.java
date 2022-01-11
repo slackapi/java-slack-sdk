@@ -66,6 +66,7 @@ public class MethodsRateLimits {
                 ADMIN_APPS_RESTRICT,
                 ADMIN_APPS_APPROVED_LIST,
                 ADMIN_APPS_RESTRICTED_LIST,
+                ADMIN_APPS_REQUESTS_CANCEL,
                 ADMIN_APPS_REQUESTS_LIST,
 
                 ADMIN_BARRIERS_CREATE,

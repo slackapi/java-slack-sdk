@@ -79,6 +79,8 @@ public class AdminApiTest {
                 .isOk(), is(true));
         assertThat(methods.adminAppsRequestsList(r -> r.teamId("T123"))
                 .isOk(), is(true));
+        assertThat(methods.adminAppsRequestsCancel(r -> r.requestId("XXX").enterpriseId("E123").teamId("T123"))
+                .isOk(), is(true));
         assertThat(methods.adminAppsRestrictedList(r -> r.teamId("T123"))
                 .isOk(), is(true));
         assertThat(methods.adminAppsClearResolution(r -> r.appId("A123").teamId("T123"))

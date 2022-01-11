@@ -70,6 +70,10 @@ public class FieldValidationTest {
             verifyIfAllGettersReturnNonNullRecursively(obj.getAppRequests());
         }
         {
+            AdminAppsRequestsCancelResponse obj = parse(prefix + "requests.cancel", AdminAppsRequestsCancelResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
             AdminAppsRestrictResponse obj = parse(prefix + "restrict", AdminAppsRestrictResponse.class);
             verifyIfAllGettersReturnNonNull(obj);
         }

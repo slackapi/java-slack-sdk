@@ -304,6 +304,10 @@ public interface MethodsClient {
     // admin.apps.requests
     // ------------------------------
 
+    AdminAppsRequestsCancelResponse adminAppsRequestsCancel(AdminAppsRequestsCancelRequest req) throws IOException, SlackApiException;
+
+    AdminAppsRequestsCancelResponse adminAppsRequestsCancel(RequestConfigurator<AdminAppsRequestsCancelRequest.AdminAppsRequestsCancelRequestBuilder> req) throws IOException, SlackApiException;
+
     AdminAppsRequestsListResponse adminAppsRequestsList(AdminAppsRequestsListRequest req) throws IOException, SlackApiException;
 
     AdminAppsRequestsListResponse adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req) throws IOException, SlackApiException;

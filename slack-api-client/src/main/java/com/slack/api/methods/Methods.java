@@ -23,6 +23,7 @@ public class Methods {
     // ------------------------------
 
     public static final String ADMIN_APPS_REQUESTS_LIST = "admin.apps.requests.list";
+    public static final String ADMIN_APPS_REQUESTS_CANCEL = "admin.apps.requests.cancel";
 
     // ------------------------------
     // admin.auth.policy

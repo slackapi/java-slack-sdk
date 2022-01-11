@@ -231,6 +231,10 @@ public interface AsyncMethodsClient {
     // admin.apps.requests
     // ------------------------------
 
+    CompletableFuture<AdminAppsRequestsCancelResponse> adminAppsRequestsCancel(AdminAppsRequestsCancelRequest req);
+
+    CompletableFuture<AdminAppsRequestsCancelResponse> adminAppsRequestsCancel(RequestConfigurator<AdminAppsRequestsCancelRequest.AdminAppsRequestsCancelRequestBuilder> req);
+
     CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(AdminAppsRequestsListRequest req);
 
     CompletableFuture<AdminAppsRequestsListResponse> adminAppsRequestsList(RequestConfigurator<AdminAppsRequestsListRequest.AdminAppsRequestsListRequestBuilder> req);
