@@ -117,8 +117,11 @@ public class JsonDataRecorder {
                 existingSampleJson = Files.readAllLines(jsonFilePath, UTF_8).stream().collect(Collectors.joining());
             } catch (NoSuchFileException e) {
             }
+            if (existingSampleJson == null) {
+                existingSampleJson = "{}";
+            }
             JsonObject mergedJsonObj = rawJsonObj;
-            if (existingSampleJson != null || existingSampleJson.trim().isEmpty()) {
+            if (existingSampleJson.trim().isEmpty()) {
                 JsonElement existingSampleJsonElem = JsonParser.parseString(existingSampleJson);
                 JsonObject sampleJsonObj = existingSampleJsonElem.isJsonObject() ? existingSampleJsonElem.getAsJsonObject() : null;
                 if (sampleJsonObj != null && sampleJsonObj.isJsonObject()) {
