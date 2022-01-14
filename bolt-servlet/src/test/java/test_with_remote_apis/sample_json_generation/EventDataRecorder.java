@@ -96,6 +96,11 @@ public class EventDataRecorder {
             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
                 scanToNormalizeValues(jsonObj, entry.getKey(), entry.getValue());
             }
+            JsonElement eventContext = jsonElem.getAsJsonObject().get("event_context");
+            if (eventContext == null) {
+                // event_context should always exist. But it's not always true in real data.
+                jsonElem.getAsJsonObject().add("event_context", new JsonPrimitive(""));
+            }
             existingJson = gson().toJson(jsonObj);
             Path filePath = new File(toMaskedFilePath(payloadClassName)).toPath();
             Files.createDirectories(filePath.getParent());

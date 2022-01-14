@@ -4,13 +4,13 @@
   "enterprise_id": "",
   "api_app_id": "",
   "event": {
-    "type": "file_unshared",
-    "channel_id": "",
     "file_id": "",
     "user_id": "",
     "file": {
       "id": ""
     },
+    "channel_id": "",
+    "type": "file_unshared",
     "event_ts": "0000000000.000000"
   },
   "type": "event_callback",

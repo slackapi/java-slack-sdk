@@ -1,22 +1,29 @@
 package test_with_remote_apis.sample_json_generation;
 
+import com.slack.api.model.block.composition.OptionGroupObject;
+import com.slack.api.model.block.composition.OptionObject;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.slack.api.model.block.composition.BlockCompositions.asOptions;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 
 @Slf4j
 public class ObjectInitializer {
-
-    private static final SecureRandom RANDOM = new SecureRandom();
 
     private ObjectInitializer() {
     }
 
     public static <T> T initProperties(T obj) {
+        return initProperties(obj, false);
+    }
+
+    public static <T> T initProperties(T obj, boolean attachments) {
         Field currentField = null;
         try {
             for (Field field : obj.getClass().getDeclaredFields()) {
@@ -29,24 +36,8 @@ public class ObjectInitializer {
                 field.setAccessible(true);
 
                 Class<?> type = field.getType();
-                if (field.getName().startsWith("initial")) {
-                    // set as null
-                } else if (field.getName().startsWith("image")) {
-                    // set as null
-                } else if (field.getName().equals("fallback")) {
-                    // set as null
-                } else if (field.getName().equals("url")) {
-                    field.set(obj, "https://www.example.com/test-url");
-                } else if (field.getName().equals("actionId") && type.equals(String.class)) {
-                    field.set(obj, "action-" + System.currentTimeMillis() + "-" + RANDOM.nextInt(1024));
-                } else if (field.getName().equals("blockId") && type.equals(String.class)) {
-                    field.set(obj, "block-" + System.currentTimeMillis() + "-" + RANDOM.nextInt(1024));
-                } else if (field.getName().equals("style") && type.equals(String.class)) {
-                    field.set(obj, "primary");
-                } else if (field.getName().equals("initialDate") && type.equals(String.class)) {
-                    field.set(obj, "2020-03-11");
-                } else if (type.equals(String.class)) {
-                    field.set(obj, "str");
+                if (type.equals(String.class)) {
+                    field.set(obj, "");
                 } else if (type.equals(Integer.class)) {
                     field.set(obj, 123);
                 } else if (type.equals(Long.class)) {
@@ -57,12 +48,38 @@ public class ObjectInitializer {
                     field.set(obj, false);
                 } else if (type.equals(List.class)) {
                     List listObj = (List) field.get(obj);
-                    if (listObj != null) {
+                    if (listObj != null && listObj.size() > 0) {
                         for (Object o : listObj) {
                             initProperties(o);
                         }
                     } else {
-                        log.info("null List object detected {} in {}", field.getName(), obj.getClass().getSimpleName());
+                        if (listObj == null) {
+                            listObj = new ArrayList();
+                            field.set(obj, listObj);
+                        }
+                        if (attachments) {
+                            log.info("null List object detected {} in {}", field.getName(), obj.getClass().getSimpleName());
+                        } else {
+                            if (field.getName().equals("options")) {
+                                listObj.add(initProperties(OptionObject.builder()
+                                        .text(plainText(""))
+                                        .description(plainText(""))
+                                        .build()
+                                ));
+                            } else if (field.getName().equals("optionGroups")) {
+                                listObj.add(initProperties(OptionGroupObject.builder()
+                                        .label(plainText(""))
+                                        .options(asOptions(initProperties(OptionObject.builder()
+                                                .text(plainText(""))
+                                                .description(plainText(""))
+                                                .build()
+                                        )))
+                                        .build()
+                                ));
+                            } else {
+                                log.info("null List object detected {} in {}", field.getName(), obj.getClass().getSimpleName());
+                            }
+                        }
                     }
                 } else {
                     if (field.get(obj) != null) {

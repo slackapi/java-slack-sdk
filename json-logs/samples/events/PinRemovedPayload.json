@@ -18,6 +18,7 @@
         "text": "",
         "user": "",
         "ts": "0000000000.000000",
+        "app_id": "",
         "team": "",
         "bot_profile": {
           "id": "",
@@ -32,8 +33,7 @@
           },
           "team_id": ""
         },
-        "permalink": "https://www.example.com/",
-        "app_id": ""
+        "permalink": "https://www.example.com/"
       }
     },
     "item_user": "",
