@@ -5,7 +5,9 @@
   "needed": "",
   "provided": "",
   "response_metadata": {
-    "next_cursor": ""
+    "next_cursor": "",
+    "messages": [],
+    "warnings": []
   },
   "entries": [
     {

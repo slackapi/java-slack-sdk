@@ -42,8 +42,10 @@
         "name": "",
         "domain": ""
       },
+      "scopes": [],
       "previous_resolution": {
-        "status": ""
+        "status": "",
+        "scopes": []
       },
       "is_user_app_collaborator": false,
       "message": "",

@@ -54,7 +54,8 @@
       "is_open": false,
       "priority": 12345,
       "user": "U00000000",
-      "is_user_deleted": false
+      "is_user_deleted": false,
+      "parent_conversation": "G00000000"
     }
   ],
   "response_metadata": {

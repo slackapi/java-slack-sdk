@@ -25,17 +25,167 @@
     "blocks": [
       {
         "type": "",
-        "elements": [
-          {
+        "block_id": "",
+        "text": {
+          "type": "",
+          "text": "",
+          "verbatim": false,
+          "emoji": false
+        },
+        "accessory": {
+          "type": "",
+          "image_url": "https://www.example.com/",
+          "alt_text": "",
+          "text": {
             "type": "",
+            "text": "",
+            "emoji": false
+          },
+          "action_id": "",
+          "url": "",
+          "value": "",
+          "style": "",
+          "confirm": {
+            "title": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
             "text": {
               "type": "",
               "text": "",
               "emoji": false
             },
-            "action_id": "",
-            "url": "",
+            "confirm": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "deny": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "style": ""
+          },
+          "options": [
+            {
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "value": "",
+              "description": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
+            }
+          ],
+          "initial_options": [
+            {
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "value": "",
+              "description": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
+            }
+          ],
+          "focus_on_load": false,
+          "initial_option": {
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
             "value": "",
+            "description": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "url": ""
+          },
+          "placeholder": {
+            "type": "",
+            "text": "",
+            "emoji": false
+          },
+          "initial_channel": "",
+          "response_url_enabled": false,
+          "initial_channels": [
+            ""
+          ],
+          "max_selected_items": 12345,
+          "initial_conversation": "",
+          "default_to_current_conversation": false,
+          "filter": {
+            "include": [
+              ""
+            ],
+            "exclude_external_shared_channels": false,
+            "exclude_bot_users": false
+          },
+          "initial_conversations": [
+            ""
+          ],
+          "initial_date": "",
+          "initial_time": "",
+          "min_query_length": 12345,
+          "fallback": "",
+          "image_width": 12345,
+          "image_height": 12345,
+          "image_bytes": 12345,
+          "option_groups": [
+            {
+              "label": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "options": [
+                {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": "",
+                  "description": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "url": ""
+                }
+              ]
+            }
+          ],
+          "initial_user": "",
+          "initial_users": [
+            ""
+          ]
+        },
+        "elements": [
+          {
+            "type": "",
+            "action_id": "",
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "value": "",
+            "url": "",
             "style": "",
             "confirm": {
               "title": {
@@ -60,22 +210,39 @@
               },
               "style": ""
             },
-            "placeholder": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "initial_channel": "",
-            "response_url_enabled": false,
+            "options": [
+              {
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "initial_options": [
+              {
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
             "focus_on_load": false,
-            "initial_conversation": "",
-            "default_to_current_conversation": false,
-            "filter": {
-              "exclude_external_shared_channels": false,
-              "exclude_bot_users": false
-            },
-            "initial_date": "",
-            "initial_time": "",
             "initial_option": {
               "text": {
                 "type": "",
@@ -90,6 +257,31 @@
               },
               "url": ""
             },
+            "placeholder": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "initial_channel": "",
+            "response_url_enabled": false,
+            "initial_channels": [
+              ""
+            ],
+            "max_selected_items": 12345,
+            "initial_conversation": "",
+            "default_to_current_conversation": false,
+            "filter": {
+              "include": [
+                ""
+              ],
+              "exclude_external_shared_channels": false,
+              "exclude_bot_users": false
+            },
+            "initial_conversations": [
+              ""
+            ],
+            "initial_date": "",
+            "initial_time": "",
             "min_query_length": 12345,
             "image_url": "",
             "alt_text": "",
@@ -97,7 +289,35 @@
             "image_width": 12345,
             "image_height": 12345,
             "image_bytes": 12345,
-            "initial_user": ""
+            "option_groups": [
+              {
+                "label": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "options": [
+                  {
+                    "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "value": "",
+                    "description": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "url": ""
+                  }
+                ]
+              }
+            ],
+            "initial_user": "",
+            "initial_users": [
+              ""
+            ]
           },
           {
             "type": "",
@@ -109,7 +329,6 @@
             "image_bytes": 12345
           }
         ],
-        "block_id": "",
         "fallback": "",
         "image_url": "",
         "image_width": 12345,
@@ -121,11 +340,6 @@
           "text": "",
           "emoji": false
         },
-        "text": {
-          "type": "",
-          "text": "",
-          "emoji": false
-        },
         "fields": [
           {
             "type": "",
@@ -133,16 +347,7 @@
             "emoji": false,
             "verbatim": false
           }
-        ],
-        "accessory": {
-          "type": "",
-          "image_url": "",
-          "alt_text": "",
-          "fallback": "",
-          "image_width": 12345,
-          "image_height": 12345,
-          "image_bytes": 12345
-        }
+        ]
       }
     ],
     "edited": {
@@ -244,7 +449,102 @@
         "is_public": false,
         "public_url_shared": false,
         "display_as_bot": false,
-        "shares": {},
+        "channels": [
+          ""
+        ],
+        "groups": [
+          ""
+        ],
+        "ims": [
+          ""
+        ],
+        "shares": {
+          "public": {
+            "C00000000": [
+              {
+                "share_user_id": "",
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "",
+                "thread_ts": "",
+                "latest_reply": "",
+                "channel_name": "",
+                "team_id": ""
+              }
+            ],
+            "C00000001": [
+              {
+                "share_user_id": "",
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "",
+                "thread_ts": "",
+                "latest_reply": "",
+                "channel_name": "",
+                "team_id": ""
+              }
+            ]
+          },
+          "private": {
+            "C00000000": [
+              {
+                "share_user_id": "",
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "",
+                "thread_ts": "",
+                "latest_reply": "",
+                "channel_name": "",
+                "team_id": ""
+              }
+            ],
+            "C00000001": [
+              {
+                "share_user_id": "",
+                "reply_users": [
+                  ""
+                ],
+                "reply_users_count": 12345,
+                "reply_count": 12345,
+                "ts": "",
+                "thread_ts": "",
+                "latest_reply": "",
+                "channel_name": "",
+                "team_id": ""
+              }
+            ]
+          }
+        },
+        "to": [
+          {
+            "address": "",
+            "name": "",
+            "original": ""
+          }
+        ],
+        "from": [
+          {
+            "address": "",
+            "name": "",
+            "original": ""
+          }
+        ],
+        "cc": [
+          {
+            "address": "",
+            "name": "",
+            "original": ""
+          }
+        ],
         "channel_actions_ts": "",
         "channel_actions_count": 12345,
         "headers": {
@@ -266,7 +566,347 @@
         },
         "num_stars": 12345,
         "is_starred": false,
-        "comments_count": 12345
+        "pinned_to": [
+          ""
+        ],
+        "reactions": [
+          {
+            "name": "",
+            "count": 12345,
+            "users": [
+              ""
+            ],
+            "url": ""
+          }
+        ],
+        "comments_count": 12345,
+        "blocks": [
+          {
+            "type": "",
+            "elements": [
+              {
+                "type": "",
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345
+              },
+              {
+                "type": "",
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "action_id": "",
+                "url": "",
+                "value": "",
+                "style": "",
+                "confirm": {
+                  "title": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "confirm": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "deny": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "style": ""
+                },
+                "options": [
+                  {
+                    "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "value": "",
+                    "description": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "url": ""
+                  }
+                ],
+                "initial_options": [
+                  {
+                    "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "value": "",
+                    "description": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "url": ""
+                  }
+                ],
+                "focus_on_load": false,
+                "initial_option": {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": "",
+                  "description": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "url": ""
+                },
+                "placeholder": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "initial_channel": "",
+                "response_url_enabled": false,
+                "initial_channels": [
+                  ""
+                ],
+                "max_selected_items": 12345,
+                "initial_conversation": "",
+                "default_to_current_conversation": false,
+                "filter": {
+                  "include": [
+                    ""
+                  ],
+                  "exclude_external_shared_channels": false,
+                  "exclude_bot_users": false
+                },
+                "initial_conversations": [
+                  ""
+                ],
+                "initial_date": "",
+                "initial_time": "",
+                "min_query_length": 12345,
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345,
+                "option_groups": [
+                  {
+                    "label": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "options": [
+                      {
+                        "text": {
+                          "type": "",
+                          "text": "",
+                          "emoji": false
+                        },
+                        "value": "",
+                        "description": {
+                          "type": "",
+                          "text": "",
+                          "emoji": false
+                        },
+                        "url": ""
+                      }
+                    ]
+                  }
+                ],
+                "initial_user": "",
+                "initial_users": [
+                  ""
+                ]
+              }
+            ],
+            "block_id": "",
+            "fallback": "",
+            "image_url": "",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345,
+            "alt_text": "",
+            "title": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "fields": [
+              {
+                "type": "",
+                "text": "",
+                "emoji": false,
+                "verbatim": false
+              }
+            ],
+            "accessory": {
+              "type": "",
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "action_id": "",
+              "url": "",
+              "value": "",
+              "style": "",
+              "confirm": {
+                "title": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "confirm": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "deny": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "style": ""
+              },
+              "options": [
+                {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": "",
+                  "description": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "url": ""
+                }
+              ],
+              "initial_option": {
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              },
+              "focus_on_load": false,
+              "placeholder": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "initial_channels": [
+                ""
+              ],
+              "max_selected_items": 12345,
+              "initial_conversations": [
+                ""
+              ],
+              "default_to_current_conversation": false,
+              "filter": {
+                "include": [
+                  ""
+                ],
+                "exclude_external_shared_channels": false,
+                "exclude_bot_users": false
+              },
+              "initial_time": "",
+              "initial_options": [
+                {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": "",
+                  "description": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "url": ""
+                }
+              ],
+              "min_query_length": 12345,
+              "option_groups": [
+                {
+                  "label": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "options": [
+                    {
+                      "text": {
+                        "type": "",
+                        "text": "",
+                        "emoji": false
+                      },
+                      "value": "",
+                      "description": {
+                        "type": "",
+                        "text": "",
+                        "emoji": false
+                      },
+                      "url": ""
+                    }
+                  ]
+                }
+              ],
+              "initial_users": [
+                ""
+              ],
+              "initial_channel": "",
+              "response_url_enabled": false,
+              "initial_conversation": "",
+              "initial_date": "",
+              "image_url": "",
+              "alt_text": "",
+              "fallback": "",
+              "image_width": 12345,
+              "image_height": 12345,
+              "image_bytes": 12345,
+              "initial_user": ""
+            }
+          }
+        ]
       }
     ],
     "upload": false,

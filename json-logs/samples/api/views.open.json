@@ -292,6 +292,7 @@
           },
           "response_url_enabled": false,
           "filter": {
+            "include": [],
             "exclude_external_shared_channels": false,
             "exclude_bot_users": false
           },
@@ -505,6 +506,22 @@
         "element": {
           "type": "overflow",
           "action_id": "",
+          "options": [
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "value": "",
+              "description": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
+            }
+          ],
           "confirm": {
             "title": {
               "type": "plain_text",
@@ -553,6 +570,47 @@
             "emoji": false
           },
           "action_id": "",
+          "options": [
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "value": "",
+              "description": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
+            }
+          ],
+          "option_groups": [
+            {
+              "label": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "options": [
+                {
+                  "text": {
+                    "type": "plain_text",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": "",
+                  "description": {
+                    "type": "plain_text",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "url": ""
+                }
+              ]
+            }
+          ],
           "initial_option": {
             "text": {
               "type": "plain_text",
@@ -689,6 +747,124 @@
             }
           },
           {
+            "type": "checkboxes",
+            "action_id": "",
+            "options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "initial_options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "focus_on_load": false
+          },
+          {
+            "type": "radio_buttons",
+            "action_id": "",
+            "options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "initial_option": {
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "value": "",
+              "description": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
+            },
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "focus_on_load": false
+          },
+          {
             "type": "channels_select",
             "placeholder": {
               "type": "plain_text",
@@ -721,6 +897,43 @@
               "style": ""
             },
             "response_url_enabled": false,
+            "focus_on_load": false
+          },
+          {
+            "type": "multi_channels_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "initial_channels": [
+              ""
+            ],
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "max_selected_items": 123,
             "focus_on_load": false
           },
           {
@@ -758,6 +971,50 @@
             },
             "response_url_enabled": false,
             "filter": {
+              "include": [],
+              "exclude_external_shared_channels": false,
+              "exclude_bot_users": false
+            },
+            "focus_on_load": false
+          },
+          {
+            "type": "multi_conversations_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "initial_conversations": [
+              ""
+            ],
+            "default_to_current_conversation": false,
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "max_selected_items": 123,
+            "filter": {
+              "include": [],
               "exclude_external_shared_channels": false,
               "exclude_bot_users": false
             },
@@ -880,6 +1137,57 @@
             "focus_on_load": false
           },
           {
+            "type": "multi_external_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "initial_options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "min_query_length": 123,
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "max_selected_items": 123,
+            "focus_on_load": false
+          },
+          {
             "type": "image",
             "image_url": "",
             "alt_text": "",
@@ -891,6 +1199,22 @@
           {
             "type": "overflow",
             "action_id": "",
+            "options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
             "confirm": {
               "title": {
                 "type": "plain_text",
@@ -923,6 +1247,47 @@
               "emoji": false
             },
             "action_id": "",
+            "options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "option_groups": [
+              {
+                "label": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "options": [
+                  {
+                    "text": {
+                      "type": "plain_text",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "value": "",
+                    "description": {
+                      "type": "plain_text",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "url": ""
+                  }
+                ]
+              }
+            ],
             "initial_option": {
               "text": {
                 "type": "plain_text",
@@ -963,6 +1328,97 @@
             "focus_on_load": false
           },
           {
+            "type": "multi_static_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "option_groups": [
+              {
+                "label": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "options": [
+                  {
+                    "text": {
+                      "type": "plain_text",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "value": "",
+                    "description": {
+                      "type": "plain_text",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "url": ""
+                  }
+                ]
+              }
+            ],
+            "initial_options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "max_selected_items": 123,
+            "focus_on_load": false
+          },
+          {
             "type": "users_select",
             "placeholder": {
               "type": "plain_text",
@@ -994,6 +1450,43 @@
               },
               "style": ""
             },
+            "focus_on_load": false
+          },
+          {
+            "type": "multi_users_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "initial_users": [
+              ""
+            ],
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "max_selected_items": 123,
             "focus_on_load": false
           }
         ],

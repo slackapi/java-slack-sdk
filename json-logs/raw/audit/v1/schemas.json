@@ -42,7 +42,7 @@
         "privacy": "string",
         "is_shared": "bool",
         "is_org_shared": "bool",
-        "teams_shared_with": "Optional: array\u003cstring\u003e"
+        "teams_shared_with": "Optional: vec\u003cstring\u003e"
       }
     },
     {
@@ -64,14 +64,6 @@
       }
     },
     {
-      "type": "message",
-      "message": {
-        "team": "string",
-        "channel": "string",
-        "timestamp": "string"
-      }
-    },
-    {
       "type": "barrier",
       "barrier": {
         "id": "string",
@@ -80,25 +72,11 @@
       }
     },
     {
-      "type": "channel",
-      "channel": {
-        "id": "string",
-        "name": "string",
-        "privacy": "string",
-        "is_shared": "bool",
-        "is_org_shared": "bool",
-        "teams_shared_with": "Optional: varray\u003cstring\u003e"
-      }
-    },
-    {
-      "type": "channel",
-      "channel": {
-        "id": "string",
-        "name": "string",
-        "privacy": "string",
-        "is_shared": "bool",
-        "is_org_shared": "bool",
-        "teams_shared_with": "Optional: vec\u003cstring\u003e"
+      "type": "message",
+      "message": {
+        "team": "string",
+        "channel": "string",
+        "timestamp": "string"
       }
     }
   ]

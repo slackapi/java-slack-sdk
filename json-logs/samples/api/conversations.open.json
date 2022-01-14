@@ -52,22 +52,39 @@
                 },
                 "style": ""
               },
-              "placeholder": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "initial_channel": "",
-              "response_url_enabled": false,
+              "options": [
+                {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": "",
+                  "description": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "url": ""
+                }
+              ],
+              "initial_options": [
+                {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": "",
+                  "description": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "url": ""
+                }
+              ],
               "focus_on_load": false,
-              "initial_conversation": "",
-              "default_to_current_conversation": false,
-              "filter": {
-                "exclude_external_shared_channels": false,
-                "exclude_bot_users": false
-              },
-              "initial_date": "",
-              "initial_time": "",
               "initial_option": {
                 "text": {
                   "type": "",
@@ -82,6 +99,31 @@
                 },
                 "url": ""
               },
+              "placeholder": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "initial_channel": "",
+              "response_url_enabled": false,
+              "initial_channels": [
+                ""
+              ],
+              "max_selected_items": 12345,
+              "initial_conversation": "",
+              "default_to_current_conversation": false,
+              "filter": {
+                "include": [
+                  ""
+                ],
+                "exclude_external_shared_channels": false,
+                "exclude_bot_users": false
+              },
+              "initial_conversations": [
+                ""
+              ],
+              "initial_date": "",
+              "initial_time": "",
               "min_query_length": 12345,
               "image_url": "",
               "alt_text": "",
@@ -89,7 +131,35 @@
               "image_width": 12345,
               "image_height": 12345,
               "image_bytes": 12345,
-              "initial_user": ""
+              "option_groups": [
+                {
+                  "label": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "options": [
+                    {
+                      "text": {
+                        "type": "",
+                        "text": "",
+                        "emoji": false
+                      },
+                      "value": "",
+                      "description": {
+                        "type": "",
+                        "text": "",
+                        "emoji": false
+                      },
+                      "url": ""
+                    }
+                  ]
+                }
+              ],
+              "initial_user": "",
+              "initial_users": [
+                ""
+              ]
             },
             {
               "type": "",
@@ -128,12 +198,146 @@
           ],
           "accessory": {
             "type": "",
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "action_id": "",
+            "url": "",
+            "value": "",
+            "style": "",
+            "confirm": {
+              "title": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "options": [
+              {
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "initial_options": [
+              {
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "focus_on_load": false,
+            "initial_option": {
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "value": "",
+              "description": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
+            },
+            "placeholder": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "initial_channel": "",
+            "response_url_enabled": false,
+            "initial_channels": [
+              ""
+            ],
+            "max_selected_items": 12345,
+            "initial_conversation": "",
+            "default_to_current_conversation": false,
+            "filter": {
+              "include": [
+                ""
+              ],
+              "exclude_external_shared_channels": false,
+              "exclude_bot_users": false
+            },
+            "initial_conversations": [
+              ""
+            ],
+            "initial_date": "",
+            "initial_time": "",
+            "min_query_length": 12345,
             "image_url": "",
             "alt_text": "",
             "fallback": "",
             "image_width": 12345,
             "image_height": 12345,
-            "image_bytes": 12345
+            "image_bytes": 12345,
+            "option_groups": [
+              {
+                "label": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "options": [
+                  {
+                    "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "value": "",
+                    "description": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "url": ""
+                  }
+                ]
+              }
+            ],
+            "initial_user": "",
+            "initial_users": [
+              ""
+            ]
           }
         }
       ],
