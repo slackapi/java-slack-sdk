@@ -157,7 +157,9 @@ public class chat_Test {
         loadRandomChannelId();
         ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(req -> req
                 .channel(randomChannelId)
-                .text("You can also do slack.methods(token)"));
+                .text("You can also do slack.methods(token)")
+                .blocks(asBlocks(section(s -> s.text(plainText("You can also do slack.methods(token)")))))
+        );
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.getMessage().getText(), is("You can also do slack.methods(token)"));
 
