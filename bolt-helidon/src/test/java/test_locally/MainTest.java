@@ -75,7 +75,7 @@ public class MainTest {
         assertEquals(302, conn.getResponseCode());
         String authorizationUrl = conn.getHeaderField("Location");
         assertTrue(authorizationUrl, authorizationUrl.startsWith(
-                "https://slack.com/oauth/v2/authorize?client_id=123.123&scope=app_mention:read,chat:write,commands&user_scope=&state="));
+                "https://slack.com/oauth/v2/authorize?client_id=123.123&scope=app_mention%3Aread%2Cchat%3Awrite%2Ccommands&user_scope=&state="));
     }
 
 }
