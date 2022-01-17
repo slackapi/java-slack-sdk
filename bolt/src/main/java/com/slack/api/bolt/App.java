@@ -38,9 +38,6 @@ import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -48,6 +45,7 @@ import java.util.regex.Pattern;
 
 import static com.slack.api.bolt.util.EventsApiPayloadParser.buildEventPayload;
 import static com.slack.api.bolt.util.EventsApiPayloadParser.getEventTypeAndSubtype;
+import static com.slack.api.bolt.util.UrlEncodingOps.urlEncode;
 
 /**
  * A Slack App instance.
@@ -351,15 +349,26 @@ public class App {
      */
     public String buildAuthorizeUrl(String state, String nonce) {
         AppConfig config = config();
-
-        if (config.getClientId() == null
-                // OpenID Connect does not use require the bot scopes
-                || (!config.isOpenIDConnectEnabled() && config.getScope() == null)
-                || (config.isStateValidationEnabled() && state == null)) {
+        if (config.getClientId() == null) {
+            log.warn("To enable th Slack OAuth flow, set config#clientId and so on properly. " +
+                    "Refer to https://api.slack.com/authentication for more information.");
             return null;
         }
+        if (config.isStateValidationEnabled() && state == null) {
+            log.warn("Your OAuthStateService might generate a null value for some reason.");
+            return null;
+        }
+        if (config.isOpenIDConnectEnabled() && config.getUserScope() == null) {
+            log.warn("For OpenID Connect authorization, set config#userScope properly. " +
+                    "Refer to https://api.slack.com/authentication/sign-in-with-slack for more information.");
+            return null;
+        }
+        if (config.isOpenIDConnectEnabled() && config.getScope() != null) {
+            // The config#scope value will be ignored
+            log.warn("For OpenID Connect authorization, use config#userScope() instead of #scope()");
+        }
 
-        String scope = config.getScope() == null ? "" : config.getScope();
+        String scope = config.getScope() == null ? "" : urlEncode(config.getScope());
         String redirectUriParam = redirectUriQueryParam(appConfig);
 
         if (config.isClassicAppPermissionsEnabled()) {
@@ -373,14 +382,14 @@ public class App {
             return "https://slack.com/openid/connect/authorize" +
                     "?client_id=" + config.getClientId() +
                     "&response_type=code" +
-                    "&scope=" + (config.getUserScope() != null ? config.getUserScope() : scope) +
+                    "&scope=" + (config.getUserScope() != null ? urlEncode(config.getUserScope()) : scope) +
                     "&state=" + state +
                     redirectUriParam +
                     // The nonce parameter is an optional one in the OpenID Connect Spec
                     // https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
                     (nonce != null ? "&nonce=" + nonce : "");
         } else {
-            String userScope = config.getUserScope() == null ? "" : config.getUserScope();
+            String userScope = config.getUserScope() == null ? "" : urlEncode(config.getUserScope());
             return "https://slack.com/oauth/v2/authorize" +
                     "?client_id=" + config.getClientId() +
                     "&scope=" + scope +
@@ -403,16 +412,8 @@ public class App {
             return "";
         }
 
-        try {
-            String urlEncodedRedirectUri = URLEncoder.encode(
-                    appConfig.getRedirectUri(),
-                    StandardCharsets.UTF_8.name()
-            );
-
-            return String.format("&redirect_uri=%s", urlEncodedRedirectUri);
-        } catch (UnsupportedEncodingException e) {
-            return "";
-        }
+        String urlEncodedRedirectUri = urlEncode(appConfig.getRedirectUri());
+        return String.format("&redirect_uri=%s", urlEncodedRedirectUri);
     }
 
     // -------------------------------------
@@ -1023,7 +1024,7 @@ public class App {
                             String nonce = openIDConnectNonceService.issueNewNonce(slackRequest, response);
                             String authorizeUrl = buildAuthorizeUrl(state, nonce);
                             if (authorizeUrl == null) {
-                                log.error("App#buildAuthorizeUrl(String) returned null due to some missing settings");
+                                log.error("App#buildAuthorizeUrl(String) returned null due to missing/invalid settings");
                                 if (config().getOauthCancellationUrl() == null) {
                                     response.setContentType("text/html; charset=utf-8");
                                     String installPath = config().getOauthInstallRequestURI();

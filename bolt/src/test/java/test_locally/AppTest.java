@@ -55,7 +55,7 @@ public class AppTest {
                 .build();
         App app = new App(config);
         String url = app.buildAuthorizeUrl("state-value");
-        assertEquals("https://slack.com/oauth/authorize?client_id=123&scope=commands,chat:write&state=state-value", url);
+        assertEquals("https://slack.com/oauth/authorize?client_id=123&scope=commands%2Cchat%3Awrite&state=state-value", url);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class AppTest {
                 .build();
         App app = new App(config);
         String url = app.buildAuthorizeUrl("state-value");
-        assertEquals("https://slack.com/oauth/authorize?client_id=123&scope=commands,chat:write&state=state-value&redirect_uri=https%3A%2F%2Fmy.app%2Foauth%2Fcallback", url);
+        assertEquals("https://slack.com/oauth/authorize?client_id=123&scope=commands%2Cchat%3Awrite&state=state-value&redirect_uri=https%3A%2F%2Fmy.app%2Foauth%2Fcallback", url);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class AppTest {
                 .build();
         App app = new App(config);
         String url = app.buildAuthorizeUrl("state-value");
-        assertEquals("https://slack.com/oauth/v2/authorize?client_id=123&scope=commands,chat:write&user_scope=search:read&state=state-value", url);
+        assertEquals("https://slack.com/oauth/v2/authorize?client_id=123&scope=commands%2Cchat%3Awrite&user_scope=search%3Aread&state=state-value", url);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class AppTest {
                 .build();
         App app = new App(config);
         String url = app.buildAuthorizeUrl("state-value");
-        assertEquals("https://slack.com/oauth/v2/authorize?client_id=123&scope=commands,chat:write&user_scope=search:read&state=state-value&redirect_uri=https%3A%2F%2Fmy.app%2Foauth%2Fcallback", url);
+        assertEquals("https://slack.com/oauth/v2/authorize?client_id=123&scope=commands%2Cchat%3Awrite&user_scope=search%3Aread&state=state-value&redirect_uri=https%3A%2F%2Fmy.app%2Foauth%2Fcallback", url);
     }
 
     @Test
@@ -104,6 +104,114 @@ public class AppTest {
         App app = new App();
         String url = app.buildAuthorizeUrl("state-value");
         assertNull(url);
+    }
+
+    @Test
+    public void buildAuthorizeUrl_bot_scope() {
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .clientId("111.222")
+                .clientSecret("secret")
+                .scope("commands,chat:write")
+                .build());
+        String generatedUrl = app.buildAuthorizeUrl("state-value");
+        assertEquals("https://slack.com/oauth/v2/authorize" +
+                "?client_id=111.222&scope=commands%2Cchat%3Awrite&user_scope=&state=state-value", generatedUrl);
+    }
+
+    @Test
+    public void buildAuthorizeUrl_bot_and_user_scope() {
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .clientId("111.222")
+                .clientSecret("secret")
+                .scope("commands,chat:write")
+                .userScope("search:read,chat:write")
+                .build());
+        String generatedUrl = app.buildAuthorizeUrl("state-value");
+        assertEquals("https://slack.com/oauth/v2/authorize" +
+                "?client_id=111.222&scope=commands%2Cchat%3Awrite&user_scope=search%3Aread%2Cchat%3Awrite&state=state-value", generatedUrl);
+    }
+
+    @Test
+    public void buildAuthorizeUrl_user_scope() {
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .clientId("111.222")
+                .clientSecret("secret")
+                .userScope("search:read,chat:write")
+                .build());
+        String generatedUrl = app.buildAuthorizeUrl("state-value");
+        assertEquals("https://slack.com/oauth/v2/authorize?client_id=111.222&scope=&user_scope=search%3Aread%2Cchat%3Awrite&state=state-value", generatedUrl);
+    }
+
+    @Test
+    public void buildAuthorizeUrl_OpenID_Connect() {
+        App app = new App(AppConfig.builder()
+                .openIDConnectEnabled(true)
+                .signingSecret("secret")
+                .clientId("111.222")
+                .userScope("openid,email")
+                .build());
+        String generatedUrl = app.buildAuthorizeUrl("state-value");
+        assertEquals("https://slack.com/openid/connect/authorize?client_id=111.222&response_type=code&scope=openid%2Cemail&state=state-value", generatedUrl);
+    }
+
+    @Test
+    public void buildAuthorizeUrl_OpenID_Connect_invalid() {
+        App app = new App(AppConfig.builder()
+                .openIDConnectEnabled(true)
+                .signingSecret("secret")
+                .clientId("111.222")
+                .scope("openid,email")
+                .build());
+        String generatedUrl = app.buildAuthorizeUrl("state-value");
+        assertNull(generatedUrl);
+    }
+
+    @Test
+    public void buildAuthorizeUrl_bot_scope_classic() {
+        App app = new App(AppConfig.builder()
+                .classicAppPermissionsEnabled(true)
+                .signingSecret("secret")
+                .clientId("111.222")
+                .clientSecret("secret")
+                .scope("commands,chat:write")
+                .build());
+        String generatedUrl = app.buildAuthorizeUrl("state-value");
+        // use_scope= does not exist in the Slack OAuth v1
+        assertEquals("https://slack.com/oauth/authorize" +
+                "?client_id=111.222&scope=commands%2Cchat%3Awrite&state=state-value", generatedUrl);
+    }
+
+    @Test
+    public void buildAuthorizeUrl_bot_and_user_scope_classic() {
+        App app = new App(AppConfig.builder()
+                .classicAppPermissionsEnabled(true)
+                .signingSecret("secret")
+                .clientId("111.222")
+                .clientSecret("secret")
+                .scope("commands,chat:write")
+                .userScope("search:read,chat:write")
+                .build());
+        String generatedUrl = app.buildAuthorizeUrl("state-value");
+        // use_scope= does not exist in the Slack OAuth v1
+        assertEquals("https://slack.com/oauth/authorize" +
+                "?client_id=111.222&scope=commands%2Cchat%3Awrite&state=state-value", generatedUrl);
+    }
+
+    @Test
+    public void buildAuthorizeUrl_user_scope_classic() {
+        App app = new App(AppConfig.builder()
+                .classicAppPermissionsEnabled(true)
+                .signingSecret("secret")
+                .clientId("111.222")
+                .clientSecret("secret")
+                .userScope("search:read,chat:write")
+                .build());
+        String generatedUrl = app.buildAuthorizeUrl("state-value");
+        // use_scope= does not exist in the Slack OAuth v1
+        assertEquals("https://slack.com/oauth/authorize?client_id=111.222&scope=&state=state-value", generatedUrl);
     }
 
     @Test
