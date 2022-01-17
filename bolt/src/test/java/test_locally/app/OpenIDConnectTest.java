@@ -66,7 +66,7 @@ public class OpenIDConnectTest {
             "</head>\n" +
             "<body>\n" +
             "<h2>Slack App Installation</h2>\n" +
-            "<p><a href=\"https://slack.com/openid/connect/authorize?client_id=111.222&response_type=code&scope=openid,email,profile&state=generated-state-value&nonce=generated-nonce-value\"><img alt=\"\"Add to Slack\"\" height=\"40\" width=\"139\" src=\"https://platform.slack-edge.com/img/add_to_slack.png\" srcset=\"https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x\" /></a></p>\n" +
+            "<p><a href=\"https://slack.com/openid/connect/authorize?client_id=111.222&response_type=code&scope=openid%2Cemail%2Cprofile&state=generated-state-value&nonce=generated-nonce-value\"><img alt=\"\"Add to Slack\"\" height=\"40\" width=\"139\" src=\"https://platform.slack-edge.com/img/add_to_slack.png\" srcset=\"https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x\" /></a></p>\n" +
             "</body>\n" +
             "</html>";
 

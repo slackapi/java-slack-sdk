@@ -154,7 +154,7 @@ public class Http4kSlackAppTest {
         Response installResponse = oauthSlackApp.invoke(installRequest);
         assertThat(installResponse.getStatus().getCode(), equalTo(302));
         assertTrue(installResponse.header("Location").startsWith(
-                "https://slack.com/oauth/v2/authorize?client_id=111.222&scope=commands,chat:write&user_scope=&state="));
+                "https://slack.com/oauth/v2/authorize?client_id=111.222&scope=commands%2Cchat%3Awrite&user_scope=&state="));
 
         assertThat(installResponse.getStatus().getCode(), equalTo(302));
 
