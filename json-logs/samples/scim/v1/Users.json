@@ -30,11 +30,19 @@
       "emails": [
         {
           "value": "",
+          "primary": false
+        },
+        {
+          "value": "",
           "type": "",
           "primary": false
         }
       ],
       "photos": [
+        {
+          "value": "https://www.example.com/",
+          "type": ""
+        },
         {
           "value": "",
           "type": ""
@@ -47,6 +55,7 @@
         }
       ],
       "addresses": [
+        {},
         {
           "streetAddress": "",
           "locality": "",
@@ -58,12 +67,19 @@
       ],
       "phoneNumbers": [
         {
+          "type": "",
+          "primary": false
+        },
+        {
           "value": "",
           "type": "",
           "primary": false
         }
       ],
       "roles": [
+        {
+          "primary": false
+        },
         {
           "value": "",
           "type": "",
@@ -72,6 +88,10 @@
       ],
       "urn:scim:schemas:extension:enterprise:1.0": {
         "manager": {}
+      },
+      "urn:scim:schemas:extension:slack:guest:1.0": {
+        "type": "",
+        "expiration": ""
       }
     }
   ],

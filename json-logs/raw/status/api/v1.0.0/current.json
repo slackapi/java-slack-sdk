@@ -614,6 +614,26 @@
     {
       "date_created": "2022-01-07T11:02:02-08:00",
       "body": "A bug is impacting some Android users on version 22.01.10 who try to use a magic link to sign in. Engineers have identified the issue and are working on a fix. As a workaround, you can sign in manually using URL/email/password."
+    },
+    {
+      "date_created": "2022-01-18T14:11:49-08:00",
+      "body": "This issue should now be resolved and we are currently working with customers who have reported that their channels did not automatically reconnect after re-upgrading to a paid plan to re-establish those connections. \r\n\r\nIf your team recently downgraded to a free plan, then resubscribed to a paid tier and observed Slack Connect channels not reconnecting, you can choose to manually reconnect those channels or reach out to our support team at feedback@slack.com for assistance."
+    },
+    {
+      "date_created": "2022-01-18T12:06:02-08:00",
+      "body": "We\u0027ve identified the root cause behind the issue and are working on getting things back to normal. We\u0027ll have another update as soon as we have any further information to share."
+    },
+    {
+      "date_created": "2022-01-18T11:32:02-08:00",
+      "body": "We are continuing to dig into this issue with Slack Connect channels not connecting properly. We apologize for the inconvenience in the meantime."
+    },
+    {
+      "date_created": "2022-01-18T10:35:23-08:00",
+      "body": "We are still investigating why some Slack Connect channels are having trouble reconnecting after an upgrade. Thank you for bearing with us."
+    },
+    {
+      "date_created": "2022-01-18T10:03:11-08:00",
+      "body": "Some workspaces are having trouble reconnecting their Slack Connect channels immediately after upgrading their plan. We\u0027re investigating and will let you know as soon as we know more."
     }
   ]
 }
