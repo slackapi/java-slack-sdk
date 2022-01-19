@@ -44,6 +44,7 @@ public class SocketModeClientTest {
         wsServer.start();
         config = new SlackConfig();
         config.setMethodsEndpointUrlPrefix(webApiServer.getMethodsEndpointPrefix());
+        slack = Slack.getInstance(config);
     }
 
     @After
