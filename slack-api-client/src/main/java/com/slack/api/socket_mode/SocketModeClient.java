@@ -146,8 +146,10 @@ public interface SocketModeClient extends Closeable {
 
     default void initializeMessageProcessorExecutor(int concurrency) {
         String processorName = getExecutorGroupNamePrefix() + "-message-processor";
-        ScheduledExecutorService messageProcessorExecutor =
-                ExecutorServiceFactory.createDaemonThreadScheduledExecutor(processorName);
+        ScheduledExecutorService messageProcessorExecutor = getSlack()
+                .getConfig()
+                .getExecutorServiceProvider()
+                .createThreadScheduledExecutor(processorName);
         for (int i = 0; i < concurrency; i++) {
             int num = i;
             messageProcessorExecutor.scheduleAtFixedRate(() -> {
@@ -169,7 +171,10 @@ public interface SocketModeClient extends Closeable {
     default void initializeSessionMonitorExecutor(long intervalMillis) {
         if (isSessionMonitorEnabled()) {
             String groupName = getExecutorGroupNamePrefix() + "-session-monitor";
-            ScheduledExecutorService executorService = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(groupName);
+            ScheduledExecutorService executorService = getSlack()
+                    .getConfig()
+                    .getExecutorServiceProvider()
+                    .createThreadScheduledExecutor(groupName);
             final AtomicLong nextInvocationMillis = new AtomicLong(System.currentTimeMillis());
             executorService.scheduleWithFixedDelay(() -> {
                 long startMillis = System.currentTimeMillis();

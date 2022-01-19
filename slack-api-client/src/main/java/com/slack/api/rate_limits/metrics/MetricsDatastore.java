@@ -1,5 +1,7 @@
 package com.slack.api.rate_limits.metrics;
 
+import com.slack.api.util.thread.ExecutorServiceProvider;
+
 import java.util.Map;
 
 public interface MetricsDatastore {
@@ -47,5 +49,9 @@ public interface MetricsDatastore {
     void addToWaitingMessageIds(String executorName, String teamId, String methodName, String messageId);
 
     void deleteFromWaitingMessageIds(String executorName, String teamId, String methodName, String messageId);
+
+    ExecutorServiceProvider getExecutorServiceProvider();
+
+    void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider);
 
 }

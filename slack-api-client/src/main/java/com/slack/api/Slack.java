@@ -77,6 +77,9 @@ public class Slack implements AutoCloseable {
 
     private Slack(SlackConfig config, SlackHttpClient httpClient) {
         this.config = config;
+        if (!this.config.equals(SlackConfig.DEFAULT)) {
+            this.config.synchronizeExecutorServiceProviders();
+        }
         this.httpClient = httpClient;
         this.httpClient.setConfig(this.config);
     }

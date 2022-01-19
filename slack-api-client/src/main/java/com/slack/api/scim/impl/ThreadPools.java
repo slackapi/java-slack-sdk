@@ -1,7 +1,6 @@
 package com.slack.api.scim.impl;
 
 import com.slack.api.scim.SCIMConfig;
-import com.slack.api.util.thread.ExecutorServiceFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -34,7 +33,7 @@ public class ThreadPools {
             ExecutorService orgExecutor = allOrgs.get(enterpriseId);
             if (orgExecutor == null) {
                 String threadGroupName = "slack-scim-" + config.getExecutorName() + "-" + enterpriseId;
-                orgExecutor = ExecutorServiceFactory.createDaemonThreadPoolExecutor(threadGroupName, customPoolSize);
+                orgExecutor = config.getExecutorServiceProvider().createThreadPoolExecutor(threadGroupName, customPoolSize);
                 allOrgs.put(enterpriseId, orgExecutor);
             }
             return orgExecutor;
@@ -44,7 +43,7 @@ public class ThreadPools {
             if (defaultExecutor == null) {
                 String threadGroupName = "slack-scim-" + config.getExecutorName();
                 int poolSize = config.getDefaultThreadPoolSize();
-                defaultExecutor = ExecutorServiceFactory.createDaemonThreadPoolExecutor(threadGroupName, poolSize);
+                defaultExecutor = config.getExecutorServiceProvider().createThreadPoolExecutor(threadGroupName, poolSize);
                 ALL_DEFAULT.put(config.getExecutorName(), defaultExecutor);
             }
             return defaultExecutor;

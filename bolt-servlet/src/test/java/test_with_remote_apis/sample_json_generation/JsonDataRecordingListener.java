@@ -1,7 +1,7 @@
 package test_with_remote_apis.sample_json_generation;
 
 import com.slack.api.util.http.listener.HttpResponseListener;
-import com.slack.api.util.thread.ExecutorServiceFactory;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -15,7 +15,8 @@ public class JsonDataRecordingListener extends HttpResponseListener {
 
     private final CopyOnWriteArrayList<String> remaining = new CopyOnWriteArrayList<>();
     private final String threadGroupName = "slack-unit-test-JsonDataRecordingListener";
-    private final ExecutorService executorService = ExecutorServiceFactory.createDaemonThreadPoolExecutor(threadGroupName, 5);
+    private final ExecutorService executorService = DaemonThreadExecutorServiceProvider.getInstance()
+            .createThreadPoolExecutor(threadGroupName, 5);
 
     public boolean isAllDone() {
         if (remaining.size() > 0) {

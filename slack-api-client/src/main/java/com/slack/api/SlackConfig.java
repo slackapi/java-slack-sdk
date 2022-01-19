@@ -11,6 +11,9 @@ import com.slack.api.status.v2.StatusClient;
 import com.slack.api.util.http.listener.DetailedLoggingListener;
 import com.slack.api.util.http.listener.HttpResponseListener;
 import com.slack.api.util.http.listener.ResponsePrettyPrintingListener;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
+import com.slack.api.util.thread.ExecutorServiceProvider;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -121,6 +124,11 @@ public class SlackConfig {
         public void setHttpClientReadTimeoutMillis(Integer httpClientReadTimeoutMillis) {
             throwException();
         }
+
+        @Override
+        public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
+            throwException();
+        }
     };
 
     public SlackConfig() {
@@ -213,9 +221,30 @@ public class SlackConfig {
 
     private String legacyStatusEndpointUrlPrefix = LegacyStatusClient.ENDPOINT_URL_PREFIX;
 
-    private MethodsConfig methodsConfig = MethodsConfig.DEFAULT_SINGLETON;
+    @Builder.Default
+    private ExecutorServiceProvider executorServiceProvider = DaemonThreadExecutorServiceProvider.getInstance();
 
-    private AuditConfig auditConfig = AuditConfig.DEFAULT_SINGLETON;
+    private MethodsConfig methodsConfig = new MethodsConfig();
 
-    private SCIMConfig sCIMConfig = SCIMConfig.DEFAULT_SINGLETON;
+    private AuditConfig auditConfig = new AuditConfig();
+
+    private SCIMConfig sCIMConfig = new SCIMConfig();
+
+    public void synchronizeExecutorServiceProviders() {
+        if (!methodsConfig.equals(MethodsConfig.DEFAULT_SINGLETON)
+                && !methodsConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
+            methodsConfig.setExecutorServiceProvider(executorServiceProvider);
+            methodsConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+        }
+        if (!auditConfig.equals(AuditConfig.DEFAULT_SINGLETON)
+                && !auditConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
+            auditConfig.setExecutorServiceProvider(executorServiceProvider);
+            auditConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+        }
+        if (!sCIMConfig.equals(SCIMConfig.DEFAULT_SINGLETON)
+                && !sCIMConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
+            sCIMConfig.setExecutorServiceProvider(executorServiceProvider);
+            sCIMConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+        }
+    }
 }

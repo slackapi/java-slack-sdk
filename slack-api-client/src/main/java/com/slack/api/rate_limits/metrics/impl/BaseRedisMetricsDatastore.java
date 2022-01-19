@@ -5,7 +5,8 @@ import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import com.slack.api.rate_limits.metrics.RequestStats;
 import com.slack.api.rate_limits.queue.QueueMessage;
 import com.slack.api.rate_limits.queue.RateLimitQueue;
-import com.slack.api.util.thread.ExecutorServiceFactory;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -21,11 +22,20 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
 
     private final String appName;
     private final JedisPool jedisPool;
+    private ExecutorServiceProvider executorServiceProvider;
 
     public BaseRedisMetricsDatastore(String appName, JedisPool jedisPool) {
+        this(appName, jedisPool, DaemonThreadExecutorServiceProvider.getInstance());
+    }
+
+    public BaseRedisMetricsDatastore(
+            String appName,
+            JedisPool jedisPool,
+            ExecutorServiceProvider executorServiceProvider) {
         this.appName = appName;
         this.jedisPool = jedisPool;
-        this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(getThreadGroupName());
+        this.executorServiceProvider = executorServiceProvider;
+        this.cleanerExecutor = executorServiceProvider.createThreadScheduledExecutor(getThreadGroupName());
         this.cleanerExecutor.scheduleAtFixedRate(new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
     }
 
@@ -43,6 +53,16 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
 
     public String getThreadGroupName() {
         return "slack-methods-metrics-redis:" + this.appName;
+    }
+
+    @Override
+    public ExecutorServiceProvider getExecutorServiceProvider() {
+        return this.executorServiceProvider;
+    }
+
+    @Override
+    public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
+        this.executorServiceProvider = executorServiceProvider;
     }
 
     private void addToStatsKeyIndices(Jedis jedis, String statsKey) {

@@ -2,6 +2,8 @@ package com.slack.api.audit;
 
 import com.slack.api.audit.metrics.MemoryMetricsDatastore;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -63,6 +65,11 @@ public class AuditConfig {
         public void setCustomThreadPoolSizes(Map<String, Integer> customThreadPoolSizes) {
             throwException();
         }
+
+        @Override
+        public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
+            throwException();
+        }
     };
 
     @Builder.Default
@@ -91,6 +98,9 @@ public class AuditConfig {
      */
     @Builder.Default
     private Map<String, Integer> customThreadPoolSizes = new HashMap<>();
+
+    @Builder.Default
+    private ExecutorServiceProvider executorServiceProvider = DaemonThreadExecutorServiceProvider.getInstance();
 
     /**
      * The metrics datastore to track the traffic associated to this executor name.

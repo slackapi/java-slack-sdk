@@ -2,6 +2,7 @@ package com.slack.api.bolt;
 
 import com.google.gson.Gson;
 import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.SlackSignature;
 import com.slack.api.app_backend.events.EventHandler;
 import com.slack.api.app_backend.events.EventsDispatcher;
@@ -32,7 +33,6 @@ import com.slack.api.model.event.Event;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.model.event.TokensRevokedEvent;
 import com.slack.api.util.json.GsonFactory;
-import com.slack.api.util.thread.ExecutorServiceFactory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
@@ -440,15 +440,29 @@ public class App {
     }
 
     public App(AppConfig appConfig, List<Middleware> middlewareList) {
-        this(appConfig, appConfig.getSlack() != null ? appConfig.getSlack() : Slack.getInstance(), middlewareList);
+        this(appConfig, appConfig.getSlack() != null
+                        ? appConfig.getSlack()
+                        // Intentionally instantiating a new SlackConfig instance
+                        // to avoid using the immutable singleton one
+                        : Slack.getInstance(new SlackConfig()),
+                middlewareList
+        );
         this.status = Status.Stopped;
     }
 
     public App(AppConfig appConfig, Slack slack, List<Middleware> middlewareList) {
         this.appConfig = appConfig;
-        this.executorService = ExecutorServiceFactory.createDaemonThreadPoolExecutor(
+        this.appConfig.setSlack(slack);
+        SlackConfig clientConfig = this.appConfig.getSlack().getConfig();
+        if (!clientConfig.getExecutorServiceProvider().equals(this.appConfig.getExecutorServiceProvider())) {
+            clientConfig.setExecutorServiceProvider(this.appConfig.getExecutorServiceProvider());
+            clientConfig.synchronizeExecutorServiceProviders();
+        }
+
+        this.executorService = this.appConfig.getExecutorServiceProvider().createThreadPoolExecutor(
                 "bolt-app-threads",
-                this.appConfig.getThreadPoolSize());
+                this.appConfig.getThreadPoolSize()
+        );
         this.middlewareList = middlewareList;
 
         this.oAuthStateService = new ClientOnlyOAuthStateService();

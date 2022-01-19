@@ -1,7 +1,6 @@
 package com.slack.api.methods.impl;
 
 import com.slack.api.methods.MethodsConfig;
-import com.slack.api.util.thread.ExecutorServiceFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -33,7 +32,7 @@ public class ThreadPools {
             ExecutorService teamExecutor = allTeams.get(teamId);
             if (teamExecutor == null) {
                 String threadGroupName = "slack-methods-" + config.getExecutorName() + "-" + teamId;
-                teamExecutor = ExecutorServiceFactory.createDaemonThreadPoolExecutor(threadGroupName, customPoolSize);
+                teamExecutor = config.getExecutorServiceProvider().createThreadPoolExecutor(threadGroupName, customPoolSize);
                 allTeams.put(teamId, teamExecutor);
             }
             return teamExecutor;
@@ -43,7 +42,7 @@ public class ThreadPools {
             if (defaultExecutor == null) {
                 String threadGroupName = "slack-methods-" + config.getExecutorName();
                 int poolSize = config.getDefaultThreadPoolSize();
-                defaultExecutor = ExecutorServiceFactory.createDaemonThreadPoolExecutor(threadGroupName, poolSize);
+                defaultExecutor = config.getExecutorServiceProvider().createThreadPoolExecutor(threadGroupName, poolSize);
                 ALL_DEFAULT.put(config.getExecutorName(), defaultExecutor);
             }
             return defaultExecutor;

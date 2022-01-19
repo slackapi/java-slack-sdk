@@ -10,6 +10,7 @@ import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.WorkflowStepEditRequest;
 import com.slack.api.bolt.request.builtin.WorkflowStepSaveRequest;
 import com.slack.api.bolt.response.Response;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
@@ -18,7 +19,11 @@ import util.AuthTestMockServer;
 
 import java.net.URLEncoder;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 @Slf4j
@@ -315,6 +320,15 @@ public class WorkflowStepTest {
     void setRequestHeaders(String requestBody, Map<String, List<String>> rawHeaders, String timestamp) {
         rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, Arrays.asList(timestamp));
         rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, Arrays.asList(generator.generate(timestamp, requestBody)));
+    }
+
+    @Test
+    public void buildWithCustomExecutorService() {
+        ExecutorService executorService = DaemonThreadExecutorServiceProvider.getInstance()
+                .createThreadPoolExecutor("foo", 3);
+        WorkflowStep step = WorkflowStep.builder().executorService(executorService).build();
+        assertThat(step, is(notNullValue()));
+        assertThat(step.getExecutorService(), is(executorService));
     }
 
 }

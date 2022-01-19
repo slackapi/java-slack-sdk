@@ -15,12 +15,16 @@ import com.slack.api.bolt.service.builtin.oauth.OAuthV2AccessErrorHandler;
 import com.slack.api.bolt.service.builtin.oauth.OAuthV2SuccessHandler;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.OAuthDefaultExceptionHandler;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.OAuthDefaultStateErrorHandler;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceFactory;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.AuthTestMockServer;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -356,6 +360,31 @@ public class AppTest {
         appConfig.setSlack(newSlack);
         assertThat(app.slack().getConfig().getMethodsEndpointUrlPrefix(),
                 is("http://localhost:8080/new"));
+    }
+
+    @Test
+    public void customExecutorService() {
+        final AtomicBoolean called = new AtomicBoolean(false);
+        ExecutorServiceProvider executorServiceProvider = new ExecutorServiceProvider() {
+            @Override
+            public ExecutorService createThreadPoolExecutor(String threadGroupName, int poolSize) {
+                called.set(true);
+                return DaemonThreadExecutorServiceFactory.createDaemonThreadPoolExecutor(
+                        threadGroupName, poolSize);
+            }
+
+            @Override
+            public ScheduledExecutorService createThreadScheduledExecutor(String threadGroupName) {
+                return DaemonThreadExecutorServiceFactory.createDaemonThreadScheduledExecutor(threadGroupName);
+            }
+        };
+        App app = new App(AppConfig.builder()
+                .signingSecret("secret")
+                .singleTeamBotToken("token")
+                .executorServiceProvider(executorServiceProvider)
+                .build());
+        assertThat(app.config().getExecutorServiceProvider(), is(executorServiceProvider));
+        assertThat(called.get(), is(true));
     }
 
 }

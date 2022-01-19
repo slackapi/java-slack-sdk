@@ -2,6 +2,7 @@ package test_locally.api.scim;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.audit.response.ActionsResponse;
 import com.slack.api.scim.SCIMClient;
 import com.slack.api.scim.model.Group;
 import com.slack.api.scim.model.User;
@@ -9,6 +10,8 @@ import com.slack.api.scim.request.GroupsPatchRequest;
 import com.slack.api.scim.response.*;
 import com.slack.api.util.http.listener.HttpResponseListener;
 import com.slack.api.util.json.GsonFactory;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
@@ -30,6 +33,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -229,5 +235,34 @@ public class ApiTest {
         SCIMClient scim = Slack.getInstance(config).scim(ValidToken);
         GroupsDeleteResponse response = scim.deleteGroup(r -> r.id("00000000000"));
         assertThat(response, is(notNullValue()));
+    }
+
+    @Test
+    public void customizeExecutorService() throws Exception {
+        final AtomicBoolean called = new AtomicBoolean(false);
+        config.setExecutorServiceProvider(new ExecutorServiceProvider() {
+            @Override
+            public ExecutorService createThreadPoolExecutor(String threadGroupName, int poolSize) {
+                called.set(true);
+                return DaemonThreadExecutorServiceProvider.getInstance()
+                        .createThreadPoolExecutor(threadGroupName, poolSize);
+            }
+
+            @Override
+            public ScheduledExecutorService createThreadScheduledExecutor(String threadGroupName) {
+                return DaemonThreadExecutorServiceProvider.getInstance()
+                        .createThreadScheduledExecutor(threadGroupName);
+            }
+        });
+        {
+            Slack.getInstance(config).scim(ValidToken).searchUsers(r -> r.count(1));
+            // the sync client does not use ExecutorService under the hood
+            assertThat(called.get(), is(false));
+        }
+        {
+            Slack.getInstance(config).scimAsync(ValidToken).searchUsers(r -> r.count(1)).get();
+            assertThat(called.get(), is(true));
+        }
+
     }
 }
