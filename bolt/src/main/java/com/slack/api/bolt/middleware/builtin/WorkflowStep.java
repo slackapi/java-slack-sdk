@@ -10,7 +10,7 @@ import com.slack.api.bolt.request.builtin.WorkflowStepEditRequest;
 import com.slack.api.bolt.request.builtin.WorkflowStepExecuteRequest;
 import com.slack.api.bolt.request.builtin.WorkflowStepSaveRequest;
 import com.slack.api.bolt.response.Response;
-import com.slack.api.util.thread.ExecutorServiceFactory;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,8 +30,13 @@ public class WorkflowStep implements Middleware, AutoCloseable {
     private WorkflowStepEditHandler edit;
     private WorkflowStepSaveHandler save;
     private WorkflowStepExecuteHandler execute;
+
     @Builder.Default
     private boolean executeAutoAcknowledgement = true;
+
+    // If a developer would like to use their own ExecutorService here,
+    // the recommended way would be to pass the one using the builder method:
+    // `WorkflowStep.builder().executorService(executorService).build()`
     @Builder.Default
     private ExecutorService executorService = buildDefaultExecutorService();
 
@@ -94,7 +99,7 @@ public class WorkflowStep implements Middleware, AutoCloseable {
                                 // Auto acknowledgement
                                 return new Response();
                             } else {
-                                // In the execute handler, workflows.stepCompleted/stepFailed
+                                // In the `execute` handler, workflows.stepCompleted/stepFailed
                                 // needs to be called asynchronously
                                 return execute.apply(request, request.getContext());
                             }
@@ -125,7 +130,9 @@ public class WorkflowStep implements Middleware, AutoCloseable {
     protected static ExecutorService buildDefaultExecutorService() {
         String threadGroupName = WorkflowStep.class.getSimpleName();
         int poolSize = 3;
-        ExecutorService service = ExecutorServiceFactory.createDaemonThreadPoolExecutor(
+        // If you want to use own ExecutorService, pass it using the builder method instead:
+        // `WorkflowStep.builder().executorService(executorService).build()`
+        ExecutorService service = DaemonThreadExecutorServiceProvider.getInstance().createThreadPoolExecutor(
                 threadGroupName,
                 poolSize
         );

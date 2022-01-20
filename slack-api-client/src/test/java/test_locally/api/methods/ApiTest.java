@@ -3,6 +3,8 @@ package test_locally.api.methods;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.api.ApiTestResponse;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,11 +13,13 @@ import util.MockSlackApiServer;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static util.MockSlackApi.ValidToken;
@@ -107,6 +111,42 @@ public class ApiTest {
             retryCount++;
         }
         assertTrue(retryCount <= 100);
+    }
+
+    @Test
+    public void customExecutorService() throws Exception {
+        final AtomicBoolean executorCreationCalled = new AtomicBoolean(false);
+        final AtomicBoolean schedulerCreationCalled = new AtomicBoolean(false);
+        SlackConfig config = new SlackConfig();
+        config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
+        config.setExecutorServiceProvider(new ExecutorServiceProvider() {
+            @Override
+            public ExecutorService createThreadPoolExecutor(String threadGroupName, int poolSize) {
+                executorCreationCalled.set(true);
+                return DaemonThreadExecutorServiceProvider.getInstance()
+                        .createThreadPoolExecutor(threadGroupName, poolSize);
+            }
+
+            @Override
+            public ScheduledExecutorService createThreadScheduledExecutor(String threadGroupName) {
+                schedulerCreationCalled.set(true);
+                return DaemonThreadExecutorServiceProvider.getInstance()
+                        .createThreadScheduledExecutor(threadGroupName);
+            }
+        });
+        Slack slack = Slack.getInstance(config);
+        {
+            ApiTestResponse response = slack.methods().apiTest(r -> r);
+            assertThat(response.getError(), is(""));
+            // the sync client does not use ExecutorService under the hood
+            assertThat(executorCreationCalled.get(), is(false));
+            assertThat(schedulerCreationCalled.get(), is(true));
+        }
+        {
+            ApiTestResponse response = slack.methodsAsync().apiTest(r -> r).get();
+            assertThat(response.getError(), is(""));
+            assertThat(executorCreationCalled.get(), is(true));
+        }
     }
 
 }

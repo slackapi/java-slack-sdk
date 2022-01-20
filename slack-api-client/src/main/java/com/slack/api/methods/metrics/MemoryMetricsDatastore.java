@@ -4,8 +4,13 @@ import com.slack.api.methods.SlackApiResponse;
 import com.slack.api.methods.impl.AsyncExecutionSupplier;
 import com.slack.api.methods.impl.AsyncRateLimitQueue;
 import com.slack.api.rate_limits.metrics.impl.BaseMemoryMetricsDatastore;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 
 public class MemoryMetricsDatastore extends BaseMemoryMetricsDatastore<AsyncExecutionSupplier<? extends SlackApiResponse>, AsyncRateLimitQueue.Message> {
+
+    public MemoryMetricsDatastore(int numberOfNodes, ExecutorServiceProvider executorServiceProvider) {
+        super(numberOfNodes, executorServiceProvider);
+    }
 
     public MemoryMetricsDatastore(int numberOfNodes) {
         super(numberOfNodes);

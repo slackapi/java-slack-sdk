@@ -4,16 +4,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-public class ExecutorServiceFactory {
+// Use ExecutorServiceProvider interface instead
+@Deprecated
+public class ExecutorServiceFactory extends DaemonThreadExecutorServiceFactory {
 
     private ExecutorServiceFactory() {
-    }
-
-    public static ExecutorService createDaemonThreadPoolExecutor(String threadGroupName, int poolSize) {
-        return Executors.newFixedThreadPool(poolSize, new DaemonThreadFactory(threadGroupName));
-    }
-
-    public static ScheduledExecutorService createDaemonThreadScheduledExecutor(String threadGroupName) {
-        return Executors.newSingleThreadScheduledExecutor(new DaemonThreadFactory(threadGroupName));
     }
 }

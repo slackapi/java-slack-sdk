@@ -11,6 +11,8 @@ import com.slack.api.bolt.service.builtin.oauth.view.default_impl.OAuthDefaultIn
 import com.slack.api.bolt.service.builtin.oauth.view.default_impl.OAuthDefaultRedirectUriPageRenderer;
 import com.slack.api.token_rotation.TokenRotator;
 import com.slack.api.util.http.SlackHttpClient;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -67,8 +69,12 @@ public class AppConfig {
         public static final String SLACK_APP_OAUTH_COMPLETION_URL = "SLACK_APP_OAUTH_COMPLETION_URL";
     }
 
+    // We don't use SlackConfig.DEFAULT here to enable developers to customize the properties later on
     @Builder.Default
-    private transient Slack slack = Slack.getInstance(SlackConfig.DEFAULT, buildSlackHttpClient());
+    private transient Slack slack = Slack.getInstance(new SlackConfig(), buildSlackHttpClient());
+
+    @Builder.Default
+    private transient ExecutorServiceProvider executorServiceProvider = DaemonThreadExecutorServiceProvider.getInstance();
 
     private static SlackHttpClient buildSlackHttpClient() {
         Map<String, String> userAgentCustomInfo = new HashMap<>();

@@ -98,7 +98,7 @@ public class MultiTeamsAuthorization implements Middleware {
     private ScheduledExecutorService buildTokenToAuthTestCacheCleaner(Runnable task) {
         String threadGroupName = MultiTeamsAuthorization.class.getSimpleName();
         ScheduledExecutorService tokenToAuthTestCacheCleaner =
-                ExecutorServiceFactory.createDaemonThreadScheduledExecutor(threadGroupName);
+                this.config.getExecutorServiceProvider().createThreadScheduledExecutor(threadGroupName);
         tokenToAuthTestCacheCleaner.scheduleAtFixedRate(task, 120_000, 30_000, TimeUnit.MILLISECONDS);
         log.debug("The tokenToAuthTestCacheCleaner (daemon thread) started");
         return tokenToAuthTestCacheCleaner;

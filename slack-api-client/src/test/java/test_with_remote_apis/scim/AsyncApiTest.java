@@ -7,7 +7,7 @@ import com.slack.api.scim.model.Group;
 import com.slack.api.scim.model.User;
 import com.slack.api.scim.request.GroupsPatchRequest;
 import com.slack.api.scim.response.*;
-import com.slack.api.util.thread.ExecutorServiceFactory;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import config.Constants;
 import config.SlackTestConfig;
 import org.junit.AfterClass;
@@ -381,7 +381,7 @@ public class AsyncApiTest {
     public void demonstrateRateLimitedErrors() throws Exception {
         Logger logger = LoggerFactory.getLogger(AsyncApiTest.class);
         int concurrency = 10;
-        ExecutorService executorService = ExecutorServiceFactory.createDaemonThreadPoolExecutor("test", concurrency);
+        ExecutorService executorService = DaemonThreadExecutorServiceProvider.getInstance().createThreadPoolExecutor("test", concurrency);
         for (int i = 0; i < concurrency; i++) {
             executorService.execute(() -> {
                 while (true) {

@@ -1,10 +1,15 @@
 package test_locally;
 
+import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsConfig;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 import org.junit.Test;
 
 import java.util.Collections;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -90,6 +95,42 @@ public class SlackConfigTest {
             SlackConfig.DEFAULT.setSCIMConfig(null);
             fail();
         } catch (UnsupportedOperationException ignored) {
+        }
+        try {
+            SlackConfig.DEFAULT.setExecutorServiceProvider(null);
+            fail();
+        } catch (UnsupportedOperationException ignored) {
+        }
+    }
+
+    @Test
+    public void customizeExecutorServiceProvider() throws Exception {
+        // the default
+        assertThat(Slack.getInstance().getConfig().getExecutorServiceProvider(),
+                is(DaemonThreadExecutorServiceProvider.getInstance()));
+
+        // the customized one
+        SlackConfig config = new SlackConfig();
+        ExecutorServiceProvider custom = new ExecutorServiceProvider() {
+            @Override
+            public ExecutorService createThreadPoolExecutor(String threadGroupName, int poolSize) {
+                return DaemonThreadExecutorServiceProvider.getInstance()
+                        .createThreadPoolExecutor(threadGroupName, poolSize);
+            }
+
+            @Override
+            public ScheduledExecutorService createThreadScheduledExecutor(String threadGroupName) {
+                return DaemonThreadExecutorServiceProvider.getInstance()
+                        .createThreadScheduledExecutor(threadGroupName);
+            }
+        };
+        config.setExecutorServiceProvider(custom);
+
+        try (Slack slack = Slack.getInstance(config)) {
+            assertThat(slack.getConfig().getExecutorServiceProvider(), is(custom));
+            assertThat(slack.getConfig().getMethodsConfig().getExecutorServiceProvider(), is(custom));
+            assertThat(slack.getConfig().getAuditConfig().getExecutorServiceProvider(), is(custom));
+            assertThat(slack.getConfig().getSCIMConfig().getExecutorServiceProvider(), is(custom));
         }
     }
 

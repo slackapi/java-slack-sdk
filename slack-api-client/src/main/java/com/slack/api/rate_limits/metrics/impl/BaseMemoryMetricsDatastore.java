@@ -9,7 +9,8 @@ import com.slack.api.rate_limits.queue.QueueMessage;
 import com.slack.api.rate_limits.queue.RateLimitQueue;
 import com.slack.api.rate_limits.queue.WaitingMessageIds;
 import com.slack.api.util.json.GsonFactory;
-import com.slack.api.util.thread.ExecutorServiceFactory;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,13 +21,28 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMessage> implements MetricsDatastore, AutoCloseable {
 
-    private final ScheduledExecutorService cleanerExecutor;
     private final int numberOfNodes;
+    private ExecutorServiceProvider executorServiceProvider;
+    private ScheduledExecutorService cleanerExecutor;
 
     public BaseMemoryMetricsDatastore(int numberOfNodes) {
+        this(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance());
+    }
+
+    public BaseMemoryMetricsDatastore(int numberOfNodes, ExecutorServiceProvider executorServiceProvider) {
         this.numberOfNodes = numberOfNodes;
-        this.cleanerExecutor = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(getThreadGroupName());
-        this.cleanerExecutor.scheduleAtFixedRate(new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
+        this.executorServiceProvider = executorServiceProvider;
+        initializeCleanerExecutor();
+    }
+
+    protected void initializeCleanerExecutor() {
+        if (this.cleanerExecutor != null) {
+            // Abandon the running one first
+            this.cleanerExecutor.shutdown();
+        }
+        this.cleanerExecutor = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
+        this.cleanerExecutor.scheduleAtFixedRate(
+                new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
     }
 
     @Override
@@ -68,6 +84,17 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
         LiveRequestStats internal = getOrCreateTeamLiveStats(executorName, teamId);
         RequestStats stats = GSON.fromJson(GSON.toJson(internal), RequestStats.class);
         return stats;
+    }
+
+    @Override
+    public ExecutorServiceProvider getExecutorServiceProvider() {
+        return this.executorServiceProvider;
+    }
+
+    @Override
+    public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
+        this.executorServiceProvider = executorServiceProvider;
+        initializeCleanerExecutor();
     }
 
     // -----------------------------------------------------------

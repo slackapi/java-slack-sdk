@@ -125,8 +125,9 @@ public class SocketModeClientTyrusImpl implements SocketModeClient {
         setSessionMonitorEnabled(sessionMonitorEnabled);
         initializeSessionMonitorExecutor(sessionMonitorIntervalMillis);
         initializeMessageProcessorExecutor(concurrency);
-        sessionCleanerExecutor = ExecutorServiceFactory.createDaemonThreadPoolExecutor(
-                getExecutorGroupNamePrefix() + "-session-cleaner", 3);
+        sessionCleanerExecutor = slack.getConfig()
+                .getExecutorServiceProvider()
+                .createThreadPoolExecutor(getExecutorGroupNamePrefix() + "-session-cleaner", 3);
     }
 
     @Override

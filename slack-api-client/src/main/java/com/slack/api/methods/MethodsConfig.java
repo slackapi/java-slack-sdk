@@ -2,6 +2,8 @@ package com.slack.api.methods;
 
 import com.slack.api.methods.metrics.MemoryMetricsDatastore;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -63,6 +65,11 @@ public class MethodsConfig {
         public void setCustomThreadPoolSizes(Map<String, Integer> customThreadPoolSizes) {
             throwException();
         }
+
+        @Override
+        public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
+            throwException();
+        }
     };
 
     @Builder.Default
@@ -85,6 +92,9 @@ public class MethodsConfig {
      */
     @Builder.Default
     private int defaultThreadPoolSize = 5;
+
+    @Builder.Default
+    private ExecutorServiceProvider executorServiceProvider = DaemonThreadExecutorServiceProvider.getInstance();
 
     /**
      * Team ID -> thread pool size

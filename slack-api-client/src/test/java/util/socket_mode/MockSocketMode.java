@@ -1,6 +1,6 @@
 package util.socket_mode;
 
-import com.slack.api.util.thread.ExecutorServiceFactory;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.StatusCode;
@@ -22,8 +22,8 @@ public class MockSocketMode extends WebSocketAdapter {
     private CountDownLatch closureLatch = new CountDownLatch(1);
 
     private CopyOnWriteArrayList<Session> activeSessions = new CopyOnWriteArrayList<>();
-    private ScheduledExecutorService service = ExecutorServiceFactory.createDaemonThreadScheduledExecutor(
-            MockSocketMode.class.getCanonicalName());
+    private ScheduledExecutorService service = DaemonThreadExecutorServiceProvider.getInstance()
+            .createThreadScheduledExecutor(MockSocketMode.class.getCanonicalName());
 
     public MockSocketMode() {
         super();
