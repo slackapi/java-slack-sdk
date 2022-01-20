@@ -18,11 +18,10 @@ import static java.util.stream.Collectors.toList;
 
 public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessage> implements MetricsDatastore, AutoCloseable {
 
-    private final ScheduledExecutorService cleanerExecutor;
-
     private final String appName;
     private final JedisPool jedisPool;
     private ExecutorServiceProvider executorServiceProvider;
+    private ScheduledExecutorService cleanerExecutor;
 
     public BaseRedisMetricsDatastore(String appName, JedisPool jedisPool) {
         this(appName, jedisPool, DaemonThreadExecutorServiceProvider.getInstance());
@@ -35,14 +34,23 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
         this.appName = appName;
         this.jedisPool = jedisPool;
         this.executorServiceProvider = executorServiceProvider;
-        this.cleanerExecutor = executorServiceProvider.createThreadScheduledExecutor(getThreadGroupName());
-        this.cleanerExecutor.scheduleAtFixedRate(new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
+        initializeCleanerExecutor();
     }
 
     public abstract RateLimitQueue<SUPPLIER, MSG> getRateLimitQueue(String executorName, String teamId);
 
     public Jedis jedis() {
         return jedisPool.getResource();
+    }
+
+    protected void initializeCleanerExecutor() {
+        if (this.cleanerExecutor != null) {
+            // Abandon the running one first
+            this.cleanerExecutor.shutdown();
+        }
+        this.cleanerExecutor = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
+        this.cleanerExecutor.scheduleAtFixedRate(
+                new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
     }
 
     @Override
@@ -63,6 +71,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
         this.executorServiceProvider = executorServiceProvider;
+        initializeCleanerExecutor();
     }
 
     private void addToStatsKeyIndices(Jedis jedis, String statsKey) {

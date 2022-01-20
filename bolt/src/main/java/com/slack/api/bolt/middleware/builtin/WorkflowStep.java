@@ -132,7 +132,7 @@ public class WorkflowStep implements Middleware, AutoCloseable {
         int poolSize = 3;
         // If you want to use own ExecutorService, pass it using the builder method instead:
         // `WorkflowStep.builder().executorService(executorService).build()`
-        ExecutorService service = new DaemonThreadExecutorServiceProvider().createThreadPoolExecutor(
+        ExecutorService service = DaemonThreadExecutorServiceProvider.getInstance().createThreadPoolExecutor(
                 threadGroupName,
                 poolSize
         );

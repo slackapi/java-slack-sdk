@@ -239,17 +239,19 @@ public class ApiTest {
 
     @Test
     public void customizeExecutorService() throws Exception {
-        final AtomicBoolean called = new AtomicBoolean(false);
+        final AtomicBoolean executorCreationCalled = new AtomicBoolean(false);
+        final AtomicBoolean schedulerCreationCalled = new AtomicBoolean(false);
         config.setExecutorServiceProvider(new ExecutorServiceProvider() {
             @Override
             public ExecutorService createThreadPoolExecutor(String threadGroupName, int poolSize) {
-                called.set(true);
+                executorCreationCalled.set(true);
                 return DaemonThreadExecutorServiceProvider.getInstance()
                         .createThreadPoolExecutor(threadGroupName, poolSize);
             }
 
             @Override
             public ScheduledExecutorService createThreadScheduledExecutor(String threadGroupName) {
+                schedulerCreationCalled.set(true);
                 return DaemonThreadExecutorServiceProvider.getInstance()
                         .createThreadScheduledExecutor(threadGroupName);
             }
@@ -257,11 +259,12 @@ public class ApiTest {
         {
             Slack.getInstance(config).scim(ValidToken).searchUsers(r -> r.count(1));
             // the sync client does not use ExecutorService under the hood
-            assertThat(called.get(), is(false));
+            assertThat(executorCreationCalled.get(), is(false));
+            assertThat(schedulerCreationCalled.get(), is(true));
         }
         {
             Slack.getInstance(config).scimAsync(ValidToken).searchUsers(r -> r.count(1)).get();
-            assertThat(called.get(), is(true));
+            assertThat(executorCreationCalled.get(), is(true));
         }
 
     }
