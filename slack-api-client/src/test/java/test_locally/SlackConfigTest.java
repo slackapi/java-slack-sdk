@@ -114,12 +114,14 @@ public class SlackConfigTest {
         ExecutorServiceProvider custom = new ExecutorServiceProvider() {
             @Override
             public ExecutorService createThreadPoolExecutor(String threadGroupName, int poolSize) {
-                return null;
+                return DaemonThreadExecutorServiceProvider.getInstance()
+                        .createThreadPoolExecutor(threadGroupName, poolSize);
             }
 
             @Override
             public ScheduledExecutorService createThreadScheduledExecutor(String threadGroupName) {
-                return null;
+                return DaemonThreadExecutorServiceProvider.getInstance()
+                        .createThreadScheduledExecutor(threadGroupName);
             }
         };
         config.setExecutorServiceProvider(custom);
