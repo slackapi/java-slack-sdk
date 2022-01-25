@@ -200,7 +200,11 @@ public class SocketModeClientTest {
             client.addWebSocketMessageListener(helloListener(helloReceived));
             client.addWebSocketMessageListener(envelopeListener(received));
             client.connect();
-            Thread.sleep(1500L);
+            int counter = 0;
+            while (!received.get() && counter < 50) {
+                Thread.sleep(100L);
+                counter++;
+            }
             assertTrue(helloReceived.get());
             assertTrue(received.get());
         }
@@ -300,7 +304,11 @@ public class SocketModeClientTest {
             client.addWebSocketMessageListener(helloListener(helloReceived));
             client.addWebSocketMessageListener(envelopeListener(received));
             client.connect();
-            Thread.sleep(1500L);
+            int counter = 0;
+            while (!received.get() && counter < 50) {
+                Thread.sleep(100L);
+                counter++;
+            }
             assertTrue(helloReceived.get());
             assertTrue(received.get());
         }
