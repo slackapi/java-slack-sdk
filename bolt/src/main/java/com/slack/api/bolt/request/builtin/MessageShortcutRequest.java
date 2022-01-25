@@ -30,8 +30,10 @@ public class MessageShortcutRequest extends Request<MessageShortcutContext> {
         } else if (payload.getTeam() != null) {
             getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
         }
-        if (payload.getTeam() != null) {
+        if (payload.getTeam() != null && payload.getTeam().getId() != null) {
             getContext().setTeamId(payload.getTeam().getId());
+        } else if (payload.getUser() != null && payload.getUser().getTeamId() != null) {
+            getContext().setTeamId(payload.getUser().getTeamId());
         }
         if (payload.getChannel() != null) {
             getContext().setChannelId(payload.getChannel().getId());

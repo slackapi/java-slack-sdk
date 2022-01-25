@@ -167,4 +167,92 @@ public class ViewSubmissionRequestTest {
         ViewSubmissionRequest req = new ViewSubmissionRequest("payload=" + URLEncoder.encode(payload, "UTF-8"), payload, headers);
         assertEquals("https://hooks.slack.com/app/T123/123/random", req.getResponseUrl());
     }
+
+    String orgWideInstallationPayload = "{\n" +
+            "  \"type\": \"view_submission\",\n" +
+            "  \"team\": null,\n" +
+            "  \"user\": {\n" +
+            "    \"id\": \"W111\",\n" +
+            "    \"username\": \"primary-owner\",\n" +
+            "    \"name\": \"primary-owner\",\n" +
+            "    \"team_id\": \"T_expected\"\n" +
+            "  },\n" +
+            "  \"api_app_id\": \"A111\",\n" +
+            "  \"token\": \"fixed-value\",\n" +
+            "  \"trigger_id\": \"1111.222.xxx\",\n" +
+            "  \"view\": {\n" +
+            "    \"id\": \"V111\",\n" +
+            "    \"team_id\": \"T_expected\",\n" +
+            "    \"type\": \"modal\",\n" +
+            "    \"blocks\": [\n" +
+            "      {\n" +
+            "        \"type\": \"input\",\n" +
+            "        \"block_id\": \"+5B\",\n" +
+            "        \"label\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Label\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"optional\": false,\n" +
+            "        \"dispatch_action\": false,\n" +
+            "        \"element\": {\n" +
+            "          \"type\": \"plain_text_input\",\n" +
+            "          \"dispatch_action_config\": {\n" +
+            "            \"trigger_actions_on\": [\n" +
+            "              \"on_enter_pressed\"\n" +
+            "            ]\n" +
+            "          },\n" +
+            "          \"action_id\": \"MMKH\"\n" +
+            "        }\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"private_metadata\": \"\",\n" +
+            "    \"callback_id\": \"view-id\",\n" +
+            "    \"state\": {\n" +
+            "      \"values\": {\n" +
+            "        \"+5B\": {\n" +
+            "          \"MMKH\": {\n" +
+            "            \"type\": \"plain_text_input\",\n" +
+            "            \"value\": \"test\"\n" +
+            "          }\n" +
+            "        }\n" +
+            "      }\n" +
+            "    },\n" +
+            "    \"hash\": \"111.xxx\",\n" +
+            "    \"title\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"My App\"\n" +
+            "    },\n" +
+            "    \"clear_on_close\": false,\n" +
+            "    \"notify_on_close\": false,\n" +
+            "    \"close\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Cancel\"\n" +
+            "    },\n" +
+            "    \"submit\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Submit\",\n" +
+            "      \"emoji\": true\n" +
+            "    },\n" +
+            "    \"previous_view_id\": null,\n" +
+            "    \"root_view_id\": \"V111\",\n" +
+            "    \"app_id\": \"A111\",\n" +
+            "    \"external_id\": \"\",\n" +
+            "    \"app_installed_team_id\": \"E111\",\n" +
+            "    \"bot_id\": \"B111\"\n" +
+            "  },\n" +
+            "  \"response_urls\": [],\n" +
+            "  \"is_enterprise_install\": true,\n" +
+            "  \"enterprise\": {\n" +
+            "    \"id\": \"E111\",\n" +
+            "    \"name\": \"Sandbox Org\"\n" +
+            "  }\n" +
+            "}";
+
+    @Test
+    public void orgWideInstallation() throws UnsupportedEncodingException {
+        RequestHeaders headers = new RequestHeaders(Collections.emptyMap());
+        ViewSubmissionRequest req = new ViewSubmissionRequest("payload=" + URLEncoder.encode(orgWideInstallationPayload, "UTF-8"), orgWideInstallationPayload, headers);
+        assertEquals("T_expected", req.getContext().getTeamId());
+    }
 }
