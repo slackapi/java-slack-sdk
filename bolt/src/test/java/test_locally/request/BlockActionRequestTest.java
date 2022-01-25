@@ -7,10 +7,7 @@ import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -103,5 +100,59 @@ public class BlockActionRequestTest {
         assertEquals(1, request.getHeaders().getNames().size());
         assertEquals("x-slack-signature", request.getHeaders().getNames().iterator().next());
         assertEquals(signature, request.getHeaders().getFirstValue("X-Slack-Signature"));
+    }
+
+    String orgWideInstallationPayload = "{\n" +
+            "  \"type\": \"block_actions\",\n" +
+            "  \"user\": {\n" +
+            "    \"id\": \"W111\",\n" +
+            "    \"username\": \"primary-owner\",\n" +
+            "    \"name\": \"primary-owner\",\n" +
+            "    \"team_id\": \"T_expected\"\n" +
+            "  },\n" +
+            "  \"api_app_id\": \"A111\",\n" +
+            "  \"token\": \"fixed-value\",\n" +
+            "  \"container\": {\n" +
+            "    \"type\": \"message\",\n" +
+            "    \"message_ts\": \"1643113871.000700\",\n" +
+            "    \"channel_id\": \"C111\",\n" +
+            "    \"is_ephemeral\": true\n" +
+            "  },\n" +
+            "  \"trigger_id\": \"111.222.xxx\",\n" +
+            "  \"team\": null,\n" +
+            "  \"enterprise\": {\n" +
+            "    \"id\": \"E111\",\n" +
+            "    \"name\": \"Sandbox Org\"\n" +
+            "  },\n" +
+            "  \"is_enterprise_install\": true,\n" +
+            "  \"channel\": {\n" +
+            "    \"id\": \"C111\",\n" +
+            "    \"name\": \"random\"\n" +
+            "  },\n" +
+            "  \"state\": {\n" +
+            "    \"values\": {}\n" +
+            "  },\n" +
+            "  \"response_url\": \"https://hooks.slack.com/actions/E111/111/xxx\",\n" +
+            "  \"actions\": [\n" +
+            "    {\n" +
+            "      \"action_id\": \"a\",\n" +
+            "      \"block_id\": \"b\",\n" +
+            "      \"text\": {\n" +
+            "        \"type\": \"plain_text\",\n" +
+            "        \"text\": \"Button\"\n" +
+            "      },\n" +
+            "      \"value\": \"click_me_123\",\n" +
+            "      \"type\": \"button\",\n" +
+            "      \"action_ts\": \"1643113877.645417\"\n" +
+            "    }\n" +
+            "  ]\n" +
+            "}\n";
+
+    @Test
+    public void test_org_wide_installation() throws UnsupportedEncodingException {
+        String requestBody = "payload=" + URLEncoder.encode(orgWideInstallationPayload, "UTF-8");
+        RequestHeaders headers = new RequestHeaders(Collections.emptyMap());
+        BlockActionRequest request = new BlockActionRequest(requestBody, orgWideInstallationPayload, headers);
+        assertEquals("T_expected", request.getContext().getTeamId());
     }
 }

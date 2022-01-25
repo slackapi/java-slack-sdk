@@ -28,8 +28,12 @@ public class ViewClosedRequest extends Request<DefaultContext> {
         } else if (payload.getTeam() != null) {
             getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
         }
-        if (payload.getTeam() != null) {
+        if (payload.getTeam() != null && payload.getTeam().getId() != null) {
             getContext().setTeamId(payload.getTeam().getId());
+        } else if (payload.getView() != null && payload.getView().getTeamId() != null) {
+            getContext().setTeamId(payload.getView().getTeamId());
+        } else if (payload.getUser() != null && payload.getUser().getId() != null) {
+            getContext().setTeamId(payload.getUser().getTeamId());
         }
         getContext().setRequestUserId(payload.getUser().getId());
     }
