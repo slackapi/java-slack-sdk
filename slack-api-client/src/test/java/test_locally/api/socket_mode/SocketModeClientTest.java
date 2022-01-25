@@ -86,7 +86,11 @@ public class SocketModeClientTest {
             });
 
             client.connect();
-            Thread.sleep(500L);
+            int counter = 0;
+            while (!received.get() && counter < 20) {
+                Thread.sleep(100L);
+                counter++;
+            }
             assertTrue(received.get());
 
             client.disconnect();
@@ -137,7 +141,11 @@ public class SocketModeClientTest {
             });
 
             client.connect();
-            Thread.sleep(500L);
+            int counter = 0;
+            while (!received.get() && counter < 20) {
+                Thread.sleep(100L);
+                counter++;
+            }
             assertTrue(received.get());
 
             client.disconnect();
@@ -171,7 +179,11 @@ public class SocketModeClientTest {
             client.connect();
             client.disconnect();
             client.connectToNewEndpoint();
-            Thread.sleep(500L);
+            int counter = 0;
+            while (!received.get() && counter < 20) {
+                Thread.sleep(100L);
+                counter++;
+            }
             assertTrue(received.get());
         }
     }
@@ -182,7 +194,11 @@ public class SocketModeClientTest {
             AtomicBoolean received = new AtomicBoolean(false);
             client.addWebSocketMessageListener(helloListener(received));
             client.connect();
-            Thread.sleep(300L);
+            int counter = 0;
+            while (!received.get() && counter < 20) {
+                Thread.sleep(100L);
+                counter++;
+            }
             assertTrue(received.get());
             client.sendSocketModeResponse(AckResponse.builder().envelopeId("xxx").build());
             client.sendSocketModeResponse(MessageResponse.builder()
@@ -243,7 +259,11 @@ public class SocketModeClientTest {
             });
 
             client.connect();
-            Thread.sleep(500L);
+            int counter = 0;
+            while (!received.get() && counter < 20) {
+                Thread.sleep(100L);
+                counter++;
+            }
             assertTrue(received.get());
 
             client.disconnect();
@@ -267,7 +287,11 @@ public class SocketModeClientTest {
             client.connect();
             client.disconnect();
             client.connectToNewEndpoint();
-            Thread.sleep(500L);
+            int counter = 0;
+            while (!received.get() && counter < 20) {
+                Thread.sleep(100L);
+                counter++;
+            }
             assertTrue(received.get());
         }
     }
@@ -286,7 +310,11 @@ public class SocketModeClientTest {
             AtomicBoolean received = new AtomicBoolean(false);
             client.addWebSocketMessageListener(helloListener(received));
             client.connect();
-            Thread.sleep(300L);
+            int counter = 0;
+            while (!received.get() && counter < 20) {
+                Thread.sleep(100L);
+                counter++;
+            }
             assertTrue(received.get());
             client.sendSocketModeResponse(AckResponse.builder().envelopeId("xxx").build());
             client.sendSocketModeResponse(MessageResponse.builder()
