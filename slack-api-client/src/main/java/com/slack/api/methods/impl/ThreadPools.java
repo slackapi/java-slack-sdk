@@ -8,10 +8,10 @@ import java.util.concurrent.ExecutorService;
 
 public class ThreadPools {
 
-    // Executor Name -> Executor
-    private static final ConcurrentMap<String, ExecutorService> ALL_DEFAULT = new ConcurrentHashMap<>();
-    // Executor Name -> Team ID -> Executor
-    private static final ConcurrentMap<String, ConcurrentMap<String, ExecutorService>> TEAM_CUSTOM = new ConcurrentHashMap<>();
+    // ExecutorServiceProvider ID -> Executor Name -> Executor
+    private static final ConcurrentMap<String, ConcurrentMap<String, ExecutorService>> ALL_DEFAULT = new ConcurrentHashMap<>();
+    // ExecutorServiceProvider ID -> Executor Name -> Team ID -> Executor
+    private static final ConcurrentMap<String, ConcurrentMap<String, ConcurrentMap<String, ExecutorService>>> TEAM_CUSTOM = new ConcurrentHashMap<>();
 
     private ThreadPools() {
     }
@@ -21,32 +21,31 @@ public class ThreadPools {
     }
 
     public static ExecutorService getOrCreate(MethodsConfig config, String teamId) {
-        String executorName = config.getExecutorName();
-        Integer customPoolSize = teamId != null ? config.getCustomThreadPoolSizes().get(teamId) : null;
-        if (customPoolSize != null) {
-            ConcurrentMap<String, ExecutorService> allTeams = TEAM_CUSTOM.get(executorName);
-            if (allTeams == null) {
-                allTeams = new ConcurrentHashMap<>();
-                TEAM_CUSTOM.put(executorName, allTeams);
-            }
-            ExecutorService teamExecutor = allTeams.get(teamId);
-            if (teamExecutor == null) {
-                String threadGroupName = "slack-methods-" + config.getExecutorName() + "-" + teamId;
-                teamExecutor = config.getExecutorServiceProvider().createThreadPoolExecutor(threadGroupName, customPoolSize);
-                allTeams.put(teamId, teamExecutor);
-            }
-            return teamExecutor;
+        String providerInstanceId = config.getExecutorServiceProvider().toString();
+        Integer teamCustomPoolSize = teamId != null ? config.getCustomThreadPoolSizes().get(teamId) : null;
+        if (teamCustomPoolSize != null) {
+            return TEAM_CUSTOM
+                    .computeIfAbsent(providerInstanceId, _id -> new ConcurrentHashMap<>())
+                    .computeIfAbsent(config.getExecutorName(), _name -> new ConcurrentHashMap<>())
+                    .computeIfAbsent(teamId, _id -> buildNewExecutorService(config, teamId, teamCustomPoolSize));
 
         } else {
-            ExecutorService defaultExecutor = ALL_DEFAULT.get(executorName);
-            if (defaultExecutor == null) {
-                String threadGroupName = "slack-methods-" + config.getExecutorName();
-                int poolSize = config.getDefaultThreadPoolSize();
-                defaultExecutor = config.getExecutorServiceProvider().createThreadPoolExecutor(threadGroupName, poolSize);
-                ALL_DEFAULT.put(config.getExecutorName(), defaultExecutor);
-            }
-            return defaultExecutor;
+            return ALL_DEFAULT
+                    .computeIfAbsent(providerInstanceId, _id -> new ConcurrentHashMap<>())
+                    .computeIfAbsent(config.getExecutorName(), _name -> buildNewExecutorService(config));
         }
+    }
+
+    private static ExecutorService buildNewExecutorService(MethodsConfig config) {
+        String threadGroupName = "slack-methods-" + config.getExecutorName();
+        int poolSize = config.getDefaultThreadPoolSize();
+        return config.getExecutorServiceProvider().createThreadPoolExecutor(threadGroupName, poolSize);
+    }
+
+    private static ExecutorService buildNewExecutorService(
+            MethodsConfig config, String teamId, Integer customPoolSize) {
+        String threadGroupName = "slack-methods-" + config.getExecutorName() + "-" + teamId;
+        return config.getExecutorServiceProvider().createThreadPoolExecutor(threadGroupName, customPoolSize);
     }
 
 }

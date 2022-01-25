@@ -25,3 +25,5 @@ jobs:
           export TRAVIS_JDK=openjdk8
         fi
         ./scripts/run_no_prep_tests.sh
+      env:
+        SKIP_UNSTABLE_TESTS: 1

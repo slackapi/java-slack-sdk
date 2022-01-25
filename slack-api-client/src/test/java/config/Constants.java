@@ -4,6 +4,8 @@ public class Constants {
     private Constants() {
     }
 
+    public static final String SKIP_UNSTABLE_TESTS = "SKIP_UNSTABLE_TESTS";
+
     // For Socket Mode, Event Auth APIs
     public static final String SLACK_SDK_TEST_APP_TOKEN = "SLACK_SDK_TEST_APP_TOKEN";
 

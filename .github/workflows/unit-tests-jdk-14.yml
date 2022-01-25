@@ -23,3 +23,5 @@ jobs:
       run: |
         ./scripts/run_no_prep_tests.sh
         bash <(curl -s https://codecov.io/bash)
+      env:
+        SKIP_UNSTABLE_TESTS: 1
