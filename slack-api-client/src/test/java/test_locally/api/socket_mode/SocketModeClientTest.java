@@ -27,6 +27,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static util.CIBuildUtil.isUnstableTestSkipEnabled;
 
 public class SocketModeClientTest {
 
@@ -326,6 +327,10 @@ public class SocketModeClientTest {
 
     @Test
     public void messageReceiver_JavaWebSocket() throws Exception {
+        if (isUnstableTestSkipEnabled()) {
+            // TODO: this test is too unstable in GitHub Actions builds
+            return;
+        }
         try (SocketModeClient client = slack.socketMode(VALID_APP_TOKEN, SocketModeClient.Backend.JavaWebSocket)) {
             AtomicBoolean helloReceived = new AtomicBoolean(false);
             AtomicBoolean received = new AtomicBoolean(false);
