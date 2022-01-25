@@ -160,6 +160,7 @@ public class Actions {
         public static final String connect_dm_invite_revoked = "connect_dm_invite_revoked";
         public static final String connect_dm_invite_accepted = "connect_dm_invite_accepted";
         public static final String connect_dm_invite_ignored = "connect_dm_invite_ignored";
+        public static final String user_email_updated = "user_email_updated";
     }
 
     public static class File {

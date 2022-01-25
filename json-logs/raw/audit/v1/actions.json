@@ -144,7 +144,8 @@
       "connect_dm_invite_generated",
       "connect_dm_invite_revoked",
       "connect_dm_invite_accepted",
-      "connect_dm_invite_ignored"
+      "connect_dm_invite_ignored",
+      "user_email_updated"
     ],
     "file": [
       "file_downloaded",

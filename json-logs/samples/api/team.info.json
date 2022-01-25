@@ -20,7 +20,8 @@
     "enterprise_id": "E00000000",
     "enterprise_name": "",
     "enterprise_domain": "",
-    "discoverable": ""
+    "discoverable": "",
+    "avatar_base_url": "https://www.example.com/"
   },
   "error": "",
   "needed": "",

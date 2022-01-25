@@ -22,7 +22,8 @@
     ],
     "is_verified": false,
     "enterprise_domain": "",
-    "url": "https://www.example.com/"
+    "url": "https://www.example.com/",
+    "avatar_base_url": "https://www.example.com/"
   },
   "error": "",
   "needed": "",

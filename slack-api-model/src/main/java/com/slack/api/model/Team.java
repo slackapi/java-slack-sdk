@@ -24,6 +24,7 @@ public class Team {
     private List<String> defaultChannels;
     private Boolean isVerified;
     private String discoverable; // "invite_only"
+    private String avatarBaseUrl;
 
     @Data
     public static class Profile {
