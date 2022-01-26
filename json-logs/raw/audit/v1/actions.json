@@ -114,7 +114,8 @@
       "pref.flagged_content_review_channel",
       "pref.slack_connect_approval_type",
       "pref.hermes_has_accepted_tos",
-      "pref.allow_sponsored_slack_connections"
+      "pref.allow_sponsored_slack_connections",
+      "pref.hermes_triggers_trippable_by_slack_connected_teams"
     ],
     "user": [
       "custom_tos_accepted",
