@@ -1,44 +1,15 @@
 {
   "token": "",
-  "team_id": "",
   "enterprise_id": "",
+  "team_id": "",
   "api_app_id": "",
-  "event": {
-    "type": "user_change",
-    "user": {
-      "id": "U00000000",
-      "team_id": "T00000000",
-      "name": "",
-      "color": "",
-      "is_bot": false,
-      "is_app_user": false,
-      "profile": {
-        "avatar_hash": "",
-        "image_24": "https://www.example.com/",
-        "image_32": "https://www.example.com/",
-        "image_48": "https://www.example.com/",
-        "image_72": "https://www.example.com/",
-        "image_192": "https://www.example.com/",
-        "image_512": "https://www.example.com/",
-        "first_name": "",
-        "last_name": "",
-        "real_name": "",
-        "display_name": "",
-        "real_name_normalized": "",
-        "display_name_normalized": "",
-        "team": "T00000000",
-        "image_original": "https://www.example.com/",
-        "image_1024": "https://www.example.com/"
-      },
-      "updated": 12345,
-      "who_can_share_contact_card": ""
-    },
-    "cache_ts": 12345,
-    "event_ts": "0000000000.000000"
-  },
-  "type": "event_callback",
-  "event_id": "",
-  "event_time": 12345,
+  "type": "",
+  "authed_users": [
+    ""
+  ],
+  "authed_teams": [
+    ""
+  ],
   "authorizations": [
     {
       "enterprise_id": "",
@@ -49,5 +20,82 @@
     }
   ],
   "is_ext_shared_channel": false,
-  "event_context": ""
+  "event_id": "",
+  "event_time": 123,
+  "event_context": "",
+  "event": {
+    "type": "user_change",
+    "user": {
+      "id": "",
+      "team_id": "",
+      "name": "",
+      "deleted": false,
+      "color": "",
+      "real_name": "",
+      "tz": "",
+      "tz_label": "",
+      "tz_offset": 123,
+      "profile": {
+        "guest_channels": "",
+        "guest_invited_by": "",
+        "guest_expiration_ts": 123,
+        "avatar_hash": "",
+        "status_text": "",
+        "status_text_canonical": "",
+        "status_emoji": "",
+        "status_emoji_url": "",
+        "status_expiration": 123,
+        "display_name": "",
+        "display_name_normalized": "",
+        "real_name": "",
+        "real_name_normalized": "",
+        "bot_id": "",
+        "title": "",
+        "email": "",
+        "skype": "",
+        "phone": "",
+        "team": "",
+        "api_app_id": "",
+        "always_active": false,
+        "image_original": "",
+        "image_24": "",
+        "image_32": "",
+        "image_48": "",
+        "image_72": "",
+        "image_192": "",
+        "image_512": "",
+        "image_1024": "",
+        "is_custom_image": false,
+        "pronouns": "",
+        "first_name": "",
+        "last_name": ""
+      },
+      "is_admin": false,
+      "is_owner": false,
+      "is_primary_owner": false,
+      "is_invited_user": false,
+      "is_restricted": false,
+      "is_ultra_restricted": false,
+      "is_bot": false,
+      "is_stranger": false,
+      "is_app_user": false,
+      "updated": 123,
+      "has_2fa": false,
+      "is_email_confirmed": false,
+      "presence": "",
+      "enterprise_user": {
+        "id": "",
+        "enterprise_id": "",
+        "enterprise_name": "",
+        "is_admin": false,
+        "is_owner": false
+      },
+      "two_factor_type": "",
+      "has_files": false,
+      "locale": "",
+      "is_workflow_bot": false,
+      "who_can_share_contact_card": false
+    },
+    "cache_ts": 123
+  }
 }

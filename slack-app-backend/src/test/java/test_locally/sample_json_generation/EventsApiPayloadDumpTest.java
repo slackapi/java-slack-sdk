@@ -135,6 +135,14 @@ public class EventsApiPayloadDumpTest {
                 }
             } catch (Exception e) {
             }
+            try {
+                Field authorizations = payload.getClass().getDeclaredField("authorizations");
+                if (authorizations != null) {
+                    authorizations.setAccessible(true);
+                    authorizations.set(payload, Arrays.asList(initProperties(new Authorization())));
+                }
+            } catch (Exception e) {
+            }
             initProperties(payload);
             dumper.dump(payload.getClass().getSimpleName(), payload);
         }
