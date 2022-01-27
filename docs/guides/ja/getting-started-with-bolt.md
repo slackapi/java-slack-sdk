@@ -46,7 +46,7 @@ Maven プロジェクトを作成した後、まずは **bolt** 依存ライブ�
 </dependency>
 ```
 
-そのような他のフレームワークは一切使わず、シンプルな構成で Jetty HTTP サーバーで起動したい場合は **bolt-jetty** を追加してください。
+そのような他のフレームワークは一切使わず、シンプルな構成で Jetty HTTP サーバーで起動したい場合は **bolt-jetty** を追加してください。もし [Jakarta EE Servlet API](https://jakarta.ee/specifications/servlet/5.0/)互換の最新の Jetty サーバーを使いたい場合は **bolt-jakarta-jetty** を利用してください。
 
 ```xml
 <dependency>
@@ -109,6 +109,7 @@ run {
 package hello;
 
 import com.slack.api.bolt.App;
+// bolt-jakarta-jetty を使う場合は `com.slack.api.bolt.jakarta_jetty.SlackAppServer` を import してください
 import com.slack.api.bolt.jetty.SlackAppServer;
 
 public class MyApp {

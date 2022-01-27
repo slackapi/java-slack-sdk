@@ -46,7 +46,7 @@ After you create your Maven project, you need to add the **bolt** dependency to 
 </dependency>
 ```
 
-If you run the Bolt app on the Jetty HTTP server without any frameworks, you can simply go with **bolt-jetty** module.
+If you run the Bolt app on the Jetty HTTP server without any frameworks, you can simply go with **bolt-jetty** module. If you prefer using the latest Jetty server, which is compatible with [Jakarta EE Servlet APIs](https://jakarta.ee/specifications/servlet/5.0/), **bolt-jakarta-jetty** is available for you.
 
 ```xml
 <dependency>
@@ -109,6 +109,7 @@ Only single source code is required to run your first-ever Bolt app. All you nee
 package hello;
 
 import com.slack.api.bolt.App;
+// If you use bolt-jakarta-jetty, you can import `com.slack.api.bolt.jakarta_jetty.SlackAppServer` instead
 import com.slack.api.bolt.jetty.SlackAppServer;
 
 public class MyApp {
