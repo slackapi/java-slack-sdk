@@ -1,0 +1,13 @@
+{
+  "clientId": "111.222",
+  "clientSecret": "xxx",
+  "signingSecret": "xxx",
+  "oauthStartPath": "start",
+  "oauthCallbackPath": "callback",
+  "redirectUri": "https://your-subdomain.ngrok.io/slack/oauth/callback",
+  "oauthCancellationUrl": "https://www.example.com/cancellation",
+  "oauthCompletionUrl": "https://www.example.com/thank-you",
+  "scope": "",
+  "userScope": "admin,admin.conversations:read,admin.conversations:write,admin.invites:read,admin.invites:write,admin.teams:read,admin.teams:write,admin.usergroups:read,admin.usergroups:write,admin.users:read,admin.users:write,auditlogs:read,channels:read,usergroups:read,users:read",
+  "installation_url_memo": "https://your-subdomain.ngrok.io/slack/oauth/start"
+}

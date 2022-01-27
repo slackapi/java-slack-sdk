@@ -17,6 +17,7 @@ import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+@Deprecated // Please consider Bolt framework with bolt-servlet adapter instead
 @Slf4j
 public abstract class SlackEventsApiServlet extends HttpServlet {
 
