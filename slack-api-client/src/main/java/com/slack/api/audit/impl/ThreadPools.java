@@ -1,6 +1,7 @@
 package com.slack.api.audit.impl;
 
 import com.slack.api.audit.AuditConfig;
+import com.slack.api.util.thread.ExecutorServiceProvider;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -22,7 +23,7 @@ public class ThreadPools {
     }
 
     public static ExecutorService getOrCreate(AuditConfig config, String enterpriseId) {
-        String providerInstanceId = config.getExecutorServiceProvider().toString();
+        String providerInstanceId = config.getExecutorServiceProvider().getInstanceId();
         Integer orgCustomPoolSize = enterpriseId != null ? config.getCustomThreadPoolSizes().get(enterpriseId) : null;
         if (orgCustomPoolSize != null) {
             return ENTERPRISE_CUSTOM
