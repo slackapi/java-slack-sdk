@@ -23,6 +23,6 @@ public class ExecutorServiceProviderTest {
                 return null;
             }
         };
-        assertTrue(provider.getInstanceId().matches("test_locally.util.ExecutorServiceFactoryTest\\$1\\@\\w+$"));
+        assertTrue(provider.getInstanceId().matches("test_locally.util.ExecutorServiceProviderTest\\$1\\@\\w+$"));
     }
 }
