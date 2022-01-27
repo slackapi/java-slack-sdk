@@ -634,6 +634,14 @@
     {
       "date_created": "2022-01-18T10:03:11-08:00",
       "body": "Some workspaces are having trouble reconnecting their Slack Connect channels immediately after upgrading their plan. We\u0027re investigating and will let you know as soon as we know more."
+    },
+    {
+      "date_created": "2022-01-27T11:45:01-08:00",
+      "body": "As we continue to investigate this issue we wanted to quickly note that toggling the \"Notify me about replies to threads I\u0027m following\" in your \"Notifications\" settings should help as a workaround. Thank you for your patience as we work through this one!"
+    },
+    {
+      "date_created": "2022-01-27T10:19:04-08:00",
+      "body": "Some users are unexpectedly receiving banner notifications for replies in threads they\u0027re following when the preference to receive them was not previously enabled. We\u0027re investigating and will let you know as soon as we know more."
     }
   ]
 }

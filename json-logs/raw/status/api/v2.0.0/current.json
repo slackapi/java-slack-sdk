@@ -1014,6 +1014,46 @@
           "body": "A bug is impacting some Android users on version 22.01.10 who try to use a magic link to sign in. Engineers have identified the issue and are working on a fix. As a workaround, you can sign in manually using URL/email/password."
         }
       ]
+    },
+    {
+      "id": 1059,
+      "date_created": "2022-01-27T10:19:04-08:00",
+      "date_updated": "2022-01-27T11:45:01-08:00",
+      "title": "Some customers are receiving banner notifications for threads they\u0027re following",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-01/ff3b337766c6f85f",
+      "services": [
+        "Notifications"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-01-27T11:45:01-08:00",
+          "body": "As we continue to investigate this issue we wanted to quickly note that toggling the \"Notify me about replies to threads I\u0027m following\" in your \"Notifications\" settings should help as a workaround. Thank you for your patience as we work through this one!"
+        },
+        {
+          "date_created": "2022-01-27T10:19:04-08:00",
+          "body": "Some users are unexpectedly receiving banner notifications for replies in threads they\u0027re following when the preference to receive them was not previously enabled. We\u0027re investigating and will let you know as soon as we know more."
+        }
+      ]
+    },
+    {
+      "id": 1058,
+      "date_created": "2022-01-27T07:13:20-08:00",
+      "date_updated": "2022-01-27T07:17:44-08:00",
+      "title": "Some customers are unable to receive 2FA SMS messages",
+      "type": "notice",
+      "status": "active",
+      "url": "https://status.slack.com/2022-01/680deee5e0dfb0ca",
+      "services": [
+        "Login/SSO"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-01-27T07:13:20-08:00",
+          "body": "Some customers are unable to receive 2FA (two-factor authentication) SMS messages. This is due to an issue experienced by one of our upstream partners. We are investigating further and will share back when we have more updates."
+        }
+      ]
     }
   ]
 }

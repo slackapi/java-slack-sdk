@@ -13,6 +13,11 @@
     <version>1.17.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <!-- TODO: Upgrade to 9.4 -->
+        <jetty-for-tests.version>9.2.27.v20190403</jetty-for-tests.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.slack.api</groupId>
