@@ -21,7 +21,7 @@ public class ThreadPools {
     }
 
     public static ExecutorService getOrCreate(MethodsConfig config, String teamId) {
-        String providerInstanceId = config.getExecutorServiceProvider().toString();
+        String providerInstanceId = config.getExecutorServiceProvider().getInstanceId();
         Integer teamCustomPoolSize = teamId != null ? config.getCustomThreadPoolSizes().get(teamId) : null;
         if (teamCustomPoolSize != null) {
             return TEAM_CUSTOM

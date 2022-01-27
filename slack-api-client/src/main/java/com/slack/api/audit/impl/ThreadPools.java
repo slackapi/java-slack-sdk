@@ -22,7 +22,7 @@ public class ThreadPools {
     }
 
     public static ExecutorService getOrCreate(AuditConfig config, String enterpriseId) {
-        String providerInstanceId = config.getExecutorServiceProvider().toString();
+        String providerInstanceId = config.getExecutorServiceProvider().getInstanceId();
         Integer orgCustomPoolSize = enterpriseId != null ? config.getCustomThreadPoolSizes().get(enterpriseId) : null;
         if (orgCustomPoolSize != null) {
             return ENTERPRISE_CUSTOM
