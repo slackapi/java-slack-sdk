@@ -1,7 +1,6 @@
 package com.slack.api.audit.impl;
 
 import com.slack.api.audit.AuditConfig;
-import com.slack.api.util.thread.ExecutorServiceProvider;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
