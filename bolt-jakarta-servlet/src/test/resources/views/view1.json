@@ -1,0 +1,73 @@
+{
+  "callback_id": "view-callback-id",
+  "type": "modal",
+  "notify_on_close": true,
+  "title": {
+    "type": "plain_text",
+    "text": "Meeting Arrangement",
+    "emoji": true
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit",
+    "emoji": true
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Cancel",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "block_id": "date",
+      "type": "input",
+      "element": {
+        "action_id": "date-input",
+        "type": "datepicker",
+        "initial_date": "2019-10-22",
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Select a date",
+          "emoji": true
+        }
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Meeting Date",
+        "emoji": true
+      }
+    },
+    {
+      "block_id": "topics",
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Select the meeting topics"
+      },
+      "accessory": {
+        "action_id": "topics-input",
+        "type": "multi_external_select",
+        "min_query_length": 1,
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Select",
+          "emoji": true
+        }
+      }
+    },
+    {
+      "block_id": "agenda",
+      "type": "input",
+      "element": {
+        "action_id": "agenda-input",
+        "type": "plain_text_input",
+        "multiline": true
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Detailed Agenda",
+        "emoji": true
+      }
+    }
+  ]
+}

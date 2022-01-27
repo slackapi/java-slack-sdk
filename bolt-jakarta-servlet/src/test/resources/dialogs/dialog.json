@@ -1,0 +1,26 @@
+{
+  "callback_id": "dialog-callback-id",
+  "title": "Request a Ride",
+  "submit_label": "Request",
+  "notify_on_cancel": true,
+  "state": "Limo",
+  "elements": [
+    {
+      "type": "select",
+      "data_source": "external",
+      "label": "Department",
+      "name": "department"
+    },
+    {
+      "type": "text",
+      "label": "Email",
+      "optional": true,
+      "name": "email"
+    },
+    {
+      "type": "textarea",
+      "label": "Comment",
+      "name": "comment"
+    }
+  ]
+}

@@ -20,7 +20,9 @@
         <module>bolt</module>
         <module>bolt-socket-mode</module>
         <module>bolt-servlet</module>
+        <module>bolt-jakarta-servlet</module>
         <module>bolt-jetty</module>
+        <module>bolt-jakarta-jetty</module>
         <module>bolt-aws-lambda</module>
         <module>bolt-google-cloud-functions</module>
         <module>bolt-micronaut</module>
@@ -45,6 +47,7 @@
 
         <!-- For these compile scope dependencies, we don't use ranges of versions -->
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
         <okhttp.version>4.9.3</okhttp.version>
         <gson.version>2.8.9</gson.version>
         <kotlin.version>1.6.10</kotlin.version>
@@ -54,6 +57,8 @@
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
 
         <!-- optional / testing-only dependencies -->
+        <jakarta.jetty.version>11.0.7</jakarta.jetty.version>
+        <java-jwt.version>3.18.3</java-jwt.version>
         <aws.s3.version>[1.12.62,1.13.0)</aws.s3.version>
         <junit.version>4.13.2</junit.version>
         <logback.version>1.2.10</logback.version>

@@ -7,7 +7,6 @@ import com.slack.api.methods.response.rtm.RTMConnectResponse;
 import com.slack.api.model.User;
 import com.slack.api.util.http.ProxyUrlUtil;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.Credentials;
 import org.glassfish.tyrus.client.ClientManager;
 import org.glassfish.tyrus.client.ClientProperties;
 
