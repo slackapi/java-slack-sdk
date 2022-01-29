@@ -197,6 +197,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> slackCliNames = getAllPublicStaticFieldValues(Actions.SlackCLI.class);
+        for (String action : actions.getSlackCLI()) {
+            if (!slackCliNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test

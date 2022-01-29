@@ -146,7 +146,9 @@
       "connect_dm_invite_revoked",
       "connect_dm_invite_accepted",
       "connect_dm_invite_ignored",
-      "user_email_updated"
+      "user_email_updated",
+      "user_joined_workspace",
+      "guest_joined_workspace"
     ],
     "file": [
       "file_downloaded",
@@ -247,6 +249,11 @@
     ],
     "anomaly": [
       "anomaly"
+    ],
+    "slack_cli": [
+      "cli_login",
+      "cli_logout",
+      "cli_app_deploy"
     ]
   }
 }

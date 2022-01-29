@@ -1,5 +1,6 @@
 package com.slack.api.audit.response;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.audit.AuditApiResponse;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,5 +32,7 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> barrier;
         private List<String> huddle;
         private List<String> anomaly;
+        @SerializedName("slack_cli")
+        private List<String> slackCLI;
     }
 }

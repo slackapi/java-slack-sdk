@@ -29,6 +29,9 @@
     ],
     "anomaly": [
       ""
+    ],
+    "slack_cli": [
+      ""
     ]
   },
   "ok": false,

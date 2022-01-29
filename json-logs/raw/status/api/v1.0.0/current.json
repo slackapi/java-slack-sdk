@@ -642,6 +642,14 @@
     {
       "date_created": "2022-01-27T10:19:04-08:00",
       "body": "Some users are unexpectedly receiving banner notifications for replies in threads they\u0027re following when the preference to receive them was not previously enabled. We\u0027re investigating and will let you know as soon as we know more."
+    },
+    {
+      "date_created": "2022-01-28T14:43:00-08:00",
+      "body": "We have resolved the underlying issue for this incident and no further users will be impacted going forward.\r\n\r\nUsers previously impacted by this issue may still find the \"Notify me about replies to threads I\u0027m following\" preference changed from what was previously selected. To remedy this, please go to Preferences \u003e Notifications and update this preference if needed."
+    },
+    {
+      "date_created": "2022-01-27T16:31:29-08:00",
+      "body": "Some users have been unexpectedly receiving banner notifications for replies in threads they\u0027re following when the preference to receive them was not previously enabled. We\u0027ve released a change, and believe that no additional users will be impacted by this issue. However, we are continuing to monitor the situation and will report back once we have another update.\r\n\r\nPlease be aware that users previously impacted by this issue may find their \"Notify me about replies to threads I\u0027m following\" preference changed from what was selected previously. We recommend heading to Preferences \u003e Notifications and toggling this preference if needed."
     }
   ]
 }

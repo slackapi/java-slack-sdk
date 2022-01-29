@@ -162,6 +162,8 @@ public class Actions {
         public static final String connect_dm_invite_accepted = "connect_dm_invite_accepted";
         public static final String connect_dm_invite_ignored = "connect_dm_invite_ignored";
         public static final String user_email_updated = "user_email_updated";
+        public static final String user_joined_workspace = "user_joined_workspace";
+        public static final String guest_joined_workspace = "guest_joined_workspace";
     }
 
     public static class File {
@@ -281,5 +283,14 @@ public class Actions {
         public static final String barrier_created = "barrier_created";
         public static final String barrier_updated = "barrier_updated";
         public static final String barrier_deleted = "barrier_deleted";
+    }
+
+    public static class SlackCLI {
+        private SlackCLI() {
+        }
+
+        public static final String cli_login = "cli_login";
+        public static final String cli_logout = "cli_logout";
+        public static final String cli_app_deploy = "cli_app_deploy";
     }
 }
