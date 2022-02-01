@@ -61,4 +61,11 @@ public class ButtonElement extends BlockElement {
      * A confirm object that defines an optional confirmation dialog after the button is clicked.
      */
     private ConfirmationDialogObject confirm;
+
+    /**
+     * A label for longer descriptive text about a button element.
+     * This label will be read out by screen readers instead of the button text object.
+     * Maximum length for this field is 75 characters.
+     */
+    private String accessibilityLabel;
 }

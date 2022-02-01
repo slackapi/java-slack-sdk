@@ -16,6 +16,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
     private var value: String? = null
     private var style: String? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var accessibilityLabel: String? = null
 
     /**
      * An identifier for this action. You can use this when you receive an interaction payload to identify the source
@@ -91,6 +92,17 @@ class ButtonElementBuilder : Builder<ButtonElement> {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
     }
 
+    /**
+     * A label for longer descriptive text about a button element.
+     * This label will be read out by screen readers instead of the button text object.
+     * Maximum length for this field is 75 characters.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#button">Button element documentation</a>
+     */
+    fun accessibilityLabel(accessibilityLabel: String) {
+        this.accessibilityLabel = accessibilityLabel
+    }
+
     override fun build(): ButtonElement {
         return ButtonElement.builder()
                 .actionId(actionId)
@@ -99,6 +111,7 @@ class ButtonElementBuilder : Builder<ButtonElement> {
                 .text(text)
                 .style(style)
                 .confirm(confirm)
+                .accessibilityLabel(accessibilityLabel)
                 .build()
     }
 }
