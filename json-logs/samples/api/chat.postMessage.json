@@ -97,6 +97,7 @@
             },
             "style": ""
           },
+          "accessibility_label": "",
           "options": [
             {
               "text": {
@@ -214,6 +215,7 @@
               "emoji": false
             },
             "value": "",
+            "emoji": false,
             "verbatim": false,
             "url": "",
             "style": "",
@@ -240,6 +242,7 @@
               },
               "style": ""
             },
+            "accessibility_label": "",
             "options": [
               {
                 "text": {
@@ -383,6 +386,7 @@
               },
               "style": ""
             },
+            "accessibility_label": "",
             "options": [
               {
                 "text": {
@@ -709,6 +713,7 @@
                   },
                   "style": ""
                 },
+                "accessibility_label": "",
                 "options": [
                   {
                     "text": {
@@ -878,6 +883,7 @@
                 },
                 "style": ""
               },
+              "accessibility_label": "",
               "options": [
                 {
                   "text": {
@@ -1262,6 +1268,7 @@
                       },
                       "style": ""
                     },
+                    "accessibility_label": "",
                     "options": [
                       {
                         "text": {
@@ -1431,6 +1438,7 @@
                     },
                     "style": ""
                   },
+                  "accessibility_label": "",
                   "options": [
                     {
                       "text": {

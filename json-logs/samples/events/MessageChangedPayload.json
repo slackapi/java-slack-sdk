@@ -90,7 +90,8 @@
                   "emoji": false
                 },
                 "style": ""
-              }
+              },
+              "accessibility_label": ""
             },
             {
               "type": "channels_select",
@@ -788,7 +789,8 @@
                   "emoji": false
                 },
                 "style": ""
-              }
+              },
+              "accessibility_label": ""
             },
             {
               "type": "channels_select",

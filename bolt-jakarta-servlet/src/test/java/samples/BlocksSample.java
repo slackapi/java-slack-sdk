@@ -53,7 +53,7 @@ public class BlocksSample {
                             .blockId("actions-block")
                             .elements(asElements(
                                     button(b -> b.actionId("block-button-1").text(plainText(pt -> pt.emoji(true).text("Button1"))).value("v1")),
-                                    button(b -> b.actionId("block-button-2").text(plainText(pt -> pt.emoji(true).text("Button2"))).value("v2"))
+                                    button(b -> b.actionId("block-button-2").text(plainText(pt -> pt.emoji(true).text("Button2"))).value("v2").accessibilityLabel("This label will be read out by screen readers"))
                             ))
                     ),
                     // Select Menu

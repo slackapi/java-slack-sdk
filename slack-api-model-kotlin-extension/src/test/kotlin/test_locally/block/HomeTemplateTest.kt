@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 // https://api.slack.com/tools/block-kit-builder?mode=appHome&template=1
 class HomeTemplateTest {
 
-    val gson = GsonFactory.createSnakeCase()
+    private val gson = GsonFactory.createSnakeCase()
 
     @Test
     fun projectTracker() {
@@ -32,6 +32,11 @@ class HomeTemplateTest {
                     button {
                         text(text = "Help", emoji = true)
                         value("help")
+                    }
+                    button {
+                        text(text = "Help", emoji = true)
+                        value("help")
+                        accessibilityLabel("This label will be read out by screen readers")
                     }
                 }
             }
@@ -113,6 +118,16 @@ class HomeTemplateTest {
 						"emoji": true
 					},
 					"value": "help"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "Help",
+						"emoji": true
+					},
+					"value": "help",
+					"accessibility_label": "This label will be read out by screen readers"
 				}
 			]
 		},

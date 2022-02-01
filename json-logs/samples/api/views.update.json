@@ -188,7 +188,8 @@
               "emoji": false
             },
             "style": ""
-          }
+          },
+          "accessibility_label": ""
         },
         "dispatch_action": false,
         "hint": {
@@ -744,7 +745,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "accessibility_label": ""
           },
           {
             "type": "checkboxes",
