@@ -74,7 +74,8 @@
                 "emoji": false
               },
               "style": ""
-            }
+            },
+            "accessibility_label": ""
           },
           {
             "type": "channels_select",
