@@ -146,6 +146,7 @@
                       },
                       "style": ""
                     },
+                    "accessibility_label": "",
                     "options": [
                       {
                         "text": {
@@ -315,6 +316,7 @@
                     },
                     "style": ""
                   },
+                  "accessibility_label": "",
                   "options": [
                     {
                       "text": {
@@ -699,6 +701,7 @@
                           },
                           "style": ""
                         },
+                        "accessibility_label": "",
                         "options": [
                           {
                             "text": {
@@ -868,6 +871,7 @@
                         },
                         "style": ""
                       },
+                      "accessibility_label": "",
                       "options": [
                         {
                           "text": {
@@ -1042,6 +1046,7 @@
                   },
                   "style": ""
                 },
+                "accessibility_label": "",
                 "options": [
                   {
                     "text": {
@@ -1211,6 +1216,7 @@
                 },
                 "style": ""
               },
+              "accessibility_label": "",
               "options": [
                 {
                   "text": {
@@ -1631,6 +1637,7 @@
                       },
                       "style": ""
                     },
+                    "accessibility_label": "",
                     "options": [
                       {
                         "text": {
@@ -1800,6 +1807,7 @@
                     },
                     "style": ""
                   },
+                  "accessibility_label": "",
                   "options": [
                     {
                       "text": {
@@ -2297,7 +2305,8 @@
                     "emoji": false
                   },
                   "style": ""
-                }
+                },
+                "accessibility_label": ""
               },
               {
                 "type": "checkboxes",
@@ -3162,7 +3171,8 @@
                   "emoji": false
                 },
                 "style": ""
-              }
+              },
+              "accessibility_label": ""
             }
           },
           {

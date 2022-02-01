@@ -280,6 +280,7 @@
                       },
                       "style": ""
                     },
+                    "accessibility_label": "",
                     "options": [
                       {
                         "text": {
@@ -449,6 +450,7 @@
                     },
                     "style": ""
                   },
+                  "accessibility_label": "",
                   "options": [
                     {
                       "text": {
@@ -616,6 +618,7 @@
                   },
                   "style": ""
                 },
+                "accessibility_label": "",
                 "options": [
                   {
                     "text": {
@@ -785,6 +788,7 @@
                 },
                 "style": ""
               },
+              "accessibility_label": "",
               "options": [
                 {
                   "text": {

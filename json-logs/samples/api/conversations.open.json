@@ -17,6 +17,171 @@
       "blocks": [
         {
           "type": "",
+          "block_id": "",
+          "text": {
+            "type": "",
+            "text": "",
+            "verbatim": false,
+            "emoji": false
+          },
+          "accessory": {
+            "type": "",
+            "action_id": "",
+            "options": [
+              {
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "0",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              },
+              {
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "min_query_length": 12345,
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "url": "",
+            "value": "",
+            "style": "",
+            "confirm": {
+              "title": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "accessibility_label": "",
+            "initial_options": [
+              {
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "value": "",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "url": ""
+              }
+            ],
+            "focus_on_load": false,
+            "initial_option": {
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "value": "",
+              "description": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
+            },
+            "placeholder": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "initial_channel": "",
+            "response_url_enabled": false,
+            "initial_channels": [
+              ""
+            ],
+            "max_selected_items": 12345,
+            "initial_conversation": "",
+            "default_to_current_conversation": false,
+            "filter": {
+              "include": [
+                ""
+              ],
+              "exclude_external_shared_channels": false,
+              "exclude_bot_users": false
+            },
+            "initial_conversations": [
+              ""
+            ],
+            "initial_date": "",
+            "initial_time": "",
+            "image_url": "",
+            "alt_text": "",
+            "fallback": "",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345,
+            "option_groups": [
+              {
+                "label": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "options": [
+                  {
+                    "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "value": "",
+                    "description": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "url": ""
+                  }
+                ]
+              }
+            ],
+            "initial_user": "",
+            "initial_users": [
+              ""
+            ]
+          },
           "elements": [
             {
               "type": "",
@@ -52,6 +217,7 @@
                 },
                 "style": ""
               },
+              "accessibility_label": "",
               "options": [
                 {
                   "text": {
@@ -171,7 +337,6 @@
               "image_bytes": 12345
             }
           ],
-          "block_id": "",
           "fallback": "",
           "image_url": "",
           "image_width": 12345,
@@ -183,11 +348,6 @@
             "text": "",
             "emoji": false
           },
-          "text": {
-            "type": "",
-            "text": "",
-            "emoji": false
-          },
           "fields": [
             {
               "type": "",
@@ -195,150 +355,7 @@
               "emoji": false,
               "verbatim": false
             }
-          ],
-          "accessory": {
-            "type": "",
-            "text": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "action_id": "",
-            "url": "",
-            "value": "",
-            "style": "",
-            "confirm": {
-              "title": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "text": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "confirm": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "deny": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "style": ""
-            },
-            "options": [
-              {
-                "text": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "value": "",
-                "description": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "url": ""
-              }
-            ],
-            "initial_options": [
-              {
-                "text": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "value": "",
-                "description": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "url": ""
-              }
-            ],
-            "focus_on_load": false,
-            "initial_option": {
-              "text": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "value": "",
-              "description": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "url": ""
-            },
-            "placeholder": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "initial_channel": "",
-            "response_url_enabled": false,
-            "initial_channels": [
-              ""
-            ],
-            "max_selected_items": 12345,
-            "initial_conversation": "",
-            "default_to_current_conversation": false,
-            "filter": {
-              "include": [
-                ""
-              ],
-              "exclude_external_shared_channels": false,
-              "exclude_bot_users": false
-            },
-            "initial_conversations": [
-              ""
-            ],
-            "initial_date": "",
-            "initial_time": "",
-            "min_query_length": 12345,
-            "image_url": "",
-            "alt_text": "",
-            "fallback": "",
-            "image_width": 12345,
-            "image_height": 12345,
-            "image_bytes": 12345,
-            "option_groups": [
-              {
-                "label": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "options": [
-                  {
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "value": "",
-                    "description": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "url": ""
-                  }
-                ]
-              }
-            ],
-            "initial_user": "",
-            "initial_users": [
-              ""
-            ]
-          }
+          ]
         }
       ],
       "client_msg_id": "",

@@ -22,18 +22,6 @@
       "username": "",
       "url_private": "https://www.example.com/",
       "media_display_type": "",
-      "permalink": "https://www.example.com/",
-      "channels": [
-        "C00000000",
-        ""
-      ],
-      "groups": [
-        ""
-      ],
-      "ims": [
-        ""
-      ],
-      "comments_count": 12345,
       "thumb_64": "https://www.example.com/",
       "thumb_80": "https://www.example.com/",
       "thumb_360": "https://www.example.com/",
@@ -59,6 +47,18 @@
       "original_w": 12345,
       "original_h": 12345,
       "thumb_tiny": "",
+      "permalink": "https://www.example.com/",
+      "channels": [
+        "C00000000",
+        ""
+      ],
+      "groups": [
+        ""
+      ],
+      "ims": [
+        ""
+      ],
+      "comments_count": 12345,
       "subject": "",
       "non_owner_editable": false,
       "editor": "",
@@ -265,6 +265,7 @@
                 },
                 "style": ""
               },
+              "accessibility_label": "",
               "options": [
                 {
                   "text": {
@@ -434,6 +435,7 @@
               },
               "style": ""
             },
+            "accessibility_label": "",
             "options": [
               {
                 "text": {
@@ -590,6 +592,7 @@
                 },
                 "style": ""
               },
+              "accessibility_label": "",
               "options": [
                 {
                   "text": {
@@ -759,6 +762,7 @@
               },
               "style": ""
             },
+            "accessibility_label": "",
             "options": [
               {
                 "text": {
