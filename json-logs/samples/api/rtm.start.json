@@ -790,7 +790,8 @@
         "is_enabled": false
       },
       "magic_unfurls_enabled": false,
-      "invites_limit": false
+      "invites_limit": false,
+      "show_mobile_promos": false
     },
     "icon": {
       "image_102": "https://www.example.com/",
