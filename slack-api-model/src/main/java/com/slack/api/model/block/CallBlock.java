@@ -26,13 +26,13 @@ public class CallBlock implements LayoutBlock {
     private CallData call;
 
     @Data
-    public class CallData {
+    public static class CallData {
         private Call v1;
         private String mediaBackendType;
     }
 
     @Data
-    public class Call {
+    public static class Call {
         private String id;
         private String appId;
         private AppIcons appIconUrls;

@@ -3,6 +3,7 @@ package util.sample_json_generation;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.slack.api.model.*;
+import com.slack.api.model.admin.AppIcons;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.BlockElement;
@@ -51,20 +52,56 @@ public class SampleObjects {
             }
         }
 
+        public static List<JsonElement> InputBlocks = new ArrayList<>();
+
+        static {
+            for (BlockElement element : BlockElements) {
+                InputBlocks.add(GsonFactory.createSnakeCase().toJsonTree(initProperties(
+                        InputBlock.builder()
+                                .element(element)
+                                .hint(TextObject)
+                                .label(TextObject)
+                                .build())));
+            }
+        }
+
         public static List<JsonElement> Blocks = initBlocks();
 
         private static List<JsonElement> initBlocks() {
             List<JsonElement> blocks = new ArrayList<>();
             Gson gson = GsonFactory.createSnakeCase();
+
+            CallBlock.CallData callData = initProperties(new CallBlock.CallData());
+            CallBlock.Call call = initProperties(new CallBlock.Call());
+            call.setAllParticipants(Arrays.asList(initProperties(new CallParticipant())));
+            call.setActiveParticipants(Arrays.asList(initProperties(new CallParticipant())));
+            call.setAppIconUrls(initProperties(new AppIcons()));
+            call.setChannels(Arrays.asList(""));
+            callData.setV1(call);
+            CallBlock callBlock = CallBlock.builder().call(initProperties(callData)).build();
+
+            PlainTextObject textObject = initProperties(new PlainTextObject());
+
+            HeaderBlock headerBlock = initProperties(new HeaderBlock());
+            headerBlock.setText(textObject);
+
+            ImageBlock imageBlock = initProperties(ImageBlock.builder().build());
+            imageBlock.setTitle(textObject);
+
             blocks.addAll(
                     Arrays.asList(
                             gson.toJsonTree(initProperties(ActionsBlock.builder().elements(BlockElements).build())),
                             gson.toJsonTree(initProperties(ContextBlock.builder().elements(ContextBlockElements).build())),
+                            gson.toJsonTree(initProperties(callBlock)),
                             gson.toJsonTree(initProperties(DividerBlock.builder().build())),
-                            gson.toJsonTree(initProperties(ImageBlock.builder().build()))
+                            gson.toJsonTree(initProperties(new FileBlock())),
+                            gson.toJsonTree(headerBlock),
+                            gson.toJsonTree(imageBlock)
                     )
             );
+
             blocks.addAll(SectionBlocksWithAccessory);
+            blocks.addAll(InputBlocks);
             return blocks;
         }
     }
@@ -86,7 +123,7 @@ public class SampleObjects {
                     .build())
     );
 
-    public static TextObject TextObject = initProperties(PlainTextObject.builder().build());
+    public static PlainTextObject TextObject = initProperties(PlainTextObject.builder().build());
 
     public static OptionObject Option = initProperties(OptionObject.builder()
             .text(TextObject)
