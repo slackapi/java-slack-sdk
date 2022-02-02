@@ -650,6 +650,22 @@
     {
       "date_created": "2022-01-27T16:31:29-08:00",
       "body": "Some users have been unexpectedly receiving banner notifications for replies in threads they\u0027re following when the preference to receive them was not previously enabled. We\u0027ve released a change, and believe that no additional users will be impacted by this issue. However, we are continuing to monitor the situation and will report back once we have another update.\r\n\r\nPlease be aware that users previously impacted by this issue may find their \"Notify me about replies to threads I\u0027m following\" preference changed from what was selected previously. We recommend heading to Preferences \u003e Notifications and toggling this preference if needed."
+    },
+    {
+      "date_created": "2022-02-02T13:34:15-08:00",
+      "body": "Issue summary: \r\nFrom 7:15 AM PST until 9:15 AM PST on February 2, 2022, some users were unable to use the post feature. \r\n\r\nThis was caused by a code change. We reverted this change, restoring post functionality."
+    },
+    {
+      "date_created": "2022-02-02T10:17:59-08:00",
+      "body": "This has now been resolved and posts should be loading as expected. Please reload Slack using Cmd/Ctrl + Shift + R in order for the fix to be reflected on your end. We apologize for the inconvenience."
+    },
+    {
+      "date_created": "2022-02-02T09:07:27-08:00",
+      "body": "Users may still experience posts not loading or loading in a loop. Our team is continuing to look into this and we’ll share more information soon."
+    },
+    {
+      "date_created": "2022-02-02T08:40:44-08:00",
+      "body": "Some users may experience posts not loading or loading in a continuous loop. Our team is looking into this now and we’ll share more information soon."
     }
   ]
 }
