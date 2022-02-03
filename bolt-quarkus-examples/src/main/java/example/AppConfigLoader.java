@@ -11,6 +11,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
+/**
+ * This module is optional. If you don't load configurations from a resource file, you can delete this file.
+ */
 public class AppConfigLoader {
 
     public static final AppConfig load() throws IOException {

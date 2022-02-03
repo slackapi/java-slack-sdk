@@ -19,13 +19,17 @@ public class QuarkusSlackApp extends SlackAppServlet {
     }
 
     private static App initSlackApp() throws IOException {
-//        // export SLACK_BOT_TOKEN=xoxb-xxx-yyy
-//        // export SLACK_SIGNING_SECRET=zzz
-//        App app = new App();
+        // 1) Loading credentials from env variables
+        // $ export SLACK_BOT_TOKEN=xoxb-xxx-yyy
+        // $ export SLACK_SIGNING_SECRET=zzz
+        App app = new App();
+
+        // 2) Loading credentials from a resource file
         // src/main/resources/appConfig.json
-        App app = new App(AppConfigLoader.load());
+        app = new App(AppConfigLoader.load());
+
         app.command("/hello", (ctx, req) -> {
-            return Response.ok("Thanks!");
+            return Response.ok(":wave: Hi there!");
         });
         return app;
     }
