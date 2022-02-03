@@ -666,6 +666,10 @@
     {
       "date_created": "2022-02-02T08:40:44-08:00",
       "body": "Some users may experience posts not loading or loading in a continuous loop. Our team is looking into this now and we’ll share more information soon."
+    },
+    {
+      "date_created": "2022-02-03T11:48:58-08:00",
+      "body": "Some customers may be experiencing issues using slash commands. We have identified the cause, and are working on a fix."
     }
   ]
 }

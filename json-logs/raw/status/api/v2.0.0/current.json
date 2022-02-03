@@ -1054,6 +1054,24 @@
           "body": "Some customers are unable to receive 2FA (two-factor authentication) SMS messages. This is due to an issue experienced by one of our upstream partners. We are investigating further and will share back when we have more updates."
         }
       ]
+    },
+    {
+      "id": 1065,
+      "date_created": "2022-02-03T11:48:58-08:00",
+      "date_updated": "2022-02-03T11:48:58-08:00",
+      "title": "Some slash commands failing",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-02/dc0d6285a9edb38b",
+      "services": [
+        "Messaging"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-02-03T11:48:58-08:00",
+          "body": "Some customers may be experiencing issues using slash commands. We have identified the cause, and are working on a fix."
+        }
+      ]
     }
   ]
 }
