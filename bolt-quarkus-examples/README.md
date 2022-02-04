@@ -7,13 +7,13 @@ https://quarkus.io/
 ## How to run on your local machine
 
 ```bash
-mvn compile quarkus:dev
+mvn -pl bolt-quarkus-examples compile quarkus:dev
 ngrok http 8080
 ```
 
 ## How to build
 
 ```bash
-mvn package
-java target/bolt-quarkus-examples-3.1.0-runner.jar # listens 8080 port
+mvn -pl bolt-quarkus-examples package
+java -jar bolt-quarkus-examples/target/bolt-quarkus-examples-*-runner.jar
 ```
