@@ -7,8 +7,11 @@ https://quarkus.io/
 ## How to run on your local machine
 
 ```bash
+git clone git@github.com:slackapi/java-slack-sdk.git
+cd java-slack-sdk/
+mvn install -Dmaven.test.skip=true
 mvn -pl bolt-quarkus-examples compile quarkus:dev
-ngrok http 8080
+ngrok http 3000
 ```
 
 ## How to build
