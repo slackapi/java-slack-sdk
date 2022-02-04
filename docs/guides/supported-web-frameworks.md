@@ -250,8 +250,6 @@ That's all set! It's time to hit `mvn run` to boot the app.
 
 You can generate a blank project from [code.quarkus.io](https://code.quarkus.io/). For simple Bolt apps, we recommend using **Undertow Servlet** in the **Web** component section. Nothing else is required. Just click **Generate your application** button and download the generated zip file.
 
-After generating a blank project, **remove `quarkus-universe-bom` from the build settings**. The reason why we need to remove it is that, as of April 2020, `quarkus-universe-bom` adds [okhttp](https://search.maven.org/artifact/com.squareup.okhttp3/okhttp) 3.x to the project while this SDK requires okhttp 4.x. This means your application won't work due to binary compatibility issues with the setting. If you cannot remove `quarkus-universe-bom` for some reasons, including Bolt for Java in the project may not be a feasible idea. Consider separating the application built with Bolt for Java from the one.
-
 Also, if you don't have additional endpoints using RESTEasy, you can safely remove **quarkus-resteasy** (a dependency included by default).
 
 ### Build Settings
@@ -398,15 +396,14 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.servlet.SlackAppServlet;
 
 import javax.servlet.annotation.WebServlet;
-import java.io.IOException;
 
 @WebServlet("/slack/events")
-public class SlackApp extends SlackAppServlet {
+  public class SlackApp extends SlackAppServlet {
   private static final long serialVersionUID = 1L;
-  public SlackApp() throws IOException { super(initSlackApp()); }
+  public SlackApp() { super(initSlackApp()); }
   public SlackApp(App app) { super(app); }
 
-  private static App initSlackApp() throws IOException {
+  private static App initSlackApp() {
     App app = new App();
     app.command("/hello", (req, ctx) -> {
       return ctx.ack("What's up?");
@@ -525,7 +522,7 @@ INFO  [io.quarkus] (vert.x-worker-thread-0) Installed features: [cdi, servlet]
 INFO  [io.qua.dev] (vert.x-worker-thread-0) Hot replace total time: 0.232s 
 ```
 
-To build a runnable jar file for production deployment, you can run either `./mvnw package` or `./gradlew package`.
+To build a runnable jar file for production deployment, you can run either `./mvnw package` or `./gradlew package` (or `./gradlew build -Dquarkus.package.type=uber-jar`).
 
 ---
 ## Helidon SE

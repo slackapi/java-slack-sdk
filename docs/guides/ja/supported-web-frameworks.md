@@ -249,8 +249,6 @@ micronaut:
 
 [code.quarkus.io](https://code.quarkus.io/) からブランクプロジェクトを生成できます。シンプルな Bolt アプリであれば **Web** コンポーネント内で **Undertow Servlet** を選択することをおすすめします。それ以外には何も必要ありません。**Generate your application** ボタンをクリックして、生成されたプロジェクトの zip ファイルをダウンロードします。
 
-ブランクプロジェクトをつくったら **`quarkus-universe-bom` をビルド設定から削除してください**。これを削除しなければならない理由は 2020 年 4 月現在、`quarkus-universe-bom` は [okhttp](https://search.maven.org/artifact/com.squareup.okhttp3/okhttp) 3.x をプロジェクトに追加するためです。この SDK は okhttp 4.x を必要とするため、この設定ではバイナリ互換性がなく正常に動作しません。もし、何らかの理由で `quarkus-universe-bom` を外すことができない場合は、そのプロジェクトに Bolt for Java を含めることは難しいでしょう。Bolt for Java を使ったアプリケーションはそのプロジェクトから切り出すことを検討してください。
-
 また、もし RESTEasy を使って追加のエンドポイントを実装しないなら、デフォルトで追加されている **quarkus-resteasy** も外して問題ありません。
 
 ### ビルド設定
@@ -397,15 +395,14 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.servlet.SlackAppServlet;
 
 import javax.servlet.annotation.WebServlet;
-import java.io.IOException;
 
 @WebServlet("/slack/events")
 public class SlackApp extends SlackAppServlet {
   private static final long serialVersionUID = 1L;
-  public SlackApp() throws IOException { super(initSlackApp()); }
+  public SlackApp() { super(initSlackApp()); }
   public SlackApp(App app) { super(app); }
 
-  private static App initSlackApp() throws IOException {
+  private static App initSlackApp() {
     App app = new App();
     app.command("/hello", (req, ctx) -> {
       return ctx.ack("What's up?");
