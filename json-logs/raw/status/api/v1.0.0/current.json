@@ -670,6 +670,22 @@
     {
       "date_created": "2022-02-03T11:48:58-08:00",
       "body": "Some customers may be experiencing issues using slash commands. We have identified the cause, and are working on a fix."
+    },
+    {
+      "date_created": "2022-02-04T14:04:54-08:00",
+      "body": "We\u0027ve resolved the issue related to sending/composing messages in Safari. Safari users may need to reload any active Slack tabs (Cmd/Ctrl + Shift + R) or quit and relaunch their browser for the fix to come into effect. \r\n\r\nThanks for bearing with us and we apologize for the disruption."
+    },
+    {
+      "date_created": "2022-02-04T09:05:51-08:00",
+      "body": "We are continuing to look into this issue when sending/composing messages on Safari. We apologize for the inconvenience and will provide more updates as new information becomes available."
+    },
+    {
+      "date_created": "2022-02-04T04:23:51-08:00",
+      "body": "We\u0027re continuing to investigate the errors when sending/composing messages on Safari.\r\n\r\nWe\u0027ll be back with an update as soon as possible and we apologize for the disruption. This error does not impact other browsers nor our desktop and mobile applications."
+    },
+    {
+      "date_created": "2022-02-04T02:33:03-08:00",
+      "body": "Some users on Safari may be hitting an error when composing/sending messages."
     }
   ]
 }

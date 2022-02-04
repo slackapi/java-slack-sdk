@@ -115,7 +115,11 @@
       "pref.slack_connect_approval_type",
       "pref.hermes_has_accepted_tos",
       "pref.allow_sponsored_slack_connections",
-      "pref.hermes_triggers_trippable_by_slack_connected_teams"
+      "pref.hermes_triggers_trippable_by_slack_connected_teams",
+      "idp_configuration_added",
+      "idp_configuration_deleted",
+      "idp_prod_configuration_updated",
+      "idp_test_configuration_updated"
     ],
     "user": [
       "custom_tos_accepted",

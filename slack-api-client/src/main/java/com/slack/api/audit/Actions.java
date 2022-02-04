@@ -127,6 +127,10 @@ public class Actions {
         public static final String organization_verified = "organization_verified";
         public static final String organization_unverified = "organization_unverified";
         public static final String organization_public_url_updated = "organization_public_url_updated";
+        public static final String idp_configuration_added = "idp_configuration_added";
+        public static final String idp_configuration_deleted = "idp_configuration_deleted";
+        public static final String idp_prod_configuration_updated = "idp_prod_configuration_updated";
+        public static final String idp_test_configuration_updated = "idp_test_configuration_updated";
     }
 
     public static class User {
