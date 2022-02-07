@@ -686,6 +686,10 @@
     {
       "date_created": "2022-02-04T02:33:03-08:00",
       "body": "Some users on Safari may be hitting an error when composing/sending messages."
+    },
+    {
+      "date_created": "2022-02-07T15:27:07-08:00",
+      "body": "Issue summary: \r\nFrom 10:37 AM PST on February 2, 2022 until 1:37 PM PST on February 4, 2022, some users were encountering an error when trying to compose or send messages in web browsers. \r\n\r\nWe found that a variable object in the message composer code was attempting to call an action that was not defined. We resolved the issue by adding a check to the code to prevent the error state from happening. \r\n\r\nNote: We previously indicated this issue was limited to Safari. After further investigation, we\u0027ve determined other web browsers may have been impacted as well."
     }
   ]
 }
