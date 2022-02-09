@@ -3,7 +3,6 @@ package test_locally.api.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
-import com.slack.api.methods.MethodsClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -222,6 +221,8 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminUsersSessionClearSettings(r -> r.userIds(Arrays.asList("U123")))
                 .get().isOk(), is(true));
+
+        assertThat(methods.adminUsersUnsupportedVersionsExport(r -> r).get().isOk(), is(true));
     }
 
     @Test
