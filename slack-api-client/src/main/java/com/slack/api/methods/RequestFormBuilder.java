@@ -30,6 +30,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsAddTeamsReq
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannelsRequest;
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
+import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -101,7 +102,6 @@ import com.slack.api.methods.request.views.ViewsUpdateRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepCompletedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
-import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.ConversationType;
 import com.slack.api.util.json.GsonFactory;
@@ -763,6 +763,13 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
         setIfNotNull("user_id", req.getUserId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminUsersUnsupportedVersionsExportRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("date_end_of_support", req.getDateEndOfSupport(), form);
+        setIfNotNull("date_sessions_started", req.getDateSessionsStarted(), form);
         return form;
     }
 

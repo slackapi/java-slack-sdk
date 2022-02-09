@@ -77,6 +77,7 @@
   "admin.users.setExpiration": "Tier2",
   "admin.users.setOwner": "Tier2",
   "admin.users.setRegular": "Tier2",
+  "admin.users.unsupportedVersions.export": "Tier1",
   "api.test": "Tier4",
   "apps.connections.open": "Tier1",
   "apps.event.authorizations.list": "Tier4",

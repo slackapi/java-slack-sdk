@@ -5,6 +5,7 @@ import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionResetBulkRequest;
 import com.slack.api.methods.request.admin.users.AdminUsersSessionResetRequest;
 import com.slack.api.methods.response.admin.users.*;
+import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
 import com.slack.api.methods.response.users.UsersListResponse;
 import com.slack.api.model.User;
 import config.Constants;
@@ -154,6 +155,18 @@ public class AdminApi_users_Test {
                     .teamId(teamId)
                     .userId(guestUserId)
                     .expirationTs(expirationTs)
+            ).get();
+            assertThat(response.getError(), is(nullValue()));
+        }
+    }
+
+    @Test
+    public void usersUnsupportedVersions() throws Exception {
+        if (teamAdminUserToken != null && orgAdminUserToken != null) {
+            int nextMonth = (int) ZonedDateTime.now().plusMonths(1).toInstant().toEpochMilli() / 1000;
+            AdminUsersUnsupportedVersionsExportResponse response = methodsAsync.adminUsersUnsupportedVersionsExport(r -> r
+                    .dateEndOfSupport(nextMonth)
+                    .dateSessionsStarted(0)
             ).get();
             assertThat(response.getError(), is(nullValue()));
         }

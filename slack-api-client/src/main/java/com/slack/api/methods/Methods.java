@@ -161,6 +161,12 @@ public class Methods {
     public static final String ADMIN_USERS_SET_REGULAR = "admin.users.setRegular";
 
     // ------------------------------
+    // admin.users.unsupportedVersions
+    // ------------------------------
+
+    public static final String ADMIN_USERS_UNSUPPORTED_VERSIONS_EXPORT = "admin.users.unsupportedVersions.export";
+
+    // ------------------------------
     // admin.users.session
     // ------------------------------
 

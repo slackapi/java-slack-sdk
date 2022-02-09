@@ -51,6 +51,7 @@ public class MethodsRateLimits {
                 ADMIN_CONVERSATIONS_WHITELIST_REMOVE,
                 ADMIN_TEAMS_CREATE,
                 ADMIN_USERGROUPS_ADD_CHANNELS,
+                ADMIN_USERS_UNSUPPORTED_VERSIONS_EXPORT,
                 ADMIN_APPS_UNINSTALL
         );
         for (String methods : adminApiMethods_Tier1) {

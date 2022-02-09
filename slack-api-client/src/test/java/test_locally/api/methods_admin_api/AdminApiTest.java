@@ -241,6 +241,8 @@ public class AdminApiTest {
                 .isOk(), is(true));
         assertThat(methods.adminUsersSessionClearSettings(r -> r.userIds(Arrays.asList("U123")))
                 .isOk(), is(true));
+
+        assertThat(methods.adminUsersUnsupportedVersionsExport(r -> r).isOk(), is(true));
     }
 
     @Test
