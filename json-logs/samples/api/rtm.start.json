@@ -463,7 +463,8 @@
         "ko-KR": ""
       },
       "phc_viewed": "",
-      "seen_a11y_pref_setup_coachmark": false
+      "seen_a11y_pref_setup_coachmark": false,
+      "enable_file_browser_view_for_docs": false
     },
     "created": 12345,
     "first_login": 12345,
