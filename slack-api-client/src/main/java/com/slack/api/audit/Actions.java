@@ -111,6 +111,9 @@ public class Actions {
         public static final String pref_hermes_has_accepted_tos = "pref.hermes_has_accepted_tos";
         public static final String pref_allow_sponsored_slack_connections = "pref.allow_sponsored_slack_connections";
         public static final String pref_hermes_triggers_trippable_by_slack_connected_teams = "pref.hermes_triggers_trippable_by_slack_connected_teams";
+        public static final String pref_dm_retention_redaction_duration = "pref.dm_retention_redaction_duration";
+        public static final String pref_private_retention_redaction_duration = "pref.private_retention_redaction_duration";
+        public static final String pref_public_retention_redaction_duration = "pref.public_retention_redaction_duration";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -212,6 +215,7 @@ public class Actions {
         public static final String external_shared_channel_invite_approved = "external_shared_channel_invite_approved";
         public static final String external_shared_channel_invite_created = "external_shared_channel_invite_created";
         public static final String external_shared_channel_access_upgraded = "external_shared_channel_access_upgraded";
+        public static final String external_shared_channel_disconnect_and_archived = "external_shared_channel_disconnect_and_archived";
         public static final String mpim_converted_to_private = "mpim_converted_to_private";
         public static final String channel_moved = "channel_moved";
         public static final String group_converted_to_channel = "group_converted_to_channel";

@@ -119,7 +119,10 @@
       "idp_configuration_added",
       "idp_configuration_deleted",
       "idp_prod_configuration_updated",
-      "idp_test_configuration_updated"
+      "idp_test_configuration_updated",
+      "pref.dm_retention_redaction_duration",
+      "pref.private_retention_redaction_duration",
+      "pref.public_retention_redaction_duration"
     ],
     "user": [
       "custom_tos_accepted",
@@ -206,7 +209,8 @@
       "channel_enable_at_channel_pref_changed_from_org_level",
       "channel_enable_at_here_pref_changed_from_org_level",
       "channel_posting_permissions_updated",
-      "external_shared_channel_access_upgraded"
+      "external_shared_channel_access_upgraded",
+      "external_shared_channel_disconnect_and_archived"
     ],
     "app": [
       "app_installed",
