@@ -44,6 +44,10 @@ import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsers
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksRemoveRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -147,6 +151,10 @@ import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUser
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksRemoveResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;
@@ -813,6 +821,26 @@ public interface MethodsClient {
     AuthTeamsListResponse authTeamsList(AuthTeamsListRequest req) throws IOException, SlackApiException;
 
     AuthTeamsListResponse authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // bookmarks
+    // ------------------------------
+
+    BookmarksAddResponse bookmarksAdd(BookmarksAddRequest req) throws IOException, SlackApiException;
+
+    BookmarksAddResponse bookmarksAdd(RequestConfigurator<BookmarksAddRequest.BookmarksAddRequestBuilder> req) throws IOException, SlackApiException;
+
+    BookmarksEditResponse bookmarksEdit(BookmarksEditRequest req) throws IOException, SlackApiException;
+
+    BookmarksEditResponse bookmarksEdit(RequestConfigurator<BookmarksEditRequest.BookmarksEditRequestBuilder> req) throws IOException, SlackApiException;
+
+    BookmarksListResponse bookmarksList(BookmarksListRequest req) throws IOException, SlackApiException;
+
+    BookmarksListResponse bookmarksList(RequestConfigurator<BookmarksListRequest.BookmarksListRequestBuilder> req) throws IOException, SlackApiException;
+
+    BookmarksRemoveResponse bookmarksRemove(BookmarksRemoveRequest req) throws IOException, SlackApiException;
+
+    BookmarksRemoveResponse bookmarksRemove(RequestConfigurator<BookmarksRemoveRequest.BookmarksRemoveRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // bots

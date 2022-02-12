@@ -1,0 +1,28 @@
+{
+  "ok": false,
+  "error": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "needed": "",
+  "provided": "",
+  "bookmark": {
+    "id": "",
+    "channel_id": "",
+    "title": "",
+    "link": "",
+    "emoji": "",
+    "icon_url": "",
+    "entity_id": "",
+    "type": "",
+    "date_created": 123,
+    "date_updated": 123,
+    "rank": "",
+    "last_updated_by_user_id": "",
+    "last_updated_by_team_id": "",
+    "shortcut_id": "",
+    "app_id": ""
+  }
+}

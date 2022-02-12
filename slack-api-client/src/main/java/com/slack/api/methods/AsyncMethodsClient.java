@@ -38,6 +38,10 @@ import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthoriz
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksRemoveRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -128,6 +132,10 @@ import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthori
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksRemoveResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;
@@ -653,6 +661,26 @@ public interface AsyncMethodsClient {
     CompletableFuture<AuthTeamsListResponse> authTeamsList(AuthTeamsListRequest req);
 
     CompletableFuture<AuthTeamsListResponse> authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req);
+
+    // ------------------------------
+    // bookmarks
+    // ------------------------------
+
+    CompletableFuture<BookmarksAddResponse> bookmarksAdd(BookmarksAddRequest req) ;
+
+    CompletableFuture<BookmarksAddResponse> bookmarksAdd(RequestConfigurator<BookmarksAddRequest.BookmarksAddRequestBuilder> req) ;
+
+    CompletableFuture<BookmarksEditResponse> bookmarksEdit(BookmarksEditRequest req) ;
+
+    CompletableFuture<BookmarksEditResponse> bookmarksEdit(RequestConfigurator<BookmarksEditRequest.BookmarksEditRequestBuilder> req) ;
+
+    CompletableFuture<BookmarksListResponse> bookmarksList(BookmarksListRequest req) ;
+
+    CompletableFuture<BookmarksListResponse> bookmarksList(RequestConfigurator<BookmarksListRequest.BookmarksListRequestBuilder> req) ;
+
+    CompletableFuture<BookmarksRemoveResponse> bookmarksRemove(BookmarksRemoveRequest req) ;
+
+    CompletableFuture<BookmarksRemoveResponse> bookmarksRemove(RequestConfigurator<BookmarksRemoveRequest.BookmarksRemoveRequestBuilder> req) ;
 
     // ------------------------------
     // bots

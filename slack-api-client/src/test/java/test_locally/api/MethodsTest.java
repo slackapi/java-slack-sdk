@@ -42,12 +42,7 @@ public class MethodsTest {
                 "apps.manifest.export",
                 "apps.manifest.update",
                 "apps.manifest.validate",
-                "tooling.tokens.rotate",
-                // TODO: Add bookmarks.* APIs
-                "bookmarks.add",
-                "bookmarks.edit",
-                "bookmarks.list",
-                "bookmarks.remove"
+                "tooling.tokens.rotate"
         );
         List<String> methodNames = new ArrayList<>();
         for (String methodName : allMethodNames) {

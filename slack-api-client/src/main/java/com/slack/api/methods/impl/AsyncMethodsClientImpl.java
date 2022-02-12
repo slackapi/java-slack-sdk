@@ -42,6 +42,10 @@ import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthoriz
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksAddRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksEditRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksListRequest;
+import com.slack.api.methods.request.bookmarks.BookmarksRemoveRequest;
 import com.slack.api.methods.request.bots.BotsInfoRequest;
 import com.slack.api.methods.request.calls.CallsAddRequest;
 import com.slack.api.methods.request.calls.CallsEndRequest;
@@ -132,6 +136,10 @@ import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthori
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksRemoveResponse;
 import com.slack.api.methods.response.bots.BotsInfoResponse;
 import com.slack.api.methods.response.calls.CallsAddResponse;
 import com.slack.api.methods.response.calls.CallsEndResponse;
@@ -1087,6 +1095,46 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AuthTeamsListResponse> authTeamsList(RequestConfigurator<AuthTeamsListRequest.AuthTeamsListRequestBuilder> req) {
         return authTeamsList(req.configure(AuthTeamsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<BookmarksAddResponse> bookmarksAdd(BookmarksAddRequest req) {
+        return executor.execute(BOOKMARKS_ADD, toMap(req), () -> methods.bookmarksAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<BookmarksAddResponse> bookmarksAdd(RequestConfigurator<BookmarksAddRequest.BookmarksAddRequestBuilder> req) {
+        return bookmarksAdd(req.configure(BookmarksAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<BookmarksEditResponse> bookmarksEdit(BookmarksEditRequest req) {
+        return executor.execute(BOOKMARKS_EDIT, toMap(req), () -> methods.bookmarksEdit(req));
+    }
+
+    @Override
+    public CompletableFuture<BookmarksEditResponse> bookmarksEdit(RequestConfigurator<BookmarksEditRequest.BookmarksEditRequestBuilder> req) {
+        return bookmarksEdit(req.configure(BookmarksEditRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<BookmarksListResponse> bookmarksList(BookmarksListRequest req) {
+        return executor.execute(BOOKMARKS_LIST, toMap(req), () -> methods.bookmarksList(req));
+    }
+
+    @Override
+    public CompletableFuture<BookmarksListResponse> bookmarksList(RequestConfigurator<BookmarksListRequest.BookmarksListRequestBuilder> req) {
+        return bookmarksList(req.configure(BookmarksListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<BookmarksRemoveResponse> bookmarksRemove(BookmarksRemoveRequest req) {
+        return executor.execute(BOOKMARKS_REMOVE, toMap(req), () -> methods.bookmarksRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<BookmarksRemoveResponse> bookmarksRemove(RequestConfigurator<BookmarksRemoveRequest.BookmarksRemoveRequestBuilder> req) {
+        return bookmarksRemove(req.configure(BookmarksRemoveRequest.builder()).build());
     }
 
     @Override

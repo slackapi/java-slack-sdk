@@ -190,6 +190,11 @@ public class MethodsRateLimits {
         setRateLimitTier(AUTH_TEST, SpecialTier_auth_test);
         setRateLimitTier(AUTH_TEAMS_LIST, Tier2);
 
+        setRateLimitTier(BOOKMARKS_ADD, Tier2);
+        setRateLimitTier(BOOKMARKS_EDIT, Tier2);
+        setRateLimitTier(BOOKMARKS_LIST, Tier3);
+        setRateLimitTier(BOOKMARKS_REMOVE, Tier2);
+
         setRateLimitTier(BOTS_INFO, Tier3);
 
         setRateLimitTier(CALLS_ADD, Tier2);
