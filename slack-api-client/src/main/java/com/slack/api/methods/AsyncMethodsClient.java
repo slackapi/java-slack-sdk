@@ -666,21 +666,21 @@ public interface AsyncMethodsClient {
     // bookmarks
     // ------------------------------
 
-    CompletableFuture<BookmarksAddResponse> bookmarksAdd(BookmarksAddRequest req) ;
+    CompletableFuture<BookmarksAddResponse> bookmarksAdd(BookmarksAddRequest req);
 
-    CompletableFuture<BookmarksAddResponse> bookmarksAdd(RequestConfigurator<BookmarksAddRequest.BookmarksAddRequestBuilder> req) ;
+    CompletableFuture<BookmarksAddResponse> bookmarksAdd(RequestConfigurator<BookmarksAddRequest.BookmarksAddRequestBuilder> req);
 
-    CompletableFuture<BookmarksEditResponse> bookmarksEdit(BookmarksEditRequest req) ;
+    CompletableFuture<BookmarksEditResponse> bookmarksEdit(BookmarksEditRequest req);
 
-    CompletableFuture<BookmarksEditResponse> bookmarksEdit(RequestConfigurator<BookmarksEditRequest.BookmarksEditRequestBuilder> req) ;
+    CompletableFuture<BookmarksEditResponse> bookmarksEdit(RequestConfigurator<BookmarksEditRequest.BookmarksEditRequestBuilder> req);
 
-    CompletableFuture<BookmarksListResponse> bookmarksList(BookmarksListRequest req) ;
+    CompletableFuture<BookmarksListResponse> bookmarksList(BookmarksListRequest req);
 
-    CompletableFuture<BookmarksListResponse> bookmarksList(RequestConfigurator<BookmarksListRequest.BookmarksListRequestBuilder> req) ;
+    CompletableFuture<BookmarksListResponse> bookmarksList(RequestConfigurator<BookmarksListRequest.BookmarksListRequestBuilder> req);
 
-    CompletableFuture<BookmarksRemoveResponse> bookmarksRemove(BookmarksRemoveRequest req) ;
+    CompletableFuture<BookmarksRemoveResponse> bookmarksRemove(BookmarksRemoveRequest req);
 
-    CompletableFuture<BookmarksRemoveResponse> bookmarksRemove(RequestConfigurator<BookmarksRemoveRequest.BookmarksRemoveRequestBuilder> req) ;
+    CompletableFuture<BookmarksRemoveResponse> bookmarksRemove(RequestConfigurator<BookmarksRemoveRequest.BookmarksRemoveRequestBuilder> req);
 
     // ------------------------------
     // bots
