@@ -2,7 +2,6 @@ package com.slack.api.methods.response.pins;
 
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.File;
-import com.slack.api.model.FileComment;
 import com.slack.api.model.Message;
 import lombok.Data;
 
@@ -28,7 +27,7 @@ public class PinsListResponse implements SlackApiTextResponse {
         private String channel;
         private Message message;
         private File file;
-        private FileComment comment;
+        private String comment;
         private String createdBy;
         private Integer created;
     }

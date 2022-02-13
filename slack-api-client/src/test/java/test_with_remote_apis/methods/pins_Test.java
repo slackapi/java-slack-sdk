@@ -35,21 +35,20 @@ public class pins_Test {
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
 
     @Test
-    public void list() throws IOException, SlackApiException {
-        List<Conversation> channels_ = slack.methods().conversationsList(r -> r.token(botToken)).getChannels();
-        List<String> channels = new ArrayList<>();
-        for (Conversation c : channels_) {
-            if (c.getName().equals("random")) {
-                channels.add(c.getId());
-                break;
+    public void list() throws Exception {
+        List<Conversation> conversations = slack.methods().conversationsList(r -> r
+                .token(botToken).limit(100).excludeArchived(true)).getChannels();
+        for (Conversation c : conversations) {
+            if (c.isMember()) {
+                PinsListResponse response = slack.methods().pinsList(
+                        r -> r.token(botToken).channel(c.getId()));
+                assertThat(response.getError(), is(nullValue()));
+                assertThat(response.isOk(), is(true));
+                assertThat(response.getItems(), is(notNullValue()));
+                // Tier 2
+                Thread.sleep(2000L);
             }
         }
-
-        PinsListResponse response = slack.methods().pinsList(
-                r -> r.token(botToken).channel(channels.get(0)));
-        assertThat(response.getError(), is(nullValue()));
-        assertThat(response.isOk(), is(true));
-        assertThat(response.getItems(), is(notNullValue()));
     }
 
     @Test
