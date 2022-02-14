@@ -1,5 +1,6 @@
 package com.slack.api.methods.response.team.profile;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Team;
 import lombok.Data;
@@ -22,5 +23,17 @@ public class TeamProfileGetResponse implements SlackApiTextResponse {
     @Data
     public static class Profiles {
         private List<Team.Profile> fields;
+        private List<Section> sections;
+
+        @Data
+        public static class Section {
+            private String id;
+            private String teamId;
+            private String sectionType;
+            private String label;
+            private Integer order;
+            @SerializedName("is_hidden")
+            private boolean hidden;
+        }
     }
 }

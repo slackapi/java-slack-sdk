@@ -4,6 +4,7 @@ import com.google.gson.*;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsResponse;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
+import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.*;
 import com.slack.api.model.admin.AppRequest;
 import com.slack.api.scim.model.User;
@@ -320,6 +321,13 @@ public class JsonDataRecorder {
                 } else {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Bookmark())));
                 }
+            } else if (path.equals("/api/team.profile.get") &&
+                    name != null && name.equals("sections")) {
+                for (int idx = 0; idx < array.size(); idx++) {
+                    array.remove(idx);
+                }
+                array.add(gson.toJsonTree(ObjectInitializer.initProperties(
+                        new TeamProfileGetResponse.Profiles.Section())));
             } else if (name != null && name.equals("replies")) {
                 for (int idx = 0; idx < array.size(); idx++) {
                     array.remove(idx);

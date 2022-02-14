@@ -11,6 +11,16 @@
         "type": "",
         "is_hidden": false
       }
+    ],
+    "sections": [
+      {
+        "id": "",
+        "team_id": "",
+        "section_type": "",
+        "label": "",
+        "order": 12345,
+        "is_hidden": false
+      }
     ]
   },
   "error": "",

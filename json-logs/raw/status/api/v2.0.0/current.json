@@ -1072,6 +1072,22 @@
           "body": "Some customers may be experiencing issues using slash commands. We have identified the cause, and are working on a fix."
         }
       ]
+    },
+    {
+      "id": 1069,
+      "date_created": "2022-02-14T15:18:44-08:00",
+      "date_updated": "2022-02-14T15:18:44-08:00",
+      "title": "Profile information isn\u0027t loading for some users",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-02/67aaca5a8d0a2297",
+      "services": [],
+      "notes": [
+        {
+          "date_created": "2022-02-14T15:18:44-08:00",
+          "body": "We are currently investigating an issue where profile information may be failing to load for some users, resulting in blank profile pictures and missing details, such as display names. \r\n\r\nGiven the nature of the connectivity issue, search and emoji may also be impacted. Please stay tuned for status updates as we work to resolve this."
+        }
+      ]
     }
   ]
 }
