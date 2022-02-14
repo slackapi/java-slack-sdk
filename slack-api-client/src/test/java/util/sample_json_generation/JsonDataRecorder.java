@@ -4,10 +4,7 @@ import com.google.gson.*;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsResponse;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
-import com.slack.api.model.Conversation;
-import com.slack.api.model.FileComment;
-import com.slack.api.model.Group;
-import com.slack.api.model.Message;
+import com.slack.api.model.*;
 import com.slack.api.model.admin.AppRequest;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
@@ -27,6 +24,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static util.sample_json_generation.SampleObjects.Json;
+import static util.sample_json_generation.SampleObjects.initFileObject;
 
 @Slf4j
 public class JsonDataRecorder {
@@ -312,6 +310,16 @@ public class JsonDataRecorder {
                 for (JsonElement block : Json.Blocks) {
                     array.add(block);
                 }
+            } else if (name != null && name.equals("bookmarks")) {
+                for (int idx = 0; idx < array.size(); idx++) {
+                    array.remove(idx);
+                }
+                // FIXME: the array sometimes cannot be empty
+                if (!array.isEmpty()) {
+                    array.set(0, gson.toJsonTree(ObjectInitializer.initProperties(new Bookmark())));
+                } else {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Bookmark())));
+                }
             } else if (name != null && name.equals("replies")) {
                 for (int idx = 0; idx < array.size(); idx++) {
                     array.remove(idx);
@@ -429,6 +437,28 @@ public class JsonDataRecorder {
                             .getAsJsonObject();
                     for (String newKey : fullFile.keySet()) {
                         file.add(newKey, fullFile.get(newKey));
+                    }
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+                return;
+            }
+            if (name != null && name.equals("bookmark")) {
+                if (path.startsWith("/audit/v1/schemas") || path.startsWith("/audit/v1/actions")) {
+                    return;
+                }
+                try {
+                    JsonObject bookmark = element.getAsJsonObject();
+                    // To avoid concurrent modification of the underlying objects
+                    List<String> oldKeys = new ArrayList<>(bookmark.keySet());
+                    for (String key : oldKeys) {
+                        bookmark.remove(key);
+                    }
+                    JsonObject fullFile = GsonFactory.createSnakeCase()
+                            .toJsonTree(ObjectInitializer.initProperties(new Bookmark()))
+                            .getAsJsonObject();
+                    for (String newKey : fullFile.keySet()) {
+                        bookmark.add(newKey, fullFile.get(newKey));
                     }
                 } catch (Exception e) {
                     log.error(e.getMessage(), e);

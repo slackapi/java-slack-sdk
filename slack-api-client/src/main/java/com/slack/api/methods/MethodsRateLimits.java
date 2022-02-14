@@ -2,7 +2,10 @@ package com.slack.api.methods;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -189,6 +192,11 @@ public class MethodsRateLimits {
         setRateLimitTier(AUTH_REVOKE, Tier3);
         setRateLimitTier(AUTH_TEST, SpecialTier_auth_test);
         setRateLimitTier(AUTH_TEAMS_LIST, Tier2);
+
+        setRateLimitTier(BOOKMARKS_ADD, Tier2);
+        setRateLimitTier(BOOKMARKS_EDIT, Tier2);
+        setRateLimitTier(BOOKMARKS_LIST, Tier3);
+        setRateLimitTier(BOOKMARKS_REMOVE, Tier2);
 
         setRateLimitTier(BOTS_INFO, Tier3);
 

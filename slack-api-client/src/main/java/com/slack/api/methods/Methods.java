@@ -238,6 +238,15 @@ public class Methods {
     public static final String AUTH_TEAMS_LIST = "auth.teams.list";
 
     // ------------------------------
+    // bookmarks
+    // ------------------------------
+
+    public static final String BOOKMARKS_ADD = "bookmarks.add";
+    public static final String BOOKMARKS_EDIT = "bookmarks.edit";
+    public static final String BOOKMARKS_LIST = "bookmarks.list";
+    public static final String BOOKMARKS_REMOVE = "bookmarks.remove";
+
+    // ------------------------------
     // bots
     // ------------------------------
 
