@@ -24,18 +24,18 @@ public class MemoryMetricsDatastore extends BaseMemoryMetricsDatastore<AsyncExec
     public MemoryMetricsDatastore(
             int numberOfNodes,
             boolean backgroundJobEnabled,
-            long cleanerExecutionIntervalMilliseconds
+            long backgroundJobIntervalMilliseconds
     ) {
-        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), backgroundJobEnabled, cleanerExecutionIntervalMilliseconds);
+        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), backgroundJobEnabled, backgroundJobIntervalMilliseconds);
     }
 
     public MemoryMetricsDatastore(
             int numberOfNodes,
             ExecutorServiceProvider executorServiceProvider,
             boolean backgroundJobEnabled,
-            long cleanerExecutionIntervalMilliseconds
+            long backgroundJobIntervalMilliseconds
     ) {
-        super(numberOfNodes, executorServiceProvider, backgroundJobEnabled, cleanerExecutionIntervalMilliseconds);
+        super(numberOfNodes, executorServiceProvider, backgroundJobEnabled, backgroundJobIntervalMilliseconds);
     }
 
     public MemoryMetricsDatastore(int numberOfNodes) {

@@ -18,9 +18,9 @@ public class RedisMetricsDatastore extends BaseRedisMetricsDatastore<
             String appName,
             JedisPool jedisPool,
             boolean backgroundJobEnabled,
-            long cleanerExecutionIntervalMilliseconds
+            long backgroundJobIntervalMilliseconds
     ) {
-        super(appName, jedisPool, backgroundJobEnabled, cleanerExecutionIntervalMilliseconds);
+        super(appName, jedisPool, backgroundJobEnabled, backgroundJobIntervalMilliseconds);
     }
 
     public RedisMetricsDatastore(
@@ -28,9 +28,9 @@ public class RedisMetricsDatastore extends BaseRedisMetricsDatastore<
             JedisPool jedisPool,
             ExecutorServiceProvider executorServiceProvider,
             boolean backgroundJobEnabled,
-            long cleanerExecutionIntervalMilliseconds
+            long backgroundJobIntervalMilliseconds
     ) {
-        super(appName, jedisPool, executorServiceProvider, backgroundJobEnabled, cleanerExecutionIntervalMilliseconds);
+        super(appName, jedisPool, executorServiceProvider, backgroundJobEnabled, backgroundJobIntervalMilliseconds);
     }
 
     @Override
