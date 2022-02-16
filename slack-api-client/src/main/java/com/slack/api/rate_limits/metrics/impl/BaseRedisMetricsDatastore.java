@@ -417,7 +417,14 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
                 for (Map.Entry<String, RequestStats> team : executor.getValue().entrySet()) {
                     String teamId = team.getKey();
                     RequestStats stats = team.getValue();
-                    if (stats.getLastRequestTimestampMillis() <= this.lastExecutionTimestampMillis) {
+                    if (stats == null) {
+                        continue;
+                    }
+                    if (stats.getLastRequestTimestampMillis() != null
+                            && stats.getLastRequestTimestampMillis() <= this.lastExecutionTimestampMillis) {
+                        if (this.store.isTraceMode()) {
+                            log.debug("No request for team: {} since the last maintenance", teamId);
+                        }
                         continue;
                     }
                     if (this.store.isTraceMode()) {

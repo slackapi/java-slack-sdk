@@ -380,7 +380,8 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
                     if (stats == null) {
                         continue;
                     }
-                    if (stats.getLastRequestTimestampMillis() <= this.lastExecutionTimestampMillis) {
+                    if (stats.getLastRequestTimestampMillis() != null
+                            && stats.getLastRequestTimestampMillis() <= this.lastExecutionTimestampMillis) {
                         if (this.store.isTraceMode()) {
                             log.debug("No request for team: {} since the last maintenance", teamId);
                         }
