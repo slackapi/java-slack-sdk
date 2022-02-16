@@ -10,6 +10,10 @@ import redis.clients.jedis.JedisPool;
 public class RedisMetricsDatastore extends BaseRedisMetricsDatastore<
         AsyncExecutionSupplier<? extends SCIMApiResponse>, AsyncRateLimitQueue.SCIMMessage> {
 
+    public RedisMetricsDatastore(String appName, JedisPool jedisPool) {
+        super(appName, jedisPool);
+    }
+
     public RedisMetricsDatastore(
             String appName,
             JedisPool jedisPool,
