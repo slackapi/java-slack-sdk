@@ -7,6 +7,7 @@ import com.slack.api.rate_limits.queue.QueueMessage;
 import com.slack.api.rate_limits.queue.RateLimitQueue;
 import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import com.slack.api.util.thread.ExecutorServiceProvider;
+import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -16,25 +17,87 @@ import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
 
-public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessage> implements MetricsDatastore, AutoCloseable {
+public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessage>
+        implements MetricsDatastore, AutoCloseable {
+
+    public static long DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS = 1_000L;
 
     private final String appName;
     private final JedisPool jedisPool;
     private ExecutorServiceProvider executorServiceProvider;
     private ScheduledExecutorService cleanerExecutor;
+    private boolean traceMode;
+    private boolean cleanerEnabled;
+    private long cleanerExecutionIntervalMilliseconds;
 
     public BaseRedisMetricsDatastore(String appName, JedisPool jedisPool) {
-        this(appName, jedisPool, DaemonThreadExecutorServiceProvider.getInstance());
+        this(
+                appName,
+                jedisPool,
+                DaemonThreadExecutorServiceProvider.getInstance(),
+                true,
+                DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS
+        );
     }
 
     public BaseRedisMetricsDatastore(
             String appName,
             JedisPool jedisPool,
-            ExecutorServiceProvider executorServiceProvider) {
+            ExecutorServiceProvider executorServiceProvider
+    ) {
+        this(
+                appName,
+                jedisPool,
+                executorServiceProvider,
+                true,
+                DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS
+        );
+    }
+
+    public BaseRedisMetricsDatastore(
+            String appName,
+            JedisPool jedisPool,
+            boolean cleanerEnabled
+    ) {
+        this(
+                appName,
+                jedisPool,
+                DaemonThreadExecutorServiceProvider.getInstance(),
+                cleanerEnabled,
+                DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS
+        );
+    }
+
+    public BaseRedisMetricsDatastore(
+            String appName,
+            JedisPool jedisPool,
+            boolean cleanerEnabled,
+            long cleanerExecutionIntervalMilliseconds
+    ) {
+        this(
+                appName,
+                jedisPool,
+                DaemonThreadExecutorServiceProvider.getInstance(),
+                cleanerEnabled,
+                cleanerExecutionIntervalMilliseconds
+        );
+    }
+
+    public BaseRedisMetricsDatastore(
+            String appName,
+            JedisPool jedisPool,
+            ExecutorServiceProvider executorServiceProvider,
+            boolean cleanerEnabled,
+            long cleanerExecutionIntervalMilliseconds
+    ) {
         this.appName = appName;
         this.jedisPool = jedisPool;
         this.executorServiceProvider = executorServiceProvider;
-        initializeCleanerExecutor();
+        this.cleanerEnabled = cleanerEnabled;
+        this.cleanerExecutionIntervalMilliseconds = cleanerExecutionIntervalMilliseconds;
+        if (this.cleanerEnabled) {
+            this.initializeCleanerExecutor();
+        }
     }
 
     public abstract RateLimitQueue<SUPPLIER, MSG> getRateLimitQueue(String executorName, String teamId);
@@ -50,7 +113,11 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
         }
         this.cleanerExecutor = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
         this.cleanerExecutor.scheduleAtFixedRate(
-                new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
+                new MaintenanceJob(this),
+                1000,
+                this.cleanerExecutionIntervalMilliseconds,
+                TimeUnit.MILLISECONDS
+        );
     }
 
     @Override
@@ -59,8 +126,11 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
         this.jedisPool.destroy();
     }
 
+    // Added in v1.19
+    protected abstract String getMetricsType();
+
     public String getThreadGroupName() {
-        return "slack-methods-metrics-redis:" + this.appName;
+        return "slack-api-metrics:" + this.appName;
     }
 
     @Override
@@ -71,7 +141,19 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
         this.executorServiceProvider = executorServiceProvider;
-        initializeCleanerExecutor();
+        if (cleanerEnabled) {
+            initializeCleanerExecutor();
+        }
+    }
+
+    @Override
+    public boolean isTraceMode() {
+        return this.traceMode;
+    }
+
+    @Override
+    public void setTraceMode(boolean isTraceMode) {
+        this.traceMode = isTraceMode;
     }
 
     private void addToStatsKeyIndices(Jedis jedis, String statsKey) {
@@ -129,6 +211,8 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
                         stats.getLastMinuteRequests().put(methodName, Integer.valueOf(value));
                     } else if (operation.equals("RateLimitedMethods")) {
                         stats.getRateLimitedMethods().put(methodName, Long.valueOf(value));
+                    } else if (operation.equals("LastRequestTimestampMillis")) {
+                        stats.setLastRequestTimestampMillis(Long.valueOf(value));
                     }
                 }
             }
@@ -174,6 +258,8 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void incrementSuccessfulCalls(String executorName, String teamId, String methodName) {
         try (Jedis jedis = jedis()) {
+            jedis.set(toStatsKey(jedis, "LastRequestTimestampMillis", executorName, teamId, methodName),
+                    String.valueOf(System.currentTimeMillis()));
             jedis.incr(toStatsKey(jedis, "SuccessfulCalls", executorName, teamId, methodName));
         }
     }
@@ -181,6 +267,8 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void incrementUnsuccessfulCalls(String executorName, String teamId, String methodName) {
         try (Jedis jedis = jedis()) {
+            jedis.set(toStatsKey(jedis, "LastRequestTimestampMillis", executorName, teamId, methodName),
+                    String.valueOf(System.currentTimeMillis()));
             jedis.incr(toStatsKey(jedis, "UnsuccessfulCalls", executorName, teamId, methodName));
         }
     }
@@ -188,6 +276,8 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void incrementFailedCalls(String executorName, String teamId, String methodName) {
         try (Jedis jedis = jedis()) {
+            jedis.set(toStatsKey(jedis, "LastRequestTimestampMillis", executorName, teamId, methodName),
+                    String.valueOf(System.currentTimeMillis()));
             jedis.incr(toStatsKey(jedis, "FailedCalls", executorName, teamId, methodName));
         }
     }
@@ -295,8 +385,10 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
         }
     }
 
+    @Slf4j
     public static class MaintenanceJob implements Runnable {
         private final BaseRedisMetricsDatastore store;
+        private long lastExecutionTimestampMillis;
 
         public MaintenanceJob(BaseRedisMetricsDatastore store) {
             this.store = store;
@@ -306,12 +398,31 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
 
         @Override
         public void run() {
+            Long startMillis = null;
+            if (this.store.isTraceMode()) {
+                startMillis = System.currentTimeMillis();
+            }
+
             Map<String, Map<String, RequestStats>> allStats = store.getAllStats();
             for (Map.Entry<String, Map<String, RequestStats>> executor : allStats.entrySet()) {
                 String executorName = executor.getKey();
+
+                if (this.store.isTraceMode()) {
+                    log.debug("Going to maintain {} metrics (executor: {}, teams: {})",
+                            this.store.getMetricsType(),
+                            executorName,
+                            executor.getValue().keySet().size()
+                    );
+                }
                 for (Map.Entry<String, RequestStats> team : executor.getValue().entrySet()) {
                     String teamId = team.getKey();
                     RequestStats stats = team.getValue();
+                    if (stats.getLastRequestTimestampMillis() <= this.lastExecutionTimestampMillis) {
+                        continue;
+                    }
+                    if (this.store.isTraceMode()) {
+                        log.debug("Going to maintain the data for team: {}", teamId);
+                    }
                     // Last Minute Requests
                     for (String methodName : stats.getLastMinuteRequests().keySet()) {
                         store.updateNumberOfLastMinuteRequests(executorName, teamId, methodName);
@@ -334,6 +445,13 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
                         stats.getRateLimitedMethods().remove(methodName);
                     }
                 }
+            }
+
+            this.lastExecutionTimestampMillis = System.currentTimeMillis();
+
+            if (this.store.isTraceMode()) {
+                long spentMillis = System.currentTimeMillis() - startMillis;
+                log.debug("{} metrics maintenance completed ({} ms)", this.store.getMetricsType(), spentMillis);
             }
         }
     }

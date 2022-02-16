@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Data
 public class LiveRequestStats {
+    private Long lastRequestTimestampMillis;
     private final ConcurrentMap<String, AtomicLong> allCompletedCalls = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, AtomicLong> successfulCalls = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, AtomicLong> unsuccessfulCalls = new ConcurrentHashMap<>();

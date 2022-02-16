@@ -54,4 +54,8 @@ public interface MetricsDatastore {
 
     void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider);
 
+    boolean isTraceMode();
+
+    void setTraceMode(boolean isTraceMode);
+
 }

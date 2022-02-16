@@ -11,6 +11,7 @@ import com.slack.api.rate_limits.queue.WaitingMessageIds;
 import com.slack.api.util.json.GsonFactory;
 import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import com.slack.api.util.thread.ExecutorServiceProvider;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,20 +20,44 @@ import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
 
-public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMessage> implements MetricsDatastore, AutoCloseable {
+public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMessage>
+        implements MetricsDatastore, AutoCloseable {
+
+    public static long DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS = 1_000L;
 
     private final int numberOfNodes;
     private ExecutorServiceProvider executorServiceProvider;
     private ScheduledExecutorService cleanerExecutor;
+    private boolean traceMode;
+    private boolean cleanerEnabled;
+    private long cleanerExecutionIntervalMilliseconds;
 
     public BaseMemoryMetricsDatastore(int numberOfNodes) {
         this(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance());
     }
 
     public BaseMemoryMetricsDatastore(int numberOfNodes, ExecutorServiceProvider executorServiceProvider) {
+        this(
+                numberOfNodes,
+                executorServiceProvider,
+                true,
+                DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS
+        );
+    }
+
+    public BaseMemoryMetricsDatastore(
+            int numberOfNodes,
+            ExecutorServiceProvider executorServiceProvider,
+            boolean cleanerEnabled,
+            long cleanerExecutionIntervalMilliseconds
+    ) {
         this.numberOfNodes = numberOfNodes;
         this.executorServiceProvider = executorServiceProvider;
-        initializeCleanerExecutor();
+        this.cleanerEnabled = cleanerEnabled;
+        this.cleanerExecutionIntervalMilliseconds = cleanerExecutionIntervalMilliseconds;
+        if (this.cleanerEnabled) {
+            this.initializeCleanerExecutor();
+        }
     }
 
     protected void initializeCleanerExecutor() {
@@ -42,7 +67,11 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
         }
         this.cleanerExecutor = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
         this.cleanerExecutor.scheduleAtFixedRate(
-                new MaintenanceJob(this), 1000, 50, TimeUnit.MILLISECONDS);
+                new MaintenanceJob(this),
+                1000,
+                this.cleanerExecutionIntervalMilliseconds,
+                TimeUnit.MILLISECONDS
+        );
     }
 
     @Override
@@ -53,7 +82,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     protected abstract String getMetricsType();
 
     public String getThreadGroupName() {
-        return "slack-api-client-metrics-memory:" + Integer.toHexString(hashCode());
+        return "slack-api-metrics:" + Integer.toHexString(hashCode());
     }
 
     // -----------------------------------------------------------
@@ -94,7 +123,19 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
         this.executorServiceProvider = executorServiceProvider;
-        initializeCleanerExecutor();
+        if (this.cleanerEnabled) {
+            initializeCleanerExecutor();
+        }
+    }
+
+    @Override
+    public boolean isTraceMode() {
+        return this.traceMode;
+    }
+
+    @Override
+    public void setTraceMode(boolean isTraceMode) {
+        this.traceMode = isTraceMode;
     }
 
     // -----------------------------------------------------------
@@ -102,6 +143,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void incrementAllCompletedCalls(String executorName, String teamId, String methodName) {
         LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+        stats.setLastRequestTimestampMillis(System.currentTimeMillis());
         if (stats.getAllCompletedCalls().get(methodName) == null) {
             stats.getAllCompletedCalls().putIfAbsent(methodName, new AtomicLong(0));
         }
@@ -111,6 +153,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void incrementSuccessfulCalls(String executorName, String teamId, String methodName) {
         LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+        stats.setLastRequestTimestampMillis(System.currentTimeMillis());
         if (stats.getSuccessfulCalls().get(methodName) == null) {
             stats.getSuccessfulCalls().putIfAbsent(methodName, new AtomicLong(0));
         }
@@ -120,6 +163,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void incrementUnsuccessfulCalls(String executorName, String teamId, String methodName) {
         LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+        stats.setLastRequestTimestampMillis(System.currentTimeMillis());
         if (stats.getUnsuccessfulCalls().get(methodName) == null) {
             stats.getUnsuccessfulCalls().putIfAbsent(methodName, new AtomicLong(0));
         }
@@ -129,6 +173,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void incrementFailedCalls(String executorName, String teamId, String methodName) {
         LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+        stats.setLastRequestTimestampMillis(System.currentTimeMillis());
         if (stats.getFailedCalls().get(methodName) == null) {
             stats.getFailedCalls().putIfAbsent(methodName, new AtomicLong(0));
         }
@@ -246,7 +291,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     private LiveRequestStats getOrCreateTeamLiveStats(String executorName, String teamId) {
         ConcurrentMap<String, LiveRequestStats> executor = getOrCreateExecutorLiveStats(executorName);
         if (teamId == null) {
-            teamId = "-";
+            teamId = "";
         }
         if (executor.get(teamId) == null) {
             executor.putIfAbsent(teamId, new LiveRequestStats());
@@ -295,15 +340,22 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
 
     // -----------------------------------------------------------
 
-    private static class MaintenanceJob implements Runnable {
+    @Slf4j
+    public static class MaintenanceJob implements Runnable {
         private final BaseMemoryMetricsDatastore store;
+        private long lastExecutionTimestampMillis;
 
-        MaintenanceJob(BaseMemoryMetricsDatastore store) {
+        public MaintenanceJob(BaseMemoryMetricsDatastore store) {
             this.store = store;
+            this.lastExecutionTimestampMillis = 0L;
         }
 
         @Override
         public void run() {
+            Long startMillis = null;
+            if (this.store.isTraceMode()) {
+                startMillis = System.currentTimeMillis();
+            }
             for (ConcurrentMap.Entry<String, ConcurrentMap<String, LiveRequestStats>> executor : ALL_LIVE_STATS.entrySet()) {
                 String[] elements = executor.getKey().split("/");
                 if (elements.length < 2) {
@@ -314,9 +366,29 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
                     continue;
                 }
                 String executorName = executor.getKey().replaceFirst("^" + type + "/", "");
+
+                if (this.store.isTraceMode()) {
+                    log.debug("Going to maintain {} metrics (executor: {}, teams: {})",
+                            this.store.getMetricsType(),
+                            executorName,
+                            executor.getValue().keySet().size()
+                    );
+                }
                 for (ConcurrentMap.Entry<String, LiveRequestStats> team : executor.getValue().entrySet()) {
                     String teamId = team.getKey();
                     LiveRequestStats stats = team.getValue();
+                    if (stats == null) {
+                        continue;
+                    }
+                    if (stats.getLastRequestTimestampMillis() <= this.lastExecutionTimestampMillis) {
+                        if (this.store.isTraceMode()) {
+                            log.debug("No request for team: {} since the last maintenance", teamId);
+                        }
+                        continue;
+                    }
+                    if (this.store.isTraceMode()) {
+                        log.debug("Going to maintain the data for team: {}", teamId);
+                    }
                     // Last Minute Requests
                     for (String methodName : stats.getLastMinuteRequests().keySet()) {
                         store.updateNumberOfLastMinuteRequests(executorName, teamId, methodName);
@@ -340,7 +412,13 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
                     }
                 }
             }
+
+            this.lastExecutionTimestampMillis = System.currentTimeMillis();
+
+            if (this.store.isTraceMode()) {
+                long spentMillis = System.currentTimeMillis() - startMillis;
+                log.debug("{} metrics maintenance completed ({} ms)", this.store.getMetricsType(), spentMillis);
+            }
         }
     }
-
 }

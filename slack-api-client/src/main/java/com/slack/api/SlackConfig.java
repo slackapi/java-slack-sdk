@@ -234,17 +234,28 @@ public class SlackConfig {
         if (!methodsConfig.equals(MethodsConfig.DEFAULT_SINGLETON)
                 && !methodsConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             methodsConfig.setExecutorServiceProvider(executorServiceProvider);
-            methodsConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+            if (methodsConfig.isStatsEnabled()) {
+                methodsConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+            }
         }
         if (!auditConfig.equals(AuditConfig.DEFAULT_SINGLETON)
                 && !auditConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             auditConfig.setExecutorServiceProvider(executorServiceProvider);
-            auditConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+            if (auditConfig.isStatsEnabled()) {
+                auditConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+            }
         }
         if (!sCIMConfig.equals(SCIMConfig.DEFAULT_SINGLETON)
                 && !sCIMConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             sCIMConfig.setExecutorServiceProvider(executorServiceProvider);
-            sCIMConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+            if (sCIMConfig.isStatsEnabled()) {
+                sCIMConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+            }
+        }
+        if (this.isLibraryMaintainerMode()) {
+            methodsConfig.getMetricsDatastore().setTraceMode(true);
+            auditConfig.getMetricsDatastore().setTraceMode(true);
+            sCIMConfig.getMetricsDatastore().setTraceMode(true);
         }
     }
 }
