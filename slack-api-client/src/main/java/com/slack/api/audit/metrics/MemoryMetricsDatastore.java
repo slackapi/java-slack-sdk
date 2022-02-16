@@ -3,6 +3,7 @@ package com.slack.api.audit.metrics;
 import com.slack.api.audit.AuditApiResponse;
 import com.slack.api.audit.impl.AsyncExecutionSupplier;
 import com.slack.api.audit.impl.AsyncRateLimitQueue;
+import com.slack.api.rate_limits.RateLimiter;
 import com.slack.api.rate_limits.metrics.impl.BaseMemoryMetricsDatastore;
 import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import com.slack.api.util.thread.ExecutorServiceProvider;
@@ -18,7 +19,7 @@ public class MemoryMetricsDatastore extends BaseMemoryMetricsDatastore<
             int numberOfNodes,
             boolean cleanerEnabled
     ) {
-        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), cleanerEnabled, DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS);
+        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), cleanerEnabled, RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS);
     }
 
     public MemoryMetricsDatastore(

@@ -1,5 +1,6 @@
 package com.slack.api.scim.metrics;
 
+import com.slack.api.rate_limits.RateLimiter;
 import com.slack.api.rate_limits.metrics.impl.BaseMemoryMetricsDatastore;
 import com.slack.api.scim.SCIMApiResponse;
 import com.slack.api.scim.impl.AsyncExecutionSupplier;
@@ -18,7 +19,7 @@ public class MemoryMetricsDatastore extends BaseMemoryMetricsDatastore<
             int numberOfNodes,
             boolean cleanerEnabled
     ) {
-        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), cleanerEnabled, DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS);
+        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), cleanerEnabled, RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS);
     }
 
     public MemoryMetricsDatastore(

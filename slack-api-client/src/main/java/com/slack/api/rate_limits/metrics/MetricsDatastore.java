@@ -58,4 +58,8 @@ public interface MetricsDatastore {
 
     void setTraceMode(boolean isTraceMode);
 
+    long getRateLimiterBackgroundJobIntervalMillis();
+
+    void setRateLimiterBackgroundJobIntervalMillis(long rateLimiterBackgroundJobIntervalMillis);
+
 }

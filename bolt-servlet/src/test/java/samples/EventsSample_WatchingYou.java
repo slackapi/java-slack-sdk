@@ -2,7 +2,6 @@ package samples;
 
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
-import com.slack.api.methods.response.reactions.ReactionsAddResponse;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.model.event.ReactionAddedEvent;
 import util.ResourceLoader;
@@ -14,11 +13,13 @@ public class EventsSample_WatchingYou {
         AppConfig config = ResourceLoader.loadAppConfig();
         App app = new App(config);
 
+        // config.getSlack().getConfig().setRateLimiterBackgroundJobIntervalMillis(3_000L);
+        // config.getSlack().getConfig().setLibraryMaintainerMode(true);
+
         app.event(MessageEvent.class, (req, ctx) -> {
             String channel = req.getEvent().getChannel();
             String ts = req.getEvent().getTs();
-            ReactionsAddResponse res = ctx.client().reactionsAdd(r -> r.channel(channel).timestamp(ts).name("eyes"));
-            ctx.logger.info("reactions.add - {}", res);
+            ctx.asyncClient().reactionsAdd(r -> r.channel(channel).timestamp(ts).name("eyes"));
             return ctx.ack();
         });
 

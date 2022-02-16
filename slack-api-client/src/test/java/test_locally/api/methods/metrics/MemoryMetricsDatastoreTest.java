@@ -1,6 +1,7 @@
 package test_locally.api.methods.metrics;
 
 import com.slack.api.methods.metrics.MemoryMetricsDatastore;
+import com.slack.api.rate_limits.RateLimiter;
 import com.slack.api.rate_limits.metrics.RequestStats;
 import org.junit.Test;
 
@@ -15,6 +16,8 @@ public class MemoryMetricsDatastoreTest {
     public void getNumberOfNodes() {
         MemoryMetricsDatastore datastore = new MemoryMetricsDatastore(3);
         assertEquals(3, datastore.getNumberOfNodes());
+        assertEquals(RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS,
+                datastore.getRateLimiterBackgroundJobIntervalMillis());
     }
 
     @Test

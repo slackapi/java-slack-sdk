@@ -1,5 +1,6 @@
 package com.slack.api.rate_limits.metrics.impl;
 
+import com.slack.api.rate_limits.RateLimiter;
 import com.slack.api.rate_limits.metrics.LastMinuteRequests;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import com.slack.api.rate_limits.metrics.RequestStats;
@@ -20,15 +21,13 @@ import static java.util.stream.Collectors.toList;
 public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessage>
         implements MetricsDatastore, AutoCloseable {
 
-    public static long DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS = 1_000L;
-
     private final String appName;
     private final JedisPool jedisPool;
     private ExecutorServiceProvider executorServiceProvider;
-    private ScheduledExecutorService cleanerExecutor;
+    private ScheduledExecutorService rateLimiterBackgroundJob;
     private boolean traceMode;
-    private boolean cleanerEnabled;
-    private long cleanerExecutionIntervalMilliseconds;
+    private boolean rateLimiterBackgroundJobEnabled;
+    private long rateLimiterBackgroundJobIntervalMillis;
 
     public BaseRedisMetricsDatastore(String appName, JedisPool jedisPool) {
         this(
@@ -36,7 +35,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
                 jedisPool,
                 DaemonThreadExecutorServiceProvider.getInstance(),
                 true,
-                DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS
+                RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS
         );
     }
 
@@ -50,36 +49,36 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
                 jedisPool,
                 executorServiceProvider,
                 true,
-                DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS
+                RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS
         );
     }
 
     public BaseRedisMetricsDatastore(
             String appName,
             JedisPool jedisPool,
-            boolean cleanerEnabled
+            boolean rateLimiterBackgroundJobEnabled
     ) {
         this(
                 appName,
                 jedisPool,
                 DaemonThreadExecutorServiceProvider.getInstance(),
-                cleanerEnabled,
-                DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS
+                rateLimiterBackgroundJobEnabled,
+                RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS
         );
     }
 
     public BaseRedisMetricsDatastore(
             String appName,
             JedisPool jedisPool,
-            boolean cleanerEnabled,
-            long cleanerExecutionIntervalMilliseconds
+            boolean rateLimiterBackgroundJobEnabled,
+            long rateLimiterBackgroundJobIntervalMillis
     ) {
         this(
                 appName,
                 jedisPool,
                 DaemonThreadExecutorServiceProvider.getInstance(),
-                cleanerEnabled,
-                cleanerExecutionIntervalMilliseconds
+                rateLimiterBackgroundJobEnabled,
+                rateLimiterBackgroundJobIntervalMillis
         );
     }
 
@@ -87,16 +86,16 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
             String appName,
             JedisPool jedisPool,
             ExecutorServiceProvider executorServiceProvider,
-            boolean cleanerEnabled,
-            long cleanerExecutionIntervalMilliseconds
+            boolean rateLimiterBackgroundJobEnabled,
+            long rateLimiterBackgroundJobIntervalMillis
     ) {
         this.appName = appName;
         this.jedisPool = jedisPool;
         this.executorServiceProvider = executorServiceProvider;
-        this.cleanerEnabled = cleanerEnabled;
-        this.cleanerExecutionIntervalMilliseconds = cleanerExecutionIntervalMilliseconds;
-        if (this.cleanerEnabled) {
-            this.initializeCleanerExecutor();
+        this.rateLimiterBackgroundJobEnabled = rateLimiterBackgroundJobEnabled;
+        this.rateLimiterBackgroundJobIntervalMillis = rateLimiterBackgroundJobIntervalMillis;
+        if (this.rateLimiterBackgroundJobEnabled) {
+            this.initializeRateLimiterBackgroundJob();
         }
     }
 
@@ -106,23 +105,23 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
         return jedisPool.getResource();
     }
 
-    protected void initializeCleanerExecutor() {
-        if (this.cleanerExecutor != null) {
+    protected void initializeRateLimiterBackgroundJob() {
+        if (this.rateLimiterBackgroundJob != null) {
             // Abandon the running one first
-            this.cleanerExecutor.shutdown();
+            this.rateLimiterBackgroundJob.shutdown();
         }
-        this.cleanerExecutor = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
-        this.cleanerExecutor.scheduleAtFixedRate(
+        this.rateLimiterBackgroundJob = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
+        this.rateLimiterBackgroundJob.scheduleAtFixedRate(
                 new MaintenanceJob(this),
                 1000,
-                this.cleanerExecutionIntervalMilliseconds,
+                this.rateLimiterBackgroundJobIntervalMillis,
                 TimeUnit.MILLISECONDS
         );
     }
 
     @Override
     public void close() throws Exception {
-        this.cleanerExecutor.shutdown();
+        this.rateLimiterBackgroundJob.shutdown();
         this.jedisPool.destroy();
     }
 
@@ -141,8 +140,8 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
         this.executorServiceProvider = executorServiceProvider;
-        if (cleanerEnabled) {
-            initializeCleanerExecutor();
+        if (rateLimiterBackgroundJobEnabled) {
+            initializeRateLimiterBackgroundJob();
         }
     }
 
@@ -154,6 +153,17 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void setTraceMode(boolean isTraceMode) {
         this.traceMode = isTraceMode;
+    }
+
+    @Override
+    public long getRateLimiterBackgroundJobIntervalMillis() {
+        return this.rateLimiterBackgroundJobIntervalMillis;
+    }
+
+    @Override
+    public void setRateLimiterBackgroundJobIntervalMillis(long rateLimiterBackgroundJobIntervalMillis) {
+        this.rateLimiterBackgroundJobIntervalMillis = rateLimiterBackgroundJobIntervalMillis;
+        this.initializeRateLimiterBackgroundJob();
     }
 
     private void addToStatsKeyIndices(Jedis jedis, String statsKey) {

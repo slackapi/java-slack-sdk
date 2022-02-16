@@ -1,6 +1,7 @@
 package com.slack.api.rate_limits.metrics.impl;
 
 import com.google.gson.Gson;
+import com.slack.api.rate_limits.RateLimiter;
 import com.slack.api.rate_limits.metrics.LastMinuteRequests;
 import com.slack.api.rate_limits.metrics.LiveRequestStats;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
@@ -23,14 +24,12 @@ import java.util.concurrent.atomic.AtomicLong;
 public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMessage>
         implements MetricsDatastore, AutoCloseable {
 
-    public static long DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS = 1_000L;
-
     private final int numberOfNodes;
     private ExecutorServiceProvider executorServiceProvider;
-    private ScheduledExecutorService cleanerExecutor;
+    private ScheduledExecutorService rateLimiterBackgroundJob;
     private boolean traceMode;
-    private boolean cleanerEnabled;
-    private long cleanerExecutionIntervalMilliseconds;
+    private boolean rateLimiterBackgroundJobEnabled;
+    private long rateLimiterBackgroundJobIntervalMillis;
 
     public BaseMemoryMetricsDatastore(int numberOfNodes) {
         this(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance());
@@ -41,42 +40,42 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
                 numberOfNodes,
                 executorServiceProvider,
                 true,
-                DEFAULT_CLEANER_EXECUTION_INTERVAL_MILLISECONDS
+                RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS
         );
     }
 
     public BaseMemoryMetricsDatastore(
             int numberOfNodes,
             ExecutorServiceProvider executorServiceProvider,
-            boolean cleanerEnabled,
-            long cleanerExecutionIntervalMilliseconds
+            boolean rateLimiterBackgroundJobEnabled,
+            long rateLimiterBackgroundJobIntervalMillis
     ) {
         this.numberOfNodes = numberOfNodes;
         this.executorServiceProvider = executorServiceProvider;
-        this.cleanerEnabled = cleanerEnabled;
-        this.cleanerExecutionIntervalMilliseconds = cleanerExecutionIntervalMilliseconds;
-        if (this.cleanerEnabled) {
-            this.initializeCleanerExecutor();
+        this.rateLimiterBackgroundJobEnabled = rateLimiterBackgroundJobEnabled;
+        this.rateLimiterBackgroundJobIntervalMillis = rateLimiterBackgroundJobIntervalMillis;
+        if (this.rateLimiterBackgroundJobEnabled) {
+            this.initializeRateLimiterBackgroundJob();
         }
     }
 
-    protected void initializeCleanerExecutor() {
-        if (this.cleanerExecutor != null) {
+    protected void initializeRateLimiterBackgroundJob() {
+        if (this.rateLimiterBackgroundJob != null) {
             // Abandon the running one first
-            this.cleanerExecutor.shutdown();
+            this.rateLimiterBackgroundJob.shutdown();
         }
-        this.cleanerExecutor = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
-        this.cleanerExecutor.scheduleAtFixedRate(
+        this.rateLimiterBackgroundJob = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
+        this.rateLimiterBackgroundJob.scheduleAtFixedRate(
                 new MaintenanceJob(this),
                 1000,
-                this.cleanerExecutionIntervalMilliseconds,
+                this.rateLimiterBackgroundJobIntervalMillis,
                 TimeUnit.MILLISECONDS
         );
     }
 
     @Override
     public void close() throws Exception {
-        cleanerExecutor.shutdown();
+        rateLimiterBackgroundJob.shutdown();
     }
 
     protected abstract String getMetricsType();
@@ -123,8 +122,8 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
         this.executorServiceProvider = executorServiceProvider;
-        if (this.cleanerEnabled) {
-            initializeCleanerExecutor();
+        if (this.rateLimiterBackgroundJobEnabled) {
+            initializeRateLimiterBackgroundJob();
         }
     }
 
@@ -136,6 +135,19 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void setTraceMode(boolean isTraceMode) {
         this.traceMode = isTraceMode;
+    }
+
+    @Override
+    public long getRateLimiterBackgroundJobIntervalMillis() {
+        return this.rateLimiterBackgroundJobIntervalMillis;
+    }
+
+    @Override
+    public void setRateLimiterBackgroundJobIntervalMillis(long rateLimiterBackgroundJobIntervalMillis) {
+        this.rateLimiterBackgroundJobIntervalMillis = rateLimiterBackgroundJobIntervalMillis;
+        if (this.rateLimiterBackgroundJobEnabled) {
+            initializeRateLimiterBackgroundJob();
+        }
     }
 
     // -----------------------------------------------------------
