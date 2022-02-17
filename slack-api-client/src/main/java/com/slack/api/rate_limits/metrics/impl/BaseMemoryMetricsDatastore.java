@@ -108,6 +108,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
         for (Map.Entry<String, ConcurrentMap<String, LiveRequestStats>> executor : ALL_LIVE_STATS.entrySet()) {
             Map<String, RequestStats> allTeams = new HashMap<>();
             for (Map.Entry<String, LiveRequestStats> team : executor.getValue().entrySet()) {
+                // Can be improved: A bit costly way to build a deep copy here
                 RequestStats stats = GSON.fromJson(GSON.toJson(team.getValue()), RequestStats.class);
                 allTeams.put(team.getKey(), stats);
             }
@@ -119,6 +120,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public RequestStats getStats(String executorName, String teamId) {
         LiveRequestStats internal = getOrCreateTeamLiveStats(executorName, teamId);
+        // Can be improved: A bit costly way to build a deep copy here
         RequestStats stats = GSON.fromJson(GSON.toJson(internal), RequestStats.class);
         return stats;
     }
