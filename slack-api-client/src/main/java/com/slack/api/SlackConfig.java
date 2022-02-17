@@ -4,6 +4,7 @@ import com.slack.api.audit.AuditClient;
 import com.slack.api.audit.AuditConfig;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.MethodsConfig;
+import com.slack.api.rate_limits.RateLimiter;
 import com.slack.api.scim.SCIMClient;
 import com.slack.api.scim.SCIMConfig;
 import com.slack.api.status.v1.LegacyStatusClient;
@@ -86,6 +87,11 @@ public class SlackConfig {
         }
 
         @Override
+        public void setStatsEnabled(boolean statsEnabled) {
+            throwException();
+        }
+
+        @Override
         public void setMethodsConfig(MethodsConfig methodsConfig) {
             throwException();
         }
@@ -129,6 +135,11 @@ public class SlackConfig {
         public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
             throwException();
         }
+
+        @Override
+        public void setRateLimiterBackgroundJobIntervalMillis(Long rateLimiterBackgroundJobIntervalMillis) {
+            throwException();
+        }
     };
 
     public SlackConfig() {
@@ -150,8 +161,7 @@ public class SlackConfig {
 
     /**
      * The underlying HTTP client's call timeout (in milliseconds).
-     * By default there is no timeout for complete calls,
-     * but there is for the connect, write, and read actions within a call.
+     * By default, there is no timeout for complete calls while there is for connect/write/read actions within a call.
      * https://square.github.io/okhttp/4.x/okhttp/okhttp3/-ok-http-client/call-timeout-millis/
      */
     private Integer httpClientCallTimeoutMillis;
@@ -199,6 +209,11 @@ public class SlackConfig {
      */
     private boolean libraryMaintainerMode = false;
 
+    public void setLibraryMaintainerMode(boolean libraryMaintainerMode) {
+        this.libraryMaintainerMode = libraryMaintainerMode;
+        this.synchronizeLibraryMaintainerMode();
+    }
+
     /**
      * If you would like to detect unknown properties by throwing exceptions, set this flag as true.
      */
@@ -224,27 +239,99 @@ public class SlackConfig {
     @Builder.Default
     private ExecutorServiceProvider executorServiceProvider = DaemonThreadExecutorServiceProvider.getInstance();
 
+    @Builder.Default
+    private Long rateLimiterBackgroundJobIntervalMillis = RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS;
+
+    public void setRateLimiterBackgroundJobIntervalMillis(Long rateLimiterBackgroundJobIntervalMillis) {
+        if (rateLimiterBackgroundJobIntervalMillis == 0) {
+            throw new IllegalArgumentException(
+                    "0 millisecond is not a valid value for rateLimiterBackgroundJobIntervalMillis");
+        }
+        this.rateLimiterBackgroundJobIntervalMillis = rateLimiterBackgroundJobIntervalMillis;
+        this.synchronizeMetricsDatabases();
+    }
+
+    @Builder.Default
+    private boolean statsEnabled = true;
+
+    public void setStatsEnabled(boolean statsEnabled) {
+        this.statsEnabled = statsEnabled;
+        this.getMethodsConfig().setStatsEnabled(this.isStatsEnabled());
+        this.getSCIMConfig().setStatsEnabled(this.isStatsEnabled());
+        this.getAuditConfig().setStatsEnabled(this.isStatsEnabled());
+        this.synchronizeMetricsDatabases();
+    }
+
     private MethodsConfig methodsConfig = new MethodsConfig();
 
     private AuditConfig auditConfig = new AuditConfig();
 
     private SCIMConfig sCIMConfig = new SCIMConfig();
 
+    public void synchronizeMetricsDatabases() {
+        this.synchronizeExecutorServiceProviders();
+
+        if (!methodsConfig.equals(MethodsConfig.DEFAULT_SINGLETON)) {
+            if (methodsConfig.isStatsEnabled()) {
+                if (methodsConfig.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
+                        != this.getRateLimiterBackgroundJobIntervalMillis()) {
+                    methodsConfig.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
+                            this.getRateLimiterBackgroundJobIntervalMillis());
+                }
+            } else {
+                methodsConfig.getMetricsDatastore().setStatsEnabled(false);
+            }
+        }
+        if (!auditConfig.equals(auditConfig.DEFAULT_SINGLETON)) {
+            if (auditConfig.isStatsEnabled()) {
+                if (auditConfig.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
+                        != this.getRateLimiterBackgroundJobIntervalMillis()) {
+                    auditConfig.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
+                            this.getRateLimiterBackgroundJobIntervalMillis());
+                }
+            } else {
+                auditConfig.getMetricsDatastore().setStatsEnabled(false);
+            }
+        }
+        if (!sCIMConfig.equals(sCIMConfig.DEFAULT_SINGLETON)) {
+            if (sCIMConfig.isStatsEnabled()) {
+                if (sCIMConfig.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
+                        != this.getRateLimiterBackgroundJobIntervalMillis()) {
+                    sCIMConfig.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
+                            this.getRateLimiterBackgroundJobIntervalMillis());
+                }
+            } else {
+                sCIMConfig.getMetricsDatastore().setStatsEnabled(false);
+            }
+        }
+    }
+
     public void synchronizeExecutorServiceProviders() {
         if (!methodsConfig.equals(MethodsConfig.DEFAULT_SINGLETON)
+                && methodsConfig.isStatsEnabled()
                 && !methodsConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             methodsConfig.setExecutorServiceProvider(executorServiceProvider);
             methodsConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
         }
         if (!auditConfig.equals(AuditConfig.DEFAULT_SINGLETON)
+                && auditConfig.isStatsEnabled()
                 && !auditConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             auditConfig.setExecutorServiceProvider(executorServiceProvider);
             auditConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
         }
         if (!sCIMConfig.equals(SCIMConfig.DEFAULT_SINGLETON)
+                && sCIMConfig.isStatsEnabled()
                 && !sCIMConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             sCIMConfig.setExecutorServiceProvider(executorServiceProvider);
             sCIMConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
         }
+        this.synchronizeLibraryMaintainerMode();
     }
+
+    public void synchronizeLibraryMaintainerMode() {
+        methodsConfig.getMetricsDatastore().setTraceMode(this.isLibraryMaintainerMode());
+        auditConfig.getMetricsDatastore().setTraceMode(this.isLibraryMaintainerMode());
+        sCIMConfig.getMetricsDatastore().setTraceMode(this.isLibraryMaintainerMode());
+    }
+
 }

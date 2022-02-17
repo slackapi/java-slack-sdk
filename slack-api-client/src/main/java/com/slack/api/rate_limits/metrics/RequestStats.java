@@ -15,6 +15,12 @@ import java.util.Map;
 public class RequestStats {
 
     /**
+     * The last request timestamp in milliseconds
+     */
+    @Builder.Default
+    private Long lastRequestTimestampMillis = 0L;
+
+    /**
      * Method name -> # of calls
      */
     @Builder.Default

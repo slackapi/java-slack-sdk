@@ -54,4 +54,16 @@ public interface MetricsDatastore {
 
     void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider);
 
+    boolean isTraceMode();
+
+    void setTraceMode(boolean traceMode);
+
+    boolean isStatsEnabled();
+
+    void setStatsEnabled(boolean statsEnabled);
+
+    long getRateLimiterBackgroundJobIntervalMillis();
+
+    void setRateLimiterBackgroundJobIntervalMillis(long rateLimiterBackgroundJobIntervalMillis);
+
 }

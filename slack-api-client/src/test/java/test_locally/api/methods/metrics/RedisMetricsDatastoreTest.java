@@ -106,8 +106,8 @@ public class RedisMetricsDatastoreTest {
     public void threadGroupName() {
         RedisMetricsDatastore datastore1 = new RedisMetricsDatastore("app1", jedisPool);
         RedisMetricsDatastore datastore2 = new RedisMetricsDatastore("app2", jedisPool);
-        assertEquals("slack-methods-metrics-redis:app1", datastore1.getThreadGroupName());
-        assertEquals("slack-methods-metrics-redis:app2", datastore2.getThreadGroupName());
+        assertEquals("slack-api-metrics:app1", datastore1.getThreadGroupName());
+        assertEquals("slack-api-metrics:app2", datastore2.getThreadGroupName());
         assertNotEquals(datastore1.getThreadGroupName(), datastore2.getThreadGroupName());
     }
 }
