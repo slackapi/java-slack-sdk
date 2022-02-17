@@ -466,21 +466,32 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
             Map<String, Map<String, RequestStats>> allStats = store.getAllStats();
             for (Map.Entry<String, Map<String, RequestStats>> executor : allStats.entrySet()) {
                 String executorName = executor.getKey();
+                Map<String, RequestStats> teams = executor.getValue();
+                if (teams == null) {
+                    continue;
+                }
+                int numOfTeams = teams.size();
 
                 if (this.store.isTraceMode()) {
                     log.debug("Going to maintain {} metrics (executor: {}, teams: {})",
                             this.store.getMetricsType(),
                             executorName,
-                            executor.getValue().keySet().size()
+                            numOfTeams
                     );
                 }
-                for (Map.Entry<String, RequestStats> team : executor.getValue().entrySet()) {
+                boolean isScalableMode = numOfTeams >= 100;
+                for (Map.Entry<String, RequestStats> team : teams.entrySet()) {
                     String teamId = team.getKey();
                     RequestStats stats = team.getValue();
                     if (stats == null) {
                         continue;
                     }
-                    if (stats.getLastRequestTimestampMillis() != null
+                    // For the case where this app handles a small number of workspaces,
+                    // this job tries to maintain the metrics as accurate as possible.
+                    // If it needs to handle hundreds, thousands of workspaces,
+                    // It automatically switches to the less CPU intensive mode.
+                    if (isScalableMode
+                            && stats.getLastRequestTimestampMillis() != null
                             && stats.getLastRequestTimestampMillis() <= this.lastExecutionTimestampMillis) {
                         if (this.store.isTraceMode()) {
                             log.debug("No request for team: {} since the last maintenance", teamId);

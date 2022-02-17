@@ -428,21 +428,32 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
                     continue;
                 }
                 String executorName = executor.getKey().replaceFirst("^" + type + "/", "");
+                ConcurrentMap<String, LiveRequestStats> teams = executor.getValue();
+                if (teams == null) {
+                    continue;
+                }
+                int numOfTeams = teams.size();
 
                 if (this.store.isTraceMode()) {
                     log.debug("Going to maintain {} metrics (executor: {}, teams: {})",
                             this.store.getMetricsType(),
                             executorName,
-                            executor.getValue().keySet().size()
+                            numOfTeams
                     );
                 }
-                for (ConcurrentMap.Entry<String, LiveRequestStats> team : executor.getValue().entrySet()) {
+                boolean isScalableMode = numOfTeams >= 100;
+                for (ConcurrentMap.Entry<String, LiveRequestStats> team : teams.entrySet()) {
                     String teamId = team.getKey();
                     LiveRequestStats stats = team.getValue();
                     if (stats == null) {
                         continue;
                     }
-                    if (stats.getLastRequestTimestampMillis() != null
+                    // For the case where this app handles a small number of workspaces,
+                    // this job tries to maintain the metrics as accurate as possible.
+                    // If it needs to handle hundreds, thousands of workspaces,
+                    // It automatically switches to the less CPU intensive mode.
+                    if (isScalableMode
+                            && stats.getLastRequestTimestampMillis() != null
                             && stats.getLastRequestTimestampMillis() <= this.lastExecutionTimestampMillis) {
                         if (this.store.isTraceMode()) {
                             log.debug("No request for team: {} since the last maintenance", teamId);
