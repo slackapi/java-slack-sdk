@@ -160,8 +160,8 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     }
 
     @Override
-    public void setTraceMode(boolean isTraceMode) {
-        this.traceMode = isTraceMode;
+    public void setTraceMode(boolean traceMode) {
+        this.traceMode = traceMode;
     }
 
     @Override
@@ -172,7 +172,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void setStatsEnabled(boolean statsEnabled) {
         this.statsEnabled = statsEnabled;
-        if (this.rateLimiterBackgroundJob != null) {
+        if (!this.statsEnabled && this.rateLimiterBackgroundJob != null) {
             this.rateLimiterBackgroundJob.shutdown();
             this.rateLimiterBackgroundJob = null;
         }

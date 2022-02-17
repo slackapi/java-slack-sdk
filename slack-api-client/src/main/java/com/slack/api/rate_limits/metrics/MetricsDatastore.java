@@ -56,7 +56,7 @@ public interface MetricsDatastore {
 
     boolean isTraceMode();
 
-    void setTraceMode(boolean isTraceMode);
+    void setTraceMode(boolean traceMode);
 
     boolean isStatsEnabled();
 
