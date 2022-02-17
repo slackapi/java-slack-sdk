@@ -26,7 +26,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     private ExecutorServiceProvider executorServiceProvider;
     private ScheduledExecutorService rateLimiterBackgroundJob;
     private boolean traceMode;
-    private boolean rateLimiterBackgroundJobEnabled;
+    private boolean statsEnabled;
     private long rateLimiterBackgroundJobIntervalMillis;
 
     public BaseRedisMetricsDatastore(String appName, JedisPool jedisPool) {
@@ -56,13 +56,13 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     public BaseRedisMetricsDatastore(
             String appName,
             JedisPool jedisPool,
-            boolean rateLimiterBackgroundJobEnabled
+            boolean statsEnabled
     ) {
         this(
                 appName,
                 jedisPool,
                 DaemonThreadExecutorServiceProvider.getInstance(),
-                rateLimiterBackgroundJobEnabled,
+                statsEnabled,
                 RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS
         );
     }
@@ -70,14 +70,14 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     public BaseRedisMetricsDatastore(
             String appName,
             JedisPool jedisPool,
-            boolean rateLimiterBackgroundJobEnabled,
+            boolean statsEnabled,
             long rateLimiterBackgroundJobIntervalMillis
     ) {
         this(
                 appName,
                 jedisPool,
                 DaemonThreadExecutorServiceProvider.getInstance(),
-                rateLimiterBackgroundJobEnabled,
+                statsEnabled,
                 rateLimiterBackgroundJobIntervalMillis
         );
     }
@@ -86,15 +86,16 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
             String appName,
             JedisPool jedisPool,
             ExecutorServiceProvider executorServiceProvider,
-            boolean rateLimiterBackgroundJobEnabled,
+            boolean statsEnabled,
             long rateLimiterBackgroundJobIntervalMillis
     ) {
         this.appName = appName;
         this.jedisPool = jedisPool;
+        this.setStatsEnabled(statsEnabled);
+        // intentionally avoiding to call setters to run the initialization only once
         this.executorServiceProvider = executorServiceProvider;
-        this.rateLimiterBackgroundJobEnabled = rateLimiterBackgroundJobEnabled;
         this.rateLimiterBackgroundJobIntervalMillis = rateLimiterBackgroundJobIntervalMillis;
-        if (this.rateLimiterBackgroundJobEnabled) {
+        if (this.isStatsEnabled()) {
             this.initializeRateLimiterBackgroundJob();
         }
     }
@@ -106,6 +107,14 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     }
 
     protected void initializeRateLimiterBackgroundJob() {
+        if (!this.isStatsEnabled()) {
+            if (this.rateLimiterBackgroundJob != null) {
+                // Abandon the running one first
+                this.rateLimiterBackgroundJob.shutdown();
+            }
+            this.rateLimiterBackgroundJob = null;
+            return;
+        }
         if (this.rateLimiterBackgroundJob != null) {
             // Abandon the running one first
             this.rateLimiterBackgroundJob.shutdown();
@@ -140,7 +149,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
         this.executorServiceProvider = executorServiceProvider;
-        if (rateLimiterBackgroundJobEnabled) {
+        if (this.isStatsEnabled()) {
             initializeRateLimiterBackgroundJob();
         }
     }
@@ -153,6 +162,20 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     @Override
     public void setTraceMode(boolean isTraceMode) {
         this.traceMode = isTraceMode;
+    }
+
+    @Override
+    public boolean isStatsEnabled() {
+        return this.statsEnabled;
+    }
+
+    @Override
+    public void setStatsEnabled(boolean statsEnabled) {
+        this.statsEnabled = statsEnabled;
+        if (this.rateLimiterBackgroundJob != null) {
+            this.rateLimiterBackgroundJob.shutdown();
+            this.rateLimiterBackgroundJob = null;
+        }
     }
 
     @Override
@@ -260,70 +283,84 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
 
     @Override
     public void incrementAllCompletedCalls(String executorName, String teamId, String methodName) {
-        try (Jedis jedis = jedis()) {
-            jedis.incr(toStatsKey(jedis, "AllCompletedCalls", executorName, teamId, methodName));
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                jedis.incr(toStatsKey(jedis, "AllCompletedCalls", executorName, teamId, methodName));
+            }
         }
     }
 
     @Override
     public void incrementSuccessfulCalls(String executorName, String teamId, String methodName) {
-        try (Jedis jedis = jedis()) {
-            jedis.set(toStatsKey(jedis, "LastRequestTimestampMillis", executorName, teamId, methodName),
-                    String.valueOf(System.currentTimeMillis()));
-            jedis.incr(toStatsKey(jedis, "SuccessfulCalls", executorName, teamId, methodName));
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                jedis.set(toStatsKey(jedis, "LastRequestTimestampMillis", executorName, teamId, methodName),
+                        String.valueOf(System.currentTimeMillis()));
+                jedis.incr(toStatsKey(jedis, "SuccessfulCalls", executorName, teamId, methodName));
+            }
         }
     }
 
     @Override
     public void incrementUnsuccessfulCalls(String executorName, String teamId, String methodName) {
-        try (Jedis jedis = jedis()) {
-            jedis.set(toStatsKey(jedis, "LastRequestTimestampMillis", executorName, teamId, methodName),
-                    String.valueOf(System.currentTimeMillis()));
-            jedis.incr(toStatsKey(jedis, "UnsuccessfulCalls", executorName, teamId, methodName));
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                jedis.set(toStatsKey(jedis, "LastRequestTimestampMillis", executorName, teamId, methodName),
+                        String.valueOf(System.currentTimeMillis()));
+                jedis.incr(toStatsKey(jedis, "UnsuccessfulCalls", executorName, teamId, methodName));
+            }
         }
     }
 
     @Override
     public void incrementFailedCalls(String executorName, String teamId, String methodName) {
-        try (Jedis jedis = jedis()) {
-            jedis.set(toStatsKey(jedis, "LastRequestTimestampMillis", executorName, teamId, methodName),
-                    String.valueOf(System.currentTimeMillis()));
-            jedis.incr(toStatsKey(jedis, "FailedCalls", executorName, teamId, methodName));
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                jedis.set(toStatsKey(jedis, "LastRequestTimestampMillis", executorName, teamId, methodName),
+                        String.valueOf(System.currentTimeMillis()));
+                jedis.incr(toStatsKey(jedis, "FailedCalls", executorName, teamId, methodName));
+            }
         }
     }
 
     @Override
     public void updateCurrentQueueSize(String executorName, String teamId, String methodName) {
-        try (Jedis jedis = jedis()) {
-            String key = toWaitingMessageIdsKey(jedis, executorName, teamId, methodName);
-            Integer totalSize = Math.toIntExact(jedis.llen(key));
-            RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
-            if (queue != null) {
-                totalSize += queue.getCurrentActiveQueueSize(methodName);
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                String key = toWaitingMessageIdsKey(jedis, executorName, teamId, methodName);
+                Integer totalSize = Math.toIntExact(jedis.llen(key));
+                RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
+                if (queue != null) {
+                    totalSize += queue.getCurrentActiveQueueSize(methodName);
+                }
+                setCurrentQueueSize(executorName, teamId, methodName, totalSize);
             }
-            setCurrentQueueSize(executorName, teamId, methodName, totalSize);
         }
     }
 
     @Override
     public void setCurrentQueueSize(String executorName, String teamId, String methodName, Integer value) {
-        try (Jedis jedis = jedis()) {
-            jedis.set(toStatsKey(jedis, "CurrentQueueSize", executorName, teamId, methodName), "" + value);
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                jedis.set(toStatsKey(jedis, "CurrentQueueSize", executorName, teamId, methodName), "" + value);
+            }
         }
     }
 
     @Override
     public void updateNumberOfLastMinuteRequests(String executorName, String teamId, String methodName) {
-        try (Jedis jedis = jedis()) {
-            String key = toLastMinuteRequestsKey(jedis, executorName, teamId, methodName);
-            long oneMinuteAgo = System.currentTimeMillis() - 60000L;
-            for (String str : jedis.lrange(key, 0, jedis.llen(key))) {
-                long millis = Long.valueOf(str);
-                if (millis < oneMinuteAgo) {
-                    jedis.lrem(key, 1, str);
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                String key = toLastMinuteRequestsKey(jedis, executorName, teamId, methodName);
+                long oneMinuteAgo = System.currentTimeMillis() - 60000L;
+                for (String str : jedis.lrange(key, 0, jedis.llen(key))) {
+                    long millis = Long.valueOf(str);
+                    if (millis < oneMinuteAgo) {
+                        jedis.lrem(key, 1, str);
+                    }
                 }
+                setNumberOfLastMinuteRequests(executorName, teamId, methodName, Math.toIntExact(jedis.llen(key)));
             }
-            setNumberOfLastMinuteRequests(executorName, teamId, methodName, Math.toIntExact(jedis.llen(key)));
         }
     }
 
@@ -337,8 +374,10 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
 
     @Override
     public void setNumberOfLastMinuteRequests(String executorName, String teamId, String methodName, Integer value) {
-        try (Jedis jedis = jedis()) {
-            jedis.set(toStatsKey(jedis, "LastMinuteRequests", executorName, teamId, methodName), "" + value);
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                jedis.set(toStatsKey(jedis, "LastMinuteRequests", executorName, teamId, methodName), "" + value);
+            }
         }
     }
 
@@ -353,18 +392,22 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
 
     @Override
     public void setRateLimitedMethodRetryEpochMillis(String executorName, String teamId, String methodName, Long epochTimeMillis) {
-        try (Jedis jedis = jedis()) {
-            String key = toStatsKey(jedis, "RateLimitedMethods", executorName, teamId, methodName);
-            jedis.set(key, String.valueOf(epochTimeMillis));
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                String key = toStatsKey(jedis, "RateLimitedMethods", executorName, teamId, methodName);
+                jedis.set(key, String.valueOf(epochTimeMillis));
+            }
         }
     }
 
     @Override
     public void addToLastMinuteRequests(String executorName, String teamId, String methodName, Long currentMillis) {
-        try (Jedis jedis = jedis()) {
-            String key = toLastMinuteRequestsKey(jedis, executorName, teamId, methodName);
-            jedis.rpush(key, String.valueOf(currentMillis));
-            setNumberOfLastMinuteRequests(executorName, teamId, methodName, Math.toIntExact(jedis.llen(key)));
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                String key = toLastMinuteRequestsKey(jedis, executorName, teamId, methodName);
+                jedis.rpush(key, String.valueOf(currentMillis));
+                setNumberOfLastMinuteRequests(executorName, teamId, methodName, Math.toIntExact(jedis.llen(key)));
+            }
         }
     }
 
@@ -381,17 +424,21 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
 
     @Override
     public void addToWaitingMessageIds(String executorName, String teamId, String methodName, String messageId) {
-        try (Jedis jedis = jedis()) {
-            String key = toWaitingMessageIdsKey(jedis, executorName, teamId, methodName);
-            jedis.rpush(key, messageId);
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                String key = toWaitingMessageIdsKey(jedis, executorName, teamId, methodName);
+                jedis.rpush(key, messageId);
+            }
         }
     }
 
     @Override
     public void deleteFromWaitingMessageIds(String executorName, String teamId, String methodName, String messageId) {
-        try (Jedis jedis = jedis()) {
-            String key = toWaitingMessageIdsKey(jedis, executorName, teamId, methodName);
-            jedis.lrem(key, 1, messageId);
+        if (this.isStatsEnabled()) {
+            try (Jedis jedis = jedis()) {
+                String key = toWaitingMessageIdsKey(jedis, executorName, teamId, methodName);
+                jedis.lrem(key, 1, messageId);
+            }
         }
     }
 
@@ -408,6 +455,9 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
 
         @Override
         public void run() {
+            if (!this.store.isStatsEnabled()) {
+                return;
+            }
             Long startMillis = null;
             if (this.store.isTraceMode()) {
                 startMillis = System.currentTimeMillis();

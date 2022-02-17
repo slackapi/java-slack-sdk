@@ -17,26 +17,26 @@ public class MemoryMetricsDatastore extends BaseMemoryMetricsDatastore<
 
     public MemoryMetricsDatastore(
             int numberOfNodes,
-            boolean backgroundJobEnabled
+            boolean statsEnabled
     ) {
-        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), backgroundJobEnabled, RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS);
+        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), statsEnabled, RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS);
     }
 
     public MemoryMetricsDatastore(
             int numberOfNodes,
-            boolean backgroundJobEnabled,
+            boolean statsEnabled,
             long backgroundJobIntervalMilliseconds
     ) {
-        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), backgroundJobEnabled, backgroundJobIntervalMilliseconds);
+        super(numberOfNodes, DaemonThreadExecutorServiceProvider.getInstance(), statsEnabled, backgroundJobIntervalMilliseconds);
     }
 
     public MemoryMetricsDatastore(
             int numberOfNodes,
             ExecutorServiceProvider executorServiceProvider,
-            boolean backgroundJobEnabled,
+            boolean statsEnabled,
             long backgroundJobIntervalMilliseconds
     ) {
-        super(numberOfNodes, executorServiceProvider, backgroundJobEnabled, backgroundJobIntervalMilliseconds);
+        super(numberOfNodes, executorServiceProvider, statsEnabled, backgroundJobIntervalMilliseconds);
     }
 
     @Override

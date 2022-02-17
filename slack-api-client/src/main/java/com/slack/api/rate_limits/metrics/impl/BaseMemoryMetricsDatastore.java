@@ -28,7 +28,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     private ExecutorServiceProvider executorServiceProvider;
     private ScheduledExecutorService rateLimiterBackgroundJob;
     private boolean traceMode;
-    private boolean rateLimiterBackgroundJobEnabled;
+    private boolean statsEnabled;
     private long rateLimiterBackgroundJobIntervalMillis;
 
     public BaseMemoryMetricsDatastore(int numberOfNodes) {
@@ -47,19 +47,28 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     public BaseMemoryMetricsDatastore(
             int numberOfNodes,
             ExecutorServiceProvider executorServiceProvider,
-            boolean rateLimiterBackgroundJobEnabled,
+            boolean statsEnabled,
             long rateLimiterBackgroundJobIntervalMillis
     ) {
         this.numberOfNodes = numberOfNodes;
+        this.setStatsEnabled(statsEnabled);
+        // intentionally avoiding to call setters to run the initialization only once
         this.executorServiceProvider = executorServiceProvider;
-        this.rateLimiterBackgroundJobEnabled = rateLimiterBackgroundJobEnabled;
         this.rateLimiterBackgroundJobIntervalMillis = rateLimiterBackgroundJobIntervalMillis;
-        if (this.rateLimiterBackgroundJobEnabled) {
+        if (this.isStatsEnabled()) {
             this.initializeRateLimiterBackgroundJob();
         }
     }
 
     protected void initializeRateLimiterBackgroundJob() {
+        if (!this.isStatsEnabled()) {
+            if (this.rateLimiterBackgroundJob != null) {
+                // Abandon the running one first
+                this.rateLimiterBackgroundJob.shutdown();
+            }
+            this.rateLimiterBackgroundJob = null;
+            return;
+        }
         if (this.rateLimiterBackgroundJob != null) {
             // Abandon the running one first
             this.rateLimiterBackgroundJob.shutdown();
@@ -122,7 +131,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
         this.executorServiceProvider = executorServiceProvider;
-        if (this.rateLimiterBackgroundJobEnabled) {
+        if (this.isStatsEnabled()) {
             initializeRateLimiterBackgroundJob();
         }
     }
@@ -138,6 +147,20 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     }
 
     @Override
+    public boolean isStatsEnabled() {
+        return this.statsEnabled;
+    }
+
+    @Override
+    public void setStatsEnabled(boolean statsEnabled) {
+        this.statsEnabled = statsEnabled;
+        if (this.rateLimiterBackgroundJob != null) {
+            this.rateLimiterBackgroundJob.shutdown();
+            this.rateLimiterBackgroundJob = null;
+        }
+    }
+
+    @Override
     public long getRateLimiterBackgroundJobIntervalMillis() {
         return this.rateLimiterBackgroundJobIntervalMillis;
     }
@@ -145,7 +168,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void setRateLimiterBackgroundJobIntervalMillis(long rateLimiterBackgroundJobIntervalMillis) {
         this.rateLimiterBackgroundJobIntervalMillis = rateLimiterBackgroundJobIntervalMillis;
-        if (this.rateLimiterBackgroundJobEnabled) {
+        if (this.isStatsEnabled()) {
             initializeRateLimiterBackgroundJob();
         }
     }
@@ -154,67 +177,79 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
 
     @Override
     public void incrementAllCompletedCalls(String executorName, String teamId, String methodName) {
-        LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
-        stats.setLastRequestTimestampMillis(System.currentTimeMillis());
-        if (stats.getAllCompletedCalls().get(methodName) == null) {
-            stats.getAllCompletedCalls().putIfAbsent(methodName, new AtomicLong(0));
+        if (this.isStatsEnabled()) {
+            LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+            stats.setLastRequestTimestampMillis(System.currentTimeMillis());
+            if (stats.getAllCompletedCalls().get(methodName) == null) {
+                stats.getAllCompletedCalls().putIfAbsent(methodName, new AtomicLong(0));
+            }
+            stats.getAllCompletedCalls().get(methodName).incrementAndGet();
         }
-        stats.getAllCompletedCalls().get(methodName).incrementAndGet();
     }
 
     @Override
     public void incrementSuccessfulCalls(String executorName, String teamId, String methodName) {
-        LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
-        stats.setLastRequestTimestampMillis(System.currentTimeMillis());
-        if (stats.getSuccessfulCalls().get(methodName) == null) {
-            stats.getSuccessfulCalls().putIfAbsent(methodName, new AtomicLong(0));
+        if (this.isStatsEnabled()) {
+            LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+            stats.setLastRequestTimestampMillis(System.currentTimeMillis());
+            if (stats.getSuccessfulCalls().get(methodName) == null) {
+                stats.getSuccessfulCalls().putIfAbsent(methodName, new AtomicLong(0));
+            }
+            stats.getSuccessfulCalls().get(methodName).incrementAndGet();
         }
-        stats.getSuccessfulCalls().get(methodName).incrementAndGet();
     }
 
     @Override
     public void incrementUnsuccessfulCalls(String executorName, String teamId, String methodName) {
-        LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
-        stats.setLastRequestTimestampMillis(System.currentTimeMillis());
-        if (stats.getUnsuccessfulCalls().get(methodName) == null) {
-            stats.getUnsuccessfulCalls().putIfAbsent(methodName, new AtomicLong(0));
+        if (this.isStatsEnabled()) {
+            LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+            stats.setLastRequestTimestampMillis(System.currentTimeMillis());
+            if (stats.getUnsuccessfulCalls().get(methodName) == null) {
+                stats.getUnsuccessfulCalls().putIfAbsent(methodName, new AtomicLong(0));
+            }
+            stats.getUnsuccessfulCalls().get(methodName).incrementAndGet();
         }
-        stats.getUnsuccessfulCalls().get(methodName).incrementAndGet();
     }
 
     @Override
     public void incrementFailedCalls(String executorName, String teamId, String methodName) {
-        LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
-        stats.setLastRequestTimestampMillis(System.currentTimeMillis());
-        if (stats.getFailedCalls().get(methodName) == null) {
-            stats.getFailedCalls().putIfAbsent(methodName, new AtomicLong(0));
+        if (this.isStatsEnabled()) {
+            LiveRequestStats stats = getOrCreateTeamLiveStats(executorName, teamId);
+            stats.setLastRequestTimestampMillis(System.currentTimeMillis());
+            if (stats.getFailedCalls().get(methodName) == null) {
+                stats.getFailedCalls().putIfAbsent(methodName, new AtomicLong(0));
+            }
+            stats.getFailedCalls().get(methodName).incrementAndGet();
         }
-        stats.getFailedCalls().get(methodName).incrementAndGet();
     }
 
     public abstract RateLimitQueue<SUPPLIER, MSG> getRateLimitQueue(String executorName, String teamId);
 
     @Override
     public void updateCurrentQueueSize(String executorName, String teamId, String methodName) {
-        CopyOnWriteArrayList<String> messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
-        Integer totalSize = messageIds.size();
-        RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
-        if (queue != null) {
-            totalSize += queue.getCurrentActiveQueueSize(methodName);
+        if (this.isStatsEnabled()) {
+            CopyOnWriteArrayList<String> messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
+            Integer totalSize = messageIds.size();
+            RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
+            if (queue != null) {
+                totalSize += queue.getCurrentActiveQueueSize(methodName);
+            }
+            setCurrentQueueSize(executorName, teamId, methodName, totalSize);
         }
-        setCurrentQueueSize(executorName, teamId, methodName, totalSize);
     }
 
     @Override
     public void setCurrentQueueSize(String executorName, String teamId, String methodName, Integer size) {
-        CopyOnWriteArrayList<String> messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
-        Integer totalSize = messageIds.size();
-        RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
-        if (queue != null) {
-            totalSize += queue.getCurrentActiveQueueSize(methodName);
+        if (this.isStatsEnabled()) {
+            CopyOnWriteArrayList<String> messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
+            Integer totalSize = messageIds.size();
+            RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
+            if (queue != null) {
+                totalSize += queue.getCurrentActiveQueueSize(methodName);
+            }
+            getOrCreateTeamLiveStats(executorName, teamId).getCurrentQueueSize().put(methodName, totalSize);
+            getOrCreateTeamLiveStats(executorName, teamId).getCurrentQueueSize().put(methodName, size);
         }
-        getOrCreateTeamLiveStats(executorName, teamId).getCurrentQueueSize().put(methodName, totalSize);
-        getOrCreateTeamLiveStats(executorName, teamId).getCurrentQueueSize().put(methodName, size);
     }
 
     @Override
@@ -224,20 +259,24 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
 
     @Override
     public void updateNumberOfLastMinuteRequests(String executorName, String teamId, String methodName) {
-        LastMinuteRequests requests = getOrCreateLastMinuteRequests(executorName, teamId, methodName);
-        long oneMinuteAgo = System.currentTimeMillis() - 60000L;
-        for (Long millis : requests) {
-            if (millis < oneMinuteAgo) {
-                requests.remove(millis);
+        if (this.isStatsEnabled()) {
+            LastMinuteRequests requests = getOrCreateLastMinuteRequests(executorName, teamId, methodName);
+            long oneMinuteAgo = System.currentTimeMillis() - 60000L;
+            for (Long millis : requests) {
+                if (millis < oneMinuteAgo) {
+                    requests.remove(millis);
+                }
             }
+            setNumberOfLastMinuteRequests(executorName, teamId, methodName, requests.size());
         }
-        setNumberOfLastMinuteRequests(executorName, teamId, methodName, requests.size());
     }
 
     @Override
     public void setNumberOfLastMinuteRequests(String executorName, String teamId, String methodName, Integer value) {
-        ConcurrentMap<String, Integer> lastMinuteRequests = getOrCreateTeamLiveStats(executorName, teamId).getLastMinuteRequests();
-        lastMinuteRequests.put(methodName, value);
+        if (this.isStatsEnabled()) {
+            ConcurrentMap<String, Integer> lastMinuteRequests = getOrCreateTeamLiveStats(executorName, teamId).getLastMinuteRequests();
+            lastMinuteRequests.put(methodName, value);
+        }
     }
 
     @Override
@@ -248,17 +287,21 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
 
     @Override
     public void setRateLimitedMethodRetryEpochMillis(String executorName, String teamId, String methodName, Long epochTimeMillis) {
-        getOrCreateTeamLiveStats(executorName, teamId)
-                .getRateLimitedMethods()
-                .put(methodName, epochTimeMillis);
+        if (this.isStatsEnabled()) {
+            getOrCreateTeamLiveStats(executorName, teamId)
+                    .getRateLimitedMethods()
+                    .put(methodName, epochTimeMillis);
+        }
     }
 
     // -----------------------------------------------------------
 
     @Override
     public void addToLastMinuteRequests(String executorName, String teamId, String methodName, Long currentMillis) {
-        getOrCreateLastMinuteRequests(executorName, teamId, methodName).add(currentMillis);
-        updateNumberOfLastMinuteRequests(executorName, teamId, methodName);
+        if (this.isStatsEnabled()) {
+            getOrCreateLastMinuteRequests(executorName, teamId, methodName).add(currentMillis);
+            updateNumberOfLastMinuteRequests(executorName, teamId, methodName);
+        }
     }
 
     @Override
@@ -270,20 +313,24 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
 
     @Override
     public void addToWaitingMessageIds(String executorName, String teamId, String methodName, String messageId) {
-        if (teamId == null) {
-            teamId = "none";
+        if (this.isStatsEnabled()) {
+            if (teamId == null) {
+                teamId = "none";
+            }
+            WaitingMessageIds messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
+            messageIds.add(messageId);
         }
-        WaitingMessageIds messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
-        messageIds.add(messageId);
     }
 
     @Override
     public void deleteFromWaitingMessageIds(String executorName, String teamId, String methodName, String messageId) {
-        if (teamId == null) {
-            teamId = "none";
+        if (this.isStatsEnabled()) {
+            if (teamId == null) {
+                teamId = "none";
+            }
+            WaitingMessageIds messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
+            messageIds.remove(messageId);
         }
-        WaitingMessageIds messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
-        messageIds.remove(messageId);
     }
 
     // -----------------------------------------------------------
@@ -364,6 +411,9 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
 
         @Override
         public void run() {
+            if (!this.store.isStatsEnabled()) {
+                return;
+            }
             Long startMillis = null;
             if (this.store.isTraceMode()) {
                 startMillis = System.currentTimeMillis();

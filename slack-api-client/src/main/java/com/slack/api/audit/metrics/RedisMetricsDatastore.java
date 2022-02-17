@@ -17,20 +17,20 @@ public class RedisMetricsDatastore extends BaseRedisMetricsDatastore<
     public RedisMetricsDatastore(
             String appName,
             JedisPool jedisPool,
-            boolean backgroundJobEnabled,
+            boolean statsEnabled,
             long backgroundJobIntervalMilliseconds
     ) {
-        super(appName, jedisPool, backgroundJobEnabled, backgroundJobIntervalMilliseconds);
+        super(appName, jedisPool, statsEnabled, backgroundJobIntervalMilliseconds);
     }
 
     public RedisMetricsDatastore(
             String appName,
             JedisPool jedisPool,
             ExecutorServiceProvider executorServiceProvider,
-            boolean backgroundJobEnabled,
+            boolean statsEnabled,
             long backgroundJobIntervalMilliseconds
     ) {
-        super(appName, jedisPool, executorServiceProvider, backgroundJobEnabled, backgroundJobIntervalMilliseconds);
+        super(appName, jedisPool, executorServiceProvider, statsEnabled, backgroundJobIntervalMilliseconds);
     }
 
     @Override

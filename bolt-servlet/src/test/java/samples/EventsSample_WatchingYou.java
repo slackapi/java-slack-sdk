@@ -13,8 +13,9 @@ public class EventsSample_WatchingYou {
         AppConfig config = ResourceLoader.loadAppConfig();
         App app = new App(config);
 
-        // config.getSlack().getConfig().setRateLimiterBackgroundJobIntervalMillis(3_000L);
         // config.getSlack().getConfig().setLibraryMaintainerMode(true);
+        // config.getSlack().getConfig().setStatsEnabled(false);
+        // config.getSlack().getConfig().setRateLimiterBackgroundJobIntervalMillis(3_000L);
 
         app.event(MessageEvent.class, (req, ctx) -> {
             String channel = req.getEvent().getChannel();

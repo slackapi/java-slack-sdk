@@ -43,7 +43,8 @@ public class RateLimiterTest {
     @Test
     public void sequentialRequests() throws Exception {
         assertThat(botToken, is(notNullValue()));
-        Long requestNum = 3L;
+
+        Long requestNum = 100L;
         for (int i = 0; i < requestNum; i++) {
             CompletableFuture<ConversationsListResponse> response = slack.methodsAsync(botToken).conversationsList(r -> r.limit(1));
             response.get();
@@ -52,8 +53,30 @@ public class RateLimiterTest {
         String teamId = slack.methods().teamInfo(r -> r.token(botToken)).getTeam().getId();
         RequestStats stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
         assertThat(stats.getSuccessfulCalls().get(Methods.CONVERSATIONS_LIST), is(greaterThanOrEqualTo(requestNum)));
+        assertThat(stats.getRateLimitedMethods().get(Methods.CONVERSATIONS_LIST), is(nullValue()));
         assertThat(stats.getLastMinuteRequests().get(Methods.CONVERSATIONS_LIST),
                 is(greaterThanOrEqualTo(requestNum.intValue())));
+    }
+
+    @Ignore // These tests are usually ignored, but they're useful for verifying the behavior of RateLimiter
+    @Test
+    public void sequentialRequests_statsDisabled() throws Exception {
+        slack.getConfig().setStatsEnabled(false);
+
+        assertThat(botToken, is(notNullValue()));
+        Long requestNum = 100L;
+        for (int i = 0; i < requestNum; i++) {
+            // You will observe ratelimited errors
+            CompletableFuture<ConversationsListResponse> response = slack.methodsAsync(botToken).conversationsList(r -> r.limit(1));
+            response.get();
+        }
+
+        String teamId = slack.methods().teamInfo(r -> r.token(botToken)).getTeam().getId();
+        RequestStats stats = testConfig.getMethodsMetricsDatastore().getStats(teamId);
+
+        assertThat(stats.getSuccessfulCalls().get(Methods.CONVERSATIONS_LIST), is(nullValue()));
+        assertThat(stats.getRateLimitedMethods().get(Methods.CONVERSATIONS_LIST), is(nullValue()));
+        assertThat(stats.getLastMinuteRequests().get(Methods.CONVERSATIONS_LIST), is(nullValue()));
     }
 
     @Ignore // These tests are usually ignored, but they're useful for verifying the behavior of RateLimiter

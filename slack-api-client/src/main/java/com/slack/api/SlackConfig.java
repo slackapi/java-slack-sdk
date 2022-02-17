@@ -87,6 +87,11 @@ public class SlackConfig {
         }
 
         @Override
+        public void setStatsEnabled(boolean statsEnabled) {
+            throwException();
+        }
+
+        @Override
         public void setMethodsConfig(MethodsConfig methodsConfig) {
             throwException();
         }
@@ -246,6 +251,17 @@ public class SlackConfig {
         this.synchronizeMetricsDatabases();
     }
 
+    @Builder.Default
+    private boolean statsEnabled = true;
+
+    public void setStatsEnabled(boolean statsEnabled) {
+        this.statsEnabled = statsEnabled;
+        this.getMethodsConfig().setStatsEnabled(this.isStatsEnabled());
+        this.getSCIMConfig().setStatsEnabled(this.isStatsEnabled());
+        this.getAuditConfig().setStatsEnabled(this.isStatsEnabled());
+        this.synchronizeMetricsDatabases();
+    }
+
     private MethodsConfig methodsConfig = new MethodsConfig();
 
     private AuditConfig auditConfig = new AuditConfig();
@@ -255,50 +271,59 @@ public class SlackConfig {
     public void synchronizeMetricsDatabases() {
         this.synchronizeExecutorServiceProviders();
 
-        if (!methodsConfig.equals(MethodsConfig.DEFAULT_SINGLETON)
-                && methodsConfig.isStatsEnabled()
-                && methodsConfig.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
-                != this.getRateLimiterBackgroundJobIntervalMillis()) {
-            methodsConfig.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
-                    this.getRateLimiterBackgroundJobIntervalMillis());
+        if (!methodsConfig.equals(MethodsConfig.DEFAULT_SINGLETON)) {
+            if (methodsConfig.isStatsEnabled()) {
+                if (methodsConfig.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
+                        != this.getRateLimiterBackgroundJobIntervalMillis()) {
+                    methodsConfig.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
+                            this.getRateLimiterBackgroundJobIntervalMillis());
+                }
+            } else {
+                methodsConfig.getMetricsDatastore().setStatsEnabled(false);
+            }
         }
-        if (!auditConfig.equals(AuditConfig.DEFAULT_SINGLETON)
-                && auditConfig.isStatsEnabled()
-                && auditConfig.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
-                != this.getRateLimiterBackgroundJobIntervalMillis()) {
-            auditConfig.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
-                    this.getRateLimiterBackgroundJobIntervalMillis());
+        if (!auditConfig.equals(auditConfig.DEFAULT_SINGLETON)) {
+            if (auditConfig.isStatsEnabled()) {
+                if (auditConfig.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
+                        != this.getRateLimiterBackgroundJobIntervalMillis()) {
+                    auditConfig.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
+                            this.getRateLimiterBackgroundJobIntervalMillis());
+                }
+            } else {
+                auditConfig.getMetricsDatastore().setStatsEnabled(false);
+            }
         }
-        if (!sCIMConfig.equals(SCIMConfig.DEFAULT_SINGLETON)
-                && sCIMConfig.isStatsEnabled()
-                && sCIMConfig.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
-                != this.getRateLimiterBackgroundJobIntervalMillis()) {
-            sCIMConfig.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
-                    this.getRateLimiterBackgroundJobIntervalMillis());
+        if (!sCIMConfig.equals(sCIMConfig.DEFAULT_SINGLETON)) {
+            if (sCIMConfig.isStatsEnabled()) {
+                if (sCIMConfig.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
+                        != this.getRateLimiterBackgroundJobIntervalMillis()) {
+                    sCIMConfig.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
+                            this.getRateLimiterBackgroundJobIntervalMillis());
+                }
+            } else {
+                sCIMConfig.getMetricsDatastore().setStatsEnabled(false);
+            }
         }
     }
 
     public void synchronizeExecutorServiceProviders() {
         if (!methodsConfig.equals(MethodsConfig.DEFAULT_SINGLETON)
+                && methodsConfig.isStatsEnabled()
                 && !methodsConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             methodsConfig.setExecutorServiceProvider(executorServiceProvider);
-            if (methodsConfig.isStatsEnabled()) {
-                methodsConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
-            }
+            methodsConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
         }
         if (!auditConfig.equals(AuditConfig.DEFAULT_SINGLETON)
+                && auditConfig.isStatsEnabled()
                 && !auditConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             auditConfig.setExecutorServiceProvider(executorServiceProvider);
-            if (auditConfig.isStatsEnabled()) {
-                auditConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
-            }
+            auditConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
         }
         if (!sCIMConfig.equals(SCIMConfig.DEFAULT_SINGLETON)
+                && sCIMConfig.isStatsEnabled()
                 && !sCIMConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             sCIMConfig.setExecutorServiceProvider(executorServiceProvider);
-            if (sCIMConfig.isStatsEnabled()) {
-                sCIMConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
-            }
+            sCIMConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
         }
         this.synchronizeLibraryMaintainerMode();
     }
