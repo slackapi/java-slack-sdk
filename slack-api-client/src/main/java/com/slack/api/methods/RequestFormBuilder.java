@@ -245,6 +245,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }

@@ -27,6 +27,11 @@ public class AdminAppsRequestsListRequest implements SlackApiRequest {
     private Integer limit;
 
     /**
+     * Enterprise Grid Organization Id.
+     */
+    private String enterpriseId;
+
+    /**
      * Workspace Id.
      */
     private String teamId;
