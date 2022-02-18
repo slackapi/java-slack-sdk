@@ -327,6 +327,24 @@ The following example is a JSON representation of a **MethodsStats** instance. T
 }
 ```
 
+If you don't need the traffic metrics at all, you can disable this feature by the following way:
+
+```java
+SlackConfig config = new SlackConfig();
+config.setStatsEnabled(false);
+Slack slack = Slack.getInstance(config);
+```
+
+For more granular control, you can set the same flag for each API client:
+
+```java
+SlackConfig config = new SlackConfig();
+// Disable the metrics only for Web API methods
+config.getMethodsConfig().setStatsEnabled(false);
+// For SCIM, Audit Logs APIs, the metrics are still available
+Slack slack = Slack.getInstance(config);
+```
+
 ### Metrics Datastore backed by Redis
 
 If your app wants to have a unified datastore to collect all the metrics across the nodes, we recommend having a Redis cluster for it. It's pretty easy to set up the API client configuration. The following is an example to use a Redis server running on the same host.

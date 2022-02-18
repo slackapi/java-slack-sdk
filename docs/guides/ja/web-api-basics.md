@@ -327,6 +327,24 @@ config.getMethodsConfig().setMetricsDatastore(new MemoryMetricsDatastore(3));
 }
 ```
 
+もしこのメトリクスの管理が全く必要ないという場合は、以下の方法で無効化することもできます。
+
+```java
+SlackConfig config = new SlackConfig();
+config.setStatsEnabled(false);
+Slack slack = Slack.getInstance(config);
+```
+
+もう少し細かい単位で制御したい場合は、API クライアント単位で同様のフラグを設定できます。
+
+```java
+SlackConfig config = new SlackConfig();
+// Web API メソッドに対してのみメトリクスの機能を無効化
+config.getMethodsConfig().setStatsEnabled(false);
+// SCIM や Audit Logs の API では、引き続きメトリクス昨日は有効
+Slack slack = Slack.getInstance(config);
+```
+
 ### Redis によるメトリクスデータストア
 
 統合された一つのデータストアにすべてのノードのメトリクスを集約したい場合は Redis クラスターを利用することをおすすめします。API クライアント側の設定は非常に簡単です。以下は同じホストで稼働する Redis サーバーを利用する例です。
