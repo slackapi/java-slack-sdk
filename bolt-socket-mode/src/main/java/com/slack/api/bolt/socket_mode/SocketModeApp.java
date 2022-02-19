@@ -130,12 +130,13 @@ public class SocketModeApp {
         if (this.client == null) {
             this.client = clientFactory.get();
         }
-        if (this.clientStopped) {
+        if (this.isClientStopped()) {
             this.client.connectToNewEndpoint();
         } else {
             this.client.connect();
         }
         this.client.setAutoReconnectEnabled(true);
+        this.clientStopped = false;
         if (blockCurrentThread) {
             Thread.sleep(Long.MAX_VALUE);
         }
