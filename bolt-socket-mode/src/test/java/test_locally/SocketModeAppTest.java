@@ -16,7 +16,7 @@ import util.socket_mode.MockWebSocketServer;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class SocketModeAppTest {
 
@@ -75,6 +75,26 @@ public class SocketModeAppTest {
             assertTrue(eventCalled.get());
         } finally {
             socketModeApp.stop();
+        }
+    }
+
+    @Test
+    public void issue_937_it_should_not_be_connected_before_start_method_call() throws Exception {
+        App app = new App(AppConfig.builder()
+                .slack(slack)
+                .singleTeamBotToken(VALID_BOT_TOKEN)
+                .build());
+        SocketModeApp socketModeApp = new SocketModeApp(VALID_APP_TOKEN, app);
+        try {
+            assertTrue(socketModeApp.isClientStopped());
+            assertNull(socketModeApp.getClient());
+
+            // Check again to make sure if the auto-connection does not work in this scenario
+            Thread.sleep(3_000L);
+            assertTrue(socketModeApp.isClientStopped());
+            assertNull(socketModeApp.getClient());
+        } finally {
+            socketModeApp.close();
         }
     }
 
