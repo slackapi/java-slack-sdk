@@ -1,8 +1,8 @@
 {
   "ok": false,
   "emoji": {
-    "emoji": "https://www.example.com/",
-    "emoji_": "https://www.example.com/"
+    "333": "https://www.example.com/url-for-emoji-named-333",
+    "444": "https://www.example.com/url-for-emoji-named-444"
   },
   "cache_ts": "0000000000.000000",
   "error": "",
