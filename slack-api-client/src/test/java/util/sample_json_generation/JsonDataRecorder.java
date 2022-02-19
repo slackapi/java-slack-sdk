@@ -490,8 +490,9 @@ public class JsonDataRecorder {
                     for (Map.Entry<String, JsonElement> entry : entries) {
                         element.getAsJsonObject().remove(entry.getKey());
                     }
-                    element.getAsJsonObject().add("emoji", first.getValue());
-                    element.getAsJsonObject().add("emoji_", first.getValue());
+                    // https://github.com/slackapi/java-slack-sdk/pull/940
+                    element.getAsJsonObject().add("333", first.getValue());
+                    element.getAsJsonObject().add("444", first.getValue());
                 }
             }
             for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
