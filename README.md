@@ -79,7 +79,7 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 
 The table below shows all the available modules in the Slack Java SDK. All of them have the same latest version as we release all at the same time, even in the case that some don't have any changes apart from updates on their dependency side.
 
-All released versions are available on the Maven Central repositories. The latest version is **{{ site.sdkLatestVersion }}**.
+All released versions are available on the Maven Central repositories. The latest version is: [![Maven Central](https://img.shields.io/maven-central/v/com.slack.api/slack-api-client.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.slack.api%22%20a%3A%22slack-api-client%22)
 
 #### Bolt & Built-in Extensions
 
