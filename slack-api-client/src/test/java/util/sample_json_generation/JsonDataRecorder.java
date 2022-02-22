@@ -7,6 +7,7 @@ import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessa
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.*;
 import com.slack.api.model.admin.AppRequest;
+import com.slack.api.model.admin.Emoji;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.json.GsonFactory;
@@ -490,9 +491,16 @@ public class JsonDataRecorder {
                     for (Map.Entry<String, JsonElement> entry : entries) {
                         element.getAsJsonObject().remove(entry.getKey());
                     }
-                    // https://github.com/slackapi/java-slack-sdk/pull/940
-                    element.getAsJsonObject().add("333", first.getValue());
-                    element.getAsJsonObject().add("444", first.getValue());
+                    if (path.equals("/api/admin.emoji.list")) {
+                        JsonElement emojiElement = GsonFactory.createSnakeCase().toJsonTree(
+                                ObjectInitializer.initProperties(new Emoji()));
+                        element.getAsJsonObject().add("333", emojiElement);
+                        element.getAsJsonObject().add("444", emojiElement);
+                    } else {
+                        // https://github.com/slackapi/java-slack-sdk/pull/940
+                        element.getAsJsonObject().add("333", first.getValue());
+                        element.getAsJsonObject().add("444", first.getValue());
+                    }
                 }
             }
             for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {

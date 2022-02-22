@@ -2,12 +2,14 @@
   "ok": false,
   "emoji": {
     "333": {
-      "emoji": "https://www.example.com/",
-      "emoji_": "https://www.example.com/"
+      "url": "",
+      "date_created": 12345,
+      "uploaded_by": ""
     },
     "444": {
-      "emoji": "https://www.example.com/",
-      "emoji_": "https://www.example.com/"
+      "url": "",
+      "date_created": 12345,
+      "uploaded_by": ""
     }
   },
   "response_metadata": {
