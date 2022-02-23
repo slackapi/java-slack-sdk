@@ -1088,6 +1088,32 @@
           "body": "We are currently investigating an issue where profile information may be failing to load for some users, resulting in blank profile pictures and missing details, such as display names. \r\n\r\nGiven the nature of the connectivity issue, search and emoji may also be impacted. Please stay tuned for status updates as we work to resolve this."
         }
       ]
+    },
+    {
+      "id": 1075,
+      "date_created": "2022-02-22T23:07:43-08:00",
+      "date_updated": "2022-02-23T09:44:31-08:00",
+      "title": "Some users are having trouble receiving reminders",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-02/cbbb53606473f63d",
+      "services": [
+        "Messaging"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-02-23T09:44:31-08:00",
+          "body": "Less than 1% of users are having trouble receiving reminders. We are continuing to look into this and will provide an update as soon as there’s news to share."
+        },
+        {
+          "date_created": "2022-02-23T07:50:36-08:00",
+          "body": "We\u0027re still investigating the reports about using reminders. We do apologize for any disruption."
+        },
+        {
+          "date_created": "2022-02-22T23:07:43-08:00",
+          "body": "We’re receiving reports around trouble using reminders. We’re on the case and will provide another update once we have more details to share. We’re sorry for the inconvenience."
+        }
+      ]
     }
   ]
 }
