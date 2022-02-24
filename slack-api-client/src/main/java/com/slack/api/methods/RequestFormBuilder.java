@@ -1251,6 +1251,9 @@ public class RequestFormBuilder {
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("parse", req.getParse(), form);
         setIfNotNull("link_names", req.isLinkNames(), form);
+        if (req.getFileIds() != null) {
+            setIfNotNull("file_ids", req.getFileIds().stream().collect(joining(",")), form);
+        }
 
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
@@ -1269,6 +1272,7 @@ public class RequestFormBuilder {
             form.add("attachments", json);
         }
         setIfNotNull("as_user", req.isAsUser(), form);
+        setIfNotNull("reply_broadcast", req.isReplyBroadcast(), form);
         return form;
     }
 

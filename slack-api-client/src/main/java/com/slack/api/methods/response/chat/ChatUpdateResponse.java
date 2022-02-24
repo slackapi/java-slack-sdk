@@ -1,6 +1,7 @@
 package com.slack.api.methods.response.chat;
 
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.ErrorResponseMetadata;
 import com.slack.api.model.Message;
 import lombok.Data;
 
@@ -18,6 +19,7 @@ public class ChatUpdateResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private String deprecatedArgument;
+    private ErrorResponseMetadata responseMetadata;
 
     private String channel;
     private String ts;

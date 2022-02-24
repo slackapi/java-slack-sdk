@@ -39,10 +39,25 @@ public class ChatUpdateRequest implements SlackApiRequest {
     private String user;
 
     /**
+     * Broadcast an existing thread reply to make it visible to everyone in the channel or conversation.
+     */
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Boolean replyBroadcast;
+
+    // NOTE: The default value is intentionally null
+    public Boolean isReplyBroadcast() {
+        return this.replyBroadcast;
+    }
+
+    // NOTE: The default value is intentionally null
+    public void setReplyBroadcast(Boolean replyBroadcast) {
+        this.replyBroadcast = replyBroadcast;
+    }
+
+    /**
      * Pass true to post the message as the authed user, instead of as a bot.
      * Defaults to false. See [authorship](#authorship) below.
-     * <p>
-     * NOTE: The default value is intentionally null to support workplace apps.
      */
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
@@ -77,6 +92,11 @@ public class ChatUpdateRequest implements SlackApiRequest {
      * A JSON-based array of structured attachments, presented as a URL-encoded string.
      */
     private String attachmentsAsString;
+
+    /**
+     * Array of new file ids that will be sent with this message.
+     */
+    private List<String> fileIds;
 
     /**
      * Find and link channel names and usernames.
