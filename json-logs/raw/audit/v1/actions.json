@@ -122,7 +122,8 @@
       "idp_test_configuration_updated",
       "pref.dm_retention_redaction_duration",
       "pref.private_retention_redaction_duration",
-      "pref.public_retention_redaction_duration"
+      "pref.public_retention_redaction_duration",
+      "pref.allow_huddles"
     ],
     "user": [
       "custom_tos_accepted",

@@ -466,7 +466,8 @@
       "seen_a11y_pref_setup_coachmark": false,
       "enable_file_browser_view_for_docs": false,
       "enable_shortcuts_view": false,
-      "show_gov_slack_context_bar_banner": false
+      "show_gov_slack_context_bar_banner": false,
+      "who_can_see_account_by_searching_email": ""
     },
     "created": 12345,
     "first_login": 12345,
