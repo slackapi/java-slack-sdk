@@ -40,15 +40,15 @@
       ],
       "photos": [
         {
-          "value": "https://www.example.com/",
-          "type": ""
-        },
-        {
           "value": "",
           "type": ""
         }
       ],
       "groups": [
+        {
+          "value": "S00000000",
+          "display": ""
+        },
         {
           "value": "",
           "display": ""
