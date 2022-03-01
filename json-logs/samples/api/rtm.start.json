@@ -800,7 +800,8 @@
       "show_mobile_promos": false,
       "dm_retention_redaction_duration": 12345,
       "private_retention_redaction_duration": 12345,
-      "public_retention_redaction_duration": 12345
+      "public_retention_redaction_duration": 12345,
+      "slack_connect_account_visibility": ""
     },
     "icon": {
       "image_102": "https://www.example.com/",
