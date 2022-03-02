@@ -135,6 +135,10 @@ public class Actions {
         public static final String idp_configuration_deleted = "idp_configuration_deleted";
         public static final String idp_prod_configuration_updated = "idp_prod_configuration_updated";
         public static final String idp_test_configuration_updated = "idp_test_configuration_updated";
+        public static final String team_unsupportedVersions_start_success = "team.unsupportedVersions.start.success";
+        public static final String team_unsupportedVersions_start_failure = "team.unsupportedVersions.start.failure";
+        public static final String team_unsupportedVersions_job_start = "team.unsupportedVersions.job.start";
+        public static final String team_unsupportedVersions_job_end = "team.unsupportedVersions.job.end";
     }
 
     public static class User {

@@ -123,7 +123,11 @@
       "pref.dm_retention_redaction_duration",
       "pref.private_retention_redaction_duration",
       "pref.public_retention_redaction_duration",
-      "pref.allow_huddles"
+      "pref.allow_huddles",
+      "team.unsupportedVersions.start.success",
+      "team.unsupportedVersions.start.failure",
+      "team.unsupportedVersions.job.start",
+      "team.unsupportedVersions.job.end"
     ],
     "user": [
       "custom_tos_accepted",
