@@ -801,7 +801,9 @@
       "dm_retention_redaction_duration": 12345,
       "private_retention_redaction_duration": 12345,
       "public_retention_redaction_duration": 12345,
-      "slack_connect_account_visibility": ""
+      "slack_connect_account_visibility": "",
+      "rich_previews_default": "",
+      "sign_in_with_slack_default": ""
     },
     "icon": {
       "image_102": "https://www.example.com/",

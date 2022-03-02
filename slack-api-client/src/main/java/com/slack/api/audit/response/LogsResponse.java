@@ -225,6 +225,10 @@ public class LogsResponse implements AuditApiResponse {
         private ConversationPref canThread; // channel_posting_permissions_updated
         @SerializedName("is_external_limited")
         private Boolean externalLimited; // external_shared_channel_invite_accepted
+        private Long exportingTeamId; // team.unsupportedVersions.start.success
+        private Integer sessionSearchStart; // team.unsupportedVersions.start.success
+        private Integer deprecationSearchEnd; // team.unsupportedVersions.start.success
+        private Boolean isError; // team.unsupportedVersions.job.end
     }
 
     @Data

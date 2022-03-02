@@ -230,7 +230,11 @@
             ""
           ]
         },
-        "is_external_limited": false
+        "is_external_limited": false,
+        "exporting_team_id": 123,
+        "session_search_start": 123,
+        "deprecation_search_end": 123,
+        "is_error": false
       }
     }
   ]
