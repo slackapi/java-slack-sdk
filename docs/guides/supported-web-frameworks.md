@@ -398,7 +398,7 @@ import com.slack.api.bolt.servlet.SlackAppServlet;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/slack/events")
-  public class SlackApp extends SlackAppServlet {
+public class SlackApp extends SlackAppServlet {
   private static final long serialVersionUID = 1L;
   public SlackApp() { super(initSlackApp()); }
   public SlackApp(App app) { super(app); }
