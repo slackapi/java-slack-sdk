@@ -12,5 +12,5 @@ slf4jApiVersion: 1.7.33
 kotlinVersion: 1.6.0
 springBootVersion: 2.6.4
 compatibleMicronautVersion: 3.x
-quarkusVersion: 2.7.2.Final
+quarkusVersion: 2.7.3.Final
 helidonVersion: 2.3.2
