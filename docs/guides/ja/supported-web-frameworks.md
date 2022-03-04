@@ -34,7 +34,7 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 ```groovy
 plugins {
   id 'org.springframework.boot' version '{{ site.springBootVersion }}'
-  id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
 group = 'com.example'
@@ -111,6 +111,8 @@ public class Application {
   }
 }
 ```
+
+もしあなたのアプリが独自の `ServletContextListener` を持つ予定なら、上記の Servlet クラスを特定のパッケージに配置し、`@ServletComponentScan` の引数にスキャンするパッケージを明に指定することをお勧めします。詳細は [#947](https://github.com/slackapi/java-slack-sdk/issues/947) を参考にしてください。
 
 #### src/main/resources/application.yml
 

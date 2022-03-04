@@ -34,7 +34,7 @@ Let's start with putting `build.gradle` file in the root directory of your proje
 ```groovy
 plugins {
   id 'org.springframework.boot' version '{{ site.springBootVersion }}'
-  id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
 group = 'com.example'
@@ -113,9 +113,11 @@ public class Application {
 }
 ```
 
+If your app is going to have its own `ServletContextListener`, placing the above Servlet class in a dedicated package plus passing the package name to scan as the `@ServletComponentScan`'s argument would be recommended. Refer to [#947](https://github.com/slackapi/java-slack-sdk/issues/947) for more details.
+
 #### src/main/resources/application.yml
 
-Lastly, place a configuration file in the resources directory. The following example customizes the log level only for **Slack SDK for Java** and the port to listen from 8080 to 3000.
+Lastly, place a configuration file in the `resources` directory. The following example customizes the log level only for **Slack SDK for Java** and the port to listen from 8080 to 3000.
 
 ```yaml
 logging.level:
