@@ -527,10 +527,10 @@
             "date_start": 12345,
             "active_participants": [
               {
+                "slack_id": "U00000000",
                 "external_id": "",
                 "avatar_url": "https://www.example.com/",
-                "display_name": "",
-                "slack_id": "U00000000"
+                "display_name": ""
               },
               {
                 "slack_id": "",
@@ -541,10 +541,10 @@
             ],
             "all_participants": [
               {
+                "slack_id": "U00000000",
                 "external_id": "",
                 "avatar_url": "https://www.example.com/",
-                "display_name": "",
-                "slack_id": "U00000000"
+                "display_name": ""
               },
               {
                 "slack_id": "",
