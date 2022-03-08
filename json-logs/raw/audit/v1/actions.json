@@ -127,7 +127,8 @@
       "team.unsupportedVersions.start.success",
       "team.unsupportedVersions.start.failure",
       "team.unsupportedVersions.job.start",
-      "team.unsupportedVersions.job.end"
+      "team.unsupportedVersions.job.end",
+      "pref.workspace_access_changed"
     ],
     "user": [
       "custom_tos_accepted",

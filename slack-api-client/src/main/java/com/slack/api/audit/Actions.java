@@ -115,6 +115,7 @@ public class Actions {
         public static final String pref_private_retention_redaction_duration = "pref.private_retention_redaction_duration";
         public static final String pref_public_retention_redaction_duration = "pref.public_retention_redaction_duration";
         public static final String pref_allow_huddles = "pref.allow_huddles";
+        public static final String pref_workspace_access_changed = "pref.workspace_access_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
