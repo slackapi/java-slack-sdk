@@ -128,7 +128,9 @@
       "team.unsupportedVersions.start.failure",
       "team.unsupportedVersions.job.start",
       "team.unsupportedVersions.job.end",
-      "pref.workspace_access_changed"
+      "pref.workspace_access_changed",
+      "intune_enabled",
+      "intune_disabled"
     ],
     "user": [
       "custom_tos_accepted",

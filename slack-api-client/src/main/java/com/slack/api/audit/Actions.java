@@ -140,6 +140,8 @@ public class Actions {
         public static final String team_unsupportedVersions_start_failure = "team.unsupportedVersions.start.failure";
         public static final String team_unsupportedVersions_job_start = "team.unsupportedVersions.job.start";
         public static final String team_unsupportedVersions_job_end = "team.unsupportedVersions.job.end";
+        public static final String intune_enabled = "intune_enabled";
+        public static final String intune_disabled = "intune_disabled";
     }
 
     public static class User {
