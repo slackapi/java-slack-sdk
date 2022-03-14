@@ -33,6 +33,22 @@ public class File {
     private String lastEditor; // application/vnd.slack-docs
     private Integer updated; // application/vnd.slack-docs
 
+    private String subtype; // "slack_video" = clip
+    private Transcription transcription; // when subtype is "slack_video"
+    private String mp4; // file URL when subtype is "slack_video"
+    private String vtt; // file URL when subtype is "slack_video"
+    private String hls; // file URL when subtype is "slack_video"
+    private String hlsEmbed; // data:application/vnd.apple.mpegurl; ... when subtype is "slack_video"
+    private Integer durationMs; // file URL when subtype is "slack_video"
+    private Integer thumbVideoW; // file URL when subtype is "slack_video"
+    private Integer thumbVideoH; // file URL when subtype is "slack_video"
+
+    @Data
+    public static class Transcription {
+        private String status;
+        private String locale;
+    }
+
     private Integer originalAttachmentCount;
 
     @SerializedName("is_external")

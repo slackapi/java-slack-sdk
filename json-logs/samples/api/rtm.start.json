@@ -468,7 +468,8 @@
       "enable_shortcuts_view": false,
       "show_gov_slack_context_bar_banner": false,
       "who_can_see_account_by_searching_email": "",
-      "contextual_help_reset_count": 12345
+      "contextual_help_reset_count": 12345,
+      "mobile_channel_list_show_all_dms": false
     },
     "created": 12345,
     "first_login": 12345,
