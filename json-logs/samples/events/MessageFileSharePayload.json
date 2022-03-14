@@ -703,6 +703,18 @@
         "editor": "",
         "last_editor": "",
         "updated": 123,
+        "subtype": "",
+        "transcription": {
+          "status": "",
+          "locale": ""
+        },
+        "mp4": "",
+        "vtt": "",
+        "hls": "",
+        "hls_embed": "",
+        "duration_ms": 123,
+        "thumb_video_w": 123,
+        "thumb_video_h": 123,
         "original_attachment_count": 123,
         "is_external": false,
         "external_type": "",
