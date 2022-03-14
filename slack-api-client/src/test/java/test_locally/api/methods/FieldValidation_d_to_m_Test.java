@@ -112,7 +112,16 @@ public class FieldValidation_d_to_m_Test {
                 "getDeanimate",
                 "getGroups",
                 "getChannels",
-                "getIms"
+                "getIms",
+                "getSubtype",
+                "getTranscription",
+                "getMp4",
+                "getVtt",
+                "getHls",
+                "getHlsEmbed",
+                "getDurationMs",
+                "getThumbVideoW",
+                "getThumbVideoH"
         );
     }
 
@@ -197,7 +206,16 @@ public class FieldValidation_d_to_m_Test {
                 "getDeanimate",
                 "getGroups",
                 "getChannels",
-                "getIms"
+                "getIms",
+                "getSubtype",
+                "getTranscription",
+                "getMp4",
+                "getVtt",
+                "getHls",
+                "getHlsEmbed",
+                "getDurationMs",
+                "getThumbVideoW",
+                "getThumbVideoH"
         );
     }
 

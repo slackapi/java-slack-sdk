@@ -275,7 +275,16 @@ public class FieldValidation_o_to_z_Test {
                 "getDeanimate",
                 "getGroups",
                 "getChannels",
-                "getIms"
+                "getIms",
+                "getSubtype",
+                "getTranscription",
+                "getMp4",
+                "getVtt",
+                "getHls",
+                "getHlsEmbed",
+                "getDurationMs",
+                "getThumbVideoW",
+                "getThumbVideoH"
         );
     }
 
