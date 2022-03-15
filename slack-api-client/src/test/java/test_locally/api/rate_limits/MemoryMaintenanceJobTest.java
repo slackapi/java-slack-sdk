@@ -11,7 +11,6 @@ import java.util.concurrent.ExecutorService;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
 @Slf4j
 public class MemoryMaintenanceJobTest {
@@ -94,14 +93,25 @@ public class MemoryMaintenanceJobTest {
                 }
 
                 // All the teams are marked as done
-                {
-                    long before = System.currentTimeMillis();
-                    job.run();
-                    long spentMillis = System.currentTimeMillis() - before;
-                    log.info("Second execution: {} ms", spentMillis);
-                    assertThat(spentMillis, is(lessThan(store.isTraceMode() ? 150L : 30L)));
-                    assertThat(spentMillis, is(lessThanOrEqualTo(firstSpentTime)));
+                int failureCount = 0;
+                while (failureCount < 5) {
+                    {
+                        long before = System.currentTimeMillis();
+                        job.run();
+                        long spentMillis = System.currentTimeMillis() - before;
+                        log.info("Second execution: {} ms", spentMillis);
+                        if (spentMillis > (store.isTraceMode() ? 150L : 30L)) {
+                            failureCount++;
+                        }
+                        if (spentMillis > firstSpentTime) {
+                            failureCount++;
+                        }
+                        if (failureCount == 0) {
+                            break;
+                        }
+                    }
                 }
+                assertThat(failureCount, is(lessThan(5)));
             }
         } finally {
             executor.shutdownNow();
