@@ -202,7 +202,7 @@ public class SampleObjects {
         List<File.Address> addressList = Arrays.asList(initProperties(new File.Address()));
         List<Reaction> reactionList = Arrays.asList(initProperties(Reaction.builder().users(stringList).build()));
         File file = initProperties(File.builder()
-                .headers(initProperties(new com.slack.api.model.File.Headers()))
+                .headers(initProperties(new File.Headers()))
                 .shares(shares)
                 .channels(stringList)
                 .groups(stringList)

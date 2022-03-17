@@ -7,6 +7,7 @@ import com.slack.api.SlackConfig;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.middleware.Middleware;
+import com.slack.api.bolt.socket_mode.SocketModeApp;
 import com.slack.api.methods.request.files.FilesUploadRequest;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
@@ -33,16 +34,11 @@ import com.slack.api.util.json.GsonFactory;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.Data;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import test_with_remote_apis.sample_json_generation.EventDataRecorder;
 import util.ResourceLoader;
-import util.TestSlackAppServer;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -62,6 +58,7 @@ public class EventsApiTest {
     Slack recorderSlack = null;
     Slack slack = null;
     AppConfig appConfig = ResourceLoader.loadAppConfig();
+    String appToken = null;
     Gson gson = null;
 
     EventDataRecorder recorder = new EventDataRecorder("../json-logs");
@@ -93,27 +90,6 @@ public class EventsApiTest {
     }
 
     private void waitForSlackAppConnection() throws IOException, InterruptedException {
-        String publicUrl = configValues.get("publicUrl");
-        if (publicUrl == null) {
-            throw new IllegalStateException("To run this test, set publicUrl in src/test/resources/appConfig.json");
-        }
-        String subdomain = publicUrl.split("\\.")[0].replaceFirst("https://", "");
-        OkHttpClient httpClient = new OkHttpClient();
-        Request req = new Request.Builder().post(FormBody.create("ssl_check=1".getBytes())).url(publicUrl).build();
-
-        Response resp = httpClient.newCall(req).execute();
-        while (resp.code() != 200) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n" +
-                    "\n" +
-                    "Run the following:\n" +
-                    "\n" +
-                    "  ngrok http 3000 --subdomain " + subdomain + "\n" +
-                    "\n" +
-                    "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-            Thread.sleep(3000);
-            resp = httpClient.newCall(req).execute();
-        }
-
         Thread.sleep(500L);
     }
 
@@ -123,6 +99,7 @@ public class EventsApiTest {
         recorderSlack = Slack.getInstance(recorderSlackConfig);
         slack = Slack.getInstance(slackConfig);
         configValues = ResourceLoader.loadValues();
+        appToken = configValues.get("appToken");
         appConfig.setSigningSecret(configValues.get("signingSecret"));
         appConfig.setSingleTeamBotToken(configValues.get("singleTeamBotToken"));
         gson = GsonFactory.createSnakeCase(recorderSlackConfig);
@@ -182,7 +159,7 @@ public class EventsApiTest {
         String botToken = appConfig.getSingleTeamBotToken();
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_USER_TOKEN);
 
-        TestSlackAppServer server = new TestSlackAppServer(app);
+        SocketModeApp socketModeClient = new SocketModeApp(appToken, app);
         ChannelTestState state = new ChannelTestState();
         try {
 
@@ -322,7 +299,7 @@ public class EventsApiTest {
 
             // ------------------------------------------------------------------------------------
 
-            server.startAsDaemon();
+            socketModeClient.startAsync();
 
             waitForSlackAppConnection();
 
@@ -502,7 +479,7 @@ public class EventsApiTest {
             assertTrue(state.toString(), state.isAllDone());
 
         } finally {
-            server.stop();
+            socketModeClient.stop();
 
             if (publicChannelId != null) {
                 String channelId = publicChannelId;
@@ -543,7 +520,7 @@ public class EventsApiTest {
         String privateChannelId = null;
         String botToken = appConfig.getSingleTeamBotToken();
 
-        TestSlackAppServer server = new TestSlackAppServer(app);
+        SocketModeApp socketModeClient = new SocketModeApp(appToken, app);
         GroupTestState state = new GroupTestState();
         try {
 
@@ -587,7 +564,7 @@ public class EventsApiTest {
 
             // ------------------------------------------------------------------------------------
 
-            server.startAsDaemon();
+            socketModeClient.startAsync();
 
             waitForSlackAppConnection();
 
@@ -643,7 +620,7 @@ public class EventsApiTest {
             Thread.sleep(5_000L);
 
         } finally {
-            server.stop();
+            socketModeClient.stop();
 
             if (privateChannelId != null) {
                 String channelId = privateChannelId;
@@ -683,7 +660,7 @@ public class EventsApiTest {
         String imId = null;
         String botToken = appConfig.getSingleTeamBotToken();
 
-        TestSlackAppServer server = new TestSlackAppServer(app);
+        SocketModeApp socketModeClient = new SocketModeApp(appToken, app);
         ImTestState state = new ImTestState();
         try {
 
@@ -705,7 +682,7 @@ public class EventsApiTest {
 
             // ------------------------------------------------------------------------------------
 
-            server.startAsDaemon();
+            socketModeClient.startAsync();
 
             waitForSlackAppConnection();
 
@@ -741,7 +718,7 @@ public class EventsApiTest {
             assertTrue(state.toString(), state.isAllDone());
 
         } finally {
-            server.stop();
+            socketModeClient.stop();
 
             if (imId != null) {
                 String channelId = imId;
@@ -788,7 +765,7 @@ public class EventsApiTest {
         String botToken = appConfig.getSingleTeamBotToken();
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_USER_TOKEN);
 
-        TestSlackAppServer server = new TestSlackAppServer(app);
+        SocketModeApp socketModeClient = new SocketModeApp(appToken, app);
         SubteamTestState state = new SubteamTestState();
 
         String createdUsergroupId = null;
@@ -822,7 +799,7 @@ public class EventsApiTest {
 
             // ------------------------------------------------------------------------------------
 
-            server.startAsDaemon();
+            socketModeClient.startAsync();
 
             waitForSlackAppConnection();
 
@@ -865,7 +842,7 @@ public class EventsApiTest {
             assertTrue(state.toString(), state.isAllDone());
 
         } finally {
-            server.stop();
+            socketModeClient.stop();
 
             if (createdUsergroupId != null) {
                 String id = createdUsergroupId;
@@ -900,7 +877,7 @@ public class EventsApiTest {
 
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_USER_TOKEN);
 
-        TestSlackAppServer server = new TestSlackAppServer(app);
+        SocketModeApp socketModeClient = new SocketModeApp(appToken, app);
         DndTestState state = new DndTestState();
 
         try {
@@ -919,7 +896,7 @@ public class EventsApiTest {
 
             // ------------------------------------------------------------------------------------
 
-            server.startAsDaemon();
+            socketModeClient.startAsync();
 
             waitForSlackAppConnection();
 
@@ -943,7 +920,7 @@ public class EventsApiTest {
             assertTrue(state.toString(), state.isAllDone());
 
         } finally {
-            server.stop();
+            socketModeClient.stop();
         }
     }
 
@@ -970,7 +947,7 @@ public class EventsApiTest {
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_USER_TOKEN);
         String botToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_BOT_TOKEN);
 
-        TestSlackAppServer server = new TestSlackAppServer(app);
+        SocketModeApp socketModeClient = new SocketModeApp(appToken, app);
         FileMessageState state = new FileMessageState();
 
         ConversationsCreateResponse publicChannel =
@@ -999,7 +976,7 @@ public class EventsApiTest {
             });
 
             // ------------------------------------------------------------------------------------
-            server.startAsDaemon();
+            socketModeClient.startAsync();
             waitForSlackAppConnection();
             // ------------------------------------------------------------------------------------
 
@@ -1030,7 +1007,7 @@ public class EventsApiTest {
             assertTrue(state.toString(), state.isAllDone());
 
         } finally {
-            server.stop();
+            socketModeClient.stop();
 
             if (channelId != null) {
                 slack.methods(botToken).conversationsArchive(r -> r.channel(channelId));
@@ -1053,7 +1030,7 @@ public class EventsApiTest {
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_USER_TOKEN);
         String botToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_BOT_TOKEN);
 
-        TestSlackAppServer server = new TestSlackAppServer(app);
+        SocketModeApp socketModeClient = new SocketModeApp(appToken, app);
 
         ConversationsCreateResponse publicChannel =
                 slack.methods(botToken).conversationsCreate(r -> r
@@ -1077,7 +1054,7 @@ public class EventsApiTest {
             });
 
             // ------------------------------------------------------------------------------------
-            server.startAsDaemon();
+            socketModeClient.startAsync();
             waitForSlackAppConnection();
             // ------------------------------------------------------------------------------------
 
@@ -1096,7 +1073,7 @@ public class EventsApiTest {
             assertTrue(called.get());
 
         } finally {
-            server.stop();
+            socketModeClient.stop();
             if (channelId != null) {
                 slack.methods(botToken).conversationsArchive(r -> r.channel(channelId));
             }
