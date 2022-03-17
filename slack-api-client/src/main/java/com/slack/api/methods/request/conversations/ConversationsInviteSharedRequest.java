@@ -27,6 +27,11 @@ public class ConversationsInviteSharedRequest implements SlackApiRequest {
     private List<String> emails;
 
     /**
+     * Optional boolean on whether invite is to a external limited member. Defaults to true.
+     */
+    private Boolean externalLimited;
+
+    /**
      * Optional user_id to receive this invite. Either emails or user_ids must be provided.
      */
     private List<String> userIds;
