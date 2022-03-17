@@ -1454,6 +1454,7 @@ public class RequestFormBuilder {
         if (req.getEmails() != null) {
             setIfNotNull("emails", req.getEmails().stream().collect(joining(",")), form);
         }
+        setIfNotNull("external_limited", req.getExternalLimited(), form);
         if (req.getUserIds() != null) {
             setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
         }

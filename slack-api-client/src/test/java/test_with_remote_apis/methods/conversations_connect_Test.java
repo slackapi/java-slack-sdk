@@ -40,6 +40,7 @@ public class conversations_connect_Test {
         try {
             ConversationsInviteSharedResponse invitation = sender.conversationsInviteShared(r -> r
                     .channel(channelId)
+                    .externalLimited(false)
                     .userIds(Arrays.asList(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_USER_ID)))
             );
             assertThat(invitation.getError(), is(nullValue()));
@@ -82,6 +83,7 @@ public class conversations_connect_Test {
         try {
             ConversationsInviteSharedResponse invitation = sender.conversationsInviteShared(r -> r
                     .channel(channelId)
+                    .externalLimited(false)
                     .userIds(Arrays.asList(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_USER_ID)))
             );
             assertThat(invitation.getError(), is(nullValue()));
