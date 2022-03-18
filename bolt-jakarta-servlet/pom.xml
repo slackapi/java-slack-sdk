@@ -6,11 +6,11 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.20.1</version>
+        <version>1.20.2</version>
     </parent>
 
     <artifactId>bolt-jakarta-servlet</artifactId>
-    <version>1.20.1</version>
+    <version>1.20.2</version>
     <packaging>jar</packaging>
 
     <dependencies>
