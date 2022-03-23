@@ -131,6 +131,8 @@ public class User {
             private String label;
         }
 
+        private String huddleState; // "default_unset" etc.
+
         @Deprecated
         private String firstName;
         @Deprecated

@@ -44,7 +44,8 @@
           "display_alias": "",
           "display_url": ""
         }
-      ]
+      ],
+      "huddle_state": ""
     },
     "is_admin": false,
     "is_owner": false,

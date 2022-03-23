@@ -710,6 +710,10 @@
     {
       "date_created": "2022-03-22T17:03:04-07:00",
       "body": "Some users whose teams leverage Slack for Intune Mobile App Management (MAM) are repeatedly getting logged out of the iOS app. We apologize for the inconvenience and will keep you posted as we continue to investigate the issue."
+    },
+    {
+      "date_created": "2022-03-23T15:14:57-07:00",
+      "body": "We continue to investigate this issue, but don’t have new information to share just yet. Thanks for your patience as we work towards a fix."
     }
   ]
 }

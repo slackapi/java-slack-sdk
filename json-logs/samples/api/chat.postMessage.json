@@ -216,6 +216,7 @@
             },
             "value": "",
             "verbatim": false,
+            "emoji": false,
             "url": "",
             "style": "",
             "confirm": {

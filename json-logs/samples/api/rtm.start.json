@@ -6740,7 +6740,8 @@
         "api_app_id": "",
         "bot_id": "B00000000",
         "always_active": false,
-        "guest_invited_by": "U00000000"
+        "guest_invited_by": "U00000000",
+        "huddle_state": ""
       },
       "is_admin": false,
       "is_owner": false,
