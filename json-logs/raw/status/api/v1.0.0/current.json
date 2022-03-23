@@ -706,6 +706,10 @@
     {
       "date_created": "2022-02-22T23:07:43-08:00",
       "body": "We’re receiving reports around trouble using reminders. We’re on the case and will provide another update once we have more details to share. We’re sorry for the inconvenience."
+    },
+    {
+      "date_created": "2022-03-22T17:03:04-07:00",
+      "body": "Some users whose teams leverage Slack for Intune Mobile App Management (MAM) are repeatedly getting logged out of the iOS app. We apologize for the inconvenience and will keep you posted as we continue to investigate the issue."
     }
   ]
 }
