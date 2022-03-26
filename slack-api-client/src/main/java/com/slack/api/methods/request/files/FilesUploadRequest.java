@@ -7,6 +7,9 @@ import lombok.Data;
 import java.io.File;
 import java.util.List;
 
+/**
+ * https://api.slack.com/methods/files.upload
+ */
 @Data
 @Builder
 public class FilesUploadRequest implements SlackApiRequest {

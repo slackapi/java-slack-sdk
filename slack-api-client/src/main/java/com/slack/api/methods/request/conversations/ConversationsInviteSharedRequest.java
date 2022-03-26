@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * https://api.slack.com/methods/conversations.inviteShared
+ */
 @Data
 @Builder
 public class ConversationsInviteSharedRequest implements SlackApiRequest {

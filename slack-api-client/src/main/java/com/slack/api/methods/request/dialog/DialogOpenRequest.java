@@ -5,6 +5,9 @@ import com.slack.api.model.dialog.Dialog;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * https://api.slack.com/methods/dialog.open
+ */
 @Data
 @Builder
 public class DialogOpenRequest implements SlackApiRequest {

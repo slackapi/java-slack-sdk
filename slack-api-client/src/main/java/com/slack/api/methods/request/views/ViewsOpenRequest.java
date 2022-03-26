@@ -5,6 +5,9 @@ import com.slack.api.model.view.View;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * https://api.slack.com/methods/views.open
+ */
 @Data
 @Builder
 public class ViewsOpenRequest implements SlackApiRequest {

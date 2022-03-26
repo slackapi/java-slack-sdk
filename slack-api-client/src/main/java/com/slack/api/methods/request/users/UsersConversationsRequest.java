@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * List conversations the calling user may access.
+ * https://api.slack.com/methods/users.conversations
  */
 @Data
 @Builder

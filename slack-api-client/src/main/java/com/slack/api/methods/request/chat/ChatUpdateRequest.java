@@ -7,6 +7,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * https://api.slack.com/methods/chat.update
+ */
 @Data
 @Builder
 public class ChatUpdateRequest implements SlackApiRequest {

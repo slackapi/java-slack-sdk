@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * https://api.slack.com/methods/calls.participants.remove
+ */
 @Data
 @Builder
 public class CallsParticipantsRemoveRequest implements SlackApiRequest {

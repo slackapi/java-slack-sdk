@@ -3,6 +3,11 @@ package com.slack.api.methods;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The marker interface for Slack Web API responses.
+ * <p>
+ * Refer to https://api.slack.com/methods for the API details.
+ */
 public interface SlackApiResponse {
 
     /**

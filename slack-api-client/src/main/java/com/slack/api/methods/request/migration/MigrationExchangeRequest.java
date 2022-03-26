@@ -7,7 +7,9 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * For Enterprise Grid workspaces, map local user IDs to global user IDs
+ * For Enterprise Grid workspaces, map local user IDs to global user IDs.
+ *
+ * https://api.slack.com/methods/migration.exchange
  */
 @Data
 @Builder

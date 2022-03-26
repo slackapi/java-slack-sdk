@@ -4,6 +4,9 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * https://api.slack.com/methods/search.files
+ */
 @Data
 @Builder
 public class SearchFilesRequest implements SlackApiRequest {

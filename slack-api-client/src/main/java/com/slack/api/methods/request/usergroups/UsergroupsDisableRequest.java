@@ -4,7 +4,9 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
-// https://api.slack.com/methods/usergroups.disable
+/**
+ * https://api.slack.com/methods/usergroups.disable
+ */
 @Data
 @Builder
 public class UsergroupsDisableRequest implements SlackApiRequest {

@@ -6,7 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
-// https://api.slack.com/methods/usergroups.update
+/**
+ * https://api.slack.com/methods/usergroups.update
+ */
 @Data
 @Builder
 public class UsergroupsUpdateRequest implements SlackApiRequest {

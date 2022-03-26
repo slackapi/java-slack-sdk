@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Provide custom unfurl behavior for user-posted URLs
+ * https://api.slack.com/methods/chat.unfurl
  */
 @Data
 @Builder

@@ -7,6 +7,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * https://api.slack.com/methods/chat.postEphemeral
+ */
 @Data
 @Builder
 public class ChatPostEphemeralRequest implements SlackApiRequest {

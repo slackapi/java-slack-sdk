@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+/**
+ * Wrapped exception holding the cause exception occurred in AsyncMethodsClient
+ */
 @Data
 @Slf4j
 @EqualsAndHashCode(callSuper = false)

@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 
+/**
+ * Represents an error returned from Slack Web APIs.
+ */
 @Data
 @Slf4j
 @EqualsAndHashCode(callSuper = false)

@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * https://api.slack.com/methods/dnd.teamInfo
+ */
 @Data
 @Builder
 public class DndTeamInfoRequest implements SlackApiRequest {
