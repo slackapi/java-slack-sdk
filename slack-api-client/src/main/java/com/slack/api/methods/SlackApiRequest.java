@@ -21,7 +21,7 @@ public interface SlackApiRequest {
      * Returns a token in this request object.
      * If the API endpoint does not require a token (e.g., api.test), this method can return null.
      *
-     * @return token string value
+     * @return token string value or null
      */
     String getToken();
 

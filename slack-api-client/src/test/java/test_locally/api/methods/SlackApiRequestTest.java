@@ -32,6 +32,17 @@ public class SlackApiRequestTest {
         server.stop();
     }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void defaultSetToken() {
+        SlackApiRequest req = new SlackApiRequest() {
+            @Override
+            public String getToken() {
+                return null;
+            }
+        };
+        req.setToken("foo");
+    }
+
     @Test
     public void requestObjectCreation() {
         AuthTestRequest req = AuthTestRequest.builder().token("xoxb-old-token").build();
