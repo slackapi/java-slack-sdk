@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class MockSlackApi extends HttpServlet {
 
     public static final String ValidToken = "xoxb-this-is-valid";
+    public static final String ExpiredToken = "xoxb-this-is-expired";
     public static final String InvalidToken = "xoxb-this-is-INVALID";
 
     private final FileReader reader = new FileReader("../json-logs/samples/api/");
@@ -44,7 +45,11 @@ public class MockSlackApi extends HttpServlet {
                 return;
             } else if (!authorizationHeader.equals("Bearer " + ValidToken)) {
                 resp.setStatus(200);
-                resp.getWriter().write("{\"ok\":false,\"error\":\"invalid_auth\"}");
+                if (authorizationHeader.equals("Bearer " + ExpiredToken)) {
+                    resp.getWriter().write("{\"ok\":false,\"error\":\"token_expired\"}");
+                } else {
+                    resp.getWriter().write("{\"ok\":false,\"error\":\"invalid_auth\"}");
+                }
                 resp.setContentType("application/json");
                 return;
             }
@@ -62,8 +67,7 @@ public class MockSlackApi extends HttpServlet {
                     "  \"team_id\": \"T1234567\",\n" +
                     "  \"user_id\": \"U1234567\",\n" +
                     "  \"bot_id\": \"B12345678\",\n" +
-                    "  \"enterprise_id\": \"E12345678\",\n" +
-                    "  \"error\": \"\"\n" +
+                    "  \"enterprise_id\": \"E12345678\"\n" +
                     "}";
         }
         if (body == null || body.trim().isEmpty()) {
