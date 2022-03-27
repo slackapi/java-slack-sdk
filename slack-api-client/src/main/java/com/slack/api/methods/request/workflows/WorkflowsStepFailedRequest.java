@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.Map;
 
+/**
+ * https://api.slack.com/methods/workflows.stepFailed
+ */
 @Data
 @Builder
 public class WorkflowsStepFailedRequest implements SlackApiRequest {

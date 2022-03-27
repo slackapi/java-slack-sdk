@@ -9,6 +9,9 @@ import lombok.Data;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * https://api.slack.com/methods/workflows.updateStep
+ */
 @Data
 @Builder
 public class WorkflowsUpdateStepRequest implements SlackApiRequest {

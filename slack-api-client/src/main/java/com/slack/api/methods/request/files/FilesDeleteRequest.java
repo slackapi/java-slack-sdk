@@ -4,6 +4,9 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * https://api.slack.com/methods/files.delete
+ */
 @Data
 @Builder
 public class FilesDeleteRequest implements SlackApiRequest {

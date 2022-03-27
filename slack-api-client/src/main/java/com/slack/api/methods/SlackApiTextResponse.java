@@ -1,5 +1,8 @@
 package com.slack.api.methods;
 
+/**
+ * Most of the Slack APIs return text data. This interface defines the common properties of those.
+ */
 public interface SlackApiTextResponse extends SlackApiResponse {
 
     boolean isOk();

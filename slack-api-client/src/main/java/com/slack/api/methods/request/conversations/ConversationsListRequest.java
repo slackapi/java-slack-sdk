@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * https://api.slack.com/methods/conversations.list
+ */
 @Data
 @Builder
 public class ConversationsListRequest implements SlackApiRequest {

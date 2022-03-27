@@ -5,8 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/openid.connect.userInfo
- * https://api.slack.com/authentication/sign-in-with-slack
+ * - https://api.slack.com/methods/openid.connect.userInfo
+ * - https://api.slack.com/authentication/sign-in-with-slack
  */
 @Data
 @Builder

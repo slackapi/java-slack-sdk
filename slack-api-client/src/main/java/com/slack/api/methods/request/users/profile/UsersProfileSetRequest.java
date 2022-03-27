@@ -5,6 +5,9 @@ import com.slack.api.model.User;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * https://api.slack.com/methods/users.profile.set
+ */
 @Data
 @Builder
 public class UsersProfileSetRequest implements SlackApiRequest {

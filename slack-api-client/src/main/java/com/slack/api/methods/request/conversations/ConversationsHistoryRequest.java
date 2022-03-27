@@ -4,6 +4,9 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * https://api.slack.com/methods/conversations.history
+ */
 @Data
 @Builder
 public class ConversationsHistoryRequest implements SlackApiRequest {

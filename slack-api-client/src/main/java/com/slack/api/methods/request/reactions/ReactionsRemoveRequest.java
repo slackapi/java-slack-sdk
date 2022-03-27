@@ -4,6 +4,9 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * https://api.slack.com/methods/reactions.remove
+ */
 @Data
 @Builder
 public class ReactionsRemoveRequest implements SlackApiRequest {

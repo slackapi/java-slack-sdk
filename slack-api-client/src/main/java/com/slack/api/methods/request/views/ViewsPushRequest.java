@@ -5,6 +5,9 @@ import com.slack.api.model.view.View;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * https://api.slack.com/methods/views.push
+ */
 @Data
 @Builder
 public class ViewsPushRequest implements SlackApiRequest {

@@ -121,6 +121,9 @@ import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
+/**
+ * Binds API request parameters to the form body.
+ */
 @Slf4j
 public class RequestFormBuilder {
 

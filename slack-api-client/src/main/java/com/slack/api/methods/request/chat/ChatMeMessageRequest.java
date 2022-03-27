@@ -4,6 +4,9 @@ import com.slack.api.methods.SlackApiRequest;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * https://api.slack.com/methods/chat.meMessage
+ */
 @Data
 @Builder
 public class ChatMeMessageRequest implements SlackApiRequest {

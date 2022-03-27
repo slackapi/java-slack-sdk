@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * https://api.slack.com/methods/files.remote.share
+ */
 @Data
 @Builder
 public class FilesRemoteShareRequest implements SlackApiRequest {

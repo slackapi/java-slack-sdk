@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * Delete the user profile photo
+ * https://api.slack.com/methods/users.deletePhoto
  */
 @Data
 @Builder

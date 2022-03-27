@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * A request to retrieve a permalink URL for a specific extant message
- *
- * @see <a href="https://api.slack.com/methods/chat.getPermalink">Slack chat.getPermalink API</a>
+ * https://api.slack.com/methods/chat.getPermalink
  */
 @Data
 @Builder

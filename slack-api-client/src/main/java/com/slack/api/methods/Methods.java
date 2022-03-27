@@ -1,5 +1,10 @@
 package com.slack.api.methods;
 
+/**
+ * The comprehensive list of Slack API methods.
+ *
+ * @see <a href="https://api.slack.com/methods">Slack API Methods</a>
+ */
 public class Methods {
 
     private Methods() {
