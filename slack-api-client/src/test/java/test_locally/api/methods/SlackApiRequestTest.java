@@ -44,7 +44,7 @@ public class SlackApiRequestTest {
     }
 
     @Test
-    public void requestObjectCreation() {
+    public void tokenReplacement() {
         AuthTestRequest req = AuthTestRequest.builder().token("xoxb-old-token").build();
         assertThat(req.getToken(), is("xoxb-old-token"));
         req.setToken("xoxb-new-token"); // no exception here
