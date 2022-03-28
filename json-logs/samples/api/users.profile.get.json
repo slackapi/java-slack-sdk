@@ -11,11 +11,13 @@
     "fields": {
       "X00000000": {
         "value": "",
-        "alt": ""
+        "alt": "",
+        "label": ""
       },
       "X00000001": {
         "value": "",
-        "alt": ""
+        "alt": "",
+        "label": ""
       }
     },
     "status_text": "",

@@ -26,7 +26,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static util.sample_json_generation.SampleObjects.Json;
-import static util.sample_json_generation.SampleObjects.initFileObject;
 
 @Slf4j
 public class JsonDataRecorder {
@@ -473,6 +472,18 @@ public class JsonDataRecorder {
                     log.error(e.getMessage(), e);
                 }
                 return;
+            }
+            if (path.equals("/api/users.profile.get") && name != null && name.equals("fields")) {
+                JsonObject fields = element.getAsJsonObject();
+                // To avoid concurrent modification of the underlying objects
+                List<String> oldKeys = new ArrayList<>(fields.keySet());
+                for (String key : oldKeys) {
+                    fields.remove(key);
+                }
+                JsonElement field = gson.toJsonTree(ObjectInitializer.initProperties(
+                        new com.slack.api.model.User.Profile.Field()));
+                fields.add("X00000000", field);
+                fields.add("X00000001", field);
             }
             List<Map.Entry<String, JsonElement>> entries = new ArrayList<>(element.getAsJsonObject().entrySet());
             if (entries.size() > 0) {
