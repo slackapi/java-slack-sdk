@@ -322,12 +322,18 @@ public class JsonDataRecorder {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Bookmark())));
                 }
             } else if (path.equals("/api/team.profile.get") &&
-                    name != null && name.equals("sections")) {
+                    name != null && Arrays.asList("sections", "possible_values").contains(name)) {
                 for (int idx = 0; idx < array.size(); idx++) {
                     array.remove(idx);
                 }
-                array.add(gson.toJsonTree(ObjectInitializer.initProperties(
-                        new TeamProfileGetResponse.Profiles.Section())));
+                // possible_values
+                if (name.equals("sections")) {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(
+                            new TeamProfileGetResponse.Profiles.Section())));
+                }
+                if (name.equals("possible_values")) {
+                    array.add("");
+                }
             } else if (name != null && name.equals("replies")) {
                 for (int idx = 0; idx < array.size(); idx++) {
                     array.remove(idx);
@@ -377,6 +383,8 @@ public class JsonDataRecorder {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new AppRequest())));
                 } else if (path.equals("/api/chat.scheduledMessages.list") && name.equals("scheduled_messages")) {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new ChatScheduledMessagesListResponse.ScheduledMessage())));
+                } else if (path.equals("/api/team.profile.get") && name.equals("possible_values")) {
+                    array.add("");
                 } else if (name.equals("replies")) {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Message.MessageRootReply())));
                 } else if (name.equals("comments")) {

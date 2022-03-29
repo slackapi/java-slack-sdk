@@ -9,7 +9,10 @@
         "label": "",
         "hint": "",
         "type": "",
-        "is_hidden": false
+        "is_hidden": false,
+        "possible_values": [
+          ""
+        ]
       }
     ],
     "sections": [
