@@ -2177,6 +2177,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(TeamInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team", req.getTeam(), form);
+        setIfNotNull("domain", req.getDomain(), form);
         return form;
     }
 

@@ -1,6 +1,7 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.request.team.TeamBillingInfoRequest;
 import com.slack.api.methods.response.team.*;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
@@ -104,6 +105,18 @@ public class team_Test {
         TeamInfoResponse response = slack.methods().teamInfo(r -> r.token(botToken));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void teamInfo_EnterpriseGrid() throws Exception {
+        MethodsClient client = slack.methods(gridWorkspaceUserToken);
+        TeamInfoResponse response = client.teamInfo(r -> r);
+        assertThat(response.getError(), is(nullValue()));
+
+        TeamInfoResponse domainResponse = client.teamInfo(r -> r
+                .domain(response.getTeam().getDomain())
+        );
+        assertThat(domainResponse.getError(), is(nullValue()));
     }
 
     @Test
