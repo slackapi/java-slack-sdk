@@ -21,4 +21,9 @@ public class TeamInfoRequest implements SlackApiRequest {
      */
     private String team;
 
+    /**
+     * Query by domain instead of team (only when team is null). This only works for domains in the same enterprise as the querying team token. This also expects the domain to belong to a team and not the enterprise itself.
+     */
+    private String domain;
+
 }
