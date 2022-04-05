@@ -805,7 +805,10 @@
       "slack_connect_account_visibility": "",
       "rich_previews_default": "",
       "sign_in_with_slack_default": "",
-      "mobile_session_duration": 12345
+      "mobile_session_duration": 12345,
+      "uneditable_user_profile_fields": [
+        ""
+      ]
     },
     "icon": {
       "image_102": "https://www.example.com/",
