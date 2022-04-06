@@ -75,11 +75,13 @@ public class OAuthV2DefaultSuccessHandler implements OAuthV2SuccessHandler {
         if (o.getAuthedUser() != null) {
             // we can assume authed_user should exist but just in case
             i = i.installerUserId(o.getAuthedUser().getId())
+                    // These properties can exist only when a user token is requested
                     .installerUserAccessToken(o.getAuthedUser().getAccessToken())
-                    .botRefreshToken(o.getAuthedUser().getRefreshToken())
-                    .botTokenExpiresAt(o.getAuthedUser().getExpiresIn() == null ?
-                            null : System.currentTimeMillis() + (o.getAuthedUser().getExpiresIn() * 1000))
-                    .installerUserScope(o.getAuthedUser().getScope());
+                    .installerUserScope(o.getAuthedUser().getScope())
+                    // These token-rotation-related properties can be absent
+                    .installerUserRefreshToken(o.getAuthedUser().getRefreshToken())
+                    .installerUserTokenExpiresAt(o.getAuthedUser().getExpiresIn() == null ?
+                            null : System.currentTimeMillis() + (o.getAuthedUser().getExpiresIn() * 1000));
         }
 
         if (o.getBotUserId() != null) {
