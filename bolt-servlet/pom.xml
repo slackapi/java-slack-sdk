@@ -12,7 +12,7 @@
     <properties>
         <!-- TODO: Upgrade to 11.x in the next major version - v2 -->
         <jetty.version>9.4.24.v20191120</jetty.version>
-        <java-jwt.version>3.19.0</java-jwt.version>
+        <java-jwt.version>3.19.1</java-jwt.version>
     </properties>
 
     <artifactId>bolt-servlet</artifactId>
