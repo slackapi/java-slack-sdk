@@ -94,7 +94,7 @@ public class MemoryMaintenanceJobTest {
 
                 // All the teams are marked as done
                 int failureCount = 0;
-                while (failureCount < 5) {
+                while (failureCount < 10) {
                     {
                         long before = System.currentTimeMillis();
                         job.run();
@@ -111,7 +111,7 @@ public class MemoryMaintenanceJobTest {
                         }
                     }
                 }
-                assertThat(failureCount, is(lessThan(5)));
+                assertThat(failureCount, is(lessThan(10)));
             }
         } finally {
             executor.shutdownNow();

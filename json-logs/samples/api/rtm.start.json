@@ -469,7 +469,8 @@
       "show_gov_slack_context_bar_banner": false,
       "who_can_see_account_by_searching_email": "",
       "contextual_help_reset_count": 12345,
-      "mobile_channel_list_show_all_dms": false
+      "mobile_channel_list_show_all_dms": false,
+      "enable_quip_file_browser_view": false
     },
     "created": 12345,
     "first_login": 12345,
@@ -808,7 +809,8 @@
       "mobile_session_duration": 12345,
       "uneditable_user_profile_fields": [
         ""
-      ]
+      ],
+      "thorn_safer_scan": false
     },
     "icon": {
       "image_102": "https://www.example.com/",
