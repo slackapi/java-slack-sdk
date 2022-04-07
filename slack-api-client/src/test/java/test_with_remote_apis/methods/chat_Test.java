@@ -399,7 +399,7 @@ public class chat_Test {
                 .token(botToken)
                 .channel(randomChannelId)
                 .ts(ts)
-                .rawUnfurls(GsonFactory.createSnakeCase().toJson(unfurls))
+                .unfurls(unfurls)
                 .build());
         assertThat(unfurlResponse.getError(), is(nullValue()));
     }
