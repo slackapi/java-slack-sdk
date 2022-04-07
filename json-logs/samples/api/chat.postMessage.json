@@ -495,15 +495,6 @@
             "initial_users": [
               ""
             ]
-          },
-          {
-            "type": "",
-            "image_url": "",
-            "alt_text": "",
-            "fallback": "",
-            "image_width": 12345,
-            "image_height": 12345,
-            "image_bytes": 12345
           }
         ],
         "call_id": "R00000000",
@@ -771,6 +762,7 @@
         "channel_id": "",
         "channel_name": "",
         "id": 12345,
+        "app_id": "",
         "bot_id": "",
         "indent": false,
         "is_msg_unfurl": false,
@@ -1378,6 +1370,21 @@
             "optional": false
           }
         ],
+        "preview": {
+          "type": "",
+          "can_remove": false,
+          "title": {
+            "type": "",
+            "text": "",
+            "emoji": false
+          },
+          "subtitle": {
+            "type": "",
+            "text": "",
+            "emoji": false
+          },
+          "icon_url": ""
+        },
         "files": [
           {
             "id": "",

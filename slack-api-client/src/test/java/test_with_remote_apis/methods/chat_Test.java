@@ -402,6 +402,14 @@ public class chat_Test {
                 .unfurls(unfurls)
                 .build());
         assertThat(unfurlResponse.getError(), is(nullValue()));
+
+        // verify if the message can be parsed by the JSON parser
+        ConversationsHistoryResponse history = slack.methods(botToken).conversationsHistory(r -> r
+                .channel(randomChannelId)
+                .oldest(ts)
+                .inclusive(true)
+        );
+        assertThat(history.getError(), is(nullValue()));
     }
 
     // NOTE: You need to add "youtube.com" at

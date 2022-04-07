@@ -32,6 +32,7 @@
             "channel_id": "",
             "channel_name": "",
             "id": 12345,
+            "app_id": "",
             "bot_id": "",
             "indent": false,
             "is_msg_unfurl": false,
@@ -639,6 +640,21 @@
                 "optional": false
               }
             ],
+            "preview": {
+              "type": "",
+              "can_remove": false,
+              "title": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "subtitle": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "icon_url": ""
+            },
             "files": [
               {
                 "id": "",
@@ -3051,6 +3067,7 @@
             "channel_id": "",
             "channel_name": "",
             "id": 123,
+            "app_id": "",
             "bot_id": "",
             "indent": false,
             "is_msg_unfurl": false,
@@ -3128,6 +3145,21 @@
               }
             ],
             "blocks": [],
+            "preview": {
+              "type": "",
+              "can_remove": false,
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "subtitle": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "icon_url": ""
+            },
             "files": [],
             "filename": "",
             "size": 123,

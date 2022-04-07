@@ -19,6 +19,7 @@ public class ConversationsHistoryResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private String latest;
+    private String oldest;
     private List<Message> messages;
     private boolean hasMore;
     private Integer pinCount;
