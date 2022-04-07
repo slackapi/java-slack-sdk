@@ -29,8 +29,7 @@ import java.util.concurrent.ExecutionException;
 
 import static com.slack.api.model.Attachments.asAttachments;
 import static com.slack.api.model.Attachments.attachment;
-import static com.slack.api.model.block.Blocks.asBlocks;
-import static com.slack.api.model.block.Blocks.section;
+import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.timePicker;
@@ -276,8 +275,8 @@ public class chat_Test {
     @Test
     public void chat_getPermalink_bot_async() throws ExecutionException, InterruptedException {
         ConversationsListResponse channels = slack.methodsAsync().conversationsList(req -> req
-                .token(botToken)
-                .excludeArchived(true))
+                        .token(botToken)
+                        .excludeArchived(true))
                 .get();
         assertThat(channels.getError(), is(nullValue()));
         assertThat(channels.isOk(), is(true));
@@ -285,10 +284,10 @@ public class chat_Test {
         String channelId = channels.getChannels().get(0).getId();
 
         ChatPostMessageResponse postResponse = slack.methodsAsync().chatPostMessage(req -> req
-                .channel(channelId)
-                .token(botToken)
-                .text("Hi, this is a test message from Java Slack SDK's unit tests")
-                .linkNames(true))
+                        .channel(channelId)
+                        .token(botToken)
+                        .text("Hi, this is a test message from Java Slack SDK's unit tests")
+                        .linkNames(true))
                 .get();
         assertThat(postResponse.getError(), is(nullValue()));
         assertThat(postResponse.isOk(), is(true));
@@ -299,9 +298,9 @@ public class chat_Test {
         assertThat(scopes, is(notNullValue()));
 
         ChatGetPermalinkResponse permalink = slack.methodsAsync().chatGetPermalink(req -> req
-                .token(botToken)
-                .channel(channelId)
-                .messageTs(postResponse.getTs()))
+                        .token(botToken)
+                        .channel(channelId)
+                        .messageTs(postResponse.getTs()))
                 .get();
         assertThat(permalink.getError(), is(nullValue()));
         assertThat(permalink.isOk(), is(true));
@@ -356,6 +355,44 @@ public class chat_Test {
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
         ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
         detail.setText("Every day is the test.");
+        unfurls.put(url, detail);
+
+        ChatUnfurlResponse unfurlResponse = slack.methods().chatUnfurl(ChatUnfurlRequest.builder()
+                .token(botToken)
+                .channel(randomChannelId)
+                .ts(ts)
+                .rawUnfurls(GsonFactory.createSnakeCase().toJson(unfurls))
+                .build());
+        assertThat(unfurlResponse.getError(), is(nullValue()));
+    }
+
+    // NOTE: You need to add "youtube.com" at
+    // Features > Event Subscriptions > App Unfurl Domains
+    @Test
+    public void unfurl_with_preview() throws Exception {
+        loadRandomChannelId();
+
+        String url = "https://www.youtube.com/watch?v=wq1R93UMqlk";
+        ChatPostMessageResponse postResponse = slack.methods().chatPostMessage(ChatPostMessageRequest.builder()
+                .token(userToken)
+                .channel(randomChannelId)
+                .text(url)
+                .unfurlLinks(false)
+                .unfurlMedia(false)
+                .build());
+        assertThat(postResponse.getError(), is(nullValue()));
+        assertThat(postResponse.getMessage().getText(), is("<" + url + ">"));
+
+        String ts = postResponse.getTs();
+        Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
+        ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
+        detail.setTitle("The top-level title (set by chat.unfurl)");
+        detail.setPreview(ChatUnfurlRequest.UnfurlDetailPreview.builder()
+                .title(plainText("The title in the preview set (set by chat.unfurl)"))
+                .subtitle(plainText("The subtitle in the preview (set by chat.unfurl)"))
+                .iconUrl("https://assets.brandfolder.com/pmix53-32t4so-a6439g/original/slackbot.png")
+                .build()
+        );
         unfurls.put(url, detail);
 
         ChatUnfurlResponse unfurlResponse = slack.methods().chatUnfurl(ChatUnfurlRequest.builder()
@@ -799,10 +836,10 @@ public class chat_Test {
 
         ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(r -> r.channel(randomChannelId)
                 .blocks(Arrays.asList(section(s -> s.text(plainText("test")).blockId("b").accessory(
-                        timePicker(t -> t
-                                .actionId("a")
-                                .initialTime("09:10")
-                                .placeholder(plainText("It's time to start!")))
+                                timePicker(t -> t
+                                        .actionId("a")
+                                        .initialTime("09:10")
+                                        .placeholder(plainText("It's time to start!")))
                         ))
                 ))
         );
