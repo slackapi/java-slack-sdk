@@ -2,6 +2,7 @@ package com.slack.api.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.*;
 
 import java.util.List;
@@ -86,6 +87,7 @@ public class Attachment {
     //"id": 1,
     private Integer id;
 
+    private String appId;
     private String botId;
 
     @Getter(AccessLevel.NONE)
@@ -274,6 +276,20 @@ public class Attachment {
     private List<Action> actions;
 
     private List<LayoutBlock> blocks;
+
+    private Preview preview;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Preview {
+        private String type; // "app"
+        private boolean canRemove;
+        private PlainTextObject title;
+        private PlainTextObject subtitle;
+        private String iconUrl;
+    }
 
     // --------------------------
     // Files

@@ -657,6 +657,7 @@
         "channel_id": "",
         "channel_name": "",
         "id": 123,
+        "app_id": "",
         "bot_id": "",
         "indent": false,
         "is_msg_unfurl": false,
@@ -712,6 +713,21 @@
             "url": ""
           }
         ],
+        "preview": {
+          "type": "",
+          "can_remove": false,
+          "title": {
+            "type": "plain_text",
+            "text": "",
+            "emoji": false
+          },
+          "subtitle": {
+            "type": "plain_text",
+            "text": "",
+            "emoji": false
+          },
+          "icon_url": ""
+        },
         "filename": "",
         "size": 123,
         "mimetype": "",

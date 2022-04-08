@@ -4,8 +4,11 @@ import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.model.Action;
 import com.slack.api.model.Field;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.composition.PlainTextObject;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,8 @@ import java.util.Map;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ChatUnfurlRequest implements SlackApiRequest {
 
     /**
@@ -72,6 +77,9 @@ public class ChatUnfurlRequest implements SlackApiRequest {
 
     // https://api.slack.com/docs/message-link-unfurling#unfurls_parameter
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class UnfurlDetail {
 
         private String text;
@@ -93,5 +101,17 @@ public class ChatUnfurlRequest implements SlackApiRequest {
 
         // blocks: https://api.slack.com/reference/block-kit/blocks
         private List<LayoutBlock> blocks;
+        // preview: https://api.slack.com/methods/chat.unfurl#markdown
+        private UnfurlDetailPreview preview;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UnfurlDetailPreview {
+        private PlainTextObject title;
+        private PlainTextObject subtitle;
+        private String iconUrl;
     }
 }

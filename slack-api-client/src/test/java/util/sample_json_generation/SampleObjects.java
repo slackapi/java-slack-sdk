@@ -119,6 +119,12 @@ public class SampleObjects {
                                     .build(),
                             true
                     )))
+                    .preview(initProperties(Attachment.Preview.builder()
+                            .title(initProperties(PlainTextObject.builder().build()))
+                            .subtitle(initProperties(PlainTextObject.builder().build()))
+                            .build())
+                    )
+                    .metadata(initProperties(new Attachment.AttachmentMetadata()))
                     .mrkdwnIn(Arrays.asList(""))
                     .build())
     );
