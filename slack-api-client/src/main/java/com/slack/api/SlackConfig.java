@@ -171,7 +171,7 @@ public class SlackConfig {
      */
     private String proxyUrl = initProxyUrl();
 
-    // This method runs only once for SINGLETON instance.
+    // This method runs only once when instantiating this object.
     // If you want to reflect dynamically updated system properties,
     // create a new instance by invoking the default constructor.
     private static String initProxyUrl() {

@@ -34,6 +34,26 @@ public class TokenRotatorTest {
     }
 
     @Test
+    public void constructors() {
+        {
+            TokenRotator tokenRotator = new TokenRotator(
+                    "111.222",
+                    "secret"
+            );
+            assertThat(tokenRotator, is(notNullValue()));
+        }
+        {
+            TokenRotator tokenRotator = new TokenRotator(
+                    slack.methods(),
+                    1000 * 60 * 60 * 24 * 365,
+                    "111.222",
+                    "secret"
+            );
+            assertThat(tokenRotator, is(notNullValue()));
+        }
+    }
+
+    @Test
     public void refresh() throws Exception {
         TokenRotator tokenRotator = new TokenRotator(
                 slack.methods(),

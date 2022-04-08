@@ -102,7 +102,7 @@ public class AsyncRateLimitExecutor {
                 config.getExecutorName(), teamId, methodNameWithSuffix, messageId);
     }
 
-    private <T extends AuditApiResponse> T runWithoutQueue(
+    public <T extends AuditApiResponse> T runWithoutQueue(
             String teamId,
             String methodName,
             AsyncExecutionSupplier<T> methodsSupplier) {

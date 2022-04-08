@@ -25,6 +25,12 @@ public class SlackConfigTest {
     }
 
     @Test
+    public void synchronizeMetricsDatabases() {
+        SlackConfig config = new SlackConfig();
+        config.synchronizeMetricsDatabases();
+    }
+
+    @Test
     public void immutableDefaultConfig() {
         try {
             SlackConfig.DEFAULT.setFailOnUnknownProperties(false);

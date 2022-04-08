@@ -104,7 +104,7 @@ public class AsyncRateLimitExecutor {
                 config.getExecutorName(), teamId, endpointName.name(), messageId);
     }
 
-    private <T extends SCIMApiResponse> T runWithoutQueue(
+    public <T extends SCIMApiResponse> T runWithoutQueue(
             String teamId,
             SCIMEndpointName endpointName,
             AsyncExecutionSupplier<T> methodsSupplier) {
