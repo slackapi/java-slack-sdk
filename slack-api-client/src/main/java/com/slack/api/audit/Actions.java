@@ -142,6 +142,8 @@ public class Actions {
         public static final String team_unsupportedVersions_job_end = "team.unsupportedVersions.job.end";
         public static final String intune_enabled = "intune_enabled";
         public static final String intune_disabled = "intune_disabled";
+        public static final String workspace_copy_approval_source = "workspace_copy_approval_source";
+        public static final String workspace_copy_approval_target = "workspace_copy_approval_target";
     }
 
     public static class User {

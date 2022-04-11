@@ -130,7 +130,9 @@
       "team.unsupportedVersions.job.end",
       "pref.workspace_access_changed",
       "intune_enabled",
-      "intune_disabled"
+      "intune_disabled",
+      "workspace_copy_approval_source",
+      "workspace_copy_approval_target"
     ],
     "user": [
       "custom_tos_accepted",
