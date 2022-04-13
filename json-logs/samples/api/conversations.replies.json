@@ -2785,7 +2785,8 @@
         }
       ],
       "upload": false,
-      "display_as_bot": false
+      "display_as_bot": false,
+      "app_id": "A00000000"
     }
   ],
   "has_more": false,

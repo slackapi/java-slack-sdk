@@ -320,6 +320,15 @@
             "initial_users": [
               ""
             ]
+          },
+          {
+            "type": "",
+            "image_url": "",
+            "alt_text": "",
+            "fallback": "",
+            "image_width": 12345,
+            "image_height": 12345,
+            "image_bytes": 12345
           }
         ],
         "call_id": "",
@@ -1871,7 +1880,8 @@
     "display_as_bot": false,
     "x_files": [
       "F00000000"
-    ]
+    ],
+    "app_id": "A00000000"
   },
   "error": "",
   "needed": "",

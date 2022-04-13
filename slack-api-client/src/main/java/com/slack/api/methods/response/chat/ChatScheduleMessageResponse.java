@@ -29,6 +29,7 @@ public class ChatScheduleMessageResponse implements SlackApiTextResponse {
 
     @Data
     public static class ScheduledMessage {
+        private String appId;
         private String botId;
         private BotProfile botProfile;
 

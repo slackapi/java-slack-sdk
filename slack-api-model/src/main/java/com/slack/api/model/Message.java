@@ -36,6 +36,7 @@ public class Message {
     private List<String> pinnedTo;
     private List<Reaction> reactions;
 
+    private String appId;
     private String botId;
     private String botLink;
     private boolean displayAsBot;

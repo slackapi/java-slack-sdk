@@ -78,6 +78,28 @@
         "channel": "string",
         "timestamp": "string"
       }
+    },
+    {
+      "type": "usergroup",
+      "usergroup": {
+        "id": "string",
+        "name": "string"
+      }
+    },
+    {
+      "type": "role",
+      "role": {
+        "id": "string",
+        "name": "string",
+        "type": "string"
+      }
+    },
+    {
+      "type": "account_type_role",
+      "account_type_role": {
+        "id": "string",
+        "name": "string"
+      }
     }
   ]
 }

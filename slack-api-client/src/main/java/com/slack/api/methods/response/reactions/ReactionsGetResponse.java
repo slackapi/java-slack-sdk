@@ -31,6 +31,7 @@ public class ReactionsGetResponse implements SlackApiTextResponse {
         private String user;
         private String username;
         private String team;
+        private String appId;
         private String botId;
         private BotProfile botProfile;
         private String permalink;

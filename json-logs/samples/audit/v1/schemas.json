@@ -53,6 +53,19 @@
         "team": "",
         "channel": "",
         "timestamp": ""
+      },
+      "usergroup": {
+        "id": "",
+        "name": ""
+      },
+      "role": {
+        "id": "",
+        "name": "",
+        "type": ""
+      },
+      "account_type_role": {
+        "id": "",
+        "name": ""
       }
     }
   ],

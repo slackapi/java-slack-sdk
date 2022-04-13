@@ -25,6 +25,9 @@ public class SchemasResponse implements AuditApiResponse {
         private Workspace workspace;
         private Enterprise enterprise;
         private User user;
+        private Usergroup usergroup;
+        private Role role;
+        private AccountTypeRole accountTypeRole;
         private File file;
         private Channel channel;
         private App app;
@@ -53,6 +56,12 @@ public class SchemasResponse implements AuditApiResponse {
         private String name;
         private String email;
         private String team;
+    }
+
+    @Data
+    public static class Usergroup {
+        private String id;
+        private String name;
     }
 
     @Data
@@ -101,6 +110,19 @@ public class SchemasResponse implements AuditApiResponse {
         private String id;
         private String primaryUsergroup;
         private String barrieredFromUsergroup;
+    }
+
+    @Data
+    public static class Role {
+        private String id;
+        private String name;
+        private String type;
+    }
+
+    @Data
+    public static class AccountTypeRole {
+        private String id;
+        private String name;
     }
 
 }

@@ -255,7 +255,9 @@
       "message_flagged",
       "message_moderated",
       "thread_replies_disabled",
-      "thread_replies_enabled"
+      "thread_replies_enabled",
+      "permissions_assigned",
+      "permissions_removed"
     ],
     "barrier": [
       "barrier_created",

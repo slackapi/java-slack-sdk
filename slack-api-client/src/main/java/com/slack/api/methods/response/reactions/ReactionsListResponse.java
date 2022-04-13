@@ -39,6 +39,7 @@ public class ReactionsListResponse implements SlackApiTextResponse {
             private String team;
             private String user;
             private String username;
+            private String appId;
             private String botId;
             private String permalink;
             private List<File> files;

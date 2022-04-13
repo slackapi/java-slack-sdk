@@ -280,6 +280,8 @@ public class Actions {
         public static final String message_moderated = "message_moderated";
         public static final String thread_replies_disabled = "thread_replies_disabled";
         public static final String thread_replies_enabled = "thread_replies_enabled";
+        public static final String permissions_assigned = "permissions_assigned";
+        public static final String permissions_removed = "permissions_removed";
     }
 
     public static class WorkflowBuilder {

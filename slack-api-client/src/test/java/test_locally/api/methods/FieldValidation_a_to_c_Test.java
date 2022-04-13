@@ -227,6 +227,7 @@ public class FieldValidation_a_to_c_Test {
                     "getPurpose",
                     "getFiles",
                     "getXFiles",
+                    "getAppId",
                     "getUser", // MessageRoot
                     "getTeam", // MessageRoot
                     "getBotProfile" // MessageRoot
