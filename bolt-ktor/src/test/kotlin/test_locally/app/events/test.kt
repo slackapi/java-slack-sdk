@@ -85,6 +85,30 @@ class KtorAppTest {
     }
 
     @Test
+    fun validRequestWithUnicodeSymbols() = withTestApplication(Application::main) {
+        val appMentionEventPayloadWithUnicodeSymbol = appMentionEventPayload.replace(
+            "\"\\u003c@W111\\u003e Hello!\"",
+            "\"In a meeting • Some Calendar\""
+        )
+
+        val timestamp = (System.currentTimeMillis() / 1000).toString()
+        val signature = SlackSignature.Generator(signingSecret).generate(timestamp, appMentionEventPayloadWithUnicodeSymbol)
+        val req = handleRequest(HttpMethod.Post, "/slack/events") {
+            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+            addHeader("Content-type", "application/json")
+            setBody(appMentionEventPayloadWithUnicodeSymbol)
+
+        }
+        with(req) {
+            assertEquals(HttpStatusCode.OK, response.status())
+            // assert that response is properly flushed and closed
+            // we can check it by content-length header, for example
+            assertEquals("0", response.headers["content-length"])
+        }
+    }
+
+    @Test
     fun invalidSignature() = withTestApplication(Application::main) {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, appMentionEventPayload)
