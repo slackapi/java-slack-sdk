@@ -26,7 +26,7 @@ public class AuthTestMockServer {
             "}";
     static String ng = "{\n" +
             "  \"ok\": false,\n" +
-            "  \"error\": \"invalid\"\n" +
+            "  \"error\": \"invalid_auth_local\"\n" +
             "}";
 
     @WebServlet

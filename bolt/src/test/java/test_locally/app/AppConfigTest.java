@@ -10,6 +10,7 @@ import com.slack.api.bolt.request.builtin.BlockActionRequest;
 import com.slack.api.bolt.request.builtin.EventRequest;
 import com.slack.api.bolt.request.builtin.SSLCheckRequest;
 import com.slack.api.bolt.response.Response;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.model.event.ReactionAddedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
@@ -24,6 +25,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 @Slf4j
@@ -209,6 +213,34 @@ public class AppConfigTest {
         BlockActionRequest req = new BlockActionRequest(requestBody, blockActionsPayload, new RequestHeaders(rawHeaders));
         Response response = app.run(req);
         assertEquals(400L, response.getStatusCode().longValue());
+    }
+
+    @Test
+    public void singleTeamBotTokenClient() throws Exception {
+        App app = new App(AppConfig.builder()
+                .signingSecret(secret)
+                .singleTeamBotToken(AuthTestMockServer.ValidToken)
+                .slack(slack)
+                .build());
+
+        AuthTestResponse authTest = app.client().authTest(r -> r);
+        assertThat(authTest.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void authorizeClient() throws Exception {
+        App app = new App(AppConfig.builder()
+                .signingSecret(secret)
+                .clientId("111.222")
+                .clientSecret("secret")
+                .slack(slack)
+                .build());
+
+        AuthTestResponse authTest = app.client().authTest(r -> r);
+        assertThat(authTest.getError(), is("invalid_auth_local"));
+
+        authTest = app.client().authTest(r -> r.token(AuthTestMockServer.ValidToken));
+        assertThat(authTest.getError(), is(nullValue()));
     }
 
 }

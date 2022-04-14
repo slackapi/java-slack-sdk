@@ -76,7 +76,9 @@ public class App {
      * The default Web API client without any tokens.
      */
     public MethodsClient getClient() {
-        return config().getSlack().methods();
+        // This token can be null if this app is not for a single workspace
+        String token = config().getSingleTeamBotToken();
+        return config().getSlack().methods(token);
     }
 
     /**
