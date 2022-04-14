@@ -15,7 +15,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <!-- TODO: Upgrade to a newer version
+        <!-- TODO: Upgrade to v2 in the next minor release -->
+        <!-- TODO: Upgrade to a newer patch version
         once a binary compatibility issue on the ktor side has been resolved
         java.lang.NoSuchMethodError: java.nio.ByteBuffer.limit(I)Ljava/nio/ByteBuffer;
         -->
