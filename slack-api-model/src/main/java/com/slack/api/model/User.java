@@ -61,8 +61,7 @@ public class User {
     private String locale;
     @SerializedName("is_workflow_bot")
     private boolean workflowBot;
-    private boolean whoCanShareContactCard;
-
+    private String whoCanShareContactCard; // "EVERYONE"
 
     @Data
     public static class Profile {

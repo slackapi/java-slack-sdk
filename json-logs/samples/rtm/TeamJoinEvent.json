@@ -72,6 +72,6 @@
     "has_files": false,
     "locale": "",
     "is_workflow_bot": false,
-    "who_can_share_contact_card": false
+    "who_can_share_contact_card": ""
   }
 }
