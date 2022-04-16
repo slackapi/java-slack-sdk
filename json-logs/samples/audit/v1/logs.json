@@ -96,7 +96,15 @@
           "domain": ""
         },
         "ua": "",
-        "ip_address": ""
+        "ip_address": "",
+        "app": {
+          "id": "",
+          "name": "",
+          "is_distributed": false,
+          "is_directory_approved": false,
+          "is_workflow_app": false,
+          "scopes": []
+        }
       },
       "details": {
         "type": "",

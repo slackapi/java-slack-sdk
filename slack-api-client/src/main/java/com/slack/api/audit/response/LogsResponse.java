@@ -129,6 +129,7 @@ public class LogsResponse implements AuditApiResponse {
         private Location location;
         private String ua;
         private String ipAddress;
+        private App app;
     }
 
     @Data
