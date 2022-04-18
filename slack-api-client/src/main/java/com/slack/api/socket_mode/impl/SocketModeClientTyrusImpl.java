@@ -15,7 +15,6 @@ import com.slack.api.socket_mode.request.InteractiveEnvelope;
 import com.slack.api.socket_mode.request.SlashCommandsEnvelope;
 import com.slack.api.util.http.ProxyUrlUtil;
 import com.slack.api.util.json.GsonFactory;
-import com.slack.api.util.thread.ExecutorServiceFactory;
 import org.glassfish.tyrus.client.ClientManager;
 import org.glassfish.tyrus.client.ClientProperties;
 

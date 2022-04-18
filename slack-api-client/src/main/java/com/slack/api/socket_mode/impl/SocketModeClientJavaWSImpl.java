@@ -16,7 +16,6 @@ import com.slack.api.socket_mode.request.InteractiveEnvelope;
 import com.slack.api.socket_mode.request.SlashCommandsEnvelope;
 import com.slack.api.util.http.ProxyUrlUtil;
 import com.slack.api.util.json.GsonFactory;
-import okhttp3.Credentials;
 import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.framing.Framedata;
