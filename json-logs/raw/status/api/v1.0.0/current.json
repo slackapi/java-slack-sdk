@@ -714,6 +714,18 @@
     {
       "date_created": "2022-03-23T15:14:57-07:00",
       "body": "We continue to investigate this issue, but don’t have new information to share just yet. Thanks for your patience as we work towards a fix."
+    },
+    {
+      "date_created": "2022-04-19T19:48:20-07:00",
+      "body": "From April 19, 2022 at 1:16 p.m. PDT until April 19, 2022 at 4:13 p.m PDT, some Enterprise customers may have experienced delays related to reminders, notifications and other task-related features. These issues were a caused when the Primary Owner\u0027s email address of a large load-test org was updated, which resulted in the delayed processing of Enterprise job queues.\r\n\r\nAfter identifying the issue, we released a fix to resolved the job queue delays and return Enterprise job processing to normal."
+    },
+    {
+      "date_created": "2022-04-19T16:53:05-07:00",
+      "body": "We\u0027ve traced the performance issues back to a job that had backed up the queue responsible for handling actions taken by users and administrators in Enterprise Grid organizations. \r\n\r\nThe backlog of tasks have completed and all features should be working as expected, though we recommend reloading the Slack app (Cmd/Ctrl + Shift + R) just in case. Thank you for your patience."
+    },
+    {
+      "date_created": "2022-04-19T14:57:41-07:00",
+      "body": "Enterprise Grid customers may be experiencing trouble using certain features in Slack. This may include setting custom statuses and creating channels, and we’ll continue to provide updates as we learn more."
     }
   ]
 }
