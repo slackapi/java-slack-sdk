@@ -726,6 +726,50 @@
     {
       "date_created": "2022-04-19T14:57:41-07:00",
       "body": "Enterprise Grid customers may be experiencing trouble using certain features in Slack. This may include setting custom statuses and creating channels, and we’ll continue to provide updates as we learn more."
+    },
+    {
+      "date_created": "2022-04-20T16:48:29-07:00",
+      "body": "Issue summary:\r\nFrom April 19, 2022 at 4:38 PM PDT to April 20, 2022 at 12:36 AM PDT, our SCIM endpoint began deactivating some users. \r\n\r\nThis was the result of a code change in a recent patch to fix a bug affecting the way SCIM handled user profile updates. \r\n\r\nWe reverted this code change to prevent new deactivations. We then restored affected user accounts, group memberships, and integrations to their prior states."
+    },
+    {
+      "date_created": "2022-04-20T12:59:53-07:00",
+      "body": "The SCIM issue has been resolved and all affected users have been reactivated. We apologize for the disruption to your day."
+    },
+    {
+      "date_created": "2022-04-20T09:48:27-07:00",
+      "body": "We are continuing to monitor the situation and verify that all affected users are reactivated. We\u0027re working on restoring group membership and impacted integrations. We\u0027ll be back once we have another update to share."
+    },
+    {
+      "date_created": "2022-04-20T08:46:16-07:00",
+      "body": "The team is still ensuring that all affected users are reactivated. While we are continuing to work on restoring group membership and impacted integrations, we appreciate your patience."
+    },
+    {
+      "date_created": "2022-04-20T07:43:55-07:00",
+      "body": "We are verifying that all affected users are now reactivated. Our team will now begin work on restoring group membership and impacted integrations. We appreciate your patience while we work to get this resolved."
+    },
+    {
+      "date_created": "2022-04-20T04:44:40-07:00",
+      "body": "We\u0027re still doing our best to restore all affected users and will share new updates here as soon as we have them.\r\n\r\nWe appreciate your continued patience while we work to get this resolved."
+    },
+    {
+      "date_created": "2022-04-19T23:59:21-07:00",
+      "body": "We appreciate your patience as our team continues to work to restore all affected users.\r\n\r\nWe will keep you posted as soon as we have further updates to share."
+    },
+    {
+      "date_created": "2022-04-19T23:47:14-07:00",
+      "body": "Our team is currently working on restoring all affected users.\r\n\r\nWe’ll be back once we have another update to share. Thank you for your patience as we continue to work towards a fix."
+    },
+    {
+      "date_created": "2022-04-19T22:34:31-07:00",
+      "body": "Our team have now identified all affected users and workspaces. We\u0027re still monitoring the situation, and we\u0027ll report back with more information in 30 minutes. Thank you for holding tight while we work on this."
+    },
+    {
+      "date_created": "2022-04-19T21:51:28-07:00",
+      "body": "We\u0027ve identified the root cause of this issue, and SCIM events should now be working as expected. We are actively investigating remediation for affected customers. \r\n\r\nThank you for your patience while we look into this. We\u0027ll share another update in 30 minutes."
+    },
+    {
+      "date_created": "2022-04-19T20:46:43-07:00",
+      "body": "We’re investigating an issue with SCIM deactivating users, and SCIM updates not working as expected. We’re looking into the cause and will provide more information as soon as it\u0027s available."
     }
   ]
 }
