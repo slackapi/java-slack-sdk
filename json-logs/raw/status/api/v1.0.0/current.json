@@ -770,6 +770,18 @@
     {
       "date_created": "2022-04-19T20:46:43-07:00",
       "body": "We’re investigating an issue with SCIM deactivating users, and SCIM updates not working as expected. We’re looking into the cause and will provide more information as soon as it\u0027s available."
+    },
+    {
+      "date_created": "2022-04-21T14:38:16-07:00",
+      "body": "We\u0027re seeing noticeable signs of improvement, but are continuing to monitor. We’ll provide new information as soon as it’s available."
+    },
+    {
+      "date_created": "2022-04-21T07:35:00-07:00",
+      "body": "We continue to investigate an issue where some Android users are unable to receive notifications, and will report back once we have more news to share."
+    },
+    {
+      "date_created": "2022-04-21T00:17:20-07:00",
+      "body": "We are investigating an issue where some Android users are unable to receive notifications, and will report back once we have more news to share."
     }
   ]
 }

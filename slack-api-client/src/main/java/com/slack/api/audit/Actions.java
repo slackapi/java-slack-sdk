@@ -194,6 +194,7 @@ public class Actions {
         public static final String file_shared = "file_shared";
         public static final String file_downloaded_blocked = "file_downloaded_blocked";
         public static final String file_malicious_content_detected = "file_malicious_content_detected";
+        public static final String file_deleted = "file_deleted";
     }
 
     public static class Channel {
@@ -244,6 +245,7 @@ public class Actions {
         public static final String connect_dm_invite_revoked = "connect_dm_invite_revoked";
         public static final String connect_dm_invite_accepted = "connect_dm_invite_accepted";
         public static final String connect_dm_invite_ignored = "connect_dm_invite_ignored";
+        public static final String dm_user_added = "dm_user_added";
     }
 
     public static class App {

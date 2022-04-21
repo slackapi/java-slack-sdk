@@ -174,7 +174,8 @@
       "file_public_link_revoked",
       "file_shared",
       "file_downloaded_blocked",
-      "file_malicious_content_detected"
+      "file_malicious_content_detected",
+      "file_deleted"
     ],
     "channel": [
       "user_channel_join",
@@ -220,7 +221,8 @@
       "channel_enable_at_here_pref_changed_from_org_level",
       "channel_posting_permissions_updated",
       "external_shared_channel_access_upgraded",
-      "external_shared_channel_disconnect_and_archived"
+      "external_shared_channel_disconnect_and_archived",
+      "dm_user_added"
     ],
     "app": [
       "app_installed",

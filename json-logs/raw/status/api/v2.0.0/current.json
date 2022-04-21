@@ -1154,6 +1154,32 @@
           "body": "Some users whose teams leverage Slack for Intune Mobile App Management (MAM) are repeatedly getting logged out of the iOS app. We apologize for the inconvenience and will keep you posted as we continue to investigate the issue."
         }
       ]
+    },
+    {
+      "id": 1084,
+      "date_created": "2022-04-21T00:17:20-07:00",
+      "date_updated": "2022-04-21T14:38:16-07:00",
+      "title": "Some Android users are experiencing issues with notifications.",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-04/bb43914d5ea35037",
+      "services": [
+        "Notifications"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-04-21T14:38:16-07:00",
+          "body": "We\u0027re seeing noticeable signs of improvement, but are continuing to monitor. We’ll provide new information as soon as it’s available."
+        },
+        {
+          "date_created": "2022-04-21T07:35:00-07:00",
+          "body": "We continue to investigate an issue where some Android users are unable to receive notifications, and will report back once we have more news to share."
+        },
+        {
+          "date_created": "2022-04-21T00:17:20-07:00",
+          "body": "We are investigating an issue where some Android users are unable to receive notifications, and will report back once we have more news to share."
+        }
+      ]
     }
   ]
 }
