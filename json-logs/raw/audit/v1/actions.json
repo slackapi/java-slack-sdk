@@ -132,7 +132,8 @@
       "intune_enabled",
       "intune_disabled",
       "workspace_copy_approval_source",
-      "workspace_copy_approval_target"
+      "workspace_copy_approval_target",
+      "pref.uneditable_user_profile_fields"
     ],
     "user": [
       "custom_tos_accepted",

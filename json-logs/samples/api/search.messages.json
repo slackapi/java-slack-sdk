@@ -298,6 +298,15 @@
                       "initial_users": [
                         ""
                       ]
+                    },
+                    {
+                      "type": "",
+                      "image_url": "",
+                      "alt_text": "",
+                      "fallback": "",
+                      "image_width": 12345,
+                      "image_height": 12345,
+                      "image_bytes": 12345
                     }
                   ],
                   "block_id": "",
@@ -1643,6 +1652,15 @@
                   "initial_users": [
                     ""
                   ]
+                },
+                {
+                  "type": "",
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345
                 }
               ],
               "block_id": "",
@@ -2280,6 +2298,15 @@
                       "initial_users": [
                         ""
                       ]
+                    },
+                    {
+                      "type": "",
+                      "image_url": "",
+                      "alt_text": "",
+                      "fallback": "",
+                      "image_width": 12345,
+                      "image_height": 12345,
+                      "image_bytes": 12345
                     }
                   ],
                   "block_id": "",
@@ -3625,6 +3652,15 @@
                   "initial_users": [
                     ""
                   ]
+                },
+                {
+                  "type": "",
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345
                 }
               ],
               "block_id": "",
@@ -4157,6 +4193,15 @@
                 "initial_users": [
                   ""
                 ]
+              },
+              {
+                "type": "",
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345
               }
             ],
             "block_id": "",
@@ -4785,6 +4830,15 @@
                     "initial_users": [
                       ""
                     ]
+                  },
+                  {
+                    "type": "",
+                    "image_url": "",
+                    "alt_text": "",
+                    "fallback": "",
+                    "image_width": 12345,
+                    "image_height": 12345,
+                    "image_bytes": 12345
                   }
                 ],
                 "block_id": "",
