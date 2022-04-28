@@ -1,9 +1,11 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
+import com.slack.api.methods.response.chat.ChatUpdateResponse;
 import com.slack.api.methods.response.files.remote.*;
 import com.slack.api.methods.response.search.SearchFilesResponse;
 import com.slack.api.model.File;
@@ -21,8 +23,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.UUID;
 
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -236,6 +242,59 @@ public class files_remote_Test {
         assertTrue("The uploaded file not found", found);
 
         log.info("Searchable file contents took {} milliseconds to get indexed", millis);
+    }
+
+    @Test
+    public void testPreviewImageReplacement() throws Exception {
+        loadRandomChannel();
+
+        MethodsClient client = slack.methods(botToken);
+        String externalUrl = "https://www.example.com/test-image";
+
+        String firstExternalId = "remote-file-slack-logo-" + UUID.randomUUID();
+        byte[] firstPreviewImage = Files.readAllBytes(new java.io.File("src/test/resources/seratch.jpg").toPath());
+        FilesRemoteAddResponse firstFileCreation = client.filesRemoteAdd(r -> r
+                .externalId(firstExternalId)
+                .externalUrl(externalUrl)
+                .title("Some image")
+                .previewImage(firstPreviewImage)
+        );
+        assertThat(firstFileCreation.getError(), is(nullValue()));
+
+        ChatPostMessageResponse newMessage = client.chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .text("This is v1")
+                .blocks(asBlocks(
+                        section(s -> s.text(plainText("This is v1"))),
+                        file(f -> f.externalId(firstExternalId).source("remote"))
+                ))
+        );
+        assertThat(newMessage.getError(), is(nullValue()));
+
+        // For humans
+        Thread.sleep(2000);
+
+        String secondExternalId = "remote-file-slack-logo-" + UUID.randomUUID();
+        byte[] secondPreviewImage = Files.readAllBytes(new java.io.File("src/test/resources/slack-logo.gif").toPath());
+        FilesRemoteAddResponse secondFileCreation = client.filesRemoteAdd(r -> r
+                .externalId(secondExternalId)
+                .externalUrl(externalUrl)
+                .title("Some image")
+                .previewImage(secondPreviewImage)
+        );
+        assertThat(secondFileCreation.getError(), is(nullValue()));
+
+        ChatUpdateResponse messageModification = client.chatUpdate(r -> r
+                .channel(randomChannelId)
+                .ts(newMessage.getTs())
+                .text("This is v2")
+                .blocks(asBlocks(
+                        section(s -> s.text(plainText("This is v2"))),
+                        file(f -> f.externalId(secondExternalId).source("remote"))
+                ))
+        );
+        assertThat(messageModification.getError(), is(nullValue()));
+
     }
 
 }
