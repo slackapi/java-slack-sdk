@@ -1,5 +1,6 @@
 package com.slack.api.model.block;
 
+import com.slack.api.model.File;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,4 +25,7 @@ public class FileBlock implements LayoutBlock {
     private String externalId;
     // 	At the moment, source will always be remote for a remote file.
     private String source; // "remote"
+
+    private String fileId;
+    private File file;
 }
