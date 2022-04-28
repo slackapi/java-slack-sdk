@@ -74,6 +74,9 @@ public class LogsResponse implements AuditApiResponse {
         @SerializedName("is_workflow_app")
         private Boolean workflowApp;
         private List<String> scopes;
+        private List<String> scopesBot;
+        private String creator; // user ID
+        private String team; // team ID
     }
 
     @Data

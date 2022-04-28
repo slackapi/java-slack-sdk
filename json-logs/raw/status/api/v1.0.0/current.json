@@ -782,6 +782,18 @@
     {
       "date_created": "2022-04-21T00:17:20-07:00",
       "body": "We are investigating an issue where some Android users are unable to receive notifications, and will report back once we have more news to share."
+    },
+    {
+      "date_created": "2022-04-28T13:35:48-07:00",
+      "body": "Customers should no longer be experiencing any trouble using workflows. We appreciate your patience while we sorted this one out."
+    },
+    {
+      "date_created": "2022-04-28T12:07:36-07:00",
+      "body": "We’ve identified the root cause of this issue with workflows and users should be seeing signs of recovery. We’re working on getting a fix out as soon as possible — we’ll be back once we have another update to share."
+    },
+    {
+      "date_created": "2022-04-28T11:28:33-07:00",
+      "body": "We’re looking into an issue impacting workflows and we’ll let you know as we learn more. Thank you for bearing with us in the meantime."
     }
   ]
 }
