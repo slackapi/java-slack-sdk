@@ -499,10 +499,12 @@ public class JsonDataRecorder {
                     && parent.getAsJsonObject() != null
                     && (parent.getAsJsonObject().get("text") == null || !parent.getAsJsonObject().get("text").isJsonNull())
                     && (parent.getAsJsonObject().get("ts") == null || !parent.getAsJsonObject().get("ts").isJsonNull())) {
-                element.getAsJsonObject().remove("event_type");
-                element.getAsJsonObject().add("event_type", new JsonPrimitive(""));
                 JsonElement eventPayload = element.getAsJsonObject().get("event_payload");
                 if (eventPayload != null) {
+                    // message metadata
+                    element.getAsJsonObject().remove("event_type");
+                    element.getAsJsonObject().add("event_type", new JsonPrimitive(""));
+
                     JsonObject payload = eventPayload.getAsJsonObject();
                     List<String> oldKeys = new ArrayList<>(payload.keySet());
                     for (String key : oldKeys) {

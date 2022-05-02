@@ -1253,6 +1253,10 @@
       "size": 123,
       "mode": "",
       "comment": ""
+    },
+    "metadata": {
+      "event_type": "",
+      "event_payload": {}
     }
   },
   "enterprise": {
