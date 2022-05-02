@@ -2,12 +2,10 @@ package com.slack.api.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.block.LayoutBlock;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class Message {
@@ -98,6 +96,8 @@ public class Message {
 
     private String itemType;
     private MessageItem item;
+
+    private Metadata metadata;
 
     @Data
     public static class Edited {
@@ -225,6 +225,19 @@ public class Message {
         private Integer size;
         private String mode;
         private String comment;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    /**
+     * Message metadata is in open beta as of May 2, 2022
+     * https://api.slack.com/metadata
+     */
+    public static class Metadata {
+        private String eventType;
+        private Map<String, Object> eventPayload;
     }
 
 }

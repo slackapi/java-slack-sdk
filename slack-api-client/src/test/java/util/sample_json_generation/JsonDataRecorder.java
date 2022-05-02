@@ -409,8 +409,10 @@ public class JsonDataRecorder {
                         }
                     }
                 } else {
-                    for (JsonElement child : array) {
-                        scanToNormalizeValues(path, array, null, child);
+                    List<JsonElement> copiedArray = new ArrayList<>();
+                    array.iterator().forEachRemaining(copiedArray::add);
+                    for (JsonElement e : copiedArray) {
+                        scanToNormalizeValues(path, array, null, e);
                     }
                     if (array.size() >= 2) {
                         for (int idx = 1; idx < array.size(); idx++) {
@@ -493,6 +495,22 @@ public class JsonDataRecorder {
                 fields.add("X00000000", field);
                 fields.add("X00000001", field);
             }
+            if (name != null && name.equals("metadata")
+                    && parent.getAsJsonObject() != null
+                    && (parent.getAsJsonObject().get("text") == null || !parent.getAsJsonObject().get("text").isJsonNull())
+                    && (parent.getAsJsonObject().get("ts") == null || !parent.getAsJsonObject().get("ts").isJsonNull())) {
+                element.getAsJsonObject().remove("event_type");
+                element.getAsJsonObject().add("event_type", new JsonPrimitive(""));
+                JsonElement eventPayload = element.getAsJsonObject().get("event_payload");
+                if (eventPayload != null) {
+                    JsonObject payload = eventPayload.getAsJsonObject();
+                    List<String> oldKeys = new ArrayList<>(payload.keySet());
+                    for (String key : oldKeys) {
+                        payload.remove(key);
+                    }
+                }
+                return;
+            }
             List<Map.Entry<String, JsonElement>> entries = new ArrayList<>(element.getAsJsonObject().entrySet());
             if (entries.size() > 0) {
                 if (entries.get(0).getKey().matches("^[A-Z].{8,10}$")) {
@@ -522,8 +540,14 @@ public class JsonDataRecorder {
                     }
                 }
             }
-            for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
-                scanToNormalizeValues(path, element, entry.getKey(), entry.getValue());
+            // To avoid concurrent modification of the underlying objects
+            List<Map.Entry<String, JsonElement>> copiedEntries = new ArrayList<>(element.getAsJsonObject().entrySet());
+            for (Map.Entry<String, JsonElement> entry : copiedEntries) {
+                try {
+                    scanToNormalizeValues(path, element, entry.getKey(), entry.getValue());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } else if (element.isJsonNull()) {
             return;

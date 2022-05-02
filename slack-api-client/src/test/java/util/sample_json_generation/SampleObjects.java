@@ -265,6 +265,7 @@ public class SampleObjects {
 
     static {
         Message.setAttachments(Attachments);
+        Message.setMetadata(initProperties(new Message.Metadata()));
         Message.setBlocks(Blocks);
         Message.setFile(FileObject);
         Message.setFiles(Arrays.asList(FileObject));

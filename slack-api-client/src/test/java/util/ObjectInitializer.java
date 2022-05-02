@@ -58,7 +58,7 @@ public class ObjectInitializer {
                             field.set(obj, listObj);
                         }
                         if (attachments) {
-                            log.info("null List object detected {} in {}", field.getName(), obj.getClass().getSimpleName());
+                            // log.info("null List object detected {} in {}", field.getName(), obj.getClass().getSimpleName());
                         } else {
                             if (field.getName().equals("options")) {
                                 listObj.add(initProperties(OptionObject.builder()
@@ -77,7 +77,7 @@ public class ObjectInitializer {
                                         .build()
                                 ));
                             } else {
-                                log.info("null List object detected {} in {}", field.getName(), obj.getClass().getSimpleName());
+                                // log.info("null List object detected {} in {}", field.getName(), obj.getClass().getSimpleName());
                             }
                         }
                     }
@@ -94,7 +94,7 @@ public class ObjectInitializer {
                             continue;
                         }
                     }
-                    log.info("Skipped a field which doesn't have non arg constructor: {} in {}", field.getName(), obj.getClass().getSimpleName());
+                    // log.info("Skipped a field which doesn't have non arg constructor: {} in {}", field.getName(), obj.getClass().getSimpleName());
                 }
             }
             return obj;

@@ -2,6 +2,7 @@ package com.slack.api.methods.request.chat;
 
 import com.slack.api.methods.SlackApiRequest;
 import com.slack.api.model.Attachment;
+import com.slack.api.model.Message;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.*;
 
@@ -51,6 +52,18 @@ public class ChatPostMessageRequest implements SlackApiRequest {
      * Find and link channel names and usernames.
      */
     private boolean linkNames;
+
+    /**
+     * JSON object with event_type and event_payload fields, presented as a URL-encoded string.
+     * Metadata you post to Slack is accessible to any app or user who is a member of that workspace.
+     */
+    private Message.Metadata metadata;
+
+    /**
+     * JSON object with event_type and event_payload fields, presented as a URL-encoded string.
+     * Metadata you post to Slack is accessible to any app or user who is a member of that workspace.
+     */
+    private String metadataAsString;
 
     /**
      * A JSON-based array of structured blocks, presented as a URL-encoded string.

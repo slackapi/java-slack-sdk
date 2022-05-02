@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import java.util.Map;
+import java.util.*;
 
 /**
  * https://stackoverflow.com/a/34092374/840108
@@ -44,7 +44,8 @@ public class MergeJsonBuilder {
             JsonObject rightObj,
             ConflictStrategy conflictStrategy) throws JsonConflictException {
 
-        for (Map.Entry<String, JsonElement> rightEntry : rightObj.entrySet()) {
+        List<Map.Entry<String, JsonElement>> rightObjEntries = new ArrayList<>(rightObj.entrySet());
+        for (Map.Entry<String, JsonElement> rightEntry : rightObjEntries) {
             String rightKey = rightEntry.getKey();
             JsonElement rightVal = rightEntry.getValue();
             if (leftObj.has(rightKey)) {
@@ -58,7 +59,7 @@ public class MergeJsonBuilder {
                         if (!leftArr.contains(rightArrayElem)) {
                             // remove temporarily added an empty string
                             if (rightArrayElem.isJsonObject()
-                                    && leftArr.size() == 1
+                                    && leftArr.size() > i
                                     && leftArr.get(i).isJsonPrimitive()
                                     && leftArr.get(i).getAsString().equals("")) {
                                 leftArr.remove(0);
