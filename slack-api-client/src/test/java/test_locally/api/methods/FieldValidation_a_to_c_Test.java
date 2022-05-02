@@ -125,6 +125,7 @@ public class FieldValidation_a_to_c_Test {
                 "getLatest",
                 // latest
                 "getTeam",
+                "getMetadata",
                 "getAttachments",
                 "getBlocks",
                 "getTopic",
@@ -175,6 +176,7 @@ public class FieldValidation_a_to_c_Test {
                 "getBotProfile",
                 "getTeam",
                 "getAttachments",
+                "getMetadata",
                 "getBlocks",
                 "getIcons",
                 "getUsername",
@@ -205,6 +207,7 @@ public class FieldValidation_a_to_c_Test {
             verifyIfAllGettersReturnNonNull(obj);
             verifyIfAllGettersReturnNonNullRecursively(obj.getMessages().get(0),
                     "getUnreadCount",
+                    "getMetadata",
                     "getFile",
                     "getIsMoved",
                     "getPendingShared",
