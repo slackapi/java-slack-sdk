@@ -33,7 +33,8 @@
         ""
       ],
       "user_count": 12345,
-      "channel_count": 12345
+      "channel_count": 12345,
+      "deleted_by": ""
     },
     "event_ts": "0000000000.000000"
   },
