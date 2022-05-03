@@ -7,10 +7,7 @@ import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.*;
 import com.slack.api.util.json.GsonFactory;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static util.ObjectInitializer.initProperties;
 
@@ -115,6 +112,10 @@ public class SampleObjects {
         shares.setPublicChannels(channels);
         File file = initProperties(File.builder().shares(shares).build());
         Message.setFile(file);
+        Message.setMetadata(initProperties(com.slack.api.model.Message.Metadata.builder()
+                .eventPayload(Collections.emptyMap())
+                .build())
+        );
         Message.setFiles(Arrays.asList(file));
         Message.setPinnedTo(Arrays.asList(""));
         Message.setReactions(Arrays.asList(initProperties(new Reaction())));

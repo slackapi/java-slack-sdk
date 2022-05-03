@@ -50,4 +50,9 @@ public class ConversationsHistoryRequest implements SlackApiRequest {
      */
     private boolean inclusive;
 
+    /**
+     * Return all metadata associated with this message.
+     */
+    private boolean includeAllMetadata;
+
 }

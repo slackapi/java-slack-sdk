@@ -65,18 +65,12 @@
           "type": "",
           "image_url": "https://www.example.com/",
           "alt_text": "",
-          "action_id": "",
-          "initial_time": "",
-          "placeholder": {
-            "type": "",
-            "text": "",
-            "emoji": false
-          },
           "text": {
             "type": "",
             "text": "",
             "emoji": false
           },
+          "action_id": "",
           "url": "",
           "value": "",
           "style": "",
@@ -151,6 +145,11 @@
             },
             "url": ""
           },
+          "placeholder": {
+            "type": "",
+            "text": "",
+            "emoji": false
+          },
           "initial_channel": "",
           "response_url_enabled": false,
           "initial_channels": [
@@ -170,6 +169,7 @@
             ""
           ],
           "initial_date": "",
+          "initial_time": "",
           "min_query_length": 12345,
           "fallback": "",
           "image_width": 12345,
@@ -215,8 +215,8 @@
               "emoji": false
             },
             "value": "",
-            "verbatim": false,
             "emoji": false,
+            "verbatim": false,
             "url": "",
             "style": "",
             "confirm": {
@@ -528,10 +528,10 @@
             "date_start": 12345,
             "active_participants": [
               {
-                "slack_id": "U00000000",
                 "external_id": "",
                 "avatar_url": "https://www.example.com/",
-                "display_name": ""
+                "display_name": "",
+                "slack_id": "U00000000"
               },
               {
                 "slack_id": "",
@@ -542,10 +542,10 @@
             ],
             "all_participants": [
               {
-                "slack_id": "U00000000",
                 "external_id": "",
                 "avatar_url": "https://www.example.com/",
-                "display_name": ""
+                "display_name": "",
+                "slack_id": "U00000000"
               },
               {
                 "slack_id": "",
@@ -9259,18 +9259,22 @@
           "thumb_64": false,
           "thumb_80": false,
           "thumb_160": false,
-          "original_w": 12345,
-          "original_h": 12345,
-          "thumb_360_w": 12345,
-          "thumb_360_h": 12345,
+          "original_w": 123,
+          "original_h": 123,
+          "thumb_360_w": 123,
+          "thumb_360_h": 123,
           "format": "",
           "extension": "",
-          "rotation": 12345,
+          "rotation": 123,
           "thumb_tiny": ""
         }
       }
     ],
-    "app_id": "A00000000"
+    "app_id": "A00000000",
+    "metadata": {
+      "event_payload": {},
+      "event_type": ""
+    }
   },
   "error": "",
   "deprecated_argument": "",

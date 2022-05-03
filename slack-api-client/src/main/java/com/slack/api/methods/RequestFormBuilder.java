@@ -1125,6 +1125,12 @@ public class RequestFormBuilder {
         setIfNotNull("text", req.getText(), form);
         setIfNotNull("as_user", req.isAsUser(), form);
 
+        if (req.getMetadataAsString() != null) {
+            form.add("metadata", req.getMetadataAsString());
+        } else if (req.getMetadata() != null) {
+            String json = GSON.toJson(req.getMetadata());
+            form.add("metadata", json);
+        }
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
@@ -1214,6 +1220,12 @@ public class RequestFormBuilder {
         setIfNotNull("link_names", req.isLinkNames(), form);
         setIfNotNull("mrkdwn", req.isMrkdwn(), form);
 
+        if (req.getMetadataAsString() != null) {
+            form.add("metadata", req.getMetadataAsString());
+        } else if (req.getMetadata() != null) {
+            String json = GSON.toJson(req.getMetadata());
+            form.add("metadata", json);
+        }
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
@@ -1258,6 +1270,12 @@ public class RequestFormBuilder {
             setIfNotNull("file_ids", req.getFileIds().stream().collect(joining(",")), form);
         }
 
+        if (req.getMetadataAsString() != null) {
+            form.add("metadata", req.getMetadataAsString());
+        } else if (req.getMetadata() != null) {
+            String json = GSON.toJson(req.getMetadata());
+            form.add("metadata", json);
+        }
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
@@ -1331,6 +1349,7 @@ public class RequestFormBuilder {
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("oldest", req.getOldest(), form);
         setIfNotNull("inclusive", req.isInclusive(), form);
+        setIfNotNull("include_all_metadata", req.isIncludeAllMetadata(), form);
         return form;
     }
 
