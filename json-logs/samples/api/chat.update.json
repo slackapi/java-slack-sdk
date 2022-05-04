@@ -29,8 +29,8 @@
         "text": {
           "type": "",
           "text": "",
-          "emoji": false,
-          "verbatim": false
+          "verbatim": false,
+          "emoji": false
         },
         "accessory": {
           "type": "",
@@ -320,20 +320,64 @@
             "initial_users": [
               ""
             ]
-          },
-          {
-            "type": "",
-            "image_url": "",
-            "alt_text": "",
-            "fallback": "",
-            "image_width": 12345,
-            "image_height": 12345,
-            "image_bytes": 12345
           }
         ],
+        "call_id": "",
+        "api_decoration_available": false,
+        "call": {
+          "v1": {
+            "id": "",
+            "app_id": "",
+            "app_icon_urls": {
+              "image_32": "",
+              "image_36": "",
+              "image_48": "",
+              "image_64": "",
+              "image_72": "",
+              "image_96": "",
+              "image_128": "",
+              "image_192": "",
+              "image_512": "",
+              "image_1024": "",
+              "image_original": ""
+            },
+            "date_start": 12345,
+            "active_participants": [
+              {
+                "slack_id": "",
+                "external_id": "",
+                "display_name": "",
+                "avatar_url": ""
+              }
+            ],
+            "all_participants": [
+              {
+                "slack_id": "",
+                "external_id": "",
+                "display_name": "",
+                "avatar_url": ""
+              }
+            ],
+            "display_id": "",
+            "join_url": "",
+            "desktop_app_join_url": "",
+            "name": "",
+            "created_by": "",
+            "date_end": 12345,
+            "channels": [
+              ""
+            ],
+            "is_dm_call": false,
+            "was_rejected": false,
+            "was_missed": false,
+            "was_accepted": false,
+            "has_ended": false
+          },
+          "media_backend_type": ""
+        },
         "external_id": "",
         "source": "",
-        "file_id": "F00000000",
+        "file_id": "",
         "file": {
           "id": "",
           "created": 123,
@@ -571,59 +615,6 @@
             }
           ],
           "comments_count": 123
-        },
-        "call_id": "",
-        "api_decoration_available": false,
-        "call": {
-          "v1": {
-            "id": "",
-            "app_id": "",
-            "app_icon_urls": {
-              "image_32": "",
-              "image_36": "",
-              "image_48": "",
-              "image_64": "",
-              "image_72": "",
-              "image_96": "",
-              "image_128": "",
-              "image_192": "",
-              "image_512": "",
-              "image_1024": "",
-              "image_original": ""
-            },
-            "date_start": 12345,
-            "active_participants": [
-              {
-                "slack_id": "",
-                "external_id": "",
-                "display_name": "",
-                "avatar_url": ""
-              }
-            ],
-            "all_participants": [
-              {
-                "slack_id": "",
-                "external_id": "",
-                "display_name": "",
-                "avatar_url": ""
-              }
-            ],
-            "display_id": "",
-            "join_url": "",
-            "desktop_app_join_url": "",
-            "name": "",
-            "created_by": "",
-            "date_end": 12345,
-            "channels": [
-              ""
-            ],
-            "is_dm_call": false,
-            "was_rejected": false,
-            "was_missed": false,
-            "was_accepted": false,
-            "has_ended": false
-          },
-          "media_backend_type": ""
         },
         "fallback": "",
         "image_url": "",
