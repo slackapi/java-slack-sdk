@@ -349,6 +349,7 @@ public class JsonDataRecorder {
                     array.remove(idx);
                 }
                 com.slack.api.model.File f = SampleObjects.initFileObject();
+                f.setBlocks(null);
                 f.setAttachments(null); // Trying to load data for this field can result in StackOverFlowError
                 array.add(gson.toJsonTree(f));
             } else if (name != null && name.equals("status_emoji_display_info")) {
@@ -423,7 +424,9 @@ public class JsonDataRecorder {
                                 }
                             } else {
                                 try {
-                                    MergeJsonBuilder.mergeJsonObjects(first.getAsJsonObject(), CONFLICT_STRATEGY, elem.getAsJsonObject());
+                                    JsonObject firstObj = first.isJsonObject() ? first.getAsJsonObject() : new JsonObject();
+                                    JsonObject elemObj = elem.isJsonObject() ? elem.getAsJsonObject() : new JsonObject();
+                                    MergeJsonBuilder.mergeJsonObjects(firstObj, CONFLICT_STRATEGY, elemObj);
                                 } catch (MergeJsonBuilder.JsonConflictException e) {
                                     log.error("Failed to merge {} into {}", elem, first);
                                 }
@@ -446,12 +449,16 @@ public class JsonDataRecorder {
                 try {
                     JsonObject file = element.getAsJsonObject();
                     // To avoid concurrent modification of the underlying objects
-                    List<String> oldKeys = new ArrayList<>(file.keySet());
+                    List<String> oldKeys = new ArrayList<>();
+                    file.keySet().iterator().forEachRemaining(oldKeys::add);
                     for (String key : oldKeys) {
                         file.remove(key);
                     }
+                    com.slack.api.model.File fileObject = SampleObjects.initFileObject();
+                    fileObject.setBlocks(null);
+                    fileObject.setAttachments(null);
                     JsonObject fullFile = GsonFactory.createSnakeCase()
-                            .toJsonTree(SampleObjects.FileObject)
+                            .toJsonTree(fileObject)
                             .getAsJsonObject();
                     for (String newKey : fullFile.keySet()) {
                         file.add(newKey, fullFile.get(newKey));
@@ -543,7 +550,8 @@ public class JsonDataRecorder {
                 }
             }
             // To avoid concurrent modification of the underlying objects
-            List<Map.Entry<String, JsonElement>> copiedEntries = new ArrayList<>(element.getAsJsonObject().entrySet());
+            List<Map.Entry<String, JsonElement>> copiedEntries = new ArrayList<>();
+            element.getAsJsonObject().entrySet().iterator().forEachRemaining(copiedEntries::add);
             for (Map.Entry<String, JsonElement> entry : copiedEntries) {
                 try {
                     scanToNormalizeValues(path, element, entry.getKey(), entry.getValue());

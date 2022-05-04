@@ -44,20 +44,22 @@ public class MergeJsonBuilder {
             JsonObject rightObj,
             ConflictStrategy conflictStrategy) throws JsonConflictException {
 
-        List<Map.Entry<String, JsonElement>> rightObjEntries = new ArrayList<>(rightObj.entrySet());
+        List<Map.Entry<String, JsonElement>> rightObjEntries = new ArrayList<>();
+        rightObj.entrySet().iterator().forEachRemaining(rightObjEntries::add);
         for (Map.Entry<String, JsonElement> rightEntry : rightObjEntries) {
             String rightKey = rightEntry.getKey();
             JsonElement rightVal = rightEntry.getValue();
             if (leftObj.has(rightKey)) {
-                //conflict
+                // Conflict
                 JsonElement leftVal = leftObj.get(rightKey);
-                if (leftVal.isJsonArray() && rightVal.isJsonArray()) {
+                if (leftVal != null && leftVal.isJsonArray()
+                        && rightVal != null && rightVal.isJsonArray()) {
                     JsonArray leftArr = leftVal.getAsJsonArray();
                     JsonArray rightArr = rightVal.getAsJsonArray();
                     for (int i = 0; i < rightArr.size(); i++) {
                         JsonElement rightArrayElem = rightArr.get(i);
                         if (!leftArr.contains(rightArrayElem)) {
-                            // remove temporarily added an empty string
+                            // Remove temporarily added an empty string
                             if (rightArrayElem.isJsonObject()
                                     && leftArr.size() > i
                                     && leftArr.get(i).isJsonPrimitive()
@@ -68,12 +70,12 @@ public class MergeJsonBuilder {
                         }
                     }
                 } else if (leftVal.isJsonObject() && rightVal.isJsonObject()) {
-                    //recursive merging
+                    // Recursive merging
                     mergeJsonObjects(leftVal.getAsJsonObject(), rightVal.getAsJsonObject(), conflictStrategy);
-                } else {//not both arrays or objects, normal merge with conflict resolution
+                } else {// Not both arrays or objects, normal merge with conflict resolution
                     handleMergeConflict(rightKey, leftObj, leftVal, rightVal, conflictStrategy);
                 }
-            } else {//no conflict, add to the object
+            } else {// No conflict, add to the object
                 leftObj.add(rightKey, rightVal);
             }
         }
@@ -88,15 +90,15 @@ public class MergeJsonBuilder {
 
         switch (conflictStrategy) {
             case PREFER_FIRST_OBJ:
-                break;//do nothing, the right val gets thrown out
+                break; // Do nothing, the right val gets thrown out
             case PREFER_SECOND_OBJ:
-                leftObj.add(key, rightVal);//right side auto-wins, replace left val with its val
+                leftObj.add(key, rightVal); // Right side auto-wins, replace left val with its val
                 break;
             case PREFER_NON_NULL:
-                //check if right side is not null, and left side is null, in which case we use the right val
+                // Check if right side is not null, and left side is null, in which case we use the right val
                 if (leftVal.isJsonNull() && !rightVal.isJsonNull()) {
                     leftObj.add(key, rightVal);
-                }//else do nothing since either the left value is non-null or the right value is null
+                }// Else do nothing since either the left value is non-null or the right value is null
                 break;
             case THROW_EXCEPTION:
                 throw new JsonConflictException("Key " + key + " exists in both objects and the conflict resolution strategy is " + conflictStrategy);

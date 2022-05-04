@@ -106,29 +106,6 @@ public class SampleObjects {
         }
     }
 
-    public static List<Attachment> Attachments = Arrays.asList(
-            initProperties(Attachment.builder()
-                    .fields(Arrays.asList(initProperties(Field.builder().build())))
-                    .actions(Arrays.asList(initProperties(
-                            Action.builder()
-                                    .optionGroups(Arrays.asList(initProperties(Action.OptionGroup.builder()
-                                            .options(Arrays.asList(initProperties(Action.Option.builder().build())))
-                                            .build(), true)))
-                                    .options(Arrays.asList(initProperties(Action.Option.builder().build(), true)))
-                                    .selectedOptions(Arrays.asList(initProperties(Action.Option.builder().build(), true)))
-                                    .build(),
-                            true
-                    )))
-                    .preview(initProperties(Attachment.Preview.builder()
-                            .title(initProperties(PlainTextObject.builder().build()))
-                            .subtitle(initProperties(PlainTextObject.builder().build()))
-                            .build())
-                    )
-                    .metadata(initProperties(new Attachment.AttachmentMetadata()))
-                    .mrkdwnIn(Arrays.asList(""))
-                    .build())
-    );
-
     public static PlainTextObject TextObject = initProperties(PlainTextObject.builder().build());
 
     public static OptionObject Option = initProperties(OptionObject.builder()
@@ -228,6 +205,30 @@ public class SampleObjects {
                     .accessory(initProperties(ImageElement.builder().build()))
                     .text(TextObject)
                     .fields(SectionBlockFieldElements)))
+    );
+
+    public static List<Attachment> Attachments = Arrays.asList(
+            initProperties(Attachment.builder()
+                    .fields(Arrays.asList(initProperties(Field.builder().build())))
+                    .actions(Arrays.asList(initProperties(
+                            Action.builder()
+                                    .optionGroups(Arrays.asList(initProperties(Action.OptionGroup.builder()
+                                            .options(Arrays.asList(initProperties(Action.Option.builder().build())))
+                                            .build(), true)))
+                                    .options(Arrays.asList(initProperties(Action.Option.builder().build(), true)))
+                                    .selectedOptions(Arrays.asList(initProperties(Action.Option.builder().build(), true)))
+                                    .build(),
+                            true
+                    )))
+                    .preview(initProperties(Attachment.Preview.builder()
+                            .title(initProperties(PlainTextObject.builder().build()))
+                            .subtitle(initProperties(PlainTextObject.builder().build()))
+                            .build())
+                    )
+                    .metadata(initProperties(new Attachment.AttachmentMetadata()))
+                    .mrkdwnIn(Arrays.asList(""))
+                    .blocks(Blocks)
+                    .build())
     );
 
     public static File FileObject = initFileObject();
