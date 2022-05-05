@@ -223,7 +223,8 @@
       "channel_posting_permissions_updated",
       "external_shared_channel_access_upgraded",
       "external_shared_channel_disconnect_and_archived",
-      "dm_user_added"
+      "dm_user_added",
+      "public_channel_preview"
     ],
     "app": [
       "app_installed",

@@ -298,6 +298,15 @@
                       "initial_users": [
                         ""
                       ]
+                    },
+                    {
+                      "type": "",
+                      "image_url": "",
+                      "alt_text": "",
+                      "fallback": "",
+                      "image_width": 12345,
+                      "image_height": 12345,
+                      "image_bytes": 12345
                     }
                   ],
                   "block_id": "",
@@ -358,6 +367,7 @@
                   "source": "",
                   "file_id": "",
                   "file": {
+                    "preview_highlight": "",
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -1342,6 +1352,15 @@
                   "initial_users": [
                     ""
                   ]
+                },
+                {
+                  "type": "",
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345
                 }
               ],
               "block_id": "",
@@ -1402,6 +1421,7 @@
               "source": "",
               "file_id": "",
               "file": {
+                "preview_highlight": "",
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -2218,6 +2238,15 @@
                       "initial_users": [
                         ""
                       ]
+                    },
+                    {
+                      "type": "",
+                      "image_url": "",
+                      "alt_text": "",
+                      "fallback": "",
+                      "image_width": 12345,
+                      "image_height": 12345,
+                      "image_bytes": 12345
                     }
                   ],
                   "block_id": "",
@@ -2278,6 +2307,7 @@
                   "source": "",
                   "file_id": "",
                   "file": {
+                    "preview_highlight": "",
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -3262,6 +3292,15 @@
                   "initial_users": [
                     ""
                   ]
+                },
+                {
+                  "type": "",
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345
                 }
               ],
               "block_id": "",
@@ -3322,6 +3361,7 @@
               "source": "",
               "file_id": "",
               "file": {
+                "preview_highlight": "",
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -4033,6 +4073,15 @@
                 "initial_users": [
                   ""
                 ]
+              },
+              {
+                "type": "",
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345
               }
             ],
             "block_id": "",
@@ -4093,6 +4142,7 @@
             "source": "",
             "file_id": "",
             "file": {
+              "preview_highlight": "",
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -4900,6 +4950,15 @@
                     "initial_users": [
                       ""
                     ]
+                  },
+                  {
+                    "type": "",
+                    "image_url": "",
+                    "alt_text": "",
+                    "fallback": "",
+                    "image_width": 12345,
+                    "image_height": 12345,
+                    "image_bytes": 12345
                   }
                 ],
                 "block_id": "",
@@ -4960,6 +5019,7 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "preview_highlight": "",
                   "id": "",
                   "created": 123,
                   "timestamp": 123,

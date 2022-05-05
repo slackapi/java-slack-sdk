@@ -247,6 +247,7 @@ public class Actions {
         public static final String connect_dm_invite_accepted = "connect_dm_invite_accepted";
         public static final String connect_dm_invite_ignored = "connect_dm_invite_ignored";
         public static final String dm_user_added = "dm_user_added";
+        public static final String public_channel_preview = "public_channel_preview";
     }
 
     public static class App {
