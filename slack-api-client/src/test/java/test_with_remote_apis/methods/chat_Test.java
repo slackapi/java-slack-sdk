@@ -882,8 +882,8 @@ public class chat_Test {
         assertThat(message.isOk(), is(true));
     }
 
-    // 2021-01-05 14:38:54,767 WARN [main] com.slack.api.methods.RequestFormBuilder The `text` argument is missing in the request payload for a chat.postMessage call - It's a best practice to always provide a text argument when posting a message. The `text` is used in places where `blocks` cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.
-    // 2021-01-05 14:38:55,055 WARN [main] com.slack.api.methods.RequestFormBuilder The `text` argument is missing in the request payload for a chat.update call - It's a best practice to always provide a text argument when posting a message. The `text` is used in places where `blocks` cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.
+    // 2021-01-05 14:38:54,767 WARN [main] com.slack.api.methods.RequestFormBuilder The top-level `text` argument is missing in the request payload for a chat.postMessage call - It's a best practice to always provide a `text` argument when posting a message. The `text` is used in places where `blocks` cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.
+    // 2021-01-05 14:38:55,055 WARN [main] com.slack.api.methods.RequestFormBuilder Additionally, the attachment-level `fallback` argument is missing in the request payload for a chat.postMessage call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://api.slack.com/reference/messaging/attachments#legacy_fields for more details).
     @Test
     public void textWarnings() throws Exception {
         loadRandomChannelId();
