@@ -2488,8 +2488,11 @@ public class RequestFormBuilder {
     // internal methods
     // ----------------------------------------------------------------------------------
 
-    private static final String TEXT_FALLBACK_WARN_MESSAGE_TEMPLATE =
-            "The `{}` argument is missing in the request payload for a {} call - It's a best practice to always provide a {} argument when posting a message. The `{}` is used in places where content cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.";
+    private static final String TEXT_WARN_MESSAGE_TEMPLATE =
+            "The top-level `text` argument is missing in the request payload for a {} call - It's a best practice to always provide a `text` argument when posting a message. The `text` is used in places where the content cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.";
+
+    private static final String FALLBACK_WARN_MESSAGE_TEMPLATE =
+            "Additionally, the attachment-level `fallback` argument is missing in the request payload for a {} call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://api.slack.com/reference/messaging/attachments#legacy_fields for more details).";
 
     private static void warnIfAttachmentWithoutFallbackDetected(String endpointName, List<Attachment> attachments) {
         boolean fallbackMissing = false;
@@ -2500,8 +2503,7 @@ public class RequestFormBuilder {
             }
         }
         if (fallbackMissing) {
-            log.warn(TEXT_FALLBACK_WARN_MESSAGE_TEMPLATE,
-                    "fallback", endpointName, "fallback", "fallback");
+            log.warn(FALLBACK_WARN_MESSAGE_TEMPLATE, endpointName);
         }
     }
 
@@ -2511,19 +2513,20 @@ public class RequestFormBuilder {
             List<Attachment> attachments,
             String attachmentsAsString) {
 
-        if (attachments != null && attachments.size() > 0) {
-            // attachments
-            warnIfAttachmentWithoutFallbackDetected(endpointName, attachments);
-        } else if (attachmentsAsString != null && attachmentsAsString.trim().length() > 0) {
-            // attachments
-            warnIfAttachmentWithoutFallbackDetected(
-                    endpointName,
-                    Arrays.asList(GSON.fromJson(attachmentsAsString, Attachment[].class))
-            );
-        } else if (text == null || text.trim().isEmpty()) {
-            // only text or text + blocks
-            log.warn(TEXT_FALLBACK_WARN_MESSAGE_TEMPLATE,
-                    "text", endpointName, "text", "text");
+        if (text == null || text.trim().isEmpty()) {
+            // should always be providing a text argument
+            log.warn(TEXT_WARN_MESSAGE_TEMPLATE, endpointName);
+            // furthermore, if attachments are present without a fallback argument, then warn even more
+            if (attachments != null && attachments.size() > 0) {
+                // attachments
+                warnIfAttachmentWithoutFallbackDetected(endpointName, attachments);
+            } else if (attachmentsAsString != null && attachmentsAsString.trim().length() > 0) {
+                // attachments
+                warnIfAttachmentWithoutFallbackDetected(
+                        endpointName,
+                        Arrays.asList(GSON.fromJson(attachmentsAsString, Attachment[].class))
+                );
+            }
         }
     }
 
