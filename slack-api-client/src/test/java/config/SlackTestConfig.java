@@ -68,6 +68,7 @@ public class SlackTestConfig {
         CONFIG.setPrettyResponseLoggingEnabled(true);
         CONFIG.setFailOnUnknownProperties(true);
         CONFIG.getHttpClientResponseHandlers().add(JSON_DATA_RECORDING_LISTENER);
+        CONFIG.setHttpClientReadTimeoutMillis(30000);
     }
 
     public static SlackTestConfig getInstance() {

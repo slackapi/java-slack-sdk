@@ -259,6 +259,7 @@ public class SampleObjects {
                 .attachments(Attachments)
                 .blocks(Blocks)
                 .build());
+        initProperties(file);
         return file;
     }
 

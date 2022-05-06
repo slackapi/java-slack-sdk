@@ -246,7 +246,6 @@
           "source": "",
           "file_id": "",
           "file": {
-            "preview_highlight": "",
             "id": "",
             "created": 123,
             "timestamp": 123,
@@ -1123,7 +1122,6 @@
               "source": "",
               "file_id": "",
               "file": {
-                "preview_highlight": "",
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -2204,7 +2202,14 @@
       ],
       "upload": false,
       "display_as_bot": false,
-      "app_id": "A00000000"
+      "app_id": "A00000000",
+      "x_files": [
+        "F00000000"
+      ],
+      "edited": {
+        "user": "B00000000",
+        "ts": "0000000000.000000"
+      }
     }
   ],
   "has_more": false,

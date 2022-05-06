@@ -1242,7 +1242,16 @@
                 "source": "",
                 "file_id": "",
                 "file": {
-                  "preview_highlight": "",
+                  "to": [
+                    {
+                      "address": "",
+                      "name": "",
+                      "original": ""
+                    }
+                  ],
+                  "image_exif_rotation": 123,
+                  "thumb_tiny": "",
+                  "thumb_800_gif": "",
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -1305,7 +1314,6 @@
                   "thumb_720": "",
                   "thumb_720_gif": "",
                   "thumb_720_w": "",
-                  "thumb_720_h": "",
                   "thumb_800": "",
                   "thumb_800_gif": "",
                   "thumb_800_w": "",
@@ -2296,7 +2304,16 @@
             "source": "",
             "file_id": "",
             "file": {
-              "preview_highlight": "",
+              "to": [
+                {
+                  "address": "",
+                  "name": "",
+                  "original": ""
+                }
+              ],
+              "image_exif_rotation": 123,
+              "thumb_tiny": "",
+              "thumb_800_gif": "",
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -2359,7 +2376,6 @@
               "thumb_720": "",
               "thumb_720_gif": "",
               "thumb_720_w": "",
-              "thumb_720_h": "",
               "thumb_800": "",
               "thumb_800_gif": "",
               "thumb_800_w": "",
@@ -3596,7 +3612,16 @@
                         "source": "",
                         "file_id": "",
                         "file": {
-                          "preview_highlight": "",
+                          "to": [
+                            {
+                              "address": "",
+                              "name": "",
+                              "original": ""
+                            }
+                          ],
+                          "image_exif_rotation": 123,
+                          "thumb_tiny": "",
+                          "thumb_800_gif": "",
                           "id": "",
                           "created": 123,
                           "timestamp": 123,
@@ -3659,7 +3684,6 @@
                           "thumb_720": "",
                           "thumb_720_gif": "",
                           "thumb_720_w": "",
-                          "thumb_720_h": "",
                           "thumb_800": "",
                           "thumb_800_gif": "",
                           "thumb_800_w": "",
@@ -4650,7 +4674,16 @@
                     "source": "",
                     "file_id": "",
                     "file": {
-                      "preview_highlight": "",
+                      "to": [
+                        {
+                          "address": "",
+                          "name": "",
+                          "original": ""
+                        }
+                      ],
+                      "image_exif_rotation": 123,
+                      "thumb_tiny": "",
+                      "thumb_800_gif": "",
                       "id": "",
                       "created": 123,
                       "timestamp": 123,
@@ -4713,7 +4746,6 @@
                       "thumb_720": "",
                       "thumb_720_gif": "",
                       "thumb_720_w": "",
-                      "thumb_720_h": "",
                       "thumb_800": "",
                       "thumb_800_gif": "",
                       "thumb_800_w": "",

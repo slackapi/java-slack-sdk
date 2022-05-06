@@ -13,6 +13,8 @@ import com.slack.api.methods.request.files.FilesSharedPublicURLRequest;
 import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
+import com.slack.api.methods.response.conversations.ConversationsHistoryResponse;
+import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.conversations.ConversationsRepliesResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.users.UsersConversationsResponse;
@@ -38,6 +40,22 @@ import static org.hamcrest.Matchers.greaterThan;
 
 @Slf4j
 public class files_Test {
+
+    private String randomChannelId = null;
+
+    void loadRandomChannelId() throws IOException, SlackApiException {
+        if (randomChannelId == null) {
+            ConversationsListResponse channelsListResponse =
+                    slack.methods().conversationsList(r -> r.token(botToken).excludeArchived(true).limit(100));
+            assertThat(channelsListResponse.getError(), is(nullValue()));
+            for (Conversation channel : channelsListResponse.getChannels()) {
+                if (channel.getName().equals("random")) {
+                    randomChannelId = channel.getId();
+                    break;
+                }
+            }
+        }
+    }
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
@@ -581,6 +599,35 @@ public class files_Test {
         assertThat(files.getError(), is(nullValue()));
         FilesInfoResponse fileInfo = client.filesInfo(r -> r.file(upload.getFile().getId()));
         assertThat(fileInfo.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void fileLinks() throws Exception {
+        loadRandomChannelId();
+        FilesUploadResponse fileUpload = slack.methods(botToken).filesUpload(r -> r
+                .channels(Arrays.asList(randomChannelId))
+                .content("text file example")
+        );
+        assertThat(fileUpload.getError(), is(nullValue()));
+
+        ChatPostMessageResponse newMessage = slack.methods(botToken).chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .text("Here you are: " + fileUpload.getFile().getPermalink())
+                .unfurlLinks(true)
+        );
+        assertThat(newMessage.getError(), is(nullValue()));
+
+        ConversationsHistoryResponse history = slack.methods(botToken).conversationsHistory(r -> r
+                .channel(randomChannelId)
+                .limit(2)
+        );
+        assertThat(history.getError(), is(nullValue()));
+
+        ConversationsRepliesResponse replies = slack.methods(botToken).conversationsReplies(r -> r
+                .channel(randomChannelId)
+                .ts(history.getMessages().get(0).getTs())
+        );
+        assertThat(replies.getError(), is(nullValue()));
     }
 
 }
