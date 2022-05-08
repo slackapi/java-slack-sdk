@@ -68,6 +68,7 @@
         "is_custom_image": false,
         "pronouns": "",
         "huddle_state": "",
+        "huddle_state_expiration_ts": 123,
         "first_name": "",
         "last_name": ""
       },

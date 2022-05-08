@@ -44,6 +44,7 @@
       "pronouns": "",
       "status_emoji_display_info": [],
       "huddle_state": "",
+      "huddle_state_expiration_ts": 123,
       "first_name": "",
       "last_name": ""
     },

@@ -24,7 +24,7 @@
   "event_time": 123,
   "event_context": "",
   "event": {
-    "type": "user_change",
+    "type": "user_status_changed",
     "user": {
       "id": "",
       "team_id": "",
@@ -98,6 +98,7 @@
       "is_workflow_bot": false,
       "who_can_share_contact_card": ""
     },
-    "cache_ts": 123
+    "cache_ts": 123,
+    "event_ts": ""
   }
 }
