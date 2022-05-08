@@ -180,6 +180,7 @@ public class Actions {
         public static final String connect_dm_invite_accepted = "connect_dm_invite_accepted";
         public static final String connect_dm_invite_ignored = "connect_dm_invite_ignored";
         public static final String user_email_updated = "user_email_updated";
+        public static final String user_username_updated = "user_username_updated";
         public static final String user_joined_workspace = "user_joined_workspace";
         public static final String guest_joined_workspace = "guest_joined_workspace";
     }

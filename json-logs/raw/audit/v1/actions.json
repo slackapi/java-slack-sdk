@@ -166,7 +166,8 @@
       "connect_dm_invite_ignored",
       "user_email_updated",
       "user_joined_workspace",
-      "guest_joined_workspace"
+      "guest_joined_workspace",
+      "user_username_updated"
     ],
     "file": [
       "file_downloaded",

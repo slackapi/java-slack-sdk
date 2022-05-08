@@ -131,6 +131,7 @@ public class User {
         }
 
         private String huddleState; // "default_unset" etc.
+        private Long huddleStateExpirationTs;
 
         @Deprecated
         private String firstName;
