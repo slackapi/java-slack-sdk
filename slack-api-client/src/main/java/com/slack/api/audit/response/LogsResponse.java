@@ -233,6 +233,7 @@ public class LogsResponse implements AuditApiResponse {
         private Integer sessionSearchStart; // team.unsupportedVersions.start.success
         private Integer deprecationSearchEnd; // team.unsupportedVersions.start.success
         private Boolean isError; // team.unsupportedVersions.job.end
+        private String appId; // cli_app_deploy
     }
 
     @Data

@@ -257,6 +257,7 @@ public class ApiTest {
     @Test
     public void getLogs_all_actions() throws Exception {
         if (orgAdminUserToken != null) {
+            verifyAllActions(orgAdminUserToken, Actions.SlackCLI.class);
             verifyAllActions(orgAdminUserToken, Actions.WorkspaceOrOrg.class);
             verifyAllActions(orgAdminUserToken, Actions.User.class);
             verifyAllActions(orgAdminUserToken, Actions.File.class);

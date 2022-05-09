@@ -248,7 +248,8 @@
         "exporting_team_id": 123,
         "session_search_start": 123,
         "deprecation_search_end": 123,
-        "is_error": false
+        "is_error": false,
+        "app_id": ""
       }
     }
   ]
