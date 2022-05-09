@@ -396,6 +396,21 @@ public class EventHandlersTest {
                     @Override
                     public void handle(SharedChannelInviteDeclinedPayload payload) {
                     }
+                },
+                new UserHuddleChangedHandler() {
+                    @Override
+                    public void handle(UserHuddleChangedPayload payload) {
+                    }
+                },
+                new UserProfileChangedHandler() {
+                    @Override
+                    public void handle(UserProfileChangedPayload payload) {
+                    }
+                },
+                new UserStatusChangedHandler() {
+                    @Override
+                    public void handle(UserStatusChangedPayload payload) {
+                    }
                 }
         );
 
