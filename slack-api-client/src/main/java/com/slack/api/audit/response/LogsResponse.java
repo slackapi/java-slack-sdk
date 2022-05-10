@@ -234,6 +234,9 @@ public class LogsResponse implements AuditApiResponse {
         private Integer deprecationSearchEnd; // team.unsupportedVersions.start.success
         private Boolean isError; // team.unsupportedVersions.job.end
         private String appId; // cli_app_deploy
+        private FeatureEnablement enableAtHere; // channel_posting_permissions_updated
+        private FeatureEnablement enableAtChannel; // channel_posting_permissions_updated
+        private FeatureEnablement canHuddle; // channel_posting_permissions_updated
     }
 
     @Data
@@ -294,6 +297,11 @@ public class LogsResponse implements AuditApiResponse {
     public static class ConversationPref {
         private List<String> type;
         private List<String> user;
+    }
+
+    @Data
+    public static class FeatureEnablement {
+        private Boolean enabled;
     }
 
 }

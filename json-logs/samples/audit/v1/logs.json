@@ -249,7 +249,16 @@
         "session_search_start": 123,
         "deprecation_search_end": 123,
         "is_error": false,
-        "app_id": ""
+        "app_id": "",
+        "enable_at_here": {
+          "enabled": false
+        },
+        "enable_at_channel": {
+          "enabled": false
+        },
+        "can_huddle": {
+          "enabled": false
+        }
       }
     }
   ]
