@@ -1242,36 +1242,17 @@
                 "source": "",
                 "file_id": "",
                 "file": {
-                  "updated": 123,
-                  "bot_id": "",
-                  "created": 123,
-                  "timestamp": 123,
-                  "title": "",
-                  "user": "",
-                  "transcription": {
-                    "status": "",
-                    "locale": ""
-                  },
-                  "vtt": "",
-                  "username": "",
-                  "url_private": "",
-                  "url_private_download": "",
-                  "to": [
-                    {
-                      "address": "",
-                      "name": "",
-                      "original": ""
-                    }
-                  ],
+                  "editable": false,
+                  "non_owner_editable": false,
+                  "editor": "",
+                  "last_editor": "",
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
-                  "name": "",
                   "title": "",
                   "subject": "",
                   "mimetype": "",
                   "filetype": "",
-                  "pretty_type": "",
                   "user": "",
                   "mode": "",
                   "editable": false,
@@ -1343,7 +1324,6 @@
                   "thumb_pdf": "",
                   "thumb_pdf_w": "",
                   "thumb_pdf_h": "",
-                  "thumb_tiny": "",
                   "converted_pdf": "",
                   "image_exif_rotation": 123,
                   "original_w": "",
@@ -1484,7 +1464,6 @@
                     "is_intro": false
                   },
                   "num_stars": 123,
-                  "is_starred": false,
                   "pinned_to": [
                     ""
                   ],
@@ -2316,36 +2295,17 @@
             "source": "",
             "file_id": "",
             "file": {
-              "updated": 123,
-              "bot_id": "",
-              "created": 123,
-              "timestamp": 123,
-              "title": "",
-              "user": "",
-              "transcription": {
-                "status": "",
-                "locale": ""
-              },
-              "vtt": "",
-              "username": "",
-              "url_private": "",
-              "url_private_download": "",
-              "to": [
-                {
-                  "address": "",
-                  "name": "",
-                  "original": ""
-                }
-              ],
+              "editable": false,
+              "non_owner_editable": false,
+              "editor": "",
+              "last_editor": "",
               "id": "",
               "created": 123,
               "timestamp": 123,
-              "name": "",
               "title": "",
               "subject": "",
               "mimetype": "",
               "filetype": "",
-              "pretty_type": "",
               "user": "",
               "mode": "",
               "editable": false,
@@ -2417,7 +2377,6 @@
               "thumb_pdf": "",
               "thumb_pdf_w": "",
               "thumb_pdf_h": "",
-              "thumb_tiny": "",
               "converted_pdf": "",
               "image_exif_rotation": 123,
               "original_w": "",
@@ -2558,7 +2517,6 @@
                 "is_intro": false
               },
               "num_stars": 123,
-              "is_starred": false,
               "pinned_to": [
                 ""
               ],
@@ -3636,36 +3594,17 @@
                         "source": "",
                         "file_id": "",
                         "file": {
-                          "updated": 123,
-                          "bot_id": "",
-                          "created": 123,
-                          "timestamp": 123,
-                          "title": "",
-                          "user": "",
-                          "transcription": {
-                            "status": "",
-                            "locale": ""
-                          },
-                          "vtt": "",
-                          "username": "",
-                          "url_private": "",
-                          "url_private_download": "",
-                          "to": [
-                            {
-                              "address": "",
-                              "name": "",
-                              "original": ""
-                            }
-                          ],
+                          "editable": false,
+                          "non_owner_editable": false,
+                          "editor": "",
+                          "last_editor": "",
                           "id": "",
                           "created": 123,
                           "timestamp": 123,
-                          "name": "",
                           "title": "",
                           "subject": "",
                           "mimetype": "",
                           "filetype": "",
-                          "pretty_type": "",
                           "user": "",
                           "mode": "",
                           "editable": false,
@@ -3737,7 +3676,6 @@
                           "thumb_pdf": "",
                           "thumb_pdf_w": "",
                           "thumb_pdf_h": "",
-                          "thumb_tiny": "",
                           "converted_pdf": "",
                           "image_exif_rotation": 123,
                           "original_w": "",
@@ -3878,7 +3816,6 @@
                             "is_intro": false
                           },
                           "num_stars": 123,
-                          "is_starred": false,
                           "pinned_to": [
                             ""
                           ],
@@ -4710,36 +4647,17 @@
                     "source": "",
                     "file_id": "",
                     "file": {
-                      "updated": 123,
-                      "bot_id": "",
-                      "created": 123,
-                      "timestamp": 123,
-                      "title": "",
-                      "user": "",
-                      "transcription": {
-                        "status": "",
-                        "locale": ""
-                      },
-                      "vtt": "",
-                      "username": "",
-                      "url_private": "",
-                      "url_private_download": "",
-                      "to": [
-                        {
-                          "address": "",
-                          "name": "",
-                          "original": ""
-                        }
-                      ],
+                      "editable": false,
+                      "non_owner_editable": false,
+                      "editor": "",
+                      "last_editor": "",
                       "id": "",
                       "created": 123,
                       "timestamp": 123,
-                      "name": "",
                       "title": "",
                       "subject": "",
                       "mimetype": "",
                       "filetype": "",
-                      "pretty_type": "",
                       "user": "",
                       "mode": "",
                       "editable": false,
@@ -4811,7 +4729,6 @@
                       "thumb_pdf": "",
                       "thumb_pdf_w": "",
                       "thumb_pdf_h": "",
-                      "thumb_tiny": "",
                       "converted_pdf": "",
                       "image_exif_rotation": 123,
                       "original_w": "",
@@ -4952,7 +4869,6 @@
                         "is_intro": false
                       },
                       "num_stars": 123,
-                      "is_starred": false,
                       "pinned_to": [
                         ""
                       ],
