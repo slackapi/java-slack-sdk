@@ -162,15 +162,6 @@
               "initial_users": [
                 ""
               ]
-            },
-            {
-              "type": "",
-              "image_url": "",
-              "alt_text": "",
-              "fallback": "",
-              "image_width": 12345,
-              "image_height": 12345,
-              "image_bytes": 12345
             }
           ],
           "text": {
@@ -394,6 +385,37 @@
           "source": "",
           "file_id": "",
           "file": {
+            "image_exif_rotation": 123,
+            "lines": 123,
+            "editable": false,
+            "timestamp": 123,
+            "vtt": "",
+            "thumb_pdf": "",
+            "thumb_pdf_w": "",
+            "thumb_pdf_h": "",
+            "thumb_tiny": "",
+            "to": [
+              {
+                "address": "",
+                "name": "",
+                "original": ""
+              }
+            ],
+            "timestamp": 123,
+            "title": "",
+            "subject": "",
+            "user": "",
+            "updated": 123,
+            "transcription": {
+              "status": "",
+              "locale": ""
+            },
+            "vtt": "",
+            "thumb_video_w": 123,
+            "thumb_video_h": 123,
+            "username": "",
+            "url_private": "",
+            "url_private_download": "",
             "id": "",
             "created": 123,
             "timestamp": 123,
@@ -469,7 +491,6 @@
             "thumb_1024_gif": "",
             "thumb_1024_w": "",
             "thumb_1024_h": "",
-            "thumb_video": "",
             "thumb_gif": "",
             "thumb_pdf": "",
             "thumb_pdf_w": "",

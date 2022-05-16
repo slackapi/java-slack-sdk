@@ -45,7 +45,9 @@ public class MergeJsonBuilder {
             ConflictStrategy conflictStrategy) throws JsonConflictException {
 
         List<Map.Entry<String, JsonElement>> rightObjEntries = new ArrayList<>();
-        rightObj.entrySet().iterator().forEachRemaining(rightObjEntries::add);
+        if (rightObj != null) {
+            new ArrayList<>(rightObj.entrySet()).iterator().forEachRemaining(rightObjEntries::add);
+        }
         for (Map.Entry<String, JsonElement> rightEntry : rightObjEntries) {
             String rightKey = rightEntry.getKey();
             JsonElement rightVal = rightEntry.getValue();
@@ -69,7 +71,7 @@ public class MergeJsonBuilder {
                             leftArr.add(rightArrayElem);
                         }
                     }
-                } else if (leftVal.isJsonObject() && rightVal.isJsonObject()) {
+                } else if (leftVal != null && leftVal.isJsonObject() && rightVal != null &&  rightVal.isJsonObject()) {
                     // Recursive merging
                     mergeJsonObjects(leftVal.getAsJsonObject(), rightVal.getAsJsonObject(), conflictStrategy);
                 } else {// Not both arrays or objects, normal merge with conflict resolution
