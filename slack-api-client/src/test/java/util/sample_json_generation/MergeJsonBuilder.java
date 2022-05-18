@@ -3,12 +3,14 @@ package util.sample_json_generation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
 /**
  * https://stackoverflow.com/a/34092374/840108
  */
+@Slf4j
 public class MergeJsonBuilder {
 
     private MergeJsonBuilder() {
@@ -46,7 +48,11 @@ public class MergeJsonBuilder {
 
         List<Map.Entry<String, JsonElement>> rightObjEntries = new ArrayList<>();
         if (rightObj != null) {
-            new ArrayList<>(rightObj.entrySet()).iterator().forEachRemaining(rightObjEntries::add);
+            try {
+                rightObj.entrySet().iterator().forEachRemaining(rightObjEntries::add);
+            } catch (Exception e) {
+                log.debug("Failed to create a new right object entries - " + e.getMessage());
+            }
         }
         for (Map.Entry<String, JsonElement> rightEntry : rightObjEntries) {
             String rightKey = rightEntry.getKey();

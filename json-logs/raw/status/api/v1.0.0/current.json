@@ -794,6 +794,42 @@
     {
       "date_created": "2022-04-28T11:28:33-07:00",
       "body": "We’re looking into an issue impacting workflows and we’ll let you know as we learn more. Thank you for bearing with us in the meantime."
+    },
+    {
+      "date_created": "2022-05-17T18:04:32-07:00",
+      "body": "From 13:46 PM PDT on May 16, 2022 until 12:55 PM PDT on May 17, 2022, some customers may have experienced problems with autocompletion in searches and the \u0027Jump to\u0027 modal, as well as issues with channel and profile information.\r\n\r\nWe determined that a recent code change increased the load on the infrastructure that serves this information. We reverted the change and implemented load mitigation measures, restoring functionality for all affected customers."
+    },
+    {
+      "date_created": "2022-05-17T15:10:23-07:00",
+      "body": "We\u0027ve rolled out a fix and things should be working as expected. Please reload Slack using Command + Shift + R (Mac) or Ctrl + Shift + R (Windows/Linux). Thank you for your patience while we sorted out this issue."
+    },
+    {
+      "date_created": "2022-05-17T14:37:04-07:00",
+      "body": "Some users may be seeing signs of improvement, but we’re still working towards a full resolution. We’ll be back with another update!"
+    },
+    {
+      "date_created": "2022-05-17T14:01:58-07:00",
+      "body": "We’re starting to see improvements, but still have some work to do. We’ll return with another update shortly."
+    },
+    {
+      "date_created": "2022-05-17T13:39:34-07:00",
+      "body": "We’re seeing signs of improvement, but we’re still monitoring the situation. We’ll confirm once the issue is fully resolved or we have another update to share."
+    },
+    {
+      "date_created": "2022-05-17T13:05:22-07:00",
+      "body": "At this time, some people may also be encountering trouble setting or clearing their user status in Slack, as well as issues related to:\r\n\r\n• Autocomplete in message input\r\n• Workspace Directory\r\n• Quick Switcher\r\n• Channel membership and Channel status\r\n• Apps lists in channels\r\n• User profile details\r\n• Integrations/API messaging\r\n\r\nWe\u0027re observing signs of recovery, and are continuing to monitor the situation. We\u0027ll be back with another update in 30 minutes."
+    },
+    {
+      "date_created": "2022-05-17T12:27:31-07:00",
+      "body": "We’re continuing to look into this, and we’ll report back with an update in 30 minutes."
+    },
+    {
+      "date_created": "2022-05-17T11:57:35-07:00",
+      "body": "We’re still actively investigating this issue, but we don’t have any new information to share at this time. Thanks for your patience as we continue to work towards a fix."
+    },
+    {
+      "date_created": "2022-05-17T11:28:56-07:00",
+      "body": "Some users may be experiencing issues with using the search function in Slack. \r\n \r\nWe\u0027re currently investigating the issue and will provide a status update once we have more information."
     }
   ]
 }

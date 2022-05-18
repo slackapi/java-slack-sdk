@@ -384,14 +384,8 @@
         "source": "",
         "file_id": "",
         "file": {
-          "image_exif_rotation": 123,
-          "lines": 123,
-          "editable": false,
-          "timestamp": 123,
-          "vtt": "",
-          "thumb_pdf": "",
+          "thumb_video": "",
           "thumb_pdf_w": "",
-          "thumb_pdf_h": "",
           "thumb_tiny": "",
           "to": [
             {
@@ -402,43 +396,33 @@
           ],
           "timestamp": 123,
           "title": "",
-          "subject": "",
           "user": "",
+          "id": "",
+          "created": 123,
+          "timestamp": 123,
+          "name": "",
+          "title": "",
+          "subject": "",
+          "mimetype": "",
+          "filetype": "",
+          "pretty_type": "",
+          "user": "",
+          "mode": "",
+          "editable": false,
+          "non_owner_editable": false,
+          "editor": "",
+          "last_editor": "",
           "updated": 123,
+          "subtype": "",
           "transcription": {
             "status": "",
             "locale": ""
           },
-          "vtt": "",
-          "thumb_video_w": 123,
-          "thumb_video_h": 123,
-          "username": "",
-          "url_private": "",
-          "url_private_download": "",
-          "thumb_720_w": "",
-          "thumb_720_h": "",
-          "thumb_720_w": "",
-          "thumb_720_h": "",
-          "is_starred": false,
-          "user": "",
-          "external_id": "",
-          "id": "",
-          "created": 123,
-          "name": "",
-          "mimetype": "",
-          "filetype": "",
-          "pretty_type": "",
-          "mode": "",
-          "non_owner_editable": false,
-          "editor": "",
-          "last_editor": "",
-          "subtype": "",
           "mp4": "",
+          "vtt": "",
           "hls": "",
           "hls_embed": "",
           "duration_ms": 123,
-          "thumb_video_w": 123,
-          "thumb_video_h": 123,
           "original_attachment_count": 123,
           "is_external": false,
           "external_type": "",
@@ -451,6 +435,7 @@
           "app_id": "",
           "app_name": "",
           "thumb_64": "",
+          "thumb_64_gif": "",
           "thumb_64_w": "",
           "thumb_64_h": "",
           "thumb_80": "",
@@ -469,419 +454,35 @@
           "thumb_480_gif": "",
           "thumb_480_w": "",
           "thumb_480_h": "",
+          "thumb_480_w": "",
           "thumb_720": "",
           "thumb_720_gif": "",
           "thumb_720_w": "",
+          "thumb_720_gif": "",
           "thumb_720_h": "",
           "thumb_800": "",
           "thumb_800_gif": "",
           "thumb_800_w": "",
           "thumb_800_h": "",
+          "thumb_960": "",
           "thumb_960_gif": "",
           "thumb_960_w": "",
           "thumb_960_h": "",
           "thumb_1024": "",
           "thumb_1024_gif": "",
           "thumb_1024_w": "",
-          "thumb_1024_h": "",
-          "thumb_gif": "",
-          "converted_pdf": "",
-          "original_w": "",
-          "original_h": "",
-          "deanimate": "",
-          "deanimate_gif": "",
-          "pjpeg": "",
-          "permalink": "",
-          "permalink_public": "",
-          "edit_link": "",
-          "has_rich_preview": false,
-          "media_display_type": "",
-          "preview_is_truncated": false,
-          "preview": "",
-          "preview_highlight": "",
-          "plain_text": "",
-          "preview_plain_text": "",
-          "has_more": false,
-          "sent_to_self": false,
-          "lines_more": 123,
-          "is_public": false,
-          "public_url_shared": false,
-          "display_as_bot": false,
-          "channels": [
-            ""
-          ],
-          "groups": [
-            ""
-          ],
-          "ims": [
-            ""
-          ],
-          "shares": {
-            "public": {
-              "C03E94MKU": [
-                {
-                  "share_user_id": "",
-                  "reply_users": [
-                    ""
-                  ],
-                  "reply_users_count": 123,
-                  "reply_count": 123,
-                  "ts": "",
-                  "thread_ts": "",
-                  "latest_reply": "",
-                  "channel_name": "",
-                  "team_id": ""
-                }
-              ],
-              "C03E94MKU_": [
-                {
-                  "share_user_id": "",
-                  "reply_users": [
-                    ""
-                  ],
-                  "reply_users_count": 123,
-                  "reply_count": 123,
-                  "ts": "",
-                  "thread_ts": "",
-                  "latest_reply": "",
-                  "channel_name": "",
-                  "team_id": ""
-                }
-              ]
-            },
-            "private": {
-              "C03E94MKU": [
-                {
-                  "share_user_id": "",
-                  "reply_users": [
-                    ""
-                  ],
-                  "reply_users_count": 123,
-                  "reply_count": 123,
-                  "ts": "",
-                  "thread_ts": "",
-                  "latest_reply": "",
-                  "channel_name": "",
-                  "team_id": ""
-                }
-              ],
-              "C03E94MKU_": [
-                {
-                  "share_user_id": "",
-                  "reply_users": [
-                    ""
-                  ],
-                  "reply_users_count": 123,
-                  "reply_count": 123,
-                  "ts": "",
-                  "thread_ts": "",
-                  "latest_reply": "",
-                  "channel_name": "",
-                  "team_id": ""
-                }
-              ]
-            }
-          },
-          "from": [
-            {
-              "address": "",
-              "name": "",
-              "original": ""
-            }
-          ],
-          "cc": [
-            {
-              "address": "",
-              "name": "",
-              "original": ""
-            }
-          ],
-          "channel_actions_ts": "",
-          "channel_actions_count": 123,
-          "headers": {
-            "date": "",
-            "in_reply_to": "",
-            "reply_to": "",
-            "message_id": ""
-          },
-          "simplified_html": "",
-          "bot_id": "",
-          "initial_comment": {
-            "id": "",
-            "created": 123,
-            "timestamp": 123,
-            "user": "",
-            "comment": "",
-            "channel": "",
-            "is_intro": false
-          },
-          "num_stars": 123,
-          "is_starred": false,
-          "pinned_to": [
-            ""
-          ],
-          "reactions": [
-            {
-              "name": "",
-              "count": 123,
-              "users": [
-                ""
-              ],
-              "url": ""
-            }
-          ],
-          "comments_count": 123,
-          "timestamp": 123,
-          "transcription": {
-            "status": "",
-            "locale": ""
-          },
-          "vtt": "",
-          "thumb_video_w": 123,
-          "thumb_video_h": 123,
-          "username": "",
-          "user": "",
-          "url_private": "",
-          "thumb_800_gif": "",
-          "thumb_800_w": "",
-          "thumb_800_h": "",
-          "thumb_960": "",
-          "thumb_64_gif": "",
-          "thumb_960": "",
           "thumb_1024_h": "",
           "thumb_video": "",
-          "has_more": false,
-          "sent_to_self": false,
-          "lines_more": 123,
-          "is_public": false,
-          "public_url_shared": false,
-          "display_as_bot": false,
-          "channels": [
-            ""
-          ],
-          "groups": [
-            ""
-          ],
-          "ims": [
-            ""
-          ],
-          "shares": {
-            "public": {
-              "C03E94MKU": [
-                {
-                  "share_user_id": "",
-                  "reply_users": [
-                    ""
-                  ],
-                  "reply_users_count": 123,
-                  "reply_count": 123,
-                  "ts": "",
-                  "thread_ts": "",
-                  "latest_reply": "",
-                  "channel_name": "",
-                  "team_id": ""
-                }
-              ],
-              "C03E94MKU_": [
-                {
-                  "share_user_id": "",
-                  "reply_users": [
-                    ""
-                  ],
-                  "reply_users_count": 123,
-                  "reply_count": 123,
-                  "ts": "",
-                  "thread_ts": "",
-                  "latest_reply": "",
-                  "channel_name": "",
-                  "team_id": ""
-                }
-              ]
-            },
-            "private": {
-              "C03E94MKU": [
-                {
-                  "share_user_id": "",
-                  "reply_users": [
-                    ""
-                  ],
-                  "reply_users_count": 123,
-                  "reply_count": 123,
-                  "ts": "",
-                  "thread_ts": "",
-                  "latest_reply": "",
-                  "channel_name": "",
-                  "team_id": ""
-                }
-              ],
-              "C03E94MKU_": [
-                {
-                  "share_user_id": "",
-                  "reply_users": [
-                    ""
-                  ],
-                  "reply_users_count": 123,
-                  "reply_count": 123,
-                  "ts": "",
-                  "thread_ts": "",
-                  "latest_reply": "",
-                  "channel_name": "",
-                  "team_id": ""
-                }
-              ]
-            }
-          },
-          "from": [
-            {
-              "address": "",
-              "name": "",
-              "original": ""
-            }
-          ],
-          "cc": [
-            {
-              "address": "",
-              "name": "",
-              "original": ""
-            }
-          ],
-          "channel_actions_ts": "",
-          "channel_actions_count": 123,
-          "headers": {
-            "date": "",
-            "in_reply_to": "",
-            "reply_to": "",
-            "message_id": ""
-          },
-          "simplified_html": "",
-          "bot_id": "",
-          "initial_comment": {
-            "id": "",
-            "created": 123,
-            "timestamp": 123,
-            "user": "",
-            "comment": "",
-            "channel": "",
-            "is_intro": false
-          },
-          "num_stars": 123,
-          "pinned_to": [
-            ""
-          ],
-          "reactions": [
-            {
-              "name": "",
-              "count": 123,
-              "users": [
-                ""
-              ],
-              "url": ""
-            }
-          ],
-          "comments_count": 123,
           "thumb_pdf": "",
-          "thumb_pdf_w": "",
-          "thumb_pdf_h": "",
-          "thumb_tiny": "",
-          "image_exif_rotation": 123,
-          "has_rich_preview": false,
-          "media_display_type": "",
-          "preview_is_truncated": false,
-          "image_exif_rotation": 123,
-          "lines": 123,
-          "editable": false,
-          "timestamp": 123,
-          "vtt": "",
-          "thumb_pdf": "",
-          "thumb_pdf_w": "",
-          "thumb_pdf_h": "",
-          "thumb_tiny": "",
-          "to": [
-            {
-              "address": "",
-              "name": "",
-              "original": ""
-            }
-          ],
-          "title": "",
-          "subject": "",
-          "user": "",
-          "updated": 123,
-          "transcription": {
-            "status": "",
-            "locale": ""
-          },
-          "thumb_video_w": 123,
-          "thumb_video_h": 123,
-          "username": "",
-          "url_private": "",
-          "url_private_download": "",
-          "thumb_720_w": "",
-          "thumb_720_h": "",
-          "is_starred": false,
-          "external_id": "",
-          "id": "",
-          "created": 123,
-          "name": "",
-          "mimetype": "",
-          "filetype": "",
-          "pretty_type": "",
-          "mode": "",
-          "non_owner_editable": false,
-          "editor": "",
-          "last_editor": "",
-          "subtype": "",
-          "mp4": "",
-          "hls": "",
-          "hls_embed": "",
-          "duration_ms": 123,
-          "original_attachment_count": 123,
-          "is_external": false,
-          "external_type": "",
-          "external_url": "",
-          "size": 123,
-          "app_id": "",
-          "app_name": "",
-          "thumb_64": "",
-          "thumb_64_w": "",
-          "thumb_64_h": "",
-          "thumb_80": "",
-          "thumb_80_gif": "",
-          "thumb_80_w": "",
-          "thumb_80_h": "",
-          "thumb_160": "",
-          "thumb_160_gif": "",
-          "thumb_160_w": "",
-          "thumb_160_h": "",
-          "thumb_360": "",
-          "thumb_360_gif": "",
-          "thumb_360_w": "",
-          "thumb_360_h": "",
-          "thumb_480": "",
-          "thumb_480_gif": "",
-          "thumb_480_w": "",
-          "thumb_480_h": "",
-          "thumb_720": "",
-          "thumb_720_gif": "",
-          "thumb_800": "",
-          "thumb_800_gif": "",
-          "thumb_800_w": "",
-          "thumb_800_h": "",
-          "thumb_960_gif": "",
-          "thumb_960_w": "",
-          "thumb_960_h": "",
-          "thumb_1024": "",
-          "thumb_1024_gif": "",
-          "thumb_1024_w": "",
-          "thumb_1024_h": "",
-          "thumb_gif": "",
           "converted_pdf": "",
+          "image_exif_rotation": 123,
           "original_w": "",
           "original_h": "",
           "deanimate": "",
           "deanimate_gif": "",
           "pjpeg": "",
           "permalink": "",
+          "original_h": "",
           "permalink_public": "",
           "edit_link": "",
           "has_rich_preview": false,
@@ -893,9 +494,11 @@
           "preview_plain_text": "",
           "has_more": false,
           "sent_to_self": false,
+          "lines": 123,
           "lines_more": 123,
           "is_public": false,
           "public_url_shared": false,
+          "sent_to_self": false,
           "display_as_bot": false,
           "channels": [
             ""
@@ -972,12 +575,22 @@
               ]
             }
           },
+          "to": [
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
+          ],
           "from": [
             {
               "address": "",
               "name": "",
               "original": ""
             }
+          ],
+          "groups": [
+            ""
           ],
           "cc": [
             {
@@ -1006,6 +619,7 @@
             "is_intro": false
           },
           "num_stars": 123,
+          "is_starred": false,
           "pinned_to": [
             ""
           ],
@@ -1020,9 +634,29 @@
             }
           ],
           "comments_count": 123,
-          "thumb_960": "",
-          "thumb_64_gif": "",
-          "thumb_video": ""
+          "timestamp": 123,
+          "sent_to_self": false,
+          "thumb_800_gif": "",
+          "thumb_800_w": "",
+          "thumb_1024_w": "",
+          "to": [
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
+          ],
+          "transcription": {
+            "status": "",
+            "locale": ""
+          },
+          "thumb_80_h": "",
+          "thumb_80_w": "",
+          "thumb_80_h": "",
+          "id": "",
+          "created": 123,
+          "timestamp": 123,
+          "name": ""
         },
         "fallback": "",
         "image_url": "",

@@ -385,14 +385,8 @@
           "source": "",
           "file_id": "",
           "file": {
-            "image_exif_rotation": 123,
-            "lines": 123,
-            "editable": false,
-            "timestamp": 123,
-            "vtt": "",
-            "thumb_pdf": "",
+            "thumb_video": "",
             "thumb_pdf_w": "",
-            "thumb_pdf_h": "",
             "thumb_tiny": "",
             "to": [
               {
@@ -403,19 +397,7 @@
             ],
             "timestamp": 123,
             "title": "",
-            "subject": "",
             "user": "",
-            "updated": 123,
-            "transcription": {
-              "status": "",
-              "locale": ""
-            },
-            "vtt": "",
-            "thumb_video_w": 123,
-            "thumb_video_h": 123,
-            "username": "",
-            "url_private": "",
-            "url_private_download": "",
             "id": "",
             "created": 123,
             "timestamp": 123,
@@ -442,8 +424,6 @@
             "hls": "",
             "hls_embed": "",
             "duration_ms": 123,
-            "thumb_video_w": 123,
-            "thumb_video_h": 123,
             "original_attachment_count": 123,
             "is_external": false,
             "external_type": "",
@@ -475,9 +455,11 @@
             "thumb_480_gif": "",
             "thumb_480_w": "",
             "thumb_480_h": "",
+            "thumb_480_w": "",
             "thumb_720": "",
             "thumb_720_gif": "",
             "thumb_720_w": "",
+            "thumb_720_gif": "",
             "thumb_720_h": "",
             "thumb_800": "",
             "thumb_800_gif": "",
@@ -491,11 +473,8 @@
             "thumb_1024_gif": "",
             "thumb_1024_w": "",
             "thumb_1024_h": "",
-            "thumb_gif": "",
+            "thumb_video": "",
             "thumb_pdf": "",
-            "thumb_pdf_w": "",
-            "thumb_pdf_h": "",
-            "thumb_tiny": "",
             "converted_pdf": "",
             "image_exif_rotation": 123,
             "original_w": "",
@@ -504,6 +483,7 @@
             "deanimate_gif": "",
             "pjpeg": "",
             "permalink": "",
+            "original_h": "",
             "permalink_public": "",
             "edit_link": "",
             "has_rich_preview": false,
@@ -519,6 +499,7 @@
             "lines_more": 123,
             "is_public": false,
             "public_url_shared": false,
+            "sent_to_self": false,
             "display_as_bot": false,
             "channels": [
               ""
@@ -609,6 +590,9 @@
                 "original": ""
               }
             ],
+            "groups": [
+              ""
+            ],
             "cc": [
               {
                 "address": "",
@@ -650,7 +634,30 @@
                 "url": ""
               }
             ],
-            "comments_count": 123
+            "comments_count": 123,
+            "timestamp": 123,
+            "sent_to_self": false,
+            "thumb_800_gif": "",
+            "thumb_800_w": "",
+            "thumb_1024_w": "",
+            "to": [
+              {
+                "address": "",
+                "name": "",
+                "original": ""
+              }
+            ],
+            "transcription": {
+              "status": "",
+              "locale": ""
+            },
+            "thumb_80_h": "",
+            "thumb_80_w": "",
+            "thumb_80_h": "",
+            "id": "",
+            "created": 123,
+            "timestamp": 123,
+            "name": ""
           },
           "fallback": "",
           "image_url": "",
