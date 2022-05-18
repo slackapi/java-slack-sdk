@@ -34,7 +34,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.fail;
 
@@ -197,7 +196,7 @@ public class ProxyTest {
         try {
             assertThat(callCount.get(), is(2));
         } finally {
-            socketModeClient.disconnect();
+            socketModeClient.close();
         }
     }
 
@@ -212,7 +211,7 @@ public class ProxyTest {
         try {
             assertThat(callCount.get(), is(2));
         } finally {
-            socketModeClient.disconnect();
+            socketModeClient.close();
         }
     }
 }

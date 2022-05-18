@@ -242,7 +242,7 @@ public class AuthProxyUserPasswordTest {
         try {
             assertThat(callCount.get(), is(2));
         } finally {
-            socketModeClient.disconnect();
+            socketModeClient.close();
         }
     }
 
@@ -256,7 +256,7 @@ public class AuthProxyUserPasswordTest {
         try {
             assertThat(callCount.get(), is(2));
         } finally {
-            socketModeClient.disconnect();
+            socketModeClient.close();
         }
     }
 }

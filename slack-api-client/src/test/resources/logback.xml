@@ -7,6 +7,9 @@
     </appender>
 
     <logger name="org.eclipse.jetty" level="warn"/>
+    <logger name="com.slack.api.rate_limits.metrics" level="info"/>
+    <logger name="config.SlackTestConfig" level="info"/>
+    <logger name="util.sample_json_generation.JsonDataRecordingListener" level="info"/>
     <root level="debug">
         <appender-ref ref="default"/>
     </root>

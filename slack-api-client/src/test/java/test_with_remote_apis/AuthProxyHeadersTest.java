@@ -246,7 +246,7 @@ public class AuthProxyHeadersTest {
         try {
             assertThat(callCount.get(), is(2));
         } finally {
-            socketModeClient.disconnect();
+            socketModeClient.close();
         }
     }
 
@@ -260,7 +260,7 @@ public class AuthProxyHeadersTest {
         try {
             assertThat(callCount.get(), is(2));
         } finally {
-            socketModeClient.disconnect();
+            socketModeClient.close();
         }
     }
 }

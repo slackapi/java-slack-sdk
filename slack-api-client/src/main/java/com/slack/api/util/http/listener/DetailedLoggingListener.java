@@ -47,12 +47,23 @@ public class DetailedLoggingListener extends HttpResponseListener {
 
             String textRequestBody = null;
             try {
-                textRequestBody = requestBody.buffer().readUtf8();
-                if (!state.getConfig().isLibraryMaintainerMode()) {
-                    if (textRequestBody.contains("refresh_token=")) {
-                        textRequestBody = textRequestBody.replaceFirst(
-                                "refresh_token=[^\\&]+", "refresh_token=(redacted)");
+                String contentType = "";
+                if (requestBodyObj.contentType() != null
+                    && requestBodyObj.contentType().type() != null
+                ) {
+                    contentType = requestBodyObj.contentType().type().toLowerCase(Locale.ENGLISH);
+                }
+                if (contentType.equals("application/json") ||
+                        contentType.equals("text/html")) {
+                    textRequestBody = requestBody.buffer().readUtf8();
+                    if (!state.getConfig().isLibraryMaintainerMode()) {
+                        if (textRequestBody.contains("refresh_token=")) {
+                            textRequestBody = textRequestBody.replaceFirst(
+                                    "refresh_token=[^\\&]+", "refresh_token=(redacted)");
+                        }
                     }
+                } else {
+                    textRequestBody = "(binary)";
                 }
             } catch (Exception e) {
                 log.debug("Failed to read request body because {}, error: {}", e.getMessage(), e.getClass().getCanonicalName());
