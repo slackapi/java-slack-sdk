@@ -58,7 +58,7 @@ If you run the Bolt app on the Jetty HTTP server without any frameworks, you can
 
 ### Gradle
 
-After you create your Gradle project, add the **bolt** dependencies to `build.gradle`.
+After you [create your Gradle project](https://docs.gradle.org/current/samples/sample_building_java_applications.html), add the **bolt** dependencies to `build.gradle`.
 
 ```groovy
 dependencies {
@@ -186,7 +186,7 @@ Your app is up now! However, the slash command `/hello` in the code is still una
 
 * Set up some way to allow Slack API server to access your Bolt app
   * A well-known way is to use [ngrok](https://ngrok.com/) - install it and run `ngrok http 3000` on another terminal
-* Configure & Reinstall the Slack App 
+* Configure & Reinstall the Slack App
   * Visit [Slack App configuration pages](https://api.slack.com/apps)
   * Choose your app, go to **Features** > **Slash Commands** on the left pane
   * Click **Create New Command** button

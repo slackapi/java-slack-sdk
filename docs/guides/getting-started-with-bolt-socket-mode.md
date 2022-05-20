@@ -67,7 +67,7 @@ If you use Java-WebSocket library, add the artifact instead of **tyrus-standalon
 
 ### Gradle
 
-After you create your Gradle project, add the **bolt** dependencies to `build.gradle`.
+After you [create your Gradle project](https://docs.gradle.org/current/samples/sample_building_java_applications.html), add the **bolt** dependencies to `build.gradle`.
 
 ```groovy
 dependencies {
@@ -194,7 +194,7 @@ If you get stuck this setup, go through the following checklist:
 Your app is up now! However, the slash command `/hello` in the code is still unavailable. To enable it, follow the steps below:
 
 * Visit [Slack App configuration pages](https://api.slack.com/apps)
-* Choose your app 
+* Choose your app
 * Go to **Settings** > **Socket Mode** on the left pane
   * Turn on **Enable Socket Mode**
 * Go to **Features** > **Slash Commands** on the left pane
