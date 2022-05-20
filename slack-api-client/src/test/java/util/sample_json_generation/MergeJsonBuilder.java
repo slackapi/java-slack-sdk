@@ -84,7 +84,9 @@ public class MergeJsonBuilder {
                     handleMergeConflict(rightKey, leftObj, leftVal, rightVal, conflictStrategy);
                 }
             } else {// No conflict, add to the object
-                leftObj.add(rightKey, rightVal);
+                if (leftObj != null && rightKey != null && rightVal != null) {
+                    leftObj.add(rightKey, rightVal);
+                }
             }
         }
     }

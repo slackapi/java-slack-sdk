@@ -359,7 +359,16 @@
                   "source": "",
                   "file_id": "",
                   "file": {
-                    "title": ""
+                    "subject": "",
+                    "app_id": "",
+                    "filetype": "",
+                    "non_owner_editable": false,
+                    "thumb_64_w": "",
+                    "thumb_1024_w": "",
+                    "thumb_pdf_w": "",
+                    "thumb_pdf_h": "",
+                    "thumb_tiny": "",
+                    "converted_pdf": ""
                   },
                   "text": {
                     "type": "",
@@ -1168,7 +1177,16 @@
               "source": "",
               "file_id": "",
               "file": {
-                "title": ""
+                "subject": "",
+                "app_id": "",
+                "filetype": "",
+                "non_owner_editable": false,
+                "thumb_64_w": "",
+                "thumb_1024_w": "",
+                "thumb_pdf_w": "",
+                "thumb_pdf_h": "",
+                "thumb_tiny": "",
+                "converted_pdf": ""
               },
               "text": {
                 "type": "",
@@ -1809,7 +1827,16 @@
                   "source": "",
                   "file_id": "",
                   "file": {
-                    "title": ""
+                    "subject": "",
+                    "app_id": "",
+                    "filetype": "",
+                    "non_owner_editable": false,
+                    "thumb_64_w": "",
+                    "thumb_1024_w": "",
+                    "thumb_pdf_w": "",
+                    "thumb_pdf_h": "",
+                    "thumb_tiny": "",
+                    "converted_pdf": ""
                   },
                   "text": {
                     "type": "",
@@ -2618,7 +2645,16 @@
               "source": "",
               "file_id": "",
               "file": {
-                "title": ""
+                "subject": "",
+                "app_id": "",
+                "filetype": "",
+                "non_owner_editable": false,
+                "thumb_64_w": "",
+                "thumb_1024_w": "",
+                "thumb_pdf_w": "",
+                "thumb_pdf_h": "",
+                "thumb_tiny": "",
+                "converted_pdf": ""
               },
               "text": {
                 "type": "",
@@ -3922,7 +3958,16 @@
             "source": "",
             "file_id": "",
             "file": {
-              "title": ""
+              "subject": "",
+              "app_id": "",
+              "filetype": "",
+              "non_owner_editable": false,
+              "thumb_64_w": "",
+              "thumb_1024_w": "",
+              "thumb_pdf_w": "",
+              "thumb_pdf_h": "",
+              "thumb_tiny": "",
+              "converted_pdf": ""
             },
             "text": {
               "type": "",
@@ -4554,7 +4599,16 @@
                 "source": "",
                 "file_id": "",
                 "file": {
-                  "title": ""
+                  "subject": "",
+                  "app_id": "",
+                  "filetype": "",
+                  "non_owner_editable": false,
+                  "thumb_64_w": "",
+                  "thumb_1024_w": "",
+                  "thumb_pdf_w": "",
+                  "thumb_pdf_h": "",
+                  "thumb_tiny": "",
+                  "converted_pdf": ""
                 },
                 "text": {
                   "type": "",

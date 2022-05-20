@@ -145,6 +145,9 @@ public class Actions {
         public static final String intune_disabled = "intune_disabled";
         public static final String workspace_copy_approval_source = "workspace_copy_approval_source";
         public static final String workspace_copy_approval_target = "workspace_copy_approval_target";
+        public static final String workspace_copy_scheduled = "workspace_copy_scheduled";
+        public static final String workspace_copy_started = "workspace_copy_started";
+        public static final String workspace_copy_completed = "workspace_copy_completed";
     }
 
     public static class User {
