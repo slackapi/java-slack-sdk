@@ -136,7 +136,8 @@
       "pref.uneditable_user_profile_fields",
       "workspace_copy_scheduled",
       "workspace_copy_started",
-      "workspace_copy_completed"
+      "workspace_copy_completed",
+      "workspace_copy_approved"
     ],
     "user": [
       "custom_tos_accepted",

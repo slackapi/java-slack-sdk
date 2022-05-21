@@ -148,6 +148,7 @@ public class Actions {
         public static final String workspace_copy_scheduled = "workspace_copy_scheduled";
         public static final String workspace_copy_started = "workspace_copy_started";
         public static final String workspace_copy_completed = "workspace_copy_completed";
+        public static final String workspace_copy_approved = "workspace_copy_approved";
     }
 
     public static class User {

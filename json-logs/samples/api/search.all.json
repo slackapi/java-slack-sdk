@@ -299,6 +299,15 @@
                       "initial_users": [
                         ""
                       ]
+                    },
+                    {
+                      "type": "",
+                      "image_url": "",
+                      "alt_text": "",
+                      "fallback": "",
+                      "image_width": 12345,
+                      "image_height": 12345,
+                      "image_bytes": 12345
                     }
                   ],
                   "block_id": "",
@@ -359,16 +368,13 @@
                   "source": "",
                   "file_id": "",
                   "file": {
-                    "subject": "",
-                    "app_id": "",
-                    "filetype": "",
-                    "non_owner_editable": false,
-                    "thumb_64_w": "",
-                    "thumb_1024_w": "",
+                    "pinned_to": [
+                      ""
+                    ],
+                    "thumb_960_w": "",
                     "thumb_pdf_w": "",
-                    "thumb_pdf_h": "",
-                    "thumb_tiny": "",
-                    "converted_pdf": ""
+                    "app_id": "",
+                    "app_name": ""
                   },
                   "text": {
                     "type": "",
@@ -1117,6 +1123,15 @@
                   "initial_users": [
                     ""
                   ]
+                },
+                {
+                  "type": "",
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345
                 }
               ],
               "block_id": "",
@@ -1177,16 +1192,13 @@
               "source": "",
               "file_id": "",
               "file": {
-                "subject": "",
-                "app_id": "",
-                "filetype": "",
-                "non_owner_editable": false,
-                "thumb_64_w": "",
-                "thumb_1024_w": "",
+                "pinned_to": [
+                  ""
+                ],
+                "thumb_960_w": "",
                 "thumb_pdf_w": "",
-                "thumb_pdf_h": "",
-                "thumb_tiny": "",
-                "converted_pdf": ""
+                "app_id": "",
+                "app_name": ""
               },
               "text": {
                 "type": "",
@@ -1767,6 +1779,15 @@
                       "initial_users": [
                         ""
                       ]
+                    },
+                    {
+                      "type": "",
+                      "image_url": "",
+                      "alt_text": "",
+                      "fallback": "",
+                      "image_width": 12345,
+                      "image_height": 12345,
+                      "image_bytes": 12345
                     }
                   ],
                   "block_id": "",
@@ -1827,16 +1848,13 @@
                   "source": "",
                   "file_id": "",
                   "file": {
-                    "subject": "",
-                    "app_id": "",
-                    "filetype": "",
-                    "non_owner_editable": false,
-                    "thumb_64_w": "",
-                    "thumb_1024_w": "",
+                    "pinned_to": [
+                      ""
+                    ],
+                    "thumb_960_w": "",
                     "thumb_pdf_w": "",
-                    "thumb_pdf_h": "",
-                    "thumb_tiny": "",
-                    "converted_pdf": ""
+                    "app_id": "",
+                    "app_name": ""
                   },
                   "text": {
                     "type": "",
@@ -2585,6 +2603,15 @@
                   "initial_users": [
                     ""
                   ]
+                },
+                {
+                  "type": "",
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345
                 }
               ],
               "block_id": "",
@@ -2645,16 +2672,13 @@
               "source": "",
               "file_id": "",
               "file": {
-                "subject": "",
-                "app_id": "",
-                "filetype": "",
-                "non_owner_editable": false,
-                "thumb_64_w": "",
-                "thumb_1024_w": "",
+                "pinned_to": [
+                  ""
+                ],
+                "thumb_960_w": "",
                 "thumb_pdf_w": "",
-                "thumb_pdf_h": "",
-                "thumb_tiny": "",
-                "converted_pdf": ""
+                "app_id": "",
+                "app_name": ""
               },
               "text": {
                 "type": "",
@@ -3130,6 +3154,15 @@
                 "initial_users": [
                   ""
                 ]
+              },
+              {
+                "type": "",
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345
               }
             ],
             "block_id": "",
@@ -3898,6 +3931,15 @@
                 "initial_users": [
                   ""
                 ]
+              },
+              {
+                "type": "",
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345
               }
             ],
             "block_id": "",
@@ -3958,16 +4000,13 @@
             "source": "",
             "file_id": "",
             "file": {
-              "subject": "",
-              "app_id": "",
-              "filetype": "",
-              "non_owner_editable": false,
-              "thumb_64_w": "",
-              "thumb_1024_w": "",
+              "pinned_to": [
+                ""
+              ],
+              "thumb_960_w": "",
               "thumb_pdf_w": "",
-              "thumb_pdf_h": "",
-              "thumb_tiny": "",
-              "converted_pdf": ""
+              "app_id": "",
+              "app_name": ""
             },
             "text": {
               "type": "",
@@ -4539,6 +4578,15 @@
                     "initial_users": [
                       ""
                     ]
+                  },
+                  {
+                    "type": "",
+                    "image_url": "",
+                    "alt_text": "",
+                    "fallback": "",
+                    "image_width": 12345,
+                    "image_height": 12345,
+                    "image_bytes": 12345
                   }
                 ],
                 "block_id": "",
@@ -4599,16 +4647,13 @@
                 "source": "",
                 "file_id": "",
                 "file": {
-                  "subject": "",
-                  "app_id": "",
-                  "filetype": "",
-                  "non_owner_editable": false,
-                  "thumb_64_w": "",
-                  "thumb_1024_w": "",
+                  "pinned_to": [
+                    ""
+                  ],
+                  "thumb_960_w": "",
                   "thumb_pdf_w": "",
-                  "thumb_pdf_h": "",
-                  "thumb_tiny": "",
-                  "converted_pdf": ""
+                  "app_id": "",
+                  "app_name": ""
                 },
                 "text": {
                   "type": "",

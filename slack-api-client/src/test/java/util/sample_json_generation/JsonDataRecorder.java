@@ -446,20 +446,22 @@ public class JsonDataRecorder {
                 if (path.startsWith("/audit/v1/schemas") || path.startsWith("/audit/v1/actions")) {
                     return;
                 }
+                JsonObject file = element.getAsJsonObject();
                 try {
-                    JsonObject file = element.getAsJsonObject();
                     // To avoid concurrent modification of the underlying objects
                     List<String> oldKeys = new ArrayList<>();
                     file.keySet().iterator().forEachRemaining(oldKeys::add);
                     for (String key : oldKeys) {
                         file.remove(key);
                     }
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+                try {
                     com.slack.api.model.File fileObject = SampleObjects.initFileObject();
                     fileObject.setBlocks(null);
                     fileObject.setAttachments(null);
-                    JsonObject fullFile = GsonFactory.createSnakeCase()
-                            .toJsonTree(fileObject)
-                            .getAsJsonObject();
+                    JsonObject fullFile = GsonFactory.createSnakeCase().toJsonTree(fileObject).getAsJsonObject();
                     for (String newKey : fullFile.keySet()) {
                         file.add(newKey, fullFile.get(newKey));
                     }
