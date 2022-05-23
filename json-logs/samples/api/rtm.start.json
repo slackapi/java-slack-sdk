@@ -470,7 +470,10 @@
       "who_can_see_account_by_searching_email": "",
       "contextual_help_reset_count": 12345,
       "mobile_channel_list_show_all_dms": false,
-      "enable_quip_file_browser_view": false
+      "enable_quip_file_browser_view": false,
+      "a11y_play_sound_for_incoming_dm_choice": "",
+      "a11y_play_sound_for_sent_dm_choice": "",
+      "onboarding_tip_opt_out": false
     },
     "created": 12345,
     "first_login": 12345,
@@ -1233,6 +1236,11 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "thumb_gif": "",
+                  "permalink": "",
+                  "id": "",
+                  "created": 123,
+                  "timestamp": 123,
                   "name": "",
                   "title": "",
                   "subject": "",
@@ -1255,7 +1263,7 @@
                   "vtt": "",
                   "hls": "",
                   "hls_embed": "",
-                  "filetype": "",
+                  "duration_ms": 123,
                   "thumb_video_w": 123,
                   "thumb_video_h": 123,
                   "original_attachment_count": 123,
@@ -1295,10 +1303,13 @@
                   "thumb_720_h": "",
                   "thumb_800": "",
                   "thumb_800_gif": "",
+                  "thumb_800_gif": "",
                   "thumb_800_w": "",
+                  "thumb_800_h": "",
                   "thumb_800_h": "",
                   "thumb_960": "",
                   "thumb_960_gif": "",
+                  "thumb_960_w": "",
                   "thumb_960_w": "",
                   "thumb_960_h": "",
                   "thumb_1024": "",
@@ -1308,183 +1319,8 @@
                   "thumb_video": "",
                   "thumb_gif": "",
                   "thumb_pdf": "",
-                  "thumb_pdf_w": "",
-                  "thumb_pdf_h": "",
-                  "thumb_tiny": "",
-                  "converted_pdf": "",
-                  "image_exif_rotation": 123,
-                  "original_w": "",
-                  "original_h": "",
-                  "deanimate": "",
-                  "deanimate_gif": "",
-                  "pjpeg": "",
-                  "permalink": "",
-                  "permalink_public": "",
-                  "edit_link": "",
-                  "has_rich_preview": false,
-                  "media_display_type": "",
-                  "preview_is_truncated": false,
-                  "preview": "",
-                  "preview_highlight": "",
-                  "plain_text": "",
-                  "preview_plain_text": "",
-                  "has_more": false,
-                  "sent_to_self": false,
-                  "lines": 123,
-                  "lines_more": 123,
-                  "is_public": false,
-                  "public_url_shared": false,
-                  "display_as_bot": false,
-                  "channels": [
-                    ""
-                  ],
-                  "groups": [
-                    ""
-                  ],
-                  "has_more": false,
-                  "ims": [
-                    ""
-                  ],
-                  "shares": {
-                    "public": {
-                      "C03E94MKU": [
-                        {
-                          "share_user_id": "",
-                          "reply_users": [
-                            ""
-                          ],
-                          "reply_users_count": 123,
-                          "reply_count": 123,
-                          "ts": "",
-                          "thread_ts": "",
-                          "latest_reply": "",
-                          "channel_name": "",
-                          "team_id": ""
-                        }
-                      ],
-                      "C03E94MKU_": [
-                        {
-                          "share_user_id": "",
-                          "reply_users": [
-                            ""
-                          ],
-                          "reply_users_count": 123,
-                          "reply_count": 123,
-                          "ts": "",
-                          "thread_ts": "",
-                          "latest_reply": "",
-                          "channel_name": "",
-                          "team_id": ""
-                        }
-                      ]
-                    },
-                    "private": {
-                      "C03E94MKU": [
-                        {
-                          "share_user_id": "",
-                          "reply_users": [
-                            ""
-                          ],
-                          "reply_users_count": 123,
-                          "reply_count": 123,
-                          "ts": "",
-                          "thread_ts": "",
-                          "latest_reply": "",
-                          "channel_name": "",
-                          "team_id": ""
-                        }
-                      ],
-                      "C03E94MKU_": [
-                        {
-                          "share_user_id": "",
-                          "reply_users": [
-                            ""
-                          ],
-                          "reply_users_count": 123,
-                          "reply_count": 123,
-                          "ts": "",
-                          "thread_ts": "",
-                          "latest_reply": "",
-                          "channel_name": "",
-                          "team_id": ""
-                        }
-                      ]
-                    }
-                  },
-                  "to": [
-                    {
-                      "address": "",
-                      "name": "",
-                      "original": ""
-                    }
-                  ],
-                  "from": [
-                    {
-                      "address": "",
-                      "name": "",
-                      "original": ""
-                    }
-                  ],
-                  "cc": [
-                    {
-                      "address": "",
-                      "name": "",
-                      "original": ""
-                    }
-                  ],
-                  "channel_actions_ts": "",
-                  "channel_actions_count": 123,
-                  "headers": {
-                    "date": "",
-                    "in_reply_to": "",
-                    "reply_to": "",
-                    "message_id": ""
-                  },
-                  "simplified_html": "",
-                  "bot_id": "",
-                  "initial_comment": {
-                    "id": "",
-                    "created": 123,
-                    "timestamp": 123,
-                    "user": "",
-                    "comment": "",
-                    "channel": "",
-                    "is_intro": false
-                  },
-                  "num_stars": 123,
-                  "is_starred": false,
-                  "pinned_to": [
-                    ""
-                  ],
-                  "reactions": [
-                    {
-                      "name": "",
-                      "count": 123,
-                      "users": [
-                        ""
-                      ],
-                      "url": ""
-                    }
-                  ],
-                  "comments_count": 123,
-                  "subject": "",
-                  "initial_comment": {
-                    "id": "",
-                    "created": 123,
-                    "timestamp": 123,
-                    "user": "",
-                    "comment": "",
-                    "channel": "",
-                    "is_intro": false
-                  },
-                  "thumb_80_h": "",
-                  "mimetype": "",
-                  "mode": "",
-                  "size": 123,
-                  "url_private": "",
-                  "id": "",
-                  "created": 123,
-                  "thumb_720_gif": ""
+                  "thumb_pdf": "",
+                  "thumb_pdf_w": ""
                 },
                 "text": {
                   "type": "",
@@ -2293,6 +2129,11 @@
             "source": "",
             "file_id": "",
             "file": {
+              "thumb_gif": "",
+              "permalink": "",
+              "id": "",
+              "created": 123,
+              "timestamp": 123,
               "name": "",
               "title": "",
               "subject": "",
@@ -2315,7 +2156,7 @@
               "vtt": "",
               "hls": "",
               "hls_embed": "",
-              "filetype": "",
+              "duration_ms": 123,
               "thumb_video_w": 123,
               "thumb_video_h": 123,
               "original_attachment_count": 123,
@@ -2355,10 +2196,13 @@
               "thumb_720_h": "",
               "thumb_800": "",
               "thumb_800_gif": "",
+              "thumb_800_gif": "",
               "thumb_800_w": "",
+              "thumb_800_h": "",
               "thumb_800_h": "",
               "thumb_960": "",
               "thumb_960_gif": "",
+              "thumb_960_w": "",
               "thumb_960_w": "",
               "thumb_960_h": "",
               "thumb_1024": "",
@@ -2368,183 +2212,8 @@
               "thumb_video": "",
               "thumb_gif": "",
               "thumb_pdf": "",
-              "thumb_pdf_w": "",
-              "thumb_pdf_h": "",
-              "thumb_tiny": "",
-              "converted_pdf": "",
-              "image_exif_rotation": 123,
-              "original_w": "",
-              "original_h": "",
-              "deanimate": "",
-              "deanimate_gif": "",
-              "pjpeg": "",
-              "permalink": "",
-              "permalink_public": "",
-              "edit_link": "",
-              "has_rich_preview": false,
-              "media_display_type": "",
-              "preview_is_truncated": false,
-              "preview": "",
-              "preview_highlight": "",
-              "plain_text": "",
-              "preview_plain_text": "",
-              "has_more": false,
-              "sent_to_self": false,
-              "lines": 123,
-              "lines_more": 123,
-              "is_public": false,
-              "public_url_shared": false,
-              "display_as_bot": false,
-              "channels": [
-                ""
-              ],
-              "groups": [
-                ""
-              ],
-              "has_more": false,
-              "ims": [
-                ""
-              ],
-              "shares": {
-                "public": {
-                  "C03E94MKU": [
-                    {
-                      "share_user_id": "",
-                      "reply_users": [
-                        ""
-                      ],
-                      "reply_users_count": 123,
-                      "reply_count": 123,
-                      "ts": "",
-                      "thread_ts": "",
-                      "latest_reply": "",
-                      "channel_name": "",
-                      "team_id": ""
-                    }
-                  ],
-                  "C03E94MKU_": [
-                    {
-                      "share_user_id": "",
-                      "reply_users": [
-                        ""
-                      ],
-                      "reply_users_count": 123,
-                      "reply_count": 123,
-                      "ts": "",
-                      "thread_ts": "",
-                      "latest_reply": "",
-                      "channel_name": "",
-                      "team_id": ""
-                    }
-                  ]
-                },
-                "private": {
-                  "C03E94MKU": [
-                    {
-                      "share_user_id": "",
-                      "reply_users": [
-                        ""
-                      ],
-                      "reply_users_count": 123,
-                      "reply_count": 123,
-                      "ts": "",
-                      "thread_ts": "",
-                      "latest_reply": "",
-                      "channel_name": "",
-                      "team_id": ""
-                    }
-                  ],
-                  "C03E94MKU_": [
-                    {
-                      "share_user_id": "",
-                      "reply_users": [
-                        ""
-                      ],
-                      "reply_users_count": 123,
-                      "reply_count": 123,
-                      "ts": "",
-                      "thread_ts": "",
-                      "latest_reply": "",
-                      "channel_name": "",
-                      "team_id": ""
-                    }
-                  ]
-                }
-              },
-              "to": [
-                {
-                  "address": "",
-                  "name": "",
-                  "original": ""
-                }
-              ],
-              "from": [
-                {
-                  "address": "",
-                  "name": "",
-                  "original": ""
-                }
-              ],
-              "cc": [
-                {
-                  "address": "",
-                  "name": "",
-                  "original": ""
-                }
-              ],
-              "channel_actions_ts": "",
-              "channel_actions_count": 123,
-              "headers": {
-                "date": "",
-                "in_reply_to": "",
-                "reply_to": "",
-                "message_id": ""
-              },
-              "simplified_html": "",
-              "bot_id": "",
-              "initial_comment": {
-                "id": "",
-                "created": 123,
-                "timestamp": 123,
-                "user": "",
-                "comment": "",
-                "channel": "",
-                "is_intro": false
-              },
-              "num_stars": 123,
-              "is_starred": false,
-              "pinned_to": [
-                ""
-              ],
-              "reactions": [
-                {
-                  "name": "",
-                  "count": 123,
-                  "users": [
-                    ""
-                  ],
-                  "url": ""
-                }
-              ],
-              "comments_count": 123,
-              "subject": "",
-              "initial_comment": {
-                "id": "",
-                "created": 123,
-                "timestamp": 123,
-                "user": "",
-                "comment": "",
-                "channel": "",
-                "is_intro": false
-              },
-              "thumb_80_h": "",
-              "mimetype": "",
-              "mode": "",
-              "size": 123,
-              "url_private": "",
-              "id": "",
-              "created": 123,
-              "thumb_720_gif": ""
+              "thumb_pdf": "",
+              "thumb_pdf_w": ""
             },
             "text": {
               "type": "",
@@ -3599,6 +3268,11 @@
                         "source": "",
                         "file_id": "",
                         "file": {
+                          "thumb_gif": "",
+                          "permalink": "",
+                          "id": "",
+                          "created": 123,
+                          "timestamp": 123,
                           "name": "",
                           "title": "",
                           "subject": "",
@@ -3621,7 +3295,7 @@
                           "vtt": "",
                           "hls": "",
                           "hls_embed": "",
-                          "filetype": "",
+                          "duration_ms": 123,
                           "thumb_video_w": 123,
                           "thumb_video_h": 123,
                           "original_attachment_count": 123,
@@ -3661,10 +3335,13 @@
                           "thumb_720_h": "",
                           "thumb_800": "",
                           "thumb_800_gif": "",
+                          "thumb_800_gif": "",
                           "thumb_800_w": "",
+                          "thumb_800_h": "",
                           "thumb_800_h": "",
                           "thumb_960": "",
                           "thumb_960_gif": "",
+                          "thumb_960_w": "",
                           "thumb_960_w": "",
                           "thumb_960_h": "",
                           "thumb_1024": "",
@@ -3674,183 +3351,8 @@
                           "thumb_video": "",
                           "thumb_gif": "",
                           "thumb_pdf": "",
-                          "thumb_pdf_w": "",
-                          "thumb_pdf_h": "",
-                          "thumb_tiny": "",
-                          "converted_pdf": "",
-                          "image_exif_rotation": 123,
-                          "original_w": "",
-                          "original_h": "",
-                          "deanimate": "",
-                          "deanimate_gif": "",
-                          "pjpeg": "",
-                          "permalink": "",
-                          "permalink_public": "",
-                          "edit_link": "",
-                          "has_rich_preview": false,
-                          "media_display_type": "",
-                          "preview_is_truncated": false,
-                          "preview": "",
-                          "preview_highlight": "",
-                          "plain_text": "",
-                          "preview_plain_text": "",
-                          "has_more": false,
-                          "sent_to_self": false,
-                          "lines": 123,
-                          "lines_more": 123,
-                          "is_public": false,
-                          "public_url_shared": false,
-                          "display_as_bot": false,
-                          "channels": [
-                            ""
-                          ],
-                          "groups": [
-                            ""
-                          ],
-                          "has_more": false,
-                          "ims": [
-                            ""
-                          ],
-                          "shares": {
-                            "public": {
-                              "C03E94MKU": [
-                                {
-                                  "share_user_id": "",
-                                  "reply_users": [
-                                    ""
-                                  ],
-                                  "reply_users_count": 123,
-                                  "reply_count": 123,
-                                  "ts": "",
-                                  "thread_ts": "",
-                                  "latest_reply": "",
-                                  "channel_name": "",
-                                  "team_id": ""
-                                }
-                              ],
-                              "C03E94MKU_": [
-                                {
-                                  "share_user_id": "",
-                                  "reply_users": [
-                                    ""
-                                  ],
-                                  "reply_users_count": 123,
-                                  "reply_count": 123,
-                                  "ts": "",
-                                  "thread_ts": "",
-                                  "latest_reply": "",
-                                  "channel_name": "",
-                                  "team_id": ""
-                                }
-                              ]
-                            },
-                            "private": {
-                              "C03E94MKU": [
-                                {
-                                  "share_user_id": "",
-                                  "reply_users": [
-                                    ""
-                                  ],
-                                  "reply_users_count": 123,
-                                  "reply_count": 123,
-                                  "ts": "",
-                                  "thread_ts": "",
-                                  "latest_reply": "",
-                                  "channel_name": "",
-                                  "team_id": ""
-                                }
-                              ],
-                              "C03E94MKU_": [
-                                {
-                                  "share_user_id": "",
-                                  "reply_users": [
-                                    ""
-                                  ],
-                                  "reply_users_count": 123,
-                                  "reply_count": 123,
-                                  "ts": "",
-                                  "thread_ts": "",
-                                  "latest_reply": "",
-                                  "channel_name": "",
-                                  "team_id": ""
-                                }
-                              ]
-                            }
-                          },
-                          "to": [
-                            {
-                              "address": "",
-                              "name": "",
-                              "original": ""
-                            }
-                          ],
-                          "from": [
-                            {
-                              "address": "",
-                              "name": "",
-                              "original": ""
-                            }
-                          ],
-                          "cc": [
-                            {
-                              "address": "",
-                              "name": "",
-                              "original": ""
-                            }
-                          ],
-                          "channel_actions_ts": "",
-                          "channel_actions_count": 123,
-                          "headers": {
-                            "date": "",
-                            "in_reply_to": "",
-                            "reply_to": "",
-                            "message_id": ""
-                          },
-                          "simplified_html": "",
-                          "bot_id": "",
-                          "initial_comment": {
-                            "id": "",
-                            "created": 123,
-                            "timestamp": 123,
-                            "user": "",
-                            "comment": "",
-                            "channel": "",
-                            "is_intro": false
-                          },
-                          "num_stars": 123,
-                          "is_starred": false,
-                          "pinned_to": [
-                            ""
-                          ],
-                          "reactions": [
-                            {
-                              "name": "",
-                              "count": 123,
-                              "users": [
-                                ""
-                              ],
-                              "url": ""
-                            }
-                          ],
-                          "comments_count": 123,
-                          "subject": "",
-                          "initial_comment": {
-                            "id": "",
-                            "created": 123,
-                            "timestamp": 123,
-                            "user": "",
-                            "comment": "",
-                            "channel": "",
-                            "is_intro": false
-                          },
-                          "thumb_80_h": "",
-                          "mimetype": "",
-                          "mode": "",
-                          "size": 123,
-                          "url_private": "",
-                          "id": "",
-                          "created": 123,
-                          "thumb_720_gif": ""
+                          "thumb_pdf": "",
+                          "thumb_pdf_w": ""
                         },
                         "text": {
                           "type": "",
@@ -4659,6 +4161,11 @@
                     "source": "",
                     "file_id": "",
                     "file": {
+                      "thumb_gif": "",
+                      "permalink": "",
+                      "id": "",
+                      "created": 123,
+                      "timestamp": 123,
                       "name": "",
                       "title": "",
                       "subject": "",
@@ -4681,7 +4188,7 @@
                       "vtt": "",
                       "hls": "",
                       "hls_embed": "",
-                      "filetype": "",
+                      "duration_ms": 123,
                       "thumb_video_w": 123,
                       "thumb_video_h": 123,
                       "original_attachment_count": 123,
@@ -4721,10 +4228,13 @@
                       "thumb_720_h": "",
                       "thumb_800": "",
                       "thumb_800_gif": "",
+                      "thumb_800_gif": "",
                       "thumb_800_w": "",
+                      "thumb_800_h": "",
                       "thumb_800_h": "",
                       "thumb_960": "",
                       "thumb_960_gif": "",
+                      "thumb_960_w": "",
                       "thumb_960_w": "",
                       "thumb_960_h": "",
                       "thumb_1024": "",
@@ -4734,183 +4244,8 @@
                       "thumb_video": "",
                       "thumb_gif": "",
                       "thumb_pdf": "",
-                      "thumb_pdf_w": "",
-                      "thumb_pdf_h": "",
-                      "thumb_tiny": "",
-                      "converted_pdf": "",
-                      "image_exif_rotation": 123,
-                      "original_w": "",
-                      "original_h": "",
-                      "deanimate": "",
-                      "deanimate_gif": "",
-                      "pjpeg": "",
-                      "permalink": "",
-                      "permalink_public": "",
-                      "edit_link": "",
-                      "has_rich_preview": false,
-                      "media_display_type": "",
-                      "preview_is_truncated": false,
-                      "preview": "",
-                      "preview_highlight": "",
-                      "plain_text": "",
-                      "preview_plain_text": "",
-                      "has_more": false,
-                      "sent_to_self": false,
-                      "lines": 123,
-                      "lines_more": 123,
-                      "is_public": false,
-                      "public_url_shared": false,
-                      "display_as_bot": false,
-                      "channels": [
-                        ""
-                      ],
-                      "groups": [
-                        ""
-                      ],
-                      "has_more": false,
-                      "ims": [
-                        ""
-                      ],
-                      "shares": {
-                        "public": {
-                          "C03E94MKU": [
-                            {
-                              "share_user_id": "",
-                              "reply_users": [
-                                ""
-                              ],
-                              "reply_users_count": 123,
-                              "reply_count": 123,
-                              "ts": "",
-                              "thread_ts": "",
-                              "latest_reply": "",
-                              "channel_name": "",
-                              "team_id": ""
-                            }
-                          ],
-                          "C03E94MKU_": [
-                            {
-                              "share_user_id": "",
-                              "reply_users": [
-                                ""
-                              ],
-                              "reply_users_count": 123,
-                              "reply_count": 123,
-                              "ts": "",
-                              "thread_ts": "",
-                              "latest_reply": "",
-                              "channel_name": "",
-                              "team_id": ""
-                            }
-                          ]
-                        },
-                        "private": {
-                          "C03E94MKU": [
-                            {
-                              "share_user_id": "",
-                              "reply_users": [
-                                ""
-                              ],
-                              "reply_users_count": 123,
-                              "reply_count": 123,
-                              "ts": "",
-                              "thread_ts": "",
-                              "latest_reply": "",
-                              "channel_name": "",
-                              "team_id": ""
-                            }
-                          ],
-                          "C03E94MKU_": [
-                            {
-                              "share_user_id": "",
-                              "reply_users": [
-                                ""
-                              ],
-                              "reply_users_count": 123,
-                              "reply_count": 123,
-                              "ts": "",
-                              "thread_ts": "",
-                              "latest_reply": "",
-                              "channel_name": "",
-                              "team_id": ""
-                            }
-                          ]
-                        }
-                      },
-                      "to": [
-                        {
-                          "address": "",
-                          "name": "",
-                          "original": ""
-                        }
-                      ],
-                      "from": [
-                        {
-                          "address": "",
-                          "name": "",
-                          "original": ""
-                        }
-                      ],
-                      "cc": [
-                        {
-                          "address": "",
-                          "name": "",
-                          "original": ""
-                        }
-                      ],
-                      "channel_actions_ts": "",
-                      "channel_actions_count": 123,
-                      "headers": {
-                        "date": "",
-                        "in_reply_to": "",
-                        "reply_to": "",
-                        "message_id": ""
-                      },
-                      "simplified_html": "",
-                      "bot_id": "",
-                      "initial_comment": {
-                        "id": "",
-                        "created": 123,
-                        "timestamp": 123,
-                        "user": "",
-                        "comment": "",
-                        "channel": "",
-                        "is_intro": false
-                      },
-                      "num_stars": 123,
-                      "is_starred": false,
-                      "pinned_to": [
-                        ""
-                      ],
-                      "reactions": [
-                        {
-                          "name": "",
-                          "count": 123,
-                          "users": [
-                            ""
-                          ],
-                          "url": ""
-                        }
-                      ],
-                      "comments_count": 123,
-                      "subject": "",
-                      "initial_comment": {
-                        "id": "",
-                        "created": 123,
-                        "timestamp": 123,
-                        "user": "",
-                        "comment": "",
-                        "channel": "",
-                        "is_intro": false
-                      },
-                      "thumb_80_h": "",
-                      "mimetype": "",
-                      "mode": "",
-                      "size": 123,
-                      "url_private": "",
-                      "id": "",
-                      "created": 123,
-                      "thumb_720_gif": ""
+                      "thumb_pdf": "",
+                      "thumb_pdf_w": ""
                     },
                     "text": {
                       "type": "",

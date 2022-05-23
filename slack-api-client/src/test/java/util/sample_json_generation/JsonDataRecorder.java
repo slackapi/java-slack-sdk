@@ -298,22 +298,34 @@ public class JsonDataRecorder {
         if (element.isJsonArray()) {
             JsonArray array = element.getAsJsonArray();
             if (name != null && name.equals("attachments")) {
-                for (int idx = 0; idx < array.size(); idx++) {
-                    array.remove(idx);
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from attachments", e);
                 }
                 for (JsonElement attachment : Json.Attachments) {
                     array.add(attachment);
                 }
             } else if (name != null && name.equals("blocks")) {
-                for (int idx = 0; idx < array.size(); idx++) {
-                    array.remove(idx);
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from blocks", e);
                 }
                 for (JsonElement block : Json.Blocks) {
                     array.add(block);
                 }
             } else if (name != null && name.equals("bookmarks")) {
-                for (int idx = 0; idx < array.size(); idx++) {
-                    array.remove(idx);
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from bookmarks", e);
                 }
                 // FIXME: the array sometimes cannot be empty
                 if (!array.isEmpty()) {
@@ -323,8 +335,12 @@ public class JsonDataRecorder {
                 }
             } else if (path.equals("/api/team.profile.get") &&
                     name != null && Arrays.asList("sections", "possible_values").contains(name)) {
-                for (int idx = 0; idx < array.size(); idx++) {
-                    array.remove(idx);
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from possible_values", e);
                 }
                 // possible_values
                 if (name.equals("sections")) {
@@ -335,26 +351,42 @@ public class JsonDataRecorder {
                     array.add("");
                 }
             } else if (name != null && name.equals("replies")) {
-                for (int idx = 0; idx < array.size(); idx++) {
-                    array.remove(idx);
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from replies", e);
                 }
                 array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Message.MessageRootReply())));
             } else if (name != null && name.equals("comments")) {
-                for (int idx = 0; idx < array.size(); idx++) {
-                    array.remove(idx);
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from comments", e);
                 }
                 array.add(gson.toJsonTree(ObjectInitializer.initProperties(new FileComment())));
             } else if (name != null && name.equals("files")) {
-                for (int idx = 0; idx < array.size(); idx++) {
-                    array.remove(idx);
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from files", e);
                 }
                 com.slack.api.model.File f = SampleObjects.initFileObject();
                 f.setBlocks(null);
                 f.setAttachments(null); // Trying to load data for this field can result in StackOverFlowError
                 array.add(gson.toJsonTree(f));
             } else if (name != null && name.equals("status_emoji_display_info")) {
-                for (int idx = 0; idx < array.size(); idx++) {
-                    array.remove(idx);
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from status_emoji_display_info", e);
                 }
                 array.add(gson.toJsonTree(
                         ObjectInitializer.initProperties(new com.slack.api.model.User.Profile.StatusEmojiDisplayInfo())
@@ -438,7 +470,11 @@ public class JsonDataRecorder {
             int size = array.size();
             if (size > 1) {
                 for (int idx = size - 1; idx > 0; idx--) {
-                    array.remove(idx);
+                    try {
+                        array.remove(idx);
+                    } catch (Exception e)  {
+                        log.info("Failed to remove an element ({})", idx);
+                    }
                 }
             }
         } else if (element.isJsonObject()) {

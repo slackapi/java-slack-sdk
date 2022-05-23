@@ -299,15 +299,6 @@
                       "initial_users": [
                         ""
                       ]
-                    },
-                    {
-                      "type": "",
-                      "image_url": "",
-                      "alt_text": "",
-                      "fallback": "",
-                      "image_width": 12345,
-                      "image_height": 12345,
-                      "image_bytes": 12345
                     }
                   ],
                   "block_id": "",
@@ -368,13 +359,13 @@
                   "source": "",
                   "file_id": "",
                   "file": {
-                    "pinned_to": [
-                      ""
-                    ],
+                    "title": "",
+                    "thumb_video_w": 123,
+                    "thumb_video_h": 123,
+                    "thumb_960_gif": "",
                     "thumb_960_w": "",
-                    "thumb_pdf_w": "",
-                    "app_id": "",
-                    "app_name": ""
+                    "thumb_960_h": "",
+                    "thumb_video": ""
                   },
                   "text": {
                     "type": "",
@@ -1123,15 +1114,6 @@
                   "initial_users": [
                     ""
                   ]
-                },
-                {
-                  "type": "",
-                  "image_url": "",
-                  "alt_text": "",
-                  "fallback": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345
                 }
               ],
               "block_id": "",
@@ -1192,13 +1174,13 @@
               "source": "",
               "file_id": "",
               "file": {
-                "pinned_to": [
-                  ""
-                ],
+                "title": "",
+                "thumb_video_w": 123,
+                "thumb_video_h": 123,
+                "thumb_960_gif": "",
                 "thumb_960_w": "",
-                "thumb_pdf_w": "",
-                "app_id": "",
-                "app_name": ""
+                "thumb_960_h": "",
+                "thumb_video": ""
               },
               "text": {
                 "type": "",
@@ -1779,15 +1761,6 @@
                       "initial_users": [
                         ""
                       ]
-                    },
-                    {
-                      "type": "",
-                      "image_url": "",
-                      "alt_text": "",
-                      "fallback": "",
-                      "image_width": 12345,
-                      "image_height": 12345,
-                      "image_bytes": 12345
                     }
                   ],
                   "block_id": "",
@@ -1848,13 +1821,13 @@
                   "source": "",
                   "file_id": "",
                   "file": {
-                    "pinned_to": [
-                      ""
-                    ],
+                    "title": "",
+                    "thumb_video_w": 123,
+                    "thumb_video_h": 123,
+                    "thumb_960_gif": "",
                     "thumb_960_w": "",
-                    "thumb_pdf_w": "",
-                    "app_id": "",
-                    "app_name": ""
+                    "thumb_960_h": "",
+                    "thumb_video": ""
                   },
                   "text": {
                     "type": "",
@@ -2603,15 +2576,6 @@
                   "initial_users": [
                     ""
                   ]
-                },
-                {
-                  "type": "",
-                  "image_url": "",
-                  "alt_text": "",
-                  "fallback": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345
                 }
               ],
               "block_id": "",
@@ -2672,13 +2636,13 @@
               "source": "",
               "file_id": "",
               "file": {
-                "pinned_to": [
-                  ""
-                ],
+                "title": "",
+                "thumb_video_w": 123,
+                "thumb_video_h": 123,
+                "thumb_960_gif": "",
                 "thumb_960_w": "",
-                "thumb_pdf_w": "",
-                "app_id": "",
-                "app_name": ""
+                "thumb_960_h": "",
+                "thumb_video": ""
               },
               "text": {
                 "type": "",
@@ -3154,15 +3118,6 @@
                 "initial_users": [
                   ""
                 ]
-              },
-              {
-                "type": "",
-                "image_url": "",
-                "alt_text": "",
-                "fallback": "",
-                "image_width": 12345,
-                "image_height": 12345,
-                "image_bytes": 12345
               }
             ],
             "block_id": "",
@@ -3931,15 +3886,6 @@
                 "initial_users": [
                   ""
                 ]
-              },
-              {
-                "type": "",
-                "image_url": "",
-                "alt_text": "",
-                "fallback": "",
-                "image_width": 12345,
-                "image_height": 12345,
-                "image_bytes": 12345
               }
             ],
             "block_id": "",
@@ -4000,13 +3946,13 @@
             "source": "",
             "file_id": "",
             "file": {
-              "pinned_to": [
-                ""
-              ],
+              "title": "",
+              "thumb_video_w": 123,
+              "thumb_video_h": 123,
+              "thumb_960_gif": "",
               "thumb_960_w": "",
-              "thumb_pdf_w": "",
-              "app_id": "",
-              "app_name": ""
+              "thumb_960_h": "",
+              "thumb_video": ""
             },
             "text": {
               "type": "",
@@ -4578,15 +4524,6 @@
                     "initial_users": [
                       ""
                     ]
-                  },
-                  {
-                    "type": "",
-                    "image_url": "",
-                    "alt_text": "",
-                    "fallback": "",
-                    "image_width": 12345,
-                    "image_height": 12345,
-                    "image_bytes": 12345
                   }
                 ],
                 "block_id": "",
@@ -4647,13 +4584,13 @@
                 "source": "",
                 "file_id": "",
                 "file": {
-                  "pinned_to": [
-                    ""
-                  ],
+                  "title": "",
+                  "thumb_video_w": 123,
+                  "thumb_video_h": 123,
+                  "thumb_960_gif": "",
                   "thumb_960_w": "",
-                  "thumb_pdf_w": "",
-                  "app_id": "",
-                  "app_name": ""
+                  "thumb_960_h": "",
+                  "thumb_video": ""
                 },
                 "text": {
                   "type": "",

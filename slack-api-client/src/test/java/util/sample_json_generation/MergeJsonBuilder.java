@@ -85,7 +85,11 @@ public class MergeJsonBuilder {
                 }
             } else {// No conflict, add to the object
                 if (leftObj != null && rightKey != null && rightVal != null) {
-                    leftObj.add(rightKey, rightVal);
+                    try {
+                        leftObj.add(rightKey, rightVal);
+                    } catch (Exception e) {
+                        log.info("Failed to merge objects", e);
+                    }
                 }
             }
         }
