@@ -384,13 +384,106 @@
         "source": "",
         "file_id": "",
         "file": {
-          "title": "",
-          "thumb_video_w": 123,
+          "shares": {
+            "public": {
+              "C03E94MKU": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ],
+              "C03E94MKU_": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ]
+            },
+            "private": {
+              "C03E94MKU": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ],
+              "C03E94MKU_": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ]
+            }
+          },
+          "simplified_html": "",
+          "thumb_1024_w": "",
+          "original_w": "",
+          "edit_link": "",
+          "has_rich_preview": false,
+          "thumb_video": "",
+          "thumb_pdf_w": "",
+          "thumb_pdf_h": "",
+          "is_starred": false,
+          "user": "",
+          "thumb_pdf_w": "",
+          "user": "",
+          "user": "",
+          "thumb_1024_w": "",
+          "thumb_video": "",
+          "thumb_pdf_w": "",
+          "thumb_pdf_h": "",
+          "original_w": "",
+          "edit_link": "",
+          "has_rich_preview": false,
+          "cc": [
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
+          ],
+          "simplified_html": "",
+          "is_starred": false,
+          "created": 123,
+          "last_editor": "",
           "thumb_video_h": 123,
-          "thumb_960_gif": "",
-          "thumb_960_w": "",
-          "thumb_960_h": "",
-          "thumb_video": ""
+          "original_attachment_count": 123,
+          "external_url": ""
         },
         "fallback": "",
         "image_url": "",

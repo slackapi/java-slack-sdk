@@ -137,7 +137,12 @@
       "workspace_copy_scheduled",
       "workspace_copy_started",
       "workspace_copy_completed",
-      "workspace_copy_approved"
+      "workspace_copy_approved",
+      "domain_created",
+      "domain_verified",
+      "domain_deleted",
+      "slack_connect_invite_routing_enabled",
+      "slack_connect_invite_routing_disabled"
     ],
     "user": [
       "custom_tos_accepted",

@@ -80,8 +80,15 @@ public class SlackTestConfig {
     }
 
     public static void awaitCompletion(SlackTestConfig testConfig) throws InterruptedException {
+        int seconds = 0;
         while (!testConfig.areAllAsyncOperationsDone()) {
             Thread.sleep(1000);
+            seconds += 1;
+
+            if (seconds > 120) {
+                throw new IllegalStateException(
+                        "The background processes did not complete within " + seconds + " seconds");
+            }
         }
     }
 

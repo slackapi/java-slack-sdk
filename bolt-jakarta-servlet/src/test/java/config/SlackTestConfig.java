@@ -48,11 +48,4 @@ public class SlackTestConfig {
     public SlackConfig getConfig() {
         return config;
     }
-
-    public static void awaitCompletion(SlackTestConfig testConfig) throws InterruptedException {
-        while (!testConfig.areAllAsyncOperationsDone()) {
-            Thread.sleep(1000);
-        }
-    }
-
 }
