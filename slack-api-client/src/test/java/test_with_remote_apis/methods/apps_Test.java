@@ -9,6 +9,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -28,6 +29,11 @@ public class apps_Test {
     String socketModeToken = System.getenv(Constants.SLACK_SDK_TEST_SOCKET_MODE_APP_TOKEN);
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("apps.*");
+    }
 
     @AfterClass
     public static void tearDown() throws InterruptedException {

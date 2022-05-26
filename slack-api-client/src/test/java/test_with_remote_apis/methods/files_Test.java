@@ -60,6 +60,11 @@ public class files_Test {
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
 
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("files.*");
+    }
+
     @AfterClass
     public static void tearDown() throws InterruptedException {
         SlackTestConfig.awaitCompletion(testConfig);

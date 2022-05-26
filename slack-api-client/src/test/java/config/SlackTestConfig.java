@@ -2,12 +2,16 @@ package config;
 
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.metrics.RedisMetricsDatastore;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import com.slack.api.util.http.listener.HttpResponseListener;
 import com.slack.api.util.json.GsonFactory;
-import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.JedisPool;
 import util.sample_json_generation.JsonDataRecordingListener;
+
+import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 
 @Slf4j
 public class SlackTestConfig {
@@ -77,6 +81,21 @@ public class SlackTestConfig {
 
     public SlackConfig getConfig() {
         return config;
+    }
+
+    public static void initializeRawJSONDataFiles(String prefix) throws Exception {
+        String baseDir = "../json-logs/raw/api/";
+        String glob = "glob:" + baseDir + prefix;
+        PathMatcher matcher = FileSystems.getDefault().getPathMatcher(glob);
+        Files.walkFileTree(Paths.get(baseDir), new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                if (matcher.matches(file)) {
+                    Files.delete(file);
+                }
+                return FileVisitResult.CONTINUE;
+            }
+        });
     }
 
     public static void awaitCompletion(SlackTestConfig testConfig) throws InterruptedException {

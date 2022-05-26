@@ -14,6 +14,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -34,6 +35,11 @@ public class auth_Test {
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("auth.*");
+    }
 
     @AfterClass
     public static void tearDown() throws InterruptedException {

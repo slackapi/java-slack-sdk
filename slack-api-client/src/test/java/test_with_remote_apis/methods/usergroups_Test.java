@@ -12,6 +12,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,6 +26,11 @@ public class usergroups_Test {
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("usergroups.*");
+    }
 
     @AfterClass
     public static void tearDown() throws InterruptedException {

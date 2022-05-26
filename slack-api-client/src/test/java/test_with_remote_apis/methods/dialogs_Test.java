@@ -9,7 +9,7 @@ import com.slack.api.model.dialog.DialogTextElement;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -27,6 +27,11 @@ public class dialogs_Test {
     static Slack slack = Slack.getInstance();
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("dialogs.*");
+    }
 
     @Test
     public void open() throws IOException, SlackApiException {

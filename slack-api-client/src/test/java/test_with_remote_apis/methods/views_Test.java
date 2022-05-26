@@ -11,6 +11,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -26,6 +27,11 @@ public class views_Test {
     // we don't store the result by this API call
     // see also: test_locally.sample_json_generation.MethodsResponseDumpTest
     static Slack slack = Slack.getInstance();
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("views.*");
+    }
 
     @AfterClass
     public static void tearDown() throws InterruptedException {

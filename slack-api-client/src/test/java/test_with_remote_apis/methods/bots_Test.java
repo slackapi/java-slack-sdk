@@ -27,6 +27,11 @@ public class bots_Test {
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
 
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("bots.*");
+    }
+
     @AfterClass
     public static void tearDown() throws InterruptedException {
         SlackTestConfig.awaitCompletion(testConfig);

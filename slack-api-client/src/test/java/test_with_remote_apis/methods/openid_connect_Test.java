@@ -6,6 +6,7 @@ import com.slack.api.methods.response.openid.connect.OpenIDConnectUserInfoRespon
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import util.ObjectInitializer;
 import util.sample_json_generation.ObjectToJsonDumper;
@@ -17,6 +18,11 @@ public class openid_connect_Test {
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("openid.connect.*");
+    }
 
     @AfterClass
     public static void tearDown() throws InterruptedException {

@@ -12,6 +12,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
@@ -39,6 +40,11 @@ public class users_Test {
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
     String enterpriseGridTeamAdminUserToken = System.getenv(
             Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("users.*");
+    }
 
     @AfterClass
     public static void tearDown() throws InterruptedException {

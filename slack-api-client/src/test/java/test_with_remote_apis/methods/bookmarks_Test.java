@@ -2,18 +2,20 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.SlackApiException;
-import com.slack.api.methods.response.bookmarks.*;
+import com.slack.api.methods.response.bookmarks.BookmarksAddResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksEditResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksListResponse;
+import com.slack.api.methods.response.bookmarks.BookmarksRemoveResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.conversations.ConversationsListResponse;
-import com.slack.api.methods.response.files.FilesUploadResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -25,6 +27,11 @@ public class bookmarks_Test {
 
     static SlackTestConfig testConfig = SlackTestConfig.getInstance();
     static Slack slack = Slack.getInstance(testConfig.getConfig());
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        SlackTestConfig.initializeRawJSONDataFiles("bookmarks.*");
+    }
 
     @AfterClass
     public static void tearDown() throws InterruptedException {
