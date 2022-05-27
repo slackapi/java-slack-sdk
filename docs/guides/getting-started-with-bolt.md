@@ -31,7 +31,7 @@ Let's start building a Slack app using Bolt! This guide includes instructions on
 
 ### Maven
 
-After you create your Maven project, you need to add the **bolt** dependency to your `pom.xml` file. The **bolt** dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), and any others on top of Servlet environment, the **bolt-servlet** library is required for your app. Adding only **bolt-servlet** also works for you.
+After you [create your Maven project](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html), you need to add the **bolt** dependency to your `pom.xml` file. The **bolt** dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), or any others on top of Servlet environment, the **bolt-servlet** library is required for your app. Adding only **bolt-servlet** also works for you.
 
 ```xml
 <dependency>
@@ -43,6 +43,11 @@ After you create your Maven project, you need to add the **bolt** dependency to 
   <groupId>com.slack.api</groupId>
   <artifactId>bolt-servlet</artifactId>
   <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+<dependency>
+  <groupId>org.slf4j</groupId>
+  <artifactId>slf4j-simple</artifactId>
+  <version>{{ site.slf4jApiVersion }}</version>
 </dependency>
 ```
 
@@ -56,6 +61,15 @@ If you run the Bolt app on the Jetty HTTP server without any frameworks, you can
 </dependency>
 ```
 
+You will also need to ensure you set the compiler source and target to at least 1.8:
+
+```xml
+<properties>
+  <maven.compiler.source>1.8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+```
+
 ### Gradle
 
 After you [create your Gradle project](https://docs.gradle.org/current/samples/sample_building_java_applications.html), add the **bolt** dependencies to `build.gradle`.
@@ -65,6 +79,7 @@ dependencies {
   implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
+  implementation("org.slf4j:slf4j-simple:{{ site.slf4jApiVersion }}")
 }
 ```
 
@@ -73,9 +88,9 @@ dependencies {
 
 ### Use **bolt-jetty**
 
-**bolt-jetty** is a handy way to start your Slack app server. It allows developers to build a Slack app backend service by writing only a main method initializes **App** and starts an HTTP server.
+**bolt-jetty** is a handy way to start your Slack app server. It allows developers to build a Slack app backend service by writing only a main method that initializes **App** and starts an HTTP server.
 
-#### build.gradle
+#### `build.gradle`
 
 The following build settings should be working as-is. Put it in the root directory of your project.
 
@@ -158,7 +173,12 @@ The default constructor expects the following two env variables exist when start
 
 If you prefer configuring an **App** in a different way, write some code to initialize **AppConfig** on your own.
 
-Anyway, set the two env variables and hit `gradle run` on your terminal. The command runs your main method. For more detailed logging, `gradle run -DslackLogLevel=debug` is also available.
+Set the two environment variables and run:
+
+- Gradle users: `gradle run` (for more detailed logging: `gradle run -DslackLogLevel=debug`),
+- Maven users: `mvn compile exec:java -Dexec.mainClass="hello.MyApp"` (for more detailed logging you can also provide the `-Dorg.slf4j.simpleLogger.defaultLogLevel=debug` flag)
+
+The command runs your main method.
 
 ```bash
 # Visit https://api.slack.com/apps to know these
@@ -166,7 +186,10 @@ export SLACK_BOT_TOKEN=xoxb-...your-own-valid-one
 export SLACK_SIGNING_SECRET=123abc...your-own-valid-one
 
 # run the main function
+# gradle users should run:
 gradle run
+# maven users should run:
+mvn compile exec:java -Dexec.mainClass="hello.MyApp"
 ```
 
 You will see the message saying "**⚡️ Bolt app is running!**" in stdout.
