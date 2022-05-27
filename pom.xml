@@ -58,7 +58,7 @@
 
         <!-- optional / testing-only dependencies -->
         <jakarta.jetty.version>11.0.9</jakarta.jetty.version>
-        <java-jwt.version>3.19.1</java-jwt.version>
+        <java-jwt.version>[3.19,4.0)</java-jwt.version>
         <aws.s3.version>[1.12.62,1.13.0)</aws.s3.version>
         <junit.version>4.13.2</junit.version>
         <logback.version>1.2.11</logback.version>
