@@ -30,7 +30,7 @@ Let's start building a Slack app using Bolt! This guide includes instructions on
 
 ### Maven
 
-After you create your Maven project, you need to add the **bolt** dependency to your `pom.xml` file. The **bolt** dependency is a framework-agnostic module. To enable [Socket Mode](https://api.slack.com/apis/connections/socket), the **bolt-socket-mode** library and its provided-scope dependencies are also required for your app.
+After you [create your Maven project](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html), you need to add the **bolt** dependency to your `pom.xml` file. The **bolt** dependency is a framework-agnostic module. To enable [Socket Mode](https://api.slack.com/apis/connections/socket), the **bolt-socket-mode** library and its provided-scope dependencies are also required for your app.
 
 ```xml
 <dependency>
@@ -53,9 +53,14 @@ After you create your Maven project, you need to add the **bolt** dependency to 
   <artifactId>tyrus-standalone-client</artifactId>
   <version>1.17</version>
 </dependency>
+<dependency>
+  <groupId>org.slf4j</groupId>
+  <artifactId>slf4j-simple</artifactId>
+  <version>{{ site.slf4jApiVersion }}</version>
+</dependency>
 ```
 
-If you use Java-WebSocket library, add the artifact instead of **tyrus-standalone-client**.
+By default, the `tyrus-standalone-client` dependency is used as the implementation to manage socket connections in the `bolt-socket-mode` artifact. If instead you would prefer to use the `Java-WebSocket` implementation, swap its artifact in instead of **tyrus-standalone-client**:
 
 ```xml
 <dependency>
@@ -63,6 +68,15 @@ If you use Java-WebSocket library, add the artifact instead of **tyrus-standalon
   <artifactId>Java-WebSocket</artifactId>
   <version>1.5.1</version>
 </dependency>
+```
+
+You will also need to ensure you set the compiler source and target to at least 1.8:
+
+```xml
+<properties>
+  <maven.compiler.source>1.8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
 ```
 
 ### Gradle
@@ -74,6 +88,7 @@ dependencies {
   implementation("com.slack.api:bolt-socket-mode:{{ site.sdkLatestVersion }}")
   implementation("javax.websocket:javax.websocket-api:1.1")
   implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17")
+  implementation("org.slf4j:slf4j-simple:{{ site.slf4jApiVersion }}")
 }
 ```
 
@@ -84,7 +99,7 @@ dependencies {
 
 **bolt-socket-mode** is a handy way to start your [Socket Mode](https://api.slack.com/apis/connections/socket) app. It allows developers to build a Slack app backend service by writing only a main method initializes **App** and establishes a WebSocket connection to the Socket Mode servers.
 
-#### build.gradle
+#### `build.gradle`
 
 The following build settings should be working as-is. Put it in the root directory of your project.
 
@@ -167,7 +182,12 @@ The default constructor expects the following two env variables exist when start
 
 If you prefer configuring an **App** in a different way, write some code to initialize **AppConfig** on your own.
 
-Anyway, set the two env variables and hit `gradle run` on your terminal. The command runs your main method. For more detailed logging, `gradle run -DslackLogLevel=debug` is also available.
+Set the two environment variables and run:
+
+- Gradle users: `gradle run` (for more detailed logging: `gradle run -DslackLogLevel=debug`),
+- Maven users: `mvn compile exec:java -Dexec.mainClass="hello.MyApp"` (for more detailed logging you can also provide the `-Dorg.slf4j.simpleLogger.defaultLogLevel=debug` flag)
+
+The command runs your main method.
 
 ```bash
 # Visit https://api.slack.com/apps to know these
@@ -175,10 +195,11 @@ export SLACK_BOT_TOKEN=xoxb-...your-own-valid-one
 export SLACK_APP_TOKEN=xapp-...your-own-valid-one
 
 # run the main function
+# gradle users should run:
 gradle run
+# maven users should run:
+mvn compile exec:java -Dexec.mainClass="hello.MyApp"
 ```
-
-You will see the message saying "**⚡️ Bolt app is running!**" in stdout.
 
 If you get stuck this setup, go through the following checklist:
 
@@ -276,10 +297,6 @@ export SLACK_APP_TOKEN=xapp-...your-own-valid-one
 # run the main function
 gradle run
 ```
-
-... Did you see the message saying "**⚡️ Bolt app is running!**" in stdout?
-
-If yes, that's all settled! 🎉
 
 From here, all you need to do is write code and restart the app. Enjoy Bolt app development in Kotlin! 👋
 
