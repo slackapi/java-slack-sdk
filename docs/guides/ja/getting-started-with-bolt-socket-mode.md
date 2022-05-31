@@ -30,7 +30,7 @@ lang: ja
 
 ### Maven
 
-Maven プロジェクトを作成した後、まずは **bolt** 依存ライブラリを `pom.xml` に追加します。このライブラリ自体は特定の環境に依存していません。[ソケットモード](https://api.slack.com/apis/connections/socket)を有効にするためには **bolt-socket-mode** というライブラリとその provided スコープの必要な依存ライブラリも合わせて追加してください。
+[Maven プロジェクトを作成](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)した後、まずは **bolt** 依存ライブラリを `pom.xml` に追加します。このライブラリ自体は特定の環境に依存していません。[ソケットモード](https://api.slack.com/apis/connections/socket)を有効にするためには **bolt-socket-mode** というライブラリとその provided スコープの必要な依存ライブラリも合わせて追加してください。
 
 ```xml
 <dependency>
@@ -53,9 +53,15 @@ Maven プロジェクトを作成した後、まずは **bolt** 依存ライブ�
   <artifactId>tyrus-standalone-client</artifactId>
   <version>1.17</version>
 </dependency>
+<dependency>
+  <groupId>org.slf4j</groupId>
+  <artifactId>slf4j-simple</artifactId>
+  <version>{{ site.slf4jApiVersion }}</version>
+</dependency>
 ```
 
-もし、Java-WebSocket を使いたい場合は **tyrus-standalone-client** の代わりにそのライブラリを追加します。
+デフォルトでは **tyrus-standalone-client** が **bolt-socket-mode** でソケットモードのコネクションを管理するための実装として使用されます。
+もし **Java-WebSocket** を代わりに使いたい場合は、**tyrus-standalone-client** の代わりにそれを指定した上で、クライアントの初期化時に `SocketModeClient.Backend.JavaWebSocket` を指定するようにしてください。
 
 ```xml
 <dependency>
@@ -63,6 +69,15 @@ Maven プロジェクトを作成した後、まずは **bolt** 依存ライブ�
   <artifactId>Java-WebSocket</artifactId>
   <version>1.5.1</version>
 </dependency>
+```
+
+また、コンパイラーの source/target 言語の設定を最低でも 1.8 以上にしておく必要があります。
+
+```xml
+<properties>
+  <maven.compiler.source>1.8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
 ```
 
 ### Gradle
@@ -75,6 +90,7 @@ dependencies {
   implementation("com.slack.api:bolt-socket-mode:{{ site.sdkLatestVersion }}")
   implementation("javax.websocket:javax.websocket-api:1.1")
   implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17")
+  implementation("org.slf4j:slf4j-simple:{{ site.slf4jApiVersion }}")
 }
 ```
 
@@ -168,7 +184,12 @@ new SocketModeApp(app).start();
 
 なお、**App** を別の方法（例: 規定の環境変数名を使わない）で初期化したい場合は **AppConfig** を自前で初期化するコードを書いてください。
 
-ともあれ、上記の二つの環境変数を設定した上で、ターミナル上で `gradle run` を実行してみましょう。このコマンドは、先ほど定義した main メソッドを実行します。より詳細なログ出力を見たい場合は `gradle run -DslackLogLevel=debug` のようにしてください。
+上記の二つの環境変数を設定した上で、ターミナル上でアプリを実行してみましょう。
+
+- Gradle の場合: `gradle run` (より詳細なログを表示したい場合は `gradle run -DslackLogLevel=debug`)
+- Maven の場合: `mvn compile exec:java -Dexec.mainClass="hello.MyApp"` (より詳細なログを表示したい場合は `-Dorg.slf4j.simpleLogger.defaultLogLevel=debug` を指定)
+
+このコマンドは、先ほど定義した main メソッドを実行します。
 
 ```bash
 # https://api.slack.com/apps にアクセスして取得
@@ -176,10 +197,11 @@ export SLACK_BOT_TOKEN=xoxb-...your-own-valid-one
 export SLACK_APP_TOKEN=xapp-...your-own-valid-one
 
 # main メソッドを実行して WebSocket 接続するプロセスを起動
+# Gradle の場合
 gradle run
+# Maven の場合
+mvn compile exec:java -Dexec.mainClass="hello.MyApp"
 ```
-
-標準出力に "**⚡️ Bolt app is running!**" というメッセージが表示されているはずです。
 
 もしうまくいかない場合は、以下のチェックリストを見直してみてください。
 
@@ -270,17 +292,13 @@ fun main() {
 すべてが OK ✅であれば、あなたのはじめての Kotlin を使った Bolt アプリが正常に起動するはずです。
 
 ```bash
-# Visit https://api.slack.com/apps to know these
+# https://api.slack.com/apps にアクセスして取得
 export SLACK_BOT_TOKEN=xoxb-...your-own-valid-one
 export SLACK_APP_TOKEN=xapp-...your-own-valid-one
 
-# run the main function
+# main メソッドを実行して、サーバープロセスを起動
 gradle run
 ```
-
-... 標準出力に "**⚡️ Bolt app is running!**" というメッセージが表示されましたか？
-
-もし表示されていれば、万事うまくいっています！ 🎉
 
 ここからやることはコードを書いて必要に応じてアプリをリスタートするだけです。Kotlin での Bolt アプリ開発を楽しんでください！ 👋
 

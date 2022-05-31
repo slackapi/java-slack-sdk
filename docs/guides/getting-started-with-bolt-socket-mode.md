@@ -60,7 +60,8 @@ After you [create your Maven project](https://maven.apache.org/guides/getting-st
 </dependency>
 ```
 
-By default, the `tyrus-standalone-client` dependency is used as the implementation to manage socket connections in the `bolt-socket-mode` artifact. If instead you would prefer to use the `Java-WebSocket` implementation, swap its artifact in instead of **tyrus-standalone-client**:
+By default, the **tyrus-standalone-client** dependency is used as the implementation to manage socket connections in the **bolt-socket-mode** artifact.
+If instead you would prefer to use the **Java-WebSocket** implementation, swap its artifact in instead of **tyrus-standalone-client**, and then set `SocketModeClient.Backend.JavaWebSocket` when initializing the client instance:
 
 ```xml
 <dependency>

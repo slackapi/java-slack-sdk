@@ -31,7 +31,7 @@ lang: ja
 
 ### Maven
 
-Maven プロジェクトを作成した後、まずは **bolt** 依存ライブラリを `pom.xml` に追加します。このライブラリ自体は特定の環境に依存していません。Bolt を [Spring Boot](https://spring.io/projects/spring-boot)、[Quarkus (Undertow)](https://quarkus.io/) やその他 Servlet 環境で利用する場合は **bolt-servlet** というライブラリも追加します。単に **bolt-servlet** だけを追加しても OK です。
+[Maven プロジェクトを作成](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)した後、まずは **bolt** 依存ライブラリを `pom.xml` に追加します。このライブラリ自体は特定の環境に依存していません。Bolt を [Spring Boot](https://spring.io/projects/spring-boot)、[Quarkus (Undertow)](https://quarkus.io/) やその他 Servlet 環境で利用する場合は **bolt-servlet** というライブラリも追加します。単に **bolt-servlet** だけを追加しても OK です。
 
 ```xml
 <dependency>
@@ -43,6 +43,11 @@ Maven プロジェクトを作成した後、まずは **bolt** 依存ライブ�
   <groupId>com.slack.api</groupId>
   <artifactId>bolt-servlet</artifactId>
   <version>{{ site.sdkLatestVersion }}</version>
+</dependency>
+<dependency>
+  <groupId>org.slf4j</groupId>
+  <artifactId>slf4j-simple</artifactId>
+  <version>{{ site.slf4jApiVersion }}</version>
 </dependency>
 ```
 
@@ -56,6 +61,15 @@ Maven プロジェクトを作成した後、まずは **bolt** 依存ライブ�
 </dependency>
 ```
 
+また、コンパイラーの source/target 言語の設定を最低でも 1.8 以上にしておく必要があります。
+
+```xml
+<properties>
+  <maven.compiler.source>1.8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+```
+
 ### Gradle
 
 Gralde プロジェクトを作成した後 **bolt** 関連の依存ライブラリを `build.gradle` に追加してください。
@@ -65,6 +79,7 @@ dependencies {
   implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-servlet:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-jetty:{{ site.sdkLatestVersion }}")
+  implementation("org.slf4j:slf4j-simple:{{ site.slf4jApiVersion }}")
 }
 ```
 
@@ -158,7 +173,12 @@ server.start();
 
 なお、**App** を別の方法（例: 規定の環境変数名を使わない）で初期化したい場合は **AppConfig** を自前で初期化するコードを書いてください。
 
-ともあれ、上記の二つの環境変数を設定した上で、ターミナル上で `gradle run` を実行してみましょう。このコマンドは、先ほど定義した main メソッドを実行します。より詳細なログ出力を見たい場合は `gradle run -DslackLogLevel=debug` のようにしてください。
+上記の二つの環境変数を設定した上で、ターミナル上でアプリを実行してみましょう。
+
+- Gradle の場合: `gradle run` (より詳細なログを表示したい場合は `gradle run -DslackLogLevel=debug`)
+- Maven の場合: `mvn compile exec:java -Dexec.mainClass="hello.MyApp"` (より詳細なログを表示したい場合は `-Dorg.slf4j.simpleLogger.defaultLogLevel=debug` を指定)
+
+このコマンドは、先ほど定義した main メソッドを実行します。
 
 ```bash
 # https://api.slack.com/apps にアクセスして取得
@@ -166,7 +186,10 @@ export SLACK_BOT_TOKEN=xoxb-...your-own-valid-one
 export SLACK_SIGNING_SECRET=123abc...your-own-valid-one
 
 # main メソッドを実行して、サーバープロセスを起動
+# Gradle の場合
 gradle run
+# Maven の場合
+mvn compile exec:java -Dexec.mainClass="hello.MyApp"
 ```
 
 標準出力に "**⚡️ Bolt app is running!**" というメッセージが表示されているはずです。
@@ -291,11 +314,11 @@ fun main() {
 すべてが OK ✅であれば、あなたのはじめての Kotlin を使った Bolt アプリが正常に起動するはずです。
 
 ```bash
-# Visit https://api.slack.com/apps to know these
+# https://api.slack.com/apps にアクセスして取得
 export SLACK_BOT_TOKEN=xoxb-...your-own-valid-one
 export SLACK_SIGNING_SECRET=123abc...your-own-valid-one
 
-# run the main function
+# main メソッドを実行して、サーバープロセスを起動
 gradle run
 ```
 
