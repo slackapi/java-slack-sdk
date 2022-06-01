@@ -473,7 +473,8 @@
       "enable_quip_file_browser_view": false,
       "a11y_play_sound_for_incoming_dm_choice": "",
       "a11y_play_sound_for_sent_dm_choice": "",
-      "onboarding_tip_opt_out": false
+      "onboarding_tip_opt_out": false,
+      "seen_onboarding_synth_view": false
     },
     "created": 12345,
     "first_login": 12345,
