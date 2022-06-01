@@ -12,7 +12,12 @@
         "is_hidden": false,
         "possible_values": [
           ""
-        ]
+        ],
+        "options": {
+          "is_scim": false,
+          "is_protected": false
+        },
+        "section_id": ""
       }
     ],
     "sections": [

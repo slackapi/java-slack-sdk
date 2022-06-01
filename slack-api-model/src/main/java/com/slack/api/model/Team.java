@@ -29,6 +29,7 @@ public class Team {
     @Data
     public static class Profile {
         private String id;
+        private String sectionId;
         private String fieldName;
         private Integer ordering;
         private String label;
@@ -46,6 +47,9 @@ public class Team {
         @Setter(AccessLevel.NONE)
         @SerializedName("is_protected")
         private boolean _protected;
+
+        @SerializedName("is_scim")
+        private boolean scim;
 
         public boolean isProtected() {
             return _protected;
