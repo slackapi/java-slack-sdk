@@ -474,7 +474,9 @@
       "a11y_play_sound_for_incoming_dm_choice": "",
       "a11y_play_sound_for_sent_dm_choice": "",
       "onboarding_tip_opt_out": false,
-      "seen_onboarding_synth_view": false
+      "seen_onboarding_synth_view": false,
+      "enable_drafts_view": false,
+      "enable_scheduled_view": false
     },
     "created": 12345,
     "first_login": 12345,
