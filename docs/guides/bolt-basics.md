@@ -106,6 +106,30 @@ app.command("/ping", (req, ctx) -> {
 });
 ```
 
+Since your app always has to return `ctx.ack()` result within 3 seconds, you may want to asynchronously execute time-consuming parts in your listener.
+The easiest way to do this would be to use `app.executorService()`, which is the singleton `ExecutorService` instance that Bolt framework provides.
+
+```java
+app.globalShortcut("callback-id", (req, ctx) -> {
+  // Using the defualt singleton thread pool
+  app.executorService().submit(() -> {
+    // Do anything asynchronously here
+    try {
+      ctx.client().viewsOpen(r -> r
+        .triggerId(ctx.getTriggerId())
+        .view(View.builder().build())
+      );
+    } catch (Exception e) {
+      // Error handling
+    }
+  });
+  // This line will be synchrously executed
+  return ctx.ack();
+});
+```
+
+If you want to take full control of the `ExecutorSerivce` to use, you don't need to use `app.executorService()`. You can go with the preferable way to manage asynchronous code execution for your app.
+
 ---
 ## Respond to User Actions
 

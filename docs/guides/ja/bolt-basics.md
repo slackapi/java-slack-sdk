@@ -128,6 +128,31 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
+アプリは常に 3 秒以内に `ctx.ack()` の結果を返す必要がありますので、リスナーの中で特に時間のかかるような処理は非同期で実行したいという場合もあるかもしれません。
+これを実現するための最も簡単な方法は、Bolt によってシングルトンな `ExecutorService` インスタンスとして提供されている `app.executorService()` を使うことです。
+
+```java
+app.globalShortcut("callback-id", (req, ctx) -> {
+  // デフォルトのシングルトンのスレッドプールを使う
+  app.executorService().submit(() -> {
+    // ここでは非同期に何をしても OK
+    try {
+      ctx.client().viewsOpen(r -> r
+        .triggerId(ctx.getTriggerId())
+        .view(View.builder().build())
+      );
+    } catch (Exception e) {
+      // エラーハンドリング
+    }
+  });
+  // この行だけは同期的に実行される
+  return ctx.ack();
+});
+```
+
+もし利用する `ExecutorSerivce` を完全に制御したいという場合は `app.executorService()` を使う必要はありません。
+代わりにあなたのアプリにとって非同期でコードを実行するための望ましいやり方で対応できます。
+
 ---
 ## Web API の利用 / ユーザーへの返事を say する
 
