@@ -476,7 +476,11 @@
       "onboarding_tip_opt_out": false,
       "seen_onboarding_synth_view": false,
       "enable_drafts_view": false,
-      "enable_scheduled_view": false
+      "enable_scheduled_view": false,
+      "seen_sent_page_in_sidebar": false,
+      "first_seen_sent_page_in_sidebar": 12345,
+      "seen_new_badge_in_more_menu_sidebar": false,
+      "first_seen_new_badge_in_more_menu_sidebar": 12345
     },
     "created": 12345,
     "first_login": 12345,
