@@ -142,7 +142,8 @@
       "domain_verified",
       "domain_deleted",
       "slack_connect_invite_routing_enabled",
-      "slack_connect_invite_routing_disabled"
+      "slack_connect_invite_routing_disabled",
+      "flexible_access_control_set"
     ],
     "user": [
       "custom_tos_accepted",

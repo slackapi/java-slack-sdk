@@ -821,7 +821,8 @@
         ""
       ],
       "thorn_safer_scan": false,
-      "allow_free_automated_trials": false
+      "allow_free_automated_trials": false,
+      "warn_user_before_logout": false
     },
     "icon": {
       "image_102": "https://www.example.com/",

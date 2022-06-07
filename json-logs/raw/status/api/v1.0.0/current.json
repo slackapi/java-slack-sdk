@@ -830,6 +830,26 @@
     {
       "date_created": "2022-05-17T11:28:56-07:00",
       "body": "Some users may be experiencing issues with using the search function in Slack. \r\n \r\nWe\u0027re currently investigating the issue and will provide a status update once we have more information."
+    },
+    {
+      "date_created": "2022-06-07T14:30:17-07:00",
+      "body": "No additional news to share just yet, but we’re focused on getting things back to normal as quickly as we can. We apologize for the continued trouble."
+    },
+    {
+      "date_created": "2022-06-07T14:05:12-07:00",
+      "body": "We don’t have any new updates to share at this time. Thanks for standing by while we continue to investigate."
+    },
+    {
+      "date_created": "2022-06-07T13:26:02-07:00",
+      "body": "We’re still actively investigating this issue, but we don’t have any new information to share at this time. Thanks for sticking with us as we continue to work towards a fix."
+    },
+    {
+      "date_created": "2022-06-07T12:52:43-07:00",
+      "body": "We’re still actively investigating this issue. We’ve found that the cause of the problem stems from incorrectly showing desired invited users as not belonging to the same workspace as the channel. The users in fact do belong to the right workspace. We’ll provide another update as soon as we have more information to share."
+    },
+    {
+      "date_created": "2022-06-07T12:17:36-07:00",
+      "body": "Some users on Enterprise Grid may be running into trouble inviting existing workspace users to private channels. We will let you know as soon as we know more. We appreciate your patience in the meantime."
     }
   ]
 }

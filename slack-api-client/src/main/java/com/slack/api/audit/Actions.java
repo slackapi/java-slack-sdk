@@ -154,6 +154,7 @@ public class Actions {
         public static final String domain_deleted = "domain_deleted";
         public static final String slack_connect_invite_routing_enabled = "slack_connect_invite_routing_enabled";
         public static final String slack_connect_invite_routing_disabled = "slack_connect_invite_routing_disabled";
+        public static final String flexible_access_control_set = "flexible_access_control_set";
     }
 
     public static class User {
