@@ -1,7 +1,9 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.users.UsersListRequest;
 import com.slack.api.methods.request.users.UsersLookupByEmailRequest;
 import com.slack.api.methods.request.users.UsersSetActiveRequest;
 import com.slack.api.methods.response.auth.AuthTestResponse;
@@ -427,5 +429,28 @@ public class users_Test {
         UsersInfoResponse user = slack.methods(enterpriseGridTeamAdminUserToken).usersInfo(r ->
                 r.user(userId));
         assertNull(user.getError());
+    }
+
+    @Test
+    public void scanAllUsers() throws Exception {
+        // To avoid rate limited errors
+        AsyncMethodsClient client = slack.methodsAsync(botToken);
+        String cursor = null;
+        while (cursor == null || !cursor.equals("")) {
+            UsersListRequest usersReq = UsersListRequest.builder().limit(1000).cursor(cursor).build();
+            UsersListResponse users = client.usersList(usersReq).get();
+            assertThat(users.getError(), is(nullValue()));
+            for (User user : users.getMembers()) {
+                UsersInfoResponse userInfo = client.usersInfo(r -> r.user(user.getId()).includeLocale(true)).get();
+                assertThat(userInfo.getError(), is(nullValue()));
+                // Requires https://api.slack.com/scopes/users:read.email
+                String email = userInfo.getUser().getProfile().getEmail();
+                if (email != null) {
+                    UsersLookupByEmailResponse lookupByEmail = client.usersLookupByEmail(r -> r.email(email)).get();
+                    assertThat(lookupByEmail.getError(), is(nullValue()));
+                }
+            }
+            cursor = users.getResponseMetadata().getNextCursor();
+        }
     }
 }

@@ -49,7 +49,8 @@
         }
       ],
       "huddle_state": "",
-      "huddle_state_expiration_ts": 12345
+      "huddle_state_expiration_ts": 12345,
+      "guest_invited_by": "U00000000"
     },
     "is_admin": false,
     "is_owner": false,
@@ -73,7 +74,9 @@
       ]
     },
     "is_stranger": false,
-    "who_can_share_contact_card": ""
+    "who_can_share_contact_card": "",
+    "is_workflow_bot": false,
+    "is_invited_user": false
   },
   "error": "",
   "needed": "",
