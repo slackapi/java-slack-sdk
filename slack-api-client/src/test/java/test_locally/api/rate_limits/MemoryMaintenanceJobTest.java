@@ -4,6 +4,7 @@ import com.slack.api.methods.metrics.MemoryMetricsDatastore;
 import com.slack.api.rate_limits.metrics.impl.BaseMemoryMetricsDatastore;
 import com.slack.api.util.thread.DaemonThreadExecutorServiceFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
@@ -53,6 +54,7 @@ public class MemoryMaintenanceJobTest {
         }
     }
 
+    @Ignore
     @Test
     public void maintenanceJobPerformance() throws Exception {
         ExecutorService executor = DaemonThreadExecutorServiceFactory.createDaemonThreadPoolExecutor(
