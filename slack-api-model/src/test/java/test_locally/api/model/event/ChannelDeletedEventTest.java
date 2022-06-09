@@ -18,8 +18,10 @@ public class ChannelDeletedEventTest {
     @Test
     public void deserialize() {
         String json = "{\n" +
-                "    \"type\": \"channel_deleted\",\n" +
-                "    \"channel\": \"C024BE91L\"\n" +
+                "  \"channel\": \"C024BE91L\",\n" +
+                "  \"actor_id\": \"U03E94MK0\",\n" +
+                "  \"type\": \"channel_deleted\",\n" +
+                "  \"event_ts\": \"1654751431.047500\"\n" +
                 "}";
         ChannelDeletedEvent event = GsonFactory.createSnakeCase().fromJson(json, ChannelDeletedEvent.class);
         assertThat(event.getType(), is("channel_deleted"));

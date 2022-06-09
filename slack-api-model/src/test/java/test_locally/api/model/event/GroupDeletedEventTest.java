@@ -18,9 +18,12 @@ public class GroupDeletedEventTest {
     @Test
     public void deserialize() {
         String json = "{\n" +
-                "    \"type\": \"group_deleted\",\n" +
-                "    \"channel\": \"G0QN9RGTT\"\n" +
-                "}\n";
+                "  \"channel\": \"G0QN9RGTT\",\n" +
+                "  \"date_deleted\": 1654752053,\n" +
+                "  \"actor_id\": \"U03E94MK0\",\n" +
+                "  \"type\": \"group_deleted\",\n" +
+                "  \"event_ts\": \"1654752053.000400\"\n" +
+                "}";
         GroupDeletedEvent event = GsonFactory.createSnakeCase().fromJson(json, GroupDeletedEvent.class);
         assertThat(event.getType(), is("group_deleted"));
         assertThat(event.getChannel(), is("G0QN9RGTT"));
