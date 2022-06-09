@@ -25,6 +25,8 @@
   "event_context": "",
   "event": {
     "type": "channel_deleted",
-    "channel": ""
+    "channel": "",
+    "actor_id": "",
+    "event_ts": ""
   }
 }

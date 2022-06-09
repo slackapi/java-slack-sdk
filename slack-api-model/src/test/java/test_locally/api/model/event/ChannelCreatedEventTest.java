@@ -22,7 +22,12 @@ public class ChannelCreatedEventTest {
                 "    \"type\": \"channel_created\",\n" +
                 "    \"channel\": {\n" +
                 "        \"id\": \"C024BE91L\",\n" +
+                "        \"is_channel\": true,\n" +
+                "        \"is_org_shared\": false,\n" +
+                "        \"is_shared\": false,\n" +
                 "        \"name\": \"fun\",\n" +
+                "        \"name\": \"fun\",\n" +
+                "        \"name_normalized\": \"fun\",\n" +
                 "        \"created\": 1360782804,\n" +
                 "        \"creator\": \"U024BE7LH\"\n" +
                 "    }\n" +

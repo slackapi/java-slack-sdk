@@ -19,18 +19,22 @@ public class ChannelRenameEventTest {
     @Test
     public void deserialize() {
         String json = "{\n" +
-                "    \"type\": \"channel_rename\",\n" +
-                "    \"channel\": {\n" +
-                "        \"id\":\"C02ELGNBH\",\n" +
-                "        \"name\":\"new_name\",\n" +
-                "        \"created\":1360782804\n" +
-                "    }\n" +
+                "  \"type\": \"channel_rename\",\n" +
+                "  \"channel\": {\n" +
+                "    \"id\": \"C02ELGNBH\",\n" +
+                "    \"is_channel\": true,\n" +
+                "    \"is_mpim\": false,\n" +
+                "    \"name\": \"channel-renamed\",\n" +
+                "    \"name_normalized\": \"channel-renamed\",\n" +
+                "    \"created\": 1360782804\n" +
+                "  },\n" +
+                "  \"event_ts\": \"1654751422.047200\"\n" +
                 "}";
         ChannelRenameEvent event = GsonFactory.createSnakeCase().fromJson(json, ChannelRenameEvent.class);
         assertThat(event.getType(), is("channel_rename"));
         assertThat(event.getChannel(), is(notNullValue()));
         assertThat(event.getChannel().getId(), is("C02ELGNBH"));
-        assertThat(event.getChannel().getName(), is("new_name"));
+        assertThat(event.getChannel().getName(), is("channel-renamed"));
         assertThat(event.getChannel().getCreated(), is(1360782804));
     }
 

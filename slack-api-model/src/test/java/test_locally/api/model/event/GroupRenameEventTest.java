@@ -18,12 +18,16 @@ public class GroupRenameEventTest {
     @Test
     public void deserialize() {
         String json = "{\n" +
-                "    \"type\": \"group_rename\",\n" +
-                "    \"channel\": {\n" +
-                "        \"id\":\"G02ELGNBH\",\n" +
-                "        \"name\":\"new_name\",\n" +
-                "        \"created\":1360782804\n" +
-                "    }\n" +
+                "  \"type\": \"group_rename\",\n" +
+                "  \"channel\": {\n" +
+                "    \"id\": \"G02ELGNBH\",\n" +
+                "    \"is_channel\": true,\n" +
+                "    \"is_mpim\": false,\n" +
+                "    \"name\": \"new_name\",\n" +
+                "    \"name_normalized\": \"new_name\",\n" +
+                "    \"created\": 1360782804\n" +
+                "  },\n" +
+                "  \"event_ts\": \"1654751965.000300\"\n" +
                 "}";
         GroupRenameEvent event = GsonFactory.createSnakeCase().fromJson(json, GroupRenameEvent.class);
         assertThat(event.getType(), is("group_rename"));
