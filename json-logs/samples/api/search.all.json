@@ -6228,7 +6228,11 @@
         "updated": 12345,
         "thumb_video": "https://www.example.com/",
         "comments_count": 12345,
-        "media_display_type": ""
+        "media_display_type": "",
+        "converted_pdf": "https://www.example.com/",
+        "thumb_pdf": "https://www.example.com/",
+        "thumb_pdf_w": 12345,
+        "thumb_pdf_h": 12345
       }
     ]
   },
