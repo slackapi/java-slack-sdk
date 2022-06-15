@@ -162,7 +162,7 @@ public class ApiTest {
     }
 
     @Test
-    public void getActions_dummy() throws IOException, AuditApiException {
+    public void getActions_detectingNewOnes() throws IOException, AuditApiException {
         ActionsResponse response = slack.audit("dummy").getActions();
         assertThat(response, is(notNullValue()));
 

@@ -28,7 +28,8 @@
           },
           "is_verified": false,
           "domain": "",
-          "date_created": 12345
+          "date_created": 12345,
+          "avatar_base_url": "https://www.example.com/"
         },
         "inviting_user": {
           "id": "U00000000",
@@ -52,7 +53,8 @@
             "image_1024": "https://www.example.com/",
             "image_original": "https://www.example.com/",
             "is_custom_image": false
-          }
+          },
+          "who_can_share_contact_card": ""
         },
         "link": "https://www.example.com/",
         "recipient_user_id": "U00000000",

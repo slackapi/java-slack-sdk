@@ -143,7 +143,11 @@
       "domain_deleted",
       "slack_connect_invite_routing_enabled",
       "slack_connect_invite_routing_disabled",
-      "flexible_access_control_set"
+      "flexible_access_control_set",
+      "team_unsupported_versions_start_success",
+      "team_unsupported_versions_start_failure",
+      "team_unsupported_versions_job_start",
+      "team_unsupported_versions_job_end"
     ],
     "user": [
       "custom_tos_accepted",

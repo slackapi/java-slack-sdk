@@ -9,4 +9,5 @@ public class ConnectUser {
     private String name;
     private Integer updated;
     private ConnectUserProfile profile;
+    private String whoCanShareContactCard; // "EVERYONE" etc.
 }

@@ -1212,6 +1212,24 @@
           "body": "Some users on Enterprise Grid may be running into trouble inviting existing workspace users to private channels. We will let you know as soon as we know more. We appreciate your patience in the meantime."
         }
       ]
+    },
+    {
+      "id": 1104,
+      "date_created": "2022-06-15T14:19:07-07:00",
+      "date_updated": "2022-06-15T14:19:07-07:00",
+      "title": "File Viewer Broken",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-06/b17ffdf99c1217e1",
+      "services": [
+        "Posts/Files"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-06-15T14:19:07-07:00",
+          "body": "Some users may be experiencing trouble with viewing files in Slack. We\u0027re working hard to resolve this issue as quickly as possible, and we\u0027ll share updates as soon as we can. We apologize for any inconvenience this may be causing."
+        }
+      ]
     }
   ]
 }

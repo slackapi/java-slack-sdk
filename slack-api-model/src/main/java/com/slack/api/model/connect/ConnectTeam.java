@@ -11,4 +11,5 @@ public class ConnectTeam {
     private boolean isVerified;
     private String domain;
     private Integer dateCreated;
+    private String avatarBaseUrl;
 }

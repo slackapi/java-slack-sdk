@@ -66,6 +66,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         private String name;
         private Integer skinTone;
         private TextStyle style;
+        private String unicode;
     }
 
     @Data

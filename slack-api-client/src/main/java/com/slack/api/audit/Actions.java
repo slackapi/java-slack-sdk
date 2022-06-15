@@ -155,6 +155,10 @@ public class Actions {
         public static final String slack_connect_invite_routing_enabled = "slack_connect_invite_routing_enabled";
         public static final String slack_connect_invite_routing_disabled = "slack_connect_invite_routing_disabled";
         public static final String flexible_access_control_set = "flexible_access_control_set";
+        public static final String team_unsupported_versions_start_success = "team_unsupported_versions_start_success";
+        public static final String team_unsupported_versions_start_failure = "team_unsupported_versions_start_failure";
+        public static final String team_unsupported_versions_job_start = "team_unsupported_versions_job_start";
+        public static final String team_unsupported_versions_job_end = "team_unsupported_versions_job_end";
     }
 
     public static class User {
