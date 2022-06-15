@@ -20,7 +20,8 @@ public class ReactionsListResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private List<Item> items;
-    private Paging paging;
+    private Paging paging; // for "count" and "page"
+    private ResponseMetadata responseMetadata; // only when "limit" parameter is given
 
     @Data
     public static class Item {
