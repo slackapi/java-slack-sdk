@@ -32,6 +32,8 @@ public class ReactionsListRequest implements SlackApiRequest {
 
     private Integer limit;
 
+    private String cursor;
+
     /**
      * Required for org-wide apps.
      */

@@ -2043,6 +2043,7 @@ public class RequestFormBuilder {
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
         setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
         return form;
     }

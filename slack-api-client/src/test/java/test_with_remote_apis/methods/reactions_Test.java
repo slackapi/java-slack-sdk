@@ -196,4 +196,28 @@ public class reactions_Test {
         assertThat(response.getItems(), is(notNullValue()));
     }
 
+    @Test
+    public void paginationWithLimitAndCursor() throws IOException, SlackApiException {
+        String user = slack.methods().usersList(r -> r.token(botToken))
+                .getMembers().get(0).getId();
+
+        ReactionsListResponse pageOne = slack.methods().reactionsList(r -> r
+                .token(botToken)
+                .user(user)
+                .limit(1)
+        );
+        assertThat(pageOne.getError(), is(nullValue()));
+        assertThat(pageOne.getResponseMetadata().getNextCursor(), is(notNullValue()));
+
+        ReactionsListResponse pageTwo = slack.methods().reactionsList(r -> r
+                .token(botToken)
+                .user(user)
+                .cursor(pageOne.getResponseMetadata().getNextCursor())
+                .limit(1)
+        );
+        assertThat(pageTwo.getError(), is(nullValue()));
+        assertThat(pageTwo.getResponseMetadata().getNextCursor(),
+                is(not(pageOne.getResponseMetadata().getNextCursor())));
+    }
+
 }
