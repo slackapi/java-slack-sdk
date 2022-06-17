@@ -81,10 +81,10 @@ public class Payload {
      /**
      * Pass true to enable unfurling of primarily text-based content.
      */
-    private boolean unfurlLinks;
+    private Boolean unfurlLinks;
 
     /**
      * Pass false to disable unfurling of media content.
      */
-    private boolean unfurlMedia;
+    private Boolean unfurlMedia;
 }
