@@ -3173,7 +3173,7 @@ public class MethodsClientImpl implements MethodsClient {
                 metricsDatastore.addToLastMinuteRequests(executorName, teamId, methodName, System.currentTimeMillis());
             }
             Response response = runPostMultipart(form, methodName, token);
-            T apiResponse = parseJsonResponseAndRunListeners(teamId, methodName, response, clazz);
+            T apiResponse = parseJsonResponseAndRunListeners(teamId, methodName, response, clazz, true);
             return apiResponse;
 
         } catch (IOException e) {
@@ -3221,7 +3221,18 @@ public class MethodsClientImpl implements MethodsClient {
             String teamId,
             String methodName,
             Response response,
-            Class<T> clazz) throws IOException, SlackApiException {
+            Class<T> clazz
+    ) throws IOException, SlackApiException {
+        return parseJsonResponseAndRunListeners(teamId, methodName, response, clazz, false);
+    }
+
+    <T extends SlackApiTextResponse> T parseJsonResponseAndRunListeners(
+            String teamId,
+            String methodName,
+            Response response,
+            Class<T> clazz,
+            boolean isRequestBodyBinary
+            ) throws IOException, SlackApiException {
         String body = response.body().string();
         if (response.isSuccessful()) {
             try {
@@ -3236,7 +3247,7 @@ public class MethodsClientImpl implements MethodsClient {
                 apiResponse.setHttpResponseHeaders(toLowerCasedKeyMap(response.headers()));
                 return apiResponse;
             } finally {
-                slackHttpClient.runHttpResponseListeners(response, body);
+                slackHttpClient.runHttpResponseListeners(response, body, isRequestBodyBinary);
             }
         } else {
             throw new SlackApiException(slackHttpClient.getConfig(), response, body);

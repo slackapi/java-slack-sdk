@@ -18,9 +18,14 @@ public abstract class HttpResponseListener implements Consumer<HttpResponseListe
     @AllArgsConstructor
     @Data
     public static class State {
+        public State(SlackConfig config, Response response, String parsedResponseBody) {
+            this(config, response, parsedResponseBody, false);
+        }
+
         private SlackConfig config;
         private Response response;
         private String parsedResponseBody;
+        private boolean requestBodyBinary;
     }
 
 }
