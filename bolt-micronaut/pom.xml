@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.22.3-SNAPSHOT</version>
+        <version>1.22.3</version>
     </parent>
 
     <properties>
         <micronaut.version>3.5.1</micronaut.version>
-        <micronaut-test-junit5.version>3.3.1</micronaut-test-junit5.version>
+        <micronaut-test-junit5.version>3.4.0</micronaut-test-junit5.version>
         <micronaut-rxjava3.version>2.2.1</micronaut-rxjava3.version>
         <!-- Note that upgrading this library breaks other dependency resolution -->
         <mockito-all.version>1.10.19</mockito-all.version>
@@ -19,7 +19,7 @@
     </properties>
 
     <artifactId>bolt-micronaut</artifactId>
-    <version>1.22.3-SNAPSHOT</version>
+    <version>1.22.3</version>
     <packaging>jar</packaging>
 
     <dependencies>

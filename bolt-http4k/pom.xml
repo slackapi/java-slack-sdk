@@ -6,15 +6,15 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.22.3-SNAPSHOT</version>
+        <version>1.22.3</version>
     </parent>
 
     <properties>
-        <http4k.version>4.26.0.0</http4k.version>
+        <http4k.version>4.27.0.0</http4k.version>
     </properties>
 
     <artifactId>bolt-http4k</artifactId>
-    <version>1.22.3-SNAPSHOT</version>
+    <version>1.22.3</version>
     <packaging>jar</packaging>
 
     <dependencyManagement>
