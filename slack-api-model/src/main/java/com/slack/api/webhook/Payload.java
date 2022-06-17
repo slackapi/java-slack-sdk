@@ -77,4 +77,14 @@ public class Payload {
      * An array of legacy secondary attachments. We recommend you use {@link #blocks} instead.
      */
     private List<Attachment> attachments;
+    
+     /**
+     * Pass true to enable unfurling of primarily text-based content.
+     */
+    private boolean unfurlLinks;
+
+    /**
+     * Pass false to disable unfurling of media content.
+     */
+    private boolean unfurlMedia;
 }
