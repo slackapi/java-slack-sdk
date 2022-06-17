@@ -15,7 +15,6 @@ import com.slack.api.socket_mode.request.InteractiveEnvelope;
 import com.slack.api.socket_mode.request.SlashCommandsEnvelope;
 import com.slack.api.socket_mode.response.SocketModeResponse;
 import com.slack.api.util.json.GsonFactory;
-import com.slack.api.util.thread.ExecutorServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

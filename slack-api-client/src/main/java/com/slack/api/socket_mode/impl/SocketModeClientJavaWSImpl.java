@@ -22,7 +22,10 @@ import org.java_websocket.framing.Framedata;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -207,6 +210,7 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
         public boolean isPongReceived() {
             return Math.abs(System.currentTimeMillis() - lastPongReceived.get()) < 1_000L;
         }
+
         public UnderlyingWebSocketSession(URI serverUri, SocketModeClient smc) {
             this(serverUri, new HashMap<>(), smc);
         }

@@ -195,6 +195,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Asnc Slack API Methods client.
  * <p>
+ *
  * @see <a href="https://api.slack.com/methods">Slack API Methods</a>
  */
 public interface AsyncMethodsClient {

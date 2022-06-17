@@ -3232,7 +3232,7 @@ public class MethodsClientImpl implements MethodsClient {
             Response response,
             Class<T> clazz,
             boolean isRequestBodyBinary
-            ) throws IOException, SlackApiException {
+    ) throws IOException, SlackApiException {
         String body = response.body().string();
         if (response.isSuccessful()) {
             try {

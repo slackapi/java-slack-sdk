@@ -225,6 +225,7 @@ import java.io.IOException;
 /**
  * Slack API Methods client.
  * <p>
+ *
  * @see <a href="https://api.slack.com/methods">Slack API Methods</a>
  */
 public interface MethodsClient {
