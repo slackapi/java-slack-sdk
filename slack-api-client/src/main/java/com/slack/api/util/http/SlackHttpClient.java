@@ -253,7 +253,11 @@ public class SlackHttpClient implements AutoCloseable {
     }
 
     public void runHttpResponseListeners(Response response, String body) {
-        HttpResponseListener.State state = new HttpResponseListener.State(config, response, body);
+        runHttpResponseListeners(response, body, false);
+    }
+
+    public void runHttpResponseListeners(Response response, String body, boolean isRequestBodyBinary) {
+        HttpResponseListener.State state = new HttpResponseListener.State(config, response, body, isRequestBodyBinary);
         for (HttpResponseListener responseListener : config.getHttpClientResponseHandlers()) {
             responseListener.accept(state);
         }
