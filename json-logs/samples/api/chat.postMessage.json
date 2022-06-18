@@ -61,9 +61,7 @@
             "elements": [
               {
                 "type": "",
-                "text": "",
-                "name": "",
-                "unicode": ""
+                "text": ""
               }
             ],
             "text": {
@@ -362,11 +360,6 @@
             "image_bytes": 12345
           }
         ],
-        "text": {
-          "type": "",
-          "text": "",
-          "emoji": false
-        },
         "call_id": "",
         "api_decoration_available": false,
         "call": {
@@ -660,6 +653,11 @@
             }
           ],
           "comments_count": 123
+        },
+        "text": {
+          "type": "",
+          "text": "",
+          "emoji": false
         },
         "fallback": "",
         "image_url": "",
