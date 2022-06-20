@@ -33,6 +33,7 @@ public class ViewState {
         private List<String> selectedChannels;
         private List<String> selectedUsers;
         private List<SelectedOption> selectedOptions;
+        private String timezone; // for timepicker
     }
 
     @Data

@@ -38,6 +38,11 @@ public class TimePickerElement extends BlockElement {
     private String initialTime;
 
     /**
+     * The timezone to consider for this input value.
+     */
+    private String timezone;
+
+    /**
      * A confirm object that defines an optional confirmation dialog that appears after a date is selected.
      */
     private ConfirmationDialogObject confirm;

@@ -2,6 +2,10 @@ package test_locally.app_backend.views;
 
 import com.google.gson.Gson;
 import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
+import com.slack.api.model.block.InputBlock;
+import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.element.TimePickerElement;
+import com.slack.api.model.view.ViewState;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
 
@@ -218,6 +222,37 @@ public class ViewSubmissionPayloadTest {
             "            ]\n" +
             "          }\n" +
             "        }\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"type\": \"input\",\n" +
+            "        \"block_id\": \"date-block\",\n" +
+            "        \"label\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Date\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"optional\": false,\n" +
+            "        \"dispatch_action\": false,\n" +
+            "        \"element\": {\n" +
+            "          \"type\": \"datepicker\",\n" +
+            "          \"action_id\": \"date-action\"\n" +
+            "        }\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"type\": \"input\",\n" +
+            "        \"block_id\": \"time-block\",\n" +
+            "        \"label\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Time\",\n" +
+            "          \"emoji\": true\n" +
+            "        },\n" +
+            "        \"optional\": false,\n" +
+            "        \"dispatch_action\": false,\n" +
+            "        \"element\": {\n" +
+            "          \"type\": \"timepicker\",\n" +
+            "          \"action_id\": \"time-action\",\n" +
+            "          \"timezone\": \"America/Los_Angeles\"\n" +
+            "        }\n" +
             "      }\n" +
             "    ],\n" +
             "    \"private_metadata\": \"\",\n" +
@@ -228,6 +263,19 @@ public class ViewSubmissionPayloadTest {
             "          \"agenda-action\": {\n" +
             "            \"type\": \"plain_text_input\",\n" +
             "            \"value\": \"test\"\n" +
+            "          }\n" +
+            "        }," +
+            "        \"date-block\": {\n" +
+            "          \"date-action\": {\n" +
+            "            \"type\": \"datepicker\",\n" +
+            "            \"selected_date\": \"2022-06-22\"\n" +
+            "          }\n" +
+            "        },\n" +
+            "        \"time-block\": {\n" +
+            "          \"time-action\": {\n" +
+            "            \"type\": \"timepicker\",\n" +
+            "            \"selected_time\": \"03:00\",\n" +
+            "            \"timezone\": \"America/Los_Angeles\"\n" +
             "          }\n" +
             "        }\n" +
             "      }\n" +
@@ -271,5 +319,20 @@ public class ViewSubmissionPayloadTest {
         assertThat(payload.getEnterprise().getId(), is("E111"));
         assertThat(payload.getTeam(), is(nullValue()));
         assertThat(payload.isEnterpriseInstall(), is(true));
+
+        TimePickerElement timepickerBlockElement = null;
+        for (LayoutBlock block : payload.getView().getBlocks()) {
+            if (block.getType().equals(InputBlock.TYPE)) {
+                if (((InputBlock) block).getElement() instanceof TimePickerElement) {
+                    timepickerBlockElement = (TimePickerElement) ((InputBlock) block).getElement();
+                }
+            }
+        }
+        assertThat(timepickerBlockElement.getTimezone(), is("America/Los_Angeles"));
+
+        ViewState.Value timeStateValue = payload.getView().getState().getValues()
+                .get("time-block").get("time-action");
+        assertThat(timeStateValue.getSelectedTime(), is("03:00"));
+        assertThat(timeStateValue.getTimezone(), is("America/Los_Angeles"));
     }
 }
