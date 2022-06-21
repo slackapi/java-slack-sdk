@@ -2496,6 +2496,8 @@ public class RequestFormBuilder {
     private static final String FALLBACK_WARN_MESSAGE_TEMPLATE =
             "Additionally, the attachment-level `fallback` argument is missing in the request payload for a {} call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://api.slack.com/reference/messaging/attachments#legacy_fields for more details).";
 
+    private static final String GSON_ANONYM_INNER_CLASS_INIT_OUTPUT = "null";
+
     private static void warnIfAttachmentWithoutFallbackDetected(String endpointName, List<Attachment> attachments) {
         boolean fallbackMissing = false;
         for (Attachment a : attachments) {
@@ -2556,7 +2558,7 @@ public class RequestFormBuilder {
 
     private static String getJsonWithGsonAnonymInnerClassHandling(List<LayoutBlock> blocks){
         String json = GSON.toJson(blocks);
-        if ("null".equals(json)){
+        if (GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json)){
             return GSON.toJson(new ArrayList<>(blocks));
         }
         return json;
