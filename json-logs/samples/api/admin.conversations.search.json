@@ -33,6 +33,10 @@
       ],
       "connected_limited_team_ids": [
         ""
+      ],
+      "external_user_count": 12345,
+      "internal_team_ids": [
+        "T00000000"
       ]
     }
   ],

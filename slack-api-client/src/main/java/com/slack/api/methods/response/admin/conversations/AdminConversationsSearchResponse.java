@@ -39,6 +39,8 @@ public class AdminConversationsSearchResponse implements SlackApiTextResponse {
         private Boolean isOrgMandatory;
         private Boolean isOrgShared;
         private Boolean isFrozen;
+        private Integer externalUserCount;
+        private List<String> internalTeamIds;
         private Integer internalTeamIdsCount;
         private String internalTeamIdsSampleTeam;
         private List<String> pendingConnectedTeamIds;
