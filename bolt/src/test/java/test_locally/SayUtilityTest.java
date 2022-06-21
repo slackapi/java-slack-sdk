@@ -45,6 +45,24 @@ public class SayUtilityTest {
             assertEquals("123.123", result.getTs());
         }
         {
+            // When you pass blocks, giving text too is highly recommended
+            ChatPostMessageResponse result = util.say(
+                    "*Please select a restaurant:*",
+                    asBlocks(
+                            section(section -> section.text(markdownText("*Please select a restaurant:*"))),
+                            divider(),
+                            actions(actions -> actions
+                                    .elements(asElements(
+                                            button(b -> b.text(plainText(pt -> pt.emoji(true).text("Farmhouse"))).value("v1")),
+                                            button(b -> b.text(plainText(pt -> pt.emoji(true).text("Kin Khao"))).value("v2"))
+                                    ))
+                            )
+                    ));
+            assertTrue(result.isOk());
+            assertEquals("123.123", result.getTs());
+        }
+        {
+            // for backward-compatibility
             ChatPostMessageResponse result = util.say(asBlocks(
                     section(section -> section.text(markdownText("*Please select a restaurant:*"))),
                     divider(),
