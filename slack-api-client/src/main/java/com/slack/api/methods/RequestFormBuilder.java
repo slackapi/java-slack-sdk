@@ -108,6 +108,7 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.ConversationType;
+import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -1134,7 +1135,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
-            String json = GSON.toJson(req.getBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getBlocks());
             form.add("blocks", json);
         }
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
@@ -1183,7 +1184,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
-            String json = GSON.toJson(req.getBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getBlocks());
             form.add("blocks", json);
         }
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
@@ -1229,7 +1230,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
-            String json = GSON.toJson(req.getBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getBlocks());
             form.add("blocks", json);
         }
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
@@ -1279,7 +1280,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
-            String json = GSON.toJson(req.getBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getBlocks());
             form.add("blocks", json);
         }
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
@@ -2551,6 +2552,14 @@ public class RequestFormBuilder {
                 form.addFormDataPart(name, String.valueOf(value));
             }
         }
+    }
+
+    private static String getJsonWithGsonAnonymInnerClassHandling(List<LayoutBlock> blocks){
+        String json = GSON.toJson(blocks);
+        if ("null".equals(json)){
+            return GSON.toJson(new ArrayList<>(blocks));
+        }
+        return json;
     }
 
 }
