@@ -172,7 +172,7 @@ public class SlackConfig {
     private String proxyUrl = initProxyUrl();
 
     // This method runs only once when instantiating this object.
-    // If you want to reflect dynamically updated system properties,
+    // If you want to reflect dynamically updated system properties or env variables,
     // create a new instance by invoking the default constructor.
     private static String initProxyUrl() {
         String host = System.getProperty("http.proxyHost");
@@ -193,6 +193,14 @@ public class SlackConfig {
             } else {
                 return "http://" + host;
             }
+        }
+        String httpsEnvProxyUrl = System.getenv("HTTPS_PROXY");
+        if (httpsEnvProxyUrl != null && !httpsEnvProxyUrl.trim().isEmpty()) {
+            return httpsEnvProxyUrl;
+        }
+        String httpEnvProxyUrl = System.getenv("HTTP_PROXY");
+        if (httpEnvProxyUrl != null && !httpEnvProxyUrl.trim().isEmpty()) {
+            return httpEnvProxyUrl;
         }
         return null;
     }
