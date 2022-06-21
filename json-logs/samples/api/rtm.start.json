@@ -481,7 +481,8 @@
       "first_seen_sent_page_in_sidebar": 12345,
       "seen_new_badge_in_more_menu_sidebar": false,
       "first_seen_new_badge_in_more_menu_sidebar": 12345,
-      "seen_onboarding_synth_view_count": 12345
+      "seen_onboarding_synth_view_count": 12345,
+      "synth_view_prefs": ""
     },
     "created": 12345,
     "first_login": 12345,
