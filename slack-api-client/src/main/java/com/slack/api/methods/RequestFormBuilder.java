@@ -116,9 +116,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static java.util.stream.Collectors.joining;
 
@@ -923,7 +921,7 @@ public class RequestFormBuilder {
         setIfNotNull("external_display_id", req.getExternalDisplayId(), form);
         setIfNotNull("title", req.getTitle(), form);
         if (req.getUsers() != null && req.getUsers().size() > 0) {
-            String usersJson = GSON.toJson(req.getUsers());
+            String usersJson = getJsonWithGsonAnonymInnerClassHandling(req.getUsers());
             setIfNotNull("users", usersJson, form);
         }
         return form;
@@ -955,7 +953,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("id", req.getId(), form);
         if (req.getUsers() != null && req.getUsers().size() > 0) {
-            String usersJson = GSON.toJson(req.getUsers());
+            String usersJson = getJsonWithGsonAnonymInnerClassHandling(req.getUsers());
             setIfNotNull("users", usersJson, form);
         }
         return form;
@@ -965,7 +963,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("id", req.getId(), form);
         if (req.getUsers() != null && req.getUsers().size() > 0) {
-            String usersJson = GSON.toJson(req.getUsers());
+            String usersJson = getJsonWithGsonAnonymInnerClassHandling(req.getUsers());
             setIfNotNull("users", usersJson, form);
         }
         return form;
@@ -1145,7 +1143,7 @@ public class RequestFormBuilder {
         if (req.getAttachmentsAsString() != null) {
             form.add("attachments", req.getAttachmentsAsString());
         } else if (req.getAttachments() != null) {
-            String json = GSON.toJson(req.getAttachments());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getAttachments());
             form.add("attachments", json);
         }
         setIfNotNull("link_names", req.isLinkNames(), form);
@@ -1194,7 +1192,7 @@ public class RequestFormBuilder {
         if (req.getAttachmentsAsString() != null) {
             form.add("attachments", req.getAttachmentsAsString());
         } else if (req.getAttachments() != null) {
-            String json = GSON.toJson(req.getAttachments());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getAttachments());
             form.add("attachments", json);
         }
         setIfNotNull("thread_ts", req.getThreadTs(), form);
@@ -1240,7 +1238,7 @@ public class RequestFormBuilder {
         if (req.getAttachmentsAsString() != null) {
             form.add("attachments", req.getAttachmentsAsString());
         } else if (req.getAttachments() != null) {
-            String json = GSON.toJson(req.getAttachments());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getAttachments());
             form.add("attachments", json);
         }
         setIfNotNull("unfurl_links", req.isUnfurlLinks(), form);
@@ -1290,7 +1288,7 @@ public class RequestFormBuilder {
         if (req.getAttachmentsAsString() != null) {
             form.add("attachments", req.getAttachmentsAsString());
         } else if (req.getAttachments() != null) {
-            String json = GSON.toJson(req.getAttachments());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getAttachments());
             form.add("attachments", json);
         }
         setIfNotNull("as_user", req.isAsUser(), form);
@@ -1304,8 +1302,8 @@ public class RequestFormBuilder {
         setIfNotNull("channel", req.getChannel(), form);
         if (req.getRawUnfurls() != null) {
             setIfNotNull("unfurls", req.getRawUnfurls(), form);
-        } else {
-            String json = GSON.toJson(req.getUnfurls());
+        } else if (req.getUnfurls() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getUnfurls());
             setIfNotNull("unfurls", json, form);
         }
         setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
@@ -1313,7 +1311,7 @@ public class RequestFormBuilder {
         if (req.getRawUserAuthBlocks() != null) {
             setIfNotNull("user_auth_blocks", req.getRawUserAuthBlocks(), form);
         } else if (req.getUserAuthBlocks() != null) {
-            String json = GSON.toJson(req.getUserAuthBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getUserAuthBlocks());
             setIfNotNull("user_auth_blocks", json, form);
         }
         setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
@@ -2456,7 +2454,9 @@ public class RequestFormBuilder {
         if (req.getOutputsAsString() != null) {
             setIfNotNull("outputs", req.getOutputsAsString(), form);
         } else if (req.getOutputs() != null) {
-            setIfNotNull("outputs", GSON.toJson(req.getOutputs()), form);
+            setIfNotNull("outputs",
+                    getJsonWithGsonAnonymInnerClassHandling(req.getOutputs()),
+                    form);
         }
         return form;
     }
@@ -2464,7 +2464,9 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(WorkflowsStepFailedRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("workflow_step_execute_id", req.getWorkflowStepExecuteId(), form);
-        setIfNotNull("error", GSON.toJson(req.getError()), form);
+        setIfNotNull("error",
+                getJsonWithGsonAnonymInnerClassHandling(req.getError()),
+                form);
         return form;
     }
 
@@ -2476,12 +2478,16 @@ public class RequestFormBuilder {
         if (req.getOutputsAsString() != null) {
             setIfNotNull("inputs", req.getInputsAsString(), form);
         } else if (req.getOutputs() != null) {
-            setIfNotNull("inputs", GSON.toJson(req.getInputs()), form);
+            setIfNotNull("inputs",
+                    getJsonWithGsonAnonymInnerClassHandling(req.getInputs()),
+                    form);
         }
         if (req.getOutputsAsString() != null) {
             setIfNotNull("outputs", req.getOutputsAsString(), form);
         } else if (req.getOutputs() != null) {
-            setIfNotNull("outputs", GSON.toJson(req.getOutputs()), form);
+            setIfNotNull("outputs",
+                    getJsonWithGsonAnonymInnerClassHandling(req.getOutputs()),
+                    form);
         }
         return form;
     }
@@ -2556,12 +2562,16 @@ public class RequestFormBuilder {
         }
     }
 
-    private static String getJsonWithGsonAnonymInnerClassHandling(List<LayoutBlock> blocks){
-        String json = GSON.toJson(blocks);
-        if (GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json)){
-            return GSON.toJson(new ArrayList<>(blocks));
-        }
-        return json;
+    // Workarounds to solve GSON not handling anonymous inner class object initialization
+    // https://github.com/google/gson/issues/2023
+    private static <T> String getJsonWithGsonAnonymInnerClassHandling(Map<String, T> stringTMap){
+        String json = GSON.toJson(stringTMap);
+        return GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json) ? GSON.toJson(new HashMap<>(stringTMap)) : json;
+    }
+
+    private static <T> String getJsonWithGsonAnonymInnerClassHandling(List<T> tList){
+        String json = GSON.toJson(tList);
+        return GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json) ? GSON.toJson(new ArrayList<>(tList)) : json;
     }
 
 }
