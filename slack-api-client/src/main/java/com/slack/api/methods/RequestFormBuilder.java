@@ -108,6 +108,7 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.ConversationType;
+import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -115,9 +116,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static java.util.stream.Collectors.joining;
 
@@ -922,7 +921,7 @@ public class RequestFormBuilder {
         setIfNotNull("external_display_id", req.getExternalDisplayId(), form);
         setIfNotNull("title", req.getTitle(), form);
         if (req.getUsers() != null && req.getUsers().size() > 0) {
-            String usersJson = GSON.toJson(req.getUsers());
+            String usersJson = getJsonWithGsonAnonymInnerClassHandling(req.getUsers());
             setIfNotNull("users", usersJson, form);
         }
         return form;
@@ -954,7 +953,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("id", req.getId(), form);
         if (req.getUsers() != null && req.getUsers().size() > 0) {
-            String usersJson = GSON.toJson(req.getUsers());
+            String usersJson = getJsonWithGsonAnonymInnerClassHandling(req.getUsers());
             setIfNotNull("users", usersJson, form);
         }
         return form;
@@ -964,7 +963,7 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("id", req.getId(), form);
         if (req.getUsers() != null && req.getUsers().size() > 0) {
-            String usersJson = GSON.toJson(req.getUsers());
+            String usersJson = getJsonWithGsonAnonymInnerClassHandling(req.getUsers());
             setIfNotNull("users", usersJson, form);
         }
         return form;
@@ -1134,7 +1133,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
-            String json = GSON.toJson(req.getBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getBlocks());
             form.add("blocks", json);
         }
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
@@ -1144,7 +1143,7 @@ public class RequestFormBuilder {
         if (req.getAttachmentsAsString() != null) {
             form.add("attachments", req.getAttachmentsAsString());
         } else if (req.getAttachments() != null) {
-            String json = GSON.toJson(req.getAttachments());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getAttachments());
             form.add("attachments", json);
         }
         setIfNotNull("link_names", req.isLinkNames(), form);
@@ -1183,7 +1182,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
-            String json = GSON.toJson(req.getBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getBlocks());
             form.add("blocks", json);
         }
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
@@ -1193,7 +1192,7 @@ public class RequestFormBuilder {
         if (req.getAttachmentsAsString() != null) {
             form.add("attachments", req.getAttachmentsAsString());
         } else if (req.getAttachments() != null) {
-            String json = GSON.toJson(req.getAttachments());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getAttachments());
             form.add("attachments", json);
         }
         setIfNotNull("thread_ts", req.getThreadTs(), form);
@@ -1229,7 +1228,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
-            String json = GSON.toJson(req.getBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getBlocks());
             form.add("blocks", json);
         }
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
@@ -1239,7 +1238,7 @@ public class RequestFormBuilder {
         if (req.getAttachmentsAsString() != null) {
             form.add("attachments", req.getAttachmentsAsString());
         } else if (req.getAttachments() != null) {
-            String json = GSON.toJson(req.getAttachments());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getAttachments());
             form.add("attachments", json);
         }
         setIfNotNull("unfurl_links", req.isUnfurlLinks(), form);
@@ -1279,7 +1278,7 @@ public class RequestFormBuilder {
         if (req.getBlocksAsString() != null) {
             form.add("blocks", req.getBlocksAsString());
         } else if (req.getBlocks() != null) {
-            String json = GSON.toJson(req.getBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getBlocks());
             form.add("blocks", json);
         }
         if (req.getBlocksAsString() != null && req.getBlocks() != null) {
@@ -1289,7 +1288,7 @@ public class RequestFormBuilder {
         if (req.getAttachmentsAsString() != null) {
             form.add("attachments", req.getAttachmentsAsString());
         } else if (req.getAttachments() != null) {
-            String json = GSON.toJson(req.getAttachments());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getAttachments());
             form.add("attachments", json);
         }
         setIfNotNull("as_user", req.isAsUser(), form);
@@ -1303,8 +1302,8 @@ public class RequestFormBuilder {
         setIfNotNull("channel", req.getChannel(), form);
         if (req.getRawUnfurls() != null) {
             setIfNotNull("unfurls", req.getRawUnfurls(), form);
-        } else {
-            String json = GSON.toJson(req.getUnfurls());
+        } else if (req.getUnfurls() != null) {
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getUnfurls());
             setIfNotNull("unfurls", json, form);
         }
         setIfNotNull("user_auth_required", req.isUserAuthRequired(), form);
@@ -1312,7 +1311,7 @@ public class RequestFormBuilder {
         if (req.getRawUserAuthBlocks() != null) {
             setIfNotNull("user_auth_blocks", req.getRawUserAuthBlocks(), form);
         } else if (req.getUserAuthBlocks() != null) {
-            String json = GSON.toJson(req.getUserAuthBlocks());
+            String json = getJsonWithGsonAnonymInnerClassHandling(req.getUserAuthBlocks());
             setIfNotNull("user_auth_blocks", json, form);
         }
         setIfNotNull("user_auth_url", req.getUserAuthUrl(), form);
@@ -2455,7 +2454,9 @@ public class RequestFormBuilder {
         if (req.getOutputsAsString() != null) {
             setIfNotNull("outputs", req.getOutputsAsString(), form);
         } else if (req.getOutputs() != null) {
-            setIfNotNull("outputs", GSON.toJson(req.getOutputs()), form);
+            setIfNotNull("outputs",
+                    getJsonWithGsonAnonymInnerClassHandling(req.getOutputs()),
+                    form);
         }
         return form;
     }
@@ -2463,7 +2464,9 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(WorkflowsStepFailedRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("workflow_step_execute_id", req.getWorkflowStepExecuteId(), form);
-        setIfNotNull("error", GSON.toJson(req.getError()), form);
+        setIfNotNull("error",
+                getJsonWithGsonAnonymInnerClassHandling(req.getError()),
+                form);
         return form;
     }
 
@@ -2475,12 +2478,16 @@ public class RequestFormBuilder {
         if (req.getInputsAsString() != null) {
             setIfNotNull("inputs", req.getInputsAsString(), form);
         } else if (req.getInputs() != null) {
-            setIfNotNull("inputs", GSON.toJson(req.getInputs()), form);
+            setIfNotNull("inputs",
+                    getJsonWithGsonAnonymInnerClassHandling(req.getInputs()),
+                    form);
         }
         if (req.getOutputsAsString() != null) {
             setIfNotNull("outputs", req.getOutputsAsString(), form);
         } else if (req.getOutputs() != null) {
-            setIfNotNull("outputs", GSON.toJson(req.getOutputs()), form);
+            setIfNotNull("outputs",
+                    getJsonWithGsonAnonymInnerClassHandling(req.getOutputs()),
+                    form);
         }
         return form;
     }
@@ -2494,6 +2501,8 @@ public class RequestFormBuilder {
 
     private static final String FALLBACK_WARN_MESSAGE_TEMPLATE =
             "Additionally, the attachment-level `fallback` argument is missing in the request payload for a {} call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://api.slack.com/reference/messaging/attachments#legacy_fields for more details).";
+
+    private static final String GSON_ANONYM_INNER_CLASS_INIT_OUTPUT = "null";
 
     private static void warnIfAttachmentWithoutFallbackDetected(String endpointName, List<Attachment> attachments) {
         boolean fallbackMissing = false;
@@ -2551,6 +2560,18 @@ public class RequestFormBuilder {
                 form.addFormDataPart(name, String.valueOf(value));
             }
         }
+    }
+
+    // Workarounds to solve GSON not handling anonymous inner class object initialization
+    // https://github.com/google/gson/issues/2023
+    private static <T> String getJsonWithGsonAnonymInnerClassHandling(Map<String, T> stringTMap){
+        String json = GSON.toJson(stringTMap);
+        return GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json) ? GSON.toJson(new HashMap<>(stringTMap)) : json;
+    }
+
+    private static <T> String getJsonWithGsonAnonymInnerClassHandling(List<T> tList){
+        String json = GSON.toJson(tList);
+        return GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json) ? GSON.toJson(new ArrayList<>(tList)) : json;
     }
 
 }
