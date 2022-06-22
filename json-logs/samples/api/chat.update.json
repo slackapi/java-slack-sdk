@@ -174,7 +174,25 @@
                 "type": "",
                 "elements": [
                   {
-                    "type": ""
+                    "type": "",
+                    "range": "",
+                    "text": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    },
+                    "channel_id": "",
+                    "value": "",
+                    "timestamp": "",
+                    "url": "",
+                    "team_id": "",
+                    "user_id": "",
+                    "usergroup_id": "",
+                    "name": "",
+                    "skin_tone": 12345,
+                    "unicode": ""
                   }
                 ],
                 "style": "",
@@ -199,7 +217,25 @@
                 "type": "",
                 "elements": [
                   {
-                    "type": ""
+                    "type": "",
+                    "range": "",
+                    "text": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    },
+                    "channel_id": "",
+                    "value": "",
+                    "timestamp": "",
+                    "url": "",
+                    "team_id": "",
+                    "user_id": "",
+                    "usergroup_id": "",
+                    "name": "",
+                    "skin_tone": 12345,
+                    "unicode": ""
                   }
                 ],
                 "style": "",

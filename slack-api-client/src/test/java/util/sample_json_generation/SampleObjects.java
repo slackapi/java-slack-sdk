@@ -8,7 +8,6 @@ import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.*;
 import com.slack.api.util.json.GsonFactory;
-import lombok.Data;
 
 import java.util.*;
 
@@ -143,13 +142,30 @@ public class SampleObjects {
 
     public static List<SectionBlock> SectionBlocksWithAccessory = new ArrayList<>();
 
-    @Data
-    public static class EmptyRichTextElement implements RichTextElement {
-        private String type;
-    }
-
     private static final List<RichTextElement> nestedRichTextElements = Arrays.asList(
-            initProperties(new EmptyRichTextElement()));
+            initProperties(RichTextSectionElement.Broadcast.builder().build()),
+            initProperties(RichTextSectionElement.Text.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build()),
+            initProperties(RichTextSectionElement.Channel.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build()),
+            initProperties(RichTextSectionElement.Color.builder().build()),
+            initProperties(RichTextSectionElement.Date.builder().build()),
+            initProperties(RichTextSectionElement.Link.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build()),
+            initProperties(RichTextSectionElement.Team.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build()),
+            initProperties(RichTextSectionElement.User.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build()),
+            initProperties(RichTextSectionElement.UserGroup.builder().build()),
+            initProperties(RichTextSectionElement.Emoji.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build())
+    );
     private static List<RichTextElement> RichTextElements = asRichTextElements(
             richTextList(r -> r.elements(nestedRichTextElements).indent(123).style("")),
             richTextPreformatted(r -> r.elements(nestedRichTextElements)),
