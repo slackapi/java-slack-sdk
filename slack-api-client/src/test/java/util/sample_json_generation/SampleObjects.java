@@ -6,11 +6,9 @@ import com.slack.api.model.*;
 import com.slack.api.model.admin.AppIcons;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.*;
-import com.slack.api.model.block.element.BlockElement;
-import com.slack.api.model.block.element.ImageElement;
-import com.slack.api.model.block.element.PlainTextInputElement;
-import com.slack.api.model.block.element.RadioButtonsElement;
+import com.slack.api.model.block.element.*;
 import com.slack.api.util.json.GsonFactory;
+import lombok.Data;
 
 import java.util.*;
 
@@ -96,7 +94,8 @@ public class SampleObjects {
                             gson.toJsonTree(initProperties(DividerBlock.builder().build())),
                             gson.toJsonTree(initProperties(new FileBlock())),
                             gson.toJsonTree(headerBlock),
-                            gson.toJsonTree(imageBlock)
+                            gson.toJsonTree(imageBlock),
+                            gson.toJsonTree(RichTextBlock)
                     )
             );
 
@@ -144,6 +143,27 @@ public class SampleObjects {
 
     public static List<SectionBlock> SectionBlocksWithAccessory = new ArrayList<>();
 
+    @Data
+    public static class EmptyRichTextElement implements RichTextElement {
+        private String type;
+    }
+
+    private static final List<RichTextElement> nestedRichTextElements = Arrays.asList(
+            initProperties(new EmptyRichTextElement()));
+    private static List<RichTextElement> RichTextElements = asRichTextElements(
+            richTextList(r -> r.elements(nestedRichTextElements).indent(123).style("")),
+            richTextPreformatted(r -> r.elements(nestedRichTextElements)),
+            richTextQuote(r -> r.elements(nestedRichTextElements)),
+            richTextSection(r -> r.elements(nestedRichTextElements))
+    );
+
+    private static RichTextBlock RichTextBlock = richText(rt -> rt.elements(asElements(
+            richTextList(r -> r.indent(123).style("").elements(RichTextElements)),
+            richTextPreformatted(r -> r.elements(RichTextElements)),
+            richTextQuote(r -> r.elements(RichTextElements)),
+            richTextSection(r -> r.elements(RichTextElements))
+    )).blockId(""));
+
     static {
         for (BlockElement element : BlockElements) {
             SectionBlocksWithAccessory.add(initProperties(
@@ -164,7 +184,8 @@ public class SampleObjects {
                 initProperties(section(s -> s
                         .accessory(initProperties(ImageElement.builder().build()))
                         .text(TextObject)
-                        .fields(SectionBlockFieldElements)))
+                        .fields(SectionBlockFieldElements))),
+                RichTextBlock
         ));
         Blocks.addAll(SectionBlocksWithAccessory);
     }

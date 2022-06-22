@@ -255,7 +255,20 @@
                     "initial_user": "",
                     "initial_users": [
                       ""
-                    ]
+                    ],
+                    "elements": [
+                      {
+                        "type": "",
+                        "elements": [
+                          {
+                            "type": ""
+                          }
+                        ],
+                        "style": "",
+                        "indent": 12345
+                      }
+                    ],
+                    "indent": 12345
                   },
                   {
                     "type": "",
@@ -265,6 +278,23 @@
                     "image_width": 12345,
                     "image_height": 12345,
                     "image_bytes": 12345
+                  },
+                  {
+                    "type": "",
+                    "elements": [
+                      {
+                        "type": "",
+                        "elements": [
+                          {
+                            "type": ""
+                          }
+                        ],
+                        "style": "",
+                        "indent": 12345
+                      }
+                    ],
+                    "style": "",
+                    "indent": 12345
                   }
                 ],
                 "block_id": "",
@@ -1312,7 +1342,20 @@
                 "initial_user": "",
                 "initial_users": [
                   ""
-                ]
+                ],
+                "elements": [
+                  {
+                    "type": "",
+                    "elements": [
+                      {
+                        "type": ""
+                      }
+                    ],
+                    "style": "",
+                    "indent": 12345
+                  }
+                ],
+                "indent": 12345
               },
               {
                 "type": "",
@@ -1322,6 +1365,23 @@
                 "image_width": 12345,
                 "image_height": 12345,
                 "image_bytes": 12345
+              },
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "type": "",
+                    "elements": [
+                      {
+                        "type": ""
+                      }
+                    ],
+                    "style": "",
+                    "indent": 12345
+                  }
+                ],
+                "style": "",
+                "indent": 12345
               }
             ],
             "block_id": "",
