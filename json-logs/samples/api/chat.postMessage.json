@@ -62,6 +62,34 @@
               {
                 "type": "",
                 "text": ""
+              },
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "type": "",
+                    "range": "",
+                    "text": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    },
+                    "channel_id": "",
+                    "value": "",
+                    "timestamp": "",
+                    "url": "",
+                    "team_id": "",
+                    "user_id": "",
+                    "usergroup_id": "",
+                    "name": "",
+                    "skin_tone": 12345,
+                    "unicode": ""
+                  }
+                ],
+                "style": "",
+                "indent": 12345
               }
             ],
             "text": {
@@ -204,7 +232,8 @@
             "initial_user": "",
             "initial_users": [
               ""
-            ]
+            ],
+            "indent": 12345
           },
           {
             "type": "",
@@ -348,7 +377,38 @@
             "initial_user": "",
             "initial_users": [
               ""
-            ]
+            ],
+            "elements": [
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "type": "",
+                    "range": "",
+                    "text": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    },
+                    "channel_id": "",
+                    "value": "",
+                    "timestamp": "",
+                    "url": "",
+                    "team_id": "",
+                    "user_id": "",
+                    "usergroup_id": "",
+                    "name": "",
+                    "skin_tone": 12345,
+                    "unicode": ""
+                  }
+                ],
+                "style": "",
+                "indent": 12345
+              }
+            ],
+            "indent": 12345
           },
           {
             "type": "",
@@ -358,6 +418,41 @@
             "image_width": 12345,
             "image_height": 12345,
             "image_bytes": 12345
+          },
+          {
+            "type": "",
+            "elements": [
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "type": "",
+                    "range": "",
+                    "text": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    },
+                    "channel_id": "",
+                    "value": "",
+                    "timestamp": "",
+                    "url": "",
+                    "team_id": "",
+                    "user_id": "",
+                    "usergroup_id": "",
+                    "name": "",
+                    "skin_tone": 12345,
+                    "unicode": ""
+                  }
+                ],
+                "style": "",
+                "indent": 12345
+              }
+            ],
+            "style": "",
+            "indent": 12345
           }
         ],
         "call_id": "",
@@ -1223,7 +1318,38 @@
                 "initial_user": "",
                 "initial_users": [
                   ""
-                ]
+                ],
+                "elements": [
+                  {
+                    "type": "",
+                    "elements": [
+                      {
+                        "type": "",
+                        "range": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "channel_id": "",
+                        "value": "",
+                        "timestamp": "",
+                        "url": "",
+                        "team_id": "",
+                        "user_id": "",
+                        "usergroup_id": "",
+                        "name": "",
+                        "skin_tone": 12345,
+                        "unicode": ""
+                      }
+                    ],
+                    "style": "",
+                    "indent": 12345
+                  }
+                ],
+                "indent": 12345
               },
               {
                 "type": "",
@@ -1233,6 +1359,41 @@
                 "image_width": 12345,
                 "image_height": 12345,
                 "image_bytes": 12345
+              },
+              {
+                "type": "",
+                "elements": [
+                  {
+                    "type": "",
+                    "elements": [
+                      {
+                        "type": "",
+                        "range": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "channel_id": "",
+                        "value": "",
+                        "timestamp": "",
+                        "url": "",
+                        "team_id": "",
+                        "user_id": "",
+                        "usergroup_id": "",
+                        "name": "",
+                        "skin_tone": 12345,
+                        "unicode": ""
+                      }
+                    ],
+                    "style": "",
+                    "indent": 12345
+                  }
+                ],
+                "style": "",
+                "indent": 12345
               }
             ],
             "block_id": "",

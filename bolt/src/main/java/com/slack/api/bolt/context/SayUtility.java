@@ -25,9 +25,17 @@ public interface SayUtility {
         return response;
     }
 
+    /**
+     * Using `say(blocks, text)` instead is highly recommended for even better user experience.
+     */
     default ChatPostMessageResponse say(List<LayoutBlock> blocks) throws IOException, SlackApiException {
+        return say(null, blocks);
+    }
+
+    default ChatPostMessageResponse say(String text, List<LayoutBlock> blocks) throws IOException, SlackApiException {
         verifyChannelId();
         ChatPostMessageResponse response = client().chatPostMessage(ChatPostMessageRequest.builder()
+                .text(text)
                 .blocks(blocks)
                 .channel(getChannelId())
                 .build()
