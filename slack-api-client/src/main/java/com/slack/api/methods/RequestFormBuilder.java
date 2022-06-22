@@ -2472,9 +2472,9 @@ public class RequestFormBuilder {
         setIfNotNull("workflow_step_edit_id", req.getWorkflowStepEditId(), form);
         setIfNotNull("step_image_url", req.getStepImageUrl(), form);
         setIfNotNull("step_name", req.getStepName(), form);
-        if (req.getOutputsAsString() != null) {
+        if (req.getInputsAsString() != null) {
             setIfNotNull("inputs", req.getInputsAsString(), form);
-        } else if (req.getOutputs() != null) {
+        } else if (req.getInputs() != null) {
             setIfNotNull("inputs", GSON.toJson(req.getInputs()), form);
         }
         if (req.getOutputsAsString() != null) {
