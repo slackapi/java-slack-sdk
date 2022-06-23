@@ -482,7 +482,8 @@
       "seen_new_badge_in_more_menu_sidebar": false,
       "first_seen_new_badge_in_more_menu_sidebar": 12345,
       "seen_onboarding_synth_view_count": 12345,
-      "synth_view_prefs": ""
+      "synth_view_prefs": "",
+      "clips_feedback_survey_last_trigger_attempt": 12345
     },
     "created": 12345,
     "first_login": 12345,

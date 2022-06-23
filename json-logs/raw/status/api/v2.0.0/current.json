@@ -1230,6 +1230,28 @@
           "body": "Some users may be experiencing trouble with viewing files in Slack. We\u0027re working hard to resolve this issue as quickly as possible, and we\u0027ll share updates as soon as we can. We apologize for any inconvenience this may be causing."
         }
       ]
+    },
+    {
+      "id": 1107,
+      "date_created": "2022-06-23T13:25:18-07:00",
+      "date_updated": "2022-06-23T14:04:17-07:00",
+      "title": "Trouble using Workflow Builder",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-06/47aa0a6f3c164a21",
+      "services": [
+        "Apps/Integrations/APIs"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-06-23T14:04:17-07:00",
+          "body": "We\u0027ve identified the cause of this issue and we\u0027re working on getting a fix out as soon as possible. We\u0027ll be back once we have another update to share. Thank you for your continued patience."
+        },
+        {
+          "date_created": "2022-06-23T13:25:18-07:00",
+          "body": "Some customers are unable to edit workflows. We\u0027re actively investigating the issue and will provide new information as soon as it\u0027s available."
+        }
+      ]
     }
   ]
 }
