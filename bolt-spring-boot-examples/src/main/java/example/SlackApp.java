@@ -1,50 +1,46 @@
 package example;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import static java.util.stream.Collectors.joining;
-
 @Configuration
 @Slf4j
 public class SlackApp {
 
-//    @Bean
-//    public AppConfig loadDefaultConfig() {
-//        return AppConfig.builder().build();
-//    }
+    // If you would like to run this app for a single workspace,
+    // enabling this Bean factory should work for you.
+     @Bean
+    public AppConfig loadSingleWorkspaceAppConfig() {
+        return AppConfig.builder()
+                .singleTeamBotToken(System.getenv("SLACK_BOT_TOKEN"))
+                .signingSecret(System.getenv("SLACK_SIGNING_SECRET"))
+                .build();
+    }
 
-    @Bean
-    public AppConfig loadAppConfig() {
-        AppConfig config = new AppConfig();
-        ClassLoader classLoader = SlackApp.class.getClassLoader();
-        // src/test/resources/appConfig.json
-        try (InputStream is = classLoader.getResourceAsStream("appConfig.json");
-             InputStreamReader isr = new InputStreamReader(is)) {
-            String json = new BufferedReader(isr).lines().collect(joining());
-            JsonObject j = new Gson().fromJson(json, JsonElement.class).getAsJsonObject();
-            config.setSigningSecret(j.get("signingSecret").getAsString());
-            config.setSingleTeamBotToken(j.get("singleTeamBotToken").getAsString());
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
-        return config;
+    // If you would like to run this app for multiple workspaces,
+    // enabling this Bean factory should work for you.
+    // @Bean
+    public AppConfig loadOAuthConfig() {
+        return AppConfig.builder()
+                .singleTeamBotToken(null)
+                .clientId(System.getenv("SLACK_CLIENT_ID"))
+                .clientSecret(System.getenv("SLACK_CLIENT_SECRET"))
+                .signingSecret(System.getenv("SLACK_SIGNING_SECRET"))
+                .scope("app_mentions:read,channels:history,channels:read,chat:write")
+                .oauthInstallPath("/slack/install")
+                .oauthRedirectUriPath("/slack/oauth_redirect")
+                .build();
     }
 
     @Bean
     public App initSlackApp(AppConfig config) {
         App app = new App(config);
+        if (config.getClientId() != null) {
+            app.asOAuthApp(true);
+        }
         app.command("/hello", (req, ctx) -> {
             return ctx.ack(r -> r.text("Thanks!"));
         });
