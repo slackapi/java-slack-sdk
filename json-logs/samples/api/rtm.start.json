@@ -825,7 +825,8 @@
       ],
       "thorn_safer_scan": false,
       "allow_free_automated_trials": false,
-      "warn_user_before_logout": false
+      "warn_user_before_logout": false,
+      "ext_audit_log_retention_type": 12345
     },
     "icon": {
       "image_102": "https://www.example.com/",
