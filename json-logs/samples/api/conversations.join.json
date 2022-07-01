@@ -47,7 +47,8 @@
     "internal_team_ids": [
       "T00000000"
     ],
-    "is_starred": false
+    "is_starred": false,
+    "context_team_id": "T00000000"
   },
   "warning": "",
   "response_metadata": {

@@ -44,7 +44,8 @@
       "previous_names": [
         ""
       ],
-      "date_connected": 12345
+      "date_connected": 12345,
+      "context_team_id": "E00000000"
     }
   ],
   "error": "",

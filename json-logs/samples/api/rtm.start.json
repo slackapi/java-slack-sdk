@@ -904,7 +904,8 @@
       "connected_limited_team_ids": [
         ""
       ],
-      "conversation_host_id": "T00000000"
+      "conversation_host_id": "T00000000",
+      "context_team_id": "T00000000"
     }
   ],
   "groups": [
@@ -3351,7 +3352,8 @@
       "last_read": "0000000000.000000",
       "is_open": false,
       "has_pins": false,
-      "priority": 12345
+      "priority": 12345,
+      "context_team_id": "T00000000"
     }
   ],
   "cache_ts": 12345,

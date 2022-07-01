@@ -45,7 +45,8 @@
     "internal_team_ids": [
       "T00000000"
     ],
-    "is_open": false
+    "is_open": false,
+    "context_team_id": "T00000000"
   },
   "ok": false,
   "error": "",

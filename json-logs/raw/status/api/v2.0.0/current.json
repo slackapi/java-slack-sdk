@@ -1252,6 +1252,24 @@
           "body": "Some customers are unable to edit workflows. We\u0027re actively investigating the issue and will provide new information as soon as it\u0027s available."
         }
       ]
+    },
+    {
+      "id": 1113,
+      "date_created": "2022-06-30T14:15:26-07:00",
+      "date_updated": "2022-06-30T14:15:26-07:00",
+      "title": "Trouble typing in Japanese or Korean",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-06/9c64f0610dd7f393",
+      "services": [
+        "Messaging"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-06-30T14:15:26-07:00",
+          "body": "We’re receiving reports around trouble with typing in Japanese or Korean. We’re on the case and will provide another update once we have more details to share. We’re sorry for the disruption."
+        }
+      ]
     }
   ]
 }

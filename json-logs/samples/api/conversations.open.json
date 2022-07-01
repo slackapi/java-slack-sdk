@@ -894,7 +894,8 @@
     "unread_count": 12345,
     "unread_count_display": 12345,
     "is_open": false,
-    "priority": 12345
+    "priority": 12345,
+    "context_team_id": "T00000000"
   },
   "no_op": false,
   "already_open": false,

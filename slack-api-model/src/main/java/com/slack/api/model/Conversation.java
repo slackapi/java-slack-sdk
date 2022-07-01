@@ -61,6 +61,8 @@ public class Conversation {
     private List<String> connectedTeamIds;
     private List<String> connectedLimitedTeamIds;
 
+    private String contextTeamId;
+
     @SerializedName("is_channel")
     private boolean isChannel;
     @SerializedName("is_group")

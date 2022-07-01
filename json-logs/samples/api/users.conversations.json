@@ -55,7 +55,8 @@
       "priority": 12345,
       "user": "U00000000",
       "is_user_deleted": false,
-      "parent_conversation": "G00000000"
+      "parent_conversation": "G00000000",
+      "context_team_id": "T00000000"
     }
   ],
   "response_metadata": {
