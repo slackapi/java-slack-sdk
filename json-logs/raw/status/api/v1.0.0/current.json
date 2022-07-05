@@ -866,6 +866,18 @@
     {
       "date_created": "2022-06-30T14:15:26-07:00",
       "body": "We’re receiving reports around trouble with typing in Japanese or Korean. We’re on the case and will provide another update once we have more details to share. We’re sorry for the disruption."
+    },
+    {
+      "date_created": "2022-07-05T12:15:00-07:00",
+      "body": "We identified the issue and have deployed a fix. Any impacted users should no longer have trouble loading threads."
+    },
+    {
+      "date_created": "2022-07-04T05:07:50-07:00",
+      "body": "We\u0027re still investigating this issue, but we don\u0027t have additional information just yet. We\u0027ll continue to keep you informed here."
+    },
+    {
+      "date_created": "2022-07-04T03:44:28-07:00",
+      "body": "We’re investigating a problem with threads failing to load. We’ll be back with another update as soon as we have more information to share, we’re sorry for the disruption."
     }
   ]
 }
