@@ -13,6 +13,7 @@ class TimePickerElementBuilder : Builder<TimePickerElement> {
     private var actionId: String? = null
     private var initialTime: String? = null
     private var confirm: ConfirmationDialogObject? = null
+    private var _timezone: String? = null
     private var _focusOnLoad: Boolean? = null
 
     /**
@@ -54,6 +55,15 @@ class TimePickerElementBuilder : Builder<TimePickerElement> {
      */
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
+    }
+
+    /**
+     * The timezone to consider for this input value.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#timepicker">Time picker element documentation</a>
+     */
+    fun timezone(timezone: String) {
+        _timezone = timezone
     }
 
     /**

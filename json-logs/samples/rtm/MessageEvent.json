@@ -376,6 +376,7 @@
             "emoji": false
           },
           "initial_time": "",
+          "timezone": "",
           "confirm": {
             "title": {
               "type": "plain_text",
@@ -2790,6 +2791,7 @@
           "emoji": false
         },
         "initial_time": "",
+        "timezone": "",
         "confirm": {
           "title": {
             "type": "plain_text",
@@ -3840,6 +3842,7 @@
                 "emoji": false
               },
               "initial_time": "",
+              "timezone": "",
               "confirm": {
                 "title": {
                   "type": "plain_text",
@@ -6254,6 +6257,7 @@
               "emoji": false
             },
             "initial_time": "",
+            "timezone": "",
             "confirm": {
               "title": {
                 "type": "plain_text",

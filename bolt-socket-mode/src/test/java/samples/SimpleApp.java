@@ -7,12 +7,13 @@ import com.slack.api.model.event.AppMentionEvent;
 import com.slack.api.model.event.MessageChangedEvent;
 import com.slack.api.model.event.MessageDeletedEvent;
 import com.slack.api.model.event.MessageEvent;
+import com.slack.api.model.view.ViewState;
 import config.Constants;
 
 import static com.slack.api.model.block.Blocks.asBlocks;
 import static com.slack.api.model.block.Blocks.input;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
-import static com.slack.api.model.block.element.BlockElements.plainTextInput;
+import static com.slack.api.model.block.element.BlockElements.*;
 import static com.slack.api.model.view.Views.*;
 
 public class SimpleApp {
@@ -24,10 +25,6 @@ public class SimpleApp {
         app.use((req, resp, chain) -> {
             req.getContext().logger.info(req.getRequestBodyAsString());
             return chain.next(req);
-        });
-
-        app.command("/hi-socket-mode", (req, ctx) -> {
-            return ctx.ack("Yes, I'm running in the Socket Mode!");
         });
 
         app.event(AppMentionEvent.class, (req, ctx) -> {
@@ -47,7 +44,7 @@ public class SimpleApp {
         app.event(MessageChangedEvent.class, (req, ctx) -> ctx.ack());
         app.event(MessageDeletedEvent.class, (req, ctx) -> ctx.ack());
 
-        app.globalShortcut("socket-mode-global-shortcut", (req, ctx) -> {
+        app.command("/hello-socket-mode", (req, ctx) -> {
             ctx.asyncClient().viewsOpen(r -> r
                     .triggerId(req.getContext().getTriggerId())
                     .view(view(v -> v
@@ -56,16 +53,32 @@ public class SimpleApp {
                             .title(viewTitle(vt -> vt.type("plain_text").text("Modal by Global Shortcut")))
                             .close(viewClose(vc -> vc.type("plain_text").text("Close")))
                             .submit(viewSubmit(vs -> vs.type("plain_text").text("Submit")))
-                            .blocks(asBlocks(input(input -> input
-                                    .blockId("agenda-block")
-                                    .element(plainTextInput(pti -> pti.actionId("agenda-action").multiline(true)))
-                                    .label(plainText(pt -> pt.text("Detailed Agenda").emoji(true)))
-                            )))
+                            .blocks(asBlocks(
+                                    input(input -> input
+                                            .blockId("agenda-block")
+                                            .element(plainTextInput(pti -> pti.actionId("agenda-action").multiline(true)))
+                                            .label(plainText(pt -> pt.text("Detailed Agenda").emoji(true)))
+                                    ),
+                                    input(input -> input
+                                            .blockId("date-block")
+                                            .element(datePicker(pti -> pti.actionId("date-action")))
+                                            .label(plainText(pt -> pt.text("Date").emoji(true)))
+                                    ),
+                                    input(input -> input
+                                            .blockId("time-block")
+                                            .element(timePicker(pti -> pti.actionId("time-action").timezone("America/Los_Angeles")))
+                                            .label(plainText(pt -> pt.text("Time").emoji(true)))
+                                    )
+                            ))
                     )));
             return ctx.ack();
         });
 
-        app.viewSubmission("test-view", (req, ctx) -> ctx.ack());
+        app.viewSubmission("test-view", (req, ctx) -> {
+            ViewState.Value time = req.getPayload().getView().getState().getValues().get("time-block").get("time-action");
+            assert time.getTimezone().equals("America/Los_Angeles");
+            return ctx.ack();
+        });
 
         app.messageShortcut("socket-mode-message-shortcut", (req, ctx) -> {
             ctx.respond("It works!");
