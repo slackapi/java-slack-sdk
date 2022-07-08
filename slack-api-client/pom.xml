@@ -18,7 +18,7 @@
         <!-- TODO upgrade to 2.0 in the next major version
          see https://github.com/slackapi/java-slack-sdk/issues/919#issuecomment-1022822962
          -->
-        <tyrus-standalone-client.version>1.18</tyrus-standalone-client.version>
+        <tyrus-standalone-client.version>1.19</tyrus-standalone-client.version>
         <java-websocket.version>1.5.3</java-websocket.version>
         <jedis.version>4.2.3</jedis.version>
         <jedis-mock.version>1.0.3</jedis-mock.version>
