@@ -117,6 +117,8 @@ public class Actions {
         public static final String pref_allow_huddles = "pref.allow_huddles";
         public static final String pref_workspace_access_changed = "pref.workspace_access_changed";
         public static final String pref_uneditable_user_profile_fields = "pref.uneditable_user_profile_fields";
+        public static final String pref_ext_audit_log_retention_type_changed = "pref.ext_audit_log_retention_type_changed";
+        public static final String pref_ext_audit_log_retention_duration_changed = "pref.ext_audit_log_retention_duration_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";

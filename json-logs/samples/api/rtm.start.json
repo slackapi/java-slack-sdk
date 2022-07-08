@@ -828,7 +828,9 @@
       "allow_free_automated_trials": false,
       "warn_user_before_logout": false,
       "ext_audit_log_retention_type": 12345,
-      "ext_audit_log_retention_duration": 12345
+      "ext_audit_log_retention_duration": 12345,
+      "warn_user_before_logout_desktop": false,
+      "warn_user_before_logout_mobile": false
     },
     "icon": {
       "image_102": "https://www.example.com/",
