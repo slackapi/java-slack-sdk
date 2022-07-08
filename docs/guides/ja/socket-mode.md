@@ -42,12 +42,12 @@ lang: ja
     <dependency>
       <groupId>javax.websocket</groupId>
       <artifactId>javax.websocket-api</artifactId>
-      <version>1.1</version>
+      <version>{{ site.javaxWebsocketApiVersion }}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.tyrus.bundles</groupId>
       <artifactId>tyrus-standalone-client</artifactId>
-      <version>1.17</version>
+      <version>{{ site.tyrusStandaloneClientVersion }}</version>
     </dependency>
   </dependencies>
 </project>
@@ -110,7 +110,7 @@ String appToken = System.getenv("SLACK_APP_TOKEN");
 SocketModeApp socketModeApp = new SocketModeApp(appToken, app);
 
 // #start() メソッドは WebSocket コネクションを確立して、カレントスレッドをブロックし続けます。
-// ブロックしたくない場合は #startAsync() を使ってください。     
+// ブロックしたくない場合は #startAsync() を使ってください。
 socketModeApp.start();
 ```
 
@@ -186,11 +186,11 @@ try (SocketModeClient client = Slack.getInstance().socketMode(appLevelToken)) {
   client.addWebSocketMessageListener((String message) -> {
     // TODO: WebSocket のテキストメッセージを使って何かする
   });
-  
+
   client.addWebSocketErrorListener((Throwable reason) -> {
     // TODO: 例外を処理する
   });
-  
+
   // type: events のエンベロープだけを受け取るリスナーを追加
   client.addEventsApiEnvelopeListener((EventsApiEnvelope envelope) -> {
     // TODO: Events API のペイロードを使って何ややる
@@ -199,9 +199,9 @@ try (SocketModeClient client = Slack.getInstance().socketMode(appLevelToken)) {
     SocketModeResponse ack = AckResponse.builder().envelopeId(envelope.getEnvelopeId()).build();
     client.sendSocketModeResponse(ack);
   });
-  
+
   client.connect(); // ソケットモードサーバーに接続してメッセージの受信を開始
-  
+
   client.disconnect(); // ソケットモードサーバーから切断
 
   client.connectToNewEndpoint(); // 新しい WSS URL を発行して、その URL に接続

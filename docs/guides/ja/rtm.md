@@ -33,12 +33,12 @@ RTM クライアントを使うためには、**slack-api-client** ライブラ�
     <dependency>
       <groupId>javax.websocket</groupId>
       <artifactId>javax.websocket-api</artifactId>
-      <version>1.1</version>
+      <version>{{ site.javaxWebsocketApiVersion }}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.tyrus.bundles</groupId>
       <artifactId>tyrus-standalone-client</artifactId>
-      <version>1.17</version>
+      <version>{{ site.tyrusStandaloneClientVersion }}</version>
     </dependency>
   </dependencies>
 </project>

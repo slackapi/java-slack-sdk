@@ -42,12 +42,12 @@ To manage the Socket Mode connections, in addition to the **bolt-socket-mode** l
     <dependency>
       <groupId>javax.websocket</groupId>
       <artifactId>javax.websocket-api</artifactId>
-      <version>1.1</version>
+      <version>{{ site.javaxWebsocketApiVersion }}</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.tyrus.bundles</groupId>
       <artifactId>tyrus-standalone-client</artifactId>
-      <version>1.17</version>
+      <version>{{ site.tyrusStandaloneClientVersion }}</version>
     </dependency>
   </dependencies>
 </project>
@@ -106,12 +106,12 @@ import com.slack.api.bolt.socket_mode.SocketModeApp;
 // the app-level token with `connections:write` scope
 String appToken = System.getenv("SLACK_APP_TOKEN");
 
-// Initialize the adapter for Socket Mode 
+// Initialize the adapter for Socket Mode
 // with an app-level token and your Bolt app with listeners.
 SocketModeApp socketModeApp = new SocketModeApp(appToken, app);
 
 // #start() method establishes a new WebSocket connection and then blocks the current thread.
-// If you do not want to block this thread, use #startAsync() instead.        
+// If you do not want to block this thread, use #startAsync() instead.
 socketModeApp.start();
 ```
 
@@ -122,7 +122,7 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.model.event.AppMentionEvent;
 
-// As this is a distributed Socket Mode app, 
+// As this is a distributed Socket Mode app,
 // you do not need a token for a specific workspace and the signing secret here.
 AppConfig appConfig = AppConfig.builder()
   .clientId("111.222")
@@ -187,11 +187,11 @@ try (SocketModeClient client = Slack.getInstance().socketMode(appLevelToken)) {
   client.addWebSocketMessageListener((String message) -> {
     // TODO: Do something with the raw WebSocket text message
   });
-  
+
   client.addWebSocketErrorListener((Throwable reason) -> {
     // TODO: Do something with a thrown exception
   });
-  
+
   // Add a listener function that handles only type: events envelopes
   client.addEventsApiEnvelopeListener((EventsApiEnvelope envelope) -> {
     // TODO: Do something with an Events API payload
@@ -200,9 +200,9 @@ try (SocketModeClient client = Slack.getInstance().socketMode(appLevelToken)) {
     SocketModeResponse ack = AckResponse.builder().envelopeId(envelope.getEnvelopeId()).build();
     client.sendSocketModeResponse(ack);
   });
-  
+
   client.connect(); // Start receiving messages from the Socket Mode server
-  
+
   client.disconnect(); // Disconnect from the server
 
   client.connectToNewEndpoint(); // Issue a new WSS URL and connects to the URL
