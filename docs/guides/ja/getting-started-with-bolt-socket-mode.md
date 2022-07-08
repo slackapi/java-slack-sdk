@@ -46,12 +46,12 @@ lang: ja
 <dependency>
   <groupId>javax.websocket</groupId>
   <artifactId>javax.websocket-api</artifactId>
-  <version>1.1</version>
+  <version>{{ site.javaxWebsocketApiVersion }}</version>
 </dependency>
 <dependency>
   <groupId>org.glassfish.tyrus.bundles</groupId>
   <artifactId>tyrus-standalone-client</artifactId>
-  <version>1.17</version>
+  <version>{{ site.tyrusStandaloneClientVersion }}</version>
 </dependency>
 <dependency>
   <groupId>org.slf4j</groupId>
@@ -88,8 +88,8 @@ Gralde プロジェクトを作成した後 **bolt** 関連の依存ライブラ
 dependencies {
   implementation("com.slack.api:bolt:{{ site.sdkLatestVersion }}")
   implementation("com.slack.api:bolt-socket-mode:{{ site.sdkLatestVersion }}")
-  implementation("javax.websocket:javax.websocket-api:1.1")
-  implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17")
+  implementation("javax.websocket:javax.websocket-api:{{ site.javaxWebsocketApiVersion }}")
+  implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:{{ site.tyrusStandaloneClientVersion }}")
   implementation("org.slf4j:slf4j-simple:{{ site.slf4jApiVersion }}")
 }
 ```
@@ -114,8 +114,8 @@ repositories {
 }
 dependencies {
   implementation("com.slack.api:bolt-socket-mode:{{ site.sdkLatestVersion }}")
-  implementation("javax.websocket:javax.websocket-api:1.1")
-  implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17")
+  implementation("javax.websocket:javax.websocket-api:{{ site.javaxWebsocketApiVersion }}")
+  implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:{{ site.tyrusStandaloneClientVersion }}")
   implementation("org.slf4j:slf4j-simple:{{ site.slf4jApiVersion }}")
 }
 application {
@@ -250,8 +250,8 @@ dependencies {
   implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("com.slack.api:bolt-socket-mode:{{ site.sdkLatestVersion }}")
-  implementation("javax.websocket:javax.websocket-api:1.1")
-  implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.17")
+  implementation("javax.websocket:javax.websocket-api:{{ site.javaxWebsocketApiVersion }}")
+  implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:{{ site.tyrusStandaloneClientVersion }}")
   implementation("org.slf4j:slf4j-simple:{{ site.slf4jApiVersion }}") // または logback-classic など
 }
 application {

@@ -14,3 +14,5 @@ springBootVersion: 2.7.1
 compatibleMicronautVersion: 3.x
 quarkusVersion: 2.10.2.Final
 helidonVersion: 2.5.0
+javaxWebsocketApiVersion: 1.1
+tyrusStandaloneClientVersion: 1.19
