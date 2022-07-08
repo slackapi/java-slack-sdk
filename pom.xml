@@ -52,15 +52,15 @@
         <jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
         <okhttp.version>4.10.0</okhttp.version>
         <gson.version>2.9.0</gson.version>
-        <kotlin.version>1.7.0</kotlin.version>
+        <kotlin.version>1.7.10</kotlin.version>
         <slf4j.version>1.7.36</slf4j.version>
         <lombok.version>1.18.24</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
 
         <!-- optional / testing-only dependencies -->
-        <jakarta.jetty.version>11.0.9</jakarta.jetty.version>
-        <java-jwt.version>[3.19,4.0)</java-jwt.version>
+        <jakarta.jetty.version>[11.0,12.0)</jakarta.jetty.version>
+        <java-jwt.version>[4.0,5.0)</java-jwt.version>
         <aws.s3.version>[1.12.62,1.13.0)</aws.s3.version>
         <junit.version>4.13.2</junit.version>
         <logback.version>1.2.11</logback.version>
