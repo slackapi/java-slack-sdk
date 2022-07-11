@@ -8,9 +8,11 @@ import com.slack.api.bolt.AppConfig
 import com.slack.api.bolt.ktor.respond
 import com.slack.api.bolt.ktor.toBoltRequest
 import com.slack.api.bolt.util.SlackRequestParser
-import io.ktor.application.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.server.application.*
 import io.ktor.http.*
-import io.ktor.routing.*
+import io.ktor.server.routing.*
 import io.ktor.server.testing.*
 import org.junit.After
 import org.junit.Before
@@ -56,32 +58,48 @@ class KtorAppTest {
     }
 
     @Test
-    fun invalidRequest() = withTestApplication(Application::main) {
-        with(handleRequest(HttpMethod.Post, "/slack/events")) {
-            assertEquals(HttpStatusCode.BadRequest, response.status())
-            assertEquals("Invalid Request", response.content)
-        }
+    fun invalidRequest() = testApplication {
+        val response = client.post("/slack/events")
+        assertEquals(HttpStatusCode.BadRequest, response.status)
+        assertEquals("Invalid Request", response.bodyAsText())
+//        with(handleRequest(HttpMethod.Post, "/slack/events")) {
+//            assertEquals(HttpStatusCode.BadRequest, response.status())
+//            assertEquals("Invalid Request", response.content)
+//        }
     }
 
     @Test
-    fun validRequest() = withTestApplication(Application::main) {
+    fun validRequest() = testApplication {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, weatherCommandPayload)
-        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-            addHeader("Content-type", "application/x-www-form-urlencoded")
-            setBody(weatherCommandPayload)
 
+        val response = client.post("/slack/events"){
+            setAttributes{
+                headers{
+                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
+                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
+                    "Content-type" to "application/x-www-form-urlencoded"
+                }
+            }
+            setBody(weatherCommandPayload)
         }
-        with(req) {
-            assertEquals(HttpStatusCode.OK, response.status())
-            assertEquals("""{"text":"This a clear sunny day!"}""", response.content)
-        }
+        assertEquals(HttpStatusCode.OK, response.status)
+        assertEquals("""{"text":"This a clear sunny day!"}""", response.bodyAsText())
+//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+//            addHeader("Content-type", "application/x-www-form-urlencoded")
+//            setBody(weatherCommandPayload)
+//
+//        }
+//        with(req) {
+//            assertEquals(HttpStatusCode.OK, response.status())
+//            assertEquals("""{"text":"This a clear sunny day!"}""", response.content)
+//        }
     }
 
     @Test
-    fun commandNotFound() = withTestApplication(Application::main) {
+    fun commandNotFound() = testApplication {
         val unknownCommandPayload = "&team_id=T0001" +
                 "&channel_id=C2147483705" +
                 "&user_id=U2147483697" +
@@ -91,34 +109,57 @@ class KtorAppTest {
                 "&trigger_id=13345224609.738474920.8088930838d88f008e0"
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, unknownCommandPayload)
-        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-            addHeader("Content-type", "application/x-www-form-urlencoded")
+        val response = client.post("/slack/events"){
+            setAttributes {
+                headers {
+                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
+                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
+                    "Content-type" to "application/x-www-form-urlencoded"
+                }
+            }
             setBody(unknownCommandPayload)
-
         }
-        with(req) {
-            assertEquals(HttpStatusCode.NotFound, response.status())
-            assertEquals("""{"error":"no handler found"}""", response.content)
-        }
+        assertEquals(HttpStatusCode.NotFound, response.status)
+        assertEquals("""{"error":"no handler found"}""", response.bodyAsText())
+//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+//            addHeader("Content-type", "application/x-www-form-urlencoded")
+//            setBody(unknownCommandPayload)
+//
+//        }
+//        with(req) {
+//            assertEquals(HttpStatusCode.NotFound, response.status())
+//            assertEquals("""{"error":"no handler found"}""", response.content)
+//        }
     }
 
     @Test
-    fun invalidSignature() = withTestApplication(Application::main) {
+    fun invalidSignature() = testApplication {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, weatherCommandPayload)
-        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-            addHeader("Content-type", "application/x-www-form-urlencoded")
-            setBody(weatherCommandPayload)
-
+        val response = client.post("/slack/events"){
+            setAttributes {
+                headers{
+                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
+                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
+                    "Content-type" to "application/x-www-form-urlencoded"
+                }
+            }
         }
-        with(req) {
-            assertEquals(HttpStatusCode.Unauthorized, response.status())
-            assertEquals("""{"error":"invalid request"}""", response.content)
-        }
+        assertEquals(HttpStatusCode.Unauthorized, response.status)
+        assertEquals("""{"error":"invalid request"}""", response.bodyAsText())
+//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+//            addHeader("Content-type", "application/x-www-form-urlencoded")
+//            setBody(weatherCommandPayload)
+//
+//        }
+//        with(req) {
+//            assertEquals(HttpStatusCode.Unauthorized, response.status())
+//            assertEquals("""{"error":"invalid request"}""", response.content)
+//        }
     }
 }
 

@@ -17,6 +17,7 @@ import com.slack.api.model.admin.ApprovedApp;
 import com.slack.api.model.admin.RestrictedApp;
 import com.slack.api.model.dialog.DialogResponseMetadata;
 import com.slack.api.model.view.View;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.ObjectInitializer;
 import util.sample_json_generation.ObjectToJsonDumper;

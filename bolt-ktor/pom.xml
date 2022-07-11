@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>bolt-ktor</artifactId>
-    <version>1.23.2-SNAPSHOT</version>
+    <version>1.23.1</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -20,7 +20,7 @@
         once a binary compatibility issue on the ktor side has been resolved
         java.lang.NoSuchMethodError: java.nio.ByteBuffer.limit(I)Ljava/nio/ByteBuffer;
         -->
-        <ktor.version>1.6.4</ktor.version>
+        <ktor.version>2.0.3</ktor.version>
     </properties>
 
     <pluginRepositories>
@@ -49,7 +49,7 @@
         </dependency>
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-core</artifactId>
+            <artifactId>ktor-server-core-jvm</artifactId>
             <version>${ktor.version}</version>
         </dependency>
         <dependency>
@@ -60,14 +60,20 @@
         </dependency>
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-netty</artifactId>
+            <artifactId>ktor-server-netty-jvm</artifactId>
             <version>${ktor.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-tests</artifactId>
+            <artifactId>ktor-server-test-host-jvm</artifactId>
             <version>${ktor.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains.kotlinx</groupId>
+                    <artifactId>kotlinx-coroutines-bom</artifactId>
+                </exclusion>
+            </exclusions>
             <scope>test</scope>
         </dependency>
         <dependency>

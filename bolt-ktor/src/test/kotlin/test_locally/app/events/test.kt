@@ -9,10 +9,11 @@ import com.slack.api.bolt.ktor.respond
 import com.slack.api.bolt.ktor.toBoltRequest
 import com.slack.api.bolt.util.SlackRequestParser
 import com.slack.api.model.event.AppMentionEvent
-import io.ktor.application.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import io.ktor.http.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.server.application.*
+import io.ktor.server.routing.*
 import io.ktor.server.testing.*
 import org.junit.After
 import org.junit.Before
@@ -58,34 +59,51 @@ class KtorAppTest {
     }
 
     @Test
-    fun invalidRequest() = withTestApplication(Application::main) {
-        with(handleRequest(HttpMethod.Post, "/slack/events")) {
-            assertEquals(HttpStatusCode.BadRequest, response.status())
-            assertEquals("Invalid Request", response.content)
-        }
+    fun invalidRequest() = testApplication {
+        val response = client.post("/slack/events")
+        assertEquals(HttpStatusCode.BadRequest, response.status)
+        assertEquals("Invalid Request", response.bodyAsText())
+//        with(handleRequest(HttpMethod.Post, "/slack/events")) {
+//            assertEquals(HttpStatusCode.BadRequest, response.status())
+//            assertEquals("Invalid Request", response.content)
+//        }
     }
 
     @Test
-    fun validRequest() = withTestApplication(Application::main) {
+    fun validRequest() = testApplication {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, appMentionEventPayload)
-        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-            addHeader("Content-type", "application/json")
+        val response = client.post("/slack/events"){
+            setAttributes {
+                headers{
+                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
+                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
+                    "Content-type" to "application/json"
+                }
+            }
             setBody(appMentionEventPayload)
-
         }
-        with(req) {
-            assertEquals(HttpStatusCode.OK, response.status())
-            // assert that response is properly flushed and closed
-            // we can check it by content-length header, for example
-            assertEquals("0", response.headers["content-length"])
-        }
+        assertEquals(HttpStatusCode.OK, response.status)
+        // assert that response is properly flushed and closed
+        // we can check it by content-length header, for example
+        assertEquals("0", response.headers["content-length"])
+//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+//            addHeader("Content-type", "application/json")
+//            setBody(appMentionEventPayload)
+//
+//        }
+//        with(req) {
+//            assertEquals(HttpStatusCode.OK, response.status())
+//            // assert that response is properly flushed and closed
+//            // we can check it by content-length header, for example
+//            assertEquals("0", response.headers["content-length"])
+//        }
     }
 
     @Test
-    fun validRequestWithUnicodeSymbols() = withTestApplication(Application::main) {
+    fun validRequestWithUnicodeSymbols() = testApplication {
         val appMentionEventPayloadWithUnicodeSymbol = appMentionEventPayload.replace(
             "\"\\u003c@W111\\u003e Hello!\"",
             "\"In a meeting • Some Calendar\""
@@ -93,36 +111,59 @@ class KtorAppTest {
 
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, appMentionEventPayloadWithUnicodeSymbol)
-        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-            addHeader("Content-type", "application/json")
+        val response = client.post("/slack/events") {
+            setAttributes {
+                SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
+                SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
+                "Content-type" to "application/json"
+            }
             setBody(appMentionEventPayloadWithUnicodeSymbol)
-
         }
-        with(req) {
-            assertEquals(HttpStatusCode.OK, response.status())
-            // assert that response is properly flushed and closed
-            // we can check it by content-length header, for example
-            assertEquals("0", response.headers["content-length"])
-        }
+        assertEquals(HttpStatusCode.OK, response.status)
+        // assert that response is properly flushed and closed
+        // we can check it by content-length header, for example
+        assertEquals("0", response.headers["content-length"])
+//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+//            addHeader("Content-type", "application/json")
+//            setBody(appMentionEventPayloadWithUnicodeSymbol)
+//
+//        }
+//        with(req) {
+//            assertEquals(HttpStatusCode.OK, response.status())
+//            // assert that response is properly flushed and closed
+//            // we can check it by content-length header, for example
+//            assertEquals("0", response.headers["content-length"])
+//        }
     }
 
     @Test
-    fun invalidSignature() = withTestApplication(Application::main) {
+    fun invalidSignature() = testApplication {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, appMentionEventPayload)
-        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-            addHeader("Content-type", "application/json")
-            setBody(appMentionEventPayload)
-
+        val response = client.post("/slack/events"){
+            setAttributes {
+                headers{
+                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
+                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
+                    "Content-type" to "application/json"
+                }
+            }
         }
-        with(req) {
-            assertEquals(HttpStatusCode.Unauthorized, response.status())
-            assertEquals("""{"error":"invalid request"}""", response.content)
-        }
+        assertEquals(HttpStatusCode.Unauthorized, response.status)
+        assertEquals("""{"error":"invalid request"}""", response.bodyAsText())
+//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+//            addHeader("Content-type", "application/json")
+//            setBody(appMentionEventPayload)
+//
+//        }
+//        with(req) {
+//            assertEquals(HttpStatusCode.Unauthorized, response.status())
+//            assertEquals("""{"error":"invalid request"}""", response.content)
+//        }
     }
 }
 
