@@ -6,6 +6,7 @@ import com.slack.api.model.Attachment;
 import com.slack.api.model.Field;
 import com.slack.api.model.block.ActionsBlock;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.PlainTextObject;
 import com.slack.api.model.block.element.ButtonElement;
 import com.slack.api.webhook.Payload;
@@ -20,6 +21,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -279,5 +281,14 @@ public class IncomingWebhooksTest {
 
         assertThat(response.getBody(), is("ok"));
         assertThat(response.getCode(), is(200));
+    }
+
+    @Test
+    public void testInvalidBlocksError() throws Exception {
+        List<LayoutBlock> blocks = Arrays.asList(SectionBlock.builder().blockId("B").build());
+        Payload payload = Payload.builder().blocks(blocks).text("Hi there!").build();
+        WebhookResponse response = slack.send(url, payload);
+        assertThat(response.getBody(), is("invalid_blocks"));
+        assertThat(response.getCode(), is(400));
     }
 }
