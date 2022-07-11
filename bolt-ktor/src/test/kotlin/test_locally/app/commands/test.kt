@@ -59,6 +59,7 @@ class KtorAppTest {
 
     @Test
     fun invalidRequest() = testApplication {
+        application { main() }
         val response = client.post("/slack/events")
         assertEquals(HttpStatusCode.BadRequest, response.status)
         assertEquals("Invalid Request", response.bodyAsText())
@@ -70,6 +71,7 @@ class KtorAppTest {
 
     @Test
     fun validRequest() = testApplication {
+        application { main() }
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, weatherCommandPayload)
 
@@ -100,6 +102,7 @@ class KtorAppTest {
 
     @Test
     fun commandNotFound() = testApplication {
+        application { main() }
         val unknownCommandPayload = "&team_id=T0001" +
                 "&channel_id=C2147483705" +
                 "&user_id=U2147483697" +
@@ -136,6 +139,7 @@ class KtorAppTest {
 
     @Test
     fun invalidSignature() = testApplication {
+        application { main() }
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, weatherCommandPayload)
         val response = client.post("/slack/events"){

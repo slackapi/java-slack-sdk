@@ -12,13 +12,11 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.config.*
 import io.ktor.server.routing.*
 import io.ktor.server.testing.*
 import org.junit.After
 import org.junit.Before
 import util.AuthTestMockServer
-import java.io.File
 import java.net.URLEncoder
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -62,6 +60,7 @@ class KtorAppTest {
 
     @Test
     fun invalidRequest() = testApplication() {
+        application { main() }
         val response = client.post("/slack/events")
         assertEquals(HttpStatusCode.BadRequest, response.status)
         assertEquals("Invalid Request", response.bodyAsText())
@@ -73,11 +72,7 @@ class KtorAppTest {
 
     @Test
     fun validRequest() = testApplication {
-//        val file = File("src/test/kotlin/test_locally/app/actions/test.conf").readText()
-//        println(file)
-//        environment {
-//            config = ApplicationConfig("src/test/kotlin/test_locally/app/actions/test.conf")
-//        }
+        application { main() }
         println(this.toString())
         val body = "payload=${URLEncoder.encode(buttonClickPayload, "UTF-8")}"
         val timestamp = (System.currentTimeMillis() / 1000).toString()
@@ -104,6 +99,7 @@ class KtorAppTest {
 
     @Test
     fun invalidSignature() = testApplication {
+        application { main() }
         val body = "payload=${URLEncoder.encode(buttonClickPayload, "UTF-8")}"
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, body)

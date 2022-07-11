@@ -60,6 +60,7 @@ class KtorAppTest {
 
     @Test
     fun invalidRequest() = testApplication {
+        application { main() }
         val response = client.post("/slack/events")
         assertEquals(HttpStatusCode.BadRequest, response.status)
         assertEquals("Invalid Request", response.bodyAsText())
@@ -71,6 +72,7 @@ class KtorAppTest {
 
     @Test
     fun validRequest() = testApplication {
+        application { main() }
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, appMentionEventPayload)
         val response = client.post("/slack/events"){
@@ -104,6 +106,7 @@ class KtorAppTest {
 
     @Test
     fun validRequestWithUnicodeSymbols() = testApplication {
+        application { main() }
         val appMentionEventPayloadWithUnicodeSymbol = appMentionEventPayload.replace(
             "\"\\u003c@W111\\u003e Hello!\"",
             "\"In a meeting • Some Calendar\""
@@ -140,6 +143,7 @@ class KtorAppTest {
 
     @Test
     fun invalidSignature() = testApplication {
+        application { main() }
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, appMentionEventPayload)
         val response = client.post("/slack/events"){
