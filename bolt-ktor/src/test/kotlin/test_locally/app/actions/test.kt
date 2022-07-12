@@ -29,7 +29,6 @@ fun Application.main() {
     val appConfig = AppConfig.builder()
             .slack(Slack.getInstance(slackConfig))
             .signingSecret(signingSecret)
-            .singleTeamBotToken(AuthTestMockServer.ValidToken)
             .build()
     val app = App(appConfig)
 
@@ -40,13 +39,12 @@ fun Application.main() {
     val requestParser = SlackRequestParser(app.config())
     routing {
         post("/slack/events") {
-            println(context.request)
             respond(call, app.run(toBoltRequest(call, requestParser)))
         }
     }
 }
 
-class KtorAppTest {
+class KtorAppActionTest {
 
     @Before
     fun setUp() {
@@ -65,10 +63,6 @@ class KtorAppTest {
         val response = client.post("/slack/events")
         assertEquals(HttpStatusCode.BadRequest, response.status)
         assertEquals("Invalid Request", response.bodyAsText())
-//        with(handleRequest(HttpMethod.Post, "/slack/events")) {
-//            assertEquals(HttpStatusCode.BadRequest, response.status())
-//            assertEquals("Invalid Request", response.content)
-//        }
     }
 
     @Test
@@ -86,13 +80,6 @@ class KtorAppTest {
             }
             setBody(body)
         }
-//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-//            addHeader("Content-type", "application/x-www-form-urlencoded")
-//            setBody(body)
-//
-//        }
         assertEquals(HttpStatusCode.OK, response.status)
     }
 
@@ -113,17 +100,6 @@ class KtorAppTest {
         }
         assertEquals(HttpStatusCode.Unauthorized, response.status)
         assertEquals("""{"error":"invalid request"}""", response.bodyAsText())
-//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-//            addHeader("Content-type", "application/x-www-form-urlencoded")
-//            setBody(body)
-//
-//        }
-//        with(req) {
-//            assertEquals(HttpStatusCode.Unauthorized, response.status())
-//            assertEquals("""{"error":"invalid request"}""", response.content)
-//        }
     }
 }
 

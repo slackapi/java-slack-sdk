@@ -29,7 +29,6 @@ fun Application.main() {
     val appConfig = AppConfig.builder()
             .slack(Slack.getInstance(slackConfig))
             .signingSecret(signingSecret)
-            .singleTeamBotToken(AuthTestMockServer.ValidToken)
             .build()
     val app = App(appConfig)
 
@@ -45,7 +44,7 @@ fun Application.main() {
     }
 }
 
-class KtorAppTest {
+class KtorAppEventTest {
 
     @Before
     fun setUp() {
@@ -64,10 +63,6 @@ class KtorAppTest {
         val response = client.post("/slack/events")
         assertEquals(HttpStatusCode.BadRequest, response.status)
         assertEquals("Invalid Request", response.bodyAsText())
-//        with(handleRequest(HttpMethod.Post, "/slack/events")) {
-//            assertEquals(HttpStatusCode.BadRequest, response.status())
-//            assertEquals("Invalid Request", response.content)
-//        }
     }
 
     @Test
@@ -84,22 +79,7 @@ class KtorAppTest {
             setBody(appMentionEventPayload)
         }
         assertEquals(HttpStatusCode.OK, response.status)
-        // assert that response is properly flushed and closed
-        // we can check it by content-length header, for example
         assertEquals("0", response.headers["content-length"])
-//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-//            addHeader("Content-type", "application/json")
-//            setBody(appMentionEventPayload)
-//
-//        }
-//        with(req) {
-//            assertEquals(HttpStatusCode.OK, response.status())
-//            // assert that response is properly flushed and closed
-//            // we can check it by content-length header, for example
-//            assertEquals("0", response.headers["content-length"])
-//        }
     }
 
     @Test
@@ -121,22 +101,7 @@ class KtorAppTest {
             setBody(appMentionEventPayloadWithUnicodeSymbol)
         }
         assertEquals(HttpStatusCode.OK, response.status)
-        // assert that response is properly flushed and closed
-        // we can check it by content-length header, for example
         assertEquals("0", response.headers["content-length"])
-//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-//            addHeader("Content-type", "application/json")
-//            setBody(appMentionEventPayloadWithUnicodeSymbol)
-//
-//        }
-//        with(req) {
-//            assertEquals(HttpStatusCode.OK, response.status())
-//            // assert that response is properly flushed and closed
-//            // we can check it by content-length header, for example
-//            assertEquals("0", response.headers["content-length"])
-//        }
     }
 
     @Test
@@ -150,20 +115,10 @@ class KtorAppTest {
                 append(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
                 append("Content-type", "application/json")
             }
+            setBody(appMentionEventPayload)
         }
         assertEquals(HttpStatusCode.Unauthorized, response.status)
         assertEquals("""{"error":"invalid request"}""", response.bodyAsText())
-//        val req = handleRequest(HttpMethod.Post, "/slack/events") {
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
-//            addHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
-//            addHeader("Content-type", "application/json")
-//            setBody(appMentionEventPayload)
-//
-//        }
-//        with(req) {
-//            assertEquals(HttpStatusCode.Unauthorized, response.status())
-//            assertEquals("""{"error":"invalid request"}""", response.content)
-//        }
     }
 }
 
