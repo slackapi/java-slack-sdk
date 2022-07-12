@@ -1,4 +1,3 @@
-
 package com.slack.api.util.json;
 
 import com.google.gson.Gson;
