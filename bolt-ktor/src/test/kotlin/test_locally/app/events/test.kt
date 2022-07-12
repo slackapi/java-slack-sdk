@@ -76,12 +76,10 @@ class KtorAppTest {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, appMentionEventPayload)
         val response = client.post("/slack/events"){
-            setAttributes {
-                headers{
-                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
-                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
-                    "Content-type" to "application/json"
-                }
+            headers{
+                append(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+                append(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+                append("Content-type", "application/json")
             }
             setBody(appMentionEventPayload)
         }
@@ -115,10 +113,10 @@ class KtorAppTest {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, appMentionEventPayloadWithUnicodeSymbol)
         val response = client.post("/slack/events") {
-            setAttributes {
-                SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
-                SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
-                "Content-type" to "application/json"
+            headers {
+                append(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+                append(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+                append("Content-type", "application/json")
             }
             setBody(appMentionEventPayloadWithUnicodeSymbol)
         }
@@ -147,12 +145,10 @@ class KtorAppTest {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, appMentionEventPayload)
         val response = client.post("/slack/events"){
-            setAttributes {
-                headers{
-                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
-                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
-                    "Content-type" to "application/json"
-                }
+            headers{
+                append(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+                append(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+                append("Content-type", "application/json")
             }
         }
         assertEquals(HttpStatusCode.Unauthorized, response.status)

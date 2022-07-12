@@ -40,6 +40,7 @@ fun Application.main() {
     val requestParser = SlackRequestParser(app.config())
     routing {
         post("/slack/events") {
+            println(context.request)
             respond(call, app.run(toBoltRequest(call, requestParser)))
         }
     }
@@ -78,12 +79,11 @@ class KtorAppTest {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, body)
         val response = client.post("/slack/events"){
-            setAttributes { headers{
-                SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
-                SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
-                "Content-type" to "application/x-www-form-urlencoded"
-                }
-             }
+            headers {
+                append(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+                append(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+                append("Content-type", "application/x-www-form-urlencoded")
+            }
             setBody(body)
         }
 //        val req = handleRequest(HttpMethod.Post, "/slack/events") {
@@ -104,12 +104,10 @@ class KtorAppTest {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, body)
         val response = client.post("/slack/events"){
-            setAttributes {
-                headers {
-                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
-                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
-                    "Content-type" to "application/x-www-form-urlencoded"
-                }
+            headers {
+                append(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+                append(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+                append("Content-type", "application/x-www-form-urlencoded")
             }
             setBody(body)
         }

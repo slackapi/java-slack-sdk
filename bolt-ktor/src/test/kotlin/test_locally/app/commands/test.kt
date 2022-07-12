@@ -76,12 +76,10 @@ class KtorAppTest {
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, weatherCommandPayload)
 
         val response = client.post("/slack/events"){
-            setAttributes{
-                headers{
-                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
-                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
-                    "Content-type" to "application/x-www-form-urlencoded"
-                }
+            headers {
+                append(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+                append(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+                append("Content-type", "application/x-www-form-urlencoded")
             }
             setBody(weatherCommandPayload)
         }
@@ -113,12 +111,10 @@ class KtorAppTest {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, unknownCommandPayload)
         val response = client.post("/slack/events"){
-            setAttributes {
-                headers {
-                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
-                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
-                    "Content-type" to "application/x-www-form-urlencoded"
-                }
+            headers {
+                append(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+                append(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+                append("Content-type", "application/x-www-form-urlencoded")
             }
             setBody(unknownCommandPayload)
         }
@@ -143,12 +139,10 @@ class KtorAppTest {
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, weatherCommandPayload)
         val response = client.post("/slack/events"){
-            setAttributes {
-                headers{
-                    SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP to timestamp
-                    SlackSignature.HeaderNames.X_SLACK_SIGNATURE to signature
-                    "Content-type" to "application/x-www-form-urlencoded"
-                }
+            headers {
+                append(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp)
+                append(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature)
+                append("Content-type", "application/x-www-form-urlencoded")
             }
         }
         assertEquals(HttpStatusCode.Unauthorized, response.status)
