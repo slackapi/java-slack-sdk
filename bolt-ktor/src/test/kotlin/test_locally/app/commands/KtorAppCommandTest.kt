@@ -20,30 +20,31 @@ import util.AuthTestMockServer
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-const val signingSecret = "secret"
-val authTestMockServer = AuthTestMockServer()
-val slackConfig = SlackConfig()
+class KtorAppCommandTest {
 
-fun Application.main() {
-    val appConfig = AppConfig.builder()
+    private val signingSecret = "secret"
+    private val authTestMockServer = AuthTestMockServer()
+    private val slackConfig = SlackConfig()
+
+    private fun Application.main() {
+        val appConfig = AppConfig.builder()
             .slack(Slack.getInstance(slackConfig))
             .signingSecret(signingSecret)
+            .singleTeamBotToken(AuthTestMockServer.ValidToken)
             .build()
-    val app = App(appConfig)
+        val app = App(appConfig)
 
-    app.command("/weather") { _, ctx ->
-        ctx.ack("This a clear sunny day!")
-    }
+        app.command("/weather") { _, ctx ->
+            ctx.ack("This a clear sunny day!")
+        }
 
-    val requestParser = SlackRequestParser(app.config())
-    routing {
-        post("/slack/events") {
-            respond(call, app.run(toBoltRequest(call, requestParser)))
+        val requestParser = SlackRequestParser(app.config())
+        routing {
+            post("/slack/events") {
+                respond(call, app.run(toBoltRequest(call, requestParser)))
+            }
         }
     }
-}
-
-class KtorAppCommandTest {
 
     @Before
     fun setUp() {
@@ -121,9 +122,9 @@ class KtorAppCommandTest {
         assertEquals(HttpStatusCode.Unauthorized, response.status)
         assertEquals("""{"error":"invalid request"}""", response.bodyAsText())
     }
-}
 
-const val weatherCommandPayload = "token=verification-token" +
+    private val weatherCommandPayload =
+        "token=verification-token" +
         "&team_id=T0001" +
         "&team_domain=example" +
         "&enterprise_id=E0001" +
@@ -136,3 +137,4 @@ const val weatherCommandPayload = "token=verification-token" +
         "&text=94070" +
         "&response_url=https://hooks.slack.com/commands/1234/5678" +
         "&trigger_id=13345224609.738474920.8088930838d88f008e0"
+}

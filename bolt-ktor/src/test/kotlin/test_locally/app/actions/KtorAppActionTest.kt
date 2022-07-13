@@ -21,30 +21,31 @@ import java.net.URLEncoder
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-const val signingSecret = "secret"
-val authTestMockServer = AuthTestMockServer()
-val slackConfig = SlackConfig()
+class KtorAppActionTest {
 
-fun Application.main() {
-    val appConfig = AppConfig.builder()
+    private val signingSecret = "secret"
+    private val authTestMockServer = AuthTestMockServer()
+    private val slackConfig = SlackConfig()
+
+    private fun Application.main() {
+        val appConfig = AppConfig.builder()
             .slack(Slack.getInstance(slackConfig))
             .signingSecret(signingSecret)
+            .singleTeamBotToken(AuthTestMockServer.ValidToken)
             .build()
-    val app = App(appConfig)
+        val app = App(appConfig)
 
-    app.blockAction("this-is-the-action") { _, ctx ->
-        ctx.ack()
-    }
+        app.blockAction("this-is-the-action") { _, ctx ->
+            ctx.ack()
+        }
 
-    val requestParser = SlackRequestParser(app.config())
-    routing {
-        post("/slack/events") {
-            respond(call, app.run(toBoltRequest(call, requestParser)))
+        val requestParser = SlackRequestParser(app.config())
+        routing {
+            post("/slack/events") {
+                respond(call, app.run(toBoltRequest(call, requestParser)))
+            }
         }
     }
-}
-
-class KtorAppActionTest {
 
     @Before
     fun setUp() {
@@ -101,52 +102,51 @@ class KtorAppActionTest {
         assertEquals(HttpStatusCode.Unauthorized, response.status)
         assertEquals("""{"error":"invalid request"}""", response.bodyAsText())
     }
-}
 
-const val buttonClickPayload = """
-{
-  "type": "block_actions",
-  "user": {
-    "id": "WJC6QG0MS",
-    "username": "ksera",
-    "name": "ksera",
-    "team_id": "T5J4Q04QG"
-  },
-  "api_app_id": "A02",
-  "token": "Shh_its_a_seekrit",
-  "container": {
-    "type": "message",
-    "text": "The contents of the original message where the action originated"
-  },
-  "trigger_id": "12466734323.1395872398",
-  "team": {
-    "id": "T5J4Q04QG",
-    "domain": "slack-pde",
-    "enterprise_id": "E12KS1G65",
-    "enterprise_name": "Slack Corp"
-  },
-  "enterprise": {
-    "id": "E12KS1G65",
-    "name": "Slack Corp"
-  },
-  "is_enterprise_install": false,
-  "state": {
-    "values": {}
-  },
-  "response_url": "https://www.postresponsestome.com/T123567/1509734234",
-  "actions": [
-    {
-      "type": "button",
-      "block_id": "khGE",
-      "action_id": "this-is-the-action",
-      "text": {
-        "type": "plain_text",
-        "text": "Click Me",
-        "emoji": true
-      },
-      "value": "click_me_123",
-      "action_ts": "1602752109.476767"
-    }
-  ]
-}   
-"""
+    private val buttonClickPayload = """
+        |{
+        |  "type": "block_actions",
+        |  "user": {
+        |    "id": "WJC6QG0MS",
+        |    "username": "ksera",
+        |    "name": "ksera",
+        |    "team_id": "T5J4Q04QG"
+        |  },
+        |  "api_app_id": "A02",
+        |  "token": "Shh_its_a_seekrit",
+        |  "container": {
+        |    "type": "message",
+        |    "text": "The contents of the original message where the action originated"
+        |  },
+        |  "trigger_id": "12466734323.1395872398",
+        |  "team": {
+        |    "id": "T5J4Q04QG",
+        |    "domain": "slack-pde",
+        |    "enterprise_id": "E12KS1G65",
+        |    "enterprise_name": "Slack Corp"
+        |  },
+        |  "enterprise": {
+        |    "id": "E12KS1G65",
+        |    "name": "Slack Corp"
+        |  },
+        |  "is_enterprise_install": false,
+        |  "state": {
+        |    "values": {}
+        |  },
+        |  "response_url": "https://www.postresponsestome.com/T123567/1509734234",
+        |  "actions": [
+        |    {
+        |      "type": "button",
+        |      "block_id": "khGE",
+        |      "action_id": "this-is-the-action",
+        |      "text": {
+        |        "type": "plain_text",
+        |        "text": "Click Me",
+        |        "emoji": true
+        |      },
+        |      "value": "click_me_123",
+        |      "action_ts": "1602752109.476767"
+        |    }
+        |  ]
+        |}""".trimMargin("|")
+}

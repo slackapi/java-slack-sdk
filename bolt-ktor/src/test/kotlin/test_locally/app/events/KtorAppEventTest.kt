@@ -21,30 +21,31 @@ import util.AuthTestMockServer
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-const val signingSecret = "secret"
-val authTestMockServer = AuthTestMockServer()
-val slackConfig = SlackConfig()
+class KtorAppEventTest {
 
-fun Application.main() {
-    val appConfig = AppConfig.builder()
+    private val signingSecret = "secret"
+    private val authTestMockServer = AuthTestMockServer()
+    private val slackConfig = SlackConfig()
+
+    private fun Application.main() {
+        val appConfig = AppConfig.builder()
             .slack(Slack.getInstance(slackConfig))
             .signingSecret(signingSecret)
+            .singleTeamBotToken(AuthTestMockServer.ValidToken)
             .build()
-    val app = App(appConfig)
+        val app = App(appConfig)
 
-    app.event(AppMentionEvent::class.java) { _, ctx ->
-        ctx.ack()
-    }
+        app.event(AppMentionEvent::class.java) { _, ctx ->
+            ctx.ack()
+        }
 
-    val requestParser = SlackRequestParser(app.config())
-    routing {
-        post("/slack/events") {
-            respond(call, app.run(toBoltRequest(call, requestParser)))
+        val requestParser = SlackRequestParser(app.config())
+        routing {
+            post("/slack/events") {
+                respond(call, app.run(toBoltRequest(call, requestParser)))
+            }
         }
     }
-}
-
-class KtorAppEventTest {
 
     @Before
     fun setUp() {
@@ -120,50 +121,49 @@ class KtorAppEventTest {
         assertEquals(HttpStatusCode.Unauthorized, response.status)
         assertEquals("""{"error":"invalid request"}""", response.bodyAsText())
     }
-}
 
-const val appMentionEventPayload = """
-{
-  "token": "verification-token",
-  "team_id": "T111",
-  "enterprise_id": "E111",
-  "api_app_id": "A111",
-  "event": {
-    "bot_id": "B111",
-    "type": "app_mention",
-    "text": "\u003c@W111\u003e Hello!",
-    "user": "W222",
-    "ts": "1601584748.000800",
-    "team": "T111",
-    "bot_profile": {
-      "id": "B111",
-      "deleted": false,
-      "name": "test-app",
-      "updated": 1589780796,
-      "app_id": "A111",
-      "icons": {
-        "image_36": "https://a.slack-edge.com/80588/img/plugins/app/bot_36.png",
-        "image_48": "https://a.slack-edge.com/80588/img/plugins/app/bot_48.png",
-        "image_72": "https://a.slack-edge.com/80588/img/plugins/app/service_72.png"
-      },
-      "team_id": "T111"
-    },
-    "channel": "C111",
-    "event_ts": "1601584748.000800"
-  },
-  "type": "event_callback",
-  "event_id": "Ev111",
-  "event_time": 1601584748,
-  "authorizations": [
-    {
-      "enterprise_id": "E111",
-      "team_id": "T111",
-      "user_id": "W111",
-      "is_bot": true,
-      "is_enterprise_install": false
-    }
-  ],
-  "is_ext_shared_channel": false,
-  "event_context": "1-app_mention-T111-C111"
-} 
-"""
+    private val appMentionEventPayload = """
+        |{
+        |  "token": "verification-token",
+        |  "team_id": "T111",
+        |  "enterprise_id": "E111",
+        |  "api_app_id": "A111",
+        |  "event": {
+        |    "bot_id": "B111",
+        |    "type": "app_mention",
+        |    "text": "\u003c@W111\u003e Hello!",
+        |    "user": "W222",
+        |    "ts": "1601584748.000800",
+        |    "team": "T111",
+        |    "bot_profile": {
+        |      "id": "B111",
+        |      "deleted": false,
+        |      "name": "test-app",
+        |      "updated": 1589780796,
+        |      "app_id": "A111",
+        |      "icons": {
+        |        "image_36": "https://a.slack-edge.com/80588/img/plugins/app/bot_36.png",
+        |        "image_48": "https://a.slack-edge.com/80588/img/plugins/app/bot_48.png",
+        |        "image_72": "https://a.slack-edge.com/80588/img/plugins/app/service_72.png"
+        |      },
+        |      "team_id": "T111"
+        |    },
+        |    "channel": "C111",
+        |    "event_ts": "1601584748.000800"
+        |  },
+        |  "type": "event_callback",
+        |  "event_id": "Ev111",
+        |  "event_time": 1601584748,
+        |  "authorizations": [
+        |    {
+        |      "enterprise_id": "E111",
+        |      "team_id": "T111",
+        |      "user_id": "W111",
+        |      "is_bot": true,
+        |      "is_enterprise_install": false
+        |    }
+        |  ],
+        |  "is_ext_shared_channel": false,
+        |  "event_context": "1-app_mention-T111-C111"
+        |}""".trimMargin("|")
+}
