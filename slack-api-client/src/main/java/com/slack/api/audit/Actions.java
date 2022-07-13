@@ -153,6 +153,7 @@ public class Actions {
         public static final String workspace_copy_approved = "workspace_copy_approved";
         public static final String domain_created = "domain_created";
         public static final String domain_verified = "domain_verified";
+        public static final String domain_unverified = "domain_unverified";
         public static final String domain_deleted = "domain_deleted";
         public static final String slack_connect_invite_routing_enabled = "slack_connect_invite_routing_enabled";
         public static final String slack_connect_invite_routing_disabled = "slack_connect_invite_routing_disabled";

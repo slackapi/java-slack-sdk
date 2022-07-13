@@ -149,7 +149,8 @@
       "team_unsupported_versions_job_start",
       "team_unsupported_versions_job_end",
       "pref.ext_audit_log_retention_type_changed",
-      "pref.ext_audit_log_retention_duration_changed"
+      "pref.ext_audit_log_retention_duration_changed",
+      "domain_unverified"
     ],
     "user": [
       "custom_tos_accepted",
