@@ -5,8 +5,8 @@ import com.slack.api.bolt.ktor.respond
 import com.slack.api.bolt.ktor.toBoltRequest
 import com.slack.api.bolt.util.SlackRequestParser
 import com.slack.api.model.event.AppMentionEvent
-import io.ktor.application.*
-import io.ktor.routing.*
+import io.ktor.server.application.*
+import io.ktor.server.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 

@@ -15,12 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <!-- TODO: Upgrade to v2 in the next minor release -->
-        <!-- TODO: Upgrade to a newer patch version
-        once a binary compatibility issue on the ktor side has been resolved
-        java.lang.NoSuchMethodError: java.nio.ByteBuffer.limit(I)Ljava/nio/ByteBuffer;
-        -->
-        <ktor.version>1.6.4</ktor.version>
+        <ktor.version>2.0.3</ktor.version>
     </properties>
 
     <pluginRepositories>
@@ -49,7 +44,7 @@
         </dependency>
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-core</artifactId>
+            <artifactId>ktor-server-core-jvm</artifactId>
             <version>${ktor.version}</version>
         </dependency>
         <dependency>
@@ -60,14 +55,20 @@
         </dependency>
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-netty</artifactId>
+            <artifactId>ktor-server-netty-jvm</artifactId>
             <version>${ktor.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-tests</artifactId>
+            <artifactId>ktor-server-test-host-jvm</artifactId>
             <version>${ktor.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains.kotlinx</groupId>
+                    <artifactId>kotlinx-coroutines-bom</artifactId>
+                </exclusion>
+            </exclusions>
             <scope>test</scope>
         </dependency>
         <dependency>
