@@ -41,6 +41,8 @@ public class SlackAppServlet extends HttpServlet {
                 resp.setContentType("application/json");
                 resp.getWriter().write("{\"error\":\"Something is wrong\"}");
             }
+        } else {
+            adapter.writeResponse(resp, Response.builder().statusCode(400).body("Invalid Request").build());
         }
     }
 }

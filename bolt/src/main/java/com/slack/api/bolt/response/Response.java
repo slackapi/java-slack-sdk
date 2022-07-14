@@ -23,7 +23,7 @@ public class Response {
     @Builder.Default
     private Integer statusCode = 200;
     @Builder.Default
-    private String contentType = "plain/text";
+    private String contentType = "text/plain";
     @Builder.Default
     private Map<String, List<String>> headers = new HashMap<>();
     private String body;

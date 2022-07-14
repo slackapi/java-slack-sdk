@@ -134,7 +134,7 @@ public class SlashCommandTest {
 
         assertThat(response.getContent(), is(equalTo("")));
         assertThat(response.getStatus(), is(equalTo(200)));
-        assertThat(response.get("Content-Type"), is(startsWith("plain/text")));
+        assertThat(response.get("Content-Type"), is(startsWith("text/plain")));
         assertThat(echoCalls.get(), is(1));
 
         verify(echoSenderMock, times(1)).send(Mockito.any(SlashCommandResponse.class));
