@@ -139,7 +139,7 @@ public class Http4kSlackAppTest {
 
     @Test
     public void workWithEmptyOrNullResponseBody() {
-        Response expected = Response.Companion.create(Status.OK).header("Content-Type", "plain/text").body("");
+        Response expected = Response.Companion.create(Status.OK).header("Content-Type", "text/plain").body("");
         Response response = simpleSlackApp.invoke(slackEventRequest("command=do-nothing"));
         assertThat(response, equalTo(expected));
     }
