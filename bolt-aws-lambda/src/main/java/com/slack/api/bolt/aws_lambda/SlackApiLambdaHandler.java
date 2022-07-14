@@ -74,11 +74,12 @@ public abstract class SlackApiLambdaHandler implements RequestHandler<ApiGateway
             log.debug("AWS API Gateway Request: {}", awsReq);
         }
         RequestContext context = awsReq.getRequestContext();
+        String body = (awsReq.isBase64Encoded()) ? new String(Base64.getDecoder().decode(awsReq.getBody())) : awsReq.getBody();
         SlackRequestParser.HttpRequest rawRequest = SlackRequestParser.HttpRequest.builder()
                 .requestUri(awsReq.getPath())
                 .queryString(toStringToStringListMap(awsReq.getQueryStringParameters()))
                 .headers(new RequestHeaders(toStringToStringListMap(awsReq.getHeaders())))
-                .requestBody(awsReq.getBody())
+                .requestBody(body)
                 .remoteAddress(context != null && context.getIdentity() != null ? context.getIdentity().getSourceIp() : null)
                 .build();
         return requestParser.parse(rawRequest);

@@ -13,7 +13,6 @@ import test_locally.unit.GsonFactory;
 import java.util.Arrays;
 
 import static com.slack.api.model.block.Blocks.*;
-import static com.slack.api.model.block.Blocks.section;
 import static com.slack.api.model.block.composition.BlockCompositions.asSectionFields;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.checkboxes;
@@ -1452,5 +1451,41 @@ public class BlockKitTest {
         InputBlock block = (InputBlock) view.getBlocks().get(0);
         ConversationsSelectElement element = (ConversationsSelectElement) block.getElement();
         assertNull(element.getFocusOnLoad());
+    }
+
+    @Test
+    public void parseVideoBlocks() {
+        // https://api.slack.com/reference/block-kit/blocks#video
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"video\",\n" +
+                "      \"block_id\": \"bid\",\n" +
+                "      \"title\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"How to use Slack.\",\n" +
+                "        \"emoji\": true\n" +
+                "      },\n" +
+                "      \"title_url\": \"https://www.youtube.com/watch?v=RRxQQxiM7AA\",\n" +
+                "      \"description\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Slack is a new way to communicate with your team. It's faster, better organized and more secure than email.\",\n" +
+                "        \"emoji\": true\n" +
+                "      },\n" +
+                "      \"video_url\": \"https://www.youtube.com/embed/RRxQQxiM7AA?feature=oembed&autoplay=1\",\n" +
+                "      \"alt_text\": \"How to use Slack?\",\n" +
+                "      \"thumbnail_url\": \"https://i.ytimg.com/vi/RRxQQxiM7AA/hqdefault.jpg\",\n" +
+                "      \"author_name\": \"Arcado Buendia\",\n" +
+                "      \"provider_name\": \"YouTube\",\n" +
+                "      \"provider_icon_url\": \"https://a.slack-edge.com/80588/img/unfurl_icons/youtube.png\"\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        View view = GsonFactory.createSnakeCase().fromJson(json, View.class);
+        assertNotNull(view);
+        assertEquals(1, view.getBlocks().size());
+        VideoBlock block = (VideoBlock) view.getBlocks().get(0);
+        assertEquals("bid", block.getBlockId());
+        assertEquals("https://www.youtube.com/embed/RRxQQxiM7AA?feature=oembed&autoplay=1", block.getVideoUrl());
     }
 }
