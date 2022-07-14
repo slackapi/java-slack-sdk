@@ -72,4 +72,12 @@ interface LayoutBlockDsl {
      * @see <a href="https://api.slack.com/surfaces/modals/using#gathering_input">Using modals guide</a>
      */
     fun input(builder: InputBlockBuilder.() -> Unit)
+
+    /**
+     * A video block is designed to embed videos in all app surfaces (e.g. link unfurls, messages, modals, App Home)
+     * — anywhere you can put blocks! To use the video block within your app, you must have the links.embed:write scope.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/blocks#video">Video documentation</a>
+     */
+    fun video(builder: VideoBlockBuilder.() -> Unit)
 }

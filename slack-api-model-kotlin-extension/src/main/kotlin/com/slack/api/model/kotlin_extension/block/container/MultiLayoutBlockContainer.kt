@@ -55,4 +55,8 @@ class MultiLayoutBlockContainer : LayoutBlockDsl {
     override fun input(builder: InputBlockBuilder.() -> Unit) {
         underlying += InputBlockBuilder().apply(builder).build()
     }
+
+    override fun video(builder: VideoBlockBuilder.() -> Unit) {
+        underlying += VideoBlockBuilder().apply(builder).build()
+    }
 }

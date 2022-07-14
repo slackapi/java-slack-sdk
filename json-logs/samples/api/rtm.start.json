@@ -1582,6 +1582,17 @@
                   "text": "",
                   "emoji": false
                 },
+                "title_url": "",
+                "description": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "video_url": "",
+                "thumbnail_url": "",
+                "author_name": "",
+                "provider_name": "",
+                "provider_icon_url": "",
                 "fields": [
                   {
                     "type": "",
@@ -2704,6 +2715,17 @@
               "text": "",
               "emoji": false
             },
+            "title_url": "",
+            "description": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "video_url": "",
+            "thumbnail_url": "",
+            "author_name": "",
+            "provider_name": "",
+            "provider_icon_url": "",
             "fields": [
               {
                 "type": "",
@@ -4073,6 +4095,17 @@
                           "text": "",
                           "emoji": false
                         },
+                        "title_url": "",
+                        "description": {
+                          "type": "",
+                          "text": "",
+                          "emoji": false
+                        },
+                        "video_url": "",
+                        "thumbnail_url": "",
+                        "author_name": "",
+                        "provider_name": "",
+                        "provider_icon_url": "",
                         "fields": [
                           {
                             "type": "",
@@ -5195,6 +5228,17 @@
                       "text": "",
                       "emoji": false
                     },
+                    "title_url": "",
+                    "description": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "video_url": "",
+                    "thumbnail_url": "",
+                    "author_name": "",
+                    "provider_name": "",
+                    "provider_icon_url": "",
                     "fields": [
                       {
                         "type": "",

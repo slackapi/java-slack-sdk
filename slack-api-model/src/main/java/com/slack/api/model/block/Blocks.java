@@ -103,4 +103,9 @@ public class Blocks {
         return configurator.configure(SectionBlock.builder()).build();
     }
 
+    // VideoBlock
+    public static VideoBlock video(ModelConfigurator<VideoBlock.VideoBlockBuilder> configurator) {
+        return configurator.configure(VideoBlock.builder()).build();
+    }
+
 }
