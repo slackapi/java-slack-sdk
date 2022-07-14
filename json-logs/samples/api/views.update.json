@@ -1531,6 +1531,27 @@
         "block_id": ""
       },
       {
+        "type": "video",
+        "title": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "title_url": "",
+        "description": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "video_url": "",
+        "alt_text": "",
+        "thumbnail_url": "",
+        "author_name": "",
+        "provider_name": "",
+        "provider_icon_url": "",
+        "block_id": ""
+      },
+      {
         "type": "section",
         "text": {
           "type": "plain_text",

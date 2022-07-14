@@ -62,6 +62,7 @@ public class SampleObjects {
             }
         }
 
+        // This list object is used for generating comprehensive blocks for generating JSON data.
         public static List<JsonElement> Blocks = initBlocks();
 
         private static List<JsonElement> initBlocks() {
@@ -94,6 +95,7 @@ public class SampleObjects {
                             gson.toJsonTree(initProperties(new FileBlock())),
                             gson.toJsonTree(headerBlock),
                             gson.toJsonTree(imageBlock),
+                            gson.toJsonTree(initProperties(video(v -> v.description(TextObject).title(TextObject)))),
                             gson.toJsonTree(RichTextBlock)
                     )
             );
@@ -201,6 +203,7 @@ public class SampleObjects {
                         .accessory(initProperties(ImageElement.builder().build()))
                         .text(TextObject)
                         .fields(SectionBlockFieldElements))),
+                initProperties(video(v -> v.description(TextObject).title(TextObject))),
                 RichTextBlock
         ));
         Blocks.addAll(SectionBlocksWithAccessory);
@@ -238,6 +241,7 @@ public class SampleObjects {
             initProperties(context(c -> c.elements(ContextBlockElements))),
             initProperties(divider()),
             initProperties(com.slack.api.model.block.Blocks.image(i -> i)),
+            initProperties(video(v -> v.description(TextObject).title(TextObject))),
             initProperties(section(s -> s
                     .accessory(initProperties(ImageElement.builder().build()))
                     .text(TextObject)

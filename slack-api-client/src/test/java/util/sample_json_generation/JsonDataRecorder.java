@@ -316,6 +316,7 @@ public class JsonDataRecorder {
                 } catch (Exception e) {
                     log.info("Failed to remove an existing element from blocks", e);
                 }
+                // This part replaces the blocks with a comprehensive set of blocks.
                 for (JsonElement block : Json.Blocks) {
                     array.add(block);
                 }
