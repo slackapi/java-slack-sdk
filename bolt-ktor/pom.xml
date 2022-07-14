@@ -5,11 +5,11 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.23.2-SNAPSHOT</version>
+        <version>1.24.0</version>
     </parent>
 
     <artifactId>bolt-ktor</artifactId>
-    <version>1.23.2-SNAPSHOT</version>
+    <version>1.24.0</version>
     <packaging>jar</packaging>
 
     <properties>
