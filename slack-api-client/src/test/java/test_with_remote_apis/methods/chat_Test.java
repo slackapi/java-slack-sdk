@@ -967,4 +967,26 @@ public class chat_Test {
         // invalid_blocks means you do not have links.embed:write permission
         assertThat(response.getError(), is(nullValue()));
     }
+
+    @Test
+    public void post_messages_video_required_params_only() throws Exception {
+        loadRandomChannelId();
+
+        ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(r -> r.channel(randomChannelId)
+                .blocks(asBlocks(video(v -> v
+                        .blockId("b")
+                        .title(plainText("Video title"))
+//                        .titleUrl("https://www.youtube.com/watch?v=q19RtuCHt1Q")
+                        .videoUrl("https://www.youtube.com/embed/q19RtuCHt1Q")
+//                        .description(plainText("Video description"))
+                        .thumbnailUrl("https://assets.brandfolder.com/pmix53-32t4so-a6439g/original/slackbot.png")
+                        .altText("Video Alt text")
+//                        .authorName("Slack Java SDK Unit Test")
+//                        .providerIconUrl("https://assets.brandfolder.com/pmix53-32t4so-a6439g/original/slackbot.png")
+//                        .providerName("Slack Java SDK Video Provider")
+                )))
+        );
+        // invalid_blocks means you do not have links.embed:write permission
+        assertThat(response.getError(), is(nullValue()));
+    }
 }
