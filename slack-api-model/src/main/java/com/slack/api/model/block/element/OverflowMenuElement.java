@@ -21,7 +21,7 @@ public class OverflowMenuElement extends BlockElement {
     /**
      * An identifier for the action triggered when a menu option is selected.
      * You can use this when you receive an interaction payload to identify the source of the action.
-     * hould be unique among all other action_ids used elsewhere by your app.
+     * Should be unique among all other action_ids used elsewhere by your app.
      * Maximum length for this field is 255 characters.
      */
     private String actionId;

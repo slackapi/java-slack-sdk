@@ -67,7 +67,7 @@ class MultiChannelsSelectElementBuilder : Builder<MultiChannelsSelectElement> {
     }
 
     /**
-     * Indicates whether the element will be set to auto focus within the view object.
+     * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#channel_multi_select">Multi channels select element documentation</a>

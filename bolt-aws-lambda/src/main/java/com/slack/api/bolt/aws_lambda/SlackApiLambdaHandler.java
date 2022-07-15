@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.*;
 
 /**
- * The AWS Lambda handler base class. A sub class that inherits this abstract class works as a Lambda handler.
+ * The AWS Lambda handler base class. A subclass that inherits this abstract class works as a Lambda handler.
  *
  * @see <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>
  */

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The basic configuration of this SDK. Some settings can be propagated to sub modules such as Bolt.
+ * The basic configuration of this SDK. Some settings can be propagated to submodules such as Bolt.
  */
 @Data
 public class SlackConfig {

@@ -85,7 +85,7 @@ public interface OAuthStateService extends Service {
 
     /**
      * Verifies the given state parameter and returns true if it's valid.
-     * This methods doesn't have any side-effects, so that you can call this method multiple times.
+     * This method doesn't have any side effects, so that you can call this method multiple times.
      */
     default boolean isValid(Request request) {
         // 0) the state parameter is available in the query string

@@ -39,7 +39,7 @@ public class InputBlock implements LayoutBlock {
 
     /**
      * An optional hint that appears below an input element in a lighter grey.
-     * It must be a a text object with a type of plain_text.
+     * It must be a text object with a type of plain_text.
      * Maximum length for the text in this field is 2000 characters.
      */
     private PlainTextObject hint;

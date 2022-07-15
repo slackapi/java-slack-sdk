@@ -51,7 +51,7 @@ public interface OpenIDConnectNonceService extends Service {
 
     /**
      * Verifies the given Nonce parameter and returns true if it's valid.
-     * This methods doesn't have any side-effects, so that you can call this method multiple times.
+     * This method doesn't have any side effects, so that you can call this method multiple times.
      */
     default boolean isValid(Request request) {
         String givenNonce = extractNonceFromQueryString(request);

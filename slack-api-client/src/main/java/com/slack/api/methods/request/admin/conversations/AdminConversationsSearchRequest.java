@@ -30,7 +30,7 @@ public class AdminConversationsSearchRequest implements SlackApiRequest {
     private Integer limit;
 
     /**
-     * Name of the the channel to query by.
+     * Name of the channel to query by.
      */
     private String query;
 

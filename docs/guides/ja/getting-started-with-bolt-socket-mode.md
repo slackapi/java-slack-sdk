@@ -82,7 +82,7 @@ lang: ja
 
 ### Gradle
 
-Gralde プロジェクトを作成した後 **bolt** 関連の依存ライブラリを `build.gradle` に追加してください。
+Gradle プロジェクトを作成した後 **bolt** 関連の依存ライブラリを `build.gradle` に追加してください。
 
 ```groovy
 dependencies {

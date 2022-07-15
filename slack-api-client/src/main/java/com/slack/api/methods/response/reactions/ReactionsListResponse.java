@@ -108,7 +108,7 @@ public class ReactionsListResponse implements SlackApiTextResponse {
                 private String team;
                 private String name;
                 /**
-                 * is_restricted indicates the user is a multi-channel guest.
+                 * is_restricted indicates the user is a multichannel guest.
                  * see also: https://get.slack.help/hc/en-us/articles/201314026-roles-and-permissions-in-slack
                  */
                 @SerializedName("is_restricted")

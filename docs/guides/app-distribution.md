@@ -118,7 +118,7 @@ import static java.util.Map.entry;
 String awsS3BucketName = "YOUR_OWN_BUCKET_NAME_HERE";
 
 InstallationService installationService = new AmazonS3InstallationService(awsS3BucketName);
-// Set true if you'd like to store every single instllation as a different record
+// Set true if you'd like to store every single installation as a different record
 installationService.setHistoricalDataEnabled(true);
 
 // apiApp uses only InstallationService to access stored tokens
@@ -140,7 +140,7 @@ oauthApp.service(stateService);
 
 // Mount the two apps with their root path
 SlackAppServer server = new SlackAppServer(Map.of(
-  "/slack/events", apiApp, // POST /slack/events (incomng API requests from the Slack Platform)
+  "/slack/events", apiApp, // POST /slack/events (incoming API requests from the Slack Platform)
   "/slack/oauth", oauthApp // GET  /slack/oauth/start, /slack/oauth/callback (user access)
 ));
 

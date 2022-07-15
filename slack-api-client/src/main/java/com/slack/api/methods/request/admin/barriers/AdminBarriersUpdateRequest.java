@@ -35,7 +35,7 @@ public class AdminBarriersUpdateRequest implements SlackApiRequest {
 
     /**
      * What kind of interactions are blocked by this barrier?
-     * For v1, we only support a list of all 3, eg im, mpim, call
+     * For v1, we only support a list of all 3, e.g. im, mpim, call
      */
     private List<String> restrictedSubjects;
 

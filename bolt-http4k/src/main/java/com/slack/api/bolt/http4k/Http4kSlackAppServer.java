@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import static org.http4k.server.Http4kServerKt.asServer;
 
 /**
- * Simple Slack App Server wrapper class for Http4k apps.
+ * Simple Slack App Server wrapper class for http4k apps.
  */
 public class Http4kSlackAppServer implements Http4kServer {
     private final Http4kServer server;

@@ -109,7 +109,7 @@ public class SingleTeamAuthorization implements Middleware {
             }
         }
         AuthTestResponse response = client.authTest(r -> r.token(config.getSingleTeamBotToken()));
-        cachedAuthTestResponse = Optional.of(response); // response here is not null for sure
+        cachedAuthTestResponse = Optional.of(response); // response here is non-null for sure
         lastCachedMillis.set(System.currentTimeMillis());
         return response;
     }

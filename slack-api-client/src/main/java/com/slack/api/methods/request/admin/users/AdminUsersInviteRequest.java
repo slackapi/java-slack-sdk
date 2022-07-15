@@ -47,7 +47,7 @@ public class AdminUsersInviteRequest implements SlackApiRequest {
 
     /**
      * Timestamp when guest account should be disabled.
-     * Only include this timestamp if you inviting a guest user and you want their account to expire on a certain date.
+     * Only include this timestamp if you invite a guest user and you want their account to expire on a certain date.
      */
     private String guestExpirationTs;
 

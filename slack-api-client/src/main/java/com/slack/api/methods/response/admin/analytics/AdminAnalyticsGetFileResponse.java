@@ -179,7 +179,7 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
 
         /**
          * (member)
-         * User is classified as a billable user (included in the bill) on the the date in the API request
+         * User is classified as a billable user (included in the bill) on the date in the API request
          * Example: false
          */
         private Boolean isBillableSeat;

@@ -19,7 +19,7 @@ public class WorkflowsStepFailedRequest implements SlackApiRequest {
     private String token;
 
     /**
-     * A JSON-based object with a message property that should contain a human readable error message.
+     * A JSON-based object with a message property that should contain a human-readable error message.
      */
     private Map<String, Object> error;
 
