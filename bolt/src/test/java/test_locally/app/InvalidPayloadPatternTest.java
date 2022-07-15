@@ -34,8 +34,8 @@ public class InvalidPayloadPatternTest {
     AuthTestMockServer server = new AuthTestMockServer();
     SlackConfig config = new SlackConfig();
     Slack slack = Slack.getInstance(config);
-    private final String APPLICATION_JSON = MimeTypes.Type.APPLICATION_JSON.getContentTypeField().getValue();
-    private final String CONTENT_TYPE = HttpHeader.CONTENT_TYPE.toString();
+    private static final String APPLICATION_JSON = MimeTypes.Type.APPLICATION_JSON.getContentTypeField().getValue();
+    private static final String CONTENT_TYPE = HttpHeader.CONTENT_TYPE.toString();
 
     @Before
     public void setup() throws Exception {

@@ -27,9 +27,9 @@ public class InvalidRequestPatternTest {
     private AppConfig appConfig = AppConfig.builder().singleTeamBotToken("xoxb-").signingSecret(secret).build();
     private App app;
     private Servlet webApp;
-    private final String TEXT_PLAIN = MimeTypes.Type.TEXT_PLAIN.getContentTypeField().getValue();
-    private final String APPLICATION_JSON = MimeTypes.Type.APPLICATION_JSON.getContentTypeField().getValue();
-    private final String CONTENT_TYPE = HttpHeader.CONTENT_TYPE.toString();
+    private static final String TEXT_PLAIN = MimeTypes.Type.TEXT_PLAIN.getContentTypeField().getValue();
+    private static final String APPLICATION_JSON = MimeTypes.Type.APPLICATION_JSON.getContentTypeField().getValue();
+    private static final String CONTENT_TYPE = HttpHeader.CONTENT_TYPE.toString();
 
     @Before
     public void setUp() {
