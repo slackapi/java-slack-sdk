@@ -348,7 +348,7 @@ public class Slack implements AutoCloseable {
     }
 
     /**
-     * Creates a Audit Logs API client.
+     * Creates an Audit Logs API client.
      */
     public AuditClient audit() {
         return audit(null);

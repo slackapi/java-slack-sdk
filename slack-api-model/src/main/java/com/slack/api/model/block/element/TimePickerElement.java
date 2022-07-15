@@ -48,7 +48,7 @@ public class TimePickerElement extends BlockElement {
     private ConfirmationDialogObject confirm;
 
     /**
-     * Indicates whether the element will be set to auto focus within the view object.
+     * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      */
     private Boolean focusOnLoad;

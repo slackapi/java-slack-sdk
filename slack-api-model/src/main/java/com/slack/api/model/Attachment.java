@@ -20,7 +20,7 @@ public class Attachment {
 
     /**
      * A plain-text summary of the attachment. This text will be used in clients that don't show formatted text
-     * (eg. IRC, mobile notifications) and should not contain any markup.
+     * (e.g. IRC, mobile notifications) and should not contain any markup.
      */
     private String fallback;
 
@@ -111,7 +111,7 @@ public class Attachment {
     // # already exists > "footer": "5 replies"
 
     /**
-     * NOTE: The the following Booleans (is_msg_unfurl, is_reply_unfurl, is_thread_root_unfurl,
+     * NOTE: The following Booleans (is_msg_unfurl, is_reply_unfurl, is_thread_root_unfurl,
      * is_app_unfurl) default to null intentionally to support block attachments.
      */
 

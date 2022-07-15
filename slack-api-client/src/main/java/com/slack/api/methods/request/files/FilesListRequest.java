@@ -43,7 +43,7 @@ public class FilesListRequest implements SlackApiRequest {
      * <p>
      * `spaces` - Posts\n* `snippets` - Snippets
      * `images` - Image files
-     * `gdocs` - Google docs
+     * `gdocs` - Google Docs
      * `zips` - Zip files
      * `pdfs` - PDF files
      * <p>

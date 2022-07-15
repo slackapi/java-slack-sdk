@@ -482,7 +482,7 @@ quarkus.package.type=uber-jar
 
 ### Run the App
 
-That’s all set! It’s time to run the app in its the development mode.
+That’s all set! It’s time to run the app in development mode.
 
 ```bash
 ./mvnw quarkus:dev
@@ -544,7 +544,7 @@ mvn archetype:generate \
 
 ### pom.xml
 
-The only thing you need to do with the build settings is add **bolt-helidon** dependency and your favorite [SLF4J](http://www.slf4j.org/) implementation.
+The only thing you need to do with the build settings is adding **bolt-helidon** dependency and your favorite [SLF4J](http://www.slf4j.org/) implementation.
 
 ```xml
 <dependency>

@@ -27,7 +27,7 @@ public class AdminUsergroupsListChannelsRequest implements SlackApiRequest {
     private Boolean includeNumMembers;
 
     /**
-     * ID of the the workspace.
+     * ID of the workspace.
      */
     private String teamId;
 

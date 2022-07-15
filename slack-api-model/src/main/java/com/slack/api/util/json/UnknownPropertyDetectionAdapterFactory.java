@@ -19,7 +19,7 @@ public class UnknownPropertyDetectionAdapterFactory implements TypeAdapterFactor
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
         // If the type adapter is a reflective type adapter, we want to modify the implementation using reflection. The
-        // trick is to replace the Map object used to lookup the property name. Instead of returning null if the
+        // trick is to replace the Map object used to look up the property name. Instead of returning null if the
         // property is not found, we throw a Json exception to terminate the deserialization.
         TypeAdapter<T> delegate = gson.getDelegateAdapter(this, type);
 

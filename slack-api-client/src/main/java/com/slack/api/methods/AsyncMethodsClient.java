@@ -193,7 +193,7 @@ import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Asnc Slack API Methods client.
+ * Async Slack API Methods client.
  * <p>
  *
  * @see <a href="https://api.slack.com/methods">Slack API Methods</a>
@@ -605,7 +605,7 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminUsersSessionClearSettingsResponse> adminUsersSessionClearSettings(RequestConfigurator<AdminUsersSessionClearSettingsRequest.AdminUsersSessionClearSettingsRequestBuilder> req);
 
     // ------------------------------
-    // admin.users.unsuportedVersions
+    // admin.users.unsupportedVersions
     // ------------------------------
 
     CompletableFuture<AdminUsersUnsupportedVersionsExportResponse> adminUsersUnsupportedVersionsExport(AdminUsersUnsupportedVersionsExportRequest req);

@@ -27,7 +27,7 @@ public class BookmarksAddRequest implements SlackApiRequest {
     private String title;
 
     /**
-     * Type of the bookmark i.e link.
+     * Type of the bookmark i.e. link.
      */
     private String type;
 

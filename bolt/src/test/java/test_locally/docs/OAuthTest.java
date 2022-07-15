@@ -20,7 +20,7 @@ public class OAuthTest {
         String awsS3BucketName = "YOUR_OWN_BUCKET_NAME_HERE";
 
         InstallationService installationService = new AmazonS3InstallationService(awsS3BucketName);
-        // Set true if you'd like to store every single instllation as a different record
+        // Set true if you'd like to store every single installation as a different record
         installationService.setHistoricalDataEnabled(true);
 
         // apiApp uses only InstallationService to access stored tokens

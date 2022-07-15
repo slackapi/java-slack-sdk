@@ -88,7 +88,7 @@ ApiTestResponse(ok=true, args=ApiTestResponse.Args(foo=bar, error=null), warning
 ---
 ## Gradle
 
-普段 Maven よりも Gradle をお使いですか？では Gralde を使って同様に設定してみましょう。手順は Maven にかなり似ていて、いくつか差分があるだけです。
+普段 Maven よりも Gradle をお使いですか？では Gradle を使って同様に設定してみましょう。手順は Maven にかなり似ていて、いくつか差分があるだけです。
 
 ### build.gradle
 

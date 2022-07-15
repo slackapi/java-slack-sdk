@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Action {
     /**
-     * Represents the type of action (e.g Message button or message menu)
+     * Represents the type of action (e.g. Message button or message menu)
      *
      * @see <a href="https://api.slack.com/interactive-messages#interaction_types">Interaction Types</a>
      */

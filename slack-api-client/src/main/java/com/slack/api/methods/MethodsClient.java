@@ -692,7 +692,7 @@ public interface MethodsClient {
     AdminUsersSessionClearSettingsResponse adminUsersSessionClearSettings(RequestConfigurator<AdminUsersSessionClearSettingsRequest.AdminUsersSessionClearSettingsRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
-    // admin.users.unsuportedVersions
+    // admin.users.unsupportedVersions
     // ------------------------------
 
     AdminUsersUnsupportedVersionsExportResponse adminUsersUnsupportedVersionsExport(AdminUsersUnsupportedVersionsExportRequest req) throws IOException, SlackApiException;

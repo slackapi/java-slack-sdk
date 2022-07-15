@@ -47,7 +47,7 @@ public class GsonContextBlockElementFactory implements JsonDeserializer<ContextB
             case ImageElement.TYPE:
                 return ImageElement.class;
 
-            // does not defer to GsonTextObjectFactory as not to loose the specific context
+            // does not defer to GsonTextObjectFactory as not to lose the specific context
             // in which the type needs to be parsed (gives a better error message to the consumer).
 
             case PlainTextObject.TYPE:

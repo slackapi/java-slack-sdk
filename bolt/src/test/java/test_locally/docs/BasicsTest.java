@@ -50,7 +50,7 @@ public class BasicsTest {
         app.command("/hello", (req, ctx) -> {
             // Post a message via response_url
             WebhookResponse result = ctx.respond(res -> res
-                    .responseType("ephemeral") // or "in_channnel"
+                    .responseType("ephemeral") // or "in_channel"
                     .text("Hi there!") // blocks, attachments are also available
             );
             return ctx.ack(); // ack() here doesn't post a message

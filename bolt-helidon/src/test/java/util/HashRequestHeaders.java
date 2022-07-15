@@ -173,7 +173,7 @@ public class HashRequestHeaders extends ReadOnlyParameters implements RequestHea
     }
 
     /**
-     * Parse cookies based on RFC6265 but it can accepts also older formats including RFC2965 but skips parameters.
+     * Parse cookies based on RFC6265 but it can accept also older formats including RFC2965 but skips parameters.
      */
     static class CookieParser {
 
@@ -186,7 +186,7 @@ public class HashRequestHeaders extends ReadOnlyParameters implements RequestHea
         private static final String RFC2965_PORT = "$Port";
 
         /**
-         * Parse cookies based on RFC6265 but it can accepts also older formats including RFC2965 but skips parameters.
+         * Parse cookies based on RFC6265 but it can accept also older formats including RFC2965 but skips parameters.
          *
          * <p>Multiple cookies can be returned in a single headers and a single cookie-name can have multiple values.
          * Note that base on RFC6265 an order of cookie values has no semantics.

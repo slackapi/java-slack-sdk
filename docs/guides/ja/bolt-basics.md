@@ -121,7 +121,7 @@ import com.slack.api.webhook.WebhookResponse;
 app.command("/hello", (req, ctx) -> {
   // response_url を使ってメッセージを投稿
   WebhookResponse result = ctx.respond(res -> res
-    .responseType("ephemeral") // または "in_channnel"
+    .responseType("ephemeral") // または "in_channel"
     .text("Hi there!") // 別の setter で blocks, attachments も使えます
   );
   return ctx.ack(); // この ack() はメッセージを投稿しない 

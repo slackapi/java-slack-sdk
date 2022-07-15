@@ -23,7 +23,7 @@ enum class ConversationType {
     },
 
     /**
-     * A public slack channel.
+     * A public Slack channel.
      */
     PUBLIC {
         override val value = "public"

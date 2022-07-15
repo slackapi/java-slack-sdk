@@ -6,7 +6,7 @@ import lombok.Data;
  * The server intends to close the connection soon.
  * <p>
  * The goodbye event may be sent by a server that expects it will close the connection after an unspecified amount of time.
- * A well formed client should reconnect to avoid data loss.
+ * A well-formed client should reconnect to avoid data loss.
  * <p>
  * Other scenarios where you might encounter the goodbye event are:
  * <ul>

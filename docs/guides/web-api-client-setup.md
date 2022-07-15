@@ -11,7 +11,7 @@ The first step to using the Slack API client is installing the **slack-api-clien
 ---
 ## Prerequisites
 
-[Installing OpenJDK 8 or higher LTS version](https://openjdk.java.net/install/) beforehand is required. As long as your using a supported JDK version, this SDK should be working with any OpenJDK distributions.
+[Installing OpenJDK 8 or higher LTS version](https://openjdk.java.net/install/) beforehand is required. As long as you are using a supported JDK version, this SDK should be working with any OpenJDK distributions.
 
 ---
 ## Maven

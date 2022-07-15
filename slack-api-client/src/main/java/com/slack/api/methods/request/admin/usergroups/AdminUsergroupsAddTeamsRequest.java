@@ -24,7 +24,7 @@ public class AdminUsergroupsAddTeamsRequest implements SlackApiRequest {
     private List<String> teamIds;
 
     /**
-     * A encoded usergroup ID
+     * An encoded usergroup ID
      */
     private String usergroupId;
 

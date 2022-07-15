@@ -150,7 +150,7 @@ public class BlockElements {
 
     // RichTextListElement
     /**
-     * @deprecated The SDK cannot send rich text blocks. Use markdown text instead.
+     * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
      */
     @Deprecated
     public static RichTextListElement richTextList(ModelConfigurator<RichTextListElement.RichTextListElementBuilder> configurator) {
@@ -160,7 +160,7 @@ public class BlockElements {
     // RichTextPreformattedElement
 
     /**
-     * @deprecated The SDK cannot send rich text blocks. Use markdown text instead.
+     * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
      */
     @Deprecated
     public static RichTextPreformattedElement richTextPreformatted(ModelConfigurator<RichTextPreformattedElement.RichTextPreformattedElementBuilder> configurator) {
@@ -170,7 +170,7 @@ public class BlockElements {
     // RichTextQuoteElement
 
     /**
-     * @deprecated The SDK cannot send rich text blocks. Use markdown text instead.
+     * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
      */
     @Deprecated
     public static RichTextQuoteElement richTextQuote(ModelConfigurator<RichTextQuoteElement.RichTextQuoteElementBuilder> configurator) {
@@ -180,7 +180,7 @@ public class BlockElements {
     // RichTextSectionElement
 
     /**
-     * @deprecated The SDK cannot send rich text blocks. Use markdown text instead.
+     * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
      */
     @Deprecated
     public static RichTextSectionElement richTextSection(ModelConfigurator<RichTextSectionElement.RichTextSectionElementBuilder> configurator) {
