@@ -14,6 +14,8 @@ import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
 import io.ktor.server.testing.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.junit.After
 import org.junit.Before
 import util.AuthTestMockServer
@@ -70,7 +72,11 @@ class KtorAppActionTest {
     fun validRequest() = testApplication {
         application { main() }
         println(this.toString())
-        val body = "payload=${URLEncoder.encode(buttonClickPayload, "UTF-8")}"
+        val body = "payload=${
+            withContext(Dispatchers.IO) {
+                URLEncoder.encode(buttonClickPayload, "UTF-8")
+            }
+        }"
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator(signingSecret).generate(timestamp, body)
         val response = client.post("/slack/events"){
@@ -88,7 +94,11 @@ class KtorAppActionTest {
     @Test
     fun invalidSignature() = testApplication {
         application { main() }
-        val body = "payload=${URLEncoder.encode(buttonClickPayload, "UTF-8")}"
+        val body = "payload=${
+            withContext(Dispatchers.IO) {
+                URLEncoder.encode(buttonClickPayload, "UTF-8")
+            }
+        }"
         val timestamp = (System.currentTimeMillis() / 1000).toString()
         val signature = SlackSignature.Generator("yet-another-signature").generate(timestamp, body)
         val response = client.post("/slack/events"){

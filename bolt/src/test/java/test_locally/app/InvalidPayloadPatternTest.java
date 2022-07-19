@@ -11,6 +11,9 @@ import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.util.SlackRequestParser;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jetty.http.HttpHeader;
+import org.eclipse.jetty.http.HttpStatus;
+import org.eclipse.jetty.http.MimeTypes;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,6 +34,8 @@ public class InvalidPayloadPatternTest {
     AuthTestMockServer server = new AuthTestMockServer();
     SlackConfig config = new SlackConfig();
     Slack slack = Slack.getInstance(config);
+    private static final String APPLICATION_JSON = MimeTypes.Type.APPLICATION_JSON.getContentTypeField().getValue();
+    private static final String CONTENT_TYPE = HttpHeader.CONTENT_TYPE.toString();
 
     @Before
     public void setup() throws Exception {
@@ -57,7 +62,7 @@ public class InvalidPayloadPatternTest {
     void setJSONDataRequestHeaders(String requestBody, Map<String, List<String>> rawHeaders, String timestamp) {
         rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, Arrays.asList(timestamp));
         rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, Arrays.asList(generator.generate(timestamp, requestBody)));
-        rawHeaders.put("Content-Type", Arrays.asList("application/json"));
+        rawHeaders.put(CONTENT_TYPE, Arrays.asList(APPLICATION_JSON));
     }
 
     @Test
@@ -98,7 +103,7 @@ public class InvalidPayloadPatternTest {
         Request<?> request = parser.parse(SlackRequestParser.HttpRequest.builder().headers(new RequestHeaders(rawHeaders)).requestBody(requestBody).build());
 
         Response response = app.run(request);
-        assertEquals(400L, response.getStatusCode().longValue());
+        assertEquals(HttpStatus.BAD_REQUEST_400, response.getStatusCode().intValue());
         assertEquals("Invalid Request", response.getBody());
     }
 
@@ -117,7 +122,7 @@ public class InvalidPayloadPatternTest {
         Request<?> request = parser.parse(SlackRequestParser.HttpRequest.builder().headers(new RequestHeaders(rawHeaders)).requestBody(requestBody).build());
 
         Response response = app.run(request);
-        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals(HttpStatus.OK_200, response.getStatusCode().intValue());
         assertEquals("challenge-value", response.getBody());
     }
 
@@ -138,7 +143,7 @@ public class InvalidPayloadPatternTest {
         Request<?> request = parser.parse(SlackRequestParser.HttpRequest.builder().headers(new RequestHeaders(rawHeaders)).requestBody(requestBody).build());
 
         Response response = app.run(request);
-        assertEquals(401L, response.getStatusCode().longValue());
+        assertEquals(HttpStatus.UNAUTHORIZED_401, response.getStatusCode().intValue());
         assertEquals("{\"error\":\"invalid request\"}", response.getBody());
     }
 

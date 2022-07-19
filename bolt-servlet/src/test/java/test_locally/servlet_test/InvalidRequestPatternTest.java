@@ -6,7 +6,10 @@ import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.middleware.builtin.RequestVerification;
 import com.slack.api.bolt.servlet.SlackAppServlet;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.jetty.http.HttpHeader;
+import org.eclipse.jetty.http.HttpStatus;
 import org.eclipse.jetty.http.HttpTester;
+import org.eclipse.jetty.http.MimeTypes;
 import org.eclipse.jetty.servlet.ServletTester;
 import org.junit.After;
 import org.junit.Before;
@@ -27,6 +30,9 @@ public class InvalidRequestPatternTest {
     private AppConfig appConfig = AppConfig.builder().singleTeamBotToken("xoxb-").signingSecret(secret).build();
     private App app;
     private Servlet webApp;
+    private static final String TEXT_PLAIN = MimeTypes.Type.TEXT_PLAIN.getContentTypeField().getValue();
+    private static final String APPLICATION_JSON = MimeTypes.Type.APPLICATION_JSON.getContentTypeField().getValue();
+    private static final String CONTENT_TYPE = HttpHeader.CONTENT_TYPE.toString();
 
     @Before
     public void setUp() {
@@ -72,13 +78,13 @@ public class InvalidRequestPatternTest {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         request.setHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
         request.setHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, generator.generate(timestamp, requestBody));
-        request.setHeader("Content-Type", "application/json");
+        request.setHeader(CONTENT_TYPE, APPLICATION_JSON);
 
         HttpTester.Response response = HttpTester.parseResponse(tester.getResponses(request.generate()));
 
-        assertThat(response.getStatus(), is(equalTo(200)));
+        assertThat(response.getStatus(), is(equalTo(HttpStatus.OK_200)));
         assertThat(response.getContent(), is(equalTo("challenge-value")));
-        assertThat(response.get("Content-Type"), is(startsWith("text/plain; charset=ISO-8859-1")));
+        assertThat(response.get(CONTENT_TYPE), is(startsWith(TEXT_PLAIN)));
     }
 
     @Test
@@ -95,13 +101,13 @@ public class InvalidRequestPatternTest {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         request.setHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
         request.setHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, generator.generate(timestamp, requestBody));
-        request.setHeader("Content-Type", "application/json");
+        request.setHeader(CONTENT_TYPE, APPLICATION_JSON);
 
         HttpTester.Response response = HttpTester.parseResponse(tester.getResponses(request.generate()));
 
-        assertThat(response.getStatus(), is(equalTo(400)));
+        assertThat(response.getStatus(), is(equalTo(HttpStatus.BAD_REQUEST_400)));
         assertThat(response.getContent(), is(equalTo("Invalid Request")));
-        assertThat(response.get("Content-Type"), is(startsWith("text/plain; charset=ISO-8859-1")));
+        assertThat(response.get(CONTENT_TYPE), is(startsWith(TEXT_PLAIN)));
     }
 
     @Test
@@ -119,12 +125,12 @@ public class InvalidRequestPatternTest {
         request.setHeader(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
         SlackSignature.Generator differentGenerator = new SlackSignature.Generator("a different app's secret");
         request.setHeader(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, differentGenerator.generate(timestamp, requestBody));
-        request.setHeader("Content-Type", "application/json");
+        request.setHeader(CONTENT_TYPE, APPLICATION_JSON);
 
         HttpTester.Response response = HttpTester.parseResponse(tester.getResponses(request.generate()));
 
-        assertThat(response.getStatus(), is(equalTo(401)));
+        assertThat(response.getStatus(), is(equalTo(HttpStatus.UNAUTHORIZED_401)));
         assertThat(response.getContent(), is(equalTo("{\"error\":\"invalid request\"}")));
-        assertThat(response.get("Content-Type"), is(startsWith("application/json")));
+        assertThat(response.get(CONTENT_TYPE), is(startsWith(APPLICATION_JSON)));
     }
 }
