@@ -484,7 +484,8 @@
       "seen_onboarding_synth_view_count": 12345,
       "synth_view_prefs": "",
       "clips_feedback_survey_last_trigger_attempt": 12345,
-      "enable_later_view": false
+      "enable_later_view": false,
+      "has_joined_huddle": false
     },
     "created": 12345,
     "first_login": 12345,

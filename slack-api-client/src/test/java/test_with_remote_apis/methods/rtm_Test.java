@@ -93,6 +93,7 @@ public class rtm_Test {
         }
     }
 
+    @Ignore // Skip running this regularly as the rate limit errors can arise more easily than before
     @Test
     public void test() throws Exception {
         String channelName = "test" + System.currentTimeMillis();
@@ -153,6 +154,7 @@ public class rtm_Test {
         }
     }
 
+    @Ignore // Skip running this regularly as the rate limit errors can arise more easily than before
     @Test
     public void rtmStart() throws Exception {
         SlackConfig config = new SlackConfig();
