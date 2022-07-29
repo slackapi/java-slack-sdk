@@ -242,7 +242,8 @@
       "external_shared_channel_access_upgraded",
       "external_shared_channel_disconnect_and_archived",
       "dm_user_added",
-      "public_channel_preview"
+      "public_channel_preview",
+      "external_shared_channel_access_downgraded"
     ],
     "app": [
       "app_installed",

@@ -245,6 +245,7 @@ public class Actions {
         public static final String external_shared_channel_invite_approved = "external_shared_channel_invite_approved";
         public static final String external_shared_channel_invite_created = "external_shared_channel_invite_created";
         public static final String external_shared_channel_access_upgraded = "external_shared_channel_access_upgraded";
+        public static final String external_shared_channel_access_downgraded = "external_shared_channel_access_downgraded";
         public static final String external_shared_channel_disconnect_and_archived = "external_shared_channel_disconnect_and_archived";
         public static final String mpim_converted_to_private = "mpim_converted_to_private";
         public static final String channel_moved = "channel_moved";
