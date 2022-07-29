@@ -990,7 +990,9 @@
                     }
                   ],
                   "style": "",
-                  "indent": 123
+                  "indent": 123,
+                  "offset": 123,
+                  "border": 123
                 },
                 {
                   "type": "rich_text_preformatted",
@@ -1246,7 +1248,9 @@
                 }
               ],
               "style": "",
-              "indent": 123
+              "indent": 123,
+              "offset": 123,
+              "border": 123
             },
             {
               "type": "rich_text_preformatted",
@@ -1335,7 +1339,9 @@
                     }
                   ],
                   "style": "",
-                  "indent": 123
+                  "indent": 123,
+                  "offset": 123,
+                  "border": 123
                 },
                 {
                   "type": "rich_text_preformatted",
@@ -1678,7 +1684,9 @@
                     }
                   ],
                   "style": "",
-                  "indent": 123
+                  "indent": 123,
+                  "offset": 123,
+                  "border": 123
                 },
                 {
                   "type": "rich_text_preformatted",
@@ -2021,7 +2029,9 @@
                     }
                   ],
                   "style": "",
-                  "indent": 123
+                  "indent": 123,
+                  "offset": 123,
+                  "border": 123
                 },
                 {
                   "type": "rich_text_preformatted",
@@ -4477,7 +4487,9 @@
                         }
                       ],
                       "style": "",
-                      "indent": 123
+                      "indent": 123,
+                      "offset": 123,
+                      "border": 123
                     },
                     {
                       "type": "rich_text_preformatted",
@@ -4733,7 +4745,9 @@
                     }
                   ],
                   "style": "",
-                  "indent": 123
+                  "indent": 123,
+                  "offset": 123,
+                  "border": 123
                 },
                 {
                   "type": "rich_text_preformatted",
@@ -4822,7 +4836,9 @@
                         }
                       ],
                       "style": "",
-                      "indent": 123
+                      "indent": 123,
+                      "offset": 123,
+                      "border": 123
                     },
                     {
                       "type": "rich_text_preformatted",
@@ -5165,7 +5181,9 @@
                         }
                       ],
                       "style": "",
-                      "indent": 123
+                      "indent": 123,
+                      "offset": 123,
+                      "border": 123
                     },
                     {
                       "type": "rich_text_preformatted",
@@ -5508,7 +5526,9 @@
                         }
                       ],
                       "style": "",
-                      "indent": 123
+                      "indent": 123,
+                      "offset": 123,
+                      "border": 123
                     },
                     {
                       "type": "rich_text_preformatted",
