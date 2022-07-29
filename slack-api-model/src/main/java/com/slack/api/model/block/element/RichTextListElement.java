@@ -21,4 +21,6 @@ public class RichTextListElement extends BlockElement implements RichTextElement
     private List<RichTextElement> elements = new ArrayList<>();
     private String style; // bullet, ordered
     private Integer indent;
+    private Integer offset;
+    private Integer border;
 }

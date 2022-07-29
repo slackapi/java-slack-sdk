@@ -205,10 +205,14 @@
                     }
                   ],
                   "style": "",
-                  "indent": 12345
+                  "indent": 12345,
+                  "offset": 12345,
+                  "border": 12345
                 }
               ],
-              "indent": 12345
+              "indent": 12345,
+              "offset": 12345,
+              "border": 12345
             },
             {
               "type": "",
@@ -248,11 +252,15 @@
                     }
                   ],
                   "style": "",
-                  "indent": 12345
+                  "indent": 12345,
+                  "offset": 12345,
+                  "border": 12345
                 }
               ],
               "style": "",
-              "indent": 12345
+              "indent": 12345,
+              "offset": 12345,
+              "border": 12345
             }
           ],
           "block_id": "",
@@ -1161,10 +1169,14 @@
                         }
                       ],
                       "style": "",
-                      "indent": 12345
+                      "indent": 12345,
+                      "offset": 12345,
+                      "border": 12345
                     }
                   ],
-                  "indent": 12345
+                  "indent": 12345,
+                  "offset": 12345,
+                  "border": 12345
                 },
                 {
                   "type": "",
@@ -1204,11 +1216,15 @@
                         }
                       ],
                       "style": "",
-                      "indent": 12345
+                      "indent": 12345,
+                      "offset": 12345,
+                      "border": 12345
                     }
                   ],
                   "style": "",
-                  "indent": 12345
+                  "indent": 12345,
+                  "offset": 12345,
+                  "border": 12345
                 }
               ],
               "block_id": "",

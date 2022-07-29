@@ -498,6 +498,126 @@ public class BlockKitTest {
     }
 
     @Test
+    public void parseRichTextOnes4() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"UXJk\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_list\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"1\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"style\": \"bullet\",\n" +
+                "          \"indent\": 0,\n" +
+                "          \"border\": 0\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_list\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"11\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"style\": \"bullet\",\n" +
+                "          \"indent\": 1,\n" +
+                "          \"border\": 0\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_list\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"111\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"style\": \"bullet\",\n" +
+                "          \"indent\": 2,\n" +
+                "          \"border\": 0\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_list\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"1\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"style\": \"ordered\",\n" +
+                "          \"indent\": 0,\n" +
+                "          \"border\": 0\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_list\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"11\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"style\": \"ordered\",\n" +
+                "          \"indent\": 1,\n" +
+                "          \"border\": 0\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_list\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"111\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"style\": \"ordered\",\n" +
+                "          \"indent\": 2,\n" +
+                "          \"border\": 0\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+
+        // verify if Gson can parse the JSON data
+        Message view = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(view.getBlocks().size(), is(1));
+    }
+
+    @Test
     public void parseRadioButtons() {
         String json = "{" +
                 "  \"blocks\": [\n" +
