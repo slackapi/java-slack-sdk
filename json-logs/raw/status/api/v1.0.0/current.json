@@ -878,6 +878,22 @@
     {
       "date_created": "2022-07-04T03:44:28-07:00",
       "body": "We’re investigating a problem with threads failing to load. We’ll be back with another update as soon as we have more information to share, we’re sorry for the disruption."
+    },
+    {
+      "date_created": "2022-08-01T15:03:50-07:00",
+      "body": "We\u0027ve resolved the issue: impacted users should be able to connect to third party apps and integrations, and use workflows once more.\r\n\r\nIf you\u0027re still encountering trouble, please reload Slack, by pressing Command/Control + Shift + R.\r\n\r\nWe apologize for any disruption to your work day."
+    },
+    {
+      "date_created": "2022-08-01T14:26:40-07:00",
+      "body": "We’ve begun rolling out a fix. We’ll return with another update once rollout has concluded — thanks for your continued patience."
+    },
+    {
+      "date_created": "2022-08-01T13:22:58-07:00",
+      "body": "While investigating we found Workflows are also impacted. The good news is we’ve identified a potential fix which will be rolled out soon."
+    },
+    {
+      "date_created": "2022-08-01T12:47:07-07:00",
+      "body": "We’ve received reports of users running into `invalid_auth` when using apps/integrations. We’re investigating and will let you know as soon as we have further information to share. We appreciate your patience in the meantime."
     }
   ]
 }

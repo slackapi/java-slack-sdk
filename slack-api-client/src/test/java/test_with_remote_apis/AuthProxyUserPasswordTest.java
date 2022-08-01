@@ -186,6 +186,7 @@ public class AuthProxyUserPasswordTest {
         }
     }
 
+    @Ignore // Disabled to prevent rate limited errors
     @Test
     public void rtm() throws Exception {
         Slack slack = Slack.getInstance(config);
