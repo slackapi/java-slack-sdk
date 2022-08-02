@@ -832,7 +832,8 @@
       "ext_audit_log_retention_type": 12345,
       "ext_audit_log_retention_duration": 12345,
       "warn_user_before_logout_desktop": false,
-      "warn_user_before_logout_mobile": false
+      "warn_user_before_logout_mobile": false,
+      "allow_huddles_video": false
     },
     "icon": {
       "image_102": "https://www.example.com/",
