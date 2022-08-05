@@ -203,6 +203,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> wfbNames = getAllPublicStaticFieldValues(Actions.WorkflowBuilder.class);
+        for (String action : actions.getWorkflowBuilder()) {
+            if (!wfbNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test

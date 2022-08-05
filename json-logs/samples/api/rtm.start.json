@@ -486,7 +486,9 @@
       "clips_feedback_survey_last_trigger_attempt": 12345,
       "enable_later_view": false,
       "has_joined_huddle": false,
-      "has_sent_ten_messages": 12345
+      "has_sent_ten_messages": 12345,
+      "suppress_thread_mention_warning": false,
+      "hidden_users": ""
     },
     "created": 12345,
     "first_login": 12345,
@@ -833,7 +835,9 @@
       "ext_audit_log_retention_duration": 12345,
       "warn_user_before_logout_desktop": false,
       "warn_user_before_logout_mobile": false,
-      "allow_huddles_video": false
+      "allow_huddles_video": false,
+      "display_anniversary_celebration": false,
+      "display_new_hire_celebration": false
     },
     "icon": {
       "image_102": "https://www.example.com/",

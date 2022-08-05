@@ -270,7 +270,8 @@
       "workflow_deleted",
       "workflow_published",
       "workflow_unpublished",
-      "workflow_responses_csv_download"
+      "workflow_responses_csv_download",
+      "workflow_modified"
     ],
     "message": [
       "message_tombstoned",
