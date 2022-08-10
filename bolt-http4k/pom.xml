@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <http4k.version>4.27.1.0</http4k.version>
+        <http4k.version>4.27.4.0</http4k.version>
     </properties>
 
     <artifactId>bolt-http4k</artifactId>
