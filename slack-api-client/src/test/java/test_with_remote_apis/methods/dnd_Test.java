@@ -87,10 +87,11 @@ public class dnd_Test {
             assertThat(response.isOk(), is(false));
         }
         {
-            DndEndSnoozeResponse response = slack.methods().dndEndSnooze(r -> r
-                    .token(userToken));
-            assertThat(response.getError(), is("snooze_not_active"));
-            assertThat(response.isOk(), is(false));
+            DndEndSnoozeResponse response = slack.methods().dndEndSnooze(r -> r.token(userToken));
+            // Since Aug 2022, "snooze_not_active" is no longer returned for any cases
+            // assertThat(response.getError(), is("snooze_not_active"));
+            // assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is(nullValue()));
         }
 
         {
