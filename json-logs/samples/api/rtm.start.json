@@ -837,7 +837,9 @@
       "warn_user_before_logout_mobile": false,
       "allow_huddles_video": false,
       "display_anniversary_celebration": false,
-      "display_new_hire_celebration": false
+      "display_new_hire_celebration": false,
+      "allow_spaceship": "",
+      "spaceship_workspace_setting_visible": false
     },
     "icon": {
       "image_102": "https://www.example.com/",
