@@ -31,7 +31,7 @@ public class FilesUploadRequest implements SlackApiRequest {
     private String content;
 
     /**
-     * A [file type](/types/file#file_types) identifier.
+     * A [file type](https://api.slack.com/types/file#file_types) identifier.
      */
     private String filetype;
 
