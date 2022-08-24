@@ -59,7 +59,8 @@
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
 
         <!-- optional / testing-only dependencies -->
-        <jakarta.jetty.version>[11.0,12.0)</jakarta.jetty.version>
+        <!-- Note that "[11.0,12.0)" does not exclude jetty-xxx 12.0.0.alpha0 -->
+        <jakarta.jetty.version>[11.0,11.1)</jakarta.jetty.version>
         <java-jwt.version>[4.0,5.0)</java-jwt.version>
         <aws.s3.version>[1.12.62,1.13.0)</aws.s3.version>
         <junit.version>4.13.2</junit.version>
