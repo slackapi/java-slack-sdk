@@ -488,7 +488,9 @@
       "has_joined_huddle": false,
       "has_sent_ten_messages": 12345,
       "suppress_thread_mention_warning": false,
-      "hidden_users": ""
+      "hidden_users": "",
+      "frecency": "",
+      "dismissed_sent_page_education": false
     },
     "created": 12345,
     "first_login": 12345,
