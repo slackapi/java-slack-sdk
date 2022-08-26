@@ -1,5 +1,7 @@
 package test_locally.app_backend.interactive_components.payload;
 
+import com.google.gson.Gson;
+import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.interactive_components.payload.BlockActionPayload;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.Test;
@@ -9,6 +11,12 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BlockActionPayloadTest {
+
+    static final SlackConfig TEST_CONFIG = new SlackConfig();
+    static {
+        TEST_CONFIG.setFailOnUnknownProperties(true);
+    }
+    static final Gson GSON = GsonFactory.createSnakeCase(TEST_CONFIG);
 
     // https://api.slack.com/messaging/interactivity/enabling
     String json = "{\n" +
@@ -63,7 +71,7 @@ public class BlockActionPayloadTest {
 
     @Test
     public void deserialize() {
-        BlockActionPayload payload = GsonFactory.createSnakeCase().fromJson(json, BlockActionPayload.class);
+        BlockActionPayload payload = GSON.fromJson(json, BlockActionPayload.class);
         assertThat(payload.getType(), is("block_actions"));
         assertThat(payload.getToken(), is("9s8d9as89d8as9d8as989"));
         assertThat(payload.getUser(), is(notNullValue()));
@@ -150,7 +158,7 @@ public class BlockActionPayloadTest {
 
     @Test
     public void deserialize_confirm() {
-        BlockActionPayload payload = GsonFactory.createSnakeCase().fromJson(jsonWithConfirm, BlockActionPayload.class);
+        BlockActionPayload payload = GSON.fromJson(jsonWithConfirm, BlockActionPayload.class);
         assertThat(payload.getType(), is("block_actions"));
         assertThat(payload.getActions().size(), is(1));
 
@@ -221,7 +229,7 @@ public class BlockActionPayloadTest {
 
     @Test
     public void state_in_messages() {
-        BlockActionPayload payload = GsonFactory.createSnakeCase().fromJson(jsonWithState, BlockActionPayload.class);
+        BlockActionPayload payload = GSON.fromJson(jsonWithState, BlockActionPayload.class);
         assertThat(payload.getType(), is("block_actions"));
         assertThat(payload.getActions().size(), is(1));
 
@@ -231,5 +239,87 @@ public class BlockActionPayloadTest {
                         .getSelectedOption().getValue(),
                 is("schedule"));
     }
+
+    @Test
+    public void deserialize_app_unfurl() {
+        String jsonData = "{\n" +
+                "  \"type\": \"block_actions\",\n" +
+                "  \"user\": {\n" +
+                "    \"id\": \"U111\",\n" +
+                "    \"username\": \"seratch\",\n" +
+                "    \"name\": \"seratch\",\n" +
+                "    \"team_id\": \"T111\"\n" +
+                "  },\n" +
+                "  \"api_app_id\": \"A111\",\n" +
+                "  \"token\": \"xxx\",\n" +
+                "  \"container\": {\n" +
+                "    \"type\": \"message_attachment\",\n" +
+                "    \"message_ts\": \"1661488735.191299\",\n" +
+                "    \"attachment_id\": 1,\n" +
+                "    \"channel_id\": \"C111\",\n" +
+                "    \"is_ephemeral\": false,\n" +
+                "    \"is_app_unfurl\": true,\n" +
+                "    \"app_unfurl_url\": \"https://example.com/foo\"\n" +
+                "  },\n" +
+                "  \"trigger_id\": \"111.222.xxx\",\n" +
+                "  \"team\": {\n" +
+                "    \"id\": \"T111\",\n" +
+                "    \"domain\": \"seratch\"\n" +
+                "  },\n" +
+                "  \"is_enterprise_install\": false,\n" +
+                "  \"channel\": {\n" +
+                "    \"id\": \"C111\",\n" +
+                "    \"name\": \"general\"\n" +
+                "  },\n" +
+                "  \"app_unfurl\": {\n" +
+                "    \"id\": 1,\n" +
+                "    \"blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"actions\",\n" +
+                "        \"block_id\": \"b\",\n" +
+                "        \"elements\": [\n" +
+                "          {\n" +
+                "            \"type\": \"button\",\n" +
+                "            \"action_id\": \"a\",\n" +
+                "            \"text\": {\n" +
+                "              \"type\": \"plain_text\",\n" +
+                "              \"text\": \"Click this!\",\n" +
+                "              \"emoji\": true\n" +
+                "            },\n" +
+                "            \"value\": \"clicked\"\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"fallback\": \"[no preview available]\",\n" +
+                "    \"bot_id\": \"B01K9P888EL\",\n" +
+                "    \"app_unfurl_url\": \"https://example.com/foo\",\n" +
+                "    \"is_app_unfurl\": true,\n" +
+                "    \"app_id\": \"A111\"\n" +
+                "  },\n" +
+                "  \"state\": {\n" +
+                "    \"values\": {}\n" +
+                "  },\n" +
+                "  \"response_url\": \"https://hooks.slack.com/actions/T111/111/222\",\n" +
+                "  \"actions\": [\n" +
+                "    {\n" +
+                "      \"action_id\": \"a\",\n" +
+                "      \"block_id\": \"b\",\n" +
+                "      \"text\": {\n" +
+                "        \"type\": \"plain_text\",\n" +
+                "        \"text\": \"Click this!\",\n" +
+                "        \"emoji\": true\n" +
+                "      },\n" +
+                "      \"value\": \"clicked\",\n" +
+                "      \"type\": \"button\",\n" +
+                "      \"action_ts\": \"1661488741.407859\"\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        BlockActionPayload payload = GSON.fromJson(jsonData, BlockActionPayload.class);
+        assertThat(payload.getType(), is("block_actions"));
+        assertThat(payload.getActions().size(), is(1));
+    }
+
 
 }
