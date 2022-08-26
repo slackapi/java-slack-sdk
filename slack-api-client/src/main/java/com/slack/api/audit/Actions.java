@@ -336,5 +336,7 @@ public class Actions {
         public static final String cli_login = "cli_login";
         public static final String cli_logout = "cli_logout";
         public static final String cli_app_deploy = "cli_app_deploy";
+        public static final String cli_app_install = "cli_app_install";
+        public static final String cli_app_delete = "cli_app_delete";
     }
 }

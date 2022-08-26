@@ -297,7 +297,9 @@
     "slack_cli": [
       "cli_login",
       "cli_logout",
-      "cli_app_deploy"
+      "cli_app_deploy",
+      "cli_app_install",
+      "cli_app_delete"
     ]
   }
 }
