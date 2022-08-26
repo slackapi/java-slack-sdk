@@ -53,6 +53,9 @@
         <okhttp.version>4.10.0</okhttp.version>
         <gson.version>2.9.1</gson.version>
         <kotlin.version>1.7.10</kotlin.version>
+        <!-- Note that we should not upgrade sfl4j-api to v2 to avoid confusions on the users side.
+            see also: https://github.com/slackapi/java-slack-sdk/issues/1034
+        -->
         <slf4j.version>1.7.36</slf4j.version>
         <lombok.version>1.18.24</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
