@@ -2,6 +2,7 @@ package com.slack.api.app_backend.interactive_components.payload;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.Message;
+import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
@@ -38,11 +39,9 @@ public class BlockActionPayload {
     private String responseUrl;
     private View view;
     private ViewState state; // for actions in a message
+    private AppUnfurl appUnfurl;
     private List<Action> actions;
     private boolean isEnterpriseInstall;
-
-    // TODO: app_unfurl
-    // https://github.com/slackapi/bolt/blob/8f9245f9b9dce0771bb615b42192e7adb6228444/src/types/actions/block-action.ts#L154-L155
 
     @Data
     public static class Enterprise {
@@ -72,11 +71,13 @@ public class BlockActionPayload {
         private String messageTs;
         private Integer attachmentId;
         private String channelId;
+        private String viewId;
         private String text;
         @SerializedName("is_ephemeral")
         private boolean ephemeral;
         @SerializedName("is_app_unfurl")
-        private boolean app_unfurl;
+        private boolean appUnfurl;
+        private String appUnfurlUrl;
     }
 
     @Data
@@ -86,12 +87,25 @@ public class BlockActionPayload {
     }
 
     @Data
+    public static class AppUnfurl {
+        private Integer id;
+        private List<LayoutBlock> blocks;
+        private String fallback;
+        private String botId;
+        private String appUnfurlUrl;
+        @SerializedName("is_app_unfurl")
+        private boolean appUnfurl;
+        private String appId;
+    }
+
+    @Data
     public static class Action {
         private String actionId;
         private String blockId;
         private Text text;
         private String value;
         private String type;
+        private String style;
         private String actionTs;
 
         // common fields

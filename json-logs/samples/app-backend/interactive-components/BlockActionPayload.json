@@ -23,9 +23,11 @@
     "message_ts": "",
     "attachment_id": 123,
     "channel_id": "",
+    "view_id": "",
     "text": "",
     "is_ephemeral": false,
-    "is_app_unfurl": false
+    "is_app_unfurl": false,
+    "app_unfurl_url": ""
   },
   "trigger_id": "",
   "channel": {
@@ -1322,6 +1324,14 @@
     "bot_id": ""
   },
   "state": {},
+  "app_unfurl": {
+    "id": 123,
+    "fallback": "",
+    "bot_id": "",
+    "app_unfurl_url": "",
+    "is_app_unfurl": false,
+    "app_id": ""
+  },
   "actions": [
     {
       "action_id": "",
@@ -1333,6 +1343,7 @@
       },
       "value": "",
       "type": "",
+      "style": "",
       "action_ts": "",
       "placeholder": {
         "type": "plain_text",
