@@ -289,7 +289,11 @@
       "barrier_deleted"
     ],
     "huddle": [
-      "huddle_ended"
+      "huddle_ended",
+      "huddle_started",
+      "huddle_participant_joined",
+      "huddle_participant_left",
+      "huddle_participant_dropped"
     ],
     "anomaly": [
       "anomaly"

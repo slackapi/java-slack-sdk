@@ -209,6 +209,18 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> huddleNames = getAllPublicStaticFieldValues(Actions.Huddle.class);
+        for (String action : actions.getHuddle()) {
+            if (!huddleNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
+        List<String> barrierNames = getAllPublicStaticFieldValues(Actions.Barrier.class);
+        for (String action : actions.getBarrier()) {
+            if (!barrierNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test

@@ -339,4 +339,22 @@ public class Actions {
         public static final String cli_app_install = "cli_app_install";
         public static final String cli_app_delete = "cli_app_delete";
     }
+
+    public static class Huddle {
+        private Huddle() {
+        }
+
+        public static final String huddle_ended = "huddle_ended";
+        public static final String huddle_started = "huddle_started";
+        public static final String huddle_participant_joined = "huddle_participant_joined";
+        public static final String huddle_participant_left = "huddle_participant_left";
+        public static final String huddle_participant_dropped = "huddle_participant_dropped";
+    }
+
+    public static class Anomaly {
+        private Anomaly() {
+        }
+
+        public static final String anomaly = "anomaly";
+    }
 }
