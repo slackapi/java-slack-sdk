@@ -144,10 +144,12 @@ public class User {
         private String id;
         private String enterpriseId;
         private String enterpriseName;
+        @SerializedName("is_primary_owner")
+        private boolean primaryOwner;
         @SerializedName("is_admin")
-        private boolean isAdmin;
+        private boolean admin;
         @SerializedName("is_owner")
-        private boolean isOwner;
+        private boolean owner;
         private List<String> teams;
     }
 

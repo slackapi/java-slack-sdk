@@ -76,7 +76,8 @@
         "teams": [
           "",
           "T00000000"
-        ]
+        ],
+        "is_primary_owner": false
       },
       "is_invited_user": false
     }

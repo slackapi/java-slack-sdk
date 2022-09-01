@@ -136,7 +136,8 @@
         "converted_pdf": "https://www.example.com/",
         "thumb_pdf": "https://www.example.com/",
         "thumb_pdf_w": 12345,
-        "thumb_pdf_h": 12345
+        "thumb_pdf_h": 12345,
+        "file_access": ""
       }
     ]
   },
