@@ -37,7 +37,8 @@
       "external_user_count": 12345,
       "internal_team_ids": [
         "T00000000"
-      ]
+      ],
+      "channel_manager_count": 12345
     }
   ],
   "next_cursor": "",
