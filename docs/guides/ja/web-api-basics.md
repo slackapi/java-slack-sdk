@@ -209,7 +209,7 @@ Slack Web API は [180 以上の API メソッド](https://api.slack.com/methods
 
 #### サポートされていない API メソッドを実行
 
-何らかの理由で **slack-api-client** がサポートしていないメソッドを実効する必要がある場合は、以下のようにすることができます。
+何らかの理由で **slack-api-client** がサポートしていないメソッドを実行する必要がある場合は、以下のようにすることができます。
 
 ```java
 import com.slack.api.Slack;
