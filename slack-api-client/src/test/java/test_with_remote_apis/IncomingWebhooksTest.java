@@ -26,6 +26,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 
 @Slf4j
 public class IncomingWebhooksTest {
@@ -290,5 +291,13 @@ public class IncomingWebhooksTest {
         WebhookResponse response = slack.send(url, payload);
         assertThat(response.getBody(), is("invalid_blocks"));
         assertThat(response.getCode(), is(400));
+    }
+
+    @Test
+    public void headers() throws IOException {
+        WebhookResponse response = slack.send(url, Payload.builder().text("Hello world!").build());
+        assertThat(response.getBody(), is("ok"));
+        assertThat(response.getCode(), is(200));
+        assertThat(response.getHeaders().size(),is(greaterThan(0)));
     }
 }

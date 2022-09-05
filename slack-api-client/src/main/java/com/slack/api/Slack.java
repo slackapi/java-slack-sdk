@@ -128,6 +128,7 @@ public class Slack implements AutoCloseable {
         return WebhookResponse.builder()
                 .code(httpResponse.code())
                 .message(httpResponse.message())
+                .headers(httpResponse.headers().toMultimap())
                 .body(body)
                 .build();
     }
@@ -144,6 +145,7 @@ public class Slack implements AutoCloseable {
         return WebhookResponse.builder()
                 .code(httpResponse.code())
                 .message(httpResponse.message())
+                .headers(httpResponse.headers().toMultimap())
                 .body(body)
                 .build();
     }
