@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.25.1</version>
+        <version>1.25.2-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -14,7 +14,7 @@
     </properties>
 
     <artifactId>bolt-jetty</artifactId>
-    <version>1.25.1</version>
+    <version>1.25.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>
