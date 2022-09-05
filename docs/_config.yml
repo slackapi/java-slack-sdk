@@ -12,7 +12,7 @@ slf4jApiVersion: 1.7.36
 kotlinVersion: 1.7.10
 springBootVersion: 2.7.3
 compatibleMicronautVersion: 3.x
-quarkusVersion: 2.11.2.Final
+quarkusVersion: 2.12.0.Final
 helidonVersion: 2.5.0
 javaxWebsocketApiVersion: 1.1
 tyrusStandaloneClientVersion: 1.19
