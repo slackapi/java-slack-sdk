@@ -1270,6 +1270,24 @@
           "body": "We’re receiving reports around trouble with typing in Japanese or Korean. We’re on the case and will provide another update once we have more details to share. We’re sorry for the disruption."
         }
       ]
+    },
+    {
+      "id": 1136,
+      "date_created": "2022-09-05T08:09:43-07:00",
+      "date_updated": "2022-09-05T08:09:43-07:00",
+      "title": "Windows Store version 4.28.171 of the desktop app crashing",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-09/f4273fe54d4adbcb",
+      "services": [
+        "Connections"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-09-05T08:09:43-07:00",
+          "body": "Users on the Windows Store desktop app version 4.28.171 may experience issues with the app crashing. To determine which version you are on, click the ☰ three lines icon in the top left of the Slack app \u003e Help \u003e About Slack.\r\n\r\nWe’re actively looking into this, and we’ll report back as more information becomes available. In the meantime, you may access Slack via browser at https://my.slack.com, or via mobile."
+        }
+      ]
     }
   ]
 }
