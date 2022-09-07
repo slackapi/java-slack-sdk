@@ -898,6 +898,10 @@
     {
       "date_created": "2022-09-05T08:09:43-07:00",
       "body": "Users on the Windows Store desktop app version 4.28.171 may experience issues with the app crashing. To determine which version you are on, click the ☰ three lines icon in the top left of the Slack app \u003e Help \u003e About Slack.\r\n\r\nWe’re actively looking into this, and we’ll report back as more information becomes available. In the meantime, you may access Slack via browser at https://my.slack.com, or via mobile."
+    },
+    {
+      "date_created": "2022-09-05T08:09:43-07:00",
+      "body": "Users on the Windows Store desktop app version 4.28.171 may experience issues with the app not opening and receive a connection error message stating -2:ERR_FAILED or Slack cannot connect. To determine which version you are on, click the ☰ three lines icon in the top left of the Slack app \u003e Help \u003e About Slack.\r\n\r\nWe’re actively looking into this, and we’ll report back as more information becomes available. In the meantime, you may access Slack via browser at https://my.slack.com, or via mobile."
     }
   ]
 }
