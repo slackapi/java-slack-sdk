@@ -1306,6 +1306,32 @@
           "body": "Users on the Windows Store desktop app version 4.28.171 may experience issues with the app not opening and receive a connection error message stating -2:ERR_FAILED or Slack cannot connect. To determine which version you are on, click the ☰ three lines icon in the top left of the Slack app \u003e Help \u003e About Slack.\r\n\r\nWe’re actively looking into this, and we’ll report back as more information becomes available. In the meantime, you may access Slack via browser at https://my.slack.com, or via mobile."
         }
       ]
+    },
+    {
+      "id": 1136,
+      "date_created": "2022-09-05T08:09:43-07:00",
+      "date_updated": "2022-09-07T12:01:04-07:00",
+      "title": "Windows Store app users may experience an error when launching Slack",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-09/f4273fe54d4adbcb",
+      "services": [
+        "Connections"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-09-07T12:01:04-07:00",
+          "body": "To clear the \"Slack cannot connect\" message, users should try clearing cache by going to \"Help\" \u003e \"Troubleshooting\" \u003e \"Clear Cache and Restart\".\r\n\r\nIf the issue persists after or if you\u0027re unable to open the desktop app, please uninstall the Windows Store version and reinstall the Direct Download version by following these instructions:\r\n\r\n1. Quit Slack (Ctrl + Q) and make sure there are no Slack.exe or Update.exe processes running in Task Manager.\r\n2. On Windows 10, open the Start menu and head to Settings \u003e Apps \u0026 features. Find Slack in the list that appears and click the option to Uninstall.\r\n3. Open a Run dialog (Windows Key + R).\r\n4. Enter the following path: C:\\Users\\%USERNAME%\\AppData\\Local\\Packages\\91750D7E.Slack_8she8kybcnzg4\\LocalCache\\Roaming\r\n5. Delete the Slack folder from the directory that launches.\r\n6. Reinstall Slack from our website: https://slack.com/downloads/windows"
+        },
+        {
+          "date_created": "2022-09-07T07:21:46-07:00",
+          "body": "Users on the Windows Store desktop app version 4.28.171 may still be experiencing issues with the app not opening and receiving a connection error message stating -2:ERR_FAILED or \"Slack cannot connect\". \r\n\r\nWe\u0027re actively looking into this, and we\u0027ll post updates as soon as we have more information. In the meantime, you may access Slack via browser at https://my.slack.com, or via mobile.\r\n\r\nIf you need help to determine which version you are on, click the ☰ three lines icon in the top left of the Slack app \u003e Help \u003e About Slack."
+        },
+        {
+          "date_created": "2022-09-05T08:09:43-07:00",
+          "body": "Users on the Windows Store desktop app version 4.28.171 may experience issues with the app not opening and receive a connection error message stating -2:ERR_FAILED or Slack cannot connect. To determine which version you are on, click the ☰ three lines icon in the top left of the Slack app \u003e Help \u003e About Slack.\r\n\r\nWe’re actively looking into this, and we’ll report back as more information becomes available. In the meantime, you may access Slack via browser at https://my.slack.com, or via mobile."
+        }
+      ]
     }
   ]
 }

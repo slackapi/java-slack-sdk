@@ -490,7 +490,9 @@
       "suppress_thread_mention_warning": false,
       "hidden_users": "",
       "frecency": "",
-      "dismissed_sent_page_education": false
+      "dismissed_sent_page_education": false,
+      "seen_onboarding_synth_view_v2": false,
+      "clicked_close_onboarding_synth_view_banner": false
     },
     "created": 12345,
     "first_login": 12345,
