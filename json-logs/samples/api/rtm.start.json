@@ -492,7 +492,8 @@
       "frecency": "",
       "dismissed_sent_page_education": false,
       "seen_onboarding_synth_view_v2": false,
-      "clicked_close_onboarding_synth_view_banner": false
+      "clicked_close_onboarding_synth_view_banner": false,
+      "seen_onboarding_synth_view_count_v2": 12345
     },
     "created": 12345,
     "first_login": 12345,
