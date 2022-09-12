@@ -844,7 +844,8 @@
       "display_anniversary_celebration": false,
       "display_new_hire_celebration": false,
       "allow_spaceship": "",
-      "spaceship_workspace_setting_visible": false
+      "spaceship_workspace_setting_visible": false,
+      "daily_prompts_enabled": false
     },
     "icon": {
       "image_102": "https://www.example.com/",

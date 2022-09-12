@@ -1332,6 +1332,24 @@
           "body": "Users on the Windows Store desktop app version 4.28.171 may experience issues with the app not opening and receive a connection error message stating -2:ERR_FAILED or Slack cannot connect. To determine which version you are on, click the ☰ three lines icon in the top left of the Slack app \u003e Help \u003e About Slack.\r\n\r\nWe’re actively looking into this, and we’ll report back as more information becomes available. In the meantime, you may access Slack via browser at https://my.slack.com, or via mobile."
         }
       ]
+    },
+    {
+      "id": 1140,
+      "date_created": "2022-09-12T14:24:40-07:00",
+      "date_updated": "2022-09-12T14:24:40-07:00",
+      "title": "Some users might have trouble with posts",
+      "type": "incident",
+      "status": "active",
+      "url": "https://status.slack.com/2022-09/29f29ddbaf35791a",
+      "services": [
+        "Posts/Files"
+      ],
+      "notes": [
+        {
+          "date_created": "2022-09-12T14:24:40-07:00",
+          "body": "Some users may be experiencing long delays when creating and editing posts. \r\n\r\nWe\u0027re actively looking into this, and we\u0027ll report back as more information becomes available. We apologize for the disruption."
+        }
+      ]
     }
   ]
 }

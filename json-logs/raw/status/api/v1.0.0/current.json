@@ -910,6 +910,10 @@
     {
       "date_created": "2022-09-07T07:21:46-07:00",
       "body": "Users on the Windows Store desktop app version 4.28.171 may still be experiencing issues with the app not opening and receiving a connection error message stating -2:ERR_FAILED or \"Slack cannot connect\". \r\n\r\nWe\u0027re actively looking into this, and we\u0027ll post updates as soon as we have more information. In the meantime, you may access Slack via browser at https://my.slack.com, or via mobile.\r\n\r\nIf you need help to determine which version you are on, click the ☰ three lines icon in the top left of the Slack app \u003e Help \u003e About Slack."
+    },
+    {
+      "date_created": "2022-09-12T14:24:40-07:00",
+      "body": "Some users may be experiencing long delays when creating and editing posts. \r\n\r\nWe\u0027re actively looking into this, and we\u0027ll report back as more information becomes available. We apologize for the disruption."
     }
   ]
 }
