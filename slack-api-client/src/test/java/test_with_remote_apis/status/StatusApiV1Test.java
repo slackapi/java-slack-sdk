@@ -6,9 +6,7 @@ import com.slack.api.status.v1.LegacyStatusApiException;
 import com.slack.api.status.v1.LegacyStatusClient;
 import com.slack.api.status.v1.model.LegacyCurrentStatus;
 import com.slack.api.status.v1.model.LegacySlackIssue;
-import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.AfterClass;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -22,13 +20,7 @@ import static org.junit.Assert.fail;
 @Slf4j
 public class StatusApiV1Test {
 
-    static SlackTestConfig testConfig = SlackTestConfig.getInstance();
-    static Slack slack = Slack.getInstance(testConfig.getConfig());
-
-    @AfterClass
-    public static void tearDown() throws InterruptedException {
-        SlackTestConfig.awaitCompletion(testConfig);
-    }
+    static Slack slack = Slack.getInstance();
 
     @Test
     public void current() throws IOException, LegacyStatusApiException {
