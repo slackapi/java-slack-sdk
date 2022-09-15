@@ -59,4 +59,8 @@ class MultiLayoutBlockContainer : LayoutBlockDsl {
     override fun video(builder: VideoBlockBuilder.() -> Unit) {
         underlying += VideoBlockBuilder().apply(builder).build()
     }
+
+    override fun shareShortcut(builder: ShareShortcutBlockBuilder.() -> Unit) {
+        underlying += ShareShortcutBlockBuilder().apply(builder).build()
+    }
 }

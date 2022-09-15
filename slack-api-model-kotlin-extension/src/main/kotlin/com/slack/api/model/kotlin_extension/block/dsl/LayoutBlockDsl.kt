@@ -80,4 +80,9 @@ interface LayoutBlockDsl {
      * @see <a href="https://api.slack.com/reference/block-kit/blocks#video">Video documentation</a>
      */
     fun video(builder: VideoBlockBuilder.() -> Unit)
+
+    /**
+     * @see <a href="https://api.slack.com/future">Next generation platform</a>
+     */
+    fun shareShortcut(builder: ShareShortcutBlockBuilder.() -> Unit)
 }
