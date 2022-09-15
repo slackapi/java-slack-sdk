@@ -845,7 +845,9 @@
       "display_new_hire_celebration": false,
       "allow_spaceship": "",
       "spaceship_workspace_setting_visible": false,
-      "daily_prompts_enabled": false
+      "daily_prompts_enabled": false,
+      "emoji_only_admins": false,
+      "loading_only_admins": false
     },
     "icon": {
       "image_102": "https://www.example.com/",

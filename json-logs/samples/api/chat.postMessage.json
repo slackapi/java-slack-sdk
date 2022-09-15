@@ -65,6 +65,15 @@
               },
               {
                 "type": "",
+                "text": "",
+                "url": "https://www.example.com/"
+              },
+              {
+                "type": "",
+                "url": "https://www.example.com/"
+              },
+              {
+                "type": "",
                 "elements": [
                   {
                     "type": "",
@@ -469,6 +478,11 @@
             "border": 12345
           }
         ],
+        "text": {
+          "type": "",
+          "text": "",
+          "emoji": false
+        },
         "call_id": "",
         "api_decoration_available": false,
         "call": {
@@ -536,6 +550,7 @@
           "filetype": "",
           "pretty_type": "",
           "user": "",
+          "user_team": "",
           "mode": "",
           "editable": false,
           "non_owner_editable": false,
@@ -763,11 +778,6 @@
             }
           ],
           "comments_count": 123
-        },
-        "text": {
-          "type": "",
-          "text": "",
-          "emoji": false
         },
         "fallback": "",
         "image_url": "",
@@ -1501,6 +1511,7 @@
               "filetype": "",
               "pretty_type": "",
               "user": "",
+              "user_team": "",
               "mode": "",
               "editable": false,
               "non_owner_editable": false,
@@ -2095,6 +2106,7 @@
             "filetype": "",
             "pretty_type": "",
             "user": "",
+            "user_team": "",
             "mode": "",
             "editable": false,
             "non_owner_editable": false,

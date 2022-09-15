@@ -26,6 +26,7 @@ public class File {
     private String filetype;
     private String prettyType;
     private String user;
+    private String userTeam;
     private String mode;
     private boolean editable;
     private boolean nonOwnerEditable; // application/vnd.slack-docs
