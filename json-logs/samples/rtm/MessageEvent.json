@@ -2282,6 +2282,21 @@
       "block_id": ""
     },
     {
+      "type": "share_shortcut",
+      "block_id": "",
+      "function_trigger_id": "",
+      "app_id": "",
+      "is_workflow_app": false,
+      "app_collaborators": [
+        ""
+      ],
+      "button_label": "",
+      "title": "",
+      "description": "",
+      "bot_user_id": "",
+      "url": ""
+    },
+    {
       "type": "section",
       "text": {
         "type": "plain_text",
@@ -5777,6 +5792,21 @@
             }
           ],
           "block_id": ""
+        },
+        {
+          "type": "share_shortcut",
+          "block_id": "",
+          "function_trigger_id": "",
+          "app_id": "",
+          "is_workflow_app": false,
+          "app_collaborators": [
+            ""
+          ],
+          "button_label": "",
+          "title": "",
+          "description": "",
+          "bot_user_id": "",
+          "url": ""
         },
         {
           "type": "section",

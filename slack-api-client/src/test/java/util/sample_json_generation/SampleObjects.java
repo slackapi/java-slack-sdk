@@ -96,7 +96,8 @@ public class SampleObjects {
                             gson.toJsonTree(headerBlock),
                             gson.toJsonTree(imageBlock),
                             gson.toJsonTree(initProperties(video(v -> v.description(TextObject).title(TextObject)))),
-                            gson.toJsonTree(RichTextBlock)
+                            gson.toJsonTree(RichTextBlock),
+                            gson.toJsonTree(initProperties(ShareShortcutBlock.builder().appCollaborators(Arrays.asList("")).build()))
                     )
             );
 
@@ -204,7 +205,8 @@ public class SampleObjects {
                         .text(TextObject)
                         .fields(SectionBlockFieldElements))),
                 initProperties(video(v -> v.description(TextObject).title(TextObject))),
-                RichTextBlock
+                RichTextBlock,
+                initProperties(ShareShortcutBlock.builder().appCollaborators(Arrays.asList("")).build())
         ));
         Blocks.addAll(SectionBlocksWithAccessory);
     }
