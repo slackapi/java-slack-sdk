@@ -55,6 +55,8 @@ public class GsonLayoutBlockFactory implements JsonDeserializer<LayoutBlock>, Js
                 return VideoBlock.class;
             case RichTextBlock.TYPE:
                 return RichTextBlock.class;
+            case ShareShortcutBlock.TYPE:
+                return ShareShortcutBlock.class;
             default:
                 if (failOnUnknownProperties) {
                     throw new JsonParseException("Unsupported layout block type: " + typeName);

@@ -54,201 +54,7 @@
     "blocks": [
       {
         "type": "",
-        "block_id": "",
         "elements": [
-          {
-            "type": "",
-            "elements": [
-              {
-                "type": "",
-                "text": ""
-              },
-              {
-                "type": "",
-                "text": "",
-                "url": "https://www.example.com/"
-              },
-              {
-                "type": "",
-                "url": "https://www.example.com/"
-              },
-              {
-                "type": "",
-                "elements": [
-                  {
-                    "type": "",
-                    "range": "",
-                    "text": "",
-                    "style": {
-                      "bold": false,
-                      "italic": false,
-                      "strike": false,
-                      "code": false
-                    },
-                    "channel_id": "",
-                    "value": "",
-                    "timestamp": "",
-                    "url": "",
-                    "team_id": "",
-                    "user_id": "",
-                    "usergroup_id": "",
-                    "name": "",
-                    "skin_tone": 12345,
-                    "unicode": ""
-                  }
-                ],
-                "style": "",
-                "indent": 12345,
-                "offset": 12345,
-                "border": 12345
-              }
-            ],
-            "text": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "action_id": "",
-            "url": "",
-            "value": "",
-            "style": "",
-            "confirm": {
-              "title": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "text": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "confirm": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "deny": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "style": ""
-            },
-            "accessibility_label": "",
-            "options": [
-              {
-                "text": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "value": "",
-                "description": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "url": ""
-              }
-            ],
-            "initial_options": [
-              {
-                "text": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "value": "",
-                "description": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "url": ""
-              }
-            ],
-            "focus_on_load": false,
-            "initial_option": {
-              "text": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "value": "",
-              "description": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "url": ""
-            },
-            "placeholder": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "initial_channel": "",
-            "response_url_enabled": false,
-            "initial_channels": [
-              ""
-            ],
-            "max_selected_items": 12345,
-            "initial_conversation": "",
-            "default_to_current_conversation": false,
-            "filter": {
-              "include": [
-                ""
-              ],
-              "exclude_external_shared_channels": false,
-              "exclude_bot_users": false
-            },
-            "initial_conversations": [
-              ""
-            ],
-            "initial_date": "",
-            "initial_time": "",
-            "timezone": "",
-            "min_query_length": 12345,
-            "image_url": "",
-            "alt_text": "",
-            "fallback": "",
-            "image_width": 12345,
-            "image_height": 12345,
-            "image_bytes": 12345,
-            "option_groups": [
-              {
-                "label": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
-                "options": [
-                  {
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "value": "",
-                    "description": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "url": ""
-                  }
-                ]
-              }
-            ],
-            "initial_user": "",
-            "initial_users": [
-              ""
-            ],
-            "indent": 12345,
-            "offset": 12345,
-            "border": 12345
-          },
           {
             "type": "",
             "text": {
@@ -478,11 +284,7 @@
             "border": 12345
           }
         ],
-        "text": {
-          "type": "",
-          "text": "",
-          "emoji": false
-        },
+        "block_id": "",
         "call_id": "",
         "api_decoration_available": false,
         "call": {
@@ -540,6 +342,477 @@
         "source": "",
         "file_id": "",
         "file": {
+          "timestamp": 123,
+          "name": "",
+          "title": "",
+          "subject": "",
+          "mimetype": "",
+          "filetype": "",
+          "pretty_type": "",
+          "user": "",
+          "user_team": "",
+          "mode": "",
+          "editable": false,
+          "non_owner_editable": false,
+          "editor": "",
+          "last_editor": "",
+          "updated": 123,
+          "file_access": "",
+          "subtype": "",
+          "transcription": {
+            "status": "",
+            "locale": ""
+          },
+          "mp4": "",
+          "vtt": "",
+          "hls": "",
+          "hls_embed": "",
+          "duration_ms": 123,
+          "thumb_video_w": 123,
+          "thumb_video_h": 123,
+          "original_attachment_count": 123,
+          "is_external": false,
+          "external_type": "",
+          "external_id": "",
+          "external_url": "",
+          "username": "",
+          "size": 123,
+          "url_private": "",
+          "url_private_download": "",
+          "app_id": "",
+          "app_name": "",
+          "thumb_64": "",
+          "thumb_64_gif": "",
+          "thumb_64_w": "",
+          "thumb_64_h": "",
+          "thumb_80": "",
+          "thumb_80_gif": "",
+          "thumb_80_w": "",
+          "thumb_80_h": "",
+          "thumb_160": "",
+          "thumb_160_gif": "",
+          "thumb_160_w": "",
+          "thumb_160_h": "",
+          "thumb_360": "",
+          "thumb_360_gif": "",
+          "thumb_360_w": "",
+          "thumb_360_h": "",
+          "thumb_480": "",
+          "thumb_480_gif": "",
+          "thumb_480_w": "",
+          "thumb_480_h": "",
+          "thumb_720": "",
+          "thumb_720_gif": "",
+          "thumb_720_w": "",
+          "thumb_720_h": "",
+          "thumb_800": "",
+          "thumb_800_gif": "",
+          "thumb_800_w": "",
+          "thumb_800_h": "",
+          "thumb_960": "",
+          "thumb_960_gif": "",
+          "thumb_960_w": "",
+          "thumb_960_h": "",
+          "thumb_1024": "",
+          "thumb_1024_gif": "",
+          "thumb_1024_w": "",
+          "thumb_1024_h": "",
+          "thumb_video": "",
+          "thumb_gif": "",
+          "thumb_pdf": "",
+          "thumb_pdf_w": "",
+          "thumb_pdf_h": "",
+          "thumb_tiny": "",
+          "converted_pdf": "",
+          "image_exif_rotation": 123,
+          "original_w": "",
+          "original_h": "",
+          "deanimate": "",
+          "deanimate_gif": "",
+          "pjpeg": "",
+          "permalink": "",
+          "permalink_public": "",
+          "edit_link": "",
+          "has_rich_preview": false,
+          "media_display_type": "",
+          "preview_is_truncated": false,
+          "preview": "",
+          "preview_highlight": "",
+          "plain_text": "",
+          "preview_plain_text": "",
+          "has_more": false,
+          "sent_to_self": false,
+          "lines": 123,
+          "lines_more": 123,
+          "is_public": false,
+          "public_url_shared": false,
+          "display_as_bot": false,
+          "channels": [
+            ""
+          ],
+          "groups": [
+            ""
+          ],
+          "ims": [
+            ""
+          ],
+          "shares": {
+            "public": {
+              "C03E94MKU": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ],
+              "C03E94MKU_": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ]
+            },
+            "private": {
+              "C03E94MKU": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ],
+              "C03E94MKU_": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ]
+            }
+          },
+          "to": [
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
+          ],
+          "from": [
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
+          ],
+          "cc": [
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
+          ],
+          "channel_actions_ts": "",
+          "channel_actions_count": 123,
+          "headers": {
+            "date": "",
+            "in_reply_to": "",
+            "reply_to": "",
+            "message_id": ""
+          },
+          "simplified_html": "",
+          "bot_id": "",
+          "initial_comment": {
+            "id": "",
+            "created": 123,
+            "timestamp": 123,
+            "user": "",
+            "comment": "",
+            "channel": "",
+            "is_intro": false
+          },
+          "num_stars": 123,
+          "is_starred": false,
+          "pinned_to": [
+            ""
+          ],
+          "reactions": [
+            {
+              "name": "",
+              "count": 123,
+              "users": [
+                ""
+              ],
+              "url": ""
+            }
+          ],
+          "comments_count": 123,
+          "id": "",
+          "created": 123,
+          "subject": "",
+          "mimetype": "",
+          "filetype": "",
+          "pretty_type": "",
+          "user": "",
+          "user_team": "",
+          "mode": "",
+          "editable": false,
+          "non_owner_editable": false,
+          "editor": "",
+          "last_editor": "",
+          "updated": 123,
+          "file_access": "",
+          "subtype": "",
+          "transcription": {
+            "status": "",
+            "locale": ""
+          },
+          "mp4": "",
+          "vtt": "",
+          "hls": "",
+          "hls_embed": "",
+          "duration_ms": 123,
+          "thumb_video_w": 123,
+          "thumb_video_h": 123,
+          "original_attachment_count": 123,
+          "is_external": false,
+          "external_type": "",
+          "external_id": "",
+          "external_url": "",
+          "username": "",
+          "size": 123,
+          "url_private": "",
+          "url_private_download": "",
+          "app_id": "",
+          "app_name": "",
+          "thumb_64": "",
+          "thumb_64_gif": "",
+          "thumb_64_w": "",
+          "thumb_64_h": "",
+          "thumb_80": "",
+          "thumb_80_gif": "",
+          "thumb_80_w": "",
+          "thumb_80_h": "",
+          "thumb_160": "",
+          "thumb_160_gif": "",
+          "thumb_160_w": "",
+          "thumb_160_h": "",
+          "thumb_360": "",
+          "thumb_360_gif": "",
+          "thumb_360_w": "",
+          "thumb_360_h": "",
+          "thumb_480": "",
+          "thumb_480_gif": "",
+          "thumb_480_w": "",
+          "thumb_480_h": "",
+          "thumb_720": "",
+          "thumb_720_gif": "",
+          "thumb_720_w": "",
+          "thumb_720_h": "",
+          "thumb_800": "",
+          "thumb_800_gif": "",
+          "thumb_800_w": "",
+          "thumb_800_h": "",
+          "thumb_960": "",
+          "thumb_960_gif": "",
+          "thumb_960_w": "",
+          "thumb_960_h": "",
+          "thumb_1024": "",
+          "thumb_1024_gif": "",
+          "thumb_1024_w": "",
+          "thumb_1024_h": "",
+          "thumb_video": "",
+          "thumb_gif": "",
+          "thumb_pdf": "",
+          "thumb_pdf_w": "",
+          "thumb_pdf_h": "",
+          "thumb_tiny": "",
+          "converted_pdf": "",
+          "image_exif_rotation": 123,
+          "original_w": "",
+          "original_h": "",
+          "deanimate": "",
+          "deanimate_gif": "",
+          "pjpeg": "",
+          "permalink": "",
+          "permalink_public": "",
+          "edit_link": "",
+          "has_rich_preview": false,
+          "media_display_type": "",
+          "preview_is_truncated": false,
+          "preview": "",
+          "preview_highlight": "",
+          "plain_text": "",
+          "preview_plain_text": "",
+          "has_more": false,
+          "sent_to_self": false,
+          "lines": 123,
+          "lines_more": 123,
+          "is_public": false,
+          "public_url_shared": false,
+          "display_as_bot": false,
+          "channels": [
+            ""
+          ],
+          "groups": [
+            ""
+          ],
+          "ims": [
+            ""
+          ],
+          "shares": {
+            "public": {
+              "C03E94MKU": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ],
+              "C03E94MKU_": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ]
+            },
+            "private": {
+              "C03E94MKU": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ],
+              "C03E94MKU_": [
+                {
+                  "share_user_id": "",
+                  "reply_users": [
+                    ""
+                  ],
+                  "reply_users_count": 123,
+                  "reply_count": 123,
+                  "ts": "",
+                  "thread_ts": "",
+                  "latest_reply": "",
+                  "channel_name": "",
+                  "team_id": ""
+                }
+              ]
+            }
+          },
+          "to": [
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
+          ],
+          "from": [
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
+          ],
+          "cc": [
+            {
+              "address": "",
+              "name": "",
+              "original": ""
+            }
+          ],
+          "channel_actions_ts": "",
+          "channel_actions_count": 123,
+          "headers": {
+            "date": "",
+            "in_reply_to": "",
+            "reply_to": "",
+            "message_id": ""
+          },
+          "simplified_html": "",
+          "bot_id": "",
+          "initial_comment": {
+            "id": "",
+            "created": 123,
+            "timestamp": 123,
+            "user": "",
+            "comment": "",
+            "channel": "",
+            "is_intro": false
+          },
+          "num_stars": 123,
+          "is_starred": false,
+          "pinned_to": [
+            ""
+          ],
+          "reactions": [
+            {
+              "name": "",
+              "count": 123,
+              "users": [
+                ""
+              ],
+              "url": ""
+            }
+          ],
+          "comments_count": 123,
           "id": "",
           "created": 123,
           "timestamp": 123,
@@ -779,6 +1052,11 @@
           ],
           "comments_count": 123
         },
+        "text": {
+          "type": "",
+          "text": "",
+          "emoji": false
+        },
         "fallback": "",
         "image_url": "",
         "image_width": 12345,
@@ -801,6 +1079,15 @@
         "author_name": "",
         "provider_name": "",
         "provider_icon_url": "",
+        "function_trigger_id": "",
+        "app_id": "",
+        "is_workflow_app": false,
+        "app_collaborators": [
+          ""
+        ],
+        "button_label": "",
+        "bot_user_id": "",
+        "url": "",
         "fields": [
           {
             "type": "",
@@ -1501,6 +1788,477 @@
             "source": "",
             "file_id": "",
             "file": {
+              "timestamp": 123,
+              "name": "",
+              "title": "",
+              "subject": "",
+              "mimetype": "",
+              "filetype": "",
+              "pretty_type": "",
+              "user": "",
+              "user_team": "",
+              "mode": "",
+              "editable": false,
+              "non_owner_editable": false,
+              "editor": "",
+              "last_editor": "",
+              "updated": 123,
+              "file_access": "",
+              "subtype": "",
+              "transcription": {
+                "status": "",
+                "locale": ""
+              },
+              "mp4": "",
+              "vtt": "",
+              "hls": "",
+              "hls_embed": "",
+              "duration_ms": 123,
+              "thumb_video_w": 123,
+              "thumb_video_h": 123,
+              "original_attachment_count": 123,
+              "is_external": false,
+              "external_type": "",
+              "external_id": "",
+              "external_url": "",
+              "username": "",
+              "size": 123,
+              "url_private": "",
+              "url_private_download": "",
+              "app_id": "",
+              "app_name": "",
+              "thumb_64": "",
+              "thumb_64_gif": "",
+              "thumb_64_w": "",
+              "thumb_64_h": "",
+              "thumb_80": "",
+              "thumb_80_gif": "",
+              "thumb_80_w": "",
+              "thumb_80_h": "",
+              "thumb_160": "",
+              "thumb_160_gif": "",
+              "thumb_160_w": "",
+              "thumb_160_h": "",
+              "thumb_360": "",
+              "thumb_360_gif": "",
+              "thumb_360_w": "",
+              "thumb_360_h": "",
+              "thumb_480": "",
+              "thumb_480_gif": "",
+              "thumb_480_w": "",
+              "thumb_480_h": "",
+              "thumb_720": "",
+              "thumb_720_gif": "",
+              "thumb_720_w": "",
+              "thumb_720_h": "",
+              "thumb_800": "",
+              "thumb_800_gif": "",
+              "thumb_800_w": "",
+              "thumb_800_h": "",
+              "thumb_960": "",
+              "thumb_960_gif": "",
+              "thumb_960_w": "",
+              "thumb_960_h": "",
+              "thumb_1024": "",
+              "thumb_1024_gif": "",
+              "thumb_1024_w": "",
+              "thumb_1024_h": "",
+              "thumb_video": "",
+              "thumb_gif": "",
+              "thumb_pdf": "",
+              "thumb_pdf_w": "",
+              "thumb_pdf_h": "",
+              "thumb_tiny": "",
+              "converted_pdf": "",
+              "image_exif_rotation": 123,
+              "original_w": "",
+              "original_h": "",
+              "deanimate": "",
+              "deanimate_gif": "",
+              "pjpeg": "",
+              "permalink": "",
+              "permalink_public": "",
+              "edit_link": "",
+              "has_rich_preview": false,
+              "media_display_type": "",
+              "preview_is_truncated": false,
+              "preview": "",
+              "preview_highlight": "",
+              "plain_text": "",
+              "preview_plain_text": "",
+              "has_more": false,
+              "sent_to_self": false,
+              "lines": 123,
+              "lines_more": 123,
+              "is_public": false,
+              "public_url_shared": false,
+              "display_as_bot": false,
+              "channels": [
+                ""
+              ],
+              "groups": [
+                ""
+              ],
+              "ims": [
+                ""
+              ],
+              "shares": {
+                "public": {
+                  "C03E94MKU": [
+                    {
+                      "share_user_id": "",
+                      "reply_users": [
+                        ""
+                      ],
+                      "reply_users_count": 123,
+                      "reply_count": 123,
+                      "ts": "",
+                      "thread_ts": "",
+                      "latest_reply": "",
+                      "channel_name": "",
+                      "team_id": ""
+                    }
+                  ],
+                  "C03E94MKU_": [
+                    {
+                      "share_user_id": "",
+                      "reply_users": [
+                        ""
+                      ],
+                      "reply_users_count": 123,
+                      "reply_count": 123,
+                      "ts": "",
+                      "thread_ts": "",
+                      "latest_reply": "",
+                      "channel_name": "",
+                      "team_id": ""
+                    }
+                  ]
+                },
+                "private": {
+                  "C03E94MKU": [
+                    {
+                      "share_user_id": "",
+                      "reply_users": [
+                        ""
+                      ],
+                      "reply_users_count": 123,
+                      "reply_count": 123,
+                      "ts": "",
+                      "thread_ts": "",
+                      "latest_reply": "",
+                      "channel_name": "",
+                      "team_id": ""
+                    }
+                  ],
+                  "C03E94MKU_": [
+                    {
+                      "share_user_id": "",
+                      "reply_users": [
+                        ""
+                      ],
+                      "reply_users_count": 123,
+                      "reply_count": 123,
+                      "ts": "",
+                      "thread_ts": "",
+                      "latest_reply": "",
+                      "channel_name": "",
+                      "team_id": ""
+                    }
+                  ]
+                }
+              },
+              "to": [
+                {
+                  "address": "",
+                  "name": "",
+                  "original": ""
+                }
+              ],
+              "from": [
+                {
+                  "address": "",
+                  "name": "",
+                  "original": ""
+                }
+              ],
+              "cc": [
+                {
+                  "address": "",
+                  "name": "",
+                  "original": ""
+                }
+              ],
+              "channel_actions_ts": "",
+              "channel_actions_count": 123,
+              "headers": {
+                "date": "",
+                "in_reply_to": "",
+                "reply_to": "",
+                "message_id": ""
+              },
+              "simplified_html": "",
+              "bot_id": "",
+              "initial_comment": {
+                "id": "",
+                "created": 123,
+                "timestamp": 123,
+                "user": "",
+                "comment": "",
+                "channel": "",
+                "is_intro": false
+              },
+              "num_stars": 123,
+              "is_starred": false,
+              "pinned_to": [
+                ""
+              ],
+              "reactions": [
+                {
+                  "name": "",
+                  "count": 123,
+                  "users": [
+                    ""
+                  ],
+                  "url": ""
+                }
+              ],
+              "comments_count": 123,
+              "id": "",
+              "created": 123,
+              "subject": "",
+              "mimetype": "",
+              "filetype": "",
+              "pretty_type": "",
+              "user": "",
+              "user_team": "",
+              "mode": "",
+              "editable": false,
+              "non_owner_editable": false,
+              "editor": "",
+              "last_editor": "",
+              "updated": 123,
+              "file_access": "",
+              "subtype": "",
+              "transcription": {
+                "status": "",
+                "locale": ""
+              },
+              "mp4": "",
+              "vtt": "",
+              "hls": "",
+              "hls_embed": "",
+              "duration_ms": 123,
+              "thumb_video_w": 123,
+              "thumb_video_h": 123,
+              "original_attachment_count": 123,
+              "is_external": false,
+              "external_type": "",
+              "external_id": "",
+              "external_url": "",
+              "username": "",
+              "size": 123,
+              "url_private": "",
+              "url_private_download": "",
+              "app_id": "",
+              "app_name": "",
+              "thumb_64": "",
+              "thumb_64_gif": "",
+              "thumb_64_w": "",
+              "thumb_64_h": "",
+              "thumb_80": "",
+              "thumb_80_gif": "",
+              "thumb_80_w": "",
+              "thumb_80_h": "",
+              "thumb_160": "",
+              "thumb_160_gif": "",
+              "thumb_160_w": "",
+              "thumb_160_h": "",
+              "thumb_360": "",
+              "thumb_360_gif": "",
+              "thumb_360_w": "",
+              "thumb_360_h": "",
+              "thumb_480": "",
+              "thumb_480_gif": "",
+              "thumb_480_w": "",
+              "thumb_480_h": "",
+              "thumb_720": "",
+              "thumb_720_gif": "",
+              "thumb_720_w": "",
+              "thumb_720_h": "",
+              "thumb_800": "",
+              "thumb_800_gif": "",
+              "thumb_800_w": "",
+              "thumb_800_h": "",
+              "thumb_960": "",
+              "thumb_960_gif": "",
+              "thumb_960_w": "",
+              "thumb_960_h": "",
+              "thumb_1024": "",
+              "thumb_1024_gif": "",
+              "thumb_1024_w": "",
+              "thumb_1024_h": "",
+              "thumb_video": "",
+              "thumb_gif": "",
+              "thumb_pdf": "",
+              "thumb_pdf_w": "",
+              "thumb_pdf_h": "",
+              "thumb_tiny": "",
+              "converted_pdf": "",
+              "image_exif_rotation": 123,
+              "original_w": "",
+              "original_h": "",
+              "deanimate": "",
+              "deanimate_gif": "",
+              "pjpeg": "",
+              "permalink": "",
+              "permalink_public": "",
+              "edit_link": "",
+              "has_rich_preview": false,
+              "media_display_type": "",
+              "preview_is_truncated": false,
+              "preview": "",
+              "preview_highlight": "",
+              "plain_text": "",
+              "preview_plain_text": "",
+              "has_more": false,
+              "sent_to_self": false,
+              "lines": 123,
+              "lines_more": 123,
+              "is_public": false,
+              "public_url_shared": false,
+              "display_as_bot": false,
+              "channels": [
+                ""
+              ],
+              "groups": [
+                ""
+              ],
+              "ims": [
+                ""
+              ],
+              "shares": {
+                "public": {
+                  "C03E94MKU": [
+                    {
+                      "share_user_id": "",
+                      "reply_users": [
+                        ""
+                      ],
+                      "reply_users_count": 123,
+                      "reply_count": 123,
+                      "ts": "",
+                      "thread_ts": "",
+                      "latest_reply": "",
+                      "channel_name": "",
+                      "team_id": ""
+                    }
+                  ],
+                  "C03E94MKU_": [
+                    {
+                      "share_user_id": "",
+                      "reply_users": [
+                        ""
+                      ],
+                      "reply_users_count": 123,
+                      "reply_count": 123,
+                      "ts": "",
+                      "thread_ts": "",
+                      "latest_reply": "",
+                      "channel_name": "",
+                      "team_id": ""
+                    }
+                  ]
+                },
+                "private": {
+                  "C03E94MKU": [
+                    {
+                      "share_user_id": "",
+                      "reply_users": [
+                        ""
+                      ],
+                      "reply_users_count": 123,
+                      "reply_count": 123,
+                      "ts": "",
+                      "thread_ts": "",
+                      "latest_reply": "",
+                      "channel_name": "",
+                      "team_id": ""
+                    }
+                  ],
+                  "C03E94MKU_": [
+                    {
+                      "share_user_id": "",
+                      "reply_users": [
+                        ""
+                      ],
+                      "reply_users_count": 123,
+                      "reply_count": 123,
+                      "ts": "",
+                      "thread_ts": "",
+                      "latest_reply": "",
+                      "channel_name": "",
+                      "team_id": ""
+                    }
+                  ]
+                }
+              },
+              "to": [
+                {
+                  "address": "",
+                  "name": "",
+                  "original": ""
+                }
+              ],
+              "from": [
+                {
+                  "address": "",
+                  "name": "",
+                  "original": ""
+                }
+              ],
+              "cc": [
+                {
+                  "address": "",
+                  "name": "",
+                  "original": ""
+                }
+              ],
+              "channel_actions_ts": "",
+              "channel_actions_count": 123,
+              "headers": {
+                "date": "",
+                "in_reply_to": "",
+                "reply_to": "",
+                "message_id": ""
+              },
+              "simplified_html": "",
+              "bot_id": "",
+              "initial_comment": {
+                "id": "",
+                "created": 123,
+                "timestamp": 123,
+                "user": "",
+                "comment": "",
+                "channel": "",
+                "is_intro": false
+              },
+              "num_stars": 123,
+              "is_starred": false,
+              "pinned_to": [
+                ""
+              ],
+              "reactions": [
+                {
+                  "name": "",
+                  "count": 123,
+                  "users": [
+                    ""
+                  ],
+                  "url": ""
+                }
+              ],
+              "comments_count": 123,
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -1767,6 +2525,15 @@
             "author_name": "",
             "provider_name": "",
             "provider_icon_url": "",
+            "function_trigger_id": "",
+            "app_id": "",
+            "is_workflow_app": false,
+            "app_collaborators": [
+              ""
+            ],
+            "button_label": "",
+            "bot_user_id": "",
+            "url": "",
             "fields": [
               {
                 "type": "",

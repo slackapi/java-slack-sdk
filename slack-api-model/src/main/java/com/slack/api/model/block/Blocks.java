@@ -108,4 +108,9 @@ public class Blocks {
         return configurator.configure(VideoBlock.builder()).build();
     }
 
+    // ShareShortcutBlock
+    public static ShareShortcutBlock shareShortcut() {
+        return ShareShortcutBlock.builder().build();
+    }
+
 }

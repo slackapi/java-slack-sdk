@@ -1608,4 +1608,63 @@ public class BlockKitTest {
         assertEquals("bid", block.getBlockId());
         assertEquals("https://www.youtube.com/embed/RRxQQxiM7AA?feature=oembed&autoplay=1", block.getVideoUrl());
     }
+
+    @Test
+    public void parseLinkTriggerMessages() {
+        // https://api.slack.com/future
+        String json = "{\n" +
+                "  \"client_msg_id\": \"xxx\",\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"text\": \"https://slack.com/shortcuts/Ft111/xxx\",\n" +
+                "  \"user\": \"U111\",\n" +
+                "  \"ts\": \"1663233138.852489\",\n" +
+                "  \"team\": \"T111\",\n" +
+                "  \"attachments\": [\n" +
+                "    {\n" +
+                "      \"fallback\": \"Workflow\",\n" +
+                "      \"from_url\": \"https://slack.com/shortcuts/Ft111/xxx\",\n" +
+                "      \"blocks\": [\n" +
+                "        {\n" +
+                "          \"block_id\": \"shortcut-block\",\n" +
+                "          \"type\": \"share_shortcut\",\n" +
+                "          \"function_trigger_id\": \"Ft111\",\n" +
+                "          \"app_id\": \"A111\",\n" +
+                "          \"is_workflow_app\": false,\n" +
+                "          \"app_collaborators\": [\n" +
+                "            \"U111\"\n" +
+                "          ],\n" +
+                "          \"button_label\": \"\",\n" +
+                "          \"title\": \"Sample trigger\",\n" +
+                "          \"description\": \"A sample trigger\",\n" +
+                "          \"bot_user_id\": \"U111\",\n" +
+                "          \"url\": \"https://slack.com/shortcuts/Ft111/xxx\"\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"id\": 1,\n" +
+                "      \"original_url\": \"https://slack.com/shortcuts/Ft111/xxx\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"JZy\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"link\",\n" +
+                "              \"url\": \"https://slack.com/shortcuts/Ft111/xxx\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message view = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertNotNull(view);
+        assertEquals(1, view.getAttachments().get(0).getBlocks().size());
+        assertEquals(1, view.getBlocks().size());
+    }
 }
