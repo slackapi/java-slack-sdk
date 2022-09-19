@@ -44,7 +44,7 @@ public class ControllerTest {
             SimpleHttpParameters parameters = new SimpleHttpParameters(new HashMap<>(), new DefaultConversionService());
             when(req.getParameters()).thenReturn(parameters);
 
-            HttpResponse<String> response = controller.dispatch(req, "token=random&ssl_check=1");
+            HttpResponse<String> response = controller.events(req, "token=random&ssl_check=1");
             assertEquals(200, response.getStatus().getCode());
 
         } finally {
