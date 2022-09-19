@@ -35,8 +35,8 @@ public class SlackAppController {
     }
 
     @Get(uris = { "/slack/install", "/slack/oauth_redirect"})
-    public HttpResponse<String> oauth(HttpRequest<String> request, @Body String body) throws Exception {
-        Request<?> slackRequest = adapter.toSlackRequest(request, body);
+    public HttpResponse<String> oauth(HttpRequest<String> request) throws Exception {
+        Request<?> slackRequest = adapter.toSlackRequest(request, null);
         return adapter.toMicronautResponse(slackApp.run(slackRequest));
     }
 
