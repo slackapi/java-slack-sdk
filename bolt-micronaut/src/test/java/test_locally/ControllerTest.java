@@ -11,6 +11,7 @@ import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MutableHttpParameters;
 import io.micronaut.http.MutableHttpRequest;
+import io.micronaut.http.cookie.Cookie;
 import io.micronaut.http.simple.SimpleHttpHeaders;
 import io.micronaut.http.simple.SimpleHttpParameters;
 import org.junit.After;
@@ -87,7 +88,7 @@ public class ControllerTest {
 
         HttpRequest<String> req = HttpRequest.GET("/slack/install");
 
-        HttpResponse<String> notFound = controller.oauth(req);
+        HttpResponse<String> notFound = controller.install(req);
         assertThat(notFound.getStatus().getCode(), equalTo(404));
     }
 
@@ -117,7 +118,7 @@ public class ControllerTest {
 
         HttpRequest<String> req = HttpRequest.GET("/slack/install");
 
-        HttpResponse<String> installResponse = controller.oauth(req);
+        HttpResponse<String> installResponse = controller.install(req);
 
         assertThat(installResponse.getStatus().getCode(), equalTo(302));
 
@@ -134,10 +135,10 @@ public class ControllerTest {
         MutableHttpParameters parameters = redirectRequest.getParameters();
         parameters
                 .add("code", "111.111.111")
-                .add("state", state)
-                .add("Cookie", "slack-app-oauth-state=" + state);
+                .add("state", state);
+        redirectRequest.cookie(Cookie.of("slack-app-oauth-state", state));
 
-        HttpResponse<String> redirectResponse = controller.oauth(redirectRequest);
+        HttpResponse<String> redirectResponse = controller.oauthRedirect(redirectRequest);
         assertThat(redirectResponse.header("Location"), equalTo("https://www.example.com/success"));
     }
 
