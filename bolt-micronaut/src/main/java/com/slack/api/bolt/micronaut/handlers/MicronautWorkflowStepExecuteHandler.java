@@ -10,6 +10,8 @@ public interface MicronautWorkflowStepExecuteHandler extends WorkflowStepExecute
         return Pattern.compile("^" + Pattern.quote(getStep()) + "$");
     }
 
-    String getStep();
+    default String getStep() {
+        throw new UnsupportedOperationException("Implement either this method or getPattern()");
+    }
 
 }

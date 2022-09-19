@@ -10,6 +10,8 @@ public interface MicronautSlashCommandHandler extends SlashCommandHandler {
         return Pattern.compile("^" + Pattern.quote(getCommandId()) + "$");
     }
 
-    String getCommandId();
+    default String getCommandId() {
+        throw new UnsupportedOperationException("Implement either this method or getCommandIdPattern()");
+    };
 
 }

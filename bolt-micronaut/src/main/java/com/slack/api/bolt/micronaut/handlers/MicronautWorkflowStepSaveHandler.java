@@ -10,6 +10,8 @@ public interface MicronautWorkflowStepSaveHandler extends WorkflowStepSaveHandle
         return Pattern.compile("^" + Pattern.quote(getCallbackId()) + "$");
     }
 
-    String getCallbackId();
+    default String getCallbackId() {
+        throw new UnsupportedOperationException("Implement either this method or getCallbackIdPattern()");
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.slack.api.bolt.micronaut.configuration;
+package com.slack.api.bolt.micronaut;
 
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.service.builtin.oauth.view.OAuthInstallPageRenderer;

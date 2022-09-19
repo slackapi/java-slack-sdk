@@ -10,6 +10,8 @@ public interface MicronautBlockSuggestionHandler extends BlockSuggestionHandler 
         return Pattern.compile("^" + Pattern.quote(getActionId()) + "$");
     }
 
-    String getActionId();
+    default String getActionId() {
+        throw new UnsupportedOperationException("Implement either this method or getActionIdPattern()");
+    }
 
 }
