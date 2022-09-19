@@ -7,6 +7,7 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 
 /**
@@ -28,7 +29,27 @@ public class SlackAppController {
     }
 
     @Post(value = "/events", consumes = {MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
-    public HttpResponse<String> dispatch(HttpRequest<String> request, @Body String body) throws Exception {
+    public HttpResponse<String> events(HttpRequest<String> request, @Body String body) throws Exception {
+        return adapt(request, body);
+    }
+
+    @Get("/install")
+    public HttpResponse<String> install(HttpRequest<String> request) throws Exception {
+        if (!slackApp.config().isOAuthInstallPathEnabled()) {
+            return HttpResponse.notFound();
+        }
+        return adapt(request, null);
+    }
+
+    @Get("/oauth_redirect")
+    public HttpResponse<String> oauthRedirect(HttpRequest<String> request) throws Exception {
+        if (!slackApp.config().isOAuthRedirectUriPathEnabled()) {
+            return HttpResponse.notFound();
+        }
+        return adapt(request, null);
+    }
+
+    private HttpResponse<String> adapt(HttpRequest<String> request, String body) throws Exception {
         Request<?> slackRequest = adapter.toSlackRequest(request, body);
         return adapter.toMicronautResponse(slackApp.run(slackRequest));
     }
