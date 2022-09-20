@@ -490,6 +490,7 @@ public class App {
         this.oAuthExceptionHandler = new OAuthDefaultExceptionHandler(config());
 
         this.oAuthCallbackService = null; // will be initialized by initOAuthServicesIfNecessary()
+        this.status = Status.Stopped;
     }
 
     // --------------------------------------
