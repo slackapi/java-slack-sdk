@@ -6,6 +6,7 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.micronaut.handlers.MicronautAttachmentActionHandler;
 import com.slack.api.bolt.micronaut.handlers.MicronautBlockActionHandler;
 import com.slack.api.bolt.micronaut.handlers.MicronautBlockSuggestionHandler;
+import com.slack.api.bolt.micronaut.handlers.MicronautBoltEventHandler;
 import com.slack.api.bolt.micronaut.handlers.MicronautDialogCancellationHandler;
 import com.slack.api.bolt.micronaut.handlers.MicronautDialogSubmissionHandler;
 import com.slack.api.bolt.micronaut.handlers.MicronautDialogSuggestionHandler;
@@ -17,17 +18,20 @@ import com.slack.api.bolt.micronaut.handlers.MicronautViewSubmissionHandler;
 import com.slack.api.bolt.micronaut.handlers.MicronautWorkflowStepEditHandler;
 import com.slack.api.bolt.micronaut.handlers.MicronautWorkflowStepExecuteHandler;
 import com.slack.api.bolt.micronaut.handlers.MicronautWorkflowStepSaveHandler;
-import com.slack.api.bolt.middleware.Middleware;
+import com.slack.api.methods.AsyncMethodsClient;
+import com.slack.api.methods.MethodsClient;
+import com.slack.api.model.event.Event;
 import com.slack.api.util.http.SlackHttpClient;
 import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.context.annotation.Secondary;
+import io.micronaut.core.util.StringUtils;
 import jakarta.inject.Singleton;
 
 import java.util.List;
 
 /**
- * Creates all the necerssary beans i
+ * Creates all the necessary beans in the Micronaut context.
  */
 @Factory
 public class SlackFactory {
@@ -56,6 +60,26 @@ public class SlackFactory {
     @Bean
     @Secondary
     @Singleton
+    public MethodsClient methodsClient(Slack slack, SlackConfiguration configuration) {
+        if (StringUtils.isNotEmpty(configuration.getSingleTeamBotToken())) {
+            return slack.methods(configuration.getSingleTeamBotToken());
+        }
+        return slack.methods();
+    }
+
+    @Bean
+    @Secondary
+    @Singleton
+    public AsyncMethodsClient asyncMethodsClientx(Slack slack, SlackConfiguration configuration) {
+        if (StringUtils.isNotEmpty(configuration.getSingleTeamBotToken())) {
+            return slack.methodsAsync(configuration.getSingleTeamBotToken());
+        }
+        return slack.methodsAsync();
+    }
+
+    @Bean
+    @Secondary
+    @Singleton
     public App app(
         SlackConfiguration configuration,
         Slack slack,
@@ -72,7 +96,8 @@ public class SlackFactory {
         List<MicronautViewSubmissionHandler> viewSubmissionHandlers,
         List<MicronautWorkflowStepEditHandler> workflowStepEditHandlers,
         List<MicronautWorkflowStepExecuteHandler> workflowStepExecuteHandlers,
-        List<MicronautWorkflowStepSaveHandler> workflowStepSaveHandlers
+        List<MicronautWorkflowStepSaveHandler> workflowStepSaveHandlers,
+        List<MicronautBoltEventHandler<Event>> boltEventHandlers
     ) {
         App app = createApp(configuration, slack);
 
@@ -90,6 +115,7 @@ public class SlackFactory {
         workflowStepEditHandlers.forEach(h -> app.workflowStepEdit(h.getCallbackIdPattern(), h));
         workflowStepExecuteHandlers.forEach(h -> app.workflowStepExecute(h.getPattern(), h));
         workflowStepSaveHandlers.forEach(h -> app.workflowStepSave(h.getCallbackIdPattern(), h));
+        boltEventHandlers.forEach(h -> app.event(h.getEventType(), h));
 
         return app;
     }

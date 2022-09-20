@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import io.micronaut.context.annotation.Factory;
+import io.micronaut.context.annotation.Requires;
 import jakarta.inject.Singleton;
 
 import java.io.BufferedReader;
@@ -16,6 +17,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Factory
+@Requires(notEnv = "idiomatic")
 public class AppFactory {
 
     @Singleton
