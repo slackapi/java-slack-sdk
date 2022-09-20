@@ -29,6 +29,29 @@ public class AuthTestMockServer {
             "  \"error\": \"invalid\"\n" +
             "}";
 
+    static String oauthV2Access = "{\n" +
+            "    \"ok\": true,\n" +
+            "    \"access_token\": \"" + ValidToken + "\",\n" +
+            "    \"token_type\": \"bot\",\n" +
+            "    \"scope\": \"commands,incoming-webhook\",\n" +
+            "    \"bot_user_id\": \"U0KRQLJ9H\",\n" +
+            "    \"app_id\": \"A0KRD7HC3\",\n" +
+            "    \"team\": {\n" +
+            "        \"name\": \"Slack Softball Team\",\n" +
+            "        \"id\": \"T9TK3CUKW\"\n" +
+            "    },\n" +
+            "    \"enterprise\": {\n" +
+            "        \"name\": \"slack-sports\",\n" +
+            "        \"id\": \"E12345678\"\n" +
+            "    },\n" +
+            "    \"authed_user\": {\n" +
+            "        \"id\": \"U1234\",\n" +
+            "        \"scope\": \"chat:write\",\n" +
+            "        \"access_token\": \"xoxp-1234\",\n" +
+            "        \"token_type\": \"user\"\n" +
+            "    }\n" +
+            "}";
+
     @WebServlet
     public static class AuthTestMockEndpoint extends HttpServlet {
 
@@ -36,6 +59,10 @@ public class AuthTestMockServer {
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
             resp.setStatus(200);
             resp.setContentType("application/json");
+            if (req.getRequestURI().equals("/api/oauth.v2.access")) {
+                resp.getWriter().write(oauthV2Access);
+                return;
+            }
             if (req.getHeader("Authorization") == null || !req.getHeader("Authorization").equals("Bearer " + ValidToken)) {
                 resp.getWriter().write(ng);
             } else {

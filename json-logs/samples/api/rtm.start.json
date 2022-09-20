@@ -493,7 +493,8 @@
       "dismissed_sent_page_education": false,
       "seen_onboarding_synth_view_v2": false,
       "clicked_close_onboarding_synth_view_banner": false,
-      "seen_onboarding_synth_view_count_v2": 12345
+      "seen_onboarding_synth_view_count_v2": 12345,
+      "app_manifest_schema_format": ""
     },
     "created": 12345,
     "first_login": 12345,
@@ -853,7 +854,8 @@
       "spaceship_workspace_setting_visible": false,
       "daily_prompts_enabled": false,
       "emoji_only_admins": false,
-      "loading_only_admins": false
+      "loading_only_admins": false,
+      "default_create_private_channel": false
     },
     "icon": {
       "image_102": "https://www.example.com/",
