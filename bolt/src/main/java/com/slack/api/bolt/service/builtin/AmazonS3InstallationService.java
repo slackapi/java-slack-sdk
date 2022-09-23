@@ -16,7 +16,9 @@ import com.slack.api.bolt.util.JsonOps;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Slf4j
 public class AmazonS3InstallationService implements InstallationService {
@@ -156,6 +158,24 @@ public class AmazonS3InstallationService implements InstallationService {
             log.error("Failed to load Bot data for enterprise_id: {}, team_id: {}", enterpriseId, teamId);
             return null;
         }
+    }
+
+    @Override
+    public Stream<Bot> findAllBots() {
+        AmazonS3 s3 = this.createS3Client();
+
+        return new AmazonS3ObjectListingIterator(s3, bucketName, "bot/").toStream()
+                .flatMap(objectListing -> objectListing.getObjectSummaries().stream())
+                .filter(summary -> !isHistoricalDataEnabled() || summary.getKey().endsWith("-latest"))
+                .map(summary -> {
+                    try {
+                        return toBot(getObject(s3, summary.getKey()));
+                    } catch (IOException e) {
+                        log.error("Failed to load Bot data for key {}", summary.getKey());
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull);
     }
 
     @Override

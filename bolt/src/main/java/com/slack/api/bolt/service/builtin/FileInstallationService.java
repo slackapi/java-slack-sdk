@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -111,6 +113,27 @@ public class FileInstallationService implements InstallationService {
     }
 
     @Override
+    public Stream<Bot> findAllBots() {
+        try {
+            return Files.walk(Paths.get(getBotBaseDir()))
+                    .filter(p -> p.toFile().isFile() && (!isHistoricalDataEnabled() || p.toString().endsWith("-latest")))
+                    .<Bot>map(p -> {
+                        try {
+                            return JsonOps.fromJson(loadFileContent(p.toAbsolutePath().toString()), DefaultBot.class);
+                        } catch (IOException e) {
+                            log.warn("Failed to load bot user from path {}", p);
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull);
+
+        } catch (IOException e) {
+            log.warn("Failed to load all bot users");
+            return Stream.empty();
+        }
+    }
+
+    @Override
     public Installer findInstaller(String enterpriseId, String teamId, String userId) {
         try {
             String json = null;
@@ -196,11 +219,7 @@ public class FileInstallationService implements InstallationService {
     }
 
     private String getBotPath(String enterpriseId, String teamId) throws IOException {
-        String dir = getBaseDir() + File.separator + "bot";
-        Path dirPath = Paths.get(dir);
-        if (!Files.exists(dirPath)) {
-            Files.createDirectories(dirPath);
-        }
+        String dir = getBotBaseDir();
         String key = Optional.ofNullable(enterpriseId).orElse("none")
                 + "-"
                 + Optional.ofNullable(teamId).orElse("none");
@@ -208,6 +227,15 @@ public class FileInstallationService implements InstallationService {
             key = key + "-latest";
         }
         return dir + File.separator + key;
+    }
+
+    private String getBotBaseDir() throws IOException {
+        String dir = getBaseDir() + File.separator + "bot";
+        Path dirPath = Paths.get(dir);
+        if (!Files.exists(dirPath)) {
+            Files.createDirectories(dirPath);
+        }
+        return dir;
     }
 
     private String getBaseDir() {

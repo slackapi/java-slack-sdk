@@ -5,6 +5,7 @@ import com.slack.api.bolt.model.Installer;
 import com.slack.api.model.block.LayoutBlock;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * A service that manages Slack app installations.
@@ -48,6 +49,16 @@ public interface InstallationService extends Service {
      * Returns a bot permission data if exists.
      */
     Bot findBot(String enterpriseId, String teamId);
+
+    /**
+     * Returns a {@link java.util.stream.Stream} of all persisted bots.
+     * <p>
+     * Can be empty if the function is not implemented even there are some bots persisted.
+     */
+    default Stream<Bot> findAllBots() {
+        // for backward compatiblity of the API, let's return an empty stream
+        return Stream.empty();
+    }
 
     /**
      * Returns a user permission data if exists.

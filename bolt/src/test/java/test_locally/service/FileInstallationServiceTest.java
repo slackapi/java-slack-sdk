@@ -6,6 +6,7 @@ import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.model.builtin.DefaultBot;
 import com.slack.api.bolt.model.builtin.DefaultInstaller;
 import com.slack.api.bolt.service.builtin.FileInstallationService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,6 +44,8 @@ public class FileInstallationServiceTest {
         FileInstallationService service = new FileInstallationService(AppConfig.builder().build(), "target/files");
         service.initializer().accept(null);
 
+        Assert.assertEquals(0, service.findAllBots().count());
+
         Bot bot = new DefaultBot();
         bot.setEnterpriseId("E123");
         bot.setTeamId("T123");
@@ -60,6 +63,8 @@ public class FileInstallationServiceTest {
 
         service.findBot("E123", "T123");
         service.findInstaller("E123", "T123", "U123");
+
+        Assert.assertEquals(1, service.findAllBots().count());
 
         service.deleteBot(bot);
         service.deleteInstaller(installer);
@@ -112,6 +117,8 @@ public class FileInstallationServiceTest {
         service.setHistoricalDataEnabled(true);
         service.initializer().accept(null);
 
+        Assert.assertEquals(0, service.findAllBots().count());
+
         Bot bot = new DefaultBot();
         bot.setEnterpriseId("E123");
         bot.setTeamId("T123");
@@ -129,6 +136,8 @@ public class FileInstallationServiceTest {
         service.saveInstallerAndBot(installer);
         service.findBot("E123", "T123");
         service.findInstaller("E123", "T123", "U123");
+
+        Assert.assertEquals(1, service.findAllBots().count());
 
         service.deleteBot(bot);
         service.deleteInstaller(installer);
