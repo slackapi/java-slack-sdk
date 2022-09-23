@@ -857,7 +857,9 @@
       "loading_only_admins": false,
       "default_create_private_channel": false,
       "enterprise_mdm_token": "",
-      "saml_enable": false
+      "saml_enable": false,
+      "stats_only_admins": false,
+      "two_factor_auth_required": 12345
     },
     "icon": {
       "image_102": "https://www.example.com/",
