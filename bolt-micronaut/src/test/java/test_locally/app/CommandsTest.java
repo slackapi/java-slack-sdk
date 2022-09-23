@@ -2,6 +2,7 @@ package test_locally.app;
 
 import com.slack.api.RequestConfigurator;
 import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.SlackSignature;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.methods.MethodsClient;
@@ -60,8 +61,11 @@ public class CommandsTest {
     @MockBean(Slack.class)
     Slack mockSlack() throws IOException, SlackApiException {
         Slack slack = mock(Slack.class);
+        when(slack.getConfig()).thenReturn(SlackConfig.DEFAULT);
+
         MethodsClient methods = mock(MethodsClient.class);
         when(slack.methods(botToken)).thenReturn(methods);
+        when(slack.methods(any(), any())).thenReturn(methods);
         AuthTestResponse authTestResponse = new AuthTestResponse();
         authTestResponse.setOk(true);
         when(methods.authTest(any(RequestConfigurator.class))).thenReturn(authTestResponse);
