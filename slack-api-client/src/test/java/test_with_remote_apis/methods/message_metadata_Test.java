@@ -3,12 +3,14 @@ package test_with_remote_apis.methods;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.conversations.ConversationsRepliesRequest;
 import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatScheduleMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
 import com.slack.api.methods.response.conversations.ConversationsHistoryResponse;
 import com.slack.api.methods.response.conversations.ConversationsListResponse;
+import com.slack.api.methods.response.conversations.ConversationsRepliesResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.Message;
 import config.Constants;
@@ -136,6 +138,20 @@ public class message_metadata_Test {
         assertThat(history.getError(), is(nullValue()));
         {
             Map<String, Object> returnedPayload = history.getMessages().get(0).getMetadata().getEventPayload();
+            assertThat(returnedPayload.get("id"), is(messageEventPayload.get("id")));
+            assertThat(returnedPayload.get("tags"), is(messageEventPayload.get("tags")));
+            assertThat(returnedPayload.get("objects"), is(parsedObjects));
+        }
+
+        ConversationsRepliesResponse replies = client.conversationsReplies(req -> req
+                .channel(randomChannelId)
+                .ts(messageWithMetadata.getTs())
+                .limit(1)
+                .includeAllMetadata(true)
+        );
+        assertThat(replies.getError(), is(nullValue()));
+        {
+            Map<String, Object> returnedPayload = replies.getMessages().get(0).getMetadata().getEventPayload();
             assertThat(returnedPayload.get("id"), is(messageEventPayload.get("id")));
             assertThat(returnedPayload.get("tags"), is(messageEventPayload.get("tags")));
             assertThat(returnedPayload.get("objects"), is(parsedObjects));
