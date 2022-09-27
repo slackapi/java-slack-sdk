@@ -34,6 +34,7 @@ public class File {
     private String lastEditor; // application/vnd.slack-docs
     private Integer updated; // application/vnd.slack-docs
     private String fileAccess;
+    private String altTxt;
 
     private String subtype; // "slack_video" = clip
     private Transcription transcription; // when subtype is "slack_video"

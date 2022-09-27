@@ -494,7 +494,8 @@
       "seen_onboarding_synth_view_v2": false,
       "clicked_close_onboarding_synth_view_banner": false,
       "seen_onboarding_synth_view_count_v2": 12345,
-      "app_manifest_schema_format": ""
+      "app_manifest_schema_format": "",
+      "channel_canvas_variant": 12345
     },
     "created": 12345,
     "first_login": 12345,
@@ -859,7 +860,8 @@
       "enterprise_mdm_token": "",
       "saml_enable": false,
       "stats_only_admins": false,
-      "two_factor_auth_required": 12345
+      "two_factor_auth_required": 12345,
+      "slackbot_responses_only_admins": false
     },
     "icon": {
       "image_102": "https://www.example.com/",
