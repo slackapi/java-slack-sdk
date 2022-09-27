@@ -54,4 +54,9 @@ public class ConversationsRepliesRequest implements SlackApiRequest {
      */
     private String latest;
 
+    /**
+     * Return all metadata associated with this message.
+     */
+    private boolean includeAllMetadata;
+
 }

@@ -1446,6 +1446,7 @@ public class RequestFormBuilder {
         setIfNotNull("channel", req.getChannel(), form);
         setIfNotNull("oldest", req.getOldest(), form);
         setIfNotNull("latest", req.getLatest(), form);
+        setIfNotNull("include_all_metadata", req.isIncludeAllMetadata(), form);
         return form;
     }
 
