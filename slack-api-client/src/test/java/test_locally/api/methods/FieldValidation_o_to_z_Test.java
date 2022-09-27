@@ -291,7 +291,8 @@ public class FieldValidation_o_to_z_Test {
                 "getHlsEmbed",
                 "getDurationMs",
                 "getThumbVideoW",
-                "getThumbVideoH"
+                "getThumbVideoH",
+                "getAltTxt"
         );
     }
 
