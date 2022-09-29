@@ -23,9 +23,21 @@ import java.util.Map;
 
 /**
  * The basic configuration of this SDK. Some settings can be propagated to submodules such as Bolt.
+ * <p>
+ * Please note that, if you are fine with the same settings for all Slack instances across an application,
+ * using a singleton instance of this config class is highly recommended.
+ * Also, a Slack instance is thread-safe, so you can use singleton for it too.
+ * <p>
+ * If you create a new SlackConfig instance for each Slack instance creation, each SlackConfig object
+ * can create thread pools for maintaining metrics data and async executions.
+ * In most use cases, this should not be intended. To avoid this, consider reusing SlackConfig objects
+ * as much as possible.
+ * <p>
+ * An alternative way is to set the statsEnabled flag to false.
+ * As long as you don't use the metrics and async API calls at all, there is no downside by doing so.
  */
 @Data
-public class SlackConfig {
+public class SlackConfig implements AutoCloseable {
 
     /**
      * The default instance is immutable. It's not allowed to modify the value runtime for any reasons.
@@ -34,6 +46,11 @@ public class SlackConfig {
 
         void throwException() {
             throw new UnsupportedOperationException("This config is immutable");
+        }
+
+        @Override
+        public void close() {
+            // We disable closing resources for this default singleton object to avoid misbehaviors
         }
 
         @Override
@@ -342,4 +359,10 @@ public class SlackConfig {
         sCIMConfig.getMetricsDatastore().setTraceMode(this.isLibraryMaintainerMode());
     }
 
+    @Override
+    public void close() throws Exception {
+        com.slack.api.methods.impl.ThreadPools.shutdownAll(methodsConfig);
+        com.slack.api.audit.impl.ThreadPools.shutdownAll(auditConfig);
+        com.slack.api.scim.impl.ThreadPools.shutdownAll(sCIMConfig);
+    }
 }

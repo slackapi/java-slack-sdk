@@ -3,6 +3,7 @@ package test_locally;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsConfig;
+import com.slack.api.methods.impl.ThreadPools;
 import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import com.slack.api.util.thread.ExecutorServiceProvider;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -107,6 +109,17 @@ public class SlackConfigTest {
             fail();
         } catch (UnsupportedOperationException ignored) {
         }
+        try {
+            SlackConfig.DEFAULT.setExecutorServiceProvider(null);
+            fail();
+        } catch (UnsupportedOperationException ignored) {
+        }
+        try {
+            // Calling close() should not work anything
+            SlackConfig.DEFAULT.close();
+        } catch (Exception ignored) {
+            fail();
+        }
     }
 
     @Test
@@ -138,6 +151,35 @@ public class SlackConfigTest {
             assertThat(slack.getConfig().getAuditConfig().getExecutorServiceProvider(), is(custom));
             assertThat(slack.getConfig().getSCIMConfig().getExecutorServiceProvider(), is(custom));
         }
+    }
+
+    @Test
+    public void closeMethod() throws Exception {
+        SlackConfig config = new SlackConfig();
+        ExecutorService methods = ThreadPools.getDefault(config.getMethodsConfig());
+        ExecutorService scim = com.slack.api.scim.impl.ThreadPools.getDefault(config.getSCIMConfig());
+        ExecutorService audit = com.slack.api.audit.impl.ThreadPools.getDefault(config.getAuditConfig());
+        assertThat(methods.isShutdown(), is(false));
+        assertThat(scim.isShutdown(), is(false));
+        assertThat(audit.isShutdown(), is(false));
+        assertThat(methods.isTerminated(), is(false));
+        assertThat(scim.isTerminated(), is(false));
+        assertThat(audit.isTerminated(), is(false));
+
+        config.close();
+
+        assertThat(methods.isShutdown(), is(true));
+        assertThat(scim.isShutdown(), is(true));
+        assertThat(audit.isShutdown(), is(true));
+
+        // await for the termination for test stability
+        methods.awaitTermination(1, TimeUnit.MINUTES);
+        scim.awaitTermination(1, TimeUnit.MINUTES);
+        audit.awaitTermination(1, TimeUnit.MINUTES);
+
+        assertThat(methods.isTerminated(), is(true));
+        assertThat(scim.isTerminated(), is(true));
+        assertThat(audit.isTerminated(), is(true));
     }
 
 }

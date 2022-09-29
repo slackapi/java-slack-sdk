@@ -36,6 +36,25 @@ public class ThreadPools {
         }
     }
 
+    public static void shutdownAll(SCIMConfig config) {
+        String providerInstanceId = config.getExecutorServiceProvider().getInstanceId();
+        if (ENTERPRISE_CUSTOM.get(providerInstanceId) != null) {
+            for (ConcurrentMap<String, ExecutorService> each : ENTERPRISE_CUSTOM.get(providerInstanceId).values()) {
+                for (ExecutorService es : each.values()) {
+                    es.shutdownNow();
+                }
+                each.clear();
+            }
+            ENTERPRISE_CUSTOM.remove(providerInstanceId);
+        }
+        if (ALL_DEFAULT.get(providerInstanceId) != null) {
+            for (ExecutorService es : ALL_DEFAULT.get(providerInstanceId).values()) {
+                es.shutdownNow();
+            }
+            ALL_DEFAULT.remove(providerInstanceId);
+        }
+    }
+
     private static ExecutorService buildNewExecutorService(SCIMConfig config) {
         String threadGroupName = "slack-scim-" + config.getExecutorName();
         int poolSize = config.getDefaultThreadPoolSize();
