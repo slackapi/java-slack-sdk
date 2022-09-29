@@ -4,6 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.Field;
+import com.slack.api.model.Message;
 import com.slack.api.model.block.ActionsBlock;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
@@ -19,9 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -101,6 +100,22 @@ public class IncomingWebhooksTest {
         assertThat(response.getCode(), is(200));
         // The behavior has been change (Jun 2019)
         // assertThat(response.getMessage(), is("OK"));
+    }
+
+    @Test
+    public void testWithMessageMetadata() throws IOException {
+        Map<String, Object> eventPayload = new HashMap<>();
+        eventPayload.put("something", "great");
+        Message.Metadata metadata = Message.Metadata.builder().eventType("foo").eventPayload(eventPayload).build();
+        Payload payload = Payload.builder()
+                .text("Hello World!")
+                .metadata(metadata)
+                .build();
+        WebhookResponse response = slack.send(url, payload);
+        log.info(response.toString());
+
+        assertThat(response.getBody(), is("ok"));
+        assertThat(response.getCode(), is(200));
     }
 
     @Test
