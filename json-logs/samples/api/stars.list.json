@@ -418,6 +418,7 @@
                   "last_editor": "",
                   "updated": 123,
                   "file_access": "",
+                  "alt_txt": "",
                   "subtype": "",
                   "transcription": {
                     "status": "",
@@ -1022,6 +1023,7 @@
                 "last_editor": "",
                 "updated": 12345,
                 "file_access": "",
+                "alt_txt": "",
                 "subtype": "",
                 "transcription": {
                   "status": "",
@@ -1576,6 +1578,7 @@
               "last_editor": "",
               "updated": 123,
               "file_access": "",
+              "alt_txt": "",
               "subtype": "",
               "transcription": {
                 "status": "",
@@ -2201,6 +2204,7 @@
             "last_editor": "",
             "updated": 12345,
             "file_access": "",
+            "alt_txt": "",
             "subtype": "",
             "transcription": {
               "status": "",
@@ -2447,6 +2451,7 @@
         "last_editor": "",
         "updated": 123,
         "file_access": "",
+        "alt_txt": "",
         "subtype": "",
         "transcription": {
           "status": "",

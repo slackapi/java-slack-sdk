@@ -38,7 +38,8 @@
       "internal_team_ids": [
         "T00000000"
       ],
-      "channel_manager_count": 12345
+      "channel_manager_count": 12345,
+      "is_disconnect_in_progress": false
     }
   ],
   "next_cursor": "",
