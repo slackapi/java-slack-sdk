@@ -3,12 +3,16 @@ package samples;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.socket_mode.SocketModeApp;
+import com.slack.api.model.Message;
 import com.slack.api.model.event.AppMentionEvent;
 import com.slack.api.model.event.MessageChangedEvent;
 import com.slack.api.model.event.MessageDeletedEvent;
 import com.slack.api.model.event.MessageEvent;
 import com.slack.api.model.view.ViewState;
 import config.Constants;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.slack.api.model.block.Blocks.asBlocks;
 import static com.slack.api.model.block.Blocks.input;
@@ -45,6 +49,13 @@ public class SimpleApp {
         app.event(MessageDeletedEvent.class, (req, ctx) -> ctx.ack());
 
         app.command("/hello-socket-mode", (req, ctx) -> {
+            Map<String, Object> eventPayload = new HashMap<>();
+            eventPayload.put("something", "great");
+            Message.Metadata metadata = Message.Metadata.builder()
+                    .eventType("foo")
+                    .eventPayload(eventPayload)
+                    .build();
+            ctx.respond(r -> r.responseType("in_channel").text("hi!").metadata(metadata));
             ctx.asyncClient().viewsOpen(r -> r
                     .triggerId(req.getContext().getTriggerId())
                     .view(view(v -> v

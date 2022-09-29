@@ -1,6 +1,7 @@
 package com.slack.api.app_backend.views.response;
 
 import com.slack.api.model.Attachment;
+import com.slack.api.model.Message;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,4 +19,5 @@ public class InputBlockResponse {
     private String text;
     private List<Attachment> attachments;
     private List<LayoutBlock> blocks;
+    private Message.Metadata metadata;
 }

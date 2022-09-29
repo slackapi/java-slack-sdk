@@ -1,6 +1,7 @@
 package com.slack.api.webhook;
 
 import com.slack.api.model.Attachment;
+import com.slack.api.model.Message;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Builder;
 import lombok.Data;
@@ -87,4 +88,9 @@ public class Payload {
      * Pass false to disable unfurling of media content.
      */
     private Boolean unfurlMedia;
+
+    /**
+     * https://api.slack.com/metadata
+     */
+    private Message.Metadata metadata;
 }
