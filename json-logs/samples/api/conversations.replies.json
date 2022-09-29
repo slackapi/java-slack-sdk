@@ -2424,7 +2424,11 @@
           ],
           "count": 12345
         }
-      ]
+      ],
+      "metadata": {
+        "event_payload": {},
+        "event_type": ""
+      }
     }
   ],
   "has_more": false,
