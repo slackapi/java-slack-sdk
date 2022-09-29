@@ -3,6 +3,7 @@ package test_locally;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsConfig;
+import com.slack.api.methods.impl.ThreadPools;
 import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import com.slack.api.util.thread.ExecutorServiceProvider;
 import org.junit.Test;
@@ -107,6 +108,17 @@ public class SlackConfigTest {
             fail();
         } catch (UnsupportedOperationException ignored) {
         }
+        try {
+            SlackConfig.DEFAULT.setExecutorServiceProvider(null);
+            fail();
+        } catch (UnsupportedOperationException ignored) {
+        }
+        try {
+            // Calling close() should not work anything
+            SlackConfig.DEFAULT.close();
+        } catch (Exception ignored) {
+            fail();
+        }
     }
 
     @Test
@@ -138,6 +150,23 @@ public class SlackConfigTest {
             assertThat(slack.getConfig().getAuditConfig().getExecutorServiceProvider(), is(custom));
             assertThat(slack.getConfig().getSCIMConfig().getExecutorServiceProvider(), is(custom));
         }
+    }
+
+    @Test
+    public void closeMethod() throws Exception {
+        SlackConfig config = new SlackConfig();
+        ExecutorService methods = ThreadPools.getDefault(config.getMethodsConfig());
+        ExecutorService scim = com.slack.api.scim.impl.ThreadPools.getDefault(config.getSCIMConfig());
+        ExecutorService audit = com.slack.api.audit.impl.ThreadPools.getDefault(config.getAuditConfig());
+        assertThat(methods.isTerminated(), is(false));
+        assertThat(scim.isTerminated(), is(false));
+        assertThat(audit.isTerminated(), is(false));
+
+        config.close();
+
+        assertThat(methods.isTerminated(), is(true));
+        assertThat(scim.isTerminated(), is(true));
+        assertThat(audit.isTerminated(), is(true));
     }
 
 }

@@ -36,6 +36,25 @@ public class ThreadPools {
         }
     }
 
+    public static void shutdownAll(MethodsConfig config) {
+        String providerInstanceId = config.getExecutorServiceProvider().getInstanceId();
+        if (TEAM_CUSTOM.get(providerInstanceId) != null) {
+            for (ConcurrentMap<String, ExecutorService> each : TEAM_CUSTOM.get(providerInstanceId).values()) {
+                for (ExecutorService es : each.values()) {
+                    es.shutdownNow();
+                }
+                each.clear();
+            }
+            TEAM_CUSTOM.remove(providerInstanceId);
+        }
+        if (ALL_DEFAULT.get(providerInstanceId) != null) {
+            for (ExecutorService es : ALL_DEFAULT.get(providerInstanceId).values()) {
+                es.shutdownNow();
+            }
+            ALL_DEFAULT.remove(providerInstanceId);
+        }
+    }
+
     private static ExecutorService buildNewExecutorService(MethodsConfig config) {
         String threadGroupName = "slack-methods-" + config.getExecutorName();
         int poolSize = config.getDefaultThreadPoolSize();

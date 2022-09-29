@@ -4,6 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.audit.AuditClient;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.impl.ThreadPools;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.rtm.RTMClient;
 import com.slack.api.scim.SCIMClient;
@@ -16,8 +17,11 @@ import util.MockSlackApiServer;
 import util.MockWebhookServer;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
 
 import static com.slack.api.webhook.WebhookPayloads.payload;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 public class SlackTest {
@@ -158,6 +162,24 @@ public class SlackTest {
             RequestStats stats = Slack.getInstance().scimStats("executor", "E1234567");
             assertNotNull(stats);
         }
+    }
+
+    @Test
+    public void closeMethod() throws Exception {
+        SlackConfig config = new SlackConfig();
+        Slack slack = Slack.getInstance(config);
+        ExecutorService methods = ThreadPools.getDefault(config.getMethodsConfig());
+        ExecutorService scim = com.slack.api.scim.impl.ThreadPools.getDefault(config.getSCIMConfig());
+        ExecutorService audit = com.slack.api.audit.impl.ThreadPools.getDefault(config.getAuditConfig());
+        assertThat(methods.isTerminated(), is(false));
+        assertThat(scim.isTerminated(), is(false));
+        assertThat(audit.isTerminated(), is(false));
+
+        slack.close();
+
+        assertThat(methods.isTerminated(), is(true));
+        assertThat(scim.isTerminated(), is(true));
+        assertThat(audit.isTerminated(), is(true));
     }
 
 }

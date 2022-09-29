@@ -113,7 +113,12 @@ public class Slack implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
-        getHttpClient().close();
+        if (getHttpClient() != null) {
+            getHttpClient().close();
+        }
+        if (getConfig() != null) {
+            getConfig().close();
+        }
     }
 
     /**
