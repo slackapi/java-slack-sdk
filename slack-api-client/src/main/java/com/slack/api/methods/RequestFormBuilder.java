@@ -108,7 +108,6 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.ConversationType;
-import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -1648,6 +1647,26 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(FilesGetUploadURLExternalRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("filename", req.getFilename(), form);
+        setIfNotNull("length", req.getLength(), form);
+        setIfNotNull("alt_txt", req.getAltTxt(), form);
+        setIfNotNull("snippet_type", req.getSnippetType(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(FilesCompleteUploadExternalRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getFiles() != null) {
+            setIfNotNull("files", GSON.toJson(req.getFiles()), form);
+        }
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("initial_comment", req.getInitialComment(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(FilesCommentsAddRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("file", req.getFile(), form);
@@ -2565,12 +2584,12 @@ public class RequestFormBuilder {
 
     // Workarounds to solve GSON not handling anonymous inner class object initialization
     // https://github.com/google/gson/issues/2023
-    private static <T> String getJsonWithGsonAnonymInnerClassHandling(Map<String, T> stringTMap){
+    private static <T> String getJsonWithGsonAnonymInnerClassHandling(Map<String, T> stringTMap) {
         String json = GSON.toJson(stringTMap);
         return GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json) ? GSON.toJson(new HashMap<>(stringTMap)) : json;
     }
 
-    private static <T> String getJsonWithGsonAnonymInnerClassHandling(List<T> tList){
+    private static <T> String getJsonWithGsonAnonymInnerClassHandling(List<T> tList) {
         String json = GSON.toJson(tList);
         return GSON_ANONYM_INNER_CLASS_INIT_OUTPUT.equals(json) ? GSON.toJson(new ArrayList<>(tList)) : json;
     }

@@ -15,7 +15,7 @@ import java.util.List;
 public class FilesUploadRequest implements SlackApiRequest {
 
     /**
-     * Authentication token. Requires scope: `files:write:user`
+     * Authentication token. Requires scope: `files:write`
      */
     private String token;
 

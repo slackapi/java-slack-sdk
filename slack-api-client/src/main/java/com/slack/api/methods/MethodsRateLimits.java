@@ -326,6 +326,8 @@ public class MethodsRateLimits {
         setRateLimitTier(FILES_REVOKE_PUBLIC_URL, Tier3);
         setRateLimitTier(FILES_SHARED_PUBLIC_URL, Tier3);
         setRateLimitTier(FILES_UPLOAD, Tier2);
+        setRateLimitTier(FILES_GET_UPLOAD_URL_EXTERNAL, Tier4);
+        setRateLimitTier(FILES_COMPLETE_UPLOAD_EXTERNAL, Tier4);
 
         setRateLimitTier(FILES_REMOTE_ADD, Tier2);
         setRateLimitTier(FILES_REMOTE_INFO, Tier2);

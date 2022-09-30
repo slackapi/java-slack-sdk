@@ -3,6 +3,7 @@ package test_locally.api.methods;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.files.FilesCompleteUploadExternalRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsEditRequest;
@@ -52,6 +53,13 @@ public class FilesTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).filesUpload(r -> r.filename("name").channels(Arrays.asList("C123")).title("title"))
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesGetUploadURLExternal(r -> r.filename("name").length(100))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesCompleteUploadExternal(r -> r
+                        .files(Arrays.asList(FilesCompleteUploadExternalRequest.FileDetails.builder().id("F111").build()))
+                        .channelId("C111")
+                        .initialComment("Here are files!")
+                ).isOk(), is(true));
     }
 
     @Test
@@ -68,6 +76,13 @@ public class FilesTest {
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesUpload(r -> r.filename("name").channels(Arrays.asList("C123")).title("title"))
                 .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).filesGetUploadURLExternal(r -> r.filename("name").length(100))
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).filesCompleteUploadExternal(r -> r
+                .files(Arrays.asList(FilesCompleteUploadExternalRequest.FileDetails.builder().id("F111").build()))
+                .channelId("C111")
+                .initialComment("Here are files!")
+        ).get().isOk(), is(true));
     }
 
     @Test

@@ -216,6 +216,7 @@ import com.slack.api.methods.response.views.ViewsUpdateResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
+import com.slack.api.util.http.SlackHttpClient;
 import okhttp3.FormBody;
 import okhttp3.MultipartBody;
 import okhttp3.Response;
@@ -231,6 +232,8 @@ import java.io.IOException;
 public interface MethodsClient {
 
     String ENDPOINT_URL_PREFIX = "https://slack.com/api/";
+
+    SlackHttpClient getSlackHttpClient();
 
     String getEndpointUrlPrefix();
 
@@ -1221,6 +1224,18 @@ public interface MethodsClient {
     FilesUploadResponse filesUpload(FilesUploadRequest req) throws IOException, SlackApiException;
 
     FilesUploadResponse filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req) throws IOException, SlackApiException;
+
+    FilesGetUploadURLExternalResponse filesGetUploadURLExternal(FilesGetUploadURLExternalRequest req) throws IOException, SlackApiException;
+
+    FilesGetUploadURLExternalResponse filesGetUploadURLExternal(RequestConfigurator<FilesGetUploadURLExternalRequest.FilesGetUploadURLExternalRequestBuilder> req) throws IOException, SlackApiException;
+
+    FilesCompleteUploadExternalResponse filesCompleteUploadExternal(FilesCompleteUploadExternalRequest req) throws IOException, SlackApiException;
+
+    FilesCompleteUploadExternalResponse filesCompleteUploadExternal(RequestConfigurator<FilesCompleteUploadExternalRequest.FilesCompleteUploadExternalRequestBuilder> req) throws IOException, SlackApiException;
+
+    FilesUploadV2Response filesUploadV2(FilesUploadV2Request req) throws IOException, SlackApiException, SlackFilesUploadV2Exception;
+
+    FilesUploadV2Response filesUploadV2(RequestConfigurator<FilesUploadV2Request.FilesUploadV2RequestBuilder> req) throws IOException, SlackApiException, SlackFilesUploadV2Exception;
 
     // ------------------------------
     // files.comments

@@ -6,10 +6,7 @@ import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatDeleteRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUpdateRequest;
-import com.slack.api.methods.request.files.FilesDeleteRequest;
-import com.slack.api.methods.request.files.FilesInfoRequest;
-import com.slack.api.methods.request.files.FilesRevokePublicURLRequest;
-import com.slack.api.methods.request.files.FilesSharedPublicURLRequest;
+import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
@@ -20,9 +17,11 @@ import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.users.UsersConversationsResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.ConversationType;
+import com.slack.api.util.http.SlackHttpClient;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.*;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,6 +32,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -635,4 +636,249 @@ public class files_Test {
         assertThat(replies.getError(), is(nullValue()));
     }
 
+    @Test
+    public void filesUploadV2_single_file() throws Exception {
+        loadRandomChannelId();
+        MethodsClient client = slack.methods(botToken);
+
+        File file1 = new File("src/test/resources/sample.txt");
+        FilesUploadV2Response response = client.filesUploadV2(r -> r
+                .file(file1)
+                .title("sample.txt")
+                .filename("sample.txt")
+                .snippetType("text")
+                .channelId(randomChannelId)
+                .initialComment("Here you are :wave:")
+        );
+        assertThat(response.getError(), is(nullValue()));
+
+        List<String> expectedFileIds = response.getFiles().stream()
+                .map(a -> a.getId()).collect(Collectors.toList());
+
+        int count = 0;
+        ConversationsHistoryResponse history = null;
+        List<String> actualFileIds = null;
+        while (count < 10) {
+            count++;
+            history = client.conversationsHistory(r -> r
+                    .channel(randomChannelId)
+                    .limit(1)
+            );
+            if (history.getMessages().get(0).getFiles() != null) {
+                actualFileIds = history.getMessages().get(0).getFiles().stream()
+                        .map(a -> a.getId()).sorted().collect(Collectors.toList());
+                if (actualFileIds.stream().collect(Collectors.joining(","))
+                        .equals(expectedFileIds.stream().collect(Collectors.joining(",")))) {
+                    break;
+                }
+            }
+            Thread.sleep(3000L);
+        }
+        assertThat(history.getError(), is(nullValue()));
+        assertThat(history.getMessages().get(0).getFiles(), is(notNullValue()));
+        assertThat(actualFileIds, is(expectedFileIds));
+
+        FilesInfoResponse file1info = client.filesInfo(r -> r.file(response.getFile().getId()));
+        assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
+    }
+
+    @Test
+    public void filesUploadV2_two_files() throws Exception {
+        loadRandomChannelId();
+        MethodsClient client = slack.methods(botToken);
+
+        File file1 = new File("src/test/resources/sample.txt");
+        File file2 = new File("src/test/resources/seratch.jpg");
+
+        FilesUploadV2Response response = client.filesUploadV2(r -> r
+                .uploadFiles(Arrays.asList(
+                        FilesUploadV2Request.UploadFile.builder()
+                                .file(file1)
+                                .filename("sample.txt")
+                                .title("a")
+                                .snippetType("text")
+                                .build(),
+                        FilesUploadV2Request.UploadFile.builder()
+                                .file(file2)
+                                .filename("sample.jpg")
+                                .title("b")
+                                .altTxt("alt text 2")
+                                .build()
+                ))
+                .channelId(randomChannelId)
+                .initialComment("Here are the uploaded files :wave:")
+        );
+
+        List<String> expectedFileIds = response.getFiles().stream()
+                .map(a -> a.getId()).sorted().collect(Collectors.toList());
+
+        int count = 0;
+        ConversationsHistoryResponse history = null;
+        List<String> actualFileIds = null;
+        while (count < 10) {
+            count++;
+            history = client.conversationsHistory(r -> r
+                    .channel(randomChannelId)
+                    .limit(1)
+            );
+            if (history.getMessages().get(0).getFiles() != null) {
+                actualFileIds = history.getMessages().get(0).getFiles().stream()
+                        .map(a -> a.getId()).sorted().collect(Collectors.toList());
+                if (actualFileIds.stream().collect(Collectors.joining(","))
+                        .equals(expectedFileIds.stream().collect(Collectors.joining(",")))) {
+                    break;
+                }
+            }
+            Thread.sleep(3000L);
+        }
+        assertThat(history.getError(), is(nullValue()));
+        assertThat(history.getMessages().get(0).getFiles(), is(notNullValue()));
+        assertThat(actualFileIds, is(expectedFileIds));
+        FilesInfoResponse file1info = client.filesInfo(r -> r.file(response.getFiles().get(0).getId()));
+        assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
+    }
+
+    @Test
+    public void filesUploadV2_manual_single_file() throws Exception {
+        loadRandomChannelId();
+        MethodsClient client = slack.methods(botToken);
+        OkHttpClient okHttpClient = SlackHttpClient.buildOkHttpClient(slack.getConfig());
+
+        File file1 = new File("src/test/resources/sample.txt");
+        byte[] bytes1 = Files.readAllBytes(file1.toPath());
+        FilesGetUploadURLExternalResponse file1Upload = client.filesGetUploadURLExternal(r -> r
+                .filename("sample.txt")
+                .length(bytes1.length)
+                .snippetType("text")
+        );
+        assertThat(file1Upload.getError(), is(nullValue()));
+
+        Response upload1Result = okHttpClient.newCall(new Request.Builder()
+                .url(file1Upload.getUploadUrl())
+                .post(RequestBody.create(bytes1))
+                .build()).execute();
+        assertThat(upload1Result.code(), is(200));
+        assertThat(upload1Result.body().string(), is("OK - 57"));
+
+        // Complete
+        List<FilesCompleteUploadExternalRequest.FileDetails> files = Arrays.asList(
+                FilesCompleteUploadExternalRequest.FileDetails.builder().id(file1Upload.getFileId()).title("a").build()
+        );
+        FilesCompleteUploadExternalResponse completion = client.filesCompleteUploadExternal(r -> r
+                .files(files)
+                .channelId(randomChannelId)
+                .initialComment("Here is the uploaded file :wave:")
+        );
+        assertThat(completion.getError(), is(nullValue()));
+
+        List<String> expectedFileIds = Arrays.asList(file1Upload.getFileId());
+
+        int count = 0;
+        ConversationsHistoryResponse history = null;
+        List<String> actualFileIds = null;
+        while (count < 10) {
+            count++;
+            history = client.conversationsHistory(r -> r
+                    .channel(randomChannelId)
+                    .limit(1)
+            );
+            if (history.getMessages().get(0).getFiles() != null) {
+                actualFileIds = history.getMessages().get(0).getFiles().stream()
+                        .map(a -> a.getId()).sorted().collect(Collectors.toList());
+                if (actualFileIds.stream().collect(Collectors.joining(","))
+                        .equals(expectedFileIds.stream().collect(Collectors.joining(",")))) {
+                    break;
+                }
+            }
+            Thread.sleep(3000L);
+        }
+        assertThat(history.getError(), is(nullValue()));
+        assertThat(history.getMessages().get(0).getFiles(), is(notNullValue()));
+        assertThat(actualFileIds, is(expectedFileIds));
+        FilesInfoResponse file1info = client.filesInfo(r -> r.file(file1Upload.getFileId()));
+        assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
+    }
+
+    @Test
+    public void filesUploadV2_manual_two_files() throws Exception {
+        loadRandomChannelId();
+        MethodsClient client = slack.methods(botToken);
+        OkHttpClient okHttpClient = SlackHttpClient.buildOkHttpClient(slack.getConfig());
+
+        // file 1
+        File file1 = new File("src/test/resources/sample.txt");
+        byte[] bytes1 = Files.readAllBytes(file1.toPath());
+        FilesGetUploadURLExternalResponse file1Upload = client.filesGetUploadURLExternal(r -> r
+                .filename("sample.txt")
+                .length(bytes1.length)
+                .snippetType("text")
+        );
+        assertThat(file1Upload.getError(), is(nullValue()));
+
+        Response upload1Result = okHttpClient.newCall(new Request.Builder()
+                .url(file1Upload.getUploadUrl())
+                .post(RequestBody.create(bytes1))
+                .build()).execute();
+        assertThat(upload1Result.code(), is(200));
+        assertThat(upload1Result.body().string(), is("OK - 57"));
+
+        // file 2
+        File file2 = new File("src/test/resources/seratch.jpg");
+        byte[] bytes2 = Files.readAllBytes(file2.toPath());
+        FilesGetUploadURLExternalResponse file2Upload = client.filesGetUploadURLExternal(r -> r
+                .filename("sample.jpg")
+                .length(bytes2.length)
+                .altTxt("alt text 2")
+        );
+        assertThat(file2Upload.getError(), is(nullValue()));
+
+        Response upload2Result = okHttpClient.newCall(new Request.Builder()
+                .url(file2Upload.getUploadUrl())
+                .post(RequestBody.create(bytes2))
+                .build()).execute();
+        assertThat(upload2Result.code(), is(200));
+        assertThat(upload2Result.body().string(), is("OK - 29720"));
+
+        // Complete
+        List<FilesCompleteUploadExternalRequest.FileDetails> files = Arrays.asList(
+                FilesCompleteUploadExternalRequest.FileDetails.builder().id(file1Upload.getFileId()).title("a").build(),
+                FilesCompleteUploadExternalRequest.FileDetails.builder().id(file2Upload.getFileId()).title("b").build()
+        );
+        FilesCompleteUploadExternalResponse completion = client.filesCompleteUploadExternal(r -> r
+                .files(files)
+                .channelId(randomChannelId)
+                .initialComment("Here are the uploaded files :wave:")
+        );
+        assertThat(completion.getError(), is(nullValue()));
+
+        List<String> expectedFileIds = Arrays.asList(
+                file1Upload.getFileId(),
+                file2Upload.getFileId()
+        ).stream().sorted().collect(Collectors.toList());
+
+        int count = 0;
+        ConversationsHistoryResponse history = null;
+        List<String> actualFileIds = null;
+        while (count < 10) {
+            count++;
+            history = client.conversationsHistory(r -> r
+                    .channel(randomChannelId)
+                    .limit(1)
+            );
+            if (history.getMessages().get(0).getFiles() != null) {
+                actualFileIds = history.getMessages().get(0).getFiles().stream()
+                        .map(a -> a.getId()).sorted().collect(Collectors.toList());
+                if (actualFileIds.stream().collect(Collectors.joining(","))
+                        .equals(expectedFileIds.stream().collect(Collectors.joining(",")))) {
+                    break;
+                }
+            }
+            Thread.sleep(3000L);
+        }
+        assertThat(history.getError(), is(nullValue()));
+        assertThat(history.getMessages().get(0).getFiles(), is(notNullValue()));
+        assertThat(actualFileIds, is(expectedFileIds));
+        FilesInfoResponse file1info = client.filesInfo(r -> r.file(file1Upload.getFileId()));
+        assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
+    }
 }

@@ -939,6 +939,18 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<FilesUploadResponse> filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req);
 
+    CompletableFuture<FilesGetUploadURLExternalResponse> filesGetUploadURLExternal(FilesGetUploadURLExternalRequest req);
+
+    CompletableFuture<FilesGetUploadURLExternalResponse> filesGetUploadURLExternal(RequestConfigurator<FilesGetUploadURLExternalRequest.FilesGetUploadURLExternalRequestBuilder> req);
+
+    CompletableFuture<FilesCompleteUploadExternalResponse> filesCompleteUploadExternal(FilesCompleteUploadExternalRequest req);
+
+    CompletableFuture<FilesCompleteUploadExternalResponse> filesCompleteUploadExternal(RequestConfigurator<FilesCompleteUploadExternalRequest.FilesCompleteUploadExternalRequestBuilder> req);
+
+    CompletableFuture<FilesUploadV2Response> filesUploadV2(FilesUploadV2Request req);
+
+    CompletableFuture<FilesUploadV2Response> filesUploadV2(RequestConfigurator<FilesUploadV2Request.FilesUploadV2RequestBuilder> req);
+
     // ------------------------------
     // files.remote
     // ------------------------------
