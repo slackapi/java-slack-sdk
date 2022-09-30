@@ -65,6 +65,15 @@
               },
               {
                 "type": "",
+                "text": "",
+                "url": "https://www.example.com/"
+              },
+              {
+                "type": "",
+                "url": "https://www.example.com/"
+              },
+              {
+                "type": "",
                 "elements": [
                   {
                     "type": "",

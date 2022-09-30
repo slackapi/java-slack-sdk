@@ -36,9 +36,11 @@ public class FilesUploadV2Helper implements AutoCloseable {
         this.okHttpClient = SlackHttpClient.buildOkHttpClient(client.getSlackHttpClient().getConfig());
     }
 
-    public String uploadFile(FilesUploadV2Request.UploadFile uploadFile) throws IOException, SlackApiException, SlackFilesUploadV2Exception {
+    public String uploadFile(
+            FilesUploadV2Request v2Request,
+            FilesUploadV2Request.UploadFile uploadFile) throws IOException, SlackApiException, SlackFilesUploadV2Exception {
         byte[] fileContentBytes = readUploadFileBytes(uploadFile);
-        FilesGetUploadURLExternalRequest req = buildGetUploadURLExternalRequest(uploadFile, fileContentBytes);
+        FilesGetUploadURLExternalRequest req = buildGetUploadURLExternalRequest(uploadFile, v2Request.getToken(), fileContentBytes);
         FilesGetUploadURLExternalResponse uploadUrl = this.client.filesGetUploadURLExternal(req);
         underlyingException.getGetURLResponses().add(uploadUrl);
         if (!uploadUrl.isOk()) {
@@ -86,15 +88,16 @@ public class FilesUploadV2Helper implements AutoCloseable {
     }
 
     public FilesUploadV2Response completeUploads(
-            FilesUploadV2Request req,
+            FilesUploadV2Request v2Request,
             List<FilesCompleteUploadExternalRequest.FileDetails> files) throws SlackApiException, IOException, SlackFilesUploadV2Exception {
         FilesUploadV2Response result = new FilesUploadV2Response();
 
         FilesCompleteUploadExternalResponse response = this.client.filesCompleteUploadExternal(r -> r
+                .token(v2Request.getToken())
                 .files(files)
-                .channelId(req.getChannel())
-                .initialComment(req.getInitialComment())
-                .threadTs(req.getThreadTs())
+                .channelId(v2Request.getChannel())
+                .initialComment(v2Request.getInitialComment())
+                .threadTs(v2Request.getThreadTs())
         );
         underlyingException.setCompleteResponse(response);
         if (!response.isOk()) {
@@ -103,7 +106,7 @@ public class FilesUploadV2Helper implements AutoCloseable {
 
         result.setFiles(new ArrayList<>());
         for (FilesCompleteUploadExternalResponse.FileDetails file : response.getFiles()) {
-            FilesInfoResponse fileInfo = this.client.filesInfo(r -> r.file(file.getId()));
+            FilesInfoResponse fileInfo = this.client.filesInfo(r -> r.token(v2Request.getToken()).file(file.getId()));
             underlyingException.getFileInfoResponses().add(fileInfo);
             if (!fileInfo.isOk()) {
                 throw underlyingException;
@@ -140,9 +143,18 @@ public class FilesUploadV2Helper implements AutoCloseable {
 
     private static FilesGetUploadURLExternalRequest buildGetUploadURLExternalRequest(
             FilesUploadV2Request.UploadFile uploadFile,
+            String tokenAsArg,
             byte[] fileContentBytes) {
+        String filename = uploadFile.getFilename() == null ? "file" : uploadFile.getFilename();
+        if (uploadFile.getContent() != null && uploadFile.getFilename() == null) {
+            // allowing content parameter is for backward-compatibility
+            // Since v2 endpoints do not accept text data without its filename,
+            // we set a placeholder when a developer does not set any.
+            filename = "Text content";
+        }
         return FilesGetUploadURLExternalRequest.builder()
-                .filename(uploadFile.getFilename())
+                .token(tokenAsArg)
+                .filename(filename)
                 .length(fileContentBytes.length)
                 .altTxt(uploadFile.getAltTxt())
                 .snippetType(uploadFile.getSnippetType())

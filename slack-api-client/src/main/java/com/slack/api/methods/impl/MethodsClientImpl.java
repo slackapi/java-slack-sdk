@@ -1968,7 +1968,7 @@ public class MethodsClientImpl implements MethodsClient {
             if (req.getUploadFiles() != null && req.getUploadFiles().size() > 0) {
                 // upload multiple files
                 for (FilesUploadV2Request.UploadFile uploadFile : req.getUploadFiles()) {
-                    String fileId = helper.uploadFile(uploadFile);
+                    String fileId = helper.uploadFile(req, uploadFile);
 
                     FilesCompleteUploadExternalRequest.FileDetails file = new FilesCompleteUploadExternalRequest.FileDetails();
                     file.setId(fileId);
@@ -1985,7 +1985,7 @@ public class MethodsClientImpl implements MethodsClient {
                 uploadFile.setFilename(req.getFilename());
                 uploadFile.setSnippetType(req.getSnippetType());
 
-                String fileId = helper.uploadFile(uploadFile);
+                String fileId = helper.uploadFile(req, uploadFile);
 
                 FilesCompleteUploadExternalRequest.FileDetails file = new FilesCompleteUploadExternalRequest.FileDetails();
                 file.setId(fileId);

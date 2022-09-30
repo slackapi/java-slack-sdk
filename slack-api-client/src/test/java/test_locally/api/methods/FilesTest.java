@@ -8,6 +8,7 @@ import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsEditRequest;
 import com.slack.api.methods.response.files.FilesUploadResponse;
+import com.slack.api.methods.response.files.FilesUploadV2Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,6 +54,8 @@ public class FilesTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).filesUpload(r -> r.filename("name").channels(Arrays.asList("C123")).title("title"))
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).filesUploadV2(r -> r.filename("name").channel("C123").title("title"))
+                .isOk(), is(true));
         assertThat(slack.methods(ValidToken).filesGetUploadURLExternal(r -> r.filename("name").length(100))
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).filesCompleteUploadExternal(r -> r
@@ -76,6 +79,8 @@ public class FilesTest {
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesUpload(r -> r.filename("name").channels(Arrays.asList("C123")).title("title"))
                 .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).filesUploadV2(r -> r.filename("name").channel("C123").title("title"))
+                .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesGetUploadURLExternal(r -> r.filename("name").length(100))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesCompleteUploadExternal(r -> r
@@ -98,6 +103,18 @@ public class FilesTest {
     }
 
     @Test
+    public void fileUploadV2_bytes() throws Exception {
+        byte[] fileData = "This is a text data".getBytes();
+        FilesUploadV2Response response = slack.methods(ValidToken).filesUploadV2(r ->
+                r.fileData(fileData).filename("sample.txt").title("sample.txt"));
+        assertThat(response.isOk(), is(true));
+
+        response = slack.methodsAsync(ValidToken).filesUploadV2(r ->
+                r.fileData(fileData).filename("sample.txt").title("sample.txt")).get();
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
     public void fileUpload_file() throws Exception {
         File file = new File("src/test/resources/sample.txt");
         FilesUploadResponse response = slack.methods(ValidToken).filesUpload(r ->
@@ -106,6 +123,18 @@ public class FilesTest {
 
         response = slack.methodsAsync(ValidToken).filesUpload(r ->
                 r.file(file).filename("sample.txt").title("sample.txt").filetype("plain/text")).get();
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void fileUploadV2_file() throws Exception {
+        File file = new File("src/test/resources/sample.txt");
+        FilesUploadV2Response response = slack.methods(ValidToken).filesUploadV2(r ->
+                r.file(file).filename("sample.txt").title("sample.txt"));
+        assertThat(response.isOk(), is(true));
+
+        response = slack.methodsAsync(ValidToken).filesUploadV2(r ->
+                r.file(file).filename("sample.txt").title("sample.txt")).get();
         assertThat(response.isOk(), is(true));
     }
 
