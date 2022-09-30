@@ -54,7 +54,7 @@ public class FilesTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).filesUpload(r -> r.filename("name").channels(Arrays.asList("C123")).title("title"))
                 .isOk(), is(true));
-        assertThat(slack.methods(ValidToken).filesUploadV2(r -> r.filename("name").channel("C123").title("title"))
+        assertThat(slack.methods(ValidToken).filesUploadV2(r -> r.content("something").filename("name").channel("C123").title("title"))
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).filesGetUploadURLExternal(r -> r.filename("name").length(100))
                 .isOk(), is(true));
@@ -79,7 +79,7 @@ public class FilesTest {
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesUpload(r -> r.filename("name").channels(Arrays.asList("C123")).title("title"))
                 .get().isOk(), is(true));
-        assertThat(slack.methodsAsync(ValidToken).filesUploadV2(r -> r.filename("name").channel("C123").title("title"))
+        assertThat(slack.methodsAsync(ValidToken).filesUploadV2(r -> r.content("something").filename("name").channel("C123").title("title"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).filesGetUploadURLExternal(r -> r.filename("name").length(100))
                 .get().isOk(), is(true));
