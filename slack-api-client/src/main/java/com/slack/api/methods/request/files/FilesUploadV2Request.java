@@ -119,7 +119,7 @@ public class FilesUploadV2Request implements SlackApiRequest {
     /**
      * Channel ID where the file will be shared. If not specified the file will be private.
      */
-    private String channelId;
+    private String channel;
 
     /**
      * Provide another message's ts value to upload this file as a reply.

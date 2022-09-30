@@ -92,7 +92,7 @@ public class FilesUploadV2Helper implements AutoCloseable {
 
         FilesCompleteUploadExternalResponse response = this.client.filesCompleteUploadExternal(r -> r
                 .files(files)
-                .channelId(req.getChannelId())
+                .channelId(req.getChannel())
                 .initialComment(req.getInitialComment())
                 .threadTs(req.getThreadTs())
         );

@@ -647,7 +647,7 @@ public class files_Test {
                 .title("sample.txt")
                 .filename("sample.txt")
                 .snippetType("text")
-                .channelId(randomChannelId)
+                .channel(randomChannelId)
                 .initialComment("Here you are :wave:")
         );
         assertThat(response.getError(), is(nullValue()));
@@ -705,7 +705,7 @@ public class files_Test {
                                 .altTxt("alt text 2")
                                 .build()
                 ))
-                .channelId(randomChannelId)
+                .channel(randomChannelId)
                 .initialComment("Here are the uploaded files :wave:")
         );
 
