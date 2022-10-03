@@ -151,7 +151,8 @@
       "pref.ext_audit_log_retention_type_changed",
       "pref.ext_audit_log_retention_duration_changed",
       "domain_unverified",
-      "pref.canvas_changed"
+      "pref.canvas_changed",
+      "team_authorized_ip_range_set"
     ],
     "user": [
       "custom_tos_accepted",

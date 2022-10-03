@@ -163,6 +163,7 @@ public class Actions {
         public static final String team_unsupported_versions_start_failure = "team_unsupported_versions_start_failure";
         public static final String team_unsupported_versions_job_start = "team_unsupported_versions_job_start";
         public static final String team_unsupported_versions_job_end = "team_unsupported_versions_job_end";
+        public static final String team_authorized_ip_range_set = "team_authorized_ip_range_set";
     }
 
     public static class User {
