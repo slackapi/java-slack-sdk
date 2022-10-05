@@ -17,7 +17,14 @@
           "is_scim": false,
           "is_protected": false
         },
-        "section_id": ""
+        "section_id": "",
+        "permissions": {
+          "api": [
+            ""
+          ],
+          "ui": false,
+          "scim": false
+        }
       }
     ],
     "sections": [

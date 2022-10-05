@@ -39,6 +39,7 @@ public class Team {
         private ProfileOptions options;
         @SerializedName("is_hidden")
         private boolean hidden;
+        private ProfilePermissions permissions;
     }
 
     @Data
@@ -58,5 +59,12 @@ public class Team {
         public void setProtected(boolean isProtected) {
             this._protected = isProtected;
         }
+    }
+
+    @Data
+    public static class ProfilePermissions {
+        private List<String> api;
+        private boolean ui;
+        private boolean scim;
     }
 }

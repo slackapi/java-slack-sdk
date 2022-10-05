@@ -900,7 +900,9 @@ public class chat_Test {
         );
         assertThat(fileUpload.isOk(), is(true));
 
-        File.ShareDetail share = fileUpload.getFile().getShares().getPublicChannels().get(randomChannelId).get(0);
+        Thread.sleep(3000L); // for test stability
+        File.ShareDetail share = slack.methods(botToken).filesInfo(r -> r.file(fileUpload.getFile().getId()))
+                .getFile().getShares().getPublicChannels().get(randomChannelId).get(0);
         String permalink = slack.methods(botToken).chatGetPermalink(r -> r
                 .channel(randomChannelId)
                 .messageTs(share.getTs())
