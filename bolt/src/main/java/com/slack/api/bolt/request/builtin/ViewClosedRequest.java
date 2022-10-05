@@ -28,7 +28,13 @@ public class ViewClosedRequest extends Request<DefaultContext> {
         } else if (payload.getTeam() != null) {
             getContext().setEnterpriseId(payload.getTeam().getEnterpriseId());
         }
-        if (payload.getTeam() != null && payload.getTeam().getId() != null) {
+        if (payload.getView() != null && payload.getView().getAppInstalledTeamId() != null) {
+            // view_submission payloads can have `view.app_installed_team_id` when a modal view that was opened
+            // in a different workspace via some operations inside a Slack Connect channel.
+            // Note that the same for enterprise_id does not exist. When you need to know the enterprise_id as well,
+            // you have to run some query toward your InstallationStore to know the org where the team_id belongs to.
+            getContext().setTeamId(payload.getView().getAppInstalledTeamId());
+        } else if (payload.getTeam() != null && payload.getTeam().getId() != null) {
             getContext().setTeamId(payload.getTeam().getId());
         } else if (payload.getView() != null && payload.getView().getTeamId() != null) {
             getContext().setTeamId(payload.getView().getTeamId());
