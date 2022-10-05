@@ -1929,6 +1929,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public FilesUploadResponse filesUpload(FilesUploadRequest req) throws IOException, SlackApiException {
+        String warningMessage = "filesUpload may cause some issues like timeouts for relatively large files. " +
+                "Our latest recommendation is to use filesUploadV2, which is mostly compatible and much stabler, instead.";
+        log.warn(warningMessage);
         if (req.getFile() != null || req.getFileData() != null) {
             return postMultipartAndParseResponse(toMultipartBody(req), Methods.FILES_UPLOAD, getToken(req), FilesUploadResponse.class);
         } else {
