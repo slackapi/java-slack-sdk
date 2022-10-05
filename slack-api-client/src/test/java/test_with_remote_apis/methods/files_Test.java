@@ -6,10 +6,7 @@ import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatDeleteRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUpdateRequest;
-import com.slack.api.methods.request.files.FilesDeleteRequest;
-import com.slack.api.methods.request.files.FilesInfoRequest;
-import com.slack.api.methods.request.files.FilesRevokePublicURLRequest;
-import com.slack.api.methods.request.files.FilesSharedPublicURLRequest;
+import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
@@ -20,11 +17,14 @@ import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.users.UsersConversationsResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.ConversationType;
+import com.slack.api.util.http.SlackHttpClient;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.*;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.TestChannelGenerator;
 
@@ -33,6 +33,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -281,6 +283,80 @@ public class files_Test {
     }
 
     @Test
+    public void createLongTextFile_v2() throws IOException, SlackApiException {
+        File file = new File("src/test/resources/sample_long.txt");
+        com.slack.api.model.File fileObj;
+        {
+            FilesUploadV2Response response = slack.methods(botToken).filesUploadV2(r -> r
+                    .channel(channelId)
+                    .file(file)
+                    .filename("sample.txt")
+                    .initialComment("initial comment")
+                    .title("file title"));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            fileObj = response.getFile();
+
+            assertThat(fileObj.getTitle(), is("file title"));
+            assertThat(fileObj.getName(), is("sample.txt"));
+            assertThat(fileObj.getMimetype(), is(anyOf(is(""), is("text/plain")))); // only "text/plain" for legacy
+            assertThat(fileObj.getFiletype(), is(anyOf(is(""), is("text")))); // only "text" for legacy
+            assertThat(fileObj.getPrettyType(), is(anyOf(is(""), is("Plain Text")))); // only "Plain Text" for legacy
+            assertThat(fileObj.getSize(), is(19648));
+            assertThat(fileObj.isEditable(), is(true));
+
+            assertThat(fileObj.isPreviewTruncated(), is(true));
+            assertThat(fileObj.getLines(), is(182));
+            assertThat(fileObj.getLinesMore(), is(177));
+
+            // image related attributes should be null
+            assertThat(fileObj.getImageExifRotation(), is(nullValue()));
+            assertThat(fileObj.getPjpeg(), is(nullValue()));
+            assertThat(fileObj.getOriginalWidth(), is(nullValue()));
+            assertThat(fileObj.getThumb360Width(), is(nullValue()));
+            assertThat(fileObj.getThumb480Width(), is(nullValue()));
+            assertThat(fileObj.getOriginalHeight(), is(nullValue()));
+            assertThat(fileObj.getThumb360Height(), is(nullValue()));
+            assertThat(fileObj.getThumb480Height(), is(nullValue()));
+
+            assertThat(fileObj.getMode(), is("snippet"));
+            assertThat(fileObj.isHasRichPreview(), is(false));
+            assertThat(fileObj.isStarred(), is(false));
+            // this can be delayed
+            // assertThat(fileObj.isPublic(), is(true));
+            assertThat(fileObj.isPublicUrlShared(), is(false));
+
+            assertThat(fileObj.getChannels().size(), is(1));
+            assertThat(fileObj.getGroups().size(), is(0));
+            assertThat(fileObj.getIms().size(), is(0));
+
+            assertThat(fileObj.getShares(), is(notNullValue()));
+            assertThat(fileObj.getShares().getPublicChannels(), is(notNullValue()));
+            assertThat(fileObj.getShares().getPublicChannels().get(channelId), is(notNullValue()));
+
+            assertThat(fileObj.getShares().getPrivateChannels(), is(nullValue()));
+        }
+
+        {
+            ChatDeleteResponse response = slack.methods(botToken).chatDelete(r -> r
+                    .channel(channelId)
+                    .ts(fileObj
+                            .getShares()
+                            .getPublicChannels().get(channelId).get(0)
+                            .getTs())
+            );
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+
+        {
+            FilesDeleteResponse response = slack.methods(botToken).filesDelete(r -> r.file(fileObj.getId()));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+    }
+
+    @Test
     public void createImageFileAndComments() throws IOException, SlackApiException {
         File file = new File("src/test/resources/seratch.jpg");
         com.slack.api.model.File fileObj;
@@ -430,6 +506,56 @@ public class files_Test {
     }
 
     @Test
+    public void createFileForAThread_v2() throws IOException, SlackApiException {
+        TestChannelGenerator channelGenerator = new TestChannelGenerator(testConfig, userToken);
+        Conversation channel = channelGenerator.createNewPublicChannel("test" + System.currentTimeMillis());
+
+        try {
+            ChatPostMessageResponse postMessageResponse = slack.methods().chatPostMessage(r -> r
+                    .token(userToken)
+                    .channel(channel.getId())
+                    .text("This is a test message posted by unit tests for Java Slack SDK library")
+                    .replyBroadcast(false));
+            assertThat(postMessageResponse.getError(), is(nullValue()));
+            assertThat(postMessageResponse.isOk(), is(true));
+
+            ChatPostMessageResponse postThread1Response = slack.methods().chatPostMessage(r -> r
+                    .token(userToken)
+                    .channel(channel.getId())
+                    .threadTs(postMessageResponse.getTs())
+                    .text("[thread 1] This is a test message posted by unit tests for Java Slack SDK library")
+                    .replyBroadcast(false));
+            assertThat(postThread1Response.getError(), is(nullValue()));
+            assertThat(postThread1Response.isOk(), is(true));
+
+            File file = new File("src/test/resources/sample.txt");
+            com.slack.api.model.File fileObj;
+            {
+                FilesUploadV2Response response = slack.methods().filesUploadV2(r -> r
+                        .token(userToken)
+                        .file(file)
+                        .filename("sample.txt")
+                        .initialComment("initial comment")
+                        .title("file title")
+                        .threadTs(postThread1Response.getTs()));
+                assertThat(response.getError(), is(nullValue()));
+                assertThat(response.isOk(), is(true));
+                fileObj = response.getFile();
+            }
+
+            {
+                FilesInfoResponse response = slack.methods().filesInfo(r -> r
+                        .token(userToken)
+                        .file(fileObj.getId()));
+                assertThat(response.getError(), is(nullValue()));
+                assertThat(response.isOk(), is(true));
+            }
+        } finally {
+            channelGenerator.archiveChannel(channel);
+        }
+    }
+
+    @Test
     public void issue523_text() throws IOException, SlackApiException {
         MethodsClient slackMethods = slack.methods(userToken);
         File file = new File("src/test/resources/sample.txt");
@@ -453,6 +579,16 @@ public class files_Test {
         File file = new File("src/test/resources/sample.txt");
         byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
         FilesUploadResponse response = slackMethods.filesUpload(r -> r.fileData(fileData));
+        // assertThat(response.getError(), is("no_file_data"));
+        assertThat(response.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void issue523_text_no_filename_v2() throws IOException, SlackApiException {
+        MethodsClient slackMethods = slack.methods(userToken);
+        File file = new File("src/test/resources/sample.txt");
+        byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.fileData(fileData));
         // assertThat(response.getError(), is("no_file_data"));
         assertThat(response.getError(), is(nullValue()));
     }
@@ -592,6 +728,53 @@ public class files_Test {
         assertThat(replies.getMessages().get(1).getFile(), is(nullValue()));
     }
 
+    @Ignore // usually we don't run this test as it takes long
+    @Test
+    public void uploadInThreads_v2() throws Exception {
+        MethodsClient slackMethods = slack.methods(userToken);
+
+        ChatPostMessageResponse message = slackMethods.chatPostMessage(r -> r
+                .channel("#random")
+                .text("Uploading a file in thread..."));
+        assertThat(message.getError(), is(nullValue()));
+        String threadTs = message.getTs();
+        String channelId = message.getChannel();
+
+        FilesUploadV2Response upload1 = slackMethods.filesUploadV2(r -> r
+                .channel(channelId)
+                .threadTs(threadTs)
+                .content("in thread")
+        );
+        assertThat(upload1.getError(), is(nullValue()));
+
+        // To deal with the delay for reflecting shares on the server-side
+        Thread.sleep(10000L);
+        com.slack.api.model.File.ShareDetail share1 = slackMethods.filesInfo(r -> r.file(upload1.getFile().getId()))
+                .getFile().getShares().getPublicChannels().get(channelId).get(0);
+        assertThat(share1.getThreadTs(), is(threadTs));
+
+        FilesUploadV2Response upload2 = slackMethods.filesUploadV2(r -> r
+                .channel(channelId)
+                .threadTs(threadTs)
+                .file(new File("src/test/resources/sample.txt"))
+                .initialComment("test")
+                .filename("sample.txt")
+                .title("file title"));
+        assertThat(upload2.getError(), is(nullValue()));
+
+        // To deal with the delay for reflecting shares on the server-side
+        Thread.sleep(10000L);
+        com.slack.api.model.File.ShareDetail share2 = slackMethods.filesInfo(r -> r.file(upload2.getFile().getId()))
+                .getFile().getShares().getPublicChannels().get(channelId).get(0);
+        assertThat(share2.getThreadTs(), is(threadTs));
+
+        ConversationsRepliesResponse replies = slackMethods.conversationsReplies(r -> r
+                .channel(message.getChannel())
+                .ts(message.getTs()));
+        assertThat(replies.getError(), is(nullValue()));
+        assertThat(replies.getMessages().get(1).getFile(), is(nullValue()));
+    }
+
     @Test
     public void issue824_gif_files() throws IOException, SlackApiException {
         MethodsClient client = slack.methods(userToken);
@@ -599,6 +782,20 @@ public class files_Test {
         byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
         FilesUploadResponse upload = client.filesUpload(r -> r
                 .fileData(fileData).channels(Arrays.asList(channelId)));
+        assertThat(upload.getError(), is(nullValue()));
+        FilesListResponse files = client.filesList(r -> r.channel(channelId).count(1));
+        assertThat(files.getError(), is(nullValue()));
+        FilesInfoResponse fileInfo = client.filesInfo(r -> r.file(upload.getFile().getId()));
+        assertThat(fileInfo.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void issue824_gif_files_v2() throws IOException, SlackApiException {
+        MethodsClient client = slack.methods(userToken);
+        File file = new File("src/test/resources/slack-logo.gif");
+        byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
+        FilesUploadV2Response upload = client.filesUploadV2(r -> r
+                .fileData(fileData).channel(channelId));
         assertThat(upload.getError(), is(nullValue()));
         FilesListResponse files = client.filesList(r -> r.channel(channelId).count(1));
         assertThat(files.getError(), is(nullValue()));
@@ -635,4 +832,249 @@ public class files_Test {
         assertThat(replies.getError(), is(nullValue()));
     }
 
+    @Test
+    public void filesUploadV2_single_file() throws Exception {
+        loadRandomChannelId();
+        MethodsClient client = slack.methods(botToken);
+
+        File file1 = new File("src/test/resources/sample.txt");
+        FilesUploadV2Response response = client.filesUploadV2(r -> r
+                .file(file1)
+                .title("sample.txt")
+                .filename("sample.txt")
+                .snippetType("text")
+                .channel(randomChannelId)
+                .initialComment("Here you are :wave:")
+        );
+        assertThat(response.getError(), is(nullValue()));
+
+        List<String> expectedFileIds = response.getFiles().stream()
+                .map(a -> a.getId()).collect(Collectors.toList());
+
+        int count = 0;
+        ConversationsHistoryResponse history = null;
+        List<String> actualFileIds = null;
+        while (count < 10) {
+            count++;
+            history = client.conversationsHistory(r -> r
+                    .channel(randomChannelId)
+                    .limit(1)
+            );
+            if (history.getMessages().get(0).getFiles() != null) {
+                actualFileIds = history.getMessages().get(0).getFiles().stream()
+                        .map(a -> a.getId()).sorted().collect(Collectors.toList());
+                if (actualFileIds.stream().collect(Collectors.joining(","))
+                        .equals(expectedFileIds.stream().collect(Collectors.joining(",")))) {
+                    break;
+                }
+            }
+            Thread.sleep(3000L);
+        }
+        assertThat(history.getError(), is(nullValue()));
+        assertThat(history.getMessages().get(0).getFiles(), is(notNullValue()));
+        assertThat(actualFileIds, is(expectedFileIds));
+
+        FilesInfoResponse file1info = client.filesInfo(r -> r.file(response.getFile().getId()));
+        assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
+    }
+
+    @Test
+    public void filesUploadV2_two_files() throws Exception {
+        loadRandomChannelId();
+        MethodsClient client = slack.methods(botToken);
+
+        File file1 = new File("src/test/resources/sample.txt");
+        File file2 = new File("src/test/resources/seratch.jpg");
+
+        FilesUploadV2Response response = client.filesUploadV2(r -> r
+                .uploadFiles(Arrays.asList(
+                        FilesUploadV2Request.UploadFile.builder()
+                                .file(file1)
+                                .filename("sample.txt")
+                                .title("a")
+                                .snippetType("text")
+                                .build(),
+                        FilesUploadV2Request.UploadFile.builder()
+                                .file(file2)
+                                .filename("sample.jpg")
+                                .title("b")
+                                .altTxt("alt text 2")
+                                .build()
+                ))
+                .channel(randomChannelId)
+                .initialComment("Here are the uploaded files :wave:")
+        );
+
+        List<String> expectedFileIds = response.getFiles().stream()
+                .map(a -> a.getId()).sorted().collect(Collectors.toList());
+
+        int count = 0;
+        ConversationsHistoryResponse history = null;
+        List<String> actualFileIds = null;
+        while (count < 10) {
+            count++;
+            history = client.conversationsHistory(r -> r
+                    .channel(randomChannelId)
+                    .limit(1)
+            );
+            if (history.getMessages().get(0).getFiles() != null) {
+                actualFileIds = history.getMessages().get(0).getFiles().stream()
+                        .map(a -> a.getId()).sorted().collect(Collectors.toList());
+                if (actualFileIds.stream().collect(Collectors.joining(","))
+                        .equals(expectedFileIds.stream().collect(Collectors.joining(",")))) {
+                    break;
+                }
+            }
+            Thread.sleep(3000L);
+        }
+        assertThat(history.getError(), is(nullValue()));
+        assertThat(history.getMessages().get(0).getFiles(), is(notNullValue()));
+        assertThat(actualFileIds, is(expectedFileIds));
+        FilesInfoResponse file1info = client.filesInfo(r -> r.file(response.getFiles().get(0).getId()));
+        assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
+    }
+
+    @Test
+    public void filesUploadV2_manual_single_file() throws Exception {
+        loadRandomChannelId();
+        MethodsClient client = slack.methods(botToken);
+        OkHttpClient okHttpClient = SlackHttpClient.buildOkHttpClient(slack.getConfig());
+
+        File file1 = new File("src/test/resources/sample.txt");
+        byte[] bytes1 = Files.readAllBytes(file1.toPath());
+        FilesGetUploadURLExternalResponse file1Upload = client.filesGetUploadURLExternal(r -> r
+                .filename("sample.txt")
+                .length(bytes1.length)
+                .snippetType("text")
+        );
+        assertThat(file1Upload.getError(), is(nullValue()));
+
+        Response upload1Result = okHttpClient.newCall(new Request.Builder()
+                .url(file1Upload.getUploadUrl())
+                .post(RequestBody.create(bytes1))
+                .build()).execute();
+        assertThat(upload1Result.code(), is(200));
+        assertThat(upload1Result.body().string(), is("OK - 57"));
+
+        // Complete
+        List<FilesCompleteUploadExternalRequest.FileDetails> files = Arrays.asList(
+                FilesCompleteUploadExternalRequest.FileDetails.builder().id(file1Upload.getFileId()).title("a").build()
+        );
+        FilesCompleteUploadExternalResponse completion = client.filesCompleteUploadExternal(r -> r
+                .files(files)
+                .channelId(randomChannelId)
+                .initialComment("Here is the uploaded file :wave:")
+        );
+        assertThat(completion.getError(), is(nullValue()));
+
+        List<String> expectedFileIds = Arrays.asList(file1Upload.getFileId());
+
+        int count = 0;
+        ConversationsHistoryResponse history = null;
+        List<String> actualFileIds = null;
+        while (count < 10) {
+            count++;
+            history = client.conversationsHistory(r -> r
+                    .channel(randomChannelId)
+                    .limit(1)
+            );
+            if (history.getMessages().get(0).getFiles() != null) {
+                actualFileIds = history.getMessages().get(0).getFiles().stream()
+                        .map(a -> a.getId()).sorted().collect(Collectors.toList());
+                if (actualFileIds.stream().collect(Collectors.joining(","))
+                        .equals(expectedFileIds.stream().collect(Collectors.joining(",")))) {
+                    break;
+                }
+            }
+            Thread.sleep(3000L);
+        }
+        assertThat(history.getError(), is(nullValue()));
+        assertThat(history.getMessages().get(0).getFiles(), is(notNullValue()));
+        assertThat(actualFileIds, is(expectedFileIds));
+        FilesInfoResponse file1info = client.filesInfo(r -> r.file(file1Upload.getFileId()));
+        assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
+    }
+
+    @Test
+    public void filesUploadV2_manual_two_files() throws Exception {
+        loadRandomChannelId();
+        MethodsClient client = slack.methods(botToken);
+        OkHttpClient okHttpClient = SlackHttpClient.buildOkHttpClient(slack.getConfig());
+
+        // file 1
+        File file1 = new File("src/test/resources/sample.txt");
+        byte[] bytes1 = Files.readAllBytes(file1.toPath());
+        FilesGetUploadURLExternalResponse file1Upload = client.filesGetUploadURLExternal(r -> r
+                .filename("sample.txt")
+                .length(bytes1.length)
+                .snippetType("text")
+        );
+        assertThat(file1Upload.getError(), is(nullValue()));
+
+        Response upload1Result = okHttpClient.newCall(new Request.Builder()
+                .url(file1Upload.getUploadUrl())
+                .post(RequestBody.create(bytes1))
+                .build()).execute();
+        assertThat(upload1Result.code(), is(200));
+        assertThat(upload1Result.body().string(), is("OK - 57"));
+
+        // file 2
+        File file2 = new File("src/test/resources/seratch.jpg");
+        byte[] bytes2 = Files.readAllBytes(file2.toPath());
+        FilesGetUploadURLExternalResponse file2Upload = client.filesGetUploadURLExternal(r -> r
+                .filename("sample.jpg")
+                .length(bytes2.length)
+                .altTxt("alt text 2")
+        );
+        assertThat(file2Upload.getError(), is(nullValue()));
+
+        Response upload2Result = okHttpClient.newCall(new Request.Builder()
+                .url(file2Upload.getUploadUrl())
+                .post(RequestBody.create(bytes2))
+                .build()).execute();
+        assertThat(upload2Result.code(), is(200));
+        assertThat(upload2Result.body().string(), is("OK - 29720"));
+
+        // Complete
+        List<FilesCompleteUploadExternalRequest.FileDetails> files = Arrays.asList(
+                FilesCompleteUploadExternalRequest.FileDetails.builder().id(file1Upload.getFileId()).title("a").build(),
+                FilesCompleteUploadExternalRequest.FileDetails.builder().id(file2Upload.getFileId()).title("b").build()
+        );
+        FilesCompleteUploadExternalResponse completion = client.filesCompleteUploadExternal(r -> r
+                .files(files)
+                .channelId(randomChannelId)
+                .initialComment("Here are the uploaded files :wave:")
+        );
+        assertThat(completion.getError(), is(nullValue()));
+
+        List<String> expectedFileIds = Arrays.asList(
+                file1Upload.getFileId(),
+                file2Upload.getFileId()
+        ).stream().sorted().collect(Collectors.toList());
+
+        int count = 0;
+        ConversationsHistoryResponse history = null;
+        List<String> actualFileIds = null;
+        while (count < 10) {
+            count++;
+            history = client.conversationsHistory(r -> r
+                    .channel(randomChannelId)
+                    .limit(1)
+            );
+            if (history.getMessages().get(0).getFiles() != null) {
+                actualFileIds = history.getMessages().get(0).getFiles().stream()
+                        .map(a -> a.getId()).sorted().collect(Collectors.toList());
+                if (actualFileIds.stream().collect(Collectors.joining(","))
+                        .equals(expectedFileIds.stream().collect(Collectors.joining(",")))) {
+                    break;
+                }
+            }
+            Thread.sleep(3000L);
+        }
+        assertThat(history.getError(), is(nullValue()));
+        assertThat(history.getMessages().get(0).getFiles(), is(notNullValue()));
+        assertThat(actualFileIds, is(expectedFileIds));
+        FilesInfoResponse file1info = client.filesInfo(r -> r.file(file1Upload.getFileId()));
+        assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
+    }
 }

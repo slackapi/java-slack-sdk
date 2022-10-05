@@ -264,6 +264,11 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public SlackHttpClient getSlackHttpClient() {
+        return this.slackHttpClient;
+    }
+
+    @Override
     public String getEndpointUrlPrefix() {
         return endpointUrlPrefix;
     }
@@ -1924,6 +1929,9 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public FilesUploadResponse filesUpload(FilesUploadRequest req) throws IOException, SlackApiException {
+        String warningMessage = "filesUpload may cause some issues like timeouts for relatively large files. " +
+                "Our latest recommendation is to use filesUploadV2, which is mostly compatible and much stabler, instead.";
+        log.warn(warningMessage);
         if (req.getFile() != null || req.getFileData() != null) {
             return postMultipartAndParseResponse(toMultipartBody(req), Methods.FILES_UPLOAD, getToken(req), FilesUploadResponse.class);
         } else {
@@ -1934,6 +1942,66 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public FilesUploadResponse filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req) throws IOException, SlackApiException {
         return filesUpload(req.configure(FilesUploadRequest.builder()).build());
+    }
+
+    @Override
+    public FilesGetUploadURLExternalResponse filesGetUploadURLExternal(FilesGetUploadURLExternalRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.FILES_GET_UPLOAD_URL_EXTERNAL, getToken(req), FilesGetUploadURLExternalResponse.class);
+    }
+
+    @Override
+    public FilesGetUploadURLExternalResponse filesGetUploadURLExternal(RequestConfigurator<FilesGetUploadURLExternalRequest.FilesGetUploadURLExternalRequestBuilder> req) throws IOException, SlackApiException {
+        return filesGetUploadURLExternal(req.configure(FilesGetUploadURLExternalRequest.builder()).build());
+    }
+
+    @Override
+    public FilesCompleteUploadExternalResponse filesCompleteUploadExternal(FilesCompleteUploadExternalRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.FILES_COMPLETE_UPLOAD_EXTERNAL, getToken(req), FilesCompleteUploadExternalResponse.class);
+    }
+
+    @Override
+    public FilesCompleteUploadExternalResponse filesCompleteUploadExternal(RequestConfigurator<FilesCompleteUploadExternalRequest.FilesCompleteUploadExternalRequestBuilder> req) throws IOException, SlackApiException {
+        return filesCompleteUploadExternal(req.configure(FilesCompleteUploadExternalRequest.builder()).build());
+    }
+
+    @Override
+    public FilesUploadV2Response filesUploadV2(FilesUploadV2Request req) throws IOException, SlackApiException, SlackFilesUploadV2Exception {
+        try (FilesUploadV2Helper helper = new FilesUploadV2Helper(this)) {
+            List<FilesCompleteUploadExternalRequest.FileDetails> files = new ArrayList<>();
+            if (req.getUploadFiles() != null && req.getUploadFiles().size() > 0) {
+                // upload multiple files
+                for (FilesUploadV2Request.UploadFile uploadFile : req.getUploadFiles()) {
+                    String fileId = helper.uploadFile(req, uploadFile);
+
+                    FilesCompleteUploadExternalRequest.FileDetails file = new FilesCompleteUploadExternalRequest.FileDetails();
+                    file.setId(fileId);
+                    file.setTitle(uploadFile.getTitle());
+                    files.add(file);
+                }
+            } else {
+                FilesUploadV2Request.UploadFile uploadFile = new FilesUploadV2Request.UploadFile();
+                uploadFile.setFile(req.getFile());
+                uploadFile.setFileData(req.getFileData());
+                uploadFile.setContent(req.getContent());
+                uploadFile.setTitle(req.getTitle());
+                uploadFile.setAltTxt(req.getAltTxt());
+                uploadFile.setFilename(req.getFilename());
+                uploadFile.setSnippetType(req.getSnippetType());
+
+                String fileId = helper.uploadFile(req, uploadFile);
+
+                FilesCompleteUploadExternalRequest.FileDetails file = new FilesCompleteUploadExternalRequest.FileDetails();
+                file.setId(fileId);
+                file.setTitle(uploadFile.getTitle());
+                files.add(file);
+            }
+            return helper.completeUploads(req, files);
+        }
+    }
+
+    @Override
+    public FilesUploadV2Response filesUploadV2(RequestConfigurator<FilesUploadV2Request.FilesUploadV2RequestBuilder> req) throws IOException, SlackApiException {
+        return filesUploadV2(req.configure(FilesUploadV2Request.builder()).build());
     }
 
     @Override

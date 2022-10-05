@@ -369,7 +369,7 @@ public class JsonDataRecorder {
                     log.info("Failed to remove an existing element from comments", e);
                 }
                 array.add(gson.toJsonTree(ObjectInitializer.initProperties(new FileComment())));
-            } else if (name != null && name.equals("files")) {
+            } else if (name != null && name.equals("files") && !path.equals("/api/files.completeUploadExternal")) {
                 try {
                     for (int idx = 0; idx < array.size(); idx++) {
                         array.remove(idx);

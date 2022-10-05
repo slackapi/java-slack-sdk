@@ -11,6 +11,7 @@ import com.slack.api.methods.response.conversations.ConversationsHistoryResponse
 import com.slack.api.methods.response.conversations.ConversationsListResponse;
 import com.slack.api.methods.response.conversations.ConversationsMembersResponse;
 import com.slack.api.methods.response.files.FilesUploadResponse;
+import com.slack.api.methods.response.files.FilesUploadV2Response;
 import com.slack.api.model.*;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
@@ -871,6 +872,31 @@ public class chat_Test {
                 .content("This is a test")
                 .initialComment("Uploading a file...")
                 .channels(Arrays.asList(randomChannelId))
+        );
+        assertThat(fileUpload.isOk(), is(true));
+
+        File.ShareDetail share = fileUpload.getFile().getShares().getPublicChannels().get(randomChannelId).get(0);
+        String permalink = slack.methods(botToken).chatGetPermalink(r -> r
+                .channel(randomChannelId)
+                .messageTs(share.getTs())
+        ).getPermalink();
+
+        ChatPostMessageResponse message = slack.methods(botToken).chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .unfurlLinks(true)
+                .text("Here is the uploaded file: " + permalink)
+        );
+        assertThat(message.isOk(), is(true));
+    }
+
+    @Test
+    public void share_message_with_files_issue_647_v2() throws Exception {
+        loadRandomChannelId();
+
+        FilesUploadV2Response fileUpload = slack.methods(botToken).filesUploadV2(r -> r
+                .content("This is a test")
+                .initialComment("Uploading a file...")
+                .channel(randomChannelId)
         );
         assertThat(fileUpload.isOk(), is(true));
 

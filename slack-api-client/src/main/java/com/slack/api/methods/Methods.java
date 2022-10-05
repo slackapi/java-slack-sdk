@@ -402,6 +402,10 @@ public class Methods {
     public static final String FILES_SHARED_PUBLIC_URL = "files.sharedPublicURL";
     public static final String FILES_UPLOAD = "files.upload";
 
+    public static final String FILES_GET_UPLOAD_URL_EXTERNAL = "files.getUploadURLExternal";
+
+    public static final String FILES_COMPLETE_UPLOAD_EXTERNAL = "files.completeUploadExternal";
+
     // ------------------------------
     // files.remote
     // https://api.slack.com/messaging/files/remote
