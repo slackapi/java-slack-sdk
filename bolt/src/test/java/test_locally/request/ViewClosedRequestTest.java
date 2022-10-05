@@ -89,4 +89,88 @@ public class ViewClosedRequestTest {
         ViewClosedRequest req = new ViewClosedRequest("payload=" + URLEncoder.encode(orgWideInstallationPayload, "UTF-8"), orgWideInstallationPayload, headers);
         assertEquals("T_expected", req.getContext().getTeamId());
     }
+
+    String sharedChannelPayload = "{\n" +
+            "  \"type\": \"view_closed\",\n" +
+            "  \"team\": {\n" +
+            "    \"id\": \"T-other-side\",\n" +
+            "    \"domain\": \"other-side\",\n" +
+            "    \"enterprise_id\": \"E-other-side\",\n" +
+            "    \"enterprise_name\": \"Kaz Sandbox Org\"\n" +
+            "  },\n" +
+            "  \"user\": {\n" +
+            "    \"id\": \"W111\",\n" +
+            "    \"username\": \"kaz\",\n" +
+            "    \"name\": \"kaz\",\n" +
+            "    \"team_id\": \"T-other-side\"\n" +
+            "  },\n" +
+            "  \"api_app_id\": \"A1111\",\n" +
+            "  \"token\": \"legacy-fixed-token\",\n" +
+            "  \"trigger_id\": \"111.222.xxx\",\n" +
+            "  \"view\": {\n" +
+            "    \"id\": \"V11111\",\n" +
+            "    \"team_id\": \"T-other-side\",\n" +
+            "    \"type\": \"modal\",\n" +
+            "    \"blocks\": [\n" +
+            "      {\n" +
+            "        \"type\": \"input\",\n" +
+            "        \"block_id\": \"zniAM\",\n" +
+            "        \"label\": {\n" +
+            "          \"type\": \"plain_text\",\n" +
+            "          \"text\": \"Label\"\n" +
+            "        },\n" +
+            "        \"element\": {\n" +
+            "          \"type\": \"plain_text_input\",\n" +
+            "          \"dispatch_action_config\": {\n" +
+            "            \"trigger_actions_on\": [\n" +
+            "              \"on_enter_pressed\"\n" +
+            "            ]\n" +
+            "          },\n" +
+            "          \"action_id\": \"qEJr\"\n" +
+            "        }\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"private_metadata\": \"\",\n" +
+            "    \"callback_id\": \"view-id\",\n" +
+            "    \"state\": {\n" +
+            "      \"values\": {\n" +
+            "        \"zniAM\": {\n" +
+            "          \"qEJr\": {\n" +
+            "            \"type\": \"plain_text_input\",\n" +
+            "            \"value\": \"Hi there!\"\n" +
+            "          }\n" +
+            "        }\n" +
+            "      }\n" +
+            "    },\n" +
+            "    \"hash\": \"1664950703.CmTS8F7U\",\n" +
+            "    \"title\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"My App\"\n" +
+            "    },\n" +
+            "    \"close\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Cancel\"\n" +
+            "    },\n" +
+            "    \"submit\": {\n" +
+            "      \"type\": \"plain_text\",\n" +
+            "      \"text\": \"Submit\"\n" +
+            "    },\n" +
+            "    \"root_view_id\": \"V00000\",\n" +
+            "    \"app_id\": \"A1111\",\n" +
+            "    \"external_id\": \"\",\n" +
+            "    \"app_installed_team_id\": \"T-installed-workspace\",\n" +
+            "    \"bot_id\": \"B1111\"\n" +
+            "  },\n" +
+            "  \"enterprise\": {\n" +
+            "    \"id\": \"E-other-side\",\n" +
+            "    \"name\": \"Kaz Sandbox Org\"\n" +
+            "  }\n" +
+            "}\n";
+
+    @Test
+    public void sharedChannels() throws UnsupportedEncodingException {
+        RequestHeaders headers = new RequestHeaders(Collections.emptyMap());
+        ViewClosedRequest req = new ViewClosedRequest("payload=" + URLEncoder.encode(sharedChannelPayload, "UTF-8"), sharedChannelPayload, headers);
+        assertEquals("T-installed-workspace", req.getContext().getTeamId());
+    }
 }
