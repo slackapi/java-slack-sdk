@@ -175,14 +175,14 @@ public class ViewSubmissionRequestTest {
             "    \"id\": \"W111\",\n" +
             "    \"username\": \"primary-owner\",\n" +
             "    \"name\": \"primary-owner\",\n" +
-            "    \"team_id\": \"T_expected\"\n" +
+            "    \"team_id\": \"T_unexpected\"\n" +
             "  },\n" +
             "  \"api_app_id\": \"A111\",\n" +
             "  \"token\": \"fixed-value\",\n" +
             "  \"trigger_id\": \"1111.222.xxx\",\n" +
             "  \"view\": {\n" +
             "    \"id\": \"V111\",\n" +
-            "    \"team_id\": \"T_expected\",\n" +
+            "    \"team_id\": \"T_unexpected\",\n" +
             "    \"type\": \"modal\",\n" +
             "    \"blocks\": [\n" +
             "      {\n" +
@@ -238,7 +238,7 @@ public class ViewSubmissionRequestTest {
             "    \"root_view_id\": \"V111\",\n" +
             "    \"app_id\": \"A111\",\n" +
             "    \"external_id\": \"\",\n" +
-            "    \"app_installed_team_id\": \"E111\",\n" +
+            "    \"app_installed_team_id\": \"T_expected\",\n" +
             "    \"bot_id\": \"B111\"\n" +
             "  },\n" +
             "  \"response_urls\": [],\n" +

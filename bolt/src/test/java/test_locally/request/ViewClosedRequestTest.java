@@ -19,13 +19,13 @@ public class ViewClosedRequestTest {
             "    \"id\": \"W111\",\n" +
             "    \"username\": \"primary-owner\",\n" +
             "    \"name\": \"primary-owner\",\n" +
-            "    \"team_id\": \"T_expected\"\n" +
+            "    \"team_id\": \"T_unexpected\"\n" +
             "  },\n" +
             "  \"api_app_id\": \"A111\",\n" +
             "  \"token\": \"fixed-value\",\n" +
             "  \"view\": {\n" +
             "    \"id\": \"V111\",\n" +
-            "    \"team_id\": \"T_expected\",\n" +
+            "    \"team_id\": \"T_unexpected\",\n" +
             "    \"type\": \"modal\",\n" +
             "    \"blocks\": [\n" +
             "      {\n" +
@@ -72,7 +72,7 @@ public class ViewClosedRequestTest {
             "    \"root_view_id\": \"V111\",\n" +
             "    \"app_id\": \"A111\",\n" +
             "    \"external_id\": \"\",\n" +
-            "    \"app_installed_team_id\": \"E111\",\n" +
+            "    \"app_installed_team_id\": \"T_expected\",\n" +
             "    \"bot_id\": \"B0302M47727\"\n" +
             "  },\n" +
             "  \"is_cleared\": false,\n" +
