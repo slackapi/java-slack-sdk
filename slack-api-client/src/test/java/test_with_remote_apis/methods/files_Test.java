@@ -283,7 +283,7 @@ public class files_Test {
     }
 
     @Test
-    public void createLongTextFile_v2() throws IOException, SlackApiException {
+    public void createLongTextFile_v2() throws Exception {
         File file = new File("src/test/resources/sample_long.txt");
         com.slack.api.model.File fileObj;
         {
@@ -295,7 +295,10 @@ public class files_Test {
                     .title("file title"));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
-            fileObj = response.getFile();
+
+            Thread.sleep(3000L);
+
+            fileObj = slack.methods(botToken).filesInfo(r -> r.file(response.getFile().getId())).getFile();
 
             assertThat(fileObj.getTitle(), is("file title"));
             assertThat(fileObj.getName(), is("sample.txt"));
@@ -303,7 +306,7 @@ public class files_Test {
             assertThat(fileObj.getFiletype(), is(anyOf(is(""), is("text")))); // only "text" for legacy
             assertThat(fileObj.getPrettyType(), is(anyOf(is(""), is("Plain Text")))); // only "Plain Text" for legacy
             assertThat(fileObj.getSize(), is(19648));
-            // assertThat(fileObj.isEditable(), is(true));
+            assertThat(fileObj.isEditable(), is(true));
 
             assertThat(fileObj.isPreviewTruncated(), is(true));
             assertThat(fileObj.getLines(), is(182));
