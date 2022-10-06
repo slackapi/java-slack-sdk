@@ -1975,7 +1975,19 @@ public class MethodsClientImpl implements MethodsClient {
 
                     FilesCompleteUploadExternalRequest.FileDetails file = new FilesCompleteUploadExternalRequest.FileDetails();
                     file.setId(fileId);
-                    file.setTitle(uploadFile.getTitle());
+                    if (uploadFile.getTitle() != null) {
+                        file.setTitle(uploadFile.getTitle());
+                    } else {
+                        String filename = req.getFilename();
+                        if (filename == null) {
+                            if (req.getFile() != null && req.getFile().getName() != null) {
+                                filename = req.getFile().getName();
+                            } else {
+                                filename = "Uploaded file";
+                            }
+                        }
+                        file.setTitle(filename);
+                    }
                     files.add(file);
                 }
             } else {
@@ -1983,9 +1995,19 @@ public class MethodsClientImpl implements MethodsClient {
                 uploadFile.setFile(req.getFile());
                 uploadFile.setFileData(req.getFileData());
                 uploadFile.setContent(req.getContent());
-                uploadFile.setTitle(req.getTitle());
+
+                String filename = req.getFilename();
+                if (filename == null) {
+                    if (req.getFile() != null && req.getFile().getName() != null) {
+                        filename = req.getFile().getName();
+                    } else {
+                        filename = "Uploaded file";
+                    }
+                }
+                uploadFile.setFilename(filename);
+                uploadFile.setTitle(req.getTitle() != null ? req.getTitle() : filename);
+
                 uploadFile.setAltTxt(req.getAltTxt());
-                uploadFile.setFilename(req.getFilename());
                 uploadFile.setSnippetType(req.getSnippetType());
 
                 String fileId = helper.uploadFile(req, uploadFile);

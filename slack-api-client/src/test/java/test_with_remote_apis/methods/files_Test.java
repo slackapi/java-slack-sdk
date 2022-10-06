@@ -21,7 +21,10 @@ import com.slack.api.util.http.SlackHttpClient;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -288,20 +291,23 @@ public class files_Test {
         com.slack.api.model.File fileObj;
         {
             FilesUploadV2Response response = slack.methods(botToken).filesUploadV2(r -> r
-                    .channel(channelId)
-                    .file(file)
-                    .filename("sample.txt")
-                    .initialComment("initial comment")
-                    .title("file title"));
+                            .file(file)
+                            .channel(channelId)
+                            .initialComment("initial comment")
+                    // Enable the internal helper to use the file's name for both filename and title
+                    //.filename("sample.txt")
+                    // .title("file title")
+            );
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
 
-            Thread.sleep(3000L);
+            // I know this is a bit long but this can be necessary for test stability
+            Thread.sleep(10000L);
 
             fileObj = slack.methods(botToken).filesInfo(r -> r.file(response.getFile().getId())).getFile();
 
-            assertThat(fileObj.getTitle(), is("file title"));
-            assertThat(fileObj.getName(), is("sample.txt"));
+            assertThat(fileObj.getTitle(), is("sample_long.txt"));
+            assertThat(fileObj.getName(), is("sample_long.txt"));
             assertThat(fileObj.getMimetype(), is(anyOf(is(""), is("text/plain")))); // only "text/plain" for legacy
             assertThat(fileObj.getFiletype(), is(anyOf(is(""), is("text")))); // only "text" for legacy
             assertThat(fileObj.getPrettyType(), is(anyOf(is(""), is("Plain Text")))); // only "Plain Text" for legacy
@@ -329,13 +335,15 @@ public class files_Test {
             // assertThat(fileObj.isPublic(), is(true));
             assertThat(fileObj.isPublicUrlShared(), is(false));
 
-            assertThat(fileObj.getChannels().size(), is(1));
+            // this can be delayed
+            // assertThat(fileObj.getChannels().size(), is(1));
             assertThat(fileObj.getGroups().size(), is(0));
             assertThat(fileObj.getIms().size(), is(0));
 
             assertThat(fileObj.getShares(), is(notNullValue()));
-            assertThat(fileObj.getShares().getPublicChannels(), is(notNullValue()));
-            assertThat(fileObj.getShares().getPublicChannels().get(channelId), is(notNullValue()));
+            // this can be delayed
+            // assertThat(fileObj.getShares().getPublicChannels(), is(notNullValue()));
+            // assertThat(fileObj.getShares().getPublicChannels().get(channelId), is(notNullValue()));
 
             assertThat(fileObj.getShares().getPrivateChannels(), is(nullValue()));
         }
@@ -354,6 +362,41 @@ public class files_Test {
 
         {
             FilesDeleteResponse response = slack.methods(botToken).filesDelete(r -> r.file(fileObj.getId()));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+    }
+
+    @Test
+    public void createLongTextFile_v2_full_args() throws Exception {
+        File file = new File("src/test/resources/sample_long.txt");
+        com.slack.api.model.File fileObj;
+        {
+            FilesUploadV2Response response = slack.methods(botToken).filesUploadV2(r -> r
+                    .file(file)
+                    .channel(channelId)
+                    .initialComment("initial comment")
+                    .filename("sample.txt")
+                    .title("file title")
+            );
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+
+            // I know this is a bit long but this can be necessary for test stability
+            Thread.sleep(10000L);
+            fileObj = slack.methods(botToken).filesInfo(r -> r.file(response.getFile().getId())).getFile();
+
+            assertThat(fileObj.getTitle(), is("file title"));
+            assertThat(fileObj.getName(), is("sample.txt"));
+        }
+        {
+            ChatDeleteResponse response = slack.methods(botToken).chatDelete(r -> r
+                    .channel(channelId)
+                    .ts(fileObj
+                            .getShares()
+                            .getPublicChannels().get(channelId).get(0)
+                            .getTs())
+            );
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
