@@ -288,7 +288,8 @@ public class files_Test {
     @Test
     public void createLongTextFile_v2() throws Exception {
         File file = new File("src/test/resources/sample_long.txt");
-        com.slack.api.model.File fileObj;
+        com.slack.api.model.File fileObj = null;
+        String ts = null;
         {
             FilesUploadV2Response response = slack.methods(botToken).filesUploadV2(r -> r
                             .file(file)
@@ -301,8 +302,18 @@ public class files_Test {
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
 
+            fileObj = response.getFiles().get(0);
             // I know this is a bit long but this can be necessary for test stability
-            Thread.sleep(10000L);
+            ts = fileObj != null && fileObj.getShares().getPublicChannels() != null
+                    ? fileObj.getShares().getPublicChannels().get(channelId).get(0).getTs() : null;
+            while (ts == null) {
+                String fileId = fileObj.getId();
+                fileObj = slack.methods(botToken).filesInfo(r -> r.file(fileId)).getFile();
+                if (fileObj.getShares().getPublicChannels() != null) {
+                    ts = fileObj.getShares().getPublicChannels().get(channelId).get(0).getTs();
+                }
+                Thread.sleep(2000L);
+            }
 
             fileObj = slack.methods(botToken).filesInfo(r -> r.file(response.getFile().getId())).getFile();
 
@@ -349,19 +360,18 @@ public class files_Test {
         }
 
         {
+            final String _ts = ts;
             ChatDeleteResponse response = slack.methods(botToken).chatDelete(r -> r
                     .channel(channelId)
-                    .ts(fileObj
-                            .getShares()
-                            .getPublicChannels().get(channelId).get(0)
-                            .getTs())
+                    .ts(_ts)
             );
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }
 
         {
-            FilesDeleteResponse response = slack.methods(botToken).filesDelete(r -> r.file(fileObj.getId()));
+            String fileId = fileObj.getId();
+            FilesDeleteResponse response = slack.methods(botToken).filesDelete(r -> r.file(fileId));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
         }

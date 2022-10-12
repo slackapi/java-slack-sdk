@@ -34,5 +34,8 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> anomaly;
         @SerializedName("slack_cli")
         private List<String> slackCLI;
+        private List<String> subteam;
+        private List<String> role;
+        private List<String> accountTypeRole;
     }
 }

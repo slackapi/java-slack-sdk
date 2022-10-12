@@ -221,6 +221,24 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> roleNames = getAllPublicStaticFieldValues(Actions.Role.class);
+        for (String action : actions.getRole()) {
+            if (!roleNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
+        List<String> subteamNames = getAllPublicStaticFieldValues(Actions.Subteam.class);
+        for (String action : actions.getSubteam()) {
+            if (!subteamNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
+        List<String> accountTypeRoleNames = getAllPublicStaticFieldValues(Actions.AccountTypeRole.class);
+        for (String action : actions.getAccountTypeRole()) {
+            if (!accountTypeRoleNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test

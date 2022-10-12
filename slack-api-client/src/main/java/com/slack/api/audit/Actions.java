@@ -359,4 +359,39 @@ public class Actions {
 
         public static final String anomaly = "anomaly";
     }
+
+    public static class Role {
+        private Role() {
+        }
+
+        public static final String role_assigned = "role_assigned";
+        public static final String role_removed = "role_removed";
+    }
+
+    public static class Subteam {
+        private Subteam() {
+        }
+
+        public static final String user_added_to_usergroup = "user_added_to_usergroup";
+        public static final String user_removed_from_usergroup = "user_removed_from_usergroup";
+        public static final String default_channel_added_to_usergroup = "default_channel_added_to_usergroup";
+        public static final String default_channel_removed_from_usergroup = "default_channel_removed_from_usergroup";
+        public static final String role_added_to_usergroup = "role_added_to_usergroup";
+        public static final String role_removed_from_usergroup = "role_removed_from_usergroup";
+        public static final String role_modified_on_usergroup = "role_modified_on_usergroup";
+        public static final String usergroup_added_to_team = "usergroup_added_to_team";
+        public static final String usergroup_removed_from_team = "usergroup_removed_from_team";
+        public static final String usergroup_add_to_team_enqueued = "usergroup_add_to_team_enqueued";
+        public static final String usergroup_remove_from_team_enqueued = "usergroup_remove_from_team_enqueued";
+        public static final String usergroup_updated = "usergroup_updated";
+        public static final String usergroup_update_enqueued = "usergroup_update_enqueued";
+    }
+
+    public static class AccountTypeRole {
+        private AccountTypeRole() {
+        }
+
+        public static final String permissions_assigned = "permissions_assigned";
+        public static final String permissions_removed = "permissions_removed";
+    }
 }

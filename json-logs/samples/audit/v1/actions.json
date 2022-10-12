@@ -32,6 +32,15 @@
     ],
     "slack_cli": [
       ""
+    ],
+    "subteam": [
+      ""
+    ],
+    "role": [
+      ""
+    ],
+    "account_type_role": [
+      ""
     ]
   },
   "ok": false,

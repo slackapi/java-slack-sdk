@@ -306,6 +306,29 @@
       "cli_app_deploy",
       "cli_app_install",
       "cli_app_delete"
+    ],
+    "subteam": [
+      "user_added_to_usergroup",
+      "user_removed_from_usergroup",
+      "default_channel_added_to_usergroup",
+      "default_channel_removed_from_usergroup",
+      "role_added_to_usergroup",
+      "role_removed_from_usergroup",
+      "role_modified_on_usergroup",
+      "usergroup_added_to_team",
+      "usergroup_removed_from_team",
+      "usergroup_add_to_team_enqueued",
+      "usergroup_remove_from_team_enqueued",
+      "usergroup_updated",
+      "usergroup_update_enqueued"
+    ],
+    "role": [
+      "role_assigned",
+      "role_removed"
+    ],
+    "account_type_role": [
+      "permissions_assigned",
+      "permissions_removed"
     ]
   }
 }
