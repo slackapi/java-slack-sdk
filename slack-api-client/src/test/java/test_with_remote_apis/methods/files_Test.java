@@ -661,7 +661,7 @@ public class files_Test {
 
     @Test
     public void uploadAndPostMessage() throws IOException, SlackApiException, InterruptedException {
-        MethodsClient slackMethods = slack.methods(userToken);
+        MethodsClient slackMethods = slack.methods(botToken);
 
         ChatPostMessageResponse message = slackMethods.chatPostMessage(r -> r
                 .channel("#random")
@@ -673,7 +673,9 @@ public class files_Test {
 
         // Share the file in a private channel
         UsersConversationsResponse userPrivateChannels = slackMethods.usersConversations(r -> r
-                .types(Arrays.asList(ConversationType.PRIVATE_CHANNEL)));
+                .types(Arrays.asList(ConversationType.PRIVATE_CHANNEL))
+                .excludeArchived(true)
+        );
         assertThat(userPrivateChannels.getError(), is(nullValue()));
         assertThat(userPrivateChannels.getChannels().size(), is(greaterThan(0)));
 
