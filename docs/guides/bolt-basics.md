@@ -128,7 +128,7 @@ app.globalShortcut("callback-id", (req, ctx) -> {
 });
 ```
 
-If you want to take full control of the `ExecutorSerivce` to use, you don't need to use `app.executorService()`. You can go with the preferable way to manage asynchronous code execution for your app.
+If you want to take full control of the `ExecutorService` to use, you don't need to use `app.executorService()`. You can go with the preferable way to manage asynchronous code execution for your app.
 
 ---
 ## Respond to User Actions
