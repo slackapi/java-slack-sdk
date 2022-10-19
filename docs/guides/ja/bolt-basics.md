@@ -150,7 +150,7 @@ app.globalShortcut("callback-id", (req, ctx) -> {
 });
 ```
 
-もし利用する `ExecutorSerivce` を完全に制御したいという場合は `app.executorService()` を使う必要はありません。
+もし利用する `ExecutorService` を完全に制御したいという場合は `app.executorService()` を使う必要はありません。
 代わりにあなたのアプリにとって非同期でコードを実行するための望ましいやり方で対応できます。
 
 ---
