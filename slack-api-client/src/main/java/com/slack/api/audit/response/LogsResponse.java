@@ -237,6 +237,8 @@ public class LogsResponse implements AuditApiResponse {
         private FeatureEnablement enableAtHere; // channel_posting_permissions_updated
         private FeatureEnablement enableAtChannel; // channel_posting_permissions_updated
         private FeatureEnablement canHuddle; // channel_posting_permissions_updated
+        private String urlPrivate; // file_shared
+        private SharedWith sharedWith; // file_shared
     }
 
     @Data
@@ -302,6 +304,11 @@ public class LogsResponse implements AuditApiResponse {
     @Data
     public static class FeatureEnablement {
         private Boolean enabled;
+    }
+
+    @Data
+    public static class SharedWith {
+        private String channelId;
     }
 
 }

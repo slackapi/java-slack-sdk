@@ -258,6 +258,10 @@
         },
         "can_huddle": {
           "enabled": false
+        },
+        "url_private": "",
+        "shared_with": {
+          "channel_id": ""
         }
       }
     }

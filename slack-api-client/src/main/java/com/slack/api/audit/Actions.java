@@ -293,6 +293,7 @@ public class Actions {
         public static final String org_app_future_workspace_install_enabled = "org_app_future_workspace_install_enabled";
         public static final String org_app_future_workspace_install_disabled = "org_app_future_workspace_install_disabled";
         public static final String org_app_upgraded_to_org_install = "org_app_upgraded_to_org_install";
+        public static final String app_allowlist_rule_matched = "app_allowlist_rule_matched";
     }
 
     public static class Message {

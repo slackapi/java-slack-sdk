@@ -265,7 +265,8 @@
       "org_app_uninstalled",
       "org_app_future_workspace_install_enabled",
       "org_app_future_workspace_install_disabled",
-      "org_app_upgraded_to_org_install"
+      "org_app_upgraded_to_org_install",
+      "app_allowlist_rule_matched"
     ],
     "workflow_builder": [
       "workflow_created",
