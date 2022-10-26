@@ -152,7 +152,8 @@
       "pref.ext_audit_log_retention_duration_changed",
       "domain_unverified",
       "pref.canvas_changed",
-      "team_authorized_ip_range_set"
+      "team_authorized_ip_range_set",
+      "pref.required_minimum_desktop_version_changed"
     ],
     "user": [
       "custom_tos_accepted",

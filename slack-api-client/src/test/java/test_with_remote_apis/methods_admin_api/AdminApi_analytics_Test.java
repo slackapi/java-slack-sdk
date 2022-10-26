@@ -53,7 +53,7 @@ public class AdminApi_analytics_Test {
     public void getFile_member_forEach() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
-                    .date("2020-10-20")
+                    .date("2022-10-20")
                     .type("member")
             ).get();
             assertNull(response.getError());
@@ -86,7 +86,7 @@ public class AdminApi_analytics_Test {
     public void getFile_member_forEach_validation() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
-                    .date("2020-10-20")
+                    .date("2022-10-20")
                     .type("member")
             ).get();
             assertNull(response.getError());
@@ -105,7 +105,7 @@ public class AdminApi_analytics_Test {
     public void getFile_member_asBytes() throws Exception {
         if (orgAdminUserToken != null) {
             AdminAnalyticsGetFileResponse response = methodsAsync.adminAnalyticsGetFile(r -> r
-                    .date("2020-10-20")
+                    .date("2022-10-20")
                     .type("member")
             ).get();
             assertNotNull(response.getFileStream());
