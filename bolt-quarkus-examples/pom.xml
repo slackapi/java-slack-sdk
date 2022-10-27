@@ -19,7 +19,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>2.12.0.Final</quarkus.platform.version>
+        <quarkus.platform.version>2.13.3.Final</quarkus.platform.version>
         <mutiny.version>1.6.0</mutiny.version>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
     </properties>
@@ -73,6 +73,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-undertow</artifactId>
             <version>${quarkus.platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-slf4j-v2.version}</version>
         </dependency>
     </dependencies>
 
