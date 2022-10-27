@@ -72,8 +72,16 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
                 return DatePickerElement.class;
             case TimePickerElement.TYPE:
                 return TimePickerElement.class;
+            case DatetimePickerElement.TYPE:
+                return DatetimePickerElement.class;
             case PlainTextInputElement.TYPE:
                 return PlainTextInputElement.class;
+            case URLTextInputElement.TYPE:
+                return URLTextInputElement.class;
+            case EmailTextInputElement.TYPE:
+                return EmailTextInputElement.class;
+            case NumberInputElement.TYPE:
+                return NumberInputElement.class;
             case RichTextSectionElement.TYPE:
                 return RichTextSectionElement.class;
             case RichTextListElement.TYPE:

@@ -82,4 +82,16 @@ public class BlocksTest {
                 .elements(asElements(button(b -> b.value("v"))))
         ), is(notNullValue()));
     }
+
+    @Test
+    public void testDateTimePicker() {
+        assertThat(datetimePicker(h -> h.actionId("block-id").initialDateTime(12345)), is(notNullValue()));
+    }
+
+    @Test
+    public void testNewTextInputs() {
+        assertThat(emailTextInput(h -> h.actionId("block-id").initialValue("foo@example.com")), is(notNullValue()));
+        assertThat(urlTextInput(h -> h.actionId("block-id").initialValue("https:/www.example.com")), is(notNullValue()));
+        assertThat(numberInput(h -> h.actionId("block-id").initialValue("12345")), is(notNullValue()));
+    }
 }

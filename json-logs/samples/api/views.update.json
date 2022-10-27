@@ -417,6 +417,51 @@
           "emoji": false
         },
         "element": {
+          "type": "datetimepicker",
+          "action_id": "",
+          "initial_date_time": 123,
+          "confirm": {
+            "title": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "text": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "confirm": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "deny": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "style": ""
+          },
+          "focus_on_load": false
+        },
+        "dispatch_action": false,
+        "hint": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "optional": false
+      },
+      {
+        "type": "input",
+        "block_id": "",
+        "label": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "element": {
           "type": "external_select",
           "placeholder": {
             "type": "plain_text",
@@ -1067,6 +1112,35 @@
             },
             "initial_time": "",
             "timezone": "",
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "focus_on_load": false
+          },
+          {
+            "type": "datetimepicker",
+            "action_id": "",
+            "initial_date_time": 123,
             "confirm": {
               "title": {
                 "type": "plain_text",

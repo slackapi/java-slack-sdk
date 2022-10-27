@@ -11,8 +11,7 @@ import org.junit.Test;
 
 import java.util.stream.Collectors;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ViewSubmissionPayloadTest {
@@ -334,5 +333,71 @@ public class ViewSubmissionPayloadTest {
                 .get("time-block").get("time-action");
         assertThat(timeStateValue.getSelectedTime(), is("03:00"));
         assertThat(timeStateValue.getTimezone(), is("America/Los_Angeles"));
+    }
+
+    @Test
+    public void inputElementsAddedInOctober2022() {
+        String jsonData = "{\n" +
+                "  \"values\": {\n" +
+                "    \"agenda-block\": {\n" +
+                "      \"agenda-action\": {\n" +
+                "        \"type\": \"plain_text_input\",\n" +
+                "        \"value\": \"test\"\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"email-block\": {\n" +
+                "      \"email-action\": {\n" +
+                "        \"type\": \"email_text_input\",\n" +
+                "        \"value\": \"foo@example.com\"\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"url-block\": {\n" +
+                "      \"url-action\": {\n" +
+                "        \"type\": \"url_text_input\",\n" +
+                "        \"value\": \"https://www.example.com/\"\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"number-block\": {\n" +
+                "      \"number-action\": {\n" +
+                "        \"type\": \"number_input\",\n" +
+                "        \"value\": \"12345\"\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"date-block\": {\n" +
+                "      \"date-action\": {\n" +
+                "        \"type\": \"datepicker\",\n" +
+                "        \"selected_date\": \"2022-10-19\"\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"time-block\": {\n" +
+                "      \"time-action\": {\n" +
+                "        \"type\": \"timepicker\",\n" +
+                "        \"selected_time\": \"01:00\",\n" +
+                "        \"timezone\": \"America/Los_Angeles\"\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"date-time-block\": {\n" +
+                "      \"date-time-action\": {\n" +
+                "        \"type\": \"datetimepicker\",\n" +
+                "        \"selected_date_time\": 1666869900\n" +
+                "      }\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
+        ViewState stateValues = gson.fromJson(jsonData, ViewState.class);
+        assertThat(stateValues, is(notNullValue()));
+        assertThat(
+                stateValues.getValues().get("url-block").get("url-action").getValue(),
+                is("https://www.example.com/"));
+        assertThat(
+                stateValues.getValues().get("email-block").get("email-action").getValue(),
+                is("foo@example.com"));
+        assertThat(
+                stateValues.getValues().get("number-block").get("number-action").getValue(),
+                is("12345"));
+        assertThat(
+                stateValues.getValues().get("date-time-block").get("date-time-action").getSelectedDateTime(),
+                is(1666869900));
+
     }
 }
