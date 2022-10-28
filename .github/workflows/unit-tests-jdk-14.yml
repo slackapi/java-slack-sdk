@@ -28,6 +28,4 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        dry_run: true
-        verbose: true
         fail_ci_if_error: true
