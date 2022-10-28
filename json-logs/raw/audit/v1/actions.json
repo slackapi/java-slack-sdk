@@ -197,7 +197,9 @@
       "file_shared",
       "file_downloaded_blocked",
       "file_malicious_content_detected",
-      "file_deleted"
+      "file_deleted",
+      "file_upload_blocked_by_type",
+      "file_share_blocked_by_type"
     ],
     "channel": [
       "user_channel_join",
@@ -267,7 +269,10 @@
       "org_app_future_workspace_install_enabled",
       "org_app_future_workspace_install_disabled",
       "org_app_upgraded_to_org_install",
-      "app_allowlist_rule_matched"
+      "app_allowlist_rule_matched",
+      "app_datastore_created",
+      "app_datastore_updated",
+      "app_datastore_deleted"
     ],
     "workflow_builder": [
       "workflow_created",

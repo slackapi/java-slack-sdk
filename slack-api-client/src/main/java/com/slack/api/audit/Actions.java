@@ -217,6 +217,8 @@ public class Actions {
         public static final String file_downloaded_blocked = "file_downloaded_blocked";
         public static final String file_malicious_content_detected = "file_malicious_content_detected";
         public static final String file_deleted = "file_deleted";
+        public static final String file_upload_blocked_by_type = "file_upload_blocked_by_type";
+        public static final String file_share_blocked_by_type = "file_share_blocked_by_type";
     }
 
     public static class Channel {
@@ -282,6 +284,9 @@ public class Actions {
         public static final String app_approved = "app_approved";
         public static final String app_resources_granted = "app_resources_granted";
         public static final String app_token_preserved = "app_token_preserved";
+        public static final String app_datastore_created = "app_datastore_created";
+        public static final String app_datastore_updated = "app_datastore_updated";
+        public static final String app_datastore_deleted = "app_datastore_deleted";
         public static final String workflow_app_token_preserved = "workflow_app_token_preserved";
         public static final String bot_token_upgraded = "bot_token_upgraded";
         public static final String bot_token_downgraded = "bot_token_downgraded";
