@@ -19,6 +19,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: ${{ matrix.java-version }}
+        distribution: 'adopt'
     - name: Run all tests
       run: |
         if [ ${{ matrix.java-version }} == "8" ]; then

@@ -19,6 +19,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: ${{ matrix.java-version }}
+        distribution: 'adopt'
     - name: Run all tests
       run: |
         ./scripts/run_no_prep_tests.sh -ci
