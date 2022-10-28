@@ -27,7 +27,7 @@ then
     -pl !bolt-jakarta-jetty \
     clean \
     test-compile \
-    '-Dtest=test_locally.**.*Test' test \
+    '-Dtest=test_locally.**.*Test' test ${CI_OPTIONS}\
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
