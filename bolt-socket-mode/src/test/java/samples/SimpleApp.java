@@ -71,6 +71,21 @@ public class SimpleApp {
                                             .label(plainText(pt -> pt.text("Detailed Agenda").emoji(true)))
                                     ),
                                     input(input -> input
+                                            .blockId("email-block")
+                                            .element(emailTextInput(pti -> pti.actionId("email-action")))
+                                            .label(plainText(pt -> pt.text("Email Address").emoji(true)))
+                                    ),
+                                    input(input -> input
+                                            .blockId("url-block")
+                                            .element(urlTextInput(pti -> pti.actionId("url-action")))
+                                            .label(plainText(pt -> pt.text("URL").emoji(true)))
+                                    ),
+                                    input(input -> input
+                                            .blockId("number-block")
+                                            .element(numberInput(pti -> pti.actionId("number-action")))
+                                            .label(plainText(pt -> pt.text("Budget").emoji(true)))
+                                    ),
+                                    input(input -> input
                                             .blockId("date-block")
                                             .element(datePicker(pti -> pti.actionId("date-action")))
                                             .label(plainText(pt -> pt.text("Date").emoji(true)))
@@ -79,6 +94,11 @@ public class SimpleApp {
                                             .blockId("time-block")
                                             .element(timePicker(pti -> pti.actionId("time-action").timezone("America/Los_Angeles")))
                                             .label(plainText(pt -> pt.text("Time").emoji(true)))
+                                    ),
+                                    input(input -> input
+                                            .blockId("date-time-block")
+                                            .element(datetimePicker(pti -> pti.actionId("date-time-action")))
+                                            .label(plainText(pt -> pt.text("Date Time").emoji(true)))
                                     )
                             ))
                     )));

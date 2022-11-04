@@ -403,6 +403,35 @@
           "focus_on_load": false
         },
         {
+          "type": "datetimepicker",
+          "action_id": "",
+          "initial_date_time": 123,
+          "confirm": {
+            "title": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "text": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "confirm": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "deny": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "style": ""
+          },
+          "focus_on_load": false
+        },
+        {
           "type": "external_select",
           "placeholder": {
             "type": "plain_text",
@@ -2885,6 +2914,56 @@
         }
       ],
       "accessory": {
+        "type": "datetimepicker",
+        "action_id": "",
+        "initial_date_time": 123,
+        "confirm": {
+          "title": {
+            "type": "plain_text",
+            "text": "",
+            "emoji": false
+          },
+          "text": {
+            "type": "plain_text",
+            "text": "",
+            "emoji": false
+          },
+          "confirm": {
+            "type": "plain_text",
+            "text": "",
+            "emoji": false
+          },
+          "deny": {
+            "type": "plain_text",
+            "text": "",
+            "emoji": false
+          },
+          "style": ""
+        },
+        "focus_on_load": false
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "plain_text",
+        "text": "",
+        "emoji": false
+      },
+      "block_id": "",
+      "fields": [
+        {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        {
+          "type": "mrkdwn",
+          "text": "",
+          "verbatim": false
+        }
+      ],
+      "accessory": {
         "type": "external_select",
         "placeholder": {
           "type": "plain_text",
@@ -3889,6 +3968,35 @@
               },
               "initial_time": "",
               "timezone": "",
+              "confirm": {
+                "title": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "confirm": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "deny": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "style": ""
+              },
+              "focus_on_load": false
+            },
+            {
+              "type": "datetimepicker",
+              "action_id": "",
+              "initial_date_time": 123,
               "confirm": {
                 "title": {
                   "type": "plain_text",
@@ -6350,6 +6458,56 @@
             },
             "initial_time": "",
             "timezone": "",
+            "confirm": {
+              "title": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "text": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "confirm": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "deny": {
+                "type": "plain_text",
+                "text": "",
+                "emoji": false
+              },
+              "style": ""
+            },
+            "focus_on_load": false
+          }
+        },
+        {
+          "type": "section",
+          "text": {
+            "type": "plain_text",
+            "text": "",
+            "emoji": false
+          },
+          "block_id": "",
+          "fields": [
+            {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            {
+              "type": "mrkdwn",
+              "text": "",
+              "verbatim": false
+            }
+          ],
+          "accessory": {
+            "type": "datetimepicker",
+            "action_id": "",
+            "initial_date_time": 123,
             "confirm": {
               "title": {
                 "type": "plain_text",

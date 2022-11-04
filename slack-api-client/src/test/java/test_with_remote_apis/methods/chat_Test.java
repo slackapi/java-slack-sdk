@@ -34,7 +34,7 @@ import static com.slack.api.model.Attachments.attachment;
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
-import static com.slack.api.model.block.element.BlockElements.timePicker;
+import static com.slack.api.model.block.element.BlockElements.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
@@ -1017,4 +1017,19 @@ public class chat_Test {
         // invalid_blocks means you do not have links.embed:write permission
         assertThat(response.getError(), is(nullValue()));
     }
+
+    @Test
+    public void post_message_with_datetimepicker() throws Exception {
+        loadRandomChannelId();
+
+        ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(r -> r.channel(randomChannelId)
+                .blocks(asBlocks(
+                        actions(a -> a.blockId("b").elements(asElements(
+                                datetimePicker(dt -> dt.actionId("a"))
+                        )))
+                ))
+        );
+        assertThat(response.getError(), is(nullValue()));
+    }
+
 }

@@ -47,6 +47,18 @@ public class BlockElements {
         return configurator.configure(PlainTextInputElement.builder()).build();
     }
 
+    public static EmailTextInputElement emailTextInput(ModelConfigurator<EmailTextInputElement.EmailTextInputElementBuilder> configurator) {
+        return configurator.configure(EmailTextInputElement.builder()).build();
+    }
+
+    public static URLTextInputElement urlTextInput(ModelConfigurator<URLTextInputElement.URLTextInputElementBuilder> configurator) {
+        return configurator.configure(URLTextInputElement.builder()).build();
+    }
+
+    public static NumberInputElement numberInput(ModelConfigurator<NumberInputElement.NumberInputElementBuilder> configurator) {
+        return configurator.configure(NumberInputElement.builder()).build();
+    }
+
     // DatePickerElement
 
     public static DatePickerElement datePicker(ModelConfigurator<DatePickerElement.DatePickerElementBuilder> configurator) {
@@ -57,6 +69,12 @@ public class BlockElements {
 
     public static TimePickerElement timePicker(ModelConfigurator<TimePickerElement.TimePickerElementBuilder> configurator) {
         return configurator.configure(TimePickerElement.builder()).build();
+    }
+
+    // DatetimePickerElement
+
+    public static DatetimePickerElement datetimePicker(ModelConfigurator<DatetimePickerElement.DatetimePickerElementBuilder> configurator) {
+        return configurator.configure(DatetimePickerElement.builder()).build();
     }
 
     // ImageElement
@@ -149,6 +167,7 @@ public class BlockElements {
     // ------------------------------------------------
 
     // RichTextListElement
+
     /**
      * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
      */

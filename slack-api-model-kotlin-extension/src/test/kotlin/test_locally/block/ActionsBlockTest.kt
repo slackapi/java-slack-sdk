@@ -178,6 +178,11 @@ class ActionsBlockTest {
                         deny("No, I can't make it.")
                     }
                 }
+                datetimePicker {
+                    actionId("datetimepick-appt")
+                    initialDateTime(12345)
+                }
+
                 externalSelect {
                     actionId("appointment-time-select")
                     placeholder("Please select your appointment time...")
@@ -342,6 +347,11 @@ class ActionsBlockTest {
                           "text": "No, I can\u0027t make it."
                         }
                       }
+                    },
+                    {
+                      "type": "datetimepicker",
+                      "action_id": "datetimepick-appt",
+                      "initial_date_time": 12345
                     },
                     {
                       "type": "external_select",

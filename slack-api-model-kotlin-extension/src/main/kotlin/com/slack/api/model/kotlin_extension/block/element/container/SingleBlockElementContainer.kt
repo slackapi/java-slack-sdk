@@ -35,6 +35,10 @@ class SingleBlockElementContainer : BlockElementDsl {
         underlying = TimePickerElementBuilder().apply(builder).build()
     }
 
+    override fun datetimePicker(builder: DatetimePickerElementBuilder.() -> Unit) {
+        underlying = DatetimePickerElementBuilder().apply(builder).build()
+    }
+
     override fun externalSelect(builder: ExternalSelectElementBuilder.() -> Unit) {
         underlying = ExternalSelectElementBuilder().apply(builder).build()
     }
@@ -76,6 +80,18 @@ class SingleBlockElementContainer : BlockElementDsl {
 
     override fun plainTextInput(builder: PlainTextInputElementBuilder.() -> Unit) {
         underlying = PlainTextInputElementBuilder().apply(builder).build()
+    }
+
+    override fun urlTextInput(builder: URLTextInputElementBuilder.() -> Unit) {
+        underlying = URLTextInputElementBuilder().apply(builder).build()
+    }
+
+    override fun emailTextInput(builder: EmailTextInputElementBuilder.() -> Unit) {
+        underlying = EmailTextInputElementBuilder().apply(builder).build()
+    }
+
+    override fun numberInput(builder: NumberInputElementBuilder.() -> Unit) {
+        underlying = NumberInputElementBuilder().apply(builder).build()
     }
 
     override fun radioButtons(builder: RadioButtonsElementBuilder.() -> Unit) {

@@ -41,6 +41,12 @@ interface BlockElementInputDsl {
     fun timePicker(builder: TimePickerElementBuilder.() -> Unit)
 
     /**
+     * @see <a href="https://api.slack.com/interactivity/handling">Enabling interactivity guide</a>
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#datetimepicker">Date time picker element documentation</a>
+     */
+    fun datetimePicker(builder: DatetimePickerElementBuilder.() -> Unit)
+
+    /**
      * This select menu will load its options from an external data source, allowing for a dynamic list of options.
      *
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_select">External select element documentation</a>
@@ -93,6 +99,24 @@ interface BlockElementInputDsl {
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#input">Plain text input documentation</a>
      */
     fun plainTextInput(builder: PlainTextInputElementBuilder.() -> Unit)
+
+    /**
+     * @see <a href="https://api.slack.com/surfaces/modals/using#preparing_for_modals">Preparing your app for modals guide</a>
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#url">Documentation</a>
+     */
+    fun urlTextInput(builder: URLTextInputElementBuilder.() -> Unit)
+
+    /**
+     * @see <a href="https://api.slack.com/surfaces/modals/using#preparing_for_modals">Preparing your app for modals guide</a>
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#email">Documentation</a>
+     */
+    fun emailTextInput(builder: EmailTextInputElementBuilder.() -> Unit)
+
+    /**
+     * @see <a href="https://api.slack.com/surfaces/modals/using#preparing_for_modals">Preparing your app for modals guide</a>
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#number">Documentation</a>
+     */
+    fun numberInput(builder: NumberInputElementBuilder.() -> Unit)
 
     /**
      * This is the simplest form of select menu, with a static list of options passed in when defining the element.
