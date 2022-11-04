@@ -119,6 +119,7 @@ public class User {
             private String emojiName;
             private String displayAlias;
             private String displayUrl;
+            private String unicode;
         }
 
         private Map<String, Field> fields;
