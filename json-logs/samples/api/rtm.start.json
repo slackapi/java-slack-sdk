@@ -6063,7 +6063,8 @@
           {
             "emoji_name": "",
             "display_alias": "",
-            "display_url": ""
+            "display_url": "",
+            "unicode": ""
           }
         ],
         "status_expiration": 12345,

@@ -42,7 +42,8 @@
         {
           "emoji_name": "",
           "display_alias": "",
-          "display_url": ""
+          "display_url": "",
+          "unicode": ""
         }
       ],
       "huddle_state": "",
