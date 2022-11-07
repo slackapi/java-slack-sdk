@@ -28,9 +28,24 @@ public class UnknownPropertyDetectionAdapterFactory implements TypeAdapterFactor
 
             try {
                 // Get reference to the existing boundFields.
-                Field f = delegate.getClass().getDeclaredField("boundFields");
-                f.setAccessible(true);
-                Map boundFields = (Map) f.get(delegate);
+                Class<?> adaptorClass = delegate.getClass();
+                Field boundFieldsField = null;
+                while (boundFieldsField == null && !adaptorClass.equals(Object.class)) {
+                    try {
+                        boundFieldsField = adaptorClass.getDeclaredField("boundFields");
+                    } catch (NoSuchFieldException _ignore) {
+                        // Since GSON v3.10, the internal class hierarchy has been changed
+                        // 1) com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$FieldReflectionAdapter
+                        // 2) com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter
+                        adaptorClass = adaptorClass.getSuperclass();
+                    }
+                }
+                if (boundFieldsField == null) {
+                    String message = "Failed to find bound fields inside GSON";
+                    throw new IllegalStateException(message);
+                }
+                boundFieldsField.setAccessible(true);
+                Map boundFields = (Map) boundFieldsField.get(delegate);
                 StringBuilder sb = new StringBuilder();
                 for (Object key : boundFields.keySet()) {
                     sb.append(key + ", ");
@@ -53,7 +68,7 @@ public class UnknownPropertyDetectionAdapterFactory implements TypeAdapterFactor
 
                 };
                 // Finally, push our custom map back using reflection.
-                f.set(delegate, boundFields);
+                boundFieldsField.set(delegate, boundFields);
 
             } catch (Exception e) {
                 // Should never happen if the implementation doesn't change.

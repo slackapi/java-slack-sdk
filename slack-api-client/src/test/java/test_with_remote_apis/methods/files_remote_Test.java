@@ -232,7 +232,7 @@ public class files_remote_Test {
         boolean found = false;
         String query = externalId + ": Seamlessly start a voice call";
         long millis = 0;
-        while (!found && millis < 30 * 1000) {
+        while (!found && millis < 60 * 1000) {
             Thread.sleep(500);
             millis += 500;
             SearchFilesResponse searchResults = slack.methods(userToken).searchFiles(r -> r.query(query));
