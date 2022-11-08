@@ -24,6 +24,7 @@ public class Conversation {
     private String id;
     private String name;
     private Integer created;
+    private Long updated; // this property can return long value
     private String creator;
     private Integer unlinked;
     @SerializedName("name_normalized")

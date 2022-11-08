@@ -42,7 +42,8 @@
     "previous_names": [
       ""
     ],
-    "context_team_id": "T00000000"
+    "context_team_id": "T00000000",
+    "updated": 12345
   },
   "error": "",
   "needed": "",
