@@ -932,7 +932,8 @@
     "unread_count_display": 12345,
     "is_open": false,
     "priority": 12345,
-    "context_team_id": "T00000000"
+    "context_team_id": "T00000000",
+    "updated": 12345
   },
   "no_op": false,
   "already_open": false,
