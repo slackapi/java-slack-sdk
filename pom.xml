@@ -67,7 +67,7 @@
         <java-jwt.version>[4.0,5.0)</java-jwt.version>
         <aws.s3.version>[1.12.62,1.13.0)</aws.s3.version>
         <junit.version>4.13.2</junit.version>
-        <logback.version>1.2.11</logback.version>
+        <logback-slf4j-v1.version>1.2.11</logback-slf4j-v1.version>
         <logback-slf4j-v2.version>1.4.4</logback-slf4j-v2.version>
         <hamcrest.version>[1.3,2.0)</hamcrest.version>
         <mockito-core.version>[4.1.0,5.0.0)</mockito-core.version>
@@ -149,7 +149,11 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
+            <!-- For this SDK's tests, we use the latest version
+            because any of slf4j v2 compatible versions should be compatible with v1 as well.
+            see also: https://github.com/slackapi/java-slack-sdk/issues/1034
+             -->
+            <version>${logback-slf4j-v2.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
