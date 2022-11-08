@@ -133,8 +133,16 @@ public class FilesTest {
                 r.file(file).filename("sample.txt").title("sample.txt"));
         assertThat(response.isOk(), is(true));
 
+        response = slack.methods(ValidToken).filesUploadV2(r ->
+                r.file(file).filename("sample.txt").title("sample.txt").requestFileInfo(false));
+        assertThat(response.isOk(), is(true));
+
         response = slack.methodsAsync(ValidToken).filesUploadV2(r ->
                 r.file(file).filename("sample.txt").title("sample.txt")).get();
+        assertThat(response.isOk(), is(true));
+
+        response = slack.methodsAsync(ValidToken).filesUploadV2(r ->
+                r.file(file).filename("sample.txt").title("sample.txt").requestFileInfo(false)).get();
         assertThat(response.isOk(), is(true));
     }
 
