@@ -492,6 +492,7 @@ public class FieldValidation_a_to_c_Test {
                     "getTopic",
                     "getPurpose",
                     "getCreator",
+                    "getUpdated",
                     "getUnlinked",
                     "getSharedTeamIds",
                     "getPreviousNames",
