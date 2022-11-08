@@ -149,11 +149,12 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <!-- For this SDK's tests, we use the latest version
-            because any of slf4j v2 compatible versions should be compatible with v1 as well.
+            <!-- Since the latest version of logback does not support Java 1.8,
+            we keep using slf4j-api v1 compatible version. When upgrading to the latest, you will see the following error:
+            java.lang.UnsupportedClassVersionError: ch/qos/logback/classic/spi/LogbackServiceProvider has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
             see also: https://github.com/slackapi/java-slack-sdk/issues/1034
              -->
-            <version>${logback-slf4j-v2.version}</version>
+            <version>${logback-slf4j-v1.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
