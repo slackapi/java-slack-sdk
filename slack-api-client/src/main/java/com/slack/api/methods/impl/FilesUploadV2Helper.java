@@ -10,6 +10,7 @@ import com.slack.api.methods.response.files.FilesCompleteUploadExternalResponse;
 import com.slack.api.methods.response.files.FilesGetUploadURLExternalResponse;
 import com.slack.api.methods.response.files.FilesInfoResponse;
 import com.slack.api.methods.response.files.FilesUploadV2Response;
+import com.slack.api.model.File;
 import com.slack.api.util.http.SlackHttpClient;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -106,12 +107,17 @@ public class FilesUploadV2Helper implements AutoCloseable {
 
         result.setFiles(new ArrayList<>());
         for (FilesCompleteUploadExternalResponse.FileDetails file : response.getFiles()) {
-            FilesInfoResponse fileInfo = this.client.filesInfo(r -> r.token(v2Request.getToken()).file(file.getId()));
-            underlyingException.getFileInfoResponses().add(fileInfo);
-            if (!fileInfo.isOk()) {
-                throw underlyingException;
+            if (v2Request.isRequestFileInfo()) {
+                FilesInfoResponse fileInfo = this.client.filesInfo(r -> r.token(v2Request.getToken()).file(file.getId()));
+                underlyingException.getFileInfoResponses().add(fileInfo);
+                if (!fileInfo.isOk()) {
+                    throw underlyingException;
+                }
+                result.getFiles().add(fileInfo.getFile());
+            } else {
+                File partialFileObject = File.builder().id(file.getId()).title(file.getTitle()).build();
+                result.getFiles().add(partialFileObject);
             }
-            result.getFiles().add(fileInfo.getFile());
         }
 
         result.setOk(true);

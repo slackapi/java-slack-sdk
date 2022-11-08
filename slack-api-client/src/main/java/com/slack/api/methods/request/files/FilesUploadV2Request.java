@@ -71,6 +71,12 @@ public class FilesUploadV2Request implements SlackApiRequest {
      */
     private String snippetType;
 
+    /**
+     * Fetches all the file metadata for better v1 compatibility when this property is true.
+     */
+    @Builder.Default
+    private boolean requestFileInfo = true;
+
     @Data
     @Builder
     @NoArgsConstructor
