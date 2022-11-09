@@ -266,8 +266,7 @@ CompletableFuture<ChatPostMessageResponse> postMessageResult = slack.methodsAsyn
 もしアプリケーションが複数のノードで構成されている場合、そのノード数を指定することもできます。
 
 ```java
-import com.slack.api.methods.metrics.MetricsDatastore;
-import com.slack.api.methods.metrics.impl.MemoryMetricsDatastore;
+import com.slack.api.methods.metrics.MemoryMetricsDatastore;
 
 // 3 台構成で運用しているので 3 を指定します（デフォルトは 1）
 config.getMethodsConfig().setMetricsDatastore(new MemoryMetricsDatastore(3));
@@ -352,8 +351,7 @@ Slack slack = Slack.getInstance(config);
 ```java
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
-import com.slack.api.methods.metrics.MetricsDatastore;
-import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
+import com.slack.api.methods.metrics.RedisMetricsDatastore;
 import redis.clients.jedis.JedisPool;
 
 SlackConfig config = new SlackConfig();
