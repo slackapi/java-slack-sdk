@@ -266,8 +266,7 @@ CompletableFuture<ChatPostMessageResponse> postMessageResult = slack.methodsAsyn
 If your app has multiple nodes, it's also possible to specify the number of nodes.
 
 ```java
-import com.slack.api.methods.metrics.MetricsDatastore;
-import com.slack.api.methods.metrics.impl.MemoryMetricsDatastore;
+import com.slack.api.methods.metrics.MemoryMetricsDatastore;
 
 // Give the number of nodes if you run a same app on 3 nodes (default: 1)
 config.getMethodsConfig().setMetricsDatastore(new MemoryMetricsDatastore(3));
@@ -352,8 +351,7 @@ If your app wants to have a unified datastore to collect all the metrics across 
 ```java
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
-import com.slack.api.methods.metrics.MetricsDatastore;
-import com.slack.api.methods.metrics.impl.RedisMetricsDatastore;
+import com.slack.api.methods.metrics.RedisMetricsDatastore;
 import redis.clients.jedis.JedisPool;
 
 SlackConfig config = new SlackConfig();
