@@ -25,6 +25,7 @@ import com.slack.api.bolt.service.builtin.NullOpenIDConnectNonceService;
 import com.slack.api.bolt.service.builtin.oauth.*;
 import com.slack.api.bolt.service.builtin.oauth.default_impl.*;
 import com.slack.api.bolt.util.ListenerCodeSuggestion;
+import com.slack.api.bolt.util.MessageEventDispatcher;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
@@ -629,6 +630,8 @@ public class App {
         return this;
     }
 
+    private MessageEventDispatcher.Chain messageEventDispatcherChain = new MessageEventDispatcher.Chain();
+
     public App message(String pattern, BoltEventHandler<MessageEvent> messageHandler) {
         return message(Pattern.compile("^.*" + Pattern.quote(pattern) + ".*$"), messageHandler);
     }
@@ -639,8 +642,11 @@ public class App {
             if (log.isDebugEnabled()) {
                 log.debug("Run a message event handler (pattern: {}, text: {})", pattern, text);
             }
-            if (text != null && pattern.matcher(text).matches()) {
-                return messageHandler.apply(event, ctx);
+            messageEventDispatcherChain.addDispatcher(new MessageEventDispatcher.PatternDispatcher(pattern, messageHandler));
+            MessageEventDispatcher dispatcher = messageEventDispatcherChain.head();
+
+            if (text != null) {
+                return dispatcher.dispatch(event, ctx);
             } else {
                 return ctx.ack();
             }
