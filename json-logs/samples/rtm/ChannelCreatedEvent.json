@@ -8,7 +8,8 @@
     "is_shared": false,
     "is_org_shared": false,
     "created": 123,
-    "creator": ""
+    "creator": "",
+    "context_team_id": ""
   },
   "event_ts": ""
 }

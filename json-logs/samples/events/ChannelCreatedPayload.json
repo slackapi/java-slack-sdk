@@ -13,7 +13,8 @@
       "created": 12345,
       "creator": "",
       "is_shared": false,
-      "is_org_shared": false
+      "is_org_shared": false,
+      "context_team_id": ""
     },
     "event_ts": "0000000000.000000"
   },

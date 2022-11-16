@@ -27,5 +27,6 @@ public class ChannelCreatedEvent implements Event {
         private boolean isOrgShared;
         private Integer created;
         private String creator;
+        private String contextTeamId;
     }
 }

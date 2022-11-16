@@ -48,8 +48,14 @@ public class EventDataRecorder {
         return sb.toString() + "Payload";
     }
 
-    private final List<String> writeMergedResponse_excludedClassNames =
-            Arrays.asList("AppMentionPayload", "MessagePayload");
+    private final List<String> writeMergedResponse_excludedClassNames = Arrays.asList(
+            "AppMentionPayload",
+            "MessagePayload",
+            "PinAddedPayload",
+            "PinRemovedPayload",
+            "StarAddedPayload",
+            "StarRemovedPayload"
+    );
 
     public void writeMergedResponse(String eventType, String body) throws IOException {
         String className = toPayloadClassName(eventType);
