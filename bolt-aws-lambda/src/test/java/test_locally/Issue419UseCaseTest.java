@@ -79,7 +79,6 @@ public class Issue419UseCaseTest {
                 headers.put("additional-header", Arrays.asList("foo"));
                 return Response.builder().statusCode(200).headers(headers).build();
             });
-            app.message("Hello", (req, ctx) -> ctx.ack());
 
             SampleHandler handler = new SampleHandler(app);
 
@@ -95,7 +94,7 @@ public class Issue419UseCaseTest {
             // message event
             ApiGatewayRequest message1 = buildMessageEvent();
             ApiGatewayResponse message1Response = handler.handleRequest(message1, context);
-            assertEquals(200, message1Response.getStatusCode());
+            assertEquals(404, message1Response.getStatusCode());
             assertEquals(0, handler.messageCount.get());
 
             // enable other listeners
