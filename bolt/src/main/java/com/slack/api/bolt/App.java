@@ -176,8 +176,10 @@ public class App {
 
     /**
      * Registered Event API handlers.
+     * Note that only limited set of events allow having multiple handlers.
+     * As of v1.27.1, only MessageEvent.class ones can be multiple.
      */
-    private final Map<String, BoltEventHandler<Event>> eventHandlers = new HashMap<>();
+    private final Map<String, List<BoltEventHandler<Event>>> eventHandlers = new HashMap<>();
 
     /**
      * Primitive Event API handler.
@@ -612,15 +614,32 @@ public class App {
     // Events API
     // https://api.slack.com/events-api
 
-    public <E extends Event> App event(Class<E> eventClass, BoltEventHandler<E> handler) {
+    public <E extends Event> App event(
+            Class<E> eventClass,BoltEventHandler<E> handler) {
+        // Note that having multiple handlers is allowed only for message event handlers.
+        // If we revisit this to unlock the option to all event types, it should work well.
+        // We didn't decide to do so in 2022 in respect of better backward compatibility.
+        boolean allowMultipleEventHandlers = getEventTypeAndSubtype(eventClass) == MessageEvent.TYPE_NAME;
+        return event(eventClass, allowMultipleEventHandlers, handler);
+    }
+
+    protected <E extends Event> App event(
+            Class<E> eventClass,
+            boolean allowMultipleEventHandlers,
+            BoltEventHandler<E> handler) {
         String eventTypeAndSubtype = getEventTypeAndSubtype(eventClass);
         if (eventTypeAndSubtype == null) {
             throw new IllegalArgumentException("Unexpectedly failed to register the handler");
         }
-        if (eventHandlers.get(eventTypeAndSubtype) != null) {
+        List<BoltEventHandler<Event>> handlers = eventHandlers.get(eventTypeAndSubtype);
+        if (handlers == null) {
+            handlers = new ArrayList<>();
+        } else if (!allowMultipleEventHandlers) {
             log.warn("Replaced the handler for {}", eventTypeAndSubtype);
+            handlers = new ArrayList<>();
         }
-        eventHandlers.put(eventTypeAndSubtype, (BoltEventHandler<Event>) handler);
+        handlers.add((BoltEventHandler<Event>) handler);
+        eventHandlers.put(eventTypeAndSubtype, handlers);
         return this;
     }
 
@@ -634,7 +653,7 @@ public class App {
     }
 
     public App message(Pattern pattern, BoltEventHandler<MessageEvent> messageHandler) {
-        event(MessageEvent.class, (event, ctx) -> {
+        event(MessageEvent.class, true, (event, ctx) -> {
             String text = event.getEvent().getText();
             if (log.isDebugEnabled()) {
                 log.debug("Run a message event handler (pattern: {}, text: {})", pattern, text);
@@ -642,7 +661,7 @@ public class App {
             if (text != null && pattern.matcher(text).matches()) {
                 return messageHandler.apply(event, ctx);
             } else {
-                return ctx.ack();
+                return null;
             }
         });
         return this;
@@ -1103,10 +1122,15 @@ public class App {
                         return Response.ok();
                     }
                     EventRequest request = (EventRequest) slackRequest;
-                    BoltEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
-                    if (handler != null) {
-                        EventsApiPayload<Event> payload = buildEventPayload(request);
-                        return handler.apply(payload, request.getContext());
+                    List<BoltEventHandler<Event>> handlers = eventHandlers.get(request.getEventTypeAndSubtype());
+                    if (handlers != null) {
+                        for (BoltEventHandler<Event> handler : handlers) {
+                            EventsApiPayload<Event> payload = buildEventPayload(request);
+                            Response result = handler.apply(payload, request.getContext());
+                            if (result != null && result.getStatusCode() == 200) {
+                                return result;
+                            }
+                        }
                     }
                     if (config().isAllEventsApiAutoAckEnabled()) {
                         // If the flag is true, Bolt acknowledges all the events anyway
@@ -1346,10 +1370,15 @@ public class App {
                         return Response.ok();
                     }
                     EventRequest request = new EventRequest(stepRequest.getRequestBodyAsString(), stepRequest.getHeaders());
-                    BoltEventHandler<Event> handler = eventHandlers.get(request.getEventTypeAndSubtype());
-                    if (handler != null) {
-                        EventsApiPayload<Event> payload = buildEventPayload(request);
-                        return handler.apply(payload, request.getContext());
+                    List<BoltEventHandler<Event>> handlers = eventHandlers.get(request.getEventTypeAndSubtype());
+                    if (handlers != null) {
+                        for (BoltEventHandler<Event> handler : handlers) {
+                            EventsApiPayload<Event> payload = buildEventPayload(request);
+                            Response result = handler.apply(payload, request.getContext());
+                            if (result != null && result.getStatusCode() == 200) {
+                                return result;
+                            }
+                        }
                     }
                     log.warn("No BoltEventHandler registered for event: {}\n{}",
                             request.getEventTypeAndSubtype(), ListenerCodeSuggestion.WORKFLOW_STEP);

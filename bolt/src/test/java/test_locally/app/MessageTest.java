@@ -29,6 +29,9 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 @Slf4j
@@ -80,7 +83,7 @@ public class MessageTest {
 
         EventRequest req = buildRequest(messagePayload);
         Response response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals(404L, response.getStatusCode().longValue());
         assertFalse(userMessageReceived.get());
     }
 
@@ -133,7 +136,7 @@ public class MessageTest {
 
         EventRequest req = buildRequest(gson.toJson(payload));
         Response response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals(404L, response.getStatusCode().longValue());
         assertFalse(userMessageReceived.get());
     }
 
@@ -171,7 +174,7 @@ public class MessageTest {
 
         EventRequest req = buildRequest(gson.toJson(payload));
         Response response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals(404L, response.getStatusCode().longValue());
         assertFalse(userMessageReceived.get());
     }
 
@@ -188,8 +191,52 @@ public class MessageTest {
 
         EventRequest req = buildRequest(gson.toJson(payload));
         Response response = app.run(req);
-        assertEquals(200L, response.getStatusCode().longValue());
+        assertEquals(404L, response.getStatusCode().longValue());
         assertFalse(userMessageReceived.get());
+    }
+
+    @Test
+    public void allowMultipleEventHandlers() throws Exception {
+        App app = buildApp();
+        AtomicBoolean pattern1Called = new AtomicBoolean(false);
+        AtomicBoolean pattern2Called = new AtomicBoolean(false);
+        app.message("pattern1", (req, ctx) -> {
+            pattern1Called.set(true);
+            return ctx.ack();
+        });
+        app.message("pattern2", (req, ctx) -> {
+            pattern2Called.set(true);
+            return ctx.ack();
+        });
+
+        EventsApiPayload<MessageEvent> payload1 = buildPatternMessagePayload("This is pattern1");
+        EventRequest req1 = buildRequest(gson.toJson(payload1));
+        Response response1 = app.run(req1);
+        assertEquals(200L, response1.getStatusCode().longValue());
+        assertThat(response1.getBody(), is(nullValue()));
+
+        EventsApiPayload<MessageEvent> payload2 = buildPatternMessagePayload("This is pattern2");
+        EventRequest req2 = buildRequest(gson.toJson(payload2));
+        Response response2 = app.run(req2);
+        assertEquals(200L, response2.getStatusCode().longValue());
+        assertThat(response2.getBody(), is(nullValue()));
+
+        EventsApiPayload<MessageEvent> payload3 = buildPatternMessagePayload("This is pattern3");
+        EventRequest req3 = buildRequest(gson.toJson(payload3));
+        Response response3 = app.run(req3);
+        assertEquals(404L, response3.getStatusCode().longValue());
+        assertThat(response3.getBody(), is("{\"error\":\"no handler found\"}"));
+
+        assertThat("pattern1 message listener called", pattern1Called.get(), is(true));
+        assertThat("pattern2 message listener called", pattern2Called.get(), is(true));
+
+        // test for ensuring the app.event(MessageEvent.class, ..) never overwrites above handlers
+        pattern1Called.set(false); // this needs to be true again
+        app.event(MessageEvent.class, (req, ctx) -> ctx.ack());
+        Response response4 = app.run(req1);
+        assertEquals(200L, response4.getStatusCode().longValue());
+
+        assertThat("pattern1 message listener called", pattern1Called.get(), is(true));
     }
 
     @Test
@@ -269,6 +316,16 @@ public class MessageTest {
         MessageBotEvent event = new MessageBotEvent();
         event.setBotId("B123");
         event.setText("This is a message sent by a bot user.");
+        payload.setEvent(event);
+        payload.setTeamId("T123");
+        return payload;
+    }
+
+    EventsApiPayload<MessageEvent> buildPatternMessagePayload(String text) {
+        EventsApiPayload<MessageEvent> payload = new MessagePayload();
+        MessageEvent event = new MessageEvent();
+        event.setUser("U123");
+        event.setText(text);
         payload.setEvent(event);
         payload.setTeamId("T123");
         return payload;
