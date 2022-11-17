@@ -38,8 +38,9 @@ public class dnd_Test {
     }
 
     @Test
-    public void dnd() throws IOException, SlackApiException {
-        List<User> members = slack.methods().usersList(r -> r.token(botToken).presence(true)).getMembers();
+    public void dnd() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
+        List<User> members = slack.methodsAsync().usersList(r -> r.token(botToken).presence(true)).get().getMembers();
         {
             String user = members.get(0).getId();
             DndInfoResponse response = slack.methods().dndInfo(r -> r.token(botToken).user(user));

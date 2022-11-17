@@ -169,8 +169,9 @@ public class reactions_Test {
     }
 
     @Test
-    public void list() throws IOException, SlackApiException {
-        String user = slack.methods().usersList(r -> r.token(botToken))
+    public void list() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
+        String user = slack.methodsAsync().usersList(r -> r.token(botToken)).get()
                 .getMembers().get(0).getId();
 
         ReactionsListResponse response = slack.methods().reactionsList(r -> r
@@ -197,8 +198,9 @@ public class reactions_Test {
     }
 
     @Test
-    public void paginationWithLimitAndCursor() throws IOException, SlackApiException {
-        String user = slack.methods().usersList(r -> r.token(botToken))
+    public void paginationWithLimitAndCursor() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
+        String user = slack.methodsAsync().usersList(r -> r.token(botToken)).get()
                 .getMembers().get(0).getId();
 
         ReactionsListResponse pageOne = slack.methods().reactionsList(r -> r

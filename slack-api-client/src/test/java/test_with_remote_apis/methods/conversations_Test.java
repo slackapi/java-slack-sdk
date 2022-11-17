@@ -50,7 +50,7 @@ public class conversations_Test {
     }
 
     @Test
-    public void channelConversation() throws IOException, SlackApiException {
+    public void channelConversation() throws Exception {
 
         {
             ConversationsListResponse listResponse = slack.methods().conversationsList(
@@ -226,8 +226,9 @@ public class conversations_Test {
             assertThat(membersResponse.getMembers().isEmpty(), is(false));
             assertThat(membersResponse.getResponseMetadata(), is(notNullValue()));
 
-            UsersListResponse usersListResponse = slack.methods().usersList(r -> r
-                    .token(botToken));
+            // Using async client to avoid an exception due to rate limited errors
+            UsersListResponse usersListResponse = slack.methodsAsync().usersList(r -> r
+                    .token(botToken)).get();
             String invitee_ = null;
             for (User u : usersListResponse.getMembers()) {
                 if (!"USLACKBOT".equals(u.getId())
@@ -301,9 +302,10 @@ public class conversations_Test {
     }
 
     @Test
-    public void imConversation() throws IOException, SlackApiException {
+    public void imConversation() throws Exception {
 
-        UsersListResponse usersListResponse = slack.methods().usersList(r -> r.token(botToken));
+        // Using async client to avoid an exception due to rate limited errors
+        UsersListResponse usersListResponse = slack.methodsAsync().usersList(r -> r.token(botToken)).get();
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 

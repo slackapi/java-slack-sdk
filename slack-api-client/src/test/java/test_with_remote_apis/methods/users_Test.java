@@ -54,8 +54,9 @@ public class users_Test {
     }
 
     @Test
-    public void showUsers_bot() throws IOException, SlackApiException {
-        UsersListResponse users = slack.methods(botToken).usersList(r -> r.includeLocale(true).limit(10));
+    public void showUsers_bot() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
+        UsersListResponse users = slack.methodsAsync(botToken).usersList(r -> r.includeLocale(true).limit(10)).get();
         assertThat(users.getError(), is(nullValue()));
 
         UsersInfoResponse usersInfo = slack.methods(botToken)
@@ -69,7 +70,7 @@ public class users_Test {
         List<String> userIds = new ArrayList<>();
         String nextCursor = null;
         while (nextCursor == null || !nextCursor.equals("")) {
-            UsersListResponse response = slack.methods(userToken).usersList(r -> r.includeLocale(true).limit(3000));
+            UsersListResponse response = slack.methodsAsync(userToken).usersList(r -> r.includeLocale(true).limit(3000)).get();
             nextCursor = response.getResponseMetadata().getNextCursor();
             userIds.addAll(response.getMembers().stream().map(u -> u.getId()).collect(toList()));
         }
@@ -77,8 +78,9 @@ public class users_Test {
     }
 
     @Test
-    public void showUsers_user() throws IOException, SlackApiException {
-        UsersListResponse users = slack.methods(userToken).usersList(r -> r.includeLocale(true).limit(10));
+    public void showUsers_user() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
+        UsersListResponse users = slack.methodsAsync(userToken).usersList(r -> r.includeLocale(true).limit(10)).get();
         assertThat(users.getError(), is(nullValue()));
 
         UsersInfoResponse usersInfo = slack.methods(userToken)
@@ -89,6 +91,7 @@ public class users_Test {
 
     @Test
     public void showUsers_async() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
         UsersListResponse users = slack.methodsAsync(botToken).usersList(r -> r.includeLocale(true).limit(10)).get();
         assertThat(users.getError(), is(nullValue()));
 

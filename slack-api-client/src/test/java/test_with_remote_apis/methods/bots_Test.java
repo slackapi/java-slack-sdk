@@ -48,9 +48,10 @@ public class bots_Test {
     private static String cachedBotId = null;
 
     @BeforeClass
-    public static void loadBotId() throws IOException, SlackApiException {
+    public static void loadBotId() throws Exception {
         if (cachedBotId == null) {
-            List<User> users = slack.methods(botToken).usersList(req -> req).getMembers();
+            // Using async client to avoid an exception due to rate limited errors
+            List<User> users = slack.methodsAsync(botToken).usersList(req -> req).get().getMembers();
             User user = null;
             for (User u : users) {
                 if (u.isBot() && !"USLACKBOT".equals(u.getId())) {
@@ -62,7 +63,7 @@ public class bots_Test {
         }
     }
 
-    String findBotId() throws IOException, SlackApiException {
+    String findBotId() throws Exception {
         if (cachedBotId == null) {
             loadBotId();
         }
@@ -77,7 +78,7 @@ public class bots_Test {
     }
 
     @Test
-    public void botsInfo() throws IOException, SlackApiException {
+    public void botsInfo() throws Exception {
         String botId = findBotId();
         BotsInfoResponse response = slack.methods(botToken).botsInfo(req -> req.bot(botId));
         assertThat(response.getError(), is(nullValue()));

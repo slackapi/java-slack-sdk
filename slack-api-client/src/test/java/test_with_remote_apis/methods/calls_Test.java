@@ -64,7 +64,9 @@ public class calls_Test {
         String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
         String uniqueId = UUID.randomUUID().toString();
         String joinUrl = "https://www.example.com/calls-test";
-        List<String> userIds = slack.methods(botToken).usersList(r -> r.limit(50))
+        // Using async client to avoid an exception due to rate limited errors
+        List<String> userIds = slack.methodsAsync(botToken).usersList(r -> r.limit(50))
+                .get()
                 .getMembers().stream()
                 .filter(u -> !u.isDeleted() && !u.isBot())
                 .map(u -> u.getId())
@@ -137,7 +139,7 @@ public class calls_Test {
     }
 
     @Test
-    public void errors() throws IOException, SlackApiException {
+    public void errors() throws Exception {
         String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
         CallsAddResponse callCreation = slack.methods(botToken).callsAdd(r -> r
                 .title("Test call")
@@ -149,7 +151,9 @@ public class calls_Test {
 
         String uniqueId = UUID.randomUUID().toString();
         String joinUrl = "https://www.example.com/calls-test";
-        List<String> userIds = slack.methods(botToken).usersList(r -> r.limit(50))
+        // Using async client to avoid an exception due to rate limited errors
+        List<String> userIds = slack.methodsAsync(botToken).usersList(r -> r.limit(50))
+                .get()
                 .getMembers().stream()
                 .filter(u -> !u.isDeleted() && !u.isBot())
                 .map(u -> u.getId())

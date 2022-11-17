@@ -70,7 +70,8 @@ public class team_Test {
 
     @Test
     public void teamBillableInfo() throws Exception {
-        List<User> users = slack.methods().usersList(r -> r.token(userToken)).getMembers();
+        // Using async client to avoid an exception due to rate limited errors
+        List<User> users = slack.methodsAsync().usersList(r -> r.token(userToken)).get().getMembers();
         User user = null;
         for (User u : users) {
             if (!u.isBot() && !"USLACKBOT".equals(u.getId())) {
@@ -88,6 +89,7 @@ public class team_Test {
 
     @Test
     public void teamBillableInfo_async() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
         List<User> users = slack.methodsAsync().usersList(r -> r.token(userToken)).get().getMembers();
         User user = null;
         for (User u : users) {
@@ -144,7 +146,8 @@ public class team_Test {
 
     @Test
     public void teamIntegrationLogs() throws Exception {
-        String user = slack.methods().usersList(r -> r.token(userToken)).getMembers().get(0).getId();
+        // Using async client to avoid an exception due to rate limited errors
+        String user = slack.methodsAsync().usersList(r -> r.token(userToken)).get().getMembers().get(0).getId();
         TeamIntegrationLogsResponse response = slack.methods().teamIntegrationLogs(r -> r
                 .token(userToken)
                 .user(user));
@@ -154,10 +157,11 @@ public class team_Test {
 
     @Test
     public void teamIntegrationLogs_async() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
         String user = slack.methodsAsync().usersList(r -> r.token(userToken)).get().getMembers().get(0).getId();
-        TeamIntegrationLogsResponse response = slack.methods().teamIntegrationLogs(r -> r
+        TeamIntegrationLogsResponse response = slack.methodsAsync().teamIntegrationLogs(r -> r
                 .token(userToken)
-                .user(user));
+                .user(user)).get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
