@@ -2533,6 +2533,7 @@ public class RequestFormBuilder {
             }
         }
         if (fallbackMissing) {
+            log.warn(TEXT_WARN_MESSAGE_TEMPLATE, endpointName);
             log.warn(FALLBACK_WARN_MESSAGE_TEMPLATE, endpointName);
         }
     }
@@ -2543,19 +2544,19 @@ public class RequestFormBuilder {
             List<Attachment> attachments,
             String attachmentsAsString) {
 
-        if (text == null || text.trim().isEmpty()) {
-            // should always be providing a text argument
-            log.warn(TEXT_WARN_MESSAGE_TEMPLATE, endpointName);
-            // furthermore, if attachments are present without a fallback argument, then warn even more
-            if (attachments != null && attachments.size() > 0) {
-                // attachments
-                warnIfAttachmentWithoutFallbackDetected(endpointName, attachments);
-            } else if (attachmentsAsString != null && attachmentsAsString.trim().length() > 0) {
-                // attachments
-                warnIfAttachmentWithoutFallbackDetected(
-                        endpointName,
-                        Arrays.asList(GSON.fromJson(attachmentsAsString, Attachment[].class))
-                );
+        if (attachments != null && attachments.size() > 0) {
+            // when attachments exist, the top-level text is not always required
+            warnIfAttachmentWithoutFallbackDetected(endpointName, attachments);
+        } else if (attachmentsAsString != null && attachmentsAsString.trim().length() > 0) {
+            // when attachments exist, the top-level text is not always required
+            warnIfAttachmentWithoutFallbackDetected(
+                    endpointName,
+                    Arrays.asList(GSON.fromJson(attachmentsAsString, Attachment[].class))
+            );
+        } else {
+            // when attachments do not exist, the top-level text is always required
+            if (text == null || text.trim().isEmpty()) {
+                log.warn(TEXT_WARN_MESSAGE_TEMPLATE, endpointName);
             }
         }
     }

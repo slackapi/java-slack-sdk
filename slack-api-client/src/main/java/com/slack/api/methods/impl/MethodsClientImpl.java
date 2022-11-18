@@ -1499,7 +1499,7 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public ChatPostMessageResponse chatPostMessage(ChatPostMessageRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_POST_MESSAGE, getToken(req), ChatPostMessageResponse.class);
+    return postFormWithTokenAndParseResponse(toForm(req), Methods.CHAT_POST_MESSAGE, getToken(req), ChatPostMessageResponse.class);
     }
 
     @Override
