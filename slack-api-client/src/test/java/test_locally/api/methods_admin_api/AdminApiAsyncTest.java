@@ -92,6 +92,9 @@ public class AdminApiAsyncTest {
         assertThat(methods.adminConversationsSetConversationPrefs(r -> r).get().isOk(), is(true));
         assertThat(methods.adminConversationsSetTeams(r -> r).get().isOk(), is(true));
         assertThat(methods.adminConversationsUnarchive(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsBulkMove(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsBulkDelete(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminConversationsBulkArchive(r -> r).get().isOk(), is(true));
     }
 
     @Test

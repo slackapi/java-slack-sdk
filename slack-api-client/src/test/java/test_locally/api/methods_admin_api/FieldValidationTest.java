@@ -180,6 +180,18 @@ public class FieldValidationTest {
                 "getWarning",
                 "getResponseMetadata"
         );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.bulkArchive", AdminConversationsBulkArchiveResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.bulkDelete", AdminConversationsBulkDeleteResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.bulkMove", AdminConversationsBulkMoveResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
     }
 
     @Test

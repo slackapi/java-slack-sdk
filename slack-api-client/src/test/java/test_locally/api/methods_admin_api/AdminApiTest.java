@@ -110,6 +110,9 @@ public class AdminApiTest {
         assertThat(methods.adminConversationsSetConversationPrefs(r -> r).isOk(), is(true));
         assertThat(methods.adminConversationsSetTeams(r -> r).isOk(), is(true));
         assertThat(methods.adminConversationsUnarchive(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsBulkMove(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsBulkDelete(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsBulkArchive(r -> r).isOk(), is(true));
     }
 
     @Test
