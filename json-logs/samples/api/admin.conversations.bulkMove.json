@@ -1,6 +1,14 @@
 {
   "ok": false,
-  "channel_id": "C00000000",
+  "bulk_action_id": "",
+  "not_added": [
+    {
+      "channel_id": "",
+      "errors": [
+        ""
+      ]
+    }
+  ],
   "error": "",
   "needed": "",
   "provided": "",

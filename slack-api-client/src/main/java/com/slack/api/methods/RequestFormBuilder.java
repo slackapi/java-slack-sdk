@@ -447,6 +447,31 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminConversationsBulkArchiveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getChannelIds() != null) {
+            setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsBulkDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getChannelIds() != null) {
+            setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsBulkMoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getChannelIds() != null) {
+            setIfNotNull("channel_ids", req.getChannelIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("target_team_id", req.getTargetTeamId(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         if (req.getChannelIds() != null) {

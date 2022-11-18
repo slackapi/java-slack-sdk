@@ -46,6 +46,7 @@ public class AdminApi_conversations_Test {
     static String teamAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
     static String orgAdminUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_ADMIN_USER_TOKEN);
     static String teamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
+    static String teamId2 = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID_2);
     static String idpUsergroupId = System.getenv(Constants.SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID);
     static String sharedChannelId = System.getenv(Constants.SLACK_SDK_TEST_GRID_SHARED_CHANNEL_ID);
 
@@ -338,6 +339,110 @@ public class AdminApi_conversations_Test {
             remove = orgAdminClient.adminConversationsWhitelistRemove(r -> r
                     .teamId(teamId).channelId("dummy").groupId(idpUsergroupId));
             assertThat(remove.getError(), is("invalid_arguments"));
+        }
+    }
+
+    @Test
+    public void adminConversationsBulkMove() throws Exception {
+        if (orgAdminUserToken != null) {
+            AsyncMethodsClient orgAdminClient = slack.methodsAsync(orgAdminUserToken);
+            AdminConversationsCreateResponse creation1 = orgAdminClient.adminConversationsCreate(r -> r
+                    .name("test-channel-1-" + System.currentTimeMillis())
+                    .teamId(teamId)
+                    .isPrivate(false)
+            ).get();
+            assertThat(creation1.getError(), is(nullValue()));
+            AdminConversationsCreateResponse creation2 = orgAdminClient.adminConversationsCreate(r -> r
+                    .name("test-channel-2-" + System.currentTimeMillis())
+                    .teamId(teamId)
+                    .isPrivate(false)
+            ).get();
+            assertThat(creation2.getError(), is(nullValue()));
+
+            AdminConversationsBulkMoveResponse moving = null;
+            while (moving == null || (moving.getError() != null && moving.getError().equals("action_already_in_progress"))) {
+                moving = orgAdminClient.adminConversationsBulkMove(r -> r
+                        .channelIds(Arrays.asList(creation1.getChannelId(), creation2.getChannelId()))
+                        .targetTeamId(teamId2)
+                ).get();
+                if (moving.getError() != null) {
+                    Thread.sleep(3_000L);
+                }
+            }
+            // To receive response_metadata
+            moving = orgAdminClient.adminConversationsBulkMove(r -> r
+                    .channelIds(Arrays.asList("dummy"))
+                    .targetTeamId(teamId2)
+            ).get();
+            assertThat(moving.getError(), is("invalid_arguments"));
+        }
+    }
+
+    @Test
+    public void adminConversationsBulkArchive() throws Exception {
+        if (orgAdminUserToken != null) {
+            AsyncMethodsClient orgAdminClient = slack.methodsAsync(orgAdminUserToken);
+            AdminConversationsCreateResponse creation1 = orgAdminClient.adminConversationsCreate(r -> r
+                    .name("test-channel-1-" + System.currentTimeMillis())
+                    .teamId(teamId)
+                    .isPrivate(false)
+            ).get();
+            assertThat(creation1.getError(), is(nullValue()));
+            AdminConversationsCreateResponse creation2 = orgAdminClient.adminConversationsCreate(r -> r
+                    .name("test-channel-2-" + System.currentTimeMillis())
+                    .teamId(teamId)
+                    .isPrivate(false)
+            ).get();
+            assertThat(creation2.getError(), is(nullValue()));
+
+            AdminConversationsBulkArchiveResponse archiving = null;
+            while (archiving == null || (archiving.getError() != null && archiving.getError().equals("action_already_in_progress"))) {
+                archiving = orgAdminClient.adminConversationsBulkArchive(r -> r
+                        .channelIds(Arrays.asList(creation1.getChannelId(), creation2.getChannelId()))
+                ).get();
+                if (archiving.getError() != null) {
+                    Thread.sleep(3_000L);
+                }
+            }
+            // To receive response_metadata
+            archiving = orgAdminClient.adminConversationsBulkArchive(r -> r
+                    .channelIds(Arrays.asList("dummy"))
+            ).get();
+            assertThat(archiving.getError(), is("invalid_arguments"));
+        }
+    }
+
+    @Test
+    public void adminConversationsBulkDelete() throws Exception {
+        if (orgAdminUserToken != null) {
+            AsyncMethodsClient orgAdminClient = slack.methodsAsync(orgAdminUserToken);
+            AdminConversationsCreateResponse creation1 = orgAdminClient.adminConversationsCreate(r -> r
+                    .name("test-channel-1-" + System.currentTimeMillis())
+                    .teamId(teamId)
+                    .isPrivate(false)
+            ).get();
+            assertThat(creation1.getError(), is(nullValue()));
+            AdminConversationsCreateResponse creation2 = orgAdminClient.adminConversationsCreate(r -> r
+                    .name("test-channel-2-" + System.currentTimeMillis())
+                    .teamId(teamId)
+                    .isPrivate(false)
+            ).get();
+            assertThat(creation2.getError(), is(nullValue()));
+
+            AdminConversationsBulkDeleteResponse deletion = null;
+            while (deletion == null || (deletion.getError() != null && deletion.getError().equals("action_already_in_progress"))) {
+                deletion = orgAdminClient.adminConversationsBulkDelete(r -> r
+                        .channelIds(Arrays.asList(creation1.getChannelId(), creation2.getChannelId()))
+                ).get();
+                if (deletion.getError() != null) {
+                    Thread.sleep(3_000L);
+                }
+            }
+            // To receive response_metadata
+            deletion = orgAdminClient.adminConversationsBulkDelete(r -> r
+                    .channelIds(Arrays.asList("dummy"))
+            ).get();
+            assertThat(deletion.getError(), is("invalid_arguments"));
         }
     }
 

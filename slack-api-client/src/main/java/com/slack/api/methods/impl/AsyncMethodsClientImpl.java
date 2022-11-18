@@ -588,6 +588,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminConversationsBulkArchiveResponse> adminConversationsBulkArchive(AdminConversationsBulkArchiveRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_BULK_ARCHIVE, toMap(req), () -> methods.adminConversationsBulkArchive(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsBulkArchiveResponse> adminConversationsBulkArchive(RequestConfigurator<AdminConversationsBulkArchiveRequest.AdminConversationsBulkArchiveRequestBuilder> req) {
+        return adminConversationsBulkArchive(req.configure(AdminConversationsBulkArchiveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsBulkDeleteResponse> adminConversationsBulkDelete(AdminConversationsBulkDeleteRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_BULK_DELETE, toMap(req), () -> methods.adminConversationsBulkDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsBulkDeleteResponse> adminConversationsBulkDelete(RequestConfigurator<AdminConversationsBulkDeleteRequest.AdminConversationsBulkDeleteRequestBuilder> req) {
+        return adminConversationsBulkDelete(req.configure(AdminConversationsBulkDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsBulkMoveResponse> adminConversationsBulkMove(AdminConversationsBulkMoveRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_BULK_MOVE, toMap(req), () -> methods.adminConversationsBulkMove(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsBulkMoveResponse> adminConversationsBulkMove(RequestConfigurator<AdminConversationsBulkMoveRequest.AdminConversationsBulkMoveRequestBuilder> req) {
+        return adminConversationsBulkMove(req.configure(AdminConversationsBulkMoveRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) {
         return executor.execute(ADMIN_CONVERSATIONS_EKM_LIST_ORIGINAL_CONNECTED_CHANNEL_INFO, toMap(req), () -> methods.adminConversationsEkmListOriginalConnectedChannelInfo(req));
     }

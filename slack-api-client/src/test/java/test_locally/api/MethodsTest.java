@@ -50,11 +50,7 @@ public class MethodsTest {
                 // TODO: admin.roles.* - https://github.com/slackapi/java-slack-sdk/issues/1082
                 "admin.roles.addAssignments",
                 "admin.roles.listAssignments",
-                "admin.roles.removeAssignments",
-                // TODO: admin.conversations.bulk* - https://github.com/slackapi/java-slack-sdk/issues/1087
-                "admin.conversations.bulkArchive",
-                "admin.conversations.bulkDelete",
-                "admin.conversations.bulkMove"
+                "admin.roles.removeAssignments"
         );
         List<String> methodNames = new ArrayList<>();
         for (String methodName : allMethodNames) {

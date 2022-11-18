@@ -593,6 +593,36 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminConversationsBulkArchiveResponse adminConversationsBulkArchive(AdminConversationsBulkArchiveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_BULK_ARCHIVE, getToken(req), AdminConversationsBulkArchiveResponse.class);
+    }
+
+    @Override
+    public AdminConversationsBulkArchiveResponse adminConversationsBulkArchive(RequestConfigurator<AdminConversationsBulkArchiveRequest.AdminConversationsBulkArchiveRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsBulkArchive(req.configure(AdminConversationsBulkArchiveRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsBulkDeleteResponse adminConversationsBulkDelete(AdminConversationsBulkDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_BULK_DELETE, getToken(req), AdminConversationsBulkDeleteResponse.class);
+    }
+
+    @Override
+    public AdminConversationsBulkDeleteResponse adminConversationsBulkDelete(RequestConfigurator<AdminConversationsBulkDeleteRequest.AdminConversationsBulkDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsBulkDelete(req.configure(AdminConversationsBulkDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsBulkMoveResponse adminConversationsBulkMove(AdminConversationsBulkMoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_BULK_MOVE, getToken(req), AdminConversationsBulkMoveResponse.class);
+    }
+
+    @Override
+    public AdminConversationsBulkMoveResponse adminConversationsBulkMove(RequestConfigurator<AdminConversationsBulkMoveRequest.AdminConversationsBulkMoveRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsBulkMove(req.configure(AdminConversationsBulkMoveRequest.builder()).build());
+    }
+
+    @Override
     public AdminConversationsEkmListOriginalConnectedChannelInfoResponse adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_EKM_LIST_ORIGINAL_CONNECTED_CHANNEL_INFO, getToken(req), AdminConversationsEkmListOriginalConnectedChannelInfoResponse.class);
     }
