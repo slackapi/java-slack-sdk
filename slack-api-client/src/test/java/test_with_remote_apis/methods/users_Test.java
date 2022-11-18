@@ -2,7 +2,6 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
-import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.users.UsersListRequest;
 import com.slack.api.methods.request.users.UsersLookupByEmailRequest;
 import com.slack.api.methods.request.users.UsersSetActiveRequest;
@@ -18,7 +17,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,6 +68,7 @@ public class users_Test {
         List<String> userIds = new ArrayList<>();
         String nextCursor = null;
         while (nextCursor == null || !nextCursor.equals("")) {
+            // Using async client to avoid an exception due to rate limited errors
             UsersListResponse response = slack.methodsAsync(userToken).usersList(r -> r.includeLocale(true).limit(3000)).get();
             nextCursor = response.getResponseMetadata().getNextCursor();
             userIds.addAll(response.getMembers().stream().map(u -> u.getId()).collect(toList()));
@@ -103,10 +102,11 @@ public class users_Test {
     }
 
     @Test
-    public void enterpriseGrid() throws IOException, SlackApiException {
+    public void enterpriseGrid() throws Exception {
         if (enterpriseGridTeamAdminUserToken != null) {
-            UsersListResponse users = slack.methods(enterpriseGridTeamAdminUserToken)
-                    .usersList(r -> r.includeLocale(true).limit(10));
+            // Using async client to avoid an exception due to rate limited errors
+            UsersListResponse users = slack.methodsAsync(enterpriseGridTeamAdminUserToken)
+                    .usersList(r -> r.includeLocale(true).limit(10)).get();
             assertThat(users.getError(), is(nullValue()));
 
             UsersInfoResponse usersInfo = slack.methods(enterpriseGridTeamAdminUserToken)
@@ -117,7 +117,7 @@ public class users_Test {
     }
 
     @Test
-    public void usersScenarios_bot() throws IOException, SlackApiException {
+    public void usersScenarios_bot() throws Exception {
         {
             UsersSetPresenceResponse response = slack.methods().usersSetPresence(r -> r.token(botToken).presence("away"));
             assertThat(response.getError(), is(nullValue()));
@@ -140,10 +140,12 @@ public class users_Test {
             assertThat(response.isOk(), is(false));
         }
 
-        UsersListResponse usersListResponse = slack.methods().usersList(r -> r
+        // Using async client to avoid an exception due to rate limited errors
+        UsersListResponse usersListResponse = slack.methodsAsync().usersList(r -> r
                 .token(botToken)
                 .limit(2)
-                .presence(true));
+                .presence(true))
+                .get();
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 
@@ -213,7 +215,7 @@ public class users_Test {
     }
 
     @Test
-    public void usersScenarios_user() throws IOException, SlackApiException {
+    public void usersScenarios_user() throws Exception {
         {
             UsersSetPresenceResponse response = slack.methods().usersSetPresence(r -> r.token(userToken).presence("away"));
             assertThat(response.getError(), is(nullValue()));
@@ -238,10 +240,12 @@ public class users_Test {
             assertThat(response.isOk(), is(false));
         }
 
-        UsersListResponse usersListResponse = slack.methods().usersList(r -> r
+        // Using async client to avoid an exception due to rate limited errors
+        UsersListResponse usersListResponse = slack.methodsAsync().usersList(r -> r
                 .token(userToken)
                 .limit(2)
-                .presence(true));
+                .presence(true))
+                .get();
         List<User> users = usersListResponse.getMembers();
         String userId = users.get(0).getId();
 
@@ -313,10 +317,12 @@ public class users_Test {
     }
 
     @Test
-    public void lookupByEmailSupported_bot() throws IOException, SlackApiException {
-        UsersListResponse usersListResponse = slack.methods().usersList(r -> r
+    public void lookupByEmailSupported_bot() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
+        UsersListResponse usersListResponse = slack.methodsAsync().usersList(r -> r
                 .token(botToken)
-                .presence(true));
+                .presence(true))
+                .get();
 
         List<User> users = usersListResponse.getMembers();
         User randomUserWhoHasEmail = null;
@@ -341,10 +347,12 @@ public class users_Test {
     }
 
     @Test
-    public void lookupByEmailSupported_user() throws IOException, SlackApiException {
-        UsersListResponse usersListResponse = slack.methods().usersList(r -> r
+    public void lookupByEmailSupported_user() throws Exception {
+        // Using async client to avoid an exception due to rate limited errors
+        UsersListResponse usersListResponse = slack.methodsAsync().usersList(r -> r
                 .token(userToken)
-                .presence(true));
+                .presence(true))
+                .get();
 
         List<User> users = usersListResponse.getMembers();
         User randomUserWhoHasEmail = null;
@@ -436,7 +444,7 @@ public class users_Test {
 
     @Test
     public void scanAllUsers() throws Exception {
-        // To avoid rate limited errors
+        // Using async client to avoid an exception due to rate limited errors
         AsyncMethodsClient client = slack.methodsAsync(botToken);
         String cursor = null;
         while (cursor == null || !cursor.equals("")) {
