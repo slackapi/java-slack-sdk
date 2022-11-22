@@ -2,6 +2,7 @@ package util.sample_json_generation;
 
 import com.google.gson.*;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.response.admin.conversations.AdminConversationsBulkMoveResponse;
 import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsResponse;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
@@ -392,6 +393,18 @@ public class JsonDataRecorder {
                 array.add(gson.toJsonTree(
                         ObjectInitializer.initProperties(new com.slack.api.model.User.Profile.StatusEmojiDisplayInfo())
                 ));
+            } else if (path.startsWith("/api/admin.conversations.bulk") &&
+                    name != null && name.equals("not_added")) {
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from not_added", e);
+                }
+                AdminConversationsBulkMoveResponse.NotAdded notAdded =
+                        ObjectInitializer.initProperties(new AdminConversationsBulkMoveResponse.NotAdded());
+                array.add(gson.toJsonTree(notAdded));
             }
             if (array.size() == 0) {
                 List<String> addressNames = Arrays.asList("from", "to", "cc");

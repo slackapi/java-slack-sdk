@@ -68,6 +68,10 @@ public class Methods {
     public static final String ADMIN_CONVERSATIONS_REMOVE_CUSTOM_RETENTION = "admin.conversations.removeCustomRetention";
     public static final String ADMIN_CONVERSATIONS_SET_CUSTOM_RETENTION = "admin.conversations.setCustomRetention";
 
+    public static final String ADMIN_CONVERSATIONS_BULK_ARCHIVE = "admin.conversations.bulkArchive";
+    public static final String ADMIN_CONVERSATIONS_BULK_DELETE = "admin.conversations.bulkDelete";
+    public static final String ADMIN_CONVERSATIONS_BULK_MOVE = "admin.conversations.bulkMove";
+
     // ------------------------------
     // admin.conversations.ekm
     // ------------------------------

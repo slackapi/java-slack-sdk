@@ -430,6 +430,18 @@ public interface MethodsClient {
 
     AdminConversationsSetCustomRetentionResponse adminConversationsSetCustomRetention(RequestConfigurator<AdminConversationsSetCustomRetentionRequest.AdminConversationsSetCustomRetentionRequestBuilder> req) throws IOException, SlackApiException;
 
+    AdminConversationsBulkArchiveResponse adminConversationsBulkArchive(AdminConversationsBulkArchiveRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsBulkArchiveResponse adminConversationsBulkArchive(RequestConfigurator<AdminConversationsBulkArchiveRequest.AdminConversationsBulkArchiveRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsBulkDeleteResponse adminConversationsBulkDelete(AdminConversationsBulkDeleteRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsBulkDeleteResponse adminConversationsBulkDelete(RequestConfigurator<AdminConversationsBulkDeleteRequest.AdminConversationsBulkDeleteRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsBulkMoveResponse adminConversationsBulkMove(AdminConversationsBulkMoveRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsBulkMoveResponse adminConversationsBulkMove(RequestConfigurator<AdminConversationsBulkMoveRequest.AdminConversationsBulkMoveRequestBuilder> req) throws IOException, SlackApiException;
+
     // ------------------------------
     // admin.conversations.ekm
     // ------------------------------

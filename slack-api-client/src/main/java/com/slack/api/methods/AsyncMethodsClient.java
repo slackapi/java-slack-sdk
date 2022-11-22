@@ -376,6 +376,18 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<AdminConversationsSetCustomRetentionResponse> adminConversationsSetCustomRetention(RequestConfigurator<AdminConversationsSetCustomRetentionRequest.AdminConversationsSetCustomRetentionRequestBuilder> req);
 
+    CompletableFuture<AdminConversationsBulkArchiveResponse> adminConversationsBulkArchive(AdminConversationsBulkArchiveRequest req);
+
+    CompletableFuture<AdminConversationsBulkArchiveResponse> adminConversationsBulkArchive(RequestConfigurator<AdminConversationsBulkArchiveRequest.AdminConversationsBulkArchiveRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsBulkDeleteResponse> adminConversationsBulkDelete(AdminConversationsBulkDeleteRequest req);
+
+    CompletableFuture<AdminConversationsBulkDeleteResponse> adminConversationsBulkDelete(RequestConfigurator<AdminConversationsBulkDeleteRequest.AdminConversationsBulkDeleteRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsBulkMoveResponse> adminConversationsBulkMove(AdminConversationsBulkMoveRequest req);
+
+    CompletableFuture<AdminConversationsBulkMoveResponse> adminConversationsBulkMove(RequestConfigurator<AdminConversationsBulkMoveRequest.AdminConversationsBulkMoveRequestBuilder> req);
+
     // ------------------------------
     // admin.conversations.ekm
     // ------------------------------
