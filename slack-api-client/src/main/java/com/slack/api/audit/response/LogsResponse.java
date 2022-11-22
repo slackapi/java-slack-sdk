@@ -239,6 +239,9 @@ public class LogsResponse implements AuditApiResponse {
         private FeatureEnablement canHuddle; // channel_posting_permissions_updated
         private String urlPrivate; // file_shared
         private SharedWith sharedWith; // file_shared
+        private String initiatedBy; // "admin.conversations.bulkDelete" for public_channel_deleted etc.
+        private String sourceTeam; // channel_moved (by an admin.conversations.bulkMove API call)
+        private String destinationTeam; // channel_moved (by an admin.conversations.bulkMove API call)
     }
 
     @Data

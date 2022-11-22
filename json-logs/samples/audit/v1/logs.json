@@ -262,7 +262,10 @@
         "url_private": "",
         "shared_with": {
           "channel_id": ""
-        }
+        },
+        "initiated_by": "",
+        "source_team": "",
+        "destination_team": ""
       }
     }
   ]
