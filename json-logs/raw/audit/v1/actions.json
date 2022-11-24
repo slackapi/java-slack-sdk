@@ -187,7 +187,8 @@
       "user_email_updated",
       "user_joined_workspace",
       "guest_joined_workspace",
-      "user_username_updated"
+      "user_username_updated",
+      "guest_transferred_to_external_user"
     ],
     "file": [
       "file_downloaded",

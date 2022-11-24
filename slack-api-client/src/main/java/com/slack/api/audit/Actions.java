@@ -203,6 +203,7 @@ public class Actions {
         public static final String user_username_updated = "user_username_updated";
         public static final String user_joined_workspace = "user_joined_workspace";
         public static final String guest_joined_workspace = "guest_joined_workspace";
+        public static final String guest_transferred_to_external_user = "guest_transferred_to_external_user";
     }
 
     public static class File {
