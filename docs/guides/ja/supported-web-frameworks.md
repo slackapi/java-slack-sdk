@@ -29,18 +29,40 @@ Bolt for Java は特定の環境やフレームワークに依存しません。
 
 #### build.gradle
 
-`build.gradle` をプロジェクトのルートディレクトリに配置するところから始めます。見ての通り、わかりやすい普通の Spring Boot アプリのビルド設定です。
+`build.gradle` をプロジェクトのルートディレクトリに配置するところから始めます。Spring Boot 3 を使った例は以下の通りです。見ての通り、わかりやすい普通の Spring Boot アプリのビルド設定です。
+
 
 ```groovy
 plugins {
   id 'org.springframework.boot' version '{{ site.springBootVersion }}'
-  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'io.spring.dependency-management' version '1.1.0'
   id 'java'
 }
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 repositories {
   mavenCentral()
+  mavenLocal()
+}
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'com.slack.api:bolt-jakarta-servlet:{{ site.sdkLatestVersion }}'
+}
+```
+
+もし何らかの事情で引き続き Spring Boot 2 を使う必要がある場合、設定は以下の通りとなります。
+
+```groovy
+plugins {
+  id 'org.springframework.boot' version '2.7.5'
+  id 'io.spring.dependency-management' version '1.1.0.RELEASE'
+  id 'java'
+}
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+repositories {
+  mavenCentral()
+  mavenLocal()
 }
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -81,8 +103,13 @@ public class SlackApp {
 package hello;
 
 import com.slack.api.bolt.App;
-import com.slack.api.bolt.servlet.SlackAppServlet;
-import javax.servlet.annotation.WebServlet;
+
+import com.slack.api.bolt.jakarta_servlet.SlackAppServlet;
+import jakarta.servlet.annotation.WebServlet;
+
+// Spring Boot 2 では import 部分が少し異なります
+// import com.slack.api.bolt.servlet.SlackAppServlet;
+// import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/slack/events")
 public class SlackAppController extends SlackAppServlet {

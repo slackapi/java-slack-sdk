@@ -29,12 +29,32 @@ In this section, I'll share some minimum working examples for the following popu
 
 #### build.gradle
 
-Let's start with putting `build.gradle` file in the root directory of your project. As you see, this is just a simple and straight-forward Spring Boot app configuration.
+Let's start with putting `build.gradle` file in the root directory of your project. Here is a simple project setting with Spring Boot 3. As you see, this is just a simple and straight-forward Spring Boot app configuration.
 
 ```groovy
 plugins {
   id 'org.springframework.boot' version '{{ site.springBootVersion }}'
-  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'io.spring.dependency-management' version '1.1.0'
+  id 'java'
+}
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+repositories {
+  mavenCentral()
+  mavenLocal()
+}
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'com.slack.api:bolt-jakarta-servlet:{{ site.sdkLatestVersion }}'
+}
+```
+
+If you have a certain reason to continue using Spring Boot 2 series, the build settings can be as below instead:
+
+```groovy
+plugins {
+  id 'org.springframework.boot' version '2.7.5'
+  id 'io.spring.dependency-management' version '1.1.0.RELEASE'
   id 'java'
 }
 group = 'com.example'
@@ -82,8 +102,13 @@ This is a kind of boilerplate code to add an endpoint. You can customize the pat
 package hello;
 
 import com.slack.api.bolt.App;
-import com.slack.api.bolt.servlet.SlackAppServlet;
-import javax.servlet.annotation.WebServlet;
+
+import com.slack.api.bolt.jakarta_servlet.SlackAppServlet;
+import jakarta.servlet.annotation.WebServlet;
+
+// With Spring Boot 2, the imports can be a bit different
+// import com.slack.api.bolt.servlet.SlackAppServlet;
+// import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/slack/events")
 public class SlackAppController extends SlackAppServlet {
