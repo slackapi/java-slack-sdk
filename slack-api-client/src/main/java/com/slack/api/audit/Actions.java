@@ -215,6 +215,7 @@ public class Actions {
         public static final String file_public_link_created = "file_public_link_created";
         public static final String file_public_link_revoked = "file_public_link_revoked";
         public static final String file_shared = "file_shared";
+        public static final String file_download_blocked = "file_download_blocked";
         public static final String file_downloaded_blocked = "file_downloaded_blocked";
         public static final String file_malicious_content_detected = "file_malicious_content_detected";
         public static final String file_deleted = "file_deleted";

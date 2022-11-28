@@ -200,7 +200,8 @@
       "file_malicious_content_detected",
       "file_deleted",
       "file_upload_blocked_by_type",
-      "file_share_blocked_by_type"
+      "file_share_blocked_by_type",
+      "file_download_blocked"
     ],
     "channel": [
       "user_channel_join",
