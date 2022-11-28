@@ -2,12 +2,10 @@ package example;
 
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@Slf4j
 public class SlackApp {
 
     // If you would like to run this app for a single workspace,

@@ -1,0 +1,16 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.slack.api:bolt-servlet:[1.27,)'
+}
