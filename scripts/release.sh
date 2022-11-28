@@ -8,7 +8,7 @@ then
   exit 1
 fi
 
-exclusion="-pl !bolt-kotlin-examples -pl !bolt-quarkus-examples -pl !bolt-spring-boot-examples"
+exclusion="-pl !bolt-kotlin-examples -pl !bolt-quarkus-examples"
 
 dir=`dirname $0`/..
 release_version=`sed -n 's/<version>\([^\$]\..*\)<\/version>$/\1/p' < ${dir}/pom.xml`
