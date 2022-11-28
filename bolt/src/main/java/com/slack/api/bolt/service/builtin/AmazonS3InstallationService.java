@@ -233,9 +233,7 @@ public class AmazonS3InstallationService implements InstallationService {
             return s3.getObjectMetadata(bucketName, fullKey);
         } catch (AmazonS3Exception e) {
             if (log.isDebugEnabled()) {
-                log.debug("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString(), e);
-            } else {
-                log.info("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString());
+                log.debug("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString());
             }
             return null;
         }
@@ -246,9 +244,7 @@ public class AmazonS3InstallationService implements InstallationService {
             return s3.getObject(bucketName, fullKey);
         } catch (AmazonS3Exception e) {
             if (log.isDebugEnabled()) {
-                log.debug("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString(), e);
-            } else {
-                log.info("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString());
+                log.debug("Amazon S3 object metadata not found (key: {}, AmazonS3Exception: {})", fullKey, e.toString());
             }
             return null;
         }
