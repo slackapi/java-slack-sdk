@@ -54,7 +54,7 @@ If you have a certain reason to continue using Spring Boot 2 series, the build s
 ```groovy
 plugins {
   id 'org.springframework.boot' version '2.7.5'
-  id 'io.spring.dependency-management' version '1.1.0.RELEASE'
+  id 'io.spring.dependency-management' version '1.1.0'
   id 'java'
 }
 group = 'com.example'
