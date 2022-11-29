@@ -1,2 +1,2 @@
 #!/bin/bash
-./mvnw versions:display-dependency-updates | grep -v checking
+./mvnw -pl !bolt-quarkus-examples versions:display-dependency-updates | grep -v checking
