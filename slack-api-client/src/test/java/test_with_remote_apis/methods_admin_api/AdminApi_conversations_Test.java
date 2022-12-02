@@ -272,6 +272,7 @@ public class AdminApi_conversations_Test {
     }
 
     @Test
+    @Ignore
     public void restrictAccess() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null && idpUsergroupId != null) {
             String channelId = getOrCreatePrivateChannel();
@@ -299,6 +300,7 @@ public class AdminApi_conversations_Test {
             AdminConversationsRestrictAccessRemoveGroupResponse remove =
                     orgAdminClient.adminConversationsRestrictAccessRemoveGroup(r -> r
                             .teamId(teamId).channelId(channelId).groupId(idpUsergroupId));
+            // TODO: "link_not_found" can arise - 2022-12
             assertThat(remove.getError(), is(nullValue()));
 
             Thread.sleep(20000L); // TO avoid rate limited errors

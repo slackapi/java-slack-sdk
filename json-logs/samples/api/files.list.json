@@ -32,6 +32,7 @@
       "lines_more": 12345,
       "preview_is_truncated": false,
       "channels": [
+        "C00000000",
         ""
       ],
       "groups": [
