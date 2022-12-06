@@ -154,6 +154,11 @@ public class AdminAnalyticsGetFileResponse implements SlackApiBinaryResponse {
         private String enterpriseUserId;
 
         /**
+         * Unique ID of the involved workspace
+         */
+        private String teamId;
+
+        /**
          * User ID
          */
         private String userId;
