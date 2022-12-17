@@ -121,6 +121,8 @@ public class Actions {
         public static final String pref_ext_audit_log_retention_duration_changed = "pref.ext_audit_log_retention_duration_changed";
         public static final String pref_required_minimum_desktop_version_changed = "pref.required_minimum_desktop_version_changed";
         public static final String pref_canvas_changed = "pref.canvas_changed";
+        public static final String pref_platform_beta_enabled = "pref.platform_beta_enabled";
+        public static final String pref_who_can_use_platform_beta = "pref.who_can_use_platform_beta";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -204,6 +206,7 @@ public class Actions {
         public static final String user_joined_workspace = "user_joined_workspace";
         public static final String guest_joined_workspace = "guest_joined_workspace";
         public static final String guest_transferred_to_external_user = "guest_transferred_to_external_user";
+        public static final String user_password_reset_requested = "user_password_reset_requested";
     }
 
     public static class File {
