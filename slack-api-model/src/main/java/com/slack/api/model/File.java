@@ -283,6 +283,15 @@ public class File {
         private String messageId;
     }
 
+    private MediaProgress mediaProgress;
+
+    @Data
+    public static class MediaProgress {
+        private Integer offsetMs;
+        private Integer maxOffsetMs;
+        private Integer durationMs;
+    }
+
     // ---------------------------------------
     // file comments
     // https://api.slack.com/changelog/2018-05-file-threads-soon-tread

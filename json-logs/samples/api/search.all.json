@@ -444,6 +444,9 @@
                   "source": "",
                   "file_id": "",
                   "file": {
+                    "thumb_480_gif": "",
+                    "thumb_1024_h": "",
+                    "thumb_video": "",
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -657,6 +660,11 @@
                       "message_id": ""
                     },
                     "simplified_html": "",
+                    "media_progress": {
+                      "offset_ms": 123,
+                      "max_offset_ms": 123,
+                      "duration_ms": 123
+                    },
                     "bot_id": "",
                     "initial_comment": {
                       "id": "",
@@ -1264,6 +1272,11 @@
                     "message_id": ""
                   },
                   "simplified_html": "",
+                  "media_progress": {
+                    "offset_ms": 12345,
+                    "max_offset_ms": 12345,
+                    "duration_ms": 12345
+                  },
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -1603,6 +1616,9 @@
               "source": "",
               "file_id": "",
               "file": {
+                "thumb_480_gif": "",
+                "thumb_1024_h": "",
+                "thumb_video": "",
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -1816,6 +1832,11 @@
                   "message_id": ""
                 },
                 "simplified_html": "",
+                "media_progress": {
+                  "offset_ms": 123,
+                  "max_offset_ms": 123,
+                  "duration_ms": 123
+                },
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
@@ -2591,6 +2612,9 @@
                   "source": "",
                   "file_id": "",
                   "file": {
+                    "thumb_480_gif": "",
+                    "thumb_1024_h": "",
+                    "thumb_video": "",
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -2804,6 +2828,11 @@
                       "message_id": ""
                     },
                     "simplified_html": "",
+                    "media_progress": {
+                      "offset_ms": 123,
+                      "max_offset_ms": 123,
+                      "duration_ms": 123
+                    },
                     "bot_id": "",
                     "initial_comment": {
                       "id": "",
@@ -3411,6 +3440,11 @@
                     "message_id": ""
                   },
                   "simplified_html": "",
+                  "media_progress": {
+                    "offset_ms": 12345,
+                    "max_offset_ms": 12345,
+                    "duration_ms": 12345
+                  },
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -3750,6 +3784,9 @@
               "source": "",
               "file_id": "",
               "file": {
+                "thumb_480_gif": "",
+                "thumb_1024_h": "",
+                "thumb_video": "",
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -3963,6 +4000,11 @@
                   "message_id": ""
                 },
                 "simplified_html": "",
+                "media_progress": {
+                  "offset_ms": 123,
+                  "max_offset_ms": 123,
+                  "duration_ms": 123
+                },
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
@@ -4633,6 +4675,9 @@
             "source": "",
             "file_id": "",
             "file": {
+              "thumb_480_gif": "",
+              "thumb_1024_h": "",
+              "thumb_video": "",
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -4846,6 +4891,11 @@
                 "message_id": ""
               },
               "simplified_html": "",
+              "media_progress": {
+                "offset_ms": 123,
+                "max_offset_ms": 123,
+                "duration_ms": 123
+              },
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -5612,6 +5662,9 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "thumb_480_gif": "",
+                  "thumb_1024_h": "",
+                  "thumb_video": "",
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -5825,6 +5878,11 @@
                     "message_id": ""
                   },
                   "simplified_html": "",
+                  "media_progress": {
+                    "offset_ms": 123,
+                    "max_offset_ms": 123,
+                    "duration_ms": 123
+                  },
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -6432,6 +6490,11 @@
                   "message_id": ""
                 },
                 "simplified_html": "",
+                "media_progress": {
+                  "offset_ms": 12345,
+                  "max_offset_ms": 12345,
+                  "duration_ms": 12345
+                },
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
@@ -6696,6 +6759,11 @@
               "message_id": ""
             },
             "simplified_html": "",
+            "media_progress": {
+              "offset_ms": 12345,
+              "max_offset_ms": 12345,
+              "duration_ms": 12345
+            },
             "bot_id": "",
             "initial_comment": {
               "id": "",

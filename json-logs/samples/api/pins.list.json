@@ -219,6 +219,11 @@
           "message_id": ""
         },
         "simplified_html": "",
+        "media_progress": {
+          "offset_ms": 123,
+          "max_offset_ms": 123,
+          "duration_ms": 123
+        },
         "bot_id": "",
         "initial_comment": {
           "id": "",

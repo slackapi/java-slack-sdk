@@ -292,6 +292,7 @@ public class SampleObjects {
         List<Reaction> reactionList = Arrays.asList(initProperties(Reaction.builder().users(stringList).build()));
         File file = initProperties(File.builder()
                 .headers(initProperties(new com.slack.api.model.File.Headers()))
+                .mediaProgress(initProperties(new File.MediaProgress()))
                 .shares(shares)
                 .channels(stringList)
                 .groups(stringList)
