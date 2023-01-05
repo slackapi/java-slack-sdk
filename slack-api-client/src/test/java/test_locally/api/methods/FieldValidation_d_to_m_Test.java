@@ -122,7 +122,8 @@ public class FieldValidation_d_to_m_Test {
                 "getDurationMs",
                 "getThumbVideoW",
                 "getThumbVideoH",
-                "getAltTxt"
+                "getAltTxt",
+                "getMediaProgress"
         );
     }
 
@@ -217,7 +218,8 @@ public class FieldValidation_d_to_m_Test {
                 "getDurationMs",
                 "getThumbVideoW",
                 "getThumbVideoH",
-                "getAltTxt"
+                "getAltTxt",
+                "getMediaProgress"
         );
     }
 
