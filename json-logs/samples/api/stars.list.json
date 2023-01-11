@@ -401,7 +401,10 @@
                 "source": "",
                 "file_id": "",
                 "file": {
-                  "thumb_64": "",
+                  "pinned_to": [
+                    ""
+                  ],
+                  "pretty_type": "",
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -1575,7 +1578,10 @@
             "source": "",
             "file_id": "",
             "file": {
-              "thumb_64": "",
+              "pinned_to": [
+                ""
+              ],
+              "pretty_type": "",
               "id": "",
               "created": 123,
               "timestamp": 123,
