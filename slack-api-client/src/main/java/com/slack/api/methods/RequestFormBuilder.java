@@ -1586,6 +1586,7 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(EmojiListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("include_categories", req.getIncludeCategories(), form);
         return form;
     }
 

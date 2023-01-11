@@ -40,6 +40,12 @@ public class emoji_Test {
             assertThat(response.isOk(), is(true));
             assertThat(response.getEmoji(), is(notNullValue()));
         }
+        {
+            EmojiListResponse response = slack.methods().emojiList(r -> r.token(botToken).includeCategories(true));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getEmoji(), is(notNullValue()));
+        }
     }
 
     @Test
@@ -47,6 +53,12 @@ public class emoji_Test {
         String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
         {
             EmojiListResponse response = slack.methods().emojiList(r -> r.token(userToken));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getEmoji(), is(notNullValue()));
+        }
+        {
+            EmojiListResponse response = slack.methods().emojiList(r -> r.token(userToken).includeCategories(true));
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
             assertThat(response.getEmoji(), is(notNullValue()));

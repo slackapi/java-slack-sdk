@@ -16,4 +16,9 @@ public class EmojiListRequest implements SlackApiRequest {
      */
     private String token;
 
+    /**
+     * Include a list of categories for Unicode emoji and the emoji in each category
+     */
+    private Boolean includeCategories;
+
 }

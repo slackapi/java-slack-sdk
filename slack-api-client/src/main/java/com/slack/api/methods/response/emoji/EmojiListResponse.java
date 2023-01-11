@@ -18,4 +18,12 @@ public class EmojiListResponse implements SlackApiTextResponse {
 
     private Map<String, String> emoji;
     private String cacheTs;
+    private String categoriesVersion;
+    private List<Category> categories;
+
+    @Data
+    public static class Category {
+        private String name;
+        private List<String> emojiNames;
+    }
 }
