@@ -242,6 +242,11 @@ public class LogsResponse implements AuditApiResponse {
         private String initiatedBy; // "admin.conversations.bulkDelete" for public_channel_deleted etc.
         private String sourceTeam; // channel_moved (by an admin.conversations.bulkMove API call)
         private String destinationTeam; // channel_moved (by an admin.conversations.bulkMove API call)
+        // TODO: Perhaps, this property should be List<String> but the serer-side returns a single string as of Jan 17; Now checking with the server-side teams
+        // private List<String> succeededUsers; // user IDs for bulk_session_reset_by_admin
+        // private List<String> failedUsers; // user IDs for bulk_session_reset_by_admin
+        private String succeededUsers; // user IDs for bulk_session_reset_by_admin
+        private String failedUsers; // user IDs for bulk_session_reset_by_admin
     }
 
     @Data

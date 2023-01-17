@@ -155,7 +155,8 @@
       "team_authorized_ip_range_set",
       "pref.required_minimum_desktop_version_changed",
       "pref.platform_beta_enabled",
-      "pref.who_can_use_platform_beta"
+      "pref.who_can_use_platform_beta",
+      "bulk_session_reset_by_admin"
     ],
     "user": [
       "custom_tos_accepted",

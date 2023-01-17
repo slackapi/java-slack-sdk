@@ -265,7 +265,9 @@
         },
         "initiated_by": "",
         "source_team": "",
-        "destination_team": ""
+        "destination_team": "",
+        "succeeded_users": "",
+        "failed_users": ""
       }
     }
   ]

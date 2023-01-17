@@ -167,6 +167,7 @@ public class Actions {
         public static final String team_unsupported_versions_job_start = "team_unsupported_versions_job_start";
         public static final String team_unsupported_versions_job_end = "team_unsupported_versions_job_end";
         public static final String team_authorized_ip_range_set = "team_authorized_ip_range_set";
+        public static final String bulk_session_reset_by_admin = "bulk_session_reset_by_admin";
     }
 
     public static class User {
