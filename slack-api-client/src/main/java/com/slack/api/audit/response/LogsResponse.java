@@ -59,6 +59,8 @@ public class LogsResponse implements AuditApiResponse {
         private Enterprise enterprise;
         private File file;
         private Channel channel;
+        private Huddle huddle;
+        private Role role;
         private Workflow workflow;
         private InformationBarrier barrier;
     }
@@ -133,6 +135,21 @@ public class LogsResponse implements AuditApiResponse {
         private String ua;
         private String ipAddress;
         private App app;
+    }
+
+    @Data
+    public static class Huddle {
+        private String id;
+        private Integer dateStart;
+        private Integer dateEnd;
+        private List<String> participants;
+    }
+
+    @Data
+    public static class Role {
+        private String id;
+        private String name;
+        private String type;
     }
 
     @Data
@@ -242,11 +259,31 @@ public class LogsResponse implements AuditApiResponse {
         private String initiatedBy; // "admin.conversations.bulkDelete" for public_channel_deleted etc.
         private String sourceTeam; // channel_moved (by an admin.conversations.bulkMove API call)
         private String destinationTeam; // channel_moved (by an admin.conversations.bulkMove API call)
-        // TODO: Perhaps, this property should be List<String> but the serer-side returns a single string as of Jan 17; Now checking with the server-side teams
-        // private List<String> succeededUsers; // user IDs for bulk_session_reset_by_admin
-        // private List<String> failedUsers; // user IDs for bulk_session_reset_by_admin
-        private String succeededUsers; // user IDs for bulk_session_reset_by_admin
-        private String failedUsers; // user IDs for bulk_session_reset_by_admin
+
+        // Note that the actual data for this property can be either an array of string
+        // or a single string representing an encoded JSON array.
+        // GsonAuditLogsDetailsFactory deals with the patterns under the hood
+        private UserIDs succeededUsers; // user IDs for bulk_session_reset_by_admin
+
+        // Note that the actual data for this property can be either an array of string
+        // or a single string representing an encoded JSON array.
+        // GsonAuditLogsDetailsFactory deals with the patterns under the hood
+        private UserIDs failedUsers; // user IDs for bulk_session_reset_by_admin
+
+        private String enterprise; // usergroup_updated
+        private String team; // usergroup_updated
+        private String subteam; // usergroup_updated
+        private String action; // usergroup_updated
+        private Integer idpGroupMemberCount; // usergroup_updated
+        private Integer workspaceMemberCount; // usergroup_updated
+        private Integer addedUserCount; // usergroup_updated
+        private Integer addedUserErrorCount; // usergroup_updated
+        private Integer reactivatedUserCount; // usergroup_updated
+        private Integer removedUserCount; // usergroup_updated
+        private Integer removedUserErrorCount; // usergroup_updated
+        private Integer totalRemovalCount; // usergroup_updated
+        private String isFlagged; // usergroup_updated
+        private String targetUser; // role_assigned
     }
 
     @Data
@@ -317,6 +354,11 @@ public class LogsResponse implements AuditApiResponse {
     @Data
     public static class SharedWith {
         private String channelId;
+    }
+
+    @Data
+    public static class UserIDs {
+        private List<String> users;
     }
 
 }

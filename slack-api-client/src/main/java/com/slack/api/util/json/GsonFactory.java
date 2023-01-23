@@ -32,6 +32,7 @@ public class GsonFactory {
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory())
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory())
+                .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory())
                 .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory())
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory())
                 .create();
@@ -49,12 +50,10 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
-                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class,
-                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
-                .registerTypeAdapter(Attachment.VideoHtml.class,
-                        new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProps))
-                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
-                        new GsonMessageChangedEventPreviousMessageFactory());
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProps))
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory())
+                .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps));
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }
@@ -75,14 +74,11 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
-                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class,
-                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
-                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
-                        new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
-                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class,
-                        new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
-                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,
-                        new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps));
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
+                .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps));
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
         }

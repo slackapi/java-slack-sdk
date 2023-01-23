@@ -342,6 +342,15 @@
     "account_type_role": [
       "permissions_assigned",
       "permissions_removed"
+    ],
+    "app_approval_automation_rule": [
+      "app_allowlist_rule_created",
+      "app_allowlist_rule_updated",
+      "app_allowlist_rule_activated",
+      "app_allowlist_rule_deactivated",
+      "app_allowlist_rule_deleted",
+      "app_allowlist_rule_reordered",
+      "app_allowlist_scopes_rating_updated"
     ]
   }
 }

@@ -407,4 +407,17 @@ public class Actions {
         public static final String permissions_assigned = "permissions_assigned";
         public static final String permissions_removed = "permissions_removed";
     }
+
+    public static class AppApprovalAutomationRule {
+        private AppApprovalAutomationRule() {
+        }
+
+        public static final String app_allowlist_rule_created = "app_allowlist_rule_created";
+        public static final String app_allowlist_rule_updated = "app_allowlist_rule_updated";
+        public static final String app_allowlist_rule_activated = "app_allowlist_rule_activated";
+        public static final String app_allowlist_rule_deactivated = "app_allowlist_rule_deactivated";
+        public static final String app_allowlist_rule_deleted = "app_allowlist_rule_deleted";
+        public static final String app_allowlist_rule_reordered = "app_allowlist_rule_reordered";
+        public static final String app_allowlist_scopes_rating_updated = "app_allowlist_scopes_rating_updated";
+    }
 }

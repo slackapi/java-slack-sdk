@@ -52,5 +52,11 @@
   },
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "errors": [
+    {
+      "ok": false,
+      "error": ""
+    }
+  ]
 }

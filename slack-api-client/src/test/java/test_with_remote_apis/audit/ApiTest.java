@@ -239,6 +239,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> appApprovalAutomationRuleNames = getAllPublicStaticFieldValues(Actions.AppApprovalAutomationRule.class);
+        for (String action : actions.getAppApprovalAutomationRule()) {
+            if (!appApprovalAutomationRuleNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test
@@ -298,8 +304,16 @@ public class ApiTest {
             verifyAllActions(orgAdminUserToken, Actions.User.class);
             verifyAllActions(orgAdminUserToken, Actions.File.class);
             verifyAllActions(orgAdminUserToken, Actions.Channel.class);
+            verifyAllActions(orgAdminUserToken, Actions.Message.class);
+            verifyAllActions(orgAdminUserToken, Actions.WorkflowBuilder.class);
             verifyAllActions(orgAdminUserToken, Actions.App.class);
             verifyAllActions(orgAdminUserToken, Actions.Barrier.class);
+            verifyAllActions(orgAdminUserToken, Actions.Huddle.class);
+            verifyAllActions(orgAdminUserToken, Actions.Anomaly.class);
+            verifyAllActions(orgAdminUserToken, Actions.Subteam.class);
+            verifyAllActions(orgAdminUserToken, Actions.Role.class);
+            verifyAllActions(orgAdminUserToken, Actions.AccountTypeRole.class);
+            verifyAllActions(orgAdminUserToken, Actions.AppApprovalAutomationRule.class);
 
             // As all the properties are available in LogsResponse class,
             // we'll re-generate the sample JSON file.

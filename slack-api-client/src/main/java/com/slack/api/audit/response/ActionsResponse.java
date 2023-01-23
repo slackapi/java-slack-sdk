@@ -37,5 +37,6 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> subteam;
         private List<String> role;
         private List<String> accountTypeRole;
+        private List<String> appApprovalAutomationRule;
     }
 }

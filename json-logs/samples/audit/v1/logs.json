@@ -75,6 +75,17 @@
           ],
           "original_connected_channel_id": ""
         },
+        "huddle": {
+          "id": "",
+          "date_start": 123,
+          "date_end": 123,
+          "participants": []
+        },
+        "role": {
+          "id": "",
+          "name": "",
+          "type": ""
+        },
         "workflow": {
           "id": "",
           "name": ""
@@ -266,8 +277,22 @@
         "initiated_by": "",
         "source_team": "",
         "destination_team": "",
-        "succeeded_users": "",
-        "failed_users": ""
+        "succeeded_users": [],
+        "failed_users": [],
+        "enterprise": "",
+        "team": "",
+        "subteam": "",
+        "action": "",
+        "idp_group_member_count": 123,
+        "workspace_member_count": 123,
+        "added_user_count": 123,
+        "added_user_error_count": 123,
+        "reactivated_user_count": 123,
+        "removed_user_count": 123,
+        "removed_user_error_count": 123,
+        "total_removal_count": 123,
+        "is_flagged": "",
+        "target_user": ""
       }
     }
   ]
