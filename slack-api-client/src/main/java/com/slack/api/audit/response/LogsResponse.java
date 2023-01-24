@@ -262,12 +262,12 @@ public class LogsResponse implements AuditApiResponse {
 
         // Note that the actual data for this property can be either an array of string
         // or a single string representing an encoded JSON array.
-        // GsonAuditLogsDetailsFactory deals with the patterns under the hood
+        // GsonAuditLogsDetailsUSerIDsFactory deals with the patterns under the hood
         private UserIDs succeededUsers; // user IDs for bulk_session_reset_by_admin
 
         // Note that the actual data for this property can be either an array of string
         // or a single string representing an encoded JSON array.
-        // GsonAuditLogsDetailsFactory deals with the patterns under the hood
+        // GsonAuditLogsDetailsUSerIDsFactory deals with the patterns under the hood
         private UserIDs failedUsers; // user IDs for bulk_session_reset_by_admin
 
         private String enterprise; // usergroup_updated
