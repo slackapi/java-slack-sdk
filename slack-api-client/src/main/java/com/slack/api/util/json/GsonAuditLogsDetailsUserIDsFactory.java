@@ -32,7 +32,7 @@ public class GsonAuditLogsDetailsUserIDsFactory implements JsonDeserializer<Logs
             throws JsonParseException {
         LogsResponse.UserIDs result = new LogsResponse.UserIDs();
         if (json.isJsonPrimitive()) {
-            result.setUsers(GSON.fromJson(json.getAsString(), new TypeToken<List<String>>(){}.getType()));
+            result.setUsers(GSON.fromJson(json.getAsString(), TYPE));
             return result;
         } else if (json.isJsonArray()) {
             result.setUsers(parseStringArray(json));
