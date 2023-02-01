@@ -219,7 +219,8 @@ public class FieldValidation_d_to_m_Test {
                 "getThumbVideoW",
                 "getThumbVideoH",
                 "getAltTxt",
-                "getMediaProgress"
+                "getMediaProgress",
+                "getHasMoreShares"
         );
     }
 

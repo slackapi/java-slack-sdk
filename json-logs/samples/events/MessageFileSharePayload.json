@@ -610,6 +610,7 @@
         "author_subname": "",
         "channel_id": "",
         "channel_name": "",
+        "channel_team": "",
         "id": 123,
         "app_id": "",
         "bot_id": "",
@@ -812,6 +813,7 @@
         "public_url_shared": false,
         "display_as_bot": false,
         "shares": {},
+        "has_more_shares": false,
         "channel_actions_ts": "",
         "channel_actions_count": 123,
         "headers": {
