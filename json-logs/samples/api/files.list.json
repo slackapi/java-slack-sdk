@@ -36,6 +36,7 @@
         ""
       ],
       "groups": [
+        "G00000000",
         ""
       ],
       "ims": [
@@ -187,6 +188,7 @@
           ]
         }
       },
+      "has_more_shares": false,
       "to": [
         {
           "address": "",

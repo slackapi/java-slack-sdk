@@ -218,6 +218,7 @@ public class File {
     private List<String> ims;
 
     private Shares shares;
+    private Boolean hasMoreShares;
 
     @Data
     public static class Shares {

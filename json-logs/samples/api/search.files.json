@@ -138,7 +138,8 @@
         "thumb_pdf_w": 12345,
         "thumb_pdf_h": 12345,
         "file_access": "",
-        "user_team": "T00000000"
+        "user_team": "T00000000",
+        "has_more_shares": false
       }
     ]
   },

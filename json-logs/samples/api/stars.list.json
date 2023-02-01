@@ -584,6 +584,7 @@
                       ]
                     }
                   },
+                  "has_more_shares": false,
                   "to": [
                     {
                       "address": "",
@@ -1196,6 +1197,7 @@
                     ]
                   }
                 },
+                "has_more_shares": false,
                 "to": [
                   {
                     "address": "",
@@ -1757,6 +1759,7 @@
                   ]
                 }
               },
+              "has_more_shares": false,
               "to": [
                 {
                   "address": "",
@@ -2390,6 +2393,7 @@
                 ]
               }
             },
+            "has_more_shares": false,
             "to": [
               {
                 "address": "",
@@ -2642,6 +2646,7 @@
             ]
           }
         },
+        "has_more_shares": false,
         "to": [
           {
             "address": "",

@@ -84,6 +84,7 @@ public class Attachment {
     private String channelId;
     // "channel_name": "general",
     private String channelName;
+    private String channelTeam;
     //"id": 1,
     private Integer id;
 

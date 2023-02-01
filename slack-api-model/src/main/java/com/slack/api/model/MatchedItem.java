@@ -116,6 +116,7 @@ public class MatchedItem {
     private OtherItem next2;
 
     private File.Shares shares;
+    private Boolean hasMoreShares;
     private List<String> channels;
     private List<String> groups;
     private List<String> ims;
