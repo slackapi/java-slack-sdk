@@ -655,6 +655,7 @@
                 ]
               }
             },
+            "has_more_shares": false,
             "to": [
               {
                 "address": "",
