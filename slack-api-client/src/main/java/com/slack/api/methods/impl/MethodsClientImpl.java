@@ -22,6 +22,9 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
+import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
+import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
+import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -129,6 +132,9 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
+import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
+import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
+import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
@@ -796,6 +802,36 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminInviteRequestsDeniedListResponse adminInviteRequestsDeniedList(RequestConfigurator<AdminInviteRequestsDeniedListRequest.AdminInviteRequestsDeniedListRequestBuilder> req) throws IOException, SlackApiException {
         return adminInviteRequestsDeniedList(req.configure(AdminInviteRequestsDeniedListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminRolesListAssignmentsResponse adminRolesListAssignments(AdminRolesListAssignmentsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_ROLES_LIST_ASSIGNMENTS, getToken(req), AdminRolesListAssignmentsResponse.class);
+    }
+
+    @Override
+    public AdminRolesListAssignmentsResponse adminRolesListAssignments(RequestConfigurator<AdminRolesListAssignmentsRequest.AdminRolesListAssignmentsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminRolesListAssignments(req.configure(AdminRolesListAssignmentsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminRolesAddAssignmentsResponse adminRolesAddAssignments(AdminRolesAddAssignmentsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_ROLES_ADD_ASSIGNMENTS, getToken(req), AdminRolesAddAssignmentsResponse.class);
+    }
+
+    @Override
+    public AdminRolesAddAssignmentsResponse adminRolesAddAssignments(RequestConfigurator<AdminRolesAddAssignmentsRequest.AdminRolesAddAssignmentsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminRolesAddAssignments(req.configure(AdminRolesAddAssignmentsRequest.builder()).build());
+    }
+
+    @Override
+    public AdminRolesRemoveAssignmentsResponse adminRolesRemoveAssignments(AdminRolesRemoveAssignmentsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_ROLES_REMOVE_ASSIGNMENTS, getToken(req), AdminRolesRemoveAssignmentsResponse.class);
+    }
+
+    @Override
+    public AdminRolesRemoveAssignmentsResponse adminRolesRemoveAssignments(RequestConfigurator<AdminRolesRemoveAssignmentsRequest.AdminRolesRemoveAssignmentsRequestBuilder> req) throws IOException, SlackApiException {
+        return adminRolesRemoveAssignments(req.configure(AdminRolesRemoveAssignmentsRequest.builder()).build());
     }
 
     @Override

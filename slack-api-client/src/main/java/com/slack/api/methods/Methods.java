@@ -118,6 +118,14 @@ public class Methods {
     public static final String ADMIN_INVITE_REQUESTS_DENIED_LIST = "admin.inviteRequests.denied.list";
 
     // ------------------------------
+    // admin.roles
+    // ------------------------------
+
+    public static final String ADMIN_ROLES_LIST_ASSIGNMENTS = "admin.roles.listAssignments";
+    public static final String ADMIN_ROLES_ADD_ASSIGNMENTS = "admin.roles.addAssignments";
+    public static final String ADMIN_ROLES_REMOVE_ASSIGNMENTS = "admin.roles.removeAssignments";
+
+    // ------------------------------
     // admin.teams.admins
     // ------------------------------
 

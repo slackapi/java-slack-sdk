@@ -166,6 +166,18 @@ public class AdminApiAsyncTest {
     }
 
     @Test
+    public void adminRoles() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminRolesAddAssignments(r -> r)
+                .get().isOk(), is(true));
+        assertThat(methods.adminRolesListAssignments(r -> r)
+                .get().isOk(), is(true));
+        assertThat(methods.adminRolesRemoveAssignments(r -> r)
+                .get().isOk(), is(true));
+    }
+
+    @Test
     public void adminTeams() throws Exception {
         AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
 

@@ -20,6 +20,9 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
+import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
+import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
+import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -114,6 +117,9 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
+import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
+import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
+import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
@@ -471,6 +477,22 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminInviteRequestsDeniedListResponse> adminInviteRequestsDeniedList(AdminInviteRequestsDeniedListRequest req);
 
     CompletableFuture<AdminInviteRequestsDeniedListResponse> adminInviteRequestsDeniedList(RequestConfigurator<AdminInviteRequestsDeniedListRequest.AdminInviteRequestsDeniedListRequestBuilder> req);
+
+    // ------------------------------
+    // admin.roles
+    // ------------------------------
+
+    CompletableFuture<AdminRolesListAssignmentsResponse> adminRolesListAssignments(AdminRolesListAssignmentsRequest req);
+
+    CompletableFuture<AdminRolesListAssignmentsResponse> adminRolesListAssignments(RequestConfigurator<AdminRolesListAssignmentsRequest.AdminRolesListAssignmentsRequestBuilder> req);
+
+    CompletableFuture<AdminRolesAddAssignmentsResponse> adminRolesAddAssignments(AdminRolesAddAssignmentsRequest req);
+
+    CompletableFuture<AdminRolesAddAssignmentsResponse> adminRolesAddAssignments(RequestConfigurator<AdminRolesAddAssignmentsRequest.AdminRolesAddAssignmentsRequestBuilder> req);
+
+    CompletableFuture<AdminRolesRemoveAssignmentsResponse> adminRolesRemoveAssignments(AdminRolesRemoveAssignmentsRequest req);
+
+    CompletableFuture<AdminRolesRemoveAssignmentsResponse> adminRolesRemoveAssignments(RequestConfigurator<AdminRolesRemoveAssignmentsRequest.AdminRolesRemoveAssignmentsRequestBuilder> req);
 
     // ------------------------------
     // admin.teams.admins

@@ -46,11 +46,7 @@ public class MethodsTest {
                 // TODO: admin.audit.anomaly.allow.*
                 // The endpoints requires a "session" token
                 "admin.audit.anomaly.allow.getItem",
-                "admin.audit.anomaly.allow.updateItem",
-                // TODO: admin.roles.* - https://github.com/slackapi/java-slack-sdk/issues/1082
-                "admin.roles.addAssignments",
-                "admin.roles.listAssignments",
-                "admin.roles.removeAssignments"
+                "admin.audit.anomaly.allow.updateItem"
         );
         List<String> methodNames = new ArrayList<>();
         for (String methodName : allMethodNames) {

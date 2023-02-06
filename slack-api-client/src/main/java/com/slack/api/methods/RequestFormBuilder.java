@@ -20,6 +20,9 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
+import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
+import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
+import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -622,6 +625,42 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminRolesAddAssignmentsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("role_id", req.getRoleId(), form);
+        if (req.getEntityIds() != null) {
+            setIfNotNull("entity_ids", req.getEntityIds().stream().collect(joining(",")), form);
+        }
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminRolesListAssignmentsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getEntityIds() != null) {
+            setIfNotNull("entity_ids", req.getEntityIds().stream().collect(joining(",")), form);
+        }
+        if (req.getRoleIds() != null) {
+            setIfNotNull("role_ids", req.getRoleIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
+        return form;
+    }
+    public static FormBody.Builder toForm(AdminRolesRemoveAssignmentsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("role_id", req.getRoleId(), form);
+        if (req.getEntityIds() != null) {
+            setIfNotNull("entity_ids", req.getEntityIds().stream().collect(joining(",")), form);
+        }
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
     public static FormBody.Builder toForm(AdminTeamsAdminsListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("cursor", req.getCursor(), form);
