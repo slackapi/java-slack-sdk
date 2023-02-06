@@ -70,7 +70,7 @@ app.blockAction("button-action", (req, ctx) -> {
 });
 ```
 
-The sample code in Kotlin looks like as blow.
+The sample code in Kotlin looks like as below.
 
 ```kotlin
 app.blockAction("button-action") { req, ctx ->
