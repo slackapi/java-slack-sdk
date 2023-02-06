@@ -20,6 +20,9 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
+import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
+import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
+import com.slack.api.methods.request.admin.roles.AdminRolesRemoveAssignmentsRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsAdminsListRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsCreateRequest;
 import com.slack.api.methods.request.admin.teams.AdminTeamsListRequest;
@@ -127,6 +130,9 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
 import com.slack.api.methods.response.admin.invite_requests.*;
+import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
+import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
+import com.slack.api.methods.response.admin.roles.AdminRolesRemoveAssignmentsResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsListResponse;
@@ -553,6 +559,22 @@ public interface MethodsClient {
     AdminInviteRequestsDeniedListResponse adminInviteRequestsDeniedList(AdminInviteRequestsDeniedListRequest req) throws IOException, SlackApiException;
 
     AdminInviteRequestsDeniedListResponse adminInviteRequestsDeniedList(RequestConfigurator<AdminInviteRequestsDeniedListRequest.AdminInviteRequestsDeniedListRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // admin.roles
+    // ------------------------------
+
+    AdminRolesListAssignmentsResponse adminRolesListAssignments(AdminRolesListAssignmentsRequest req) throws IOException, SlackApiException;
+
+    AdminRolesListAssignmentsResponse adminRolesListAssignments(RequestConfigurator<AdminRolesListAssignmentsRequest.AdminRolesListAssignmentsRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminRolesAddAssignmentsResponse adminRolesAddAssignments(AdminRolesAddAssignmentsRequest req) throws IOException, SlackApiException;
+
+    AdminRolesAddAssignmentsResponse adminRolesAddAssignments(RequestConfigurator<AdminRolesAddAssignmentsRequest.AdminRolesAddAssignmentsRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminRolesRemoveAssignmentsResponse adminRolesRemoveAssignments(AdminRolesRemoveAssignmentsRequest req) throws IOException, SlackApiException;
+
+    AdminRolesRemoveAssignmentsResponse adminRolesRemoveAssignments(RequestConfigurator<AdminRolesRemoveAssignmentsRequest.AdminRolesRemoveAssignmentsRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // admin.teams.admins

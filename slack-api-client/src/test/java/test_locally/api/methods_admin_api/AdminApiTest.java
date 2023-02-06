@@ -184,6 +184,15 @@ public class AdminApiTest {
     }
 
     @Test
+    public void adminRoles() throws Exception {
+        MethodsClient methods = slack.methods(ValidToken);
+
+        assertThat(methods.adminRolesAddAssignments(r -> r).isOk(), is(true));
+        assertThat(methods.adminRolesListAssignments(r -> r).isOk(), is(true));
+        assertThat(methods.adminRolesRemoveAssignments(r -> r).isOk(), is(true));
+    }
+
+    @Test
     public void adminTeams() throws Exception {
         MethodsClient methods = slack.methods(ValidToken);
 

@@ -120,6 +120,9 @@ public class MethodsRateLimits {
                 ADMIN_INVITE_REQUESTS_APPROVED_LIST,
                 ADMIN_INVITE_REQUESTS_DENIED_LIST,
 
+                ADMIN_ROLES_ADD_ASSIGNMENTS,
+                ADMIN_ROLES_REMOVE_ASSIGNMENTS,
+
                 ADMIN_TEAMS_SETTINGS_SET_DEFAULT_CHANNELS,
                 ADMIN_TEAMS_SETTINGS_SET_DESCRIPTION,
                 ADMIN_TEAMS_SETTINGS_SET_DISCOVERABILITY,
@@ -148,6 +151,8 @@ public class MethodsRateLimits {
 
         // Tier3
         final List<String> adminApiMethods_Tier3 = Arrays.asList(
+                ADMIN_ROLES_LIST_ASSIGNMENTS,
+
                 ADMIN_TEAMS_ADMINS_LIST,
                 ADMIN_TEAMS_LIST,
                 ADMIN_TEAMS_OWNERS_LIST,

@@ -1,0 +1,20 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "role_assignments": [
+    {
+      "role_id": "",
+      "entity_id": "C00000000",
+      "user_id": "U00000000",
+      "date_create": 12345
+    }
+  ],
+  "response_metadata": {
+    "next_cursor": "",
+    "messages": [
+      ""
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "error": "",
+  "rejected_users": [
+    {
+      "id": "U00000000",
+      "error": ""
+    }
+  ],
+  "needed": "",
+  "provided": ""
+}
