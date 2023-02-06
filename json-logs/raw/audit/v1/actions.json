@@ -254,7 +254,8 @@
       "external_shared_channel_disconnect_and_archived",
       "dm_user_added",
       "public_channel_preview",
-      "external_shared_channel_access_downgraded"
+      "external_shared_channel_access_downgraded",
+      "private_channel_converted_to_public"
     ],
     "app": [
       "app_installed",
