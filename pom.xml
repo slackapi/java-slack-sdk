@@ -51,12 +51,12 @@
         <jakarta.servlet-api.version>5.0.0</jakarta.servlet-api.version>
         <okhttp.version>4.10.0</okhttp.version>
         <gson.version>2.10.1</gson.version>
-        <kotlin.version>1.8.0</kotlin.version>
+        <kotlin.version>1.8.10</kotlin.version>
         <!-- Note that we should not upgrade sfl4j-api to v2 to avoid confusions on the users side.
             see also: https://github.com/slackapi/java-slack-sdk/issues/1034
         -->
         <slf4j.version>1.7.36</slf4j.version>
-        <lombok.version>1.18.24</lombok.version>
+        <lombok.version>1.18.26</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
 
@@ -69,7 +69,7 @@
         <logback-slf4j-v1.version>1.2.11</logback-slf4j-v1.version>
         <logback-slf4j-v2.version>1.4.5</logback-slf4j-v2.version>
         <hamcrest.version>[1.3,2.0)</hamcrest.version>
-        <mockito-core.version>[4.1.0,5.0.0)</mockito-core.version>
+        <mockito-core.version>[5.1.1,6.0.0)</mockito-core.version>
         <jetty-for-tests.version>9.2.27.v20190403</jetty-for-tests.version>
 
         <!-- Maven plugins: range versioning does not work -->
