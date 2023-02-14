@@ -444,6 +444,26 @@
                   "source": "",
                   "file_id": "",
                   "file": {
+                    "thumb_720": "",
+                    "thumb_800_h": "",
+                    "thumb_1024_h": "",
+                    "thumb_video": "",
+                    "thumb_tiny": "",
+                    "is_starred": false,
+                    "pinned_to": [
+                      ""
+                    ],
+                    "reactions": [
+                      {
+                        "name": "",
+                        "count": 123,
+                        "users": [
+                          ""
+                        ],
+                        "url": ""
+                      }
+                    ],
+                    "comments_count": 123,
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -1615,6 +1635,26 @@
               "source": "",
               "file_id": "",
               "file": {
+                "thumb_720": "",
+                "thumb_800_h": "",
+                "thumb_1024_h": "",
+                "thumb_video": "",
+                "thumb_tiny": "",
+                "is_starred": false,
+                "pinned_to": [
+                  ""
+                ],
+                "reactions": [
+                  {
+                    "name": "",
+                    "count": 123,
+                    "users": [
+                      ""
+                    ],
+                    "url": ""
+                  }
+                ],
+                "comments_count": 123,
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -2610,6 +2650,26 @@
                   "source": "",
                   "file_id": "",
                   "file": {
+                    "thumb_720": "",
+                    "thumb_800_h": "",
+                    "thumb_1024_h": "",
+                    "thumb_video": "",
+                    "thumb_tiny": "",
+                    "is_starred": false,
+                    "pinned_to": [
+                      ""
+                    ],
+                    "reactions": [
+                      {
+                        "name": "",
+                        "count": 123,
+                        "users": [
+                          ""
+                        ],
+                        "url": ""
+                      }
+                    ],
+                    "comments_count": 123,
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -3781,6 +3841,26 @@
               "source": "",
               "file_id": "",
               "file": {
+                "thumb_720": "",
+                "thumb_800_h": "",
+                "thumb_1024_h": "",
+                "thumb_video": "",
+                "thumb_tiny": "",
+                "is_starred": false,
+                "pinned_to": [
+                  ""
+                ],
+                "reactions": [
+                  {
+                    "name": "",
+                    "count": 123,
+                    "users": [
+                      ""
+                    ],
+                    "url": ""
+                  }
+                ],
+                "comments_count": 123,
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -4670,6 +4750,26 @@
             "source": "",
             "file_id": "",
             "file": {
+              "thumb_720": "",
+              "thumb_800_h": "",
+              "thumb_1024_h": "",
+              "thumb_video": "",
+              "thumb_tiny": "",
+              "is_starred": false,
+              "pinned_to": [
+                ""
+              ],
+              "reactions": [
+                {
+                  "name": "",
+                  "count": 123,
+                  "users": [
+                    ""
+                  ],
+                  "url": ""
+                }
+              ],
+              "comments_count": 123,
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -5656,6 +5756,26 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "thumb_720": "",
+                  "thumb_800_h": "",
+                  "thumb_1024_h": "",
+                  "thumb_video": "",
+                  "thumb_tiny": "",
+                  "is_starred": false,
+                  "pinned_to": [
+                    ""
+                  ],
+                  "reactions": [
+                    {
+                      "name": "",
+                      "count": 123,
+                      "users": [
+                        ""
+                      ],
+                      "url": ""
+                    }
+                  ],
+                  "comments_count": 123,
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
