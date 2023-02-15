@@ -24,7 +24,8 @@
       "last_updated_by_user_id": "",
       "last_updated_by_team_id": "",
       "shortcut_id": "",
-      "app_id": ""
+      "app_id": "",
+      "app_action_id": ""
     }
   ]
 }

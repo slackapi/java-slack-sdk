@@ -25,4 +25,5 @@ public class Bookmark {
     private String lastUpdatedByTeamId;
     private String shortcutId;
     private String appId;
+    private String appActionId;
 }
