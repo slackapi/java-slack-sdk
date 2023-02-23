@@ -275,18 +275,19 @@
         "blocks": [
           {
             "type": "",
+            "block_id": "",
             "elements": [
               {
                 "type": "",
+                "action_id": "",
                 "text": {
                   "type": "",
                   "text": "",
                   "emoji": false
                 },
-                "action_id": "",
-                "url": "",
-                "value": "",
                 "style": "",
+                "value": "",
+                "url": "",
                 "confirm": {
                   "title": {
                     "type": "",
@@ -506,7 +507,6 @@
                 "border": 12345
               }
             ],
-            "block_id": "",
             "call_id": "",
             "api_decoration_available": false,
             "call": {

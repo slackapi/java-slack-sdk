@@ -156,7 +156,9 @@
       "pref.required_minimum_desktop_version_changed",
       "pref.platform_beta_enabled",
       "pref.who_can_use_platform_beta",
-      "bulk_session_reset_by_admin"
+      "bulk_session_reset_by_admin",
+      "pref.platform_beta_interactions_with_external_triggers_and_workflows_enabled",
+      "pref.platform_beta_external_triggers_enabled"
     ],
     "user": [
       "custom_tos_accepted",
