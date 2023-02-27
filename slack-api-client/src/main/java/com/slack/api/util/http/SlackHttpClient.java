@@ -43,6 +43,14 @@ public class SlackHttpClient implements AutoCloseable {
 
     public static OkHttpClient buildOkHttpClient(SlackConfig config, Map<String, String> userAgentCustomInfo) {
         final OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+
+        // For context, this change was applied to resolves https://github.com/slackapi/java-slack-sdk/issues/1122
+        // There is no use case to follow redirects as of Feb 2023.
+        // If this SDK needs to enable developers to customize these options,
+        // we may want to add overloaded buildOkHttpClient() method or add such an option to the SlackConfig object.
+        okHttpClient.followRedirects(false);
+        okHttpClient.followSslRedirects(false);
+
         okHttpClient.addInterceptor(new UserAgentInterceptor(userAgentCustomInfo));
         if (config.getHttpClientReadTimeoutMillis() != null) {
             okHttpClient.readTimeout(config.getHttpClientReadTimeoutMillis(), TimeUnit.MILLISECONDS);
