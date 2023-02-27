@@ -315,4 +315,11 @@ public class IncomingWebhooksTest {
         assertThat(response.getCode(), is(200));
         assertThat(response.getHeaders().size(),is(greaterThan(0)));
     }
+
+    @Test
+    public void issue_1122_invalid_url() throws Exception {
+        String invalidUrl = "https://hooks.slack.com/services/invalid-url";
+        WebhookResponse response = slack.send(invalidUrl, Payload.builder().text("Hello world!").build());
+        assertThat(response.getCode(), is(302));
+    }
 }
