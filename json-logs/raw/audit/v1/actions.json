@@ -158,7 +158,8 @@
       "pref.who_can_use_platform_beta",
       "bulk_session_reset_by_admin",
       "pref.platform_beta_interactions_with_external_triggers_and_workflows_enabled",
-      "pref.platform_beta_external_triggers_enabled"
+      "pref.platform_beta_external_triggers_enabled",
+      "export_private_channel_analytics_created"
     ],
     "user": [
       "custom_tos_accepted",
