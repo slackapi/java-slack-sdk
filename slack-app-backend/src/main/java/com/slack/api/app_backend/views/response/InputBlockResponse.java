@@ -20,4 +20,5 @@ public class InputBlockResponse {
     private List<Attachment> attachments;
     private List<LayoutBlock> blocks;
     private Message.Metadata metadata;
+    private String threadTs;
 }

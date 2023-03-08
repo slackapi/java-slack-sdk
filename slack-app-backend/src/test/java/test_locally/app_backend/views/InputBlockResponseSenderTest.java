@@ -26,6 +26,8 @@ public class InputBlockResponseSenderTest {
 
             InputBlockResponse data = InputBlockResponse.builder()
                     .text("Hi there!")
+                    .responseType("in_channel")
+                    .threadTs("111.222")
                     .build();
             WebhookResponse response = sender.send(slackApiServer.getWebhookUrl(), data);
             assertNotNull(response);
