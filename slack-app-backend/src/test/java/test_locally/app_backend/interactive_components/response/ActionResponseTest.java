@@ -19,6 +19,7 @@ public class ActionResponseTest {
         response.setBlocks(Collections.emptyList());
         response.setDeleteOriginal(false);
         response.setReplaceOriginal(true);
+        response.setThreadTs("111.222");
 
         assertThat(response.getText(), is("something to say"));
 
@@ -28,7 +29,8 @@ public class ActionResponseTest {
                 "\"replace_original\":true," +
                 "\"delete_original\":false," +
                 "\"attachments\":[]," +
-                "\"blocks\":[]" +
+                "\"blocks\":[]," +
+                "\"thread_ts\":\"111.222\"" +
                 "}"));
     }
 
