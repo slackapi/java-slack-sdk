@@ -284,6 +284,14 @@ public class LogsResponse implements AuditApiResponse {
         private Integer totalRemovalCount; // usergroup_updated
         private String isFlagged; // usergroup_updated
         private String targetUser; // role_assigned
+        private String idpConfigId; // user_login
+        private String configType; // user_login
+        private String idpEntityId; // user_login
+        private String idpEntityIdHash; // user_login
+        private String label; // user_login
+        private Profile previousProfile; // user_profile_updated
+        private Profile newProfile; // user_profile_updated
+
     }
 
     @Data
@@ -361,4 +369,11 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> users;
     }
 
+    @Data
+    public static class Profile {
+        private String realName;
+        private String firstName;
+        private String lastName;
+        private String displayName;
+    }
 }
