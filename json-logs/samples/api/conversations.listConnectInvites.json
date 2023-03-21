@@ -131,11 +131,13 @@
                   "image_44": "https://www.example.com/",
                   "image_68": "https://www.example.com/",
                   "image_88": "https://www.example.com/",
-                  "image_original": "https://www.example.com/"
+                  "image_original": "https://www.example.com/",
+                  "image_default": false
                 },
                 "is_verified": false,
                 "domain": "",
-                "date_created": 12345
+                "date_created": 12345,
+                "avatar_base_url": "https://www.example.com/"
               }
             },
             {
