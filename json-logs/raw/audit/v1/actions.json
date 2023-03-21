@@ -283,7 +283,9 @@
       "app_allowlist_rule_matched",
       "app_datastore_created",
       "app_datastore_updated",
-      "app_datastore_deleted"
+      "app_datastore_deleted",
+      "app_collaborator_added",
+      "app_collaborator_removed"
     ],
     "workflow_builder": [
       "workflow_created",

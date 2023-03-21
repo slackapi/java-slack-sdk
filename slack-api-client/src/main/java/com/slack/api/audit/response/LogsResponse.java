@@ -375,5 +375,20 @@ public class LogsResponse implements AuditApiResponse {
         private String firstName;
         private String lastName;
         private String displayName;
+        private String imageOriginal;
+        @SerializedName("image_24")
+        private String image24;
+        @SerializedName("image_32")
+        private String image32;
+        @SerializedName("image_48")
+        private String image48;
+        @SerializedName("image_72")
+        private String image72;
+        @SerializedName("image_192")
+        private String image192;
+        @SerializedName("image_512")
+        private String image512;
+        @SerializedName("image_1024")
+        private String image1024;
     }
 }

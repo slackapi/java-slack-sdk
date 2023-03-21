@@ -83,11 +83,13 @@
               "image_44": "https://www.example.com/",
               "image_68": "https://www.example.com/",
               "image_88": "https://www.example.com/",
-              "image_original": "https://www.example.com/"
+              "image_original": "https://www.example.com/",
+              "image_default": false
             },
             "is_verified": false,
             "domain": "",
-            "date_created": 12345
+            "date_created": 12345,
+            "avatar_base_url": "https://www.example.com/"
           },
           "accepting_user": {
             "id": "U00000000",
@@ -107,8 +109,12 @@
               "image_48": "https://www.example.com/",
               "image_72": "https://www.example.com/",
               "image_192": "https://www.example.com/",
-              "image_512": "https://www.example.com/"
-            }
+              "image_512": "https://www.example.com/",
+              "image_1024": "https://www.example.com/",
+              "image_original": "https://www.example.com/",
+              "is_custom_image": false
+            },
+            "who_can_share_contact_card": ""
           },
           "reviews": [
             {
@@ -127,6 +133,28 @@
                   "image_88": "https://www.example.com/",
                   "image_original": "https://www.example.com/"
                 },
+                "is_verified": false,
+                "domain": "",
+                "date_created": 12345
+              }
+            },
+            {
+              "type": "",
+              "date_review": 12345,
+              "reviewing_team": {
+                "id": "T00000000",
+                "name": "",
+                "icon": {
+                  "image_default": false,
+                  "image_34": "https://www.example.com/",
+                  "image_44": "https://www.example.com/",
+                  "image_68": "https://www.example.com/",
+                  "image_88": "https://www.example.com/",
+                  "image_102": "https://www.example.com/",
+                  "image_230": "https://www.example.com/",
+                  "image_132": "https://www.example.com/"
+                },
+                "avatar_base_url": "https://www.example.com/",
                 "is_verified": false,
                 "domain": "",
                 "date_created": 12345

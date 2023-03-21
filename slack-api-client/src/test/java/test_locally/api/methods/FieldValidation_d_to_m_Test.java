@@ -123,7 +123,8 @@ public class FieldValidation_d_to_m_Test {
                 "getThumbVideoW",
                 "getThumbVideoH",
                 "getAltTxt",
-                "getMediaProgress"
+                "getMediaProgress",
+                "getSourceTeam"
         );
     }
 
@@ -220,7 +221,8 @@ public class FieldValidation_d_to_m_Test {
                 "getThumbVideoH",
                 "getAltTxt",
                 "getMediaProgress",
-                "getHasMoreShares"
+                "getHasMoreShares",
+                "getSourceTeam"
         );
     }
 

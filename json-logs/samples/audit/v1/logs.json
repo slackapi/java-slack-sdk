@@ -302,13 +302,29 @@
           "real_name": "",
           "first_name": "",
           "last_name": "",
-          "display_name": ""
+          "display_name": "",
+          "image_original": "",
+          "image_24": "",
+          "image_32": "",
+          "image_48": "",
+          "image_72": "",
+          "image_192": "",
+          "image_512": "",
+          "image_1024": ""
         },
         "new_profile": {
           "real_name": "",
           "first_name": "",
           "last_name": "",
-          "display_name": ""
+          "display_name": "",
+          "image_original": "",
+          "image_24": "",
+          "image_32": "",
+          "image_48": "",
+          "image_72": "",
+          "image_192": "",
+          "image_512": "",
+          "image_1024": ""
         }
       }
     }
