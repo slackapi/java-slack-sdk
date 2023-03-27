@@ -3,7 +3,17 @@
   "teams": [
     {
       "id": "T00000000",
-      "name": ""
+      "name": "",
+      "icon": {
+        "image_default": false,
+        "image_34": "https://www.example.com/",
+        "image_44": "https://www.example.com/",
+        "image_68": "https://www.example.com/",
+        "image_88": "https://www.example.com/",
+        "image_102": "https://www.example.com/",
+        "image_230": "https://www.example.com/",
+        "image_132": "https://www.example.com/"
+      }
     }
   ],
   "error": "",
