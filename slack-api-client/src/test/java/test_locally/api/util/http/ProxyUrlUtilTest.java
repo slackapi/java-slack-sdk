@@ -51,4 +51,26 @@ public class ProxyUrlUtilTest {
     public void parse_invalid_format() {
         ProxyUrlUtil.parse("http://foo:bar:baz@localhost:9000");
     }
+
+    @Test
+    public void parse_no_schema() {
+        ProxyUrlUtil.ProxyUrl expected = ProxyUrlUtil.ProxyUrl.builder()
+                .schema("http://")
+                .host("localhost")
+                .port(9000)
+                .build();
+        assertThat(ProxyUrlUtil.parse("localhost:9000"), is(expected));
+    }
+
+    @Test
+    public void parse_username_password_no_schema() {
+        ProxyUrlUtil.ProxyUrl expected = ProxyUrlUtil.ProxyUrl.builder()
+                .schema("http://")
+                .host("localhost")
+                .username("user")
+                .password("password")
+                .port(9000)
+                .build();
+        assertThat(ProxyUrlUtil.parse("user:password@localhost:9000"), is(expected));
+    }
 }
