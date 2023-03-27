@@ -28,6 +28,7 @@
     "subtype": "me_message",
     "channel": "",
     "username": "",
+    "user": "",
     "bot_id": "",
     "text": "",
     "event_ts": "",

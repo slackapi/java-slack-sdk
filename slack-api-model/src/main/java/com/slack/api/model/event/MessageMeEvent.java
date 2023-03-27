@@ -1,6 +1,9 @@
 package com.slack.api.model.event;
 
+import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * https://api.slack.com/events/message/me_message
@@ -16,9 +19,11 @@ public class MessageMeEvent implements Event {
     private String channel;
 
     private String username;
+    private String user;
     private String botId;
 
     private String text;
+    private List<LayoutBlock> blocks; // rich_text blocks
 
     private String eventTs;
     private String ts;
