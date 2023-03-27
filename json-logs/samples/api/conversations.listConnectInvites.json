@@ -139,28 +139,6 @@
                 "date_created": 12345,
                 "avatar_base_url": "https://www.example.com/"
               }
-            },
-            {
-              "type": "",
-              "date_review": 12345,
-              "reviewing_team": {
-                "id": "T00000000",
-                "name": "",
-                "icon": {
-                  "image_default": false,
-                  "image_34": "https://www.example.com/",
-                  "image_44": "https://www.example.com/",
-                  "image_68": "https://www.example.com/",
-                  "image_88": "https://www.example.com/",
-                  "image_102": "https://www.example.com/",
-                  "image_230": "https://www.example.com/",
-                  "image_132": "https://www.example.com/"
-                },
-                "avatar_base_url": "https://www.example.com/",
-                "is_verified": false,
-                "domain": "",
-                "date_created": 12345
-              }
             }
           ]
         }
