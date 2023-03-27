@@ -5,7 +5,7 @@ public final class SlackApiClientLibraryVersion {
     }
 
     public static final String get() {
-        return "1.28.1";
+        return "1.28.2-SNAPSHOT";
     }
 }
 
