@@ -223,6 +223,21 @@ public class auth_Test {
     }
 
     @Test
+    public void authTeamsList_include_icon() throws Exception {
+        String token = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+        {
+            AuthTeamsListResponse response = slack.methods(token).authTeamsList(req -> req.limit(1).includeIcon(true));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+        {
+            AuthTeamsListResponse response = slack.methodsAsync(token).authTeamsList(req -> req.limit(1).includeIcon(true)).get();
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+        }
+    }
+
+    @Test
     public void authTest_x_oauth_scopes() throws IOException, SlackApiException {
         AuthTestResponse response = slack.methods().authTest(req -> req.token(botToken));
         assertThat(response.getError(), is(nullValue()));

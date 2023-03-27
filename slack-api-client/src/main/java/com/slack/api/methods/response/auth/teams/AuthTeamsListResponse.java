@@ -2,6 +2,7 @@ package com.slack.api.methods.response.auth.teams;
 
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ResponseMetadata;
+import com.slack.api.model.TeamIcon;
 import lombok.Data;
 
 import java.util.List;
@@ -24,5 +25,6 @@ public class AuthTeamsListResponse implements SlackApiTextResponse {
     public static class Team {
         private String id;
         private String name;
+        private TeamIcon icon;
     }
 }
