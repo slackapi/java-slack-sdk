@@ -34,8 +34,9 @@ public class ProxyUrlUtil {
             return null;
         }
         String[] proxyUrlElements = proxyUrl.split("://");
-        String schema = proxyUrlElements[0] + "://";
-        String urlWithoutSchema = proxyUrlElements[1];
+        boolean withSchema = proxyUrlElements.length == 2;
+        String schema = withSchema ? proxyUrlElements[0] + "://" : "http://";
+        String urlWithoutSchema = withSchema ? proxyUrlElements[1] : proxyUrlElements[0];
         String[] urlWithUserAndPasswordIfTwoElements = urlWithoutSchema.split("@");
         if (urlWithUserAndPasswordIfTwoElements.length == 2) {
             String[] userAndPassword = urlWithUserAndPasswordIfTwoElements[0].split(":");
@@ -51,7 +52,7 @@ public class ProxyUrlUtil {
                     .port(hostAndPort.length == 2 ? Integer.parseInt(hostAndPort[1].replace("/", "")) : 80)
                     .build();
         } else {
-            String[] hostAndPort = proxyUrl.split("://")[1].split(":");
+            String[] hostAndPort = (withSchema ? proxyUrlElements[1] : proxyUrlElements[0]).split(":");
             return ProxyUrl.builder()
                     .schema(schema)
                     .host(hostAndPort[0])
