@@ -70,6 +70,11 @@ public class MethodsConfig {
         public void setExecutorServiceProvider(ExecutorServiceProvider executorServiceProvider) {
             throwException();
         }
+
+        @Override
+        public void setCustomRateLimitResolver(MethodsCustomRateLimitResolver customRateLimitResolver) {
+            throwException();
+        }
     };
 
     @Builder.Default
@@ -107,5 +112,11 @@ public class MethodsConfig {
      */
     @Builder.Default
     private MetricsDatastore metricsDatastore = new MemoryMetricsDatastore(1);
+
+    /**
+     * Custom handlers for adjusting rate limits.
+     */
+    @Builder.Default
+    private MethodsCustomRateLimitResolver customRateLimitResolver = MethodsCustomRateLimitResolver.DEFAULT;
 
 }
