@@ -1,6 +1,7 @@
 package com.slack.api.methods.impl;
 
 import com.slack.api.methods.MethodsConfig;
+import com.slack.api.methods.MethodsCustomRateLimitResolver;
 import com.slack.api.methods.MethodsRateLimits;
 import com.slack.api.rate_limits.RateLimiter;
 import com.slack.api.rate_limits.WaitTime;
@@ -10,10 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 
+import static com.slack.api.methods.MethodsRateLimitTier.SpecialTier_chat_postMessage;
+
 @Slf4j
 public class AsyncMethodsRateLimiter implements RateLimiter {
 
     private final MetricsDatastore metricsDatastore;
+    private final MethodsCustomRateLimitResolver customRateLimitResolver;
     private final WaitTimeCalculator waitTimeCalculator;
 
     public MetricsDatastore getMetricsDatastore() {
@@ -22,6 +26,7 @@ public class AsyncMethodsRateLimiter implements RateLimiter {
 
     public AsyncMethodsRateLimiter(MethodsConfig config) {
         this.metricsDatastore = config.getMetricsDatastore();
+        this.customRateLimitResolver = config.getCustomRateLimitResolver();
         this.waitTimeCalculator = new MethodsWaitTimeCalculator(config);
     }
 
@@ -30,15 +35,32 @@ public class AsyncMethodsRateLimiter implements RateLimiter {
         return waitTimeCalculator.calculateWaitTime(
                 teamId,
                 methodName,
-                waitTimeCalculator.getAllowedRequestsPerMinute(MethodsRateLimits.lookupRateLimitTier(methodName))
+                getAllowedRequestsPerMinute(teamId, methodName)
         );
+    }
+
+    public int getAllowedRequestsPerMinute(String teamId, String methodName) {
+        Optional<Integer> custom = customRateLimitResolver.getCustomAllowedRequestsPerMinute(teamId, methodName);
+        if (custom.isPresent()) {
+            return custom.get();
+        }
+        return waitTimeCalculator.getAllowedRequestsPerMinute(MethodsRateLimits.lookupRateLimitTier(methodName));
+    }
+
+    public int getAllowedRequestsForChatPostMessagePerMinute(String teamId, String channel) {
+        Optional<Integer> custom = customRateLimitResolver.getCustomAllowedRequestsForChatPostMessagePerMinute(teamId, channel);
+        if (custom.isPresent()) {
+            return custom.get();
+        }
+        return waitTimeCalculator.getAllowedRequestsPerMinute(SpecialTier_chat_postMessage);
     }
 
     @Override
     public WaitTime acquireWaitTimeForChatPostMessage(String teamId, String channel) {
         return waitTimeCalculator.calculateWaitTimeForChatPostMessage(
                 teamId,
-                channel
+                channel,
+                getAllowedRequestsForChatPostMessagePerMinute(teamId, channel)
         );
     }
 

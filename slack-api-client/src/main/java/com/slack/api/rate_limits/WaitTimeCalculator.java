@@ -44,11 +44,19 @@ public abstract class WaitTimeCalculator {
         }
     }
 
+    /**
+     * @deprecated Use #calculateWaitTimeForChatPostMessage(String, String, int) instead
+     */
+    @Deprecated
     public WaitTime calculateWaitTimeForChatPostMessage(String teamId, String channel) {
+        return calculateWaitTimeForChatPostMessage(teamId, channel, getAllowedRequestsPerMinute(SpecialTier_chat_postMessage));
+    }
+
+    public WaitTime calculateWaitTimeForChatPostMessage(String teamId, String channel, int allowedRequests) {
         return calculateWaitTime(
                 teamId,
                 Methods.CHAT_POST_MESSAGE + "_" + channel,
-                getAllowedRequestsPerMinute(SpecialTier_chat_postMessage)
+                allowedRequests
         );
     }
 
@@ -76,8 +84,8 @@ public abstract class WaitTimeCalculator {
     }
 
     public Integer getAllowedRequestsPerMinute(MethodsRateLimitTier tier) {
-        Integer allowedRequestsForOneNode = MethodsRateLimitTier.getAllowedRequestsPerMinute(tier);
-        return allowedRequestsForOneNode / getNumberOfNodes();
+        Integer allowedRequestsPerMinute = MethodsRateLimitTier.getAllowedRequestsPerMinute(tier);
+        return allowedRequestsPerMinute / getNumberOfNodes();
     }
 
 }
