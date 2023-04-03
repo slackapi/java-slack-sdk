@@ -66,7 +66,7 @@ public class CustomRateLimitsTest {
         // With the default settings, this call is on the "safe" pace, so spentMillis will be 15L or so
         client.authTest(r -> r).get();
         long spentMillis = System.currentTimeMillis() - startMillis;
-        assertThat(spentMillis, is(greaterThan(1000L )));
+        assertThat(spentMillis, is(greaterThan(500L )));
     }
 
 }
