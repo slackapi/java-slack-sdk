@@ -171,6 +171,8 @@ public class Actions {
         public static final String team_authorized_ip_range_set = "team_authorized_ip_range_set";
         public static final String bulk_session_reset_by_admin = "bulk_session_reset_by_admin";
         public static final String export_private_channel_analytics_created = "export_private_channel_analytics_created";
+        public static final String audit_logs_export_csv_started = "audit_logs_export_csv_started";
+        public static final String audit_logs_records_searched = "audit_logs_records_searched";
     }
 
     public static class User {
@@ -327,6 +329,7 @@ public class Actions {
         public static final String thread_replies_enabled = "thread_replies_enabled";
         public static final String permissions_assigned = "permissions_assigned";
         public static final String permissions_removed = "permissions_removed";
+        public static final String private_message_forwarded = "private_message_forwarded";
     }
 
     public static class WorkflowBuilder {

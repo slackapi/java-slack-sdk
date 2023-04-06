@@ -159,7 +159,9 @@
       "bulk_session_reset_by_admin",
       "pref.platform_beta_interactions_with_external_triggers_and_workflows_enabled",
       "pref.platform_beta_external_triggers_enabled",
-      "export_private_channel_analytics_created"
+      "export_private_channel_analytics_created",
+      "audit_logs_export_csv_started",
+      "audit_logs_records_searched"
     ],
     "user": [
       "custom_tos_accepted",
@@ -303,7 +305,8 @@
       "thread_replies_disabled",
       "thread_replies_enabled",
       "permissions_assigned",
-      "permissions_removed"
+      "permissions_removed",
+      "private_message_forwarded"
     ],
     "barrier": [
       "barrier_created",

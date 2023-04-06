@@ -527,10 +527,7 @@
         "external_id": "",
         "source": "",
         "file_id": "",
-        "file": {
-          "thumb_64": "",
-          "id": ""
-        },
+        "file": {},
         "text": {
           "type": "",
           "text": "",
@@ -1270,10 +1267,7 @@
             "external_id": "",
             "source": "",
             "file_id": "",
-            "file": {
-              "thumb_64": "",
-              "id": ""
-            },
+            "file": {},
             "text": {
               "type": "",
               "text": "",
