@@ -629,6 +629,26 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminConversationsConvertToPublicResponse adminConversationsConvertToPublic(AdminConversationsConvertToPublicRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_CONVERT_TO_PUBLIC, getToken(req), AdminConversationsConvertToPublicResponse.class);
+    }
+
+    @Override
+    public AdminConversationsConvertToPublicResponse adminConversationsConvertToPublic(RequestConfigurator<AdminConversationsConvertToPublicRequest.AdminConversationsConvertToPublicRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsConvertToPublic(req.configure(AdminConversationsConvertToPublicRequest.builder()).build());
+    }
+
+    @Override
+    public AdminConversationsLookupResponse adminConversationsLookup(AdminConversationsLookupRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_LOOKUP, getToken(req), AdminConversationsLookupResponse.class);
+    }
+
+    @Override
+    public AdminConversationsLookupResponse adminConversationsLookup(RequestConfigurator<AdminConversationsLookupRequest.AdminConversationsLookupRequestBuilder> req) throws IOException, SlackApiException {
+        return adminConversationsLookup(req.configure(AdminConversationsLookupRequest.builder()).build());
+    }
+
+    @Override
     public AdminConversationsEkmListOriginalConnectedChannelInfoResponse adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_CONVERSATIONS_EKM_LIST_ORIGINAL_CONNECTED_CHANNEL_INFO, getToken(req), AdminConversationsEkmListOriginalConnectedChannelInfoResponse.class);
     }

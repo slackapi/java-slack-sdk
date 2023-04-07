@@ -196,6 +196,7 @@ import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -393,6 +394,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminConversationsBulkMoveResponse> adminConversationsBulkMove(AdminConversationsBulkMoveRequest req);
 
     CompletableFuture<AdminConversationsBulkMoveResponse> adminConversationsBulkMove(RequestConfigurator<AdminConversationsBulkMoveRequest.AdminConversationsBulkMoveRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsConvertToPublicResponse> adminConversationsConvertToPublic(AdminConversationsConvertToPublicRequest req);
+
+    CompletableFuture<AdminConversationsConvertToPublicResponse> adminConversationsConvertToPublic(RequestConfigurator<AdminConversationsConvertToPublicRequest.AdminConversationsConvertToPublicRequestBuilder> req);
+
+    CompletableFuture<AdminConversationsLookupResponse> adminConversationsLookup(AdminConversationsLookupRequest req);
+
+    CompletableFuture<AdminConversationsLookupResponse> adminConversationsLookup(RequestConfigurator<AdminConversationsLookupRequest.AdminConversationsLookupRequestBuilder> req);
 
     // ------------------------------
     // admin.conversations.ekm

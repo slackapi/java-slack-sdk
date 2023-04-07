@@ -624,6 +624,26 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminConversationsConvertToPublicResponse> adminConversationsConvertToPublic(AdminConversationsConvertToPublicRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_CONVERT_TO_PUBLIC, toMap(req), () -> methods.adminConversationsConvertToPublic(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsConvertToPublicResponse> adminConversationsConvertToPublic(RequestConfigurator<AdminConversationsConvertToPublicRequest.AdminConversationsConvertToPublicRequestBuilder> req) {
+        return adminConversationsConvertToPublic(req.configure(AdminConversationsConvertToPublicRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsLookupResponse> adminConversationsLookup(AdminConversationsLookupRequest req) {
+        return executor.execute(ADMIN_CONVERSATIONS_LOOKUP, toMap(req), () -> methods.adminConversationsLookup(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminConversationsLookupResponse> adminConversationsLookup(RequestConfigurator<AdminConversationsLookupRequest.AdminConversationsLookupRequestBuilder> req) {
+        return adminConversationsLookup(req.configure(AdminConversationsLookupRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminConversationsEkmListOriginalConnectedChannelInfoResponse> adminConversationsEkmListOriginalConnectedChannelInfo(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) {
         return executor.execute(ADMIN_CONVERSATIONS_EKM_LIST_ORIGINAL_CONNECTED_CHANNEL_INFO, toMap(req), () -> methods.adminConversationsEkmListOriginalConnectedChannelInfo(req));
     }

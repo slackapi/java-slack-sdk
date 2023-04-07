@@ -156,6 +156,12 @@ public class AdminApi_conversations_Test {
                             .orgChannel(true)).get();
             assertThat(setTeams.getError(), is(nullValue()));
 
+            AdminConversationsLookupResponse lookup = methodsAsync.adminConversationsLookup(r -> r
+                    .teamIds(Arrays.asList(teamId))
+                    .lastMessageActivityBefore(100)
+            ).get();
+            assertThat(lookup.getError(), is(nullValue()));
+
             AdminConversationsDisconnectSharedResponse disconnectShared =
                     methodsAsync.adminConversationsDisconnectShared(r -> r
                             .channelId(channelId).leavingTeamIds(Arrays.asList(teamId))).get();
@@ -168,6 +174,17 @@ public class AdminApi_conversations_Test {
             AdminConversationsConvertToPrivateResponse conversion =
                     methodsAsync.adminConversationsConvertToPrivate(r -> r.channelId(channelId)).get();
             assertThat(conversion.getError(), is(nullValue()));
+
+            Thread.sleep(2000L); // To avoid internal_error
+
+            AdminConversationsConvertToPublicResponse reConversion =
+                    methodsAsync.adminConversationsConvertToPublic(r -> r.channelId("CCC")).get();
+            assertThat(reConversion.getError(), is("invalid_arguments"));
+            assertThat(reConversion.getResponseMetadata().getMessages().get(0),
+                    is(startsWith("\\[ERROR\\] input must match regex pattern:")));
+            reConversion =
+                    methodsAsync.adminConversationsConvertToPublic(r -> r.channelId(channelId)).get();
+            assertThat(reConversion.getError(), is(nullValue()));
 
             Thread.sleep(2000L); // To avoid internal_error
 

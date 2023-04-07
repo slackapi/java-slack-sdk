@@ -192,6 +192,14 @@ public class FieldValidationTest {
                 "getWarning",
                 "getResponseMetadata"
         );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.convertToPublic", AdminConversationsConvertToPublicResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
+        verifyIfAllGettersReturnNonNull(parse("admin.conversations.lookup", AdminConversationsLookupResponse.class),
+                "getWarning",
+                "getResponseMetadata"
+        );
     }
 
     @Test

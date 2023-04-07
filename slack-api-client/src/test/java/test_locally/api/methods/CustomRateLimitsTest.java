@@ -57,10 +57,11 @@ public class CustomRateLimitsTest {
     @Test
     public void burstTest() throws Exception {
         AsyncMethodsClient client = slack.methodsAsync(ValidToken);
-        client.authTest(r -> r).get();
-        client.authTest(r -> r).get();
-        client.authTest(r -> r).get();
-        client.authTest(r -> r).get();
+        client.authTest(r -> r);
+        client.authTest(r -> r);
+        client.authTest(r -> r);
+        client.authTest(r -> r);
+        client.authTest(r -> r);
 
         long startMillis = System.currentTimeMillis();
         // With the default settings, this call is on the "safe" pace, so spentMillis will be 15L or so
