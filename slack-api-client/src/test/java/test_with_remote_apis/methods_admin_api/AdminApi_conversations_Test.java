@@ -181,9 +181,8 @@ public class AdminApi_conversations_Test {
                     methodsAsync.adminConversationsConvertToPublic(r -> r.channelId("CCC")).get();
             assertThat(reConversion.getError(), is("invalid_arguments"));
             assertThat(reConversion.getResponseMetadata().getMessages().get(0),
-                    is(startsWith("\\[ERROR\\] input must match regex pattern:")));
-            reConversion =
-                    methodsAsync.adminConversationsConvertToPublic(r -> r.channelId(channelId)).get();
+                    is(startsWith("[ERROR] input must match regex pattern:")));
+            reConversion = methodsAsync.adminConversationsConvertToPublic(r -> r.channelId(channelId)).get();
             assertThat(reConversion.getError(), is(nullValue()));
 
             Thread.sleep(2000L); // To avoid internal_error
