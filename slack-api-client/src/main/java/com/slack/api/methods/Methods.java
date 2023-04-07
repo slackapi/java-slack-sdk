@@ -71,6 +71,8 @@ public class Methods {
     public static final String ADMIN_CONVERSATIONS_BULK_ARCHIVE = "admin.conversations.bulkArchive";
     public static final String ADMIN_CONVERSATIONS_BULK_DELETE = "admin.conversations.bulkDelete";
     public static final String ADMIN_CONVERSATIONS_BULK_MOVE = "admin.conversations.bulkMove";
+    public static final String ADMIN_CONVERSATIONS_CONVERT_TO_PUBLIC = "admin.conversations.convertToPublic";
+    public static final String ADMIN_CONVERSATIONS_LOOKUP = "admin.conversations.lookup";
 
     // ------------------------------
     // admin.conversations.ekm

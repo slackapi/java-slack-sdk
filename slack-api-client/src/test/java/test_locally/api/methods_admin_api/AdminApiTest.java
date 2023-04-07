@@ -113,6 +113,8 @@ public class AdminApiTest {
         assertThat(methods.adminConversationsBulkMove(r -> r).isOk(), is(true));
         assertThat(methods.adminConversationsBulkDelete(r -> r).isOk(), is(true));
         assertThat(methods.adminConversationsBulkArchive(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsConvertToPublic(r -> r).isOk(), is(true));
+        assertThat(methods.adminConversationsLookup(r -> r).isOk(), is(true));
     }
 
     @Test

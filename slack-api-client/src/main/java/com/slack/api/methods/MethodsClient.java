@@ -448,6 +448,14 @@ public interface MethodsClient {
 
     AdminConversationsBulkMoveResponse adminConversationsBulkMove(RequestConfigurator<AdminConversationsBulkMoveRequest.AdminConversationsBulkMoveRequestBuilder> req) throws IOException, SlackApiException;
 
+    AdminConversationsConvertToPublicResponse adminConversationsConvertToPublic(AdminConversationsConvertToPublicRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsConvertToPublicResponse adminConversationsConvertToPublic(RequestConfigurator<AdminConversationsConvertToPublicRequest.AdminConversationsConvertToPublicRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminConversationsLookupResponse adminConversationsLookup(AdminConversationsLookupRequest req) throws IOException, SlackApiException;
+
+    AdminConversationsLookupResponse adminConversationsLookup(RequestConfigurator<AdminConversationsLookupRequest.AdminConversationsLookupRequestBuilder> req) throws IOException, SlackApiException;
+
     // ------------------------------
     // admin.conversations.ekm
     // ------------------------------

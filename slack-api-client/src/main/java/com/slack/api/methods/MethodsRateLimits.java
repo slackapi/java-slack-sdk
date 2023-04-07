@@ -107,6 +107,8 @@ public class MethodsRateLimits {
                 ADMIN_CONVERSATIONS_BULK_ARCHIVE,
                 ADMIN_CONVERSATIONS_BULK_DELETE,
                 ADMIN_CONVERSATIONS_BULK_MOVE,
+                ADMIN_CONVERSATIONS_CONVERT_TO_PUBLIC,
+                ADMIN_CONVERSATIONS_LOOKUP,
 
                 ADMIN_EMOJI_ADD,
                 ADMIN_EMOJI_ADD_ALIAS,

@@ -475,6 +475,24 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminConversationsConvertToPublicRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminConversationsLookupRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("last_message_activity_before", req.getLastMessageActivityBefore(), form);
+        if (req.getTeamIds() != null) {
+            setIfNotNull("team_ids", req.getTeamIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("max_member_count", req.getMaxMemberCount(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminConversationsEkmListOriginalConnectedChannelInfoRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         if (req.getChannelIds() != null) {
