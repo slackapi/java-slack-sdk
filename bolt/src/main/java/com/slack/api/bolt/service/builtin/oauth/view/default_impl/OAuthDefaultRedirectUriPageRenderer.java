@@ -2,6 +2,7 @@ package com.slack.api.bolt.service.builtin.oauth.view.default_impl;
 
 import com.slack.api.bolt.model.Installer;
 import com.slack.api.bolt.service.builtin.oauth.view.OAuthRedirectUriPageRenderer;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class OAuthDefaultRedirectUriPageRenderer implements OAuthRedirectUriPageRenderer {
 
@@ -65,6 +66,9 @@ public class OAuthDefaultRedirectUriPageRenderer implements OAuthRedirectUriPage
         String browserUrl = installer == null || installer.getTeamId() == null
                 ? "https://slack.com/"
                 : "https://app.slack.com/client/" + installer.getTeamId();
+
+        url = StringEscapeUtils.escapeHtml4(url);
+        browserUrl = StringEscapeUtils.escapeHtml4(browserUrl);
         return SUCCESS_PAGE_TEMPLATE
                 .replaceAll("__URL__", url == null ? "" : url)
                 .replaceAll("__BROWSER_URL__", browserUrl);
@@ -72,6 +76,8 @@ public class OAuthDefaultRedirectUriPageRenderer implements OAuthRedirectUriPage
 
     @Override
     public String renderFailurePage(String installPath, String reason) {
+        installPath = StringEscapeUtils.escapeHtml4(installPath);
+        reason = StringEscapeUtils.escapeHtml4(reason);
         return FAILURE_PAGE_TEMPLATE
                 .replaceAll("__INSTALL_PATH__", installPath == null ? "" : installPath)
                 .replaceAll("__REASON__", reason == null ? "unknown_error" : reason);

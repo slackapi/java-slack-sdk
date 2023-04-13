@@ -13,6 +13,10 @@
     <version>1.29.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <commons-text.version>1.10.0</commons-text.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.slack.api</groupId>
@@ -28,6 +32,11 @@
             <groupId>com.slack.api</groupId>
             <artifactId>slack-app-backend</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons-text.version}</version>
         </dependency>
 
         <dependency>
