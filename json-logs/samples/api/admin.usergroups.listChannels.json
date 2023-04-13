@@ -46,7 +46,14 @@
       ],
       "date_connected": 12345,
       "context_team_id": "E00000000",
-      "updated": 12345
+      "updated": 12345,
+      "properties": {
+        "posting_restricted_to": {
+          "type": [
+            ""
+          ]
+        }
+      }
     }
   ],
   "error": "",

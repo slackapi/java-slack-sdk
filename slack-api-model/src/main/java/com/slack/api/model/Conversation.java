@@ -35,6 +35,7 @@ public class Conversation {
     private String lastRead;
     private Topic topic;
     private Purpose purpose;
+    private ConversationProperties properties;
     @SerializedName("previous_names")
     private List<String> previousNames;
     @SerializedName("num_members")

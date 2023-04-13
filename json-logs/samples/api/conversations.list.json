@@ -55,7 +55,25 @@
         "T00000000"
       ],
       "context_team_id": "T00000000",
-      "updated": 12345
+      "updated": 12345,
+      "properties": {
+        "posting_restricted_to": {
+          "type": [
+            ""
+          ],
+          "user": [
+            "W00000000"
+          ]
+        },
+        "threads_restricted_to": {
+          "type": [
+            ""
+          ],
+          "user": [
+            "W00000000"
+          ]
+        }
+      }
     }
   ],
   "response_metadata": {

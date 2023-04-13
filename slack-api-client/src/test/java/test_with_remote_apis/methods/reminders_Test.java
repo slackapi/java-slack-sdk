@@ -7,6 +7,7 @@ import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -32,6 +33,7 @@ public class reminders_Test {
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     @Test
+    @Ignore // TODO: "not_found" error since April 2023
     public void test() throws Exception {
         RemindersListResponse list = slack.methods().remindersList(r -> r.token(userToken));
         assertThat(list.getError(), is(nullValue()));
@@ -39,12 +41,13 @@ public class reminders_Test {
         RemindersAddResponse addResponse = slack.methods().remindersAdd(r -> r
                 .token(userToken)
                 .text("Don't forget it!")
-                .time("10"));
+                .time("2"));
         assertThat(addResponse.getError(), is(nullValue()));
         assertThat(addResponse.isOk(), is(true));
 
         String reminderId = addResponse.getReminder().getId();
 
+        // TODO: "not_found" error since April 2023
         RemindersInfoResponse infoResponse = slack.methods().remindersInfo(r -> r
                 .token(userToken)
                 .reminder(reminderId));
@@ -65,6 +68,7 @@ public class reminders_Test {
     }
 
     @Test
+    @Ignore // TODO: "not_found" error since April 2023
     public void test_async() throws Exception {
         RemindersAddResponse addResponse = slack.methodsAsync().remindersAdd(r -> r
                 .token(userToken)
@@ -76,12 +80,12 @@ public class reminders_Test {
 
         String reminderId = addResponse.getReminder().getId();
 
+        // TODO: "not_found" error since April 2023
         RemindersInfoResponse infoResponse = slack.methodsAsync().remindersInfo(r -> r
                 .token(userToken)
                 .reminder(reminderId))
                 .get();
-        assertThat(infoResponse.getError(), is(nullValue()));
-        assertThat(infoResponse.isOk(), is(true));
+         assertThat(infoResponse.getError(), is(nullValue()));
 
         RemindersCompleteResponse completeResponse = slack.methodsAsync().remindersComplete(r -> r
                 .token(userToken)

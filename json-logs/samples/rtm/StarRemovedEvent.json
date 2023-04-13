@@ -7290,6 +7290,12 @@
         "max_offset_ms": 123,
         "duration_ms": 123
       },
+      "saved": {
+        "is_archived": false,
+        "date_completed": 123,
+        "date_due": 123,
+        "state": ""
+      },
       "bot_id": "",
       "initial_comment": {
         "id": "",

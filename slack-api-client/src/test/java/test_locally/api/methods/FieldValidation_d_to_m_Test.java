@@ -124,7 +124,8 @@ public class FieldValidation_d_to_m_Test {
                 "getThumbVideoH",
                 "getAltTxt",
                 "getMediaProgress",
-                "getSourceTeam"
+                "getSourceTeam",
+                "getSaved"
         );
     }
 
@@ -222,7 +223,8 @@ public class FieldValidation_d_to_m_Test {
                 "getAltTxt",
                 "getMediaProgress",
                 "getHasMoreShares",
-                "getSourceTeam"
+                "getSourceTeam",
+                "getSaved"
         );
     }
 

@@ -294,6 +294,16 @@ public class File {
         private Integer durationMs;
     }
 
+    private Saved saved;
+
+    @Data
+    public static class Saved {
+        private Boolean isArchived;
+        private Integer dateCompleted;
+        private Integer dateDue;
+        private String state;
+    }
+
     // ---------------------------------------
     // file comments
     // https://api.slack.com/changelog/2018-05-file-threads-soon-tread

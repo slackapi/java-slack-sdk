@@ -412,7 +412,8 @@ public class FieldValidation_a_to_c_Test {
                 "getPreviousNames",
                 "getPendingConnectedTeamIds",
                 "getConnectedLimitedTeamIds",
-                "getIsUserDeleted"
+                "getIsUserDeleted",
+                "getProperties"
         );
     }
 
@@ -498,7 +499,6 @@ public class FieldValidation_a_to_c_Test {
                     "getPreviousNames",
                     "getPendingConnectedTeamIds",
                     "getConnectedLimitedTeamIds",
-
                     "getParentConversation",
                     "getConversationHostId",
                     "getInternalTeamIds",
@@ -525,7 +525,8 @@ public class FieldValidation_a_to_c_Test {
                     "getUsername",
                     "getParentUserId",
                     "getBotProfile",
-                    "getIsUserDeleted"
+                    "getIsUserDeleted",
+                    "getProperties"
             );
         }
         {
