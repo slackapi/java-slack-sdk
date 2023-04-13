@@ -1,6 +1,7 @@
 package com.slack.api.bolt.service.builtin.oauth.view.default_impl;
 
 import com.slack.api.bolt.service.builtin.oauth.view.OAuthInstallPageRenderer;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class OAuthDefaultInstallPageRenderer implements OAuthInstallPageRenderer {
 
@@ -23,7 +24,8 @@ public class OAuthDefaultInstallPageRenderer implements OAuthInstallPageRenderer
 
     @Override
     public String render(String authorizeUrl) {
-        return PAGE_TEMPLATE.replaceAll("__URL__", authorizeUrl == null ? "" : authorizeUrl);
+        String url = StringEscapeUtils.escapeHtml4(authorizeUrl);
+        return PAGE_TEMPLATE.replaceAll("__URL__", url == null ? "" : url);
     }
 
 }
