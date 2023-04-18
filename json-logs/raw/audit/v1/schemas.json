@@ -100,6 +100,14 @@
         "id": "string",
         "name": "string"
       }
+    },
+    {
+      "type": "canvas",
+      "canvas": {
+        "id": "string",
+        "filetype": "string",
+        "title": "string"
+      }
     }
   ]
 }

@@ -306,7 +306,8 @@
       "thread_replies_enabled",
       "permissions_assigned",
       "permissions_removed",
-      "private_message_forwarded"
+      "private_message_forwarded",
+      "message_activity_viewed"
     ],
     "barrier": [
       "barrier_created",

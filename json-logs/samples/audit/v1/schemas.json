@@ -66,6 +66,11 @@
       "account_type_role": {
         "id": "",
         "name": ""
+      },
+      "canvas": {
+        "id": "",
+        "filetype": "",
+        "title": ""
       }
     }
   ],

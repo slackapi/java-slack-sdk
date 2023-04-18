@@ -34,6 +34,7 @@ public class SchemasResponse implements AuditApiResponse {
         private Message message;
         private Workflow workflow;
         private Barrier barrier;
+        private Canvas canvas;
     }
 
     @Data
@@ -123,6 +124,13 @@ public class SchemasResponse implements AuditApiResponse {
     public static class AccountTypeRole {
         private String id;
         private String name;
+    }
+
+    @Data
+    public static class Canvas {
+        private String id;
+        private String filetype;
+        private String title;
     }
 
 }

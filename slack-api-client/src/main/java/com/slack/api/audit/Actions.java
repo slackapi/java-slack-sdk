@@ -330,6 +330,7 @@ public class Actions {
         public static final String permissions_assigned = "permissions_assigned";
         public static final String permissions_removed = "permissions_removed";
         public static final String private_message_forwarded = "private_message_forwarded";
+        public static final String message_activity_viewed = "message_activity_viewed";
     }
 
     public static class WorkflowBuilder {

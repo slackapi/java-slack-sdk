@@ -282,6 +282,12 @@
             "max_offset_ms": 12345,
             "duration_ms": 12345
           },
+          "saved": {
+            "is_archived": false,
+            "date_completed": 12345,
+            "date_due": 12345,
+            "state": ""
+          },
           "bot_id": "",
           "initial_comment": {
             "id": "",
@@ -830,6 +836,12 @@
               "offset_ms": 123,
               "max_offset_ms": 123,
               "duration_ms": 123
+            },
+            "saved": {
+              "is_archived": false,
+              "date_completed": 123,
+              "date_due": 123,
+              "state": ""
             },
             "bot_id": "",
             "initial_comment": {
@@ -1818,6 +1830,12 @@
                   "max_offset_ms": 123,
                   "duration_ms": 123
                 },
+                "saved": {
+                  "is_archived": false,
+                  "date_completed": 123,
+                  "date_due": 123,
+                  "state": ""
+                },
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
@@ -2431,6 +2449,12 @@
                 "offset_ms": 12345,
                 "max_offset_ms": 12345,
                 "duration_ms": 12345
+              },
+              "saved": {
+                "is_archived": false,
+                "date_completed": 12345,
+                "date_due": 12345,
+                "state": ""
               },
               "bot_id": "",
               "initial_comment": {
