@@ -61,7 +61,11 @@ public class usergroups_Test {
 
     @Test
     public void list() throws Exception {
-        UsergroupsListResponse response = slack.methods().usergroupsList(r -> r.token(botToken));
+        UsergroupsListResponse response = slack.methods().usergroupsList(r -> r.token(botToken)
+                .includeUsers(true)
+                .includeCount(true)
+                .includeDisabled(true)
+        );
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }
