@@ -27,7 +27,7 @@ then
     -pl !bolt-jakarta-jetty \
     clean \
     test-compile \
-    '-Dtest=test_locally.**.*Test' test ${CI_OPTIONS}\
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS}\
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
@@ -36,7 +36,7 @@ else
   ./mvnw ${MAVEN_OPTS} \
     clean \
     test-compile \
-    '-Dtest=test_locally.**.*Test' test ${CI_OPTIONS} \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
     -DfailIfNoTests=false \
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
