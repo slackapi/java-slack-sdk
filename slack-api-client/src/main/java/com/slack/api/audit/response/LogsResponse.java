@@ -185,7 +185,7 @@ public class LogsResponse implements AuditApiResponse {
     @Data
     public static class Details {
         private String type;
-        private String appOwnerId;
+        private String appOwnerId; // app_collaborator_added etc.
         private List<String> scopes; // app_scopes_expanded
         private List<String> botScopes;
         private List<String> newScopes;
@@ -206,7 +206,7 @@ public class LogsResponse implements AuditApiResponse {
         private String sharedTo; // channel_workspaces_updated
         private String reason;
         @SerializedName("is_internal_integration")
-        private Boolean internalIntegration;
+        private Boolean internalIntegration; // app_collaborator_added etc.
         private String clearedResolution; // app_removed_from_whitelist
         @SerializedName("is_workflow")
         private Boolean workflow; // user_channel_join
@@ -291,7 +291,7 @@ public class LogsResponse implements AuditApiResponse {
         private String label; // user_login
         private Profile previousProfile; // user_profile_updated
         private Profile newProfile; // user_profile_updated
-
+        private String targetUserId; // app_collaborator_added
     }
 
     @Data
