@@ -161,7 +161,8 @@
       "pref.platform_beta_external_triggers_enabled",
       "export_private_channel_analytics_created",
       "audit_logs_export_csv_started",
-      "audit_logs_records_searched"
+      "audit_logs_records_searched",
+      "pref.two_factor_prevent_sms_changed"
     ],
     "user": [
       "custom_tos_accepted",

@@ -322,6 +322,7 @@
           "source": "",
           "file_id": "",
           "file": {
+            "thumb_video_w": 123,
             "id": "",
             "created": 123,
             "timestamp": 123,
@@ -343,10 +344,6 @@
             "file_access": "",
             "alt_txt": "",
             "subtype": "",
-            "transcription": {
-              "status": "",
-              "locale": ""
-            },
             "mp4": "",
             "vtt": "",
             "hls": "",
@@ -396,7 +393,6 @@
             "thumb_960": "",
             "thumb_960_gif": "",
             "thumb_960_w": "",
-            "thumb_960_h": "",
             "thumb_1024": "",
             "thumb_1024_gif": "",
             "thumb_1024_w": "",
@@ -1315,6 +1311,7 @@
               "source": "",
               "file_id": "",
               "file": {
+                "thumb_video_w": 123,
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -1336,10 +1333,6 @@
                 "file_access": "",
                 "alt_txt": "",
                 "subtype": "",
-                "transcription": {
-                  "status": "",
-                  "locale": ""
-                },
                 "mp4": "",
                 "vtt": "",
                 "hls": "",
@@ -1389,7 +1382,6 @@
                 "thumb_960": "",
                 "thumb_960_gif": "",
                 "thumb_960_w": "",
-                "thumb_960_h": "",
                 "thumb_1024": "",
                 "thumb_1024_gif": "",
                 "thumb_1024_w": "",

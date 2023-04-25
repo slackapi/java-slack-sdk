@@ -125,6 +125,7 @@ public class Actions {
         public static final String pref_who_can_use_platform_beta = "pref.who_can_use_platform_beta";
         public static final String pref_platform_beta_interactions_with_external_triggers_and_workflows_enabled = "pref.platform_beta_interactions_with_external_triggers_and_workflows_enabled";
         public static final String pref_platform_beta_external_triggers_enabled = "pref.platform_beta_external_triggers_enabled";
+        public static final String pref_two_factor_prevent_sms_changed = "pref.two_factor_prevent_sms_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
