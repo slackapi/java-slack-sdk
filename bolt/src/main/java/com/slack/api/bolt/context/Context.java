@@ -10,6 +10,7 @@ import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
+import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import lombok.Getter;
 import lombok.Setter;
@@ -69,6 +70,11 @@ public abstract class Context {
      * The user token that is associated with the request user ID.
      */
     protected String requestUserToken;
+
+    /**
+     * The `auth.test` response received in authorization middleware
+     */
+    protected AuthTestResponse authTestResponse;
 
     protected final Map<String, String> additionalValues = new HashMap<>();
 

@@ -59,6 +59,7 @@ public class SingleTeamAuthorization implements Middleware {
         Context context = req.getContext();
         AuthTestResponse authResult = callAuthTest(appConfig, context.client());
         if (authResult.isOk()) {
+            context.setAuthTestResponse(authResult);
             if (context.getBotToken() == null) {
                 context.setBotToken(appConfig.getSingleTeamBotToken());
             }

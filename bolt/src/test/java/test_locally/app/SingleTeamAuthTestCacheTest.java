@@ -33,6 +33,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @Slf4j
 public class SingleTeamAuthTestCacheTest {
@@ -73,7 +74,10 @@ public class SingleTeamAuthTestCacheTest {
                 .singleTeamBotToken("xoxb-1234567890-123456789012-12345678901234567890-permanent")
                 .slack(slack)
                 .build());
-        app.globalShortcut("test-global-shortcut", (req, ctx) -> ctx.ack());
+        app.globalShortcut("test-global-shortcut", (req, ctx) -> {
+            assertNotNull(ctx.getAuthTestResponse());
+            return ctx.ack();
+        });
 
         String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
 

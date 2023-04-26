@@ -17,7 +17,6 @@ import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.token_rotation.RefreshedToken;
 import com.slack.api.token_rotation.TokenRotator;
-import com.slack.api.util.thread.ExecutorServiceFactory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -237,6 +236,7 @@ public class MultiTeamsAuthorization implements Middleware {
             String token = botToken != null ? botToken : userToken;
             AuthTestResponse authTestResponse = callAuthTest(token, config, context.client());
             if (authTestResponse.isOk()) {
+                context.setAuthTestResponse(authTestResponse);
                 context.setBotToken(botToken);
                 context.setRequestUserToken(userToken);
                 if (!authTestResponse.isEnterpriseInstall()) {

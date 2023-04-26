@@ -37,6 +37,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @Slf4j
 public class MultiTeamsAuthTestCacheTest {
@@ -71,7 +72,10 @@ public class MultiTeamsAuthTestCacheTest {
     @Test
     public void cacheEnabled() throws Exception {
         App app = buildApp(true, null);
-        app.globalShortcut("test-global-shortcut", (req, ctx) -> ctx.ack());
+        app.globalShortcut("test-global-shortcut", (req, ctx) -> {
+            assertNotNull(ctx.getAuthTestResponse());
+            return ctx.ack();
+        });
 
         String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
 
@@ -106,7 +110,10 @@ public class MultiTeamsAuthTestCacheTest {
     @Test
     public void permanentCacheEnabled() throws Exception {
         App app = buildApp(true, -1L);
-        app.globalShortcut("test-global-shortcut", (req, ctx) -> ctx.ack());
+        app.globalShortcut("test-global-shortcut", (req, ctx) -> {
+            assertNotNull(ctx.getAuthTestResponse());
+            return ctx.ack();
+        });
 
         String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
 
@@ -140,7 +147,10 @@ public class MultiTeamsAuthTestCacheTest {
     @Test
     public void cacheDisabled() throws Exception {
         App app = buildApp(false, null);
-        app.globalShortcut("test-global-shortcut", (req, ctx) -> ctx.ack());
+        app.globalShortcut("test-global-shortcut", (req, ctx) -> {
+            assertNotNull(ctx.getAuthTestResponse());
+            return ctx.ack();
+        });
 
         String requestBody = "payload=" + URLEncoder.encode(realPayload, "UTF-8");
 
