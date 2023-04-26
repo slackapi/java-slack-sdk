@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,6 +54,10 @@ public abstract class Context {
      */
     protected String botToken;
     /**
+     * The scopes associated to the botToken
+     */
+    protected List<String> botScopes;
+    /**
      * bot_id associated with this request.
      */
     protected String botId; // set by MultiTeamsAuthorization
@@ -69,6 +74,10 @@ public abstract class Context {
      * The user token that is associated with the request user ID.
      */
     protected String requestUserToken;
+    /**
+     * The scopes associated to the requestUserToken
+     */
+    protected List<String> requestUserScopes;
 
     protected final Map<String, String> additionalValues = new HashMap<>();
 
