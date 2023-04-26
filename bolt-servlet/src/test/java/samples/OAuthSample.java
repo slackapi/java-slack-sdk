@@ -3,6 +3,7 @@ package samples;
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.model.event.AppMentionEvent;
+import com.slack.api.model.event.MessageEvent;
 import util.ResourceLoader;
 import util.TestSlackAppServer;
 
@@ -13,6 +14,7 @@ public class OAuthSample {
 
     public static void main(String[] args) throws Exception {
         AppConfig config = ResourceLoader.loadAppConfig("appConfig_oauth.json");
+        config.setAlwaysRequestUserTokenNeeded(true);
         config.setTokenRotationExpirationMillis(1000 * 60 * 60 * 24 * 365); // for testing
         App app = new App(config).asOAuthApp(true)
                 // Enable built-in tokens_revoked / app_uninstalled event handlers
@@ -23,6 +25,8 @@ public class OAuthSample {
         // app.event(AppUninstalledEvent.class, app.defaultAppUninstalledEventHandler());
 
         app.event(AppMentionEvent.class, (req, ctx) -> {
+            ctx.logger.info("bot scopes: {}", ctx.getBotScopes());
+            ctx.logger.info("user scopes: {}", ctx.getRequestUserScopes());
             app.executorService().submit(() -> {
                 try {
                     ctx.say("Hi there, <@" + req.getEvent().getUser() + ">!");
@@ -33,7 +37,15 @@ public class OAuthSample {
             return ctx.ack();
         });
 
-        app.command("/token-rotation-modal", (req, ctx) -> ctx.ack("Hi!"));
+        app.event(MessageEvent.class, (payload, ctx) -> {
+            return ctx.ack();
+        });
+
+        app.command("/token-rotation-test", (req, ctx) -> {
+            ctx.logger.info("bot scopes: {}", ctx.getBotScopes());
+            ctx.logger.info("user scopes: {}", ctx.getRequestUserScopes());
+            return ctx.ack("Hi!");
+        });
 
         app.oauthCallbackError((req, resp) -> {
             req.getContext().logger.error("query string: {}", req.getQueryString());
