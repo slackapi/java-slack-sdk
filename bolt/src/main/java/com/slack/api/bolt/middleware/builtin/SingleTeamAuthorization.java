@@ -63,6 +63,7 @@ public class SingleTeamAuthorization implements Middleware {
         String botToken = context.getBotToken() != null ? context.getBotToken() : appConfig.getSingleTeamBotToken();
         AuthTestResponse authResult = callAuthTest(botToken, appConfig, context.client());
         if (authResult.isOk()) {
+            context.setAuthTestResponse(authResult);
             context.setBotToken(botToken);
             Map<String, List<String>> botHeaders = authResult.getHttpResponseHeaders();
             List<String> botScopesHeader = botHeaders != null ? botHeaders.get("x-oauth-scopes") : null;

@@ -237,6 +237,7 @@ public class MultiTeamsAuthorization implements Middleware {
             String token = botToken != null ? botToken : userToken;
             AuthTestResponse authTestResponse = callAuthTest(token, config, context.client());
             if (authTestResponse.isOk()) {
+                context.setAuthTestResponse(authTestResponse);
                 context.setBotToken(botToken);
                 Map<String, List<String>> botHeaders = authTestResponse.getHttpResponseHeaders();
                 List<String> botScopesHeader = botHeaders != null ? botHeaders.get("x-oauth-scopes") : null;
