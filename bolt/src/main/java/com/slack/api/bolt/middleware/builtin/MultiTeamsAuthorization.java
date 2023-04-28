@@ -22,6 +22,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -238,7 +239,16 @@ public class MultiTeamsAuthorization implements Middleware {
             if (authTestResponse.isOk()) {
                 context.setAuthTestResponse(authTestResponse);
                 context.setBotToken(botToken);
+                Map<String, List<String>> botHeaders = authTestResponse.getHttpResponseHeaders();
+                List<String> botScopesHeader = botHeaders != null ? botHeaders.get("x-oauth-scopes") : null;
+                context.setBotScopes(botScopesHeader != null ? Arrays.asList(botScopesHeader.get(0).split(",")) : null);
                 context.setRequestUserToken(userToken);
+                if (userToken != null && token != userToken) {
+                    AuthTestResponse userAuthTestResponse = callAuthTest(userToken, config, context.client());
+                    Map<String, List<String>> userHeaders = userAuthTestResponse.getHttpResponseHeaders();
+                    List<String> userScopesHeader = userHeaders != null ? userHeaders.get("x-oauth-scopes") : null;
+                    context.setRequestUserScopes(userScopesHeader != null ? Arrays.asList(userScopesHeader.get(0).split(",")) : null);
+                }
                 if (!authTestResponse.isEnterpriseInstall()) {
                     context.setTeamId(authTestResponse.getTeamId());
                     // As the team_id here is the org's ID,

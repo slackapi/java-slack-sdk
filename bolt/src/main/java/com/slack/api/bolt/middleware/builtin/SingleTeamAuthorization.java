@@ -14,6 +14,9 @@ import com.slack.api.methods.response.auth.AuthTestResponse;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -57,12 +60,14 @@ public class SingleTeamAuthorization implements Middleware {
         }
 
         Context context = req.getContext();
-        AuthTestResponse authResult = callAuthTest(appConfig, context.client());
+        String botToken = context.getBotToken() != null ? context.getBotToken() : appConfig.getSingleTeamBotToken();
+        AuthTestResponse authResult = callAuthTest(botToken, appConfig, context.client());
         if (authResult.isOk()) {
             context.setAuthTestResponse(authResult);
-            if (context.getBotToken() == null) {
-                context.setBotToken(appConfig.getSingleTeamBotToken());
-            }
+            context.setBotToken(botToken);
+            Map<String, List<String>> botHeaders = authResult.getHttpResponseHeaders();
+            List<String> botScopesHeader = botHeaders != null ? botHeaders.get("x-oauth-scopes") : null;
+            context.setBotScopes(botScopesHeader != null ? Arrays.asList(botScopesHeader.get(0).split(",")) : null);
             context.setBotUserId(authResult.getUserId());
             context.setTeamId(authResult.getTeamId());
             context.setEnterpriseId(authResult.getEnterpriseId());
@@ -80,7 +85,12 @@ public class SingleTeamAuthorization implements Middleware {
                             context.getRequestUserId()
                     );
                     if (installer != null) {
-                        context.setRequestUserToken(installer.getInstallerUserAccessToken());
+                        String userToken = installer.getInstallerUserAccessToken();
+                        context.setRequestUserToken(userToken);
+                        AuthTestResponse userAuthTestResponse = callAuthTest(userToken, appConfig, context.client());
+                        Map<String, List<String>> userHeaders = userAuthTestResponse.getHttpResponseHeaders();
+                        List<String> userScopesHeader = userHeaders != null ? userHeaders.get("x-oauth-scopes") : null;
+                        context.setRequestUserScopes(userScopesHeader != null ? Arrays.asList(userScopesHeader.get(0).split(",")) : null);
                     }
                 }
             }
@@ -97,7 +107,7 @@ public class SingleTeamAuthorization implements Middleware {
         }
     }
 
-    protected AuthTestResponse callAuthTest(AppConfig config, MethodsClient client) throws IOException, SlackApiException {
+    protected AuthTestResponse callAuthTest(String token, AppConfig config, MethodsClient client) throws IOException, SlackApiException {
         if (cachedAuthTestResponse.isPresent()) {
             boolean permanentCacheEnabled = config.getAuthTestCacheExpirationMillis() < 0;
             if (permanentCacheEnabled) {
@@ -109,7 +119,7 @@ public class SingleTeamAuthorization implements Middleware {
                 return cachedAuthTestResponse.get();
             }
         }
-        AuthTestResponse response = client.authTest(r -> r.token(config.getSingleTeamBotToken()));
+        AuthTestResponse response = client.authTest(r -> r.token(token));
         cachedAuthTestResponse = Optional.of(response); // response here is non-null for sure
         lastCachedMillis.set(System.currentTimeMillis());
         return response;
