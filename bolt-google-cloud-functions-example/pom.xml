@@ -7,7 +7,7 @@
     <artifactId>bolt-google-cloud-functions-example</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <google-cloud-functions.version>1.0.3</google-cloud-functions.version>
+        <google-cloud-functions.version>1.0.4</google-cloud-functions.version>
         <google-cloud-storage.version>1.113.9</google-cloud-storage.version>
         <slf4j.version>1.7.30</slf4j.version>
         <bolt.version>[1.6,)</bolt.version>
