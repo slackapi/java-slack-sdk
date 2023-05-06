@@ -40,7 +40,16 @@
         "T00000000"
       ],
       "channel_manager_count": 12345,
-      "is_disconnect_in_progress": false
+      "is_disconnect_in_progress": false,
+      "canvas": {
+        "total_count": 12345,
+        "ownership_details": [
+          {
+            "count": 12345,
+            "team_id": ""
+          }
+        ]
+      }
     }
   ],
   "next_cursor": "",

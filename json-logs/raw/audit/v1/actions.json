@@ -162,7 +162,9 @@
       "export_private_channel_analytics_created",
       "audit_logs_export_csv_started",
       "audit_logs_records_searched",
-      "pref.two_factor_prevent_sms_changed"
+      "pref.two_factor_prevent_sms_changed",
+      "apps_analytics_export_started",
+      "apps_analytics_export_prepared"
     ],
     "user": [
       "custom_tos_accepted",

@@ -292,6 +292,7 @@ public class LogsResponse implements AuditApiResponse {
         private Profile previousProfile; // user_profile_updated
         private Profile newProfile; // user_profile_updated
         private String targetUserId; // app_collaborator_added
+        private SpaceFileId spaceFileId; // channel_posting_permissions_updated
     }
 
     @Data
@@ -390,5 +391,10 @@ public class LogsResponse implements AuditApiResponse {
         private String image512;
         @SerializedName("image_1024")
         private String image1024;
+    }
+
+    @Data
+    public static class SpaceFileId {
+        private String payload;
     }
 }

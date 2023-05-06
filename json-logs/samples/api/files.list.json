@@ -22,6 +22,26 @@
       "display_as_bot": false,
       "username": "",
       "url_private": "https://www.example.com/",
+      "url_private_download": "https://www.example.com/",
+      "permalink": "https://www.example.com/",
+      "permalink_public": "https://www.example.com/",
+      "edit_link": "https://www.example.com/",
+      "preview": "",
+      "preview_highlight": "",
+      "lines": 12345,
+      "lines_more": 12345,
+      "preview_is_truncated": false,
+      "channels": [
+        "C00000000",
+        ""
+      ],
+      "groups": [
+        ""
+      ],
+      "ims": [
+        ""
+      ],
+      "comments_count": 12345,
       "media_display_type": "",
       "thumb_64": "https://www.example.com/",
       "thumb_80": "https://www.example.com/",
@@ -47,31 +67,10 @@
       "original_w": 12345,
       "original_h": 12345,
       "thumb_tiny": "",
-      "permalink": "https://www.example.com/",
-      "channels": [
-        "C00000000",
-        ""
-      ],
-      "groups": [
-        ""
-      ],
-      "ims": [
-        ""
-      ],
-      "comments_count": 12345,
       "thumb_360_gif": "https://www.example.com/",
       "thumb_480_gif": "https://www.example.com/",
       "deanimate": "https://www.example.com/",
       "deanimate_gif": "https://www.example.com/",
-      "url_private_download": "https://www.example.com/",
-      "permalink_public": "https://www.example.com/",
-      "edit_link": "https://www.example.com/",
-      "preview": "",
-      "preview_highlight": "",
-      "lines": 12345,
-      "lines_more": 12345,
-      "preview_is_truncated": false,
-      "alt_txt": "",
       "subtype": "",
       "transcription": {
         "status": "",
@@ -85,6 +84,7 @@
       "thumb_video": "https://www.example.com/",
       "thumb_video_w": 12345,
       "thumb_video_h": 12345,
+      "alt_txt": "",
       "subject": "",
       "source_team": "",
       "non_owner_editable": false,

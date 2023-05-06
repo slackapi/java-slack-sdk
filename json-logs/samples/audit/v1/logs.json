@@ -326,7 +326,10 @@
           "image_512": "",
           "image_1024": ""
         },
-        "target_user_id": ""
+        "target_user_id": "",
+        "space_file_id": {
+          "payload": ""
+        }
       }
     }
   ]

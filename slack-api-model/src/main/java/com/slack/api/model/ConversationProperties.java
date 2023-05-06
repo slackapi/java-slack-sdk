@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ConversationProperties {
 
+    private Canvas canvas;
     private PostingRestrictedTo postingRestrictedTo;
     private ThreadsRestrictedTo threadsRestrictedTo;
     private Boolean huddlesRestricted;
@@ -33,5 +34,15 @@ public class ConversationProperties {
     public static class ThreadsRestrictedTo {
         private List<String> type;
         private List<String> user;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Canvas {
+        private String fileId;
+        private String quipThreadId;
+        private Boolean isEmpty;
     }
 }

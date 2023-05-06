@@ -72,6 +72,11 @@
           "user": [
             "W00000000"
           ]
+        },
+        "canvas": {
+          "file_id": "F00000000",
+          "is_empty": false,
+          "quip_thread_id": ""
         }
       }
     }

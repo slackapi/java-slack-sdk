@@ -51,5 +51,17 @@ public class AdminConversationsSearchResponse implements SlackApiTextResponse {
         private Boolean isPendingExtShared;
         private Boolean isDisconnectInProgress;
         private String conversationHostId;
+        private Canvas canvas;
+    }
+
+    @Data
+    public static class Canvas {
+        private Integer totalCount;
+        private List<CanvasOwnershipDetail> ownershipDetails;
+    }
+    @Data
+    public static class CanvasOwnershipDetail {
+        private Integer count;
+        private String teamId;
     }
 }

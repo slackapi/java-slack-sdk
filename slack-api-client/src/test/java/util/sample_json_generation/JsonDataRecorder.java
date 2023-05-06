@@ -3,6 +3,7 @@ package util.sample_json_generation;
 import com.google.gson.*;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsBulkMoveResponse;
+import com.slack.api.methods.response.admin.conversations.AdminConversationsSearchResponse;
 import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsResponse;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
@@ -334,6 +335,22 @@ public class JsonDataRecorder {
                     array.set(0, gson.toJsonTree(ObjectInitializer.initProperties(new Bookmark())));
                 } else {
                     array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Bookmark())));
+                }
+            } else if (path.equals("/api/admin.conversations.search") && name != null && name.equals("ownership_details")) {
+                try {
+                    for (int idx = 0; idx < array.size(); idx++) {
+                        array.remove(idx);
+                    }
+                } catch (Exception e) {
+                    log.info("Failed to remove an existing element from ownership_details", e);
+                }
+                // FIXME: the array sometimes cannot be empty
+                if (!array.isEmpty()) {
+                    array.set(0, gson.toJsonTree(ObjectInitializer.initProperties(
+                            new AdminConversationsSearchResponse.CanvasOwnershipDetail())));
+                } else {
+                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(
+                            new AdminConversationsSearchResponse.CanvasOwnershipDetail())));
                 }
             } else if (path.equals("/api/team.profile.get") &&
                     name != null && Arrays.asList("sections", "possible_values").contains(name)) {
