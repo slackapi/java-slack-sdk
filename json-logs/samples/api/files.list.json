@@ -22,26 +22,6 @@
       "display_as_bot": false,
       "username": "",
       "url_private": "https://www.example.com/",
-      "url_private_download": "https://www.example.com/",
-      "permalink": "https://www.example.com/",
-      "permalink_public": "https://www.example.com/",
-      "edit_link": "https://www.example.com/",
-      "preview": "",
-      "preview_highlight": "",
-      "lines": 12345,
-      "lines_more": 12345,
-      "preview_is_truncated": false,
-      "channels": [
-        "C00000000",
-        ""
-      ],
-      "groups": [
-        ""
-      ],
-      "ims": [
-        ""
-      ],
-      "comments_count": 12345,
       "media_display_type": "",
       "thumb_64": "https://www.example.com/",
       "thumb_80": "https://www.example.com/",
@@ -67,23 +47,30 @@
       "original_w": 12345,
       "original_h": 12345,
       "thumb_tiny": "",
+      "permalink": "https://www.example.com/",
+      "channels": [
+        "C00000000",
+        ""
+      ],
+      "groups": [
+        ""
+      ],
+      "ims": [
+        ""
+      ],
+      "comments_count": 12345,
       "thumb_360_gif": "https://www.example.com/",
       "thumb_480_gif": "https://www.example.com/",
       "deanimate": "https://www.example.com/",
       "deanimate_gif": "https://www.example.com/",
-      "subtype": "",
-      "transcription": {
-        "status": "",
-        "locale": ""
-      },
-      "mp4": "https://www.example.com/",
-      "hls": "https://www.example.com/",
-      "hls_embed": "",
-      "mp4_low": "https://www.example.com/",
-      "duration_ms": 12345,
-      "thumb_video": "https://www.example.com/",
-      "thumb_video_w": 12345,
-      "thumb_video_h": 12345,
+      "url_private_download": "https://www.example.com/",
+      "permalink_public": "https://www.example.com/",
+      "edit_link": "https://www.example.com/",
+      "preview": "",
+      "preview_highlight": "",
+      "lines": 12345,
+      "lines_more": 12345,
+      "preview_is_truncated": false,
       "alt_txt": "",
       "subject": "",
       "source_team": "",
@@ -92,7 +79,19 @@
       "last_editor": "",
       "updated": 12345,
       "file_access": "",
+      "subtype": "",
+      "transcription": {
+        "status": "",
+        "locale": ""
+      },
+      "mp4": "",
+      "mp4_low": "",
       "vtt": "",
+      "hls": "",
+      "hls_embed": "",
+      "duration_ms": 12345,
+      "thumb_video_w": 12345,
+      "thumb_video_h": 12345,
       "original_attachment_count": 12345,
       "external_id": "",
       "external_url": "",
@@ -111,6 +110,7 @@
       "thumb_800_gif": "",
       "thumb_960_gif": "",
       "thumb_1024_gif": "",
+      "thumb_video": "",
       "thumb_gif": "",
       "thumb_pdf": "",
       "thumb_pdf_w": "",
