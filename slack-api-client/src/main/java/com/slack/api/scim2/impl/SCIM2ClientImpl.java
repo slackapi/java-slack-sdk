@@ -1,35 +1,40 @@
-package com.slack.api.scim.impl;
+package com.slack.api.scim2.impl;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.RequestConfigurator;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.impl.TeamIdCache;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
-import com.slack.api.scim.*;
-import com.slack.api.scim.request.*;
-import com.slack.api.scim.response.*;
+import com.slack.api.scim2.*;
+import com.slack.api.scim2.request.*;
+import com.slack.api.scim2.response.*;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
+import lombok.Builder;
+import lombok.Data;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
-import static com.slack.api.scim.SCIMEndpointName.*;
+import static com.slack.api.scim2.SCIM2EndpointName.*;
 
-public class SCIMClientImpl implements SCIMClient {
+public class SCIM2ClientImpl implements SCIM2Client {
 
     private String endpointUrlPrefix = ENDPOINT_URL_PREFIX;
 
     private final SlackHttpClient slackHttpClient;
     private final String token;
-    private final SCIMConfig config;
+    private final SCIM2Config config;
     private final String executorName;
     private final TeamIdCache teamIdCache;
 
-    public SCIMClientImpl(
+    public SCIM2ClientImpl(
             SlackConfig config,
             SlackHttpClient slackHttpClient,
             TeamIdCache teamIdCache
@@ -37,7 +42,7 @@ public class SCIMClientImpl implements SCIMClient {
         this(config, slackHttpClient, teamIdCache, null);
     }
 
-    public SCIMClientImpl(
+    public SCIM2ClientImpl(
             SlackConfig config,
             SlackHttpClient slackHttpClient,
             TeamIdCache teamIdCache,
@@ -45,7 +50,7 @@ public class SCIMClientImpl implements SCIMClient {
     ) {
         this.slackHttpClient = slackHttpClient;
         this.token = token;
-        this.config = config.getSCIMConfig();
+        this.config = config.getSCIM2Config();
         this.executorName = this.config.getExecutorName();
         this.teamIdCache = teamIdCache;
     }
@@ -65,17 +70,27 @@ public class SCIMClientImpl implements SCIMClient {
     }
 
     @Override
-    public ServiceProviderConfigsGetResponse getServiceProviderConfigs(ServiceProviderConfigsGetRequest req) throws IOException, SCIMApiException {
+    public ServiceProviderConfigsGetResponse getServiceProviderConfigs(ServiceProviderConfigsGetRequest req) throws IOException, SCIM2ApiException {
         return doGet(getServiceProviderConfigs, endpointUrlPrefix + "ServiceProviderConfigs", null, getToken(req), ServiceProviderConfigsGetResponse.class);
     }
 
     @Override
-    public ServiceProviderConfigsGetResponse getServiceProviderConfigs(RequestConfigurator<ServiceProviderConfigsGetRequest.ServiceProviderConfigsGetRequestBuilder> req) throws IOException, SCIMApiException {
+    public ServiceProviderConfigsGetResponse getServiceProviderConfigs(RequestConfigurator<ServiceProviderConfigsGetRequest.ServiceProviderConfigsGetRequestBuilder> req) throws IOException, SCIM2ApiException {
         return getServiceProviderConfigs(req.configure(ServiceProviderConfigsGetRequest.builder()).build());
     }
 
     @Override
-    public UsersSearchResponse searchUsers(UsersSearchRequest req) throws IOException, SCIMApiException {
+    public ResourceTypesGetResponse getResourceTypes(ResourceTypesGetRequest req) throws IOException, SCIM2ApiException {
+        return doGet(getResourceTypes, endpointUrlPrefix + "ResourceTypes", null, getToken(req), ResourceTypesGetResponse.class);
+    }
+
+    @Override
+    public ResourceTypesGetResponse getResourceTypes(RequestConfigurator<ResourceTypesGetRequest.ResourceTypesGetRequestBuilder> req) throws IOException, SCIM2ApiException {
+        return getResourceTypes(req.configure(ResourceTypesGetRequest.builder()).build());
+    }
+
+    @Override
+    public UsersSearchResponse searchUsers(UsersSearchRequest req) throws IOException, SCIM2ApiException {
         Map<String, String> query = new HashMap<>();
         if (req.getFilter() != null) {
             query.put("filter", req.getFilter());
@@ -89,63 +104,75 @@ public class SCIMClientImpl implements SCIMClient {
         return doGet(searchUsers, getUsersResourceURL(), query, getToken(req), UsersSearchResponse.class);
     }
 
-    public UsersSearchResponse searchUsers(RequestConfigurator<UsersSearchRequest.UsersSearchRequestBuilder> req) throws IOException, SCIMApiException {
+    public UsersSearchResponse searchUsers(RequestConfigurator<UsersSearchRequest.UsersSearchRequestBuilder> req) throws IOException, SCIM2ApiException {
         return searchUsers(req.configure(UsersSearchRequest.builder()).build());
     }
 
     @Override
-    public UsersReadResponse readUser(UsersReadRequest req) throws IOException, SCIMApiException {
+    public UsersReadResponse readUser(UsersReadRequest req) throws IOException, SCIM2ApiException {
         return doGet(readUser, getUsersResourceURL() + "/" + req.getId(), null, getToken(req), UsersReadResponse.class);
     }
 
-    public UsersReadResponse readUser(RequestConfigurator<UsersReadRequest.UsersReadRequestBuilder> req) throws IOException, SCIMApiException {
+    public UsersReadResponse readUser(RequestConfigurator<UsersReadRequest.UsersReadRequestBuilder> req) throws IOException, SCIM2ApiException {
         return readUser(req.configure(UsersReadRequest.builder()).build());
     }
 
     @Override
-    public UsersCreateResponse createUser(UsersCreateRequest req) throws IOException, SCIMApiException {
+    public UsersCreateResponse createUser(UsersCreateRequest req) throws IOException, SCIM2ApiException {
         return doPost(createUser, getUsersResourceURL(), req.getUser(), getToken(req), UsersCreateResponse.class);
     }
 
     @Override
-    public UsersCreateResponse createUser(RequestConfigurator<UsersCreateRequest.UsersCreateRequestBuilder> req) throws IOException, SCIMApiException {
+    public UsersCreateResponse createUser(RequestConfigurator<UsersCreateRequest.UsersCreateRequestBuilder> req) throws IOException, SCIM2ApiException {
         return createUser(req.configure(UsersCreateRequest.builder()).build());
     }
 
-    @Override
-    public UsersPatchResponse patchUser(UsersPatchRequest req) throws IOException, SCIMApiException {
-        return doPatch(patchUser, getUsersResourceURL() + "/" + req.getId(), req.getUser(), getToken(req), UsersPatchResponse.class);
+    @Data
+    @Builder
+    public static class UsersPatchRequestBody {
+        private List<String> schemas;
+        @SerializedName("Operations")
+        private List<UsersPatchOperation.Serializable> operations;
     }
 
     @Override
-    public UsersPatchResponse patchUser(RequestConfigurator<UsersPatchRequest.UsersPatchRequestBuilder> req) throws IOException, SCIMApiException {
+    public UsersPatchResponse patchUser(UsersPatchRequest req) throws IOException, SCIM2ApiException {
+        UsersPatchRequestBody body = UsersPatchRequestBody.builder()
+                .schemas(req.getSchemas())
+                .operations(req.getOperations().stream().map(op -> op.toSerializable()).collect(Collectors.toList()))
+                .build();
+        return doPatch(patchUser, getUsersResourceURL() + "/" + req.getId(), body, getToken(req), UsersPatchResponse.class);
+    }
+
+    @Override
+    public UsersPatchResponse patchUser(RequestConfigurator<UsersPatchRequest.UsersPatchRequestBuilder> req) throws IOException, SCIM2ApiException {
         return patchUser(req.configure(UsersPatchRequest.builder()).build());
     }
 
     @Override
-    public UsersUpdateResponse updateUser(UsersUpdateRequest req) throws IOException, SCIMApiException {
+    public UsersUpdateResponse updateUser(UsersUpdateRequest req) throws IOException, SCIM2ApiException {
         return doPut(updateUser, getUsersResourceURL() + "/" + req.getId(), req.getUser(), getToken(req), UsersUpdateResponse.class);
     }
 
     @Override
-    public UsersUpdateResponse updateUser(RequestConfigurator<UsersUpdateRequest.UsersUpdateRequestBuilder> req) throws IOException, SCIMApiException {
+    public UsersUpdateResponse updateUser(RequestConfigurator<UsersUpdateRequest.UsersUpdateRequestBuilder> req) throws IOException, SCIM2ApiException {
         return updateUser(req.configure(UsersUpdateRequest.builder()).build());
     }
 
     @Override
-    public UsersDeleteResponse deleteUser(UsersDeleteRequest req) throws IOException, SCIMApiException {
+    public UsersDeleteResponse deleteUser(UsersDeleteRequest req) throws IOException, SCIM2ApiException {
         Request.Builder requestBuilder = withAuthorizationHeader(new Request.Builder(), getToken(req))
                 .url(getUsersResourceURL() + "/" + req.getId());
         return doDelete(deleteUser, requestBuilder, UsersDeleteResponse.class);
     }
 
     @Override
-    public UsersDeleteResponse deleteUser(RequestConfigurator<UsersDeleteRequest.UsersDeleteRequestBuilder> req) throws IOException, SCIMApiException {
+    public UsersDeleteResponse deleteUser(RequestConfigurator<UsersDeleteRequest.UsersDeleteRequestBuilder> req) throws IOException, SCIM2ApiException {
         return deleteUser(req.configure(UsersDeleteRequest.builder()).build());
     }
 
     @Override
-    public GroupsSearchResponse searchGroups(GroupsSearchRequest req) throws IOException, SCIMApiException {
+    public GroupsSearchResponse searchGroups(GroupsSearchRequest req) throws IOException, SCIM2ApiException {
         Map<String, String> query = new HashMap<>();
         if (req.getFilter() != null) {
             query.put("filter", req.getFilter());
@@ -160,59 +187,71 @@ public class SCIMClientImpl implements SCIMClient {
     }
 
     @Override
-    public GroupsSearchResponse searchGroups(RequestConfigurator<GroupsSearchRequest.GroupsSearchRequestBuilder> req) throws IOException, SCIMApiException {
+    public GroupsSearchResponse searchGroups(RequestConfigurator<GroupsSearchRequest.GroupsSearchRequestBuilder> req) throws IOException, SCIM2ApiException {
         return searchGroups(req.configure(GroupsSearchRequest.builder()).build());
     }
 
     @Override
-    public GroupsReadResponse readGroup(GroupsReadRequest req) throws IOException, SCIMApiException {
+    public GroupsReadResponse readGroup(GroupsReadRequest req) throws IOException, SCIM2ApiException {
         return doGet(readGroup, getGroupsResourceURL() + "/" + req.getId(), null, getToken(req), GroupsReadResponse.class);
     }
 
     @Override
-    public GroupsReadResponse readGroup(RequestConfigurator<GroupsReadRequest.GroupsReadRequestBuilder> req) throws IOException, SCIMApiException {
+    public GroupsReadResponse readGroup(RequestConfigurator<GroupsReadRequest.GroupsReadRequestBuilder> req) throws IOException, SCIM2ApiException {
         return readGroup(req.configure(GroupsReadRequest.builder()).build());
     }
 
     @Override
-    public GroupsCreateResponse createGroup(GroupsCreateRequest req) throws IOException, SCIMApiException {
+    public GroupsCreateResponse createGroup(GroupsCreateRequest req) throws IOException, SCIM2ApiException {
         return doPost(createGroup, getGroupsResourceURL(), req.getGroup(), getToken(req), GroupsCreateResponse.class);
     }
 
     @Override
-    public GroupsCreateResponse createGroup(RequestConfigurator<GroupsCreateRequest.GroupsCreateRequestBuilder> req) throws IOException, SCIMApiException {
+    public GroupsCreateResponse createGroup(RequestConfigurator<GroupsCreateRequest.GroupsCreateRequestBuilder> req) throws IOException, SCIM2ApiException {
         return createGroup(req.configure(GroupsCreateRequest.builder()).build());
     }
 
-    @Override
-    public GroupsPatchResponse patchGroup(GroupsPatchRequest req) throws IOException, SCIMApiException {
-        return doPatch(patchGroup, getGroupsResourceURL() + "/" + req.getId(), req.getGroup(), getToken(req), GroupsPatchResponse.class);
+    @Data
+    @Builder
+    public static class GroupsPatchRequestBody {
+        private List<String> schemas;
+        @SerializedName("Operations")
+        private List<GroupsPatchOperation.Serializable> operations;
     }
 
     @Override
-    public GroupsPatchResponse patchGroup(RequestConfigurator<GroupsPatchRequest.GroupsPatchRequestBuilder> req) throws IOException, SCIMApiException {
+    public GroupsPatchResponse patchGroup(GroupsPatchRequest req) throws IOException, SCIM2ApiException {
+        GroupsPatchRequestBody body = GroupsPatchRequestBody.builder()
+                .schemas(req.getSchemas())
+                .operations(req.getOperations().stream().map(op -> op.toSerializable()).collect(Collectors.toList()))
+                .build();
+        return doPatch(patchGroup, getGroupsResourceURL() + "/" + req.getId(), body, getToken(req), GroupsPatchResponse.class);
+    }
+
+    @Override
+    public GroupsPatchResponse patchGroup(RequestConfigurator<GroupsPatchRequest.GroupsPatchRequestBuilder> req) throws IOException, SCIM2ApiException {
         return patchGroup(req.configure(GroupsPatchRequest.builder()).build());
     }
 
     @Override
-    public GroupsUpdateResponse updateGroup(GroupsUpdateRequest req) throws IOException, SCIMApiException {
+    public GroupsUpdateResponse updateGroup(GroupsUpdateRequest req) throws IOException, SCIM2ApiException {
         return doPut(updateGroup, getGroupsResourceURL() + "/" + req.getId(), req.getGroup(), getToken(req), GroupsUpdateResponse.class);
     }
 
     @Override
-    public GroupsUpdateResponse updateGroup(RequestConfigurator<GroupsUpdateRequest.GroupsUpdateRequestBuilder> req) throws IOException, SCIMApiException {
+    public GroupsUpdateResponse updateGroup(RequestConfigurator<GroupsUpdateRequest.GroupsUpdateRequestBuilder> req) throws IOException, SCIM2ApiException {
         return updateGroup(req.configure(GroupsUpdateRequest.builder()).build());
     }
 
     @Override
-    public GroupsDeleteResponse deleteGroup(GroupsDeleteRequest req) throws IOException, SCIMApiException {
+    public GroupsDeleteResponse deleteGroup(GroupsDeleteRequest req) throws IOException, SCIM2ApiException {
         Request.Builder requestBuilder = withAuthorizationHeader(new Request.Builder(), getToken(req))
                 .url(getGroupsResourceURL() + "/" + req.getId());
         return doDelete(deleteGroup, requestBuilder, GroupsDeleteResponse.class);
     }
 
     @Override
-    public GroupsDeleteResponse deleteGroup(RequestConfigurator<GroupsDeleteRequest.GroupsDeleteRequestBuilder> req) throws IOException, SCIMApiException {
+    public GroupsDeleteResponse deleteGroup(RequestConfigurator<GroupsDeleteRequest.GroupsDeleteRequestBuilder> req) throws IOException, SCIM2ApiException {
         return deleteGroup(req.configure(GroupsDeleteRequest.builder()).build());
     }
 
@@ -220,7 +259,7 @@ public class SCIMClientImpl implements SCIMClient {
     // private methods
     // ------------------------------------------
 
-    private String getToken(SCIMApiRequest req) {
+    private String getToken(SCIM2ApiRequest req) {
         if (req.getToken() != null) {
             return req.getToken();
         } else if (this.token != null) {
@@ -253,10 +292,10 @@ public class SCIMClientImpl implements SCIMClient {
     }
 
     private <T> T handle(
-            SCIMEndpointName name,
+            SCIM2EndpointName name,
             Class<T> clazz,
             Supplier<Response> performRequest
-    ) throws IOException, SCIMApiException {
+    ) throws IOException, SCIM2ApiException {
         String enterpriseId = getEnterpriseIdForMetrics();
         MetricsDatastore datastore = config.getMetricsDatastore();
         try {
@@ -266,7 +305,7 @@ public class SCIMClientImpl implements SCIMClient {
                 datastore.incrementSuccessfulCalls(executorName, enterpriseId, name.name());
             }
             return result;
-        } catch (SCIMApiException e) {
+        } catch (SCIM2ApiException e) {
             if (enterpriseId != null) {
                 datastore.incrementUnsuccessfulCalls(executorName, enterpriseId, name.name());
             }
@@ -304,12 +343,12 @@ public class SCIMClientImpl implements SCIMClient {
     }
 
     private <T> T doGet(
-            SCIMEndpointName name,
+            SCIM2EndpointName name,
             String url,
             Map<String, String> query,
             String token,
             Class<T> clazz
-    ) throws IOException, SCIMApiException {
+    ) throws IOException, SCIM2ApiException {
         return handle(name, clazz, () -> {
             try {
                 return slackHttpClient.get(url, query, token);
@@ -320,12 +359,12 @@ public class SCIMClientImpl implements SCIMClient {
     }
 
     private <T> T doPost(
-            SCIMEndpointName name,
+            SCIM2EndpointName name,
             String url,
             Object body,
             String token,
             Class<T> clazz
-    ) throws IOException, SCIMApiException {
+    ) throws IOException, SCIM2ApiException {
         return handle(name, clazz, () -> {
             try {
                 return slackHttpClient.postCamelCaseJsonBodyWithBearerHeader(url, token, body);
@@ -336,12 +375,12 @@ public class SCIMClientImpl implements SCIMClient {
     }
 
     private <T> T doPatch(
-            SCIMEndpointName name,
+            SCIM2EndpointName name,
             String url,
             Object body,
             String token,
             Class<T> clazz
-    ) throws IOException, SCIMApiException {
+    ) throws IOException, SCIM2ApiException {
         return handle(name, clazz, () -> {
             try {
                 return slackHttpClient.patchCamelCaseJsonBodyWithBearerHeader(url, token, body);
@@ -352,12 +391,12 @@ public class SCIMClientImpl implements SCIMClient {
     }
 
     private <T> T doPut(
-            SCIMEndpointName name,
+            SCIM2EndpointName name,
             String url,
             Object body,
             String token,
             Class<T> clazz
-    ) throws IOException, SCIMApiException {
+    ) throws IOException, SCIM2ApiException {
         return handle(name, clazz, () -> {
             try {
                 return slackHttpClient.putCamelCaseJsonBodyWithBearerHeader(url, token, body);
@@ -368,10 +407,10 @@ public class SCIMClientImpl implements SCIMClient {
     }
 
     private <T> T doDelete(
-            SCIMEndpointName name,
+            SCIM2EndpointName name,
             Request.Builder requestBuilder,
             Class<T> clazz
-    ) throws IOException, SCIMApiException {
+    ) throws IOException, SCIM2ApiException {
         return handle(name, clazz, () -> {
             try {
                 return slackHttpClient.delete(requestBuilder);
@@ -384,13 +423,13 @@ public class SCIMClientImpl implements SCIMClient {
     private <T> T parseCamelCaseJsonResponseAndRunListeners(
             Response response,
             Class<T> clazz
-    ) throws IOException, SCIMApiException {
+    ) throws IOException, SCIM2ApiException {
         String body = response.body().string();
         try {
             if (response.isSuccessful()) {
                 return GsonFactory.createCamelCase(slackHttpClient.getConfig()).fromJson(body, clazz);
             } else {
-                throw new SCIMApiException(slackHttpClient.getConfig(), response, body);
+                throw new SCIM2ApiException(slackHttpClient.getConfig(), response, body);
             }
         } finally {
             slackHttpClient.runHttpResponseListeners(response, body);
