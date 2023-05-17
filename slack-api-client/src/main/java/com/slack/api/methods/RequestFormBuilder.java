@@ -2286,6 +2286,8 @@ public class RequestFormBuilder {
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("page", req.getPage(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
         return form;
     }
 

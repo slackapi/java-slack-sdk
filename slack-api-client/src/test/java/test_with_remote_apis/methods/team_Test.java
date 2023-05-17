@@ -14,8 +14,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @Slf4j
@@ -47,6 +46,29 @@ public class team_Test {
             // when you pay for this team
             assertThat(response.getError(), is(nullValue()));
             assertThat(response.isOk(), is(true));
+        } else {
+            // when you don't pay for this team
+            assertThat(response.isOk(), is(false));
+            assertThat(response.getError(), is("paid_only"));
+        }
+    }
+
+    @Test
+    public void teamAccessLogs_cursor() throws Exception {
+        TeamAccessLogsResponse error = slack.methods(userToken).teamAccessLogs(r -> r.cursor("xxxx"));
+        assertThat(error.getError(), is(notNullValue()));
+
+        TeamAccessLogsResponse response = slack.methods(userToken).teamAccessLogs(r -> r.limit(1));
+        if (response.isOk()) {
+            // when you pay for this team
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+
+            String nextCursor = response.getResponseMetadata().getNextCursor();
+            response = slack.methods(userToken).teamAccessLogs(r -> r.limit(1).cursor(nextCursor));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            assertThat(response.getResponseMetadata().getNextCursor(), is(not(equals(nextCursor))));
         } else {
             // when you don't pay for this team
             assertThat(response.isOk(), is(false));
