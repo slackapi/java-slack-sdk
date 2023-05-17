@@ -3,6 +3,7 @@ package com.slack.api.methods.response.team;
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Login;
 import com.slack.api.model.Paging;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
@@ -20,4 +21,5 @@ public class TeamAccessLogsResponse implements SlackApiTextResponse {
 
     private List<Login> logins;
     private Paging paging;
+    private ResponseMetadata responseMetadata;
 }

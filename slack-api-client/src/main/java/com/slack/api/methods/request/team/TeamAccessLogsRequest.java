@@ -30,4 +30,18 @@ public class TeamAccessLogsRequest implements SlackApiRequest {
      */
     private String teamId;
 
+    /**
+     * The maximum number of items to return. Fewer than the requested number of items may be returned,
+     * even if the end of the list hasn't been reached.
+     * If specified, result is returned using a cursor-based approach instead of a classic one.
+     */
+    private Integer limit;
+
+    /**
+     * Parameter for pagination. Set cursor equal to the next_cursor attribute returned
+     * by the previous request's response_metadata. This parameter is optional,
+     * but pagination is mandatory: the default value simply fetches the first "page" of the collection.
+     */
+    private String cursor;
+
 }

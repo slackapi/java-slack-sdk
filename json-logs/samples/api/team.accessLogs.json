@@ -22,5 +22,8 @@
   },
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "response_metadata": {
+    "next_cursor": ""
+  }
 }
