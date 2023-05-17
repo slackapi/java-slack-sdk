@@ -40,15 +40,15 @@ public class AsyncRateLimitExecutor {
     }
 
     public static AsyncRateLimitExecutor getOrCreate(MethodsClientImpl methods, SlackConfig config) {
-        AsyncRateLimitExecutor executor = ALL_EXECUTORS.get(config.getMethodsConfig().getExecutorName());
-        if (executor != null && executor.metricsDatastore != config.getMethodsConfig().getMetricsDatastore()) {
+        AsyncRateLimitExecutor executor = ALL_EXECUTORS.get(config.getAuditConfig().getExecutorName());
+        if (executor != null && executor.metricsDatastore != config.getAuditConfig().getMetricsDatastore()) {
             // As the metrics datastore has been changed, we should replace the executor
             executor.config = config.getAuditConfig();
             executor.metricsDatastore = config.getAuditConfig().getMetricsDatastore();
         }
         if (executor == null) {
             executor = new AsyncRateLimitExecutor(methods, config);
-            ALL_EXECUTORS.putIfAbsent(config.getMethodsConfig().getExecutorName(), executor);
+            ALL_EXECUTORS.putIfAbsent(config.getAuditConfig().getExecutorName(), executor);
         }
         return executor;
     }

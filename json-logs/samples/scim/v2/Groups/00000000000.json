@@ -1,0 +1,17 @@
+{
+  "schemas": [
+    ""
+  ],
+  "id": "S00000000",
+  "meta": {
+    "created": "",
+    "location": "https://www.example.com/"
+  },
+  "displayName": "",
+  "members": [
+    {
+      "value": "",
+      "display": ""
+    }
+  ]
+}

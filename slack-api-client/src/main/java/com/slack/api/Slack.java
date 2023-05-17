@@ -27,6 +27,11 @@ import com.slack.api.scim.SCIMClient;
 import com.slack.api.scim.SCIMConfig;
 import com.slack.api.scim.impl.AsyncSCIMClientImpl;
 import com.slack.api.scim.impl.SCIMClientImpl;
+import com.slack.api.scim2.AsyncSCIM2Client;
+import com.slack.api.scim2.SCIM2Client;
+import com.slack.api.scim2.SCIM2Config;
+import com.slack.api.scim2.impl.AsyncSCIM2ClientImpl;
+import com.slack.api.scim2.impl.SCIM2ClientImpl;
 import com.slack.api.socket_mode.SocketModeClient;
 import com.slack.api.socket_mode.impl.SocketModeClientJavaWSImpl;
 import com.slack.api.socket_mode.impl.SocketModeClientTyrusImpl;
@@ -318,6 +323,42 @@ public class Slack implements AutoCloseable {
     /**
      * Creates a SCIM API client.
      */
+    public SCIM2Client scim2() {
+        return scim2(null);
+    }
+
+    public SCIM2Client scim2(String token) {
+        MethodsClientImpl methods = new MethodsClientImpl(httpClient, token);
+        methods.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
+        SCIM2ClientImpl client = new SCIM2ClientImpl(
+                config,
+                httpClient,
+                new TeamIdCache(methods), // will create a cache with enterprise_id
+                token);
+        client.setEndpointUrlPrefix(config.getScim2EndpointUrlPrefix());
+        return client;
+    }
+
+    public AsyncSCIM2Client scim2Async(String token) {
+        MethodsClientImpl methods = new MethodsClientImpl(httpClient, token);
+        methods.setEndpointUrlPrefix(config.getMethodsEndpointUrlPrefix());
+        SCIM2ClientImpl client = new SCIM2ClientImpl(
+                config,
+                httpClient,
+                new TeamIdCache(methods), // will create a cache with enterprise_id
+                token);
+        client.setEndpointUrlPrefix(config.getScim2EndpointUrlPrefix());
+        return new AsyncSCIM2ClientImpl(token, client, methods, config);
+    }
+
+    public RequestStats scim2Stats(String enterpriseId) {
+        return scim2Stats(SCIM2Config.DEFAULT_SINGLETON_EXECUTOR_NAME, enterpriseId);
+    }
+
+    public RequestStats scim2Stats(String executorName, String enterpriseId) {
+        return config.getSCIM2Config().getMetricsDatastore().getStats(executorName, enterpriseId);
+    }
+
     public SCIMClient scim() {
         return scim(null);
     }

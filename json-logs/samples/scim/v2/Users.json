@@ -1,0 +1,98 @@
+{
+  "schemas": [
+    ""
+  ],
+  "Resources": [
+    {
+      "schemas": [
+        ""
+      ],
+      "id": "W00000000",
+      "externalId": "",
+      "meta": {
+        "created": "",
+        "location": "https://www.example.com/"
+      },
+      "userName": "",
+      "nickName": "",
+      "name": {
+        "givenName": "",
+        "familyName": ""
+      },
+      "displayName": "",
+      "profileUrl": "https://www.example.com/",
+      "title": "",
+      "timezone": "",
+      "active": false,
+      "emails": [
+        {
+          "value": "",
+          "primary": false
+        },
+        {
+          "value": "",
+          "type": "",
+          "primary": false
+        }
+      ],
+      "photos": [
+        {
+          "value": "",
+          "type": ""
+        }
+      ],
+      "addresses": [
+        {},
+        {
+          "streetAddress": "",
+          "locality": "",
+          "region": "",
+          "postalCode": "",
+          "country": "",
+          "primary": false
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "type": "",
+          "primary": false
+        },
+        {
+          "value": "",
+          "type": "",
+          "primary": false
+        }
+      ],
+      "roles": [
+        {
+          "primary": false
+        },
+        {
+          "value": "",
+          "type": "",
+          "primary": false
+        }
+      ],
+      "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+        "manager": {}
+      },
+      "groups": [
+        {
+          "value": "",
+          "display": ""
+        }
+      ],
+      "urn:ietf:params:scim:schemas:extension:slack:guest:2.0:User": {
+        "type": "",
+        "expiration": ""
+      }
+    }
+  ],
+  "totalResults": 12345,
+  "itemsPerPage": 12345,
+  "startIndex": 12345,
+  "Errors": {
+    "description": "",
+    "code": 12345
+  }
+}

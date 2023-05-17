@@ -1,4 +1,4 @@
-package com.slack.api.scim.impl;
+package com.slack.api.scim2.impl;
 
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.impl.MethodsClientImpl;
@@ -6,7 +6,7 @@ import com.slack.api.methods.impl.TeamIdCache;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import com.slack.api.rate_limits.queue.MessageIdGenerator;
 import com.slack.api.rate_limits.queue.MessageIdGeneratorUUIDImpl;
-import com.slack.api.scim.*;
+import com.slack.api.scim2.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -20,14 +20,14 @@ public class AsyncRateLimitExecutor {
 
     private static final ConcurrentMap<String, AsyncRateLimitExecutor> ALL_EXECUTORS = new ConcurrentHashMap<>();
 
-    private SCIMConfig config;
+    private SCIM2Config config;
     private MetricsDatastore metricsDatastore; // intentionally mutable
     private final TeamIdCache teamIdCache;
     private final MessageIdGenerator messageIdGenerator;
 
     private AsyncRateLimitExecutor(MethodsClientImpl methods, SlackConfig config) {
-        this.config = config.getSCIMConfig();
-        this.metricsDatastore = config.getSCIMConfig().getMetricsDatastore();
+        this.config = config.getSCIM2Config();
+        this.metricsDatastore = config.getSCIM2Config().getMetricsDatastore();
         this.teamIdCache = new TeamIdCache(methods);
         this.messageIdGenerator = new MessageIdGeneratorUUIDImpl();
     }
@@ -37,23 +37,23 @@ public class AsyncRateLimitExecutor {
     }
 
     public static AsyncRateLimitExecutor getOrCreate(MethodsClientImpl methods, SlackConfig config) {
-        AsyncRateLimitExecutor executor = ALL_EXECUTORS.get(config.getSCIMConfig().getExecutorName());
-        if (executor != null && executor.metricsDatastore != config.getSCIMConfig().getMetricsDatastore()) {
+        AsyncRateLimitExecutor executor = ALL_EXECUTORS.get(config.getSCIM2Config().getExecutorName());
+        if (executor != null && executor.metricsDatastore != config.getSCIM2Config().getMetricsDatastore()) {
             // As the metrics datastore has been changed, we should replace the executor
-            executor.config = config.getSCIMConfig();
-            executor.metricsDatastore = config.getSCIMConfig().getMetricsDatastore();
+            executor.config = config.getSCIM2Config();
+            executor.metricsDatastore = config.getSCIM2Config().getMetricsDatastore();
         }
         if (executor == null) {
             executor = new AsyncRateLimitExecutor(methods, config);
-            ALL_EXECUTORS.putIfAbsent(config.getSCIMConfig().getExecutorName(), executor);
+            ALL_EXECUTORS.putIfAbsent(config.getSCIM2Config().getExecutorName(), executor);
         }
         return executor;
     }
 
     private static final List<String> NO_TOKEN_METHOD_NAMES = Collections.emptyList();
 
-    public <T extends SCIMApiResponse> CompletableFuture<T> execute(
-            SCIMEndpointName endpointName,
+    public <T extends SCIM2ApiResponse> CompletableFuture<T> execute(
+            SCIM2EndpointName endpointName,
             Map<String, String> params,
             AsyncExecutionSupplier<T> methodsSupplier) {
         String token = params.get("token");
@@ -77,7 +77,7 @@ public class AsyncRateLimitExecutor {
         }, executorService);
     }
 
-    private void initCurrentQueueSizeStatsIfAbsent(String teamId, SCIMEndpointName endpointName) {
+    private void initCurrentQueueSizeStatsIfAbsent(String teamId, SCIM2EndpointName endpointName) {
         if (teamId != null) {
             metricsDatastore.setCurrentQueueSize(
                     config.getExecutorName(),
@@ -90,7 +90,7 @@ public class AsyncRateLimitExecutor {
 
     private void addMessageId(
             String teamId,
-            SCIMEndpointName endpointName,
+            SCIM2EndpointName endpointName,
             String messageId) {
         metricsDatastore.addToWaitingMessageIds(
                 config.getExecutorName(), teamId, endpointName.name(), messageId);
@@ -98,15 +98,15 @@ public class AsyncRateLimitExecutor {
 
     private void removeMessageId(
             String teamId,
-            SCIMEndpointName endpointName,
+            SCIM2EndpointName endpointName,
             String messageId) {
         metricsDatastore.deleteFromWaitingMessageIds(
                 config.getExecutorName(), teamId, endpointName.name(), messageId);
     }
 
-    public <T extends SCIMApiResponse> T runWithoutQueue(
+    public <T extends SCIM2ApiResponse> T runWithoutQueue(
             String teamId,
-            SCIMEndpointName endpointName,
+            SCIM2EndpointName endpointName,
             AsyncExecutionSupplier<T> methodsSupplier) {
         try {
             return methodsSupplier.execute();
@@ -114,16 +114,16 @@ public class AsyncRateLimitExecutor {
             return handleRuntimeException(teamId, endpointName, e);
         } catch (IOException e) {
             return handleIOException(teamId, endpointName, e);
-        } catch (SCIMApiException e) {
+        } catch (SCIM2ApiException e) {
             logSCIMApiException(teamId, endpointName, e);
-            throw new SCIMApiCompletionException(null, e, null);
+            throw new SCIM2ApiCompletionException(null, e, null);
         }
     }
 
-    private <T extends SCIMApiResponse> T enqueueThenRun(
+    private <T extends SCIM2ApiResponse> T enqueueThenRun(
             String messageId,
             String teamId,
-            SCIMEndpointName endpointName,
+            SCIM2EndpointName endpointName,
             Map<String, String> params,
             AsyncExecutionSupplier<T> methodsSupplier) {
         try {
@@ -152,31 +152,31 @@ public class AsyncRateLimitExecutor {
             return handleRuntimeException(teamId, endpointName, e);
         } catch (IOException e) {
             return handleIOException(teamId, endpointName, e);
-        } catch (SCIMApiException e) {
+        } catch (SCIM2ApiException e) {
             logSCIMApiException(teamId, endpointName, e);
             if (e.getResponse().code() == 429) {
                 return enqueueThenRun(messageId, teamId, endpointName, params, methodsSupplier);
             }
-            throw new SCIMApiCompletionException(null, e, null);
+            throw new SCIM2ApiCompletionException(null, e, null);
         } catch (InterruptedException e) {
             log.error("Got an InterruptedException (error: {})", e.getMessage(), e);
             throw new RuntimeException(e);
         }
     }
 
-    private static <T extends SCIMApiResponse> T handleRuntimeException(
-            String teamId, SCIMEndpointName endpointName, RuntimeException e) {
+    private static <T extends SCIM2ApiResponse> T handleRuntimeException(
+            String teamId, SCIM2EndpointName endpointName, RuntimeException e) {
         log.error("Got an exception while calling {} API (team: {}, error: {})", endpointName, teamId, e.getMessage(), e);
-        throw new SCIMApiCompletionException(null, null, e);
+        throw new SCIM2ApiCompletionException(null, null, e);
     }
 
-    private static <T extends SCIMApiResponse> T handleIOException(
-            String teamId, SCIMEndpointName endpointName, IOException e) {
+    private static <T extends SCIM2ApiResponse> T handleIOException(
+            String teamId, SCIM2EndpointName endpointName, IOException e) {
         log.error("Failed to connect to {} API (team: {}, error: {})", endpointName, teamId, e.getMessage(), e);
-        throw new SCIMApiCompletionException(e, null, null);
+        throw new SCIM2ApiCompletionException(e, null, null);
     }
 
-    private static void logSCIMApiException(String teamId, SCIMEndpointName endpointName, SCIMApiException e) {
+    private static void logSCIMApiException(String teamId, SCIM2EndpointName endpointName, SCIM2ApiException e) {
         if (e.getResponse().code() == 429) {
             String retryAfterSeconds = e.getResponse().header("Retry-After");
             log.error("Got a rate-limited response from {} API (team: {}, error: {}, retry-after: {})",

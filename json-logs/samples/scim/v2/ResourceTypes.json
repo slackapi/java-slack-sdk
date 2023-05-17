@@ -1,0 +1,27 @@
+{
+  "schemas": [
+    ""
+  ],
+  "Resources": [
+    {
+      "schemas": [
+        ""
+      ],
+      "id": "",
+      "name": "",
+      "endpoint": "",
+      "description": "",
+      "schema": "",
+      "meta": {
+        "location": "https://www.example.com/",
+        "resourceType": ""
+      },
+      "schemaExtensions": [
+        {
+          "schema": "",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

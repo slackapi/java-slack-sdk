@@ -7,6 +7,8 @@ import com.slack.api.methods.MethodsConfig;
 import com.slack.api.rate_limits.RateLimiter;
 import com.slack.api.scim.SCIMClient;
 import com.slack.api.scim.SCIMConfig;
+import com.slack.api.scim2.SCIM2Client;
+import com.slack.api.scim2.SCIM2Config;
 import com.slack.api.status.v1.LegacyStatusClient;
 import com.slack.api.status.v2.StatusClient;
 import com.slack.api.util.http.listener.DetailedLoggingListener;
@@ -257,6 +259,8 @@ public class SlackConfig implements AutoCloseable {
 
     private String scimEndpointUrlPrefix = SCIMClient.ENDPOINT_URL_PREFIX;
 
+    private String scim2EndpointUrlPrefix = SCIM2Client.ENDPOINT_URL_PREFIX;
+
     private String statusEndpointUrlPrefix = StatusClient.ENDPOINT_URL_PREFIX;
 
     private String legacyStatusEndpointUrlPrefix = LegacyStatusClient.ENDPOINT_URL_PREFIX;
@@ -292,6 +296,8 @@ public class SlackConfig implements AutoCloseable {
     private AuditConfig auditConfig = new AuditConfig();
 
     private SCIMConfig sCIMConfig = new SCIMConfig();
+
+    private SCIM2Config sCIM2Config = new SCIM2Config();
 
     public void synchronizeMetricsDatabases() {
         this.synchronizeExecutorServiceProviders();
@@ -329,6 +335,17 @@ public class SlackConfig implements AutoCloseable {
                 sCIMConfig.getMetricsDatastore().setStatsEnabled(false);
             }
         }
+        if (!sCIM2Config.equals(sCIM2Config.DEFAULT_SINGLETON)) {
+            if (sCIM2Config.isStatsEnabled()) {
+                if (sCIM2Config.getMetricsDatastore().getRateLimiterBackgroundJobIntervalMillis()
+                        != this.getRateLimiterBackgroundJobIntervalMillis()) {
+                    sCIM2Config.getMetricsDatastore().setRateLimiterBackgroundJobIntervalMillis(
+                            this.getRateLimiterBackgroundJobIntervalMillis());
+                }
+            } else {
+                sCIM2Config.getMetricsDatastore().setStatsEnabled(false);
+            }
+        }
     }
 
     public void synchronizeExecutorServiceProviders() {
@@ -349,6 +366,12 @@ public class SlackConfig implements AutoCloseable {
                 && !sCIMConfig.getExecutorServiceProvider().equals(executorServiceProvider)) {
             sCIMConfig.setExecutorServiceProvider(executorServiceProvider);
             sCIMConfig.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
+        }
+        if (!sCIM2Config.equals(SCIM2Config.DEFAULT_SINGLETON)
+                && sCIM2Config.isStatsEnabled()
+                && !sCIM2Config.getExecutorServiceProvider().equals(executorServiceProvider)) {
+            sCIM2Config.setExecutorServiceProvider(executorServiceProvider);
+            sCIM2Config.getMetricsDatastore().setExecutorServiceProvider(executorServiceProvider);
         }
         this.synchronizeLibraryMaintainerMode();
     }
