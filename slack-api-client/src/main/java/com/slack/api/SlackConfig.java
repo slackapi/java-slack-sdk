@@ -18,6 +18,8 @@ import com.slack.api.util.thread.DaemonThreadExecutorServiceProvider;
 import com.slack.api.util.thread.ExecutorServiceProvider;
 import lombok.Builder;
 import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -271,6 +273,8 @@ public class SlackConfig implements AutoCloseable {
     @Builder.Default
     private Long rateLimiterBackgroundJobIntervalMillis = RateLimiter.DEFAULT_BACKGROUND_JOB_INTERVAL_MILLIS;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SlackConfig.class);
+
     public void setRateLimiterBackgroundJobIntervalMillis(Long rateLimiterBackgroundJobIntervalMillis) {
         if (rateLimiterBackgroundJobIntervalMillis == 0) {
             throw new IllegalArgumentException(
@@ -311,6 +315,11 @@ public class SlackConfig implements AutoCloseable {
                 }
             } else {
                 methodsConfig.getMetricsDatastore().setStatsEnabled(false);
+                try {
+                    methodsConfig.getMetricsDatastore().close();
+                } catch (Exception e) {
+                    LOGGER.warn("Failed to close the MetricsDatastore in MethodsConfig", e);
+                }
             }
         }
         if (!auditConfig.equals(auditConfig.DEFAULT_SINGLETON)) {
@@ -322,6 +331,11 @@ public class SlackConfig implements AutoCloseable {
                 }
             } else {
                 auditConfig.getMetricsDatastore().setStatsEnabled(false);
+                try {
+                    auditConfig.getMetricsDatastore().close();
+                } catch (Exception e) {
+                    LOGGER.warn("Failed to close the MetricsDatastore in AuditConfig", e);
+                }
             }
         }
         if (!sCIMConfig.equals(sCIMConfig.DEFAULT_SINGLETON)) {
@@ -333,6 +347,11 @@ public class SlackConfig implements AutoCloseable {
                 }
             } else {
                 sCIMConfig.getMetricsDatastore().setStatsEnabled(false);
+                try {
+                    sCIMConfig.getMetricsDatastore().close();
+                } catch (Exception e) {
+                    LOGGER.warn("Failed to close the MetricsDatastore in SCIMConfig", e);
+                }
             }
         }
         if (!sCIM2Config.equals(sCIM2Config.DEFAULT_SINGLETON)) {
@@ -344,6 +363,11 @@ public class SlackConfig implements AutoCloseable {
                 }
             } else {
                 sCIM2Config.getMetricsDatastore().setStatsEnabled(false);
+                try {
+                    sCIMConfig.getMetricsDatastore().close();
+                } catch (Exception e) {
+                    LOGGER.warn("Failed to close the MetricsDatastore in SCIM2Config", e);
+                }
             }
         }
     }
@@ -384,8 +408,17 @@ public class SlackConfig implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
+        // Disable the stats feature and synchronize its internal thread resources
+        this.getMethodsConfig().setStatsEnabled(false);
+        this.getAuditConfig().setStatsEnabled(false);
+        this.getSCIMConfig().setStatsEnabled(false);
+        this.getSCIM2Config().setStatsEnabled(false);
+        this.synchronizeMetricsDatabases();
+
+        // Clear the internal thread pools for asynchronous API calls
         com.slack.api.methods.impl.ThreadPools.shutdownAll(methodsConfig);
         com.slack.api.audit.impl.ThreadPools.shutdownAll(auditConfig);
         com.slack.api.scim.impl.ThreadPools.shutdownAll(sCIMConfig);
+        com.slack.api.scim2.impl.ThreadPools.shutdownAll(sCIM2Config);
     }
 }
