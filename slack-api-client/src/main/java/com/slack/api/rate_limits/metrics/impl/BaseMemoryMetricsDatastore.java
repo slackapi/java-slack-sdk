@@ -22,11 +22,12 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMessage>
-        implements MetricsDatastore, AutoCloseable {
+        implements MetricsDatastore {
 
     private final int numberOfNodes;
     private ExecutorServiceProvider executorServiceProvider;
     private ScheduledExecutorService rateLimiterBackgroundJob;
+    private ScheduledFuture<?> runningJob;
     private boolean traceMode;
     private boolean statsEnabled;
     private long rateLimiterBackgroundJobIntervalMillis;
@@ -74,7 +75,7 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
             this.rateLimiterBackgroundJob.shutdown();
         }
         this.rateLimiterBackgroundJob = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
-        this.rateLimiterBackgroundJob.scheduleAtFixedRate(
+        this.runningJob = this.rateLimiterBackgroundJob.scheduleAtFixedRate(
                 new MaintenanceJob(this),
                 1000,
                 this.rateLimiterBackgroundJobIntervalMillis,
@@ -84,7 +85,27 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
 
     @Override
     public void close() throws Exception {
-        rateLimiterBackgroundJob.shutdown();
+        if (runningJob != null) {
+            try {
+                // For safety, we cancel the underlying ScheduledFuture before shutting down the ExecutorService
+                runningJob.cancel(true);
+            } catch (Exception ignored) {
+            }
+        }
+        if (rateLimiterBackgroundJob != null && !rateLimiterBackgroundJob.isTerminated()) {
+            rateLimiterBackgroundJob.shutdown();
+            int retryCount = 0;
+            while (retryCount < 100 && (rateLimiterBackgroundJob.isTerminated() ||
+                    rateLimiterBackgroundJob.awaitTermination(10L, TimeUnit.MILLISECONDS))) {
+                retryCount += 1;
+            }
+        }
+    }
+
+    @Override
+    public boolean isClosed() {
+        return (rateLimiterBackgroundJob == null || rateLimiterBackgroundJob.isTerminated())
+                && (runningJob == null || runningJob.isCancelled() || runningJob.isDone());
     }
 
     protected abstract String getMetricsType();

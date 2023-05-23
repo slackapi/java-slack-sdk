@@ -4,7 +4,7 @@ import com.slack.api.util.thread.ExecutorServiceProvider;
 
 import java.util.Map;
 
-public interface MetricsDatastore {
+public interface MetricsDatastore extends AutoCloseable {
 
     String DEFAULT_SINGLETON_EXECUTOR_NAME = "DEFAULT_SINGLETON_EXECUTOR";
 
@@ -66,4 +66,5 @@ public interface MetricsDatastore {
 
     void setRateLimiterBackgroundJobIntervalMillis(long rateLimiterBackgroundJobIntervalMillis);
 
+    boolean isClosed();
 }

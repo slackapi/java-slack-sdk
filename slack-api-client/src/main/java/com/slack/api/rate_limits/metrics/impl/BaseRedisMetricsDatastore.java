@@ -14,6 +14,7 @@ import redis.clients.jedis.JedisPool;
 
 import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
@@ -25,6 +26,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
     private final JedisPool jedisPool;
     private ExecutorServiceProvider executorServiceProvider;
     private ScheduledExecutorService rateLimiterBackgroundJob;
+    private ScheduledFuture<?> runningJob;
     private boolean traceMode;
     private boolean statsEnabled;
     private long rateLimiterBackgroundJobIntervalMillis;
@@ -120,7 +122,7 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
             this.rateLimiterBackgroundJob.shutdown();
         }
         this.rateLimiterBackgroundJob = getExecutorServiceProvider().createThreadScheduledExecutor(getThreadGroupName());
-        this.rateLimiterBackgroundJob.scheduleAtFixedRate(
+        this.runningJob = this.rateLimiterBackgroundJob.scheduleAtFixedRate(
                 new MaintenanceJob(this),
                 1000,
                 this.rateLimiterBackgroundJobIntervalMillis,
@@ -130,8 +132,28 @@ public abstract class BaseRedisMetricsDatastore<SUPPLIER, MSG extends QueueMessa
 
     @Override
     public void close() throws Exception {
-        this.rateLimiterBackgroundJob.shutdown();
+        if (runningJob != null) {
+            try {
+                // For safety, we cancel the underlying ScheduledFuture before shutting down the ExecutorService
+                runningJob.cancel(true);
+            } catch (Exception ignored) {
+            }
+        }
+        if (rateLimiterBackgroundJob != null && !rateLimiterBackgroundJob.isTerminated()) {
+            rateLimiterBackgroundJob.shutdown();
+            int retryCount = 0;
+            while (retryCount < 100 && (rateLimiterBackgroundJob.isTerminated() ||
+                    rateLimiterBackgroundJob.awaitTermination(10L, TimeUnit.MILLISECONDS))) {
+                retryCount += 1;
+            }
+        }
         this.jedisPool.destroy();
+    }
+
+    @Override
+    public boolean isClosed() {
+        return (rateLimiterBackgroundJob == null || rateLimiterBackgroundJob.isTerminated())
+                && (runningJob == null || runningJob.isCancelled() || runningJob.isDone());
     }
 
     // Added in v1.19
