@@ -217,6 +217,7 @@ public class Actions {
         public static final String guest_transferred_to_external_user = "guest_transferred_to_external_user";
         public static final String user_password_reset_requested = "user_password_reset_requested";
         public static final String user_profile_updated = "user_profile_updated";
+        public static final String user_profile_deleted = "user_profile_deleted";
     }
 
     public static class File {

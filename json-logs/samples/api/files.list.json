@@ -36,6 +36,7 @@
       "permalink": "https://www.example.com/",
       "permalink_public": "https://www.example.com/",
       "channels": [
+        "C00000000",
         ""
       ],
       "groups": [
@@ -51,6 +52,7 @@
       "lines": 12345,
       "lines_more": 12345,
       "preview_is_truncated": false,
+      "alt_txt": "",
       "thumb_480": "https://www.example.com/",
       "thumb_480_w": 12345,
       "thumb_480_h": 12345,
@@ -70,7 +72,6 @@
       "thumb_1024": "https://www.example.com/",
       "thumb_1024_w": 12345,
       "thumb_1024_h": 12345,
-      "alt_txt": "",
       "subject": "",
       "source_team": "",
       "non_owner_editable": false,

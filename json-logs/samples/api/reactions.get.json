@@ -510,6 +510,8 @@
         "source": "",
         "file_id": "",
         "file": {
+          "username": "",
+          "thumb_64": "",
           "id": "",
           "created": 123,
           "timestamp": 123,
