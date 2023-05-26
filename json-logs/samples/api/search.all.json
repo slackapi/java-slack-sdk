@@ -340,15 +340,6 @@
                     },
                     {
                       "type": "",
-                      "image_url": "",
-                      "alt_text": "",
-                      "fallback": "",
-                      "image_width": 12345,
-                      "image_height": 12345,
-                      "image_bytes": 12345
-                    },
-                    {
-                      "type": "",
                       "elements": [
                         {
                           "type": "",
@@ -445,8 +436,6 @@
                   "source": "",
                   "file_id": "",
                   "file": {
-                    "username": "",
-                    "thumb_64": "",
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -1529,15 +1518,6 @@
                 },
                 {
                   "type": "",
-                  "image_url": "",
-                  "alt_text": "",
-                  "fallback": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345
-                },
-                {
-                  "type": "",
                   "elements": [
                     {
                       "type": "",
@@ -1634,8 +1614,6 @@
               "source": "",
               "file_id": "",
               "file": {
-                "username": "",
-                "thumb_64": "",
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -2534,15 +2512,6 @@
                     },
                     {
                       "type": "",
-                      "image_url": "",
-                      "alt_text": "",
-                      "fallback": "",
-                      "image_width": 12345,
-                      "image_height": 12345,
-                      "image_bytes": 12345
-                    },
-                    {
-                      "type": "",
                       "elements": [
                         {
                           "type": "",
@@ -2639,8 +2608,6 @@
                   "source": "",
                   "file_id": "",
                   "file": {
-                    "username": "",
-                    "thumb_64": "",
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -3723,15 +3690,6 @@
                 },
                 {
                   "type": "",
-                  "image_url": "",
-                  "alt_text": "",
-                  "fallback": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345
-                },
-                {
-                  "type": "",
                   "elements": [
                     {
                       "type": "",
@@ -3828,8 +3786,6 @@
               "source": "",
               "file_id": "",
               "file": {
-                "username": "",
-                "thumb_64": "",
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -4622,15 +4578,6 @@
               },
               {
                 "type": "",
-                "image_url": "",
-                "alt_text": "",
-                "fallback": "",
-                "image_width": 12345,
-                "image_height": 12345,
-                "image_bytes": 12345
-              },
-              {
-                "type": "",
                 "elements": [
                   {
                     "type": "",
@@ -4727,8 +4674,6 @@
             "source": "",
             "file_id": "",
             "file": {
-              "username": "",
-              "thumb_64": "",
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -5618,15 +5563,6 @@
                   },
                   {
                     "type": "",
-                    "image_url": "",
-                    "alt_text": "",
-                    "fallback": "",
-                    "image_width": 12345,
-                    "image_height": 12345,
-                    "image_bytes": 12345
-                  },
-                  {
-                    "type": "",
                     "elements": [
                       {
                         "type": "",
@@ -5723,8 +5659,6 @@
                 "source": "",
                 "file_id": "",
                 "file": {
-                  "username": "",
-                  "thumb_64": "",
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -6988,8 +6922,7 @@
           }
         },
         "channels": [
-          "C00000000",
-          ""
+          "C00000000"
         ],
         "groups": [
           ""

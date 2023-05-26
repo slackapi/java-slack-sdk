@@ -217,15 +217,6 @@
             },
             {
               "type": "",
-              "image_url": "",
-              "alt_text": "",
-              "fallback": "",
-              "image_width": 12345,
-              "image_height": 12345,
-              "image_bytes": 12345
-            },
-            {
-              "type": "",
               "elements": [
                 {
                   "type": "",
@@ -322,6 +313,15 @@
           "source": "",
           "file_id": "",
           "file": {
+            "num_stars": 123,
+            "thumb_video_w": 123,
+            "has_more": false,
+            "editor": "",
+            "duration_ms": 123,
+            "thumb_video_w": 123,
+            "original_attachment_count": 123,
+            "thumb_1024_gif": "",
+            "url_private_download": "",
             "id": "",
             "created": 123,
             "timestamp": 123,
@@ -398,7 +398,6 @@
             "thumb_960_gif": "",
             "thumb_960_w": "",
             "thumb_960_h": "",
-            "thumb_1024": "",
             "thumb_1024_gif": "",
             "thumb_1024_w": "",
             "thumb_1024_h": "",
@@ -1211,15 +1210,6 @@
                 },
                 {
                   "type": "",
-                  "image_url": "",
-                  "alt_text": "",
-                  "fallback": "",
-                  "image_width": 12345,
-                  "image_height": 12345,
-                  "image_bytes": 12345
-                },
-                {
-                  "type": "",
                   "elements": [
                     {
                       "type": "",
@@ -1316,6 +1306,15 @@
               "source": "",
               "file_id": "",
               "file": {
+                "num_stars": 123,
+                "thumb_video_w": 123,
+                "has_more": false,
+                "editor": "",
+                "duration_ms": 123,
+                "thumb_video_w": 123,
+                "original_attachment_count": 123,
+                "thumb_1024_gif": "",
+                "url_private_download": "",
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -1392,7 +1391,6 @@
                 "thumb_960_gif": "",
                 "thumb_960_w": "",
                 "thumb_960_h": "",
-                "thumb_1024": "",
                 "thumb_1024_gif": "",
                 "thumb_1024_w": "",
                 "thumb_1024_h": "",
