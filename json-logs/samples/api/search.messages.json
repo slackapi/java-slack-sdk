@@ -339,6 +339,15 @@
                     },
                     {
                       "type": "",
+                      "image_url": "",
+                      "alt_text": "",
+                      "fallback": "",
+                      "image_width": 12345,
+                      "image_height": 12345,
+                      "image_bytes": 12345
+                    },
+                    {
+                      "type": "",
                       "elements": [
                         {
                           "type": "",
@@ -1514,6 +1523,15 @@
                   "indent": 12345,
                   "offset": 12345,
                   "border": 12345
+                },
+                {
+                  "type": "",
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345
                 },
                 {
                   "type": "",
@@ -2511,6 +2529,15 @@
                     },
                     {
                       "type": "",
+                      "image_url": "",
+                      "alt_text": "",
+                      "fallback": "",
+                      "image_width": 12345,
+                      "image_height": 12345,
+                      "image_bytes": 12345
+                    },
+                    {
+                      "type": "",
                       "elements": [
                         {
                           "type": "",
@@ -3689,6 +3716,15 @@
                 },
                 {
                   "type": "",
+                  "image_url": "",
+                  "alt_text": "",
+                  "fallback": "",
+                  "image_width": 12345,
+                  "image_height": 12345,
+                  "image_bytes": 12345
+                },
+                {
+                  "type": "",
                   "elements": [
                     {
                       "type": "",
@@ -4574,6 +4610,15 @@
                 "indent": 12345,
                 "offset": 12345,
                 "border": 12345
+              },
+              {
+                "type": "",
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345
               },
               {
                 "type": "",
@@ -5559,6 +5604,15 @@
                     "indent": 12345,
                     "offset": 12345,
                     "border": 12345
+                  },
+                  {
+                    "type": "",
+                    "image_url": "",
+                    "alt_text": "",
+                    "fallback": "",
+                    "image_width": 12345,
+                    "image_height": 12345,
+                    "image_bytes": 12345
                   },
                   {
                     "type": "",
