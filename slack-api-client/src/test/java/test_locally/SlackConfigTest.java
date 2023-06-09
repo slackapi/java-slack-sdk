@@ -164,9 +164,12 @@ public class SlackConfigTest {
         assertThat(audit.isShutdown(), is(false));
         assertThat(methods.isTerminated(), is(false));
         assertThat(scim.isTerminated(), is(false));
+        assertThat(scim2.isTerminated(), is(false));
         assertThat(audit.isTerminated(), is(false));
 
         config.close();
+
+        Thread.sleep(200L);
 
         assertThat(methods.isShutdown(), is(true));
         assertThat(scim.isShutdown(), is(true));

@@ -20,8 +20,8 @@
          -->
         <tyrus-standalone-client.version>1.20</tyrus-standalone-client.version>
         <java-websocket.version>1.5.3</java-websocket.version>
-        <jedis.version>4.4.1</jedis.version>
-        <jedis-mock.version>1.0.8</jedis-mock.version>
+        <jedis.version>4.4.2</jedis.version>
+        <jedis-mock.version>1.0.9</jedis-mock.version>
     </properties>
 
     <dependencies>
