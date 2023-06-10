@@ -1,6 +1,7 @@
 package com.slack.api.bolt.service.builtin;
 
 import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -14,6 +15,8 @@ import com.slack.api.bolt.model.builtin.DefaultInstaller;
 import com.slack.api.bolt.service.InstallationService;
 import com.slack.api.bolt.util.JsonOps;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -21,8 +24,20 @@ import java.util.Optional;
 @Slf4j
 public class AmazonS3InstallationService implements InstallationService {
 
+    @Nullable
+    private String region;
+    private String accessKey;
+    private String secretKey;
+
     private final String bucketName;
     private boolean historicalDataEnabled;
+
+    public AmazonS3InstallationService(@Nullable String region, @NotNull String accessKey, @NotNull String secretKey, @NotNull String bucketName) {
+        this.region = region;
+        this.accessKey = accessKey;
+        this.secretKey = secretKey;
+        this.bucketName = bucketName;
+    }
 
     public AmazonS3InstallationService(String bucketName) {
         this.bucketName = bucketName;
@@ -31,8 +46,18 @@ public class AmazonS3InstallationService implements InstallationService {
     @Override
     public Initializer initializer() {
         return (app) -> {
+            if (region != null) {
+                System.setProperty("AWS_REGION" , region);
+            }
+
             // The first access to S3 tends to be slow on AWS Lambda.
-            AWSCredentials credentials = getCredentials();
+            AWSCredentials credentials;
+            if (accessKey != null && secretKey != null) {
+                credentials = new BasicAWSCredentials(accessKey, secretKey);
+            } else {
+                credentials = getCredentials();
+            }
+
             if (credentials == null || credentials.getAWSAccessKeyId() == null) {
                 throw new IllegalStateException("AWS credentials not found");
             }
