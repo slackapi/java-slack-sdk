@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class MatchedItem {
@@ -25,6 +26,7 @@ public class MatchedItem {
     private String fileAccess;
     private List<File> files;
     private List<Attachment> attachments;
+    private Integer originalAttachmentCount;
     private List<LayoutBlock> blocks;
     private String permalink;
     private String name;
@@ -33,6 +35,8 @@ public class MatchedItem {
 
     private String plainText;
     private String previewPlainText;
+
+    private Map<String, String> headers;
 
     private boolean hasMore;
     private boolean sentToSelf;
