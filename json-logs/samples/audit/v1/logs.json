@@ -293,6 +293,7 @@
         "total_removal_count": 123,
         "is_flagged": "",
         "target_user": "",
+        "target_entity": "",
         "idp_config_id": "",
         "config_type": "",
         "idp_entity_id": "",

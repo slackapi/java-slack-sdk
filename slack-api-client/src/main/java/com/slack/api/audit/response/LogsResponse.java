@@ -284,6 +284,7 @@ public class LogsResponse implements AuditApiResponse {
         private Integer totalRemovalCount; // usergroup_updated
         private String isFlagged; // usergroup_updated
         private String targetUser; // role_assigned
+        private String targetEntity; // role_assigned
         private String idpConfigId; // user_login
         private String configType; // user_login
         private String idpEntityId; // user_login
