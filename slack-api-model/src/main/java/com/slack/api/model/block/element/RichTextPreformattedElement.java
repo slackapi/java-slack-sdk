@@ -19,5 +19,6 @@ public class RichTextPreformattedElement extends BlockElement implements RichTex
     private final String type = TYPE;
     @Builder.Default
     private List<RichTextElement> elements = new ArrayList<>();
+    private Integer border;
 
 }
