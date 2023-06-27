@@ -1105,7 +1105,8 @@
                       },
                       "unicode": ""
                     }
-                  ]
+                  ],
+                  "border": 123
                 },
                 {
                   "type": "rich_text_quote",
@@ -1454,7 +1455,8 @@
                       },
                       "unicode": ""
                     }
-                  ]
+                  ],
+                  "border": 123
                 },
                 {
                   "type": "rich_text_quote",
@@ -1624,7 +1626,8 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "border": 123
             },
             {
               "type": "rich_text_quote",
@@ -1799,7 +1802,8 @@
                       },
                       "unicode": ""
                     }
-                  ]
+                  ],
+                  "border": 123
                 },
                 {
                   "type": "rich_text_quote",
@@ -2144,7 +2148,8 @@
                       },
                       "unicode": ""
                     }
-                  ]
+                  ],
+                  "border": 123
                 },
                 {
                   "type": "rich_text_quote",
@@ -4697,7 +4702,8 @@
                           },
                           "unicode": ""
                         }
-                      ]
+                      ],
+                      "border": 123
                     },
                     {
                       "type": "rich_text_quote",
@@ -5046,7 +5052,8 @@
                           },
                           "unicode": ""
                         }
-                      ]
+                      ],
+                      "border": 123
                     },
                     {
                       "type": "rich_text_quote",
@@ -5216,7 +5223,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "border": 123
                 },
                 {
                   "type": "rich_text_quote",
@@ -5391,7 +5399,8 @@
                           },
                           "unicode": ""
                         }
-                      ]
+                      ],
+                      "border": 123
                     },
                     {
                       "type": "rich_text_quote",
@@ -5736,7 +5745,8 @@
                           },
                           "unicode": ""
                         }
-                      ]
+                      ],
+                      "border": 123
                     },
                     {
                       "type": "rich_text_quote",
