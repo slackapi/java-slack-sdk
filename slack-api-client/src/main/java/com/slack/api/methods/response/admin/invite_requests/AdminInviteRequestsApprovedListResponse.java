@@ -1,6 +1,8 @@
 package com.slack.api.methods.response.admin.invite_requests;
 
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.admin.Invite;
+import com.slack.api.model.admin.InviteRequest;
 import lombok.Data;
 
 import java.util.List;
@@ -16,6 +18,18 @@ public class AdminInviteRequestsApprovedListResponse implements SlackApiTextResp
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
 
-    private List<String> approvedRequests;
+    private List<ApprovedInviteRequest> approvedRequests;
 
+    @Data
+    public static class ApprovedInviteRequest {
+        private InviteRequest inviteRequest;
+        private ApprovedBy approvedBy;
+        private Invite invite;
+    }
+
+    @Data
+    public static class ApprovedBy {
+        private String actorType;
+        private String actorId;
+    }
 }
