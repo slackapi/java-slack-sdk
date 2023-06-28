@@ -1,7 +1,39 @@
 {
   "ok": false,
   "approved_requests": [
-    ""
+    {
+      "invite_request": {
+        "id": "",
+        "email": "",
+        "date_created": 12345,
+        "requester_ids": [
+          "W00000000"
+        ],
+        "channel_ids": [
+          ""
+        ],
+        "invite_type": ""
+      },
+      "approved_by": {
+        "actor_type": "",
+        "actor_id": "W00000000"
+      },
+      "invite": {
+        "id": "I00000000",
+        "email": "",
+        "inviter_id": "W00000000",
+        "date_created": 12345,
+        "is_bouncing": false,
+        "invite_preferences": {
+          "is_restricted": false,
+          "is_ultra_restricted": false,
+          "channel_ids": [
+            ""
+          ],
+          "is_domain_matched": false
+        }
+      }
+    }
   ],
   "error": "",
   "needed": "",
