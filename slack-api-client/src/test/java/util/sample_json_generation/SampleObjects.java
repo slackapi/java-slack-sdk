@@ -273,6 +273,7 @@ public class SampleObjects {
                     .metadata(initProperties(new Attachment.AttachmentMetadata()))
                     .mrkdwnIn(Arrays.asList(""))
                     .blocks(Blocks)
+                    .messageBlocks(Blocks)
                     .build())
     );
 
