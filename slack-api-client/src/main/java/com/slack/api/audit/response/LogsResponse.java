@@ -61,6 +61,7 @@ public class LogsResponse implements AuditApiResponse {
         private Channel channel;
         private Huddle huddle;
         private Role role;
+        private AccountTypeRole accountTypeRole;
         private Workflow workflow;
         private InformationBarrier barrier;
     }
@@ -150,6 +151,12 @@ public class LogsResponse implements AuditApiResponse {
         private String id;
         private String name;
         private String type;
+    }
+
+    @Data
+    public static class AccountTypeRole {
+        private String id;
+        private String name;
     }
 
     @Data
@@ -294,6 +301,8 @@ public class LogsResponse implements AuditApiResponse {
         private Profile newProfile; // user_profile_updated
         private String targetUserId; // app_collaborator_added
         private SpaceFileId spaceFileId; // channel_posting_permissions_updated
+        private String targetEntityId; // permissions_assigned
+        private List<String> changedPermissions; // permissions_assigned
     }
 
     @Data

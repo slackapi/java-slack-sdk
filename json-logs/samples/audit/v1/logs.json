@@ -86,6 +86,10 @@
           "name": "",
           "type": ""
         },
+        "account_type_role": {
+          "id": "",
+          "name": ""
+        },
         "workflow": {
           "id": "",
           "name": ""
@@ -330,7 +334,9 @@
         "target_user_id": "",
         "space_file_id": {
           "payload": ""
-        }
+        },
+        "target_entity_id": "",
+        "changed_permissions": []
       }
     }
   ]
