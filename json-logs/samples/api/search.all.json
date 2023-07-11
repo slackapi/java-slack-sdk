@@ -445,6 +445,25 @@
                   "source": "",
                   "file_id": "",
                   "file": {
+                    "headers": {
+                      "date": "",
+                      "in_reply_to": "",
+                      "reply_to": "",
+                      "message_id": ""
+                    },
+                    "pinned_to": [
+                      ""
+                    ],
+                    "reactions": [
+                      {
+                        "name": "",
+                        "count": 123,
+                        "users": [
+                          ""
+                        ],
+                        "url": ""
+                      }
+                    ],
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -2011,6 +2030,25 @@
               "source": "",
               "file_id": "",
               "file": {
+                "headers": {
+                  "date": "",
+                  "in_reply_to": "",
+                  "reply_to": "",
+                  "message_id": ""
+                },
+                "pinned_to": [
+                  ""
+                ],
+                "reactions": [
+                  {
+                    "name": "",
+                    "count": 123,
+                    "users": [
+                      ""
+                    ],
+                    "url": ""
+                  }
+                ],
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -3014,6 +3052,25 @@
                   "source": "",
                   "file_id": "",
                   "file": {
+                    "headers": {
+                      "date": "",
+                      "in_reply_to": "",
+                      "reply_to": "",
+                      "message_id": ""
+                    },
+                    "pinned_to": [
+                      ""
+                    ],
+                    "reactions": [
+                      {
+                        "name": "",
+                        "count": 123,
+                        "users": [
+                          ""
+                        ],
+                        "url": ""
+                      }
+                    ],
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -4580,6 +4637,25 @@
               "source": "",
               "file_id": "",
               "file": {
+                "headers": {
+                  "date": "",
+                  "in_reply_to": "",
+                  "reply_to": "",
+                  "message_id": ""
+                },
+                "pinned_to": [
+                  ""
+                ],
+                "reactions": [
+                  {
+                    "name": "",
+                    "count": 123,
+                    "users": [
+                      ""
+                    ],
+                    "url": ""
+                  }
+                ],
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -5477,6 +5553,25 @@
             "source": "",
             "file_id": "",
             "file": {
+              "headers": {
+                "date": "",
+                "in_reply_to": "",
+                "reply_to": "",
+                "message_id": ""
+              },
+              "pinned_to": [
+                ""
+              ],
+              "reactions": [
+                {
+                  "name": "",
+                  "count": 123,
+                  "users": [
+                    ""
+                  ],
+                  "url": ""
+                }
+              ],
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -6471,6 +6566,25 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "headers": {
+                    "date": "",
+                    "in_reply_to": "",
+                    "reply_to": "",
+                    "message_id": ""
+                  },
+                  "pinned_to": [
+                    ""
+                  ],
+                  "reactions": [
+                    {
+                      "name": "",
+                      "count": 123,
+                      "users": [
+                        ""
+                      ],
+                      "url": ""
+                    }
+                  ],
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -8558,6 +8672,25 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "headers": {
+                    "date": "",
+                    "in_reply_to": "",
+                    "reply_to": "",
+                    "message_id": ""
+                  },
+                  "pinned_to": [
+                    ""
+                  ],
+                  "reactions": [
+                    {
+                      "name": "",
+                      "count": 123,
+                      "users": [
+                        ""
+                      ],
+                      "url": ""
+                    }
+                  ],
                   "id": "",
                   "created": 123,
                   "timestamp": 123,

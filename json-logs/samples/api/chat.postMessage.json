@@ -528,6 +528,44 @@
         "source": "",
         "file_id": "",
         "file": {
+          "headers": {
+            "date": "",
+            "in_reply_to": "",
+            "reply_to": "",
+            "message_id": ""
+          },
+          "pinned_to": [
+            ""
+          ],
+          "reactions": [
+            {
+              "name": "",
+              "count": 123,
+              "users": [
+                ""
+              ],
+              "url": ""
+            }
+          ],
+          "headers": {
+            "date": "",
+            "in_reply_to": "",
+            "reply_to": "",
+            "message_id": ""
+          },
+          "pinned_to": [
+            ""
+          ],
+          "reactions": [
+            {
+              "name": "",
+              "count": 123,
+              "users": [
+                ""
+              ],
+              "url": ""
+            }
+          ],
           "id": "",
           "created": 123,
           "timestamp": 123,
@@ -737,12 +775,6 @@
           ],
           "channel_actions_ts": "",
           "channel_actions_count": 123,
-          "headers": {
-            "date": "",
-            "in_reply_to": "",
-            "reply_to": "",
-            "message_id": ""
-          },
           "simplified_html": "",
           "media_progress": {
             "offset_ms": 123,
@@ -767,19 +799,6 @@
           },
           "num_stars": 123,
           "is_starred": false,
-          "pinned_to": [
-            ""
-          ],
-          "reactions": [
-            {
-              "name": "",
-              "count": 123,
-              "users": [
-                ""
-              ],
-              "url": ""
-            }
-          ],
           "comments_count": 123
         },
         "text": {
@@ -1522,6 +1541,44 @@
             "source": "",
             "file_id": "",
             "file": {
+              "headers": {
+                "date": "",
+                "in_reply_to": "",
+                "reply_to": "",
+                "message_id": ""
+              },
+              "pinned_to": [
+                ""
+              ],
+              "reactions": [
+                {
+                  "name": "",
+                  "count": 123,
+                  "users": [
+                    ""
+                  ],
+                  "url": ""
+                }
+              ],
+              "headers": {
+                "date": "",
+                "in_reply_to": "",
+                "reply_to": "",
+                "message_id": ""
+              },
+              "pinned_to": [
+                ""
+              ],
+              "reactions": [
+                {
+                  "name": "",
+                  "count": 123,
+                  "users": [
+                    ""
+                  ],
+                  "url": ""
+                }
+              ],
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -1731,12 +1788,6 @@
               ],
               "channel_actions_ts": "",
               "channel_actions_count": 123,
-              "headers": {
-                "date": "",
-                "in_reply_to": "",
-                "reply_to": "",
-                "message_id": ""
-              },
               "simplified_html": "",
               "media_progress": {
                 "offset_ms": 123,
@@ -1761,19 +1812,6 @@
               },
               "num_stars": 123,
               "is_starred": false,
-              "pinned_to": [
-                ""
-              ],
-              "reactions": [
-                {
-                  "name": "",
-                  "count": 123,
-                  "users": [
-                    ""
-                  ],
-                  "url": ""
-                }
-              ],
               "comments_count": 123
             },
             "text": {
