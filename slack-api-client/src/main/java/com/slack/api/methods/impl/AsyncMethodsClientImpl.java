@@ -2093,31 +2093,37 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     public CompletableFuture<StarsAddResponse> starsAdd(StarsAddRequest req) {
         return executor.execute(STARS_ADD, toMap(req), () -> methods.starsAdd(req));
     }
 
     @Override
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     public CompletableFuture<StarsAddResponse> starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req) {
         return starsAdd(req.configure(StarsAddRequest.builder()).build());
     }
 
     @Override
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     public CompletableFuture<StarsListResponse> starsList(StarsListRequest req) {
         return executor.execute(STARS_LIST, toMap(req), () -> methods.starsList(req));
     }
 
     @Override
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     public CompletableFuture<StarsListResponse> starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req) {
         return starsList(req.configure(StarsListRequest.builder()).build());
     }
 
     @Override
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     public CompletableFuture<StarsRemoveResponse> starsRemove(StarsRemoveRequest req) {
         return executor.execute(STARS_REMOVE, toMap(req), () -> methods.starsRemove(req));
     }
 
     @Override
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     public CompletableFuture<StarsRemoveResponse> starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req) {
         return starsRemove(req.configure(StarsRemoveRequest.builder()).build());
     }
