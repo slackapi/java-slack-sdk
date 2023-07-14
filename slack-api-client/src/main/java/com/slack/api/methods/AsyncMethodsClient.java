@@ -1156,16 +1156,22 @@ public interface AsyncMethodsClient {
     // stars
     // ------------------------------
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsAddResponse> starsAdd(StarsAddRequest req);
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsAddResponse> starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req);
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsListResponse> starsList(StarsListRequest req);
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsListResponse> starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req);
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsRemoveResponse> starsRemove(StarsRemoveRequest req);
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsRemoveResponse> starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req);
 
     // ------------------------------

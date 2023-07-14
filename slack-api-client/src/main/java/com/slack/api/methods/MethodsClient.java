@@ -1697,16 +1697,22 @@ public interface MethodsClient {
     // stars
     // ------------------------------
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsAddResponse starsAdd(StarsAddRequest req) throws IOException, SlackApiException;
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsAddResponse starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req) throws IOException, SlackApiException;
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsListResponse starsList(StarsListRequest req) throws IOException, SlackApiException;
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsListResponse starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req) throws IOException, SlackApiException;
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsRemoveResponse starsRemove(StarsRemoveRequest req) throws IOException, SlackApiException;
 
+    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsRemoveResponse starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
