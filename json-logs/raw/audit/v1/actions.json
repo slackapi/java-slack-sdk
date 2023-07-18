@@ -164,7 +164,8 @@
       "audit_logs_records_searched",
       "pref.two_factor_prevent_sms_changed",
       "apps_analytics_export_started",
-      "apps_analytics_export_prepared"
+      "apps_analytics_export_prepared",
+      "pref.canvas_retention_changed"
     ],
     "user": [
       "custom_tos_accepted",
