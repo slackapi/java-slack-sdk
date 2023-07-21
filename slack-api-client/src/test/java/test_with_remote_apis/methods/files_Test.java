@@ -1069,7 +1069,7 @@ public class files_Test {
         int count = 0;
         ConversationsHistoryResponse history = null;
         List<String> actualFileIds = null;
-        while (count < 20) {
+        while (count < 40) {
             count++;
             history = client.conversationsHistory(r -> r
                     .channel(randomChannelId)
