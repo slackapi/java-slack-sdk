@@ -232,6 +232,8 @@ public class MatchedItem {
     private String channelActionsTs;
     private Integer channelActionsCount;
 
+    private List<String> editors;
+
     @Data
     public static class OtherItem {
         private String iid;
