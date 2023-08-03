@@ -19,7 +19,7 @@
          see https://github.com/slackapi/java-slack-sdk/issues/919#issuecomment-1022822962
          -->
         <tyrus-standalone-client.version>1.20</tyrus-standalone-client.version>
-        <java-websocket.version>1.5.3</java-websocket.version>
+        <java-websocket.version>1.5.4</java-websocket.version>
         <jedis.version>4.4.3</jedis.version>
         <jedis-mock.version>1.0.9</jedis-mock.version>
     </properties>
