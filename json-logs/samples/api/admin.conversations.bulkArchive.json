@@ -6,7 +6,7 @@
   "bulk_action_id": "",
   "not_added": [
     {
-      "channel_id": "",
+      "channel_id": "C00000000",
       "errors": [
         ""
       ]

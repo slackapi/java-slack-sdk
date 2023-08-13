@@ -310,7 +310,7 @@ public class JsonDataRecorder {
                 for (JsonElement attachment : Json.Attachments) {
                     array.add(attachment);
                 }
-            } else if (name != null && name.equals("blocks")) {
+            } else if (name != null && (name.equals("blocks") || name.equals("title_blocks"))) {
                 try {
                     for (int idx = 0; idx < array.size(); idx++) {
                         array.remove(idx);
@@ -558,6 +558,60 @@ public class JsonDataRecorder {
                     log.error(e.getMessage(), e);
                 }
                 return;
+            }
+            if (name != null && name.equals("room")) {
+                if (path.startsWith("/audit/v1/schemas") || path.startsWith("/audit/v1/actions")) {
+                    return;
+                }
+                JsonObject room = element.getAsJsonObject();
+                try {
+                    // To avoid concurrent modification of the underlying objects
+                    List<String> oldKeys = new ArrayList<>();
+                    room.keySet().iterator().forEachRemaining(oldKeys::add);
+                    for (String key : oldKeys) {
+                        room.remove(key);
+                    }
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+                try {
+                    JsonObject roomObj = GsonFactory.createSnakeCase().toJsonTree(SampleObjects.Room).getAsJsonObject();
+                    for (String newKey : roomObj.keySet()) {
+                        room.add(newKey, roomObj.get(newKey));
+                    }
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+                return;
+            }
+            if (name != null && name.equals("message")) {
+                if (path.startsWith("/audit/v1/schemas") || path.startsWith("/audit/v1/actions")) {
+                    return;
+                }
+                JsonObject message = element.getAsJsonObject();
+                if (message.get("room") != null && !message.get("room").isJsonNull()) {
+                    JsonObject room = message.get("room").getAsJsonObject();
+                    try {
+                        // To avoid concurrent modification of the underlying objects
+                        List<String> oldKeys = new ArrayList<>();
+                        room.keySet().iterator().forEachRemaining(oldKeys::add);
+                        for (String key : oldKeys) {
+                            room.remove(key);
+                        }
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+                    }
+                    try {
+                        JsonObject roomObj = GsonFactory.createSnakeCase().toJsonTree(SampleObjects.Room).getAsJsonObject();
+                        for (String newKey : roomObj.keySet()) {
+                            room.add(newKey, roomObj.get(newKey));
+                        }
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+                    }
+                } else {
+                    message.add("room", GsonFactory.createSnakeCase().toJsonTree(SampleObjects.Room));
+                }
             }
             if (path.equals("/api/users.profile.get") && name != null && name.equals("fields")) {
                 JsonObject fields = element.getAsJsonObject();

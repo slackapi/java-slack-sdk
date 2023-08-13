@@ -33,6 +33,7 @@ public class ReactionsListResponse implements SlackApiTextResponse {
         public static class Message {
             private String type;
             private String subtype;
+            private String channel;
             private String text;
             private List<Attachment> attachments;
             private List<LayoutBlock> blocks;
@@ -119,6 +120,16 @@ public class ReactionsListResponse implements SlackApiTextResponse {
                  */
                 @SerializedName("is_ultra_restricted")
                 private boolean ultraRestricted;
+            }
+
+            private Room room; // Huddle
+            private boolean noNotifications;
+            private Edited edited;
+
+            @Data
+            public static class Edited {
+                private String user;
+                private String ts;
             }
         }
     }

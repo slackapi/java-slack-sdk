@@ -294,7 +294,17 @@ public class FieldValidation_o_to_z_Test {
                 "getThumbVideoW",
                 "getThumbVideoH",
                 "getAltTxt",
-                "getSourceTeam"
+                "getSourceTeam",
+                "getLastRead",
+                "getPrivateChannelsWithFileAccessCount",
+                "getDmMpdmUsersWithFileAccess",
+                "getQuipThreadId",
+                "getUrlStaticPreview",
+                "getLinkedChannelId",
+                "getTeamsSharedWith",
+                "getTitleBlocks",
+                "getOrgOrWorkspaceAccess",
+                "getAccess"
         );
     }
 

@@ -142,6 +142,9 @@ public class Message {
         private String lastRead;
         private Integer unreadCount;
         private String ts;
+
+        private Room room; // Huddle
+        private boolean noNotifications;
     }
 
     /**
@@ -240,4 +243,6 @@ public class Message {
         private Map<String, Object> eventPayload;
     }
 
+    private Room room; // Huddle
+    private boolean noNotifications;
 }

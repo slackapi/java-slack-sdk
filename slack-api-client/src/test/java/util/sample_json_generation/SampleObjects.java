@@ -9,6 +9,7 @@ import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.*;
 import com.slack.api.util.json.GsonFactory;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 import static com.slack.api.model.block.Blocks.*;
@@ -252,6 +253,8 @@ public class SampleObjects {
                     .fields(SectionBlockFieldElements)))
     );
 
+    public static File FileObject = initFileObject();
+
     public static List<Attachment> Attachments = Arrays.asList(
             initProperties(Attachment.builder()
                     .fields(Arrays.asList(initProperties(Field.builder().build())))
@@ -273,11 +276,10 @@ public class SampleObjects {
                     .metadata(initProperties(new Attachment.AttachmentMetadata()))
                     .mrkdwnIn(Arrays.asList(""))
                     .blocks(Blocks)
+                    .files(Arrays.asList(FileObject))
                     .messageBlocks(Blocks)
                     .build())
     );
-
-    public static File FileObject = initFileObject();
 
     public static File initFileObject() {
         File.Shares shares = new File.Shares();
@@ -305,6 +307,8 @@ public class SampleObjects {
                 .reactions(reactionList)
                 .attachments(Attachments)
                 .blocks(Blocks)
+                .titleBlocks(Blocks)
+                .dmMpdmUsersWithFileAccess(Arrays.asList(File.UserWithFileAccess.builder().access("").userId("").build()))
                 .build());
         initProperties(file);
         return file;
@@ -312,6 +316,24 @@ public class SampleObjects {
 
     public static Message Message = new Message();
 
+    public static Map<String, String> RoomPendingInvitees = new HashMap<>();
+    static {
+        RoomPendingInvitees.put("_U123", "");
+        RoomPendingInvitees.put("U123", "");
+    }
+
+    public static Room Room = initProperties(com.slack.api.model.Room.builder()
+            .attachedFileIds(Arrays.asList(""))
+            .channels(Arrays.asList(""))
+            .participantHistory(Arrays.asList(""))
+            .participants(Arrays.asList(""))
+            .participantsCameraOn(Arrays.asList(""))
+            .participantsCameraOff(Arrays.asList(""))
+            .participantsScreenshareOn(Arrays.asList(""))
+            .participantsScreenshareOff(Arrays.asList(""))
+            .pendingInvitees(RoomPendingInvitees)
+            .attachedFileIds(Arrays.asList(""))
+            .build());
     static {
         Message.setAttachments(Attachments);
         Message.setMetadata(initProperties(new Message.Metadata()));
@@ -321,6 +343,7 @@ public class SampleObjects {
         Message.setPinnedTo(Arrays.asList(""));
         Message.setReactions(Arrays.asList(initProperties(new Reaction())));
         Message.setReplyUsers(Arrays.asList(""));
+        Message.setRoom(Room);
     }
 
 }

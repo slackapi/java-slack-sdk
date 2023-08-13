@@ -70,7 +70,32 @@
       "subscribed": false,
       "last_read": "",
       "unread_count": 123,
-      "ts": ""
+      "ts": "",
+      "room": {
+        "id": "",
+        "name": "",
+        "media_server": "",
+        "created_by": "",
+        "date_start": 123,
+        "date_end": 123,
+        "canvas_thread_ts": "",
+        "thread_root_ts": "",
+        "is_dm_call": false,
+        "was_rejected": false,
+        "was_missed": false,
+        "was_accepted": false,
+        "has_ended": false,
+        "background_id": "",
+        "canvas_background": "",
+        "is_prewarmed": false,
+        "is_scheduled": false,
+        "media_backend_type": "",
+        "display_id": "",
+        "external_unique_id": "",
+        "app_id": "",
+        "call_family": ""
+      },
+      "no_notifications": false
     },
     "text": "",
     "blocks": [

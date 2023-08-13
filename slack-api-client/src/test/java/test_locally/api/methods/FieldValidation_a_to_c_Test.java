@@ -180,7 +180,8 @@ public class FieldValidation_a_to_c_Test {
                 "getBlocks",
                 "getIcons",
                 "getUsername",
-                "getSubtype"
+                "getSubtype",
+                "getRoom"
         );
     }
 
@@ -233,7 +234,8 @@ public class FieldValidation_a_to_c_Test {
                     "getAppId",
                     "getUser", // MessageRoot
                     "getTeam", // MessageRoot
-                    "getBotProfile" // MessageRoot
+                    "getBotProfile", // MessageRoot
+                    "getRoom"
             );
         }
         {

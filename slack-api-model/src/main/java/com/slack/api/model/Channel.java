@@ -35,6 +35,8 @@ public class Channel {
     private boolean privateChannel;
     @SerializedName("is_mpim")
     private boolean mpim;
+    @SerializedName("is_file")
+    private boolean file;
     @SerializedName("is_shared")
     private boolean shared;
     @SerializedName("is_org_shared")

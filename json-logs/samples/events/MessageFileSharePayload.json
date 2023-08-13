@@ -746,6 +746,7 @@
         "size": 123,
         "url_private": "",
         "url_private_download": "",
+        "url_static_preview": "",
         "app_id": "",
         "app_name": "",
         "thumb_64": "",
@@ -836,6 +837,13 @@
           "date_due": 123,
           "state": ""
         },
+        "quip_thread_id": "",
+        "is_channel_space": false,
+        "linked_channel_id": "",
+        "access": "",
+        "last_read": 123,
+        "private_channels_with_file_access_count": 123,
+        "org_or_workspace_access": "",
         "bot_id": "",
         "initial_comment": {
           "id": "",

@@ -66,6 +66,7 @@ public class File {
     private Integer size;
     private String urlPrivate;
     private String urlPrivateDownload;
+    private String urlStaticPreview;
 
     private String appId;
     private String appName;
@@ -303,6 +304,27 @@ public class File {
         private Integer dateCompleted;
         private Integer dateDue;
         private String state;
+    }
+
+    private String quipThreadId;
+    @SerializedName("is_channel_space")
+    private boolean channelSpace;
+    private String linkedChannelId;
+    private String access;
+    private List<String> teamsSharedWith;
+    private Long lastRead;
+    private List<LayoutBlock> titleBlocks;
+    private Integer privateChannelsWithFileAccessCount;
+    private List<UserWithFileAccess> dmMpdmUsersWithFileAccess;
+    private String orgOrWorkspaceAccess;
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class UserWithFileAccess {
+        private String userId;
+        private String access;
     }
 
     // ---------------------------------------
