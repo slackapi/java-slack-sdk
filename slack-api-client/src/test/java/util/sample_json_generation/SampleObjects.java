@@ -318,8 +318,8 @@ public class SampleObjects {
 
     public static Map<String, String> RoomPendingInvitees = new HashMap<>();
     static {
-        RoomPendingInvitees.put("_U123", "");
-        RoomPendingInvitees.put("U123", "");
+        RoomPendingInvitees.put("U03E94MKU", "");
+        RoomPendingInvitees.put("U03E94MKU_", "");
     }
 
     public static Room Room = initProperties(com.slack.api.model.Room.builder()

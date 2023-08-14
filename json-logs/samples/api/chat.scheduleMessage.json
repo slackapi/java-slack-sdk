@@ -314,6 +314,28 @@
         "source": "",
         "file_id": "",
         "file": {
+          "original_w": "",
+          "lines_more": 123,
+          "pinned_to": [
+            ""
+          ],
+          "pjpeg": "",
+          "permalink_public": "",
+          "preview": "",
+          "headers": {
+            "date": "",
+            "in_reply_to": "",
+            "reply_to": "",
+            "message_id": ""
+          },
+          "simplified_html": "",
+          "private_channels_with_file_access_count": 123,
+          "dm_mpdm_users_with_file_access": [
+            {
+              "user_id": "",
+              "access": ""
+            }
+          ],
           "id": "",
           "created": 123,
           "timestamp": 123,
@@ -4485,8 +4507,8 @@
       "app_id": "",
       "call_family": "",
       "pending_invitees": {
-        "U123": "",
-        "_U123": ""
+        "U03E94MKU": "",
+        "U03E94MKU_": ""
       }
     }
   },

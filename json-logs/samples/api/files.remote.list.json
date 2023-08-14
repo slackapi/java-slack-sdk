@@ -23,6 +23,18 @@
       "username": "",
       "url_private": "https://www.example.com/",
       "media_display_type": "",
+      "permalink": "https://www.example.com/",
+      "channels": [
+        "C00000000",
+        ""
+      ],
+      "groups": [
+        ""
+      ],
+      "ims": [
+        ""
+      ],
+      "comments_count": 12345,
       "thumb_64": "https://www.example.com/",
       "thumb_80": "https://www.example.com/",
       "thumb_360": "https://www.example.com/",
@@ -48,18 +60,6 @@
       "original_w": 12345,
       "original_h": 12345,
       "thumb_tiny": "",
-      "permalink": "https://www.example.com/",
-      "channels": [
-        "C00000000",
-        ""
-      ],
-      "groups": [
-        ""
-      ],
-      "ims": [
-        ""
-      ],
-      "comments_count": 12345,
       "subject": "",
       "source_team": "",
       "non_owner_editable": false,
@@ -484,6 +484,28 @@
           "source": "",
           "file_id": "",
           "file": {
+            "original_w": "",
+            "lines_more": 123,
+            "pinned_to": [
+              ""
+            ],
+            "pjpeg": "",
+            "permalink_public": "",
+            "preview": "",
+            "headers": {
+              "date": "",
+              "in_reply_to": "",
+              "reply_to": "",
+              "message_id": ""
+            },
+            "simplified_html": "",
+            "private_channels_with_file_access_count": 123,
+            "dm_mpdm_users_with_file_access": [
+              {
+                "user_id": "",
+                "access": ""
+              }
+            ],
             "id": "",
             "created": 123,
             "timestamp": 123,
@@ -5082,6 +5104,28 @@
           "source": "",
           "file_id": "",
           "file": {
+            "original_w": "",
+            "lines_more": 123,
+            "pinned_to": [
+              ""
+            ],
+            "pjpeg": "",
+            "permalink_public": "",
+            "preview": "",
+            "headers": {
+              "date": "",
+              "in_reply_to": "",
+              "reply_to": "",
+              "message_id": ""
+            },
+            "simplified_html": "",
+            "private_channels_with_file_access_count": 123,
+            "dm_mpdm_users_with_file_access": [
+              {
+                "user_id": "",
+                "access": ""
+              }
+            ],
             "id": "",
             "created": 123,
             "timestamp": 123,
