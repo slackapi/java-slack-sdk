@@ -38,5 +38,6 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> role;
         private List<String> accountTypeRole;
         private List<String> appApprovalAutomationRule;
+        private List<String> workflowV2;
     }
 }

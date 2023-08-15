@@ -108,6 +108,18 @@
         "filetype": "string",
         "title": "string"
       }
+    },
+    {
+      "type": "workflow_v2",
+      "workflow_v2": {
+        "id": "string",
+        "app_id": "string",
+        "date_updated": "int",
+        "callback_id": "string",
+        "name": "string",
+        "updated_by": "string",
+        "step_configuration": "vec\u003cdict\u003cstring, mixed\u003e\u003e"
+      }
     }
   ]
 }

@@ -71,6 +71,15 @@
         "id": "",
         "filetype": "",
         "title": ""
+      },
+      "workflow_v2": {
+        "id": "",
+        "app_id": "",
+        "date_updated": "",
+        "callback_id": "",
+        "name": "",
+        "updated_by": "",
+        "step_configuration": ""
       }
     }
   ],

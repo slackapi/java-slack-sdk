@@ -35,6 +35,7 @@ public class SchemasResponse implements AuditApiResponse {
         private Workflow workflow;
         private Barrier barrier;
         private Canvas canvas;
+        private WorkflowV2 workflowV2;
     }
 
     @Data
@@ -133,4 +134,14 @@ public class SchemasResponse implements AuditApiResponse {
         private String title;
     }
 
+    @Data
+    public static class WorkflowV2 {
+        private String id;
+        private String appId;
+        private String dateUpdated;
+        private String callbackId;
+        private String name;
+        private String updatedBy;
+        private String stepConfiguration;
+    }
 }

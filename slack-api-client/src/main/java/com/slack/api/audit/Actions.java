@@ -436,4 +436,11 @@ public class Actions {
         public static final String app_allowlist_rule_reordered = "app_allowlist_rule_reordered";
         public static final String app_allowlist_scopes_rating_updated = "app_allowlist_scopes_rating_updated";
     }
+
+    public static class WorkflowV2 {
+        private WorkflowV2() {
+        }
+
+        public static final String workflow_v2_published = "workflow_v2_published";
+   }
 }

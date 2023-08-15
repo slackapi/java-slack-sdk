@@ -367,6 +367,9 @@
       "app_allowlist_rule_deleted",
       "app_allowlist_rule_reordered",
       "app_allowlist_scopes_rating_updated"
+    ],
+    "workflow_v2": [
+      "workflow_v2_published"
     ]
   }
 }

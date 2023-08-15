@@ -44,6 +44,9 @@
     ],
     "app_approval_automation_rule": [
       ""
+    ],
+    "workflow_v2": [
+      ""
     ]
   },
   "ok": false,

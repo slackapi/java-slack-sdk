@@ -317,11 +317,6 @@ public class SampleObjects {
     public static Message Message = new Message();
 
     public static Map<String, String> RoomPendingInvitees = new HashMap<>();
-    static {
-        RoomPendingInvitees.put("U03E94MKU", "");
-        RoomPendingInvitees.put("U03E94MKU_", "");
-    }
-
     public static Room Room = initProperties(com.slack.api.model.Room.builder()
             .attachedFileIds(Arrays.asList(""))
             .channels(Arrays.asList(""))

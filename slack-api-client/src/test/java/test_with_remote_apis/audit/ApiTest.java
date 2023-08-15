@@ -245,6 +245,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> workflowV2Names = getAllPublicStaticFieldValues(Actions.WorkflowV2.class);
+        for (String action : actions.getWorkflowV2()) {
+            if (!workflowV2Names.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test

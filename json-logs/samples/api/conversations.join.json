@@ -49,7 +49,14 @@
     ],
     "is_starred": false,
     "context_team_id": "T00000000",
-    "updated": 12345
+    "updated": 12345,
+    "properties": {
+      "canvas": {
+        "file_id": "F00000000",
+        "is_empty": false,
+        "quip_thread_id": ""
+      }
+    }
   },
   "warning": "",
   "response_metadata": {
