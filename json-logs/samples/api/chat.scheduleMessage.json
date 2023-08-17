@@ -214,43 +214,7 @@
             "fallback": "",
             "image_width": 12345,
             "image_height": 12345,
-            "image_bytes": 12345,
-            "elements": [
-              {
-                "type": "",
-                "elements": [
-                  {
-                    "type": "",
-                    "range": "",
-                    "text": "",
-                    "style": {
-                      "bold": false,
-                      "italic": false,
-                      "strike": false,
-                      "code": false
-                    },
-                    "channel_id": "",
-                    "value": "",
-                    "timestamp": "",
-                    "url": "",
-                    "team_id": "",
-                    "user_id": "",
-                    "usergroup_id": "",
-                    "name": "",
-                    "skin_tone": 12345,
-                    "unicode": ""
-                  }
-                ],
-                "style": "",
-                "indent": 12345,
-                "offset": 12345,
-                "border": 12345
-              }
-            ],
-            "style": "",
-            "indent": 12345,
-            "offset": 12345,
-            "border": 12345
+            "image_bytes": 12345
           },
           {
             "type": "",
@@ -350,25 +314,6 @@
         "source": "",
         "file_id": "",
         "file": {
-          "thumb_720_gif": "",
-          "thumb_720_w": "",
-          "thumb_720_h": "",
-          "thumb_800": "",
-          "thumb_800_gif": "",
-          "thumb_800_w": "",
-          "thumb_800_h": "",
-          "thumb_960": "",
-          "thumb_960_gif": "",
-          "thumb_960_w": "",
-          "thumb_960_h": "",
-          "thumb_1024": "",
-          "thumb_1024_gif": "",
-          "thumb_1024_w": "",
-          "title": "",
-          "thumb_800_w": "",
-          "thumb_800_h": "",
-          "thumb_960": "",
-          "thumb_1024_w": "",
           "id": "",
           "created": 123,
           "timestamp": 123,
