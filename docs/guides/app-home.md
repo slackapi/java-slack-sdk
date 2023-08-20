@@ -60,11 +60,18 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
     ))
   );
   // Update the App Home for the given user
-  ViewsPublishResponse res = ctx.client().viewsPublish(r -> r
-    .userId(payload.getEvent().getUser())
-    .hash(payload.getEvent().getView().getHash()) // To protect against possible race conditions
-    .view(appHomeView)
-  );
+  if (payload.getEvent().getView() == null) {
+    ViewsPublishResponse res = ctx.client().viewsPublish(r -> r
+      .userId(payload.getEvent().getUser())
+      .view(appHomeView)
+    );
+  } else {
+    ViewsPublishResponse res = ctx.client().viewsPublish(r -> r
+      .userId(payload.getEvent().getUser())
+      .hash(payload.getEvent().getView().getHash()) // To protect against possible race conditions
+      .view(appHomeView)
+    );
+  }
   return ctx.ack();
 });
 ```
