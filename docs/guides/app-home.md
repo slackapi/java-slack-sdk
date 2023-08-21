@@ -68,7 +68,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
   } else {
     ViewsPublishResponse res = ctx.client().viewsPublish(r -> r
       .userId(payload.getEvent().getUser())
-      .hash(payload.getEvent().getView().getHash()) // To protect against possible race conditions
+      .hash(payload.getEvent().getView().getHash()) // To safeguard against potential race conditions
       .view(appHomeView)
     );
   }
