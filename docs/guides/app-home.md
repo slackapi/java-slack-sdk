@@ -56,7 +56,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
     .type("home")
     .blocks(asBlocks(
       section(section -> section.text(markdownText(mt -> mt.text(":wave: Hello, App Home! (Last updated: " + now + ")")))),
-      image(img -> img.imageUrl("https://www.example.com/foo.png").altText("alt text for image""))
+      image(img -> img.imageUrl("https://www.example.com/foo.png").altText("alt text for image"))
     ))
   );
   // Update the App Home for the given user
@@ -95,7 +95,7 @@ app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
     it.type("home")
       .blocks(asBlocks(
         section { section -> section.text(markdownText { mt -> mt.text(":wave: Hello, App Home! (Last updated: ${now})") }) },
-        image { img -> img.imageUrl("https://www.example.com/foo.png") }
+        image { img -> img.imageUrl("https://www.example.com/foo.png").altText("alt text for image") }
       ))
   }
   // Update the App Home for the given user

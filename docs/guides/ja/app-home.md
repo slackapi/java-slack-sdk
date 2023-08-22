@@ -56,15 +56,22 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
     .type("home")
     .blocks(asBlocks(
       section(section -> section.text(markdownText(mt -> mt.text(":wave: ようこそ！ (最終更新日時: " + now + ")")))),
-      image(img -> img.imageUrl("https://www.example.com/foo.png"))
+      image(img -> img.imageUrl("https://www.example.com/foo.png").altText("alt text for image"))
     ))
   );
   // Home タブをこのユーザーのために更新
-  ViewsPublishResponse res = ctx.client().viewsPublish(r -> r
-    .userId(payload.getEvent().getUser())
-    .hash(payload.getEvent().getView().getHash()) // レースコンディション防止のため
-    .view(appHomeView)
-  );
+  if (payload.getEvent().getView() == null) {
+    ViewsPublishResponse res = ctx.client().viewsPublish(r -> r
+      .userId(payload.getEvent().getUser())
+      .view(appHomeView)
+    );
+  } else {
+    ViewsPublishResponse res = ctx.client().viewsPublish(r -> r
+      .userId(payload.getEvent().getUser())
+      .hash(payload.getEvent().getView().getHash()) // To safeguard against potential race conditions
+      .view(appHomeView)
+    );
+  }
   return ctx.ack();
 });
 ```
@@ -88,7 +95,7 @@ app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
     it.type("home")
       .blocks(asBlocks(
         section { section -> section.text(markdownText { mt -> mt.text(":wave: ようこそ！ (最終更新日時: ${now})") }) },
-        image { img -> img.imageUrl("https://www.example.com/foo.png") }
+        image { img -> img.imageUrl("https://www.example.com/foo.png").altText("alt text for image") }
       ))
   }
   // Home タブをこのユーザーのために更新
