@@ -23,18 +23,6 @@
       "username": "",
       "url_private": "https://www.example.com/",
       "media_display_type": "",
-      "permalink": "https://www.example.com/",
-      "channels": [
-        "C00000000",
-        ""
-      ],
-      "groups": [
-        ""
-      ],
-      "ims": [
-        ""
-      ],
-      "comments_count": 12345,
       "thumb_64": "https://www.example.com/",
       "thumb_80": "https://www.example.com/",
       "thumb_360": "https://www.example.com/",
@@ -60,6 +48,18 @@
       "original_w": 12345,
       "original_h": 12345,
       "thumb_tiny": "",
+      "permalink": "https://www.example.com/",
+      "channels": [
+        "C00000000",
+        ""
+      ],
+      "groups": [
+        ""
+      ],
+      "ims": [
+        ""
+      ],
+      "comments_count": 12345,
       "subject": "",
       "source_team": "",
       "non_owner_editable": false,
@@ -484,6 +484,42 @@
           "source": "",
           "file_id": "",
           "file": {
+            "private_channels_with_file_access_count": 123,
+            "dm_mpdm_users_with_file_access": [
+              {
+                "user_id": "",
+                "access": ""
+              }
+            ],
+            "org_or_workspace_access": "",
+            "bot_id": "",
+            "initial_comment": {
+              "id": "",
+              "created": 123,
+              "timestamp": 123,
+              "user": "",
+              "comment": "",
+              "channel": "",
+              "is_intro": false
+            },
+            "num_stars": 123,
+            "is_starred": false,
+            "pinned_to": [
+              ""
+            ],
+            "reactions": [
+              {
+                "name": "",
+                "count": 123,
+                "users": [
+                  ""
+                ],
+                "url": ""
+              }
+            ],
+            "comments_count": 123,
+            "thumb_video_h": 123,
+            "original_attachment_count": 123,
             "id": "",
             "created": 123,
             "timestamp": 123,
@@ -5082,6 +5118,42 @@
           "source": "",
           "file_id": "",
           "file": {
+            "private_channels_with_file_access_count": 123,
+            "dm_mpdm_users_with_file_access": [
+              {
+                "user_id": "",
+                "access": ""
+              }
+            ],
+            "org_or_workspace_access": "",
+            "bot_id": "",
+            "initial_comment": {
+              "id": "",
+              "created": 123,
+              "timestamp": 123,
+              "user": "",
+              "comment": "",
+              "channel": "",
+              "is_intro": false
+            },
+            "num_stars": 123,
+            "is_starred": false,
+            "pinned_to": [
+              ""
+            ],
+            "reactions": [
+              {
+                "name": "",
+                "count": 123,
+                "users": [
+                  ""
+                ],
+                "url": ""
+              }
+            ],
+            "comments_count": 123,
+            "thumb_video_h": 123,
+            "original_attachment_count": 123,
             "id": "",
             "created": 123,
             "timestamp": 123,

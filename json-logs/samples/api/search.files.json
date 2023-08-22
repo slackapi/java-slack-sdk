@@ -504,6 +504,42 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "private_channels_with_file_access_count": 123,
+                  "dm_mpdm_users_with_file_access": [
+                    {
+                      "user_id": "",
+                      "access": ""
+                    }
+                  ],
+                  "org_or_workspace_access": "",
+                  "bot_id": "",
+                  "initial_comment": {
+                    "id": "",
+                    "created": 123,
+                    "timestamp": 123,
+                    "user": "",
+                    "comment": "",
+                    "channel": "",
+                    "is_intro": false
+                  },
+                  "num_stars": 123,
+                  "is_starred": false,
+                  "pinned_to": [
+                    ""
+                  ],
+                  "reactions": [
+                    {
+                      "name": "",
+                      "count": 123,
+                      "users": [
+                        ""
+                      ],
+                      "url": ""
+                    }
+                  ],
+                  "comments_count": 123,
+                  "thumb_video_h": 123,
+                  "original_attachment_count": 123,
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -5736,6 +5772,42 @@
                     "source": "",
                     "file_id": "",
                     "file": {
+                      "private_channels_with_file_access_count": 123,
+                      "dm_mpdm_users_with_file_access": [
+                        {
+                          "user_id": "",
+                          "access": ""
+                        }
+                      ],
+                      "org_or_workspace_access": "",
+                      "bot_id": "",
+                      "initial_comment": {
+                        "id": "",
+                        "created": 123,
+                        "timestamp": 123,
+                        "user": "",
+                        "comment": "",
+                        "channel": "",
+                        "is_intro": false
+                      },
+                      "num_stars": 123,
+                      "is_starred": false,
+                      "pinned_to": [
+                        ""
+                      ],
+                      "reactions": [
+                        {
+                          "name": "",
+                          "count": 123,
+                          "users": [
+                            ""
+                          ],
+                          "url": ""
+                        }
+                      ],
+                      "comments_count": 123,
+                      "thumb_video_h": 123,
+                      "original_attachment_count": 123,
                       "id": "",
                       "created": 123,
                       "timestamp": 123,
