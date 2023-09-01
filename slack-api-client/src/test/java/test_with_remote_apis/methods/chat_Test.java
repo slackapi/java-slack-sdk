@@ -17,6 +17,7 @@ import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.composition.WorkflowObject;
 import com.slack.api.util.json.GsonFactory;
 import config.Constants;
 import config.SlackTestConfig;
@@ -1026,6 +1027,37 @@ public class chat_Test {
                 .blocks(asBlocks(
                         actions(a -> a.blockId("b").elements(asElements(
                                 datetimePicker(dt -> dt.actionId("a"))
+                        )))
+                ))
+        );
+        assertThat(response.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void post_message_with_workflow_button() throws Exception {
+        loadRandomChannelId();
+
+        String triggerUrl = System.getenv("SLACK_SDK_TEST_WORKFLOW_TRIGGER_URL");
+        ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(r -> r.channel(randomChannelId)
+                .blocks(asBlocks(
+                        actions(a -> a.blockId("b").elements(asElements(
+                                workflowButton(w -> w
+                                        .actionId("workflow")
+                                        .style("danger")
+                                        .accessibilityLabel("test")
+                                        .text(plainText("Start the workflow"))
+                                        .workflow(WorkflowObject.builder()
+                                                .trigger(WorkflowObject.Trigger.builder()
+                                                        .url(triggerUrl)
+//                                                        .customizableInputParameters(Arrays.asList(
+//                                                                WorkflowObject.Trigger.InputParam.builder()
+//                                                                        .name("foo")
+//                                                                        .value("bar")
+//                                                                        .build()
+//                                                        ))
+                                                        .build())
+                                                .build())
+                                )
                         )))
                 ))
         );

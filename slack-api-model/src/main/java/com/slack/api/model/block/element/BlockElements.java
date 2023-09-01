@@ -23,6 +23,12 @@ public class BlockElements {
         return Arrays.asList(elements);
     }
 
+    // WorkflowButtonElement
+
+    public static WorkflowButtonElement workflowButton(ModelConfigurator<WorkflowButtonElement.WorkflowButtonElementBuilder> configurator) {
+        return configurator.configure(WorkflowButtonElement.builder()).build();
+    }
+
     // ButtonElement
 
     public static ButtonElement button(ModelConfigurator<ButtonElement.ButtonElementBuilder> configurator) {

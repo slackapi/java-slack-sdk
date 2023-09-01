@@ -346,6 +346,17 @@
                     "style": ""
                   },
                   "accessibility_label": "",
+                  "workflow": {
+                    "trigger": {
+                      "url": "",
+                      "customizable_input_parameters": [
+                        {
+                          "name": "",
+                          "value": ""
+                        }
+                      ]
+                    }
+                  },
                   "options": [
                     {
                       "text": {
@@ -580,6 +591,24 @@
               "accessory": {
                 "type": "",
                 "action_id": "",
+                "text": {
+                  "type": "",
+                  "text": "",
+                  "emoji": false
+                },
+                "workflow": {
+                  "trigger": {
+                    "url": "",
+                    "customizable_input_parameters": [
+                      {
+                        "name": "",
+                        "value": ""
+                      }
+                    ]
+                  }
+                },
+                "style": "",
+                "accessibility_label": "",
                 "options": [
                   {
                     "text": {
@@ -596,22 +625,20 @@
                     "url": ""
                   }
                 ],
-                "initial_options": [
-                  {
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "value": "",
-                    "description": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
-                    "url": ""
-                  }
-                ],
+                "initial_option": {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": "",
+                  "description": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "url": ""
+                },
                 "confirm": {
                   "title": {
                     "type": "",
@@ -641,9 +668,13 @@
                   "text": "",
                   "emoji": false
                 },
-                "initial_channel": "",
-                "response_url_enabled": false,
-                "initial_conversation": "",
+                "initial_channels": [
+                  ""
+                ],
+                "max_selected_items": 12345,
+                "initial_conversations": [
+                  ""
+                ],
                 "default_to_current_conversation": false,
                 "filter": {
                   "include": [
@@ -652,10 +683,15 @@
                   "exclude_external_shared_channels": false,
                   "exclude_bot_users": false
                 },
-                "initial_date": "",
-                "initial_date_time": 12345,
+                "initial_time": "",
+                "timezone": "",
                 "min_query_length": 12345,
-                "max_selected_items": 12345,
+                "image_url": "",
+                "alt_text": "",
+                "fallback": "",
+                "image_width": 12345,
+                "image_height": 12345,
+                "image_bytes": 12345,
                 "option_groups": [
                   {
                     "label": {
@@ -681,47 +717,33 @@
                     ]
                   }
                 ],
-                "initial_users": [
-                  ""
-                ],
-                "text": {
-                  "type": "",
-                  "text": "",
-                  "emoji": false
-                },
+                "initial_user": "",
                 "url": "",
                 "value": "",
-                "style": "",
-                "accessibility_label": "",
-                "initial_option": {
-                  "text": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "value": "",
-                  "description": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "url": ""
-                },
-                "initial_channels": [
-                  ""
+                "initial_options": [
+                  {
+                    "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "value": "",
+                    "description": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "url": ""
+                  }
                 ],
-                "initial_conversations": [
+                "initial_channel": "",
+                "response_url_enabled": false,
+                "initial_conversation": "",
+                "initial_date": "",
+                "initial_date_time": 12345,
+                "initial_users": [
                   ""
-                ],
-                "initial_time": "",
-                "timezone": "",
-                "image_url": "",
-                "alt_text": "",
-                "fallback": "",
-                "image_width": 12345,
-                "image_height": 12345,
-                "image_bytes": 12345,
-                "initial_user": ""
+                ]
               },
               "call_id": "",
               "api_decoration_available": false,
@@ -780,7 +802,8 @@
               "source": "",
               "file_id": "",
               "file": {
-                "thumb_gif": "",
+                "created": 123,
+                "timestamp": 123,
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -1053,6 +1076,28 @@
                           },
                           "style": ""
                         },
+                        "accessibility_label": ""
+                      },
+                      {
+                        "type": "workflow_button",
+                        "action_id": "",
+                        "text": {
+                          "type": "plain_text",
+                          "text": "",
+                          "emoji": false
+                        },
+                        "workflow": {
+                          "trigger": {
+                            "url": "",
+                            "customizable_input_parameters": [
+                              {
+                                "name": "",
+                                "value": ""
+                              }
+                            ]
+                          }
+                        },
+                        "style": "",
                         "accessibility_label": ""
                       },
                       {
@@ -3404,6 +3449,49 @@
                       }
                     ],
                     "accessory": {
+                      "type": "workflow_button",
+                      "action_id": "",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "",
+                        "emoji": false
+                      },
+                      "workflow": {
+                        "trigger": {
+                          "url": "",
+                          "customizable_input_parameters": [
+                            {
+                              "name": "",
+                              "value": ""
+                            }
+                          ]
+                        }
+                      },
+                      "style": "",
+                      "accessibility_label": ""
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "block_id": "",
+                    "fields": [
+                      {
+                        "type": "plain_text",
+                        "text": "",
+                        "emoji": false
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "",
+                        "verbatim": false
+                      }
+                    ],
+                    "accessory": {
                       "type": "checkboxes",
                       "action_id": "",
                       "options": [
@@ -4589,6 +4677,17 @@
                   "style": ""
                 },
                 "accessibility_label": "",
+                "workflow": {
+                  "trigger": {
+                    "url": "",
+                    "customizable_input_parameters": [
+                      {
+                        "name": "",
+                        "value": ""
+                      }
+                    ]
+                  }
+                },
                 "options": [
                   {
                     "text": {
@@ -4793,6 +4892,17 @@
                 "style": ""
               },
               "accessibility_label": "",
+              "workflow": {
+                "trigger": {
+                  "url": "",
+                  "customizable_input_parameters": [
+                    {
+                      "name": "",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
               "options": [
                 {
                   "text": {
@@ -5046,7 +5156,8 @@
           "source": "",
           "file_id": "",
           "file": {
-            "thumb_gif": "",
+            "created": 123,
+            "timestamp": 123,
             "id": "",
             "created": 123,
             "timestamp": 123,
@@ -5319,6 +5430,28 @@
                       },
                       "style": ""
                     },
+                    "accessibility_label": ""
+                  },
+                  {
+                    "type": "workflow_button",
+                    "action_id": "",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "workflow": {
+                      "trigger": {
+                        "url": "",
+                        "customizable_input_parameters": [
+                          {
+                            "name": "",
+                            "value": ""
+                          }
+                        ]
+                      }
+                    },
+                    "style": "",
                     "accessibility_label": ""
                   },
                   {
@@ -7670,6 +7803,49 @@
                   }
                 ],
                 "accessory": {
+                  "type": "workflow_button",
+                  "action_id": "",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "workflow": {
+                    "trigger": {
+                      "url": "",
+                      "customizable_input_parameters": [
+                        {
+                          "name": "",
+                          "value": ""
+                        }
+                      ]
+                    }
+                  },
+                  "style": "",
+                  "accessibility_label": ""
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "plain_text",
+                  "text": "",
+                  "emoji": false
+                },
+                "block_id": "",
+                "fields": [
+                  {
+                    "type": "plain_text",
+                    "text": "",
+                    "emoji": false
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "",
+                    "verbatim": false
+                  }
+                ],
+                "accessory": {
                   "type": "checkboxes",
                   "action_id": "",
                   "options": [
@@ -8894,6 +9070,17 @@
               "style": ""
             },
             "accessibility_label": "",
+            "workflow": {
+              "trigger": {
+                "url": "",
+                "customizable_input_parameters": [
+                  {
+                    "name": "",
+                    "value": ""
+                  }
+                ]
+              }
+            },
             "options": [
               {
                 "text": {
@@ -9045,6 +9232,17 @@
               "style": ""
             },
             "accessibility_label": "",
+            "workflow": {
+              "trigger": {
+                "url": "",
+                "customizable_input_parameters": [
+                  {
+                    "name": "",
+                    "value": ""
+                  }
+                ]
+              }
+            },
             "options": [
               {
                 "text": {
@@ -9302,6 +9500,17 @@
                     "style": ""
                   },
                   "accessibility_label": "",
+                  "workflow": {
+                    "trigger": {
+                      "url": "",
+                      "customizable_input_parameters": [
+                        {
+                          "name": "",
+                          "value": ""
+                        }
+                      ]
+                    }
+                  },
                   "options": [
                     {
                       "text": {
@@ -9555,7 +9764,8 @@
               "source": "",
               "file_id": "",
               "file": {
-                "thumb_gif": "",
+                "created": 123,
+                "timestamp": 123,
                 "id": "",
                 "created": 123,
                 "timestamp": 123,
@@ -9828,6 +10038,28 @@
                           },
                           "style": ""
                         },
+                        "accessibility_label": ""
+                      },
+                      {
+                        "type": "workflow_button",
+                        "action_id": "",
+                        "text": {
+                          "type": "plain_text",
+                          "text": "",
+                          "emoji": false
+                        },
+                        "workflow": {
+                          "trigger": {
+                            "url": "",
+                            "customizable_input_parameters": [
+                              {
+                                "name": "",
+                                "value": ""
+                              }
+                            ]
+                          }
+                        },
+                        "style": "",
                         "accessibility_label": ""
                       },
                       {
@@ -12179,6 +12411,49 @@
                       }
                     ],
                     "accessory": {
+                      "type": "workflow_button",
+                      "action_id": "",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "",
+                        "emoji": false
+                      },
+                      "workflow": {
+                        "trigger": {
+                          "url": "",
+                          "customizable_input_parameters": [
+                            {
+                              "name": "",
+                              "value": ""
+                            }
+                          ]
+                        }
+                      },
+                      "style": "",
+                      "accessibility_label": ""
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "block_id": "",
+                    "fields": [
+                      {
+                        "type": "plain_text",
+                        "text": "",
+                        "emoji": false
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "",
+                        "verbatim": false
+                      }
+                    ],
+                    "accessory": {
                       "type": "checkboxes",
                       "action_id": "",
                       "options": [
@@ -13403,6 +13678,17 @@
                   "style": ""
                 },
                 "accessibility_label": "",
+                "workflow": {
+                  "trigger": {
+                    "url": "",
+                    "customizable_input_parameters": [
+                      {
+                        "name": "",
+                        "value": ""
+                      }
+                    ]
+                  }
+                },
                 "options": [
                   {
                     "text": {
@@ -13554,6 +13840,17 @@
                   "style": ""
                 },
                 "accessibility_label": "",
+                "workflow": {
+                  "trigger": {
+                    "url": "",
+                    "customizable_input_parameters": [
+                      {
+                        "name": "",
+                        "value": ""
+                      }
+                    ]
+                  }
+                },
                 "options": [
                   {
                     "text": {
@@ -13713,6 +14010,17 @@
                     "style": ""
                   },
                   "accessibility_label": "",
+                  "workflow": {
+                    "trigger": {
+                      "url": "",
+                      "customizable_input_parameters": [
+                        {
+                          "name": "",
+                          "value": ""
+                        }
+                      ]
+                    }
+                  },
                   "options": [
                     {
                       "text": {
@@ -13926,6 +14234,17 @@
                   "style": ""
                 },
                 "accessibility_label": "",
+                "workflow": {
+                  "trigger": {
+                    "url": "",
+                    "customizable_input_parameters": [
+                      {
+                        "name": "",
+                        "value": ""
+                      }
+                    ]
+                  }
+                },
                 "options": [
                   {
                     "text": {
@@ -14354,6 +14673,17 @@
                         "style": ""
                       },
                       "accessibility_label": "",
+                      "workflow": {
+                        "trigger": {
+                          "url": "",
+                          "customizable_input_parameters": [
+                            {
+                              "name": "",
+                              "value": ""
+                            }
+                          ]
+                        }
+                      },
                       "options": [
                         {
                           "text": {
@@ -14588,6 +14918,24 @@
                   "accessory": {
                     "type": "",
                     "action_id": "",
+                    "text": {
+                      "type": "",
+                      "text": "",
+                      "emoji": false
+                    },
+                    "workflow": {
+                      "trigger": {
+                        "url": "",
+                        "customizable_input_parameters": [
+                          {
+                            "name": "",
+                            "value": ""
+                          }
+                        ]
+                      }
+                    },
+                    "style": "",
+                    "accessibility_label": "",
                     "options": [
                       {
                         "text": {
@@ -14604,22 +14952,20 @@
                         "url": ""
                       }
                     ],
-                    "initial_options": [
-                      {
-                        "text": {
-                          "type": "",
-                          "text": "",
-                          "emoji": false
-                        },
-                        "value": "",
-                        "description": {
-                          "type": "",
-                          "text": "",
-                          "emoji": false
-                        },
-                        "url": ""
-                      }
-                    ],
+                    "initial_option": {
+                      "text": {
+                        "type": "",
+                        "text": "",
+                        "emoji": false
+                      },
+                      "value": "",
+                      "description": {
+                        "type": "",
+                        "text": "",
+                        "emoji": false
+                      },
+                      "url": ""
+                    },
                     "confirm": {
                       "title": {
                         "type": "",
@@ -14649,9 +14995,13 @@
                       "text": "",
                       "emoji": false
                     },
-                    "initial_channel": "",
-                    "response_url_enabled": false,
-                    "initial_conversation": "",
+                    "initial_channels": [
+                      ""
+                    ],
+                    "max_selected_items": 12345,
+                    "initial_conversations": [
+                      ""
+                    ],
                     "default_to_current_conversation": false,
                     "filter": {
                       "include": [
@@ -14660,10 +15010,15 @@
                       "exclude_external_shared_channels": false,
                       "exclude_bot_users": false
                     },
-                    "initial_date": "",
-                    "initial_date_time": 12345,
+                    "initial_time": "",
+                    "timezone": "",
                     "min_query_length": 12345,
-                    "max_selected_items": 12345,
+                    "image_url": "",
+                    "alt_text": "",
+                    "fallback": "",
+                    "image_width": 12345,
+                    "image_height": 12345,
+                    "image_bytes": 12345,
                     "option_groups": [
                       {
                         "label": {
@@ -14689,47 +15044,33 @@
                         ]
                       }
                     ],
-                    "initial_users": [
-                      ""
-                    ],
-                    "text": {
-                      "type": "",
-                      "text": "",
-                      "emoji": false
-                    },
+                    "initial_user": "",
                     "url": "",
                     "value": "",
-                    "style": "",
-                    "accessibility_label": "",
-                    "initial_option": {
-                      "text": {
-                        "type": "",
-                        "text": "",
-                        "emoji": false
-                      },
-                      "value": "",
-                      "description": {
-                        "type": "",
-                        "text": "",
-                        "emoji": false
-                      },
-                      "url": ""
-                    },
-                    "initial_channels": [
-                      ""
+                    "initial_options": [
+                      {
+                        "text": {
+                          "type": "",
+                          "text": "",
+                          "emoji": false
+                        },
+                        "value": "",
+                        "description": {
+                          "type": "",
+                          "text": "",
+                          "emoji": false
+                        },
+                        "url": ""
+                      }
                     ],
-                    "initial_conversations": [
+                    "initial_channel": "",
+                    "response_url_enabled": false,
+                    "initial_conversation": "",
+                    "initial_date": "",
+                    "initial_date_time": 12345,
+                    "initial_users": [
                       ""
-                    ],
-                    "initial_time": "",
-                    "timezone": "",
-                    "image_url": "",
-                    "alt_text": "",
-                    "fallback": "",
-                    "image_width": 12345,
-                    "image_height": 12345,
-                    "image_bytes": 12345,
-                    "initial_user": ""
+                    ]
                   },
                   "call_id": "",
                   "api_decoration_available": false,
@@ -14788,7 +15129,8 @@
                   "source": "",
                   "file_id": "",
                   "file": {
-                    "thumb_gif": "",
+                    "created": 123,
+                    "timestamp": 123,
                     "id": "",
                     "created": 123,
                     "timestamp": 123,
@@ -15061,6 +15403,28 @@
                               },
                               "style": ""
                             },
+                            "accessibility_label": ""
+                          },
+                          {
+                            "type": "workflow_button",
+                            "action_id": "",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "",
+                              "emoji": false
+                            },
+                            "workflow": {
+                              "trigger": {
+                                "url": "",
+                                "customizable_input_parameters": [
+                                  {
+                                    "name": "",
+                                    "value": ""
+                                  }
+                                ]
+                              }
+                            },
+                            "style": "",
                             "accessibility_label": ""
                           },
                           {
@@ -17412,6 +17776,49 @@
                           }
                         ],
                         "accessory": {
+                          "type": "workflow_button",
+                          "action_id": "",
+                          "text": {
+                            "type": "plain_text",
+                            "text": "",
+                            "emoji": false
+                          },
+                          "workflow": {
+                            "trigger": {
+                              "url": "",
+                              "customizable_input_parameters": [
+                                {
+                                  "name": "",
+                                  "value": ""
+                                }
+                              ]
+                            }
+                          },
+                          "style": "",
+                          "accessibility_label": ""
+                        }
+                      },
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "plain_text",
+                          "text": "",
+                          "emoji": false
+                        },
+                        "block_id": "",
+                        "fields": [
+                          {
+                            "type": "plain_text",
+                            "text": "",
+                            "emoji": false
+                          },
+                          {
+                            "type": "mrkdwn",
+                            "text": "",
+                            "verbatim": false
+                          }
+                        ],
+                        "accessory": {
                           "type": "checkboxes",
                           "action_id": "",
                           "options": [
@@ -18597,6 +19004,17 @@
                       "style": ""
                     },
                     "accessibility_label": "",
+                    "workflow": {
+                      "trigger": {
+                        "url": "",
+                        "customizable_input_parameters": [
+                          {
+                            "name": "",
+                            "value": ""
+                          }
+                        ]
+                      }
+                    },
                     "options": [
                       {
                         "text": {
