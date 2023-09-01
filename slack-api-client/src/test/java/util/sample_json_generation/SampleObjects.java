@@ -116,9 +116,16 @@ public class SampleObjects {
             .build());
 
     public static ConfirmationDialogObject Confirm = ConfirmationDialogObject.builder().text(TextObject).build();
+    public static WorkflowObject Workflow = WorkflowObject.builder()
+            .trigger(WorkflowObject.Trigger.builder()
+                    .url("")
+                    .customizableInputParameters(Arrays.asList(WorkflowObject.Trigger.InputParam.builder().name("").value("").build()))
+                    .build())
+            .build();
 
     public static List<BlockElement> BlockElements = asElements(
             initProperties(button(b -> b.confirm(Confirm))),
+            initProperties(workflowButton(b -> b.workflow(Workflow))),
             initProperties(checkboxes(b -> b.initialOptions(Arrays.asList(Option)).confirm(Confirm))),
             initProperties(radioButtons(b -> b.initialOption(Option).confirm(Confirm))),
             initProperties(channelsSelect(c -> c.confirm(Confirm))),

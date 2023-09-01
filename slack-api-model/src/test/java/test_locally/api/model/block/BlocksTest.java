@@ -4,9 +4,11 @@ import com.slack.api.model.block.ActionsBlock;
 import com.slack.api.model.block.Blocks;
 import com.slack.api.model.block.ContextBlock;
 import com.slack.api.model.block.ContextBlockElement;
+import com.slack.api.model.block.composition.WorkflowObject;
 import com.slack.api.model.block.element.BlockElement;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.slack.api.model.block.Blocks.*;
@@ -94,4 +96,22 @@ public class BlocksTest {
         assertThat(urlTextInput(h -> h.actionId("block-id").initialValue("https:/www.example.com")), is(notNullValue()));
         assertThat(numberInput(h -> h.actionId("block-id").initialValue("12345")), is(notNullValue()));
     }
+
+    @Test
+    public void testWorkflowButton() {
+        assertThat(workflowButton(h -> h.actionId("block-id")
+                .workflow(WorkflowObject.builder()
+                        .trigger(WorkflowObject.Trigger.builder()
+                                .url("https://slack.com/shortcuts/Ft0123ABC456/xyz...zyx")
+                                .customizableInputParameters(Arrays.asList(
+                                        WorkflowObject.Trigger.InputParam.builder().name("a").value("b").build()
+                                ))
+                                .build())
+                        .build())
+                .text(plainText("Click this"))
+                .style("danger")
+                .accessibilityLabel("accessibility")
+        ), is(notNullValue()));
+    }
+
 }
