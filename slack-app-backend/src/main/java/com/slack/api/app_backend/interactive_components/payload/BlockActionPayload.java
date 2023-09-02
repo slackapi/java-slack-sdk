@@ -78,6 +78,7 @@ public class BlockActionPayload {
         @SerializedName("is_app_unfurl")
         private boolean appUnfurl;
         private String appUnfurlUrl;
+        private String threadTs;
     }
 
     @Data
