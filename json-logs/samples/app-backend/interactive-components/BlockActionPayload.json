@@ -27,7 +27,8 @@
     "text": "",
     "is_ephemeral": false,
     "is_app_unfurl": false,
-    "app_unfurl_url": ""
+    "app_unfurl_url": "",
+    "thread_ts": ""
   },
   "trigger_id": "",
   "channel": {
