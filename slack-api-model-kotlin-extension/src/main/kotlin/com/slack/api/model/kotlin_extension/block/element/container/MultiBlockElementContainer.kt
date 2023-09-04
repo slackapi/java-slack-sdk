@@ -15,6 +15,10 @@ class MultiBlockElementContainer : BlockElementDsl {
         underlying += ButtonElementBuilder().apply(builder).build()
     }
 
+    override fun workflowButton(builder: WorkflowButtonElementBuilder.() -> Unit) {
+        underlying += WorkflowButtonElementBuilder().apply(builder).build()
+    }
+
     override fun checkboxes(builder: CheckboxesElementBuilder.() -> Unit) {
         underlying += CheckboxesElementBuilder().apply(builder).build()
     }
@@ -43,15 +47,22 @@ class MultiBlockElementContainer : BlockElementDsl {
         underlying += ExternalSelectElementBuilder().apply(builder).build()
     }
 
-    override fun image(imageUrl: String?, altText: String?, fallback: String?, imageWidth: Int?, imageHeight: Int?, imageBytes: Int?) {
+    override fun image(
+        imageUrl: String?,
+        altText: String?,
+        fallback: String?,
+        imageWidth: Int?,
+        imageHeight: Int?,
+        imageBytes: Int?
+    ) {
         underlying += ImageElement.builder()
-                .imageUrl(imageUrl)
-                .altText(altText)
-                .fallback(fallback)
-                .imageWidth(imageWidth)
-                .imageHeight(imageHeight)
-                .imageBytes(imageBytes)
-                .build()
+            .imageUrl(imageUrl)
+            .altText(altText)
+            .fallback(fallback)
+            .imageWidth(imageWidth)
+            .imageHeight(imageHeight)
+            .imageBytes(imageBytes)
+            .build()
     }
 
     override fun multiChannelsSelect(builder: MultiChannelsSelectElementBuilder.() -> Unit) {

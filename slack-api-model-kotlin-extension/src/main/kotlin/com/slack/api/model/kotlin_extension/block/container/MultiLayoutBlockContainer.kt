@@ -34,18 +34,18 @@ class MultiLayoutBlockContainer : LayoutBlockDsl {
 
     override fun file(externalId: String?, blockId: String?, source: FileSource?) {
         underlying += FileBlock.builder()
-                .blockId(blockId)
-                .externalId(externalId)
-                .source(source?.value)
-                .build()
+            .blockId(blockId)
+            .externalId(externalId)
+            .source(source?.value)
+            .build()
     }
 
     override fun file(externalId: String?, blockId: String?, source: String?) {
         underlying += FileBlock.builder()
-                .blockId(blockId)
-                .externalId(externalId)
-                .source(source)
-                .build()
+            .blockId(blockId)
+            .externalId(externalId)
+            .source(source)
+            .build()
     }
 
     override fun image(builder: ImageBlockBuilder.() -> Unit) {

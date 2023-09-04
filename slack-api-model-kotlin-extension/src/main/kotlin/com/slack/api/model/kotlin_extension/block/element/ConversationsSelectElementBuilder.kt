@@ -79,12 +79,16 @@ class ConversationsSelectElementBuilder : Builder<ConversationsSelectElement> {
      *
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#conversation_select">Conversations select element documentation</a>
      */
-    fun filter(vararg include: ConversationType, excludeExternalSharedChannels: Boolean = false, excludeBotUsers: Boolean = false) {
+    fun filter(
+        vararg include: ConversationType,
+        excludeExternalSharedChannels: Boolean = false,
+        excludeBotUsers: Boolean = false
+    ) {
         filter = ConversationsFilter.builder()
-                .include(include.map { it.value })
-                .excludeExternalSharedChannels(excludeExternalSharedChannels)
-                .excludeBotUsers(excludeBotUsers)
-                .build()
+            .include(include.map { it.value })
+            .excludeExternalSharedChannels(excludeExternalSharedChannels)
+            .excludeBotUsers(excludeBotUsers)
+            .build()
     }
 
     /**
@@ -95,12 +99,16 @@ class ConversationsSelectElementBuilder : Builder<ConversationsSelectElement> {
      *
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#conversation_select">Conversations select element documentation</a>
      */
-    fun filter(vararg include: String, excludeExternalSharedChannels: Boolean = false, excludeBotUsers: Boolean = false) {
+    fun filter(
+        vararg include: String,
+        excludeExternalSharedChannels: Boolean = false,
+        excludeBotUsers: Boolean = false
+    ) {
         filter = ConversationsFilter.builder()
-                .include(include.toList())
-                .excludeExternalSharedChannels(excludeExternalSharedChannels)
-                .excludeBotUsers(excludeBotUsers)
-                .build()
+            .include(include.toList())
+            .excludeExternalSharedChannels(excludeExternalSharedChannels)
+            .excludeBotUsers(excludeBotUsers)
+            .build()
     }
 
     /**
@@ -124,14 +132,14 @@ class ConversationsSelectElementBuilder : Builder<ConversationsSelectElement> {
 
     override fun build(): ConversationsSelectElement {
         return ConversationsSelectElement.builder()
-                .placeholder(placeholder)
-                .actionId(actionId)
-                .initialConversation(initialConversation)
-                .confirm(confirm)
-                .responseUrlEnabled(responseUrlEnabled)
-                .defaultToCurrentConversation(defaultToCurrentConversation)
-                .filter(filter)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .placeholder(placeholder)
+            .actionId(actionId)
+            .initialConversation(initialConversation)
+            .confirm(confirm)
+            .responseUrlEnabled(responseUrlEnabled)
+            .defaultToCurrentConversation(defaultToCurrentConversation)
+            .filter(filter)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

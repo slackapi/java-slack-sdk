@@ -9,7 +9,6 @@ import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.*;
 import com.slack.api.util.json.GsonFactory;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static com.slack.api.model.block.Blocks.*;
@@ -119,7 +118,7 @@ public class SampleObjects {
     public static WorkflowObject Workflow = WorkflowObject.builder()
             .trigger(WorkflowObject.Trigger.builder()
                     .url("")
-                    .customizableInputParameters(Arrays.asList(WorkflowObject.Trigger.InputParam.builder().name("").value("").build()))
+                    .customizableInputParameters(Arrays.asList(WorkflowObject.Trigger.InputParameter.builder().name("").value("").build()))
                     .build())
             .build();
 

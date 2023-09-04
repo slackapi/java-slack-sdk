@@ -97,13 +97,13 @@ class StaticSelectElementBuilder : Builder<StaticSelectElement> {
 
     override fun build(): StaticSelectElement {
         return StaticSelectElement.builder()
-                .placeholder(placeholder)
-                .actionId(actionId)
-                .options(options)
-                .optionGroups(optionGroups)
-                .initialOption(initialOption)
-                .confirm(confirm)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .placeholder(placeholder)
+            .actionId(actionId)
+            .options(options)
+            .optionGroups(optionGroups)
+            .initialOption(initialOption)
+            .confirm(confirm)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

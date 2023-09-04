@@ -18,8 +18,8 @@ class HeaderBlockBuilder : Builder<HeaderBlock> {
 
     override fun build(): HeaderBlock {
         return HeaderBlock.builder()
-                .blockId(blockId)
-                .text(_text)
-                .build()
+            .blockId(blockId)
+            .text(_text)
+            .build()
     }
 }

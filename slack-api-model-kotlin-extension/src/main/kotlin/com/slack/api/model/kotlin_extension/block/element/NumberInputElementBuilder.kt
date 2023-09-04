@@ -1,7 +1,7 @@
 package com.slack.api.model.kotlin_extension.block.element
 
-import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.model.block.composition.DispatchActionConfig
+import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.model.block.element.NumberInputElement
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 import com.slack.api.model.kotlin_extension.block.Builder
@@ -99,14 +99,14 @@ class NumberInputElementBuilder : Builder<NumberInputElement> {
     override fun build(): NumberInputElement {
         val isDecimalAllowed: Boolean = if (_isDecimalAllowed != null) _isDecimalAllowed!! else false
         return NumberInputElement.builder()
-                .actionId(actionId)
-                .decimalAllowed(isDecimalAllowed)
-                .placeholder(placeholder)
-                .initialValue(initialValue)
-                .minValue(minValue)
-                .maxValue(maxValue)
-                .dispatchActionConfig(dispatchActionConfig)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .actionId(actionId)
+            .decimalAllowed(isDecimalAllowed)
+            .placeholder(placeholder)
+            .initialValue(initialValue)
+            .minValue(minValue)
+            .maxValue(maxValue)
+            .dispatchActionConfig(dispatchActionConfig)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

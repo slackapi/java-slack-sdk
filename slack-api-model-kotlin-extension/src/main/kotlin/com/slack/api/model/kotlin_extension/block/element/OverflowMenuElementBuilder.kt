@@ -46,9 +46,9 @@ class OverflowMenuElementBuilder : Builder<OverflowMenuElement> {
 
     override fun build(): OverflowMenuElement {
         return OverflowMenuElement.builder()
-                .actionId(actionId)
-                .options(options)
-                .confirm(confirm)
-                .build()
+            .actionId(actionId)
+            .options(options)
+            .confirm(confirm)
+            .build()
     }
 }

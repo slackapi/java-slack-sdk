@@ -1,7 +1,7 @@
 package com.slack.api.model.kotlin_extension.block.element
 
-import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.model.block.composition.DispatchActionConfig
+import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.model.block.element.URLTextInputElement
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 import com.slack.api.model.kotlin_extension.block.Builder
@@ -67,11 +67,11 @@ class URLTextInputElementBuilder : Builder<URLTextInputElement> {
 
     override fun build(): URLTextInputElement {
         return URLTextInputElement.builder()
-                .actionId(actionId)
-                .placeholder(placeholder)
-                .initialValue(initialValue)
-                .dispatchActionConfig(dispatchActionConfig)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .actionId(actionId)
+            .placeholder(placeholder)
+            .initialValue(initialValue)
+            .dispatchActionConfig(dispatchActionConfig)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

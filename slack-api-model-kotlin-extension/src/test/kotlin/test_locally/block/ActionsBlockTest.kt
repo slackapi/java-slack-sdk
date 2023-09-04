@@ -192,189 +192,227 @@ class ActionsBlockTest {
                     actionId("guest-select")
                     placeholder("Select any users that will be accompanying you.")
                 }
+                workflowButton {
+                    actionId("workflow")
+                    text("Click this")
+                    workflow {
+                        trigger {
+                            url("https://example.com")
+                            customizableInputParameter {
+                                name("foo")
+                                value("bar")
+                            }
+                            customizableInputParameter {
+                                name("baz")
+                                value("BAZ")
+                            }
+                        }
+                    }
+                }
             }
         }
 
-        val original = """
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "Please select the details for your visit."
-                  },
-                  "accessory": {
-                    "type": "overflow",
-                    "options": [
-                      {
-                        "text": {
-                          "type": "plain_text",
-                          "text": "Cancel this appointment request"
-                        },
-                        "value": "appt-cancel",
-                        "url": "https://fake-health-company.nett/cancel-appointment"
-                      },
-                      {
-                        "text": {
-                          "type": "plain_text",
-                          "text": "Leave feedback for this bot!"
-                        },
-                        "value": "bot-feedback",
-                        "url": "https://fake-health-company.nett/bot-feedback"
-                      }
-                    ]
-                  }
+        val original = """{
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Please select the details for your visit."
                 },
-                {
-                  "type": "actions",
-                  "elements": [
+                "accessory": {
+                  "type": "overflow",
+                  "options": [
                     {
-                      "type": "image",
-                      "image_url": "https://fake-health-company.nett/assets/health-plus-image.jpg"
-                    },
-                    {
-                      "type": "static_select",
-                      "placeholder": {
+                      "text": {
                         "type": "plain_text",
-                        "text": "Reason for your appointment..."
+                        "text": "Cancel this appointment request"
                       },
-                      "action_id": "problem-select",
-                      "option_groups": [
-                        {
-                          "label": {
-                            "type": "plain_text",
-                            "text": "Physical issues"
-                          },
-                          "options": [
-                            {
-                              "text": {
-                                "type": "plain_text",
-                                "text": "Skin irritation"
-                              },
-                              "value": "skin-irrit"
-                            },
-                            {
-                              "text": {
-                                "type": "plain_text",
-                                "text": "Back pain"
-                              },
-                              "value": "back-pain"
-                            },
-                            {
-                              "text": {
-                                "type": "plain_text",
-                                "text": "Sports injury"
-                              },
-                              "value": "sports-injury"
-                            }
-                          ]
-                        },
-                        {
-                          "label": {
-                            "type": "plain_text",
-                            "text": "Wellbeing issues"
-                          },
-                          "options": [
-                            {
-                              "text": {
-                                "type": "plain_text",
-                                "text": "Have a fever"
-                              },
-                              "value": "may-be-sick"
-                            },
-                            {
-                              "text": {
-                                "type": "plain_text",
-                                "text": "Shortness of breath"
-                              },
-                              "value": "breathing-issues"
-                            }
-                          ]
-                        }
-                      ]
+                      "value": "appt-cancel",
+                      "url": "https://fake-health-company.nett/cancel-appointment"
                     },
                     {
-                      "type": "datepicker",
-                      "action_id": "datepick-appt",
-                      "placeholder": {
+                      "text": {
                         "type": "plain_text",
-                        "text": "Select appointment date..."
+                        "text": "Leave feedback for this bot!"
                       },
-                      "initial_date": "2020-06-01",
-                      "confirm": {
-                        "title": {
-                          "type": "plain_text",
-                          "text": "Are you sure?"
-                        },
-                        "text": {
-                          "type": "plain_text",
-                          "text": "Check your calendar. Are you sure you are free on this date?"
-                        },
-                        "confirm": {
-                          "type": "plain_text",
-                          "text": "Yes, I am free."
-                        },
-                        "deny": {
-                          "type": "plain_text",
-                          "text": "No, I can't make it."
-                        }
-                      }
-                    },
-                    {
-                      "type": "timepicker",
-                      "action_id": "timepick-appt",
-                      "placeholder": {
-                        "type": "plain_text",
-                        "text": "Select appointment time..."
-                      },
-                      "initial_time": "12:35",
-                      "confirm": {
-                        "title": {
-                          "type": "plain_text",
-                          "text": "Are you sure?"
-                        },
-                        "text": {
-                          "type": "plain_text",
-                          "text": "Check your calendar. Are you sure you are free at this time?"
-                        },
-                        "confirm": {
-                          "type": "plain_text",
-                          "text": "Yes, I am free."
-                        },
-                        "deny": {
-                          "type": "plain_text",
-                          "text": "No, I can\u0027t make it."
-                        }
-                      }
-                    },
-                    {
-                      "type": "datetimepicker",
-                      "action_id": "datetimepick-appt",
-                      "initial_date_time": 12345
-                    },
-                    {
-                      "type": "external_select",
-                      "placeholder": {
-                        "type": "plain_text",
-                        "text": "Please select your appointment time..."
-                      },
-                      "action_id": "appointment-time-select",
-                      "min_query_length": 4
-                    },
-                    {
-                      "type": "users_select",
-                      "placeholder": {
-                        "type": "plain_text",
-                        "text": "Select any users that will be accompanying you."
-                      },
-                      "action_id": "guest-select"
+                      "value": "bot-feedback",
+                      "url": "https://fake-health-company.nett/bot-feedback"
                     }
                   ]
                 }
-              ]
-            }
-        """.trimIndent()
+              },
+              {
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "image",
+                    "image_url": "https://fake-health-company.nett/assets/health-plus-image.jpg"
+                  },
+                  {
+                    "type": "static_select",
+                    "placeholder": {
+                      "type": "plain_text",
+                      "text": "Reason for your appointment..."
+                    },
+                    "action_id": "problem-select",
+                    "option_groups": [
+                      {
+                        "label": {
+                          "type": "plain_text",
+                          "text": "Physical issues"
+                        },
+                        "options": [
+                          {
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Skin irritation"
+                            },
+                            "value": "skin-irrit"
+                          },
+                          {
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Back pain"
+                            },
+                            "value": "back-pain"
+                          },
+                          {
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Sports injury"
+                            },
+                            "value": "sports-injury"
+                          }
+                        ]
+                      },
+                      {
+                        "label": {
+                          "type": "plain_text",
+                          "text": "Wellbeing issues"
+                        },
+                        "options": [
+                          {
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Have a fever"
+                            },
+                            "value": "may-be-sick"
+                          },
+                          {
+                            "text": {
+                              "type": "plain_text",
+                              "text": "Shortness of breath"
+                            },
+                            "value": "breathing-issues"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "datepicker",
+                    "action_id": "datepick-appt",
+                    "placeholder": {
+                      "type": "plain_text",
+                      "text": "Select appointment date..."
+                    },
+                    "initial_date": "2020-06-01",
+                    "confirm": {
+                      "title": {
+                        "type": "plain_text",
+                        "text": "Are you sure?"
+                      },
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Check your calendar. Are you sure you are free on this date?"
+                      },
+                      "confirm": {
+                        "type": "plain_text",
+                        "text": "Yes, I am free."
+                      },
+                      "deny": {
+                        "type": "plain_text",
+                        "text": "No, I can't make it."
+                      }
+                    }
+                  },
+                  {
+                    "type": "timepicker",
+                    "action_id": "timepick-appt",
+                    "placeholder": {
+                      "type": "plain_text",
+                      "text": "Select appointment time..."
+                    },
+                    "initial_time": "12:35",
+                    "confirm": {
+                      "title": {
+                        "type": "plain_text",
+                        "text": "Are you sure?"
+                      },
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Check your calendar. Are you sure you are free at this time?"
+                      },
+                      "confirm": {
+                        "type": "plain_text",
+                        "text": "Yes, I am free."
+                      },
+                      "deny": {
+                        "type": "plain_text",
+                        "text": "No, I can't make it."
+                      }
+                    }
+                  },
+                  {
+                    "type": "datetimepicker",
+                    "action_id": "datetimepick-appt",
+                    "initial_date_time": 12345
+                  },
+                  {
+                    "type": "external_select",
+                    "placeholder": {
+                      "type": "plain_text",
+                      "text": "Please select your appointment time..."
+                    },
+                    "action_id": "appointment-time-select",
+                    "min_query_length": 4
+                  },
+                  {
+                    "type": "users_select",
+                    "placeholder": {
+                      "type": "plain_text",
+                      "text": "Select any users that will be accompanying you."
+                    },
+                    "action_id": "guest-select"
+                  },
+                  {
+                    "type": "workflow_button",
+                    "action_id": "workflow",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Click this"
+                    },
+                    "workflow": {
+                      "trigger": {
+                        "url": "https://example.com",
+                        "customizable_input_parameters": [
+                          {
+                            "name": "foo",
+                            "value": "bar"
+                          },
+                          {
+                            "name": "baz",
+                            "value": "BAZ"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+        }""".trimIndent()
         val json = gson.fromJson(original, JsonElement::class.java)
         val expected = json.asJsonObject["blocks"]
         val actual = gson.toJsonTree(blocks)

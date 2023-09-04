@@ -77,12 +77,12 @@ class MultiUsersSelectElementBuilder : Builder<MultiUsersSelectElement> {
 
     override fun build(): MultiUsersSelectElement {
         return MultiUsersSelectElement.builder()
-                .placeholder(placeholder)
-                .actionId(actionId)
-                .initialUsers(initialUsers)
-                .confirm(confirm)
-                .maxSelectedItems(maxSelectedItems)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .placeholder(placeholder)
+            .actionId(actionId)
+            .initialUsers(initialUsers)
+            .confirm(confirm)
+            .maxSelectedItems(maxSelectedItems)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

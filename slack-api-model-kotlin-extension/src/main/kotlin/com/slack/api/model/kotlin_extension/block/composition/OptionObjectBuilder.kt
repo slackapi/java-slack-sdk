@@ -10,7 +10,7 @@ import com.slack.api.model.kotlin_extension.block.composition.dsl.TextObjectDsl
 // same name with the object + "Builder" suffix
 @BlockLayoutBuilder
 class OptionObjectBuilder private constructor(
-        private val textContainer: SingleTextObjectContainer
+    private val textContainer: SingleTextObjectContainer
 ) : Builder<OptionObject>, TextObjectDsl by textContainer {
     private var value: String? = null
     private var url: String? = null
@@ -51,10 +51,10 @@ class OptionObjectBuilder private constructor(
 
     override fun build(): OptionObject {
         return OptionObject.builder()
-                .description(description)
-                .text(textContainer.underlying)
-                .value(value)
-                .url(url)
-                .build()
+            .description(description)
+            .text(textContainer.underlying)
+            .value(value)
+            .url(url)
+            .build()
     }
 }

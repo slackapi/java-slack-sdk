@@ -76,12 +76,16 @@ class MultiConversationsSelectElementBuilder : Builder<MultiConversationsSelectE
      *
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select">Multi conversations select element documentation</a>
      */
-    fun filter(vararg include: ConversationType, excludeExternalSharedChannels: Boolean? = null, excludeBotUsers: Boolean? = null) {
+    fun filter(
+        vararg include: ConversationType,
+        excludeExternalSharedChannels: Boolean? = null,
+        excludeBotUsers: Boolean? = null
+    ) {
         filter = ConversationsFilter.builder()
-                .include(include.map { it.value })
-                .excludeExternalSharedChannels(excludeExternalSharedChannels)
-                .excludeBotUsers(excludeBotUsers)
-                .build()
+            .include(include.map { it.value })
+            .excludeExternalSharedChannels(excludeExternalSharedChannels)
+            .excludeBotUsers(excludeBotUsers)
+            .build()
     }
 
     /**
@@ -92,12 +96,16 @@ class MultiConversationsSelectElementBuilder : Builder<MultiConversationsSelectE
      *
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select">Multi conversations select element documentation</a>
      */
-    fun filter(vararg include: String, excludeExternalSharedChannels: Boolean? = null, excludeBotUsers: Boolean? = null) {
+    fun filter(
+        vararg include: String,
+        excludeExternalSharedChannels: Boolean? = null,
+        excludeBotUsers: Boolean? = null
+    ) {
         filter = ConversationsFilter.builder()
-                .include(include.toList())
-                .excludeExternalSharedChannels(excludeExternalSharedChannels)
-                .excludeBotUsers(excludeBotUsers)
-                .build()
+            .include(include.toList())
+            .excludeExternalSharedChannels(excludeExternalSharedChannels)
+            .excludeBotUsers(excludeBotUsers)
+            .build()
     }
 
     /**
@@ -122,14 +130,14 @@ class MultiConversationsSelectElementBuilder : Builder<MultiConversationsSelectE
 
     override fun build(): MultiConversationsSelectElement {
         return MultiConversationsSelectElement.builder()
-                .placeholder(placeholder)
-                .actionId(actionId)
-                .initialConversations(initialConversations)
-                .confirm(confirm)
-                .maxSelectedItems(maxSelectedItems)
-                .defaultToCurrentConversation(defaultToCurrentConversation)
-                .filter(filter)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .placeholder(placeholder)
+            .actionId(actionId)
+            .initialConversations(initialConversations)
+            .confirm(confirm)
+            .maxSelectedItems(maxSelectedItems)
+            .defaultToCurrentConversation(defaultToCurrentConversation)
+            .filter(filter)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

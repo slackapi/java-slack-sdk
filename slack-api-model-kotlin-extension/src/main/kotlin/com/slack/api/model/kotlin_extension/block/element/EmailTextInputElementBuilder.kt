@@ -1,7 +1,7 @@
 package com.slack.api.model.kotlin_extension.block.element
 
-import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.model.block.composition.DispatchActionConfig
+import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.model.block.element.EmailTextInputElement
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 import com.slack.api.model.kotlin_extension.block.Builder
@@ -67,11 +67,11 @@ class EmailTextInputElementBuilder : Builder<EmailTextInputElement> {
 
     override fun build(): EmailTextInputElement {
         return EmailTextInputElement.builder()
-                .actionId(actionId)
-                .placeholder(placeholder)
-                .initialValue(initialValue)
-                .dispatchActionConfig(dispatchActionConfig)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .actionId(actionId)
+            .placeholder(placeholder)
+            .initialValue(initialValue)
+            .dispatchActionConfig(dispatchActionConfig)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

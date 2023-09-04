@@ -9,7 +9,7 @@ import com.slack.api.model.kotlin_extension.block.composition.dsl.OptionObjectDs
 
 @BlockLayoutBuilder
 class OptionGroupObjectBuilder private constructor(
-        private val optionContainer: MultiOptionContainer
+    private val optionContainer: MultiOptionContainer
 ) : Builder<OptionGroupObject>, OptionObjectDsl by optionContainer {
     private var label: PlainTextObject? = null
 
@@ -37,8 +37,8 @@ class OptionGroupObjectBuilder private constructor(
 
     override fun build(): OptionGroupObject {
         return OptionGroupObject.builder()
-                .label(label)
-                .options(optionContainer.underlying)
-                .build()
+            .label(label)
+            .options(optionContainer.underlying)
+            .build()
     }
 }

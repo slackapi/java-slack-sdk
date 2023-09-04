@@ -795,6 +795,28 @@
             "accessibility_label": ""
           },
           {
+            "type": "workflow_button",
+            "action_id": "",
+            "text": {
+              "type": "plain_text",
+              "text": "",
+              "emoji": false
+            },
+            "workflow": {
+              "trigger": {
+                "url": "",
+                "customizable_input_parameters": [
+                  {
+                    "name": "",
+                    "value": ""
+                  }
+                ]
+              }
+            },
+            "style": "",
+            "accessibility_label": ""
+          },
+          {
             "type": "checkboxes",
             "action_id": "",
             "options": [

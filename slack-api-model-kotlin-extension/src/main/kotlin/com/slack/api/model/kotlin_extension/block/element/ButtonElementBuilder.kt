@@ -105,13 +105,13 @@ class ButtonElementBuilder : Builder<ButtonElement> {
 
     override fun build(): ButtonElement {
         return ButtonElement.builder()
-                .actionId(actionId)
-                .url(url)
-                .value(value)
-                .text(text)
-                .style(style)
-                .confirm(confirm)
-                .accessibilityLabel(accessibilityLabel)
-                .build()
+            .actionId(actionId)
+            .url(url)
+            .value(value)
+            .text(text)
+            .style(style)
+            .confirm(confirm)
+            .accessibilityLabel(accessibilityLabel)
+            .build()
     }
 }

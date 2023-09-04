@@ -106,14 +106,14 @@ class MultiStaticSelectElementBuilder : Builder<MultiStaticSelectElement> {
 
     override fun build(): MultiStaticSelectElement {
         return MultiStaticSelectElement.builder()
-                .placeholder(placeholder)
-                .actionId(actionId)
-                .options(options)
-                .optionGroups(optionGroups)
-                .initialOptions(initialOptions)
-                .confirm(confirm)
-                .maxSelectedItems(maxSelectedItems)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .placeholder(placeholder)
+            .actionId(actionId)
+            .options(options)
+            .optionGroups(optionGroups)
+            .initialOptions(initialOptions)
+            .confirm(confirm)
+            .maxSelectedItems(maxSelectedItems)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }
