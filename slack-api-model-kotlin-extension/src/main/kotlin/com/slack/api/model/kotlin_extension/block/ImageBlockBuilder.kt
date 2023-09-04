@@ -85,14 +85,14 @@ class ImageBlockBuilder : Builder<ImageBlock> {
 
     override fun build(): ImageBlock {
         return ImageBlock.builder()
-                .fallback(fallback)
-                .imageUrl(imageUrl)
-                .imageWidth(imageWidth)
-                .imageHeight(imageHeight)
-                .imageBytes(imageBytes)
-                .altText(altText)
-                .blockId(blockId)
-                .title(title)
-                .build()
+            .fallback(fallback)
+            .imageUrl(imageUrl)
+            .imageWidth(imageWidth)
+            .imageHeight(imageHeight)
+            .imageBytes(imageBytes)
+            .altText(altText)
+            .blockId(blockId)
+            .title(title)
+            .build()
     }
 }

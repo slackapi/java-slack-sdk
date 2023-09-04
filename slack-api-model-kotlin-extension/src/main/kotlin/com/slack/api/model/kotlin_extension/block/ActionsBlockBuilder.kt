@@ -7,7 +7,7 @@ import com.slack.api.model.kotlin_extension.block.element.dsl.BlockElementDsl
 // same name with the object + "Builder" suffix
 @BlockLayoutBuilder
 class ActionsBlockBuilder private constructor(
-        private val elementsContainer: MultiBlockElementContainer
+    private val elementsContainer: MultiBlockElementContainer
 ) : Builder<ActionsBlock>, BlockElementDsl by elementsContainer {
     private var blockId: String? = null
 
@@ -37,8 +37,8 @@ class ActionsBlockBuilder private constructor(
 
     override fun build(): ActionsBlock {
         return ActionsBlock.builder()
-                .blockId(blockId)
-                .elements(elementsContainer.underlying)
-                .build()
+            .blockId(blockId)
+            .elements(elementsContainer.underlying)
+            .build()
     }
 }

@@ -7,7 +7,7 @@ import com.slack.api.model.kotlin_extension.block.element.dsl.BlockElementDsl
 
 @BlockLayoutBuilder
 class ContextBlockBuilder private constructor(
-        private val elementsContainer: MultiContextBlockElementContainer
+    private val elementsContainer: MultiContextBlockElementContainer
 ) : Builder<ContextBlock>, ContextBlockElementDsl by elementsContainer {
     private var blockId: String? = null
 
@@ -36,8 +36,8 @@ class ContextBlockBuilder private constructor(
 
     override fun build(): ContextBlock {
         return ContextBlock.builder()
-                .blockId(blockId)
-                .elements(elementsContainer.underlying)
-                .build()
+            .blockId(blockId)
+            .elements(elementsContainer.underlying)
+            .build()
     }
 }

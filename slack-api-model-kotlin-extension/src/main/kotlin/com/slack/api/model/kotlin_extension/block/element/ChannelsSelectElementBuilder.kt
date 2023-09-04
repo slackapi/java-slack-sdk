@@ -82,12 +82,12 @@ class ChannelsSelectElementBuilder : Builder<ChannelsSelectElement> {
 
     override fun build(): ChannelsSelectElement {
         return ChannelsSelectElement.builder()
-                .actionId(actionId)
-                .placeholder(placeholder)
-                .initialChannel(initialChannel)
-                .confirm(confirm)
-                .responseUrlEnabled(responseUrlEnabled)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .actionId(actionId)
+            .placeholder(placeholder)
+            .initialChannel(initialChannel)
+            .confirm(confirm)
+            .responseUrlEnabled(responseUrlEnabled)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

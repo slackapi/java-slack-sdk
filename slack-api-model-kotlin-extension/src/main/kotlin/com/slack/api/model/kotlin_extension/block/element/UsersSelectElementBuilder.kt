@@ -67,11 +67,11 @@ class UsersSelectElementBuilder : Builder<UsersSelectElement> {
 
     override fun build(): UsersSelectElement {
         return UsersSelectElement.builder()
-                .placeholder(placeholder)
-                .actionId(actionId)
-                .initialUser(initialUser)
-                .confirm(confirm)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .placeholder(placeholder)
+            .actionId(actionId)
+            .initialUser(initialUser)
+            .confirm(confirm)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

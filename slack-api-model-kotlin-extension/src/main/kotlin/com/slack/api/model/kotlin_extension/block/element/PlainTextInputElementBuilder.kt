@@ -1,7 +1,7 @@
 package com.slack.api.model.kotlin_extension.block.element
 
-import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.model.block.composition.DispatchActionConfig
+import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.model.block.element.PlainTextInputElement
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 import com.slack.api.model.kotlin_extension.block.Builder
@@ -97,14 +97,14 @@ class PlainTextInputElementBuilder : Builder<PlainTextInputElement> {
 
     override fun build(): PlainTextInputElement {
         return PlainTextInputElement.builder()
-                .actionId(actionId)
-                .placeholder(placeholder)
-                .initialValue(initialValue)
-                .multiline(multiline)
-                .minLength(minLength)
-                .maxLength(maxLength)
-                .dispatchActionConfig(dispatchActionConfig)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .actionId(actionId)
+            .placeholder(placeholder)
+            .initialValue(initialValue)
+            .multiline(multiline)
+            .minLength(minLength)
+            .maxLength(maxLength)
+            .dispatchActionConfig(dispatchActionConfig)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

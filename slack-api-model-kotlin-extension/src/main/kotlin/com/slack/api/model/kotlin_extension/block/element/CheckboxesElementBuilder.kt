@@ -68,11 +68,11 @@ class CheckboxesElementBuilder : Builder<CheckboxesElement> {
 
     override fun build(): CheckboxesElement {
         return CheckboxesElement.builder()
-                .actionId(actionId)
-                .options(options)
-                .initialOptions(initialOptions)
-                .confirm(confirm)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .actionId(actionId)
+            .options(options)
+            .initialOptions(initialOptions)
+            .confirm(confirm)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

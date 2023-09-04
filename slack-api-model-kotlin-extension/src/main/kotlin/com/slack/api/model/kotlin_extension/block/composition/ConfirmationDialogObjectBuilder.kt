@@ -11,7 +11,7 @@ import com.slack.api.model.kotlin_extension.block.element.ButtonStyle
 // same name with the object + "Builder" suffix
 @BlockLayoutBuilder
 class ConfirmationDialogObjectBuilder private constructor(
-        private val textContainer: SingleTextObjectContainer
+    private val textContainer: SingleTextObjectContainer
 ) : Builder<ConfirmationDialogObject>, TextObjectDsl by textContainer {
 
     constructor() : this(SingleTextObjectContainer())
@@ -85,11 +85,11 @@ class ConfirmationDialogObjectBuilder private constructor(
 
     override fun build(): ConfirmationDialogObject {
         return ConfirmationDialogObject.builder()
-                .title(title)
-                .text(textContainer.underlying)
-                .confirm(confirm)
-                .deny(deny)
-                .style(style)
-                .build()
+            .title(title)
+            .text(textContainer.underlying)
+            .confirm(confirm)
+            .deny(deny)
+            .style(style)
+            .build()
     }
 }

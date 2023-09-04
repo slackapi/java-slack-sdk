@@ -20,7 +20,7 @@ class DispatchActionConfigBuilder() : Builder<DispatchActionConfig>, DispatchAct
 
     override fun build(): DispatchActionConfig {
         return DispatchActionConfig.builder()
-                .triggerActionsOn(triggerActionsOn)
-                .build()
+            .triggerActionsOn(triggerActionsOn)
+            .build()
     }
 }

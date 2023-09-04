@@ -20,13 +20,13 @@ public class WorkflowObject {
     @AllArgsConstructor
     public static class Trigger {
         private String url;
-        private List<InputParam> customizableInputParameters;
+        private List<InputParameter> customizableInputParameters;
 
         @Data
         @Builder
         @NoArgsConstructor
         @AllArgsConstructor
-        public static class InputParam {
+        public static class InputParameter {
             private String name;
             private String value;
         }

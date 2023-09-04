@@ -21,9 +21,11 @@ interface TextObjectDsl {
             PlainTextObject.TYPE -> {
                 plainText(text, emoji)
             }
+
             MarkdownTextObject.TYPE -> {
                 markdownText(text, verbatim)
             }
+
             else -> {
                 throw IllegalArgumentException("Unknown type: $type")
             }

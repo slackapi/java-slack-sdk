@@ -78,12 +78,12 @@ class MultiChannelsSelectElementBuilder : Builder<MultiChannelsSelectElement> {
 
     override fun build(): MultiChannelsSelectElement {
         return MultiChannelsSelectElement.builder()
-                .placeholder(placeholder)
-                .actionId(actionId)
-                .initialChannels(initialChannels)
-                .confirm(confirm)
-                .maxSelectedItems(maxSelectedItems)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .placeholder(placeholder)
+            .actionId(actionId)
+            .initialChannels(initialChannels)
+            .confirm(confirm)
+            .maxSelectedItems(maxSelectedItems)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

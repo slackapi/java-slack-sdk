@@ -82,12 +82,12 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
 
     override fun build(): ExternalSelectElement {
         return ExternalSelectElement.builder()
-                .placeholder(placeholder)
-                .actionId(actionId)
-                .initialOption(initialOption)
-                .minQueryLength(minQueryLength)
-                .confirm(confirm)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .placeholder(placeholder)
+            .actionId(actionId)
+            .initialOption(initialOption)
+            .minQueryLength(minQueryLength)
+            .confirm(confirm)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

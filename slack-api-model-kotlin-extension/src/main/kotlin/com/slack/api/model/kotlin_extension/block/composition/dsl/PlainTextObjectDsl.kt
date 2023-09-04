@@ -1,7 +1,5 @@
 package com.slack.api.model.kotlin_extension.block.composition.dsl
 
-import com.slack.api.model.block.composition.MarkdownTextObject
-import com.slack.api.model.block.composition.PlainTextObject
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 
 @BlockLayoutBuilder

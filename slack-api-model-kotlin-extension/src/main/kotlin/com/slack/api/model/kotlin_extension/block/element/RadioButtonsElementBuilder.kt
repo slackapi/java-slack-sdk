@@ -70,11 +70,11 @@ class RadioButtonsElementBuilder : Builder<RadioButtonsElement> {
 
     override fun build(): RadioButtonsElement {
         return RadioButtonsElement.builder()
-                .actionId(actionId)
-                .options(options)
-                .initialOption(initialOption)
-                .confirm(confirm)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .actionId(actionId)
+            .options(options)
+            .initialOption(initialOption)
+            .confirm(confirm)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

@@ -104,7 +104,7 @@ public class BlocksTest {
                         .trigger(WorkflowObject.Trigger.builder()
                                 .url("https://slack.com/shortcuts/Ft0123ABC456/xyz...zyx")
                                 .customizableInputParameters(Arrays.asList(
-                                        WorkflowObject.Trigger.InputParam.builder().name("a").value("b").build()
+                                        WorkflowObject.Trigger.InputParameter.builder().name("a").value("b").build()
                                 ))
                                 .build())
                         .build())

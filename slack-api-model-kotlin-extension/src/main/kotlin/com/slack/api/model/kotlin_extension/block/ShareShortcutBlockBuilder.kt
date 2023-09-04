@@ -18,30 +18,39 @@ class ShareShortcutBlockBuilder : Builder<ShareShortcutBlock> {
     fun blockId(id: String) {
         blockId = id
     }
+
     fun functionTriggerId(id: String) {
         functionTriggerId = id
     }
+
     fun appId(id: String) {
         appId = id
     }
+
     fun isWorkflowApp(workflowApp: Boolean) {
         isWorkflowApp = workflowApp
     }
+
     fun appCollaborators(collaborators: List<String>) {
         appCollaborators = collaborators
     }
+
     fun buttonLabel(label: String) {
         _buttonLabel = label
     }
+
     fun title(title: String) {
         _title = title
     }
+
     fun description(description: String) {
         _description = description
     }
+
     fun botUserId(botUserId: String) {
         _botUserId = botUserId
     }
+
     fun url(url: String) {
         _url = url
     }

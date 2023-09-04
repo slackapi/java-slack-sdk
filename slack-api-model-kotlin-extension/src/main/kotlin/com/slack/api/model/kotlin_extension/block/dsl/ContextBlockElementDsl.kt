@@ -12,11 +12,11 @@ interface ContextBlockElementDsl : TextObjectDsl {
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#image">Image element documentation</a>
      */
     fun image(
-            imageUrl: String? = null,
-            altText: String? = null,
-            fallback: String? = null,
-            imageWidth: Int? = null,
-            imageHeight: Int? = null,
-            imageBytes: Int? = null
+        imageUrl: String? = null,
+        altText: String? = null,
+        fallback: String? = null,
+        imageWidth: Int? = null,
+        imageHeight: Int? = null,
+        imageBytes: Int? = null
     )
 }

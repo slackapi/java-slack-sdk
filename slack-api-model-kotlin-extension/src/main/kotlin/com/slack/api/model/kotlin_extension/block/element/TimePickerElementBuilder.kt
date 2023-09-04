@@ -78,11 +78,11 @@ class TimePickerElementBuilder : Builder<TimePickerElement> {
 
     override fun build(): TimePickerElement {
         return TimePickerElement.builder()
-                .actionId(actionId)
-                .placeholder(placeholder)
-                .initialTime(initialTime)
-                .confirm(confirm)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .actionId(actionId)
+            .placeholder(placeholder)
+            .initialTime(initialTime)
+            .confirm(confirm)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

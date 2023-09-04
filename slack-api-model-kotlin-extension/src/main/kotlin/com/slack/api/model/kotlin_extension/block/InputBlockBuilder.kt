@@ -7,7 +7,7 @@ import com.slack.api.model.kotlin_extension.block.element.dsl.BlockElementInputD
 
 @BlockLayoutBuilder
 class InputBlockBuilder private constructor(
-        private val elementContainer: SingleBlockElementContainer
+    private val elementContainer: SingleBlockElementContainer
 ) : Builder<InputBlock>, BlockElementInputDsl by elementContainer {
     private var blockId: String? = null
     private var label: PlainTextObject? = null
@@ -78,12 +78,12 @@ class InputBlockBuilder private constructor(
 
     override fun build(): InputBlock {
         return InputBlock.builder()
-                .blockId(blockId)
-                .label(label)
-                .element(elementContainer.underlying)
-                .hint(hint)
-                .optional(optional)
-                .dispatchAction(dispatchAction)
-                .build()
+            .blockId(blockId)
+            .label(label)
+            .element(elementContainer.underlying)
+            .hint(hint)
+            .optional(optional)
+            .dispatchAction(dispatchAction)
+            .build()
     }
 }

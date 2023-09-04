@@ -8,11 +8,15 @@ import com.slack.api.model.kotlin_extension.block.element.dsl.BlockElementDsl
 /**
  * Supports a BlockElementContainer holding exactly one block element
  */
-class SingleBlockElementContainer : BlockElementDsl {
+class SingleBlockElementContainer() : BlockElementDsl {
     var underlying: BlockElement? = null
 
     override fun button(builder: ButtonElementBuilder.() -> Unit) {
         underlying = ButtonElementBuilder().apply(builder).build()
+    }
+
+    override fun workflowButton(builder: WorkflowButtonElementBuilder.() -> Unit) {
+        underlying = WorkflowButtonElementBuilder().apply(builder).build()
     }
 
     override fun checkboxes(builder: CheckboxesElementBuilder.() -> Unit) {
@@ -43,15 +47,22 @@ class SingleBlockElementContainer : BlockElementDsl {
         underlying = ExternalSelectElementBuilder().apply(builder).build()
     }
 
-    override fun image(imageUrl: String?, altText: String?, fallback: String?, imageWidth: Int?, imageHeight: Int?, imageBytes: Int?) {
+    override fun image(
+        imageUrl: String?,
+        altText: String?,
+        fallback: String?,
+        imageWidth: Int?,
+        imageHeight: Int?,
+        imageBytes: Int?
+    ) {
         underlying = ImageElement.builder()
-                .imageUrl(imageUrl)
-                .altText(altText)
-                .fallback(fallback)
-                .imageWidth(imageWidth)
-                .imageHeight(imageHeight)
-                .imageBytes(imageBytes)
-                .build()
+            .imageUrl(imageUrl)
+            .altText(altText)
+            .fallback(fallback)
+            .imageWidth(imageWidth)
+            .imageHeight(imageHeight)
+            .imageBytes(imageBytes)
+            .build()
     }
 
     override fun multiChannelsSelect(builder: MultiChannelsSelectElementBuilder.() -> Unit) {

@@ -11,8 +11,8 @@ import com.slack.api.model.kotlin_extension.block.element.dsl.BlockElementDsl
 // same name with the object + "Builder" suffix
 @BlockLayoutBuilder
 class SectionBlockBuilder private constructor(
-        private val textContainer: SingleTextObjectContainer,
-        private val accessoryContainer: SingleBlockElementContainer
+    private val textContainer: SingleTextObjectContainer,
+    private val accessoryContainer: SingleBlockElementContainer
 ) : Builder<SectionBlock>, TextObjectDsl by textContainer, BlockElementDsl by accessoryContainer {
     private var blockId: String? = null
 
@@ -56,10 +56,10 @@ class SectionBlockBuilder private constructor(
 
     override fun build(): SectionBlock {
         return SectionBlock.builder()
-                .blockId(blockId)
-                .fields(fields)
-                .accessory(accessoryContainer.underlying)
-                .text(textContainer.underlying)
-                .build()
+            .blockId(blockId)
+            .fields(fields)
+            .accessory(accessoryContainer.underlying)
+            .text(textContainer.underlying)
+            .build()
     }
 }

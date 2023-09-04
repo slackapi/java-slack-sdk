@@ -94,13 +94,13 @@ class MultiExternalSelectElementBuilder : Builder<MultiExternalSelectElement> {
 
     override fun build(): MultiExternalSelectElement {
         return MultiExternalSelectElement.builder()
-                .placeholder(placeholder)
-                .actionId(actionId)
-                .initialOptions(initialOptions)
-                .minQueryLength(minQueryLength)
-                .maxSelectedItems(maxSelectedItems)
-                .confirm(confirm)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .placeholder(placeholder)
+            .actionId(actionId)
+            .initialOptions(initialOptions)
+            .minQueryLength(minQueryLength)
+            .maxSelectedItems(maxSelectedItems)
+            .confirm(confirm)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }

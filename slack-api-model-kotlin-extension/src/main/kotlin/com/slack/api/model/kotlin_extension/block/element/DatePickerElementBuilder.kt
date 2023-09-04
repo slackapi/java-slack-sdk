@@ -67,11 +67,11 @@ class DatePickerElementBuilder : Builder<DatePickerElement> {
 
     override fun build(): DatePickerElement {
         return DatePickerElement.builder()
-                .actionId(actionId)
-                .placeholder(placeholder)
-                .initialDate(initialDate)
-                .confirm(confirm)
-                .focusOnLoad(_focusOnLoad)
-                .build()
+            .actionId(actionId)
+            .placeholder(placeholder)
+            .initialDate(initialDate)
+            .confirm(confirm)
+            .focusOnLoad(_focusOnLoad)
+            .build()
     }
 }
