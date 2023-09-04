@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <aws-lambda-core.version>1.2.2</aws-lambda-core.version>
+        <aws-lambda-core.version>1.2.3</aws-lambda-core.version>
     </properties>
 
     <artifactId>bolt-aws-lambda</artifactId>
