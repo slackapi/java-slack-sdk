@@ -19,6 +19,9 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsListRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsLookupRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsSetRequest;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
@@ -34,6 +37,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannel
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
+import com.slack.api.methods.request.admin.workflows.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -129,6 +133,9 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsListResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsLookupResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsSetResponse;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
@@ -144,6 +151,7 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChanne
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
+import com.slack.api.methods.response.admin.workflows.*;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
@@ -319,6 +327,18 @@ public interface MethodsClient {
     AdminAppsUninstallResponse adminAppsUninstall(AdminAppsUninstallRequest req) throws IOException, SlackApiException;
 
     AdminAppsUninstallResponse adminAppsUninstall(RequestConfigurator<AdminAppsUninstallRequest.AdminAppsUninstallRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminAppsActivitiesListResponse adminAppsActivitiesList(AdminAppsActivitiesListRequest req) throws IOException, SlackApiException;
+
+    AdminAppsActivitiesListResponse adminAppsActivitiesList(RequestConfigurator<AdminAppsActivitiesListRequest.AdminAppsActivitiesListRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminAppsConfigLookupResponse adminAppsConfigLookup(AdminAppsConfigLookupRequest req) throws IOException, SlackApiException;
+
+    AdminAppsConfigLookupResponse adminAppsConfigLookup(RequestConfigurator<AdminAppsConfigLookupRequest.AdminAppsConfigLookupRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminAppsConfigSetResponse adminAppsConfigSet(AdminAppsConfigSetRequest req) throws IOException, SlackApiException;
+
+    AdminAppsConfigSetResponse adminAppsConfigSet(RequestConfigurator<AdminAppsConfigSetRequest.AdminAppsConfigSetRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // admin.apps.requests
@@ -545,6 +565,22 @@ public interface MethodsClient {
     AdminEmojiRenameResponse adminEmojiRename(RequestConfigurator<AdminEmojiRenameRequest.AdminEmojiRenameRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
+    // admin.functions
+    // ------------------------------
+
+    AdminFunctionsListResponse adminFunctionsList(AdminFunctionsListRequest req) throws IOException, SlackApiException;
+
+    AdminFunctionsListResponse adminFunctionsList(RequestConfigurator<AdminFunctionsListRequest.AdminFunctionsListRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminFunctionsPermissionsLookupResponse adminFunctionsPermissionsLookup(AdminFunctionsPermissionsLookupRequest req) throws IOException, SlackApiException;
+
+    AdminFunctionsPermissionsLookupResponse adminFunctionsPermissionsLookup(RequestConfigurator<AdminFunctionsPermissionsLookupRequest.AdminFunctionsPermissionsLookupRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminFunctionsPermissionsSetResponse adminFunctionsPermissionsSet(AdminFunctionsPermissionsSetRequest req) throws IOException, SlackApiException;
+
+    AdminFunctionsPermissionsSetResponse adminFunctionsPermissionsSet(RequestConfigurator<AdminFunctionsPermissionsSetRequest.AdminFunctionsPermissionsSetRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
     // admin.inviteRequests
     // ------------------------------
 
@@ -743,6 +779,30 @@ public interface MethodsClient {
     AdminUsersUnsupportedVersionsExportResponse adminUsersUnsupportedVersionsExport(AdminUsersUnsupportedVersionsExportRequest req) throws IOException, SlackApiException;
 
     AdminUsersUnsupportedVersionsExportResponse adminUsersUnsupportedVersionsExport(RequestConfigurator<AdminUsersUnsupportedVersionsExportRequest.AdminUsersUnsupportedVersionsExportRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // admin.workflows
+    // ------------------------------
+
+    AdminWorkflowsCollaboratorsAddResponse adminWorkflowsCollaboratorsAdd(AdminWorkflowsCollaboratorsAddRequest req) throws IOException, SlackApiException;
+
+    AdminWorkflowsCollaboratorsAddResponse adminWorkflowsCollaboratorsAdd(RequestConfigurator<AdminWorkflowsCollaboratorsAddRequest.AdminWorkflowsCollaboratorsAddRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminWorkflowsCollaboratorsRemoveResponse adminWorkflowsCollaboratorsRemove(AdminWorkflowsCollaboratorsRemoveRequest req) throws IOException, SlackApiException;
+
+    AdminWorkflowsCollaboratorsRemoveResponse adminWorkflowsCollaboratorsRemove(RequestConfigurator<AdminWorkflowsCollaboratorsRemoveRequest.AdminWorkflowsCollaboratorsRemoveRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminWorkflowsPermissionsLookupResponse adminWorkflowsPermissionsLookup(AdminWorkflowsPermissionsLookupRequest req) throws IOException, SlackApiException;
+
+    AdminWorkflowsPermissionsLookupResponse adminWorkflowsPermissionsLookup(RequestConfigurator<AdminWorkflowsPermissionsLookupRequest.AdminWorkflowsPermissionsLookupRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminWorkflowsSearchResponse adminWorkflowsSearch(AdminWorkflowsSearchRequest req) throws IOException, SlackApiException;
+
+    AdminWorkflowsSearchResponse adminWorkflowsSearch(RequestConfigurator<AdminWorkflowsSearchRequest.AdminWorkflowsSearchRequestBuilder> req) throws IOException, SlackApiException;
+
+    AdminWorkflowsUnpublishResponse adminWorkflowsUnpublish(AdminWorkflowsUnpublishRequest req) throws IOException, SlackApiException;
+
+    AdminWorkflowsUnpublishResponse adminWorkflowsUnpublish(RequestConfigurator<AdminWorkflowsUnpublishRequest.AdminWorkflowsUnpublishRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // api

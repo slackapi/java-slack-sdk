@@ -1,0 +1,54 @@
+{
+  "ok": false,
+  "permissions": {
+    "Fn0000000000": {
+      "distribution": {
+        "type": "",
+        "user_ids": [
+          ""
+        ]
+      },
+      "allowed_entities": {
+        "type": "",
+        "user_ids": [
+          ""
+        ]
+      },
+      "allowed_by_admin": {
+        "type": "",
+        "user_ids": [
+          ""
+        ]
+      }
+    },
+    "Fn0000000000_": {
+      "distribution": {
+        "type": "",
+        "user_ids": [
+          ""
+        ]
+      },
+      "allowed_entities": {
+        "type": "",
+        "user_ids": [
+          ""
+        ]
+      },
+      "allowed_by_admin": {
+        "type": "",
+        "user_ids": [
+          ""
+        ]
+      }
+    }
+  },
+  "errors": {},
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  }
+}

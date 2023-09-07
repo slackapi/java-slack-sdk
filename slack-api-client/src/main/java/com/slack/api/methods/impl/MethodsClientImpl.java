@@ -21,6 +21,9 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsListRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsLookupRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsSetRequest;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
@@ -36,6 +39,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannel
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
+import com.slack.api.methods.request.admin.workflows.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -131,6 +135,9 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsListResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsLookupResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsSetResponse;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
@@ -146,6 +153,7 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChanne
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
+import com.slack.api.methods.response.admin.workflows.*;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
@@ -346,6 +354,36 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminAppsUninstallResponse adminAppsUninstall(RequestConfigurator<AdminAppsUninstallRequest.AdminAppsUninstallRequestBuilder> req) throws IOException, SlackApiException {
         return adminAppsUninstall(req.configure(AdminAppsUninstallRequest.builder()).build());
+    }
+
+    @Override
+    public AdminAppsActivitiesListResponse adminAppsActivitiesList(AdminAppsActivitiesListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_APPS_ACTIVITIES_LIST, getToken(req), AdminAppsActivitiesListResponse.class);
+    }
+
+    @Override
+    public AdminAppsActivitiesListResponse adminAppsActivitiesList(RequestConfigurator<AdminAppsActivitiesListRequest.AdminAppsActivitiesListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAppsActivitiesList(req.configure(AdminAppsActivitiesListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminAppsConfigLookupResponse adminAppsConfigLookup(AdminAppsConfigLookupRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_APPS_CONFIG_LOOKUP, getToken(req), AdminAppsConfigLookupResponse.class);
+    }
+
+    @Override
+    public AdminAppsConfigLookupResponse adminAppsConfigLookup(RequestConfigurator<AdminAppsConfigLookupRequest.AdminAppsConfigLookupRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAppsConfigLookup(req.configure(AdminAppsConfigLookupRequest.builder()).build());
+    }
+
+    @Override
+    public AdminAppsConfigSetResponse adminAppsConfigSet(AdminAppsConfigSetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_APPS_CONFIG_SET, getToken(req), AdminAppsConfigSetResponse.class);
+    }
+
+    @Override
+    public AdminAppsConfigSetResponse adminAppsConfigSet(RequestConfigurator<AdminAppsConfigSetRequest.AdminAppsConfigSetRequestBuilder> req) throws IOException, SlackApiException {
+        return adminAppsConfigSet(req.configure(AdminAppsConfigSetRequest.builder()).build());
     }
 
     @Override
@@ -775,6 +813,36 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public AdminFunctionsListResponse adminFunctionsList(AdminFunctionsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_FUNCTIONS_LIST, getToken(req), AdminFunctionsListResponse.class);
+    }
+
+    @Override
+    public AdminFunctionsListResponse adminFunctionsList(RequestConfigurator<AdminFunctionsListRequest.AdminFunctionsListRequestBuilder> req) throws IOException, SlackApiException {
+        return adminFunctionsList(req.configure(AdminFunctionsListRequest.builder()).build());
+    }
+
+    @Override
+    public AdminFunctionsPermissionsLookupResponse adminFunctionsPermissionsLookup(AdminFunctionsPermissionsLookupRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_FUNCTIONS_PERMISSIONS_LOOKUP, getToken(req), AdminFunctionsPermissionsLookupResponse.class);
+    }
+
+    @Override
+    public AdminFunctionsPermissionsLookupResponse adminFunctionsPermissionsLookup(RequestConfigurator<AdminFunctionsPermissionsLookupRequest.AdminFunctionsPermissionsLookupRequestBuilder> req) throws IOException, SlackApiException {
+        return adminFunctionsPermissionsLookup(req.configure(AdminFunctionsPermissionsLookupRequest.builder()).build());
+    }
+
+    @Override
+    public AdminFunctionsPermissionsSetResponse adminFunctionsPermissionsSet(AdminFunctionsPermissionsSetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_FUNCTIONS_PERMISSIONS_SET, getToken(req), AdminFunctionsPermissionsSetResponse.class);
+    }
+
+    @Override
+    public AdminFunctionsPermissionsSetResponse adminFunctionsPermissionsSet(RequestConfigurator<AdminFunctionsPermissionsSetRequest.AdminFunctionsPermissionsSetRequestBuilder> req) throws IOException, SlackApiException {
+        return adminFunctionsPermissionsSet(req.configure(AdminFunctionsPermissionsSetRequest.builder()).build());
+    }
+
+    @Override
     public AdminInviteRequestsApproveResponse adminInviteRequestsApprove(AdminInviteRequestsApproveRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_INVITE_REQUESTS_APPROVE, getToken(req), AdminInviteRequestsApproveResponse.class);
     }
@@ -1132,6 +1200,56 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AdminUsersUnsupportedVersionsExportResponse adminUsersUnsupportedVersionsExport(RequestConfigurator<AdminUsersUnsupportedVersionsExportRequest.AdminUsersUnsupportedVersionsExportRequestBuilder> req) throws IOException, SlackApiException {
         return adminUsersUnsupportedVersionsExport(req.configure(AdminUsersUnsupportedVersionsExportRequest.builder()).build());
+    }
+
+    @Override
+    public AdminWorkflowsCollaboratorsAddResponse adminWorkflowsCollaboratorsAdd(AdminWorkflowsCollaboratorsAddRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_WORKFLOWS_COLLABORATORS_ADD, getToken(req), AdminWorkflowsCollaboratorsAddResponse.class);
+    }
+
+    @Override
+    public AdminWorkflowsCollaboratorsAddResponse adminWorkflowsCollaboratorsAdd(RequestConfigurator<AdminWorkflowsCollaboratorsAddRequest.AdminWorkflowsCollaboratorsAddRequestBuilder> req) throws IOException, SlackApiException {
+        return adminWorkflowsCollaboratorsAdd(req.configure(AdminWorkflowsCollaboratorsAddRequest.builder()).build());
+    }
+
+    @Override
+    public AdminWorkflowsCollaboratorsRemoveResponse adminWorkflowsCollaboratorsRemove(AdminWorkflowsCollaboratorsRemoveRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_WORKFLOWS_COLLABORATORS_REMOVE, getToken(req), AdminWorkflowsCollaboratorsRemoveResponse.class);
+    }
+
+    @Override
+    public AdminWorkflowsCollaboratorsRemoveResponse adminWorkflowsCollaboratorsRemove(RequestConfigurator<AdminWorkflowsCollaboratorsRemoveRequest.AdminWorkflowsCollaboratorsRemoveRequestBuilder> req) throws IOException, SlackApiException {
+        return adminWorkflowsCollaboratorsRemove(req.configure(AdminWorkflowsCollaboratorsRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public AdminWorkflowsPermissionsLookupResponse adminWorkflowsPermissionsLookup(AdminWorkflowsPermissionsLookupRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_WORKFLOWS_PERMISSIONS_LOOKUP, getToken(req), AdminWorkflowsPermissionsLookupResponse.class);
+    }
+
+    @Override
+    public AdminWorkflowsPermissionsLookupResponse adminWorkflowsPermissionsLookup(RequestConfigurator<AdminWorkflowsPermissionsLookupRequest.AdminWorkflowsPermissionsLookupRequestBuilder> req) throws IOException, SlackApiException {
+        return adminWorkflowsPermissionsLookup(req.configure(AdminWorkflowsPermissionsLookupRequest.builder()).build());
+    }
+
+    @Override
+    public AdminWorkflowsSearchResponse adminWorkflowsSearch(AdminWorkflowsSearchRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_WORKFLOWS_SEARCH, getToken(req), AdminWorkflowsSearchResponse.class);
+    }
+
+    @Override
+    public AdminWorkflowsSearchResponse adminWorkflowsSearch(RequestConfigurator<AdminWorkflowsSearchRequest.AdminWorkflowsSearchRequestBuilder> req) throws IOException, SlackApiException {
+        return adminWorkflowsSearch(req.configure(AdminWorkflowsSearchRequest.builder()).build());
+    }
+
+    @Override
+    public AdminWorkflowsUnpublishResponse adminWorkflowsUnpublish(AdminWorkflowsUnpublishRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ADMIN_WORKFLOWS_UNPUBLISH, getToken(req), AdminWorkflowsUnpublishResponse.class);
+    }
+
+    @Override
+    public AdminWorkflowsUnpublishResponse adminWorkflowsUnpublish(RequestConfigurator<AdminWorkflowsUnpublishRequest.AdminWorkflowsUnpublishRequestBuilder> req) throws IOException, SlackApiException {
+        return adminWorkflowsUnpublish(req.configure(AdminWorkflowsUnpublishRequest.builder()).build());
     }
 
     @Override

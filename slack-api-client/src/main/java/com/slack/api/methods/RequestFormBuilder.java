@@ -19,6 +19,7 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
+import com.slack.api.methods.request.admin.functions.*;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
@@ -34,6 +35,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannel
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
+import com.slack.api.methods.request.admin.workflows.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -269,6 +271,42 @@ public class RequestFormBuilder {
         if (req.getTeamIds() != null) {
             setIfNotNull("team_ids", req.getTeamIds().stream().collect(joining(",")), form);
         }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsActivitiesListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        setIfNotNull("component_id", req.getComponentId(), form);
+        setIfNotNull("component_type", req.getComponentType(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("log_event_type", req.getLogEventType(), form);
+        setIfNotNull("max_date_created", req.getMaxDateCreated(), form);
+        setIfNotNull("min_date_created", req.getMinDateCreated(), form);
+        setIfNotNull("min_log_level", req.getMinLogLevel(), form);
+        setIfNotNull("sort_direction", req.getSortDirection(), form);
+        setIfNotNull("source", req.getSource(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("trace_id", req.getTraceId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsConfigLookupRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getAppIds() != null) {
+            setIfNotNull("app_ids", req.getAppIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminAppsConfigSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        if (req.getDomainRestrictions() != null) {
+            setIfNotNull("domain_restrictions", GSON.toJson(req.getDomainRestrictions()), form);
+        }
+        setIfNotNull("workflow_auth_strategy", req.getWorkflowAuthStrategy(), form);
         return form;
     }
 
@@ -605,6 +643,36 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(AdminFunctionsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getAppIds() != null) {
+            setIfNotNull("app_ids", req.getAppIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminFunctionsPermissionsLookupRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getFunctionIds() != null) {
+            setIfNotNull("function_ids", req.getFunctionIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+
+    public static FormBody.Builder toForm(AdminFunctionsPermissionsSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("visibility", req.getVisibility(), form);
+        setIfNotNull("function_id", req.getFunctionId(), form);
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", req.getUserIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
     public static FormBody.Builder toForm(AdminInviteRequestsApproveRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("invite_request_id", req.getInviteRequestId(), form);
@@ -858,6 +926,62 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("date_end_of_support", req.getDateEndOfSupport(), form);
         setIfNotNull("date_sessions_started", req.getDateSessionsStarted(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminWorkflowsCollaboratorsAddRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getCollaboratorIds() != null && req.getCollaboratorIds().size() > 0) {
+            setIfNotNull("collaborator_ids", req.getCollaboratorIds().stream().collect(joining(",")), form);
+        }
+        if (req.getWorkflowIds() != null && req.getWorkflowIds().size() > 0) {
+            setIfNotNull("workflow_ids", req.getWorkflowIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminWorkflowsCollaboratorsRemoveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getCollaboratorIds() != null && req.getCollaboratorIds().size() > 0) {
+            setIfNotNull("collaborator_ids", req.getCollaboratorIds().stream().collect(joining(",")), form);
+        }
+        if (req.getWorkflowIds() != null && req.getWorkflowIds().size() > 0) {
+            setIfNotNull("workflow_ids", req.getWorkflowIds().stream().collect(joining(",")), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminWorkflowsPermissionsLookupRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getWorkflowIds() != null && req.getWorkflowIds().size() > 0) {
+            setIfNotNull("workflow_ids", req.getWorkflowIds().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("max_workflow_triggers", req.getMaxWorkflowTriggers(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminWorkflowsSearchRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        if (req.getCollaboratorIds() != null && req.getCollaboratorIds().size() > 0) {
+            setIfNotNull("collaborator_ids", req.getCollaboratorIds(), form);
+        }
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("no_collaborators", req.getNoCollaborators(), form);
+        setIfNotNull("num_trigger_ids", req.getNumTriggerIds(), form);
+        setIfNotNull("query", req.getQuery(), form);
+        setIfNotNull("sort", req.getSort(), form);
+        setIfNotNull("sort_dir", req.getSortDir(), form);
+        setIfNotNull("source", req.getSource(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AdminWorkflowsUnpublishRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getWorkflowIds() != null && req.getWorkflowIds().size() > 0) {
+            setIfNotNull("workflow_ids", req.getWorkflowIds().stream().collect(joining(",")), form);
+        }
         return form;
     }
 

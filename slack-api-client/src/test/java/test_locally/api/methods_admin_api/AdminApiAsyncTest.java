@@ -49,6 +49,9 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminAppsUninstall(r -> r.appId("A111").enterpriseId("E111").teamIds(Arrays.asList("T123")))
                 .get().isOk(), is(true));
+        assertThat(methods.adminAppsActivitiesList(r -> r.appId("A111")).get().isOk(), is(true));
+        assertThat(methods.adminAppsConfigLookup(r -> r.appIds(Arrays.asList("A111"))).get().isOk(), is(true));
+        assertThat(methods.adminAppsConfigSet(r -> r.appId("A111")).get().isOk(), is(true));
     }
 
     @Test
@@ -147,6 +150,15 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminEmojiRename(r -> r.name("smile").newName("smile2"))
                 .get().isOk(), is(true));
+    }
+
+    @Test
+    public void adminFunctions() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminFunctionsList(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminFunctionsPermissionsSet(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminFunctionsPermissionsLookup(r -> r).get().isOk(), is(true));
     }
 
     @Test
@@ -254,4 +266,14 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
     }
 
+    @Test
+    public void adminWorkflows() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminWorkflowsSearch(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminWorkflowsCollaboratorsAdd(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminWorkflowsCollaboratorsRemove(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminWorkflowsPermissionsLookup(r -> r).get().isOk(), is(true));
+        assertThat(methods.adminWorkflowsUnpublish(r -> r).get().isOk(), is(true));
+    }
 }

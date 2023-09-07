@@ -1,0 +1,25 @@
+{
+  "ok": false,
+  "error": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "needed": "",
+  "provided": "",
+  "configs": [
+    {
+      "app_id": "A00000000",
+      "workflow_auth_strategy": "",
+      "domain_restrictions": {
+        "emails": [
+          ""
+        ],
+        "urls": [
+          ""
+        ]
+      }
+    }
+  ]
+}

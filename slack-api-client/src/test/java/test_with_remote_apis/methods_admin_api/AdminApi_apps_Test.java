@@ -3,6 +3,7 @@ package test_with_remote_apis.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.methods.AsyncMethodsClient;
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.model.admin.AppConfig;
 import com.slack.api.model.admin.AppRequest;
 import config.Constants;
 import config.SlackTestConfig;
@@ -12,6 +13,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -139,6 +141,47 @@ public class AdminApi_apps_Test {
                     .get();
             // TODO: running a valid test here
             assertThat(list.getError(), is(notNullValue()));
+        }
+    }
+
+    @Test
+    public void adminAppsActivitiesList() throws Exception {
+        if (orgAdminUserToken != null) {
+            AdminAppsActivitiesListResponse list = methodsAsync.adminAppsActivitiesList(req -> req
+                    .limit(1000)
+            ).get();
+            assertThat(list.getError(), is(nullValue()));
+            String nextCursor = list.getResponseMetadata().getNextCursor();
+
+            while (nextCursor != null && !nextCursor.equals("")) {
+                final String _nextCursor = nextCursor;
+                list = methodsAsync.adminAppsActivitiesList(req -> req
+                        .limit(1000)
+                        .cursor(_nextCursor)
+                ).get();
+                assertThat(list.getError(), is(nullValue()));
+                nextCursor = list.getResponseMetadata().getNextCursor();
+            }
+        }
+    }
+
+    @Test
+    public void adminAppsConfigOperations() throws Exception {
+        if (orgAdminUserToken != null) {
+            final List<String> appIds = Arrays.asList(System.getenv(Constants.SLACK_SDK_TEST_GRID_APP_IDS).split(","));
+            AdminAppsConfigLookupResponse response = methodsAsync.adminAppsConfigLookup(req -> req
+                    .appIds(appIds)
+            ).get();
+            assertThat(response.getError(), is(nullValue()));
+
+            AppConfig config = response.getConfigs().get(0);
+            AdminAppsConfigSetResponse set = methodsAsync.adminAppsConfigSet(req -> req
+                    .appId(config.getAppId())
+                    .workflowAuthStrategy(config.getWorkflowAuthStrategy())
+                    .domainRestrictions(config.getDomainRestrictions())
+            ).get();
+            // TODO: valid test
+            assertThat(set.getError(), is("invalid_app"));
         }
     }
 }

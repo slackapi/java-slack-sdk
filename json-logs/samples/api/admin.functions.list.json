@@ -1,0 +1,43 @@
+{
+  "ok": false,
+  "error": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ],
+    "next_cursor": ""
+  },
+  "needed": "",
+  "provided": "",
+  "functions": [
+    {
+      "id": "",
+      "callback_id": "",
+      "title": "",
+      "description": "",
+      "type": "",
+      "input_parameters": [
+        {
+          "type": "",
+          "name": "",
+          "title": "",
+          "is_required": false,
+          "description": ""
+        }
+      ],
+      "output_parameters": [
+        {
+          "type": "",
+          "name": "",
+          "title": "",
+          "is_required": false,
+          "description": ""
+        }
+      ],
+      "app_id": "A00000000",
+      "date_created": 12345,
+      "date_updated": 12345,
+      "date_deleted": 12345
+    }
+  ]
+}

@@ -19,6 +19,9 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsListRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsLookupRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsSetRequest;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
@@ -34,6 +37,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannel
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
+import com.slack.api.methods.request.admin.workflows.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -116,6 +120,9 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsListResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsLookupResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsSetResponse;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
@@ -131,6 +138,7 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChanne
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
+import com.slack.api.methods.response.admin.workflows.*;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
@@ -244,6 +252,18 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminAppsUninstallResponse> adminAppsUninstall(AdminAppsUninstallRequest req);
 
     CompletableFuture<AdminAppsUninstallResponse> adminAppsUninstall(RequestConfigurator<AdminAppsUninstallRequest.AdminAppsUninstallRequestBuilder> req);
+
+    CompletableFuture<AdminAppsActivitiesListResponse> adminAppsActivitiesList(AdminAppsActivitiesListRequest req);
+
+    CompletableFuture<AdminAppsActivitiesListResponse> adminAppsActivitiesList(RequestConfigurator<AdminAppsActivitiesListRequest.AdminAppsActivitiesListRequestBuilder> req);
+
+    CompletableFuture<AdminAppsConfigLookupResponse> adminAppsConfigLookup(AdminAppsConfigLookupRequest req);
+
+    CompletableFuture<AdminAppsConfigLookupResponse> adminAppsConfigLookup(RequestConfigurator<AdminAppsConfigLookupRequest.AdminAppsConfigLookupRequestBuilder> req);
+
+    CompletableFuture<AdminAppsConfigSetResponse> adminAppsConfigSet(AdminAppsConfigSetRequest req);
+
+    CompletableFuture<AdminAppsConfigSetResponse> adminAppsConfigSet(RequestConfigurator<AdminAppsConfigSetRequest.AdminAppsConfigSetRequestBuilder> req);
 
     // ------------------------------
     // admin.apps.requests
@@ -464,6 +484,22 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminEmojiRenameResponse> adminEmojiRename(RequestConfigurator<AdminEmojiRenameRequest.AdminEmojiRenameRequestBuilder> req);
 
     // ------------------------------
+    // admin.functions
+    // ------------------------------
+
+    CompletableFuture<AdminFunctionsListResponse> adminFunctionsList(AdminFunctionsListRequest req);
+
+    CompletableFuture<AdminFunctionsListResponse> adminFunctionsList(RequestConfigurator<AdminFunctionsListRequest.AdminFunctionsListRequestBuilder> req);
+
+    CompletableFuture<AdminFunctionsPermissionsLookupResponse> adminFunctionsPermissionsLookup(AdminFunctionsPermissionsLookupRequest req);
+
+    CompletableFuture<AdminFunctionsPermissionsLookupResponse> adminFunctionsPermissionsLookup(RequestConfigurator<AdminFunctionsPermissionsLookupRequest.AdminFunctionsPermissionsLookupRequestBuilder> req);
+
+    CompletableFuture<AdminFunctionsPermissionsSetResponse> adminFunctionsPermissionsSet(AdminFunctionsPermissionsSetRequest req);
+
+    CompletableFuture<AdminFunctionsPermissionsSetResponse> adminFunctionsPermissionsSet(RequestConfigurator<AdminFunctionsPermissionsSetRequest.AdminFunctionsPermissionsSetRequestBuilder> req);
+
+    // ------------------------------
     // admin.inviteRequests
     // ------------------------------
 
@@ -654,6 +690,30 @@ public interface AsyncMethodsClient {
     CompletableFuture<AdminUsersUnsupportedVersionsExportResponse> adminUsersUnsupportedVersionsExport(AdminUsersUnsupportedVersionsExportRequest req);
 
     CompletableFuture<AdminUsersUnsupportedVersionsExportResponse> adminUsersUnsupportedVersionsExport(RequestConfigurator<AdminUsersUnsupportedVersionsExportRequest.AdminUsersUnsupportedVersionsExportRequestBuilder> req);
+
+    // ------------------------------
+    // admin.workflows
+    // ------------------------------
+
+    CompletableFuture<AdminWorkflowsCollaboratorsAddResponse> adminWorkflowsCollaboratorsAdd(AdminWorkflowsCollaboratorsAddRequest req);
+
+    CompletableFuture<AdminWorkflowsCollaboratorsAddResponse> adminWorkflowsCollaboratorsAdd(RequestConfigurator<AdminWorkflowsCollaboratorsAddRequest.AdminWorkflowsCollaboratorsAddRequestBuilder> req);
+
+    CompletableFuture<AdminWorkflowsCollaboratorsRemoveResponse> adminWorkflowsCollaboratorsRemove(AdminWorkflowsCollaboratorsRemoveRequest req);
+
+    CompletableFuture<AdminWorkflowsCollaboratorsRemoveResponse> adminWorkflowsCollaboratorsRemove(RequestConfigurator<AdminWorkflowsCollaboratorsRemoveRequest.AdminWorkflowsCollaboratorsRemoveRequestBuilder> req);
+
+    CompletableFuture<AdminWorkflowsPermissionsLookupResponse> adminWorkflowsPermissionsLookup(AdminWorkflowsPermissionsLookupRequest req);
+
+    CompletableFuture<AdminWorkflowsPermissionsLookupResponse> adminWorkflowsPermissionsLookup(RequestConfigurator<AdminWorkflowsPermissionsLookupRequest.AdminWorkflowsPermissionsLookupRequestBuilder> req);
+
+    CompletableFuture<AdminWorkflowsSearchResponse> adminWorkflowsSearch(AdminWorkflowsSearchRequest req);
+
+    CompletableFuture<AdminWorkflowsSearchResponse> adminWorkflowsSearch(RequestConfigurator<AdminWorkflowsSearchRequest.AdminWorkflowsSearchRequestBuilder> req);
+
+    CompletableFuture<AdminWorkflowsUnpublishResponse> adminWorkflowsUnpublish(AdminWorkflowsUnpublishRequest req);
+
+    CompletableFuture<AdminWorkflowsUnpublishResponse> adminWorkflowsUnpublish(RequestConfigurator<AdminWorkflowsUnpublishRequest.AdminWorkflowsUnpublishRequestBuilder> req);
 
     // ------------------------------
     // api

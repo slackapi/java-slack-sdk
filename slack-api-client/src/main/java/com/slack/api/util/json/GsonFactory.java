@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.slack.api.SlackConfig;
 import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.model.Attachment;
+import com.slack.api.model.admin.AppWorkflow;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.TextObject;
@@ -31,10 +32,12 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory())
-                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory())
-                .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory())
                 .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory())
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory())
+                .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory())
+                .registerTypeAdapter(AppWorkflow.StepInputValueElementDefault.class, new GsonAppWorkflowStepInputValueDefaultFactory())
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory())
+                .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory())
                 .create();
     }
 
@@ -50,9 +53,11 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
-                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProps))
-                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory())
+                .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
+                .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory(failOnUnknownProps))
+                .registerTypeAdapter(AppWorkflow.StepInputValueElementDefault.class, new GsonAppWorkflowStepInputValueDefaultFactory(failOnUnknownProps))
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps));
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
@@ -74,10 +79,11 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
-                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
+                .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory())
+                .registerTypeAdapter(LogsResponse.DetailsChangedValue.class, new GsonAuditLogsDetailsChangedValueFactory(failOnUnknownProps))
                 .registerTypeAdapter(LogsResponse.UserIDs.class, new GsonAuditLogsDetailsUserIDsFactory(failOnUnknownProps));
         if (failOnUnknownProps || config.isLibraryMaintainerMode()) {
             gsonBuilder = gsonBuilder.registerTypeAdapterFactory(new UnknownPropertyDetectionAdapterFactory());
