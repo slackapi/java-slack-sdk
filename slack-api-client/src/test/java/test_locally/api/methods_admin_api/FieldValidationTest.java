@@ -17,6 +17,9 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsListResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsLookupResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsSetResponse;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.teams.AdminTeamsAdminsListResponse;
 import com.slack.api.methods.response.admin.teams.AdminTeamsCreateResponse;
@@ -28,6 +31,7 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsAddTeamsRe
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChannelsResponse;
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
+import com.slack.api.methods.response.admin.workflows.*;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -83,6 +87,18 @@ public class FieldValidationTest {
             verifyIfAllGettersReturnNonNullRecursively(
                     obj.getRestrictedApps().get(0),
                     "getImageOriginal");
+        }
+        {
+            AdminAppsActivitiesListResponse obj = parse(prefix + "activities.list", AdminAppsActivitiesListResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
+            AdminAppsConfigSetResponse obj = parse(prefix + "config.set", AdminAppsConfigSetResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
+        }
+        {
+            AdminAppsConfigLookupResponse obj = parse(prefix + "config.lookup", AdminAppsConfigLookupResponse.class);
+            verifyIfAllGettersReturnNonNull(obj);
         }
     }
 
@@ -464,6 +480,48 @@ public class FieldValidationTest {
         }
         {
             AdminUsergroupsRemoveChannelsResponse obj = parse(prefix + "removeChannels", AdminUsergroupsRemoveChannelsResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+    }
+
+    @Test
+    public void adminFunctions() throws Exception {
+        String prefix = "admin.functions.";
+        {
+            AdminFunctionsListResponse obj = parse(prefix + "list", AdminFunctionsListResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+        {
+            AdminFunctionsPermissionsLookupResponse obj = parse(prefix + "permissions.lookup", AdminFunctionsPermissionsLookupResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+        {
+            AdminFunctionsPermissionsSetResponse obj = parse(prefix + "permissions.set", AdminFunctionsPermissionsSetResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+    }
+
+    @Test
+    public void adminWorkflows() throws Exception {
+        String prefix = "admin.workflows.";
+        {
+            AdminWorkflowsSearchResponse obj = parse(prefix + "search", AdminWorkflowsSearchResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+        {
+            AdminWorkflowsCollaboratorsAddResponse obj = parse(prefix + "collaborators.add", AdminWorkflowsCollaboratorsAddResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+        {
+            AdminWorkflowsCollaboratorsRemoveResponse obj = parse(prefix + "collaborators.add", AdminWorkflowsCollaboratorsRemoveResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+        {
+            AdminWorkflowsPermissionsLookupResponse obj = parse(prefix + "permissions.lookup", AdminWorkflowsPermissionsLookupResponse.class);
+            verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
+        }
+        {
+            AdminWorkflowsUnpublishResponse obj = parse(prefix + "unpublish", AdminWorkflowsUnpublishResponse.class);
             verifyIfAllGettersReturnNonNull(obj, "getWarning", "getResponseMetadata");
         }
     }

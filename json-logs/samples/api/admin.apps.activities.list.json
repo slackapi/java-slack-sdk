@@ -1,0 +1,53 @@
+{
+  "ok": false,
+  "activities": [
+    {
+      "app_id": "A00000000",
+      "level": "",
+      "event_type": "",
+      "source": "",
+      "component_type": "",
+      "component_id": "",
+      "team_id": "",
+      "enterprise_id": "E00000000",
+      "payload": {
+        "exec_outcome": "",
+        "workflow_name": "",
+        "function_name": "",
+        "function_type": "",
+        "function_id": "",
+        "function_execution_id": "",
+        "total_steps": 12345,
+        "current_step": 12345,
+        "actor": "W00000000",
+        "error": "",
+        "log": "",
+        "type": "",
+        "billing_reason": [
+          ""
+        ],
+        "is_billing_excluded": false,
+        "trigger": {
+          "id": "",
+          "type": "",
+          "config": {
+            "name": "",
+            "description": ""
+          },
+          "trip_information": {
+            "user_id": "W00000000",
+            "channel_id": "C00000000"
+          }
+        }
+      },
+      "created": 12345,
+      "trace_id": ""
+    }
+  ],
+  "response_metadata": {
+    "next_cursor": ""
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

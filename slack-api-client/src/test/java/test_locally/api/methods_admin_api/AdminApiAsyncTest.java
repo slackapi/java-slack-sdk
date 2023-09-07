@@ -3,11 +3,13 @@ package test_locally.api.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
+import com.slack.api.model.admin.AppConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -49,6 +51,9 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminAppsUninstall(r -> r.appId("A111").enterpriseId("E111").teamIds(Arrays.asList("T123")))
                 .get().isOk(), is(true));
+        assertThat(methods.adminAppsActivitiesList(r -> r.appId("A111")).get().isOk(), is(true));
+        assertThat(methods.adminAppsConfigLookup(r -> r.appIds(Arrays.asList("A111"))).get().isOk(), is(true));
+        assertThat(methods.adminAppsConfigSet(r -> r.appId("A111").domainRestrictions(new AppConfig.DomainRestrictions())).get().isOk(), is(true));
     }
 
     @Test
@@ -147,6 +152,15 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
         assertThat(methods.adminEmojiRename(r -> r.name("smile").newName("smile2"))
                 .get().isOk(), is(true));
+    }
+
+    @Test
+    public void adminFunctions() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminFunctionsList(r -> r.appIds(Arrays.asList(""))).get().isOk(), is(true));
+        assertThat(methods.adminFunctionsPermissionsSet(r -> r.userIds(Arrays.asList(""))).get().isOk(), is(true));
+        assertThat(methods.adminFunctionsPermissionsLookup(r -> r.functionIds(Arrays.asList(""))).get().isOk(), is(true));
     }
 
     @Test
@@ -254,4 +268,14 @@ public class AdminApiAsyncTest {
                 .get().isOk(), is(true));
     }
 
+    @Test
+    public void adminWorkflows() throws Exception {
+        AsyncMethodsClient methods = slack.methodsAsync(ValidToken);
+
+        assertThat(methods.adminWorkflowsSearch(r -> r.collaboratorIds(Arrays.asList(""))).get().isOk(), is(true));
+        assertThat(methods.adminWorkflowsCollaboratorsAdd(r -> r.workflowIds(Arrays.asList("")).collaboratorIds(Arrays.asList(""))).get().isOk(), is(true));
+        assertThat(methods.adminWorkflowsCollaboratorsRemove(r -> r.workflowIds(Arrays.asList("")).collaboratorIds(Arrays.asList(""))).get().isOk(), is(true));
+        assertThat(methods.adminWorkflowsPermissionsLookup(r -> r.workflowIds(Arrays.asList(""))).get().isOk(), is(true));
+        assertThat(methods.adminWorkflowsUnpublish(r -> r.workflowIds(Arrays.asList(""))).get().isOk(), is(true));
+    }
 }

@@ -22,6 +22,9 @@ public class Methods {
     public static final String ADMIN_APPS_APPROVED_LIST = "admin.apps.approved.list";
     public static final String ADMIN_APPS_RESTRICTED_LIST = "admin.apps.restricted.list";
     public static final String ADMIN_APPS_UNINSTALL = "admin.apps.uninstall";
+    public static final String ADMIN_APPS_ACTIVITIES_LIST = "admin.apps.activities.list";
+    public static final String ADMIN_APPS_CONFIG_LOOKUP = "admin.apps.config.lookup";
+    public static final String ADMIN_APPS_CONFIG_SET = "admin.apps.config.set";
 
     // ------------------------------
     // admin.apps.requests
@@ -110,6 +113,14 @@ public class Methods {
     public static final String ADMIN_EMOJI_RENAME = "admin.emoji.rename";
 
     // ------------------------------
+    // admin.functions
+    // ------------------------------
+
+    public static final String ADMIN_FUNCTIONS_LIST = "admin.functions.list";
+    public static final String ADMIN_FUNCTIONS_PERMISSIONS_LOOKUP = "admin.functions.permissions.lookup";
+    public static final String ADMIN_FUNCTIONS_PERMISSIONS_SET = "admin.functions.permissions.set";
+
+    // ------------------------------
     // admin.inviteRequests
     // ------------------------------
 
@@ -196,6 +207,16 @@ public class Methods {
     public static final String ADMIN_USERS_SESSION_SET_SETTINGS = "admin.users.session.setSettings";
     public static final String ADMIN_USERS_SESSION_GET_SETTINGS = "admin.users.session.getSettings";
     public static final String ADMIN_USERS_SESSION_CLEAR_SETTINGS = "admin.users.session.clearSettings";
+
+    // ------------------------------
+    // admin.workflows
+    // ------------------------------
+
+    public static final String ADMIN_WORKFLOWS_COLLABORATORS_ADD = "admin.workflows.collaborators.add";
+    public static final String ADMIN_WORKFLOWS_COLLABORATORS_REMOVE = "admin.workflows.collaborators.remove";
+    public static final String ADMIN_WORKFLOWS_PERMISSIONS_LOOKUP = "admin.workflows.permissions.lookup";
+    public static final String ADMIN_WORKFLOWS_SEARCH = "admin.workflows.search";
+    public static final String ADMIN_WORKFLOWS_UNPUBLISH =  "admin.workflows.unpublish";
 
     // ------------------------------
     // api

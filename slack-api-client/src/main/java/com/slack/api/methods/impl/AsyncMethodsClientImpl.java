@@ -23,6 +23,9 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsListRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsLookupRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsSetRequest;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
@@ -38,6 +41,7 @@ import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsListChannel
 import com.slack.api.methods.request.admin.usergroups.AdminUsergroupsRemoveChannelsRequest;
 import com.slack.api.methods.request.admin.users.*;
 import com.slack.api.methods.request.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportRequest;
+import com.slack.api.methods.request.admin.workflows.*;
 import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
@@ -120,6 +124,9 @@ import com.slack.api.methods.response.admin.conversations.whitelist.AdminConvers
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelResponse;
 import com.slack.api.methods.response.admin.conversations.whitelist.AdminConversationsWhitelistRemoveResponse;
 import com.slack.api.methods.response.admin.emoji.*;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsListResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsLookupResponse;
+import com.slack.api.methods.response.admin.functions.AdminFunctionsPermissionsSetResponse;
 import com.slack.api.methods.response.admin.invite_requests.*;
 import com.slack.api.methods.response.admin.roles.AdminRolesAddAssignmentsResponse;
 import com.slack.api.methods.response.admin.roles.AdminRolesListAssignmentsResponse;
@@ -135,6 +142,7 @@ import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsListChanne
 import com.slack.api.methods.response.admin.usergroups.AdminUsergroupsRemoveChannelsResponse;
 import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.users.unsupported_versions.AdminUsersUnsupportedVersionsExportResponse;
+import com.slack.api.methods.response.admin.workflows.*;
 import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
@@ -311,6 +319,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminAppsUninstallResponse> adminAppsUninstall(RequestConfigurator<AdminAppsUninstallRequest.AdminAppsUninstallRequestBuilder> req) {
         return adminAppsUninstall(req.configure(AdminAppsUninstallRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsActivitiesListResponse> adminAppsActivitiesList(AdminAppsActivitiesListRequest req) {
+        return executor.execute(ADMIN_APPS_ACTIVITIES_LIST, toMap(req), () -> methods.adminAppsActivitiesList(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsActivitiesListResponse> adminAppsActivitiesList(RequestConfigurator<AdminAppsActivitiesListRequest.AdminAppsActivitiesListRequestBuilder> req) {
+        return adminAppsActivitiesList(req.configure(AdminAppsActivitiesListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsConfigLookupResponse> adminAppsConfigLookup(AdminAppsConfigLookupRequest req) {
+        return executor.execute(ADMIN_APPS_CONFIG_LOOKUP, toMap(req), () -> methods.adminAppsConfigLookup(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsConfigLookupResponse> adminAppsConfigLookup(RequestConfigurator<AdminAppsConfigLookupRequest.AdminAppsConfigLookupRequestBuilder> req) {
+        return adminAppsConfigLookup(req.configure(AdminAppsConfigLookupRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsConfigSetResponse> adminAppsConfigSet(AdminAppsConfigSetRequest req) {
+        return executor.execute(ADMIN_APPS_CONFIG_SET, toMap(req), () -> methods.adminAppsConfigSet(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminAppsConfigSetResponse> adminAppsConfigSet(RequestConfigurator<AdminAppsConfigSetRequest.AdminAppsConfigSetRequestBuilder> req) {
+        return adminAppsConfigSet(req.configure(AdminAppsConfigSetRequest.builder()).build());
     }
 
     @Override
@@ -734,6 +772,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AdminFunctionsListResponse> adminFunctionsList(AdminFunctionsListRequest req) {
+        return executor.execute(ADMIN_FUNCTIONS_LIST, toMap(req), () -> methods.adminFunctionsList(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminFunctionsListResponse> adminFunctionsList(RequestConfigurator<AdminFunctionsListRequest.AdminFunctionsListRequestBuilder> req) {
+        return adminFunctionsList(req.configure(AdminFunctionsListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminFunctionsPermissionsLookupResponse> adminFunctionsPermissionsLookup(AdminFunctionsPermissionsLookupRequest req) {
+        return executor.execute(ADMIN_FUNCTIONS_PERMISSIONS_LOOKUP, toMap(req), () -> methods.adminFunctionsPermissionsLookup(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminFunctionsPermissionsLookupResponse> adminFunctionsPermissionsLookup(RequestConfigurator<AdminFunctionsPermissionsLookupRequest.AdminFunctionsPermissionsLookupRequestBuilder> req) {
+        return adminFunctionsPermissionsLookup(req.configure(AdminFunctionsPermissionsLookupRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminFunctionsPermissionsSetResponse> adminFunctionsPermissionsSet(AdminFunctionsPermissionsSetRequest req) {
+        return executor.execute(ADMIN_FUNCTIONS_PERMISSIONS_SET, toMap(req), () -> methods.adminFunctionsPermissionsSet(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminFunctionsPermissionsSetResponse> adminFunctionsPermissionsSet(RequestConfigurator<AdminFunctionsPermissionsSetRequest.AdminFunctionsPermissionsSetRequestBuilder> req) {
+        return adminFunctionsPermissionsSet(req.configure(AdminFunctionsPermissionsSetRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AdminInviteRequestsApproveResponse> adminInviteRequestsApprove(AdminInviteRequestsApproveRequest req) {
         return executor.execute(ADMIN_INVITE_REQUESTS_APPROVE, toMap(req), () -> methods.adminInviteRequestsApprove(req));
     }
@@ -1111,6 +1179,56 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AdminUsersUnsupportedVersionsExportResponse> adminUsersUnsupportedVersionsExport(RequestConfigurator<AdminUsersUnsupportedVersionsExportRequest.AdminUsersUnsupportedVersionsExportRequestBuilder> req) {
         return adminUsersUnsupportedVersionsExport(req.configure(AdminUsersUnsupportedVersionsExportRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsCollaboratorsAddResponse> adminWorkflowsCollaboratorsAdd(AdminWorkflowsCollaboratorsAddRequest req) {
+        return executor.execute(ADMIN_WORKFLOWS_COLLABORATORS_ADD, toMap(req), () -> methods.adminWorkflowsCollaboratorsAdd(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsCollaboratorsAddResponse> adminWorkflowsCollaboratorsAdd(RequestConfigurator<AdminWorkflowsCollaboratorsAddRequest.AdminWorkflowsCollaboratorsAddRequestBuilder> req) {
+        return adminWorkflowsCollaboratorsAdd(req.configure(AdminWorkflowsCollaboratorsAddRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsCollaboratorsRemoveResponse> adminWorkflowsCollaboratorsRemove(AdminWorkflowsCollaboratorsRemoveRequest req) {
+        return executor.execute(ADMIN_WORKFLOWS_COLLABORATORS_REMOVE, toMap(req), () -> methods.adminWorkflowsCollaboratorsRemove(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsCollaboratorsRemoveResponse> adminWorkflowsCollaboratorsRemove(RequestConfigurator<AdminWorkflowsCollaboratorsRemoveRequest.AdminWorkflowsCollaboratorsRemoveRequestBuilder> req) {
+        return adminWorkflowsCollaboratorsRemove(req.configure(AdminWorkflowsCollaboratorsRemoveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsPermissionsLookupResponse> adminWorkflowsPermissionsLookup(AdminWorkflowsPermissionsLookupRequest req) {
+        return executor.execute(ADMIN_WORKFLOWS_PERMISSIONS_LOOKUP, toMap(req), () -> methods.adminWorkflowsPermissionsLookup(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsPermissionsLookupResponse> adminWorkflowsPermissionsLookup(RequestConfigurator<AdminWorkflowsPermissionsLookupRequest.AdminWorkflowsPermissionsLookupRequestBuilder> req) {
+        return adminWorkflowsPermissionsLookup(req.configure(AdminWorkflowsPermissionsLookupRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsSearchResponse> adminWorkflowsSearch(AdminWorkflowsSearchRequest req) {
+        return executor.execute(ADMIN_WORKFLOWS_SEARCH, toMap(req), () -> methods.adminWorkflowsSearch(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsSearchResponse> adminWorkflowsSearch(RequestConfigurator<AdminWorkflowsSearchRequest.AdminWorkflowsSearchRequestBuilder> req) {
+        return adminWorkflowsSearch(req.configure(AdminWorkflowsSearchRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsUnpublishResponse> adminWorkflowsUnpublish(AdminWorkflowsUnpublishRequest req) {
+        return executor.execute(ADMIN_WORKFLOWS_UNPUBLISH, toMap(req), () -> methods.adminWorkflowsUnpublish(req));
+    }
+
+    @Override
+    public CompletableFuture<AdminWorkflowsUnpublishResponse> adminWorkflowsUnpublish(RequestConfigurator<AdminWorkflowsUnpublishRequest.AdminWorkflowsUnpublishRequestBuilder> req) {
+        return adminWorkflowsUnpublish(req.configure(AdminWorkflowsUnpublishRequest.builder()).build());
     }
 
     @Override

@@ -78,6 +78,8 @@ public class MethodsRateLimits {
                 ADMIN_APPS_REQUESTS_CANCEL,
                 ADMIN_APPS_REQUESTS_LIST,
 
+                ADMIN_APPS_CONFIG_LOOKUP,
+
                 ADMIN_BARRIERS_CREATE,
                 ADMIN_BARRIERS_DELETE,
                 ADMIN_BARRIERS_LIST,
@@ -122,6 +124,8 @@ public class MethodsRateLimits {
                 ADMIN_INVITE_REQUESTS_APPROVED_LIST,
                 ADMIN_INVITE_REQUESTS_DENIED_LIST,
 
+                ADMIN_FUNCTIONS_LIST,
+
                 ADMIN_ROLES_ADD_ASSIGNMENTS,
                 ADMIN_ROLES_REMOVE_ASSIGNMENTS,
 
@@ -145,7 +149,13 @@ public class MethodsRateLimits {
 
                 ADMIN_USERGROUPS_ADD_TEAMS,
                 ADMIN_USERGROUPS_LIST_CHANNELS,
-                ADMIN_USERGROUPS_REMOVE_CHANNELS
+                ADMIN_USERGROUPS_REMOVE_CHANNELS,
+
+                ADMIN_WORKFLOWS_COLLABORATORS_ADD,
+                ADMIN_WORKFLOWS_COLLABORATORS_REMOVE,
+                ADMIN_WORKFLOWS_PERMISSIONS_LOOKUP,
+                ADMIN_WORKFLOWS_SEARCH,
+                ADMIN_WORKFLOWS_UNPUBLISH
         );
         for (String methods : adminApiMethods_Tier2) {
             setRateLimitTier(methods, Tier2);
@@ -161,7 +171,12 @@ public class MethodsRateLimits {
                 ADMIN_TEAMS_SETTINGS_INFO,
                 ADMIN_TEAMS_SETTINGS_SET_NAME,
 
-                ADMIN_USERS_LIST
+                ADMIN_USERS_LIST,
+
+                ADMIN_APPS_ACTIVITIES_LIST,
+                ADMIN_APPS_CONFIG_SET,
+                ADMIN_FUNCTIONS_PERMISSIONS_LOOKUP,
+                ADMIN_FUNCTIONS_PERMISSIONS_SET
         );
         for (String methods : adminApiMethods_Tier3) {
             setRateLimitTier(methods, Tier3);

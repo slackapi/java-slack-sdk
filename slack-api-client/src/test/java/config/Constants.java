@@ -22,6 +22,7 @@ public class Constants {
     // Main team Id for testing
     public static final String SLACK_SDK_TEST_GRID_TEAM_ID = "SLACK_SDK_TEST_GRID_TEAM_ID";
     public static final String SLACK_SDK_TEST_GRID_TEAM_ID_2 = "SLACK_SDK_TEST_GRID_TEAM_ID_2";
+    public static final String SLACK_SDK_TEST_GRID_APP_IDS = "SLACK_SDK_TEST_GRID_APP_IDS";
     // IDP User Group connected to SLACK_SDK_TEST_GRID_TEAM_ID
     public static final String SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID = "SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID";
     public static final String SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID_2 = "SLACK_SDK_TEST_GRID_IDP_USERGROUP_ID_2";

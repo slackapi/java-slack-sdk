@@ -1,0 +1,44 @@
+{
+  "ok": false,
+  "permissions": {
+    "0000000000": {
+      "complete": false,
+      "who_can_run": {
+        "permission_type": "",
+        "user_ids": [
+          ""
+        ],
+        "channel_ids": [
+          ""
+        ],
+        "team_ids": [
+          ""
+        ],
+        "org_ids": [
+          ""
+        ]
+      }
+    },
+    "0000000000_": {
+      "complete": false,
+      "who_can_run": {
+        "permission_type": "",
+        "user_ids": [
+          ""
+        ],
+        "channel_ids": [
+          ""
+        ],
+        "team_ids": [
+          ""
+        ],
+        "org_ids": [
+          ""
+        ]
+      }
+    }
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

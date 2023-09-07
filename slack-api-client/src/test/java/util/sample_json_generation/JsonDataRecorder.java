@@ -8,8 +8,7 @@ import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsRe
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.*;
-import com.slack.api.model.admin.AppRequest;
-import com.slack.api.model.admin.Emoji;
+import com.slack.api.model.admin.*;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.json.GsonFactory;
@@ -27,6 +26,7 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static util.ObjectInitializer.initProperties;
 import static util.sample_json_generation.SampleObjects.Json;
 
 @Slf4j
@@ -203,7 +203,7 @@ public class JsonDataRecorder {
             JsonArray objects = resourceObj.get("members").getAsJsonArray();
             clearAllElements(objects);
             com.slack.api.scim.model.Group.Member sampleObject =
-                    ObjectInitializer.initProperties(new com.slack.api.scim.model.Group.Member());
+                    initProperties(new com.slack.api.scim.model.Group.Member());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
     }
@@ -215,7 +215,7 @@ public class JsonDataRecorder {
         {
             JsonArray objects = resourceObj.get("addresses").getAsJsonArray();
             clearAllElements(objects);
-            User.Address sampleObject = ObjectInitializer.initProperties(new User.Address());
+            User.Address sampleObject = initProperties(new User.Address());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
         if (resourceObj.get("emails") == null) {
@@ -224,7 +224,7 @@ public class JsonDataRecorder {
         {
             JsonArray objects = resourceObj.get("emails").getAsJsonArray();
             clearAllElements(objects);
-            User.Email sampleObject = ObjectInitializer.initProperties(new User.Email());
+            User.Email sampleObject = initProperties(new User.Email());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
         if (resourceObj.get("phoneNumbers") == null) {
@@ -233,7 +233,7 @@ public class JsonDataRecorder {
         {
             JsonArray objects = resourceObj.get("phoneNumbers").getAsJsonArray();
             clearAllElements(objects);
-            User.PhoneNumber sampleObject = ObjectInitializer.initProperties(new User.PhoneNumber());
+            User.PhoneNumber sampleObject = initProperties(new User.PhoneNumber());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
         if (resourceObj.get("photos") == null) {
@@ -242,7 +242,7 @@ public class JsonDataRecorder {
         {
             JsonArray objects = resourceObj.get("photos").getAsJsonArray();
             clearAllElements(objects);
-            User.Photo sampleObject = ObjectInitializer.initProperties(new User.Photo());
+            User.Photo sampleObject = initProperties(new User.Photo());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
         if (resourceObj.get("roles") == null) {
@@ -251,7 +251,7 @@ public class JsonDataRecorder {
         {
             JsonArray objects = resourceObj.get("roles").getAsJsonArray();
             clearAllElements(objects);
-            User.Role sampleObject = ObjectInitializer.initProperties(new User.Role());
+            User.Role sampleObject = initProperties(new User.Role());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
         if (resourceObj.get("groups") == null) {
@@ -260,7 +260,7 @@ public class JsonDataRecorder {
         {
             JsonArray objects = resourceObj.get("groups").getAsJsonArray();
             clearAllElements(objects);
-            User.Group sampleObject = ObjectInitializer.initProperties(new User.Group());
+            User.Group sampleObject = initProperties(new User.Group());
             objects.add(GsonFactory.createCamelCase(config).toJsonTree(sampleObject));
         }
     }
@@ -332,9 +332,9 @@ public class JsonDataRecorder {
                 }
                 // FIXME: the array sometimes cannot be empty
                 if (!array.isEmpty()) {
-                    array.set(0, gson.toJsonTree(ObjectInitializer.initProperties(new Bookmark())));
+                    array.set(0, gson.toJsonTree(initProperties(new Bookmark())));
                 } else {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Bookmark())));
+                    array.add(gson.toJsonTree(initProperties(new Bookmark())));
                 }
             } else if (path.equals("/api/admin.conversations.search") && name != null && name.equals("ownership_details")) {
                 try {
@@ -346,10 +346,10 @@ public class JsonDataRecorder {
                 }
                 // FIXME: the array sometimes cannot be empty
                 if (!array.isEmpty()) {
-                    array.set(0, gson.toJsonTree(ObjectInitializer.initProperties(
+                    array.set(0, gson.toJsonTree(initProperties(
                             new AdminConversationsSearchResponse.CanvasOwnershipDetail())));
                 } else {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(
+                    array.add(gson.toJsonTree(initProperties(
                             new AdminConversationsSearchResponse.CanvasOwnershipDetail())));
                 }
             } else if (path.equals("/api/team.profile.get") &&
@@ -363,7 +363,7 @@ public class JsonDataRecorder {
                 }
                 // possible_values
                 if (name.equals("sections")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(
+                    array.add(gson.toJsonTree(initProperties(
                             new TeamProfileGetResponse.Profiles.Section())));
                 }
                 if (name.equals("possible_values")) {
@@ -377,7 +377,7 @@ public class JsonDataRecorder {
                 } catch (Exception e) {
                     log.info("Failed to remove an existing element from replies", e);
                 }
-                array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Message.MessageRootReply())));
+                array.add(gson.toJsonTree(initProperties(new Message.MessageRootReply())));
             } else if (name != null && name.equals("comments")) {
                 try {
                     for (int idx = 0; idx < array.size(); idx++) {
@@ -386,7 +386,7 @@ public class JsonDataRecorder {
                 } catch (Exception e) {
                     log.info("Failed to remove an existing element from comments", e);
                 }
-                array.add(gson.toJsonTree(ObjectInitializer.initProperties(new FileComment())));
+                array.add(gson.toJsonTree(initProperties(new FileComment())));
             } else if (name != null && name.equals("files") && !path.equals("/api/files.completeUploadExternal")) {
                 try {
                     for (int idx = 0; idx < array.size(); idx++) {
@@ -408,7 +408,7 @@ public class JsonDataRecorder {
                     log.info("Failed to remove an existing element from status_emoji_display_info", e);
                 }
                 array.add(gson.toJsonTree(
-                        ObjectInitializer.initProperties(new com.slack.api.model.User.Profile.StatusEmojiDisplayInfo())
+                        initProperties(new com.slack.api.model.User.Profile.StatusEmojiDisplayInfo())
                 ));
             } else if (path.startsWith("/api/admin.conversations.bulk") &&
                     name != null && name.equals("not_added")) {
@@ -420,7 +420,7 @@ public class JsonDataRecorder {
                     log.info("Failed to remove an existing element from not_added", e);
                 }
                 AdminConversationsBulkMoveResponse.NotAdded notAdded =
-                        ObjectInitializer.initProperties(new AdminConversationsBulkMoveResponse.NotAdded());
+                        initProperties(new AdminConversationsBulkMoveResponse.NotAdded());
                 array.add(gson.toJsonTree(notAdded));
             }
             if (array.size() == 0) {
@@ -435,29 +435,29 @@ public class JsonDataRecorder {
                     JsonElement elem = gson.toJsonTree(address);
                     array.add(elem);
                 } else if (path.equals("/api/admin.users.session.getSettings") && name.equals("session_settings")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(
+                    array.add(gson.toJsonTree(initProperties(
                             new AdminUsersSessionGetSettingsResponse.SessionSetting())));
                 } else if (path.equals("/api/conversations.list") && name.equals("channels")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Conversation())));
+                    array.add(gson.toJsonTree(initProperties(new Conversation())));
                 } else if (path.equals("/api/users.conversations") && name.equals("channels")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Conversation())));
+                    array.add(gson.toJsonTree(initProperties(new Conversation())));
                 } else if (path.equals("/api/rtm.start") && name.equals("groups")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Group())));
+                    array.add(gson.toJsonTree(initProperties(new Group())));
                 } else if (name.equals("app_requests")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new AppRequest())));
+                    array.add(gson.toJsonTree(initProperties(new AppRequest())));
                 } else if (path.equals("/api/chat.scheduledMessages.list") && name.equals("scheduled_messages")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new ChatScheduledMessagesListResponse.ScheduledMessage())));
+                    array.add(gson.toJsonTree(initProperties(new ChatScheduledMessagesListResponse.ScheduledMessage())));
                 } else if (path.equals("/api/team.profile.get") && name.equals("possible_values")) {
                     array.add("");
                 } else if (name.equals("replies")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new Message.MessageRootReply())));
+                    array.add(gson.toJsonTree(initProperties(new Message.MessageRootReply())));
                 } else if (name.equals("comments")) {
-                    array.add(gson.toJsonTree(ObjectInitializer.initProperties(new FileComment())));
+                    array.add(gson.toJsonTree(initProperties(new FileComment())));
                 } else if (name.equals("active_incidents")) {
                     SlackIssue slackIssue = new SlackIssue();
-                    slackIssue.setNotes(Arrays.asList(ObjectInitializer.initProperties(new SlackIssue.Note())));
+                    slackIssue.setNotes(Arrays.asList(initProperties(new SlackIssue.Note())));
                     slackIssue.setServices(Arrays.asList(""));
-                    slackIssue = ObjectInitializer.initProperties(slackIssue);
+                    slackIssue = initProperties(slackIssue);
                     array.add(gson.toJsonTree(slackIssue));
                 } else {
                     array.add(""); // in most cases, empty array can have string values
@@ -549,7 +549,7 @@ public class JsonDataRecorder {
                         bookmark.remove(key);
                     }
                     JsonObject fullFile = GsonFactory.createSnakeCase()
-                            .toJsonTree(ObjectInitializer.initProperties(new Bookmark()))
+                            .toJsonTree(initProperties(new Bookmark()))
                             .getAsJsonObject();
                     for (String newKey : fullFile.keySet()) {
                         bookmark.add(newKey, fullFile.get(newKey));
@@ -613,6 +613,92 @@ public class JsonDataRecorder {
                     message.add("room", GsonFactory.createSnakeCase().toJsonTree(SampleObjects.Room));
                 }
             }
+            if (name != null && name.equals("permissions") && path.equals("/api/admin.functions.permissions.lookup")) {
+                JsonObject permissions = element.getAsJsonObject();
+                try {
+                    // To avoid concurrent modification of the underlying objects
+                    List<String> oldKeys = new ArrayList<>();
+                    permissions.keySet().iterator().forEachRemaining(oldKeys::add);
+                    for (String key : oldKeys) {
+                        permissions.remove(key);
+                    }
+
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+                AppFunctionPermissions appFunctionPermissions = new AppFunctionPermissions();
+                appFunctionPermissions.setDistribution(initProperties(new AppFunctionPermissions.Distribution()));
+                appFunctionPermissions.setAllowedEntities(initProperties(new AppFunctionPermissions.AllowedEntities()));
+                appFunctionPermissions.setAllowedByAdmin(initProperties(new AppFunctionPermissions.AllowedByAdmin()));
+                JsonObject p = GsonFactory.createSnakeCase().toJsonTree(appFunctionPermissions).getAsJsonObject();
+                permissions.add("Fn0000000000", p);
+                permissions.add("Fn0000000000_", p);
+            }
+            if (path.startsWith("/api/admin.workflows")) {
+                if (name != null && name.equals("input_parameters")) {
+                    JsonObject inputParameters = element.getAsJsonObject();
+                    try {
+                        // To avoid concurrent modification of the underlying objects
+                        List<String> oldKeys = new ArrayList<>();
+                        inputParameters.keySet().iterator().forEachRemaining(oldKeys::add);
+                        for (String key : oldKeys) {
+                            inputParameters.remove(key);
+                        }
+
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+
+                    }
+                    AppWorkflow.InputParameter inputParameter = initProperties(new AppWorkflow.InputParameter());
+                    JsonObject p = GsonFactory.createSnakeCase().toJsonTree(inputParameter).getAsJsonObject();
+                    inputParameters.add("0000000000", p);
+                    inputParameters.add("0000000000_", p);
+                }
+                if (name != null && name.equals("inputs")) {
+                    JsonObject inputs = element.getAsJsonObject();
+                    try {
+                        // To avoid concurrent modification of the underlying objects
+                        List<String> oldKeys = new ArrayList<>();
+                        inputs.keySet().iterator().forEachRemaining(oldKeys::add);
+                        for (String key : oldKeys) {
+                            inputs.remove(key);
+                        }
+
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+
+                    }
+                    AppWorkflow.StepInput input = initProperties(new AppWorkflow.StepInput());
+                    input.setValue(null); // TODO: generate all patterns
+                    JsonObject p = GsonFactory.createSnakeCase().toJsonTree(input).getAsJsonObject();
+                    inputs.add("0000000000", p);
+                    inputs.add("0000000000_", p);
+                }
+                if (name != null && name.equals("permissions")) {
+                    JsonObject inputs = element.getAsJsonObject();
+                    try {
+                        // To avoid concurrent modification of the underlying objects
+                        List<String> oldKeys = new ArrayList<>();
+                        inputs.keySet().iterator().forEachRemaining(oldKeys::add);
+                        for (String key : oldKeys) {
+                            inputs.remove(key);
+                        }
+
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+
+                    }
+                    AppWorkflowPermissions input = initProperties(new AppWorkflowPermissions());
+                    input.setWhoCanRun(initProperties(new AppWorkflowPermissions.WhoCanRun()));
+                    input.getWhoCanRun().setChannelIds(Arrays.asList(""));
+                    input.getWhoCanRun().setOrgIds(Arrays.asList(""));
+                    input.getWhoCanRun().setTeamIds(Arrays.asList(""));
+                    input.getWhoCanRun().setUserIds(Arrays.asList(""));
+                    JsonObject p = GsonFactory.createSnakeCase().toJsonTree(input).getAsJsonObject();
+                    inputs.add("0000000000", p);
+                    inputs.add("0000000000_", p);
+                }
+            }
             if (path.equals("/api/users.profile.get") && name != null && name.equals("fields")) {
                 JsonObject fields = element.getAsJsonObject();
                 // To avoid concurrent modification of the underlying objects
@@ -620,7 +706,7 @@ public class JsonDataRecorder {
                 for (String key : oldKeys) {
                     fields.remove(key);
                 }
-                JsonElement field = gson.toJsonTree(ObjectInitializer.initProperties(
+                JsonElement field = gson.toJsonTree(initProperties(
                         new com.slack.api.model.User.Profile.Field()));
                 fields.add("X00000000", field);
                 fields.add("X00000001", field);
@@ -662,7 +748,7 @@ public class JsonDataRecorder {
                     }
                     if (path.equals("/api/admin.emoji.list")) {
                         JsonElement emojiElement = GsonFactory.createSnakeCase().toJsonTree(
-                                ObjectInitializer.initProperties(new Emoji()));
+                                initProperties(new Emoji()));
                         element.getAsJsonObject().add("333", emojiElement);
                         element.getAsJsonObject().add("444", emojiElement);
                     } else {
