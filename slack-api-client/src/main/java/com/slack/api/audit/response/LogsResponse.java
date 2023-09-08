@@ -303,6 +303,8 @@ public class LogsResponse implements AuditApiResponse {
         private SpaceFileId spaceFileId; // channel_posting_permissions_updated
         private String targetEntityId; // permissions_assigned
         private List<String> changedPermissions; // permissions_assigned
+        private String datastore_name; // app_datastore_created
+        private List<Attribute> attributes; // app_datastore_created
     }
 
     @Data
@@ -406,5 +408,11 @@ public class LogsResponse implements AuditApiResponse {
     @Data
     public static class SpaceFileId {
         private String payload;
+    }
+
+    @Data
+    public static class Attribute {
+        private String name;
+        private String type;
     }
 }

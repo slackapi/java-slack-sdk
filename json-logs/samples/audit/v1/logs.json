@@ -336,7 +336,9 @@
           "payload": ""
         },
         "target_entity_id": "",
-        "changed_permissions": []
+        "changed_permissions": [],
+        "datastore_name": "",
+        "attributes": []
       }
     }
   ]
