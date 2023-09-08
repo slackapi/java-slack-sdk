@@ -303,7 +303,7 @@ public class LogsResponse implements AuditApiResponse {
         private SpaceFileId spaceFileId; // channel_posting_permissions_updated
         private String targetEntityId; // permissions_assigned
         private List<String> changedPermissions; // permissions_assigned
-        private String datastore_name; // app_datastore_created
+        private String datastoreName; // app_datastore_created
         private List<Attribute> attributes; // app_datastore_created
     }
 
