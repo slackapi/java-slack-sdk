@@ -10,7 +10,7 @@ repositories {
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("com.slack.api:bolt-jetty:1.31.0")
+    implementation("com.slack.api:bolt-jetty:1.32.0")
     implementation("ch.qos.logback:logback-classic:1.2.11")
     implementation('net.logstash.logback:logstash-logback-encoder:6.2')
 }
