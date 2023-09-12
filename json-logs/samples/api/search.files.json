@@ -515,6 +515,9 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "size": 123,
+                  "url_private_download": "",
+                  "thumb_360_h": "",
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -5878,6 +5881,9 @@
                     "source": "",
                     "file_id": "",
                     "file": {
+                      "size": 123,
+                      "url_private_download": "",
+                      "thumb_360_h": "",
                       "id": "",
                       "created": 123,
                       "timestamp": 123,

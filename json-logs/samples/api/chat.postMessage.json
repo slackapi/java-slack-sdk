@@ -61,21 +61,6 @@
             "elements": [
               {
                 "type": "",
-                "url": "https://www.example.com/"
-              },
-              {
-                "type": "",
-                "text": ""
-              },
-              {
-                "type": "",
-                "text": "",
-                "url": "https://www.example.com/"
-              },
-              {
-                "type": "",
-                "name": "",
-                "unicode": "",
                 "text": ""
               },
               {
@@ -109,14 +94,14 @@
                 "border": 12345
               }
             ],
-            "action_id": "",
             "text": {
               "type": "",
               "text": "",
               "emoji": false
             },
-            "value": "",
+            "action_id": "",
             "url": "",
+            "value": "",
             "style": "",
             "confirm": {
               "title": {
@@ -508,196 +493,27 @@
             "border": 12345
           }
         ],
-        "text": {
-          "type": "",
-          "text": "",
-          "verbatim": false,
-          "emoji": false
-        },
-        "accessory": {
-          "type": "",
-          "image_url": "https://www.example.com/",
-          "alt_text": "",
-          "action_id": "",
-          "initial_time": "",
-          "placeholder": {
-            "type": "",
-            "text": "",
-            "emoji": false
-          },
-          "text": {
-            "type": "",
-            "text": "",
-            "emoji": false
-          },
-          "url": "",
-          "value": "",
-          "style": "",
-          "confirm": {
-            "title": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "text": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "confirm": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "deny": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "style": ""
-          },
-          "accessibility_label": "",
-          "workflow": {
-            "trigger": {
-              "url": "",
-              "customizable_input_parameters": [
-                {
-                  "name": "",
-                  "value": ""
-                }
-              ]
-            }
-          },
-          "options": [
-            {
-              "text": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "value": "",
-              "description": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "url": ""
-            }
-          ],
-          "initial_options": [
-            {
-              "text": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "value": "",
-              "description": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "url": ""
-            }
-          ],
-          "focus_on_load": false,
-          "initial_option": {
-            "text": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "value": "",
-            "description": {
-              "type": "",
-              "text": "",
-              "emoji": false
-            },
-            "url": ""
-          },
-          "initial_channel": "",
-          "response_url_enabled": false,
-          "initial_channels": [
-            ""
-          ],
-          "max_selected_items": 12345,
-          "initial_conversation": "",
-          "default_to_current_conversation": false,
-          "filter": {
-            "include": [
-              ""
-            ],
-            "exclude_external_shared_channels": false,
-            "exclude_bot_users": false
-          },
-          "initial_conversations": [
-            ""
-          ],
-          "initial_date": "",
-          "timezone": "",
-          "initial_date_time": 12345,
-          "min_query_length": 12345,
-          "fallback": "",
-          "image_width": 12345,
-          "image_height": 12345,
-          "image_bytes": 12345,
-          "option_groups": [
-            {
-              "label": {
-                "type": "",
-                "text": "",
-                "emoji": false
-              },
-              "options": [
-                {
-                  "text": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "value": "",
-                  "description": {
-                    "type": "",
-                    "text": "",
-                    "emoji": false
-                  },
-                  "url": ""
-                }
-              ]
-            }
-          ],
-          "initial_user": "",
-          "initial_users": [
-            ""
-          ]
-        },
-        "call_id": "R00000000",
+        "call_id": "",
         "api_decoration_available": false,
         "call": {
           "v1": {
-            "id": "R00000000",
-            "app_id": "A00000000",
+            "id": "",
+            "app_id": "",
             "app_icon_urls": {
-              "image_32": "https://www.example.com/",
-              "image_36": "https://www.example.com/",
-              "image_48": "https://www.example.com/",
-              "image_64": "https://www.example.com/",
-              "image_72": "https://www.example.com/",
-              "image_96": "https://www.example.com/",
-              "image_128": "https://www.example.com/",
-              "image_192": "https://www.example.com/",
-              "image_512": "https://www.example.com/",
-              "image_1024": "https://www.example.com/",
+              "image_32": "",
+              "image_36": "",
+              "image_48": "",
+              "image_64": "",
+              "image_72": "",
+              "image_96": "",
+              "image_128": "",
+              "image_192": "",
+              "image_512": "",
+              "image_1024": "",
               "image_original": ""
             },
             "date_start": 12345,
             "active_participants": [
-              {
-                "slack_id": "U00000000",
-                "external_id": "",
-                "avatar_url": "https://www.example.com/",
-                "display_name": ""
-              },
               {
                 "slack_id": "",
                 "external_id": "",
@@ -707,12 +523,6 @@
             ],
             "all_participants": [
               {
-                "slack_id": "U00000000",
-                "external_id": "",
-                "avatar_url": "https://www.example.com/",
-                "display_name": ""
-              },
-              {
                 "slack_id": "",
                 "external_id": "",
                 "display_name": "",
@@ -720,13 +530,12 @@
               }
             ],
             "display_id": "",
-            "join_url": "https://www.example.com/",
-            "desktop_app_join_url": "https://www.example.com/",
+            "join_url": "",
+            "desktop_app_join_url": "",
             "name": "",
-            "created_by": "U00000000",
+            "created_by": "",
             "date_end": 12345,
             "channels": [
-              "C00000000",
               ""
             ],
             "is_dm_call": false,
@@ -741,6 +550,9 @@
         "source": "",
         "file_id": "",
         "file": {
+          "size": 123,
+          "url_private_download": "",
+          "thumb_360_h": "",
           "id": "",
           "created": 123,
           "timestamp": 123,
@@ -4574,6 +4386,11 @@
           ],
           "comments_count": 123
         },
+        "text": {
+          "type": "",
+          "text": "",
+          "emoji": false
+        },
         "fallback": "",
         "image_url": "",
         "image_width": 12345,
@@ -4613,6 +4430,163 @@
             "verbatim": false
           }
         ],
+        "accessory": {
+          "type": "",
+          "text": {
+            "type": "",
+            "text": "",
+            "emoji": false
+          },
+          "action_id": "",
+          "url": "",
+          "value": "",
+          "style": "",
+          "confirm": {
+            "title": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "confirm": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "deny": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "style": ""
+          },
+          "accessibility_label": "",
+          "workflow": {
+            "trigger": {
+              "url": "",
+              "customizable_input_parameters": [
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "options": [
+            {
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "value": "",
+              "description": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
+            }
+          ],
+          "initial_options": [
+            {
+              "text": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "value": "",
+              "description": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "url": ""
+            }
+          ],
+          "focus_on_load": false,
+          "initial_option": {
+            "text": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "value": "",
+            "description": {
+              "type": "",
+              "text": "",
+              "emoji": false
+            },
+            "url": ""
+          },
+          "placeholder": {
+            "type": "",
+            "text": "",
+            "emoji": false
+          },
+          "initial_channel": "",
+          "response_url_enabled": false,
+          "initial_channels": [
+            ""
+          ],
+          "max_selected_items": 12345,
+          "initial_conversation": "",
+          "default_to_current_conversation": false,
+          "filter": {
+            "include": [
+              ""
+            ],
+            "exclude_external_shared_channels": false,
+            "exclude_bot_users": false
+          },
+          "initial_conversations": [
+            ""
+          ],
+          "initial_date": "",
+          "initial_time": "",
+          "timezone": "",
+          "initial_date_time": 12345,
+          "min_query_length": 12345,
+          "image_url": "",
+          "alt_text": "",
+          "fallback": "",
+          "image_width": 12345,
+          "image_height": 12345,
+          "image_bytes": 12345,
+          "option_groups": [
+            {
+              "label": {
+                "type": "",
+                "text": "",
+                "emoji": false
+              },
+              "options": [
+                {
+                  "text": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "value": "",
+                  "description": {
+                    "type": "",
+                    "text": "",
+                    "emoji": false
+                  },
+                  "url": ""
+                }
+              ]
+            }
+          ],
+          "initial_user": "",
+          "initial_users": [
+            ""
+          ]
+        },
         "label": {
           "type": "",
           "text": "",
@@ -5137,6 +5111,9 @@
             "source": "",
             "file_id": "",
             "file": {
+              "size": 123,
+              "url_private_download": "",
+              "thumb_360_h": "",
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -10500,6 +10477,9 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "size": 123,
+                  "url_private_download": "",
+                  "thumb_360_h": "",
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
