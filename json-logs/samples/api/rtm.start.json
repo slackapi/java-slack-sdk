@@ -1333,6 +1333,8 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "preview_is_truncated": false,
+                  "has_more": false,
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -6696,6 +6698,8 @@
                     "source": "",
                     "file_id": "",
                     "file": {
+                      "preview_is_truncated": false,
+                      "has_more": false,
                       "id": "",
                       "created": 123,
                       "timestamp": 123,
@@ -11010,6 +11014,8 @@
             "source": "",
             "file_id": "",
             "file": {
+              "preview_is_truncated": false,
+              "has_more": false,
               "id": "",
               "created": 123,
               "timestamp": 123,
@@ -15957,6 +15963,8 @@
                 "source": "",
                 "file_id": "",
                 "file": {
+                  "preview_is_truncated": false,
+                  "has_more": false,
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -20534,6 +20542,8 @@
                         "source": "",
                         "file_id": "",
                         "file": {
+                          "preview_is_truncated": false,
+                          "has_more": false,
                           "id": "",
                           "created": 123,
                           "timestamp": 123,
@@ -25897,6 +25907,8 @@
                             "source": "",
                             "file_id": "",
                             "file": {
+                              "preview_is_truncated": false,
+                              "has_more": false,
                               "id": "",
                               "created": 123,
                               "timestamp": 123,
@@ -30211,6 +30223,8 @@
                     "source": "",
                     "file_id": "",
                     "file": {
+                      "preview_is_truncated": false,
+                      "has_more": false,
                       "id": "",
                       "created": 123,
                       "timestamp": 123,
@@ -35158,6 +35172,8 @@
                         "source": "",
                         "file_id": "",
                         "file": {
+                          "preview_is_truncated": false,
+                          "has_more": false,
                           "id": "",
                           "created": 123,
                           "timestamp": 123,
