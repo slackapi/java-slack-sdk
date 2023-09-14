@@ -73,6 +73,7 @@
   "response_metadata": {
     "messages": [
       ""
-    ]
+    ],
+    "next_cursor": ""
   }
 }

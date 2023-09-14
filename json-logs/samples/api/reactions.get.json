@@ -532,8 +532,6 @@
         "source": "",
         "file_id": "",
         "file": {
-          "preview_is_truncated": false,
-          "has_more": false,
           "id": "",
           "created": 123,
           "timestamp": 123,
@@ -547,7 +545,6 @@
           "user_team": "",
           "source_team": "",
           "mode": "",
-          "editable": false,
           "non_owner_editable": false,
           "editor": "",
           "last_editor": "",

@@ -107,8 +107,7 @@
           }
         },
         "channels": [
-          "C00000000",
-          ""
+          "C00000000"
         ],
         "groups": [
           ""
@@ -516,8 +515,14 @@
                 "source": "",
                 "file_id": "",
                 "file": {
-                  "preview_is_truncated": false,
-                  "has_more": false,
+                  "org_or_workspace_access": "",
+                  "bot_id": "",
+                  "permalink_public": "",
+                  "is_public": false,
+                  "private_channels_with_file_access_count": 123,
+                  "thumb_1024": "",
+                  "thumb_pdf_h": "",
+                  "permalink": "",
                   "id": "",
                   "created": 123,
                   "timestamp": 123,
@@ -531,7 +536,6 @@
                   "user_team": "",
                   "source_team": "",
                   "mode": "",
-                  "editable": false,
                   "non_owner_editable": false,
                   "editor": "",
                   "last_editor": "",
@@ -608,7 +612,6 @@
                   "converted_pdf": "",
                   "image_exif_rotation": 123,
                   "original_w": "",
-                  "original_h": "",
                   "deanimate": "",
                   "deanimate_gif": "",
                   "pjpeg": "",
@@ -746,7 +749,6 @@
                     "date_due": 123,
                     "state": ""
                   },
-                  "quip_thread_id": "",
                   "is_channel_space": false,
                   "linked_channel_id": "",
                   "access": "",
@@ -5881,8 +5883,14 @@
                     "source": "",
                     "file_id": "",
                     "file": {
-                      "preview_is_truncated": false,
-                      "has_more": false,
+                      "org_or_workspace_access": "",
+                      "bot_id": "",
+                      "permalink_public": "",
+                      "is_public": false,
+                      "private_channels_with_file_access_count": 123,
+                      "thumb_1024": "",
+                      "thumb_pdf_h": "",
+                      "permalink": "",
                       "id": "",
                       "created": 123,
                       "timestamp": 123,
@@ -5896,7 +5904,6 @@
                       "user_team": "",
                       "source_team": "",
                       "mode": "",
-                      "editable": false,
                       "non_owner_editable": false,
                       "editor": "",
                       "last_editor": "",
@@ -5973,7 +5980,6 @@
                       "converted_pdf": "",
                       "image_exif_rotation": 123,
                       "original_w": "",
-                      "original_h": "",
                       "deanimate": "",
                       "deanimate_gif": "",
                       "pjpeg": "",
@@ -6111,7 +6117,6 @@
                         "date_due": 123,
                         "state": ""
                       },
-                      "quip_thread_id": "",
                       "is_channel_space": false,
                       "linked_channel_id": "",
                       "access": "",
