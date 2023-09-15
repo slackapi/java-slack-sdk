@@ -55,5 +55,6 @@
   "next_cursor": "",
   "error": "",
   "needed": "",
-  "provided": ""
+  "provided": "",
+  "total_count": 12345
 }

@@ -19,6 +19,7 @@ public class AdminConversationsSearchResponse implements SlackApiTextResponse {
 
     private List<Conversation> conversations;
     private String nextCursor;
+    private Integer totalCount;
     private ErrorResponseMetadata responseMetadata;
 
     @Data
