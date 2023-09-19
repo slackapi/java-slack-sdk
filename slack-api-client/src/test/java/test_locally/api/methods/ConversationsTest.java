@@ -1,10 +1,13 @@
 package test_locally.api.methods;
 
+import com.google.gson.Gson;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsConfig;
+import com.slack.api.methods.response.conversations.ConversationsHistoryResponse;
 import com.slack.api.model.ConversationType;
 import com.slack.api.scim.metrics.MemoryMetricsDatastore;
+import com.slack.api.util.json.GsonFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -139,4 +142,107 @@ public class ConversationsTest {
                 .get().isOk(), is(true));
     }
 
+
+    // https://github.com/slackapi/java-slack-sdk/issues/1207
+    @Test
+    public void issue_1207() {
+        String jsonData = "{\n" +
+                "  \"ok\": true,\n" +
+                "  \"oldest\": \"1695106171.334469\",\n" +
+                "  \"messages\": [\n" +
+                "    {\n" +
+                "      \"client_msg_id\": \"xxx\",\n" +
+                "      \"type\": \"message\",\n" +
+                "      \"text\": \"test\\n<https://xxx.slack.com/archives/C123/p1695106171334469>\",\n" +
+                "      \"user\": \"U123\",\n" +
+                "      \"ts\": \"1695106171.334469\",\n" +
+                "      \"blocks\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text\",\n" +
+                "          \"block_id\": \"Qkc\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"rich_text_section\",\n" +
+                "              \"elements\": [\n" +
+                "                {\n" +
+                "                  \"type\": \"text\",\n" +
+                "                  \"text\": \"test\\n\"\n" +
+                "                },\n" +
+                "                {\n" +
+                "                  \"type\": \"link\",\n" +
+                "                  \"url\": \"https://xxx.slack.com/archives/C123/p1695106171334469\"\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"team\": \"T123\",\n" +
+                "      \"edited\": {\n" +
+                "        \"user\": \"U123\",\n" +
+                "        \"ts\": \"1695106197.000000\"\n" +
+                "      },\n" +
+                "      \"attachments\": [\n" +
+                "        {\n" +
+                "          \"from_url\": \"https://xxx.slack.com/archives/C123/p1695106171334469\",\n" +
+                "          \"ts\": \"1695106171.334469\",\n" +
+                "          \"author_id\": \"U123\",\n" +
+                "          \"channel_id\": \"C123\",\n" +
+                "          \"channel_team\": \"T123\",\n" +
+                "          \"is_msg_unfurl\": true,\n" +
+                "          \"message_blocks\": [\n" +
+                "            {\n" +
+                "              \"team\": \"T123\",\n" +
+                "              \"channel\": \"C123\",\n" +
+                "              \"ts\": \"1695106171.334469\",\n" +
+                "              \"message\": {\n" +
+                "                \"blocks\": [\n" +
+                "                  {\n" +
+                "                    \"type\": \"rich_text\",\n" +
+                "                    \"block_id\": \"Qkc\",\n" +
+                "                    \"elements\": [\n" +
+                "                      {\n" +
+                "                        \"type\": \"rich_text_section\",\n" +
+                "                        \"elements\": [\n" +
+                "                          {\n" +
+                "                            \"type\": \"text\",\n" +
+                "                            \"text\": \"test\\n\"\n" +
+                "                          },\n" +
+                "                          {\n" +
+                "                            \"type\": \"link\",\n" +
+                "                            \"url\": \"https://xxx.slack.com/archives/C123/p1695106171334469\"\n" +
+                "                          }\n" +
+                "                        ]\n" +
+                "                      }\n" +
+                "                    ]\n" +
+                "                  }\n" +
+                "                ]\n" +
+                "              }\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"id\": 1,\n" +
+                "          \"original_url\": \"https://xxx.slack.com/archives/C123/p1695106171334469\",\n" +
+                "          \"fallback\": \"fallback\",\n" +
+                "          \"text\": \"test\\n<https://xxx.slack.com/archives/C123/p1695106171334469>\",\n" +
+                "          \"author_name\": \"Kaz\",\n" +
+                "          \"author_link\": \"https://xxx.slack.com/team/U123\",\n" +
+                "          \"author_icon\": \"https://avatars.slack-edge.com/2023-09-19/5927659638721_20cd515c6ad81ae7b17a_48.jpg\",\n" +
+                "          \"author_subname\": \"Kaz Sera\",\n" +
+                "          \"mrkdwn_in\": [\n" +
+                "            \"text\"\n" +
+                "          ],\n" +
+                "          \"footer\": \"Slack conversation\"\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"has_more\": false,\n" +
+                "  \"pin_count\": 0,\n" +
+                "  \"channel_actions_ts\": 1638492970,\n" +
+                "  \"channel_actions_count\": 0\n" +
+                "}\n";
+        Gson gson = GsonFactory.createSnakeCase();
+        ConversationsHistoryResponse response = gson.fromJson(jsonData, ConversationsHistoryResponse.class);
+        assertThat(response.getMessages().size(), is(1));
+    }
 }

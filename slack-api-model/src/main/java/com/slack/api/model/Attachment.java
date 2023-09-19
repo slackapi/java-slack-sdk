@@ -280,7 +280,18 @@ public class Attachment {
 
     // This property can exist in some scenarios
     // see https://github.com/slackapi/java-slack-sdk/issues/1179
-    private List<LayoutBlock> messageBlocks;
+    private List<MessageBlock> messageBlocks;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MessageBlock {
+        private String team;
+        private String channel;
+        private String ts;
+        private Message message;
+    }
 
     private Preview preview;
 

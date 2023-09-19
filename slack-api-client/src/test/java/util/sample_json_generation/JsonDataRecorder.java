@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 
 import static util.ObjectInitializer.initProperties;
 import static util.sample_json_generation.SampleObjects.Json;
+import static util.sample_json_generation.SampleObjects.MessageBlocks;
 
 @Slf4j
 public class JsonDataRecorder {

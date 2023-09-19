@@ -23,6 +23,14 @@ public class SlackTestConfig {
         return JSON_DATA_RECORDING_LISTENER.isAllDone();
     }
 
+    public int getRemainingBackgroundJobCount() {
+        return JSON_DATA_RECORDING_LISTENER.getRemainingBackgroundJobCount();
+    }
+
+    public void clearRemainingBackgroundJobCount() {
+        JSON_DATA_RECORDING_LISTENER.clearRemainingBackgroundJobCount();
+    }
+
     private final SlackConfig config;
 
     public MetricsDatastore getMethodsMetricsDatastore() {
@@ -104,9 +112,12 @@ public class SlackTestConfig {
             Thread.sleep(1000);
             seconds += 1;
 
-            if (seconds > 120) {
-                throw new IllegalStateException(
-                        "The background processes did not complete within " + seconds + " seconds");
+            if (seconds > 30) {
+                String error = "The background processes did not complete within " + seconds + " seconds " +
+                        "(remaining: " + testConfig.getRemainingBackgroundJobCount()  + ")";
+                log.error(error);
+                testConfig.clearRemainingBackgroundJobCount();
+                throw new IllegalStateException(error);
             }
         }
     }

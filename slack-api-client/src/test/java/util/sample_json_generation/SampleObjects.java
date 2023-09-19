@@ -25,9 +25,13 @@ public class SampleObjects {
         private Json() {
         }
 
-        public static List<JsonElement> Attachments = Arrays.asList(
-                GsonFactory.createSnakeCase().toJsonTree(SampleObjects.Attachments.get(0))
-        );
+        public static List<JsonElement> Attachments = new ArrayList<>();
+
+        static {
+            for (Attachment attachment : SampleObjects.Attachments) {
+                Attachments.add(GsonFactory.createSnakeCase().toJsonTree(attachment));
+            }
+        }
 
         private static List<OptionObject> Options = Arrays.asList(initProperties(
                 OptionObject.builder().text(plainText("")).description(plainText("")).build()
@@ -261,6 +265,20 @@ public class SampleObjects {
 
     public static File FileObject = initFileObject();
 
+    private static Message MessageBlockData = new Message();
+
+    static {
+        MessageBlockData.setBlocks(Blocks);
+    }
+
+    public static List<Attachment.MessageBlock> MessageBlocks = new ArrayList<>();
+
+    static {
+        MessageBlocks.add(initProperties(Attachment.MessageBlock.builder()
+                .message(MessageBlockData)
+                .build()));
+    }
+
     public static List<Attachment> Attachments = Arrays.asList(
             initProperties(Attachment.builder()
                     .fields(Arrays.asList(initProperties(Field.builder().build())))
@@ -283,7 +301,7 @@ public class SampleObjects {
                     .mrkdwnIn(Arrays.asList(""))
                     .blocks(Blocks)
                     .files(Arrays.asList(FileObject))
-                    .messageBlocks(Blocks)
+                    .messageBlocks(MessageBlocks)
                     .build())
     );
 
@@ -335,6 +353,7 @@ public class SampleObjects {
             .pendingInvitees(RoomPendingInvitees)
             .attachedFileIds(Arrays.asList(""))
             .build());
+
     static {
         Message.setAttachments(Attachments);
         Message.setMetadata(initProperties(new Message.Metadata()));
