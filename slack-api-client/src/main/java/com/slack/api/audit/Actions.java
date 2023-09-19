@@ -443,5 +443,8 @@ public class Actions {
         }
 
         public static final String workflow_v2_published = "workflow_v2_published";
+        public static final String workflow_trigger_permission_set = "workflow_trigger_permission_set";
+        public static final String workflow_trigger_permission_added = "workflow_trigger_permission_added";
+        public static final String workflow_trigger_permission_removed = "workflow_trigger_permission_removed";
    }
 }

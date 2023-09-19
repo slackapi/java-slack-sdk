@@ -370,7 +370,10 @@
       "app_allowlist_scopes_rating_updated"
     ],
     "workflow_v2": [
-      "workflow_v2_published"
+      "workflow_v2_published",
+      "workflow_trigger_permission_set",
+      "workflow_trigger_permission_added",
+      "workflow_trigger_permission_removed"
     ]
   }
 }
