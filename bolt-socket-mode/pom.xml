@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.32.1-SNAPSHOT</version>
+        <version>1.32.1</version>
     </parent>
 
     <properties>
@@ -17,7 +17,7 @@
     </properties>
 
     <artifactId>bolt-socket-mode</artifactId>
-    <version>1.32.1-SNAPSHOT</version>
+    <version>1.32.1</version>
     <packaging>jar</packaging>
 
     <dependencies>
