@@ -23,7 +23,15 @@ public class JsonDataRecordingListener extends HttpResponseListener {
                     remaining.size(),
                     remaining.stream().map(r -> "`" + (r.length() > 30 ? r.substring(0, 30) : r) + "...`").collect(joining(",", "[", "]")));
         }
-        return remaining.size() == 0;
+        return getRemainingBackgroundJobCount() == 0;
+    }
+
+    public int getRemainingBackgroundJobCount() {
+        return remaining.size();
+    }
+
+    public void clearRemainingBackgroundJobCount() {
+        remaining.clear();
     }
 
     @Override
