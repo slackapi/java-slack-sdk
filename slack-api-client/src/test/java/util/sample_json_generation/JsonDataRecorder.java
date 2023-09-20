@@ -9,6 +9,7 @@ import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessa
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.*;
 import com.slack.api.model.admin.*;
+import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.json.GsonFactory;
@@ -27,8 +28,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static util.ObjectInitializer.initProperties;
-import static util.sample_json_generation.SampleObjects.Json;
-import static util.sample_json_generation.SampleObjects.MessageBlocks;
+import static util.sample_json_generation.SampleObjects.*;
 
 @Slf4j
 public class JsonDataRecorder {
@@ -94,12 +94,12 @@ public class JsonDataRecorder {
             }
         }
         JsonElement existingRawJsonElem = JsonParser.parseString(existingRawJson);
-        JsonObject rawJsonObj = existingRawJsonElem.isJsonObject() ? existingRawJsonElem.getAsJsonObject() : null;
+        JsonObject rawJsonObj = existingRawJsonElem.isJsonObject() ? existingRawJsonElem.getAsJsonObject().deepCopy() : null;
 
         // Merge the new JSON data into the existing raw data
         if (newRawJson.isJsonObject() && rawJsonObj != null) {
             try {
-                JsonObject newJsonObj = newRawJson.getAsJsonObject();
+                JsonObject newJsonObj = newRawJson.getAsJsonObject().deepCopy();
                 MergeJsonBuilder.mergeJsonObjects(rawJsonObj, MergeJsonBuilder.ConflictStrategy.PREFER_FIRST_OBJ, newJsonObj);
             } catch (MergeJsonBuilder.JsonConflictException e) {
                 log.warn("Failed to merge JSON objects because {}", e.getMessage(), e);
@@ -109,9 +109,9 @@ public class JsonDataRecorder {
         Path rawFilePath = new File(toRawFilePath(path)).toPath();
         Files.createDirectories(rawFilePath.getParent());
         if (rawJsonObj != null) {
-            Files.write(rawFilePath, gson().toJson(rawJsonObj).getBytes(UTF_8));
+            Files.write(rawFilePath, GSON.toJson(rawJsonObj).getBytes(UTF_8));
         } else {
-            Files.write(rawFilePath, gson().toJson(existingRawJsonElem).getBytes(UTF_8));
+            Files.write(rawFilePath, GSON.toJson(existingRawJsonElem).getBytes(UTF_8));
         }
 
         if (existingRawJsonElem != null) {
@@ -145,7 +145,7 @@ public class JsonDataRecorder {
                     // Write the masked (sample) JSON data
                     Path filePath = new File(toMaskedFilePath(path)).toPath();
                     Files.createDirectories(filePath.getParent());
-                    Files.write(filePath, gson().toJson(mergedJsonObj).getBytes(UTF_8));
+                    Files.write(filePath, GSON.toJson(mergedJsonObj).getBytes(UTF_8));
                 }
             } else if (existingRawJsonElem.isJsonArray()) {
                 // The Status History API
@@ -153,7 +153,7 @@ public class JsonDataRecorder {
                 scanToNormalizeValues(path, null, null, jsonArray);
                 Path filePath = new File(toMaskedFilePath(path)).toPath();
                 Files.createDirectories(filePath.getParent());
-                Files.write(filePath, gson().toJson(jsonArray).getBytes(UTF_8));
+                Files.write(filePath, GSON.toJson(jsonArray).getBytes(UTF_8));
             }
         }
     }
@@ -193,7 +193,7 @@ public class JsonDataRecorder {
         }
         Path filePath = new File(toMaskedFilePath(path).replaceFirst("/\\w{9}.json$", "/000000000.json")).toPath();
         Files.createDirectories(filePath.getParent());
-        Files.write(filePath, gson().toJson(mergedJsonObj).getBytes(UTF_8));
+        Files.write(filePath, GSON.toJson(mergedJsonObj).getBytes(UTF_8));
     }
 
     private void initializeSCIMGroup(JsonObject resourceObj) {
@@ -298,70 +298,43 @@ public class JsonDataRecorder {
 
     private void scanToNormalizeValues(String path, JsonElement parent, String name, JsonElement element) {
         Gson gson = GsonFactory.createSnakeCase();
-        if (element.isJsonArray()) {
+        if (element != null && element.isJsonArray()) {
+            boolean preparedSampleDataAttached = true;
             JsonArray array = element.getAsJsonArray();
             if (name != null && name.equals("attachments")) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from attachments", e);
-                }
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
                 for (JsonElement attachment : Json.Attachments) {
                     array.add(attachment);
                 }
             } else if (name != null && (name.equals("blocks") || name.equals("title_blocks"))) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from blocks", e);
-                }
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
                 // This part replaces the blocks with a comprehensive set of blocks.
                 for (JsonElement block : Json.Blocks) {
                     array.add(block);
                 }
             } else if (name != null && name.equals("bookmarks")) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from bookmarks", e);
-                }
-                // FIXME: the array sometimes cannot be empty
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
                 if (!array.isEmpty()) {
                     array.set(0, gson.toJsonTree(initProperties(new Bookmark())));
                 } else {
                     array.add(gson.toJsonTree(initProperties(new Bookmark())));
                 }
             } else if (path.equals("/api/admin.conversations.search") && name != null && name.equals("ownership_details")) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from ownership_details", e);
-                }
-                // FIXME: the array sometimes cannot be empty
-                if (!array.isEmpty()) {
-                    array.set(0, gson.toJsonTree(initProperties(
-                            new AdminConversationsSearchResponse.CanvasOwnershipDetail())));
-                } else {
-                    array.add(gson.toJsonTree(initProperties(
-                            new AdminConversationsSearchResponse.CanvasOwnershipDetail())));
-                }
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
+                array.add(gson.toJsonTree(initProperties(new AdminConversationsSearchResponse.CanvasOwnershipDetail())));
             } else if (path.equals("/api/team.profile.get") &&
                     name != null && Arrays.asList("sections", "possible_values").contains(name)) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from possible_values", e);
-                }
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
                 // possible_values
                 if (name.equals("sections")) {
                     array.add(gson.toJsonTree(initProperties(
@@ -371,58 +344,38 @@ public class JsonDataRecorder {
                     array.add("");
                 }
             } else if (name != null && name.equals("replies")) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from replies", e);
-                }
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
                 array.add(gson.toJsonTree(initProperties(new Message.MessageRootReply())));
             } else if (name != null && name.equals("comments")) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from comments", e);
-                }
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
                 array.add(gson.toJsonTree(initProperties(new FileComment())));
             } else if (name != null && name.equals("files") && !path.equals("/api/files.completeUploadExternal")) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from files", e);
-                }
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
                 com.slack.api.model.File f = SampleObjects.initFileObject();
                 f.setBlocks(null);
                 f.setAttachments(null); // Trying to load data for this field can result in StackOverFlowError
                 array.add(gson.toJsonTree(f));
             } else if (name != null && name.equals("status_emoji_display_info")) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from status_emoji_display_info", e);
-                }
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
                 array.add(gson.toJsonTree(
                         initProperties(new com.slack.api.model.User.Profile.StatusEmojiDisplayInfo())
                 ));
-            } else if (path.startsWith("/api/admin.conversations.bulk") &&
-                    name != null && name.equals("not_added")) {
-                try {
-                    for (int idx = 0; idx < array.size(); idx++) {
-                        array.remove(idx);
-                    }
-                } catch (Exception e) {
-                    log.info("Failed to remove an existing element from not_added", e);
-                }
-                AdminConversationsBulkMoveResponse.NotAdded notAdded =
-                        initProperties(new AdminConversationsBulkMoveResponse.NotAdded());
+            } else if (path.startsWith("/api/admin.conversations.bulk") && name != null && name.equals("not_added")) {
+                parent.getAsJsonObject().remove(name);
+                array = new JsonArray();
+                parent.getAsJsonObject().add(name, array);
+                AdminConversationsBulkMoveResponse.NotAdded notAdded = initProperties(new AdminConversationsBulkMoveResponse.NotAdded());
                 array.add(gson.toJsonTree(notAdded));
+            } else {
+                preparedSampleDataAttached = false;
             }
             if (array.size() == 0) {
                 List<String> addressNames = Arrays.asList("from", "to", "cc");
@@ -474,10 +427,12 @@ public class JsonDataRecorder {
                         }
                     }
                 } else {
-                    List<JsonElement> copiedArray = new ArrayList<>();
-                    array.iterator().forEachRemaining(copiedArray::add);
-                    for (JsonElement e : copiedArray) {
-                        scanToNormalizeValues(path, array, null, e);
+                    if (!preparedSampleDataAttached) {
+                        List<JsonElement> copiedArray = new ArrayList<>();
+                        array.iterator().forEachRemaining(copiedArray::add);
+                        for (JsonElement e : copiedArray) {
+                            scanToNormalizeValues(path, array, null, e);
+                        }
                     }
                     if (array.size() >= 2) {
                         for (int idx = 1; idx < array.size(); idx++) {
@@ -813,11 +768,7 @@ public class JsonDataRecorder {
         return "";
     }
 
-    private Gson gson() {
-        return new GsonBuilder()
-                .setPrettyPrinting()
-                .create();
-    }
+    private static Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     private String toRawFilePath(String path) {
         return outputDirectory + "/raw/" + path + ".json";

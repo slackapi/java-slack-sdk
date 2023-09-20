@@ -265,7 +265,7 @@ public class SampleObjects {
 
     public static File FileObject = initFileObject();
 
-    private static Message MessageBlockData = new Message();
+    private static Message MessageBlockData = initProperties(new Message());
 
     static {
         MessageBlockData.setBlocks(Blocks);
