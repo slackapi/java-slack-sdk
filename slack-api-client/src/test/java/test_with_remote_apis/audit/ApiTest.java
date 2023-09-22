@@ -251,6 +251,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> canvasNames = getAllPublicStaticFieldValues(Actions.Canvas.class);
+        for (String action : actions.getCanvas()) {
+            if (!canvasNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test
@@ -305,6 +311,8 @@ public class ApiTest {
     @Test
     public void getLogs_all_actions() throws Exception {
         if (orgAdminUserToken != null) {
+            verifyAllActions(orgAdminUserToken, Actions.WorkflowV2.class);
+            verifyAllActions(orgAdminUserToken, Actions.Canvas.class);
             verifyAllActions(orgAdminUserToken, Actions.SlackCLI.class);
             verifyAllActions(orgAdminUserToken, Actions.WorkspaceOrOrg.class);
             verifyAllActions(orgAdminUserToken, Actions.User.class);

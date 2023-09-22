@@ -447,4 +447,27 @@ public class Actions {
         public static final String workflow_trigger_permission_added = "workflow_trigger_permission_added";
         public static final String workflow_trigger_permission_removed = "workflow_trigger_permission_removed";
    }
+
+    public static class Canvas {
+        private Canvas() {
+        }
+
+        public static final String canvas_access_added = "canvas_access_added";
+        public static final String canvas_access_downgraded = "canvas_access_downgraded";
+        public static final String canvas_access_revoked = "canvas_access_revoked";
+        public static final String canvas_access_upgraded = "canvas_access_upgraded";
+        public static final String canvas_created = "canvas_created";
+        public static final String canvas_deleted = "canvas_deleted";
+        public static final String canvas_downloaded = "canvas_downloaded";
+        public static final String canvas_edited = "canvas_edited";
+        public static final String canvas_linksharing_disabled = "canvas_linksharing_disabled";
+        public static final String canvas_linksharing_enabled = "canvas_linksharing_enabled";
+        public static final String canvas_merged = "canvas_merged";
+        public static final String canvas_opened = "canvas_opened";
+        public static final String canvas_ownership_transferred = "canvas_ownership_transferred";
+        public static final String canvas_restored = "canvas_restored";
+        public static final String canvas_shared = "canvas_shared";
+        public static final String canvas_tombstoned = "canvas_tombstoned";
+        public static final String canvas_unshared = "canvas_unshared";
+    }
 }

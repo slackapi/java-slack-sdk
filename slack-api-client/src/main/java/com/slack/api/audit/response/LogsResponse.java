@@ -64,6 +64,7 @@ public class LogsResponse implements AuditApiResponse {
         private AccountTypeRole accountTypeRole;
         private Workflow workflow;
         private InformationBarrier barrier;
+        private WorkflowV2 workflowV2;
     }
 
     @Data
@@ -190,6 +191,24 @@ public class LogsResponse implements AuditApiResponse {
     }
 
     @Data
+    public static class WorkflowV2 {
+        private String id;
+        private String appId;
+        private Integer dateUpdated;
+        private String callbackId;
+        private String name;
+        private String updatedBy;
+        private List<WorkflowV2StepConfiguration> stepConfiguration;
+    }
+
+    @Data
+    public static class WorkflowV2StepConfiguration {
+        private String name; // "Collect info in a form"
+        private String stepFunctionType; // "Custom", "Builtin"
+        private String stepFunctionAppId; // "A05QFAJ8LBA"
+    }
+
+    @Data
     public static class Details {
         private String type;
         private String appOwnerId; // app_collaborator_added etc.
@@ -305,6 +324,10 @@ public class LogsResponse implements AuditApiResponse {
         private List<String> changedPermissions; // permissions_assigned
         private String datastoreName; // app_datastore_created
         private List<Attribute> attributes; // app_datastore_created
+        private String channel; // canvas_access_added
+        private String entityType; // canvas_access_added
+        private String actor; // canvas_access_added
+        private String accessLevel; // canvas_access_added
     }
 
     @Data
@@ -375,6 +398,7 @@ public class LogsResponse implements AuditApiResponse {
     @Data
     public static class SharedWith {
         private String channelId;
+        private String accessLevel;
     }
 
     @Data

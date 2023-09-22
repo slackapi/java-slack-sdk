@@ -374,6 +374,25 @@
       "workflow_trigger_permission_set",
       "workflow_trigger_permission_added",
       "workflow_trigger_permission_removed"
+    ],
+    "canvas": [
+      "canvas_access_added",
+      "canvas_access_downgraded",
+      "canvas_access_revoked",
+      "canvas_access_upgraded",
+      "canvas_created",
+      "canvas_deleted",
+      "canvas_downloaded",
+      "canvas_edited",
+      "canvas_linksharing_disabled",
+      "canvas_linksharing_enabled",
+      "canvas_merged",
+      "canvas_opened",
+      "canvas_ownership_transferred",
+      "canvas_restored",
+      "canvas_shared",
+      "canvas_tombstoned",
+      "canvas_unshared"
     ]
   }
 }
