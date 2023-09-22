@@ -41,6 +41,7 @@ public class FieldsTest {
                 "getChannel",
                 "getWorkspace",
                 "getWorkflow",
+                "getWorkflowV2",
                 "getBarrier"
         );
     }
