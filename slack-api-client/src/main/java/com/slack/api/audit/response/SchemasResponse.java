@@ -87,11 +87,14 @@ public class SchemasResponse implements AuditApiResponse {
     @Data
     public static class App {
         private String id;
+        private String appId;
         private String name;
         private String isWorkflowApp;
         private String isDistributed;
         private String isDirectoryApproved;
         private String scopes;
+        private String distributionType;
+        private String userIds;
     }
 
     @Data

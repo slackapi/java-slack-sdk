@@ -42,6 +42,7 @@ public class AdminApi_workflows_Test {
             AdminWorkflowsSearchResponse searchResult = methodsAsync.adminWorkflowsSearch(r -> r
                     .limit(30)
             ).get();
+            // 2023-09-26: the server side returns "internal_error"
             assertThat(searchResult.getError(), is(nullValue()));
 
             // TODO: make this more stable
@@ -67,6 +68,7 @@ public class AdminApi_workflows_Test {
             AdminWorkflowsSearchResponse searchResult = methodsAsync.adminWorkflowsSearch(r -> r
                     .limit(30)
             ).get();
+            // 2023-09-26: the server side returns "internal_error"
             assertThat(searchResult.getError(), is(nullValue()));
 
             AdminWorkflowsPermissionsLookupResponse result = methodsAsync.adminWorkflowsPermissionsLookup(r -> r
@@ -80,10 +82,10 @@ public class AdminApi_workflows_Test {
     @Test
     public void adminWorkflowsUnpublish() throws Exception {
         if (orgAdminUserToken != null) {
-            AdminWorkflowsUnpublishResponse searchResult = methodsAsync.adminWorkflowsUnpublish(r -> r
+            AdminWorkflowsUnpublishResponse result = methodsAsync.adminWorkflowsUnpublish(r -> r
                     .workflowIds(Arrays.asList("W111111"))
             ).get();
-            assertThat(searchResult.getError(), is("invalid_arguments"));
+            assertThat(result.getError(), is("invalid_arguments"));
         }
     }
 }

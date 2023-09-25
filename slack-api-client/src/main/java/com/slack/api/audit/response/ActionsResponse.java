@@ -40,5 +40,6 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> appApprovalAutomationRule;
         private List<String> workflowV2;
         private List<String> canvas;
+        private List<String> function;
     }
 }

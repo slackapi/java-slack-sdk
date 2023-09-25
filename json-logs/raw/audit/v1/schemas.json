@@ -120,6 +120,15 @@
         "updated_by": "string",
         "step_configuration": "vec\u003cdict\u003cstring, mixed\u003e\u003e"
       }
+    },
+    {
+      "type": "app",
+      "app": {
+        "id": "string",
+        "app_id": "string",
+        "distribution_type": "string",
+        "user_ids": "array"
+      }
     }
   ]
 }

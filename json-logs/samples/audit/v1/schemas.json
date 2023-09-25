@@ -38,7 +38,10 @@
         "is_distributed": "",
         "is_directory_approved": "",
         "is_workflow_app": "",
-        "scopes": ""
+        "scopes": "",
+        "app_id": "",
+        "distribution_type": "",
+        "user_ids": ""
       },
       "workflow": {
         "id": "",

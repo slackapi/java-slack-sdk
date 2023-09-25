@@ -293,7 +293,11 @@
       "app_datastore_updated",
       "app_datastore_deleted",
       "app_collaborator_added",
-      "app_collaborator_removed"
+      "app_collaborator_removed",
+      "app_deleted",
+      "app_variable_added",
+      "app_variable_removed",
+      "app_deployed"
     ],
     "workflow_builder": [
       "workflow_created",
@@ -393,6 +397,11 @@
       "canvas_shared",
       "canvas_tombstoned",
       "canvas_unshared"
+    ],
+    "function": [
+      "function_distribution_permission_added",
+      "function_distribution_permission_removed",
+      "function_distribution_permission_set"
     ]
   }
 }

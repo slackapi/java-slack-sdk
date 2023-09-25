@@ -257,6 +257,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> functionNames = getAllPublicStaticFieldValues(Actions.Function.class);
+        for (String action : actions.getFunction()) {
+            if (!functionNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test

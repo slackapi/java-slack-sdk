@@ -321,6 +321,10 @@ public class Actions {
         public static final String app_allowlist_rule_matched = "app_allowlist_rule_matched";
         public static final String app_collaborator_added = "app_collaborator_added";
         public static final String app_collaborator_removed = "app_collaborator_removed";
+        public static final String app_deleted = "app_deleted";
+        public static final String app_variable_added = "app_variable_added";
+        public static final String app_variable_removed = "app_variable_removed";
+        public static final String app_deployed = "app_deployed";
     }
 
     public static class Message {
@@ -469,5 +473,14 @@ public class Actions {
         public static final String canvas_shared = "canvas_shared";
         public static final String canvas_tombstoned = "canvas_tombstoned";
         public static final String canvas_unshared = "canvas_unshared";
+    }
+
+    public static class Function {
+        private Function() {
+        }
+
+        public static final String function_distribution_permission_added = "function_distribution_permission_added";
+        public static final String function_distribution_permission_removed = "function_distribution_permission_removed";
+        public static final String function_distribution_permission_set = "function_distribution_permission_set";
     }
 }

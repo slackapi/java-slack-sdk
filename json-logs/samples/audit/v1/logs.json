@@ -103,6 +103,15 @@
           "restricted_subjects": [
             ""
           ]
+        },
+        "workflow_v2": {
+          "id": "",
+          "app_id": "",
+          "date_updated": 123,
+          "callback_id": "",
+          "name": "",
+          "updated_by": "",
+          "step_configuration": []
         }
       },
       "context": {
@@ -276,7 +285,8 @@
         },
         "url_private": "",
         "shared_with": {
-          "channel_id": ""
+          "channel_id": "",
+          "access_level": ""
         },
         "initiated_by": "",
         "source_team": "",
@@ -338,7 +348,11 @@
         "target_entity_id": "",
         "changed_permissions": [],
         "datastore_name": "",
-        "attributes": []
+        "attributes": [],
+        "channel": "",
+        "entity_type": "",
+        "actor": "",
+        "access_level": ""
       }
     }
   ]
