@@ -62,6 +62,7 @@ public class AdminApi_conversations_Test {
                     .searchChannelTypes(Arrays.asList("exclude_archived", "private_exclude"))
             ).get();
             assertThat(search.getError(), is(nullValue()));
+            // TODO: 2023-09-26: unexpectedly zero result
             assertThat(search.getConversations().size(), is(1));
 
             AdminConversationsSearchResponse search2 = methodsAsync.adminConversationsSearch(r -> r
@@ -72,6 +73,7 @@ public class AdminApi_conversations_Test {
                     .cursor(search.getNextCursor())
             ).get();
             assertThat(search2.getError(), is(nullValue()));
+            // TODO: 2023-09-26: unexpectedly zero result
             assertThat(search2.getConversations().size(), is(1));
         }
     }

@@ -42,7 +42,7 @@ public class AdminApi_workflows_Test {
             AdminWorkflowsSearchResponse searchResult = methodsAsync.adminWorkflowsSearch(r -> r
                     .limit(30)
             ).get();
-            // 2023-09-26: the server side returns "internal_error"
+            // TODO: 2023-09-25: the server side returns "internal_error"
             assertThat(searchResult.getError(), is(nullValue()));
 
             // TODO: make this more stable
@@ -68,7 +68,7 @@ public class AdminApi_workflows_Test {
             AdminWorkflowsSearchResponse searchResult = methodsAsync.adminWorkflowsSearch(r -> r
                     .limit(30)
             ).get();
-            // 2023-09-26: the server side returns "internal_error"
+            // TODO: 2023-09-25: the server side returns "internal_error"
             assertThat(searchResult.getError(), is(nullValue()));
 
             AdminWorkflowsPermissionsLookupResponse result = methodsAsync.adminWorkflowsPermissionsLookup(r -> r
