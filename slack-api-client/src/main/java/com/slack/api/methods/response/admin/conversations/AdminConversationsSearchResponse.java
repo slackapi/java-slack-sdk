@@ -1,6 +1,7 @@
 package com.slack.api.methods.response.admin.conversations;
 
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.ChannelEmailAddress;
 import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
@@ -48,7 +49,7 @@ public class AdminConversationsSearchResponse implements SlackApiTextResponse {
         private List<String> pendingConnectedTeamIds;
         private List<String> connectedTeamIds;
         private List<String> connectedLimitedTeamIds;
-        private List<String> channelEmailAddresses;
+        private List<ChannelEmailAddress> channelEmailAddresses;
         private String contextTeamId;
         private Boolean isPendingExtShared;
         private Boolean isDisconnectInProgress;

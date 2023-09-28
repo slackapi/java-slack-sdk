@@ -62,6 +62,7 @@ public class Conversation {
     private List<String> internalTeamIds;
     private List<String> connectedTeamIds;
     private List<String> connectedLimitedTeamIds;
+    private List<ChannelEmailAddress> channelEmailAddresses;
 
     private String contextTeamId;
 

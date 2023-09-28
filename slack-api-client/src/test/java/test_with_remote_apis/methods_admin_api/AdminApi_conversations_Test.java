@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 
 @Slf4j
 public class AdminApi_conversations_Test {
@@ -56,25 +57,23 @@ public class AdminApi_conversations_Test {
     public void search() throws Exception {
         if (orgAdminUserToken != null) {
             AdminConversationsSearchResponse search = methodsAsync.adminConversationsSearch(r -> r
-                    .limit(1)
+                    .limit(20)
                     .sort("member_count")
                     .sortDir("desc")
                     .searchChannelTypes(Arrays.asList("exclude_archived", "private_exclude"))
             ).get();
             assertThat(search.getError(), is(nullValue()));
-            // TODO: 2023-09-26: unexpectedly zero result
-            assertThat(search.getConversations().size(), is(1));
+            assertThat(search.getConversations().size(), is(greaterThan(0)));
 
             AdminConversationsSearchResponse search2 = methodsAsync.adminConversationsSearch(r -> r
-                    .limit(1)
+                    .limit(20)
                     .sort("member_count")
                     .sortDir("desc")
                     .searchChannelTypes(Arrays.asList("exclude_archived", "private_exclude"))
                     .cursor(search.getNextCursor())
             ).get();
             assertThat(search2.getError(), is(nullValue()));
-            // TODO: 2023-09-26: unexpectedly zero result
-            assertThat(search2.getConversations().size(), is(1));
+            assertThat(search2.getConversations().size(), is(greaterThan(1)));
         }
     }
 
