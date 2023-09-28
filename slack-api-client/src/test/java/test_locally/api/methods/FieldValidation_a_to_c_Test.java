@@ -415,7 +415,8 @@ public class FieldValidation_a_to_c_Test {
                 "getPendingConnectedTeamIds",
                 "getConnectedLimitedTeamIds",
                 "getIsUserDeleted",
-                "getProperties"
+                "getProperties",
+                "getChannelEmailAddresses"
         );
     }
 
@@ -528,7 +529,8 @@ public class FieldValidation_a_to_c_Test {
                     "getParentUserId",
                     "getBotProfile",
                     "getIsUserDeleted",
-                    "getProperties"
+                    "getProperties",
+                    "getChannelEmailAddresses"
             );
         }
         {
