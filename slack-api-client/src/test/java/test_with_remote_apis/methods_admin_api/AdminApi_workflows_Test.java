@@ -11,6 +11,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -37,12 +38,12 @@ public class AdminApi_workflows_Test {
     static AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
 
     @Test
+    @Ignore // TODO: 2023-09-25: the server side returns "internal_error"
     public void adminWorkflowsCollaborators() throws Exception {
         if (orgAdminUserToken != null) {
             AdminWorkflowsSearchResponse searchResult = methodsAsync.adminWorkflowsSearch(r -> r
                     .limit(30)
             ).get();
-            // TODO: 2023-09-25: the server side returns "internal_error"
             assertThat(searchResult.getError(), is(nullValue()));
 
             // TODO: make this more stable
@@ -63,12 +64,12 @@ public class AdminApi_workflows_Test {
     }
 
     @Test
+    @Ignore // TODO: 2023-09-25: the server side returns "internal_error"
     public void adminWorkflowsPermissions() throws Exception {
         if (orgAdminUserToken != null) {
             AdminWorkflowsSearchResponse searchResult = methodsAsync.adminWorkflowsSearch(r -> r
                     .limit(30)
             ).get();
-            // TODO: 2023-09-25: the server side returns "internal_error"
             assertThat(searchResult.getError(), is(nullValue()));
 
             AdminWorkflowsPermissionsLookupResponse result = methodsAsync.adminWorkflowsPermissionsLookup(r -> r
