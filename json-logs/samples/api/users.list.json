@@ -75,12 +75,12 @@
         "is_admin": false,
         "is_owner": false,
         "teams": [
-          "",
-          "T00000000"
+          ""
         ],
         "is_primary_owner": false
       },
-      "is_invited_user": false
+      "is_invited_user": false,
+      "is_connector_bot": false
     }
   ],
   "cache_ts": 12345,

@@ -21,10 +21,17 @@ public class ShareShortcutBlock implements LayoutBlock {
     private String functionTriggerId;
     private String appId;
     private Boolean isWorkflowApp;
+    private Integer salesHomeWorkflowAppType;
     private List<String> appCollaborators;
     private String buttonLabel;
     private String title;
     private String description;
     private String botUserId;
     private String url;
+    private String owningTeamId;
+    private String workflowId;
+    private String developerTraceId;
+    private String triggerType; // "shortcut"
+    private String triggerSubtype;
+    private String shareUrl;
 }

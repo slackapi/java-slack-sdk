@@ -77,7 +77,8 @@
     "is_stranger": false,
     "who_can_share_contact_card": "",
     "is_workflow_bot": false,
-    "is_invited_user": false
+    "is_invited_user": false,
+    "is_connector_bot": false
   },
   "error": "",
   "needed": "",
