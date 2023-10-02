@@ -79,6 +79,7 @@
       "is_restricted": false,
       "is_ultra_restricted": false,
       "is_bot": false,
+      "is_connector_bot": false,
       "is_stranger": false,
       "is_app_user": false,
       "updated": 123,
