@@ -3490,6 +3490,7 @@
                 "function_trigger_id": "",
                 "app_id": "",
                 "is_workflow_app": false,
+                "sales_home_workflow_app_type": 123,
                 "app_collaborators": [
                   ""
                 ],
@@ -3497,7 +3498,13 @@
                 "title": "",
                 "description": "",
                 "bot_user_id": "",
-                "url": ""
+                "url": "",
+                "owning_team_id": "",
+                "workflow_id": "",
+                "developer_trace_id": "",
+                "trigger_type": "",
+                "trigger_subtype": "",
+                "share_url": ""
               },
               {
                 "type": "section",
@@ -7067,6 +7074,7 @@
                       "function_trigger_id": "",
                       "app_id": "",
                       "is_workflow_app": false,
+                      "sales_home_workflow_app_type": 123,
                       "app_collaborators": [
                         ""
                       ],
@@ -7074,7 +7082,13 @@
                       "title": "",
                       "description": "",
                       "bot_user_id": "",
-                      "url": ""
+                      "url": "",
+                      "owning_team_id": "",
+                      "workflow_id": "",
+                      "developer_trace_id": "",
+                      "trigger_type": "",
+                      "trigger_subtype": "",
+                      "share_url": ""
                     },
                     {
                       "type": "section",
@@ -11294,6 +11308,7 @@
                     "function_trigger_id": "",
                     "app_id": "",
                     "is_workflow_app": false,
+                    "sales_home_workflow_app_type": 123,
                     "app_collaborators": [
                       ""
                     ],
@@ -11301,7 +11316,13 @@
                     "title": "",
                     "description": "",
                     "bot_user_id": "",
-                    "url": ""
+                    "url": "",
+                    "owning_team_id": "",
+                    "workflow_id": "",
+                    "developer_trace_id": "",
+                    "trigger_type": "",
+                    "trigger_subtype": "",
+                    "share_url": ""
                   },
                   {
                     "type": "section",
@@ -14893,6 +14914,7 @@
                     "function_trigger_id": "",
                     "app_id": "",
                     "is_workflow_app": false,
+                    "sales_home_workflow_app_type": 123,
                     "app_collaborators": [
                       ""
                     ],
@@ -14900,7 +14922,13 @@
                     "title": "",
                     "description": "",
                     "bot_user_id": "",
-                    "url": ""
+                    "url": "",
+                    "owning_team_id": "",
+                    "workflow_id": "",
+                    "developer_trace_id": "",
+                    "trigger_type": "",
+                    "trigger_subtype": "",
+                    "share_url": ""
                   },
                   {
                     "type": "section",
@@ -18634,12 +18662,19 @@
             "function_trigger_id": "",
             "app_id": "",
             "is_workflow_app": false,
+            "sales_home_workflow_app_type": 123,
             "app_collaborators": [
               ""
             ],
             "button_label": "",
             "bot_user_id": "",
             "url": "",
+            "owning_team_id": "",
+            "workflow_id": "",
+            "developer_trace_id": "",
+            "trigger_type": "",
+            "trigger_subtype": "",
+            "share_url": "",
             "fields": [
               {
                 "type": "plain_text",
@@ -21536,6 +21571,7 @@
                 "function_trigger_id": "",
                 "app_id": "",
                 "is_workflow_app": false,
+                "sales_home_workflow_app_type": 123,
                 "app_collaborators": [
                   ""
                 ],
@@ -21543,7 +21579,13 @@
                 "title": "",
                 "description": "",
                 "bot_user_id": "",
-                "url": ""
+                "url": "",
+                "owning_team_id": "",
+                "workflow_id": "",
+                "developer_trace_id": "",
+                "trigger_type": "",
+                "trigger_subtype": "",
+                "share_url": ""
               },
               {
                 "type": "section",
@@ -25418,6 +25460,7 @@
                         "function_trigger_id": "",
                         "app_id": "",
                         "is_workflow_app": false,
+                        "sales_home_workflow_app_type": 123,
                         "app_collaborators": [
                           ""
                         ],
@@ -25425,7 +25468,13 @@
                         "title": "",
                         "description": "",
                         "bot_user_id": "",
-                        "url": ""
+                        "url": "",
+                        "owning_team_id": "",
+                        "workflow_id": "",
+                        "developer_trace_id": "",
+                        "trigger_type": "",
+                        "trigger_subtype": "",
+                        "share_url": ""
                       },
                       {
                         "type": "section",
@@ -28995,6 +29044,7 @@
                               "function_trigger_id": "",
                               "app_id": "",
                               "is_workflow_app": false,
+                              "sales_home_workflow_app_type": 123,
                               "app_collaborators": [
                                 ""
                               ],
@@ -29002,7 +29052,13 @@
                               "title": "",
                               "description": "",
                               "bot_user_id": "",
-                              "url": ""
+                              "url": "",
+                              "owning_team_id": "",
+                              "workflow_id": "",
+                              "developer_trace_id": "",
+                              "trigger_type": "",
+                              "trigger_subtype": "",
+                              "share_url": ""
                             },
                             {
                               "type": "section",
@@ -33222,6 +33278,7 @@
                             "function_trigger_id": "",
                             "app_id": "",
                             "is_workflow_app": false,
+                            "sales_home_workflow_app_type": 123,
                             "app_collaborators": [
                               ""
                             ],
@@ -33229,7 +33286,13 @@
                             "title": "",
                             "description": "",
                             "bot_user_id": "",
-                            "url": ""
+                            "url": "",
+                            "owning_team_id": "",
+                            "workflow_id": "",
+                            "developer_trace_id": "",
+                            "trigger_type": "",
+                            "trigger_subtype": "",
+                            "share_url": ""
                           },
                           {
                             "type": "section",
@@ -36821,6 +36884,7 @@
                             "function_trigger_id": "",
                             "app_id": "",
                             "is_workflow_app": false,
+                            "sales_home_workflow_app_type": 123,
                             "app_collaborators": [
                               ""
                             ],
@@ -36828,7 +36892,13 @@
                             "title": "",
                             "description": "",
                             "bot_user_id": "",
-                            "url": ""
+                            "url": "",
+                            "owning_team_id": "",
+                            "workflow_id": "",
+                            "developer_trace_id": "",
+                            "trigger_type": "",
+                            "trigger_subtype": "",
+                            "share_url": ""
                           },
                           {
                             "type": "section",
@@ -40562,12 +40632,19 @@
                     "function_trigger_id": "",
                     "app_id": "",
                     "is_workflow_app": false,
+                    "sales_home_workflow_app_type": 123,
                     "app_collaborators": [
                       ""
                     ],
                     "button_label": "",
                     "bot_user_id": "",
                     "url": "",
+                    "owning_team_id": "",
+                    "workflow_id": "",
+                    "developer_trace_id": "",
+                    "trigger_type": "",
+                    "trigger_subtype": "",
+                    "share_url": "",
                     "fields": [
                       {
                         "type": "plain_text",
@@ -43464,6 +43541,7 @@
                         "function_trigger_id": "",
                         "app_id": "",
                         "is_workflow_app": false,
+                        "sales_home_workflow_app_type": 123,
                         "app_collaborators": [
                           ""
                         ],
@@ -43471,7 +43549,13 @@
                         "title": "",
                         "description": "",
                         "bot_user_id": "",
-                        "url": ""
+                        "url": "",
+                        "owning_team_id": "",
+                        "workflow_id": "",
+                        "developer_trace_id": "",
+                        "trigger_type": "",
+                        "trigger_subtype": "",
+                        "share_url": ""
                       },
                       {
                         "type": "section",

@@ -75,7 +75,8 @@
         "is_admin": false,
         "is_owner": false,
         "teams": [
-          ""
+          "",
+          "T00000000"
         ],
         "is_primary_owner": false
       },
