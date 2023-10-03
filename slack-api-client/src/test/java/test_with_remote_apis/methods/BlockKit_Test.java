@@ -17,6 +17,7 @@ import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
 import com.slack.api.model.block.composition.MarkdownTextObject;
 import com.slack.api.model.block.element.BlockElements;
+import com.slack.api.model.block.element.RichTextSectionElement;
 import config.Constants;
 import config.SlackTestConfig;
 import org.junit.AfterClass;
@@ -336,5 +337,32 @@ public class BlockKit_Test {
         );
         // rich_text_input is not allowed in a channel message
         assertThat(response.getError(), is("invalid_blocks"));
+    }
+
+    @Test
+    public void richTextMessage() throws Exception {
+        loadRandomChannel();
+        ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .text("Hey! What's up?")
+                .blocks(Arrays.asList(
+                        richText(rt -> rt.blockId("b").elements(Arrays.asList(
+                                richTextSection(rts -> rts.elements(Arrays.asList(
+                                        RichTextSectionElement.Text.builder()
+                                                .style(RichTextSectionElement.TextStyle.builder().code(true).build())
+                                                .text("Hey!")
+                                                .build(),
+                                        RichTextSectionElement.Text.builder()
+                                                .text("\n")
+                                                .build(),
+                                        RichTextSectionElement.Text.builder()
+                                                .style(RichTextSectionElement.TextStyle.builder().bold(true).build())
+                                                .text("What's up?")
+                                                .build()
+                                )))
+                        )))
+                ))
+        );
+        assertThat(response.getError(), is(nullValue()));
     }
 }
