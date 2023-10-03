@@ -47,6 +47,12 @@ public class BlockElements {
         return configurator.configure(OverflowMenuElement.builder()).build();
     }
 
+    // RichTextInputElement
+
+    public static RichTextInputElement richTextInput(ModelConfigurator<RichTextInputElement.RichTextInputElementBuilder> configurator) {
+        return configurator.configure(RichTextInputElement.builder()).build();
+    }
+
     // PlainTextInputElement
 
     public static PlainTextInputElement plainTextInput(ModelConfigurator<PlainTextInputElement.PlainTextInputElementBuilder> configurator) {
@@ -174,40 +180,24 @@ public class BlockElements {
 
     // RichTextListElement
 
-    /**
-     * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
-     */
-    @Deprecated
     public static RichTextListElement richTextList(ModelConfigurator<RichTextListElement.RichTextListElementBuilder> configurator) {
         return configurator.configure(RichTextListElement.builder()).build();
     }
 
     // RichTextPreformattedElement
 
-    /**
-     * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
-     */
-    @Deprecated
     public static RichTextPreformattedElement richTextPreformatted(ModelConfigurator<RichTextPreformattedElement.RichTextPreformattedElementBuilder> configurator) {
         return configurator.configure(RichTextPreformattedElement.builder()).build();
     }
 
     // RichTextQuoteElement
 
-    /**
-     * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
-     */
-    @Deprecated
     public static RichTextQuoteElement richTextQuote(ModelConfigurator<RichTextQuoteElement.RichTextQuoteElementBuilder> configurator) {
         return configurator.configure(RichTextQuoteElement.builder()).build();
     }
 
     // RichTextSectionElement
 
-    /**
-     * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
-     */
-    @Deprecated
     public static RichTextSectionElement richTextSection(ModelConfigurator<RichTextSectionElement.RichTextSectionElementBuilder> configurator) {
         return configurator.configure(RichTextSectionElement.builder()).build();
     }

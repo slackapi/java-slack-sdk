@@ -2,6 +2,8 @@
   "token": "",
   "enterprise_id": "",
   "team_id": "",
+  "context_team_id": "",
+  "context_enterprise_id": "",
   "api_app_id": "",
   "type": "",
   "authed_users": [

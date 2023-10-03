@@ -4,6 +4,7 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.socket_mode.SocketModeApp;
 import com.slack.api.model.Message;
+import com.slack.api.model.block.element.RichTextSectionElement;
 import com.slack.api.model.event.AppMentionEvent;
 import com.slack.api.model.event.MessageChangedEvent;
 import com.slack.api.model.event.MessageDeletedEvent;
@@ -11,11 +12,12 @@ import com.slack.api.model.event.MessageEvent;
 import com.slack.api.model.view.ViewState;
 import config.Constants;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.slack.api.model.block.Blocks.asBlocks;
-import static com.slack.api.model.block.Blocks.input;
+import static com.slack.api.model.block.Blocks.*;
+import static com.slack.api.model.block.composition.BlockCompositions.dispatchActionConfig;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.*;
 import static com.slack.api.model.view.Views.*;
@@ -99,15 +101,44 @@ public class SimpleApp {
                                             .blockId("date-time-block")
                                             .element(datetimePicker(pti -> pti.actionId("date-time-action")))
                                             .label(plainText(pt -> pt.text("Date Time").emoji(true)))
+                                    ),
+                                    input(input -> input
+                                            .blockId("rich-text-block")
+                                            .element(richTextInput(pti -> pti.actionId("rich-text-action")
+                                                    .initialValue(richText(rt -> rt.blockId("b").elements(Arrays.asList(
+                                                            richTextList(rtl -> rtl.style("bullet").elements(Arrays.asList(
+                                                                    richTextSection(rtl1 -> rtl1.elements(Arrays.asList(
+                                                                            RichTextSectionElement.Text.builder()
+                                                                                    .text("Hey!")
+                                                                                    .style(RichTextSectionElement.TextStyle.builder().bold(true).build())
+                                                                                    .build()
+                                                                    ))),
+                                                                    richTextSection(rtl2 -> rtl2.elements(Arrays.asList(
+                                                                            RichTextSectionElement.Text.builder().text("What's up?").build()
+                                                                    )))
+                                                            )))
+                                                    ))))
+                                                    .dispatchActionConfig(dispatchActionConfig(dc -> dc.triggerActionsOn(Arrays.asList("on_character_entered"))))
+                                            ))
+                                            .dispatchAction(true)
+                                            .label(plainText(pt -> pt.text("Rich Text").emoji(true)))
                                     )
                             ))
                     )));
             return ctx.ack();
         });
 
+        app.blockAction("rich-text-action", (req, ctx) -> {
+            ctx.logger.info("state values: {}", req.getPayload().getView().getState().getValues());
+            ctx.logger.info("action[0]: {}", req.getPayload().getActions().get(0));
+            return ctx.ack();
+        });
+
         app.viewSubmission("test-view", (req, ctx) -> {
             ViewState.Value time = req.getPayload().getView().getState().getValues().get("time-block").get("time-action");
             assert time.getTimezone().equals("America/Los_Angeles");
+            ViewState.Value richText = req.getPayload().getView().getState().getValues().get("rich-text-block").get("rich-text-action");
+            assert richText.getRichTextValue().getElements().size() > 0;
             return ctx.ack();
         });
 

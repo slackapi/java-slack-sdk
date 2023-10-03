@@ -47,7 +47,7 @@ public class DndUpdatedEventTest {
         event.setUser("u");
         event.setDndStatus(new DndUpdatedEvent.DndStatus());
         String generatedJson = gson.toJson(event);
-        String expectedJson = "{\"type\":\"dnd_updated\",\"user\":\"u\",\"dnd_status\":{\"dnd_enabled\":false,\"snooze_enabled\":false}}";
+        String expectedJson = "{\"type\":\"dnd_updated\",\"user\":\"u\",\"dnd_status\":{\"dnd_enabled\":false,\"snooze_enabled\":false,\"snooze_is_indefinite\":false}}";
         assertThat(generatedJson, is(expectedJson));
     }
 

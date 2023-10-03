@@ -11,6 +11,8 @@ public class GroupArchivePayload implements EventsApiPayload<GroupArchiveEvent> 
     private String token;
     private String enterpriseId;
     private String teamId;
+    private String contextTeamId;
+    private String contextEnterpriseId;
     private String apiAppId;
     private String type;
     private List<String> authedUsers;

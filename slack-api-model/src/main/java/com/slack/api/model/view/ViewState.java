@@ -1,5 +1,6 @@
 package com.slack.api.model.view;
 
+import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +36,7 @@ public class ViewState {
         private List<String> selectedUsers;
         private List<SelectedOption> selectedOptions;
         private String timezone; // for timepicker
+        private RichTextBlock richTextValue; // "rich_text_input" type
     }
 
     @Data

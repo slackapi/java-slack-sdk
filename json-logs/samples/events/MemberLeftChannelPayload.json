@@ -24,5 +24,7 @@
     }
   ],
   "is_ext_shared_channel": false,
-  "event_context": ""
+  "event_context": "",
+  "context_team_id": "",
+  "context_enterprise_id": ""
 }
