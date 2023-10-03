@@ -1508,7 +1508,12 @@
       "selected_date": "",
       "initial_date": "",
       "selected_time": "",
-      "initial_time": ""
+      "initial_time": "",
+      "rich_text_value": {
+        "type": "rich_text",
+        "elements": [],
+        "block_id": ""
+      }
     }
   ],
   "is_enterprise_install": false

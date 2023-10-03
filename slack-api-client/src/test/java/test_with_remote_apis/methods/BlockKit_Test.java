@@ -31,8 +31,7 @@ import java.util.List;
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
-import static com.slack.api.model.block.element.BlockElements.asElements;
-import static com.slack.api.model.block.element.BlockElements.button;
+import static com.slack.api.model.block.element.BlockElements.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -321,4 +320,21 @@ public class BlockKit_Test {
         assertThat(response.getError(), is(nullValue()));
     }
 
+    @Test
+    public void richTextInputTest() throws Exception {
+        loadRandomChannel();
+        ChatPostMessageResponse response = slack.methods(botToken).chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .text("test")
+                .blocks(Arrays.asList(
+                        section(s ->s.text(plainText("rich text input test"))),
+                        input(i -> i
+                                .element(richTextInput(rti -> rti.actionId("action")))
+                                .label(plainText("rich input"))
+                        )
+                ))
+        );
+        // rich_text_input is not allowed in a channel message
+        assertThat(response.getError(), is("invalid_blocks"));
+    }
 }

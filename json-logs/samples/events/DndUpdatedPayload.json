@@ -12,7 +12,8 @@
       "next_dnd_end_ts": 12345,
       "snooze_enabled": false,
       "snooze_endtime": 12345,
-      "snooze_remaining": 12345
+      "snooze_remaining": 12345,
+      "snooze_is_indefinite": false
     },
     "event_ts": "0000000000.000000"
   },

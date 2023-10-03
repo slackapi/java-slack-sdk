@@ -7,6 +7,7 @@
     "next_dnd_start_ts": 123,
     "next_dnd_end_ts": 123,
     "snooze_enabled": false,
+    "snooze_is_indefinite": false,
     "snooze_endtime": 123
   },
   "event_ts": ""

@@ -3,6 +3,7 @@ package com.slack.api.app_backend.interactive_components.payload;
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
@@ -172,6 +173,8 @@ public class BlockActionPayload {
             private PlainTextObject text;
             private String value;
         }
+
+        private RichTextBlock richTextValue;
     }
 
 }

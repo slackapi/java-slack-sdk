@@ -91,6 +91,8 @@ interface BlockElementInputDsl {
      */
     fun multiUsersSelect(builder: MultiUsersSelectElementBuilder.() -> Unit)
 
+    fun richTextInput(builder: RichTextInputElementBuilder.() -> Unit)
+
     /**
      * A plain-text input, similar to the HTML input tag, creates a field where a user can enter freeform data. It can
      * appear as a single-line field or a larger textarea using the multiline flag.

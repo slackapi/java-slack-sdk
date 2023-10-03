@@ -85,6 +85,10 @@ class SingleBlockElementContainer() : BlockElementDsl {
         underlying = MultiUsersSelectElementBuilder().apply(builder).build()
     }
 
+    override fun richTextInput(builder: RichTextInputElementBuilder.() -> Unit) {
+        underlying = RichTextInputElementBuilder().apply(builder).build()
+    }
+
     override fun overflowMenu(builder: OverflowMenuElementBuilder.() -> Unit) {
         underlying = OverflowMenuElementBuilder().apply(builder).build()
     }

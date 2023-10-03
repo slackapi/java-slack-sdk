@@ -89,10 +89,6 @@ public class Blocks {
 
     // RichTextBlock
 
-    /**
-     * @deprecated The SDK cannot send rich text blocks. Use Markdown text instead.
-     */
-    @Deprecated
     public static RichTextBlock richText(ModelConfigurator<RichTextBlock.RichTextBlockBuilder> configurator) {
         return configurator.configure(RichTextBlock.builder()).build();
     }

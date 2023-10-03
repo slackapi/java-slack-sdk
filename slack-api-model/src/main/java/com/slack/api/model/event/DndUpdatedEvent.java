@@ -26,6 +26,7 @@ public class DndUpdatedEvent implements Event {
         private Integer nextDndStartTs;
         private Integer nextDndEndTs;
         private boolean snoozeEnabled;
+        private boolean snoozeIsIndefinite;
         private Integer snoozeEndtime;
     }
 }

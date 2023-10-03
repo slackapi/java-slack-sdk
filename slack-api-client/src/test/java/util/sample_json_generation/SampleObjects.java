@@ -227,6 +227,13 @@ public class SampleObjects {
             .placeholder(initProperties(PlainTextObject.builder().build()))
             .dispatchActionConfig(initProperties(DispatchActionConfig.builder().triggerActionsOn(Arrays.asList("")).build()))
             .build());
+
+    public static RichTextInputElement richTextInputElement = initProperties(RichTextInputElement.builder()
+            .placeholder(initProperties(PlainTextObject.builder().build()))
+            .initialValue(RichTextBlock)
+            .dispatchActionConfig(initProperties(DispatchActionConfig.builder().triggerActionsOn(Arrays.asList("")).build()))
+            .build());
+
     public static RadioButtonsElement radioButtonsElement = initProperties(RadioButtonsElement.builder()
             .confirm(initProperties(ConfirmationDialogObject.builder()
                     .text(initProperties(PlainTextObject.builder().build()))
@@ -239,6 +246,7 @@ public class SampleObjects {
             .build());
 
     public static List<LayoutBlock> ModalBlocks = asBlocks(
+            initProperties(input(i -> i.element(richTextInputElement))),
             initProperties(input(i -> i.element(plainTextInputElement))),
             initProperties(input(i -> i.element(radioButtonsElement))),
             initProperties(input(i -> i.element(initProperties(button(b -> b.confirm(Confirm)))))),

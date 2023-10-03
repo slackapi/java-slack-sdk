@@ -11,6 +11,8 @@ public class MemberJoinedChannelPayload implements EventsApiPayload<MemberJoined
     private String token;
     private String enterpriseId;
     private String teamId;
+    private String contextTeamId;
+    private String contextEnterpriseId;
     private String apiAppId;
     private String type;
     private List<String> authedUsers;

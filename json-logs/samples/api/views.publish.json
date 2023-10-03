@@ -33,6 +33,1432 @@
           "emoji": false
         },
         "element": {
+          "type": "rich_text_input",
+          "action_id": "",
+          "initial_value": {
+            "type": "rich_text",
+            "elements": [
+              {
+                "type": "rich_text_list",
+                "elements": [
+                  {
+                    "type": "rich_text_list",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ],
+                    "style": "",
+                    "indent": 123,
+                    "offset": 123,
+                    "border": 123
+                  },
+                  {
+                    "type": "rich_text_preformatted",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ],
+                    "border": 123
+                  },
+                  {
+                    "type": "rich_text_quote",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ]
+                  },
+                  {
+                    "type": "rich_text_section",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ]
+                  }
+                ],
+                "style": "",
+                "indent": 123,
+                "offset": 123,
+                "border": 123
+              },
+              {
+                "type": "rich_text_preformatted",
+                "elements": [
+                  {
+                    "type": "rich_text_list",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ],
+                    "style": "",
+                    "indent": 123,
+                    "offset": 123,
+                    "border": 123
+                  },
+                  {
+                    "type": "rich_text_preformatted",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ],
+                    "border": 123
+                  },
+                  {
+                    "type": "rich_text_quote",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ]
+                  },
+                  {
+                    "type": "rich_text_section",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ]
+                  }
+                ],
+                "border": 123
+              },
+              {
+                "type": "rich_text_quote",
+                "elements": [
+                  {
+                    "type": "rich_text_list",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ],
+                    "style": "",
+                    "indent": 123,
+                    "offset": 123,
+                    "border": 123
+                  },
+                  {
+                    "type": "rich_text_preformatted",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ],
+                    "border": 123
+                  },
+                  {
+                    "type": "rich_text_quote",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ]
+                  },
+                  {
+                    "type": "rich_text_section",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "rich_text_section",
+                "elements": [
+                  {
+                    "type": "rich_text_list",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ],
+                    "style": "",
+                    "indent": 123,
+                    "offset": 123,
+                    "border": 123
+                  },
+                  {
+                    "type": "rich_text_preformatted",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ],
+                    "border": 123
+                  },
+                  {
+                    "type": "rich_text_quote",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ]
+                  },
+                  {
+                    "type": "rich_text_section",
+                    "elements": [
+                      {
+                        "type": "broadcast",
+                        "range": ""
+                      },
+                      {
+                        "type": "text",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "channel",
+                        "channel_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "value": ""
+                      },
+                      {
+                        "type": "date",
+                        "timestamp": ""
+                      },
+                      {
+                        "type": "link",
+                        "url": "",
+                        "text": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "team",
+                        "team_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "user",
+                        "user_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
+                      },
+                      {
+                        "type": "usergroup",
+                        "usergroup_id": ""
+                      },
+                      {
+                        "type": "emoji",
+                        "name": "",
+                        "skin_tone": 123,
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        },
+                        "unicode": ""
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "block_id": ""
+          },
+          "dispatch_action_config": {
+            "trigger_actions_on": [
+              ""
+            ]
+          },
+          "focus_on_load": false,
+          "placeholder": {
+            "type": "plain_text",
+            "text": "",
+            "emoji": false
+          }
+        },
+        "dispatch_action": false,
+        "hint": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "optional": false
+      },
+      {
+        "type": "input",
+        "block_id": "",
+        "label": {
+          "type": "plain_text",
+          "text": "",
+          "emoji": false
+        },
+        "element": {
           "type": "plain_text_input",
           "action_id": "",
           "placeholder": {
