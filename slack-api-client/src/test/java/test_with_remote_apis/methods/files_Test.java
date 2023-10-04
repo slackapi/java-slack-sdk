@@ -415,43 +415,6 @@ public class files_Test {
     }
 
     @Test
-    public void createLongTextFile_v2_no_file_info() throws Exception {
-        com.slack.api.model.File fileObj;
-        {
-            FilesUploadV2Response response = slack.methods(botToken).filesUploadV2(r -> r
-                    .content("test")
-                    .channel(channelId)
-                    .initialComment("initial comment")
-                    .filename("sample.txt")
-                    .title("file title")
-                    .requestFileInfo(false) // Added
-            );
-            assertThat(response.getError(), is(nullValue()));
-            assertThat(response.isOk(), is(true));
-            assertThat(response.getFile().getTitle(), is("file title"));
-            assertThat(response.getFile().getName(), is(nullValue())); // this must be absent
-
-            // I know this is a bit long but this can be necessary for test stability
-            Thread.sleep(10000L);
-            fileObj = slack.methods(botToken).filesInfo(r -> r.file(response.getFile().getId())).getFile();
-
-            assertThat(fileObj.getTitle(), is("file title"));
-            assertThat(fileObj.getName(), is("sample.txt"));
-        }
-        {
-            ChatDeleteResponse response = slack.methods(botToken).chatDelete(r -> r
-                    .channel(channelId)
-                    .ts(fileObj
-                            .getShares()
-                            .getPublicChannels().get(channelId).get(0)
-                            .getTs())
-            );
-            assertThat(response.getError(), is(nullValue()));
-            assertThat(response.isOk(), is(true));
-        }
-    }
-
-    @Test
     public void createImageFileAndComments() throws IOException, SlackApiException {
         File file = new File("src/test/resources/seratch.jpg");
         com.slack.api.model.File fileObj;

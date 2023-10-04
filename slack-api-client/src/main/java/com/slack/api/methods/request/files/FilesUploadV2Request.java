@@ -73,7 +73,10 @@ public class FilesUploadV2Request implements SlackApiRequest {
 
     /**
      * Fetches all the file metadata for better v1 compatibility when this property is true.
+     * Note that, starting in v1.34, this flag does not do anything.
+     * The full file metadata is now returned without additional files.info API calls.
      */
+    @Deprecated
     @Builder.Default
     private boolean requestFileInfo = true;
 

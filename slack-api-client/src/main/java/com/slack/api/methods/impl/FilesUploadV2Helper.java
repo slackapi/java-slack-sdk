@@ -104,23 +104,8 @@ public class FilesUploadV2Helper implements AutoCloseable {
         if (!response.isOk()) {
             throw underlyingException;
         }
-
-        result.setFiles(new ArrayList<>());
-        for (File file : response.getFiles()) {
-            if (v2Request.isRequestFileInfo()) {
-                FilesInfoResponse fileInfo = this.client.filesInfo(r -> r.token(v2Request.getToken()).file(file.getId()));
-                underlyingException.getFileInfoResponses().add(fileInfo);
-                if (!fileInfo.isOk()) {
-                    throw underlyingException;
-                }
-                result.getFiles().add(fileInfo.getFile());
-            } else {
-                File partialFileObject = File.builder().id(file.getId()).title(file.getTitle()).build();
-                result.getFiles().add(partialFileObject);
-            }
-        }
-
         result.setOk(true);
+        result.setFiles(response.getFiles());
         if (response.getFiles().size() == 1) {
             result.setFile(result.getFiles().get(0));
         }
