@@ -106,7 +106,7 @@ public class FilesUploadV2Helper implements AutoCloseable {
         }
 
         result.setFiles(new ArrayList<>());
-        for (FilesCompleteUploadExternalResponse.FileDetails file : response.getFiles()) {
+        for (File file : response.getFiles()) {
             if (v2Request.isRequestFileInfo()) {
                 FilesInfoResponse fileInfo = this.client.filesInfo(r -> r.token(v2Request.getToken()).file(file.getId()));
                 underlyingException.getFileInfoResponses().add(fileInfo);

@@ -3,7 +3,80 @@
   "files": [
     {
       "id": "F00000000",
-      "title": ""
+      "title": "",
+      "created": 12345,
+      "timestamp": 12345,
+      "name": "",
+      "mimetype": "",
+      "filetype": "",
+      "pretty_type": "",
+      "user": "U00000000",
+      "user_team": "T00000000",
+      "editable": false,
+      "size": 12345,
+      "mode": "",
+      "is_external": false,
+      "external_type": "",
+      "is_public": false,
+      "public_url_shared": false,
+      "display_as_bot": false,
+      "username": "",
+      "url_private": "https://www.example.com/",
+      "url_private_download": "https://www.example.com/",
+      "permalink": "https://www.example.com/",
+      "permalink_public": "https://www.example.com/",
+      "edit_link": "https://www.example.com/",
+      "preview": "",
+      "preview_highlight": "",
+      "lines": 12345,
+      "lines_more": 12345,
+      "preview_is_truncated": false,
+      "comments_count": 12345,
+      "is_starred": false,
+      "shares": {
+        "public": {
+          "C00000000": [
+            {
+              "reply_users": [
+                ""
+              ],
+              "reply_users_count": 12345,
+              "reply_count": 12345,
+              "ts": "0000000000.000000",
+              "channel_name": "",
+              "team_id": "T00000000",
+              "share_user_id": "U00000000"
+            }
+          ],
+          "C00000001": [
+            {
+              "reply_users": [
+                ""
+              ],
+              "reply_users_count": 12345,
+              "reply_count": 12345,
+              "ts": "0000000000.000000",
+              "channel_name": "",
+              "team_id": "T00000000",
+              "share_user_id": "U00000000"
+            }
+          ]
+        }
+      },
+      "channels": [
+        "C00000000",
+        ""
+      ],
+      "groups": [
+        ""
+      ],
+      "ims": [
+        ""
+      ],
+      "has_more_shares": false,
+      "has_rich_preview": false,
+      "file_access": "",
+      "media_display_type": ""
     }
   ],
   "error": "",

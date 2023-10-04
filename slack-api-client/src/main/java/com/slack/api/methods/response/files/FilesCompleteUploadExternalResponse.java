@@ -1,6 +1,7 @@
 package com.slack.api.methods.response.files;
 
 import com.slack.api.methods.SlackApiTextResponse;
+import com.slack.api.model.File;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
@@ -16,14 +17,6 @@ public class FilesCompleteUploadExternalResponse implements SlackApiTextResponse
     private String needed;
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
-
-    private List<FileDetails> files;
-
-    @Data
-    public static class FileDetails {
-        private String id;
-        private String title;
-    }
-
+    private List<File> files;
     private ResponseMetadata responseMetadata;
 }
