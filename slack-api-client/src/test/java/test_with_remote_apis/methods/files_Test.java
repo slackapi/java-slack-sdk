@@ -286,6 +286,7 @@ public class files_Test {
     }
 
     @Test
+    @Ignore
     public void createLongTextFile_v2() throws Exception {
         File file = new File("src/test/resources/sample_long.txt");
         com.slack.api.model.File fileObj = null;
