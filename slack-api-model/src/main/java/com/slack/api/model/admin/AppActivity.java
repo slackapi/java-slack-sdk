@@ -25,6 +25,8 @@ public class AppActivity {
         private String workflowName;
         private String type;
         private String actor;
+        private String channelId;
+        private String botUserId;
         private String error; // "restricted_action" etc.
         private String errorExtended;
         private String functionId; // "Fn0106" etc.

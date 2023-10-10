@@ -38,7 +38,9 @@
             "user_id": "W00000000",
             "channel_id": "C00000000"
           }
-        }
+        },
+        "channel_id": "C00000000",
+        "bot_user_id": "U00000000"
       },
       "created": 12345,
       "trace_id": ""

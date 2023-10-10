@@ -165,7 +165,8 @@
       "pref.two_factor_prevent_sms_changed",
       "apps_analytics_export_started",
       "apps_analytics_export_prepared",
-      "pref.canvas_retention_changed"
+      "pref.canvas_retention_changed",
+      "audit_logs_export_json_started"
     ],
     "user": [
       "custom_tos_accepted",

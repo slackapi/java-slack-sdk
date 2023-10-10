@@ -174,6 +174,7 @@ public class Actions {
         public static final String bulk_session_reset_by_admin = "bulk_session_reset_by_admin";
         public static final String export_private_channel_analytics_created = "export_private_channel_analytics_created";
         public static final String audit_logs_export_csv_started = "audit_logs_export_csv_started";
+        public static final String audit_logs_export_json_started = "audit_logs_export_json_started";
         public static final String audit_logs_records_searched = "audit_logs_records_searched";
         public static final String apps_analytics_export_started = "apps_analytics_export_started";
         public static final String apps_analytics_export_prepared = "apps_analytics_export_prepared";
