@@ -11034,6 +11034,13 @@
                   "private_channels_with_file_access_count": 123,
                   "dm_mpdm_users_with_file_access": [],
                   "org_or_workspace_access": "",
+                  "update_notification": 123,
+                  "canvas_template_mode": "",
+                  "template_conversion_ts": 123,
+                  "template_name": "",
+                  "template_title": "",
+                  "template_description": "",
+                  "template_icon": "",
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -11415,7 +11422,8 @@
                       "thread_ts": "",
                       "latest_reply": "",
                       "channel_name": "",
-                      "team_id": ""
+                      "team_id": "",
+                      "access": ""
                     }
                   ],
                   "C03E94MKU_": [
@@ -11430,7 +11438,8 @@
                       "thread_ts": "",
                       "latest_reply": "",
                       "channel_name": "",
-                      "team_id": ""
+                      "team_id": "",
+                      "access": ""
                     }
                   ]
                 },
@@ -11447,7 +11456,8 @@
                       "thread_ts": "",
                       "latest_reply": "",
                       "channel_name": "",
-                      "team_id": ""
+                      "team_id": "",
+                      "access": ""
                     }
                   ],
                   "C03E94MKU_": [
@@ -11462,7 +11472,8 @@
                       "thread_ts": "",
                       "latest_reply": "",
                       "channel_name": "",
-                      "team_id": ""
+                      "team_id": "",
+                      "access": ""
                     }
                   ]
                 }
@@ -15094,6 +15105,13 @@
                 }
               ],
               "org_or_workspace_access": "",
+              "update_notification": 123,
+              "canvas_template_mode": "",
+              "template_conversion_ts": 123,
+              "template_name": "",
+              "template_title": "",
+              "template_description": "",
+              "template_icon": "",
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -18873,6 +18891,13 @@
       "private_channels_with_file_access_count": 123,
       "dm_mpdm_users_with_file_access": [],
       "org_or_workspace_access": "",
+      "update_notification": 123,
+      "canvas_template_mode": "",
+      "template_conversion_ts": 123,
+      "template_name": "",
+      "template_title": "",
+      "template_description": "",
+      "template_icon": "",
       "bot_id": "",
       "initial_comment": {
         "id": "",
