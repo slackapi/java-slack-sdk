@@ -126,7 +126,14 @@ public class FieldValidation_d_to_m_Test {
                 "getAltTxt",
                 "getMediaProgress",
                 "getSourceTeam",
-                "getSaved"
+                "getSaved",
+                "getUpdateNotification",
+                "getCanvasTemplateMode",
+                "getTemplateConversionTs",
+                "getTemplateName",
+                "getTemplateTitle",
+                "getTemplateDescription",
+                "getTemplateIcon"
         );
     }
 
@@ -226,7 +233,14 @@ public class FieldValidation_d_to_m_Test {
                 "getMediaProgress",
                 "getHasMoreShares",
                 "getSourceTeam",
-                "getSaved"
+                "getSaved",
+                "getUpdateNotification",
+                "getCanvasTemplateMode",
+                "getTemplateConversionTs",
+                "getTemplateName",
+                "getTemplateTitle",
+                "getTemplateDescription",
+                "getTemplateIcon"
         );
     }
 

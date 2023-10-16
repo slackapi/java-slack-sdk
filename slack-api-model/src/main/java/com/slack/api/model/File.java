@@ -251,6 +251,7 @@ public class File {
         private String latestReply;
         private String channelName;
         private String teamId;
+        private String access; // "read"
     }
 
     private List<Address> to;
@@ -326,6 +327,14 @@ public class File {
         private String userId;
         private String access;
     }
+
+    private Integer updateNotification;
+    private String canvasTemplateMode; // "published"
+    private Integer templateConversionTs;
+    private String templateName;
+    private String templateTitle;
+    private String templateDescription;
+    private String templateIcon;
 
     // ---------------------------------------
     // file comments

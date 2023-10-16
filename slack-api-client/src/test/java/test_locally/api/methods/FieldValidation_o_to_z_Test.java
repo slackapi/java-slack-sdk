@@ -304,7 +304,14 @@ public class FieldValidation_o_to_z_Test {
                 "getTeamsSharedWith",
                 "getTitleBlocks",
                 "getOrgOrWorkspaceAccess",
-                "getAccess"
+                "getAccess",
+                "getUpdateNotification",
+                "getCanvasTemplateMode",
+                "getTemplateConversionTs",
+                "getTemplateName",
+                "getTemplateTitle",
+                "getTemplateDescription",
+                "getTemplateIcon"
         );
     }
 
