@@ -44,4 +44,8 @@ public class AdminAppsRestrictedListRequest implements SlackApiRequest {
      */
     private String teamId;
 
+    /**
+     * Limit the results to only include certified apps. When false, no certified apps will appear in the result
+     */
+    private Boolean certified;
 }

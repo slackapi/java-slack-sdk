@@ -218,6 +218,7 @@ public class RequestFormBuilder {
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("certified", req.getCertified(), form);
         return form;
     }
 
@@ -236,6 +237,7 @@ public class RequestFormBuilder {
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("enterprise_id", req.getEnterpriseId(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("certified", req.getCertified(), form);
         return form;
     }
 
