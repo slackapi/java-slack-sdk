@@ -25,6 +25,7 @@ public class Latest {
     private Message.MessageRoot root;
     private boolean upload;
     private boolean displayAsBot;
+    private String appId;
     private String botId;
     private String botLink;
     private BotProfile botProfile;

@@ -37,6 +37,7 @@ public class Attachment {
      * This value is used to color the border along the left side of the message attachment.
      */
     private String color;
+    private Boolean hideColor;
 
     /**
      * This is optional text that appears above the message attachment block.
@@ -320,6 +321,19 @@ public class Attachment {
     private String mimetype;
     private String url;
     private AttachmentMetadata metadata;
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @SerializedName("is_file_attachment")
+    private Boolean fileAttachment;
+
+    public Boolean isFileAttachment() {
+        return this.fileAttachment;
+    }
+
+    public void setFileAttachment(Boolean fileAttachment) {
+        this.fileAttachment = fileAttachment;
+    }
 
     @Data
     @Builder

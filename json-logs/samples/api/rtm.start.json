@@ -1074,6 +1074,7 @@
             "fallback": "",
             "callback_id": "",
             "color": "",
+            "hide_color": false,
             "pretext": "",
             "service_url": "",
             "service_name": "",
@@ -16197,7 +16198,8 @@
               "extension": "",
               "rotation": 123,
               "thumb_tiny": ""
-            }
+            },
+            "is_file_attachment": false
           }
         ],
         "blocks": [
@@ -23080,6 +23082,7 @@
                     "fallback": "",
                     "callback_id": "",
                     "color": "",
+                    "hide_color": false,
                     "pretext": "",
                     "service_url": "",
                     "service_name": "",
@@ -38203,7 +38206,8 @@
                       "extension": "",
                       "rotation": 123,
                       "thumb_tiny": ""
-                    }
+                    },
+                    "is_file_attachment": false
                   }
                 ],
                 "blocks": [

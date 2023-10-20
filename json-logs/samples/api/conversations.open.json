@@ -30,6 +30,7 @@
         },
         "team_id": "T00000000"
       },
+      "app_id": "A00000000",
       "blocks": [
         {
           "type": "actions",
