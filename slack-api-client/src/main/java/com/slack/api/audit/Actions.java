@@ -127,6 +127,9 @@ public class Actions {
         public static final String pref_platform_beta_external_triggers_enabled = "pref.platform_beta_external_triggers_enabled";
         public static final String pref_two_factor_prevent_sms_changed = "pref.two_factor_prevent_sms_changed";
         public static final String pref_canvas_retention_changed = "pref.canvas_retention_changed";
+        public static final String pref_atlas_profiles_access_changed = "pref.atlas_profiles_access_changed";
+        public static final String pref_atlas_org_charts_access_changed = "pref.atlas_org_charts_access_changed";
+        public static final String pref_mobile_session_duration_changed = "pref.mobile_session_duration_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";

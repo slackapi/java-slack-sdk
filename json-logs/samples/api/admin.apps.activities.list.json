@@ -32,7 +32,8 @@
           "type": "",
           "config": {
             "name": "",
-            "description": ""
+            "description": "",
+            "schema": {}
           },
           "trip_information": {
             "user_id": "W00000000",
@@ -40,7 +41,8 @@
           }
         },
         "channel_id": "C00000000",
-        "bot_user_id": "U00000000"
+        "bot_user_id": "U00000000",
+        "inputs": {}
       },
       "created": 12345,
       "trace_id": ""

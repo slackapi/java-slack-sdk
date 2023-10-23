@@ -464,7 +464,7 @@ public class JsonDataRecorder {
                     }
                 }
             }
-        } else if (element.isJsonObject()) {
+        } else if (element != null && element.isJsonObject()) {
             if (name != null && name.equals("file")) {
                 if (path.startsWith("/audit/v1/schemas") || path.startsWith("/audit/v1/actions")) {
                     return;
@@ -492,6 +492,20 @@ public class JsonDataRecorder {
                     log.error(e.getMessage(), e);
                 }
                 return;
+            }
+            if (name != null && name.equals("inputs") && path.equals("/api/admin.apps.activities.list")) {
+                JsonObject permissions = element.getAsJsonObject();
+                try {
+                    // To avoid concurrent modification of the underlying objects
+                    List<String> oldKeys = new ArrayList<>();
+                    permissions.keySet().iterator().forEachRemaining(oldKeys::add);
+                    for (String key : oldKeys) {
+                        permissions.remove(key);
+                    }
+
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
             }
             if (name != null && name.equals("bookmark")) {
                 if (path.startsWith("/audit/v1/schemas") || path.startsWith("/audit/v1/actions")) {
@@ -724,7 +738,7 @@ public class JsonDataRecorder {
                     e.printStackTrace();
                 }
             }
-        } else if (element.isJsonNull()) {
+        } else if (element == null || element.isJsonNull()) {
             return;
         } else if (!parent.isJsonArray() && element.isJsonPrimitive()) {
             JsonPrimitive prim = element.getAsJsonPrimitive();

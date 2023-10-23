@@ -3,6 +3,7 @@ package com.slack.api.model.admin;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 // See https://api.slack.com/methods/admin.apps.activities.list
 @Data
@@ -39,6 +40,8 @@ public class AppActivity {
         private List<String> billingReason; // "uses_custom_function" etc.
         private Boolean isBillingExcluded;
         private Trigger trigger;
+        // TODO: complete typing for the value
+        private Map<String, Object> inputs;
     }
 
     @Data
@@ -53,6 +56,7 @@ public class AppActivity {
     public static class TriggerConfig {
         private String name;
         private String description;
+        private Object schema; // TODO: typing
     }
 
     @Data

@@ -25,6 +25,7 @@ public class AdminUsersListResponse implements SlackApiTextResponse {
     public static class User {
         private String id;
         private String email;
+        private String username;
         @SerializedName("is_admin")
         private boolean admin;
         @SerializedName("is_owner")

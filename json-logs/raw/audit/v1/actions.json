@@ -166,7 +166,10 @@
       "apps_analytics_export_started",
       "apps_analytics_export_prepared",
       "pref.canvas_retention_changed",
-      "audit_logs_export_json_started"
+      "audit_logs_export_json_started",
+      "pref.atlas_profiles_access_changed",
+      "pref.atlas_org_charts_access_changed",
+      "pref.mobile_session_duration_changed"
     ],
     "user": [
       "custom_tos_accepted",

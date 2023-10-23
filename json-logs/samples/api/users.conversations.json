@@ -62,6 +62,9 @@
         "posting_restricted_to": {
           "type": [
             ""
+          ],
+          "user": [
+            "U00000000"
           ]
         },
         "huddles_restricted": false,
