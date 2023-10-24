@@ -26,6 +26,7 @@ public class AdminUsersListResponse implements SlackApiTextResponse {
         private String id;
         private String email;
         private String username;
+        private String fullName;
         @SerializedName("is_admin")
         private boolean admin;
         @SerializedName("is_owner")
@@ -38,6 +39,9 @@ public class AdminUsersListResponse implements SlackApiTextResponse {
         private boolean ultraRestricted;
         @SerializedName("is_bot")
         private boolean bot;
+        @SerializedName("is_active")
+        private boolean active;
         private Long expirationTs;
+        private Integer dateCreated;
     }
 }
