@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
-
 @Slf4j
 public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
 
@@ -100,5 +99,4 @@ public class RTMEventsDispatcherImpl implements RTMEventsDispatcher {
             return "";
         return type.getAsString();
     }
-
 }

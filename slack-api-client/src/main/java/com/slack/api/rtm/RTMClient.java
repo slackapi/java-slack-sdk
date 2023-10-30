@@ -219,7 +219,7 @@ public class RTMClient implements Closeable {
      *
      * @param newSession new session
      */
-    private void updateSession(Session newSession) {
+    public void updateSession(Session newSession) {
         if (this.currentSession == null) {
             this.currentSession = newSession;
         } else {

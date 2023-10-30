@@ -10,11 +10,13 @@ import com.slack.api.rate_limits.metrics.RequestStats;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import redis.clients.jedis.JedisPool;
 import util.MockSlackApiServer;
 
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ScheduledExecutorService;
 
 import static org.junit.Assert.*;
 import static util.MockSlackApi.ValidToken;
@@ -110,4 +112,49 @@ public class RedisMetricsDatastoreTest {
         assertEquals("slack-api-metrics:app2", datastore2.getThreadGroupName());
         assertNotEquals(datastore1.getThreadGroupName(), datastore2.getThreadGroupName());
     }
+
+    @Test
+    public void testGetNumberOfLastMinuteRequests() {
+        String executorName = MethodsConfig.DEFAULT_SINGLETON_EXECUTOR_NAME;
+        String teamId = "T123";
+        String methodName = "auth.test";
+        datastore.incrementAllCompletedCalls(executorName, teamId, methodName);
+        datastore.incrementUnsuccessfulCalls(executorName, teamId, methodName);
+        datastore.incrementFailedCalls(executorName, teamId, methodName);
+        datastore.updateCurrentQueueSize(executorName, teamId, methodName);
+        datastore.updateNumberOfLastMinuteRequests(executorName, teamId, methodName);
+        Integer numberOfRequests = datastore.getNumberOfLastMinuteRequests(executorName, teamId, methodName);
+        assertNotNull(numberOfRequests);
+        assertEquals(Integer.valueOf(1), numberOfRequests);
+        datastore.updateNumberOfLastMinuteRequests(executorName, teamId, methodName);
+        numberOfRequests = datastore.getNumberOfLastMinuteRequests(executorName, teamId, methodName);
+        assertNotNull(numberOfRequests);
+        assertEquals(Integer.valueOf(2), numberOfRequests);
+    }
+
+    @Test
+    public void testGetRateLimitedMethodRetryEpochMillis() {
+        String executorName = MethodsConfig.DEFAULT_SINGLETON_EXECUTOR_NAME;
+        String teamId = "T123";
+        String methodName = "example.method";
+        Long epochTimeMillis = System.currentTimeMillis() + 60000L;
+        datastore.setRateLimitedMethodRetryEpochMillis(executorName, teamId, methodName, epochTimeMillis);
+        Long retrievedEpochTimeMillis = datastore.getRateLimitedMethodRetryEpochMillis(executorName, teamId, methodName);
+        assertNotNull(retrievedEpochTimeMillis);
+        assertEquals(epochTimeMillis, retrievedEpochTimeMillis);
+    }
+    @Test
+    public void testClose()
+    {
+        JedisPool jedisPool = Mockito.mock(JedisPool.class);
+        ScheduledExecutorService scheduledExecutorService = Mockito.mock(ScheduledExecutorService.class);
+        RedisMetricsDatastore datastore = new RedisMetricsDatastore("name", jedisPool);
+        try {
+            datastore.close();
+        } catch (Exception e) {
+            fail("Exception should not be thrown during close.");
+        }
+        Mockito.verify(jedisPool).close();
+    }
+
 }

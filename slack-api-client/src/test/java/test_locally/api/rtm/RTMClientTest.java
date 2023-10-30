@@ -12,10 +12,14 @@ import javax.websocket.Session;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class RTMClientTest {
+
 
     @Test
     public void instantiation() throws URISyntaxException {
@@ -86,4 +90,14 @@ public class RTMClientTest {
         client.onMessage("msg");
     }
 
+    @Test
+    public void updateSessionWhenCurrentSessionIsNotNull() throws URISyntaxException, IOException {
+        RTMClient client = new RTMClient(Slack.getInstance(), "xoxb-123", "wss://xxxx", new User());
+        Session currentSession = mock(Session.class);
+        Session newSession = mock(Session.class);
+        client.updateSession(currentSession);
+        client.updateSession(newSession);
+        verify(currentSession).close(any(CloseReason.class));
+        assertEquals(currentSession,newSession);
+    }
 }

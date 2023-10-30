@@ -30,10 +30,6 @@
       "emails": [
         {
           "value": "",
-          "primary": false
-        },
-        {
-          "value": "",
           "type": "",
           "primary": false
         }
@@ -46,16 +42,11 @@
       ],
       "groups": [
         {
-          "value": "S00000000",
-          "display": ""
-        },
-        {
           "value": "",
           "display": ""
         }
       ],
       "addresses": [
-        {},
         {
           "streetAddress": "",
           "locality": "",
@@ -67,19 +58,12 @@
       ],
       "phoneNumbers": [
         {
-          "type": "",
-          "primary": false
-        },
-        {
           "value": "",
           "type": "",
           "primary": false
         }
       ],
       "roles": [
-        {
-          "primary": false
-        },
         {
           "value": "",
           "type": "",

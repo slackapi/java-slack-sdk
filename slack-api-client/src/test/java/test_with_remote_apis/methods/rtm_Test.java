@@ -9,10 +9,7 @@ import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.conversations.ConversationsInviteResponse;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.User;
-import com.slack.api.model.event.HelloEvent;
-import com.slack.api.model.event.MessageBotEvent;
-import com.slack.api.model.event.PongEvent;
-import com.slack.api.model.event.UserTypingEvent;
+import com.slack.api.model.event.*;
 import com.slack.api.rtm.*;
 import com.slack.api.rtm.message.*;
 import config.Constants;
@@ -33,6 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.junit.Assert.assertEquals;
 
 @Slf4j
 public class rtm_Test {
@@ -354,4 +352,23 @@ public class rtm_Test {
         assertThat(pongReceived.event.getTime(), equalTo(now));
 
     }
+    @Test
+    public void testGetEventSubType() {
+        class TestEvent extends MessageEvent {
+            public static final String SUBTYPE_NAME = "test-event-subtype";
+        }
+        RTMEventHandler<TestEvent> handler = new RTMEventHandler<TestEvent>() {
+            @Override
+            public void handle(TestEvent event) {
+                event.getEventTs();
+
+            }
+        };
+        String subtype = handler.getEventSubType();
+        assertEquals("test-event-subtype", subtype);
+    }
+
+
+
+
 }

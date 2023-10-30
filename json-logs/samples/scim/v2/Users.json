@@ -27,26 +27,17 @@
       "emails": [
         {
           "value": "",
-          "primary": false
-        },
-        {
-          "value": "",
           "type": "",
           "primary": false
         }
       ],
       "photos": [
         {
-          "value": "https://www.example.com/",
-          "type": ""
-        },
-        {
           "value": "",
           "type": ""
         }
       ],
       "addresses": [
-        {},
         {
           "streetAddress": "",
           "locality": "",
@@ -58,19 +49,12 @@
       ],
       "phoneNumbers": [
         {
-          "type": "",
-          "primary": false
-        },
-        {
           "value": "",
           "type": "",
           "primary": false
         }
       ],
       "roles": [
-        {
-          "primary": false
-        },
         {
           "value": "",
           "type": "",
@@ -81,10 +65,6 @@
         "manager": {}
       },
       "groups": [
-        {
-          "value": "S00000000",
-          "display": ""
-        },
         {
           "value": "",
           "display": ""
