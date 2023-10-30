@@ -11,7 +11,7 @@
 
     <properties>
         <!-- TODO: Upgrade to 11.x in the next major version - v2 -->
-        <jetty.version>9.4.24.v20191120</jetty.version>
+        <jetty.version>9.4.53.v20231009</jetty.version>
     </properties>
 
     <artifactId>bolt-servlet</artifactId>
