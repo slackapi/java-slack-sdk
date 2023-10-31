@@ -2356,6 +2356,8 @@
             "last_editor": "",
             "updated": 123,
             "file_access": "",
+            "editors": [],
+            "edit_timestamp": 123,
             "alt_txt": "",
             "subtype": "",
             "transcription": {
@@ -10196,6 +10198,8 @@
                   "last_editor": "",
                   "updated": 123,
                   "file_access": "",
+                  "editors": [],
+                  "edit_timestamp": 123,
                   "alt_txt": "",
                   "subtype": "",
                   "transcription": {
@@ -10599,6 +10603,10 @@
               "last_editor": "",
               "updated": 123,
               "file_access": "",
+              "editors": [
+                ""
+              ],
+              "edit_timestamp": 123,
               "alt_txt": "",
               "subtype": "",
               "transcription": {
@@ -18045,6 +18053,10 @@
           "last_editor": "",
           "updated": 123,
           "file_access": "",
+          "editors": [
+            ""
+          ],
+          "edit_timestamp": 123,
           "alt_txt": "",
           "subtype": "",
           "transcription": {

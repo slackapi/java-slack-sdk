@@ -341,6 +341,7 @@ public class SampleObjects {
                 .blocks(Blocks)
                 .titleBlocks(Blocks)
                 .dmMpdmUsersWithFileAccess(Arrays.asList(File.UserWithFileAccess.builder().access("").userId("").build()))
+                .editors(Arrays.asList(""))
                 .build());
         initProperties(file);
         return file;
