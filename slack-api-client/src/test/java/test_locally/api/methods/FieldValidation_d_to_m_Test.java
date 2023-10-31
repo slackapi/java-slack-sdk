@@ -133,7 +133,9 @@ public class FieldValidation_d_to_m_Test {
                 "getTemplateName",
                 "getTemplateTitle",
                 "getTemplateDescription",
-                "getTemplateIcon"
+                "getTemplateIcon",
+                "getEditors",
+                "getEditTimestamp"
         );
     }
 
@@ -240,7 +242,9 @@ public class FieldValidation_d_to_m_Test {
                 "getTemplateName",
                 "getTemplateTitle",
                 "getTemplateDescription",
-                "getTemplateIcon"
+                "getTemplateIcon",
+                "getEditors",
+                "getEditTimestamp"
         );
     }
 
