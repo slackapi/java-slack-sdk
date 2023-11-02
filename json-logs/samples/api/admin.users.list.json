@@ -14,7 +14,10 @@
       "username": "",
       "full_name": "",
       "is_active": false,
-      "date_created": 12345
+      "date_created": 12345,
+      "roles": [
+        ""
+      ]
     }
   ],
   "response_metadata": {

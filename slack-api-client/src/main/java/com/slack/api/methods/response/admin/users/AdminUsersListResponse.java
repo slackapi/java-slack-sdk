@@ -43,5 +43,6 @@ public class AdminUsersListResponse implements SlackApiTextResponse {
         private boolean active;
         private Long expirationTs;
         private Integer dateCreated;
+        private List<String> roles;
     }
 }
