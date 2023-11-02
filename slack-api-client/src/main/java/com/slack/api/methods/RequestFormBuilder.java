@@ -883,6 +883,8 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(AdminUsersListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("team_id", req.getTeamId(), form);
+        setIfNotNull("include_deactivated_user_workspaces", req.getIncludeDeactivatedUserWorkspaces(), form);
+        setIfNotNull("is_active", req.getIsActive(), form);
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
         return form;
