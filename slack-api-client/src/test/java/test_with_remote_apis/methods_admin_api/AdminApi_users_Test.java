@@ -164,6 +164,27 @@ public class AdminApi_users_Test {
     }
 
     @Test
+    public void users_with_options() throws Exception {
+        if (teamAdminUserToken != null && orgAdminUserToken != null) {
+            AsyncMethodsClient methodsAsync = slack.methodsAsync(orgAdminUserToken);
+
+            AdminUsersListResponse.User user = null;
+            String nextCursor = "dummy";
+            while (!nextCursor.equals("")) {
+                final String cursor = nextCursor.equals("dummy") ? null : nextCursor;
+                AdminUsersListResponse users = methodsAsync.adminUsersList(r -> r
+                        .limit(100)
+                        .includeDeactivatedUserWorkspaces(true)
+                        .isActive(true)
+                        .cursor(cursor)
+                ).get();
+                assertThat(users.getError(), is(nullValue()));
+                nextCursor = users.getResponseMetadata().getNextCursor();
+            }
+        }
+    }
+
+    @Test
     public void usersUnsupportedVersions() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null) {
             int nextMonth = (int) ZonedDateTime.now().plusMonths(1).toInstant().toEpochMilli() / 1000;

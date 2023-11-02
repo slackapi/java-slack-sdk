@@ -41,8 +41,13 @@ public class AdminUsersListResponse implements SlackApiTextResponse {
         private boolean bot;
         @SerializedName("is_active")
         private boolean active;
+        @SerializedName("has_2fa")
+        private Boolean has2fa;
+        @SerializedName("has_sso")
+        private Boolean hasSso;
         private Long expirationTs;
         private Integer dateCreated;
         private List<String> roles;
+        private List<String> workspaces;
     }
 }
