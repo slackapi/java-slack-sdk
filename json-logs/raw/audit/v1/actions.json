@@ -321,7 +321,8 @@
       "permissions_assigned",
       "permissions_removed",
       "private_message_forwarded",
-      "message_activity_viewed"
+      "message_activity_viewed",
+      "message_flag_dismissed"
     ],
     "barrier": [
       "barrier_created",
