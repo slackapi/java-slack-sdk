@@ -214,6 +214,14 @@ public class MethodsRateLimits {
         // Public APIs
         // --------------------------
 
+
+        setRateLimitTier(APPS_MANIFEST_CREATE, Tier1);
+        setRateLimitTier(APPS_MANIFEST_DELETE, Tier1);
+        setRateLimitTier(APPS_MANIFEST_EXPORT, Tier3);
+        setRateLimitTier(APPS_MANIFEST_UPDATE, Tier1);
+        setRateLimitTier(APPS_MANIFEST_VALIDATE, Tier3);
+        setRateLimitTier(TOOLING_TOKENS_ROTATE, Tier1); // TODO: change this when the "special" tier is clearly explained in the document
+
         setRateLimitTier(API_TEST, Tier4);
         setRateLimitTier(APPS_CONNECTIONS_OPEN, Tier1);
         setRateLimitTier(APPS_UNINSTALL, Tier1);

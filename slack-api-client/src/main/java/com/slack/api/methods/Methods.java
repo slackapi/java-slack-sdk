@@ -237,6 +237,18 @@ public class Methods {
     public static final String APPS_CONNECTIONS_OPEN = "apps.connections.open";
 
     // ------------------------------
+    // apps.manifest
+    // ------------------------------
+
+    public static final String APPS_MANIFEST_CREATE = "apps.manifest.create";
+    public static final String APPS_MANIFEST_DELETE = "apps.manifest.delete";
+    public static final String APPS_MANIFEST_EXPORT = "apps.manifest.export";
+    public static final String APPS_MANIFEST_UPDATE = "apps.manifest.update";
+    public static final String APPS_MANIFEST_VALIDATE = "apps.manifest.validate";
+    public static final String TOOLING_TOKENS_ROTATE = "tooling.tokens.rotate";
+
+
+    // ------------------------------
     // apps.event.authorizations
     // ------------------------------
 

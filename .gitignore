@@ -19,6 +19,7 @@ typescript-types/dist/
 
 logs/
 json-logs/raw*
+slack-api-client/tmp/
 
 .DS_Store
 
