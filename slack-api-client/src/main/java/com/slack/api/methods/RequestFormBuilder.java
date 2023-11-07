@@ -40,6 +40,7 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
 import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsResourcesListRequest;
@@ -98,6 +99,7 @@ import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
+import com.slack.api.methods.request.tooling.tokens.ToolingTokensRotateRequest;
 import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
@@ -1013,6 +1015,50 @@ public class RequestFormBuilder {
         setIfNotNull("event_context", req.getEventContext(), form);
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("limit", req.getLimit(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsManifestCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getManifestAsString() != null) {
+            setIfNotNull("manifest", req.getManifestAsString(), form);
+        } else if (req.getManifest() != null) {
+            setIfNotNull("manifest", GSON.toJson(req.getManifest()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsManifestDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsManifestUpdateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getManifestAsString() != null) {
+            setIfNotNull("manifest", req.getManifestAsString(), form);
+        } else if (req.getManifest() != null) {
+            setIfNotNull("manifest", GSON.toJson(req.getManifest()), form);
+        }
+        setIfNotNull("app_id", req.getAppId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsManifestExportRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("app_id", req.getAppId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AppsManifestValidateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        if (req.getManifestAsString() != null) {
+            setIfNotNull("manifest", req.getManifestAsString(), form);
+        } else if (req.getManifest() != null) {
+            setIfNotNull("manifest", GSON.toJson(req.getManifest()), form);
+        }
+        setIfNotNull("app_id", req.getAppId(), form);
         return form;
     }
 
@@ -2458,6 +2504,16 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(TeamPreferencesListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ToolingTokensRotateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        String token = req.getRefreshToken();
+        if (token == null) {
+            token = req.getToken();
+        }
+        setIfNotNull("refresh_token", token, form);
         return form;
     }
 

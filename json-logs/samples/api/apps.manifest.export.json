@@ -1,0 +1,87 @@
+{
+  "ok": false,
+  "manifest": {
+    "_metadata": {
+      "major_version": "",
+      "minor_version": ""
+    },
+    "display_information": {
+      "name": "",
+      "long_description": "",
+      "description": "",
+      "background_color": ""
+    },
+    "settings": {
+      "description": "",
+      "long_description": "",
+      "background_color": "",
+      "event_subscriptions": {
+        "bot_events": [
+          ""
+        ],
+        "user_events": [
+          ""
+        ],
+        "request_url": ""
+      },
+      "interactivity": {
+        "is_enabled": false,
+        "request_url": "",
+        "message_menu_options_url": ""
+      },
+      "allowed_ip_address_ranges": [
+        ""
+      ],
+      "org_deploy_enabled": false,
+      "socket_mode_enabled": false,
+      "token_rotation_enabled": false
+    },
+    "features": {
+      "app_home": {
+        "home_tab_enabled": false,
+        "messages_tab_enabled": false,
+        "messages_tab_read_only_enabled": false
+      },
+      "bot_user": {
+        "display_name": "",
+        "always_online": false
+      },
+      "shortcuts": [
+        {
+          "type": "",
+          "callback_id": "",
+          "name": "",
+          "description": ""
+        }
+      ],
+      "slash_commands": [
+        {
+          "command": "",
+          "description": "",
+          "usage_hint": "",
+          "url": "",
+          "should_escape": false
+        }
+      ],
+      "unfurl_domains": [
+        ""
+      ]
+    },
+    "oauth_config": {
+      "scopes": {
+        "bot": [
+          ""
+        ],
+        "user": [
+          ""
+        ]
+      },
+      "redirect_urls": [
+        ""
+      ]
+    }
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

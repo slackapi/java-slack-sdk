@@ -43,7 +43,7 @@ public class MockSlackApi extends HttpServlet {
                 resp.getWriter().write("{\"ok\":false,\"error\":\"not_authed\"}");
                 resp.setContentType("application/json");
                 return;
-            } else if (!authorizationHeader.equals("Bearer " + ValidToken)) {
+            } else if (!authorizationHeader.startsWith("Bearer " + ValidToken)) {
                 resp.setStatus(200);
                 if (authorizationHeader.equals("Bearer " + ExpiredToken)) {
                     resp.getWriter().write("{\"ok\":false,\"error\":\"token_expired\"}");

@@ -1,0 +1,17 @@
+{
+  "ok": false,
+  "error": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "needed": "",
+  "provided": "",
+  "token": "",
+  "refresh_token": "",
+  "team_id": "T00000000",
+  "user_id": "U00000000",
+  "iat": 12345,
+  "exp": 12345
+}

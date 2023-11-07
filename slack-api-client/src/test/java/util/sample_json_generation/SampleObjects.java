@@ -350,6 +350,34 @@ public class SampleObjects {
     public static Message Message = new Message();
 
     public static Map<String, String> RoomPendingInvitees = new HashMap<>();
+
+    public static AppManifest AppManifestObject = initProperties(AppManifest.builder()
+            .metadata(initProperties(AppManifest.Metadata.builder().build()))
+            .displayInformation(initProperties(AppManifest.DisplayInformation.builder().build()))
+            .features(initProperties(AppManifest.Features.builder()
+                    .appHome(initProperties(AppManifest.AppHome.builder().build()))
+                    .botUser(initProperties(AppManifest.BotUser.builder().build()))
+                    .shortcuts(Arrays.asList(initProperties(AppManifest.Shortcut.builder().build())))
+                    .slashCommands(Arrays.asList(initProperties(AppManifest.SlashCommand.builder().build())))
+                    .unfurlDomains(Arrays.asList(""))
+                    .build()))
+            .settings(initProperties(AppManifest.Settings.builder()
+                    .allowedIpAddressRanges(Arrays.asList(""))
+                    .interactivity(initProperties(AppManifest.Interactivity.builder().build()))
+                    .eventSubscriptions(initProperties(AppManifest.EventSubscriptions.builder()
+                            .botEvents(Arrays.asList(""))
+                            .userEvents(Arrays.asList(""))
+                            .build()))
+                    .build()))
+            .oauthConfig(initProperties(AppManifest.OAuthConfig.builder()
+                    .scopes(initProperties(AppManifest.Scopes.builder()
+                            .bot(Arrays.asList(""))
+                            .user(Arrays.asList(""))
+                            .build()))
+                    .redirectUrls(Arrays.asList(""))
+                    .build()))
+            .build());
+
     public static Room Room = initProperties(com.slack.api.model.Room.builder()
             .attachedFileIds(Arrays.asList(""))
             .channels(Arrays.asList(""))
