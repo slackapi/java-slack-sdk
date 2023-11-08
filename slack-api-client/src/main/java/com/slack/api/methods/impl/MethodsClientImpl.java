@@ -3062,7 +3062,7 @@ public class MethodsClientImpl implements MethodsClient {
 
     @Override
     public ToolingTokensRotateResponse toolingTokensRotate(ToolingTokensRotateRequest req) throws IOException, SlackApiException {
-        return postFormWithTokenAndParseResponse(toForm(req), Methods.TOOLING_TOKENS_ROTATE, getToken(req), ToolingTokensRotateResponse.class);
+        return postFormAndParseResponse(toForm(req), Methods.TOOLING_TOKENS_ROTATE, ToolingTokensRotateResponse.class);
     }
 
     @Override

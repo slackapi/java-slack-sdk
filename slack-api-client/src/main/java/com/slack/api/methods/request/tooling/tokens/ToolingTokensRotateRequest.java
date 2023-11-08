@@ -7,8 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ToolingTokensRotateRequest implements SlackApiRequest {
-
+    // This token parameter is just a synonym for refreshToken
     private String token;
     private String refreshToken;
-
 }
