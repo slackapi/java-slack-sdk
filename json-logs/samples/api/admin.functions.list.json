@@ -37,7 +37,8 @@
       "app_id": "A00000000",
       "date_created": 12345,
       "date_updated": 12345,
-      "date_deleted": 12345
+      "date_deleted": 12345,
+      "form_enabled": false
     }
   ]
 }
