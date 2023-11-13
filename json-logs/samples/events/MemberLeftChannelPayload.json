@@ -2,6 +2,8 @@
   "token": "",
   "team_id": "",
   "enterprise_id": "",
+  "context_team_id": "",
+  "context_enterprise_id": "",
   "api_app_id": "",
   "event": {
     "type": "member_left_channel",
