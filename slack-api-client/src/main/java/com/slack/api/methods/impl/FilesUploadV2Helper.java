@@ -8,9 +8,7 @@ import com.slack.api.methods.request.files.FilesGetUploadURLExternalRequest;
 import com.slack.api.methods.request.files.FilesUploadV2Request;
 import com.slack.api.methods.response.files.FilesCompleteUploadExternalResponse;
 import com.slack.api.methods.response.files.FilesGetUploadURLExternalResponse;
-import com.slack.api.methods.response.files.FilesInfoResponse;
 import com.slack.api.methods.response.files.FilesUploadV2Response;
-import com.slack.api.model.File;
 import com.slack.api.util.http.SlackHttpClient;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -18,11 +16,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import org.glassfish.grizzly.utils.Charsets;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -127,7 +124,7 @@ public class FilesUploadV2Helper implements AutoCloseable {
             return Files.readAllBytes(uploadFile.getFile().toPath());
         }
         if (uploadFile.getContent() != null) {
-            return uploadFile.getContent().getBytes(Charsets.UTF8_CHARSET);
+            return uploadFile.getContent().getBytes(StandardCharsets.UTF_8);
         }
         throw new IllegalArgumentException("No file content found!");
     }
