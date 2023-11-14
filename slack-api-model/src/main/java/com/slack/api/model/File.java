@@ -255,6 +255,7 @@ public class File {
         private String teamId;
         private String access; // "read"
         private String source; // "UNKNOWN"
+        private Integer dateLastShared;
     }
 
     private List<Address> to;
