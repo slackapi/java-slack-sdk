@@ -254,6 +254,7 @@ public class File {
         private String channelName;
         private String teamId;
         private String access; // "read"
+        private String source; // "UNKNOWN"
     }
 
     private List<Address> to;
