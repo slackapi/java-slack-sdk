@@ -7887,7 +7887,8 @@
                           "latest_reply": "",
                           "channel_name": "",
                           "team_id": "",
-                          "access": ""
+                          "access": "",
+                          "source": ""
                         }
                       ],
                       "C03E94MKU_": [
@@ -7903,7 +7904,8 @@
                           "latest_reply": "",
                           "channel_name": "",
                           "team_id": "",
-                          "access": ""
+                          "access": "",
+                          "source": ""
                         }
                       ]
                     },
@@ -7921,7 +7923,8 @@
                           "latest_reply": "",
                           "channel_name": "",
                           "team_id": "",
-                          "access": ""
+                          "access": "",
+                          "source": ""
                         }
                       ],
                       "C03E94MKU_": [
@@ -7937,7 +7940,8 @@
                           "latest_reply": "",
                           "channel_name": "",
                           "team_id": "",
-                          "access": ""
+                          "access": "",
+                          "source": ""
                         }
                       ]
                     }
@@ -25874,7 +25878,8 @@
                           "latest_reply": "",
                           "channel_name": "",
                           "team_id": "",
-                          "access": ""
+                          "access": "",
+                          "source": ""
                         }
                       ],
                       "C03E94MKU_": [
@@ -25890,7 +25895,8 @@
                           "latest_reply": "",
                           "channel_name": "",
                           "team_id": "",
-                          "access": ""
+                          "access": "",
+                          "source": ""
                         }
                       ]
                     },
@@ -25908,7 +25914,8 @@
                           "latest_reply": "",
                           "channel_name": "",
                           "team_id": "",
-                          "access": ""
+                          "access": "",
+                          "source": ""
                         }
                       ],
                       "C03E94MKU_": [
@@ -25924,7 +25931,8 @@
                           "latest_reply": "",
                           "channel_name": "",
                           "team_id": "",
-                          "access": ""
+                          "access": "",
+                          "source": ""
                         }
                       ]
                     }
@@ -46693,7 +46701,8 @@
                         "latest_reply": "",
                         "channel_name": "",
                         "team_id": "",
-                        "access": ""
+                        "access": "",
+                        "source": ""
                       }
                     ],
                     "C03E94MKU_": [
@@ -46709,7 +46718,8 @@
                         "latest_reply": "",
                         "channel_name": "",
                         "team_id": "",
-                        "access": ""
+                        "access": "",
+                        "source": ""
                       }
                     ]
                   },
@@ -46727,7 +46737,8 @@
                         "latest_reply": "",
                         "channel_name": "",
                         "team_id": "",
-                        "access": ""
+                        "access": "",
+                        "source": ""
                       }
                     ],
                     "C03E94MKU_": [
@@ -46743,7 +46754,8 @@
                         "latest_reply": "",
                         "channel_name": "",
                         "team_id": "",
-                        "access": ""
+                        "access": "",
+                        "source": ""
                       }
                     ]
                   }
@@ -54143,7 +54155,8 @@
                     "latest_reply": "",
                     "channel_name": "",
                     "team_id": "",
-                    "access": ""
+                    "access": "",
+                    "source": ""
                   }
                 ],
                 "C03E94MKU_": [
@@ -54159,7 +54172,8 @@
                     "latest_reply": "",
                     "channel_name": "",
                     "team_id": "",
-                    "access": ""
+                    "access": "",
+                    "source": ""
                   }
                 ]
               },
@@ -54177,7 +54191,8 @@
                     "latest_reply": "",
                     "channel_name": "",
                     "team_id": "",
-                    "access": ""
+                    "access": "",
+                    "source": ""
                   }
                 ],
                 "C03E94MKU_": [
@@ -54193,7 +54208,8 @@
                     "latest_reply": "",
                     "channel_name": "",
                     "team_id": "",
-                    "access": ""
+                    "access": "",
+                    "source": ""
                   }
                 ]
               }
@@ -57938,13 +57954,15 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
-                "share_user_id": "U00000000"
+                "share_user_id": "U00000000",
+                "source": ""
               },
               {
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
-                "share_user_id": "U00000000"
+                "share_user_id": "U00000000",
+                "source": ""
               }
             ],
             "C00000001": [
@@ -57957,13 +57975,15 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
-                "share_user_id": "U00000000"
+                "share_user_id": "U00000000",
+                "source": ""
               },
               {
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
-                "share_user_id": "U00000000"
+                "share_user_id": "U00000000",
+                "source": ""
               }
             ]
           }
@@ -65867,7 +65887,8 @@
                         "latest_reply": "",
                         "channel_name": "",
                         "team_id": "",
-                        "access": ""
+                        "access": "",
+                        "source": ""
                       }
                     ],
                     "C03E94MKU_": [
@@ -65883,7 +65904,8 @@
                         "latest_reply": "",
                         "channel_name": "",
                         "team_id": "",
-                        "access": ""
+                        "access": "",
+                        "source": ""
                       }
                     ]
                   },
@@ -65901,7 +65923,8 @@
                         "latest_reply": "",
                         "channel_name": "",
                         "team_id": "",
-                        "access": ""
+                        "access": "",
+                        "source": ""
                       }
                     ],
                     "C03E94MKU_": [
@@ -65917,7 +65940,8 @@
                         "latest_reply": "",
                         "channel_name": "",
                         "team_id": "",
-                        "access": ""
+                        "access": "",
+                        "source": ""
                       }
                     ]
                   }

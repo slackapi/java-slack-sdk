@@ -329,6 +329,8 @@ public class Actions {
         public static final String app_variable_added = "app_variable_added";
         public static final String app_variable_removed = "app_variable_removed";
         public static final String app_deployed = "app_deployed";
+        public static final String app_manifest_created = "app_manifest_created";
+        public static final String app_manifest_updated = "app_manifest_updated";
     }
 
     public static class Message {

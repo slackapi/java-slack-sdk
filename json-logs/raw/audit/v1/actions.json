@@ -301,7 +301,9 @@
       "app_deleted",
       "app_variable_added",
       "app_variable_removed",
-      "app_deployed"
+      "app_deployed",
+      "app_manifest_created",
+      "app_manifest_updated"
     ],
     "workflow_builder": [
       "workflow_created",
