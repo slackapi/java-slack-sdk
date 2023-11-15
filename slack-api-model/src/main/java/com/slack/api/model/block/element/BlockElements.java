@@ -71,6 +71,10 @@ public class BlockElements {
         return configurator.configure(NumberInputElement.builder()).build();
     }
 
+    public static FileInputElement fileInput(ModelConfigurator<FileInputElement.FileInputElementBuilder> configurator) {
+        return configurator.configure(FileInputElement.builder()).build();
+    }
+
     // DatePickerElement
 
     public static DatePickerElement datePicker(ModelConfigurator<DatePickerElement.DatePickerElementBuilder> configurator) {

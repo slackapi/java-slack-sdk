@@ -84,6 +84,8 @@ public class GsonBlockElementFactory implements JsonDeserializer<BlockElement>, 
                 return EmailTextInputElement.class;
             case NumberInputElement.TYPE:
                 return NumberInputElement.class;
+            case FileInputElement.TYPE:
+                return FileInputElement.class;
             case RichTextSectionElement.TYPE:
                 return RichTextSectionElement.class;
             case RichTextListElement.TYPE:

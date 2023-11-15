@@ -109,6 +109,10 @@ class MultiBlockElementContainer : BlockElementDsl {
         underlying += NumberInputElementBuilder().apply(builder).build()
     }
 
+    override fun fileInput(builder: FileInputElementBuilder.() -> Unit) {
+        underlying += FileInputElementBuilder().apply(builder).build()
+    }
+
     override fun radioButtons(builder: RadioButtonsElementBuilder.() -> Unit) {
         underlying += RadioButtonsElementBuilder().apply(builder).build()
     }

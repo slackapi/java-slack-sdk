@@ -72,6 +72,12 @@ public class SimpleApp {
                                             .element(plainTextInput(pti -> pti.actionId("agenda-action").multiline(true)))
                                             .label(plainText(pt -> pt.text("Detailed Agenda").emoji(true)))
                                     ),
+                                    // Note that this block element requires files:read scope
+                                    input(input -> input
+                                            .blockId("files-block")
+                                            .element(fileInput(fi -> fi.actionId("files-action")))
+                                            .label(plainText(pt -> pt.text("Attached files").emoji(true)))
+                                    ),
                                     input(input -> input
                                             .blockId("email-block")
                                             .element(emailTextInput(pti -> pti.actionId("email-action")))
