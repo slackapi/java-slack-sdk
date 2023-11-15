@@ -1,5 +1,6 @@
 package com.slack.api.model.kotlin_extension.block.element.dsl
 
+import com.slack.api.model.block.element.FileInputElement
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 import com.slack.api.model.kotlin_extension.block.element.*
 
@@ -119,6 +120,12 @@ interface BlockElementInputDsl {
      * @see <a href="https://api.slack.com/reference/block-kit/block-elements#number">Documentation</a>
      */
     fun numberInput(builder: NumberInputElementBuilder.() -> Unit)
+
+    /**
+     * @see <a href="https://api.slack.com/surfaces/modals/using#preparing_for_modals">Preparing your app for modals guide</a>
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#file_input">Documentation</a>
+     */
+    fun fileInput(builder: FileInputElementBuilder.() -> Unit)
 
     /**
      * This is the simplest form of select menu, with a static list of options passed in when defining the element.
