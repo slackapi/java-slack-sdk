@@ -1,7 +1,6 @@
 package test_locally.api.model;
 
-import com.slack.api.model.AppManifest;
-import com.slack.api.model.ConversationType;
+import com.slack.api.model.manifest.AppManifest;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 

@@ -1,7 +1,7 @@
 package com.slack.api.methods.request.apps.manifest;
 
 import com.slack.api.methods.SlackApiRequest;
-import com.slack.api.model.AppManifest;
+import com.slack.api.model.manifest.AppManifestParams;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,6 +11,6 @@ public class AppsManifestCreateRequest implements SlackApiRequest {
 
     private String token;
 
-    private AppManifest manifest;
+    private AppManifestParams manifest;
     private String manifestAsString;
 }

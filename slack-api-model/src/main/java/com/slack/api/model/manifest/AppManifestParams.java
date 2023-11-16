@@ -1,19 +1,16 @@
-package com.slack.api.model;
+package com.slack.api.model.manifest;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AppManifest {
+public class AppManifestParams {
 
     @SerializedName("_metadata")
     private Metadata metadata;
@@ -27,8 +24,8 @@ public class AppManifest {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Metadata {
-        private String majorVersion;
-        private String minorVersion;
+        private Integer majorVersion;
+        private Integer minorVersion;
     }
 
     @Data
@@ -56,6 +53,8 @@ public class AppManifest {
         private Boolean orgDeployEnabled;
         private Boolean socketModeEnabled;
         private Boolean tokenRotationEnabled;
+        // Automation platform
+        private String functionRuntime;
     }
 
     @Data
@@ -139,6 +138,7 @@ public class AppManifest {
     public static class OAuthConfig {
         private Scopes scopes;
         private List<String> redirectUrls;
+        private Boolean tokenManagementEnabled; // run-on-slack
     }
     @Data
     @Builder
@@ -148,4 +148,52 @@ public class AppManifest {
         private List<String> bot;
         private List<String> user;
     }
+
+    // Automation platform
+    private Map<String, Function> functions;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Function {
+        private String title;
+        private String description;
+        private InputParameters inputParameters;
+        private OutputParameters outputParameters;
+    }
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class InputParameters {
+        private Map<String, ParameterProperty> properties;
+        private List<String> required;
+    }
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class OutputParameters {
+        private Map<String, ParameterProperty> properties;
+        private List<String> required;
+    }
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ParameterProperty {
+        // TODO: this type definition does not cover all the available options yet
+        private String type; // "string", "slack#/types/interactivity" etc.
+        private String description; // optional
+        private String title; // optional
+        private String hint; // optional
+        @SerializedName("minLength")
+        private Integer minLength; // type: string
+        @SerializedName("maxLength")
+        private Integer maxLength; // type: string
+        private Integer minimum; // type: number
+        private Integer maximum; // type: number
+    }
 }
+

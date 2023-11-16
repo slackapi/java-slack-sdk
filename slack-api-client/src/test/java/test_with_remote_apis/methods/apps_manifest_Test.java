@@ -4,7 +4,7 @@ import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.apps.manifest.*;
-import com.slack.api.model.AppManifest;
+import com.slack.api.model.manifest.AppManifestParams;
 import com.slack.api.token_rotation.tooling.ToolingToken;
 import com.slack.api.token_rotation.tooling.ToolingTokenRotator;
 import com.slack.api.token_rotation.tooling.store.FileToolingTokenStore;
@@ -17,6 +17,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -55,33 +57,33 @@ public class apps_manifest_Test {
         ToolingToken token = maybeToken.get();
         MethodsClient client = slack.methods(token.getAccessToken());
 
-        AppManifest invalidManifest = AppManifest.builder()
-//                .displayInformation(AppManifest.DisplayInformation.builder()
+        AppManifestParams invalidManifest = AppManifestParams.builder()
+//                .displayInformation(FunctionManifestRequest.DisplayInformation.builder()
 //                        .name("manifest-test-app")
 //                        .build())
-                .features(AppManifest.Features.builder()
-                        .botUser(AppManifest.BotUser.builder().displayName("test-bot").build())
+                .features(AppManifestParams.Features.builder()
+                        .botUser(AppManifestParams.BotUser.builder().displayName("test-bot").build())
                         .build())
-                .settings(AppManifest.Settings.builder()
+                .settings(AppManifestParams.Settings.builder()
                         .socketModeEnabled(true)
                         .build())
-                .oauthConfig(AppManifest.OAuthConfig.builder()
-                        .scopes(AppManifest.Scopes.builder().bot(Arrays.asList("commands")).build())
+                .oauthConfig(AppManifestParams.OAuthConfig.builder()
+                        .scopes(AppManifestParams.Scopes.builder().bot(Arrays.asList("commands")).build())
                         .build())
                 .build();
 
-        AppManifest manifest = AppManifest.builder()
-                .displayInformation(AppManifest.DisplayInformation.builder()
+        AppManifestParams manifest = AppManifestParams.builder()
+                .displayInformation(AppManifestParams.DisplayInformation.builder()
                         .name("manifest-test-app")
                         .build())
-                .features(AppManifest.Features.builder()
-                        .botUser(AppManifest.BotUser.builder().displayName("test-bot").build())
+                .features(AppManifestParams.Features.builder()
+                        .botUser(AppManifestParams.BotUser.builder().displayName("test-bot").build())
                         .build())
-                .settings(AppManifest.Settings.builder()
+                .settings(AppManifestParams.Settings.builder()
                         .socketModeEnabled(true)
                         .build())
-                .oauthConfig(AppManifest.OAuthConfig.builder()
-                        .scopes(AppManifest.Scopes.builder().bot(Arrays.asList("commands")).build())
+                .oauthConfig(AppManifestParams.OAuthConfig.builder()
+                        .scopes(AppManifestParams.Scopes.builder().bot(Arrays.asList("commands")).build())
                         .build())
                 .build();
 
@@ -119,5 +121,131 @@ public class apps_manifest_Test {
         }
     }
 
+    @Test
+    public void automationPlatform() throws IOException, SlackApiException {
+        // To grab your first refresh token, visit https://api.slack.com/reference/manifests#config-tokens
+        // Create a new directory slack-api-client/tmp/ and place your JSON data as {team_id}-{user_id}.json (e.g., T03E94MJU-U03E94MK0.json)
+        // The content should be something like this:
+        // {"access_token": "xoxe.xoxp-1-....","refresh_token": "xoxe-1-...","team_id": "T03E94MJU","user_id": "U03E94MK0","expire_at": 1699361653}
+        ToolingTokenRotator tokenRotator = new ToolingTokenRotator(new FileToolingTokenStore("tmp/"));
+        Optional<ToolingToken> maybeToken = tokenRotator.find(teamId, userId);
+        assertThat(maybeToken.isPresent(), is(true));
+        ToolingToken token = maybeToken.get();
+        MethodsClient client = slack.methods(token.getAccessToken());
 
+        Map<String, AppManifestParams.Function> functions = new HashMap<>();
+        Map<String, AppManifestParams.ParameterProperty> properties = new HashMap<>();
+        properties.put("user_id", AppManifestParams.ParameterProperty.builder()
+                .type("slack#/types/user_id")
+                .title("User")
+                .description("Who to send it")
+                .hint("Select a user in the workspace")
+                .build());
+        properties.put("message", AppManifestParams.ParameterProperty.builder()
+                .type("string")
+                .title("Message")
+                .description("Whatever you want to tell")
+                .hint("up to 100 characters")
+                .maxLength(100)
+                .minLength(1)
+                .build());
+        properties.put("amount", AppManifestParams.ParameterProperty.builder()
+                .type("number")
+                .title("Amount")
+                .description("How many do you need?")
+                .hint("How many do you need?")
+                .minimum(1)
+                .maximum(10)
+                .build());
+
+        functions.put("hello", AppManifestParams.Function.builder()
+                .title("Hello")
+                .description("Hello world!")
+                .inputParameters(AppManifestParams.InputParameters.builder()
+                        .properties(properties)
+                        .required(Arrays.asList("user_id"))
+                        .build())
+                .outputParameters(AppManifestParams.OutputParameters.builder()
+                        .properties(properties)
+                        .required(Arrays.asList("user_id"))
+                        .build())
+                .build());
+
+        AppManifestParams invalidManifest = AppManifestParams.builder()
+                .metadata(AppManifestParams.Metadata.builder().majorVersion(2).build())
+//                .displayInformation(FunctionManifestRequest.DisplayInformation.builder()
+//                        .name("manifest-test-app")
+//                        .build())
+                .features(AppManifestParams.Features.builder()
+                        .botUser(AppManifestParams.BotUser.builder().displayName("test-bot").build())
+                        .build())
+                .settings(AppManifestParams.Settings.builder()
+                        .functionRuntime("remote")
+                        .interactivity(AppManifestParams.Interactivity.builder()
+                                .isEnabled(true)
+                                .build())
+                        .socketModeEnabled(true)
+                        .orgDeployEnabled(true)
+                        .build())
+                .oauthConfig(AppManifestParams.OAuthConfig.builder()
+                        .scopes(AppManifestParams.Scopes.builder().bot(Arrays.asList("commands")).build())
+                        .build())
+                .functions(functions)
+                .build();
+
+        AppManifestParams manifest = AppManifestParams.builder()
+                .metadata(AppManifestParams.Metadata.builder().majorVersion(2).build())
+                .displayInformation(AppManifestParams.DisplayInformation.builder()
+                        .name("manifest-test-app")
+                        .build())
+                .settings(AppManifestParams.Settings.builder()
+                        .functionRuntime("remote")
+                        .interactivity(AppManifestParams.Interactivity.builder()
+                                .isEnabled(true)
+                                .build())
+                        .socketModeEnabled(true)
+                        .orgDeployEnabled(true)
+                        .build())
+                .features(AppManifestParams.Features.builder()
+                        .botUser(AppManifestParams.BotUser.builder().displayName("test-bot").build())
+                        .build())
+                .oauthConfig(AppManifestParams.OAuthConfig.builder()
+                        .scopes(AppManifestParams.Scopes.builder().bot(Arrays.asList("commands")).build())
+                        .build())
+                .functions(functions)
+                .build();
+
+        AppsManifestValidateResponse validation = client.appsManifestValidate(r -> r.manifest(invalidManifest));
+        assertThat(validation.getError(), is("invalid_manifest"));
+        validation = client.appsManifestValidate(r -> r.manifest(manifest));
+        assertThat(validation.getError(), is(nullValue()));
+
+        AppsManifestCreateResponse creation = null;
+        try {
+            creation = client.appsManifestCreate(r -> r.manifest(manifest));
+            assertThat(creation.getError(), is(nullValue()));
+            String appId = creation.getAppId();
+
+            validation = client.appsManifestValidate(r -> r.manifest(manifest).appId(appId));
+            assertThat(validation.getError(), is(nullValue()));
+
+            AppsManifestUpdateResponse modification = client.appsManifestUpdate(r -> r.appId(appId).manifest(manifest));
+            assertThat(modification.getError(), is(nullValue()));
+
+            manifest.getDisplayInformation().setName("manifest-test-app-2");
+            manifest.getOauthConfig().getScopes().setBot(Arrays.asList("commands", "chat:write"));
+            modification = client.appsManifestUpdate(r -> r.appId(appId).manifest(manifest));
+            assertThat(modification.getError(), is(nullValue()));
+
+            AppsManifestExportResponse deletion = client.appsManifestExport(r -> r.appId(appId));
+            assertThat(deletion.getError(), is(nullValue()));
+
+        } finally {
+            if (creation != null && creation.isOk()) {
+                String appId = creation.getAppId();
+                AppsManifestDeleteResponse deletion = client.appsManifestDelete(r -> r.appId(appId));
+                assertThat(deletion.getError(), is(nullValue()));
+            }
+        }
+    }
 }

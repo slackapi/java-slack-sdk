@@ -2,8 +2,8 @@
   "ok": false,
   "manifest": {
     "_metadata": {
-      "major_version": "",
-      "minor_version": ""
+      "major_version": 123,
+      "minor_version": 123
     },
     "display_information": {
       "name": "",
@@ -34,7 +34,9 @@
       ],
       "org_deploy_enabled": false,
       "socket_mode_enabled": false,
-      "token_rotation_enabled": false
+      "token_rotation_enabled": false,
+      "hermes_app_type": "",
+      "function_runtime": ""
     },
     "features": {
       "app_home": {
@@ -78,7 +80,122 @@
       },
       "redirect_urls": [
         ""
-      ]
+      ],
+      "token_management_enabled": false
+    },
+    "functions": {
+      "Fn0000000000": {
+        "title": "",
+        "description": "",
+        "input_parameters": {
+          "Fn0000000000": {
+            "type": "",
+            "name": "",
+            "is_required": false,
+            "description": "",
+            "title": "",
+            "hint": "",
+            "minLength": 123,
+            "maxLength": 123,
+            "minimum": 123,
+            "maximum": 123
+          },
+          "Fn0000000000_": {
+            "type": "",
+            "name": "",
+            "is_required": false,
+            "description": "",
+            "title": "",
+            "hint": "",
+            "minLength": 123,
+            "maxLength": 123,
+            "minimum": 123,
+            "maximum": 123
+          }
+        },
+        "output_parameters": {
+          "Fn0000000000": {
+            "type": "",
+            "name": "",
+            "is_required": false,
+            "description": "",
+            "title": "",
+            "hint": "",
+            "minLength": 123,
+            "maxLength": 123,
+            "minimum": 123,
+            "maximum": 123
+          },
+          "Fn0000000000_": {
+            "type": "",
+            "name": "",
+            "is_required": false,
+            "description": "",
+            "title": "",
+            "hint": "",
+            "minLength": 123,
+            "maxLength": 123,
+            "minimum": 123,
+            "maximum": 123
+          }
+        }
+      },
+      "Fn0000000000_": {
+        "title": "",
+        "description": "",
+        "input_parameters": {
+          "Fn0000000000": {
+            "type": "",
+            "name": "",
+            "is_required": false,
+            "description": "",
+            "title": "",
+            "hint": "",
+            "minLength": 123,
+            "maxLength": 123,
+            "minimum": 123,
+            "maximum": 123
+          },
+          "Fn0000000000_": {
+            "type": "",
+            "name": "",
+            "is_required": false,
+            "description": "",
+            "title": "",
+            "hint": "",
+            "minLength": 123,
+            "maxLength": 123,
+            "minimum": 123,
+            "maximum": 123
+          }
+        },
+        "output_parameters": {
+          "Fn0000000000": {
+            "type": "",
+            "name": "",
+            "is_required": false,
+            "description": "",
+            "title": "",
+            "hint": "",
+            "minLength": 123,
+            "maxLength": 123,
+            "minimum": 123,
+            "maximum": 123
+          },
+          "Fn0000000000_": {
+            "type": "",
+            "name": "",
+            "is_required": false,
+            "description": "",
+            "title": "",
+            "hint": "",
+            "minLength": 123,
+            "maxLength": 123,
+            "minimum": 123,
+            "maximum": 123
+          }
+        }
+      }
     }
   },
   "error": "",

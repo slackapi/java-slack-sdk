@@ -1,7 +1,7 @@
 package com.slack.api.methods.response.apps.manifest;
 
 import com.slack.api.methods.SlackApiTextResponse;
-import com.slack.api.model.AppManifest;
+import com.slack.api.model.manifest.AppManifest;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 

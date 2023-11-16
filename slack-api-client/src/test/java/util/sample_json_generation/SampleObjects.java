@@ -7,6 +7,7 @@ import com.slack.api.model.admin.AppIcons;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.*;
+import com.slack.api.model.manifest.AppManifest;
 import com.slack.api.util.json.GsonFactory;
 
 import java.util.*;
@@ -351,6 +352,20 @@ public class SampleObjects {
 
     public static Map<String, String> RoomPendingInvitees = new HashMap<>();
 
+
+    public static Map<String, AppManifest.Function> Functions = new HashMap<>();
+    static {
+        AppManifest.ParameterProperty p = initProperties(AppManifest.ParameterProperty.builder().build());
+        Map<String, AppManifest.ParameterProperty> properties = new HashMap<>();
+        properties.put("Fn0000000000", p);
+        properties.put("Fn0000000000_", p);
+        AppManifest.Function f = initProperties(AppManifest.Function.builder()
+                .inputParameters(properties)
+                .outputParameters(properties)
+                .build());
+        Functions.put("Fn0000000000", f);
+        Functions.put("Fn0000000000_", f);
+    }
     public static AppManifest AppManifestObject = initProperties(AppManifest.builder()
             .metadata(initProperties(AppManifest.Metadata.builder().build()))
             .displayInformation(initProperties(AppManifest.DisplayInformation.builder().build()))
@@ -376,6 +391,7 @@ public class SampleObjects {
                             .build()))
                     .redirectUrls(Arrays.asList(""))
                     .build()))
+            .functions(Functions)
             .build());
 
     public static Room Room = initProperties(com.slack.api.model.Room.builder()
