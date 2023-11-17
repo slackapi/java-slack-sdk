@@ -76,6 +76,7 @@ public class MatchedItem {
 
     private String urlPrivate;
     private boolean urlPrivateDownload;
+    private String urlStaticPreview;
 
     private boolean permalinkPublic;
 
@@ -257,5 +258,16 @@ public class MatchedItem {
         private String name;
         private String original;
     }
+
+    private String quipThreadId;
+    private String access;
+    private Integer updateNotification;
+    private Integer privateChannelsWithFileAccessCount;
+    private List<File.UserWithFileAccess> dmMpdmUsersWithFileAccess;
+    private List<String> teamsSharedWith;
+    private String orgOrWorkspaceAccess;
+    private Boolean teamPrefVersionHistoryEnabled;
+    private Integer editorsCount;
+    private List<LayoutBlock> titleBlocks;
 
 }
