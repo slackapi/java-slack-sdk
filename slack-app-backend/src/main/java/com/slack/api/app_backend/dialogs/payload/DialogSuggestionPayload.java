@@ -17,9 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DialogSuggestionPayload {
-
-    public static final String TYPE = "dialog_suggestion";
-
+    private static final String TYPE = "dialog_suggestion";
     private final String type = TYPE;
     private String token;
     private String actionTs;
@@ -31,32 +29,4 @@ public class DialogSuggestionPayload {
     private String value;
     private String callbackId;
     private boolean isEnterpriseInstall;
-
-    @Data
-    public static class Enterprise {
-        private String id;
-        private String name;
-    }
-
-    @Data
-    public static class Team {
-        private String id;
-        private String domain;
-        private String enterpriseId;
-        private String enterpriseName;
-    }
-
-    @Data
-    public static class Channel {
-        private String id;
-        private String name;
-    }
-
-    @Data
-    public static class User {
-        private String id;
-        private String name;
-        private String teamId;
-    }
-
 }

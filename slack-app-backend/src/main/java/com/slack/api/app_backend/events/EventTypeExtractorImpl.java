@@ -21,19 +21,23 @@ public class EventTypeExtractorImpl implements EventTypeExtractor {
     private static String extractFieldUnderEvent(String json, String fieldName) {
         try {
             JsonElement root = JsonParser.parseString(json);
-            if (root != null && root.isJsonObject() && root.getAsJsonObject().has("event")) {
-                JsonElement event = root.getAsJsonObject().get("event");
-                if (event.isJsonObject() && event.getAsJsonObject().has(fieldName)) {
-                    JsonElement eventType = event.getAsJsonObject().get(fieldName);
-                    if (eventType.isJsonPrimitive()) {
-                        return eventType.getAsString();
-                    }
-                }
+            if (root == null || !root.isJsonObject() || !root.getAsJsonObject().has("event")) {
+                return "";
+            }
+            JsonElement event = root.getAsJsonObject().get("event");
+            if (!event.isJsonObject() || !event.getAsJsonObject().has(fieldName)) {
+                return "";
+            }
+            JsonElement eventType = event.getAsJsonObject().get(fieldName);
+            if (eventType.isJsonPrimitive()) {
+                return eventType.getAsString();
             }
         } catch (JsonSyntaxException e) {
             log.debug("Failed to parse {} as a JSON data", json, e);
         }
+
         return "";
     }
+
 
 }

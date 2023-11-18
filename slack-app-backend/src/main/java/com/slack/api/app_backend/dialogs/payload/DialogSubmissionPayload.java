@@ -15,9 +15,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DialogSubmissionPayload {
-
-    public static final String TYPE = "dialog_submission";
-
+    private static final String TYPE = "dialog_submission";
     private final String type = TYPE;
     private String callbackId;
     private Map<String, String> submission;
@@ -30,32 +28,4 @@ public class DialogSubmissionPayload {
     private String token;
     private String responseUrl;
     private boolean isEnterpriseInstall;
-
-    @Data
-    public static class Enterprise {
-        private String id;
-        private String name;
-    }
-
-    @Data
-    public static class Team {
-        private String id;
-        private String domain;
-        private String enterpriseId;
-        private String enterpriseName;
-    }
-
-    @Data
-    public static class Channel {
-        private String id;
-        private String name;
-    }
-
-    @Data
-    public static class User {
-        private String id;
-        private String name;
-        private String teamId;
-    }
-
 }

@@ -147,8 +147,9 @@ public class EventsDispatcherImpl implements EventsDispatcher {
         try {
             closed.set(true);
             long waitMillis = 0;
+            long sleepTimeMillis = 50L;
             while (queue.size() > 1 & waitMillis < getMaxTerminationDelayMillis()) {
-                Thread.sleep(50L);
+                Thread.sleep(sleepTimeMillis);
             }
             eventLoopThread.interrupt();
         } catch (InterruptedException e) {

@@ -41,6 +41,8 @@ public abstract class EventHandler<E extends EventsApiPayload<?>> {
                 cachedPayloadClazz = (Class<E>) Class.forName(tType.getTypeName());
                 return cachedPayloadClazz;
             } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(e);
             }
             clazz = clazz.getSuperclass();
         }

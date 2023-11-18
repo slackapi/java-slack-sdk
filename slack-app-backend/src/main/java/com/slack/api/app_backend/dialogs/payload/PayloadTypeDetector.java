@@ -1,11 +1,11 @@
 package com.slack.api.app_backend.dialogs.payload;
 
 import com.slack.api.util.json.GsonFactory;
-import lombok.Data;
+import lombok.Getter;
 
 public class PayloadTypeDetector {
 
-    @Data
+    @Getter
     public static class Payload {
         private String type;
     }

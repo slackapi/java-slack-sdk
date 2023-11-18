@@ -13,9 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DialogCancellationPayload {
-
-    public static final String TYPE = "dialog_cancellation";
-
+    private static final String TYPE = "dialog_cancellation";
     private final String type = TYPE;
     private String token;
     private String actionTs;
@@ -27,32 +25,4 @@ public class DialogCancellationPayload {
     private String responseUrl;
     private String state;
     private boolean isEnterpriseInstall;
-
-    @Data
-    public static class Enterprise {
-        private String id;
-        private String name;
-    }
-
-    @Data
-    public static class Team {
-        private String id;
-        private String domain;
-        private String enterpriseId;
-        private String enterpriseName;
-    }
-
-    @Data
-    public static class Channel {
-        private String id;
-        private String name;
-    }
-
-    @Data
-    public static class User {
-        private String id;
-        private String name;
-        private String teamId;
-    }
-
 }
