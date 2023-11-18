@@ -42,6 +42,7 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsInfoRequest;
 import com.slack.api.methods.request.apps.permissions.AppsPermissionsRequestRequest;
 import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsResourcesListRequest;
@@ -102,6 +103,7 @@ import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
+import com.slack.api.methods.request.tooling.tokens.ToolingTokensRotateRequest;
 import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
@@ -156,6 +158,7 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsInfoResponse;
 import com.slack.api.methods.response.apps.permissions.AppsPermissionsRequestResponse;
 import com.slack.api.methods.response.apps.permissions.resources.AppsPermissionsResourcesListResponse;
@@ -216,6 +219,7 @@ import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
 import com.slack.api.methods.response.team.*;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
+import com.slack.api.methods.response.tooling.tokens.ToolingTokensRotateResponse;
 import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
@@ -835,6 +839,31 @@ public interface MethodsClient {
     AppsEventAuthorizationsListResponse appsEventAuthorizationsList(AppsEventAuthorizationsListRequest req) throws IOException, SlackApiException;
 
     AppsEventAuthorizationsListResponse appsEventAuthorizationsList(RequestConfigurator<AppsEventAuthorizationsListRequest.AppsEventAuthorizationsListRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // apps.manifest
+    // ------------------------------
+
+    AppsManifestCreateResponse appsManifestCreate(AppsManifestCreateRequest req) throws IOException, SlackApiException;
+
+    AppsManifestCreateResponse appsManifestCreate(RequestConfigurator<AppsManifestCreateRequest.AppsManifestCreateRequestBuilder> req) throws IOException, SlackApiException;
+
+
+    AppsManifestDeleteResponse appsManifestDelete(AppsManifestDeleteRequest req) throws IOException, SlackApiException;
+
+    AppsManifestDeleteResponse appsManifestDelete(RequestConfigurator<AppsManifestDeleteRequest.AppsManifestDeleteRequestBuilder> req) throws IOException, SlackApiException;
+
+    AppsManifestExportResponse appsManifestExport(AppsManifestExportRequest req) throws IOException, SlackApiException;
+
+    AppsManifestExportResponse appsManifestExport(RequestConfigurator<AppsManifestExportRequest.AppsManifestExportRequestBuilder> req) throws IOException, SlackApiException;
+
+    AppsManifestUpdateResponse appsManifestUpdate(AppsManifestUpdateRequest req) throws IOException, SlackApiException;
+
+    AppsManifestUpdateResponse appsManifestUpdate(RequestConfigurator<AppsManifestUpdateRequest.AppsManifestUpdateRequestBuilder> req) throws IOException, SlackApiException;
+
+    AppsManifestValidateResponse appsManifestValidate(AppsManifestValidateRequest req) throws IOException, SlackApiException;
+
+    AppsManifestValidateResponse appsManifestValidate(RequestConfigurator<AppsManifestValidateRequest.AppsManifestValidateRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // apps.permissions
@@ -1806,6 +1835,14 @@ public interface MethodsClient {
     TeamPreferencesListResponse teamPreferencesList(TeamPreferencesListRequest req) throws IOException, SlackApiException;
 
     TeamPreferencesListResponse teamPreferencesList(RequestConfigurator<TeamPreferencesListRequest.TeamPreferencesListRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // tooling.tokens
+    // ------------------------------
+
+    ToolingTokensRotateResponse toolingTokensRotate(ToolingTokensRotateRequest req) throws IOException, SlackApiException;
+
+    ToolingTokensRotateResponse toolingTokensRotate(RequestConfigurator<ToolingTokensRotateRequest.ToolingTokensRotateRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // usergroups

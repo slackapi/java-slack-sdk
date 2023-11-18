@@ -35,6 +35,8 @@ public class File {
     private String lastEditor; // application/vnd.slack-docs
     private Integer updated; // application/vnd.slack-docs
     private String fileAccess;
+    private List<String> editors;
+    private Integer editTimestamp;
     private String altTxt;
 
     private String subtype; // "slack_video" = clip
@@ -252,6 +254,8 @@ public class File {
         private String channelName;
         private String teamId;
         private String access; // "read"
+        private String source; // "UNKNOWN"
+        private Integer dateLastShared;
     }
 
     private List<Address> to;

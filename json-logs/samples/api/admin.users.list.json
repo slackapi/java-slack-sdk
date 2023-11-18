@@ -14,7 +14,15 @@
       "username": "",
       "full_name": "",
       "is_active": false,
-      "date_created": 12345
+      "date_created": 12345,
+      "roles": [
+        ""
+      ],
+      "workspaces": [
+        "T00000000"
+      ],
+      "has_2fa": false,
+      "has_sso": false
     }
   ],
   "response_metadata": {

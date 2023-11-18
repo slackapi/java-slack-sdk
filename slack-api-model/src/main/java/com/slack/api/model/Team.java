@@ -39,6 +39,8 @@ public class Team {
         private ProfileOptions options;
         @SerializedName("is_hidden")
         private boolean hidden;
+        @SerializedName("is_inverse")
+        private boolean inverse;
         private ProfilePermissions permissions;
     }
 

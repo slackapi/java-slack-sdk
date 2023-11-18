@@ -6,11 +6,11 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.34.1-SNAPSHOT</version>
+        <version>1.36.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>slack-app-backend</artifactId>
-    <version>1.34.1-SNAPSHOT</version>
+    <version>1.36.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>

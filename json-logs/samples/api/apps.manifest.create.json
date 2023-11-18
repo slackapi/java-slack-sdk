@@ -1,0 +1,26 @@
+{
+  "ok": false,
+  "error": "",
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  },
+  "needed": "",
+  "provided": "",
+  "errors": [
+    {
+      "code": "",
+      "message": "",
+      "pointer": ""
+    }
+  ],
+  "app_id": "A00000000",
+  "credentials": {
+    "client_id": "0000000000.000000",
+    "client_secret": "",
+    "verification_token": "",
+    "signing_secret": ""
+  },
+  "oauth_authorize_url": "https://www.example.com/"
+}

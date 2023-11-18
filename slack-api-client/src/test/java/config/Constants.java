@@ -53,4 +53,9 @@ public class Constants {
     public static final String SLACK_SDK_TEST_EMAIL_ADDRESS = "SLACK_SDK_TEST_EMAIL_ADDRESS";
 
     public static final String SLACK_SDK_TEST_REDIS_ENABLED = "SLACK_SDK_TEST_REDIS_ENABLED";
+
+    // For tooling.tokens.rotate + apps.manifest.* APIs
+    public static final String SLACK_SDK_TEST_APP_MANIFEST_API_TEAM_ID = "SLACK_SDK_TEST_APP_MANIFEST_API_TEAM_ID";
+    public static final String SLACK_SDK_TEST_APP_MANIFEST_API_USER_ID = "SLACK_SDK_TEST_APP_MANIFEST_API_USER_ID";
+
 }

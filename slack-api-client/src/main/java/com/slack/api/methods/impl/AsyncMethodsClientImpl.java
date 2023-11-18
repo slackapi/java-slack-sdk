@@ -46,6 +46,7 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
@@ -93,6 +94,7 @@ import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
+import com.slack.api.methods.request.tooling.tokens.ToolingTokensRotateRequest;
 import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
@@ -147,6 +149,7 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
@@ -194,6 +197,7 @@ import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
 import com.slack.api.methods.response.team.*;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
+import com.slack.api.methods.response.tooling.tokens.ToolingTokensRotateResponse;
 import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
@@ -1272,6 +1276,56 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<AppsManifestCreateResponse> appsManifestCreate(AppsManifestCreateRequest req) {
+        return executor.execute(APPS_MANIFEST_CREATE, toMap(req), () -> methods.appsManifestCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsManifestCreateResponse> appsManifestCreate(RequestConfigurator<AppsManifestCreateRequest.AppsManifestCreateRequestBuilder> req) {
+        return appsManifestCreate(req.configure(AppsManifestCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AppsManifestDeleteResponse> appsManifestDelete(AppsManifestDeleteRequest req) {
+        return executor.execute(APPS_MANIFEST_DELETE, toMap(req), () -> methods.appsManifestDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsManifestDeleteResponse> appsManifestDelete(RequestConfigurator<AppsManifestDeleteRequest.AppsManifestDeleteRequestBuilder> req) {
+        return appsManifestDelete(req.configure(AppsManifestDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AppsManifestExportResponse> appsManifestExport(AppsManifestExportRequest req) {
+        return executor.execute(APPS_MANIFEST_EXPORT, toMap(req), () -> methods.appsManifestExport(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsManifestExportResponse> appsManifestExport(RequestConfigurator<AppsManifestExportRequest.AppsManifestExportRequestBuilder> req) {
+        return appsManifestExport(req.configure(AppsManifestExportRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AppsManifestUpdateResponse> appsManifestUpdate(AppsManifestUpdateRequest req) {
+        return executor.execute(APPS_MANIFEST_UPDATE, toMap(req), () -> methods.appsManifestUpdate(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsManifestUpdateResponse> appsManifestUpdate(RequestConfigurator<AppsManifestUpdateRequest.AppsManifestUpdateRequestBuilder> req) {
+        return appsManifestUpdate(req.configure(AppsManifestUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(AppsManifestValidateRequest req) {
+        return executor.execute(APPS_MANIFEST_VALIDATE, toMap(req), () -> methods.appsManifestValidate(req));
+    }
+
+    @Override
+    public CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(RequestConfigurator<AppsManifestValidateRequest.AppsManifestValidateRequestBuilder> req) {
+        return appsManifestValidate(req.configure(AppsManifestValidateRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<AuthRevokeResponse> authRevoke(AuthRevokeRequest req) {
         return executor.execute(AUTH_REVOKE, toMap(req), () -> methods.authRevoke(req));
     }
@@ -2314,6 +2368,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<TeamPreferencesListResponse> teamPreferencesList(RequestConfigurator<TeamPreferencesListRequest.TeamPreferencesListRequestBuilder> req) {
         return teamPreferencesList(req.configure(TeamPreferencesListRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ToolingTokensRotateResponse> toolingTokensRotate(ToolingTokensRotateRequest req) {
+        return executor.execute(TOOLING_TOKENS_ROTATE, toMap(req), () -> methods.toolingTokensRotate(req));
+    }
+
+    @Override
+    public CompletableFuture<ToolingTokensRotateResponse> toolingTokensRotate(RequestConfigurator<ToolingTokensRotateRequest.ToolingTokensRotateRequestBuilder> req) {
+        return toolingTokensRotate(req.configure(ToolingTokensRotateRequest.builder()).build());
     }
 
     @Override

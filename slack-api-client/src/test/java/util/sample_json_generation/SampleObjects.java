@@ -7,6 +7,7 @@ import com.slack.api.model.admin.AppIcons;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.*;
+import com.slack.api.model.manifest.AppManifest;
 import com.slack.api.util.json.GsonFactory;
 
 import java.util.*;
@@ -341,6 +342,7 @@ public class SampleObjects {
                 .blocks(Blocks)
                 .titleBlocks(Blocks)
                 .dmMpdmUsersWithFileAccess(Arrays.asList(File.UserWithFileAccess.builder().access("").userId("").build()))
+                .editors(Arrays.asList(""))
                 .build());
         initProperties(file);
         return file;
@@ -349,6 +351,49 @@ public class SampleObjects {
     public static Message Message = new Message();
 
     public static Map<String, String> RoomPendingInvitees = new HashMap<>();
+
+
+    public static Map<String, AppManifest.Function> Functions = new HashMap<>();
+    static {
+        AppManifest.ParameterProperty p = initProperties(AppManifest.ParameterProperty.builder().build());
+        Map<String, AppManifest.ParameterProperty> properties = new HashMap<>();
+        properties.put("Fn0000000000", p);
+        properties.put("Fn0000000000_", p);
+        AppManifest.Function f = initProperties(AppManifest.Function.builder()
+                .inputParameters(properties)
+                .outputParameters(properties)
+                .build());
+        Functions.put("Fn0000000000", f);
+        Functions.put("Fn0000000000_", f);
+    }
+    public static AppManifest AppManifestObject = initProperties(AppManifest.builder()
+            .metadata(initProperties(AppManifest.Metadata.builder().build()))
+            .displayInformation(initProperties(AppManifest.DisplayInformation.builder().build()))
+            .features(initProperties(AppManifest.Features.builder()
+                    .appHome(initProperties(AppManifest.AppHome.builder().build()))
+                    .botUser(initProperties(AppManifest.BotUser.builder().build()))
+                    .shortcuts(Arrays.asList(initProperties(AppManifest.Shortcut.builder().build())))
+                    .slashCommands(Arrays.asList(initProperties(AppManifest.SlashCommand.builder().build())))
+                    .unfurlDomains(Arrays.asList(""))
+                    .build()))
+            .settings(initProperties(AppManifest.Settings.builder()
+                    .allowedIpAddressRanges(Arrays.asList(""))
+                    .interactivity(initProperties(AppManifest.Interactivity.builder().build()))
+                    .eventSubscriptions(initProperties(AppManifest.EventSubscriptions.builder()
+                            .botEvents(Arrays.asList(""))
+                            .userEvents(Arrays.asList(""))
+                            .build()))
+                    .build()))
+            .oauthConfig(initProperties(AppManifest.OAuthConfig.builder()
+                    .scopes(initProperties(AppManifest.Scopes.builder()
+                            .bot(Arrays.asList(""))
+                            .user(Arrays.asList(""))
+                            .build()))
+                    .redirectUrls(Arrays.asList(""))
+                    .build()))
+            .functions(Functions)
+            .build());
+
     public static Room Room = initProperties(com.slack.api.model.Room.builder()
             .attachedFileIds(Arrays.asList(""))
             .channels(Arrays.asList(""))

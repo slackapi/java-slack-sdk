@@ -328,6 +328,7 @@ public class LogsResponse implements AuditApiResponse {
         private String entityType; // canvas_access_added
         private String actor; // canvas_access_added
         private String accessLevel; // canvas_access_added
+        private List<String> functions; // app_manifest_created
     }
 
     @Data

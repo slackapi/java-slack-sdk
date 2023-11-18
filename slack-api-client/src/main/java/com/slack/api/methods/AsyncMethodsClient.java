@@ -42,6 +42,7 @@ import com.slack.api.methods.request.api.ApiTestRequest;
 import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
+import com.slack.api.methods.request.apps.manifest.*;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
@@ -89,6 +90,7 @@ import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
 import com.slack.api.methods.request.team.*;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
+import com.slack.api.methods.request.tooling.tokens.ToolingTokensRotateRequest;
 import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
@@ -143,6 +145,7 @@ import com.slack.api.methods.response.api.ApiTestResponse;
 import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
+import com.slack.api.methods.response.apps.manifest.*;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
@@ -190,6 +193,7 @@ import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
 import com.slack.api.methods.response.team.*;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
+import com.slack.api.methods.response.tooling.tokens.ToolingTokensRotateResponse;
 import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
@@ -748,6 +752,31 @@ public interface AsyncMethodsClient {
     CompletableFuture<AppsEventAuthorizationsListResponse> appsEventAuthorizationsList(RequestConfigurator<AppsEventAuthorizationsListRequest.AppsEventAuthorizationsListRequestBuilder> req);
 
     // ------------------------------
+    // apps.manifest
+    // ------------------------------
+
+    CompletableFuture<AppsManifestCreateResponse> appsManifestCreate(AppsManifestCreateRequest req);
+
+    CompletableFuture<AppsManifestCreateResponse> appsManifestCreate(RequestConfigurator<AppsManifestCreateRequest.AppsManifestCreateRequestBuilder> req);
+
+
+    CompletableFuture<AppsManifestDeleteResponse> appsManifestDelete(AppsManifestDeleteRequest req);
+
+    CompletableFuture<AppsManifestDeleteResponse> appsManifestDelete(RequestConfigurator<AppsManifestDeleteRequest.AppsManifestDeleteRequestBuilder> req);
+
+    CompletableFuture<AppsManifestExportResponse> appsManifestExport(AppsManifestExportRequest req);
+
+    CompletableFuture<AppsManifestExportResponse> appsManifestExport(RequestConfigurator<AppsManifestExportRequest.AppsManifestExportRequestBuilder> req);
+
+    CompletableFuture<AppsManifestUpdateResponse> appsManifestUpdate(AppsManifestUpdateRequest req);
+
+    CompletableFuture<AppsManifestUpdateResponse> appsManifestUpdate(RequestConfigurator<AppsManifestUpdateRequest.AppsManifestUpdateRequestBuilder> req);
+
+    CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(AppsManifestValidateRequest req);
+
+    CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(RequestConfigurator<AppsManifestValidateRequest.AppsManifestValidateRequestBuilder> req);
+
+    // ------------------------------
     // auth
     // ------------------------------
 
@@ -1265,6 +1294,14 @@ public interface AsyncMethodsClient {
     CompletableFuture<TeamPreferencesListResponse> teamPreferencesList(TeamPreferencesListRequest req);
 
     CompletableFuture<TeamPreferencesListResponse> teamPreferencesList(RequestConfigurator<TeamPreferencesListRequest.TeamPreferencesListRequestBuilder> req);
+
+    // ------------------------------
+    // tooling.tokens
+    // ------------------------------
+
+    CompletableFuture<ToolingTokensRotateResponse> toolingTokensRotate(ToolingTokensRotateRequest req);
+
+    CompletableFuture<ToolingTokensRotateResponse> toolingTokensRotate(RequestConfigurator<ToolingTokensRotateRequest.ToolingTokensRotateRequestBuilder> req);
 
     // ------------------------------
     // usergroups

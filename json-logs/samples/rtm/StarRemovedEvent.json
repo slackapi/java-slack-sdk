@@ -10904,6 +10904,8 @@
                   "last_editor": "",
                   "updated": 123,
                   "file_access": "",
+                  "editors": [],
+                  "edit_timestamp": 123,
                   "alt_txt": "",
                   "subtype": "",
                   "transcription": {
@@ -11307,6 +11309,10 @@
               "last_editor": "",
               "updated": 123,
               "file_access": "",
+              "editors": [
+                ""
+              ],
+              "edit_timestamp": 123,
               "alt_txt": "",
               "subtype": "",
               "transcription": {
@@ -11423,7 +11429,9 @@
                       "latest_reply": "",
                       "channel_name": "",
                       "team_id": "",
-                      "access": ""
+                      "access": "",
+                      "source": "",
+                      "date_last_shared": 123
                     }
                   ],
                   "C03E94MKU_": [
@@ -11439,7 +11447,9 @@
                       "latest_reply": "",
                       "channel_name": "",
                       "team_id": "",
-                      "access": ""
+                      "access": "",
+                      "source": "",
+                      "date_last_shared": 123
                     }
                   ]
                 },
@@ -11457,7 +11467,9 @@
                       "latest_reply": "",
                       "channel_name": "",
                       "team_id": "",
-                      "access": ""
+                      "access": "",
+                      "source": "",
+                      "date_last_shared": 123
                     }
                   ],
                   "C03E94MKU_": [
@@ -11473,7 +11485,9 @@
                       "latest_reply": "",
                       "channel_name": "",
                       "team_id": "",
-                      "access": ""
+                      "access": "",
+                      "source": "",
+                      "date_last_shared": 123
                     }
                   ]
                 }
@@ -18762,6 +18776,8 @@
       "last_editor": "",
       "updated": 123,
       "file_access": "",
+      "editors": [],
+      "edit_timestamp": 123,
       "alt_txt": "",
       "subtype": "",
       "transcription": {

@@ -301,7 +301,9 @@
       "app_deleted",
       "app_variable_added",
       "app_variable_removed",
-      "app_deployed"
+      "app_deployed",
+      "app_manifest_created",
+      "app_manifest_updated"
     ],
     "workflow_builder": [
       "workflow_created",
@@ -321,7 +323,8 @@
       "permissions_assigned",
       "permissions_removed",
       "private_message_forwarded",
-      "message_activity_viewed"
+      "message_activity_viewed",
+      "message_flag_dismissed"
     ],
     "barrier": [
       "barrier_created",

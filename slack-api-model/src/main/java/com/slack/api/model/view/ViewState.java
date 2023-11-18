@@ -1,5 +1,6 @@
 package com.slack.api.model.view;
 
+import com.slack.api.model.File;
 import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,7 @@ public class ViewState {
         private List<SelectedOption> selectedOptions;
         private String timezone; // for timepicker
         private RichTextBlock richTextValue; // "rich_text_input" type
+        private List<File> files; // "file_input" type
     }
 
     @Data

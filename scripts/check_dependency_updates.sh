@@ -1,6 +1,7 @@
 #!/bin/bash
 ./mvnw -pl !bolt-quarkus-examples versions:display-dependency-updates | \
   grep -v checking | \
+  grep -v com.slack.api | \
   grep -v org.mockito:mockito-core | \
   grep -v org.eclipse.jetty | \
   grep -v javax.servlet:javax.servlet-api | \

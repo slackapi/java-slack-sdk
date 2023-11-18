@@ -2,6 +2,7 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.metrics.MemoryMetricsDatastore;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,15 +30,22 @@ public class AppsTest {
     }
 
     @Test
-    public void apiTest() throws Exception {
-        assertThat(slack.methods(ValidToken).appsUninstall(r -> r.clientId("x").clientSecret("y"))
-                .isOk(), is(true));
+    public void appsUninstall_async() throws Exception {
+        assertThat(slack.methodsAsync(ValidToken).appsUninstall(r -> r.clientId("x").clientSecret("y"))
+                .get().isOk(), is(true));
     }
 
     @Test
-    public void apiTest_async() throws Exception {
-        assertThat(slack.methodsAsync(ValidToken).appsUninstall(r -> r.clientId("x").clientSecret("y"))
-                .get().isOk(), is(true));
+    public void appsManifest_async() throws Exception {
+        slack.getConfig().getMethodsConfig().setMetricsDatastore(new MemoryMetricsDatastore(1));
+        String token = ValidToken + "-2222";
+        assertThat(slack.methodsAsync(token).appsManifestCreate(r -> r).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(token).appsManifestDelete(r -> r).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(token).appsManifestExport(r -> r).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(token).appsManifestValidate(r -> r).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(token).appsManifestUpdate(r -> r).get().isOk(), is(true));
+        // TODO: add tests that pass for tooling.tokens.rotate API
+        // assertThat(slack.methodsAsync().toolingTokensRotate(r -> r).get().isOk(), is(true));
     }
 
 }

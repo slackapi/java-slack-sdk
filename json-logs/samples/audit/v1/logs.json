@@ -352,7 +352,8 @@
         "channel": "",
         "entity_type": "",
         "actor": "",
-        "access_level": ""
+        "access_level": "",
+        "functions": []
       }
     }
   ]

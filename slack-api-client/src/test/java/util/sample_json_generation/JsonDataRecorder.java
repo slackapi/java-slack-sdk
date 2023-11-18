@@ -699,6 +699,30 @@ public class JsonDataRecorder {
                 }
                 return;
             }
+            if (path.startsWith("/api/apps.manifest.")) {
+                if (name != null && name.equals("manifest")) {
+                    JsonObject manifest = element.getAsJsonObject();
+                    try {
+                        // To avoid concurrent modification of the underlying objects
+                        List<String> oldKeys = new ArrayList<>();
+                        manifest.keySet().iterator().forEachRemaining(oldKeys::add);
+                        for (String key : oldKeys) {
+                            manifest.remove(key);
+                        }
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+                    }
+                    try {
+                        JsonObject manifestObj = GsonFactory.createSnakeCase().toJsonTree(AppManifestObject).getAsJsonObject();
+                        for (String newKey : manifestObj.keySet()) {
+                            manifest.add(newKey, manifestObj.get(newKey));
+                        }
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+                    }
+                    return;
+                }
+            }
             List<Map.Entry<String, JsonElement>> entries = new ArrayList<>(element.getAsJsonObject().entrySet());
             if (entries.size() > 0) {
                 if (entries.get(0).getKey().matches("^[A-Z].{8,10}$")) {
