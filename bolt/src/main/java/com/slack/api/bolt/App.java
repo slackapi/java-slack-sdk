@@ -582,6 +582,7 @@ public class App {
         if (request == null || request.getContext() == null) {
             return Response.builder().statusCode(400).body("Invalid Request").build();
         }
+        request.getContext().setAttachingFunctionTokenEnabled(this.config().isAttachingFunctionTokenEnabled());
         request.getContext().setSlack(slack()); // use the properly configured API client
 
         if (neverStarted.get()) {

@@ -54,6 +54,21 @@ public abstract class Context {
      * A bot token associated with this request. The format must be starting with `xoxb-`.
      */
     protected String botToken;
+
+    /**
+     * When true, the framework automatically attaches context#functionBotAccessToken
+     * to context#client instead of context#botToken.
+     * Enabling this behavior only affects function_executed event handlers
+     * and app.action/app.view handlers associated with the function token.
+     */
+    private boolean attachingFunctionTokenEnabled;
+
+    /**
+     * The bot token associated with this "function_executed"-type event and its interactions.
+     * The format must be starting with `xoxb-`.
+     */
+    protected String functionBotAccessToken;
+
     /**
      * The scopes associated to the botToken
      */
@@ -88,17 +103,21 @@ public abstract class Context {
     protected final Map<String, String> additionalValues = new HashMap<>();
 
     public MethodsClient client() {
+        String primaryToken = (isAttachingFunctionTokenEnabled() && functionBotAccessToken != null)
+                ? functionBotAccessToken : botToken;
         // We used to pass teamId only for org-wide installations, but we changed this behavior since version 1.10.
         // The reasons are 1) having teamId in the MethodsClient can reduce TeamIdCache's auth.test API calls
         // 2) OpenID Connect + token rotation allows only refresh token to perform auth.test API calls.
-        return getSlack().methods(botToken, teamId);
+        return getSlack().methods(primaryToken, teamId);
     }
 
     public AsyncMethodsClient asyncClient() {
+        String primaryToken = (isAttachingFunctionTokenEnabled() && functionBotAccessToken != null)
+                ? functionBotAccessToken : botToken;
         // We used to pass teamId only for org-wide installations, but we changed this behavior since version 1.10.
         // The reasons are 1) having teamId in the MethodsClient can reduce TeamIdCache's auth.test API calls
         // 2) OpenID Connect + token rotation allows only refresh token to perform auth.test API calls.
-        return getSlack().methodsAsync(botToken, teamId);
+        return getSlack().methodsAsync(primaryToken, teamId);
     }
 
     public ChatPostMessageResponse say(BuilderConfigurator<ChatPostMessageRequest.ChatPostMessageRequestBuilder> request) throws IOException, SlackApiException {

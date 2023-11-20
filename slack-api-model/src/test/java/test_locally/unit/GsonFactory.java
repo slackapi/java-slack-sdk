@@ -9,6 +9,7 @@ import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.RichTextElement;
+import com.slack.api.model.event.FunctionExecutedEvent;
 import com.slack.api.model.event.MessageChangedEvent;
 import com.slack.api.util.json.*;
 
@@ -32,6 +33,8 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProperties))
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProperties))
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProperties))
+                .registerTypeAdapter(FunctionExecutedEvent.InputValue.class,
+                        new GsonFunctionExecutedEventInputValueFactory(failOnUnknownProperties))
                 .registerTypeAdapter(Attachment.VideoHtml.class,
                         new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProperties))
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class,

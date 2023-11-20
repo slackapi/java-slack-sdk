@@ -75,6 +75,8 @@ import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsEditRequest;
 import com.slack.api.methods.request.files.remote.*;
+import com.slack.api.methods.request.functions.FunctionsCompleteErrorRequest;
+import com.slack.api.methods.request.functions.FunctionsCompleteSuccessRequest;
 import com.slack.api.methods.request.groups.*;
 import com.slack.api.methods.request.im.*;
 import com.slack.api.methods.request.migration.MigrationExchangeRequest;
@@ -191,6 +193,8 @@ import com.slack.api.methods.response.files.comments.FilesCommentsAddResponse;
 import com.slack.api.methods.response.files.comments.FilesCommentsDeleteResponse;
 import com.slack.api.methods.response.files.comments.FilesCommentsEditResponse;
 import com.slack.api.methods.response.files.remote.*;
+import com.slack.api.methods.response.functions.FunctionsCompleteErrorResponse;
+import com.slack.api.methods.response.functions.FunctionsCompleteSuccessResponse;
 import com.slack.api.methods.response.groups.*;
 import com.slack.api.methods.response.im.*;
 import com.slack.api.methods.response.migration.MigrationExchangeResponse;
@@ -1411,6 +1415,18 @@ public interface MethodsClient {
     FilesRemoteUpdateResponse filesRemoteUpdate(FilesRemoteUpdateRequest req) throws IOException, SlackApiException;
 
     FilesRemoteUpdateResponse filesRemoteUpdate(RequestConfigurator<FilesRemoteUpdateRequest.FilesRemoteUpdateRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // functions
+    // ------------------------------
+
+    FunctionsCompleteSuccessResponse functionsCompleteSuccess(FunctionsCompleteSuccessRequest req) throws IOException, SlackApiException;
+
+    FunctionsCompleteSuccessResponse functionsCompleteSuccess(RequestConfigurator<FunctionsCompleteSuccessRequest.FunctionsCompleteSuccessRequestBuilder> req) throws IOException, SlackApiException;
+
+    FunctionsCompleteErrorResponse functionsCompleteError(FunctionsCompleteErrorRequest req) throws IOException, SlackApiException;
+
+    FunctionsCompleteErrorResponse functionsCompleteError(RequestConfigurator<FunctionsCompleteErrorRequest.FunctionsCompleteErrorRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // groups

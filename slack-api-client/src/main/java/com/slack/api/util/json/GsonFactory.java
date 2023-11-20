@@ -12,6 +12,7 @@ import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.RichTextElement;
+import com.slack.api.model.event.FunctionExecutedEvent;
 import com.slack.api.model.event.MessageChangedEvent;
 
 /**
@@ -32,6 +33,7 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory())
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory())
+                .registerTypeAdapter(FunctionExecutedEvent.InputValue.class, new GsonFunctionExecutedEventInputValueFactory())
                 .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory())
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory())
                 .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory())
@@ -53,6 +55,7 @@ public class GsonFactory {
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(BlockElement.class, new GsonBlockElementFactory(failOnUnknownProps))
                 .registerTypeAdapter(RichTextElement.class, new GsonRichTextElementFactory(failOnUnknownProps))
+                .registerTypeAdapter(FunctionExecutedEvent.InputValue.class, new GsonFunctionExecutedEventInputValueFactory())
                 .registerTypeAdapter(Attachment.VideoHtml.class, new GsonMessageAttachmentVideoHtmlFactory(failOnUnknownProps))
                 .registerTypeAdapter(MessageChangedEvent.PreviousMessage.class, new GsonMessageChangedEventPreviousMessageFactory(failOnUnknownProps))
                 .registerTypeAdapter(AppWorkflow.StepInputValue.class, new GsonAppWorkflowStepInputValueFactory(failOnUnknownProps))

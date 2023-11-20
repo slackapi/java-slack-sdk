@@ -73,6 +73,8 @@ import com.slack.api.methods.request.files.comments.FilesCommentsAddRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsDeleteRequest;
 import com.slack.api.methods.request.files.comments.FilesCommentsEditRequest;
 import com.slack.api.methods.request.files.remote.*;
+import com.slack.api.methods.request.functions.FunctionsCompleteErrorRequest;
+import com.slack.api.methods.request.functions.FunctionsCompleteSuccessRequest;
 import com.slack.api.methods.request.groups.*;
 import com.slack.api.methods.request.im.*;
 import com.slack.api.methods.request.migration.MigrationExchangeRequest;
@@ -2013,6 +2015,20 @@ public class RequestFormBuilder {
             RequestBody previewImage = RequestBody.create(req.getFiletype() != null ? MediaType.parse(req.getFiletype()) : null, req.getPreviewImage());
             form.addFormDataPart("preview_image", null, previewImage);
         }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(FunctionsCompleteSuccessRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("function_execution_id", req.getFunctionExecutionId(), form);
+        setIfNotNull("outputs", GSON.toJson(req.getOutputs()), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(FunctionsCompleteErrorRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("function_execution_id", req.getFunctionExecutionId(), form);
+        setIfNotNull("error", req.getError(), form);
         return form;
     }
 

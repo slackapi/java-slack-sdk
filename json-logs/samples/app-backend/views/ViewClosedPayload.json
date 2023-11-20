@@ -52,5 +52,19 @@
     "bot_id": ""
   },
   "is_enterprise_install": false,
-  "is_cleared": false
+  "is_cleared": false,
+  "bot_access_token": "",
+  "function_data": {
+    "execution_id": "",
+    "function": {
+      "callback_id": ""
+    }
+  },
+  "interactivity": {
+    "interactivity_pointer": "",
+    "interactor": {
+      "id": "",
+      "secret": ""
+    }
+  }
 }
