@@ -8,6 +8,7 @@ import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.RequestType;
 import com.slack.api.model.event.MessageEvent;
+import com.slack.api.model.event.FunctionExecutedEvent;
 import com.slack.api.util.json.GsonFactory;
 import lombok.ToString;
 
@@ -104,6 +105,13 @@ public class EventRequest extends Request<EventContext> {
             this.getContext().setChannelId(event.get("channel").getAsString());
         } else if (event.get("channel_id") != null) {
             this.getContext().setChannelId(event.get("channel_id").getAsString());
+        }
+
+        if (this.eventType != null
+                && this.eventType.equals(FunctionExecutedEvent.TYPE_NAME)
+                && event.get("bot_access_token") != null) {
+            String functionBotAccessToken = event.get("bot_access_token").getAsString();
+            this.getContext().setFunctionBotAccessToken(functionBotAccessToken);
         }
     }
 

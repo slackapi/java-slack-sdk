@@ -42,6 +42,7 @@ public class ViewClosedRequest extends Request<DefaultContext> {
             getContext().setTeamId(payload.getUser().getTeamId());
         }
         getContext().setRequestUserId(payload.getUser().getId());
+        getContext().setFunctionBotAccessToken(payload.getBotAccessToken());
     }
 
     private DefaultContext context = new DefaultContext();

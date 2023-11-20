@@ -10,6 +10,7 @@ import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.builtin.BlockActionRequest;
 import com.slack.api.bolt.request.builtin.EventRequest;
 import com.slack.api.bolt.request.builtin.ViewSubmissionRequest;
+import com.slack.api.bolt.request.builtin.EventRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.model.event.FunctionExecutedEvent;
 import com.slack.api.util.json.GsonFactory;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -356,22 +358,64 @@ public class RemoteFunctionTest {
             called.set(req.getEvent().getFunction().getCallbackId().equals("hello")
                     && req.getEvent().getInputs().get("user_id").asString().equals("U03E94MK0")
                     && req.getEvent().getInputs().get("amount").asInteger().equals(1)
-                    && req.getEvent().getBotAccessToken().equals("xwfp-this-is-valid")
-            );
+                    && ctx.isAttachingFunctionTokenEnabled()
+                    && ctx.getFunctionBotAccessToken().equals("xwfp-valid"));
             called.set(ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getEvent().getBotAccessToken())
                     .functionExecutionId(req.getEvent().getFunctionExecutionId())
                     .outputs(new HashMap<>())
             ).getError().equals(""));
             called.set(ctx.client().functionsCompleteError(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getEvent().getBotAccessToken())
                     .functionExecutionId(req.getEvent().getFunctionExecutionId())
                     .error("something wrong")
             ).getError().equals(""));
             return ctx.ack();
         });
+
+        Response response = app.run(buildEventRequest());
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertTrue(called.get());
+    }
+
+    @Test
+    public void static_callback_id() throws Exception {
+        App app = buildApp();
+        AtomicBoolean called = new AtomicBoolean(false);
+        app.function("hello", (req, ctx) -> {
+            called.set(req.getEvent().getFunction().getCallbackId().equals("hello")
+                    && req.getEvent().getInputs().get("user_id").asString().equals("U03E94MK0")
+                    && req.getEvent().getInputs().get("amount").asInteger().equals(1)
+                    && ctx.isAttachingFunctionTokenEnabled()
+                    && ctx.getFunctionBotAccessToken().equals("xwfp-valid"));
+            called.set(ctx.client().functionsCompleteSuccess(r -> r
+                    .functionExecutionId(req.getEvent().getFunctionExecutionId())
+                    .outputs(new HashMap<>())
+            ).getError().equals(""));
+            return ctx.ack();
+        });
+        app.function("something-else", (req, ctx) -> ctx.ack());
+
+        Response response = app.run(buildEventRequest());
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertTrue(called.get());
+    }
+
+    @Test
+    public void regexp_callback_id() throws Exception {
+        App app = buildApp();
+        AtomicBoolean called = new AtomicBoolean(false);
+        app.function(Pattern.compile("^he.+"), (req, ctx) -> {
+            called.set(req.getEvent().getFunction().getCallbackId().equals("hello")
+                    && req.getEvent().getInputs().get("user_id").asString().equals("U03E94MK0")
+                    && req.getEvent().getInputs().get("amount").asInteger().equals(1)
+                    && ctx.isAttachingFunctionTokenEnabled()
+                    && ctx.getFunctionBotAccessToken().equals("xwfp-valid"));
+            called.set(ctx.client().functionsCompleteSuccess(r -> r
+                    .functionExecutionId(req.getEvent().getFunctionExecutionId())
+                    .outputs(new HashMap<>())
+            ).getError().equals(""));
+            return ctx.ack();
+        });
+        app.function("something-else", (req, ctx) -> ctx.ack());
 
         Response response = app.run(buildEventRequest());
         assertEquals(200L, response.getStatusCode().longValue());
@@ -389,8 +433,6 @@ public class RemoteFunctionTest {
                     && req.getPayload().getBotAccessToken().equals("xwfp-this-is-valid")
             );
             called.set(ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .outputs(new HashMap<>())
             ).getError().equals(""));
@@ -413,8 +455,6 @@ public class RemoteFunctionTest {
                     && req.getPayload().getBotAccessToken().equals("xwfp-this-is-valid")
             );
             called.set(ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .outputs(new HashMap<>())
             ).getError().equals(""));
@@ -461,4 +501,5 @@ public class RemoteFunctionTest {
         setRequestHeaders(body, rawHeaders, timestamp);
         return new ViewSubmissionRequest(body, viewSubmissionPayload, new RequestHeaders(rawHeaders));
     }
+
 }
