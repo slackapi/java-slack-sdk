@@ -28,10 +28,7 @@ import com.slack.api.bolt.util.ListenerCodeSuggestion;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.auth.AuthTestResponse;
-import com.slack.api.model.event.AppUninstalledEvent;
-import com.slack.api.model.event.Event;
-import com.slack.api.model.event.MessageEvent;
-import com.slack.api.model.event.TokensRevokedEvent;
+import com.slack.api.model.event.*;
 import com.slack.api.util.json.GsonFactory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -582,6 +579,7 @@ public class App {
         if (request == null || request.getContext() == null) {
             return Response.builder().statusCode(400).body("Invalid Request").build();
         }
+        request.getContext().setAttachingFunctionTokenEnabled(this.config().isAttachingFunctionTokenEnabled());
         request.getContext().setSlack(slack()); // use the properly configured API client
 
         if (neverStarted.get()) {
@@ -646,6 +644,33 @@ public class App {
     public App event(EventHandler<?> handler) {
         eventsDispatcher.register(handler);
         return this;
+    }
+
+    public App function(String callbackId, BoltEventHandler<FunctionExecutedEvent> handler) {
+        return event(FunctionExecutedEvent.class, true, (req, ctx) -> {
+            if (log.isDebugEnabled()) {
+                log.debug("Run a function_executed event handler (callback_id: {})", callbackId);
+            }
+            if (callbackId.equals(req.getEvent().getFunction().getCallbackId())) {
+                return handler.apply(req, ctx);
+            } else {
+                return null;
+            }
+        });
+    }
+
+    public App function(Pattern callbackId, BoltEventHandler<FunctionExecutedEvent> handler) {
+        return event(FunctionExecutedEvent.class, true, (req, ctx) -> {
+            if (log.isDebugEnabled()) {
+                log.debug("Run a function_executed event handler (callback_id: {})", callbackId);
+            }
+            String sentCallbackId = req.getEvent().getFunction().getCallbackId();
+            if (callbackId.matcher(sentCallbackId).matches()) {
+                return handler.apply(req, ctx);
+            } else {
+                return null;
+            }
+        });
     }
 
     public App message(String pattern, BoltEventHandler<MessageEvent> messageHandler) {
