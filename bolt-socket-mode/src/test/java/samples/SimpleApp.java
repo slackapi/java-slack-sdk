@@ -14,6 +14,7 @@ import config.Constants;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.dispatchActionConfig;
@@ -152,7 +153,9 @@ public class SimpleApp {
             return ctx.ack();
         });
 
-        app.event(FunctionExecutedEvent.class, (req, ctx) -> {
+        // app.event(FunctionExecutedEvent.class, (req, ctx) -> {
+        // app.function("hello", (req, ctx) -> {
+        app.function(Pattern.compile("^he.+$"), (req, ctx) -> {
             ctx.logger.info("req: {}", req);
             ctx.client().chatPostMessage(r -> r
                     .channel(req.getEvent().getInputs().get("user_id").asString())
