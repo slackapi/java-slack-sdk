@@ -2,6 +2,7 @@ package com.slack.api.methods.response.team;
 
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.BillableInfo;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
@@ -18,4 +19,5 @@ public class TeamBillableInfoResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private Map<String, BillableInfo> billableInfo;
+    private ResponseMetadata responseMetadata;
 }
