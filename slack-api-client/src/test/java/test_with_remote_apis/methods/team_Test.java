@@ -110,6 +110,23 @@ public class team_Test {
     }
 
     @Test
+    public void teamBillableInfo_pagination() throws Exception {
+        TeamBillableInfoResponse response = slack.methods().teamBillableInfo(r -> r
+                .token(userToken).limit(1));
+        int count = 0;
+        String nextCursor = response.getResponseMetadata().getNextCursor();
+        while (count < 5 && !nextCursor.equals("")) {
+            final String _nextCursor = nextCursor;
+            response = slack.methods().teamBillableInfo(r -> r
+                    .token(userToken).cursor(_nextCursor).limit(1));
+            assertThat(response.getError(), is(nullValue()));
+            assertThat(response.isOk(), is(true));
+            nextCursor = response.getResponseMetadata().getNextCursor();
+            count += 1;
+        }
+    }
+
+    @Test
     public void teamBillableInfo_async() throws Exception {
         // Using async client to avoid an exception due to rate limited errors
         List<User> users = slack.methodsAsync().usersList(r -> r.token(userToken)).get().getMembers();
