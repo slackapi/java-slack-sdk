@@ -94,8 +94,7 @@
         }
       },
       "channels": [
-        "C00000000",
-        ""
+        "C00000000"
       ],
       "groups": [
         ""
@@ -106,7 +105,17 @@
       "has_more_shares": false,
       "has_rich_preview": false,
       "file_access": "",
-      "media_display_type": ""
+      "media_display_type": "",
+      "thumb_64": "https://www.example.com/",
+      "thumb_80": "https://www.example.com/",
+      "thumb_360": "https://www.example.com/",
+      "thumb_360_w": 12345,
+      "thumb_360_h": 12345,
+      "thumb_160": "https://www.example.com/",
+      "original_w": 12345,
+      "original_h": 12345,
+      "thumb_tiny": "",
+      "alt_txt": ""
     }
   ],
   "error": "",
