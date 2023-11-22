@@ -397,4 +397,99 @@ public class BlockActionPayloadTest {
                         .getSelectedOption().getValue(),
                 is("schedule"));
     }
+
+    String jsonInteractionsFromRemoteFunction = "{\n" +
+            "  \"type\": \"block_actions\",\n" +
+            "  \"team\": {\n" +
+            "    \"id\": \"T03E94MJU\",\n" +
+            "    \"domain\": \"test\"\n" +
+            "  },\n" +
+            "  \"user\": {\n" +
+            "    \"id\": \"U03E94MK0\",\n" +
+            "    \"name\": \"kaz\",\n" +
+            "    \"team_id\": \"T03E94MJU\"\n" +
+            "  },\n" +
+            "  \"channel\": {\n" +
+            "    \"id\": \"D065ZJQQQAE\",\n" +
+            "    \"name\": \"directmessage\"\n" +
+            "  },\n" +
+            "  \"message\": {\n" +
+            "    \"bot_id\": \"B065SV9Q70W\",\n" +
+            "    \"type\": \"message\",\n" +
+            "    \"text\": \"hey!\",\n" +
+            "    \"user\": \"U066C7XNE6M\",\n" +
+            "    \"ts\": \"1700455285.968429\",\n" +
+            "    \"app_id\": \"A065ZJM410S\",\n" +
+            "    \"blocks\": [\n" +
+            "      {\n" +
+            "        \"type\": \"actions\",\n" +
+            "        \"block_id\": \"b\",\n" +
+            "        \"elements\": [\n" +
+            "          {\n" +
+            "            \"type\": \"button\",\n" +
+            "            \"action_id\": \"a\",\n" +
+            "            \"text\": {\n" +
+            "              \"type\": \"plain_text\",\n" +
+            "              \"text\": \"Click this!\",\n" +
+            "              \"emoji\": true\n" +
+            "            },\n" +
+            "            \"value\": \"clicked\"\n" +
+            "          }\n" +
+            "        ]\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"team\": \"T03E94MJU\"\n" +
+            "  },\n" +
+            "  \"container\": {\n" +
+            "    \"type\": \"message\",\n" +
+            "    \"message_ts\": \"1700455285.968429\",\n" +
+            "    \"channel_id\": \"D065ZJQQQAE\",\n" +
+            "    \"is_ephemeral\": false\n" +
+            "  },\n" +
+            "  \"actions\": [\n" +
+            "    {\n" +
+            "      \"block_id\": \"b\",\n" +
+            "      \"action_id\": \"a\",\n" +
+            "      \"type\": \"button\",\n" +
+            "      \"text\": {\n" +
+            "        \"type\": \"plain_text\",\n" +
+            "        \"text\": \"Click this!\",\n" +
+            "        \"emoji\": true\n" +
+            "      },\n" +
+            "      \"value\": \"clicked\",\n" +
+            "      \"action_ts\": \"1700455293.945608\"\n" +
+            "    }\n" +
+            "  ],\n" +
+            "  \"api_app_id\": \"A065ZJM410S\",\n" +
+            "  \"state\": {\n" +
+            "    \"values\": {}\n" +
+            "  },\n" +
+            "  \"bot_access_token\": \"xwfp-valid\",\n" +
+            "  \"function_data\": {\n" +
+            "    \"execution_id\": \"Fx066J3N9ME0\",\n" +
+            "    \"function\": {\n" +
+            "      \"callback_id\": \"hello\"\n" +
+            "    },\n" +
+            "    \"inputs\": {\n" +
+            "      \"amount\": 1,\n" +
+            "      \"message\": \"hey\",\n" +
+            "      \"user_id\": \"U03E94MK0\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  \"interactivity\": {\n" +
+            "    \"interactor\": {\n" +
+            "      \"secret\": \"interactor-secret\",\n" +
+            "      \"id\": \"U03E94MK0\"\n" +
+            "    },\n" +
+            "    \"interactivity_pointer\": \"111.222.333\"\n" +
+            "  }\n" +
+            "}\n";
+
+    @Test
+    public void interactionsFromRemoteFunction() {
+        BlockActionPayload payload = GSON.fromJson(jsonInteractionsFromRemoteFunction, BlockActionPayload.class);
+        assertThat(payload.getType(), is("block_actions"));
+        assertThat(payload.getActions().size(), is(1));
+    }
+
 }

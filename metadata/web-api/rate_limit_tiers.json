@@ -196,6 +196,8 @@
   "files.revokePublicURL": "Tier3",
   "files.sharedPublicURL": "Tier3",
   "files.upload": "Tier2",
+  "functions.completeError": "Tier3",
+  "functions.completeSuccess": "Tier3",
   "groups.archive": "Tier2",
   "groups.create": "Tier2",
   "groups.createChild": "Tier2",

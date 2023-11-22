@@ -466,6 +466,13 @@ public class Methods {
     public static final String FILES_REMOTE_UPDATE = "files.remote.update";
 
     // ------------------------------
+    // functions
+    // ------------------------------
+
+    public static final String FUNCTIONS_COMPLETE_SUCCESS = "functions.completeSuccess";
+    public static final String FUNCTIONS_COMPLETE_ERROR = "functions.completeError";
+
+    // ------------------------------
     // groups
     // ------------------------------
 

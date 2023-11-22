@@ -369,6 +369,9 @@ public class MethodsRateLimits {
         setRateLimitTier(FILES_REMOTE_SHARE, Tier2);
         setRateLimitTier(FILES_REMOTE_UPDATE, Tier2);
 
+        setRateLimitTier(FUNCTIONS_COMPLETE_SUCCESS, Tier3);
+        setRateLimitTier(FUNCTIONS_COMPLETE_ERROR, Tier3);
+
         setRateLimitTier(MIGRATION_EXCHANGE, Tier2);
 
         setRateLimitTier(OAUTH_ACCESS, Tier4);

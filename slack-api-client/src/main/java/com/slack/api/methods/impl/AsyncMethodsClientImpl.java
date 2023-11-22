@@ -69,6 +69,8 @@ import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.remote.*;
+import com.slack.api.methods.request.functions.FunctionsCompleteErrorRequest;
+import com.slack.api.methods.request.functions.FunctionsCompleteSuccessRequest;
 import com.slack.api.methods.request.migration.MigrationExchangeRequest;
 import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
@@ -172,6 +174,8 @@ import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.files.remote.*;
+import com.slack.api.methods.response.functions.FunctionsCompleteErrorResponse;
+import com.slack.api.methods.response.functions.FunctionsCompleteSuccessResponse;
 import com.slack.api.methods.response.migration.MigrationExchangeResponse;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
@@ -2020,6 +2024,26 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<FilesRemoteUpdateResponse> filesRemoteUpdate(RequestConfigurator<FilesRemoteUpdateRequest.FilesRemoteUpdateRequestBuilder> req) {
         return filesRemoteUpdate(req.configure(FilesRemoteUpdateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<FunctionsCompleteSuccessResponse> functionsCompleteSuccess(FunctionsCompleteSuccessRequest req) {
+        return executor.execute(FUNCTIONS_COMPLETE_SUCCESS, toMap(req), () -> methods.functionsCompleteSuccess(req));
+    }
+
+    @Override
+    public CompletableFuture<FunctionsCompleteSuccessResponse> functionsCompleteSuccess(RequestConfigurator<FunctionsCompleteSuccessRequest.FunctionsCompleteSuccessRequestBuilder> req) {
+        return functionsCompleteSuccess(req.configure(FunctionsCompleteSuccessRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<FunctionsCompleteErrorResponse> functionsCompleteError(FunctionsCompleteErrorRequest req) {
+        return executor.execute(FUNCTIONS_COMPLETE_ERROR, toMap(req), () -> methods.functionsCompleteError(req));
+    }
+
+    @Override
+    public CompletableFuture<FunctionsCompleteErrorResponse> functionsCompleteError(RequestConfigurator<FunctionsCompleteErrorRequest.FunctionsCompleteErrorRequestBuilder> req) {
+        return functionsCompleteError(req.configure(FunctionsCompleteErrorRequest.builder()).build());
     }
 
     @Override

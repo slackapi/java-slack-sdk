@@ -5,10 +5,7 @@ import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.socket_mode.SocketModeApp;
 import com.slack.api.model.Message;
 import com.slack.api.model.block.element.RichTextSectionElement;
-import com.slack.api.model.event.AppMentionEvent;
-import com.slack.api.model.event.MessageChangedEvent;
-import com.slack.api.model.event.MessageDeletedEvent;
-import com.slack.api.model.event.MessageEvent;
+import com.slack.api.model.event.*;
 import com.slack.api.model.view.ViewState;
 import config.Constants;
 
@@ -150,6 +147,111 @@ public class SimpleApp {
 
         app.messageShortcut("socket-mode-message-shortcut", (req, ctx) -> {
             ctx.respond("It works!");
+            return ctx.ack();
+        });
+
+        // Note that this is still in beta as of Nov 2023
+        app.event(FunctionExecutedEvent.class, (req, ctx) -> {
+        // TODO: future updates enable passing callback_id as below
+        // app.function("hello", (req, ctx) -> {
+        // app.function(Pattern.compile("^he.+$"), (req, ctx) -> {
+            ctx.logger.info("req: {}", req);
+            ctx.client().chatPostMessage(r -> r
+                    // TODO: remove this token passing by enhancing bolt internals
+                    .token(req.getEvent().getBotAccessToken())
+                    .channel(req.getEvent().getInputs().get("user_id").asString())
+                    .text("hey!")
+                    .blocks(asBlocks(actions(a -> a.blockId("b").elements(asElements(
+                            button(b -> b.actionId("remote-function-button-success").value("clicked").text(plainText("block_actions success"))),
+                            button(b -> b.actionId("remote-function-button-error").value("clicked").text(plainText("block_actions error"))),
+                            button(b -> b.actionId("remote-function-modal").value("clicked").text(plainText("modal view")))
+                    )))))
+            );
+            return ctx.ack();
+        });
+
+        app.blockAction("remote-function-button-success", (req, ctx) -> {
+            Map<String, Object> outputs = new HashMap<>();
+            outputs.put("user_id", req.getPayload().getFunctionData().getInputs().get("user_id").asString());
+            ctx.client().functionsCompleteSuccess(r -> r
+                    // TODO: remove this token passing by enhancing bolt internals
+                    .token(req.getPayload().getBotAccessToken())
+                    .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
+                    .outputs(outputs)
+            );
+            ctx.client().chatUpdate(r -> r
+                    // TODO: remove this token passing by enhancing bolt internals
+                    .token(req.getPayload().getBotAccessToken())
+                    .channel(req.getPayload().getContainer().getChannelId())
+                    .ts(req.getPayload().getContainer().getMessageTs())
+                    .text("Thank you!")
+            );
+            return ctx.ack();
+        });
+        app.blockAction("remote-function-button-error", (req, ctx) -> {
+            ctx.client().functionsCompleteError(r -> r
+                    // TODO: remove this token passing by enhancing bolt internals
+                    .token(req.getPayload().getBotAccessToken())
+                    .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
+                    .error("test error!")
+            );
+            ctx.client().chatUpdate(r -> r
+                    // TODO: remove this token passing by enhancing bolt internals
+                    .token(req.getPayload().getBotAccessToken())
+                    .channel(req.getPayload().getContainer().getChannelId())
+                    .ts(req.getPayload().getContainer().getMessageTs())
+                    .text("Thank you!")
+            );
+            return ctx.ack();
+        });
+        app.blockAction("remote-function-modal", (req, ctx) -> {
+            ctx.client().viewsOpen(r -> r
+                    // TODO: remove this token passing by enhancing bolt internals
+                    .token(req.getPayload().getBotAccessToken())
+                    .triggerId(req.getPayload().getInteractivity().getInteractivityPointer())
+                    .view(view(v -> v
+                            .type("modal")
+                            .callbackId("remote-function-view")
+                            .title(viewTitle(vt -> vt.type("plain_text").text("Remote Function test")))
+                            .close(viewClose(vc -> vc.type("plain_text").text("Close")))
+                            .submit(viewSubmit(vs -> vs.type("plain_text").text("Submit")))
+                            .notifyOnClose(true)
+                            .blocks(asBlocks(input(input -> input
+                                    .blockId("text-block")
+                                    .element(plainTextInput(pti -> pti.actionId("text-action").multiline(true)))
+                                    .label(plainText(pt -> pt.text("Text").emoji(true)))
+                            )))
+                    )));
+            ctx.client().chatUpdate(r -> r
+                    // TODO: remove this token passing by enhancing bolt internals
+                    .token(req.getPayload().getBotAccessToken())
+                    .channel(req.getPayload().getContainer().getChannelId())
+                    .ts(req.getPayload().getContainer().getMessageTs())
+                    .text("Thank you!")
+            );
+            return ctx.ack();
+        });
+
+        app.viewSubmission("remote-function-view", (req, ctx) -> {
+            Map<String, Object> outputs = new HashMap<>();
+            outputs.put("user_id", ctx.getRequestUserId());
+            ctx.client().functionsCompleteSuccess(r -> r
+                    // TODO: remove this token passing by enhancing bolt internals
+                    .token(req.getPayload().getBotAccessToken())
+                    .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
+                    .outputs(outputs)
+            );
+            return ctx.ack();
+        });
+        app.viewClosed("remote-function-view", (req, ctx) -> {
+            Map<String, Object> outputs = new HashMap<>();
+            outputs.put("user_id", ctx.getRequestUserId());
+            ctx.client().functionsCompleteSuccess(r -> r
+                    // TODO: remove this token passing by enhancing bolt internals
+                    .token(req.getPayload().getBotAccessToken())
+                    .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
+                    .outputs(outputs)
+            );
             return ctx.ack();
         });
 

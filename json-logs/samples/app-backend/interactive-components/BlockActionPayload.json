@@ -1558,5 +1558,19 @@
       }
     }
   ],
-  "is_enterprise_install": false
+  "is_enterprise_install": false,
+  "bot_access_token": "",
+  "function_data": {
+    "execution_id": "",
+    "function": {
+      "callback_id": ""
+    }
+  },
+  "interactivity": {
+    "interactivity_pointer": "",
+    "interactor": {
+      "id": "",
+      "secret": ""
+    }
+  }
 }
