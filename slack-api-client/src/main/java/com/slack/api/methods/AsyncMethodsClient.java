@@ -65,6 +65,8 @@ import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
 import com.slack.api.methods.request.files.*;
 import com.slack.api.methods.request.files.remote.*;
+import com.slack.api.methods.request.functions.FunctionsCompleteErrorRequest;
+import com.slack.api.methods.request.functions.FunctionsCompleteSuccessRequest;
 import com.slack.api.methods.request.migration.MigrationExchangeRequest;
 import com.slack.api.methods.request.oauth.OAuthAccessRequest;
 import com.slack.api.methods.request.oauth.OAuthTokenRequest;
@@ -168,6 +170,8 @@ import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
 import com.slack.api.methods.response.files.*;
 import com.slack.api.methods.response.files.remote.*;
+import com.slack.api.methods.response.functions.FunctionsCompleteErrorResponse;
+import com.slack.api.methods.response.functions.FunctionsCompleteSuccessResponse;
 import com.slack.api.methods.response.migration.MigrationExchangeResponse;
 import com.slack.api.methods.response.oauth.OAuthAccessResponse;
 import com.slack.api.methods.response.oauth.OAuthTokenResponse;
@@ -208,7 +212,6 @@ import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -1110,6 +1113,18 @@ public interface AsyncMethodsClient {
     CompletableFuture<FilesRemoteUpdateResponse> filesRemoteUpdate(FilesRemoteUpdateRequest req);
 
     CompletableFuture<FilesRemoteUpdateResponse> filesRemoteUpdate(RequestConfigurator<FilesRemoteUpdateRequest.FilesRemoteUpdateRequestBuilder> req);
+
+    // ------------------------------
+    // functions
+    // ------------------------------
+
+    CompletableFuture<FunctionsCompleteSuccessResponse> functionsCompleteSuccess(FunctionsCompleteSuccessRequest req);
+
+    CompletableFuture<FunctionsCompleteSuccessResponse> functionsCompleteSuccess(RequestConfigurator<FunctionsCompleteSuccessRequest.FunctionsCompleteSuccessRequestBuilder> req);
+
+    CompletableFuture<FunctionsCompleteErrorResponse> functionsCompleteError(FunctionsCompleteErrorRequest req);
+
+    CompletableFuture<FunctionsCompleteErrorResponse> functionsCompleteError(RequestConfigurator<FunctionsCompleteErrorRequest.FunctionsCompleteErrorRequestBuilder> req);
 
     // ------------------------------
     // migration

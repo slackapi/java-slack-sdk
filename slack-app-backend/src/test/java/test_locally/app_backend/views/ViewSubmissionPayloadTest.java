@@ -1,12 +1,14 @@
 package test_locally.app_backend.views;
 
 import com.google.gson.Gson;
+import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.views.payload.ViewSubmissionPayload;
 import com.slack.api.model.block.InputBlock;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.element.TimePickerElement;
 import com.slack.api.model.view.ViewState;
 import com.slack.api.util.json.GsonFactory;
+import config.SlackTestConfig;
 import org.junit.Test;
 
 import java.util.stream.Collectors;
@@ -16,7 +18,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ViewSubmissionPayloadTest {
 
-    private Gson gson = GsonFactory.createSnakeCase();
+
+    private Gson gson = GsonFactory.createSnakeCase(SlackTestConfig.get());
 
     private String json = "{\n" +
             "  \"type\": \"view_submission\",\n" +
@@ -399,5 +402,105 @@ public class ViewSubmissionPayloadTest {
                 stateValues.getValues().get("date-time-block").get("date-time-action").getSelectedDateTime(),
                 is(1666869900));
 
+    }
+
+    @Test
+    public void remoteFunctions() {
+        String json = "{\n" +
+                "  \"type\": \"view_submission\",\n" +
+                "  \"team\": {\n" +
+                "    \"id\": \"T03E94MJU\",\n" +
+                "    \"domain\": \"test\"\n" +
+                "  },\n" +
+                "  \"user\": {\n" +
+                "    \"id\": \"U03E94MK0\",\n" +
+                "    \"name\": \"kaz\",\n" +
+                "    \"team_id\": \"T03E94MJU\"\n" +
+                "  },\n" +
+                "  \"view\": {\n" +
+                "    \"id\": \"V066196HSPR\",\n" +
+                "    \"team_id\": \"T03E94MJU\",\n" +
+                "    \"app_id\": \"A065ZJM410S\",\n" +
+                "    \"app_installed_team_id\": \"T03E94MJU\",\n" +
+                "    \"bot_id\": \"B065SV9Q70W\",\n" +
+                "    \"title\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Remote Function test\",\n" +
+                "      \"emoji\": false\n" +
+                "    },\n" +
+                "    \"type\": \"modal\",\n" +
+                "    \"blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"input\",\n" +
+                "        \"block_id\": \"text-block\",\n" +
+                "        \"label\": {\n" +
+                "          \"type\": \"plain_text\",\n" +
+                "          \"text\": \"Text\",\n" +
+                "          \"emoji\": true\n" +
+                "        },\n" +
+                "        \"optional\": false,\n" +
+                "        \"dispatch_action\": false,\n" +
+                "        \"element\": {\n" +
+                "          \"type\": \"plain_text_input\",\n" +
+                "          \"action_id\": \"text-action\",\n" +
+                "          \"multiline\": true,\n" +
+                "          \"dispatch_action_config\": {\n" +
+                "            \"trigger_actions_on\": [\n" +
+                "              \"on_enter_pressed\"\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        }\n" +
+                "      }\n" +
+                "    ],\n" +
+                "    \"close\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Close\",\n" +
+                "      \"emoji\": false\n" +
+                "    },\n" +
+                "    \"submit\": {\n" +
+                "      \"type\": \"plain_text\",\n" +
+                "      \"text\": \"Submit\",\n" +
+                "      \"emoji\": false\n" +
+                "    },\n" +
+                "    \"state\": {\n" +
+                "      \"values\": {\n" +
+                "        \"text-block\": {\n" +
+                "          \"text-action\": {\n" +
+                "            \"type\": \"plain_text_input\",\n" +
+                "            \"value\": \"test\"\n" +
+                "          }\n" +
+                "        }\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"hash\": \"1700459058.dyRTuN2P\",\n" +
+                "    \"callback_id\": \"remote-function-view\",\n" +
+                "    \"root_view_id\": \"V066196HSPR\",\n" +
+                "    \"clear_on_close\": false,\n" +
+                "    \"notify_on_close\": false,\n" +
+                "    \"external_id\": \"\"\n" +
+                "  },\n" +
+                "  \"api_app_id\": \"A065ZJM410S\",\n" +
+                "  \"bot_access_token\": \"xwfp-valid\",\n" +
+                "  \"function_data\": {\n" +
+                "    \"execution_id\": \"Fx0674QF1X08\",\n" +
+                "    \"function\": {\n" +
+                "      \"callback_id\": \"hello\"\n" +
+                "    },\n" +
+                "    \"inputs\": {\n" +
+                "      \"amount\": 1,\n" +
+                "      \"message\": \"hey\",\n" +
+                "      \"user_id\": \"U03E94MK0\"\n" +
+                "    }\n" +
+                "  },\n" +
+                "  \"interactivity\": {\n" +
+                "    \"interactor\": {\n" +
+                "      \"secret\": \"secret\",\n" +
+                "      \"id\": \"U03E94MK0\"\n" +
+                "    },\n" +
+                "    \"interactivity_pointer\": \"111.222.333\"\n" +
+                "  }\n" +
+                "}";
+        ViewSubmissionPayload payload = gson.fromJson(json, ViewSubmissionPayload.class);
+        assertThat(payload, is(notNullValue()));
     }
 }

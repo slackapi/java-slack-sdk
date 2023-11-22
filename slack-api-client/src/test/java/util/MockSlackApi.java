@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class MockSlackApi extends HttpServlet {
 
     public static final String ValidToken = "xoxb-this-is-valid";
+    public static final String ValidFunctionToken = "xwfp-this-is-valid";
     public static final String ExpiredToken = "xoxb-this-is-expired";
     public static final String InvalidToken = "xoxb-this-is-INVALID";
 
@@ -43,7 +44,8 @@ public class MockSlackApi extends HttpServlet {
                 resp.getWriter().write("{\"ok\":false,\"error\":\"not_authed\"}");
                 resp.setContentType("application/json");
                 return;
-            } else if (!authorizationHeader.startsWith("Bearer " + ValidToken)) {
+            } else if (!authorizationHeader.startsWith("Bearer " + ValidToken)
+                    && !authorizationHeader.startsWith("Bearer " + ValidFunctionToken)) {
                 resp.setStatus(200);
                 if (authorizationHeader.equals("Bearer " + ExpiredToken)) {
                     resp.getWriter().write("{\"ok\":false,\"error\":\"token_expired\"}");

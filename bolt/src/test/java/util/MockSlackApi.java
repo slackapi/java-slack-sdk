@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class MockSlackApi extends HttpServlet {
 
     public static final String ValidToken = "xoxb-this-is-valid";
+    public static final String ValidFunctionToken = "xwfp-this-is-valid";
     public static final String InvalidToken = "xoxb-this-is-INVALID";
 
     private final FileReader reader = new FileReader("../json-logs/samples/api/");
@@ -41,7 +42,8 @@ public class MockSlackApi extends HttpServlet {
                 resp.getWriter().write("{\"ok\":false,\"error\":\"not_authed\"}");
                 resp.setContentType("application/json");
                 return;
-            } else if (!authorizationHeader.equals("Bearer " + ValidToken)) {
+            } else if (!authorizationHeader.equals("Bearer " + ValidToken)
+                && !authorizationHeader.equals("Bearer " + ValidFunctionToken)) {
                 resp.setStatus(200);
                 resp.getWriter().write("{\"ok\":false,\"error\":\"invalid_auth\"}");
                 resp.setContentType("application/json");

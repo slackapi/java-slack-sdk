@@ -7,6 +7,7 @@ import com.slack.api.model.block.RichTextBlock;
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.OptionObject;
 import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.event.FunctionExecutedEvent;
 import com.slack.api.model.view.View;
 import com.slack.api.model.view.ViewState;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * https://api.slack.com/messaging/interactivity/enabling
@@ -43,6 +45,11 @@ public class BlockActionPayload {
     private AppUnfurl appUnfurl;
     private List<Action> actions;
     private boolean isEnterpriseInstall;
+
+    private String botAccessToken; // for remote function's interactivity
+    private FunctionData functionData; // for remote function's interactivity
+    private Interactivity interactivity; // for remote function's interactivity
+
 
     @Data
     public static class Enterprise {
@@ -177,4 +184,26 @@ public class BlockActionPayload {
         private RichTextBlock richTextValue;
     }
 
+    @Data
+    public static class FunctionData {
+        private String executionId;
+        private Function function;
+        private Map<String, FunctionExecutedEvent.InputValue> inputs;
+    }
+
+    @Data
+    public static class Function {
+        private String callbackId;
+    }
+
+    @Data
+    public static class Interactivity {
+        private String interactivityPointer; // you can use this in the same way with trigger_id
+        private Interactor interactor;
+    }
+    @Data
+    public static class Interactor {
+        private String id;
+        private String secret;
+    }
 }
