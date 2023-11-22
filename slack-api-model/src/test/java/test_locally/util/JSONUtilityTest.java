@@ -10,19 +10,20 @@ import com.slack.api.model.block.composition.TextObject;
 import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.model.block.element.ImageElement;
 import com.slack.api.model.block.element.OverflowMenuElement;
-import com.slack.api.util.json.GsonBlockElementFactory;
-import com.slack.api.util.json.GsonContextBlockElementFactory;
-import com.slack.api.util.json.GsonLayoutBlockFactory;
-import com.slack.api.util.json.GsonTextObjectFactory;
+import com.slack.api.model.event.FunctionExecutedEvent;
+import com.slack.api.util.json.*;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
 
 import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
 import static com.slack.api.model.block.composition.BlockCompositions.plainText;
 import static com.slack.api.model.block.element.BlockElements.image;
 import static com.slack.api.model.block.element.BlockElements.overflowMenu;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 
 public class JSONUtilityTest {
@@ -133,4 +134,23 @@ public class JSONUtilityTest {
         assertNotNull(i);
     }
 
+    @Test
+    public void testGsonFunctionExecutedEventInputValueFactory() {
+        GsonFunctionExecutedEventInputValueFactory f = new GsonFunctionExecutedEventInputValueFactory();
+
+        FunctionExecutedEvent.InputValue value = new FunctionExecutedEvent.InputValue();
+        value.setStringValue("U111");
+        JsonElement json = f.serialize(value, FunctionExecutedEvent.InputValue.class, context);
+        assertNotNull(json);
+        FunctionExecutedEvent.InputValue parsed = f.deserialize(json, FunctionExecutedEvent.InputValue.class, context);
+        assertThat(parsed.asString(), is("U111"));
+        assertThat(parsed.asStringArray(), is(Arrays.asList("U111")));
+
+        value.setStringValue(null);
+        value.setStringValues(Arrays.asList("C111", "C222"));
+        json = f.serialize(value, FunctionExecutedEvent.InputValue.class, context);
+        assertNotNull(json);
+        parsed = f.deserialize(json, FunctionExecutedEvent.InputValue.class, context);
+        assertThat(parsed.asStringArray(), is(Arrays.asList("C111", "C222")));
+    }
 }

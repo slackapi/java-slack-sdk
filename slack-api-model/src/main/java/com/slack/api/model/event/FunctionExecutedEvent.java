@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -74,6 +75,9 @@ public class FunctionExecutedEvent implements Event {
         }
         public Float asFloat() {
             return this.stringValue != null ? Float.valueOf(this.stringValue) : null;
+        }
+        public List<String> asStringArray() {
+            return this.stringValues != null ? this.stringValues : Arrays.asList(stringValue);
         }
         // TODO: other data patterns
     }
