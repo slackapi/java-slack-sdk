@@ -11044,6 +11044,7 @@
                   "template_title": "",
                   "template_description": "",
                   "template_icon": "",
+                  "team_pref_version_history_enabled": false,
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -15127,6 +15128,7 @@
               "template_title": "",
               "template_description": "",
               "template_icon": "",
+              "team_pref_version_history_enabled": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -18912,6 +18914,7 @@
       "template_title": "",
       "template_description": "",
       "template_icon": "",
+      "team_pref_version_history_enabled": false,
       "bot_id": "",
       "initial_comment": {
         "id": "",

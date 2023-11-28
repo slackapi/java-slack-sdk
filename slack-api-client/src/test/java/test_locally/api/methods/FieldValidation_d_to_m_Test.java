@@ -135,7 +135,8 @@ public class FieldValidation_d_to_m_Test {
                 "getTemplateDescription",
                 "getTemplateIcon",
                 "getEditors",
-                "getEditTimestamp"
+                "getEditTimestamp",
+                "getTeamPrefVersionHistoryEnabled"
         );
     }
 
@@ -244,7 +245,8 @@ public class FieldValidation_d_to_m_Test {
                 "getTemplateDescription",
                 "getTemplateIcon",
                 "getEditors",
-                "getEditTimestamp"
+                "getEditTimestamp",
+                "getTeamPrefVersionHistoryEnabled"
         );
     }
 

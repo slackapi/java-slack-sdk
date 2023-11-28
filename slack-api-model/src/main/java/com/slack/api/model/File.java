@@ -340,6 +340,8 @@ public class File {
     private String templateDescription;
     private String templateIcon;
 
+    private Boolean teamPrefVersionHistoryEnabled;
+
     // ---------------------------------------
     // file comments
     // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
