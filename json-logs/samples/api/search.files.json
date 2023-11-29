@@ -195,6 +195,8 @@
         "org_or_workspace_access": "",
         "team_pref_version_history_enabled": false,
         "editors_count": 12345,
+        "is_channel_space": false,
+        "linked_channel_id": "C00000000",
         "attachments": [
           {
             "msg_subtype": "",

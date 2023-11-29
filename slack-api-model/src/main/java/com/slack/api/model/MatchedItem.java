@@ -90,6 +90,10 @@ public class MatchedItem {
     private boolean hasRichPreview;
     private String mediaDisplayType;
 
+    @SerializedName("is_channel_space")
+    private boolean channelSpace;
+    private String linkedChannelId;
+
     private String mimetype;
     private String filetype;
     private String prettyType;

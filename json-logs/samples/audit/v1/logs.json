@@ -353,7 +353,8 @@
         "entity_type": "",
         "actor": "",
         "access_level": "",
-        "functions": []
+        "functions": [],
+        "permissions_updated": false
       }
     }
   ]
