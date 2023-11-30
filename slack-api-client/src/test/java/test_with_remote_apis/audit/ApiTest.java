@@ -263,6 +263,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> salesElevateNames = getAllPublicStaticFieldValues(Actions.SalesElevate.class);
+        for (String action : actions.getSalesElevate()) {
+            if (!salesElevateNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test

@@ -727,7 +727,7 @@ public class files_Test {
             assertThat(newMessage.getError(), is(nullValue()));
         }
 
-        Thread.sleep(2_000L);
+        Thread.sleep(3_000L);
 
         // verify if the shares is expected
         FilesInfoResponse fileInfo = slackMethods.filesInfo(r -> r.file(fileObj.getId()));

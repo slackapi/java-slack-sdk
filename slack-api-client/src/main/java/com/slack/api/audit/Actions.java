@@ -489,4 +489,11 @@ public class Actions {
         public static final String function_distribution_permission_removed = "function_distribution_permission_removed";
         public static final String function_distribution_permission_set = "function_distribution_permission_set";
     }
+
+    public static class SalesElevate {
+        private SalesElevate() {
+        }
+
+        public static final String sales_elevate_workflow_updated = "sales_elevate_workflow_updated";
+    }
 }

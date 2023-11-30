@@ -409,6 +409,9 @@
       "function_distribution_permission_added",
       "function_distribution_permission_removed",
       "function_distribution_permission_set"
+    ],
+    "sales_elevate": [
+      "sales_elevate_workflow_updated"
     ]
   }
 }

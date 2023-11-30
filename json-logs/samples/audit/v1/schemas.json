@@ -82,7 +82,8 @@
         "callback_id": "",
         "name": "",
         "updated_by": "",
-        "step_configuration": ""
+        "step_configuration": "",
+        "template_id": ""
       }
     }
   ],

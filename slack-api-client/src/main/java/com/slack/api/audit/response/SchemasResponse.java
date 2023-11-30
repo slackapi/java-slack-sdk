@@ -146,5 +146,6 @@ public class SchemasResponse implements AuditApiResponse {
         private String name;
         private String updatedBy;
         private String stepConfiguration;
+        private String templateId;
     }
 }
