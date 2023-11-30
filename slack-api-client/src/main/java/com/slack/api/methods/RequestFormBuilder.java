@@ -1620,6 +1620,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(ConversationsInviteRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("force", req.getForce(), form);
         if (req.getUsers() != null) {
             setIfNotNull("users", req.getUsers().stream().collect(joining(",")), form);
         }

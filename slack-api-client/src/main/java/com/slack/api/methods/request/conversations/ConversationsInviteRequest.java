@@ -28,4 +28,9 @@ public class ConversationsInviteRequest implements SlackApiRequest {
      */
     private List<String> users;
 
+    /**
+     * When set to `true` and multiple user IDs are provided, continue inviting the valid ones while disregarding invalid IDs. Defaults to `false`.
+     */
+    private Boolean force;
+
 }
