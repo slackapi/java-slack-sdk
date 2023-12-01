@@ -240,20 +240,20 @@ public class conversations_Test {
             }
             String invitee = invitee_;
 
-            // TODO: Fix "cant_invite" error starting in Jan 2023
-//            ConversationsInviteResponse inviteResponse = slack.methods().conversationsInvite(r -> r
-//                    .token(botToken)
-//                    .channel(channel.getId())
-//                    .users(Arrays.asList(invitee)));
-//            assertThat(inviteResponse.getError(), is(nullValue()));
-//            assertThat(inviteResponse.isOk(), is(true));
-//
-//            ConversationsKickResponse kickResponse = slack.methods().conversationsKick(r -> r
-//                    .token(userToken)
-//                    .channel(channel.getId())
-//                    .user(invitee));
-//            assertThat(kickResponse.getError(), is(nullValue()));
-//            assertThat(kickResponse.isOk(), is(true));
+            ConversationsInviteResponse inviteResponse = slack.methods().conversationsInvite(r -> r
+                    .token(botToken)
+                    .force(true)
+                    .channel(channel.getId())
+                    .users(Arrays.asList(invitee)));
+            assertThat(inviteResponse.getError(), is(nullValue()));
+            assertThat(inviteResponse.isOk(), is(true));
+
+            ConversationsKickResponse kickResponse = slack.methods().conversationsKick(r -> r
+                    .token(userToken)
+                    .channel(channel.getId())
+                    .user(invitee));
+            assertThat(kickResponse.getError(), is(nullValue()));
+            assertThat(kickResponse.isOk(), is(true));
         }
 
         {
