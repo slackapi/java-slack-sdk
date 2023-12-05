@@ -403,7 +403,10 @@
       "canvas_restored",
       "canvas_shared",
       "canvas_tombstoned",
-      "canvas_unshared"
+      "canvas_unshared",
+      "canvas_converted_to_template",
+      "canvas_template_used",
+      "canvas_template_reverted"
     ],
     "function": [
       "function_distribution_permission_added",

@@ -479,6 +479,9 @@ public class Actions {
         public static final String canvas_shared = "canvas_shared";
         public static final String canvas_tombstoned = "canvas_tombstoned";
         public static final String canvas_unshared = "canvas_unshared";
+        public static final String canvas_converted_to_template = "canvas_converted_to_template";
+        public static final String canvas_template_used = "canvas_template_used";
+        public static final String canvas_template_reverted = "canvas_template_reverted";
     }
 
     public static class Function {
