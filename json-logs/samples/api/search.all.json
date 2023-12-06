@@ -58015,8 +58015,7 @@
           }
         },
         "channels": [
-          "C00000000",
-          ""
+          "C00000000"
         ],
         "groups": [
           ""
@@ -58081,8 +58080,7 @@
         "sent_to_self": false,
         "bot_id": "B00000000",
         "editors": [
-          "",
-          "U00000000"
+          ""
         ],
         "url_static_preview": "https://www.example.com/",
         "quip_thread_id": "",
