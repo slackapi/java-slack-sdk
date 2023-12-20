@@ -342,6 +342,8 @@ public class File {
 
     private Boolean teamPrefVersionHistoryEnabled;
 
+    private Boolean showBadge;
+
     // ---------------------------------------
     // file comments
     // https://api.slack.com/changelog/2018-05-file-threads-soon-tread

@@ -3927,6 +3927,7 @@
           "template_description": "",
           "template_icon": "",
           "team_pref_version_history_enabled": false,
+          "show_badge": false,
           "bot_id": "",
           "initial_comment": {
             "id": "",
@@ -6397,6 +6398,7 @@
             "template_description": "",
             "template_icon": "",
             "team_pref_version_history_enabled": false,
+            "show_badge": false,
             "bot_id": "",
             "initial_comment": {
               "id": "",
@@ -14240,6 +14242,7 @@
                   "template_description": "",
                   "template_icon": "",
                   "team_pref_version_history_enabled": false,
+                  "show_badge": false,
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -18324,6 +18327,7 @@
               "template_description": "",
               "template_icon": "",
               "team_pref_version_history_enabled": false,
+              "show_badge": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",
