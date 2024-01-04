@@ -79,7 +79,7 @@ Here is the list of the necessary configurations for distributing apps built wit
 |**SLACK_SIGNING_SECRET**|**Signing Secret**: A secret key for verifying requests from Slack. (Find at **Settings** > **Basic Information** > **App Credentials**)|
 |**SLACK_CLIENT_ID**|**OAuth 2.0 Client ID** (Find at **Settings** > **Basic Information** > **App Credentials**)|
 |**SLACK_CLIENT_SECRET**|**OAuth 2.0 Client Secret** (Find at **Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_REDIRECT_URI**|**OAUth 2.0 Redirect URI** (Configure at **Features** > **OAuth & Permissions** > **Redirect URLs**)|
+|**SLACK_REDIRECT_URI**|**OAuth 2.0 Redirect URI** (Configure at **Features** > **OAuth & Permissions** > **Redirect URLs**)|
 |**SLACK_SCOPES**|**Command-separated list of scopes**: `scope` parameter that will be appended to `https://slack.com/oauth/authorize` and `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `scope`)|
 |**SLACK_USER_SCOPES** (only for v2)|**Command-separated list of user scopes**: `user_scope` parameter that will be appended to `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `user_scope`)|
 |**SLACK_INSTALL_PATH**|**Starting point of OAuth flow**: This endpoint redirects users to the Slack Authorize endpoint with required query parameters such as `client_id`, `scope`, `user_scope` (only for v2), and `state`. The suggested path is `/slack/oauth/start` but you can go with any path.|
