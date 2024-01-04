@@ -40,6 +40,7 @@ Here is a Bolt app demonstrating how to implement OAuth flow. As the OAuth flow 
 ```java
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.jetty.SlackAppServer;
+import java.util.HashMap;
 import java.util.Map;
 import static java.util.Map.entry;
 
@@ -59,10 +60,10 @@ apiApp.command("/hi", (req, ctx) -> {
 App oauthApp = new App().asOAuthApp(true);
 
 // Mount the two apps with their root path
-SlackAppServer server = new SlackAppServer(Map.of(
+SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
   entry("/slack/events", apiApp), // POST /slack/events (incoming API requests from the Slack Platform)
   entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
-));
+)));
 
 server.start(); // http://localhost:3000
 ```
@@ -106,6 +107,7 @@ import com.slack.api.bolt.service.OAuthStateService;
 import com.slack.api.bolt.service.builtin.AmazonS3InstallationService;
 import com.slack.api.bolt.service.builtin.AmazonS3OAuthStateService;
 
+import java.util.HashMap;
 import java.util.Map;
 import static java.util.Map.entry;
 
@@ -139,10 +141,10 @@ OAuthStateService stateService = new AmazonS3OAuthStateService(awsS3BucketName);
 oauthApp.service(stateService);
 
 // Mount the two apps with their root path
-SlackAppServer server = new SlackAppServer(Map.of(
-  "/slack/events", apiApp, // POST /slack/events (incoming API requests from the Slack Platform)
-  "/slack/oauth", oauthApp // GET  /slack/oauth/start, /slack/oauth/callback (user access)
-));
+SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
+  entry("/slack/events", apiApp), // POST /slack/events (incoming API requests from the Slack Platform)
+  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
+)));
 
 server.start(); // http://localhost:3000
 ```
