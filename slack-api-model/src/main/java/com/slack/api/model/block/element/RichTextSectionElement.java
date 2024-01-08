@@ -100,6 +100,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "usergroup";
         private final String type = TYPE;
         private String usergroupId;
+        private TextStyle style;
     }
 
     @Data
@@ -110,6 +111,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "date";
         private final String type = TYPE;
         private String timestamp;
+        private TextStyle style;
     }
 
     @Data
@@ -119,7 +121,8 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
     public static class Broadcast implements RichTextElement {
         public static final String TYPE = "broadcast";
         private final String type = TYPE;
-        private String range; // channel, here, ..
+        private String range; // channel, here, everyone
+        private TextStyle style;
     }
 
     @Data
@@ -130,6 +133,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "color";
         private final String type = TYPE;
         private String value;
+        private TextStyle style;
     }
 
     // -------------------------------

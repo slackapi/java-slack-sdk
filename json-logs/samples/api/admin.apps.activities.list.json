@@ -33,11 +33,14 @@
           "config": {
             "name": "",
             "description": "",
-            "schema": {}
+            "schema": {},
+            "event_type": ""
           },
           "trip_information": {
             "user_id": "W00000000",
-            "channel_id": "C00000000"
+            "channel_id": "C00000000",
+            "reaction": "",
+            "message_ts": ""
           }
         },
         "channel_id": "C00000000",

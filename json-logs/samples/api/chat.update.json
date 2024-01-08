@@ -1271,7 +1271,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -1295,11 +1301,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -1334,7 +1352,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -1359,7 +1383,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -1383,11 +1413,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -1422,7 +1464,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -1444,7 +1492,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -1468,11 +1522,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -1507,7 +1573,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -1528,7 +1600,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -1552,11 +1630,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -1591,7 +1681,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -1621,7 +1717,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -1645,11 +1747,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -1684,7 +1798,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -1709,7 +1829,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -1733,11 +1859,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -1772,7 +1910,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -1794,7 +1938,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -1818,11 +1968,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -1857,7 +2019,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -1878,7 +2046,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -1902,11 +2076,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -1941,7 +2127,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -1968,7 +2160,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -1992,11 +2190,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -2031,7 +2241,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -2056,7 +2272,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -2080,11 +2302,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -2119,7 +2353,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -2141,7 +2381,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -2165,11 +2411,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -2204,7 +2462,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -2225,7 +2489,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -2249,11 +2519,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -2288,7 +2570,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -2314,7 +2602,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -2338,11 +2632,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -2377,7 +2683,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -2402,7 +2714,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -2426,11 +2744,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -2465,7 +2795,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -2487,7 +2823,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -2511,11 +2853,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -2550,7 +2904,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -2571,7 +2931,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -2595,11 +2961,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -2634,7 +3012,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -4796,7 +5180,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -4820,11 +5210,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -4859,7 +5261,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -4884,7 +5292,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -4908,11 +5322,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -4947,7 +5373,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -4969,7 +5401,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -4993,11 +5431,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5032,7 +5482,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5053,7 +5509,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5077,11 +5539,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5116,7 +5590,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5146,7 +5626,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5170,11 +5656,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5209,7 +5707,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5234,7 +5738,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5258,11 +5768,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5297,7 +5819,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5319,7 +5847,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5343,11 +5877,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5382,7 +5928,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5403,7 +5955,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5427,11 +5985,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5466,7 +6036,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5493,7 +6069,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5517,11 +6099,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5556,7 +6150,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5581,7 +6181,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5605,11 +6211,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5644,7 +6262,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5666,7 +6290,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5690,11 +6320,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5729,7 +6371,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5750,7 +6398,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5774,11 +6428,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5813,7 +6479,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5839,7 +6511,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5863,11 +6541,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5902,7 +6592,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -5927,7 +6623,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -5951,11 +6653,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -5990,7 +6704,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -6012,7 +6732,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -6036,11 +6762,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -6075,7 +6813,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",
@@ -6096,7 +6840,13 @@
                 "elements": [
                   {
                     "type": "broadcast",
-                    "range": ""
+                    "range": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "text",
@@ -6120,11 +6870,23 @@
                   },
                   {
                     "type": "color",
-                    "value": ""
+                    "value": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "date",
-                    "timestamp": ""
+                    "timestamp": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "link",
@@ -6159,7 +6921,13 @@
                   },
                   {
                     "type": "usergroup",
-                    "usergroup_id": ""
+                    "usergroup_id": "",
+                    "style": {
+                      "bold": false,
+                      "italic": false,
+                      "strike": false,
+                      "code": false
+                    }
                   },
                   {
                     "type": "emoji",

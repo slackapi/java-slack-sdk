@@ -2,6 +2,7 @@ package test_locally.sample_json_generation;
 
 import com.slack.api.model.event.*;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.ObjectInitializer;
 import util.sample_json_generation.ObjectToJsonDumper;
@@ -15,6 +16,7 @@ public class RTMPayloadDumpTest {
 
     ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/rtm");
 
+    @Ignore // stopped maintaining these JSON data on Jan 8, 2024
     @Test
     public void dumpAll() throws Exception {
         List<Event> payloads = Arrays.asList(

@@ -111,8 +111,7 @@
           }
         },
         "channels": [
-          "C00000000",
-          ""
+          "C00000000"
         ],
         "groups": [
           ""
@@ -177,8 +176,7 @@
         "sent_to_self": false,
         "bot_id": "B00000000",
         "editors": [
-          "",
-          "U00000000"
+          ""
         ],
         "url_static_preview": "https://www.example.com/",
         "quip_thread_id": "",
@@ -1232,7 +1230,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -1256,11 +1260,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -1295,7 +1311,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -1320,7 +1342,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -1344,11 +1372,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -1383,7 +1423,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -1405,7 +1451,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -1429,11 +1481,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -1468,7 +1532,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -1489,7 +1559,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -1513,11 +1589,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -1552,7 +1640,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -1582,7 +1676,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -1606,11 +1706,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -1645,7 +1757,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -1670,7 +1788,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -1694,11 +1818,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -1733,7 +1869,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -1755,7 +1897,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -1779,11 +1927,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -1818,7 +1978,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -1839,7 +2005,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -1863,11 +2035,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -1902,7 +2086,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -1929,7 +2119,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -1953,11 +2149,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -1992,7 +2200,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -2017,7 +2231,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -2041,11 +2261,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -2080,7 +2312,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -2102,7 +2340,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -2126,11 +2370,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -2165,7 +2421,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -2186,7 +2448,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -2210,11 +2478,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -2249,7 +2529,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -2275,7 +2561,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -2299,11 +2591,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -2338,7 +2642,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -2363,7 +2673,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -2387,11 +2703,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -2426,7 +2754,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -2448,7 +2782,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -2472,11 +2812,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -2511,7 +2863,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -2532,7 +2890,13 @@
                         "elements": [
                           {
                             "type": "broadcast",
-                            "range": ""
+                            "range": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "text",
@@ -2556,11 +2920,23 @@
                           },
                           {
                             "type": "color",
-                            "value": ""
+                            "value": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "date",
-                            "timestamp": ""
+                            "timestamp": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "link",
@@ -2595,7 +2971,13 @@
                           },
                           {
                             "type": "usergroup",
-                            "usergroup_id": ""
+                            "usergroup_id": "",
+                            "style": {
+                              "bold": false,
+                              "italic": false,
+                              "strike": false,
+                              "code": false
+                            }
                           },
                           {
                             "type": "emoji",
@@ -4816,7 +5198,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -4840,11 +5228,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -4879,7 +5279,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -4904,7 +5310,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -4928,11 +5340,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -4967,7 +5391,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -4989,7 +5419,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5013,11 +5449,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5052,7 +5500,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5073,7 +5527,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5097,11 +5557,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5136,7 +5608,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5166,7 +5644,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5190,11 +5674,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5229,7 +5725,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5254,7 +5756,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5278,11 +5786,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5317,7 +5837,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5339,7 +5865,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5363,11 +5895,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5402,7 +5946,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5423,7 +5973,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5447,11 +6003,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5486,7 +6054,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5513,7 +6087,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5537,11 +6117,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5576,7 +6168,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5601,7 +6199,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5625,11 +6229,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5664,7 +6280,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5686,7 +6308,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5710,11 +6338,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5749,7 +6389,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5770,7 +6416,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5794,11 +6446,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5833,7 +6497,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5859,7 +6529,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5883,11 +6559,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -5922,7 +6610,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -5947,7 +6641,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -5971,11 +6671,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -6010,7 +6722,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -6032,7 +6750,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -6056,11 +6780,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -6095,7 +6831,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -6116,7 +6858,13 @@
                               "elements": [
                                 {
                                   "type": "broadcast",
-                                  "range": ""
+                                  "range": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "text",
@@ -6140,11 +6888,23 @@
                                 },
                                 {
                                   "type": "color",
-                                  "value": ""
+                                  "value": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "date",
-                                  "timestamp": ""
+                                  "timestamp": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "link",
@@ -6179,7 +6939,13 @@
                                 },
                                 {
                                   "type": "usergroup",
-                                  "usergroup_id": ""
+                                  "usergroup_id": "",
+                                  "style": {
+                                    "bold": false,
+                                    "italic": false,
+                                    "strike": false,
+                                    "code": false
+                                  }
                                 },
                                 {
                                   "type": "emoji",
@@ -9077,7 +9843,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9101,11 +9873,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9140,7 +9924,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9165,7 +9955,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9189,11 +9985,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9228,7 +10036,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9250,7 +10064,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9274,11 +10094,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9313,7 +10145,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9334,7 +10172,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9358,11 +10202,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9397,7 +10253,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9427,7 +10289,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9451,11 +10319,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9490,7 +10370,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9515,7 +10401,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9539,11 +10431,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9578,7 +10482,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9600,7 +10510,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9624,11 +10540,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9663,7 +10591,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9684,7 +10618,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9708,11 +10648,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9747,7 +10699,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9774,7 +10732,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9798,11 +10762,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9837,7 +10813,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9862,7 +10844,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9886,11 +10874,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -9925,7 +10925,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -9947,7 +10953,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -9971,11 +10983,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -10010,7 +11034,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -10031,7 +11061,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -10055,11 +11091,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -10094,7 +11142,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -10120,7 +11174,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -10144,11 +11204,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -10183,7 +11255,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -10208,7 +11286,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -10232,11 +11316,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -10271,7 +11367,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -10293,7 +11395,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -10317,11 +11425,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -10356,7 +11476,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -10377,7 +11503,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -10401,11 +11533,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -10440,7 +11584,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -12692,7 +13842,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -12716,11 +13872,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -12755,7 +13923,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -12780,7 +13954,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -12804,11 +13984,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -12843,7 +14035,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -12865,7 +14063,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -12889,11 +14093,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -12928,7 +14144,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -12949,7 +14171,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -12973,11 +14201,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13012,7 +14252,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13042,7 +14288,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13066,11 +14318,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13105,7 +14369,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13130,7 +14400,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13154,11 +14430,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13193,7 +14481,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13215,7 +14509,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13239,11 +14539,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13278,7 +14590,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13299,7 +14617,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13323,11 +14647,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13362,7 +14698,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13389,7 +14731,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13413,11 +14761,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13452,7 +14812,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13477,7 +14843,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13501,11 +14873,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13540,7 +14924,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13562,7 +14952,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13586,11 +14982,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13625,7 +15033,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13646,7 +15060,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13670,11 +15090,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13709,7 +15141,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13735,7 +15173,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13759,11 +15203,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13798,7 +15254,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13823,7 +15285,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13847,11 +15315,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13886,7 +15366,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13908,7 +15394,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -13932,11 +15424,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -13971,7 +15475,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -13992,7 +15502,13 @@
                             "elements": [
                               {
                                 "type": "broadcast",
-                                "range": ""
+                                "range": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "text",
@@ -14016,11 +15532,23 @@
                               },
                               {
                                 "type": "color",
-                                "value": ""
+                                "value": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "date",
-                                "timestamp": ""
+                                "timestamp": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "link",
@@ -14055,7 +15583,13 @@
                               },
                               {
                                 "type": "usergroup",
-                                "usergroup_id": ""
+                                "usergroup_id": "",
+                                "style": {
+                                  "bold": false,
+                                  "italic": false,
+                                  "strike": false,
+                                  "code": false
+                                }
                               },
                               {
                                 "type": "emoji",
@@ -16194,7 +17728,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -16218,11 +17758,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -16257,7 +17809,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -16282,7 +17840,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -16306,11 +17870,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -16345,7 +17921,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -16367,7 +17949,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -16391,11 +17979,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -16430,7 +18030,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -16451,7 +18057,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -16475,11 +18087,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -16514,7 +18138,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -16544,7 +18174,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -16568,11 +18204,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -16607,7 +18255,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -16632,7 +18286,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -16656,11 +18316,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -16695,7 +18367,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -16717,7 +18395,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -16741,11 +18425,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -16780,7 +18476,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -16801,7 +18503,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -16825,11 +18533,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -16864,7 +18584,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -16891,7 +18617,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -16915,11 +18647,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -16954,7 +18698,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -16979,7 +18729,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -17003,11 +18759,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -17042,7 +18810,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -17064,7 +18838,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -17088,11 +18868,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -17127,7 +18919,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -17148,7 +18946,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -17172,11 +18976,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -17211,7 +19027,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -17237,7 +19059,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -17261,11 +19089,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -17300,7 +19140,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -17325,7 +19171,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -17349,11 +19201,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -17388,7 +19252,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -17410,7 +19280,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -17434,11 +19310,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -17473,7 +19361,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
@@ -17494,7 +19388,13 @@
                     "elements": [
                       {
                         "type": "broadcast",
-                        "range": ""
+                        "range": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "text",
@@ -17518,11 +19418,23 @@
                       },
                       {
                         "type": "color",
-                        "value": ""
+                        "value": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "date",
-                        "timestamp": ""
+                        "timestamp": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "link",
@@ -17557,7 +19469,13 @@
                       },
                       {
                         "type": "usergroup",
-                        "usergroup_id": ""
+                        "usergroup_id": "",
+                        "style": {
+                          "bold": false,
+                          "italic": false,
+                          "strike": false,
+                          "code": false
+                        }
                       },
                       {
                         "type": "emoji",
