@@ -54,6 +54,7 @@ public class AppActivity {
 
     @Data
     public static class TriggerConfig {
+        private String eventType;
         private String name;
         private String description;
         private Object schema; // TODO: typing
@@ -63,5 +64,8 @@ public class AppActivity {
     public static class TripInformation {
         private String userId;
         private String channelId;
+        private String messageTs;
+        private String reaction;
+        // TODO: more properties
     }
 }

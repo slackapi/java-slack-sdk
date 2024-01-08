@@ -56,7 +56,8 @@
   "errors": [
     {
       "ok": false,
-      "error": ""
+      "error": "",
+      "user": "U00000000"
     }
   ]
 }

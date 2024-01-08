@@ -24,5 +24,6 @@ public class ConversationsInviteResponse implements SlackApiTextResponse {
     public static class Error {
         private boolean ok;
         private String error;
+        private String user;
     }
 }

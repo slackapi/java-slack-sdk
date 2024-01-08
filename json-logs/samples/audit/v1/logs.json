@@ -354,6 +354,7 @@
         "actor": "",
         "access_level": "",
         "functions": [],
+        "workflows": [],
         "permissions_updated": false
       }
     }

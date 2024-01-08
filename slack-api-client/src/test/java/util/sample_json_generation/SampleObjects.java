@@ -159,15 +159,21 @@ public class SampleObjects {
     public static List<SectionBlock> SectionBlocksWithAccessory = new ArrayList<>();
 
     private static final List<RichTextElement> nestedRichTextElements = Arrays.asList(
-            initProperties(RichTextSectionElement.Broadcast.builder().build()),
+            initProperties(RichTextSectionElement.Broadcast.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build()),
             initProperties(RichTextSectionElement.Text.builder()
                     .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
                     .build()),
             initProperties(RichTextSectionElement.Channel.builder()
                     .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
                     .build()),
-            initProperties(RichTextSectionElement.Color.builder().build()),
-            initProperties(RichTextSectionElement.Date.builder().build()),
+            initProperties(RichTextSectionElement.Color.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build()),
+            initProperties(RichTextSectionElement.Date.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build()),
             initProperties(RichTextSectionElement.Link.builder()
                     .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
                     .build()),
@@ -177,7 +183,9 @@ public class SampleObjects {
             initProperties(RichTextSectionElement.User.builder()
                     .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
                     .build()),
-            initProperties(RichTextSectionElement.UserGroup.builder().build()),
+            initProperties(RichTextSectionElement.UserGroup.builder()
+                    .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
+                    .build()),
             initProperties(RichTextSectionElement.Emoji.builder()
                     .style(initProperties(RichTextSectionElement.TextStyle.builder().build()))
                     .build())
