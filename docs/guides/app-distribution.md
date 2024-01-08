@@ -40,6 +40,7 @@ Here is a Bolt app demonstrating how to implement OAuth flow. As the OAuth flow 
 ```java
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.jetty.SlackAppServer;
+import java.util.HashMap;
 import java.util.Map;
 import static java.util.Map.entry;
 
@@ -59,10 +60,10 @@ apiApp.command("/hi", (req, ctx) -> {
 App oauthApp = new App().asOAuthApp(true);
 
 // Mount the two apps with their root path
-SlackAppServer server = new SlackAppServer(Map.of(
+SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
   entry("/slack/events", apiApp), // POST /slack/events (incoming API requests from the Slack Platform)
   entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
-));
+)));
 
 server.start(); // http://localhost:3000
 ```
@@ -78,11 +79,11 @@ Here is the list of the necessary configurations for distributing apps built wit
 |**SLACK_SIGNING_SECRET**|**Signing Secret**: A secret key for verifying requests from Slack. (Find at **Settings** > **Basic Information** > **App Credentials**)|
 |**SLACK_CLIENT_ID**|**OAuth 2.0 Client ID** (Find at **Settings** > **Basic Information** > **App Credentials**)|
 |**SLACK_CLIENT_SECRET**|**OAuth 2.0 Client Secret** (Find at **Settings** > **Basic Information** > **App Credentials**)|
-|**SLACK_REDIRECT_URI**|**OAUth 2.0 Redirect URI** (Configure at **Features** > **OAuth & Permissions** > **Redirect URLs**)|
+|**SLACK_REDIRECT_URI**|**OAuth 2.0 Redirect URI** (Configure at **Features** > **OAuth & Permissions** > **Redirect URLs**)|
 |**SLACK_SCOPES**|**Command-separated list of scopes**: `scope` parameter that will be appended to `https://slack.com/oauth/authorize` and `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `scope`)|
 |**SLACK_USER_SCOPES** (only for v2)|**Command-separated list of user scopes**: `user_scope` parameter that will be appended to `https://slack.com/oauth/v2/authorize` as a query parameter (Find at **Settings** > **Manage Distribution** > **Sharable URL**, extract the value for `user_scope`)|
-|**SLACK_INSTALL_PATH**|**Starting point of OAuth flow**: This endpoint redirects users to the Slack Authorize endpoint with required query parameters such as `client_id`, `scope`, `user_scope` (only for v2), and `state`. The suggested path is `/slack/oauth/start` but you can go with any path.|
-|**SLACK_REDIRECT_URI_PATH**|**Path for OAuth Redirect URI**: This endpoint handles callback requests after the Slack's OAuth confirmation. The path must be consistent with **SLACK_REDIRECT_URI** value. The suggested path is `/slack/oauth/callback` but you can go with any path.|
+|**SLACK_INSTALL_PATH**|**Starting point of OAuth flow**: This endpoint redirects users to the Slack Authorize endpoint with required query parameters such as `client_id`, `scope`, `user_scope` (only for v2), and `state`.<br><br>The suggested path is `/slack/oauth/start` but you can go with any path. Note that the example above automatically prepends `/slack/oauth` to this variable.|
+|**SLACK_REDIRECT_URI_PATH**|**Path for OAuth Redirect URI**: This endpoint handles callback requests after the Slack's OAuth confirmation. The path must be consistent with **SLACK_REDIRECT_URI** value.<br><br>The suggested path is `/slack/oauth/callback` but you can go with any path. Note that the example above automatically prepends `/slack/oauth` to this variable.|
 |**SLACK_OAUTH_COMPLETION_URL**|**Installation Completion URL**: The complete public URL to redirect users when their installations have been successfully completed. You can go with any URLs.|
 |**SLACK_OAUTH_CANCELLATION_URL**|**Installation Cancellation/Error URL**: The complete public URL to redirect users when their installations have been cancelled for some reasons. You can go with any URLs.|
 
@@ -106,6 +107,7 @@ import com.slack.api.bolt.service.OAuthStateService;
 import com.slack.api.bolt.service.builtin.AmazonS3InstallationService;
 import com.slack.api.bolt.service.builtin.AmazonS3OAuthStateService;
 
+import java.util.HashMap;
 import java.util.Map;
 import static java.util.Map.entry;
 
@@ -139,10 +141,10 @@ OAuthStateService stateService = new AmazonS3OAuthStateService(awsS3BucketName);
 oauthApp.service(stateService);
 
 // Mount the two apps with their root path
-SlackAppServer server = new SlackAppServer(Map.of(
-  "/slack/events", apiApp, // POST /slack/events (incoming API requests from the Slack Platform)
-  "/slack/oauth", oauthApp // GET  /slack/oauth/start, /slack/oauth/callback (user access)
-));
+SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
+  entry("/slack/events", apiApp), // POST /slack/events (incoming API requests from the Slack Platform)
+  entry("/slack/oauth", oauthApp) // GET  /slack/oauth/start, /slack/oauth/callback (user access)
+)));
 
 server.start(); // http://localhost:3000
 ```
