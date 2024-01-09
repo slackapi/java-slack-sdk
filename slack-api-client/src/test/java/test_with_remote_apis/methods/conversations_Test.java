@@ -245,13 +245,13 @@ public class conversations_Test {
                     .force(true)
                     .channel(channel.getId())
                     .users(Arrays.asList(invitee)));
-            assertThat(inviteResponse.getError(), is("cant_invite")); // TODO: started failing since Jan 2024
+            assertThat(inviteResponse.getError(), is(nullValue()));
 
             ConversationsKickResponse kickResponse = slack.methods().conversationsKick(r -> r
                     .token(userToken)
                     .channel(channel.getId())
                     .user(invitee));
-            assertThat(kickResponse.getError(), is("not_in_channel")); // TODO: started failing since Jan 2024
+            assertThat(kickResponse.getError(), is(nullValue()));
         }
 
         {
