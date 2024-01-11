@@ -85,6 +85,8 @@ public class Http4kSlackAppTest {
                 .header(X_SLACK_REQUEST_TIMESTAMP, timestamp)
                 .header(X_SLACK_SIGNATURE, signature)
                 .header("Content-Type", "application/json")
+                .header("X-Forwarded-Host", "proxy1.example.com")
+                .header("X-Forwarded-Host", "proxy2.example.com")
                 .query("query", "queryValue")
                 .body(requestBody);
     }
@@ -108,7 +110,7 @@ public class Http4kSlackAppTest {
                 .header("Content-Type", "application/json; charset=utf-8")
                 .body("{\"text\":\"" +
                         "query: query " +
-                        "headers: content-type,x-slack-request-timestamp,x-slack-signature " +
+                        "headers: x-forwarded-host,content-type,x-slack-request-timestamp,x-slack-signature " +
                         "body: command\\u003decho" +
                         "\"}");
 
