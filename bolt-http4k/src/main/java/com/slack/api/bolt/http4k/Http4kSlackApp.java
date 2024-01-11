@@ -12,6 +12,8 @@ import org.http4k.core.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -111,9 +113,15 @@ public class Http4kSlackApp implements Function1<Request, Response> {
         Map<String, List<String>> queryString = toParameters(httpRequest.getUri().getQuery())
                 .stream()
                 .collect(toMap(Pair::component1, it -> singletonList(it.component2())));
-        RequestHeaders headers = new RequestHeaders(httpRequest.getHeaders()
-                .stream()
-                .collect(toMap(Pair::component1, it -> singletonList(it.component2()))));
+
+        Map<String, List<String>> underlyingHeaders = new HashMap<>();
+        for (Pair<String, String> header : httpRequest.getHeaders()) {
+            String name = header.getFirst();
+            List<String> values = underlyingHeaders.getOrDefault(name, new ArrayList<>());
+            values.add(header.getSecond());
+            underlyingHeaders.put(name, values);
+        }
+        RequestHeaders headers = new RequestHeaders(underlyingHeaders);
         return requestParser.parse(SlackRequestParser.HttpRequest.builder()
                 .requestUri(httpRequest.getUri().getPath())
                 .queryString(queryString)
