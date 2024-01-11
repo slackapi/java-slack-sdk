@@ -58,6 +58,14 @@ public interface SocketModeClient extends Closeable {
     boolean verifyConnection();
 
     /**
+     * Returns true if the client tries to reconnect when onClose listeners are called
+     * plus isAutoReconnectEnabled() is true. Default: false
+     */
+    boolean isAutoReconnectOnCloseEnabled();
+
+    void setAutoReconnectOnCloseEnabled(boolean autoReconnectOnCloseEnabled);
+
+    /**
      * Connects to a new WSS endpoint and starts a new WebSocket session.
      */
     default void connectToNewEndpoint() throws IOException {
@@ -256,11 +264,30 @@ public interface SocketModeClient extends Closeable {
         for (WebSocketCloseListener listener : getWebSocketCloseListeners()) {
             listener.handle(code, reason);
         }
-        if (isAutoReconnectEnabled() && !verifyConnection()) {
-            try {
-                connectToNewEndpoint();
-            } catch (IOException e) {
-                getLogger().error("Failed to reconnect to the Socket Mode server: {}", e.getMessage(), e);
+        if (isAutoReconnectOnCloseEnabled()) {
+            // Starting in December 2023, the Socket Mode server changed its behavior.
+            // As a result, the logic here can result in a rate-limited error.
+            //
+            // Reported issues:
+            // * https://github.com/slackapi/java-slack-sdk/issues/1256
+            // * https://github.com/slackapi/java-slack-sdk/issues/1223
+            //
+            // Originally, this logic was added to let this client get back online even more quickly when something is wrong.
+            // However, it seems that the logic has been relying on the server's past behavior characteristics.
+            // Note that, even when the underlying connection is closed due to "reason: Closed abnormally." or similar,
+            // the session monitor under the hood continues to try to reconnect for you.
+            // For this reason, disabling this logic should be safe for any situations.
+            // If there is an exception this assumption does not cover, we may need to improve the logic to ensure better stability.
+            //
+            // Therefore, in v1.37.0, this SDK disabled this by default.
+            // If you want to turn it on again, set the isAutoReconnectOnCloseEnabled to true.
+
+            if (isAutoReconnectEnabled() && !verifyConnection()) {
+                try {
+                    connectToNewEndpoint();
+                } catch (IOException e) {
+                    getLogger().error("Failed to reconnect to the Socket Mode server: {}", e.getMessage(), e);
+                }
             }
         }
     }

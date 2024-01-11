@@ -41,6 +41,7 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
     private final Gson gson;
     private URI wssUri;
     private boolean autoReconnectEnabled;
+    private boolean autoReconnectOnCloseEnabled;
     private SocketModeMessageQueue messageQueue;
     private ScheduledExecutorService messageProcessorExecutor;
     private boolean sessionMonitorEnabled;
@@ -110,6 +111,8 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
 
         setMessageQueue(messageQueue);
         setAutoReconnectEnabled(autoReconnectEnabled);
+        // You can use the setter method if you set the value to true
+        setAutoReconnectOnCloseEnabled(false);
         setSessionMonitorEnabled(sessionMonitorEnabled);
         initializeSessionMonitorExecutor(sessionMonitorIntervalMillis);
         initializeMessageProcessorExecutor(concurrency);
@@ -154,6 +157,16 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean isAutoReconnectOnCloseEnabled() {
+        return this.autoReconnectOnCloseEnabled;
+    }
+
+    @Override
+    public void setAutoReconnectOnCloseEnabled(boolean autoReconnectOnCloseEnabled) {
+        this.autoReconnectOnCloseEnabled = autoReconnectOnCloseEnabled;
     }
 
     @Override
