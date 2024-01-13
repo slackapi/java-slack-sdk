@@ -25,6 +25,7 @@ public class Team {
     private Boolean isVerified;
     private String discoverable; // "invite_only"
     private String avatarBaseUrl;
+    private Boolean lobSalesHomeEnabled;
 
     @Data
     public static class Profile {

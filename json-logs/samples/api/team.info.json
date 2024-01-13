@@ -22,7 +22,8 @@
     "enterprise_name": "",
     "enterprise_domain": "",
     "discoverable": "",
-    "avatar_base_url": "https://www.example.com/"
+    "avatar_base_url": "https://www.example.com/",
+    "lob_sales_home_enabled": false
   },
   "error": "",
   "needed": "",
