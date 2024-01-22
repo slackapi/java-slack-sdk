@@ -276,7 +276,7 @@
   "users.list": "Tier2",
   "users.lookupByEmail": "Tier3",
   "users.profile.get": "Tier4",
-  "users.profile.set": "Tier2",
+  "users.profile.set": "Tier3",
   "users.setActive": "Tier2",
   "users.setPhoto": "Tier2",
   "users.setPresence": "Tier2",
