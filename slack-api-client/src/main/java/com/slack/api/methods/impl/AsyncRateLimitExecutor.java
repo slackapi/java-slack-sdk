@@ -87,7 +87,7 @@ public class AsyncRateLimitExecutor {
 
     private void initCurrentQueueSizeStatsIfAbsent(String teamId, String methodNameWithSuffix) {
         if (teamId != null) {
-            metricsDatastore.updateCurrentQueueSize(config.getExecutorName(), teamId, methodNameWithSuffix);
+            metricsDatastore.setCurrentQueueSize(config.getExecutorName(), teamId, methodNameWithSuffix, 0);
         }
     }
 
