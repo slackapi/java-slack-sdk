@@ -435,7 +435,7 @@ public class MethodsRateLimits {
         setRateLimitTier(USERS_SET_PHOTO, Tier2);
         setRateLimitTier(USERS_SET_PRESENCE, Tier2);
         setRateLimitTier(USERS_PROFILE_GET, Tier4);
-        setRateLimitTier(USERS_PROFILE_SET, Tier4);
+        setRateLimitTier(USERS_PROFILE_SET, Tier2);
 
         setRateLimitTier(VIEWS_OPEN, Tier4);
         setRateLimitTier(VIEWS_PUBLISH, Tier4);
