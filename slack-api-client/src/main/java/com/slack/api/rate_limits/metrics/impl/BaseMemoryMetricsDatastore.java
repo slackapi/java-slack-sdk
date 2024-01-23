@@ -264,13 +264,6 @@ public abstract class BaseMemoryMetricsDatastore<SUPPLIER, MSG extends QueueMess
     @Override
     public void setCurrentQueueSize(String executorName, String teamId, String methodName, Integer size) {
         if (this.isStatsEnabled()) {
-            CopyOnWriteArrayList<String> messageIds = getOrCreateMessageIds(executorName, teamId, methodName);
-            Integer totalSize = messageIds.size();
-            RateLimitQueue<SUPPLIER, MSG> queue = getRateLimitQueue(executorName, teamId);
-            if (queue != null) {
-                totalSize += queue.getCurrentActiveQueueSize(methodName);
-            }
-            getOrCreateTeamLiveStats(executorName, teamId).getCurrentQueueSize().put(methodName, totalSize);
             getOrCreateTeamLiveStats(executorName, teamId).getCurrentQueueSize().put(methodName, size);
         }
     }
