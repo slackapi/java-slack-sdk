@@ -73,7 +73,7 @@ public class AsyncRateLimitExecutor {
                 String messageId = messageIdGenerator.generate();
                 String methodNameWithSuffix = toMethodNameWithSuffix(methodName, params);
                 addMessageId(teamId, methodNameWithSuffix, messageId);
-                initCurrentQueueSizeStatsIfAbsent(teamId, methodNameWithSuffix);
+                syncCurrentQueueSizeStats(teamId, methodNameWithSuffix);
                 return enqueueThenRun(
                         messageId,
                         teamId,
@@ -85,9 +85,9 @@ public class AsyncRateLimitExecutor {
         }, executorService);
     }
 
-    private void initCurrentQueueSizeStatsIfAbsent(String teamId, String methodNameWithSuffix) {
+    private void syncCurrentQueueSizeStats(String teamId, String methodNameWithSuffix) {
         if (teamId != null) {
-            metricsDatastore.setCurrentQueueSize(config.getExecutorName(), teamId, methodNameWithSuffix, 0);
+            metricsDatastore.updateCurrentQueueSize(config.getExecutorName(), teamId, methodNameWithSuffix);
         }
     }
 

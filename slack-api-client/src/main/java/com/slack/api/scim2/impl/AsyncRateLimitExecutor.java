@@ -62,7 +62,7 @@ public class AsyncRateLimitExecutor {
         return CompletableFuture.supplyAsync(() -> {
             String messageId = messageIdGenerator.generate();
             addMessageId(teamId, endpointName, messageId);
-            initCurrentQueueSizeStatsIfAbsent(teamId, endpointName);
+            syncCurrentQueueSizeStats(teamId, endpointName);
             if (NO_TOKEN_METHOD_NAMES.contains(endpointName) || teamId == null) {
                 return runWithoutQueue(teamId, endpointName, methodsSupplier);
             } else {
@@ -77,14 +77,9 @@ public class AsyncRateLimitExecutor {
         }, executorService);
     }
 
-    private void initCurrentQueueSizeStatsIfAbsent(String teamId, SCIM2EndpointName endpointName) {
+    private void syncCurrentQueueSizeStats(String teamId, SCIM2EndpointName endpointName) {
         if (teamId != null) {
-            metricsDatastore.setCurrentQueueSize(
-                    config.getExecutorName(),
-                    teamId,
-                    endpointName.name(),
-                    0
-            );
+            metricsDatastore.updateCurrentQueueSize(config.getExecutorName(), teamId, endpointName.name());
         }
     }
 
