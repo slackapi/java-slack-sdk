@@ -1,5 +1,6 @@
 package com.slack.api.model.kotlin_extension.block.element.container
 
+import com.slack.api.model.block.composition.SlackFileObject
 import com.slack.api.model.block.element.BlockElement
 import com.slack.api.model.block.element.ImageElement
 import com.slack.api.model.kotlin_extension.block.element.*
@@ -53,7 +54,8 @@ class MultiBlockElementContainer : BlockElementDsl {
         fallback: String?,
         imageWidth: Int?,
         imageHeight: Int?,
-        imageBytes: Int?
+        imageBytes: Int?,
+        slackFile: SlackFileObject?
     ) {
         underlying += ImageElement.builder()
             .imageUrl(imageUrl)
@@ -62,6 +64,7 @@ class MultiBlockElementContainer : BlockElementDsl {
             .imageWidth(imageWidth)
             .imageHeight(imageHeight)
             .imageBytes(imageBytes)
+            .slackFile(slackFile)
             .build()
     }
 

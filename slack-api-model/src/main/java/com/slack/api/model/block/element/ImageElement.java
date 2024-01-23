@@ -1,6 +1,7 @@
 package com.slack.api.model.block.element;
 
 import com.slack.api.model.block.ContextBlockElement;
+import com.slack.api.model.block.composition.SlackFileObject;
 import lombok.*;
 
 /**
@@ -29,4 +30,6 @@ public class ImageElement extends BlockElement implements ContextBlockElement {
     private Integer imageWidth;
     private Integer imageHeight;
     private Integer imageBytes;
+
+    private SlackFileObject slackFile;
 }

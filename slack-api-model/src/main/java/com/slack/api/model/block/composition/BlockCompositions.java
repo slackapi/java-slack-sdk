@@ -76,5 +76,11 @@ public class BlockCompositions {
         return configurator.configure(DispatchActionConfig.builder()).build();
     }
 
+    // SlackFileObject
+
+    public static SlackFileObject slackFile(ModelConfigurator<SlackFileObject.SlackFileObjectBuilder> configurator) {
+        return configurator.configure(SlackFileObject.builder()).build();
+    }
+
 }
 

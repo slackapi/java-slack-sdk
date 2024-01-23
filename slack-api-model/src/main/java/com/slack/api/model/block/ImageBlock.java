@@ -1,6 +1,7 @@
 package com.slack.api.model.block;
 
 import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.block.composition.SlackFileObject;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,9 @@ public class ImageBlock implements LayoutBlock {
     private Integer imageWidth;
     private Integer imageHeight;
     private Integer imageBytes;
+    private Boolean isAnimated;
+
+    private SlackFileObject slackFile;
 
     private String altText;
     private PlainTextObject title;

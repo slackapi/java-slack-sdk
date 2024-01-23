@@ -23,6 +23,16 @@ class FileAndImageTest {
                 imageBytes(360000)
             }
             divider()
+            image {
+                blockId("option2img")
+                title("Option :two:", emoji = true)
+                altText("Outside shot of second option")
+                slackFile {
+                    url("https://some-fake-site.com/option2-fake.jpg")
+                }
+                fallback("Picture of option 2")
+            }
+            divider()
             file(externalId = "floorplan-f4k3-2bed1bathA", blockId = "option1floorplan", source = FileSource.REMOTE)
             file(externalId = "floorplan-f4k3r-2bed1bathB", blockId = "option1floorplanalternate", source = "remote")
         }
@@ -43,6 +53,23 @@ class FileAndImageTest {
                   "emoji": true
                 },
                 "block_id": "option1img"
+              },
+              {
+                "type": "divider"
+              },
+              {
+                "type": "image",
+                "fallback": "Picture of option 2",
+                "slack_file": {
+                  "url": "https://some-fake-site.com/option2-fake.jpg"
+                },
+                "alt_text": "Outside shot of second option",
+                "title": {
+                  "type": "plain_text",
+                  "text": "Option :two:",
+                  "emoji": true
+                },
+                "block_id": "option2img"
               },
               {
                 "type": "divider"

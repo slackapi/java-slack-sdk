@@ -694,7 +694,11 @@
                       "fallback": "",
                       "image_width": 123,
                       "image_height": 123,
-                      "image_bytes": 123
+                      "image_bytes": 123,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      }
                     },
                     {
                       "type": "overflow",
@@ -1002,7 +1006,11 @@
                       "fallback": "",
                       "image_width": 123,
                       "image_height": 123,
-                      "image_bytes": 123
+                      "image_bytes": 123,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      }
                     }
                   ],
                   "block_id": ""
@@ -1018,6 +1026,11 @@
                   "image_width": 123,
                   "image_height": 123,
                   "image_bytes": 123,
+                  "is_animated": false,
+                  "slack_file": {
+                    "id": "",
+                    "url": ""
+                  },
                   "alt_text": "",
                   "title": {
                     "type": "plain_text",
@@ -1053,7 +1066,11 @@
                     "fallback": "",
                     "image_width": 123,
                     "image_height": 123,
-                    "image_bytes": 123
+                    "image_bytes": 123,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    }
                   }
                 },
                 {
@@ -3707,7 +3724,11 @@
                     "fallback": "",
                     "image_width": 123,
                     "image_height": 123,
-                    "image_bytes": 123
+                    "image_bytes": 123,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    }
                   }
                 },
                 {
@@ -4662,7 +4683,11 @@
                             "fallback": "",
                             "image_width": 123,
                             "image_height": 123,
-                            "image_bytes": 123
+                            "image_bytes": 123,
+                            "slack_file": {
+                              "id": "",
+                              "url": ""
+                            }
                           },
                           {
                             "type": "overflow",
@@ -4970,7 +4995,11 @@
                             "fallback": "",
                             "image_width": 123,
                             "image_height": 123,
-                            "image_bytes": 123
+                            "image_bytes": 123,
+                            "slack_file": {
+                              "id": "",
+                              "url": ""
+                            }
                           }
                         ],
                         "block_id": ""
@@ -4986,6 +5015,11 @@
                         "image_width": 123,
                         "image_height": 123,
                         "image_bytes": 123,
+                        "is_animated": false,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        },
                         "alt_text": "",
                         "title": {
                           "type": "plain_text",
@@ -5021,7 +5055,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         }
                       },
                       {
@@ -7675,7 +7713,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         }
                       },
                       {
@@ -9307,7 +9349,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         },
                         {
                           "type": "overflow",
@@ -9615,7 +9661,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         }
                       ],
                       "block_id": ""
@@ -9631,6 +9681,11 @@
                       "image_width": 123,
                       "image_height": 123,
                       "image_bytes": 123,
+                      "is_animated": false,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      },
                       "alt_text": "",
                       "title": {
                         "type": "plain_text",
@@ -9666,7 +9721,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -12320,7 +12379,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -13306,7 +13369,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         },
                         {
                           "type": "overflow",
@@ -13614,7 +13681,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         }
                       ],
                       "block_id": ""
@@ -13630,6 +13701,11 @@
                       "image_width": 123,
                       "image_height": 123,
                       "image_bytes": 123,
+                      "is_animated": false,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      },
                       "alt_text": "",
                       "title": {
                         "type": "plain_text",
@@ -13665,7 +13741,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -16319,7 +16399,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -17283,7 +17367,11 @@
                   "fallback": "",
                   "image_width": 123,
                   "image_height": 123,
-                  "image_bytes": 123
+                  "image_bytes": 123,
+                  "slack_file": {
+                    "id": "",
+                    "url": ""
+                  }
                 },
                 {
                   "type": "overflow",
@@ -19598,6 +19686,11 @@
               "image_width": 123,
               "image_height": 123,
               "image_bytes": 123,
+              "is_animated": false,
+              "slack_file": {
+                "id": "",
+                "url": ""
+              },
               "alt_text": "",
               "title": {
                 "type": "plain_text",
@@ -19768,6 +19861,10 @@
                 "image_width": 123,
                 "image_height": 123,
                 "image_bytes": 123,
+                "slack_file": {
+                  "id": "",
+                  "url": ""
+                },
                 "option_groups": [
                   {
                     "label": {
@@ -19928,6 +20025,10 @@
                 "image_width": 123,
                 "image_height": 123,
                 "image_bytes": 123,
+                "slack_file": {
+                  "id": "",
+                  "url": ""
+                },
                 "option_groups": [
                   {
                     "label": {
@@ -20615,7 +20716,11 @@
                       "fallback": "",
                       "image_width": 123,
                       "image_height": 123,
-                      "image_bytes": 123
+                      "image_bytes": 123,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      }
                     },
                     {
                       "type": "overflow",
@@ -20923,7 +21028,11 @@
                       "fallback": "",
                       "image_width": 123,
                       "image_height": 123,
-                      "image_bytes": 123
+                      "image_bytes": 123,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      }
                     }
                   ],
                   "block_id": ""
@@ -20939,6 +21048,11 @@
                   "image_width": 123,
                   "image_height": 123,
                   "image_bytes": 123,
+                  "is_animated": false,
+                  "slack_file": {
+                    "id": "",
+                    "url": ""
+                  },
                   "alt_text": "",
                   "title": {
                     "type": "plain_text",
@@ -20974,7 +21088,11 @@
                     "fallback": "",
                     "image_width": 123,
                     "image_height": 123,
-                    "image_bytes": 123
+                    "image_bytes": 123,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    }
                   }
                 },
                 {
@@ -23628,7 +23746,11 @@
                     "fallback": "",
                     "image_width": 123,
                     "image_height": 123,
-                    "image_bytes": 123
+                    "image_bytes": 123,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    }
                   }
                 },
                 {
@@ -24583,7 +24705,11 @@
                             "fallback": "",
                             "image_width": 123,
                             "image_height": 123,
-                            "image_bytes": 123
+                            "image_bytes": 123,
+                            "slack_file": {
+                              "id": "",
+                              "url": ""
+                            }
                           },
                           {
                             "type": "overflow",
@@ -24891,7 +25017,11 @@
                             "fallback": "",
                             "image_width": 123,
                             "image_height": 123,
-                            "image_bytes": 123
+                            "image_bytes": 123,
+                            "slack_file": {
+                              "id": "",
+                              "url": ""
+                            }
                           }
                         ],
                         "block_id": ""
@@ -24907,6 +25037,11 @@
                         "image_width": 123,
                         "image_height": 123,
                         "image_bytes": 123,
+                        "is_animated": false,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        },
                         "alt_text": "",
                         "title": {
                           "type": "plain_text",
@@ -24942,7 +25077,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         }
                       },
                       {
@@ -27596,7 +27735,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         }
                       },
                       {
@@ -29228,7 +29371,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         },
                         {
                           "type": "overflow",
@@ -29536,7 +29683,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         }
                       ],
                       "block_id": ""
@@ -29552,6 +29703,11 @@
                       "image_width": 123,
                       "image_height": 123,
                       "image_bytes": 123,
+                      "is_animated": false,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      },
                       "alt_text": "",
                       "title": {
                         "type": "plain_text",
@@ -29587,7 +29743,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -32241,7 +32401,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -33227,7 +33391,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         },
                         {
                           "type": "overflow",
@@ -33535,7 +33703,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         }
                       ],
                       "block_id": ""
@@ -33551,6 +33723,11 @@
                       "image_width": 123,
                       "image_height": 123,
                       "image_bytes": 123,
+                      "is_animated": false,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      },
                       "alt_text": "",
                       "title": {
                         "type": "plain_text",
@@ -33586,7 +33763,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -36240,7 +36421,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -37204,7 +37389,11 @@
                   "fallback": "",
                   "image_width": 123,
                   "image_height": 123,
-                  "image_bytes": 123
+                  "image_bytes": 123,
+                  "slack_file": {
+                    "id": "",
+                    "url": ""
+                  }
                 },
                 {
                   "type": "overflow",
@@ -39519,6 +39708,11 @@
               "image_width": 123,
               "image_height": 123,
               "image_bytes": 123,
+              "is_animated": false,
+              "slack_file": {
+                "id": "",
+                "url": ""
+              },
               "alt_text": "",
               "title": {
                 "type": "plain_text",
@@ -39689,6 +39883,10 @@
                 "image_width": 123,
                 "image_height": 123,
                 "image_bytes": 123,
+                "slack_file": {
+                  "id": "",
+                  "url": ""
+                },
                 "option_groups": [
                   {
                     "label": {
@@ -39849,6 +40047,10 @@
                 "image_width": 123,
                 "image_height": 123,
                 "image_bytes": 123,
+                "slack_file": {
+                  "id": "",
+                  "url": ""
+                },
                 "option_groups": [
                   {
                     "label": {
@@ -40431,7 +40633,11 @@
                 "fallback": "",
                 "image_width": 123,
                 "image_height": 123,
-                "image_bytes": 123
+                "image_bytes": 123,
+                "slack_file": {
+                  "id": "",
+                  "url": ""
+                }
               },
               {
                 "type": "overflow",
@@ -42746,6 +42952,11 @@
             "image_width": 123,
             "image_height": 123,
             "image_bytes": 123,
+            "is_animated": false,
+            "slack_file": {
+              "id": "",
+              "url": ""
+            },
             "alt_text": "",
             "title": {
               "type": "plain_text",
@@ -42916,6 +43127,10 @@
               "image_width": 123,
               "image_height": 123,
               "image_bytes": 123,
+              "slack_file": {
+                "id": "",
+                "url": ""
+              },
               "option_groups": [
                 {
                   "label": {
@@ -43076,6 +43291,10 @@
               "image_width": 123,
               "image_height": 123,
               "image_bytes": 123,
+              "slack_file": {
+                "id": "",
+                "url": ""
+              },
               "option_groups": [
                 {
                   "label": {
@@ -43754,7 +43973,11 @@
                     "fallback": "",
                     "image_width": 123,
                     "image_height": 123,
-                    "image_bytes": 123
+                    "image_bytes": 123,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    }
                   },
                   {
                     "type": "overflow",
@@ -44062,7 +44285,11 @@
                     "fallback": "",
                     "image_width": 123,
                     "image_height": 123,
-                    "image_bytes": 123
+                    "image_bytes": 123,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    }
                   }
                 ],
                 "block_id": ""
@@ -44078,6 +44305,11 @@
                 "image_width": 123,
                 "image_height": 123,
                 "image_bytes": 123,
+                "is_animated": false,
+                "slack_file": {
+                  "id": "",
+                  "url": ""
+                },
                 "alt_text": "",
                 "title": {
                   "type": "plain_text",
@@ -44113,7 +44345,11 @@
                   "fallback": "",
                   "image_width": 123,
                   "image_height": 123,
-                  "image_bytes": 123
+                  "image_bytes": 123,
+                  "slack_file": {
+                    "id": "",
+                    "url": ""
+                  }
                 }
               },
               {
@@ -46767,7 +47003,11 @@
                   "fallback": "",
                   "image_width": 123,
                   "image_height": 123,
-                  "image_bytes": 123
+                  "image_bytes": 123,
+                  "slack_file": {
+                    "id": "",
+                    "url": ""
+                  }
                 }
               },
               {
@@ -47722,7 +47962,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         },
                         {
                           "type": "overflow",
@@ -48030,7 +48274,11 @@
                           "fallback": "",
                           "image_width": 123,
                           "image_height": 123,
-                          "image_bytes": 123
+                          "image_bytes": 123,
+                          "slack_file": {
+                            "id": "",
+                            "url": ""
+                          }
                         }
                       ],
                       "block_id": ""
@@ -48046,6 +48294,11 @@
                       "image_width": 123,
                       "image_height": 123,
                       "image_bytes": 123,
+                      "is_animated": false,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      },
                       "alt_text": "",
                       "title": {
                         "type": "plain_text",
@@ -48081,7 +48334,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -50735,7 +50992,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     },
                     {
@@ -52367,7 +52628,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       },
                       {
                         "type": "overflow",
@@ -52675,7 +52940,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     ],
                     "block_id": ""
@@ -52691,6 +52960,11 @@
                     "image_width": 123,
                     "image_height": 123,
                     "image_bytes": 123,
+                    "is_animated": false,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    },
                     "alt_text": "",
                     "title": {
                       "type": "plain_text",
@@ -52726,7 +53000,11 @@
                       "fallback": "",
                       "image_width": 123,
                       "image_height": 123,
-                      "image_bytes": 123
+                      "image_bytes": 123,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      }
                     }
                   },
                   {
@@ -55380,7 +55658,11 @@
                       "fallback": "",
                       "image_width": 123,
                       "image_height": 123,
-                      "image_bytes": 123
+                      "image_bytes": 123,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      }
                     }
                   },
                   {
@@ -56366,7 +56648,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       },
                       {
                         "type": "overflow",
@@ -56674,7 +56960,11 @@
                         "fallback": "",
                         "image_width": 123,
                         "image_height": 123,
-                        "image_bytes": 123
+                        "image_bytes": 123,
+                        "slack_file": {
+                          "id": "",
+                          "url": ""
+                        }
                       }
                     ],
                     "block_id": ""
@@ -56690,6 +56980,11 @@
                     "image_width": 123,
                     "image_height": 123,
                     "image_bytes": 123,
+                    "is_animated": false,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    },
                     "alt_text": "",
                     "title": {
                       "type": "plain_text",
@@ -56725,7 +57020,11 @@
                       "fallback": "",
                       "image_width": 123,
                       "image_height": 123,
-                      "image_bytes": 123
+                      "image_bytes": 123,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      }
                     }
                   },
                   {
@@ -59379,7 +59678,11 @@
                       "fallback": "",
                       "image_width": 123,
                       "image_height": 123,
-                      "image_bytes": 123
+                      "image_bytes": 123,
+                      "slack_file": {
+                        "id": "",
+                        "url": ""
+                      }
                     }
                   },
                   {
@@ -60595,7 +60898,11 @@
                     "fallback": "",
                     "image_width": 123,
                     "image_height": 123,
-                    "image_bytes": 123
+                    "image_bytes": 123,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    }
                   },
                   {
                     "type": "overflow",
@@ -60903,7 +61210,11 @@
                     "fallback": "",
                     "image_width": 123,
                     "image_height": 123,
-                    "image_bytes": 123
+                    "image_bytes": 123,
+                    "slack_file": {
+                      "id": "",
+                      "url": ""
+                    }
                   }
                 ],
                 "block_id": ""
@@ -60919,6 +61230,11 @@
                 "image_width": 123,
                 "image_height": 123,
                 "image_bytes": 123,
+                "is_animated": false,
+                "slack_file": {
+                  "id": "",
+                  "url": ""
+                },
                 "alt_text": "",
                 "title": {
                   "type": "plain_text",
@@ -60954,7 +61270,11 @@
                   "fallback": "",
                   "image_width": 123,
                   "image_height": 123,
-                  "image_bytes": 123
+                  "image_bytes": 123,
+                  "slack_file": {
+                    "id": "",
+                    "url": ""
+                  }
                 }
               },
               {
@@ -63608,7 +63928,11 @@
                   "fallback": "",
                   "image_width": 123,
                   "image_height": 123,
-                  "image_bytes": 123
+                  "image_bytes": 123,
+                  "slack_file": {
+                    "id": "",
+                    "url": ""
+                  }
                 }
               },
               {

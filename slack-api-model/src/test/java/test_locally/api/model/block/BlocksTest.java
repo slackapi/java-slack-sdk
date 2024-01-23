@@ -4,6 +4,7 @@ import com.slack.api.model.block.ActionsBlock;
 import com.slack.api.model.block.Blocks;
 import com.slack.api.model.block.ContextBlock;
 import com.slack.api.model.block.ContextBlockElement;
+import com.slack.api.model.block.composition.SlackFileObject;
 import com.slack.api.model.block.composition.WorkflowObject;
 import com.slack.api.model.block.element.BlockElement;
 import org.junit.Test;
@@ -65,6 +66,14 @@ public class BlocksTest {
     @Test
     public void testImage() {
         assertThat(Blocks.image(i -> i.blockId("block-id").imageUrl("https://www.example.com/")), is(notNullValue()));
+        assertThat(Blocks.image(i -> i
+                .blockId("block-id")
+                .slackFile(SlackFileObject.builder().id("F111111").build())
+        ), is(notNullValue()));
+        assertThat(Blocks.image(i -> i
+                .blockId("block-id")
+                .slackFile(SlackFileObject.builder().url("https://files.slack.com/files-pri/T111-F111/foo.png").build())
+        ), is(notNullValue()));
     }
 
     @Test
