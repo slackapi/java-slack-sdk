@@ -1,17 +1,22 @@
 package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
+import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.request.chat.ChatPostEphemeralRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.request.chat.ChatUpdateRequest;
 import com.slack.api.methods.request.conversations.ConversationsMembersRequest;
+import com.slack.api.methods.response.chat.ChatDeleteResponse;
 import com.slack.api.methods.response.chat.ChatPostEphemeralResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.response.chat.ChatUpdateResponse;
 import com.slack.api.methods.response.conversations.ConversationsListResponse;
+import com.slack.api.methods.response.conversations.ConversationsOpenResponse;
+import com.slack.api.methods.response.files.FilesUploadV2Response;
 import com.slack.api.model.Conversation;
 import com.slack.api.model.ConversationType;
+import com.slack.api.model.block.Blocks;
 import com.slack.api.model.block.DividerBlock;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.SectionBlock;
@@ -24,14 +29,14 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static com.slack.api.model.block.Blocks.*;
-import static com.slack.api.model.block.composition.BlockCompositions.markdownText;
-import static com.slack.api.model.block.composition.BlockCompositions.plainText;
+import static com.slack.api.model.block.composition.BlockCompositions.*;
 import static com.slack.api.model.block.element.BlockElements.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -361,6 +366,48 @@ public class BlockKit_Test {
                                                 .build()
                                 )))
                         )))
+                ))
+        );
+        assertThat(response.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void imageBlockWithSlackFile() throws Exception {
+        loadRandomChannel();
+        MethodsClient client = slack.methods(botToken);
+
+        File file = new File("src/test/resources/slack-logo.gif");
+        FilesUploadV2Response uploadResult = client.filesUploadV2(r -> r
+                .file(file)
+                .title("test")
+                // Share the file in a public channel first
+                .channel(randomChannelId)
+        );
+        assertThat(uploadResult.getError(), is(nullValue()));
+
+        String fileId = uploadResult.getFile().getId();
+        String fileUrl = uploadResult.getFile().getPermalink();
+        com.slack.api.model.File.Shares shares = uploadResult.getFile().getShares();
+        while (shares == null || shares.getPublicChannels() == null || shares.getPublicChannels().isEmpty()) {
+            Thread.sleep(300L);
+            shares = client.filesInfo(r -> r.file(fileId)).getFile().getShares();
+        }
+        // Workaround to delete the previous message to share the file
+        String ts = shares.getPublicChannels().get(randomChannelId).get(0).getTs();
+        ChatDeleteResponse deletion = client.chatDelete(r -> r.channel(randomChannelId).ts(ts));
+        assertThat(deletion.getError(), is(nullValue()));
+        Thread.sleep(500L);
+
+        ChatPostMessageResponse response = client.chatPostMessage(r -> r
+                .channel(randomChannelId)
+                .text("Here is the file!")
+                .blocks(asBlocks(
+                        Blocks.image(i -> i.slackFile(slackFile(sf -> sf.id(fileId))).altText("alt")),
+                        Blocks.divider(),
+                        Blocks.section(s -> s
+                                .text(plainText("Here is the file!"))
+                                .accessory(BlockElements.image(i -> i.slackFile(slackFile(sf -> sf.url(fileUrl))).altText("alt"))
+                        ))
                 ))
         );
         assertThat(response.getError(), is(nullValue()));

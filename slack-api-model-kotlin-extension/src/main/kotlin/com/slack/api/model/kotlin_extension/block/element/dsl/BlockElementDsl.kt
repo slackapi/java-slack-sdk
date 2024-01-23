@@ -1,5 +1,6 @@
 package com.slack.api.model.kotlin_extension.block.element.dsl
 
+import com.slack.api.model.block.composition.SlackFileObject
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 import com.slack.api.model.kotlin_extension.block.element.ButtonElementBuilder
 import com.slack.api.model.kotlin_extension.block.element.OverflowMenuElementBuilder
@@ -52,6 +53,8 @@ interface BlockElementDsl : BlockElementInputDsl {
         fallback: String? = null,
         imageWidth: Int? = null,
         imageHeight: Int? = null,
-        imageBytes: Int? = null
+        imageBytes: Int? = null,
+        slackFile: SlackFileObject? = null,
     )
+
 }

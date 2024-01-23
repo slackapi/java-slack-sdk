@@ -90,6 +90,7 @@ public class SampleObjects {
 
             ImageBlock imageBlock = initProperties(ImageBlock.builder().build());
             imageBlock.setTitle(textObject);
+            imageBlock.setSlackFile(initProperties(SlackFileObject.builder().build()));
 
             blocks.addAll(
                     Arrays.asList(
@@ -149,7 +150,9 @@ public class SampleObjects {
             initProperties(multiUsersSelect(u -> u.initialUsers(Arrays.asList("")).confirm(Confirm)))
     );
     public static List<ContextBlockElement> ContextBlockElements = asContextElements(
-            initProperties(ImageElement.builder().build())
+            initProperties(ImageElement.builder()
+                    .slackFile(initProperties(SlackFileObject.builder().build()))
+                    .build())
     );
     public static List<TextObject> SectionBlockFieldElements = asSectionFields(
             initProperties(plainText(pt -> pt)),

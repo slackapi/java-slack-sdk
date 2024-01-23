@@ -232,6 +232,7 @@ public class MatchedItem {
     private String score;
     private boolean topFile;
 
+    private String deanimate;
     private String deanimateGif;
 
     private String channelActionsTs;

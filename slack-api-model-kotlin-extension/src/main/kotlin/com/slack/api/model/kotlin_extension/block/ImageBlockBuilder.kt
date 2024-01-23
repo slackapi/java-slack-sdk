@@ -2,6 +2,8 @@ package com.slack.api.model.kotlin_extension.block
 
 import com.slack.api.model.block.ImageBlock
 import com.slack.api.model.block.composition.PlainTextObject
+import com.slack.api.model.block.composition.SlackFileObject
+import com.slack.api.model.kotlin_extension.block.composition.SlackFileObjectBuilder
 
 @BlockLayoutBuilder
 class ImageBlockBuilder : Builder<ImageBlock> {
@@ -12,6 +14,8 @@ class ImageBlockBuilder : Builder<ImageBlock> {
     private var imageWidth: Int? = null
     private var imageHeight: Int? = null
     private var imageBytes: Int? = null
+    private var isAnimated: Boolean? = null
+    private var slackFile: SlackFileObject? = null
     private var altText: String? = null
 
     /**
@@ -83,6 +87,18 @@ class ImageBlockBuilder : Builder<ImageBlock> {
         altText = text
     }
 
+    fun isAnimated(isAnimated: Boolean) {
+        this.isAnimated = isAnimated
+    }
+
+    fun slackFile(slackFile: SlackFileObject) {
+        this.slackFile = slackFile
+    }
+
+    fun slackFile(builder: SlackFileObjectBuilder.() -> Unit) {
+        this.slackFile = SlackFileObjectBuilder().apply(builder).build()
+    }
+
     override fun build(): ImageBlock {
         return ImageBlock.builder()
             .fallback(fallback)
@@ -90,9 +106,11 @@ class ImageBlockBuilder : Builder<ImageBlock> {
             .imageWidth(imageWidth)
             .imageHeight(imageHeight)
             .imageBytes(imageBytes)
+            .slackFile(slackFile)
             .altText(altText)
             .blockId(blockId)
             .title(title)
+            .isAnimated(isAnimated)
             .build()
     }
 }
