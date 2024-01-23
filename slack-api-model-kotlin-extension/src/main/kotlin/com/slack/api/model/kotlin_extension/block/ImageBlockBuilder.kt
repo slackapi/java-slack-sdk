@@ -14,6 +14,7 @@ class ImageBlockBuilder : Builder<ImageBlock> {
     private var imageWidth: Int? = null
     private var imageHeight: Int? = null
     private var imageBytes: Int? = null
+    private var isAnimated: Boolean? = null
     private var slackFile: SlackFileObject? = null
     private var altText: String? = null
 
@@ -86,6 +87,10 @@ class ImageBlockBuilder : Builder<ImageBlock> {
         altText = text
     }
 
+    fun isAnimated(isAnimated: Boolean) {
+        this.isAnimated = isAnimated
+    }
+
     fun slackFile(slackFile: SlackFileObject) {
         this.slackFile = slackFile
     }
@@ -105,6 +110,7 @@ class ImageBlockBuilder : Builder<ImageBlock> {
             .altText(altText)
             .blockId(blockId)
             .title(title)
+            .isAnimated(isAnimated)
             .build()
     }
 }
