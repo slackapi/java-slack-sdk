@@ -23,6 +23,7 @@ public class MockSlackApi extends HttpServlet {
     public static final String ValidFunctionToken = "xwfp-this-is-valid";
     public static final String ExpiredToken = "xoxb-this-is-expired";
     public static final String InvalidToken = "xoxb-this-is-INVALID";
+    public static final String RateLimitedToken = "xoxb-this-is-ratelimited";
 
     private final FileReader reader = new FileReader("../json-logs/samples/api/");
 
@@ -42,6 +43,28 @@ public class MockSlackApi extends HttpServlet {
             if (authorizationHeader == null || authorizationHeader.trim().isEmpty()) {
                 resp.setStatus(200);
                 resp.getWriter().write("{\"ok\":false,\"error\":\"not_authed\"}");
+                resp.setContentType("application/json");
+                return;
+            } else if (authorizationHeader.startsWith("Bearer " + RateLimitedToken)) {
+                if (methodName.equals("auth.test")) {
+                    String body = "{\n" +
+                            "  \"ok\": true,\n" +
+                            "  \"url\": \"https://java-slack-sdk-test.slack.com/\",\n" +
+                            "  \"team\": \"java-slack-sdk-test\",\n" +
+                            "  \"user\": \"test_user\",\n" +
+                            "  \"team_id\": \"T1234567\",\n" +
+                            "  \"user_id\": \"U1234567\",\n" +
+                            "  \"bot_id\": \"B12345678\",\n" +
+                            "  \"enterprise_id\": \"E12345678\"\n" +
+                            "}";
+                    resp.setStatus(200);
+                    resp.getWriter().write(body);
+                    resp.setContentType("application/json");
+                    return;
+                }
+                resp.setStatus(429);
+                resp.getWriter().write("{\"ok\":false,\"error\":\"ratelimited\"}");
+                resp.setHeader("Retry-After", "3");
                 resp.setContentType("application/json");
                 return;
             } else if (!authorizationHeader.startsWith("Bearer " + ValidToken)

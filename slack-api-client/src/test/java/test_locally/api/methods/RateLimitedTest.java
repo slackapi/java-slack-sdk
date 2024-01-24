@@ -1,0 +1,92 @@
+package test_locally.api.methods;
+
+import com.slack.api.Slack;
+import com.slack.api.SlackConfig;
+import com.slack.api.methods.MethodsClient;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import util.MockSlackApiServer;
+
+import java.sql.Time;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+import static util.MockSlackApi.RateLimitedToken;
+import static util.MockSlackApi.ValidToken;
+
+@Slf4j
+public class RateLimitedTest {
+
+    MockSlackApiServer server = new MockSlackApiServer();
+    SlackConfig config = new SlackConfig();
+    Slack slack = Slack.getInstance(config);
+
+    @Before
+    public void setup() throws Exception {
+        server.start();
+        config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        server.stop();
+    }
+
+    @Test
+    public void sync() throws Exception {
+        MethodsClient client = slack.methods(RateLimitedToken);
+        try {
+            client.usersList(r -> r);
+        } catch (SlackApiException e) {
+            assertThat(e.getResponse().code(), is(429));
+            assertThat(e.getResponse().header("Retry-After"), is("3"));
+            MetricsDatastore datastore = config.getMethodsConfig().getMetricsDatastore();
+            log.debug("stats: {}", datastore.getAllStats());
+
+            Integer numOfRequests = datastore.getNumberOfLastMinuteRequests(
+                    MetricsDatastore.DEFAULT_SINGLETON_EXECUTOR_NAME,
+                    "T1234567",
+                    "users.list");
+            assertThat(numOfRequests, is(1));
+
+            Long millisToResume = datastore.getRateLimitedMethodRetryEpochMillis(
+                    MetricsDatastore.DEFAULT_SINGLETON_EXECUTOR_NAME,
+                    "T1234567",
+                    "users.list");
+            assertThat(millisToResume, is(greaterThan(0L)));
+        }
+    }
+
+    @Test
+    public void async() throws Exception {
+        try {
+            slack.methodsAsync(RateLimitedToken).usersList(r -> r).get(2, TimeUnit.SECONDS);
+        } catch (Exception ee) {
+            MetricsDatastore datastore = config.getMethodsConfig().getMetricsDatastore();
+            log.debug("stats: {}", datastore.getAllStats());
+
+            Integer numOfRequests = datastore.getNumberOfLastMinuteRequests(
+                    MetricsDatastore.DEFAULT_SINGLETON_EXECUTOR_NAME,
+                    "T1234567",
+                    "users.list");
+            assertThat(numOfRequests, is(1));
+
+            Long millisToResume = datastore.getRateLimitedMethodRetryEpochMillis(
+                    MetricsDatastore.DEFAULT_SINGLETON_EXECUTOR_NAME,
+                    "T1234567",
+                    "users.list");
+            assertThat(millisToResume, is(greaterThan(0L)));
+        }
+    }
+
+}

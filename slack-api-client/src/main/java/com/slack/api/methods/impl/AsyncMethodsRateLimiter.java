@@ -7,6 +7,7 @@ import com.slack.api.rate_limits.RateLimiter;
 import com.slack.api.rate_limits.WaitTime;
 import com.slack.api.rate_limits.WaitTimeCalculator;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
+import com.slack.api.rate_limits.metrics.RequestPace;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
@@ -19,6 +20,7 @@ public class AsyncMethodsRateLimiter implements RateLimiter {
     private final MetricsDatastore metricsDatastore;
     private final MethodsCustomRateLimitResolver customRateLimitResolver;
     private final WaitTimeCalculator waitTimeCalculator;
+    private final String executorName;
 
     public MetricsDatastore getMetricsDatastore() {
         return metricsDatastore;
@@ -28,10 +30,17 @@ public class AsyncMethodsRateLimiter implements RateLimiter {
         this.metricsDatastore = config.getMetricsDatastore();
         this.customRateLimitResolver = config.getCustomRateLimitResolver();
         this.waitTimeCalculator = new MethodsWaitTimeCalculator(config);
+        this.executorName = config.getExecutorName();
     }
 
     @Override
     public WaitTime acquireWaitTime(String teamId, String methodName) {
+        Optional<Long> rateLimitedEpochMillis = waitTimeCalculator
+                .getRateLimitedMethodRetryEpochMillis(executorName, teamId, methodName);
+        if (rateLimitedEpochMillis.isPresent()) {
+            long millisToWait = rateLimitedEpochMillis.get() - System.currentTimeMillis();
+            return new WaitTime(millisToWait, RequestPace.RateLimited);
+        }
         return waitTimeCalculator.calculateWaitTime(
                 teamId,
                 methodName,
