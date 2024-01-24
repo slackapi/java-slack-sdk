@@ -11,18 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
 
-import java.sql.Time;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static util.MockSlackApi.RateLimitedToken;
-import static util.MockSlackApi.ValidToken;
 
 @Slf4j
 public class RateLimitedTest {
@@ -31,9 +25,13 @@ public class RateLimitedTest {
     SlackConfig config = new SlackConfig();
     Slack slack = Slack.getInstance(config);
 
+    String executorName = RateLimitedTest.class.getCanonicalName();
+
     @Before
     public void setup() throws Exception {
         server.start();
+        config.getMethodsConfig().setExecutorName(executorName);
+        config.synchronizeMetricsDatabases();
         config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
     }
 
@@ -54,13 +52,13 @@ public class RateLimitedTest {
             log.debug("stats: {}", datastore.getAllStats());
 
             Integer numOfRequests = datastore.getNumberOfLastMinuteRequests(
-                    MetricsDatastore.DEFAULT_SINGLETON_EXECUTOR_NAME,
+                    executorName,
                     "T1234567",
                     "users.list");
             assertThat(numOfRequests, is(1));
 
             Long millisToResume = datastore.getRateLimitedMethodRetryEpochMillis(
-                    MetricsDatastore.DEFAULT_SINGLETON_EXECUTOR_NAME,
+                    executorName,
                     "T1234567",
                     "users.list");
             assertThat(millisToResume, is(greaterThan(0L)));
@@ -76,13 +74,13 @@ public class RateLimitedTest {
             log.debug("stats: {}", datastore.getAllStats());
 
             Integer numOfRequests = datastore.getNumberOfLastMinuteRequests(
-                    MetricsDatastore.DEFAULT_SINGLETON_EXECUTOR_NAME,
+                    executorName,
                     "T1234567",
                     "users.list");
             assertThat(numOfRequests, is(1));
 
             Long millisToResume = datastore.getRateLimitedMethodRetryEpochMillis(
-                    MetricsDatastore.DEFAULT_SINGLETON_EXECUTOR_NAME,
+                    executorName,
                     "T1234567",
                     "users.list");
             assertThat(millisToResume, is(greaterThan(0L)));
