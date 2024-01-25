@@ -1,5 +1,6 @@
 package com.slack.api.methods.impl;
 
+import com.slack.api.methods.Methods;
 import com.slack.api.methods.MethodsConfig;
 import com.slack.api.methods.MethodsCustomRateLimitResolver;
 import com.slack.api.methods.MethodsRateLimits;
@@ -66,6 +67,14 @@ public class AsyncMethodsRateLimiter implements RateLimiter {
 
     @Override
     public WaitTime acquireWaitTimeForChatPostMessage(String teamId, String channel) {
+        // See MethodsClientImpl#buildMethodNameAndSuffix() for the consistency of this logic
+        String methodName = Methods.CHAT_POST_MESSAGE + "_" + channel;
+        Optional<Long> rateLimitedEpochMillis = waitTimeCalculator
+                .getRateLimitedMethodRetryEpochMillis(executorName, teamId, methodName);
+        if (rateLimitedEpochMillis.isPresent()) {
+            long millisToWait = rateLimitedEpochMillis.get() - System.currentTimeMillis();
+            return new WaitTime(millisToWait, RequestPace.RateLimited);
+        }
         return waitTimeCalculator.calculateWaitTimeForChatPostMessage(
                 teamId,
                 channel,
