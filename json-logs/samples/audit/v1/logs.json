@@ -355,7 +355,30 @@
         "access_level": "",
         "functions": [],
         "workflows": [],
-        "permissions_updated": false
+        "datastores": [],
+        "permissions_updated": false,
+        "matched_rule": {
+          "id": "",
+          "team_id": "",
+          "title": "",
+          "action": {
+            "resolution": {
+              "value": ""
+            },
+            "notify": []
+          },
+          "condition": {
+            "datatype": "",
+            "operator": "",
+            "values": [],
+            "entity_type": ""
+          }
+        },
+        "request": {
+          "id": "",
+          "team_id": ""
+        },
+        "rules_checked": []
       }
     }
   ]

@@ -330,7 +330,11 @@ public class LogsResponse implements AuditApiResponse {
         private String accessLevel; // canvas_access_added
         private List<String> functions; // app_manifest_created
         private List<String> workflows; // app_manifest_created
+        private List<String> datastores; // app_manifest_created
         private Boolean permissionsUpdated; // app_manifest_updated
+        private AAARule matchedRule; // app_allowlist_rule_matched
+        private AAARequest request; // app_allowlist_rule_matched
+        private List<AAARule> rulesChecked; // app_allowlist_rule_matched
     }
 
     @Data
@@ -441,5 +445,51 @@ public class LogsResponse implements AuditApiResponse {
     public static class Attribute {
         private String name;
         private String type;
+        private AttributeItems items;
+    }
+    @Data
+    public static class AttributeItems {
+        private String type;
+    }
+
+    @Data
+    public static class AAARule {
+        private String id;
+        private String teamId;
+        private String title;
+        private AAARuleAction action;
+        private AAARuleCondition condition;
+    }
+    @Data
+    public static class AAARuleAction {
+        private AAARuleActionResolution resolution;
+        private List<AAARuleActionNotify> notify;
+    }
+    @Data
+    public static class AAARuleActionResolution {
+        private String value;
+    }
+    @Data
+    public static class AAARuleActionNotify {
+        private String entityType;
+    }
+    @Data
+    public static class AAARuleCondition {
+        private String datatype;
+        private String operator;
+        private List<AAARuleConditionValue> values;
+        private String entityType;
+    }
+    @Data
+    public static class AAARuleConditionValue {
+        private String field;
+        private List<String> values;
+        private String datatype;
+        private String operator;
+    }
+    @Data
+    public static class AAARequest {
+        private String id;
+        private String teamId;
     }
 }

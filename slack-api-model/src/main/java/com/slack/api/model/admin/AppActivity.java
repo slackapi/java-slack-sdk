@@ -42,6 +42,16 @@ public class AppActivity {
         private Trigger trigger;
         // TODO: complete typing for the value
         private Map<String, Object> inputs;
+
+        private String action;
+        private String teamId;
+        private String userId;
+        private Integer bundleSizeKb;
+
+        // type: datastore_request_result
+        private String details; // "{\"expression\":\"\",\"expression_attributes\":{},\"expression_values\":{},\"limit\":1000,\"cursor\":\"\"}"
+        private String requestType; // "query"
+        private String datastoreName;
     }
 
     @Data

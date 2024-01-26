@@ -45,7 +45,14 @@
         },
         "channel_id": "C00000000",
         "bot_user_id": "U00000000",
-        "inputs": {}
+        "inputs": {},
+        "details": "",
+        "request_type": "",
+        "datastore_name": "",
+        "action": "",
+        "team_id": "E00000000",
+        "user_id": "W00000000",
+        "bundle_size_kb": 12345
       },
       "created": 12345,
       "trace_id": ""
