@@ -181,6 +181,9 @@ public class Actions {
         public static final String audit_logs_records_searched = "audit_logs_records_searched";
         public static final String apps_analytics_export_started = "apps_analytics_export_started";
         public static final String apps_analytics_export_prepared = "apps_analytics_export_prepared";
+        public static final String channel_audit_export_started = "channel_audit_export_started";
+        public static final String channel_audit_export_completed = "channel_audit_export_completed";
+        public static final String channel_audit_export_downloaded = "channel_audit_export_downloaded";
     }
 
     public static class User {

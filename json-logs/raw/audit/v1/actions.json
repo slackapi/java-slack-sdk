@@ -169,7 +169,10 @@
       "audit_logs_export_json_started",
       "pref.atlas_profiles_access_changed",
       "pref.atlas_org_charts_access_changed",
-      "pref.mobile_session_duration_changed"
+      "pref.mobile_session_duration_changed",
+      "channel_audit_export_started",
+      "channel_audit_export_completed",
+      "channel_audit_export_downloaded"
     ],
     "user": [
       "custom_tos_accepted",
