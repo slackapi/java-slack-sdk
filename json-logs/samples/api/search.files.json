@@ -84,9 +84,9 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
-                "access": "",
                 "share_user_id": "U00000000",
-                "source": ""
+                "source": "",
+                "access": ""
               }
             ],
             "C00000001": [
@@ -107,9 +107,9 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
-                "access": "",
                 "share_user_id": "U00000000",
-                "source": ""
+                "source": "",
+                "access": ""
               }
             ]
           }
@@ -180,8 +180,7 @@
         "sent_to_self": false,
         "bot_id": "B00000000",
         "editors": [
-          "",
-          "U00000000"
+          ""
         ],
         "url_static_preview": "https://www.example.com/",
         "quip_thread_id": "",

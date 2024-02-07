@@ -8,7 +8,7 @@ rbenv install
 rbenv local
 rbenv rehash
 
-gem install bundler
+gem install bundler -v 2.4.22 # install bundler version that matches ruby version used on GH pages
 bundle install
 bundle exec jekyll serve -It
 open http://localhost:4000/java-slack-sdk/

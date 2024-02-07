@@ -34,6 +34,7 @@ public class AppMentionEvent implements Event {
     private String clientMsgId;
     private String user;
     private String username;
+    private String appId;
     private String botId;
     private BotProfile botProfile;
     private String subtype;

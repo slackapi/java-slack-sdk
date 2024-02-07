@@ -28,6 +28,7 @@
     "client_msg_id": "",
     "user": "",
     "username": "",
+    "app_id": "",
     "bot_id": "",
     "bot_profile": {
       "id": "",

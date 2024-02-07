@@ -12,6 +12,15 @@
         "type": "",
         "user_ids": [
           ""
+        ],
+        "team_ids": [
+          ""
+        ],
+        "org_ids": [
+          ""
+        ],
+        "channel_ids": [
+          ""
         ]
       },
       "allowed_by_admin": {
@@ -31,6 +40,15 @@
       "allowed_entities": {
         "type": "",
         "user_ids": [
+          ""
+        ],
+        "team_ids": [
+          ""
+        ],
+        "org_ids": [
+          ""
+        ],
+        "channel_ids": [
           ""
         ]
       },

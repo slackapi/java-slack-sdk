@@ -8,6 +8,7 @@ import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.RequestType;
 import com.slack.api.model.event.FunctionExecutedEvent;
+import com.slack.api.model.event.MessageEvent;
 import com.slack.api.util.json.GsonFactory;
 import lombok.ToString;
 
@@ -141,7 +142,11 @@ public class EventRequest extends Request<EventContext> {
     }
 
     public String getEventTypeAndSubtype() {
-        if (eventSubtype == null) {
+        // Since the data structure of the "message" type event significantly varies among subtypes,
+        // This key string needs to consider the subtype for the event.
+        // Other events with subtypes (e.g., "app_mention") do not have such differences,
+        // so we can reuse the same data classes for them.
+        if (!eventType.equals(MessageEvent.TYPE_NAME) || eventSubtype == null) {
             return eventType;
         } else {
             return eventType + ":" + eventSubtype;

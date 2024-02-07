@@ -21,6 +21,9 @@ public class AppFunctionPermissions {
     public static class AllowedEntities {
         private String type;
         private List<String> userIds;
+        private List<String> teamIds;
+        private List<String> orgIds;
+        private List<String> channelIds;
     }
 
     @Data

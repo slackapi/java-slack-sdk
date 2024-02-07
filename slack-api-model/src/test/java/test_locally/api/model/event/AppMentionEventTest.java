@@ -6,6 +6,7 @@ import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AppMentionEventTest {
@@ -96,6 +97,45 @@ public class AppMentionEventTest {
                 "\"thread_ts\":\"1515449522000019\"" +
                 "}";
         assertThat(generatedJson, is(expectedJson));
+    }
+
+    @Test
+    public void botMessage() {
+        String json = "{\n" +
+                "  \"type\": \"app_mention\",\n" +
+                "  \"subtype\": \"bot_message\",\n" +
+                "  \"text\": \"<@U111> hey\",\n" +
+                "  \"ts\": \"1707288078.718469\",\n" +
+                "  \"username\": \"Hey bot\",\n" +
+                "  \"bot_id\": \"B111\",\n" +
+                "  \"app_id\": \"A111\",\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"9fyvt\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"user\",\n" +
+                "              \"user_id\": \"U111\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \" hey\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"channel\": \"C111\",\n" +
+                "  \"event_ts\": \"1707288078.718469\"\n" +
+                "}";
+        AppMentionEvent event = GsonFactory.createSnakeCase().fromJson(json, AppMentionEvent.class);
+        assertThat(event.getType(), is("app_mention"));
+        assertThat(event.getUser(), is(nullValue()));
     }
 
 }
