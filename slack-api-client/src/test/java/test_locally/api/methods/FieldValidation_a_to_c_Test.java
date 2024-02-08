@@ -346,7 +346,9 @@ public class FieldValidation_a_to_c_Test {
                 "getRoot",
                 "getThreadTs",
                 "getUsername",
-                "getSubtype"
+                "getSubtype",
+                "getLastInviteStatusByUser",
+                "getKnocks"
         );
     }
 
