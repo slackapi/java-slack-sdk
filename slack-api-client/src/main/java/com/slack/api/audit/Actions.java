@@ -502,4 +502,14 @@ public class Actions {
 
         public static final String sales_elevate_workflow_updated = "sales_elevate_workflow_updated";
     }
+
+    public static class NativeDlp {
+        private NativeDlp() {
+        }
+
+        public static final String native_dlp_rule_created = "native_dlp_rule_created";
+        public static final String native_dlp_rule_deactivated = "native_dlp_rule_deactivated";
+        public static final String native_dlp_rule_reactivated = "native_dlp_rule_reactivated";
+        public static final String native_dlp_rule_edited = "native_dlp_rule_edited";
+    }
 }

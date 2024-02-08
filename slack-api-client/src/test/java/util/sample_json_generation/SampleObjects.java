@@ -361,7 +361,7 @@ public class SampleObjects {
 
     public static Message Message = new Message();
 
-    public static Map<String, String> RoomPendingInvitees = new HashMap<>();
+    public static Map<String, Object> EmptyHashMapObject = new HashMap<>();
 
 
     public static Map<String, AppManifest.Function> Functions = new HashMap<>();
@@ -414,7 +414,9 @@ public class SampleObjects {
             .participantsCameraOff(Arrays.asList(""))
             .participantsScreenshareOn(Arrays.asList(""))
             .participantsScreenshareOff(Arrays.asList(""))
-            .pendingInvitees(RoomPendingInvitees)
+            .pendingInvitees(EmptyHashMapObject)
+            .lastInviteStatusByUser(EmptyHashMapObject)
+            .knocks(EmptyHashMapObject)
             .attachedFileIds(Arrays.asList(""))
             .build());
 

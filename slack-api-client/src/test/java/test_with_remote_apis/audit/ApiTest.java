@@ -269,6 +269,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> nativeDlpNames = getAllPublicStaticFieldValues(Actions.NativeDlp.class);
+        for (String action : actions.getNativeDlp()) {
+            if (!nativeDlpNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test

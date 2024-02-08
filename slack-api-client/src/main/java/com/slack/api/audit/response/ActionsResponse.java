@@ -42,5 +42,6 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> canvas;
         private List<String> function;
         private List<String> salesElevate;
+        private List<String> nativeDlp;
     }
 }

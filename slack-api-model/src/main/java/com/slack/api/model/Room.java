@@ -43,5 +43,7 @@ public class Room {
     private String externalUniqueId;
     private String appId;
     private String callFamily;
-    private Map<String, String> pendingInvitees;
+    private Map<String, Object> pendingInvitees;
+    private Map<String, Object> lastInviteStatusByUser;
+    private Map<String, Object> knocks;
 }
