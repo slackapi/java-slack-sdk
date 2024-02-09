@@ -80,7 +80,9 @@
       "external_unique_id": "",
       "app_id": "",
       "call_family": "",
-      "pending_invitees": {}
+      "pending_invitees": {},
+      "last_invite_status_by_user": {},
+      "knocks": {}
     },
     "blocks": [
       {

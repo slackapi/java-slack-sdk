@@ -17,6 +17,7 @@ public class AppFunction {
     private Long dateCreated;
     private Long dateUpdated;
     private Long dateDeleted;
+    private Long dateReleased;
     private Boolean formEnabled;
 
     @Data

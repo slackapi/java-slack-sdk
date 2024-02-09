@@ -38,7 +38,8 @@
       "date_created": 12345,
       "date_updated": 12345,
       "date_deleted": 12345,
-      "form_enabled": false
+      "form_enabled": false,
+      "date_released": 12345
     }
   ]
 }
