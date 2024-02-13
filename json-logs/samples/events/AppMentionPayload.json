@@ -626,6 +626,8 @@
         }
       }
     ],
+    "upload": false,
+    "display_as_bot": false,
     "ts": "",
     "team": "",
     "channel": "",

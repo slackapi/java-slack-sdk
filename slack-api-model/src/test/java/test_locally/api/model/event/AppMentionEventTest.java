@@ -138,4 +138,97 @@ public class AppMentionEventTest {
         assertThat(event.getUser(), is(nullValue()));
     }
 
+    @Test
+    public void withFiles() throws Exception {
+        String json = "{\n" +
+                "  \"type\": \"app_mention\",\n" +
+                "  \"text\": \"<@U111> hey\",\n" +
+                "  \"files\": [\n" +
+                "    {\n" +
+                "      \"id\": \"F111\",\n" +
+                "      \"created\": 1707806342,\n" +
+                "      \"timestamp\": 1707806342,\n" +
+                "      \"name\": \"test.png\",\n" +
+                "      \"title\": \"test.png\",\n" +
+                "      \"mimetype\": \"image/png\",\n" +
+                "      \"filetype\": \"png\",\n" +
+                "      \"pretty_type\": \"PNG\",\n" +
+                "      \"user\": \"U03E94MK0\",\n" +
+                "      \"user_team\": \"T111\",\n" +
+                "      \"editable\": false,\n" +
+                "      \"size\": 1312009,\n" +
+                "      \"mode\": \"hosted\",\n" +
+                "      \"is_external\": false,\n" +
+                "      \"external_type\": \"\",\n" +
+                "      \"is_public\": true,\n" +
+                "      \"public_url_shared\": false,\n" +
+                "      \"display_as_bot\": false,\n" +
+                "      \"username\": \"\",\n" +
+                "      \"url_private\": \"https://files.slack.com/files-pri/T111-F111/test.png\",\n" +
+                "      \"url_private_download\": \"https://files.slack.com/files-pri/T111-F111/download/test.png\",\n" +
+                "      \"media_display_type\": \"unknown\",\n" +
+                "      \"thumb_64\": \"https://files.slack.com/files-tmb/T111-F111-xxx/test_64.png\",\n" +
+                "      \"thumb_80\": \"https://files.slack.com/files-tmb/T111-F111-xxx/test_80.png\",\n" +
+                "      \"thumb_360\": \"https://files.slack.com/files-tmb/T111-F111-xxx/test_360.png\",\n" +
+                "      \"thumb_360_w\": 360,\n" +
+                "      \"thumb_360_h\": 262,\n" +
+                "      \"thumb_480\": \"https://files.slack.com/files-tmb/T111-F111-xxx/test_480.png\",\n" +
+                "      \"thumb_480_w\": 480,\n" +
+                "      \"thumb_480_h\": 350,\n" +
+                "      \"thumb_160\": \"https://files.slack.com/files-tmb/T111-F111-xxx/test_160.png\",\n" +
+                "      \"thumb_720\": \"https://files.slack.com/files-tmb/T111-F111-xxx/test_720.png\",\n" +
+                "      \"thumb_720_w\": 720,\n" +
+                "      \"thumb_720_h\": 525,\n" +
+                "      \"thumb_800\": \"https://files.slack.com/files-tmb/T111-F111-xxx/test_800.png\",\n" +
+                "      \"thumb_800_w\": 800,\n" +
+                "      \"thumb_800_h\": 583,\n" +
+                "      \"thumb_960\": \"https://files.slack.com/files-tmb/T111-F111-xxx/test_960.png\",\n" +
+                "      \"thumb_960_w\": 960,\n" +
+                "      \"thumb_960_h\": 700,\n" +
+                "      \"thumb_1024\": \"https://files.slack.com/files-tmb/T111-F111-xxx/test_1024.png\",\n" +
+                "      \"thumb_1024_w\": 1024,\n" +
+                "      \"thumb_1024_h\": 747,\n" +
+                "      \"original_w\": 1772,\n" +
+                "      \"original_h\": 1292,\n" +
+                "      \"thumb_tiny\": \"xxx\",\n" +
+                "      \"permalink\": \"https://xxx.slack.com/files/U03E94MK0/F111/test.png\",\n" +
+                "      \"permalink_public\": \"https://slack-files.com/T111-F111-a0770c9e47\",\n" +
+                "      \"is_starred\": false,\n" +
+                "      \"has_rich_preview\": false,\n" +
+                "      \"file_access\": \"visible\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"upload\": false,\n" +
+                "  \"user\": \"U03E94MK0\",\n" +
+                "  \"display_as_bot\": false,\n" +
+                "  \"ts\": \"1707806347.397809\",\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"block_id\": \"t9D3L\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"user\",\n" +
+                "              \"user_id\": \"U111\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \" hey\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"client_msg_id\": \"883e5317-28e3-4ef8-9385-b88343560de6\",\n" +
+                "  \"channel\": \"C111\",\n" +
+                "  \"event_ts\": \"1707806347.397809\"\n" +
+                "}\n";
+        AppMentionEvent event = GsonFactory.createSnakeCase().fromJson(json, AppMentionEvent.class);
+        assertThat(event.getType(), is("app_mention"));
+    }
+
 }

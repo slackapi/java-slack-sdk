@@ -2,6 +2,7 @@ package com.slack.api.model.event;
 
 import com.slack.api.model.Attachment;
 import com.slack.api.model.BotProfile;
+import com.slack.api.model.File;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
@@ -41,6 +42,9 @@ public class AppMentionEvent implements Event {
     private String text;
     private List<LayoutBlock> blocks;
     private List<Attachment> attachments;
+    private List<File> files;
+    private Boolean upload;
+    private Boolean displayAsBot;
     private String ts;
     private String team;
     private String channel;
