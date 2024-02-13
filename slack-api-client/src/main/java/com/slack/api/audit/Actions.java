@@ -511,5 +511,6 @@ public class Actions {
         public static final String native_dlp_rule_deactivated = "native_dlp_rule_deactivated";
         public static final String native_dlp_rule_reactivated = "native_dlp_rule_reactivated";
         public static final String native_dlp_rule_edited = "native_dlp_rule_edited";
+        public static final String native_dlp_rule_action_applied = "native_dlp_rule_action_applied";
     }
 }

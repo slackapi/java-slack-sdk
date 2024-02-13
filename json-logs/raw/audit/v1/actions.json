@@ -424,7 +424,8 @@
       "native_dlp_rule_created",
       "native_dlp_rule_deactivated",
       "native_dlp_rule_reactivated",
-      "native_dlp_rule_edited"
+      "native_dlp_rule_edited",
+      "native_dlp_rule_action_applied"
     ]
   }
 }
