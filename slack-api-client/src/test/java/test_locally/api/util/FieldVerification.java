@@ -93,7 +93,8 @@ public class FieldVerification {
             "getWarning",
             "getNeeded",
             "getProvided",
-            "getResponseMetadata"
+            "getResponseMetadata",
+            "getContentHighlightHtmlTruncated"
     );
 
 }
