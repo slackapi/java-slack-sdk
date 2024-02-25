@@ -350,6 +350,9 @@ public class Actions {
         public static final String permissions_removed = "permissions_removed";
         public static final String private_message_forwarded = "private_message_forwarded";
         public static final String message_activity_viewed = "message_activity_viewed";
+        public static final String message_flag_dismissed = "message_flag_dismissed";
+        public static final String sales_home_notification_forwarded = "sales_home_notification_forwarded";
+        public static final String record_shared = "record_shared";
     }
 
     public static class WorkflowBuilder {
@@ -394,6 +397,8 @@ public class Actions {
         public static final String huddle_participant_joined = "huddle_participant_joined";
         public static final String huddle_participant_left = "huddle_participant_left";
         public static final String huddle_participant_dropped = "huddle_participant_dropped";
+        public static final String huddle_screenshare_on = "huddle_screenshare_on";
+        public static final String huddle_screenshare_off = "huddle_screenshare_off";
     }
 
     public static class Anomaly {

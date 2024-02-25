@@ -328,7 +328,8 @@
       "private_message_forwarded",
       "message_activity_viewed",
       "message_flag_dismissed",
-      "sales_home_notification_forwarded"
+      "sales_home_notification_forwarded",
+      "record_shared"
     ],
     "barrier": [
       "barrier_created",
@@ -340,7 +341,9 @@
       "huddle_started",
       "huddle_participant_joined",
       "huddle_participant_left",
-      "huddle_participant_dropped"
+      "huddle_participant_dropped",
+      "huddle_screenshare_on",
+      "huddle_screenshare_off"
     ],
     "anomaly": [
       "anomaly"
