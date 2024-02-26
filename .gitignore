@@ -1,6 +1,7 @@
 .checkstyle
 .classpath
 .externalToolBuilders/
+.factorypath
 .project
 .gradle
 .settings/
