@@ -172,7 +172,9 @@
       "pref.mobile_session_duration_changed",
       "channel_audit_export_started",
       "channel_audit_export_completed",
-      "channel_audit_export_downloaded"
+      "channel_audit_export_downloaded",
+      "domain_email_restricted",
+      "domain_email_unrestricted"
     ],
     "user": [
       "custom_tos_accepted",

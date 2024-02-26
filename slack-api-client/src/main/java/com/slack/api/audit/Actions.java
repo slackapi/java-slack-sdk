@@ -184,6 +184,8 @@ public class Actions {
         public static final String channel_audit_export_started = "channel_audit_export_started";
         public static final String channel_audit_export_completed = "channel_audit_export_completed";
         public static final String channel_audit_export_downloaded = "channel_audit_export_downloaded";
+        public static final String domain_email_restricted = "domain_email_restricted";
+        public static final String domain_email_unrestricted = "domain_email_unrestricted";
     }
 
     public static class User {
