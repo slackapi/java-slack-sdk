@@ -81,7 +81,8 @@
         "is_primary_owner": false
       },
       "is_invited_user": false,
-      "is_connector_bot": false
+      "is_connector_bot": false,
+      "two_factor_type": ""
     }
   ],
   "cache_ts": 12345,
