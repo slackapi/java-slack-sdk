@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface StatusClient {
 
-    String ENDPOINT_URL_PREFIX = "https://status.slack.com/api/v2.0.0/";
+    String ENDPOINT_URL_PREFIX = "https://slack-status.com/api/v2.0.0/";
 
     String getEndpointUrlPrefix();
 
