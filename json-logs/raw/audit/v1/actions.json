@@ -174,7 +174,8 @@
       "channel_audit_export_completed",
       "channel_audit_export_downloaded",
       "domain_email_restricted",
-      "domain_email_unrestricted"
+      "domain_email_unrestricted",
+      "pref.allow_native_gif_picker"
     ],
     "user": [
       "custom_tos_accepted",
