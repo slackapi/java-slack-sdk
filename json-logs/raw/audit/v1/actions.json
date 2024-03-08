@@ -277,7 +277,8 @@
       "dm_user_added",
       "public_channel_preview",
       "external_shared_channel_access_downgraded",
-      "private_channel_converted_to_public"
+      "private_channel_converted_to_public",
+      "record_channel_archive"
     ],
     "app": [
       "app_installed",
@@ -424,7 +425,15 @@
       "function_distribution_permission_set"
     ],
     "sales_elevate": [
-      "sales_elevate_workflow_updated"
+      "sales_elevate_workflow_updated",
+      "sales_elevate_members_added",
+      "sales_elevate_members_removed",
+      "sales_elevate_object_mappings_set",
+      "sales_elevate_object_mappings_updated",
+      "sales_elevate_notifications_settings_updated",
+      "sales_elevate_opportunity_list_settings_updated",
+      "sales_elevate_org_connection_added",
+      "sales_elevate_org_connection_removed"
     ],
     "native_dlp": [
       "native_dlp_rule_created",

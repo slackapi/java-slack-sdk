@@ -46,4 +46,14 @@ public class Room {
     private Map<String, Object> pendingInvitees;
     private Map<String, Object> lastInviteStatusByUser;
     private Map<String, Object> knocks;
+    private Map<String, ParticipantsEvent> participantsEvents;
+
+    @Data
+    public static class ParticipantsEvent {
+        private boolean joined;
+        private boolean cameraOn;
+        private boolean cameraOff;
+        private boolean screenshareOn;
+        private boolean screenshareOff;
+    }
 }

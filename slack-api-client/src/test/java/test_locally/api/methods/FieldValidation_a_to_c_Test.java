@@ -348,6 +348,7 @@ public class FieldValidation_a_to_c_Test {
                 "getUsername",
                 "getSubtype",
                 "getLastInviteStatusByUser",
+                "getParticipantsEvents",
                 "getKnocks"
         );
     }

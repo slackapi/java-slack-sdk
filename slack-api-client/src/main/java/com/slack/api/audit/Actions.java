@@ -301,6 +301,7 @@ public class Actions {
         public static final String dm_user_added = "dm_user_added";
         public static final String public_channel_preview = "public_channel_preview";
         public static final String private_channel_converted_to_public = "private_channel_converted_to_public";
+        public static final String record_channel_archive = "record_channel_archive";
     }
 
     public static class App {
@@ -509,6 +510,14 @@ public class Actions {
         }
 
         public static final String sales_elevate_workflow_updated = "sales_elevate_workflow_updated";
+        public static final String sales_elevate_members_added = "sales_elevate_members_added";
+        public static final String sales_elevate_members_removed = "sales_elevate_members_removed";
+        public static final String sales_elevate_object_mappings_set = "sales_elevate_object_mappings_set";
+        public static final String sales_elevate_object_mappings_updated = "sales_elevate_object_mappings_updated";
+        public static final String sales_elevate_notifications_settings_updated = "sales_elevate_notifications_settings_updated";
+        public static final String sales_elevate_opportunity_list_settings_updated = "sales_elevate_opportunity_list_settings_updated";
+        public static final String sales_elevate_org_connection_added = "sales_elevate_org_connection_added";
+        public static final String sales_elevate_org_connection_removed = "sales_elevate_org_connection_removed";
     }
 
     public static class NativeDlp {
