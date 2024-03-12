@@ -131,6 +131,8 @@ public class Actions {
         public static final String pref_atlas_org_charts_access_changed = "pref.atlas_org_charts_access_changed";
         public static final String pref_mobile_session_duration_changed = "pref.mobile_session_duration_changed";
         public static final String pref_allow_native_gif_picker = "pref.allow_native_gif_picker";
+        public static final String pref_invites_only_admins_changed = "pref.invites_only_admins_changed";
+        public static final String pref_invite_requests_approval_channel_changed = "pref.invite_requests_approval_channel_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -518,6 +520,7 @@ public class Actions {
         public static final String sales_elevate_opportunity_list_settings_updated = "sales_elevate_opportunity_list_settings_updated";
         public static final String sales_elevate_org_connection_added = "sales_elevate_org_connection_added";
         public static final String sales_elevate_org_connection_removed = "sales_elevate_org_connection_removed";
+        public static final String sales_elevate_sales_admin_activity_config_changed = "sales_elevate_sales_admin_activity_config_changed";
     }
 
     public static class NativeDlp {

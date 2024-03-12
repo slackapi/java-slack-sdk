@@ -175,7 +175,9 @@
       "channel_audit_export_downloaded",
       "domain_email_restricted",
       "domain_email_unrestricted",
-      "pref.allow_native_gif_picker"
+      "pref.allow_native_gif_picker",
+      "pref.invites_only_admins_changed",
+      "pref.invite_requests_approval_channel_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -433,7 +435,8 @@
       "sales_elevate_notifications_settings_updated",
       "sales_elevate_opportunity_list_settings_updated",
       "sales_elevate_org_connection_added",
-      "sales_elevate_org_connection_removed"
+      "sales_elevate_org_connection_removed",
+      "sales_elevate_sales_admin_activity_config_changed"
     ],
     "native_dlp": [
       "native_dlp_rule_created",
