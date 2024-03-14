@@ -177,7 +177,11 @@
       "domain_email_unrestricted",
       "pref.allow_native_gif_picker",
       "pref.invites_only_admins_changed",
-      "pref.invite_requests_approval_channel_changed"
+      "pref.invite_requests_approval_channel_changed",
+      "pref.members_only",
+      "pref.member_analytics_disabled",
+      "pref.private_channel_analytics_disabled",
+      "slack_ai_summary_requested"
     ],
     "user": [
       "custom_tos_accepted",

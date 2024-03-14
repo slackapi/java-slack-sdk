@@ -3,6 +3,7 @@ package util.sample_json_generation;
 import com.google.gson.*;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsBulkMoveResponse;
+import com.slack.api.methods.response.admin.conversations.AdminConversationsGetConversationPrefsResponse;
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSearchResponse;
 import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsResponse;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
@@ -603,6 +604,30 @@ public class JsonDataRecorder {
                 JsonObject p = GsonFactory.createSnakeCase().toJsonTree(appFunctionPermissions).getAsJsonObject();
                 permissions.add("Fn0000000000", p);
                 permissions.add("Fn0000000000_", p);
+            }
+            if (name != null && name.equals("prefs") && path.equals("/api/admin.conversations.getConversationPrefs")) {
+                JsonObject prefs = element.getAsJsonObject();
+                try {
+                    // To avoid concurrent modification of the underlying objects
+                    List<String> oldKeys = new ArrayList<>();
+                    prefs.keySet().iterator().forEachRemaining(oldKeys::add);
+                    for (String key : oldKeys) {
+                        prefs.remove(key);
+                    }
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+                AdminConversationsGetConversationPrefsResponse.ConversationPrefs newPrefs = new AdminConversationsGetConversationPrefsResponse.ConversationPrefs();
+                newPrefs.setWhoCanPost(initProperties(new AdminConversationsGetConversationPrefsResponse.ConversationPref()));
+                newPrefs.setCanThread(initProperties(new AdminConversationsGetConversationPrefsResponse.ConversationPref()));
+                newPrefs.setMembershipLimit(initProperties(new AdminConversationsGetConversationPrefsResponse.MembershipLimit()));
+                newPrefs.setCanHuddle(initProperties(new AdminConversationsGetConversationPrefsResponse.CanHuddle()));
+                newPrefs.setEnableAtChannel(initProperties(new AdminConversationsGetConversationPrefsResponse.EnableAtChannel()));
+                newPrefs.setEnableAtHere(initProperties(new AdminConversationsGetConversationPrefsResponse.EnableAtHere()));
+                JsonObject newPrefsObj = GsonFactory.createSnakeCase().toJsonTree(newPrefs).getAsJsonObject();
+                for (String newKey : newPrefsObj.keySet()) {
+                    prefs.add(newKey, newPrefsObj.get(newKey));
+                }
             }
             if (path.startsWith("/api/admin.workflows")) {
                 if (name != null && name.equals("input_parameters")) {

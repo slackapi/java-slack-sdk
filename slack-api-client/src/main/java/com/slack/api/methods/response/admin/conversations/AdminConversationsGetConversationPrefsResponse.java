@@ -22,13 +22,34 @@ public class AdminConversationsGetConversationPrefsResponse implements SlackApiT
 
     @Data
     public static class ConversationPref {
-        private List<String> type;
-        private List<String> user;
+        private List<String> type; // admin,owner
+        private List<String> user; // U1234,U5678
+    }
+
+    @Data
+    public static class MembershipLimit {
+        private Integer value;
+    }
+    @Data
+    public static class CanHuddle {
+        private Boolean enabled;
+    }
+    @Data
+    public static class EnableAtChannel {
+        private Boolean enabled;
+    }
+    @Data
+    public static class EnableAtHere {
+        private Boolean enabled;
     }
 
     @Data
     public static class ConversationPrefs {
         private ConversationPref whoCanPost;
         private ConversationPref canThread;
+        private MembershipLimit membershipLimit;
+        private CanHuddle canHuddle;
+        private EnableAtChannel enableAtChannel;
+        private EnableAtHere enableAtHere;
     }
 }

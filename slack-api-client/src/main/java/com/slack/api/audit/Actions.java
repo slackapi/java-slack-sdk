@@ -133,6 +133,9 @@ public class Actions {
         public static final String pref_allow_native_gif_picker = "pref.allow_native_gif_picker";
         public static final String pref_invites_only_admins_changed = "pref.invites_only_admins_changed";
         public static final String pref_invite_requests_approval_channel_changed = "pref.invite_requests_approval_channel_changed";
+        public static final String pref_members_only = "pref.members_only";
+        public static final String pref_member_analytics_disabled = "pref.member_analytics_disabled";
+        public static final String pref_private_channel_analytics_disabled = "pref.private_channel_analytics_disabled";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -189,6 +192,7 @@ public class Actions {
         public static final String channel_audit_export_downloaded = "channel_audit_export_downloaded";
         public static final String domain_email_restricted = "domain_email_restricted";
         public static final String domain_email_unrestricted = "domain_email_unrestricted";
+        public static final String slack_ai_summary_requested = "slack_ai_summary_requested";
     }
 
     public static class User {

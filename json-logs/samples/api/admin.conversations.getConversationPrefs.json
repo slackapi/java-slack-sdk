@@ -6,7 +6,7 @@
         ""
       ],
       "user": [
-        "W00000000"
+        ""
       ]
     },
     "can_thread": {
@@ -14,8 +14,20 @@
         ""
       ],
       "user": [
-        "W00000000"
+        ""
       ]
+    },
+    "membership_limit": {
+      "value": 12345
+    },
+    "can_huddle": {
+      "enabled": false
+    },
+    "enable_at_channel": {
+      "enabled": false
+    },
+    "enable_at_here": {
+      "enabled": false
     }
   },
   "error": "",
