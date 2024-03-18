@@ -181,7 +181,8 @@
       "pref.members_only",
       "pref.member_analytics_disabled",
       "pref.private_channel_analytics_disabled",
-      "slack_ai_summary_requested"
+      "slack_ai_summary_requested",
+      "pref.allow_canvas_version_history_changed"
     ],
     "user": [
       "custom_tos_accepted",

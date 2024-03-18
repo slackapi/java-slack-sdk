@@ -136,6 +136,7 @@ public class Actions {
         public static final String pref_members_only = "pref.members_only";
         public static final String pref_member_analytics_disabled = "pref.member_analytics_disabled";
         public static final String pref_private_channel_analytics_disabled = "pref.private_channel_analytics_disabled";
+        public static final String pref_allow_canvas_version_history_changed = "pref.allow_canvas_version_history_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
