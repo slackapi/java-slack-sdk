@@ -71,7 +71,7 @@ public class CommandsTest {
         when(methods.authTest(any(RequestConfigurator.class))).thenReturn(authTestResponse);
         return slack;
     }
-    
+
     @Test
     public void command() {
         MutableHttpRequest<String> request = HttpRequest.POST("/slack/events", "");

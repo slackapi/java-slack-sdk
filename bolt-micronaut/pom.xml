@@ -23,8 +23,8 @@
         <!-- Micronaut 4 requires jdk 17 -->
         <jdk.version>17</jdk.version>
         <release.version>17</release.version>
-        <maven.compiler.source>1.17</maven.compiler.source>
-        <maven.compiler.target>1.17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <artifactId>bolt-micronaut</artifactId>
