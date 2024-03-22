@@ -160,7 +160,6 @@
                                 <goal>testCompile</goal>
                             </goals>
                             <configuration>
-                                <!-- mockito + java 9+ -->
                                 <compilerArgs>
                                     <arg>-parameters</arg>
                                 </compilerArgs>
