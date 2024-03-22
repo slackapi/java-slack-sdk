@@ -18,6 +18,7 @@ import io.micronaut.rxjava3.http.client.Rx3HttpClient;
 import io.micronaut.test.annotation.MockBean;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -51,7 +52,7 @@ public class CommandsTest {
     SlackSignature.Generator signatureGenerator = new SlackSignature.Generator(signingSecret);
 
     @Primary
-    @MockBean(AppConfig.class)
+    @Singleton
     AppConfig mockSlackAppConfig() throws IOException, SlackApiException {
         AppConfig config = AppConfig.builder().signingSecret(signingSecret).singleTeamBotToken(botToken).build();
         config.setSlack(mockSlack());
@@ -76,7 +77,7 @@ public class CommandsTest {
     public void command() {
         MutableHttpRequest<String> request = HttpRequest.POST("/slack/events", "");
         request.header("Content-Type", "application/x-www-form-urlencoded");
-        String timestamp = "" + (System.currentTimeMillis() / 1000);
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         request.header(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
         String signature = signatureGenerator.generate(timestamp, helloBody);
         request.header(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature);
@@ -90,7 +91,7 @@ public class CommandsTest {
     public void invalidSignature() {
         MutableHttpRequest<String> request = HttpRequest.POST("/slack/events", "");
         request.header("Content-Type", "application/x-www-form-urlencoded");
-        String timestamp = "" + (System.currentTimeMillis() / 1000 - 30 * 60);
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000 - 30 * 60);
         request.header(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
         String signature = signatureGenerator.generate(timestamp, helloBody);
         request.header(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature);
@@ -122,7 +123,7 @@ public class CommandsTest {
     public void regexp_matching() {
         MutableHttpRequest<String> request = HttpRequest.POST("/slack/events", "");
         request.header("Content-Type", "application/x-www-form-urlencoded");
-        String timestamp = "" + (System.currentTimeMillis() / 1000);
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         request.header(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
         String signature = signatureGenerator.generate(timestamp, submissionBody);
         request.header(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature);

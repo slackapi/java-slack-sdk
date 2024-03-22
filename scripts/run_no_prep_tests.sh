@@ -16,6 +16,8 @@ flags()
 flags "$@"
 
 is_jdk_8=`echo $JAVA_HOME | grep 8.`
+is_jdk_14=`echo $JAVA_HOME | grep 14.`
+
 is_travis_jdk_8=`echo $TRAVIS_JDK | grep openjdk8`
 if [[ "${is_jdk_8}" != "" && "${is_travis_jdk_8}" != "" ]];
 then
@@ -25,15 +27,7 @@ then
     -pl !bolt-quarkus-examples \
     -pl !bolt-jakarta-servlet \
     -pl !bolt-jakarta-jetty \
-    clean \
-    test-compile \
-    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS}\
-    -DfailIfNoTests=false \
-    -Dhttps.protocols=TLSv1.2 \
-    --no-transfer-progress && \
-    if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
-else
-  ./mvnw ${MAVEN_OPTS} \
+    -pl !bolt-micronaut \
     clean \
     test-compile \
     '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
@@ -41,4 +35,24 @@ else
     -Dhttps.protocols=TLSv1.2 \
     --no-transfer-progress && \
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
+elif [[ "${is_jdk_14}" != "" ]];
+then
+  ./mvnw ${MAVEN_OPTS} \
+    -pl !bolt-micronaut \
+    clean \
+    test-compile \
+    '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
+    -DfailIfNoTests=false \
+    -Dhttps.protocols=TLSv1.2 \
+    --no-transfer-progress && \
+    if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
+else
+    ./mvnw ${MAVEN_OPTS} \
+      clean \
+      test-compile \
+      '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
+      -DfailIfNoTests=false \
+      -Dhttps.protocols=TLSv1.2 \
+      --no-transfer-progress && \
+      if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 fi
