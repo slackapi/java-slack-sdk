@@ -5,7 +5,6 @@ import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.util.SlackRequestParser;
-import io.micronaut.context.annotation.Requires;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -13,7 +12,6 @@ import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.server.netty.NettyHttpResponseFactory;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-
 import java.net.InetSocketAddress;
 import java.util.Collections;
 import java.util.List;
