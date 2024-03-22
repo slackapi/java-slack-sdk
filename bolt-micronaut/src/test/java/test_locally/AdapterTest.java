@@ -4,7 +4,7 @@ import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.micronaut.SlackAppMicronautAdapter;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.response.Response;
-import io.micronaut.core.convert.DefaultConversionService;
+import io.micronaut.core.convert.DefaultMutableConversionService;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.simple.SimpleHttpHeaders;
@@ -32,11 +32,11 @@ public class AdapterTest {
         HttpRequest<String> req = mock(HttpRequest.class);
         Map<String, String> rawHeaders = new HashMap<>();
         rawHeaders.put("X-Slack-Signature", "xxxxxxx");
-        SimpleHttpHeaders headers = new SimpleHttpHeaders(rawHeaders, new DefaultConversionService());
+        SimpleHttpHeaders headers = new SimpleHttpHeaders(rawHeaders, new DefaultMutableConversionService());
         when(req.getHeaders()).thenReturn(headers);
         Map<CharSequence, List<String>> params = new HashMap<>();
         params.put("foo", Arrays.asList("bar", "baz"));
-        SimpleHttpParameters parameters = new SimpleHttpParameters(params, new DefaultConversionService());
+        SimpleHttpParameters parameters = new SimpleHttpParameters(params, new DefaultMutableConversionService());
         when(req.getParameters()).thenReturn(parameters);
 
         Request<?> slackRequest = adapter.toSlackRequest(req, "token=random&ssl_check=1");
@@ -52,7 +52,7 @@ public class AdapterTest {
         AppConfig config = AppConfig.builder().build();
         SlackAppMicronautAdapter adapter = new SlackAppMicronautAdapter(config);
 
-        HttpRequest<String> req = mock(HttpRequest.class);
+        HttpRequest<String> req = mock(HttpRequest.class) ;
 
         InetSocketAddress isa = new InetSocketAddress("127.0.0.1", 443);
         when(req.getRemoteAddress()).thenReturn(isa);

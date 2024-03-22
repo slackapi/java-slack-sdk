@@ -10,14 +10,21 @@
     </parent>
 
     <properties>
-        <!-- TODO: upgrading to v4 -->
-        <micronaut.version>3.9.4</micronaut.version>
-        <micronaut-test-junit5.version>3.9.2</micronaut-test-junit5.version>
-        <micronaut-rxjava3.version>2.4.1</micronaut-rxjava3.version>
+        <micronaut.version>4.3.12</micronaut.version>
+        <micronaut-test-junit5.version>4.2.1</micronaut-test-junit5.version>
+        <micronaut-rxjava3.version>3.2.1</micronaut-rxjava3.version>
         <junit5-jupiter.version>5.10.2</junit5-jupiter.version>
+
         <!-- Note that upgrading this library breaks other dependency resolution -->
         <mockito-all.version>1.10.19</mockito-all.version>
+
         <jakarta.inject.version>2.0.1.MR</jakarta.inject.version>
+
+        <!-- Micronaut 4 requires jdk 17 -->
+        <jdk.version>17</jdk.version>
+        <release.version>17</release.version>
+        <maven.compiler.source>1.17</maven.compiler.source>
+        <maven.compiler.target>1.17</maven.compiler.target>
     </properties>
 
     <artifactId>bolt-micronaut</artifactId>
@@ -55,6 +62,11 @@
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-server-netty</artifactId>
+            <version>${micronaut.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-jackson-databind</artifactId>
             <version>${micronaut.version}</version>
         </dependency>
 
@@ -148,6 +160,7 @@
                                 <goal>testCompile</goal>
                             </goals>
                             <configuration>
+                                <!-- mockito + java 9+ -->
                                 <compilerArgs>
                                     <arg>-parameters</arg>
                                 </compilerArgs>
@@ -161,6 +174,14 @@
                             </configuration>
                         </execution>
                     </executions>
+                </plugin>
+                <!-- mockito + java 9+ fix, open modules in java.lang -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

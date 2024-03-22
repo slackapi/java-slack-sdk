@@ -72,11 +72,12 @@ public class CommandsTest {
         return slack;
     }
 
+
     @Test
     public void command() {
         MutableHttpRequest<String> request = HttpRequest.POST("/slack/events", "");
         request.header("Content-Type", "application/x-www-form-urlencoded");
-        String timestamp = "" + (System.currentTimeMillis() / 1000);
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         request.header(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
         String signature = signatureGenerator.generate(timestamp, helloBody);
         request.header(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature);
@@ -90,7 +91,7 @@ public class CommandsTest {
     public void invalidSignature() {
         MutableHttpRequest<String> request = HttpRequest.POST("/slack/events", "");
         request.header("Content-Type", "application/x-www-form-urlencoded");
-        String timestamp = "" + (System.currentTimeMillis() / 1000 - 30 * 60);
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000 - 30 * 60);
         request.header(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
         String signature = signatureGenerator.generate(timestamp, helloBody);
         request.header(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature);
@@ -122,7 +123,7 @@ public class CommandsTest {
     public void regexp_matching() {
         MutableHttpRequest<String> request = HttpRequest.POST("/slack/events", "");
         request.header("Content-Type", "application/x-www-form-urlencoded");
-        String timestamp = "" + (System.currentTimeMillis() / 1000);
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         request.header(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, timestamp);
         String signature = signatureGenerator.generate(timestamp, submissionBody);
         request.header(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, signature);

@@ -2,6 +2,7 @@ package com.slack.api.bolt.micronaut;
 
 import com.slack.api.bolt.App;
 import com.slack.api.bolt.request.Request;
+import io.micronaut.context.annotation.Requires;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
@@ -29,7 +30,8 @@ public class SlackAppController {
     }
 
     @Post(value = "/events", consumes = {MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
-    public HttpResponse<String> events(HttpRequest<String> request, @Body String body) throws Exception {
+    public HttpResponse<String> events(HttpRequest<String> request) throws Exception {
+        String body = request.getBody().orElse(null);
         return adapt(request, body);
     }
 
