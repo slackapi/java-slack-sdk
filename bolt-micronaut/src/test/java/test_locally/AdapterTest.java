@@ -52,7 +52,7 @@ public class AdapterTest {
         AppConfig config = AppConfig.builder().build();
         SlackAppMicronautAdapter adapter = new SlackAppMicronautAdapter(config);
 
-        HttpRequest<String> req = mock(HttpRequest.class) ;
+        HttpRequest<String> req = mock(HttpRequest.class);
 
         InetSocketAddress isa = new InetSocketAddress("127.0.0.1", 443);
         when(req.getRemoteAddress()).thenReturn(isa);
