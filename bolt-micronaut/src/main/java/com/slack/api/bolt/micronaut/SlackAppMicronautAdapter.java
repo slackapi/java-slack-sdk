@@ -12,6 +12,7 @@ import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.server.netty.NettyHttpResponseFactory;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
+
 import java.net.InetSocketAddress;
 import java.util.Collections;
 import java.util.List;
