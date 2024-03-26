@@ -18,6 +18,7 @@ import io.micronaut.rxjava3.http.client.Rx3HttpClient;
 import io.micronaut.test.annotation.MockBean;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -51,7 +52,7 @@ public class CommandsTest {
     SlackSignature.Generator signatureGenerator = new SlackSignature.Generator(signingSecret);
 
     @Primary
-    @MockBean(AppConfig.class)
+    @Singleton
     AppConfig mockSlackAppConfig() throws IOException, SlackApiException {
         AppConfig config = AppConfig.builder().signingSecret(signingSecret).singleTeamBotToken(botToken).build();
         config.setSlack(mockSlack());
