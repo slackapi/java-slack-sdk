@@ -1,5 +1,4 @@
 #!/bin/bash
-
 flags()
 {
     while test $# -gt 0
