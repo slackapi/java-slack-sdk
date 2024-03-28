@@ -72,6 +72,11 @@
           "file_id": "F00000000",
           "is_empty": false,
           "quip_thread_id": ""
+        },
+        "threads_restricted_to": {
+          "type": [
+            ""
+          ]
         }
       }
     }

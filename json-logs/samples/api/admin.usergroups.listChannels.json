@@ -52,6 +52,11 @@
           "type": [
             ""
           ]
+        },
+        "threads_restricted_to": {
+          "type": [
+            ""
+          ]
         }
       }
     }
