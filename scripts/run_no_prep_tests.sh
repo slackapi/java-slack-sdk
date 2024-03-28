@@ -1,4 +1,5 @@
 #!/bin/bash
+
 flags()
 {
     while test $# -gt 0
@@ -12,7 +13,6 @@ flags()
         shift
     done
 }
-
 flags "$@"
 
 is_jdk_8=`echo $JAVA_HOME | grep 8.`
