@@ -6,7 +6,7 @@ import com.slack.api.bolt.App;
 import com.slack.api.bolt.AppConfig;
 import com.slack.api.bolt.micronaut.SlackAppController;
 import com.slack.api.bolt.micronaut.SlackAppMicronautAdapter;
-import io.micronaut.core.convert.DefaultConversionService;
+import io.micronaut.core.convert.DefaultMutableConversionService;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MutableHttpParameters;
@@ -20,6 +20,7 @@ import org.junit.Test;
 import util.AuthTestMockServer;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -62,12 +63,13 @@ public class ControllerTest {
         assertNotNull(controller);
 
         HttpRequest<String> req = mock(HttpRequest.class);
-        SimpleHttpHeaders headers = new SimpleHttpHeaders(new HashMap<>(), new DefaultConversionService());
+        SimpleHttpHeaders headers = new SimpleHttpHeaders(new HashMap<>(), new DefaultMutableConversionService());
         when(req.getHeaders()).thenReturn(headers);
-        SimpleHttpParameters parameters = new SimpleHttpParameters(new HashMap<>(), new DefaultConversionService());
+        SimpleHttpParameters parameters = new SimpleHttpParameters(new HashMap<>(), new DefaultMutableConversionService());
         when(req.getParameters()).thenReturn(parameters);
+        when(req.getBody()).thenReturn(Optional.of("token=random&ssl_check=1"));
 
-        HttpResponse<String> response = controller.events(req, "token=random&ssl_check=1");
+        HttpResponse<String> response = controller.events(req);
         assertEquals(200, response.getStatus().getCode());
     }
 
