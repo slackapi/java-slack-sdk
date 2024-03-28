@@ -185,7 +185,8 @@
       "pref.allow_canvas_version_history_changed",
       "pref.flag_content_custom_link",
       "pref.flag_content_users_to_notify",
-      "channel_audit_export_deleted"
+      "channel_audit_export_deleted",
+      "pref.flag_content_review_note_required"
     ],
     "user": [
       "custom_tos_accepted",
