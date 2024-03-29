@@ -5,7 +5,7 @@
 
     <groupId>com.slack.api</groupId>
     <artifactId>slack-sdk-parent</artifactId>
-    <version>1.38.4-SNAPSHOT</version>
+    <version>1.39.0</version>
     <packaging>pom</packaging>
 
     <name>Java Slack SDK Project</name>
@@ -60,7 +60,7 @@
         -->
         <slf4j.version>1.7.36</slf4j.version>
         <lombok.version>1.18.32</lombok.version>
-        <lombok-maven-plugin.version>1.18.32.0</lombok-maven-plugin.version>
+        <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
 
         <!-- optional / testing-only dependencies -->

@@ -121,6 +121,7 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
   * If you don't have `gnu-sed`, run `brew install gnu-sed` first
   * Run `scripts/set_version.sh (the version)` (e.g., `scripts/set_version.sh 1.0.0`)
 * Ship the libraries
+  * Switch to **JDK 17** to publish all modules (on macOS, you can run `export JAVA_HOME=$(/usr/libexec/java_home -v 17)` for it)
   * Run `scripts/release.sh` (it takes a bit long)
   * (If you encounter an error, log in https://oss.sonatype.org/ to check detailed information)
 * Create GitHub Release(s) and add release notes
