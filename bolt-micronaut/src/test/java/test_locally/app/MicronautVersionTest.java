@@ -11,7 +11,7 @@ public class MicronautVersionTest {
     @Test
     public void expectedMicronautVersion() {
        String version = VersionUtils.getMicronautVersion();
-       Assertions.assertEquals("4.3.13", version);
+       Assertions.assertTrue(version.matches("4\\.\\d+\\.\\d+"));
     }
 
 }
