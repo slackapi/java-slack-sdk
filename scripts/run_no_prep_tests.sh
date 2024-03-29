@@ -47,9 +47,14 @@ then
     --no-transfer-progress && \
     if git status --porcelain | grep .; then git --no-pager diff; exit 1; fi
 else
+    # Until we resolve https://github.com/slackapi/java-slack-sdk/issues/892, most of the tests can fail with JDK 17+
+    # That's why we install jar files locally and run only the tests that work with JDK 17+
+    ./mvnw ${MAVEN_OPTS} install \
+      '-Dmaven.test.skip=true' \
+      -pl !bolt-quarkus-examples \
+    && \
     ./mvnw ${MAVEN_OPTS} \
-      clean \
-      test-compile \
+      test -pl bolt-micronaut \
       '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \
       -DfailIfNoTests=false \
       -Dhttps.protocols=TLSv1.2 \
