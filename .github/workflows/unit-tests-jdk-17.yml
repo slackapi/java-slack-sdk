@@ -25,7 +25,3 @@ jobs:
         ./scripts/run_no_prep_tests.sh -ci
       env:
         SKIP_UNSTABLE_TESTS: 1
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        fail_ci_if_error: true
