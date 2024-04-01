@@ -20,6 +20,16 @@ public class ObjectInitializer {
     }
 
     public static <T> T initProperties(T obj) {
+        if (obj instanceof String
+                || obj instanceof Integer
+                || obj instanceof Long
+                || obj instanceof Boolean
+                || obj instanceof Short
+                || obj instanceof Byte
+                || obj instanceof Float
+                || obj instanceof Double) {
+            return obj;
+        }
         return initProperties(obj, false);
     }
 

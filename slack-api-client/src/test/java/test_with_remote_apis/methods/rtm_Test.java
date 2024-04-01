@@ -351,7 +351,7 @@ public class rtm_Test {
         }
         assertThat(pongReceived.event, notNullValue());
         assertThat(pongReceived.event.getReplyTo(), equalTo(pingId));
-        assertThat(pongReceived.event.getTime(), equalTo(now));
+        assertThat(pongReceived.event.getTime().toEpochMilli(), equalTo(now.toEpochMilli()));
 
     }
 }
