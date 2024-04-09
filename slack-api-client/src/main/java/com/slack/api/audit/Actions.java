@@ -140,6 +140,9 @@ public class Actions {
         public static final String pref_flag_content_custom_link = "pref.flag_content_custom_link";
         public static final String pref_flag_content_users_to_notify = "pref.flag_content_users_to_notify";
         public static final String pref_flag_content_review_note_required = "pref.flag_content_review_note_required";
+        public static final String pref_invited_user_preset = "pref.invited_user_preset";
+        public static final String pref_max_guest_duration = "pref.max_guest_duration";
+        public static final String pref_sso_sync_with_provider = "pref.sso_sync_with_provider";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";

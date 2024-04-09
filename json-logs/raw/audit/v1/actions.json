@@ -186,7 +186,10 @@
       "pref.flag_content_custom_link",
       "pref.flag_content_users_to_notify",
       "channel_audit_export_deleted",
-      "pref.flag_content_review_note_required"
+      "pref.flag_content_review_note_required",
+      "pref.invited_user_preset",
+      "pref.max_guest_duration",
+      "pref.sso_sync_with_provider"
     ],
     "user": [
       "custom_tos_accepted",
