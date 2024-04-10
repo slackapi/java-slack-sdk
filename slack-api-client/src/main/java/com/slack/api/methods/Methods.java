@@ -447,6 +447,7 @@ public class Methods {
     public static final String FILES_LIST = "files.list";
     public static final String FILES_REVOKE_PUBLIC_URL = "files.revokePublicURL";
     public static final String FILES_SHARED_PUBLIC_URL = "files.sharedPublicURL";
+    @Deprecated // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
     public static final String FILES_UPLOAD = "files.upload";
 
     public static final String FILES_GET_UPLOAD_URL_EXTERNAL = "files.getUploadURLExternal";
@@ -598,6 +599,7 @@ public class Methods {
     // rtm
     // ------------------------------
 
+    @Deprecated // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
     public static final String RTM_CONNECT = "rtm.connect";
     @Deprecated // https://api.slack.com/changelog/2021-10-rtm-start-to-stop
     public static final String RTM_START = "rtm.start";

@@ -1356,8 +1356,10 @@ public interface MethodsClient {
 
     FilesSharedPublicURLResponse filesSharedPublicURL(RequestConfigurator<FilesSharedPublicURLRequest.FilesSharedPublicURLRequestBuilder> req) throws IOException, SlackApiException;
 
+    @Deprecated // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
     FilesUploadResponse filesUpload(FilesUploadRequest req) throws IOException, SlackApiException;
 
+    @Deprecated // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
     FilesUploadResponse filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req) throws IOException, SlackApiException;
 
     FilesGetUploadURLExternalResponse filesGetUploadURLExternal(FilesGetUploadURLExternalRequest req) throws IOException, SlackApiException;
@@ -1772,8 +1774,10 @@ public interface MethodsClient {
     // rtm
     // ------------------------------
 
+    @Deprecated // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
     RTMConnectResponse rtmConnect(RTMConnectRequest req) throws IOException, SlackApiException;
 
+    @Deprecated // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
     RTMConnectResponse rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req) throws IOException, SlackApiException;
 
     @Deprecated
