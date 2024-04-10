@@ -2906,11 +2906,13 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    @Deprecated
     public RTMConnectResponse rtmConnect(RTMConnectRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.RTM_CONNECT, getToken(req), RTMConnectResponse.class);
     }
 
     @Override
+    @Deprecated
     public RTMConnectResponse rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req) throws IOException, SlackApiException {
         return rtmConnect(req.configure(RTMConnectRequest.builder()).build());
     }

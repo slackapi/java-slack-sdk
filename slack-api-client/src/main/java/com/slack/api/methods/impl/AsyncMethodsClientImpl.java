@@ -1923,11 +1923,13 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    @Deprecated
     public CompletableFuture<FilesUploadResponse> filesUpload(FilesUploadRequest req) {
         return executor.execute(FILES_UPLOAD, toMap(req), () -> methods.filesUpload(req));
     }
 
     @Override
+    @Deprecated
     public CompletableFuture<FilesUploadResponse> filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req) {
         return filesUpload(req.configure(FilesUploadRequest.builder()).build());
     }
@@ -2237,11 +2239,13 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    @Deprecated
     public CompletableFuture<RTMConnectResponse> rtmConnect(RTMConnectRequest req) {
         return executor.execute(RTM_CONNECT, toMap(req), () -> methods.rtmConnect(req));
     }
 
     @Override
+    @Deprecated
     public CompletableFuture<RTMConnectResponse> rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req) {
         return rtmConnect(req.configure(RTMConnectRequest.builder()).build());
     }
