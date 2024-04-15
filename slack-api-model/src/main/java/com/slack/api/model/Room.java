@@ -50,6 +50,7 @@ public class Room {
 
     @Data
     public static class ParticipantsEvent {
+        private Team userTeam;
         private boolean joined;
         private boolean cameraOn;
         private boolean cameraOff;
