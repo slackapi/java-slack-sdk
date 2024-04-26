@@ -76,6 +76,7 @@ public class AppActivity {
         private String channelId;
         private String messageTs;
         private String reaction;
+        private String listId;
         // TODO: more properties
     }
 }

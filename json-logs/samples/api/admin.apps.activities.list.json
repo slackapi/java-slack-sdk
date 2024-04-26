@@ -40,7 +40,8 @@
             "user_id": "W00000000",
             "channel_id": "C00000000",
             "reaction": "",
-            "message_ts": ""
+            "message_ts": "",
+            "list_id": ""
           }
         },
         "channel_id": "C00000000",
