@@ -268,6 +268,7 @@ public class MatchedItem {
     private String access;
     private Integer updateNotification;
     private Integer privateChannelsWithFileAccessCount;
+    private Integer privateFileWithAccessCount;
     private List<File.UserWithFileAccess> dmMpdmUsersWithFileAccess;
     private List<String> teamsSharedWith;
     private String orgOrWorkspaceAccess;
