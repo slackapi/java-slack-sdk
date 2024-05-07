@@ -391,7 +391,10 @@
     ],
     "role": [
       "role_assigned",
-      "role_removed"
+      "role_removed",
+      "role_created",
+      "role_updated",
+      "role_deleted"
     ],
     "account_type_role": [
       "permissions_assigned",

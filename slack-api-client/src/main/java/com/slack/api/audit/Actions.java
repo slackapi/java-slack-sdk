@@ -433,6 +433,9 @@ public class Actions {
 
         public static final String role_assigned = "role_assigned";
         public static final String role_removed = "role_removed";
+        public static final String role_created = "role_created";
+        public static final String role_updated = "role_updated";
+        public static final String role_deleted = "role_deleted";
     }
 
     public static class Subteam {
