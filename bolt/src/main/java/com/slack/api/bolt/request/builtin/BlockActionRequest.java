@@ -42,6 +42,9 @@ public class BlockActionRequest extends Request<ActionContext> {
                 getContext().setTeamId(payload.getUser().getTeamId());
             }
             getContext().setRequestUserId(payload.getUser().getId());
+            if (payload.getFunctionData() != null) {
+                getContext().setFunctionExecutionId(payload.getFunctionData().getExecutionId());
+            }
         }
     }
 

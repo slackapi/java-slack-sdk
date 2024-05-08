@@ -20,5 +20,5 @@ public class FunctionsCompleteSuccessRequest implements SlackApiRequest {
     private String token;
 
     private String functionExecutionId;
-    private Map<String, Object> outputs;
+    private Map<String, ?> outputs;
 }

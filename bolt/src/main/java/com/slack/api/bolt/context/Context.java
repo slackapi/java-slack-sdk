@@ -70,6 +70,11 @@ public abstract class Context {
     protected String functionBotAccessToken;
 
     /**
+     * The ID of function_executed event delivery.
+     */
+    protected String functionExecutionId;
+
+    /**
      * The scopes associated to the botToken
      */
     protected List<String> botScopes;

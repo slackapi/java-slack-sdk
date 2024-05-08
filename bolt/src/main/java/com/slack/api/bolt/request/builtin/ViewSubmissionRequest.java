@@ -44,6 +44,9 @@ public class ViewSubmissionRequest extends Request<ViewSubmissionContext> {
         getContext().setRequestUserId(payload.getUser().getId());
         getContext().setResponseUrls(payload.getResponseUrls());
         getContext().setFunctionBotAccessToken(payload.getBotAccessToken());
+        if (payload.getFunctionData() != null) {
+            getContext().setFunctionExecutionId(payload.getFunctionData().getExecutionId());
+        }
     }
 
     private ViewSubmissionContext context = new ViewSubmissionContext();

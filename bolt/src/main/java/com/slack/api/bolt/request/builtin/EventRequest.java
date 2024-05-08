@@ -107,11 +107,15 @@ public class EventRequest extends Request<EventContext> {
             this.getContext().setChannelId(event.get("channel_id").getAsString());
         }
 
-        if (this.eventType != null
-                && this.eventType.equals(FunctionExecutedEvent.TYPE_NAME)
-                && event.get("bot_access_token") != null) {
-            String functionBotAccessToken = event.get("bot_access_token").getAsString();
-            this.getContext().setFunctionBotAccessToken(functionBotAccessToken);
+        if (this.eventType != null && this.eventType.equals(FunctionExecutedEvent.TYPE_NAME)) {
+            if (event.get("bot_access_token") != null) {
+                String functionBotAccessToken = event.get("bot_access_token").getAsString();
+                this.getContext().setFunctionBotAccessToken(functionBotAccessToken);
+            }
+            if (event.get("function_execution_id") != null) {
+                String functionExecutionId = event.get("function_execution_id").getAsString();
+                this.getContext().setFunctionExecutionId(functionExecutionId);
+            }
         }
     }
 
