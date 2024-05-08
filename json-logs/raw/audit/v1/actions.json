@@ -362,7 +362,8 @@
       "huddle_participant_left",
       "huddle_participant_dropped",
       "huddle_screenshare_on",
-      "huddle_screenshare_off"
+      "huddle_screenshare_off",
+      "huddle_knock_accepted"
     ],
     "anomaly": [
       "anomaly"

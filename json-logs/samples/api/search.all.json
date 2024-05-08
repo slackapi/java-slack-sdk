@@ -64588,6 +64588,7 @@
         "thumb_480_gif": "https://www.example.com/",
         "deanimate": "https://www.example.com/",
         "deanimate_gif": "https://www.example.com/",
+        "private_file_with_access_count": 12345,
         "attachments": [
           {
             "msg_subtype": "",
