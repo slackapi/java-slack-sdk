@@ -1,8 +1,15 @@
 package com.slack.api.bolt.context.builtin;
 
 import com.slack.api.bolt.context.Context;
+import com.slack.api.bolt.context.FunctionUtility;
 import com.slack.api.bolt.context.SayUtility;
+import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.response.functions.FunctionsCompleteErrorResponse;
+import com.slack.api.methods.response.functions.FunctionsCompleteSuccessResponse;
 import lombok.*;
+
+import java.io.IOException;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -11,7 +18,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-public class EventContext extends Context implements SayUtility {
+public class EventContext extends Context implements SayUtility, FunctionUtility {
 
     private String channelId;
 
@@ -21,5 +28,4 @@ public class EventContext extends Context implements SayUtility {
     // X-Slack-Retry-Reason: http_error in HTTP Mode
     // "retry_reason": "timeout", in Socket Mode
     private String retryReason;
-
 }
