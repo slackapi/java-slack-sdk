@@ -201,6 +201,8 @@ public class Actions {
         public static final String domain_email_unrestricted = "domain_email_unrestricted";
         public static final String slack_ai_summary_requested = "slack_ai_summary_requested";
         public static final String channel_audit_export_deleted = "channel_audit_export_deleted";
+        public static final String quip_migration_org_mapping_removed = "quip_migration_org_mapping_removed";
+        public static final String quip_migration_org_mapping_added = "quip_migration_org_mapping_added";
     }
 
     public static class User {
@@ -244,6 +246,8 @@ public class Actions {
         public static final String user_profile_updated = "user_profile_updated";
         public static final String user_profile_deleted = "user_profile_deleted";
         public static final String user_password_reset_slack_security = "user_password_reset_slack_security";
+        public static final String quip_migration_user_mapping_removed = "quip_migration_user_mapping_removed";
+        public static final String quip_migration_user_mapping_added = "quip_migration_user_mapping_added";
     }
 
     public static class File {
@@ -513,6 +517,7 @@ public class Actions {
         public static final String canvas_converted_to_template = "canvas_converted_to_template";
         public static final String canvas_template_used = "canvas_template_used";
         public static final String canvas_template_reverted = "canvas_template_reverted";
+        public static final String canvas_quip_document_cloned = "canvas_quip_document_cloned";
     }
 
     public static class Function {
