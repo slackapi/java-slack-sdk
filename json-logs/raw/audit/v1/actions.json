@@ -191,7 +191,9 @@
       "pref.max_guest_duration",
       "pref.sso_sync_with_provider",
       "quip_migration_org_mapping_removed",
-      "quip_migration_org_mapping_added"
+      "quip_migration_org_mapping_added",
+      "organization_channel_audit_export_enabled",
+      "workspace_channel_audit_export_enabled"
     ],
     "user": [
       "custom_tos_accepted",
