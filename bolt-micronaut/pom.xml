@@ -10,7 +10,7 @@
     </parent>
 
     <properties>
-        <micronaut.version>4.4.6</micronaut.version>
+        <micronaut.version>4.4.9</micronaut.version>
         <micronaut-test-junit5.version>4.3.0</micronaut-test-junit5.version>
         <micronaut-rxjava3.version>3.3.0</micronaut-rxjava3.version>
         <junit5-jupiter.version>5.10.2</junit5-jupiter.version>
