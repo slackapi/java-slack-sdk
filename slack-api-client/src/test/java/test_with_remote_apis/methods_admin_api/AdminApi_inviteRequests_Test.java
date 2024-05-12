@@ -45,19 +45,19 @@ public class AdminApi_inviteRequests_Test {
             assertThat(denial.getError(), is("invalid_request"));
 
             AdminInviteRequestsListResponse list = methodsAsync.adminInviteRequestsList(r -> r
-                    .limit(1000)
+                    .limit(1)
                     .teamId(teamId))
                     .get();
             assertThat(list.getError(), is(nullValue()));
 
             AdminInviteRequestsApprovedListResponse approvedList = methodsAsync.adminInviteRequestsApprovedList(r -> r
-                    .limit(1000)
+                    .limit(1)
                     .teamId(teamId))
                     .get();
             assertThat(approvedList.getError(), is(nullValue()));
 
             AdminInviteRequestsDeniedListResponse deniedList = methodsAsync.adminInviteRequestsDeniedList(r -> r
-                    .limit(1000)
+                    .limit(1)
                     .teamId(teamId))
                     .get();
             assertThat(deniedList.getError(), is(nullValue()));
