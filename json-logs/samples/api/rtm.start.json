@@ -9325,6 +9325,7 @@
                     "template_icon": "",
                     "team_pref_version_history_enabled": false,
                     "show_badge": false,
+                    "favorites": [],
                     "bot_id": "",
                     "initial_comment": {
                       "id": "",
@@ -13815,6 +13816,13 @@
                 "template_icon": "",
                 "team_pref_version_history_enabled": false,
                 "show_badge": false,
+                "favorites": [
+                  {
+                    "collection_id": "",
+                    "collection_name": "",
+                    "position": ""
+                  }
+                ],
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
@@ -20671,6 +20679,7 @@
               "template_icon": "",
               "team_pref_version_history_enabled": false,
               "show_badge": false,
+              "favorites": [],
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -25326,6 +25335,13 @@
             "template_icon": "",
             "team_pref_version_history_enabled": false,
             "show_badge": false,
+            "favorites": [
+              {
+                "collection_id": "",
+                "collection_name": "",
+                "position": ""
+              }
+            ],
             "bot_id": "",
             "initial_comment": {
               "id": "",
@@ -33795,6 +33811,7 @@
                             "template_icon": "",
                             "team_pref_version_history_enabled": false,
                             "show_badge": false,
+                            "favorites": [],
                             "bot_id": "",
                             "initial_comment": {
                               "id": "",
@@ -38285,6 +38302,13 @@
                         "template_icon": "",
                         "team_pref_version_history_enabled": false,
                         "show_badge": false,
+                        "favorites": [
+                          {
+                            "collection_id": "",
+                            "collection_name": "",
+                            "position": ""
+                          }
+                        ],
                         "bot_id": "",
                         "initial_comment": {
                           "id": "",
@@ -45141,6 +45165,7 @@
                       "template_icon": "",
                       "team_pref_version_history_enabled": false,
                       "show_badge": false,
+                      "favorites": [],
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -49796,6 +49821,13 @@
                     "template_icon": "",
                     "team_pref_version_history_enabled": false,
                     "show_badge": false,
+                    "favorites": [
+                      {
+                        "collection_id": "",
+                        "collection_name": "",
+                        "position": ""
+                      }
+                    ],
                     "bot_id": "",
                     "initial_comment": {
                       "id": "",
