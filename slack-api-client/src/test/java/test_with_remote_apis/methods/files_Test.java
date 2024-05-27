@@ -838,6 +838,7 @@ public class files_Test {
 
     @Test
     public void issue824_gif_files() throws IOException, SlackApiException {
+        loadRandomChannel();
         MethodsClient client = slack.methods(userToken);
         File file = new File("src/test/resources/slack-logo.gif");
         byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
@@ -852,6 +853,7 @@ public class files_Test {
 
     @Test
     public void issue824_gif_files_v2() throws IOException, SlackApiException {
+        loadRandomChannel();
         MethodsClient client = slack.methods(userToken);
         File file = new File("src/test/resources/slack-logo.gif");
         byte[] fileData = Files.readAllBytes(Paths.get(file.toURI()));
@@ -862,6 +864,33 @@ public class files_Test {
         assertThat(files.getError(), is(nullValue()));
         FilesInfoResponse fileInfo = client.filesInfo(r -> r.file(upload.getFile().getId()));
         assertThat(fileInfo.getError(), is(nullValue()));
+    }
+
+    @Test
+    public void issue1314_non_image_files_with_v2() throws IOException, SlackApiException {
+        loadRandomChannel();
+        MethodsClient client = slack.methods(botToken);
+        File file = new File("src/test/resources/test.zip");
+        FilesUploadV2Response upload = client.filesUploadV2(r -> r
+                .file(file)
+                .channel(channelId)
+                .initialComment("Here you are!")
+        );
+        assertThat(upload.getError(), is(nullValue()));
+        assertThat(upload.getFile().getName(), is("test.zip"));
+        assertThat(upload.getFile().getTitle(), is("test.zip"));
+
+        FilesUploadV2Response upload2 = client.filesUploadV2(r -> r
+                .uploadFiles(Arrays.asList(FilesUploadV2Request.UploadFile.builder()
+                        .file(file)
+                        .build()
+                ))
+                .channel(channelId)
+                .initialComment("Here you are!")
+        );
+        assertThat(upload2.getFiles().get(0).getName(), is("test.zip"));
+        assertThat(upload2.getFiles().get(0).getTitle(), is("test.zip"));
+        assertThat(upload2.getError(), is(nullValue()));
     }
 
     @Test
