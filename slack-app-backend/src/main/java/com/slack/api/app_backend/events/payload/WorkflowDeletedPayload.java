@@ -6,6 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
+@Deprecated
 public class WorkflowDeletedPayload implements EventsApiPayload<WorkflowDeletedEvent> {
 
     private String token;

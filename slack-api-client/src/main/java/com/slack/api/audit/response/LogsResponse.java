@@ -59,6 +59,7 @@ public class LogsResponse implements AuditApiResponse {
         private Enterprise enterprise;
         private File file;
         private Channel channel;
+        private Message message;
         private Huddle huddle;
         private Role role;
         private AccountTypeRole accountTypeRole;
@@ -122,6 +123,13 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean orgShared;
         private List<String> teamsSharedWith;
         private String originalConnectedChannelId;
+    }
+
+    @Data
+    public static class Message { // action: message_flagged
+        private String channel;
+        private String team;
+        private String timestamp;
     }
 
     @Data

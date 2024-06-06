@@ -2915,6 +2915,7 @@
           "template_icon": "",
           "team_pref_version_history_enabled": false,
           "show_badge": false,
+          "favorites": [],
           "bot_id": "",
           "initial_comment": {
             "id": "",

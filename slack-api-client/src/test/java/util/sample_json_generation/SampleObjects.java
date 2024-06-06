@@ -338,7 +338,7 @@ public class SampleObjects {
         List<File.Address> addressList = Arrays.asList(initProperties(new File.Address()));
         List<Reaction> reactionList = Arrays.asList(initProperties(Reaction.builder().users(stringList).build()));
         File file = initProperties(File.builder()
-                .headers(initProperties(new com.slack.api.model.File.Headers()))
+                .headers(initProperties(new File.Headers()))
                 .mediaProgress(initProperties(new File.MediaProgress()))
                 .shares(shares)
                 .channels(stringList)
@@ -354,6 +354,7 @@ public class SampleObjects {
                 .titleBlocks(Blocks)
                 .dmMpdmUsersWithFileAccess(Arrays.asList(File.UserWithFileAccess.builder().access("").userId("").build()))
                 .editors(Arrays.asList(""))
+                .favorites(Arrays.asList(initProperties(new File.Favorite())))
                 .build());
         initProperties(file);
         return file;

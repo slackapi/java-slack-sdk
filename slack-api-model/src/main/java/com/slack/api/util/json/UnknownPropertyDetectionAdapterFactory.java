@@ -26,34 +26,37 @@ public class UnknownPropertyDetectionAdapterFactory implements TypeAdapterFactor
         // Check if the type adapter is a reflective, cause this solution only work for reflection.
         if (delegate instanceof ReflectiveTypeAdapterFactory.Adapter) {
 
+            // This code is only compatible with GSON 2.11.0+
             try {
-                // Get reference to the existing boundFields.
                 Class<?> adaptorClass = delegate.getClass();
-                Field boundFieldsField = null;
-                while (boundFieldsField == null && !adaptorClass.equals(Object.class)) {
+                Field fieldsDataField = null;
+                while (fieldsDataField == null && !adaptorClass.equals(Object.class)) {
                     try {
-                        boundFieldsField = adaptorClass.getDeclaredField("boundFields");
+                        fieldsDataField = adaptorClass.getDeclaredField("fieldsData");
                     } catch (NoSuchFieldException _ignore) {
-                        // Since GSON v3.10, the internal class hierarchy has been changed
+                        // Since GSON v2.10, the internal class hierarchy has been changed
                         // 1) com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$FieldReflectionAdapter
                         // 2) com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter
                         adaptorClass = adaptorClass.getSuperclass();
                     }
                 }
-                if (boundFieldsField == null) {
-                    String message = "Failed to find bound fields inside GSON";
+                if (fieldsDataField == null) {
+                    String message = "Failed to access fieldsData inside the GSON library";
                     throw new IllegalStateException(message);
                 }
-                boundFieldsField.setAccessible(true);
-                Map boundFields = (Map) boundFieldsField.get(delegate);
+                fieldsDataField.setAccessible(true);
+                Object fieldData = fieldsDataField.get(delegate);
+                Field deserializedFieldsField = fieldData.getClass().getDeclaredField("deserializedFields");
+                deserializedFieldsField.setAccessible(true);
+                Map<String, ?> deserializedFields = (Map<String, ?>) deserializedFieldsField.get(fieldData);
                 StringBuilder sb = new StringBuilder();
-                for (Object key : boundFields.keySet()) {
+                for (String key : deserializedFields.keySet()) {
                     sb.append(key + ", ");
                 }
-                final String boundFieldsStr = sb.append("...").toString();
+                final String boundFieldsStr = sb.append("... (" + type.getType().getTypeName() + ")").toString();
 
                 // Then replace it with our implementation throwing exception if the value is null.
-                boundFields = new LinkedHashMap(boundFields) {
+                deserializedFields = new LinkedHashMap<String, Object>(deserializedFields) {
 
                     @Override
                     public Object get(Object key) {
@@ -68,7 +71,7 @@ public class UnknownPropertyDetectionAdapterFactory implements TypeAdapterFactor
 
                 };
                 // Finally, push our custom map back using reflection.
-                boundFieldsField.set(delegate, boundFields);
+                deserializedFieldsField.set(fieldData, deserializedFields);
 
             } catch (Exception e) {
                 // Should never happen if the implementation doesn't change.

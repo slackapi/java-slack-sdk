@@ -7,8 +7,10 @@ import lombok.Data;
  * A workflow step supported by your app should execute
  * <p>
  * https://api.slack.com/events/workflow_step_execute
+ * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
  */
 @Data
+@Deprecated
 public class WorkflowStepExecuteEvent implements Event {
 
     public static final String TYPE_NAME = "workflow_step_execute";

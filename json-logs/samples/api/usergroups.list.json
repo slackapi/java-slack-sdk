@@ -19,7 +19,8 @@
       "updated_by": "U00000000",
       "prefs": {
         "channels": [
-          ""
+          "",
+          "C00000000"
         ],
         "groups": [
           ""
@@ -27,7 +28,8 @@
       },
       "channel_count": 12345,
       "users": [
-        ""
+        "",
+        "U00000000"
       ],
       "user_count": 12345
     }

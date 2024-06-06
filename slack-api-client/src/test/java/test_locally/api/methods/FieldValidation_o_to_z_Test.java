@@ -315,7 +315,8 @@ public class FieldValidation_o_to_z_Test {
                 "getEditors",
                 "getEditTimestamp",
                 "getTeamPrefVersionHistoryEnabled",
-                "getShowBadge"
+                "getShowBadge",
+                "getFavorites"
         );
     }
 

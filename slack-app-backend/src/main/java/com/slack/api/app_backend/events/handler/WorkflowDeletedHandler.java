@@ -4,6 +4,7 @@ import com.slack.api.app_backend.events.EventHandler;
 import com.slack.api.app_backend.events.payload.WorkflowDeletedPayload;
 import com.slack.api.model.event.WorkflowDeletedEvent;
 
+@Deprecated
 public abstract class WorkflowDeletedHandler extends EventHandler<WorkflowDeletedPayload> {
 
     @Override

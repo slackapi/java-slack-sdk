@@ -137,7 +137,8 @@ public class FieldValidation_d_to_m_Test {
                 "getEditors",
                 "getEditTimestamp",
                 "getTeamPrefVersionHistoryEnabled",
-                "getShowBadge"
+                "getShowBadge",
+                "getFavorites"
         );
     }
 
@@ -248,7 +249,8 @@ public class FieldValidation_d_to_m_Test {
                 "getEditors",
                 "getEditTimestamp",
                 "getTeamPrefVersionHistoryEnabled",
-                "getShowBadge"
+                "getShowBadge",
+                "getFavorites"
         );
     }
 

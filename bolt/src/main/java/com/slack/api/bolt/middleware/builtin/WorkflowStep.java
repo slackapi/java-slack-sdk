@@ -17,12 +17,16 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
 
+/**
+ * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ */
 @Slf4j
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Deprecated
 public class WorkflowStep implements Middleware, AutoCloseable {
 
     private String callbackId;

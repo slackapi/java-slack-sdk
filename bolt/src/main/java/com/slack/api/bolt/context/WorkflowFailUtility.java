@@ -2,12 +2,15 @@ package com.slack.api.bolt.context;
 
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
-import com.slack.api.methods.response.workflows.WorkflowsStepCompletedResponse;
 import com.slack.api.methods.response.workflows.WorkflowsStepFailedResponse;
 
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ */
+@Deprecated
 public interface WorkflowFailUtility {
 
     String getWorkflowStepExecuteId();

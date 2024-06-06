@@ -9,6 +9,8 @@ import com.slack.api.util.json.GsonFactory;
 import lombok.ToString;
 
 @ToString(callSuper = true)
+// Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+@Deprecated
 public class WorkflowStepSaveRequest extends Request<WorkflowStepSaveContext> {
 
     private final String requestBody;

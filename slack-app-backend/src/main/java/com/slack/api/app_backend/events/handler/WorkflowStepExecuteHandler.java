@@ -4,6 +4,7 @@ import com.slack.api.app_backend.events.EventHandler;
 import com.slack.api.app_backend.events.payload.WorkflowStepExecutePayload;
 import com.slack.api.model.event.WorkflowStepExecuteEvent;
 
+@Deprecated
 public abstract class WorkflowStepExecuteHandler extends EventHandler<WorkflowStepExecutePayload> {
 
     @Override

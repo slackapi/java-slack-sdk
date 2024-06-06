@@ -344,6 +344,18 @@ public class File {
 
     private Boolean showBadge;
 
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Favorite {
+        private String collectionId;
+        private String collectionName;
+        private String position;
+    }
+
+    private List<Favorite> favorites;
+
     // ---------------------------------------
     // file comments
     // https://api.slack.com/changelog/2018-05-file-threads-soon-tread

@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ */
+@Deprecated
 public interface WorkflowUpdateUtility {
 
     String getWorkflowStepEditId();

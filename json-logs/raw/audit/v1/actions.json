@@ -394,7 +394,8 @@
       "usergroup_add_to_team_enqueued",
       "usergroup_remove_from_team_enqueued",
       "usergroup_updated",
-      "usergroup_update_enqueued"
+      "usergroup_update_enqueued",
+      "usergroup_section_updated"
     ],
     "role": [
       "role_assigned",

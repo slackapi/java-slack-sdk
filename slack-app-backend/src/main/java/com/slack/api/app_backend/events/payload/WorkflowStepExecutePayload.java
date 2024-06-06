@@ -6,6 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
+@Deprecated
 public class WorkflowStepExecutePayload implements EventsApiPayload<WorkflowStepExecuteEvent> {
 
     private String token;

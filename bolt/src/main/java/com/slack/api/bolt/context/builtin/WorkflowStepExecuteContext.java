@@ -6,7 +6,8 @@ import com.slack.api.bolt.context.WorkflowFailUtility;
 import lombok.*;
 
 /**
- * workflow_step_edit type request's context.
+ * workflow_step_execute type request's context.
+ * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
  */
 @Getter
 @Setter
@@ -15,6 +16,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
+@Deprecated
 public class WorkflowStepExecuteContext extends Context
         implements WorkflowCompleteUtility, WorkflowFailUtility {
     private String callbackId;

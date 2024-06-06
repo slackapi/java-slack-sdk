@@ -462,6 +462,7 @@ public class Actions {
         public static final String usergroup_remove_from_team_enqueued = "usergroup_remove_from_team_enqueued";
         public static final String usergroup_updated = "usergroup_updated";
         public static final String usergroup_update_enqueued = "usergroup_update_enqueued";
+        public static final String usergroup_section_updated = "usergroup_section_updated";
     }
 
     public static class AccountTypeRole {

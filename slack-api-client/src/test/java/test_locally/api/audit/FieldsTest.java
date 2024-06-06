@@ -39,6 +39,7 @@ public class FieldsTest {
                 "getFile",
                 "getUsergroup",
                 "getChannel",
+                "getMessage",
                 "getWorkspace",
                 "getWorkflow",
                 "getWorkflowV2",
