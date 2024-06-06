@@ -15,6 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Deprecated
 public class WorkflowStepSavePayload {
     public static final String TYPE = "view_submission";
     private final String type = TYPE;

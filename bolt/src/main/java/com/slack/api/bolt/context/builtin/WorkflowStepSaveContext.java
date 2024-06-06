@@ -10,6 +10,10 @@ import lombok.*;
 
 import java.util.Map;
 
+/**
+ * workflow_step_save type request's context.
+ * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ */
 @Getter
 @Setter
 @Builder
@@ -17,6 +21,7 @@ import java.util.Map;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
+@Deprecated
 public class WorkflowStepSaveContext extends Context implements WorkflowUpdateUtility {
 
     private String workflowStepEditId;

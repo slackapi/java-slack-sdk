@@ -772,14 +772,26 @@ public class App {
     // Workflows: Steps from Apps
     // https://api.slack.com/workflows/steps
 
+    /**
+     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     */
+    @Deprecated
     public App step(WorkflowStep step) {
         return this.use(step);
     }
 
+    /**
+     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     */
+    @Deprecated
     public App workflowStepEdit(String callbackId, WorkflowStepEditHandler handler) {
         return workflowStepEdit(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
     }
 
+    /**
+     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     */
+    @Deprecated
     public App workflowStepEdit(Pattern callbackId, WorkflowStepEditHandler handler) {
         if (workflowStepEditHandlers.get(callbackId) != null) {
             log.warn("Replaced the handler for {}", callbackId);
@@ -788,10 +800,18 @@ public class App {
         return this;
     }
 
+    /**
+     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     */
+    @Deprecated
     public App workflowStepSave(String callbackId, WorkflowStepSaveHandler handler) {
         return workflowStepSave(Pattern.compile("^" + Pattern.quote(callbackId) + "$"), handler);
     }
 
+    /**
+     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     */
+    @Deprecated
     public App workflowStepSave(Pattern callbackId, WorkflowStepSaveHandler handler) {
         if (workflowStepSaveHandlers.get(callbackId) != null) {
             log.warn("Replaced the handler for {}", callbackId);
@@ -800,10 +820,18 @@ public class App {
         return this;
     }
 
+    /**
+     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     */
+    @Deprecated
     public App workflowStepExecute(String pattern, WorkflowStepExecuteHandler handler) {
         return workflowStepExecute(Pattern.compile("^.*" + Pattern.quote(pattern) + ".*$"), handler);
     }
 
+    /**
+     * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+     */
+    @Deprecated
     public App workflowStepExecute(Pattern pattern, WorkflowStepExecuteHandler handler) {
         if (workflowStepExecuteHandlers.get(pattern) != null) {
             log.warn("Replaced the handler for {}", pattern);

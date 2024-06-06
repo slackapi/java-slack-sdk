@@ -10,6 +10,10 @@ import java.util.List;
 
 import static com.slack.api.model.view.Views.view;
 
+/**
+ * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+ */
+@Deprecated
 public interface WorkflowConfigureUtility {
 
     String getTriggerId();
