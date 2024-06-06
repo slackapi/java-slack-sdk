@@ -6,5 +6,6 @@ import com.slack.api.bolt.request.builtin.WorkflowStepSaveRequest;
 import com.slack.api.bolt.response.Response;
 
 @FunctionalInterface
+@Deprecated
 public interface WorkflowStepSaveHandler extends Handler<WorkflowStepSaveContext, WorkflowStepSaveRequest, Response> {
 }

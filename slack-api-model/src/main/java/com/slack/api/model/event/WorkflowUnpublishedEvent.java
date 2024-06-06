@@ -7,8 +7,10 @@ import lombok.Data;
  * A workflow that contains a step supported by your app was unpublished
  * <p>
  * https://api.slack.com/events/workflow_unpublished
+ * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
  */
 @Data
+@Deprecated
 public class WorkflowUnpublishedEvent implements Event {
 
     public static final String TYPE_NAME = "workflow_unpublished";

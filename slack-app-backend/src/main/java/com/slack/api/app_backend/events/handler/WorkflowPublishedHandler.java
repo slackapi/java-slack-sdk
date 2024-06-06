@@ -4,6 +4,7 @@ import com.slack.api.app_backend.events.EventHandler;
 import com.slack.api.app_backend.events.payload.WorkflowPublishedPayload;
 import com.slack.api.model.event.WorkflowPublishedEvent;
 
+@Deprecated
 public abstract class WorkflowPublishedHandler extends EventHandler<WorkflowPublishedPayload> {
 
     @Override

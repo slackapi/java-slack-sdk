@@ -12,11 +12,13 @@ import java.util.Map;
 
 /**
  * https://api.slack.com/reference/workflows/workflow_step_edit
+ * @deprecated Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Deprecated
 public class WorkflowStepEditPayload {
 
     public static final String TYPE = "workflow_step_edit";
