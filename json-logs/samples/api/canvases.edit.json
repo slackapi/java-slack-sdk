@@ -1,0 +1,10 @@
+{
+  "ok": false,
+  "error": "",
+  "response_metadata": {
+    "scopes": [
+      "canvases:write"
+    ],
+    "acceptedScopes": [ "canvases:write" ]
+  }
+}

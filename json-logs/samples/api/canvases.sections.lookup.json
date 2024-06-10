@@ -1,0 +1,11 @@
+{
+  "ok":true,
+  "sections":[
+    {"id":"temp:C:NOK3c0ca834d7e445138915da572"},
+    {"id":"temp:C:NOKb1a2e98f63574ba5bc111865f"}
+  ],
+  "response_metadata":{
+    "scopes":["canvases:read"]
+  },
+  "acceptedScopes":["canvases:read"]
+}
