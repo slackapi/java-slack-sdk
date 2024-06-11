@@ -1,5 +1,6 @@
 {
-  "ok":true,
+  "ok":false,
+  "error": "",
   "sections":[
     {"id":""}
   ],
