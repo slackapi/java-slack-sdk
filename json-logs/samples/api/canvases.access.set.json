@@ -3,9 +3,5 @@
   "error": "",
   "failed_to_update_channel_ids": [ "C0147RBUF19" ],
   "response_metadata": {
-    "scopes": [
-      "canvases:write"
-    ],
-    "acceptedScopes": [ "canvases:write" ]
   }
 }
