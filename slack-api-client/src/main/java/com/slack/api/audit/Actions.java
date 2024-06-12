@@ -323,6 +323,8 @@ public class Actions {
         public static final String private_channel_converted_to_public = "private_channel_converted_to_public";
         public static final String record_channel_archive = "record_channel_archive";
         public static final String record_channel_unarchive = "record_channel_unarchive";
+        public static final String channel_converted_to_record_channel = "channel_converted_to_record_channel";
+        public static final String record_channel_converted_to_channel = "record_channel_converted_to_channel";
     }
 
     public static class App {

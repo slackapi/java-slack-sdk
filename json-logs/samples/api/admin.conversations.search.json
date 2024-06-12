@@ -62,7 +62,16 @@
           }
         ]
       },
-      "context_team_id": "T00000000"
+      "context_team_id": "T00000000",
+      "lists": {
+        "total_count": 12345,
+        "ownership_details": [
+          {
+            "count": 123,
+            "team_id": ""
+          }
+        ]
+      }
     }
   ],
   "next_cursor": "",

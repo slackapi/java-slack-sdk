@@ -55,6 +55,7 @@ public class AdminConversationsSearchResponse implements SlackApiTextResponse {
         private Boolean isDisconnectInProgress;
         private String conversationHostId;
         private Canvas canvas;
+        private Lists lists;
     }
 
     @Data
@@ -64,6 +65,17 @@ public class AdminConversationsSearchResponse implements SlackApiTextResponse {
     }
     @Data
     public static class CanvasOwnershipDetail {
+        private Integer count;
+        private String teamId;
+    }
+
+    @Data
+    public static class Lists {
+        private Integer totalCount;
+        private List<ListsOwnershipDetail> ownershipDetails;
+    }
+    @Data
+    public static class ListsOwnershipDetail {
         private Integer count;
         private String teamId;
     }

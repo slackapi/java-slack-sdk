@@ -299,7 +299,9 @@
       "external_shared_channel_access_downgraded",
       "private_channel_converted_to_public",
       "record_channel_archive",
-      "record_channel_unarchive"
+      "record_channel_unarchive",
+      "channel_converted_to_record_channel",
+      "record_channel_converted_to_channel"
     ],
     "app": [
       "app_installed",
