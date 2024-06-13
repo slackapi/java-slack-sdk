@@ -63,10 +63,17 @@ import com.slack.api.methods.request.calls.CallsInfoRequest;
 import com.slack.api.methods.request.calls.CallsUpdateRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveRequest;
+import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
+import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
+import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
+import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
 import com.slack.api.methods.request.channels.*;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
+import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -110,6 +117,7 @@ import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.request.users.*;
+import com.slack.api.methods.request.users.discoverable_contacts.UsersDiscoverableContactsLookupRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.slack.api.methods.request.views.ViewsOpenRequest;
@@ -181,10 +189,17 @@ import com.slack.api.methods.response.calls.CallsInfoResponse;
 import com.slack.api.methods.response.calls.CallsUpdateResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsRemoveResponse;
+import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
+import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
+import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
+import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
+import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
 import com.slack.api.methods.response.channels.*;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.*;
+import com.slack.api.methods.response.conversations.canvases.ConversationsCanvasesCreateResponse;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
@@ -229,6 +244,7 @@ import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListRespon
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.UsersLookupByEmailResponse;
 import com.slack.api.methods.response.users.*;
+import com.slack.api.methods.response.users.discoverable_contacts.UsersDiscoverableContactsLookupResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
@@ -990,6 +1006,34 @@ public interface MethodsClient {
     BotsInfoResponse botsInfo(RequestConfigurator<BotsInfoRequest.BotsInfoRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
+    // canvases
+    // ------------------------------
+
+    CanvasesCreateResponse canvasesCreate(CanvasesCreateRequest req) throws IOException, SlackApiException;
+
+    CanvasesCreateResponse canvasesCreate(RequestConfigurator<CanvasesCreateRequest.CanvasesCreateRequestBuilder> req) throws IOException, SlackApiException;
+
+    CanvasesEditResponse canvasesEdit(CanvasesEditRequest req) throws IOException, SlackApiException;
+
+    CanvasesEditResponse canvasesEdit(RequestConfigurator<CanvasesEditRequest.CanvasesEditRequestBuilder> req) throws IOException, SlackApiException;
+
+    CanvasesDeleteResponse canvasesDelete(CanvasesDeleteRequest req) throws IOException, SlackApiException;
+
+    CanvasesDeleteResponse canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req) throws IOException, SlackApiException;
+
+    CanvasesAccessSetResponse canvasesAccessSet(CanvasesAccessSetRequest req) throws IOException, SlackApiException;
+
+    CanvasesAccessSetResponse canvasesAccessSet(RequestConfigurator<CanvasesAccessSetRequest.CanvasesAccessSetRequestBuilder> req) throws IOException, SlackApiException;
+
+    CanvasesAccessDeleteResponse canvasesAccessDelete(CanvasesAccessDeleteRequest req) throws IOException, SlackApiException;
+
+    CanvasesAccessDeleteResponse canvasesAccessDelete(RequestConfigurator<CanvasesAccessDeleteRequest.CanvasesAccessDeleteRequestBuilder> req) throws IOException, SlackApiException;
+
+    CanvasesSectionsLookupResponse canvasesSectionsLookup(CanvasesSectionsLookupRequest req) throws IOException, SlackApiException;
+
+    CanvasesSectionsLookupResponse canvasesSectionsLookup(RequestConfigurator<CanvasesSectionsLookupRequest.CanvasesSectionsLookupRequestBuilder> req) throws IOException, SlackApiException;
+
+    // ------------------------------
     // calls
     // ------------------------------
 
@@ -1292,6 +1336,10 @@ public interface MethodsClient {
 
     ConversationsListConnectInvitesResponse conversationsListConnectInvites(RequestConfigurator<ConversationsListConnectInvitesRequest.ConversationsListConnectInvitesRequestBuilder> req) throws IOException, SlackApiException;
 
+    ConversationsCanvasesCreateResponse conversationsCanvasesCreate(ConversationsCanvasesCreateRequest req) throws IOException, SlackApiException;
+
+    ConversationsCanvasesCreateResponse conversationsCanvasesCreate(RequestConfigurator<ConversationsCanvasesCreateRequest.ConversationsCanvasesCreateRequestBuilder> req) throws IOException, SlackApiException;
+
     // ------------------------------
     // dialog
     // ------------------------------
@@ -1356,10 +1404,12 @@ public interface MethodsClient {
 
     FilesSharedPublicURLResponse filesSharedPublicURL(RequestConfigurator<FilesSharedPublicURLRequest.FilesSharedPublicURLRequestBuilder> req) throws IOException, SlackApiException;
 
-    @Deprecated // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
+    @Deprecated
+        // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
     FilesUploadResponse filesUpload(FilesUploadRequest req) throws IOException, SlackApiException;
 
-    @Deprecated // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
+    @Deprecated
+        // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
     FilesUploadResponse filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req) throws IOException, SlackApiException;
 
     FilesGetUploadURLExternalResponse filesGetUploadURLExternal(FilesGetUploadURLExternalRequest req) throws IOException, SlackApiException;
@@ -1774,10 +1824,12 @@ public interface MethodsClient {
     // rtm
     // ------------------------------
 
-    @Deprecated // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
+    @Deprecated
+        // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
     RTMConnectResponse rtmConnect(RTMConnectRequest req) throws IOException, SlackApiException;
 
-    @Deprecated // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
+    @Deprecated
+        // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
     RTMConnectResponse rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req) throws IOException, SlackApiException;
 
     @Deprecated
@@ -1806,22 +1858,28 @@ public interface MethodsClient {
     // stars
     // ------------------------------
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsAddResponse starsAdd(StarsAddRequest req) throws IOException, SlackApiException;
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsAddResponse starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req) throws IOException, SlackApiException;
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsListResponse starsList(StarsListRequest req) throws IOException, SlackApiException;
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsListResponse starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req) throws IOException, SlackApiException;
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsRemoveResponse starsRemove(StarsRemoveRequest req) throws IOException, SlackApiException;
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     StarsRemoveResponse starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
@@ -1939,6 +1997,10 @@ public interface MethodsClient {
     UsersSetPresenceResponse usersSetPresence(UsersSetPresenceRequest req) throws IOException, SlackApiException;
 
     UsersSetPresenceResponse usersSetPresence(RequestConfigurator<UsersSetPresenceRequest.UsersSetPresenceRequestBuilder> req) throws IOException, SlackApiException;
+
+    UsersDiscoverableContactsLookupResponse usersDiscoverableContactsLookup(UsersDiscoverableContactsLookupRequest req) throws IOException, SlackApiException;
+
+    UsersDiscoverableContactsLookupResponse usersDiscoverableContactsLookup(RequestConfigurator<UsersDiscoverableContactsLookupRequest.UsersDiscoverableContactsLookupRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // users.profile

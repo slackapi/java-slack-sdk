@@ -19,7 +19,9 @@ import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversa
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistListGroupsLinkedToChannelRequest;
 import com.slack.api.methods.request.admin.conversations.whitelist.AdminConversationsWhitelistRemoveRequest;
 import com.slack.api.methods.request.admin.emoji.*;
-import com.slack.api.methods.request.admin.functions.*;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsListRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsLookupRequest;
+import com.slack.api.methods.request.admin.functions.AdminFunctionsPermissionsSetRequest;
 import com.slack.api.methods.request.admin.invite_requests.*;
 import com.slack.api.methods.request.admin.roles.AdminRolesAddAssignmentsRequest;
 import com.slack.api.methods.request.admin.roles.AdminRolesListAssignmentsRequest;
@@ -61,10 +63,17 @@ import com.slack.api.methods.request.calls.CallsInfoRequest;
 import com.slack.api.methods.request.calls.CallsUpdateRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveRequest;
+import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
+import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
+import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
+import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
 import com.slack.api.methods.request.channels.*;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
+import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -106,6 +115,7 @@ import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.request.users.*;
+import com.slack.api.methods.request.users.discoverable_contacts.UsersDiscoverableContactsLookupRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.slack.api.methods.request.views.ViewsOpenRequest;
@@ -117,6 +127,7 @@ import com.slack.api.methods.request.workflows.WorkflowsStepFailedRequest;
 import com.slack.api.methods.request.workflows.WorkflowsUpdateStepRequest;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.ConversationType;
+import com.slack.api.model.canvas.CanvasDocumentContent;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -742,6 +753,7 @@ public class RequestFormBuilder {
         setIfNotNull("sort_dir", req.getSortDir(), form);
         return form;
     }
+
     public static FormBody.Builder toForm(AdminRolesRemoveAssignmentsRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("role_id", req.getRoleId(), form);
@@ -753,6 +765,7 @@ public class RequestFormBuilder {
         }
         return form;
     }
+
     public static FormBody.Builder toForm(AdminTeamsAdminsListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("cursor", req.getCursor(), form);
@@ -1165,6 +1178,70 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("bot", req.getBot(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CanvasesCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("title", req.getTitle(), form);
+        if (req.getDocumentContent() != null) {
+            setIfNotNull("document_content", GSON.toJson(req.getDocumentContent()), form);
+        } else if (req.getMarkdown() != null) {
+            CanvasDocumentContent documentContent = CanvasDocumentContent.builder()
+                    .type("markdown")
+                    .markdown(req.getMarkdown())
+                    .build();
+            setIfNotNull("document_content", GSON.toJson(documentContent), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CanvasesEditRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        if (req.getChanges() != null) {
+            setIfNotNull("changes", getJsonWithGsonAnonymInnerClassHandling(req.getChanges()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CanvasesDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CanvasesAccessSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        setIfNotNull("access_level", req.getAccessLevel(), form);
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getUserIds()), form);
+        }
+        if (req.getChannelIds() != null) {
+            setIfNotNull("channel_ids", getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CanvasesAccessDeleteRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        if (req.getUserIds() != null) {
+            setIfNotNull("user_ids", getJsonWithGsonAnonymInnerClassHandling(req.getUserIds()), form);
+        }
+        if (req.getChannelIds() != null) {
+            setIfNotNull("channel_ids", getJsonWithGsonAnonymInnerClassHandling(req.getChannelIds()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(CanvasesSectionsLookupRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("canvas_id", req.getCanvasId(), form);
+        if (req.getCriteria() != null) {
+            setIfNotNull("criteria", GSON.toJson(req.getCriteria()), form);
+        }
         return form;
     }
 
@@ -1771,6 +1848,21 @@ public class RequestFormBuilder {
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ConversationsCanvasesCreateRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getDocumentContent() != null) {
+            setIfNotNull("document_content", GSON.toJson(req.getDocumentContent()), form);
+        } else if (req.getMarkdown() != null) {
+            CanvasDocumentContent documentContent = CanvasDocumentContent.builder()
+                    .type("markdown")
+                    .markdown(req.getMarkdown())
+                    .build();
+            setIfNotNull("document_content", GSON.toJson(documentContent), form);
+        }
         return form;
     }
 
@@ -2687,6 +2779,12 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(UsersSetPresenceRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("presence", req.getPresence(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(UsersDiscoverableContactsLookupRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("email", req.getEmail(), form);
         return form;
     }
 

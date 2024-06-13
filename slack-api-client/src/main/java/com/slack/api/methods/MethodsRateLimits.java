@@ -245,6 +245,14 @@ public class MethodsRateLimits {
         setRateLimitTier(CALLS_PARTICIPANTS_ADD, Tier2);
         setRateLimitTier(CALLS_PARTICIPANTS_REMOVE, Tier2);
 
+        setRateLimitTier(CANVASES_ACCESS_DELETE, Tier3);
+        setRateLimitTier(CANVASES_ACCESS_SET, Tier3);
+        setRateLimitTier(CANVASES_CREATE, Tier2);
+        setRateLimitTier(CANVASES_DELETE, Tier3);
+        setRateLimitTier(CANVASES_EDIT, Tier3);
+        setRateLimitTier(CANVASES_SECTIONS_LOOKUP, Tier3);
+        setRateLimitTier(CONVERSATIONS_CANVASES_CREATE, Tier2);
+
         setRateLimitTier(CHAT_DELETE, Tier3);
         setRateLimitTier(CHAT_DELETE_SCHEDULED_MESSAGE, Tier3);
         setRateLimitTier(CHAT_GET_PERMALINK, SpecialTier_chat_getPermalink);
@@ -436,6 +444,7 @@ public class MethodsRateLimits {
         setRateLimitTier(USERS_SET_PRESENCE, Tier2);
         setRateLimitTier(USERS_PROFILE_GET, Tier4);
         setRateLimitTier(USERS_PROFILE_SET, Tier3);
+        setRateLimitTier(USERS_DISCOVERABLE_CONTACTS_LOOKUP, Tier2);
 
         setRateLimitTier(VIEWS_OPEN, Tier4);
         setRateLimitTier(VIEWS_PUBLISH, Tier4);

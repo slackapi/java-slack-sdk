@@ -61,9 +61,16 @@ import com.slack.api.methods.request.calls.CallsInfoRequest;
 import com.slack.api.methods.request.calls.CallsUpdateRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveRequest;
+import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
+import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
+import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
+import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
+import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -101,6 +108,7 @@ import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.request.users.*;
+import com.slack.api.methods.request.users.discoverable_contacts.UsersDiscoverableContactsLookupRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.slack.api.methods.request.views.ViewsOpenRequest;
@@ -166,9 +174,16 @@ import com.slack.api.methods.response.calls.CallsInfoResponse;
 import com.slack.api.methods.response.calls.CallsUpdateResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsRemoveResponse;
+import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
+import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
+import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
+import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
+import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.*;
+import com.slack.api.methods.response.conversations.canvases.ConversationsCanvasesCreateResponse;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
@@ -206,6 +221,7 @@ import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.*;
+import com.slack.api.methods.response.users.discoverable_contacts.UsersDiscoverableContactsLookupResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
@@ -1470,6 +1486,66 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<CanvasesCreateResponse> canvasesCreate(CanvasesCreateRequest req) {
+        return executor.execute(CANVASES_CREATE, toMap(req), () -> methods.canvasesCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<CanvasesCreateResponse> canvasesCreate(RequestConfigurator<CanvasesCreateRequest.CanvasesCreateRequestBuilder> req) {
+        return canvasesCreate(req.configure(CanvasesCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CanvasesEditResponse> canvasesEdit(CanvasesEditRequest req) {
+        return executor.execute(CANVASES_EDIT, toMap(req), () -> methods.canvasesEdit(req));
+    }
+
+    @Override
+    public CompletableFuture<CanvasesEditResponse> canvasesEdit(RequestConfigurator<CanvasesEditRequest.CanvasesEditRequestBuilder> req) {
+        return canvasesEdit(req.configure(CanvasesEditRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CanvasesDeleteResponse> canvasesDelete(CanvasesDeleteRequest req) {
+        return executor.execute(CANVASES_DELETE, toMap(req), () -> methods.canvasesDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<CanvasesDeleteResponse> canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req) {
+        return canvasesDelete(req.configure(CanvasesDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CanvasesAccessSetResponse> canvasesAccessSet(CanvasesAccessSetRequest req) {
+        return executor.execute(CANVASES_ACCESS_SET, toMap(req), () -> methods.canvasesAccessSet(req));
+    }
+
+    @Override
+    public CompletableFuture<CanvasesAccessSetResponse> canvasesAccessSet(RequestConfigurator<CanvasesAccessSetRequest.CanvasesAccessSetRequestBuilder> req) {
+        return canvasesAccessSet(req.configure(CanvasesAccessSetRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CanvasesAccessDeleteResponse> canvasesAccessDelete(CanvasesAccessDeleteRequest req) {
+        return executor.execute(CANVASES_ACCESS_DELETE, toMap(req), () -> methods.canvasesAccessDelete(req));
+    }
+
+    @Override
+    public CompletableFuture<CanvasesAccessDeleteResponse> canvasesAccessDelete(RequestConfigurator<CanvasesAccessDeleteRequest.CanvasesAccessDeleteRequestBuilder> req) {
+        return canvasesAccessDelete(req.configure(CanvasesAccessDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<CanvasesSectionsLookupResponse> canvasesSectionsLookup(CanvasesSectionsLookupRequest req) {
+        return executor.execute(CANVASES_SECTIONS_LOOKUP, toMap(req), () -> methods.canvasesSectionsLookup(req));
+    }
+
+    @Override
+    public CompletableFuture<CanvasesSectionsLookupResponse> canvasesSectionsLookup(RequestConfigurator<CanvasesSectionsLookupRequest.CanvasesSectionsLookupRequestBuilder> req) {
+        return canvasesSectionsLookup(req.configure(CanvasesSectionsLookupRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<ChatGetPermalinkResponse> chatGetPermalink(ChatGetPermalinkRequest req) {
         return executor.execute(CHAT_GET_PERMALINK, toMap(req), () -> methods.chatGetPermalink(req));
     }
@@ -1750,6 +1826,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<ConversationsUnarchiveResponse> conversationsUnarchive(RequestConfigurator<ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req) {
         return conversationsUnarchive(req.configure(ConversationsUnarchiveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ConversationsCanvasesCreateResponse> conversationsCanvasesCreate(ConversationsCanvasesCreateRequest req) {
+        return executor.execute(CONVERSATIONS_CANVASES_CREATE, toMap(req), () -> methods.conversationsCanvasesCreate(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsCanvasesCreateResponse> conversationsCanvasesCreate(RequestConfigurator<ConversationsCanvasesCreateRequest.ConversationsCanvasesCreateRequestBuilder> req) {
+        return conversationsCanvasesCreate(req.configure(ConversationsCanvasesCreateRequest.builder()).build());
     }
 
     @Override
@@ -2576,6 +2662,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<UsersSetPresenceResponse> usersSetPresence(RequestConfigurator<UsersSetPresenceRequest.UsersSetPresenceRequestBuilder> req) {
         return usersSetPresence(req.configure(UsersSetPresenceRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<UsersDiscoverableContactsLookupResponse> usersDiscoverableContactsLookup(UsersDiscoverableContactsLookupRequest req) {
+        return executor.execute(USERS_DISCOVERABLE_CONTACTS_LOOKUP, toMap(req), () -> methods.usersDiscoverableContactsLookup(req));
+    }
+
+    @Override
+    public CompletableFuture<UsersDiscoverableContactsLookupResponse> usersDiscoverableContactsLookup(RequestConfigurator<UsersDiscoverableContactsLookupRequest.UsersDiscoverableContactsLookupRequestBuilder> req) {
+        return usersDiscoverableContactsLookup(req.configure(UsersDiscoverableContactsLookupRequest.builder()).build());
     }
 
     @Override

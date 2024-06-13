@@ -1,0 +1,14 @@
+{
+  "ok": false,
+  "error": "",
+  "needed": "",
+  "provided": "",
+  "user": {
+    "is_discoverable": false
+  },
+  "response_metadata": {
+    "messages": [
+      ""
+    ]
+  }
+}
