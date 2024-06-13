@@ -4343,6 +4343,7 @@
               }
             ],
             "private_channels_with_file_access_count": 123,
+            "private_file_with_access_count": 123,
             "dm_mpdm_users_with_file_access": [
               {
                 "user_id": "",
@@ -7214,6 +7215,7 @@
               "last_read": 123,
               "title_blocks": [],
               "private_channels_with_file_access_count": 123,
+              "private_file_with_access_count": 123,
               "dm_mpdm_users_with_file_access": [],
               "org_or_workspace_access": "",
               "update_notification": 123,
@@ -15882,6 +15884,7 @@
                     "last_read": 123,
                     "title_blocks": [],
                     "private_channels_with_file_access_count": 123,
+                    "private_file_with_access_count": 123,
                     "dm_mpdm_users_with_file_access": [],
                     "org_or_workspace_access": "",
                     "update_notification": 123,
@@ -20368,6 +20371,7 @@
                   }
                 ],
                 "private_channels_with_file_access_count": 123,
+                "private_file_with_access_count": 123,
                 "dm_mpdm_users_with_file_access": [
                   {
                     "user_id": "",

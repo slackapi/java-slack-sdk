@@ -65,10 +65,17 @@ import com.slack.api.methods.request.calls.CallsInfoRequest;
 import com.slack.api.methods.request.calls.CallsUpdateRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveRequest;
+import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
+import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
+import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
+import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
 import com.slack.api.methods.request.channels.*;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
+import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -112,6 +119,7 @@ import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.request.users.*;
+import com.slack.api.methods.request.users.discoverable_contacts.UsersDiscoverableContactsLookupRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.slack.api.methods.request.views.ViewsOpenRequest;
@@ -183,10 +191,17 @@ import com.slack.api.methods.response.calls.CallsInfoResponse;
 import com.slack.api.methods.response.calls.CallsUpdateResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsRemoveResponse;
+import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
+import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
+import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
+import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
+import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
 import com.slack.api.methods.response.channels.*;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.*;
+import com.slack.api.methods.response.conversations.canvases.ConversationsCanvasesCreateResponse;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
@@ -231,6 +246,7 @@ import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListRespon
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.UsersLookupByEmailResponse;
 import com.slack.api.methods.response.users.*;
+import com.slack.api.methods.response.users.discoverable_contacts.UsersDiscoverableContactsLookupResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
@@ -1494,6 +1510,66 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public CanvasesCreateResponse canvasesCreate(CanvasesCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CANVASES_CREATE, getToken(req), CanvasesCreateResponse.class);
+    }
+
+    @Override
+    public CanvasesCreateResponse canvasesCreate(RequestConfigurator<CanvasesCreateRequest.CanvasesCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return canvasesCreate(req.configure(CanvasesCreateRequest.builder()).build());
+    }
+
+    @Override
+    public CanvasesEditResponse canvasesEdit(CanvasesEditRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CANVASES_EDIT, getToken(req), CanvasesEditResponse.class);
+    }
+
+    @Override
+    public CanvasesEditResponse canvasesEdit(RequestConfigurator<CanvasesEditRequest.CanvasesEditRequestBuilder> req) throws IOException, SlackApiException {
+        return canvasesEdit(req.configure(CanvasesEditRequest.builder()).build());
+    }
+
+    @Override
+    public CanvasesDeleteResponse canvasesDelete(CanvasesDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CANVASES_DELETE, getToken(req), CanvasesDeleteResponse.class);
+    }
+
+    @Override
+    public CanvasesDeleteResponse canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return canvasesDelete(req.configure(CanvasesDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CanvasesAccessSetResponse canvasesAccessSet(CanvasesAccessSetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CANVASES_ACCESS_SET, getToken(req), CanvasesAccessSetResponse.class);
+    }
+
+    @Override
+    public CanvasesAccessSetResponse canvasesAccessSet(RequestConfigurator<CanvasesAccessSetRequest.CanvasesAccessSetRequestBuilder> req) throws IOException, SlackApiException {
+        return canvasesAccessSet(req.configure(CanvasesAccessSetRequest.builder()).build());
+    }
+
+    @Override
+    public CanvasesAccessDeleteResponse canvasesAccessDelete(CanvasesAccessDeleteRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CANVASES_ACCESS_DELETE, getToken(req), CanvasesAccessDeleteResponse.class);
+    }
+
+    @Override
+    public CanvasesAccessDeleteResponse canvasesAccessDelete(RequestConfigurator<CanvasesAccessDeleteRequest.CanvasesAccessDeleteRequestBuilder> req) throws IOException, SlackApiException {
+        return canvasesAccessDelete(req.configure(CanvasesAccessDeleteRequest.builder()).build());
+    }
+
+    @Override
+    public CanvasesSectionsLookupResponse canvasesSectionsLookup(CanvasesSectionsLookupRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CANVASES_SECTIONS_LOOKUP, getToken(req), CanvasesSectionsLookupResponse.class);
+    }
+
+    @Override
+    public CanvasesSectionsLookupResponse canvasesSectionsLookup(RequestConfigurator<CanvasesSectionsLookupRequest.CanvasesSectionsLookupRequestBuilder> req) throws IOException, SlackApiException {
+        return canvasesSectionsLookup(req.configure(CanvasesSectionsLookupRequest.builder()).build());
+    }
+
+    @Override
     public CallsAddResponse callsAdd(CallsAddRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.CALLS_ADD, getToken(req), CallsAddResponse.class);
     }
@@ -2063,6 +2139,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsListConnectInvitesResponse conversationsListConnectInvites(RequestConfigurator<ConversationsListConnectInvitesRequest.ConversationsListConnectInvitesRequestBuilder> req) throws IOException, SlackApiException {
         return conversationsListConnectInvites(req.configure(ConversationsListConnectInvitesRequest.builder()).build());
+    }
+
+    @Override
+    public ConversationsCanvasesCreateResponse conversationsCanvasesCreate(ConversationsCanvasesCreateRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_CANVASES_CREATE, getToken(req), ConversationsCanvasesCreateResponse.class);
+    }
+
+    @Override
+    public ConversationsCanvasesCreateResponse conversationsCanvasesCreate(RequestConfigurator<ConversationsCanvasesCreateRequest.ConversationsCanvasesCreateRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsCanvasesCreate(req.configure(ConversationsCanvasesCreateRequest.builder()).build());
     }
 
     @Override
@@ -3273,6 +3359,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public UsersSetPresenceResponse usersSetPresence(RequestConfigurator<UsersSetPresenceRequest.UsersSetPresenceRequestBuilder> req) throws IOException, SlackApiException {
         return usersSetPresence(req.configure(UsersSetPresenceRequest.builder()).build());
+    }
+
+    @Override
+    public UsersDiscoverableContactsLookupResponse usersDiscoverableContactsLookup(UsersDiscoverableContactsLookupRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.USERS_DISCOVERABLE_CONTACTS_LOOKUP, getToken(req), UsersDiscoverableContactsLookupResponse.class);
+    }
+
+    @Override
+    public UsersDiscoverableContactsLookupResponse usersDiscoverableContactsLookup(RequestConfigurator<UsersDiscoverableContactsLookupRequest.UsersDiscoverableContactsLookupRequestBuilder> req) throws IOException, SlackApiException {
+        return usersDiscoverableContactsLookup(req.configure(UsersDiscoverableContactsLookupRequest.builder()).build());
     }
 
     @Override
