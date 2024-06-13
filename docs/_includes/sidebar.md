@@ -20,7 +20,7 @@
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/app-home">App Home</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/slash-commands">Slash Commands</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/events-api">Events API</a></li>
-      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/steps-from-apps">Workflow Steps</a></li>
+      <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/steps-from-apps">Workflow Steps (Deprecated)</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/app-distribution">App Distribution (OAuth)</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/sign-in-with-slack">Sign in with Slack</a></li>
       <li class="toctree-l2"><a href="{{ site.url | append: site.baseurl }}/guides/supported-web-frameworks">Supported Web Frameworks</a></li>
