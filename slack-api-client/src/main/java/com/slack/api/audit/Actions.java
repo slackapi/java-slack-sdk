@@ -325,6 +325,9 @@ public class Actions {
         public static final String record_channel_unarchive = "record_channel_unarchive";
         public static final String channel_converted_to_record_channel = "channel_converted_to_record_channel";
         public static final String record_channel_converted_to_channel = "record_channel_converted_to_channel";
+        public static final String external_shared_channel_invite_requested = "external_shared_channel_invite_requested";
+        public static final String external_shared_channel_invite_request_approved = "external_shared_channel_invite_request_approved";
+        public static final String external_shared_channel_invite_request_denied = "external_shared_channel_invite_request_denied";
     }
 
     public static class App {

@@ -301,7 +301,10 @@
       "record_channel_archive",
       "record_channel_unarchive",
       "channel_converted_to_record_channel",
-      "record_channel_converted_to_channel"
+      "record_channel_converted_to_channel",
+      "external_shared_channel_invite_requested",
+      "external_shared_channel_invite_request_approved",
+      "external_shared_channel_invite_request_denied"
     ],
     "app": [
       "app_installed",
