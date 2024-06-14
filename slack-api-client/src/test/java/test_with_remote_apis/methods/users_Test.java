@@ -7,6 +7,7 @@ import com.slack.api.methods.request.users.UsersLookupByEmailRequest;
 import com.slack.api.methods.request.users.UsersSetActiveRequest;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.users.*;
+import com.slack.api.methods.response.users.discoverable_contacts.UsersDiscoverableContactsLookupResponse;
 import com.slack.api.model.ConversationType;
 import com.slack.api.model.User;
 import config.Constants;
@@ -37,6 +38,7 @@ public class users_Test {
     static Slack slack = Slack.getInstance(testConfig.getConfig());
 
     String botToken = System.getenv(Constants.SLACK_SDK_TEST_BOT_TOKEN);
+    String orgBotToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_LEVEL_APP_BOT_TOKEN);
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
     String enterpriseGridTeamAdminUserToken = System.getenv(
             Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
@@ -440,6 +442,17 @@ public class users_Test {
         UsersInfoResponse user = slack.methods(enterpriseGridTeamAdminUserToken).usersInfo(r ->
                 r.user(userId));
         assertNull(user.getError());
+    }
+
+    @Test
+    public void discoverableContacts() throws Exception {
+        String userId = System.getenv(SLACK_SDK_TEST_GRID_SHARED_CHANNEL_OTHER_ORG_USER_ID);
+        UsersInfoResponse user = slack.methods(botToken).usersInfo(r -> r.user(userId));
+        String email = user.getUser().getProfile().getEmail();
+        UsersDiscoverableContactsLookupResponse response = slack.methods(orgBotToken)
+                .usersDiscoverableContactsLookup(r -> r.email(email));
+        // TODO: valid tests
+        assertThat(response.getError(), is("not_allowed"));
     }
 
     @Test

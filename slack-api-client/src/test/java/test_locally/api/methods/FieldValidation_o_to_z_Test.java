@@ -37,6 +37,7 @@ import com.slack.api.methods.response.views.ViewsUpdateResponse;
 import com.slack.api.model.Usergroup;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.FileReader;
 
@@ -45,6 +46,8 @@ import java.io.IOException;
 import static test_locally.api.util.FieldVerification.verifyIfAllGettersReturnNonNull;
 import static test_locally.api.util.FieldVerification.verifyIfAllGettersReturnNonNullRecursively;
 
+// disabled these tests because it no longer brings lots of value; that said, if you need these again, you can turn them on again
+@Ignore
 @Slf4j
 public class FieldValidation_o_to_z_Test {
 

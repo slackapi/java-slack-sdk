@@ -1,10 +1,12 @@
 ---
 layout: default
-title: "Workflow Steps"
+title: "Workflow Steps (Deprecated)"
 lang: en
 ---
 
-# Workflow Steps from Apps
+# Workflow Steps from Apps (Deprecated)
+
+**Steps from Apps for legacy workflows are now deprecated. Use [new custom steps](https://api.slack.com/automation/functions/custom-bolt).**
 
 Workflow Steps from apps allow your app to create and process custom workflow steps that users can add using [Workflow Builder](https://api.slack.com/workflows).
 

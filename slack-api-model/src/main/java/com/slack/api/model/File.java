@@ -320,6 +320,7 @@ public class File {
     private Long lastRead;
     private List<LayoutBlock> titleBlocks;
     private Integer privateChannelsWithFileAccessCount;
+    private Integer privateFileWithAccessCount;
     private List<UserWithFileAccess> dmMpdmUsersWithFileAccess;
     private String orgOrWorkspaceAccess;
 

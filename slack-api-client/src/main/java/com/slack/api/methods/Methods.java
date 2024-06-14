@@ -321,6 +321,17 @@ public class Methods {
     public static final String CALLS_PARTICIPANTS_REMOVE = "calls.participants.remove";
 
     // ------------------------------
+    // canvases
+    // ------------------------------
+
+    public static final String CANVASES_ACCESS_DELETE = "canvases.access.delete";
+    public static final String CANVASES_ACCESS_SET = "canvases.access.set";
+    public static final String CANVASES_CREATE = "canvases.create";
+    public static final String CANVASES_DELETE = "canvases.delete";
+    public static final String CANVASES_EDIT = "canvases.edit";
+    public static final String CANVASES_SECTIONS_LOOKUP = "canvases.sections.lookup";
+
+    // ------------------------------
     // channels
     // ------------------------------
 
@@ -404,6 +415,8 @@ public class Methods {
     public static final String CONVERSATIONS_APPROVE_SHARED_INVITE = "conversations.approveSharedInvite";
     public static final String CONVERSATIONS_DECLINE_SHARED_INVITE = "conversations.declineSharedInvite";
     public static final String CONVERSATIONS_LIST_CONNECT_INVITES = "conversations.listConnectInvites";
+
+    public static final String CONVERSATIONS_CANVASES_CREATE = "conversations.canvases.create";
 
     // ------------------------------
     // dialog
@@ -668,6 +681,7 @@ public class Methods {
     public static final String USERS_SET_ACTIVE = "users.setActive";
     public static final String USERS_SET_PHOTO = "users.setPhoto";
     public static final String USERS_SET_PRESENCE = "users.setPresence";
+    public static final String USERS_DISCOVERABLE_CONTACTS_LOOKUP = "users.discoverableContacts.lookup";
 
     // ------------------------------
     // users.profile

@@ -55,6 +55,8 @@ public class UsersTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).usersProfileSet(r -> r.user("U123").name("name").value("value"))
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).usersDiscoverableContactsLookup(r -> r.email("foo@example.com"))
+                .isOk(), is(true));
     }
 
     @Test
@@ -82,6 +84,8 @@ public class UsersTest {
         assertThat(slack.methodsAsync(ValidToken).usersProfileGet(r -> r.user("U123"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).usersProfileSet(r -> r.user("U123").name("name").value("value"))
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).usersDiscoverableContactsLookup(r -> r.email("foo@example.com"))
                 .get().isOk(), is(true));
     }
 

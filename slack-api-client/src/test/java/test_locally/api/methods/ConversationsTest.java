@@ -6,6 +6,7 @@ import com.slack.api.SlackConfig;
 import com.slack.api.methods.MethodsConfig;
 import com.slack.api.methods.response.conversations.ConversationsHistoryResponse;
 import com.slack.api.model.ConversationType;
+import com.slack.api.model.canvas.CanvasDocumentContent;
 import com.slack.api.scim.metrics.MemoryMetricsDatastore;
 import com.slack.api.util.json.GsonFactory;
 import org.junit.After;
@@ -89,6 +90,10 @@ public class ConversationsTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).conversationsListConnectInvites(r -> r)
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsCanvasesCreate(r -> r.documentContent(new CanvasDocumentContent()))
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsCanvasesCreate(r -> r.markdown("hey"))
+                .isOk(), is(true));
     }
 
     @Test
@@ -140,8 +145,11 @@ public class ConversationsTest {
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).conversationsListConnectInvites(r -> r)
                 .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsCanvasesCreate(r -> r.documentContent(new CanvasDocumentContent()))
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsCanvasesCreate(r -> r.markdown("hey"))
+                .get().isOk(), is(true));
     }
-
 
     // https://github.com/slackapi/java-slack-sdk/issues/1207
     @Test

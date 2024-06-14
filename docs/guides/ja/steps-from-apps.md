@@ -1,10 +1,12 @@
 ---
 layout: ja
-title: "ワークフローステップ"
+title: "ワークフローステップ（非推奨）"
 lang: ja
 ---
 
-# ワークフローステップ
+# ワークフローステップ（非推奨）
+
+**ここで紹介されているワークフローステップの実装方法は非推奨となりました。 今後は[新しい方式（英語）](https://api.slack.com/automation/functions/custom-bolt)を利用してください。**
 
 （アプリによる）ワークフローステップ（Workflow Steps from Apps) は、[ワークフロービルダー](https://api.slack.com/workflows)におけるワークフローに組み込み可能なカスタムのワークフローステップを任意の Slack アプリが提供することを可能とします。
 

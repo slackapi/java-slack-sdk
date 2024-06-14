@@ -57,9 +57,16 @@ import com.slack.api.methods.request.calls.CallsInfoRequest;
 import com.slack.api.methods.request.calls.CallsUpdateRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsAddRequest;
 import com.slack.api.methods.request.calls.participants.CallsParticipantsRemoveRequest;
+import com.slack.api.methods.request.canvases.CanvasesCreateRequest;
+import com.slack.api.methods.request.canvases.CanvasesDeleteRequest;
+import com.slack.api.methods.request.canvases.CanvasesEditRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessDeleteRequest;
+import com.slack.api.methods.request.canvases.access.CanvasesAccessSetRequest;
+import com.slack.api.methods.request.canvases.sections.CanvasesSectionsLookupRequest;
 import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
+import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -97,6 +104,7 @@ import com.slack.api.methods.request.usergroups.*;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersListRequest;
 import com.slack.api.methods.request.usergroups.users.UsergroupsUsersUpdateRequest;
 import com.slack.api.methods.request.users.*;
+import com.slack.api.methods.request.users.discoverable_contacts.UsersDiscoverableContactsLookupRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileGetRequest;
 import com.slack.api.methods.request.users.profile.UsersProfileSetRequest;
 import com.slack.api.methods.request.views.ViewsOpenRequest;
@@ -162,9 +170,16 @@ import com.slack.api.methods.response.calls.CallsInfoResponse;
 import com.slack.api.methods.response.calls.CallsUpdateResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsAddResponse;
 import com.slack.api.methods.response.calls.participants.CallsParticipantsRemoveResponse;
+import com.slack.api.methods.response.canvases.CanvasesCreateResponse;
+import com.slack.api.methods.response.canvases.CanvasesDeleteResponse;
+import com.slack.api.methods.response.canvases.CanvasesEditResponse;
+import com.slack.api.methods.response.canvases.access.CanvasesAccessDeleteResponse;
+import com.slack.api.methods.response.canvases.access.CanvasesAccessSetResponse;
+import com.slack.api.methods.response.canvases.sections.CanvasesSectionsLookupResponse;
 import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.*;
+import com.slack.api.methods.response.conversations.canvases.ConversationsCanvasesCreateResponse;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
@@ -202,6 +217,7 @@ import com.slack.api.methods.response.usergroups.*;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersListResponse;
 import com.slack.api.methods.response.usergroups.users.UsergroupsUsersUpdateResponse;
 import com.slack.api.methods.response.users.*;
+import com.slack.api.methods.response.users.discoverable_contacts.UsersDiscoverableContactsLookupResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileGetResponse;
 import com.slack.api.methods.response.users.profile.UsersProfileSetResponse;
 import com.slack.api.methods.response.views.ViewsOpenResponse;
@@ -860,6 +876,34 @@ public interface AsyncMethodsClient {
     CompletableFuture<CallsParticipantsRemoveResponse> callsParticipantsRemove(RequestConfigurator<CallsParticipantsRemoveRequest.CallsParticipantsRemoveRequestBuilder> req);
 
     // ------------------------------
+    // canvases
+    // ------------------------------
+
+    CompletableFuture<CanvasesCreateResponse> canvasesCreate(CanvasesCreateRequest req);
+
+    CompletableFuture<CanvasesCreateResponse> canvasesCreate(RequestConfigurator<CanvasesCreateRequest.CanvasesCreateRequestBuilder> req);
+
+    CompletableFuture<CanvasesEditResponse> canvasesEdit(CanvasesEditRequest req);
+
+    CompletableFuture<CanvasesEditResponse> canvasesEdit(RequestConfigurator<CanvasesEditRequest.CanvasesEditRequestBuilder> req);
+
+    CompletableFuture<CanvasesDeleteResponse> canvasesDelete(CanvasesDeleteRequest req);
+
+    CompletableFuture<CanvasesDeleteResponse> canvasesDelete(RequestConfigurator<CanvasesDeleteRequest.CanvasesDeleteRequestBuilder> req);
+
+    CompletableFuture<CanvasesAccessSetResponse> canvasesAccessSet(CanvasesAccessSetRequest req);
+
+    CompletableFuture<CanvasesAccessSetResponse> canvasesAccessSet(RequestConfigurator<CanvasesAccessSetRequest.CanvasesAccessSetRequestBuilder> req);
+
+    CompletableFuture<CanvasesAccessDeleteResponse> canvasesAccessDelete(CanvasesAccessDeleteRequest req);
+
+    CompletableFuture<CanvasesAccessDeleteResponse> canvasesAccessDelete(RequestConfigurator<CanvasesAccessDeleteRequest.CanvasesAccessDeleteRequestBuilder> req);
+
+    CompletableFuture<CanvasesSectionsLookupResponse> canvasesSectionsLookup(CanvasesSectionsLookupRequest req);
+
+    CompletableFuture<CanvasesSectionsLookupResponse> canvasesSectionsLookup(RequestConfigurator<CanvasesSectionsLookupRequest.CanvasesSectionsLookupRequestBuilder> req);
+
+    // ------------------------------
     // chat
     // ------------------------------
 
@@ -983,6 +1027,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<ConversationsUnarchiveResponse> conversationsUnarchive(RequestConfigurator<ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req);
 
+    CompletableFuture<ConversationsCanvasesCreateResponse> conversationsCanvasesCreate(ConversationsCanvasesCreateRequest req);
+
+    CompletableFuture<ConversationsCanvasesCreateResponse> conversationsCanvasesCreate(RequestConfigurator<ConversationsCanvasesCreateRequest.ConversationsCanvasesCreateRequestBuilder> req);
+
     // -------------
     // Slack Connect
 
@@ -1070,10 +1118,12 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<FilesSharedPublicURLResponse> filesSharedPublicURL(RequestConfigurator<FilesSharedPublicURLRequest.FilesSharedPublicURLRequestBuilder> req);
 
-    @Deprecated // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
+    @Deprecated
+        // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
     CompletableFuture<FilesUploadResponse> filesUpload(FilesUploadRequest req);
 
-    @Deprecated // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
+    @Deprecated
+        // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
     CompletableFuture<FilesUploadResponse> filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req);
 
     CompletableFuture<FilesGetUploadURLExternalResponse> filesGetUploadURLExternal(FilesGetUploadURLExternalRequest req);
@@ -1232,10 +1282,12 @@ public interface AsyncMethodsClient {
     // rtm
     // ------------------------------
 
-    @Deprecated // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
+    @Deprecated
+        // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
     CompletableFuture<RTMConnectResponse> rtmConnect(RTMConnectRequest req);
 
-    @Deprecated // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
+    @Deprecated
+        // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
     CompletableFuture<RTMConnectResponse> rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req);
 
     @Deprecated
@@ -1264,22 +1316,28 @@ public interface AsyncMethodsClient {
     // stars
     // ------------------------------
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsAddResponse> starsAdd(StarsAddRequest req);
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsAddResponse> starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req);
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsListResponse> starsList(StarsListRequest req);
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsListResponse> starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req);
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsRemoveResponse> starsRemove(StarsRemoveRequest req);
 
-    @Deprecated // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+    @Deprecated
+        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsRemoveResponse> starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req);
 
     // ------------------------------
@@ -1397,6 +1455,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<UsersSetPresenceResponse> usersSetPresence(UsersSetPresenceRequest req);
 
     CompletableFuture<UsersSetPresenceResponse> usersSetPresence(RequestConfigurator<UsersSetPresenceRequest.UsersSetPresenceRequestBuilder> req);
+
+    CompletableFuture<UsersDiscoverableContactsLookupResponse> usersDiscoverableContactsLookup(UsersDiscoverableContactsLookupRequest req);
+
+    CompletableFuture<UsersDiscoverableContactsLookupResponse> usersDiscoverableContactsLookup(RequestConfigurator<UsersDiscoverableContactsLookupRequest.UsersDiscoverableContactsLookupRequestBuilder> req);
 
     // ------------------------------
     // users.profile
