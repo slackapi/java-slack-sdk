@@ -24,6 +24,7 @@ import util.sample_json_generation.SampleObjects;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MethodsResponseDumpTest {
     // This test class generates sample JSON data for the Web APIs
@@ -82,7 +83,11 @@ public class MethodsResponseDumpTest {
     public void migration_exchange() throws Exception {
         MigrationExchangeResponse response = new MigrationExchangeResponse();
         response.setInvalidUserIds(Arrays.asList(""));
-        response.setUserIdMap(new HashMap<>());
+        Map<String, String> userIdMap = new HashMap<>();
+        userIdMap.put("0", "0");
+        userIdMap.put("1", "1");
+        userIdMap.put("2", "2");
+        response.setUserIdMap(userIdMap);
         ObjectInitializer.initProperties(response);
         dumper.dump("migration.exchange", response);
     }
