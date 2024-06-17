@@ -161,6 +161,7 @@ public class AdminApi_conversations_Test {
                     .teamIds(Arrays.asList(teamId))
                     .lastMessageActivityBefore(100)
             ).get();
+            // TODO: internal_error on June 16
             assertThat(lookup.getError(), is(nullValue()));
 
             AdminConversationsDisconnectSharedResponse disconnectShared =
