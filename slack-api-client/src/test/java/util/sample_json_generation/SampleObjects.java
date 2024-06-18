@@ -7,8 +7,11 @@ import com.slack.api.model.admin.AppIcons;
 import com.slack.api.model.block.*;
 import com.slack.api.model.block.composition.*;
 import com.slack.api.model.block.element.*;
+import com.slack.api.model.list.*;
 import com.slack.api.model.manifest.AppManifest;
 import com.slack.api.util.json.GsonFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -18,6 +21,8 @@ import static com.slack.api.model.block.element.BlockElements.*;
 import static util.ObjectInitializer.initProperties;
 
 public class SampleObjects {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SampleObjects.class);
 
     private SampleObjects() {
     }
@@ -29,8 +34,12 @@ public class SampleObjects {
         public static List<JsonElement> Attachments = new ArrayList<>();
 
         static {
-            for (Attachment attachment : SampleObjects.Attachments) {
-                Attachments.add(GsonFactory.createSnakeCase().toJsonTree(attachment));
+            try {
+                for (Attachment attachment : SampleObjects.Attachments) {
+                    Attachments.add(GsonFactory.createSnakeCase().toJsonTree(attachment));
+                }
+            } catch (Exception e) {
+                LOGGER.error("Failed to set up sample objects", e);
             }
         }
 
@@ -98,7 +107,7 @@ public class SampleObjects {
                             gson.toJsonTree(initProperties(ContextBlock.builder().elements(ContextBlockElements).build())),
                             gson.toJsonTree(initProperties(callBlock)),
                             gson.toJsonTree(initProperties(DividerBlock.builder().build())),
-                            gson.toJsonTree(initProperties(new FileBlock())),
+                            gson.toJsonTree(initProperties(FileBlock.builder().file(FileObject).build())),
                             gson.toJsonTree(headerBlock),
                             gson.toJsonTree(imageBlock),
                             gson.toJsonTree(initProperties(video(v -> v.description(TextObject).title(TextObject)))),
@@ -283,7 +292,15 @@ public class SampleObjects {
                     .fields(SectionBlockFieldElements)))
     );
 
-    public static File FileObject = initFileObject();
+    public static File FileObject;
+
+    static {
+        try {
+            FileObject = initFileObject();
+        } catch (Exception e) {
+            LOGGER.error("Failed to set up sample objects", e);
+        }
+    }
 
     private static Message MessageBlockData = initProperties(new Message());
 
@@ -299,31 +316,77 @@ public class SampleObjects {
                 .build()));
     }
 
-    public static List<Attachment> Attachments = Arrays.asList(
-            initProperties(Attachment.builder()
-                    .fields(Arrays.asList(initProperties(Field.builder().build())))
-                    .actions(Arrays.asList(initProperties(
-                            Action.builder()
-                                    .optionGroups(Arrays.asList(initProperties(Action.OptionGroup.builder()
-                                            .options(Arrays.asList(initProperties(Action.Option.builder().build())))
-                                            .build(), true)))
-                                    .options(Arrays.asList(initProperties(Action.Option.builder().build(), true)))
-                                    .selectedOptions(Arrays.asList(initProperties(Action.Option.builder().build(), true)))
-                                    .build(),
-                            true
-                    )))
-                    .preview(initProperties(Attachment.Preview.builder()
-                            .title(initProperties(PlainTextObject.builder().build()))
-                            .subtitle(initProperties(PlainTextObject.builder().build()))
-                            .build())
-                    )
-                    .metadata(initProperties(new Attachment.AttachmentMetadata()))
-                    .mrkdwnIn(Arrays.asList(""))
-                    .blocks(Blocks)
-                    .files(Arrays.asList(FileObject))
-                    .messageBlocks(MessageBlocks)
+    public static ListView initListViewObject() {
+        return initProperties(initProperties(ListView.builder()
+                .columns(Arrays.asList(initProperties(ListViewColumn.builder().build())))
+                .build()));
+    }
+
+    public static List<ListColumn> initListSchemaObject() {
+        return Arrays.asList(initProperties(ListColumn.builder()
+                .options(initProperties(ListColumnOptions.builder()
+                        .choices(Arrays.asList(initProperties(ListColumnOptions.Choice.builder().build())))
+                        .defaultValueTyped(initProperties(ListColumnOptions.DefaultValue.builder().select(Arrays.asList("")).build()))
+                        .linkedTo(Arrays.asList(""))
+                        .canvasPlaceholderMapping(Arrays.asList(initProperties(ListColumnOptions.CanvasPlaceholderMapping.builder().build())))
+                        .build()))
+                .build()));
+    }
+
+    public static ListAttachment initListObject() {
+        return initProperties(ListAttachment.builder()
+                .channels(Arrays.asList(""))
+                .groups(Arrays.asList(""))
+                .ims(Arrays.asList(""))
+                .dmMpdmUsersWithFileAccess(Arrays.asList(initProperties(File.UserWithFileAccess.builder().build())))
+                .listLimits(initProperties(ListLimits.builder().build()))
+                .listMetadata(initProperties(ListMetadata.builder()
+                        .creationSource(initProperties(new ListCreationSource()))
+                        .schema(initListSchemaObject())
+                        .views(Arrays.asList(initListViewObject()))
+                        .integrations(Arrays.asList(""))
+                        .build()))
+                .build());
+    }
+
+    public static List<Attachment> Attachments = Arrays.asList(initProperties(Attachment.builder()
+            .fields(Arrays.asList(initProperties(Field.builder().build())))
+            .actions(Arrays.asList(initProperties(
+                    Action.builder()
+                            .optionGroups(Arrays.asList(initProperties(Action.OptionGroup.builder()
+                                    .options(Arrays.asList(initProperties(Action.Option.builder().build())))
+                                    .build(), true)))
+                            .options(Arrays.asList(initProperties(Action.Option.builder().build(), true)))
+                            .selectedOptions(Arrays.asList(initProperties(Action.Option.builder().build(), true)))
+                            .build(),
+                    true
+            )))
+            .preview(initProperties(Attachment.Preview.builder()
+                    .title(initProperties(PlainTextObject.builder().build()))
+                    .subtitle(initProperties(PlainTextObject.builder().build()))
                     .build())
-    );
+            )
+            .metadata(initProperties(new Attachment.AttachmentMetadata()))
+            .mrkdwnIn(Arrays.asList(""))
+            .blocks(Blocks)
+            .files(Arrays.asList(FileObject))
+            .messageBlocks(MessageBlocks)
+            .list(initListObject())
+            .listRecord(initProperties(Attachment.SingleListRecord.builder()
+                    .record(initProperties(Attachment.SingleListRecord.Record.builder()
+                            .fields(Arrays.asList(initProperties(ListRecord.Field.builder().build())))
+                            .build()))
+                    .schema(initListSchemaObject())
+                    .build()))
+            .listRecords(Arrays.asList(initProperties(ListRecord.builder()
+                    .platformRefs(initProperties(ListRecord.PlatformRefs.builder().build()))
+                    .fields(Arrays.asList(initProperties(ListRecord.Field.builder().build())))
+                    .saved(initProperties(new File.Saved()))
+                    .build())))
+            .listSchema(initListSchemaObject())
+            .listView(initListViewObject())
+            .build()
+    ));
 
     public static File initFileObject() {
         File.Shares shares = new File.Shares();
@@ -355,6 +418,13 @@ public class SampleObjects {
                 .dmMpdmUsersWithFileAccess(Arrays.asList(File.UserWithFileAccess.builder().access("").userId("").build()))
                 .editors(Arrays.asList(""))
                 .favorites(Arrays.asList(initProperties(new File.Favorite())))
+                .listMetadata(initProperties(ListMetadata.builder()
+                        .creationSource(initProperties(new ListCreationSource()))
+                        .schema(initListSchemaObject())
+                        .views(Arrays.asList(initListViewObject()))
+                        .integrations(Arrays.asList(""))
+                        .build()))
+                .listLimits(initProperties(ListLimits.builder().build()))
                 .build());
         initProperties(file);
         return file;
@@ -364,8 +434,8 @@ public class SampleObjects {
 
     public static Map<String, Object> EmptyHashMapObject = new HashMap<>();
 
-
     public static Map<String, AppManifest.Function> Functions = new HashMap<>();
+
     static {
         AppManifest.ParameterProperty p = initProperties(AppManifest.ParameterProperty.builder().build());
         Map<String, AppManifest.ParameterProperty> properties = new HashMap<>();
@@ -378,6 +448,7 @@ public class SampleObjects {
         Functions.put("Fn0000000000", f);
         Functions.put("Fn0000000000_", f);
     }
+
     public static AppManifest AppManifestObject = initProperties(AppManifest.builder()
             .metadata(initProperties(AppManifest.Metadata.builder().build()))
             .displayInformation(initProperties(AppManifest.DisplayInformation.builder().build()))

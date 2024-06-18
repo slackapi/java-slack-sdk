@@ -2,6 +2,8 @@ package com.slack.api.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.block.LayoutBlock;
+import com.slack.api.model.list.ListLimits;
+import com.slack.api.model.list.ListMetadata;
 import lombok.*;
 
 import java.util.List;
@@ -356,6 +358,9 @@ public class File {
     }
 
     private List<Favorite> favorites;
+
+    private ListMetadata listMetadata;
+    private ListLimits listLimits;
 
     // ---------------------------------------
     // file comments

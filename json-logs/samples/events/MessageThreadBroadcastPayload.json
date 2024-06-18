@@ -772,6 +772,83 @@
           },
           "icon_url": ""
         },
+        "file_id": "",
+        "list_record_id": "",
+        "list_record": {
+          "record": {
+            "record_id": ""
+          }
+        },
+        "hide_border": false,
+        "list_view_id": "",
+        "list": {
+          "id": "",
+          "created": 123,
+          "timestamp": 123,
+          "name": "",
+          "title": "",
+          "mimetype": "",
+          "filetype": "",
+          "external_type": "",
+          "pretty_type": "",
+          "user": "",
+          "user_team": "",
+          "editable": false,
+          "size": 123,
+          "mode": "",
+          "is_external": false,
+          "is_public": false,
+          "public_url_shared": false,
+          "display_as_bot": false,
+          "username": "",
+          "list_metadata": {
+            "icon": "",
+            "icon_url": "",
+            "icon_team_id": "",
+            "description": "",
+            "is_trial": false,
+            "creation_source": {
+              "type": "",
+              "reference_id": "",
+              "workflow_function_id": ""
+            }
+          },
+          "list_limits": {
+            "over_row_maximum": false,
+            "row_count_limit": 123,
+            "row_count": 123,
+            "over_column_maximum": false,
+            "column_count": 123,
+            "column_count_limit": 123,
+            "over_view_maximum": false,
+            "view_count": 123,
+            "view_count_limit": 123
+          },
+          "url_private": "",
+          "url_private_download": "",
+          "permalink": "",
+          "permalink_public": "",
+          "last_editor": "",
+          "updated": 123,
+          "comments_count": 123,
+          "shares": {},
+          "has_more_shares": false,
+          "private_channels_with_file_access_count": 123,
+          "private_file_with_access_count": 123,
+          "has_rich_preview": false,
+          "file_access": ""
+        },
+        "list_view": {
+          "id": "",
+          "name": "",
+          "type": "",
+          "is_locked": false,
+          "position": "",
+          "date_created": 123,
+          "created_by": "",
+          "stick_column_left": false,
+          "is_all_items_view": false
+        },
         "filename": "",
         "size": 123,
         "mimetype": "",

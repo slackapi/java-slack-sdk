@@ -5,6 +5,7 @@ import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.File;
 import com.slack.api.model.FileComment;
 import com.slack.api.model.Paging;
+import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
 
 import java.util.List;
@@ -33,4 +34,6 @@ public class FilesInfoResponse implements SlackApiTextResponse {
     private List<FileComment> comments;
     @Deprecated
     private Paging paging;
+
+    private ResponseMetadata responseMetadata;
 }

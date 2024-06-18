@@ -4252,6 +4252,102 @@
         "position": ""
       }
     ],
+    "list_metadata": {
+      "icon": "",
+      "icon_url": "",
+      "icon_team_id": "",
+      "description": "",
+      "is_trial": false,
+      "creation_source": {
+        "type": "",
+        "reference_id": "",
+        "workflow_function_id": ""
+      },
+      "schema": [
+        {
+          "id": "",
+          "name": "",
+          "key": "",
+          "type": "",
+          "is_primary_column": false,
+          "options": {
+            "choices": [
+              {
+                "value": "",
+                "label": "",
+                "color": ""
+              }
+            ],
+            "format": "",
+            "default_value": "",
+            "default_value_typed": {
+              "select": [
+                ""
+              ]
+            },
+            "emoji": "",
+            "max": 123,
+            "precision": 123,
+            "show_member_name": false,
+            "date_format": "",
+            "time_format": "",
+            "currency_format": "",
+            "emoji_team_id": "",
+            "currency": "",
+            "rounding": "",
+            "mark_as_done_when_checked": false,
+            "for_assignment": false,
+            "notify_users": false,
+            "linked_to": [
+              ""
+            ],
+            "canvas_id": "",
+            "canvas_placeholder_mapping": [
+              {
+                "variable": "",
+                "column": ""
+              }
+            ]
+          }
+        }
+      ],
+      "views": [
+        {
+          "id": "",
+          "name": "",
+          "type": "",
+          "is_locked": false,
+          "position": "",
+          "columns": [
+            {
+              "visible": false,
+              "key": "",
+              "id": "",
+              "position": "",
+              "width": 123
+            }
+          ],
+          "date_created": 123,
+          "created_by": "",
+          "stick_column_left": false,
+          "is_all_items_view": false
+        }
+      ],
+      "integrations": [
+        ""
+      ]
+    },
+    "list_limits": {
+      "over_row_maximum": false,
+      "row_count_limit": 123,
+      "row_count": 123,
+      "over_column_maximum": false,
+      "column_count": 123,
+      "column_count_limit": 123,
+      "over_view_maximum": false,
+      "view_count": 123,
+      "view_count_limit": 123
+    },
     "bot_id": "",
     "initial_comment": {
       "id": "",

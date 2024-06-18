@@ -3,6 +3,7 @@ package com.slack.api.model;
 import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.block.LayoutBlock;
 import com.slack.api.model.block.composition.PlainTextObject;
+import com.slack.api.model.list.*;
 import lombok.*;
 
 import java.util.List;
@@ -306,6 +307,38 @@ public class Attachment {
         private PlainTextObject title;
         private PlainTextObject subtitle;
         private String iconUrl;
+    }
+
+    // --------------------------
+    // Lists
+
+    private String fileId;
+    private String listRecordId;
+    private SingleListRecord listRecord;
+    private List<ListRecord> listRecords;
+    private Boolean hideBorder;
+
+    private String listViewId;
+    private ListAttachment list;
+    private List<ListColumn> listSchema;
+    private ListView listView;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class SingleListRecord {
+        private Record record;
+        private List<ListColumn> schema;
+
+        @Data
+        @Builder
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class Record {
+            private String recordId;
+            private List<ListRecord.Field> fields;
+        }
     }
 
     // --------------------------
