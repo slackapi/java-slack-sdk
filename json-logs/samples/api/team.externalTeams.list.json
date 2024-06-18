@@ -1,0 +1,36 @@
+{
+    "ok": true,
+    "organizations": [
+        {
+            "team_id": "T00000",
+            "team_name": "",
+            "team_domain": "",
+            "public_channel_count": 1,
+            "private_channel_count": 0,
+            "im_channel_count": 0,
+            "mpim_channel_count": 0,
+            "connected_workspaces": [
+                {
+                    "workspace_id": "T000",
+                    "workspace_name": ""
+                }
+            ],
+            "slack_connect_prefs": {},
+            "connection_status": "CONNECTED",
+            "last_active_timestamp": 1718720443,
+            "is_sponsored": false,
+            "canvas": {
+                "total_count": 0,
+                "ownership_details": []
+            },
+            "lists": {
+                "total_count": 0,
+                "ownership_details": []
+            }
+        }
+    ],
+    "total_count": 1,
+    "response_metadata": {
+        "next_cursor": ""
+    }
+}
