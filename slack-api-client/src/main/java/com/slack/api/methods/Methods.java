@@ -644,6 +644,8 @@ public class Methods {
     public static final String TEAM_BILLING_INFO = "team.billing.info";
     public static final String TEAM_PREFERENCES_LIST = "team.preferences.list";
 
+    public static final String TEAM_EXTERNAL_TEAMS_LIST = "team.externalTeams.list";
+
     // ------------------------------
     // team.profile
     // ------------------------------

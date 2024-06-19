@@ -113,6 +113,7 @@ import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
 import com.slack.api.methods.request.team.*;
+import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.tooling.tokens.ToolingTokensRotateRequest;
 import com.slack.api.methods.request.usergroups.*;
@@ -239,6 +240,7 @@ import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
 import com.slack.api.methods.response.team.*;
+import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.tooling.tokens.ToolingTokensRotateResponse;
 import com.slack.api.methods.response.usergroups.*;
@@ -3173,6 +3175,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public TeamPreferencesListResponse teamPreferencesList(RequestConfigurator<TeamPreferencesListRequest.TeamPreferencesListRequestBuilder> req) throws IOException, SlackApiException {
         return teamPreferencesList(req.configure(TeamPreferencesListRequest.builder()).build());
+    }
+
+    @Override
+    public TeamExternalTeamsListResponse teamExternalTeamsList(TeamExternalTeamsListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.TEAM_EXTERNAL_TEAMS_LIST, getToken(req), TeamExternalTeamsListResponse.class);
+    }
+
+    @Override
+    public TeamExternalTeamsListResponse teamExternalTeamsList(RequestConfigurator<TeamExternalTeamsListRequest.TeamExternalTeamsListRequestBuilder> req) throws IOException, SlackApiException {
+        return teamExternalTeamsList(req.configure(TeamExternalTeamsListRequest.builder()).build());
     }
 
     @Override

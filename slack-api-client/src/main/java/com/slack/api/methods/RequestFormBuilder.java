@@ -109,6 +109,7 @@ import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
 import com.slack.api.methods.request.team.*;
+import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.tooling.tokens.ToolingTokensRotateRequest;
 import com.slack.api.methods.request.usergroups.*;
@@ -2615,6 +2616,21 @@ public class RequestFormBuilder {
 
     public static FormBody.Builder toForm(TeamPreferencesListRequest req) {
         FormBody.Builder form = new FormBody.Builder();
+        return form;
+    }
+
+    public static FormBody.Builder toForm(TeamExternalTeamsListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("connection_status_filter", req.getConnectionStatusFilter(), form);
+        setIfNotNull("limit", req.getLimit(), form);
+        if (req.getSlackConnectPrefFilter() != null) {
+            setIfNotNull("slack_connect_pref_filter", req.getSlackConnectPrefFilter().stream().collect(joining(",")), form);
+        }
+        setIfNotNull("sort_direction", req.getSortDirection(), form);
+        setIfNotNull("sort_field", req.getSortField(), form);
+        if (req.getWorkspaceFilter() != null) {
+            setIfNotNull("workspace_filter", req.getWorkspaceFilter().stream().collect(joining(",")), form);
+        }
         return form;
     }
 

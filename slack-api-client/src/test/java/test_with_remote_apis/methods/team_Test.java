@@ -3,6 +3,7 @@ package test_with_remote_apis.methods;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.team.*;
+import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.User;
 import config.Constants;
@@ -12,10 +13,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 
 @Slf4j
 public class team_Test {
@@ -37,6 +41,7 @@ public class team_Test {
     String userToken = System.getenv(Constants.SLACK_SDK_TEST_USER_TOKEN);
 
     String gridWorkspaceUserToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_WORKSPACE_ADMIN_USER_TOKEN);
+    String gridBotToken = System.getenv(Constants.SLACK_SDK_TEST_GRID_ORG_LEVEL_APP_BOT_TOKEN);
     String gridTeamId = System.getenv(Constants.SLACK_SDK_TEST_GRID_TEAM_ID);
 
     @Test
@@ -139,8 +144,8 @@ public class team_Test {
         }
         String userId = user.getId();
         TeamBillableInfoResponse response = slack.methodsAsync().teamBillableInfo(r -> r
-                .token(userToken)
-                .user(userId))
+                        .token(userToken)
+                        .user(userId))
                 .get();
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
@@ -244,6 +249,26 @@ public class team_Test {
     public void teamPreferencesList_async() throws Exception {
         TeamPreferencesListResponse response = slack.methodsAsync()
                 .teamPreferencesList(r -> r.token(botToken)).get();
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void teamExternalTeamsList() throws Exception {
+        TeamExternalTeamsListResponse response = slack.methods().teamExternalTeamsList(r -> r.token(gridBotToken)
+                .sortDirection("desc")
+                .sortField("last_active_timestamp")
+        );
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.isOk(), is(true));
+        assertThat(response.getOrganizations().size(), is(greaterThan(0)));
+
+        List<String> teamIds = response.getOrganizations().stream()
+                .filter(o -> o.getTeamId().startsWith("T"))
+                .map(o -> o.getTeamId())
+                .collect(Collectors.toList());
+
+        response = slack.methods().teamExternalTeamsList(r -> r.token(gridBotToken).workspaceFilter(teamIds));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
     }

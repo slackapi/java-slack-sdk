@@ -7,17 +7,16 @@ import com.slack.api.methods.response.admin.conversations.AdminConversationsGetC
 import com.slack.api.methods.response.admin.conversations.AdminConversationsSearchResponse;
 import com.slack.api.methods.response.admin.users.AdminUsersSessionGetSettingsResponse;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
+import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.*;
 import com.slack.api.model.admin.*;
-import com.slack.api.model.block.element.BlockElement;
 import com.slack.api.scim.model.User;
 import com.slack.api.status.v2.model.SlackIssue;
 import com.slack.api.util.json.GsonFactory;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
-import util.ObjectInitializer;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +28,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static util.ObjectInitializer.initProperties;
-import static util.sample_json_generation.SampleObjects.*;
+import static util.sample_json_generation.SampleObjects.AppManifestObject;
+import static util.sample_json_generation.SampleObjects.Json;
 
 @Slf4j
 public class JsonDataRecorder {
@@ -303,39 +303,78 @@ public class JsonDataRecorder {
             boolean preparedSampleDataAttached = true;
             JsonArray array = element.getAsJsonArray();
             if (name != null && name.equals("attachments")) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
                 for (JsonElement attachment : Json.Attachments) {
                     array.add(attachment);
                 }
             } else if (name != null && (name.equals("blocks") || name.equals("title_blocks"))) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
                 // This part replaces the blocks with a comprehensive set of blocks.
                 for (JsonElement block : Json.Blocks) {
                     array.add(block);
                 }
             } else if (name != null && name.equals("bookmarks")) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
-                if (!array.isEmpty()) {
-                    array.set(0, gson.toJsonTree(initProperties(new Bookmark())));
-                } else {
-                    array.add(gson.toJsonTree(initProperties(new Bookmark())));
+                while (!array.isEmpty()) {
+                    array.remove(0);
                 }
+                array.add(gson.toJsonTree(initProperties(new Bookmark())));
             } else if (path.equals("/api/admin.conversations.search") && name != null && name.equals("ownership_details")) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
                 array.add(gson.toJsonTree(initProperties(new AdminConversationsSearchResponse.CanvasOwnershipDetail())));
+            } else if (path.equals("/api/team.externalTeams.list") && name != null && name.equals("organizations")) {
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
+                array.add(gson.toJsonTree(initProperties(TeamExternalTeamsListResponse.ExternalOrganization.builder()
+                        .lists(initProperties(TeamExternalTeamsListResponse.Lists.builder()
+                                .ownershipDetails(Arrays.asList(initProperties(TeamExternalTeamsListResponse.OwnershipDetail.builder().build())))
+                                .build()))
+                        .canvas(initProperties(TeamExternalTeamsListResponse.Canvas.builder()
+                                .ownershipDetails(Arrays.asList(initProperties(TeamExternalTeamsListResponse.OwnershipDetail.builder().build())))
+                                .build()))
+                        .connectedWorkspaces(Arrays.asList(initProperties(TeamExternalTeamsListResponse.ConnectedWorkspace.builder().build())))
+                        .slackConnectPrefs(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.builder()
+                                .allowScFileUploads(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.AllowScFileUploads.builder().build()))
+                                .approvedOrgInfo(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.ApprovedOrgInfo.builder().build()))
+                                .profileVisibility(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.ProfileVisibility.builder().build()))
+                                .allowedWorkspaces(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.AllowedWorkspaces.builder()
+                                        .teamIds(Arrays.asList(""))
+                                        .build()))
+                                .allowedCanvasSharing(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.AllowedCanvasSharing.builder().build()))
+                                .allowedListSharing(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.AllowedListSharing.builder().build()))
+                                .awayTeamScInvitePermissions(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.AwayTeamScInvitePermissions.builder()
+                                        .teamIds(Arrays.asList(""))
+                                        .build()))
+                                .awayTeamScInviteRequire2fa(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.AwayTeamScInviteRequire2fa.builder().build()))
+                                .acceptScInvites(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.AcceptScInvites.builder()
+                                        .acceptInWorkspaceIds(Arrays.asList(""))
+                                        .invalidWorkspaceIds(Arrays.asList(""))
+                                        .build()))
+                                .scChannelLimitedAccess(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.ScChannelLimitedAccess.builder().build()))
+                                .scMpdmToPrivate(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.ScMpdmToPrivate.builder()
+                                        .invalidWorkspaceIds(Arrays.asList(""))
+                                        .build()))
+                                .externalAwarenessContextBar(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.ExternalAwarenessContextBar.builder().build()))
+                                .requireScChannelForScDm(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.RequireScChannelForScDm.builder().build()))
+                                .sharedChannelInviteRequested(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.SharedChannelInviteRequested.builder()
+                                        .approvalDestination(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.SharedChannelInviteRequested.ApprovalDestination.builder().build()))
+                                        .usergroupInclude(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.SharedChannelInviteRequested.UsergroupRule.builder().build()))
+                                        .usergroupExclude(initProperties(TeamExternalTeamsListResponse.SlackConnectPrefs.SharedChannelInviteRequested.UsergroupRule.builder().build()))
+                                        .build()))
+                                .build()))
+                        .build()
+                )));
             } else if (path.equals("/api/team.profile.get") &&
                     name != null && Arrays.asList("sections", "possible_values").contains(name)) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
                 // possible_values
                 if (name.equals("sections")) {
                     array.add(gson.toJsonTree(initProperties(
@@ -345,40 +384,40 @@ public class JsonDataRecorder {
                     array.add("");
                 }
             } else if (name != null && name.equals("replies")) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
                 array.add(gson.toJsonTree(initProperties(new Message.MessageRootReply())));
             } else if (name != null && name.equals("comments")) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
                 array.add(gson.toJsonTree(initProperties(new FileComment())));
             } else if (name != null && name.equals("files") && !path.equals("/api/files.completeUploadExternal")) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
                 com.slack.api.model.File f = SampleObjects.initFileObject();
                 f.setBlocks(null);
                 f.setAttachments(null); // Trying to load data for this field can result in StackOverFlowError
                 array.add(gson.toJsonTree(f));
             } else if (name != null && name.equals("status_emoji_display_info")) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
                 array.add(gson.toJsonTree(
                         initProperties(new com.slack.api.model.User.Profile.StatusEmojiDisplayInfo())
                 ));
             } else if (path.startsWith("/api/admin.conversations.bulk") && name != null && name.equals("not_added")) {
-                parent.getAsJsonObject().remove(name);
-                array = new JsonArray();
-                parent.getAsJsonObject().add(name, array);
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
                 AdminConversationsBulkMoveResponse.NotAdded notAdded = initProperties(new AdminConversationsBulkMoveResponse.NotAdded());
                 array.add(gson.toJsonTree(notAdded));
             } else {
                 preparedSampleDataAttached = false;
             }
-            if (array.size() == 0) {
+            if (array.isEmpty()) {
                 List<String> addressNames = Arrays.asList("from", "to", "cc");
                 if (path.startsWith("/scim")) {
                     // noop
@@ -460,7 +499,7 @@ public class JsonDataRecorder {
                 for (int idx = size - 1; idx > 0; idx--) {
                     try {
                         array.remove(idx);
-                    } catch (Exception e)  {
+                    } catch (Exception e) {
                         log.info("Failed to remove an element ({})", idx);
                     }
                 }
