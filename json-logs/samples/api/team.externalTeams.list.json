@@ -1,36 +1,167 @@
 {
-    "ok": true,
-    "organizations": [
+  "ok": false,
+  "organizations": [
+    {
+      "team_id": "",
+      "team_name": "",
+      "team_domain": "",
+      "public_channel_count": 123,
+      "private_channel_count": 123,
+      "im_channel_count": 123,
+      "mpim_channel_count": 123,
+      "connected_workspaces": [
         {
-            "team_id": "T00000",
-            "team_name": "",
-            "team_domain": "",
-            "public_channel_count": 1,
-            "private_channel_count": 0,
-            "im_channel_count": 0,
-            "mpim_channel_count": 0,
-            "connected_workspaces": [
-                {
-                    "workspace_id": "T000",
-                    "workspace_name": ""
-                }
-            ],
-            "slack_connect_prefs": {},
-            "connection_status": "CONNECTED",
-            "last_active_timestamp": 1718720443,
-            "is_sponsored": false,
-            "canvas": {
-                "total_count": 0,
-                "ownership_details": []
-            },
-            "lists": {
-                "total_count": 0,
-                "ownership_details": []
-            }
+          "workspace_id": "",
+          "workspace_name": ""
         }
-    ],
-    "total_count": 1,
-    "response_metadata": {
-        "next_cursor": ""
+      ],
+      "slack_connect_prefs": {
+        "allow_sc_file_uploads": {
+          "value": false,
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "approved_org_info": {
+          "actor": "",
+          "date_update": 123,
+          "approval_type": "",
+          "source": ""
+        },
+        "profile_visibility": {
+          "type": "",
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "allowed_workspaces": {
+          "type": "",
+          "team_ids": [
+            ""
+          ],
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "allowed_canvas_sharing": {
+          "value": false,
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "allowed_list_sharing": {
+          "value": false,
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "away_team_sc_invite_permissions": {
+          "type": "",
+          "team_ids": [
+            ""
+          ],
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "away_team_sc_invite_require_2fa": {
+          "type": false,
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "accept_sc_invites": {
+          "type": "",
+          "accept_in_workspace_ids": [
+            ""
+          ],
+          "invalid_workspace_ids": [
+            ""
+          ],
+          "use_allowed_workspaces": false,
+          "accept_private": false,
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "sc_channel_limited_access": {
+          "type": "",
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "sc_mpdm_to_private": {
+          "type": "",
+          "accept_in_workspace_id": "",
+          "invalid_workspace_ids": [
+            ""
+          ],
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "external_awareness_context_bar": {
+          "type": "",
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "require_sc_channel_for_sc_dm": {
+          "value": false,
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        },
+        "shared_channel_invite_requested": {
+          "enabled": false,
+          "usergroup_include": {
+            "id": "",
+            "team_id": ""
+          },
+          "usergroup_exclude": {
+            "id": "",
+            "team_id": ""
+          },
+          "approval_destination": {
+            "all_who_can_manage_shared_channels": false,
+            "channel_id": ""
+          },
+          "actor": "",
+          "date_update": 123,
+          "source": ""
+        }
+      },
+      "connection_status": "",
+      "last_active_timestamp": 123,
+      "is_sponsored": false,
+      "canvas": {
+        "total_count": 123,
+        "ownership_details": [
+          {
+            "team_id": "",
+            "count": 123
+          }
+        ]
+      },
+      "lists": {
+        "total_count": 123,
+        "ownership_details": [
+          {
+            "team_id": "",
+            "count": 123
+          }
+        ]
+      }
     }
+  ],
+  "total_count": 12345,
+  "response_metadata": {
+    "next_cursor": "",
+    "messages": [
+      ""
+    ]
+  },
+  "error": "",
+  "needed": "",
+  "provided": ""
 }
