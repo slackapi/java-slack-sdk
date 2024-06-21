@@ -77,6 +77,7 @@ public class AdminApi_conversations_Test {
         }
     }
 
+    @Ignore // TODO: resolve the internal_error
     @Test
     public void basicOperations() throws Exception {
         if (teamAdminUserToken != null && orgAdminUserToken != null) {
@@ -161,7 +162,7 @@ public class AdminApi_conversations_Test {
                     .teamIds(Arrays.asList(teamId))
                     .lastMessageActivityBefore(100)
             ).get();
-            // TODO: internal_error on June 16
+            // TODO: internal_error starting on June 16
             assertThat(lookup.getError(), is(nullValue()));
 
             AdminConversationsDisconnectSharedResponse disconnectShared =
