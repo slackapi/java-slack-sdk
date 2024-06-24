@@ -322,6 +322,14 @@ public class JsonDataRecorder {
                     array.remove(0);
                 }
                 array.add(gson.toJsonTree(initProperties(new Bookmark())));
+
+            } else if (path.startsWith("/api/admin.conversations.") && name != null && name.equals("not_added")) {
+                while (!array.isEmpty()) {
+                    array.remove(0);
+                }
+                AdminConversationsBulkMoveResponse.NotAdded notAdded = initProperties(new AdminConversationsBulkMoveResponse.NotAdded());
+                notAdded.setErrors(Arrays.asList(""));
+                array.add(gson.toJsonTree(notAdded));
             } else if (path.equals("/api/admin.conversations.search") && name != null && name.equals("ownership_details")) {
                 while (!array.isEmpty()) {
                     array.remove(0);
