@@ -2094,6 +2094,16 @@ public class MethodsClientImpl implements MethodsClient {
     }
 
     @Override
+    public ConversationsExternalInvitePermissionsSetResponse conversationsExternalInvitePermissionsSet(ConversationsExternalInvitePermissionsSetRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_EXTERNAL_INVITE_PERMISSIONS_SET, getToken(req), ConversationsExternalInvitePermissionsSetResponse.class);
+    }
+
+    @Override
+    public ConversationsExternalInvitePermissionsSetResponse conversationsExternalInvitePermissionsSet(RequestConfigurator<ConversationsExternalInvitePermissionsSetRequest.ConversationsExternalInvitePermissionsSetRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsExternalInvitePermissionsSet(req.configure(ConversationsExternalInvitePermissionsSetRequest.builder()).build());
+    }
+
+    @Override
     public ConversationsInviteSharedResponse conversationsInviteShared(ConversationsInviteSharedRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_INVITE_SHARED, getToken(req), ConversationsInviteSharedResponse.class);
     }

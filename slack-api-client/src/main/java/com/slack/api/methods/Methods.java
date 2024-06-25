@@ -417,6 +417,7 @@ public class Methods {
     public static final String CONVERSATIONS_LIST_CONNECT_INVITES = "conversations.listConnectInvites";
 
     public static final String CONVERSATIONS_CANVASES_CREATE = "conversations.canvases.create";
+    public static final String CONVERSATIONS_EXTERNAL_INVITE_PERMISSIONS_SET = "conversations.externalInvitePermissions.set";
 
     // ------------------------------
     // dialog

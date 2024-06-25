@@ -1806,6 +1806,14 @@ public class RequestFormBuilder {
         return form;
     }
 
+    public static FormBody.Builder toForm(ConversationsExternalInvitePermissionsSetRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("action", req.getAction(), form);
+        setIfNotNull("channel", req.getChannel(), form);
+        setIfNotNull("target_team", req.getTargetTeam(), form);
+        return form;
+    }
+
     public static FormBody.Builder toForm(ConversationsInviteSharedRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("channel", req.getChannel(), form);
