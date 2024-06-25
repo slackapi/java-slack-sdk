@@ -1841,6 +1841,16 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     }
 
     @Override
+    public CompletableFuture<ConversationsExternalInvitePermissionsSetResponse> conversationsExternalInvitePermissionsSet(ConversationsExternalInvitePermissionsSetRequest req) {
+        return executor.execute(CONVERSATIONS_EXTERNAL_INVITE_PERMISSIONS_SET, toMap(req), () -> methods.conversationsExternalInvitePermissionsSet(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsExternalInvitePermissionsSetResponse> conversationsExternalInvitePermissionsSet(RequestConfigurator<ConversationsExternalInvitePermissionsSetRequest.ConversationsExternalInvitePermissionsSetRequestBuilder> req) {
+        return conversationsExternalInvitePermissionsSet(req.configure(ConversationsExternalInvitePermissionsSetRequest.builder()).build());
+    }
+
+    @Override
     public CompletableFuture<ConversationsInviteSharedResponse> conversationsInviteShared(ConversationsInviteSharedRequest req) {
         return executor.execute(CONVERSATIONS_INVITE_SHARED, toMap(req), () -> methods.conversationsInviteShared(req));
     }

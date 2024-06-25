@@ -164,6 +164,7 @@
   "conversations.close": "Tier2",
   "conversations.create": "Tier2",
   "conversations.declineSharedInvite": "Tier1",
+  "conversations.externalInvitePermissions.set": "Tier2",
   "conversations.history": "Tier3",
   "conversations.info": "Tier3",
   "conversations.invite": "Tier3",

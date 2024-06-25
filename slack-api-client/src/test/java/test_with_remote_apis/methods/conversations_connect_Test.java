@@ -42,6 +42,7 @@ public class conversations_connect_Test {
         ConversationsCreateResponse channelCreation = sender.conversationsCreate(r -> r.name(channelName));
         assertThat(channelCreation.getError(), is(nullValue()));
         String channelId = channelCreation.getChannel().getId();
+        String connectTeamId = receiver.authTest(r -> r).getTeamId();
 
         try {
             ConversationsInviteSharedResponse invitation = sender.conversationsInviteShared(r -> r
@@ -51,9 +52,10 @@ public class conversations_connect_Test {
             );
             assertThat(invitation.getError(), is(nullValue()));
 
-            String connectTeamId = receiver.authTest(r -> r).getTeamId();
             ConversationsListConnectInvitesResponse invites = receiver.conversationsListConnectInvites(r -> r
-                    .count(10).teamId(connectTeamId));
+                    .count(10)
+                    .teamId(connectTeamId)
+            );
             assertThat(invites.getError(), is(nullValue()));
 
             ConversationsAcceptSharedInviteResponse acceptance = receiver.conversationsAcceptSharedInvite(r -> r
@@ -62,12 +64,33 @@ public class conversations_connect_Test {
             );
             assertThat(acceptance.getError(), is(nullValue()));
 
-            ConversationsApproveSharedInviteResponse approval = receiver.conversationsApproveSharedInvite(r -> r.inviteId(invitation.getInviteId()));
+            ConversationsApproveSharedInviteResponse approval = receiver.conversationsApproveSharedInvite(r -> r
+                    .inviteId(invitation.getInviteId())
+            );
             if (approval.getError() != null && approval.getError().equals("invalid_action")) {
                 // auto-approval is enabled in this workspace / org
             } else {
                 assertThat(approval.getError(), is(nullValue()));
             }
+
+            ConversationsApproveSharedInviteResponse senderApproval = sender.conversationsApproveSharedInvite(r -> r
+                    .inviteId(invitation.getInviteId())
+                    .targetTeam(connectTeamId)
+            );
+            assertThat(senderApproval.getError(), is(nullValue()));
+
+            ConversationsExternalInvitePermissionsSetResponse downgrade = sender.conversationsExternalInvitePermissionsSet(r -> r
+                    .channel(channelId)
+                    .targetTeam(connectTeamId)
+                    .action("downgrade")
+            );
+            assertThat(downgrade.getError(), is(nullValue()));
+            ConversationsExternalInvitePermissionsSetResponse upgrade = sender.conversationsExternalInvitePermissionsSet(r -> r
+                    .channel(channelId)
+                    .targetTeam(connectTeamId)
+                    .action("upgrade")
+            );
+            assertThat(upgrade.getError(), is(nullValue()));
 
         } finally {
             ConversationsArchiveResponse archive = sender.conversationsArchive(r -> r.channel(channelId));

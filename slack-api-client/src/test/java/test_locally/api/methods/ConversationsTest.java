@@ -94,6 +94,8 @@ public class ConversationsTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).conversationsCanvasesCreate(r -> r.markdown("hey"))
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsExternalInvitePermissionsSet(r -> r)
+                .isOk(), is(true));
     }
 
     @Test
@@ -148,6 +150,8 @@ public class ConversationsTest {
         assertThat(slack.methodsAsync(ValidToken).conversationsCanvasesCreate(r -> r.documentContent(new CanvasDocumentContent()))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).conversationsCanvasesCreate(r -> r.markdown("hey"))
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsExternalInvitePermissionsSet(r -> r)
                 .get().isOk(), is(true));
     }
 

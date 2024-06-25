@@ -1033,6 +1033,10 @@ public interface AsyncMethodsClient {
 
     CompletableFuture<ConversationsCanvasesCreateResponse> conversationsCanvasesCreate(RequestConfigurator<ConversationsCanvasesCreateRequest.ConversationsCanvasesCreateRequestBuilder> req);
 
+    CompletableFuture<ConversationsExternalInvitePermissionsSetResponse> conversationsExternalInvitePermissionsSet(ConversationsExternalInvitePermissionsSetRequest req);
+
+    CompletableFuture<ConversationsExternalInvitePermissionsSetResponse> conversationsExternalInvitePermissionsSet(RequestConfigurator<ConversationsExternalInvitePermissionsSetRequest.ConversationsExternalInvitePermissionsSetRequestBuilder> req);
+
     // -------------
     // Slack Connect
 

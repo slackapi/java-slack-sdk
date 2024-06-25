@@ -1315,6 +1315,10 @@ public interface MethodsClient {
 
     ConversationsUnarchiveResponse conversationsUnarchive(RequestConfigurator<ConversationsUnarchiveRequest.ConversationsUnarchiveRequestBuilder> req) throws IOException, SlackApiException;
 
+    ConversationsExternalInvitePermissionsSetResponse conversationsExternalInvitePermissionsSet(ConversationsExternalInvitePermissionsSetRequest req) throws IOException, SlackApiException;
+
+    ConversationsExternalInvitePermissionsSetResponse conversationsExternalInvitePermissionsSet(RequestConfigurator<ConversationsExternalInvitePermissionsSetRequest.ConversationsExternalInvitePermissionsSetRequestBuilder> req) throws IOException, SlackApiException;
+
     // -------------
     // Slack Connect
 
