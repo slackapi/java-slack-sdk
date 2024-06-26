@@ -343,6 +343,7 @@ public class LogsResponse implements AuditApiResponse {
         private AAARule matchedRule; // app_allowlist_rule_matched
         private AAARequest request; // app_allowlist_rule_matched
         private List<AAARule> rulesChecked; // app_allowlist_rule_matched
+        private String disconnectingTeam; // external_shared_channel_disconnected
     }
 
     @Data

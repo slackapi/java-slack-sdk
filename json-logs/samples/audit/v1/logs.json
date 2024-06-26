@@ -383,7 +383,8 @@
           "id": "",
           "team_id": ""
         },
-        "rules_checked": []
+        "rules_checked": [],
+        "disconnecting_team": ""
       }
     }
   ]
