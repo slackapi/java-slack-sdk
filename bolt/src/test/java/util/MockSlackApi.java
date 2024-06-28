@@ -43,7 +43,7 @@ public class MockSlackApi extends HttpServlet {
                 resp.setContentType("application/json");
                 return;
             } else if (!authorizationHeader.equals("Bearer " + ValidToken)
-                && !authorizationHeader.equals("Bearer " + ValidFunctionToken)) {
+                    && !authorizationHeader.equals("Bearer " + ValidFunctionToken)) {
                 resp.setStatus(200);
                 resp.getWriter().write("{\"ok\":false,\"error\":\"invalid_auth\"}");
                 resp.setContentType("application/json");
@@ -61,6 +61,8 @@ public class MockSlackApi extends HttpServlet {
             } else {
                 body = body.replaceFirst("\"error\": \"\"", "\"error\": \"something-wrong\"");
             }
+        } else if (methodName.startsWith("functions.") && !requestBody.contains("function_execution_id=Fx")) {
+            body = body.replaceFirst("\"error\": \"\"", "\"error\": \"invalid function_execution_id\"");
         } else {
             body = body.replaceFirst("\"ok\": false,", "\"ok\": true,");
         }
