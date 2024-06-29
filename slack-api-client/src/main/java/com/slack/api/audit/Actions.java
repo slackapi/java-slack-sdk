@@ -430,6 +430,7 @@ public class Actions {
         public static final String huddle_screenshare_on = "huddle_screenshare_on";
         public static final String huddle_screenshare_off = "huddle_screenshare_off";
         public static final String huddle_knock_accepted = "huddle_knock_accepted";
+        public static final String huddle_participant_transcript_consent = "huddle_participant_transcript_consent";
     }
 
     public static class Anomaly {
