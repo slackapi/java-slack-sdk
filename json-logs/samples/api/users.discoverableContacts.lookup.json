@@ -3,12 +3,10 @@
   "error": "",
   "needed": "",
   "provided": "",
-  "user": {
-    "is_discoverable": false
-  },
   "response_metadata": {
     "messages": [
       ""
     ]
-  }
+  },
+  "is_discoverable": false
 }

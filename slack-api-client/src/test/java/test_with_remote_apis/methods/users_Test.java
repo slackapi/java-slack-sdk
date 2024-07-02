@@ -451,8 +451,7 @@ public class users_Test {
         String email = user.getUser().getProfile().getEmail();
         UsersDiscoverableContactsLookupResponse response = slack.methods(orgBotToken)
                 .usersDiscoverableContactsLookup(r -> r.email(email));
-        // TODO: valid tests
-        assertThat(response.getError(), is("not_allowed"));
+        assertThat(response.getError(), is(nullValue()));
     }
 
     @Test

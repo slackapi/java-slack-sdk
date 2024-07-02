@@ -1,6 +1,5 @@
 package com.slack.api.methods.response.users.discoverable_contacts;
 
-import com.google.gson.annotations.SerializedName;
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ResponseMetadata;
 import lombok.Data;
@@ -18,13 +17,6 @@ public class UsersDiscoverableContactsLookupResponse implements SlackApiTextResp
     private String provided;
     private transient Map<String, List<String>> httpResponseHeaders;
 
-    private UserContact user;
-
+    private Boolean isDiscoverable;
     private ResponseMetadata responseMetadata;
-
-    @Data
-    public static class UserContact {
-        @SerializedName("is_discoverable")
-        private boolean discoverable;
-    }
 }
