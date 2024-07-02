@@ -98,6 +98,7 @@ import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
 import com.slack.api.methods.request.team.*;
+import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.tooling.tokens.ToolingTokensRotateRequest;
@@ -212,6 +213,7 @@ import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
 import com.slack.api.methods.response.team.*;
+import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsDisconnectResponse;
 import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.tooling.tokens.ToolingTokensRotateResponse;
@@ -1381,6 +1383,10 @@ public interface AsyncMethodsClient {
     CompletableFuture<TeamExternalTeamsListResponse> teamExternalTeamsList(TeamExternalTeamsListRequest req);
 
     CompletableFuture<TeamExternalTeamsListResponse> teamExternalTeamsList(RequestConfigurator<TeamExternalTeamsListRequest.TeamExternalTeamsListRequestBuilder> req);
+
+    CompletableFuture<TeamExternalTeamsDisconnectResponse> teamExternalTeamsDisconnect(TeamExternalTeamsDisconnectRequest req);
+
+    CompletableFuture<TeamExternalTeamsDisconnectResponse> teamExternalTeamsDisconnect(RequestConfigurator<TeamExternalTeamsDisconnectRequest.TeamExternalTeamsDisconnectRequestBuilder> req);
 
     // ------------------------------
     // tooling.tokens

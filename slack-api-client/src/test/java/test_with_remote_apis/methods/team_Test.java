@@ -2,7 +2,9 @@ package test_with_remote_apis.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
+import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.response.team.*;
+import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsDisconnectResponse;
 import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.model.User;
@@ -271,6 +273,16 @@ public class team_Test {
         response = slack.methods().teamExternalTeamsList(r -> r.token(gridBotToken).workspaceFilter(teamIds));
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.isOk(), is(true));
+    }
+
+    @Test
+    public void teamExternalTeamsDisconnect() throws Exception {
+        TeamExternalTeamsDisconnectResponse response = slack.methods().teamExternalTeamsDisconnect(r -> r
+                .token(gridBotToken)
+                // dummy data
+                .targetTeam("T726G27TT")
+        );
+        assertThat(response.getError(), is("invalid_target_team"));
     }
 
 }
