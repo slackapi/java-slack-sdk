@@ -109,6 +109,7 @@ import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
 import com.slack.api.methods.request.team.*;
+import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.tooling.tokens.ToolingTokensRotateRequest;
@@ -2639,6 +2640,12 @@ public class RequestFormBuilder {
         if (req.getWorkspaceFilter() != null) {
             setIfNotNull("workspace_filter", req.getWorkspaceFilter().stream().collect(joining(",")), form);
         }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(TeamExternalTeamsDisconnectRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("target_team", req.getTargetTeam(), form);
         return form;
     }
 

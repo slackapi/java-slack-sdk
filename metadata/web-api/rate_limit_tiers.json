@@ -264,6 +264,7 @@
   "team.accessLogs": "Tier2",
   "team.billableInfo": "Tier2",
   "team.billing.info": "Tier3",
+  "team.externalTeams.disconnect": "Tier1",
   "team.externalTeams.list": "Tier2",
   "team.info": "Tier3",
   "team.integrationLogs": "Tier2",

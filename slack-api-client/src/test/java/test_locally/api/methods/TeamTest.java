@@ -43,6 +43,7 @@ public class TeamTest {
         assertThat(slack.methods(ValidToken).teamBillingInfo(r -> r).isOk(), is(true));
         assertThat(slack.methods(ValidToken).teamPreferencesList(r -> r).isOk(), is(true));
         assertThat(slack.methods(ValidToken).teamExternalTeamsList(r -> r).isOk(), is(true));
+        assertThat(slack.methods(ValidToken).teamExternalTeamsDisconnect(r -> r).isOk(), is(true));
     }
 
     @Test
@@ -60,6 +61,7 @@ public class TeamTest {
         assertThat(slack.methodsAsync(ValidToken).teamBillingInfo(r -> r).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).teamPreferencesList(r -> r).get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).teamExternalTeamsList(r -> r).get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).teamExternalTeamsDisconnect(r -> r).get().isOk(), is(true));
     }
 
 }

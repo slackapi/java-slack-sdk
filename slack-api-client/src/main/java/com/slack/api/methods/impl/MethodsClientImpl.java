@@ -113,6 +113,7 @@ import com.slack.api.methods.request.stars.StarsAddRequest;
 import com.slack.api.methods.request.stars.StarsListRequest;
 import com.slack.api.methods.request.stars.StarsRemoveRequest;
 import com.slack.api.methods.request.team.*;
+import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsDisconnectRequest;
 import com.slack.api.methods.request.team.external_teams.TeamExternalTeamsListRequest;
 import com.slack.api.methods.request.team.profile.TeamProfileGetRequest;
 import com.slack.api.methods.request.tooling.tokens.ToolingTokensRotateRequest;
@@ -240,6 +241,7 @@ import com.slack.api.methods.response.stars.StarsAddResponse;
 import com.slack.api.methods.response.stars.StarsListResponse;
 import com.slack.api.methods.response.stars.StarsRemoveResponse;
 import com.slack.api.methods.response.team.*;
+import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsDisconnectResponse;
 import com.slack.api.methods.response.team.external_teams.TeamExternalTeamsListResponse;
 import com.slack.api.methods.response.team.profile.TeamProfileGetResponse;
 import com.slack.api.methods.response.tooling.tokens.ToolingTokensRotateResponse;
@@ -3195,6 +3197,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public TeamExternalTeamsListResponse teamExternalTeamsList(RequestConfigurator<TeamExternalTeamsListRequest.TeamExternalTeamsListRequestBuilder> req) throws IOException, SlackApiException {
         return teamExternalTeamsList(req.configure(TeamExternalTeamsListRequest.builder()).build());
+    }
+
+    @Override
+    public TeamExternalTeamsDisconnectResponse teamExternalTeamsDisconnect(TeamExternalTeamsDisconnectRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.TEAM_EXTERNAL_TEAMS_DISCONNECT, getToken(req), TeamExternalTeamsDisconnectResponse.class);
+    }
+
+    @Override
+    public TeamExternalTeamsDisconnectResponse teamExternalTeamsDisconnect(RequestConfigurator<TeamExternalTeamsDisconnectRequest.TeamExternalTeamsDisconnectRequestBuilder> req) throws IOException, SlackApiException {
+        return teamExternalTeamsDisconnect(req.configure(TeamExternalTeamsDisconnectRequest.builder()).build());
     }
 
     @Override
