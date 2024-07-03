@@ -61,7 +61,7 @@
             see also: https://github.com/slackapi/java-slack-sdk/issues/1034
         -->
         <slf4j.version>1.7.36</slf4j.version>
-        <lombok.version>1.18.32</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <delombok.output>target/generated-sources-for-javadocs</delombok.output>
 

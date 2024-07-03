@@ -13,7 +13,7 @@
         <micronaut.version>4.5.3</micronaut.version>
         <micronaut-test-junit5.version>4.3.0</micronaut-test-junit5.version>
         <micronaut-rxjava3.version>3.4.0</micronaut-rxjava3.version>
-        <junit5-jupiter.version>5.10.2</junit5-jupiter.version>
+        <junit5-jupiter.version>5.10.3</junit5-jupiter.version>
         <!-- Note that upgrading this library breaks other dependency resolution -->
         <mockito-all.version>1.10.19</mockito-all.version>
         <jakarta.inject.version>2.0.1.MR</jakarta.inject.version>
