@@ -1,5 +1,6 @@
 package com.slack.api.model.event;
 
+import com.google.gson.annotations.SerializedName;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.BotProfile;
 import com.slack.api.model.File;
@@ -47,13 +48,34 @@ public class AppMentionEvent implements Event {
     private Boolean displayAsBot;
     private String ts;
     private String team;
+    private String channel;
+
+    // user_team, source_team, and user_profile
+    // can exist when the user who mentioned this bot is in a different workspace/org
     private String userTeam;
     private String sourceTeam;
-    private String channel;
+    private UserProfile userProfile;
+
     private Edited edited;
     private String eventTs;
 
     private String threadTs;
+
+    @Data
+    public static class UserProfile {
+        private String name;
+        private String firstName;
+        private String realName;
+        private String displayName;
+        private String team;
+        @SerializedName("is_restricted")
+        private boolean restricted;
+        @SerializedName("is_ultra_restricted")
+        private boolean ultraRestricted;
+        private String avatarHash;
+        @SerializedName("image_72")
+        private String image72;
+    }
 
     @Data
     public static class Edited {
