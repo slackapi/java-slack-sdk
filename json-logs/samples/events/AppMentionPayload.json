@@ -631,6 +631,19 @@
     "ts": "",
     "team": "",
     "channel": "",
+    "user_team": "",
+    "source_team": "",
+    "user_profile": {
+      "name": "",
+      "first_name": "",
+      "real_name": "",
+      "display_name": "",
+      "team": "",
+      "is_restricted": false,
+      "is_ultra_restricted": false,
+      "avatar_hash": "",
+      "image_72": ""
+    },
     "edited": {
       "user": "",
       "ts": ""
