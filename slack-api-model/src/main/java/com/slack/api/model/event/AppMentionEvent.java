@@ -47,6 +47,8 @@ public class AppMentionEvent implements Event {
     private Boolean displayAsBot;
     private String ts;
     private String team;
+    private String userTeam;
+    private String sourceTeam;
     private String channel;
     private Edited edited;
     private String eventTs;
