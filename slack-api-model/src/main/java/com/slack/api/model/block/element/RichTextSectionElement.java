@@ -69,7 +69,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "channel";
         private final String type = TYPE;
         private String channelId; // C12345678
-        private NoCodeTextStyle style;
+        private LimitedTextStyle style;
     }
 
     @Data
@@ -80,7 +80,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "user";
         private final String type = TYPE;
         private String userId; // W12345678
-        private NoCodeTextStyle style;
+        private LimitedTextStyle style;
     }
 
     @Data
@@ -92,7 +92,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         private final String type = TYPE;
         private String name;
         private Integer skinTone;
-        private NoCodeTextStyle style;
+        private LimitedTextStyle style;
         private String unicode;
     }
 
@@ -104,7 +104,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "team";
         private final String type = TYPE;
         private String teamId;
-        private NoCodeTextStyle style;
+        private LimitedTextStyle style;
     }
 
     @Data
@@ -115,7 +115,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "usergroup";
         private final String type = TYPE;
         private String usergroupId;
-        private NoCodeTextStyle style;
+        private LimitedTextStyle style;
     }
 
     @Data
@@ -126,7 +126,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "broadcast";
         private final String type = TYPE;
         private String range; // channel, here, everyone
-        private NoCodeTextStyle style;
+        private LimitedTextStyle style;
     }
 
     @Data
@@ -137,7 +137,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "color";
         private final String type = TYPE;
         private String value;
-        private NoCodeTextStyle style;
+        private LimitedTextStyle style;
     }
 
     // -------------------------------
@@ -160,7 +160,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class NoCodeTextStyle {
+    public static class LimitedTextStyle {
         private boolean bold;
         private boolean italic;
         private boolean strike;
