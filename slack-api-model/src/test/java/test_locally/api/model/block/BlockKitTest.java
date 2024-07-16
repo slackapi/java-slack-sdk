@@ -1667,4 +1667,144 @@ public class BlockKitTest {
         assertEquals(1, view.getAttachments().get(0).getBlocks().size());
         assertEquals(1, view.getBlocks().size());
     }
+
+
+    @Test
+    public void parseRichTextElements() {
+        String json = "{\n" +
+                "  \"blocks\": [\n" +
+                "    {\n" +
+                "      \"type\": \"rich_text\",\n" +
+                "      \"elements\": [\n" +
+                "        {\n" +
+                "          \"type\": \"rich_text_section\",\n" +
+                "          \"elements\": [\n" +
+                "            {\n" +
+                "              \"type\": \"date\",\n" +
+                "              \"timestamp\": 1234567890,\n" +
+                "              \"format\": \"{date_num}\",\n" +
+                "              \"style\": {\n" +
+                "                \"code\": false,\n" +
+                "                \"bold\": true,\n" +
+                "                \"highlight\": true,\n" +
+                "                \"client_highlight\": true,\n" +
+                "                \"unlink\": true,\n" +
+                "                \"italic\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"link\",\n" +
+                "              \"url\": \"https://slack.com/\",\n" +
+                "              \"text\": \"with a link\",\n" +
+                "              \"unsafe\": true,\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true,\n" +
+                "                \"code\": false,\n" +
+                "                \"highlight\": true,\n" +
+                "                \"client_highlight\": true,\n" +
+                "                \"italic\": true,\n" +
+                "                \"strike\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"text\",\n" +
+                "              \"text\": \"we are near the end\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true,\n" +
+                "                \"code\": false,\n" +
+                "                \"highlight\": true,\n" +
+                "                \"client_highlight\": true,\n" +
+                "                \"unlink\": true,\n" +
+                "                \"italic\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"emoji\",\n" +
+                "              \"name\": \"basketball\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true,\n" +
+                "                \"highlight\": true,\n" +
+                "                \"client_highlight\": true,\n" +
+                "                \"unlink\": true,\n" +
+                "                \"italic\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"color\",\n" +
+                "              \"value\": \"#F405B3\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true,\n" +
+                "                \"highlight\": true,\n" +
+                "                \"client_highlight\": true,\n" +
+                "                \"italic\": true,\n" +
+                "                \"strike\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"team\",\n" +
+                "              \"team_id\": \"T03E94MJU\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true,\n" +
+                "                \"highlight\": true,\n" +
+                "                \"client_highlight\": true,\n" +
+                "                \"unlink\": true,\n" +
+                "                \"italic\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"user\",\n" +
+                "              \"user_id\": \"U03E94MK0\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true,\n" +
+                "                \"highlight\": true,\n" +
+                "                \"client_highlight\": true,\n" +
+                "                \"unlink\": true,\n" +
+                "                \"italic\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"usergroup\",\n" +
+                "              \"usergroup_id\": \"SKAQ0Q1NW\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true,\n" +
+                "                \"highlight\": false,\n" +
+                "                \"client_highlight\": false,\n" +
+                "                \"unlink\": true,\n" +
+                "                \"italic\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"broadcast\",\n" +
+                "              \"range\": \"here\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true,\n" +
+                "                \"highlight\": false,\n" +
+                "                \"client_highlight\": false,\n" +
+                "                \"unlink\": true,\n" +
+                "                \"italic\": true\n" +
+                "              }\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"type\": \"channel\",\n" +
+                "              \"channel_id\": \"CHE2DUW5V\",\n" +
+                "              \"style\": {\n" +
+                "                \"bold\": true,\n" +
+                "                \"highlight\": false,\n" +
+                "                \"client_highlight\": false,\n" +
+                "                \"unlink\": true,\n" +
+                "                \"italic\": true\n" +
+                "              }\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        Message message = GsonFactory.createSnakeCase().fromJson(json, Message.class);
+        assertThat(message, is(notNullValue()));
+        assertThat(message.getBlocks().size(), is(1));
+        RichTextSectionElement section = (RichTextSectionElement) ((RichTextBlock) message.getBlocks().get(0)).getElements().get(0);
+        assertThat(section.getElements().size(), is(10));
+    }
 }
