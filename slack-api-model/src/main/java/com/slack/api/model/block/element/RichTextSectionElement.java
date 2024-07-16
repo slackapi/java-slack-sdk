@@ -38,68 +38,12 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Channel implements RichTextElement {
-        public static final String TYPE = "channel";
-        private final String type = TYPE;
-        private String channelId; // C12345678
-        private TextStyle style;
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class User implements RichTextElement {
-        public static final String TYPE = "user";
-        private final String type = TYPE;
-        private String userId; // W12345678
-        private TextStyle style;
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Emoji implements RichTextElement {
-        public static final String TYPE = "emoji";
-        private final String type = TYPE;
-        private String name;
-        private Integer skinTone;
-        private TextStyle style;
-        private String unicode;
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
     public static class Link implements RichTextElement {
         public static final String TYPE = "link";
         private final String type = TYPE;
         private String url;
         private String text;
-        private TextStyle style;
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Team implements RichTextElement {
-        public static final String TYPE = "team";
-        private final String type = TYPE;
-        private String teamId;
-        private TextStyle style;
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class UserGroup implements RichTextElement {
-        public static final String TYPE = "usergroup";
-        private final String type = TYPE;
-        private String usergroupId;
+        private Boolean unsafe;
         private TextStyle style;
     }
 
@@ -111,7 +55,67 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "date";
         private final String type = TYPE;
         private String timestamp;
+        private String format;
         private TextStyle style;
+        private String url;
+        private String fallback;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Channel implements RichTextElement {
+        public static final String TYPE = "channel";
+        private final String type = TYPE;
+        private String channelId; // C12345678
+        private LimitedTextStyle style;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class User implements RichTextElement {
+        public static final String TYPE = "user";
+        private final String type = TYPE;
+        private String userId; // W12345678
+        private LimitedTextStyle style;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Emoji implements RichTextElement {
+        public static final String TYPE = "emoji";
+        private final String type = TYPE;
+        private String name;
+        private Integer skinTone;
+        private LimitedTextStyle style;
+        private String unicode;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Team implements RichTextElement {
+        public static final String TYPE = "team";
+        private final String type = TYPE;
+        private String teamId;
+        private LimitedTextStyle style;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UserGroup implements RichTextElement {
+        public static final String TYPE = "usergroup";
+        private final String type = TYPE;
+        private String usergroupId;
+        private LimitedTextStyle style;
     }
 
     @Data
@@ -122,7 +126,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "broadcast";
         private final String type = TYPE;
         private String range; // channel, here, everyone
-        private TextStyle style;
+        private LimitedTextStyle style;
     }
 
     @Data
@@ -133,7 +137,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         public static final String TYPE = "color";
         private final String type = TYPE;
         private String value;
-        private TextStyle style;
+        private LimitedTextStyle style;
     }
 
     // -------------------------------
@@ -146,7 +150,23 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         private boolean bold;
         private boolean italic;
         private boolean strike;
+        private boolean highlight;
+        private boolean clientHighlight;
+        private boolean unlink;
         private boolean code;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class LimitedTextStyle {
+        private boolean bold;
+        private boolean italic;
+        private boolean strike;
+        private boolean highlight;
+        private boolean clientHighlight;
+        private boolean unlink;
     }
 
 }

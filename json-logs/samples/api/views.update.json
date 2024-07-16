@@ -51,7 +51,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -61,6 +63,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -71,7 +76,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -81,27 +88,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -112,7 +131,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -122,7 +143,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -132,7 +155,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -143,7 +168,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -163,7 +190,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -173,6 +202,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -183,7 +215,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -193,27 +227,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -224,7 +270,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -234,7 +282,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -244,7 +294,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -255,7 +307,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -272,7 +326,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -282,6 +338,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -292,7 +351,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -302,27 +363,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -333,7 +406,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -343,7 +418,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -353,7 +430,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -364,7 +443,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -380,7 +461,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -390,6 +473,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -400,7 +486,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -410,27 +498,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -441,7 +541,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -451,7 +553,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -461,7 +565,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -472,7 +578,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -497,7 +605,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -507,6 +617,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -517,7 +630,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -527,27 +642,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -558,7 +685,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -568,7 +697,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -578,7 +709,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -589,7 +722,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -609,7 +744,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -619,6 +756,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -629,7 +769,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -639,27 +781,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -670,7 +824,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -680,7 +836,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -690,7 +848,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -701,7 +861,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -718,7 +880,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -728,6 +892,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -738,7 +905,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -748,27 +917,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -779,7 +960,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -789,7 +972,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -799,7 +984,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -810,7 +997,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -826,7 +1015,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -836,6 +1027,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -846,7 +1040,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -856,27 +1052,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -887,7 +1095,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -897,7 +1107,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -907,7 +1119,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -918,7 +1132,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -940,7 +1156,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -950,6 +1168,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -960,7 +1181,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -970,27 +1193,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1001,7 +1236,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1011,7 +1248,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1021,7 +1260,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1032,7 +1273,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -1052,7 +1295,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1062,6 +1307,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1072,7 +1320,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1082,27 +1332,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1113,7 +1375,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1123,7 +1387,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1133,7 +1399,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1144,7 +1412,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -1161,7 +1431,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1171,6 +1443,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1181,7 +1456,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1191,27 +1468,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1222,7 +1511,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1232,7 +1523,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1242,7 +1535,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1253,7 +1548,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -1269,7 +1566,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1279,6 +1578,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1289,7 +1591,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1299,27 +1603,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1330,7 +1646,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1340,7 +1658,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1350,7 +1670,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1361,7 +1683,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -1382,7 +1706,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1392,6 +1718,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1402,7 +1731,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1412,27 +1743,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1443,7 +1786,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1453,7 +1798,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1463,7 +1810,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1474,7 +1823,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -1494,7 +1845,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1504,6 +1857,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1514,7 +1870,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1524,27 +1882,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1555,7 +1925,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1565,7 +1937,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1575,7 +1949,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1586,7 +1962,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -1603,7 +1981,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1613,6 +1993,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1623,7 +2006,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1633,27 +2018,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1664,7 +2061,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1674,7 +2073,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1684,7 +2085,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1695,7 +2098,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
@@ -1711,7 +2116,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1721,6 +2128,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1731,7 +2141,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1741,27 +2153,39 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
                         "type": "date",
                         "timestamp": "",
+                        "format": "",
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
-                        }
+                        },
+                        "url": "",
+                        "fallback": ""
                       },
                       {
                         "type": "link",
                         "url": "",
                         "text": "",
+                        "unsafe": false,
                         "style": {
                           "bold": false,
                           "italic": false,
                           "strike": false,
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false,
                           "code": false
                         }
                       },
@@ -1772,7 +2196,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1782,7 +2208,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1792,7 +2220,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         }
                       },
                       {
@@ -1803,7 +2233,9 @@
                           "bold": false,
                           "italic": false,
                           "strike": false,
-                          "code": false
+                          "highlight": false,
+                          "client_highlight": false,
+                          "unlink": false
                         },
                         "unicode": ""
                       }
