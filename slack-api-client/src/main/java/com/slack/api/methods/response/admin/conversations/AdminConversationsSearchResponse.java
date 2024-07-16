@@ -2,6 +2,7 @@ package com.slack.api.methods.response.admin.conversations;
 
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.ChannelEmailAddress;
+import com.slack.api.model.ConversationProperties;
 import com.slack.api.model.ErrorResponseMetadata;
 import lombok.Data;
 
@@ -56,6 +57,7 @@ public class AdminConversationsSearchResponse implements SlackApiTextResponse {
         private String conversationHostId;
         private Canvas canvas;
         private Lists lists;
+        private ConversationProperties properties;
     }
 
     @Data

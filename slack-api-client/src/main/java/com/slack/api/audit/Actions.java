@@ -267,6 +267,7 @@ public class Actions {
         public static final String file_deleted = "file_deleted";
         public static final String file_upload_blocked_by_type = "file_upload_blocked_by_type";
         public static final String file_share_blocked_by_type = "file_share_blocked_by_type";
+        public static final String file_owner_reassigned_for_quip_migration = "file_owner_reassigned_for_quip_migration";
     }
 
     public static class Channel {

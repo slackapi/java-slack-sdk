@@ -17,6 +17,8 @@ public class ConversationProperties {
     private PostingRestrictedTo postingRestrictedTo;
     private ThreadsRestrictedTo threadsRestrictedTo;
     private Boolean huddlesRestricted;
+    private Boolean atHereRestricted;
+    private Boolean atChannelRestricted;
 
     @Data
     @Builder

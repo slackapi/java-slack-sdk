@@ -247,7 +247,8 @@
       "file_deleted",
       "file_upload_blocked_by_type",
       "file_share_blocked_by_type",
-      "file_download_blocked"
+      "file_download_blocked",
+      "file_owner_reassigned_for_quip_migration"
     ],
     "channel": [
       "user_channel_join",

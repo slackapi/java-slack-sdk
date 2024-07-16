@@ -71,6 +71,29 @@
             "team_id": ""
           }
         ]
+      },
+      "properties": {
+        "canvas": {
+          "file_id": "F00000000",
+          "is_empty": false,
+          "quip_thread_id": ""
+        },
+        "posting_restricted_to": {
+          "type": [
+            ""
+          ],
+          "user": [
+            "U00000000"
+          ]
+        },
+        "threads_restricted_to": {
+          "type": [
+            ""
+          ]
+        },
+        "huddles_restricted": false,
+        "at_here_restricted": false,
+        "at_channel_restricted": false
       }
     }
   ],
