@@ -27,6 +27,7 @@ then
     -pl !bolt-quarkus-examples \
     -pl !bolt-jakarta-servlet \
     -pl !bolt-jakarta-jetty \
+    -pl !bolt-http4k \
     -pl !bolt-micronaut \
     clean \
     test-compile \
