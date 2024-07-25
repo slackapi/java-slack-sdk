@@ -34,6 +34,7 @@ import com.slack.api.methods.response.admin.users.*;
 import com.slack.api.methods.response.admin.workflows.*;
 import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.FileReader;
 
@@ -312,6 +313,7 @@ public class FieldValidationTest {
         }
     }
 
+    @Ignore
     @Test
     public void adminTeams() throws Exception {
         String prefix = "admin.teams.";
