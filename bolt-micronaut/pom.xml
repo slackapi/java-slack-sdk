@@ -10,8 +10,8 @@
     </parent>
 
     <properties>
-        <micronaut.version>4.5.3</micronaut.version>
-        <micronaut-test-junit5.version>4.3.0</micronaut-test-junit5.version>
+        <micronaut.version>4.5.4</micronaut.version>
+        <micronaut-test-junit5.version>4.4.0</micronaut-test-junit5.version>
         <micronaut-rxjava3.version>3.4.0</micronaut-rxjava3.version>
         <junit5-jupiter.version>5.10.3</junit5-jupiter.version>
         <!-- Note that upgrading this library breaks other dependency resolution -->
