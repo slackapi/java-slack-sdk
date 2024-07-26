@@ -205,6 +205,7 @@ public class Actions {
         public static final String quip_migration_org_mapping_added = "quip_migration_org_mapping_added";
         public static final String organization_channel_audit_export_enabled = "organization_channel_audit_export_enabled";
         public static final String workspace_channel_audit_export_enabled = "workspace_channel_audit_export_enabled";
+        public static final String organization_created_migration_intent = "organization_created_migration_intent";
     }
 
     public static class User {
