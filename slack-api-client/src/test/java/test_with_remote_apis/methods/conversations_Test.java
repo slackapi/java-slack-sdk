@@ -245,7 +245,6 @@ public class conversations_Test {
                     .force(true)
                     .channel(channel.getId())
                     .users(Arrays.asList(invitee)));
-            // TODO: This part fails due to "cant_invite" error as of June 22, 2024
             assertThat(inviteResponse.getError(), is(nullValue()));
 
             ConversationsKickResponse kickResponse = slack.methods().conversationsKick(r -> r

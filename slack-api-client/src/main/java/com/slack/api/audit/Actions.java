@@ -206,6 +206,10 @@ public class Actions {
         public static final String organization_channel_audit_export_enabled = "organization_channel_audit_export_enabled";
         public static final String workspace_channel_audit_export_enabled = "workspace_channel_audit_export_enabled";
         public static final String organization_created_migration_intent = "organization_created_migration_intent";
+        public static final String organization_accepted_migration_intent = "organization_accepted_migration_intent";
+        public static final String organization_declined_migration_intent = "organization_declined_migration_intent";
+        public static final String team_accepted_migration_intent = "team_accepted_migration_intent";
+        public static final String team_declined_migration_intent = "team_declined_migration_intent";
     }
 
     public static class User {

@@ -194,7 +194,11 @@
       "quip_migration_org_mapping_added",
       "organization_channel_audit_export_enabled",
       "workspace_channel_audit_export_enabled",
-      "organization_created_migration_intent"
+      "organization_created_migration_intent",
+      "organization_accepted_migration_intent",
+      "organization_declined_migration_intent",
+      "team_accepted_migration_intent",
+      "team_declined_migration_intent"
     ],
     "user": [
       "custom_tos_accepted",
