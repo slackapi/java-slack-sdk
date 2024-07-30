@@ -143,6 +143,8 @@ public class Actions {
         public static final String pref_invited_user_preset = "pref.invited_user_preset";
         public static final String pref_max_guest_duration = "pref.max_guest_duration";
         public static final String pref_sso_sync_with_provider = "pref.sso_sync_with_provider";
+        public static final String pref_flag_message_flagger_outcome_notif = "pref.flag_message_flagger_outcome_notif";
+        public static final String pref_flag_message_author_outcome_notif = "pref.flag_message_author_outcome_notif";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -506,7 +508,7 @@ public class Actions {
         public static final String workflow_trigger_permission_set = "workflow_trigger_permission_set";
         public static final String workflow_trigger_permission_added = "workflow_trigger_permission_added";
         public static final String workflow_trigger_permission_removed = "workflow_trigger_permission_removed";
-   }
+    }
 
     public static class Canvas {
         private Canvas() {
