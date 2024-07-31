@@ -336,6 +336,8 @@ public class Actions {
         public static final String external_shared_channel_invite_requested = "external_shared_channel_invite_requested";
         public static final String external_shared_channel_invite_request_approved = "external_shared_channel_invite_request_approved";
         public static final String external_shared_channel_invite_request_denied = "external_shared_channel_invite_request_denied";
+        public static final String channel_tab_added = "channel_tab_added";
+        public static final String channel_tab_removed = "channel_tab_removed";
     }
 
     public static class App {

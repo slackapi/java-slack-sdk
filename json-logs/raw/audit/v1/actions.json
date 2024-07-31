@@ -312,7 +312,9 @@
       "record_channel_converted_to_channel",
       "external_shared_channel_invite_requested",
       "external_shared_channel_invite_request_approved",
-      "external_shared_channel_invite_request_denied"
+      "external_shared_channel_invite_request_denied",
+      "channel_tab_added",
+      "channel_tab_removed"
     ],
     "app": [
       "app_installed",
