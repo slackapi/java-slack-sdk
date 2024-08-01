@@ -200,7 +200,8 @@
       "team_accepted_migration_intent",
       "team_declined_migration_intent",
       "pref.flag_message_flagger_outcome_notif",
-      "pref.flag_message_author_outcome_notif"
+      "pref.flag_message_author_outcome_notif",
+      "workflow_analytics_export_started"
     ],
     "user": [
       "custom_tos_accepted",
