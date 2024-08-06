@@ -9204,6 +9204,7 @@
                         "view_count": 123,
                         "view_count_limit": 123
                       },
+                      "can_toggle_canvas_lock": false,
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -9691,6 +9692,7 @@
                             "view_count": 123,
                             "view_count_limit": 123
                           },
+                          "can_toggle_canvas_lock": false,
                           "bot_id": "",
                           "initial_comment": {
                             "id": "",
@@ -10223,6 +10225,7 @@
                             "view_count": 123,
                             "view_count_limit": 123
                           },
+                          "can_toggle_canvas_lock": false,
                           "bot_id": "",
                           "initial_comment": {
                             "id": "",
@@ -15480,6 +15483,7 @@
                     "view_count": 123,
                     "view_count_limit": 123
                   },
+                  "can_toggle_canvas_lock": false,
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -27819,6 +27823,7 @@
                   "view_count": 123,
                   "view_count_limit": 123
                 },
+                "can_toggle_canvas_lock": false,
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
@@ -41805,6 +41810,7 @@
                         "view_count": 123,
                         "view_count_limit": 123
                       },
+                      "can_toggle_canvas_lock": false,
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -42292,6 +42298,7 @@
                             "view_count": 123,
                             "view_count_limit": 123
                           },
+                          "can_toggle_canvas_lock": false,
                           "bot_id": "",
                           "initial_comment": {
                             "id": "",
@@ -42824,6 +42831,7 @@
                             "view_count": 123,
                             "view_count_limit": 123
                           },
+                          "can_toggle_canvas_lock": false,
                           "bot_id": "",
                           "initial_comment": {
                             "id": "",
@@ -48081,6 +48089,7 @@
                     "view_count": 123,
                     "view_count_limit": 123
                   },
+                  "can_toggle_canvas_lock": false,
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -60420,6 +60429,7 @@
                   "view_count": 123,
                   "view_count_limit": 123
                 },
+                "can_toggle_canvas_lock": false,
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
@@ -73133,6 +73143,7 @@
                 "view_count": 123,
                 "view_count_limit": 123
               },
+              "can_toggle_canvas_lock": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -87110,6 +87121,7 @@
                       "view_count": 123,
                       "view_count_limit": 123
                     },
+                    "can_toggle_canvas_lock": false,
                     "bot_id": "",
                     "initial_comment": {
                       "id": "",
@@ -87597,6 +87609,7 @@
                           "view_count": 123,
                           "view_count_limit": 123
                         },
+                        "can_toggle_canvas_lock": false,
                         "bot_id": "",
                         "initial_comment": {
                           "id": "",
@@ -88129,6 +88142,7 @@
                           "view_count": 123,
                           "view_count_limit": 123
                         },
+                        "can_toggle_canvas_lock": false,
                         "bot_id": "",
                         "initial_comment": {
                           "id": "",
@@ -93386,6 +93400,7 @@
                   "view_count": 123,
                   "view_count_limit": 123
                 },
+                "can_toggle_canvas_lock": false,
                 "bot_id": "",
                 "initial_comment": {
                   "id": "",
@@ -102624,6 +102639,7 @@
               "view_count": 123,
               "view_count_limit": 123
             },
+            "can_toggle_canvas_lock": false,
             "bot_id": "",
             "initial_comment": {
               "id": "",

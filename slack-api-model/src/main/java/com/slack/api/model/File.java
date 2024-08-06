@@ -362,6 +362,8 @@ public class File {
     private ListMetadata listMetadata;
     private ListLimits listLimits;
 
+    private boolean canToggleCanvasLock;
+
     // ---------------------------------------
     // file comments
     // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
