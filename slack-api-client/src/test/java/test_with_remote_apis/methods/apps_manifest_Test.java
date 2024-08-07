@@ -4,6 +4,8 @@ import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.methods.response.apps.manifest.*;
+import com.slack.api.model.event.FunctionExecutedEvent;
+import com.slack.api.model.manifest.AppManifest;
 import com.slack.api.model.manifest.AppManifestParams;
 import com.slack.api.token_rotation.tooling.ToolingToken;
 import com.slack.api.token_rotation.tooling.ToolingTokenRotator;
@@ -193,6 +195,31 @@ public class apps_manifest_Test {
                 .functions(functions)
                 .build();
 
+        AppManifestParams invalidManifest2 = AppManifestParams.builder()
+                .metadata(AppManifestParams.Metadata.builder().majorVersion(2).build())
+                .displayInformation(AppManifestParams.DisplayInformation.builder()
+                        .name("manifest-test-app")
+                        .build())
+                .settings(AppManifestParams.Settings.builder()
+                        .functionRuntime("remote")
+                        .interactivity(AppManifestParams.Interactivity.builder()
+                                .isEnabled(true)
+                                .build())
+//                        .eventSubscriptions(AppManifestParams.EventSubscriptions.builder()
+//                                .botEvents(Arrays.asList(FunctionExecutedEvent.TYPE_NAME))
+//                                .build())
+                        .socketModeEnabled(true)
+                        .orgDeployEnabled(true)
+                        .build())
+                .features(AppManifestParams.Features.builder()
+                        .botUser(AppManifestParams.BotUser.builder().displayName("test-bot").build())
+                        .build())
+                .oauthConfig(AppManifestParams.OAuthConfig.builder()
+                        .scopes(AppManifestParams.Scopes.builder().bot(Arrays.asList("commands")).build())
+                        .build())
+                .functions(functions)
+                .build();
+
         AppManifestParams manifest = AppManifestParams.builder()
                 .metadata(AppManifestParams.Metadata.builder().majorVersion(2).build())
                 .displayInformation(AppManifestParams.DisplayInformation.builder()
@@ -202,6 +229,9 @@ public class apps_manifest_Test {
                         .functionRuntime("remote")
                         .interactivity(AppManifestParams.Interactivity.builder()
                                 .isEnabled(true)
+                                .build())
+                        .eventSubscriptions(AppManifestParams.EventSubscriptions.builder()
+                                .botEvents(Arrays.asList(FunctionExecutedEvent.TYPE_NAME))
                                 .build())
                         .socketModeEnabled(true)
                         .orgDeployEnabled(true)
@@ -217,11 +247,17 @@ public class apps_manifest_Test {
 
         AppsManifestValidateResponse validation = client.appsManifestValidate(r -> r.manifest(invalidManifest));
         assertThat(validation.getError(), is("invalid_manifest"));
+        validation = client.appsManifestValidate(r -> r.manifest(invalidManifest2));
+        assertThat(validation.getError(), is("invalid_manifest"));
         validation = client.appsManifestValidate(r -> r.manifest(manifest));
         assertThat(validation.getError(), is(nullValue()));
 
         AppsManifestCreateResponse creation = null;
         try {
+            creation = client.appsManifestCreate(r -> r.manifest(invalidManifest));
+            assertThat(creation.getError(), is("invalid_manifest"));
+            creation = client.appsManifestCreate(r -> r.manifest(invalidManifest2));
+            assertThat(creation.getError(), is("invalid_manifest"));
             creation = client.appsManifestCreate(r -> r.manifest(manifest));
             assertThat(creation.getError(), is(nullValue()));
             String appId = creation.getAppId();

@@ -30,5 +30,6 @@ public class AppsManifestCreateResponse implements SlackApiTextResponse {
         private String code;
         private String message;
         private String pointer;
+        private String relatedComponent;
     }
 }
