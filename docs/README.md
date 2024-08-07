@@ -84,7 +84,7 @@ npm run start
 
 Edits to pages are reflected live — no restarting the server or reloading the page. (I'd say... 95% of the time, and 100% time if you're just editing a markdown file).
 
-Placeholders for version values (such as `sdkLatestVersion` are only updated on build, not when running locally. See below for more info. 
+Placeholders for version values (such as `sdkLatestVersion`) are only updated on build, not when running locally. See below for more info. 
 
 Remember — you're only viewing the Java Slack SDK docs right now.
 
