@@ -1,0 +1,1 @@
+export const sdkLatestVersion = "1.40.3";

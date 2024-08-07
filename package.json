@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "prismjs": "^1.29.0",
+    "react-syntax-highlighter": "^15.5.0"
+  }
+}

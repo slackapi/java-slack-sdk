@@ -78,11 +78,7 @@ By installing App(2) and App(3), you get the followings. Set them as env variabl
 
 ### Generating Documentation
 
-The documentation is built using [Jekyll](https://jekyllrb.com/) and hosted with GitHub Pages. The source files are
-contained in the `docs` directory. Reading the Jekyll configuration in `docs/_config.yml` is helpful to understand how
-the documentation is organized and built.
-
-Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/master/docs/README.md) for details.
+Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/main/docs/README.md) for details on editing documentation. 
 
 ### Releasing
 
