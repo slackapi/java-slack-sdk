@@ -6,7 +6,7 @@ lang: en
 
 Bolt for Java doesn't depend on any specific environments and frameworks.
 
-It works on Servlet containers out-of-the-box. So, developers can run Bolt apps with most Web frameworks on the JVM. **SlackAppServlet** is a simple Servlet that receives HTTP requests coming to `POST /slack/events` URI and properly dispatches each request to corresponding handlers in a Bolt app.
+It works on Servlet containers out-of-the-box. So, developers can run Bolt apps with most Web frameworks on the JVM. `SlackAppServlet` is a simple Servlet that receives HTTP requests coming to `POST /slack/events` URI and properly dispatches each request to corresponding handlers in a Bolt app.
 
 Even running Bolt apps on non-Servlet settings like [Micronaut](https://micronaut.io/) and [Helidon](https://helidon.io/) is feasible if there is an adapter that transforms its specific HTTP interpretation to Bolt interfaces.
 

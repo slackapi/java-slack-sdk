@@ -2,7 +2,6 @@
 lang: ja
 ---
 
-
 # ショートカット
 
 [ショートカット](https://api.slack.com/interactivity/shortcuts)は、クイックスイッチャーから呼び出すことのできるスラッシュコマンドの進化形です。ユーザーは Slack 内の直感的なサーフェスエリアであなたのアプリのワークフローを起動することができるようになります。
@@ -35,7 +34,7 @@ Bolt アプリがショートカットへの応答のためにやらなければ
 
 ### コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/getting-started-with-bolt)」を読んでください。
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
@@ -86,7 +85,7 @@ View buildView(Message message) { return null; }
 View buildView() { return null; }
 ```
 
-同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 // グローバルショートカットの処理

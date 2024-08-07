@@ -4,9 +4,9 @@ lang: ja
 
 # インタラクティブコンポーネント
 
-[インタラクティブコンポーネント](https://api.slack.com/reference/block-kit/interactive-components)は、様々な[サーフェスエリア](https://api.slack.com/surfaces)にインタラクティビティをもたらす [Block Kit](https://api.slack.com/block-kit) エレメントのサブセットです。blocks でのインタラクションはチャンネル内のメッセージ上だけではなく、[モーダル](/guides/ja/modals) や [Home タブ](/guides/ja/app-home) でも発生します。
+[インタラクティブコンポーネント](https://api.slack.com/reference/block-kit/interactive-components)は、様々な[サーフェスエリア](https://api.slack.com/surfaces)にインタラクティビティをもたらす [Block Kit](https://api.slack.com/block-kit) エレメントのサブセットです。blocks でのインタラクションはチャンネル内のメッセージ上だけではなく、[モーダル](/guides/modals) や [Home タブ](/guides/app-home) でも発生します。
 
-この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/guides/ja/composing-messages)」を参考にしてください。
+この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/guides/composing-messages)」を参考にしてください。
 
 ### Slack アプリの設定
 
@@ -30,7 +30,7 @@ Bolt アプリは Slack API サーバーからのリクエストに対して 3 �
 ---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/getting-started-with-bolt)」を読んでください。
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
@@ -68,7 +68,7 @@ app.blockAction("button-action", (req, ctx) -> {
 });
 ```
 
-Kotlin でのサンプルコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin でのサンプルコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 app.blockAction("button-action") { req, ctx ->
@@ -127,7 +127,7 @@ app.blockAction("topics-action", (req, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 import com.slack.api.app_backend.interactive_components.response.Option

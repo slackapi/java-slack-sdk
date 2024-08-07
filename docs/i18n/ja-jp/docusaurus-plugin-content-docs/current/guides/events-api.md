@@ -33,7 +33,7 @@ Bolt アプリは Slack API サーバーからのリクエストに対して 3 �
 ---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/getting-started-with-bolt)」を読んでください。
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
@@ -62,7 +62,7 @@ app.event(ReactionAddedEvent.class, (payload, ctx) -> {
 });
 ```
 
-同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 app.event(ReactionAddedEvent::class.java) { payload, ctx ->

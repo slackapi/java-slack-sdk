@@ -31,10 +31,6 @@
     "message": "その他の機能",
     "description": "The label for category Other APIs in sidebar sidebarJava"
   },
-  "sidebar.sidebarJava.link.Reference": {
-    "message": "リファレンス",
-    "description": "The label for link Reference in sidebar sidebarJava, linking to https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/1.40.3/slack-api-client-1.40.3-javadoc.jar/!/com/slack/api/package-summary.html"
-  },
   "sidebar.sidebarJava.doc.Java Slack SDK": {
     "message": "Java Slack SDK",
     "description": "The label for the doc item Java Slack SDK in sidebar sidebarJava, linking to the doc index"

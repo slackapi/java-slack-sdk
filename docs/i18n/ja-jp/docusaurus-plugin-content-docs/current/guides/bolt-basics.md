@@ -31,15 +31,15 @@ app.command("/echo", (req, ctx) -> {
 
 |メソッド|ディスパッチの条件 (値: 型)|説明|
 |-|-|-|
-|**app.event**|イベントデータ型: **Class\<Event\>**|[**イベント API**](/guides/ja/events-api): 購読しているあらゆる bot/user events に応答します。|
-|**app.message**|キーワード: **String** \| **Pattern**|[**イベント API**](/guides/ja/events-api): ユーザーからのメッセージ投稿で指定のキーワード・正規表現にマッチする bot/user events に応答します。|
-|**app.command**|コマンド名: **String** \| **Pattern**|[**スラッシュコマンド**](/guides/ja/slash-commands): スラッシュコマンドの実行に応答します。|
-|**app.blockAction**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**](/guides/ja/interactive-components): **blocks** 内でのボタンクリック、セレクトメニューからの選択、ラジオボタン選択などユーザクアションに応答します。これらのイベントは全てのサーフェスエリア（メッセージ、モーダル、Home タブ）で発火します。|
-|**app.blockSuggestion**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**](/guides/ja/interactive-components): **blocks** 内の external data source を使ったセレクトメニュー内でユーザーが `min_query_length` 以上の長さのキーワードを入力したときに表示する選択肢を応答します。|
-|**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**モーダル**](/guides/ja/modals): Submit ボタンクリックによるデータ送信に応答します。|
-|**app.viewClosed**|callback_id: **String** \| **Pattern**|[**モーダル**](/guides/ja/modals): ユーザーがモーダルを閉じたときのイベントに応答します。そのモーダルを open/push したときに `notify_on_close` が `true` に設定されている必要があります。|
-|**app.globalShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**](/guides/ja/shortcuts): ショートカット実行に応答します。|
-|**app.messageShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**](/guides/ja/shortcuts): メッセージメニューのショートカット実行に応答します。|
+|**app.event**|イベントデータ型: **Class\<Event\>**|[**イベント API**](/guides/events-api): 購読しているあらゆる bot/user events に応答します。|
+|**app.message**|キーワード: **String** \| **Pattern**|[**イベント API**](/guides/events-api): ユーザーからのメッセージ投稿で指定のキーワード・正規表現にマッチする bot/user events に応答します。|
+|**app.command**|コマンド名: **String** \| **Pattern**|[**スラッシュコマンド**](/guides/slash-commands): スラッシュコマンドの実行に応答します。|
+|**app.blockAction**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**](/guides/interactive-components): **blocks** 内でのボタンクリック、セレクトメニューからの選択、ラジオボタン選択などユーザクアションに応答します。これらのイベントは全てのサーフェスエリア（メッセージ、モーダル、Home タブ）で発火します。|
+|**app.blockSuggestion**|action_id: **String** \| **Pattern**|[**インタラクティブコンポーネント**](/guides/interactive-components): **blocks** 内の external data source を使ったセレクトメニュー内でユーザーが `min_query_length` 以上の長さのキーワードを入力したときに表示する選択肢を応答します。|
+|**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**モーダル**](/guides/modals): Submit ボタンクリックによるデータ送信に応答します。|
+|**app.viewClosed**|callback_id: **String** \| **Pattern**|[**モーダル**](/guides/modals): ユーザーがモーダルを閉じたときのイベントに応答します。そのモーダルを open/push したときに `notify_on_close` が `true` に設定されている必要があります。|
+|**app.globalShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**](/guides/shortcuts): ショートカット実行に応答します。|
+|**app.messageShortcut**|callback_id: **String** \| **Pattern**|[**ショートカット**](/guides/shortcuts): メッセージメニューのショートカット実行に応答します。|
 |**app.dialogSubmission**|callback_id: **String** \| **Pattern**|**ダイアログ**: ダイアログでのデータ送信に応答します。|
 |**app.dialogSuggestion**|callback_id: **String** \| **Pattern**|**ダイアログ**: ダイアログ内での `"external"` type に設定されたセレクトメニューの選択肢読み込みのリクエストに応答します。|
 |**app.dialogCancellation**|callback_id **String** \| **Pattern**|**ダイアログ**: ダイアログが閉じたときのイベントに応答します。|
@@ -50,13 +50,13 @@ app.command("/echo", (req, ctx) -> {
 
 以下のガイドページで、それぞれの機能について具体的なコード例を見つけることができます。
 
-* [**スラッシュコマンド**](/guides/ja/slash-commands)
-* [**インタラクティブコンポーネント**](/guides/ja/interactive-components)
-* [**モーダル**](/guides/ja/modals)
-* [**ショートカット**](/guides/ja/shortcuts)
-* [**Home タブ**](/guides/ja/app-home)
-* [**イベント API**](/guides/ja/events-api)
-* [**アプリの配布 (OAuth Flow)**](/guides/ja/app-distribution)
+* [**スラッシュコマンド**](/guides/slash-commands)
+* [**インタラクティブコンポーネント**](/guides/interactive-components)
+* [**モーダル**](/guides/modals)
+* [**ショートカット**](/guides/shortcuts)
+* [**Home タブ**](/guides/app-home)
+* [**イベント API**](/guides/events-api)
+* [**アプリの配布 (OAuth Flow)**](/guides/app-distribution)
 
 ---
 ## リクエストを ack する
@@ -322,7 +322,7 @@ App app = new App(appConfig);
 ---
 ## 対応している Web フレームワーク
 
-[こちらのページ](/guides/ja/supported-web-frameworks)を参考にしてください。
+[こちらのページ](/guides/supported-web-frameworks)を参考にしてください。
 
 ---
 ## デプロイ

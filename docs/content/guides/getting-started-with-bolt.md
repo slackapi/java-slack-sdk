@@ -238,7 +238,7 @@ public class SlackAppController extends SlackAppServlet {
 Check [the detailed guide here](/guides/supported-web-frameworks) for further information.
 
 ---
-## Getting Started in Kotlin
+## Getting Started in Kotlin {#getting-started-in-kotlin}
 
 For code simplicity, [Kotlin](https://kotlinlang.org/) language would be a great option for writing Bolt apps. In this section, you'll learn how to set up a Kotlin project for Bolt apps.
 

@@ -33,7 +33,7 @@ Bolt アプリがスラッシュコマンドの実行を処理するためにや
 ---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/getting-started-with-bolt)」を読んでください。
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
@@ -65,7 +65,7 @@ app.command("/echo", (req, ctx) -> {
 });
 ```
 
-同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+同じコードを Kotlin で書くと以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 app.command("/echo") { req, ctx ->
@@ -83,7 +83,7 @@ app.command("/echo") { req, ctx ->
 }
 ```
 
-この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/guides/ja/composing-messages)」を参考にしてください。
+この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/guides/composing-messages)」を参考にしてください。
 
 ### Bolt がやっていること
 

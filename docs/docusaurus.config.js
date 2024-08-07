@@ -17,8 +17,8 @@ const config = {
   organizationName: "slackapi",
   projectName: "java-slack-sdk",
 
-  onBrokenLinks: "ignore",
-  onBrokenAnchors: "warn",
+  onBrokenLinks: "warn",
+  onBrokenAnchors: "ignore",
   onBrokenMarkdownLinks: "warn",
 
   i18n: {

@@ -32,7 +32,7 @@ Bolt アプリが Home タブの提供のためにやらなければならない
 ---
 ## コード例
 
-**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/ja/getting-started-with-bolt)」を読んでください。
+**注**: もし Bolt を使った Slack アプリ開発にまだ慣れていない方は、まず「[Bolt 入門](/guides/getting-started-with-bolt)」を読んでください。
 
 以下のコードは、ユーザーが App Home にアクセスして [`"app_home_opened"` イベント](https://api.slack.com/events/app_home_opened)が発火したときに [**views.publish**](https://api.slack.com/methods/views.publish) API メソッドによって Home タブを更新しています。[**views.publish**](https://api.slack.com/methods/views.publish) の呼び出しが成功すれば、即座に Home タブの変更が反映されます。
 
@@ -74,7 +74,7 @@ app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
 });
 ```
 
-Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/ja/getting-started-with-bolt#getting-started-in-kotlin)」）。
+Kotlin で書いた同じコードは以下のようになります（参考：「[Bolt 入門 > Kotlin での設定](/guides/getting-started-with-bolt#getting-started-in-kotlin)」）。
 
 ```kotlin
 // static imports
@@ -128,4 +128,4 @@ val appHomeView = view { it
 
 ### Bolt がやっていること
 
-「[イベント API](/guides/ja/events-api)」の同項目を参照してください。
+「[イベント API](/guides/events-api)」の同項目を参照してください。

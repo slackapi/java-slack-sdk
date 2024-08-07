@@ -25,7 +25,7 @@ lang: ja
 * 機能を有効にします (**Turn on workflow steps**)
 * **Add Step** ボタンをクリックして、ステップの **Name** と **Callback ID** を設定します。
 
-また、画面上でも案内が表示されますが、**Interactivity** も有効になっている必要があります。この設定の詳細は<a href="/guides/ja/interactive-components">インタラクティブコンポーネント</a>のページを参照してください。
+また、画面上でも案内が表示されますが、**Interactivity** も有効になっている必要があります。この設定の詳細は<a href="/guides/interactive-components">インタラクティブコンポーネント</a>のページを参照してください。
 
 ---
 ## ステップの定義

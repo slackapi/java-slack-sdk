@@ -2,7 +2,7 @@
 lang: ja
 ---
 
-# <!--API Client Installation--> API クライアントのセットアップ
+# API クライアントのセットアップ
 
 Slack API クライアントを利用するための最初のステップは、**slack-api-client** をあなたの Java プロジェクトにインストールすることです。このガイドでは、[Maven](https://maven.apache.org/)、[Gradle](https://gradle.org/) を使用したときのそれぞれのセットアップ手順と、このプロジェクトを手元でソースコードからビルドするときの手順を説明します。
 
