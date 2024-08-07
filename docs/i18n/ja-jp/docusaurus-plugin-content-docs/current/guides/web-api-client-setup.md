@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "API クライアントのセットアップ"
 lang: ja
 ---
 

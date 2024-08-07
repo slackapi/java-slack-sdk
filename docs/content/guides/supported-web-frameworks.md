@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "Supported Web Frameworks"
 lang: en
 ---
 
@@ -15,7 +13,7 @@ Even running Bolt apps on non-Servlet settings like [Micronaut](https://micronau
 ---
 ## Supported Frameworks
 
-In this section, I'll share some minimum working examples for the following popular frameworks.
+Below are some minimum working examples for the following popular frameworks.
 
 * [Spring Boot](https://spring.io/guides/gs/spring-boot/)
 * [Micronaut](https://micronaut.io/)
@@ -25,11 +23,11 @@ In this section, I'll share some minimum working examples for the following popu
 ---
 ## Spring Boot
 
-[Spring Boot](https://spring.io/guides/gs/spring-boot/) is the most popular Web framework in Java. Enabling **SlackAppServlet** in your Spring Boot application is the easiest way to run Bolt apps with the framework. Let's look at a tiny Gradle project. **Please note that Bolt properly works with Spring Boot 2.2 or newer versions.**
+[Spring Boot](https://spring.io/guides/gs/spring-boot/) is the most popular Web framework in Java. Enabling `SlackAppServlet` in your Spring Boot application is the easiest way to run Bolt apps with the framework. Let's look at a tiny Gradle project. **Please note that Bolt properly works with Spring Boot 2.2 or newer versions.**
 Also, when you add Spring Boot extensions such as Spring Security, the app may not work well with Bolt.
 In that case, please consider splitting the app into a few and make the Bolt app as simple as possible.
 
-#### build.gradle
+### `build.gradle`
 
 Let's start with putting `build.gradle` file in the root directory of your project. Here is a simple project setting with Spring Boot 3. As you see, this is just a simple and straight-forward Spring Boot app configuration.
 
@@ -72,7 +70,7 @@ dependencies {
 }
 ```
 
-#### src/main/java/hello/SlackApp.java
+### src/main/java/hello/SlackApp.java
 
 This is an essential part of this application. All the logic to handle Slack events should be here. In this `@Configuration` class, you can also inject service classes and whatever into Bolt's **App** by taking full advantage of the Spring DI container.
 
@@ -96,7 +94,7 @@ public class SlackApp {
 }
 ```
 
-#### src/main/java/hello/SlackAppController.java
+### `src/main/java/hello/SlackAppController.java`
 
 This is a kind of boilerplate code to add an endpoint. You can customize the path by modifying the argument of `@WebServlet` annotation.
 
@@ -120,7 +118,7 @@ public class SlackAppController extends SlackAppServlet {
 }
 ```
 
-#### src/main/java/hello/Application.java
+### `src/main/java/hello/Application.java`
 
 This is also a boilerplate code. It just enables Spring's component scan and bootstraps a Spring Boot application.
 
@@ -142,7 +140,7 @@ public class Application {
 
 If your app is going to have its own `ServletContextListener`, placing the above Servlet class in a dedicated package plus passing the package name to scan as the `@ServletComponentScan`'s argument would be recommended. Refer to [#947](https://github.com/slackapi/java-slack-sdk/issues/947) for more details.
 
-#### src/main/resources/application.yml
+### `src/main/resources/application.yml`
 
 Lastly, place a configuration file in the `resources` directory. The following example customizes the log level only for **Slack SDK for Java** and the port to listen from 8080 to 3000.
 
@@ -194,7 +192,7 @@ ngrok http 3000 --subdomain {your-favorite-one}
 ---
 ## Micronaut
 
-If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add **bolt-micronaut**, NOT **bolt-jetty**. As the **bolt** dependency will be automatically resolved as the **bolt-micronaut**'s dependency, you don't need to add it. Needless to say, that's the same for Gradle projects.
+If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet environments, add `bolt-micronaut`, NOT `bolt-jetty`. As the `bolt` dependency will be automatically resolved as the `bolt-micronaut`'s dependency, you don't need to add it. That's the same for Gradle projects.
 
 ```xml
 <!-- Compatible with Micronaut compatibleMicronautVersion -->
@@ -205,9 +203,9 @@ If you prefer [Micronaut](https://micronaut.io/) rather than commonplace Servlet
 </dependency>
 ```
 
-#### src/main/java/hello/Application.java
+### `src/main/java/hello/Application.java`
 
-**Application.java** is a kind of boilerplate. You can cut and paste the following code as-is.
+`Application.java` is a kind of boilerplate. You can cut and paste the following code as-is.
 
 ```java
 package hello;
@@ -221,7 +219,7 @@ public class Application {
 }
 ```
 
-#### src/main/java/hello/AppFactory.java
+### `src/main/java/hello/AppFactory.java`
 
 The simplest way would be to have some code that initializes the **App** instance in a factory class. Micronaut scans the classes with DI related annotations and uses them when injecting components for you.
 
@@ -251,7 +249,7 @@ public class AppFactory {
 }
 ```
 
-#### src/main/resources/application.yml
+### `src/main/resources/application.yml`
 
 To use a different port like 3000, place a configuration file for the app as below.
 
@@ -279,7 +277,7 @@ That's all set! It's time to hit `mvn run` to boot the app.
 
 You can generate a blank project from [code.quarkus.io](https://code.quarkus.io/). For simple Bolt apps, we recommend using **Undertow Servlet** in the **Web** component section. Nothing else is required. Just click **Generate your application** button and download the generated zip file.
 
-Also, if you don't have additional endpoints using RESTEasy, you can safely remove **quarkus-resteasy** (a dependency included by default).
+Also, if you don't have additional endpoints using RESTEasy, you can safely remove `quarkus-resteasy` (a dependency included by default).
 
 ### Build Settings
 
@@ -414,7 +412,7 @@ pluginManagement {
 rootProject.name='code-with-quarkus'
 ```
 
-### src/main/java/hello/SlackApp.java
+### `src/main/java/hello/SlackApp.java`
 
 The only thing you need to do is to create a `@WebServlet`-wired class. The Quarkus framework scans such classes and enables them for you.
 
@@ -442,7 +440,7 @@ public class SlackApp extends SlackAppServlet {
 }
 ```
 
-#### src/main/kotlin/hello/SlackApp.java
+#### `src/main/kotlin/hello/SlackApp.java`
 
 If you choose Kotlin language when generating the project, the code would like this:
 
@@ -468,7 +466,7 @@ class SlackApp : SlackAppServlet(initSlackApp()) {
 }
 ```
 
-#### src/main/kotlin/app.kt
+#### `src/main/kotlin/app.kt`
 
 For properly using Dependency Injection, having producers may be better.
 
@@ -496,7 +494,7 @@ class Components {
 }
 ```
 
-### src/main/resources/application.properties
+### `src/main/resources/application.properties`
 
 The default port Quarkus uses is 8080. You can change the port by having the following config. Enabling Bolt's debug logging would be greatly helpful for learning how it works and debugging some unintended behaviors.
 
@@ -571,7 +569,7 @@ mvn archetype:generate \
 
 ### pom.xml
 
-The only thing you need to do with the build settings is adding **bolt-helidon** dependency and your favorite [SLF4J](http://www.slf4j.org/) implementation.
+The only thing you need to do with the build settings is adding `bolt-helidon` dependency and your favorite [SLF4J](http://www.slf4j.org/) implementation.
 
 ```xml
 <dependency>
@@ -594,9 +592,9 @@ The only thing you need to do with the build settings is adding **bolt-helidon**
 </dependency>
 ```
 
-### src/main/java/hello/Main.java
+### `src/main/java/hello/Main.java`
 
-**bolt-helidon** is as handy as **bolt-jetty**. All developers need to do is define a main method that initializes **App**s and starts an HTTP server.
+`bolt-helidon` is as handy as `bolt-jetty`. All developers need to do is define a main method that initializes **App**s and starts an HTTP server.
 
 ```java
 package hello;
@@ -633,7 +631,7 @@ public final class Main {
 }
 ```
 
-### src/main/resources/application.yml
+### `src/main/resources/application.yml`
 
 Use `application.yml` to configure your Helidon SE apps.
 
@@ -645,9 +643,9 @@ bolt:
   apiPath: /slack/events
 ```
 
-### src/main/resources/logback.xml
+### `src/main/resources/logback.xml`
 
-If you use logback library as the SLF4J logger implementation, a simple **logback.xml** would be like blow.
+If you use logback library as the SLF4J logger implementation, a simple `logback.xml` would be like blow.
 
 ```xml
 <configuration>

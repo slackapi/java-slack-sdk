@@ -18,8 +18,8 @@ if [[ "$new_version" =~ ^.+-SNAPSHOT$ ]]; then
 else
   gsed -i "s/\"com.slack.api:bolt-jetty:[0-9]\+\.[0-9]\+\.[^S]\+\"/\"com.slack.api:bolt-jetty:${new_version}\"/g" bolt-docker-examples/echo-command-app/build.gradle
   gsed -i "s/\"com.slack.api:bolt-jetty:[0-9]\+\.[0-9]\+\.[^S]\+-SNAPSHOT\"/\"com.slack.api:bolt-jetty:${new_version}\"/g" bolt-docker-examples/echo-command-app/build.gradle
-  gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[^S]\+/sdkLatestVersion: ${new_version}/g" docs/config.yml
-  gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[^S]\+-SNAPSHOT/sdkLatestVersion: ${new_version}/g" docs/config.yml
+  gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[^S]\+/sdkLatestVersion: ${new_version}/g" docs/version-config.yml
+  gsed -i "s/sdkLatestVersion: [0-9]\+\.[0-9]\+\.[^S]\+-SNAPSHOT/sdkLatestVersion: ${new_version}/g" docs/version-config.yml
 fi
 
 # ------------------------------------------

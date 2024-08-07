@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "Audit Logs API"
 lang: ja
 ---
 

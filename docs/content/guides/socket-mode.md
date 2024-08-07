@@ -1,14 +1,12 @@
 ---
-layout: default
-title: "Socket Mode"
 lang: en
 ---
 
 # Socket Mode
 
-With [Socket Mode](https://api.slack.com/apis/connections/socket), instead of creating a server with endpoints that Slack sends payloads to, the app will instead connect to Slack via a WebSocket connection and receive data from Slack over the socket connection. In this SDK, **bolt-socket-mode**, a Bolt framework extension for building Socket Mode enabled apps, is available since version 1.5.
+With [Socket Mode](https://api.slack.com/apis/connections/socket), instead of creating a server with endpoints that Slack sends payloads to, the app will instead connect to Slack via a WebSocket connection and receive data from Slack over the socket connection. In this SDK, `bolt-socket-mode`, a Bolt framework extension for building Socket Mode enabled apps, is available since version 1.5.
 
-### Slack App Configuration
+## Slack App Configuration
 
 To enable Socket Mode, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** on the left pane. There are a few things to do on the page.
 
@@ -20,9 +18,9 @@ To enable Socket Mode, visit the [Slack App configuration page](http://api.slack
 * Configure the features (without setting Request URLs)
 * Install the app to receive bot/user tokens (bot: `xoxb-`, user: `xoxp-`)
 
-### Project Setup
+## Project Setup
 
-To manage the Socket Mode connections, in addition to the **bolt-socket-mode** library, **javax.websocket-api** and **tyrus-standalone-client (1.x)** are required. Here is a minimum Maven settings file. Although we recommend using the Bolt framework for building interactive Slack apps, you can use only the underlying Socket Mode client in **slack-api-client** library along with the WebSocket libraries.
+To manage the Socket Mode connections, in addition to the `bolt-socket-mode` library, `javax.websocket-api` and `tyrus-standalone-client (1.x)` are required. Here is a minimum Maven settings file. Although we recommend using the Bolt framework for building interactive Slack apps, you can use only the underlying Socket Mode client in `slack-api-client` library along with the WebSocket libraries.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -60,7 +58,7 @@ To manage the Socket Mode connections, in addition to the **bolt-socket-mode** l
 |[Tyrus Standalone Client (default)](https://github.com/eclipse-ee4j/tyrus)|[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
 |[Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)|[org.java-websocket:Java-WebSocket](https://search.maven.org/artifact/org.java-websocket/Java-WebSocket)|
 
-To switch the underlying implementation, you can pass a `SocketModeClient.Backend.*` to either `SocketModeClient` in **slack-api-client** or `SocketModeApp` in **bolt-socket-mode**. If your own one implements `SocketModeClient` interface, you can just instantiate the class.
+To switch the underlying implementation, you can pass a `SocketModeClient.Backend.*` to either `SocketModeClient` in `slack-api-client` or `SocketModeApp` in `bolt-socket-mode`. If your own one implements `SocketModeClient` interface, you can just instantiate the class.
 
 ```java
 String appToken = "xapp-";

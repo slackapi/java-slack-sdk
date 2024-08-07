@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "Slash Commands"
 lang: en
 ---
 
@@ -10,7 +8,7 @@ lang: en
 
 Responding to slash command invocations is a common use case. Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
-### Slack App Configuration
+## Slack App Configuration
 
 To enable slash commands, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, go to **Features** > **Slash Commands** on the left pane. There are a few things to there on the page.
 
@@ -21,7 +19,7 @@ To enable slash commands, visit the [Slack App configuration page](http://api.sl
   * **Short Description**: whatever you like
 * Click **Save** Button
 
-### What Your Bolt App Does
+## What Your Bolt App Does
 
 All your app needs to do to handle slash command requests are:
 
@@ -35,7 +33,11 @@ If the response body is empty, the response will be recognized as just an acknow
 ---
 ## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt), first.
+:::tip
+
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
+
+::::
 
 Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 

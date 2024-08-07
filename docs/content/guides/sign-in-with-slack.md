@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "Sign in with Slack (OpenID Connect)"
 lang: en
 ---
 
@@ -8,7 +6,7 @@ lang: en
 
 [Sign in with Slack](https://api.slack.com/authentication/sign-in-with-slack) helps users log into your service using their Slack profile. The platform feature was recently upgraded to be compatible with the standard [OpenID Connect](https://openid.net/connect/) specification. With Bolt for Java v1.10 or higher, implementing the auth flow is much easier.
 
-### Slack App Configuration
+## Slack App Configuration
 
 When you create a new Slack app, set the following user scopes:
 
@@ -24,7 +22,7 @@ oauth_config:
 ```
 
 
-### Slack Config for Your OpenID Connect App
+## Slack Config for Your OpenID Connect App
 
 Here is the list of the necessary configurations for serving your OpenID Connect app built with Bolt. If you prefer using other env variable names or other solutions to load this information, implement your own way to load **AppConfig** instead.
 
@@ -37,7 +35,7 @@ Here is the list of the necessary configurations for serving your OpenID Connect
 |**SLACK_INSTALL_PATH**|**Starting point of OpenID Connect flow**: This endpoint redirects users to the Slack OpenID Connect endpoint with required query parameters such as `client_id`, `scope`, `state`, and `nonce` (optional).|
 |**SLACK_REDIRECT_URI_PATH**|**Path for OpenID Connect Redirect URI**: This endpoint handles callback requests after the Slack's OpenID Connect confirmation. The path must be consistent with **SLACK_REDIRECT_URI** value.|
 
-### Examples
+## Examples
 
 Check [the Servlet app example](https://github.com/slackapi/java-slack-sdk/blob/main/bolt-servlet/src/test/java/samples/OpenIDConnectSample.java) to learn how to implement your Web app that handles the OpenID Connect flow with end-users. 
 

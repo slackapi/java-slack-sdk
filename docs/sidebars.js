@@ -79,11 +79,7 @@ const sidebars = {
       ],
     },
     {type: 'html', value: '<hr>'},
-    {
-      type: 'link',
-      label: 'Reference',
-      href: 'https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/1.40.3/slack-api-client-1.40.3-javadoc.jar/!/com/slack/api/package-summary.html',
-    },
+    'reference',
     {type: 'html', value: '<hr>'},
     {
       type: 'link',

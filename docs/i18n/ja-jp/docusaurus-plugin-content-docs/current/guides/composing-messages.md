@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "メッセージの組み立て方"
 lang: ja
 ---
 

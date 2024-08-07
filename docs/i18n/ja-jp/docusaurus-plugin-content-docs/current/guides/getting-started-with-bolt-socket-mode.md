@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "Bolt 入門 (ソケットモード)"
 lang: ja
 ---
 

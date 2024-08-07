@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "App Distribution (OAuth)"
 lang: en
 ---
 

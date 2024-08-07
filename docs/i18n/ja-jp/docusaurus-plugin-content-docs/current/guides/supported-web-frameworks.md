@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "対応 Web フレームワーク"
 lang: ja
 ---
 

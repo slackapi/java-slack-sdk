@@ -1,12 +1,10 @@
 ---
-layout: default
-title: "Installation"
 lang: en
 ---
 
 # API Client Installation
 
-The first step to using the Slack API client is installing the **slack-api-client** module. This guide shows you how to set up using [Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), and by building from source on your own. 
+The first step to using the Slack API client is installing the `slack-api-client` module. This guide shows you how to set up using [Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), and by building from source on your own. 
 
 ---
 ## Prerequisites
@@ -16,9 +14,9 @@ The first step to using the Slack API client is installing the **slack-api-clien
 ---
 ## Maven
 
-Let's start with how to installation with Maven. As **slack-api-client** is a library dependency, there is no requirement of Maven versions.
+Let's start with how to installation with Maven. As `slack-api-client` is a library dependency, there is no requirement of Maven versions.
 
-### pom.xml
+### `pom.xml`
 
 Save `pom.xml` with the following XML definition in the root directory of your Java project. As you see, this is a commonplace Maven project. No specific settings would be needed to load the project on your favorite IDE.
 
@@ -46,7 +44,7 @@ Save `pom.xml` with the following XML definition in the root directory of your J
 </project>
 ```
 
-### src/main/java/Example.java
+### `src/main/java/Example.java`
 
 Create a new Java class named **Example** that has a main method to run. I know the following code is not actually useful. For now,  place it just for verifying the build settings are valid.
 
@@ -63,7 +61,7 @@ public class Example {
 }
 ```
 
-Run the **Example.main(String[])** from your IDE or by running the following command.
+Run the `Example.main(String[])` from your IDE or by running the following command.
 
 ```bash
 mvn compile exec:java \
@@ -89,7 +87,7 @@ In summary, the things you've done here are:
 
 Do you prefer using Gradle? Let's try installing the library with Gradle. The steps are quite similar to Maven, but there are some differences.
 
-### build.gradle
+### `build.gradle`
 
 Place `build.gradle` in the root directory of your Java project. We don't have any requirements for Gradle versions.
 
@@ -122,7 +120,7 @@ In summary, the things you've done here are:
 
 In this guide, we sometimes use Kotlin code examples for simplicity. To try those examples, set up a Kotlin project with Gradle as below.
 
-### build.gradle
+### `build.gradle`
 
 The build settings are almost the same as above except for some Kotlin-specific parts.
 
@@ -148,7 +146,7 @@ application {
 }
 ```
 
-### src/main/kotlin/Example.kt
+### `src/main/kotlin/Example.kt`
 
 As you see, the code using **slack-api-client** in Kotlin is much more concise than Java. Run the following code from your IDE or by `gradle run`.
 
@@ -162,7 +160,11 @@ fun main() {
 }
 ```
 
-**NOTE**: A name of a source file in Kotlin needs to end with **.kt**, not **.java**.
+:::tip 
+
+A name of a source file in Kotlin needs to end with `.kt`, not `.java`.
+
+:::
 
 In summary, the things you've done here are:
 
@@ -189,8 +191,3 @@ repositories {
   mavenLocal()
 }
 ```
-
-That's all set! If you get stuck, we’re here to help. The following are the best ways to get assistance working through your issue:
-
-* Use our [GitHub Issue Tracker](http://github.com/slackapi/java-slack-sdk/issues) for reporting bugs or requesting features
-* Visit the [Slack Developer Community](https://slackcommunity.com/) for getting help using **Slack SDK for Java** or just generally bond with your fellow Slack developers.

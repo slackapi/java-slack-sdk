@@ -70,7 +70,7 @@ ChatPostMessageResponse response = methods.chatPostMessage(request);
 
 うまくいっていれば Slack ワークスペースの **#random** チャンネルで以下のようなメッセージが投稿されていることを確認できるはずです。
 
-<img src="/assets/images/web-api-basics-hello-world.png" width="400" />
+<img src="/img/web-api-basics-hello-world.png" width="400" />
 
 ここで実際に何が行われたかをよりクリアに理解するために、上の Java コードと等価な **curl** コマンドの例を見てみましょう。Slack の Web API のコンセプトはとても素直なものなので、与えられたパラメーターがどのように実際の HTTP リクエストで送られるかを容易に理解していただけるかと思います。
 

@@ -37,7 +37,11 @@ All your app needs to do to handle shortcuts requests are:
 ---
 ## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt), first.
+:::tip 
+
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
+
+:::
 
 Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 

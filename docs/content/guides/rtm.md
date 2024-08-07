@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "Real Time Messaging (RTM)"
 lang: en
 ---
 
@@ -8,12 +6,16 @@ lang: en
 
 [The Real Time Messaging API](https://api.slack.com/rtm) is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users. It's sometimes referred to just as the "RTM API".
 
-**NOTE**: RTM isn't available for modern scoped apps anymore. We recommend using the [Events API](/guides/events-api) and [Web API](/guides/web-api-basics) instead. If you need to use RTM (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
+:::danger 
+
+RTM isn't available for modern scoped apps anymore. We recommend using the [Events API](/guides/events-api) and [Web API](/guides/web-api-basics) instead. If you need to use RTM (possibly due to corporate firewall limitations), you can do so by creating a legacy scoped app. If you have an existing RTM app, do not update its scopes as it will be updated to a modern scoped app and stop working with RTM.
+
+:::
 
 ---
 ## Prerequisites
 
-To use the RTM Client, in addition to the **slack-api-client** library, **javax.websocket-api** and **tyrus-standalone-client (1.x)** are required. Here is a minimum Maven settings file.
+To use the RTM Client, in addition to the `slack-api-client` library, `javax.websocket-api` and `tyrus-standalone-client (1.x)` are required. Here is a minimum Maven settings file.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"

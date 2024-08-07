@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "ソケットモード"
 lang: ja
 ---
 

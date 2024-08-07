@@ -1,12 +1,10 @@
 ---
-layout: default
-title: "Events API"
 lang: en
 ---
 
 # Events API
 
-The [Events API](https://api.slack.com/events-api) is a streamlined, easy way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
+The [Events API](https://api.slack.com/events-api) is a streamlined way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
 
 ### Slack App Configuration
 
@@ -34,7 +32,11 @@ Your app has to respond to the request within 3 seconds by `ack()` method. Other
 ---
 ## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt), first.
+:::tip 
+
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
+
+:::
 
 Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 

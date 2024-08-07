@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "Status API"
 lang: en
 ---
 
@@ -8,7 +6,6 @@ lang: en
 
 [The Slack Status API](https://api.slack.com/docs/slack-status) describes the health of the Slack product. When there's an incident, outage, or maintenance, the Slack Status API reflects all the information we have on the issue, including which features of Slack are affected and detailed updates over time.
 
----
 ## Status API in Java
 
 The response data structure coming from Status API is pretty simple. It looks like below in Java.

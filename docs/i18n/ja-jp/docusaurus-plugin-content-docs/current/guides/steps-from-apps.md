@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "ワークフローステップ（非推奨）"
 lang: ja
 ---
 

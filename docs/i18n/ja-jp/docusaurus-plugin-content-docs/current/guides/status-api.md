@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "ステータス API"
 lang: ja
 ---
 

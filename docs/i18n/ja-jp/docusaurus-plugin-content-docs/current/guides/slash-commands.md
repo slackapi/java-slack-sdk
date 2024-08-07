@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "スラッシュコマンド"
 lang: ja
 ---
 

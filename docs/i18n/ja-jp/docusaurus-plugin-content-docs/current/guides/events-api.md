@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "イベント　API"
 lang: ja
 ---
 

@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "ショートカット"
 lang: ja
 ---
 

@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "Audit Logs API"
 lang: en
 ---
 
@@ -15,7 +13,7 @@ Follow the instructions in [the API document](https://api.slack.com/docs/audit-l
 ---
 ## Call Audit Logs API in Java
 
-It's straight-forward to call Audit Logs API using **slack-api-client** library.
+It's straight-forward to call Audit Logs API using the `slack-api-client` library.
 
 ```java
 import com.slack.api.Slack;
@@ -30,9 +28,9 @@ All the endpoints are supported.
 
 |Java Method|Endpoint|
 |-|-|
-|**AuditClient#getLogs()**|**GET /logs**|
-|**AuditClient#getSchemas()**|**GET /schemas**|
-|**AuditClient#getActions()**|**GET /actions**|
+|`AuditClient#getLogs()`|`GET /logs`|
+|`AuditClient#getSchemas()`|`GET /schemas`|
+|`AuditClient#getActions()`|`GET /actions`|
 
 ### getLogs()
 
@@ -80,13 +78,13 @@ Refer to [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/
 
 The Audit Logs API methods conform to Slack's [rate limits](https://api.slack.com/docs/rate-limits) and all methods are rated Tier 3. This allows for up to 50 calls per minute, with an allowance for sporadic bursts. Refer to [the API document](https://api.slack.com/admins/audit-logs#how_to_call_the_audit_logs_api) for more details.
 
-**AsyncAuditClient**, the async client, has great consideration for Rate Limits.
+`AsyncAuditClient`, the async client, has great consideration for Rate Limits.
 
-The async client internally has its queue systems to avoid burst traffics as much as possible while **AuditClient**, the synchronous client, always blindly sends requests. The good thing is that both sync and async clients maintain the metrics data in a **MetricsDatastore** together. This allows the async client to accurately know the current traffic they generated toward the Slack Platform and estimate the remaining amount to call.
+The async client internally has its queue systems to avoid burst traffics as much as possible while `AuditClient`, the synchronous client, always blindly sends requests. The good thing is that both sync and async clients maintain the metrics data in a `MetricsDatastore` together. This allows the async client to accurately know the current traffic they generated toward the Slack Platform and estimate the remaining amount to call.
 
-The default implementation of the datastore is in-memory one using the JVM heap memory. The default **SlackConfig** enables the in-memory one. It should work nicely for most cases. If your app is fine with it, you don't need to configure anything.
+The default implementation of the datastore is in-memory one using the JVM heap memory. The default `SlackConfig` enables the in-memory one. It should work nicely for most cases. If your app is fine with it, you don't need to configure anything.
 
-**AsyncAuditClient** considers the metrics data very well. It may delay API requests to avoid rate-limited errors if the clients in the app already sent too many requests within a short period.
+`AsyncAuditClient` considers the metrics data very well. It may delay API requests to avoid rate-limited errors if the clients in the app already sent too many requests within a short period.
 
 ```java
 import com.slack.api.audit.*;

@@ -1,13 +1,12 @@
 ---
-layout: default
-title: "Modals"
 lang: en
 ---
+
 # Modals
 
 [Modals](https://api.slack.com/surfaces/modals/using) are a focused surface to collect data from users or display dynamic and interactive information. To users, modals appear as focused surfaces inside of Slack enabling brief, yet deep interactions with apps. Modals can be assembled using the visual and interactive components found in [Block Kit](https://api.slack.com/block-kit).
 
-### Slack App Configuration
+## Slack App Configuration
 
 The first step to use modals in your app is to enable Interactive Components. Visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Interactivity & Shortcuts** on the left pane. There are three things to do on the page.
 
@@ -15,11 +14,11 @@ The first step to use modals in your app is to enable Interactive Components. Vi
 * Set the **Request URL** to `https://{your app's public URL domain}/slack/events` (this step is not required for Socket Mode apps)
 * Click the **Save Changes** button at the bottom for sure
 
-### What Your Bolt App Does
+## What Your Bolt App Does
 
 There are three patterns to handle on modals. As always, your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
-#### `"block_actions"` requests
+### `"block_actions"` requests
 
 When someone uses an [interactive component](https://api.slack.com/reference/block-kit/interactive-components) in your app's modal views, the app will receive a [block_actions payload](https://api.slack.com/reference/interaction-payloads/block-actions). All you need to do to handle the `"block_actions"` requests are:
 
@@ -28,7 +27,7 @@ When someone uses an [interactive component](https://api.slack.com/reference/blo
 1. [Modify/push a view via API](https://api.slack.com/surfaces/modals/using#modifying) and/or update the modal to hold the sent data as [private_metadata](https://api.slack.com/surfaces/modals/using#carrying_data_between_views)
 1. Respond to the Slack API server with 200 OK as an acknowledgment
 
-#### `"view_submission"` requests
+### `"view_submission"` requests
 
 When a modal view is submitted, you'll receive a [view_submission payload](https://api.slack.com/reference/interaction-payloads/views#view_submission). All you need to do to handle the `"view_submission"` requests are:
 
@@ -40,7 +39,7 @@ When a modal view is submitted, you'll receive a [view_submission payload](https
   * Sending an empty body means closing only the modal
   * Sending a body with `response_action` (possible values are `"errors"`, `"update"`, `"push"`, `"clear"`)
 
-#### `"view_closed"` requests (only when `notify_on_close` is `true`)
+### `"view_closed"` requests (only when `notify_on_close` is `true`)
 
 Your app can optionally receive [view_closed payloads](https://api.slack.com/reference/interaction-payloads/views#view_closed) whenever a user clicks on the Cancel or x buttons. These buttons are standard, not blocks, in all app modals. To receive the `"view_closed"` payload when this happens, set `notify_on_close` to `true` when creating a view with [views.open](https://api.slack.com/methods/views.open) and [views.push](https://api.slack.com/methods/views.push) methods.
 All you need to do to handle the `"view_closed"` requests are:
@@ -49,7 +48,7 @@ All you need to do to handle the `"view_closed"` requests are:
 1. Do whatever to do at the timing
 1. Respond with 200 OK as the acknowledgment
 
-### Modal Development Tips
+## Modal Development Tips
 
 In general, there are a few things to know when working with modals. They would be:
 * You need `trigger_id` in user interaction payloads to open a modal view
@@ -64,8 +63,13 @@ In general, there are a few things to know when working with modals. They would 
 
 ## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt), first.
-Let's start with opening a modal. Let's say, we're going to open the following modal.
+:::tip
+
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt) first.
+
+:::
+
+Let's start with opening a modal.
 ```javascript
 {
   "type": "modal",

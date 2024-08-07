@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "Real Time Messaging (RTM)"
 lang: ja
 ---
 

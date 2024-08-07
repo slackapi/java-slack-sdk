@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "App Home"
 lang: en
 ---
 
@@ -34,7 +32,11 @@ Most commonly, [`"app_home_opened"`](https://api.slack.com/events/app_home_opene
 ---
 ## Examples
 
-**NOTE**: If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt), first.
+:::tip 
+
+If you're a beginner to using Bolt for Slack App development, consult [Getting Started with Bolt](/guides/getting-started-with-bolt), first.
+
+:::
 
 The following code calls [**views.publish**](https://api.slack.com/methods/views.publish) method when receiving an [`"app_home_opened"` events](https://api.slack.com/events/app_home_opened) for the user that triggered the event. The user will see the updated Home tab immediately after the [**views.publish**](https://api.slack.com/methods/views.publish) call has been successfully completed.
 

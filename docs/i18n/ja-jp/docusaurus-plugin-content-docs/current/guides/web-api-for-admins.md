@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "OrG 管理者向け API"
 lang: ja
 ---
 

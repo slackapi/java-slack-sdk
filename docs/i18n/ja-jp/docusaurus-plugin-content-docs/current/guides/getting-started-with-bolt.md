@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "Bolt 入門"
 lang: ja
 ---
 

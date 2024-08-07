@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "SCIM API"
 lang: en
 ---
 
@@ -15,7 +13,7 @@ Refer to [the API document](https://api.slack.com/scim) for more details.
 ---
 ## Call SCIM API in Java
 
-It's straight-forward to call SCIM API using **slack-api-client** library. As with other API clients, creating an API client by invoking a **Slack** object's method.
+It's straight-forward to call SCIM API using `slack-api-client` library. As with other API clients, creating an API client by invoking a **Slack** object's method.
 
 ```java
 import com.slack.api.Slack;
@@ -26,11 +24,11 @@ String token = System.getenv("SLACK_ADMIN_ACCESS_TOKN"); // `admin` scope requir
 SCIMClient scim = slack.scim(token);
 ```
 
-The **SCIMClient** supports all the available endpoints in SCIM APIs. Check [the Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/sdkLatestVersion/slack-api-client-sdkLatestVersion-javadoc.jar/!/com/slack/api/scim/SCIMClient.html) for the entire list of them. On this page, let me share a few code snippets demonstrating how to use SCIM APIs in Java.
+The `SCIMClient` supports all the available endpoints in SCIM APIs. Check [the Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/sdkLatestVersion/slack-api-client-sdkLatestVersion-javadoc.jar/!/com/slack/api/scim/SCIMClient.html) for the entire list of them. On this page, let me share a few code snippets demonstrating how to use SCIM APIs in Java.
 
 ### Manage Users
 
-The following pieces of Java code demonstrate how to manage Users.
+The following pieces of Java code demonstrate how to manage users.
 
 ```java
 import com.slack.api.Slack;
@@ -105,7 +103,7 @@ slack.scim(token).updateGroup(req -> req.id(groupId).group(group));
 
 ### Handle Errors
 
-**SCIMClient**'s methods may throw **SCIMApiException** when receiving an unsuccessful response from SCIM API.
+`SCIMClient` methods may throw `SCIMApiException` when receiving an unsuccessful response from SCIM API.
 
 ```java
 // Handling an error
@@ -126,13 +124,13 @@ try {
 
 Slack uses rate limits for the SCIM API to help provide a predictably pleasant experience. Please note: unlike many of the other Slack API rate limits, the limits below apply to all SCIM apps in an org, not on a per-app basis. Refer to [the API document](https://api.slack.com/admins/scim#ratelimits) for more details.
 
-**AsyncSCIMClient**, the async client, has great consideration for Rate Limits.
+`AsyncSCIMClient`, the async client, has great consideration for Rate Limits.
 
-The async client internally has its queue systems to avoid burst traffics as much as possible while **SCIMClient**, the synchronous client, always blindly sends requests. The good thing is that both sync and async clients maintain the metrics data in a **MetricsDatastore** together. This allows the async client to accurately know the current traffic they generated toward the Slack Platform and estimate the remaining amount to call.
+The async client internally has its queue systems to avoid burst traffics as much as possible while `SCIMClient`, the synchronous client, always blindly sends requests. The good thing is that both sync and async clients maintain the metrics data in a `MetricsDatastore` together. This allows the async client to accurately know the current traffic they generated toward the Slack Platform and estimate the remaining amount to call.
 
 The default implementation of the datastore is in-memory one using the JVM heap memory. The default **SlackConfig** enables the in-memory one. It should work nicely for most cases. If your app is fine with it, you don't need to configure anything.
 
-**AsyncSCIMClient** considers the metrics data very well. It may delay API requests to avoid rate-limited errors if the clients in the app already sent too many requests within a short period.
+`AsyncSCIMClient` considers the metrics data very well. It may delay API requests to avoid rate-limited errors if the clients in the app already sent too many requests within a short period.
 
 ```java
 import com.slack.api.Slack;

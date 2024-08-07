@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "SCIM API"
 lang: ja
 ---
 

@@ -31,19 +31,19 @@ jobs:
         run: npm ci
         working-directory: ./docs
 
-      - name: Read version from docs/config.yml
+      - name: Read version from docs/version-config.yml
         id: read_version
         run: |
-          sdkLatestVersionValue=$(grep 'sdkLatestVersion:' docs/config.yml | awk '{print $2}')
-          okhttpVersionValue=$(grep 'okhttpVersion:' docs/config.yml | awk '{print $2}')
-          slf4jApiVersionValue=$(grep 'slf4jApiVersion:' docs/config.yml | awk '{print $2}')
-          kotlinVersionValue=$(grep 'kotlinVersion:' docs/config.yml | awk '{print $2}')
-          helidonVersionValue=$(grep 'helidonVersion:' docs/config.yml | awk '{print $2}')
-          javaxWebsocketApiVersionValue=$(grep 'javaxWebsocketApiVersion:' docs/config.yml | awk '{print $2}')
-          springBootVersionValue=$(grep 'springBootVersion:' docs/config.yml | awk '{print $2}')
-          compatibleMicronautVersionValue=$(grep 'compatibleMicronautVersion:' docs/config.yml | awk '{print $2}')
-          quarkusVersionValue=$(grep 'quarkusVersion:' docs/config.yml | awk '{print $2}')
-          tyrusStandaloneClientVersionValue=$(grep 'tyrusStandaloneClientVersion:' docs/config.yml | awk '{print $2}')
+          sdkLatestVersionValue=$(grep 'sdkLatestVersion:' docs/version-config.yml | awk '{print $2}')
+          okhttpVersionValue=$(grep 'okhttpVersion:' docs/version-config.yml | awk '{print $2}')
+          slf4jApiVersionValue=$(grep 'slf4jApiVersion:' docs/version-config.yml | awk '{print $2}')
+          kotlinVersionValue=$(grep 'kotlinVersion:' docs/version-config.yml | awk '{print $2}')
+          helidonVersionValue=$(grep 'helidonVersion:' docs/version-config.yml | awk '{print $2}')
+          javaxWebsocketApiVersionValue=$(grep 'javaxWebsocketApiVersion:' docs/version-config.yml | awk '{print $2}')
+          springBootVersionValue=$(grep 'springBootVersion:' docs/version-config.yml | awk '{print $2}')
+          compatibleMicronautVersionValue=$(grep 'compatibleMicronautVersion:' docs/version-config.yml | awk '{print $2}')
+          quarkusVersionValue=$(grep 'quarkusVersion:' docs/version-config.yml | awk '{print $2}')
+          tyrusStandaloneClientVersionValue=$(grep 'tyrusStandaloneClientVersion:' docs/version-config.yml | awk '{print $2}')
           echo "sdkLatestVersion=$sdkLatestVersionValue" >> $GITHUB_ENV
           echo "okhttpVersion=$okhttpVersionValue" >> $GITHUB_ENV
           echo "slf4jApiVersion=$slf4jApiVersionValue" >> $GITHUB_ENV

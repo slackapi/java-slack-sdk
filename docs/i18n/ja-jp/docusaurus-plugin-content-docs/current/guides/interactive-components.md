@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "インタラクティブコンポーネント"
 lang: ja
 ---
 

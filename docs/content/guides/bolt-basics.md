@@ -1,6 +1,4 @@
 ---
-layout: default
-title: "Bolt Basics"
 lang: en
 ---
 
@@ -13,9 +11,9 @@ If you're not yet familiar with Slack app development in general, we recommend r
 ---
 ## Start with the App class
 
-The **App** class is a place to write only essential parts of your Slack app without being bothered by trifles.
+The `App` class is a place to write only essential parts of your Slack app without being bothered by trifles.
 
-The code configuring an **App** instance mainly consists of the ways to respond to incoming events from Slack such as user actions, command invocations, requests to load options in select menus, and any events you subscribe to in the Events API.
+The code configuring an `App` instance mainly consists of the ways to respond to incoming events from Slack such as user actions, command invocations, requests to load options in select menus, and any events you subscribe to in the Events API.
 
 ```java
 import com.slack.api.bolt.App;
@@ -33,37 +31,37 @@ Here is the list of the available methods to dispatch events.
 
 |Method|Constraints (value: type)|Description|
 |-|-|-|
-|**app.event**|event type: **Class\<Event\>**|[**Events API**](/guides/events-api): Responds to any kinds of bot/user events you subscribe.|
-|**app.message**|keyword: **String** \| **Pattern**|[**Events API**](/guides/events-api): Responds to messages posted by a user only when the text in messages matches the given keyword or regular expressions.|
-|**app.command**|command name: **String** \| **Pattern**|[**Slash Commands**](/guides/slash-commands): Responds to slash command invocations in the workspace.|
-|**app.blockAction**|action_id: **String** \| **Pattern**|[**Interactive Components**](/guides/interactive-components): Responds to user actions (e.g., click a button, choose an item from select menus, radio buttons, etc.) in **blocks**. These events can be triggered in all the surfaces (messages, modals, and Home tabs).|
-|**app.blockSuggestion**|action_id: **String** \| **Pattern**|[**Interactive Components**](/guides/interactive-components): Responds to user actions to input a keyword (the length needs to be the `min_query_length` or longer) in select menus (external data source).|
-|**app.viewSubmission**|callback_id: **String** \| **Pattern**|[**Modals**](/guides/modals): Responds to data submissions in modals.|
-|**app.viewClosed**|callback_id: **String** \| **Pattern**|[**Modals**](/guides/modals): Responds to the events where users close modals by clicking Cancel buttons. The `notify_on_close` has to be `true` when opening/pushing the modal.|
-|**app.globalShortcut**|callback_id: **String** \| **Pattern**|[**Shortcuts**](/guides/shortcuts): Responds to global shortcut invocations.|
-|**app.messageShortcut**|callback_id: **String** \| **Pattern**|[**Shortcuts**](/guides/shortcuts): Responds to shortcut invocations in message menus.|
-|**app.dialogSubmission**|callback_id: **String** \| **Pattern**|**Dialogs**: Responds to data submissions in dialogs.|
-|**app.dialogSuggestion**|callback_id: **String** \| **Pattern**|**Dialogs**: Responds to requests to load options for `"external"` typed select menus in dialogs.|
-|**app.dialogCancellation**|callback_id **String** \| **Pattern**|**Dialogs**: Responds to the events where users close dialogs by clicking Cancel buttons.|
-|**app.attachmentAction**|callback_id: **String** \| **Pattern**|**Legacy Messaging**: Responds to user actions in **attachments**. These events can be triggered in only messages.|
+|`app.event`|event type: `Class\<Event\>`|[Events API](/guides/events-api): Responds to any kinds of bot/user events you subscribe.|
+|`app.message`|keyword: `String` \| `Pattern`|[Events API](/guides/events-api): Responds to messages posted by a user only when the text in messages matches the given keyword or regular expressions.|
+|`app.command`|command name: `String` \| `Pattern`|[Slash Commands](/guides/slash-commands): Responds to slash command invocations in the workspace.|
+|`app.blockAction`|action_id: `String` \| `Pattern`|[Interactive Components](/guides/interactive-components): Responds to user actions (e.g., click a button, choose an item from select menus, radio buttons, etc.) in `blocks`. These events can be triggered in all the surfaces (messages, modals, and Home tabs).|
+|`app.blockSuggestion`|action_id: `String` \| `Pattern`|[Interactive Components](/guides/interactive-components): Responds to user actions to input a keyword (the length needs to be the `min_query_length` or longer) in select menus (external data source).|
+|`app.viewSubmission`|callback_id: `String` \| `Pattern`|[Modals](/guides/modals): Responds to data submissions in modals.|
+|`app.viewClosed`|callback_id: `String` \| `Pattern`|[Modals](/guides/modals): Responds to the events where users close modals by clicking Cancel buttons. The `notify_on_close` has to be `true` when opening/pushing the modal.|
+|`app.globalShortcut`|callback_id: `String` \| `Pattern`|[Shortcuts](/guides/shortcuts): Responds to global shortcut invocations.|
+|`app.messageShortcut`|callback_id: `String` \| `Pattern`|[Shortcuts](/guides/shortcuts): Responds to shortcut invocations in message menus.|
+|`app.dialogSubmission`|callback_id: `String` \| `Pattern`|Dialogs: Responds to data submissions in dialogs.|
+|`app.dialogSuggestion`|callback_id: `String` \| `Pattern`|Dialogs: Responds to requests to load options for `"external"` typed select menus in dialogs.|
+|`app.dialogCancellation`|callback_id `String` \| `Pattern`|Dialogs: Responds to the events where users close dialogs by clicking Cancel buttons.|
+|`app.attachmentAction`|callback_id: `String` \| `Pattern`|Legacy Messaging: Responds to user actions in attachments. These events can be triggered in only messages.|
 
 ---
 ## Development Guides by Feature
 
 On these guide pages, you'll find a more concrete example code for each.
 
-* [**Slash Commands**](/guides/slash-commands)
-* [**Interactive Components**](/guides/interactive-components)
-* [**Modals**](/guides/modals)
-* [**Shortcuts**](/guides/shortcuts)
-* [**App Home**](/guides/app-home)
-* [**Events API**](/guides/events-api)
-* [**App Distribution (OAuth Flow)**](/guides/app-distribution)
+* [Slash Commands](/guides/slash-commands)
+* [Interactive Components](/guides/interactive-components)
+* [Modals](/guides/modals)
+* [Shortcuts](/guides/shortcuts)
+* [App Home](/guides/app-home)
+* [Events API](/guides/events-api)
+* [App Distribution (OAuth Flow)](/guides/app-distribution)
 
 ---
 ## Acknowledge Incoming Requests
 
-Actions, commands, and options events must always be acknowledged using the `ack()` method. All such utility methods are available as the instance methods of a **Context** object.
+Actions, commands, and options events must always be acknowledged using the `ack()` method. All such utility methods are available as the instance methods of a `Context` object.
 
 ```java
 app.command("/hello", (req, ctx) -> { // ctx: Context
@@ -137,7 +135,7 @@ Are you already familiar with `response_url`? If not, we recommend reading [this
 
 As the guide says, some of the user interaction payloads may contain a `response_url`. This `response_url` is unique to each payload, and can be used to publish messages back to the place where the interaction happened.
 
-Similarly to `ack()`above, the **Context** object offers `respond()` method for easily taking advantage of `response_url`.
+Similarly to `ack()`above, the `Context` object offers `respond()` method for easily taking advantage of `response_url`.
 
 ```java
 import com.slack.api.webhook.WebhookResponse;
@@ -155,7 +153,7 @@ app.command("/hello", (req, ctx) -> {
 ---
 ## Use Web APIs / Reply using say utility
 
-When you need to call some Slack Web APIs in Bolt apps, use `ctx.client()` for it. The **MethodsClient** created by the method already holds a valid bot token. So, you don't need to give a token to it. Just calling a method with parameters as below works for you.
+When you need to call some Slack Web APIs in Bolt apps, use `ctx.client()` for it. The `MethodsClient` created by the method already holds a valid bot token. So, you don't need to give a token to it. Just calling a method with parameters as below works for you.
 
 ```java
 app.command("/hello", (req, ctx) -> {
@@ -168,7 +166,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-For [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) API calls with the given channel ID, using `say()` utility is much simpler. If your slash command needs to be available anywhere, using `ctx.respond` would be more robust as `say()` method does not work for the conversations where the app's bot user is not a member of (e.g., a person's own DM).
+For [chat.postMessage](https://api.slack.com/methods/chat.postMessage) API calls with the given channel ID, using `say()` utility is much simpler. If your slash command needs to be available anywhere, using `ctx.respond` would be more robust as `say()` method does not work for the conversations where the app's bot user is not a member of (e.g., a person's own DM).
 
 ```java
 app.command("/hello", (req, ctx) -> {
@@ -209,7 +207,7 @@ app.command("/my-search", (req, ctx) -> {
 ---
 ## Use Logger
 
-You can access [SLF4J](http://www.slf4j.org/) logger in **Context** objects.
+You can access [SLF4J](http://www.slf4j.org/) logger in `Context` objects.
 
 ```java
 app.command("/weather", (req, ctx) -> {
@@ -220,7 +218,7 @@ app.command("/weather", (req, ctx) -> {
 });
 ```
 
-If you use the [**ch.qos.logback:logback-classic**](https://search.maven.org/artifact/ch.qos.logback/logback-classic/1.2.3/jar) library as the implementation of the APIs, you can configure the settings by [**logback.xml**](http://logback.qos.ch/manual/configuration.html) etc.
+If you use the [ch.qos.logback:logback-classic](https://search.maven.org/artifact/ch.qos.logback/logback-classic/1.2.3/jar) library as the implementation of the APIs, you can configure the settings by [logback.xml](http://logback.qos.ch/manual/configuration.html) etc.
 
 ```xml
 <configuration>
@@ -238,7 +236,7 @@ If you use the [**ch.qos.logback:logback-classic**](https://search.maven.org/art
 ---
 ## Middleware
 
-Bolt offers chaining middleware supports. You can customize **App** behavior by weaving a kind of filter to all events.
+Bolt offers chaining middleware supports. You can customize `App` behavior by weaving a kind of filter to all events.
 
 Here is an example demonstrating how it works. The middleware changes your app's behavior in error patterns only when `SLACK_APP_DEBUG_MODE` env variable exists.
 
@@ -287,14 +285,13 @@ if (debugMode != null && debugMode.equals("1")) { // enable only when SLACK_APP_
 
 The middleware transforms an unsuccessful response such as 404 Not Found to a 200 OK response with an ephemeral message that tells useful information for debugging.
 
-<img src="/assets/images/bolt-middleware.png" width="600" />
-
+<img src="/img/bolt-middleware.png" width="600" />
 
 #### Order of Execution in Middleware List
 
 A set of the built-in middleware precedes your custom middleware. So, if the app detects something in built-in ones and stops calling `chain.next(req)`, succeeding ones won't be executed.
 
-The most common would be the case where a request has been denied by **RequestVerification** middleware. After the denial, any middleware won't be executed, so that the above middleware also doesn't work for the case.
+The most common would be the case where a request has been denied by `RequestVerification` middleware. After the denial, any middleware won't be executed, so that the above middleware also doesn't work for the case.
 
 #### Customize the Built-in Middleware List
 
@@ -324,9 +321,9 @@ Make sure if it's safe enough when you turn a built-in middleware off. **We stro
 ---
 ## Supported Web Frameworks
 
-Refer to [this page](/guides/supported-web-frameworks) for more details.
+Refer to the [supported web frameworks page](/guides/supported-web-frameworks) for more details.
 
 ---
 ## Deployments
 
-[We're planning](https://github.com/slackapi/java-slack-sdk/issues/348) to have some guide documents for deployments.
+[View an example here](https://github.com/slackapi/java-slack-sdk/tree/main/bolt-google-cloud-functions-example/src/main/java/functions).

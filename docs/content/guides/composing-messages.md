@@ -1,12 +1,10 @@
 ---
-layout: default
-title: "Composing Messages"
 lang: en
 ---
 
 # Composing Messages
 
-This section shows how to build Slack messages using **slack-api-client** library. If you're not familiar with [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) API yet, read [this page](/guides/web-api-basics) before trying the samples here.
+This section shows how to build Slack messages using the `slack-api-client` library. If you're not familiar with [`chat.postMessage`](https://api.slack.com/methods/chat.postMessage) API yet, read [the web api basics page](/guides/web-api-basics) before trying the samples here.
 
 Also, before jumping into Java code, we recommend developing an understanding of composing Slack messages. [Read the API documentation](https://api.slack.com/messaging/composing) for more information.
 
@@ -117,7 +115,7 @@ You can add the Block Kit Kotlin DSL via 2 artifacts:
 |[**com.slack.api:slack-api-model-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-model-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model-kotlin-extension/sdkLatestVersion/slack-api-model-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|The **slack-api-model** Kotlin extension, which adds the Kotlin DSL itself as well as the standalone `withBlocks { }` builder and `View.ViewBuilder`'s `.blocks { }` extension function.|
 |[**com.slack.api:slack-api-client-kotlin-extension**](https://search.maven.org/search?q=g:com.slack.api%20AND%20a:slack-api-client-kotlin-extension) [📖](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client-kotlin-extension/sdkLatestVersion/slack-api-client-kotlin-extension-sdkLatestVersion-javadoc.jar/!/index.html#package)|The **slack-api-client** Kotlin extension, which adds the `.blocks { }` extension function to `MethodsClient`'s request object builders for seamless use of the DSL with the Java builders such as **ChatPostEphemeralRequestBuilder**, **ChatPostMessageRequestBuilder**, **ChatScheduleMessageRequestBuilder**, and **ChatUpdateRequestBuilder**.|
 
-**Adding via Gradle:**
+#### Adding via Gradle
 
 ```groovy
 dependencies {
@@ -126,7 +124,7 @@ dependencies {
 }
 ```
 
-**Adding via Gradle Kotlin DSL:**
+#### Adding via Gradle Kotlin DSL
 
 ```kotlin
 dependencies {
@@ -137,7 +135,7 @@ dependencies {
 
 ### Notable examples and features
 
-In this section, I'll share some code snippets demonstrating how to use this DSL.
+Below are some code snippets demonstrating how to use this DSL.
 
 #### Standalone `withBlocks { }` builder which comes with the model extension
 

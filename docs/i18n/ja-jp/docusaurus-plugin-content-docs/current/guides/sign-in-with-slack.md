@@ -1,6 +1,4 @@
 ---
-layout: ja
-title: "Slack でログインする (OpenID Connect)"
 lang: ja
 ---
 
