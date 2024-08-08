@@ -174,6 +174,7 @@ const config = {
         copyright: "<p> Made with ♡ by Slack and pals like you <p>",
       },
       prism: {
+        additionalLanguages: ['java','groovy'],
         // switch to alucard when available in prism?
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
