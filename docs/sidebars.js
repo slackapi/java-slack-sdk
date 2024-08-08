@@ -83,6 +83,11 @@ const sidebars = {
     {type: 'html', value: '<hr>'},
     {
       type: 'link',
+      label: 'Release notes',
+      href: 'https://github.com/SlackAPI/java-slack-sdk/releases',
+    },
+    {
+      type: 'link',
       label: 'Code on GitHub',
       href: 'https://github.com/SlackAPI/java-slack-sdk',
     },
