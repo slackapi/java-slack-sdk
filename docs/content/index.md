@@ -1,7 +1,7 @@
 
-# Slack Java SDK
+# Java Slack SDK
 
-The Slack Java SDK supports the Slack platform in a Java idiomatic way. Developers can use it in any JVM language including Kotlin, Groovy, and Scala.
+The Java Slack SDK supports the Slack platform in a Java idiomatic way. Developers can use it in any JVM language including Kotlin, Groovy, and Scala.
 
 Within the SDK, there are two different modules:
 
@@ -10,7 +10,7 @@ Within the SDK, there are two different modules:
 
 ## Requirements
 
-The Slack Java SDK supports **OpenJDK 8 and higher LTS versions**.
+The Java Slack SDK supports **OpenJDK 8 and higher LTS versions**.
 
 Users can expect every single patch release has been done after verifying functionality by running [the basic CI builds with all LTS versions](https://github.com/slackapi/java-slack-sdk/blob/main/.travis.yml) and all the unit tests have passed at least on the latest LTS version. We don't run comprehensive verifications with all OpenJDK distributions but it should be working with all of them.
 

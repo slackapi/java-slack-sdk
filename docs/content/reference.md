@@ -1,6 +1,6 @@
 # Reference
 
-The table below shows all the available modules in the Slack Java SDK. All of them have the same latest version as we release all at the same time, even in the case that some don't have any changes apart from updates on their dependency side.
+The table below shows all the available modules in the Java Slack SDK. All of them have the same latest version as we release all at the same time, even in the case that some don't have any changes apart from updates on their dependency side.
 
 All released versions are available on the Maven Central repositories. The latest version is `sdkLatestVersion`.
 
