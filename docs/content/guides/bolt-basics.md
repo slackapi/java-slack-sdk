@@ -285,7 +285,7 @@ if (debugMode != null && debugMode.equals("1")) { // enable only when SLACK_APP_
 
 The middleware transforms an unsuccessful response such as 404 Not Found to a 200 OK response with an ephemeral message that tells useful information for debugging.
 
-<img src="/img/bolt-middleware.png" width="600" />
+![Bolt middleware ](/img/bolt-middleware.png)
 
 #### Order of Execution in Middleware List
 

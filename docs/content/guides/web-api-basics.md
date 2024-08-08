@@ -76,7 +76,7 @@ ChatPostMessageResponse response = methods.chatPostMessage(request);
 
 If everything goes well, you will see a message like this in the `#random` channel in your workspace.
 
-<img src="/img/web-api-basics-hello-world.png" width="400" />
+![Web API Hello World Message](/img/web-api-basics-hello-world.png)
 
 To clearly understand what is happening here, take a look at a `curl` command example that is equivalent to the above Java code. The concept behind Slack Web APIs is so straight-forward that it's pretty easy to understand how given parameters will be sent in actual HTTP requests.
 
