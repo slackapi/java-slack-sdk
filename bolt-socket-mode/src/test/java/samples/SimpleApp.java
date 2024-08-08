@@ -12,6 +12,7 @@ import config.Constants;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.dispatchActionConfig;
@@ -151,14 +152,11 @@ public class SimpleApp {
         });
 
         // Note that this is still in beta as of Nov 2023
-        app.event(FunctionExecutedEvent.class, (req, ctx) -> {
-        // TODO: future updates enable passing callback_id as below
+        // app.event(FunctionExecutedEvent.class, (req, ctx) -> {
         // app.function("hello", (req, ctx) -> {
-        // app.function(Pattern.compile("^he.+$"), (req, ctx) -> {
+        app.function(Pattern.compile("^he.+$"), (req, ctx) -> {
             ctx.logger.info("req: {}", req);
             ctx.client().chatPostMessage(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getEvent().getBotAccessToken())
                     .channel(req.getEvent().getInputs().get("user_id").asString())
                     .text("hey!")
                     .blocks(asBlocks(actions(a -> a.blockId("b").elements(asElements(
@@ -174,14 +172,10 @@ public class SimpleApp {
             Map<String, Object> outputs = new HashMap<>();
             outputs.put("user_id", req.getPayload().getFunctionData().getInputs().get("user_id").asString());
             ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .outputs(outputs)
             );
             ctx.client().chatUpdate(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .channel(req.getPayload().getContainer().getChannelId())
                     .ts(req.getPayload().getContainer().getMessageTs())
                     .text("Thank you!")
@@ -190,14 +184,10 @@ public class SimpleApp {
         });
         app.blockAction("remote-function-button-error", (req, ctx) -> {
             ctx.client().functionsCompleteError(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .error("test error!")
             );
             ctx.client().chatUpdate(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .channel(req.getPayload().getContainer().getChannelId())
                     .ts(req.getPayload().getContainer().getMessageTs())
                     .text("Thank you!")
@@ -206,8 +196,6 @@ public class SimpleApp {
         });
         app.blockAction("remote-function-modal", (req, ctx) -> {
             ctx.client().viewsOpen(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .triggerId(req.getPayload().getInteractivity().getInteractivityPointer())
                     .view(view(v -> v
                             .type("modal")
@@ -223,8 +211,6 @@ public class SimpleApp {
                             )))
                     )));
             ctx.client().chatUpdate(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .channel(req.getPayload().getContainer().getChannelId())
                     .ts(req.getPayload().getContainer().getMessageTs())
                     .text("Thank you!")
@@ -236,7 +222,6 @@ public class SimpleApp {
             Map<String, Object> outputs = new HashMap<>();
             outputs.put("user_id", ctx.getRequestUserId());
             ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
                     .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .outputs(outputs)
@@ -247,7 +232,6 @@ public class SimpleApp {
             Map<String, Object> outputs = new HashMap<>();
             outputs.put("user_id", ctx.getRequestUserId());
             ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
                     .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .outputs(outputs)

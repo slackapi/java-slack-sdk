@@ -1,6 +1,7 @@
 package test_locally.app;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.app_backend.SlackSignature;
@@ -12,20 +13,25 @@ import com.slack.api.bolt.request.builtin.EventRequest;
 import com.slack.api.bolt.request.builtin.ViewSubmissionRequest;
 import com.slack.api.bolt.response.Response;
 import com.slack.api.model.event.FunctionExecutedEvent;
-import com.slack.api.util.json.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.AuthTestMockServer;
 import util.MockSlackApiServer;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Arrays;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -48,7 +54,6 @@ public class RemoteFunctionTest {
         server.stop();
     }
 
-    final Gson gson = GsonFactory.createSnakeCase();
     final String secret = "foo-bar-baz";
     final SlackSignature.Generator generator = new SlackSignature.Generator(secret);
 
@@ -356,22 +361,52 @@ public class RemoteFunctionTest {
             called.set(req.getEvent().getFunction().getCallbackId().equals("hello")
                     && req.getEvent().getInputs().get("user_id").asString().equals("U03E94MK0")
                     && req.getEvent().getInputs().get("amount").asInteger().equals(1)
-                    && req.getEvent().getBotAccessToken().equals("xwfp-this-is-valid")
-            );
-            called.set(ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getEvent().getBotAccessToken())
-                    .functionExecutionId(req.getEvent().getFunctionExecutionId())
-                    .outputs(new HashMap<>())
-            ).getError().equals(""));
-            called.set(ctx.client().functionsCompleteError(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getEvent().getBotAccessToken())
-                    .functionExecutionId(req.getEvent().getFunctionExecutionId())
-                    .error("something wrong")
-            ).getError().equals(""));
+                    && ctx.isAttachingFunctionTokenEnabled()
+                    && ctx.getFunctionBotAccessToken().equals("xwfp-valid"));
+            called.set(ctx.complete(new HashMap<>()).getError().isEmpty());
+            called.set(ctx.fail("something wrong").getError().isEmpty());
             return ctx.ack();
         });
+
+        Response response = app.run(buildEventRequest());
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertTrue(called.get());
+    }
+
+    @Test
+    public void static_callback_id() throws Exception {
+        App app = buildApp();
+        AtomicBoolean called = new AtomicBoolean(false);
+        app.function("hello", (req, ctx) -> {
+            called.set(req.getEvent().getFunction().getCallbackId().equals("hello")
+                    && req.getEvent().getInputs().get("user_id").asString().equals("U03E94MK0")
+                    && req.getEvent().getInputs().get("amount").asInteger().equals(1)
+                    && ctx.isAttachingFunctionTokenEnabled()
+                    && ctx.getFunctionBotAccessToken().equals("xwfp-valid"));
+            called.set(ctx.complete(new HashMap<>()).getError().isEmpty());
+            return ctx.ack();
+        });
+        app.function("something-else", (req, ctx) -> ctx.ack());
+
+        Response response = app.run(buildEventRequest());
+        assertEquals(200L, response.getStatusCode().longValue());
+        assertTrue(called.get());
+    }
+
+    @Test
+    public void regexp_callback_id() throws Exception {
+        App app = buildApp();
+        AtomicBoolean called = new AtomicBoolean(false);
+        app.function(Pattern.compile("^he.+"), (req, ctx) -> {
+            called.set(req.getEvent().getFunction().getCallbackId().equals("hello")
+                    && req.getEvent().getInputs().get("user_id").asString().equals("U03E94MK0")
+                    && req.getEvent().getInputs().get("amount").asInteger().equals(1)
+                    && ctx.isAttachingFunctionTokenEnabled()
+                    && ctx.getFunctionBotAccessToken().equals("xwfp-valid"));
+            called.set(ctx.complete(new HashMap<>()).getError().isEmpty());
+            return ctx.ack();
+        });
+        app.function("something-else", (req, ctx) -> ctx.ack());
 
         Response response = app.run(buildEventRequest());
         assertEquals(200L, response.getStatusCode().longValue());
@@ -388,12 +423,7 @@ public class RemoteFunctionTest {
                     && req.getPayload().getFunctionData().getInputs().get("amount").asInteger().equals(1)
                     && req.getPayload().getBotAccessToken().equals("xwfp-this-is-valid")
             );
-            called.set(ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
-                    .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
-                    .outputs(new HashMap<>())
-            ).getError().equals(""));
+            called.set(ctx.complete(new HashMap<>()).getError().isEmpty());
             return ctx.ack();
         });
 
@@ -412,12 +442,10 @@ public class RemoteFunctionTest {
                     && req.getPayload().getFunctionData().getInputs().get("amount").asInteger().equals(1)
                     && req.getPayload().getBotAccessToken().equals("xwfp-this-is-valid")
             );
-            called.set(ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
-                    .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
-                    .outputs(new HashMap<>())
-            ).getError().equals(""));
+            Map<String, Object> outputs = new HashMap<>();
+            outputs.put("message", "Completed!");
+            outputs.put("number", 123);
+            called.set(ctx.complete(outputs).getError().isEmpty());
             return ctx.ack();
         });
 
@@ -435,8 +463,8 @@ public class RemoteFunctionTest {
     }
 
     void setRequestHeaders(String requestBody, Map<String, List<String>> rawHeaders, String timestamp) {
-        rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, Arrays.asList(timestamp));
-        rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, Arrays.asList(generator.generate(timestamp, requestBody)));
+        rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_REQUEST_TIMESTAMP, Collections.singletonList(timestamp));
+        rawHeaders.put(SlackSignature.HeaderNames.X_SLACK_SIGNATURE, Collections.singletonList(generator.generate(timestamp, requestBody)));
     }
 
     EventRequest buildEventRequest() {
@@ -446,19 +474,123 @@ public class RemoteFunctionTest {
         return new EventRequest(eventPayload, new RequestHeaders(rawHeaders));
     }
 
-    BlockActionRequest buildActionRequest() {
+    BlockActionRequest buildActionRequest() throws UnsupportedEncodingException {
         Map<String, List<String>> rawHeaders = new HashMap<>();
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        String body = "payload=" + URLEncoder.encode(actionPayload);
+        String body = "payload=" + URLEncoder.encode(actionPayload, "UTF-8");
         setRequestHeaders(body, rawHeaders, timestamp);
         return new BlockActionRequest(body, actionPayload, new RequestHeaders(rawHeaders));
     }
 
-    ViewSubmissionRequest buildViewSubmissionRequest() {
+    ViewSubmissionRequest buildViewSubmissionRequest() throws UnsupportedEncodingException {
         Map<String, List<String>> rawHeaders = new HashMap<>();
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        String body = "payload=" + URLEncoder.encode(viewSubmissionPayload);
+        String body = "payload=" + URLEncoder.encode(viewSubmissionPayload, "UTF-8");
         setRequestHeaders(body, rawHeaders, timestamp);
         return new ViewSubmissionRequest(body, viewSubmissionPayload, new RequestHeaders(rawHeaders));
     }
+
+    @Test
+    public void compileDocumentExamples() {
+        // https://api.slack.com/automation/functions/custom-bolt
+        App app = buildApp();
+
+        app.function("sample_function", (req, ctx) -> {
+            String userId = req.getEvent().getInputs().get("user_id").asString();
+            app.executorService().submit(() -> {
+                try {
+                    ctx.client().chatPostMessage(r -> r.channel(userId).text("Greetings <@" + userId + ">!"));
+                    ctx.complete(new HashMap<>());
+                } catch (Exception e) {
+                    String error = "Failed to handle a function request: " + e.getMessage();
+                    ctx.logger.error(error, e);
+                    try {
+                        ctx.fail(error);
+                    } catch (Exception ee) {
+                        ctx.logger.error("Failed to perform a functions.completeError call: " + ee.getMessage(), ee);
+                    }
+                }
+            });
+            return ctx.ack();
+        });
+
+        app.function("create_issue", (req, ctx) -> {
+            app.executorService().submit(() -> {
+                try {
+                    Map<String, FunctionExecutedEvent.InputValue> inputs = req.getEvent().getInputs();
+                    Map<String, Object> requestBody = new HashMap<>();
+
+                    Map<String, Object> p = new HashMap<>();
+                    String project = inputs.get("project").asString();
+                    if (project.matches("^\\d+$")) p.put("id", project);
+                    else p.put("key", project);
+                    requestBody.put("project", p);
+
+                    Map<String, Object> i = new HashMap<>();
+                    String issuetype = inputs.get("issuetype").asString();
+                    if (project.matches("^\\d+$")) i.put("id", issuetype);
+                    else i.put("name", issuetype);
+                    requestBody.put("issuetype", i);
+
+                    requestBody.put("description", inputs.get("description").asString());
+                    requestBody.put("summary", inputs.get("summary").asString());
+
+                    Gson gson = new Gson();
+                    String jiraBaseURL = System.getenv("JIRA_BASE_URL");
+                    String issueEndpoint = "https://" + jiraBaseURL + "/rest/api/latest/issue";
+                    OkHttpClient client = new OkHttpClient();
+                    okhttp3.Response issueResponse = client.newCall(new Request.Builder()
+                            .post(RequestBody.create(gson.toJson(requestBody).getBytes(StandardCharsets.UTF_8)))
+                            .url(issueEndpoint)
+                            .addHeader("Accept", "application/json")
+                            .addHeader("Authorization", "Bearer " + System.getenv("JIRA_SERVICE_TOKEN"))
+                            .addHeader("Content-Type", "application/json")
+                            .build()
+                    ).execute();
+
+                    if (issueResponse.isSuccessful()) {
+                        String issueResponseBody = issueResponse.body().string();
+                        JsonObject issue = gson.fromJson(issueResponseBody, JsonObject.class);
+                        Map<String, String> outputs = new HashMap<>();
+                        outputs.put("issue_id", issue.get("id").getAsString());
+                        outputs.put("issue_key", issue.get("key").getAsString());
+                        outputs.put("issue_url", "https://" + jiraBaseURL + "/browse/" + issue.get("key").getAsString());
+                        ctx.complete(outputs);
+                    } else {
+                        try {
+                            ctx.fail("Failed to create a JIRA issue (status: " + issueResponse.code() + ")");
+                        } catch (Exception ee) {
+                            ctx.logger.error("Failed to perform a functions.completeError call: " + ee.getMessage(), ee);
+                        }
+                    }
+
+                } catch (Exception e) {
+                    try {
+                        ctx.fail("Failed to create a JIRA issue: " + e.getMessage());
+                    } catch (Exception ee) {
+                        ctx.logger.error("Failed to perform a functions.completeError call: " + ee.getMessage(), ee);
+                    }
+                }
+            });
+            return ctx.ack();
+        });
+
+        app.blockAction("approve_button", (req, ctx) -> {
+            app.executorService().submit(() -> {
+                try {
+                    Map<String, String> outputs = new HashMap<>();
+                    outputs.put("message", "Request approved 👍");
+                    ctx.complete(outputs);
+                } catch (Exception e) {
+                    try {
+                        ctx.fail("Failed to handle a function request: " + e.getMessage());
+                    } catch (Exception ee) {
+                        ctx.logger.error("Failed to perform a functions.completeError call: " + ee.getMessage(), ee);
+                    }
+                }
+            });
+            return ctx.ack();
+        });
+    }
+
 }
