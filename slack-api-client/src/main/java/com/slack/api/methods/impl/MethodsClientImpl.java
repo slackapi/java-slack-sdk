@@ -2333,20 +2333,19 @@ public class MethodsClientImpl implements MethodsClient {
             if (req.getUploadFiles() != null && req.getUploadFiles().size() > 0) {
                 // upload multiple files
                 for (FilesUploadV2Request.UploadFile uploadFile : req.getUploadFiles()) {
-                    if (uploadFile.getTitle() != null) {
-                        uploadFile.setTitle(uploadFile.getTitle());
-                    } else {
-                        String filename = req.getFilename();
-                        if (filename == null) {
-                            if (uploadFile.getFile() != null && uploadFile.getFile().getName() != null) {
-                                filename = uploadFile.getFile().getName();
-                            } else {
-                                filename = "Uploaded file";
-                            }
+                    String filename = uploadFile.getFilename();
+                    if (filename == null) {
+                        if (uploadFile.getFile() != null && uploadFile.getFile().getName() != null) {
+                            filename = uploadFile.getFile().getName();
+                        } else {
+                            filename = "Uploaded file";
                         }
-                        uploadFile.setFilename(filename);
+                    }
+                    uploadFile.setFilename(filename);
+                    if (uploadFile.getTitle() == null) {
                         uploadFile.setTitle(filename);
                     }
+
                     String fileId = helper.uploadFile(req, uploadFile);
 
                     FilesCompleteUploadExternalRequest.FileDetails file = new FilesCompleteUploadExternalRequest.FileDetails();
