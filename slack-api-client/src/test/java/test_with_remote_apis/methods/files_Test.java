@@ -1176,7 +1176,7 @@ public class files_Test {
         byte[] fileData = Files.readAllBytes(Paths.get("src/test/resources/sample.txt"));
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
-        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().filename("issue1345_test.txt").title("issue1345 test").fileData(fileData);
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().filename("issue1345_test.txt").title("issue1345 test").fileData(fileData).build();
         FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
@@ -1192,7 +1192,7 @@ public class files_Test {
         byte[] fileData = Files.readAllBytes(Paths.get("src/test/resources/sample.txt"));
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
-        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().filename("issue1345_test.txt").fileData(fileData);
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().filename("issue1345_test.txt").fileData(fileData).build();
         FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
@@ -1209,7 +1209,7 @@ public class files_Test {
         byte[] fileData = Files.readAllBytes(Paths.get("src/test/resources/sample.txt"));
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
-        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().title("issue1345 test").fileData(fileData);
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().title("issue1345 test").fileData(fileData).build();
         FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
@@ -1227,7 +1227,7 @@ public class files_Test {
         File file = new File("src/test/resources/sample.txt");
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
-        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().file(fileData);
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().file(fileData).build();
         FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
@@ -1245,7 +1245,7 @@ public class files_Test {
         byte[] fileData = Files.readAllBytes(Paths.get("src/test/resources/sample.txt"));
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
-        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().fileData(fileData);
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().fileData(fileData).build();
         FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
