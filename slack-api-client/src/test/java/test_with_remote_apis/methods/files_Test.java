@@ -1227,7 +1227,7 @@ public class files_Test {
         File file = new File("src/test/resources/sample.txt");
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
-        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().file(fileData).build();
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().file(file).build();
         FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
