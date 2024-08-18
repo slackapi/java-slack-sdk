@@ -1232,9 +1232,9 @@ public class files_Test {
 
         assertThat(response.getError(), is(nullValue()));
         // filename defaults to "Uploaded file", which will be converted by slack servers to be lowercase only, contain no special characters but underscores, dots and dashes, etc.
-        assertThat(response.getFiles().get(0).getName(), is(file.getName()));
+        assertThat(response.getFiles().get(0).getName(), is("sample.txt"));
         // title should be unaffected if it has a value set
-        assertThat(response.getFiles().get(0).getTitle(), is(file.getName()));
+        assertThat(response.getFiles().get(0).getTitle(), is("sample.txt"));
     }
 
     @Test
