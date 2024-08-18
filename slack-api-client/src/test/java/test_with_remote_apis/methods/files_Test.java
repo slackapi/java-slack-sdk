@@ -1177,7 +1177,7 @@ public class files_Test {
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
         FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().filename("issue1345_test.txt").title("issue1345 test").fileData(fileData).build();
-        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.getFiles().get(0).getName(), is("issue1345_test.txt"));
@@ -1193,7 +1193,7 @@ public class files_Test {
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
         FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().filename("issue1345_test.txt").fileData(fileData).build();
-        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
         assertThat(response.getFiles().get(0).getName(), is("issue1345_test.txt"));
@@ -1210,7 +1210,7 @@ public class files_Test {
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
         FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().title("issue1345 test").fileData(fileData).build();
-        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
         // filename defaults to "Uploaded file", which will be converted by slack servers to be lowercase only, contain no special characters but underscores, dots and dashes, etc.
@@ -1228,7 +1228,7 @@ public class files_Test {
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
         FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().file(file).build();
-        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
         // filename defaults to "Uploaded file", which will be converted by slack servers to be lowercase only, contain no special characters but underscores, dots and dashes, etc.
@@ -1246,7 +1246,7 @@ public class files_Test {
 
         // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
         FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().fileData(fileData).build();
-        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(List.of(uploadFile)));
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
 
         assertThat(response.getError(), is(nullValue()));
         // filename defaults to "Uploaded file", which will be converted by slack servers to be lowercase only, contain no special characters but underscores, dots and dashes, etc.
