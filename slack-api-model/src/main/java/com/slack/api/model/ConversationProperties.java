@@ -19,6 +19,7 @@ public class ConversationProperties {
     private Boolean huddlesRestricted;
     private Boolean atHereRestricted;
     private Boolean atChannelRestricted;
+    private List<Tab> tabs;
 
     @Data
     @Builder
@@ -46,5 +47,15 @@ public class ConversationProperties {
         private String fileId;
         private String quipThreadId;
         private Boolean isEmpty;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Tab {
+        private String id;
+        private String label;
+        private Boolean type;
     }
 }

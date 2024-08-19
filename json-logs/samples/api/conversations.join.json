@@ -55,7 +55,14 @@
         "file_id": "F00000000",
         "is_empty": false,
         "quip_thread_id": ""
-      }
+      },
+      "tabs": [
+        {
+          "id": "",
+          "label": "",
+          "type": ""
+        }
+      ]
     }
   },
   "warning": "",
