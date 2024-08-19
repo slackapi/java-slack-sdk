@@ -10,7 +10,8 @@
     </parent>
 
     <properties>
-        <micronaut.version>4.6.1</micronaut.version>
+        <!-- TODO: holding off migrating to 4.6 due to binary compatibility issue with JDK 17; see https://github.com/slackapi/java-slack-sdk/actions/runs/10448506682/job/28929089969?pr=1350 -->
+        <micronaut.version>4.5.4</micronaut.version>
         <micronaut-test-junit5.version>4.4.0</micronaut-test-junit5.version>
         <micronaut-rxjava3.version>3.4.0</micronaut-rxjava3.version>
         <junit5-jupiter.version>5.11.0</junit5-jupiter.version>
