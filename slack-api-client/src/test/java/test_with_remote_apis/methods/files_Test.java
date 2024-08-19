@@ -1167,4 +1167,91 @@ public class files_Test {
         FilesInfoResponse file1info = client.filesInfo(r -> r.file(file1Upload.getFileId()));
         assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
     }
+
+    @Test
+    public void issue1345_filesUploadV2_multiple() throws IOException, SlackApiException {
+        loadRandomChannelId();
+        MethodsClient slackMethods = slack.methods(userToken);
+
+        byte[] fileData = Files.readAllBytes(Paths.get("src/test/resources/sample.txt"));
+
+        // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().filename("issue1345_test.txt").title("issue1345 test").fileData(fileData).build();
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
+
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getFiles().get(0).getName(), is("issue1345_test.txt"));
+        assertThat(response.getFiles().get(0).getTitle(), is("issue1345 test"));
+    }
+
+    @Test
+    public void issue1345_filesUploadV2_multiple_no_title() throws IOException, SlackApiException {
+        loadRandomChannelId();
+        MethodsClient slackMethods = slack.methods(userToken);
+
+        byte[] fileData = Files.readAllBytes(Paths.get("src/test/resources/sample.txt"));
+
+        // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().filename("issue1345_test.txt").fileData(fileData).build();
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
+
+        assertThat(response.getError(), is(nullValue()));
+        assertThat(response.getFiles().get(0).getName(), is("issue1345_test.txt"));
+        // title should default to filename
+        assertThat(response.getFiles().get(0).getTitle(), is("issue1345_test.txt"));
+    }
+
+    @Test
+    public void issue1345_filesUploadV2_multiple_no_filename() throws IOException, SlackApiException {
+        loadRandomChannelId();
+        MethodsClient slackMethods = slack.methods(userToken);
+
+        byte[] fileData = Files.readAllBytes(Paths.get("src/test/resources/sample.txt"));
+
+        // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().title("issue1345 test").fileData(fileData).build();
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
+
+        assertThat(response.getError(), is(nullValue()));
+        // filename defaults to "Uploaded file", which will be converted by slack servers to be lowercase only, contain no special characters but underscores, dots and dashes, etc.
+        assertThat(response.getFiles().get(0).getName(), is("uploaded_file"));
+        // title should be unaffected if it has a value set
+        assertThat(response.getFiles().get(0).getTitle(), is("issue1345 test"));
+    }
+
+    @Test
+    public void issue1345_filesUploadV2_multiple_no_filename_no_title_file() throws IOException, SlackApiException {
+        loadRandomChannelId();
+        MethodsClient slackMethods = slack.methods(userToken);
+
+        File file = new File("src/test/resources/sample.txt");
+
+        // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().file(file).build();
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
+
+        assertThat(response.getError(), is(nullValue()));
+        // filename defaults to "Uploaded file", which will be converted by slack servers to be lowercase only, contain no special characters but underscores, dots and dashes, etc.
+        assertThat(response.getFiles().get(0).getName(), is("sample.txt"));
+        // title should be unaffected if it has a value set
+        assertThat(response.getFiles().get(0).getTitle(), is("sample.txt"));
+    }
+
+    @Test
+    public void issue1345_filesUploadV2_multiple_no_filename_no_title() throws IOException, SlackApiException {
+        loadRandomChannelId();
+        MethodsClient slackMethods = slack.methods(userToken);
+
+        byte[] fileData = Files.readAllBytes(Paths.get("src/test/resources/sample.txt"));
+
+        // note: this test can be done using only one file as everything tested applies to each file individually - the only important thing is to use "uploadFiles" instead of direct values
+        FilesUploadV2Request.UploadFile uploadFile = FilesUploadV2Request.UploadFile.builder().fileData(fileData).build();
+        FilesUploadV2Response response = slackMethods.filesUploadV2(r -> r.uploadFiles(Arrays.asList(uploadFile)));
+
+        assertThat(response.getError(), is(nullValue()));
+        // filename defaults to "Uploaded file", which will be converted by slack servers to be lowercase only, contain no special characters but underscores, dots and dashes, etc.
+        assertThat(response.getFiles().get(0).getName(), is("uploaded_file"));
+        // title defaults to filename, which is (as this is defaulted on the client side) "Uploaded file"
+        assertThat(response.getFiles().get(0).getTitle(), is("Uploaded file"));
+    }
 }
