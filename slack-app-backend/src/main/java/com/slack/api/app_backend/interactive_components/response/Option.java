@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class Option {
     private TextObject text;
     private String value;
+    private TextObject description;
 }
