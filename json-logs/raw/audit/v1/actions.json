@@ -386,7 +386,12 @@
       "huddle_screenshare_on",
       "huddle_screenshare_off",
       "huddle_knock_accepted",
-      "huddle_participant_transcript_consent"
+      "huddle_participant_transcript_consent",
+      "huddle_transcription_start_notification",
+      "huddle_transcription_started",
+      "huddle_transcription_resumed",
+      "huddle_transcription_cancelled",
+      "huddle_transcription_paused"
     ],
     "anomaly": [
       "anomaly"

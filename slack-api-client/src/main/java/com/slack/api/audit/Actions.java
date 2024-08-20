@@ -442,6 +442,11 @@ public class Actions {
         public static final String huddle_screenshare_off = "huddle_screenshare_off";
         public static final String huddle_knock_accepted = "huddle_knock_accepted";
         public static final String huddle_participant_transcript_consent = "huddle_participant_transcript_consent";
+        public static final String huddle_transcription_start_notification = "huddle_transcription_start_notification";
+        public static final String huddle_transcription_started = "huddle_transcription_started";
+        public static final String huddle_transcription_resumed = "huddle_transcription_resumed";
+        public static final String huddle_transcription_cancelled = "huddle_transcription_cancelled";
+        public static final String huddle_transcription_paused = "huddle_transcription_paused";
     }
 
     public static class Anomaly {
