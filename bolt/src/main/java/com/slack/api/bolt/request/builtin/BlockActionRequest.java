@@ -23,8 +23,14 @@ public class BlockActionRequest extends Request<ActionContext> {
         this.headers = headers;
         this.payload = GsonFactory.createSnakeCase().fromJson(payloadBody, BlockActionPayload.class);
         if (this.payload != null) {
+            getContext().setFunctionBotAccessToken(payload.getBotAccessToken());
             getContext().setResponseUrl(payload.getResponseUrl());
             getContext().setTriggerId(payload.getTriggerId());
+            if (payload.getTriggerId() == null
+                    && payload.getInteractivity() != null
+                    && payload.getInteractivity().getInteractivityPointer() != null) {
+                getContext().setTriggerId(payload.getInteractivity().getInteractivityPointer());
+            }
             if (payload.getEnterprise() != null) {
                 getContext().setEnterpriseId(payload.getEnterprise().getId());
             } else if (payload.getTeam() != null) {
@@ -36,6 +42,9 @@ public class BlockActionRequest extends Request<ActionContext> {
                 getContext().setTeamId(payload.getUser().getTeamId());
             }
             getContext().setRequestUserId(payload.getUser().getId());
+            if (payload.getFunctionData() != null) {
+                getContext().setFunctionExecutionId(payload.getFunctionData().getExecutionId());
+            }
         }
     }
 

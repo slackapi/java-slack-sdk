@@ -12,6 +12,7 @@ import config.Constants;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.dispatchActionConfig;
@@ -150,15 +151,116 @@ public class SimpleApp {
             return ctx.ack();
         });
 
-        // Note that this is still in beta as of Nov 2023
-        app.event(FunctionExecutedEvent.class, (req, ctx) -> {
-        // TODO: future updates enable passing callback_id as below
+        /* Example App Manifest
+{
+    "display_information": {
+        "name": "manifest-test-app-2"
+    },
+    "features": {
+        "bot_user": {
+            "display_name": "test-bot",
+            "always_online": true
+        }
+    },
+    "oauth_config": {
+        "scopes": {
+            "bot": [
+                "commands",
+                "chat:write",
+                "app_mentions:read"
+            ]
+        }
+    },
+    "settings": {
+        "event_subscriptions": {
+            "bot_events": [
+                "app_mention",
+                "function_executed"
+            ]
+        },
+        "interactivity": {
+            "is_enabled": true
+        },
+        "org_deploy_enabled": true,
+        "socket_mode_enabled": true,
+        "token_rotation_enabled": false,
+        "hermes_app_type": "remote",
+        "function_runtime": "remote"
+    },
+    "functions": {
+        "hello": {
+            "title": "Hello",
+            "description": "Hello world!",
+            "input_parameters": {
+                "amount": {
+                    "type": "number",
+                    "title": "Amount",
+                    "description": "How many do you need?",
+                    "is_required": false,
+                    "hint": "How many do you need?",
+                    "name": "amount",
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "user_id": {
+                    "type": "slack#/types/user_id",
+                    "title": "User",
+                    "description": "Who to send it",
+                    "is_required": true,
+                    "hint": "Select a user in the workspace",
+                    "name": "user_id"
+                },
+                "message": {
+                    "type": "string",
+                    "title": "Message",
+                    "description": "Whatever you want to tell",
+                    "is_required": false,
+                    "hint": "up to 100 characters",
+                    "name": "message",
+                    "maxLength": 100,
+                    "minLength": 1
+                }
+            },
+            "output_parameters": {
+                "amount": {
+                    "type": "number",
+                    "title": "Amount",
+                    "description": "How many do you need?",
+                    "is_required": false,
+                    "hint": "How many do you need?",
+                    "name": "amount",
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "user_id": {
+                    "type": "slack#/types/user_id",
+                    "title": "User",
+                    "description": "Who to send it",
+                    "is_required": true,
+                    "hint": "Select a user in the workspace",
+                    "name": "user_id"
+                },
+                "message": {
+                    "type": "string",
+                    "title": "Message",
+                    "description": "Whatever you want to tell",
+                    "is_required": false,
+                    "hint": "up to 100 characters",
+                    "name": "message",
+                    "maxLength": 100,
+                    "minLength": 1
+                }
+            }
+        }
+    }
+}
+         */
+
+        // app.event(FunctionExecutedEvent.class, (req, ctx) -> {
         // app.function("hello", (req, ctx) -> {
-        // app.function(Pattern.compile("^he.+$"), (req, ctx) -> {
+        app.function(Pattern.compile("^he.+$"), (req, ctx) -> {
             ctx.logger.info("req: {}", req);
             ctx.client().chatPostMessage(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getEvent().getBotAccessToken())
                     .channel(req.getEvent().getInputs().get("user_id").asString())
                     .text("hey!")
                     .blocks(asBlocks(actions(a -> a.blockId("b").elements(asElements(
@@ -174,14 +276,10 @@ public class SimpleApp {
             Map<String, Object> outputs = new HashMap<>();
             outputs.put("user_id", req.getPayload().getFunctionData().getInputs().get("user_id").asString());
             ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .outputs(outputs)
             );
             ctx.client().chatUpdate(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .channel(req.getPayload().getContainer().getChannelId())
                     .ts(req.getPayload().getContainer().getMessageTs())
                     .text("Thank you!")
@@ -190,14 +288,10 @@ public class SimpleApp {
         });
         app.blockAction("remote-function-button-error", (req, ctx) -> {
             ctx.client().functionsCompleteError(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .error("test error!")
             );
             ctx.client().chatUpdate(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .channel(req.getPayload().getContainer().getChannelId())
                     .ts(req.getPayload().getContainer().getMessageTs())
                     .text("Thank you!")
@@ -206,8 +300,6 @@ public class SimpleApp {
         });
         app.blockAction("remote-function-modal", (req, ctx) -> {
             ctx.client().viewsOpen(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .triggerId(req.getPayload().getInteractivity().getInteractivityPointer())
                     .view(view(v -> v
                             .type("modal")
@@ -223,8 +315,6 @@ public class SimpleApp {
                             )))
                     )));
             ctx.client().chatUpdate(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
-                    .token(req.getPayload().getBotAccessToken())
                     .channel(req.getPayload().getContainer().getChannelId())
                     .ts(req.getPayload().getContainer().getMessageTs())
                     .text("Thank you!")
@@ -236,7 +326,6 @@ public class SimpleApp {
             Map<String, Object> outputs = new HashMap<>();
             outputs.put("user_id", ctx.getRequestUserId());
             ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
                     .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .outputs(outputs)
@@ -247,7 +336,6 @@ public class SimpleApp {
             Map<String, Object> outputs = new HashMap<>();
             outputs.put("user_id", ctx.getRequestUserId());
             ctx.client().functionsCompleteSuccess(r -> r
-                    // TODO: remove this token passing by enhancing bolt internals
                     .token(req.getPayload().getBotAccessToken())
                     .functionExecutionId(req.getPayload().getFunctionData().getExecutionId())
                     .outputs(outputs)

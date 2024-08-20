@@ -380,6 +380,15 @@ public class AppConfig {
     @Builder.Default
     private boolean allEventsApiAutoAckEnabled = false;
 
+    /**
+     * When true, the framework automatically attaches context#functionBotAccessToken
+     * to context#client instead of context#botToken.
+     * Enabling this behavior only affects function_executed event handlers
+     * and app.action/app.view handlers associated with the function token.
+     */
+    @Builder.Default
+    private boolean attachingFunctionTokenEnabled = true;
+
     // ---------------------------------
     // Default middleware configuration
     // ---------------------------------
