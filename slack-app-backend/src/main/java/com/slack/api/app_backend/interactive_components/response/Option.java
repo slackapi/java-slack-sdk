@@ -14,4 +14,9 @@ public class Option {
     private TextObject text;
     private String value;
     private TextObject description;
+
+    // For backward-compatibility
+    public Option(TextObject text, String value) {
+        this(text, value, null);
+    }
 }
