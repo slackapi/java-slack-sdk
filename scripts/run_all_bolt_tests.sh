@@ -8,4 +8,14 @@ then
 fi
 
 ./mvnw install -Dmaven.test.skip=true && \
-./mvnw test -pl bolt -pl slack-app-backend -pl bolt-servlet -pl bolt-aws-lambda -pl bolt-micronaut -pl bolt-helidon -pl bolt-google-cloud-functions
+./mvnw test -pl bolt \
+  -pl slack-app-backend \
+  -pl bolt-servlet \
+  -pl bolt-jakarta-servlet \
+  -pl bolt-socket-mode \
+  -pl bolt-jakarta-socket-mode \
+  -pl bolt-aws-lambda \
+  -pl bolt-micronaut \
+  -pl bolt-helidon \
+  -pl bolt-google-cloud-functions \
+  -pl !bolt-quarkus-examples

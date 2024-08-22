@@ -38,7 +38,7 @@ public interface SocketModeClient extends Closeable {
      */
     enum Backend {
         /**
-         * org.glassfish.tyrus.bundles:tyrus-standalone-client
+         * org.glassfish.tyrus.bundles:tyrus-standalone-client 1.x
          */
         Tyrus,
         /**
