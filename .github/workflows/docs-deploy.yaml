@@ -44,6 +44,8 @@ jobs:
           compatibleMicronautVersionValue=$(grep 'compatibleMicronautVersion:' docs/version-config.yml | awk '{print $2}')
           quarkusVersionValue=$(grep 'quarkusVersion:' docs/version-config.yml | awk '{print $2}')
           tyrusStandaloneClientVersionValue=$(grep 'tyrusStandaloneClientVersion:' docs/version-config.yml | awk '{print $2}')
+          tyrusStandaloneClientV2VersionValue=$(grep 'tyrusStandaloneClientV2Version:' docs/version-config.yml | awk '{print $2}')
+          jakartaWebsocketApiVersionValue=$(grep 'jakartaWebsocketApiVersion:' docs/version-config.yml | awk '{print $2}')
           echo "sdkLatestVersion=$sdkLatestVersionValue" >> $GITHUB_ENV
           echo "okhttpVersion=$okhttpVersionValue" >> $GITHUB_ENV
           echo "slf4jApiVersion=$slf4jApiVersionValue" >> $GITHUB_ENV
@@ -54,21 +56,26 @@ jobs:
           echo "compatibleMicronautVersion=$compatibleMicronautVersionValue" >> $GITHUB_ENV
           echo "quarkusVersion=$quarkusVersionValue" >> $GITHUB_ENV
           echo "tyrusStandaloneClientVersion=$tyrusStandaloneClientVersionValue" >> $GITHUB_ENV
+          echo "tyrusStandaloneClientV2Version=tyrusStandaloneClientV2VersionValue" >> $GITHUB_ENV
+          echo "jakartaWebsocketApiVersion=jakartaWebsocketApiVersionValue" >> $GITHUB_ENV
 
       - name: Replace placeholders in .md files
         run: |
-          DOCS_DIR="./docs/content"
-          find $DOCS_DIR -name "*.md" | while read file; do
-            sed -i "s/sdkLatestVersion/${{ env.sdkLatestVersion }}/g" "$file"
-            sed -i "s/okhttpVersion/${{ env.okhttpVersion }}/g" "$file"
-            sed -i "s/slf4jApiVersion/${{ env.slf4jApiVersion }}/g" "$file"
-            sed -i "s/kotlinVersion/${{ env.kotlinVersion }}/g" "$file"
-            sed -i "s/helidonVersion/${{ env.helidonVersion }}/g" "$file"
-            sed -i "s/javaxWebsocketApiVersion/${{ env.javaxWebsocketApiVersion }}/g" "$file"
-            sed -i "s/springBootVersion/${{ env.springBootVersion }}/g" "$file"
-            sed -i "s/compatibleMicronautVersion/${{ env.compatibleMicronautVersion }}/g" "$file"
-            sed -i "s/quarkusVersion/${{ env.quarkusVersion }}/g" "$file"
-            sed -i "s/tyrusStandaloneClientVersion/${{ env.tyrusStandaloneClientVersion }}/g" "$file"
+          for DOCS_DIR in "./docs/content" "./docs/i18n/ja-jp/docusaurus-plugin-content-docs/current"; do
+            find $DOCS_DIR -name "*.md" | while read file; do
+              sed -i "s/sdkLatestVersion/${{ env.sdkLatestVersion }}/g" "$file"
+              sed -i "s/okhttpVersion/${{ env.okhttpVersion }}/g" "$file"
+              sed -i "s/slf4jApiVersion/${{ env.slf4jApiVersion }}/g" "$file"
+              sed -i "s/kotlinVersion/${{ env.kotlinVersion }}/g" "$file"
+              sed -i "s/helidonVersion/${{ env.helidonVersion }}/g" "$file"
+              sed -i "s/javaxWebsocketApiVersion/${{ env.javaxWebsocketApiVersion }}/g" "$file"
+              sed -i "s/springBootVersion/${{ env.springBootVersion }}/g" "$file"
+              sed -i "s/compatibleMicronautVersion/${{ env.compatibleMicronautVersion }}/g" "$file"
+              sed -i "s/quarkusVersion/${{ env.quarkusVersion }}/g" "$file"
+              sed -i "s/tyrusStandaloneClientVersion/${{ env.tyrusStandaloneClientVersion }}/g" "$file"
+              sed -i "s/tyrusStandaloneClientV2Version/${{ env.tyrusStandaloneClientV2Version }}/g" "$file"
+              sed -i "s/jakartaWebsocketApiVersion/${{ env.jakartaWebsocketApiVersion }}/g" "$file"
+            done
           done
       - name: Build website
         run: npm run build
