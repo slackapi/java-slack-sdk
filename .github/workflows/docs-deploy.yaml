@@ -56,8 +56,8 @@ jobs:
           echo "compatibleMicronautVersion=$compatibleMicronautVersionValue" >> $GITHUB_ENV
           echo "quarkusVersion=$quarkusVersionValue" >> $GITHUB_ENV
           echo "tyrusStandaloneClientVersion=$tyrusStandaloneClientVersionValue" >> $GITHUB_ENV
-          echo "tyrusStandaloneClientV2Version=tyrusStandaloneClientV2VersionValue" >> $GITHUB_ENV
-          echo "jakartaWebsocketApiVersion=jakartaWebsocketApiVersionValue" >> $GITHUB_ENV
+          echo "tyrusStandaloneClientV2Version=$tyrusStandaloneClientV2VersionValue" >> $GITHUB_ENV
+          echo "jakartaWebsocketApiVersion=$jakartaWebsocketApiVersionValue" >> $GITHUB_ENV
 
       - name: Replace placeholders in .md files
         run: |
