@@ -51,12 +51,44 @@ To manage the Socket Mode connections, in addition to the `bolt-socket-mode` lib
 </project>
 ```
 
+If you prefer using Jakarta EE compatible one, the dependencies would be:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>awesome-slack-app</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.slack.api</groupId>
+      <artifactId>bolt-jakarta-socket-mode</artifactId>
+      <version>sdkLatestVersion</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.websocket</groupId>
+      <artifactId>jakarta.websocket-client-api</artifactId>
+      <version>jakartaWebsocketApiVersion</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.tyrus.bundles</groupId>
+      <artifactId>tyrus-standalone-client</artifactId>
+      <version>tyrusStandaloneClientV2Version</version>
+    </dependency>
+  </dependencies>
+</project>
+```
+
 `SocketModeClient`, the Socket Mode connection manager interface, supports the following open-source libraries for WebSocket communications. If you have suggestions for other libraries that this SDK should support, let us know at [the project issue tracker](https://github.com/slackapi/java-slack-sdk/issues).
 
-|Name|Maven Artifact|
-|-|-|
-|[Tyrus Standalone Client (default)](https://github.com/eclipse-ee4j/tyrus)|[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
-|[Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)|[org.java-websocket:Java-WebSocket](https://search.maven.org/artifact/org.java-websocket/Java-WebSocket)|
+| Name                                                                           |Maven Artifact|
+|--------------------------------------------------------------------------------|-|
+| [Tyrus Standalone Client 1.x (default)](https://github.com/eclipse-ee4j/tyrus) |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
+| [Tyrus Standalone Client 2.x](https://github.com/eclipse-ee4j/tyrus)           |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
+| [Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)                |[org.java-websocket:Java-WebSocket](https://search.maven.org/artifact/org.java-websocket/Java-WebSocket)|
 
 To switch the underlying implementation, you can pass a `SocketModeClient.Backend.*` to either `SocketModeClient` in `slack-api-client` or `SocketModeApp` in `bolt-socket-mode`. If your own one implements `SocketModeClient` interface, you can just instantiate the class.
 
@@ -100,6 +132,8 @@ The `SocketModeApp` class in **bolt-socket-mode** library is an adapter module f
 
 ```java
 import com.slack.api.bolt.socket_mode.SocketModeApp;
+// Note: If you use bolt-jakarta-socket-mode instead, the import would be:
+// import com.slack.api.bolt.jakarta_socket_mode.SocketModeApp;
 
 // the app-level token with `connections:write` scope
 String appToken = System.getenv("SLACK_APP_TOKEN");
@@ -140,6 +174,8 @@ app.event(AppMentionEvent.class, (req, ctx) -> {
 // ------------------------------
 // Start a new thread that runs the Socket Mode app in this process
 import com.slack.api.bolt.socket_mode.SocketModeApp;
+// Note: If you use bolt-jakarta-socket-mode instead, the import would be:
+// import com.slack.api.bolt.jakarta_socket_mode.SocketModeApp;
 
 String appToken = "xapp-1-A111-111-xxx";
 SocketModeApp socketModeApp = new SocketModeApp(appToken, app);

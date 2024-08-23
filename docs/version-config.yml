@@ -7,4 +7,6 @@ javaxWebsocketApiVersion: 1.1
 springBootVersion: 3.0.0
 compatibleMicronautVersion: 3.x
 quarkusVersion: 2.12.0.Final
-tyrusStandaloneClientVersion: 1.19
+tyrusStandaloneClientVersion: 1.20
+tyrusStandaloneClientV2Version: 2.2.0
+jakartaWebsocketApiVersion: 2.2.0

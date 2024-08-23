@@ -51,12 +51,44 @@ lang: ja
 </project>
 ```
 
+Jakarta EE 互換のものを利用したい場合、以下のようになります:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>awesome-slack-app</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.slack.api</groupId>
+      <artifactId>bolt-jakarta-socket-mode</artifactId>
+      <version>sdkLatestVersion</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.websocket</groupId>
+      <artifactId>jakarta.websocket-client-api</artifactId>
+      <version>jakartaWebsocketApiVersion</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.tyrus.bundles</groupId>
+      <artifactId>tyrus-standalone-client</artifactId>
+      <version>tyrusStandaloneClientV2Version</version>
+    </dependency>
+  </dependencies>
+</project>
+```
+
 ソケットモードのコネクション管理インターフェースである `SocketModeClient` は WebSocket でのコミュニケーションレイヤーとして、以下のオープンソースライブラリをサポートしています。もし、これら以外にサポートすべきライブラリの推薦があれば、ぜひ[こちらから](https://github.com/slackapi/java-slack-sdk/issues)フィードバックをお願いします（**英語でお願いします**）。
 
-|ライブラリ名|Maven アーティファクト|
-|-|-|
-|[Tyrus Standalone Client (default)](https://github.com/eclipse-ee4j/tyrus)|[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
-|[Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)|[org.java-websocket:Java-WebSocket](https://search.maven.org/artifact/org.java-websocket/Java-WebSocket)|
+| ライブラリ名                                                                         |Maven アーティファクト|
+|--------------------------------------------------------------------------------|-|
+| [Tyrus Standalone Client 1.x (default)](https://github.com/eclipse-ee4j/tyrus) |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
+| [Tyrus Standalone Client 2.x](https://github.com/eclipse-ee4j/tyrus) |[org.glassfish.tyrus.bundles:tyrus-standalone-client](https://search.maven.org/artifact/org.glassfish.tyrus.bundles/tyrus-standalone-client)|
+| [Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)                |[org.java-websocket:Java-WebSocket](https://search.maven.org/artifact/org.java-websocket/Java-WebSocket)|
 
 実装を切り替える場合、`SocketModeClient.Backend.*` を **slack-api-client** の `SocketModeClient` か **bolt-socket-mode** の `SocketModeApp` のコンストラクターに渡します。まt、それ以外の実装が `SocketModeClient` インターフェースを実装しているなら、直接インスタンス化してもよいでしょう。
 
@@ -100,6 +132,8 @@ app.event(AppMentionEvent.class, (req, ctx) -> {
 
 ```java
 import com.slack.api.bolt.socket_mode.SocketModeApp;
+// Note: bolt-jakarta-socket-mode を使う場合は以下の import になります：
+// import com.slack.api.bolt.jakarta_socket_mode.SocketModeApp;
 
 // `connections:write` スコープが付与されたアプリレベルトークン
 String appToken = System.getenv("SLACK_APP_TOKEN");
@@ -139,6 +173,8 @@ app.event(AppMentionEvent.class, (req, ctx) -> {
 // ------------------------------
 // ソケットモードアプリを実行するスレッドを開始
 import com.slack.api.bolt.socket_mode.SocketModeApp;
+// Note: bolt-jakarta-socket-mode を使う場合は以下の import になります：
+// import com.slack.api.bolt.jakarta_socket_mode.SocketModeApp;
 
 String appToken = "xapp-1-A111-111-xxx";
 SocketModeApp socketModeApp = new SocketModeApp(appToken, app);
