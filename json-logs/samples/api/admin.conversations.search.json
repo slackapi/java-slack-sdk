@@ -93,7 +93,14 @@
         },
         "huddles_restricted": false,
         "at_here_restricted": false,
-        "at_channel_restricted": false
+        "at_channel_restricted": false,
+        "tabs": [
+          {
+            "id": "",
+            "label": "",
+            "type": ""
+          }
+        ]
       }
     }
   ],
