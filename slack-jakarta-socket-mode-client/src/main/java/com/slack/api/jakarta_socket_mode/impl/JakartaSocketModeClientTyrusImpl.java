@@ -33,7 +33,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Socket Mode Client
+ * Jakarta Socket Mode Client
  */
 @ClientEndpoint
 public class JakartaSocketModeClientTyrusImpl implements SocketModeClient {
