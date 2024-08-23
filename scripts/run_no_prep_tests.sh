@@ -27,8 +27,10 @@ then
     -pl !bolt-quarkus-examples \
     -pl !bolt-jakarta-servlet \
     -pl !bolt-jakarta-jetty \
+    -pl !bolt-jakarta-socket-mode \
     -pl !bolt-http4k \
     -pl !bolt-micronaut \
+    -pl !slack-jakarta-socket-mode-client \
     clean \
     test-compile \
     '-Dtest=test_locally.**.*Test' -Dsurefire.failIfNoSpecifiedTests=false test ${CI_OPTIONS} \

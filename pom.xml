@@ -17,8 +17,10 @@
         <module>slack-api-model</module>
         <module>slack-api-model-kotlin-extension</module>
         <module>slack-app-backend</module>
+        <module>slack-jakarta-socket-mode-client</module>
         <module>bolt</module>
         <module>bolt-socket-mode</module>
+        <module>bolt-jakarta-socket-mode</module>
         <module>bolt-servlet</module>
         <module>bolt-jakarta-servlet</module>
         <module>bolt-jetty</module>
