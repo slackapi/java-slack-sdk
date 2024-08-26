@@ -466,7 +466,8 @@
       "canvas_converted_to_template",
       "canvas_template_used",
       "canvas_template_reverted",
-      "canvas_quip_document_cloned"
+      "canvas_quip_document_cloned",
+      "canvas_undeleted"
     ],
     "function": [
       "function_distribution_permission_added",
