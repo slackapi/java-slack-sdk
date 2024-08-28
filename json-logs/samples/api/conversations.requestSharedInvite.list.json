@@ -1,0 +1,361 @@
+{
+  "ok": true,
+  "connect_invites": [
+    {
+      "direction": "outgoing",
+      "status": "requested",
+      "date_last_updated": 1721329575,
+      "invite_type": "channel",
+      "invite": {
+        "id": "I016F681DPC",
+        "date_created": 1720119975,
+        "date_invalid": 1721329575,
+        "inviting_team": {
+          "id": "E01470XDNQ2",
+          "name": "BigCorp",
+          "icon": {
+            "image_34": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-34.png",
+            "image_44": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-44.png",
+            "image_68": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-68.png",
+            "image_88": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-88.png",
+            "image_102": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-102.png",
+            "image_132": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-132.png",
+            "image_230": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-230.png",
+            "image_default": true
+          },
+          "avatar_base_url": "https://slack.com/avatarsource/",
+          "is_verified": true,
+          "domain": "bigcorp",
+          "date_created": 1664993309,
+          "requires_sponsorship": false,
+          "public_url": "https://test-organization.com"
+        },
+        "inviting_user": {
+          "id": "U016F67CXGS",
+          "team_id": "E01470XDNQ2",
+          "name": "fmaj_reguser",
+          "updated": 1720119127,
+          "who_can_share_contact_card": "EVERYONE",
+          "profile": {
+            "real_name": "fmaj",
+            "display_name": "fmaj",
+            "real_name_normalized": "fmaj",
+            "display_name_normalized": "fmaj",
+            "team": "E01470XDNQ2",
+            "avatar_hash": "ga5350fc27cb",
+            "email": "fmaj+reguser@slack-corp.com",
+            "image_24": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=24&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-24.png",
+            "image_32": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=32&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-32.png",
+            "image_48": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=48&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-48.png",
+            "image_72": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=72&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-72.png",
+            "image_192": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=192&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-192.png",
+            "image_512": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=512&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-512.png"
+          }
+        },
+        "is_external_limited": false,
+        "is_sponsored": true,
+        "recipient_email": "fmaj+reguser@slack-corp.com"
+      },
+      "id": "I016F681DPC",
+      "date_created": 1720119975,
+      "date_invalid": 1721329575,
+      "inviting_team": {
+        "id": "E01470XDNQ2",
+        "name": "BigCorp",
+        "icon": {
+          "image_34": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-34.png",
+          "image_44": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-44.png",
+          "image_68": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-68.png",
+          "image_88": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-88.png",
+          "image_102": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-102.png",
+          "image_132": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-132.png",
+          "image_230": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-230.png",
+          "image_default": true
+        },
+        "avatar_base_url": "https://slack.com/avatarsource/",
+        "is_verified": true,
+        "domain": "bigcorp",
+        "date_created": 1664993309,
+        "requires_sponsorship": false,
+        "public_url": "https://test-organization.com"
+      },
+      "inviting_user": {
+        "id": "U016F67CXGS",
+        "team_id": "E01470XDNQ2",
+        "name": "fmaj_reguser",
+        "updated": 1720119127,
+        "who_can_share_contact_card": "EVERYONE",
+        "profile": {
+          "real_name": "fmaj",
+          "display_name": "fmaj",
+          "real_name_normalized": "fmaj",
+          "display_name_normalized": "fmaj",
+          "team": "E01470XDNQ2",
+          "avatar_hash": "ga5350fc27cb",
+          "email": "fmaj+reguser@slack-corp.com",
+          "image_24": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=24&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-24.png",
+          "image_32": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=32&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-32.png",
+          "image_48": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=48&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-48.png",
+          "image_72": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=72&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-72.png",
+          "image_192": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=192&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-192.png",
+          "image_512": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=512&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-512.png"
+        }
+      },
+      "invite_request": {
+        "date_denied": 0
+      },
+      "invite_payload": {
+        "invite_type": "channel",
+        "is_sponsored": true,
+        "is_external_limited": false,
+        "channel": {
+          "id": "C016F62CDAN",
+          "is_im": false,
+          "is_private": false,
+          "date_created": 1720114853,
+          "name": "connect-invite-automation",
+          "connections": [
+            {
+              "team": {
+                "id": "E01470XDNQ2",
+                "name": "BigCorp",
+                "icon": {
+                  "image_34": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-34.png",
+                  "image_44": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-44.png",
+                  "image_68": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-68.png",
+                  "image_88": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-88.png",
+                  "image_102": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-102.png",
+                  "image_132": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-132.png",
+                  "image_230": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-230.png",
+                  "image_default": true
+                },
+                "avatar_base_url": "https://slack.com/avatarsource/",
+                "is_verified": true,
+                "domain": "bigcorp",
+                "date_created": 1664993309,
+                "requires_sponsorship": false,
+                "public_url": "https://test-organization.com"
+              },
+              "is_private": false
+            }
+          ],
+          "pending_connections": [],
+          "previous_connections": []
+        }
+      },
+      "channel": {
+        "id": "C016F62CDAN",
+        "is_im": false,
+        "is_private": false,
+        "date_created": 1720114853,
+        "name": "connect-invite-automation",
+        "connections": [
+          {
+            "team": {
+              "id": "E01470XDNQ2",
+              "name": "BigCorp",
+              "icon": {
+                "image_34": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-34.png",
+                "image_44": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-44.png",
+                "image_68": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-68.png",
+                "image_88": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-88.png",
+                "image_102": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-102.png",
+                "image_132": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-132.png",
+                "image_230": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-230.png",
+                "image_default": true
+              },
+              "avatar_base_url": "https://slack.com/avatarsource/",
+              "is_verified": true,
+              "domain": "bigcorp",
+              "date_created": 1664993309,
+              "requires_sponsorship": false,
+              "public_url": "https://test-organization.com"
+            },
+            "is_private": false
+          }
+        ],
+        "pending_connections": [],
+        "previous_connections": []
+      },
+      "recipient_email": "fmaj+reguser@slack-corp.com"
+    },
+    {
+      "direction": "outgoing",
+      "status": "requested",
+      "date_last_updated": 1721329156,
+      "invite_type": "channel",
+      "invite": {
+        "id": "I016GFBLK4K",
+        "date_created": 1720119556,
+        "date_invalid": 1721329156,
+        "inviting_team": {
+          "id": "E01470XDNQ2",
+          "name": "BigCorp",
+          "icon": {
+            "image_34": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-34.png",
+            "image_44": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-44.png",
+            "image_68": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-68.png",
+            "image_88": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-88.png",
+            "image_102": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-102.png",
+            "image_132": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-132.png",
+            "image_230": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-230.png",
+            "image_default": true
+          },
+          "avatar_base_url": "https://slack.com/avatarsource/",
+          "is_verified": true,
+          "domain": "bigcorp",
+          "date_created": 1664993309,
+          "requires_sponsorship": false,
+          "public_url": "https://test-organization.com"
+        },
+        "inviting_user": {
+          "id": "U016F67CXGS",
+          "team_id": "E01470XDNQ2",
+          "name": "fmaj_reguser",
+          "updated": 1720119127,
+          "who_can_share_contact_card": "EVERYONE",
+          "profile": {
+            "real_name": "fmaj",
+            "display_name": "fmaj",
+            "real_name_normalized": "fmaj",
+            "display_name_normalized": "fmaj",
+            "team": "E01470XDNQ2",
+            "avatar_hash": "ga5350fc27cb",
+            "email": "fmaj+reguser@slack-corp.com",
+            "image_24": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=24&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-24.png",
+            "image_32": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=32&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-32.png",
+            "image_48": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=48&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-48.png",
+            "image_72": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=72&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-72.png",
+            "image_192": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=192&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-192.png",
+            "image_512": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=512&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-512.png"
+          }
+        },
+        "is_external_limited": false,
+        "is_sponsored": true,
+        "recipient_email": "fmaj+reguser@slack-corp.com"
+      },
+      "id": "I016GFBLK4K",
+      "date_created": 1720119556,
+      "date_invalid": 1721329156,
+      "inviting_team": {
+        "id": "E01470XDNQ2",
+        "name": "BigCorp",
+        "icon": {
+          "image_34": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-34.png",
+          "image_44": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-44.png",
+          "image_68": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-68.png",
+          "image_88": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-88.png",
+          "image_102": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-102.png",
+          "image_132": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-132.png",
+          "image_230": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-230.png",
+          "image_default": true
+        },
+        "avatar_base_url": "https://slack.com/avatarsource/",
+        "is_verified": true,
+        "domain": "bigcorp",
+        "date_created": 1664993309,
+        "requires_sponsorship": false,
+        "public_url": "https://test-organization.com"
+      },
+      "inviting_user": {
+        "id": "U016F67CXGS",
+        "team_id": "E01470XDNQ2",
+        "name": "fmaj_reguser",
+        "updated": 1720119127,
+        "who_can_share_contact_card": "EVERYONE",
+        "profile": {
+          "real_name": "fmaj",
+          "display_name": "fmaj",
+          "real_name_normalized": "fmaj",
+          "display_name_normalized": "fmaj",
+          "team": "E01470XDNQ2",
+          "avatar_hash": "ga5350fc27cb",
+          "email": "fmaj+reguser@slack-corp.com",
+          "image_24": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=24&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-24.png",
+          "image_32": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=32&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-32.png",
+          "image_48": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=48&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-48.png",
+          "image_72": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=72&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-72.png",
+          "image_192": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=192&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-192.png",
+          "image_512": "https://secure.gravatar.com/avatar/a5350fc27cb36ad557435d738c721201.jpg?s=512&d=https%3A%2F%2Fslack-pantry.slack.com%2Ffe170a3%2Fimg%2Favatars%2Fava_0010-512.png"
+        }
+      },
+      "invite_request": {
+        "date_denied": 1720119735
+      },
+      "invite_payload": {
+        "invite_type": "channel",
+        "is_sponsored": true,
+        "is_external_limited": false,
+        "channel": {
+          "id": "C016F62CDAN",
+          "is_im": false,
+          "is_private": false,
+          "date_created": 1720114853,
+          "name": "connect-invite-automation",
+          "connections": [
+            {
+              "team": {
+                "id": "E01470XDNQ2",
+                "name": "BigCorp",
+                "icon": {
+                  "image_34": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-34.png",
+                  "image_44": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-44.png",
+                  "image_68": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-68.png",
+                  "image_88": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-88.png",
+                  "image_102": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-102.png",
+                  "image_132": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-132.png",
+                  "image_230": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-230.png",
+                  "image_default": true
+                },
+                "avatar_base_url": "https://slack.com/avatarsource/",
+                "is_verified": true,
+                "domain": "bigcorp",
+                "date_created": 1664993309,
+                "requires_sponsorship": false,
+                "public_url": "https://test-organization.com"
+              },
+              "is_private": false
+            }
+          ],
+          "pending_connections": [],
+          "previous_connections": []
+        }
+      },
+      "channel": {
+        "id": "C016F62CDAN",
+        "is_im": false,
+        "is_private": false,
+        "date_created": 1720114853,
+        "name": "connect-invite-automation",
+        "connections": [
+          {
+            "team": {
+              "id": "E01470XDNQ2",
+              "name": "BigCorp",
+              "icon": {
+                "image_34": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-34.png",
+                "image_44": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-44.png",
+                "image_68": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-68.png",
+                "image_88": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-88.png",
+                "image_102": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-102.png",
+                "image_132": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-132.png",
+                "image_230": "https://slack-pantry.slack.com/8058857/img/avatars-teams/ava_0013-230.png",
+                "image_default": true
+              },
+              "avatar_base_url": "https://slack.com/avatarsource/",
+              "is_verified": true,
+              "domain": "bigcorp",
+              "date_created": 1664993309,
+              "requires_sponsorship": false,
+              "public_url": "https://test-organization.com"
+            },
+            "is_private": false
+          }
+        ],
+        "pending_connections": [],
+        "previous_connections": []
+      },
+      "recipient_email": "fmaj+reguser@slack-corp.com"
+    }
+  ]
+}
