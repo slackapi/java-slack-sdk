@@ -467,7 +467,9 @@
       "canvas_template_used",
       "canvas_template_reverted",
       "canvas_quip_document_cloned",
-      "canvas_undeleted"
+      "canvas_undeleted",
+      "canvas_restricted_sharing_enabled",
+      "canvas_restricted_sharing_disabled"
     ],
     "function": [
       "function_distribution_permission_added",

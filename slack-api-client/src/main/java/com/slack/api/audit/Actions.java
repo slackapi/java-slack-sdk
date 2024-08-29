@@ -544,6 +544,8 @@ public class Actions {
         public static final String canvas_template_reverted = "canvas_template_reverted";
         public static final String canvas_quip_document_cloned = "canvas_quip_document_cloned";
         public static final String canvas_undeleted = "canvas_undeleted";
+        public static final String canvas_restricted_sharing_enabled = "canvas_restricted_sharing_enabled";
+        public static final String canvas_restricted_sharing_disabled = "canvas_restricted_sharing_disabled";
     }
 
     public static class Function {
