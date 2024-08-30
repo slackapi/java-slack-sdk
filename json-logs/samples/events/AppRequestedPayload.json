@@ -35,6 +35,7 @@
         "privacy_policy_url": "",
         "app_homepage_url": "",
         "app_directory_url": "",
+        "is_granular_bot_app": true,
         "is_app_directory_approved": false,
         "is_internal": false,
         "additional_info": "",
