@@ -12,6 +12,7 @@ public class App {
     private String privacyPolicyUrl;
     private String appHomepageUrl;
     private String appDirectoryUrl;
+    @SerializedName("is_granular_bot_app")
     @SerializedName("is_app_directory_approved")
     private boolean appDirectoryApproved;
     @SerializedName("is_internal")
