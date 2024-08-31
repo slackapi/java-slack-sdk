@@ -73,7 +73,8 @@
           "teams_shared_with": [
             ""
           ],
-          "original_connected_channel_id": ""
+          "original_connected_channel_id": "",
+          "is_salesforce_channel": false
         },
         "message": {
           "channel": "",

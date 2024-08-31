@@ -123,6 +123,8 @@ public class LogsResponse implements AuditApiResponse {
         private Boolean orgShared;
         private List<String> teamsSharedWith;
         private String originalConnectedChannelId;
+        @SerializedName("is_salesforce_channel")
+        private Boolean salesforceChannel;
     }
 
     @Data

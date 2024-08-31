@@ -201,7 +201,8 @@
       "team_declined_migration_intent",
       "pref.flag_message_flagger_outcome_notif",
       "pref.flag_message_author_outcome_notif",
-      "workflow_analytics_export_started"
+      "workflow_analytics_export_started",
+      "pref.allow_lists"
     ],
     "user": [
       "custom_tos_accepted",
