@@ -16,6 +16,8 @@ public class App {
     private boolean appDirectoryApproved;
     @SerializedName("is_internal")
     private boolean internal;
+    @SerializedName("is_granular_bot_app")
+    private boolean granularBotApp;
     private String additionalInfo;
     private AppIcons icons;
 }
