@@ -16,6 +16,7 @@
         "app_directory_url": "",
         "is_app_directory_approved": false,
         "is_internal": false,
+        "is_granular_bot_app": false,
         "additional_info": "",
         "icons": {
           "image_32": "",
