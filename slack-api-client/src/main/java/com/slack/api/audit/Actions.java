@@ -214,6 +214,12 @@ public class Actions {
         public static final String team_accepted_migration_intent = "team_accepted_migration_intent";
         public static final String team_declined_migration_intent = "team_declined_migration_intent";
         public static final String workflow_analytics_export_started = "workflow_analytics_export_started";
+        public static final String seamless_auth_org_update = "seamless_auth_org_update";
+        public static final String seamless_auth_org_disconnected = "seamless_auth_org_disconnected";
+        public static final String seamless_auth_team_token_created = "seamless_auth_team_token_created";
+        public static final String seamless_auth_team_token_revoked = "seamless_auth_team_token_revoked";
+        public static final String seamless_auth_user_token_created = "seamless_auth_user_token_created";
+        public static final String seamless_auth_user_token_revoked = "seamless_auth_user_token_revoked";
     }
 
     public static class User {
