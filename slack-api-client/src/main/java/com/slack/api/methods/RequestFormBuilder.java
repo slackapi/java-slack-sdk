@@ -2841,6 +2841,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(ViewsOpenRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("trigger_id", req.getTriggerId(), form);
+        setIfNotNull("interactivity_pointer", req.getInteractivityPointer(), form);
         if (req.getViewAsString() != null) {
             setIfNotNull("view", req.getViewAsString(), form);
         } else {
@@ -2852,6 +2853,7 @@ public class RequestFormBuilder {
     public static FormBody.Builder toForm(ViewsPushRequest req) {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("trigger_id", req.getTriggerId(), form);
+        setIfNotNull("interactivity_pointer", req.getInteractivityPointer(), form);
         if (req.getViewAsString() != null) {
             setIfNotNull("view", req.getViewAsString(), form);
         } else {
