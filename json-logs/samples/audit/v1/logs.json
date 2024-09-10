@@ -385,7 +385,9 @@
           "team_id": ""
         },
         "rules_checked": [],
-        "disconnecting_team": ""
+        "disconnecting_team": "",
+        "is_channel_canvas": false,
+        "linked_channel_id": ""
       }
     }
   ]

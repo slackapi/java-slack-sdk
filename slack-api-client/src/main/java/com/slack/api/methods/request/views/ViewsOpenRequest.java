@@ -13,6 +13,7 @@ import lombok.Data;
 public class ViewsOpenRequest implements SlackApiRequest {
     private String token;
     private String triggerId;
+    private String interactivityPointer;
     private View view;
     private String viewAsString;
 }
