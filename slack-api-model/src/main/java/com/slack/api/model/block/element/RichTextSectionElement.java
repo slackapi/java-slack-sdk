@@ -54,7 +54,7 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
     public static class Date implements RichTextElement {
         public static final String TYPE = "date";
         private final String type = TYPE;
-        private String timestamp;
+        private Long timestamp;
         private String format;
         private TextStyle style;
         private String url;
