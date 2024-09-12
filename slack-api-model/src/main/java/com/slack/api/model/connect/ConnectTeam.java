@@ -9,6 +9,7 @@ public class ConnectTeam {
     private String name;
     private TeamIcon icon;
     private boolean isVerified;
+    private boolean requiresSponsorship;
     private String domain;
     private Integer dateCreated;
     private String avatarBaseUrl;

@@ -220,6 +220,7 @@ public class Actions {
         public static final String seamless_auth_team_token_revoked = "seamless_auth_team_token_revoked";
         public static final String seamless_auth_user_token_created = "seamless_auth_user_token_created";
         public static final String seamless_auth_user_token_revoked = "seamless_auth_user_token_revoked";
+        public static final String migration_checklist_item_completed = "migration_checklist_item_completed";
     }
 
     public static class User {
