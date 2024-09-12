@@ -6,14 +6,14 @@
 
 Within the SDK, there are two different modules:
 
-* [**Bolt for Java**](https://slack.dev/java-slack-sdk/guides/getting-started-with-bolt), which is a framework with a simple API that makes it easy to write modern Slack apps in Java.
-* [**Slack API Client**](https://slack.dev/java-slack-sdk/guides/web-api-basics), for when you need a more customized approach to building a Slack app in Java.
+* [**Bolt for Java**](https://tools.slack.dev/java-slack-sdk/guides/getting-started-with-bolt), which is a framework with a simple API that makes it easy to write modern Slack apps in Java.
+* [**Slack API Client**](https://tools.slack.dev/java-slack-sdk/guides/web-api-basics), for when you need a more customized approach to building a Slack app in Java.
 
 If what you want to do is call Slack APIs in your existing services, we recommend using only the **Slack API Client**. If instead, you’re developing a new modern and interactive Slack app, we recommend **Bolt** for it. The framework enables developers to focus on the essential parts of their apps without being bothered by trifles.
 
 ## Bolt for Java
 
-**Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features. Refer to [Getting Started with Bolt](https://slack.dev/java-slack-sdk/guides/getting-started-with-bolt) for detailed instructions.
+**Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features. Refer to [Getting Started with Bolt](https://tools.slack.dev/java-slack-sdk/guides/getting-started-with-bolt) for detailed instructions.
 
 ```java
 package hello;
@@ -36,7 +36,7 @@ public class MyApp {
 }
 ```
 
-For Socket Mode enabled apps, [Getting Started with Bolt (Socket Mode)](https://slack.dev/java-slack-sdk/guides/getting-started-with-bolt-socket-mode) is available.
+For Socket Mode enabled apps, [Getting Started with Bolt (Socket Mode)](https://tools.slack.dev/java-slack-sdk/guides/getting-started-with-bolt-socket-mode) is available.
 
 ```java
 package hello;
@@ -61,7 +61,7 @@ public class MyApp {
 
 ## Slack API Client
 
-**slack-api-client** contains simple, easy-to-use, and flexibly configurable HTTP clients for making requests to Slack APIs. Refer to [API Client Basics](https://slack.dev/java-slack-sdk/guides/web-api-basics) for details.
+**slack-api-client** contains simple, easy-to-use, and flexibly configurable HTTP clients for making requests to Slack APIs. Refer to [API Client Basics](https://tools.slack.dev/java-slack-sdk/guides/web-api-basics) for details.
 
 ```java
 import com.slack.api.Slack;

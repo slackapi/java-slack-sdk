@@ -1,4 +1,4 @@
-# slack.dev/java-slack-sdk
+# tools.slack.dev/java-slack-sdk
 
 This website is built using [Docusaurus](https://docusaurus.io/). 'Tis cool.
 
