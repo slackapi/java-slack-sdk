@@ -419,6 +419,9 @@ public class Methods {
     public static final String CONVERSATIONS_CANVASES_CREATE = "conversations.canvases.create";
     public static final String CONVERSATIONS_EXTERNAL_INVITE_PERMISSIONS_SET = "conversations.externalInvitePermissions.set";
 
+    public static final String CONVERSATIONS_REQUEST_SHARED_INVITE_APPROVE = "conversations.requestSharedInvite.approve";
+    public static final String CONVERSATIONS_REQUEST_SHARED_INVITE_DENY = "conversations.requestSharedInvite.deny";
+
     // ------------------------------
     // dialog
     // ------------------------------

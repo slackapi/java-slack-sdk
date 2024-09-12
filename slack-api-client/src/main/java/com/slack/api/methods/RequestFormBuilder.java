@@ -74,6 +74,8 @@ import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
 import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
+import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteApproveRequest;
+import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteDenyRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -1858,6 +1860,24 @@ public class RequestFormBuilder {
         setIfNotNull("count", req.getCount(), form);
         setIfNotNull("cursor", req.getCursor(), form);
         setIfNotNull("team_id", req.getTeamId(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ConversationsRequestSharedInviteApproveRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("invite_id", req.getInviteId(), form);
+        setIfNotNull("team_id", req.getChannelId(), form);
+        setIfNotNull("is_external_limited", req.getIsExternalLimited(), form);
+        if (req.getMessage() != null) {
+            setIfNotNull("message", GSON.toJson(req.getMessage()), form);
+        }
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ConversationsRequestSharedInviteDenyRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("invite_id", req.getInviteId(), form);
+        setIfNotNull("message", req.getMessage(), form);
         return form;
     }
 
