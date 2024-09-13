@@ -71,6 +71,8 @@ import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
 import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
+import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteApproveRequest;
+import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteDenyRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -186,6 +188,8 @@ import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.*;
 import com.slack.api.methods.response.conversations.canvases.ConversationsCanvasesCreateResponse;
+import com.slack.api.methods.response.conversations.request_shared_invite.ConversationsRequestSharedInviteApproveResponse;
+import com.slack.api.methods.response.conversations.request_shared_invite.ConversationsRequestSharedInviteDenyResponse;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
@@ -1900,6 +1904,26 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<ConversationsListConnectInvitesResponse> conversationsListConnectInvites(RequestConfigurator<ConversationsListConnectInvitesRequest.ConversationsListConnectInvitesRequestBuilder> req) {
         return conversationsListConnectInvites(req.configure(ConversationsListConnectInvitesRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ConversationsRequestSharedInviteApproveResponse> conversationsRequestSharedInviteApprove(ConversationsRequestSharedInviteApproveRequest req) {
+        return executor.execute(CONVERSATIONS_REQUEST_SHARED_INVITE_APPROVE, toMap(req), () -> methods.conversationsRequestSharedInviteApprove(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsRequestSharedInviteApproveResponse> conversationsRequestSharedInviteApprove(RequestConfigurator<ConversationsRequestSharedInviteApproveRequest.ConversationsRequestSharedInviteApproveRequestBuilder> req) {
+        return conversationsRequestSharedInviteApprove(req.configure(ConversationsRequestSharedInviteApproveRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<ConversationsRequestSharedInviteDenyResponse> conversationsRequestSharedInviteDeny(ConversationsRequestSharedInviteDenyRequest req) {
+        return executor.execute(CONVERSATIONS_REQUEST_SHARED_INVITE_DENY, toMap(req), () -> methods.conversationsRequestSharedInviteDeny(req));
+    }
+
+    @Override
+    public CompletableFuture<ConversationsRequestSharedInviteDenyResponse> conversationsRequestSharedInviteDeny(RequestConfigurator<ConversationsRequestSharedInviteDenyRequest.ConversationsRequestSharedInviteDenyRequestBuilder> req) {
+        return conversationsRequestSharedInviteDeny(req.configure(ConversationsRequestSharedInviteDenyRequest.builder()).build());
     }
 
     @Override

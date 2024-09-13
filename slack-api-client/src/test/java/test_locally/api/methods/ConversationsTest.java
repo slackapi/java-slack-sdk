@@ -96,6 +96,10 @@ public class ConversationsTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).conversationsExternalInvitePermissionsSet(r -> r)
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsRequestSharedInviteApprove(r -> r)
+                .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsRequestSharedInviteDeny(r -> r)
+                .isOk(), is(true));
     }
 
     @Test
@@ -152,6 +156,10 @@ public class ConversationsTest {
         assertThat(slack.methodsAsync(ValidToken).conversationsCanvasesCreate(r -> r.markdown("hey"))
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).conversationsExternalInvitePermissionsSet(r -> r)
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsRequestSharedInviteApprove(r -> r)
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsRequestSharedInviteDeny(r -> r)
                 .get().isOk(), is(true));
     }
 
