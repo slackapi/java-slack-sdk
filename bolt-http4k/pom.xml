@@ -6,18 +6,18 @@
     <parent>
         <groupId>com.slack.api</groupId>
         <artifactId>slack-sdk-parent</artifactId>
-        <version>1.42.1-SNAPSHOT</version>
+        <version>1.42.1</version>
     </parent>
 
     <properties>
-        <http4k.version>5.28.1.0</http4k.version>
+        <http4k.version>5.30.0.0</http4k.version>
         <!-- http4k 5.26+ no longer supports Java 1.8 -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <artifactId>bolt-http4k</artifactId>
-    <version>1.42.1-SNAPSHOT</version>
+    <version>1.42.1</version>
     <packaging>jar</packaging>
 
     <dependencyManagement>
