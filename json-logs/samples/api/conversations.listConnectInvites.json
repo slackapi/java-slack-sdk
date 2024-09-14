@@ -29,7 +29,8 @@
           "is_verified": false,
           "domain": "",
           "date_created": 12345,
-          "avatar_base_url": "https://www.example.com/"
+          "avatar_base_url": "https://www.example.com/",
+          "requires_sponsorship": false
         },
         "inviting_user": {
           "id": "U00000000",
@@ -58,7 +59,8 @@
         },
         "link": "https://www.example.com/",
         "recipient_user_id": "U00000000",
-        "recipient_email": ""
+        "recipient_email": "",
+        "sig": ""
       },
       "channel": {
         "id": "C00000000",
@@ -141,8 +143,138 @@
               }
             }
           ]
+        },
+        {
+          "approval_status": "",
+          "date_accepted": 12345,
+          "date_invalid": 12345,
+          "date_last_updated": 12345,
+          "accepting_team": {
+            "id": "T00000000",
+            "name": "",
+            "icon": {
+              "image_default": false,
+              "image_34": "https://www.example.com/",
+              "image_44": "https://www.example.com/",
+              "image_68": "https://www.example.com/",
+              "image_88": "https://www.example.com/",
+              "image_102": "https://www.example.com/",
+              "image_230": "https://www.example.com/",
+              "image_132": "https://www.example.com/"
+            },
+            "avatar_base_url": "https://www.example.com/",
+            "is_verified": false,
+            "domain": "",
+            "date_created": 12345,
+            "requires_sponsorship": false
+          },
+          "accepting_user": {
+            "id": "U00000000",
+            "team_id": "T00000000",
+            "name": "",
+            "updated": 12345,
+            "who_can_share_contact_card": "",
+            "profile": {
+              "real_name": "",
+              "display_name": "",
+              "real_name_normalized": "",
+              "display_name_normalized": "",
+              "team": "T00000000",
+              "avatar_hash": "",
+              "email": "",
+              "image_24": "https://www.example.com/",
+              "image_32": "https://www.example.com/",
+              "image_48": "https://www.example.com/",
+              "image_72": "https://www.example.com/",
+              "image_192": "https://www.example.com/",
+              "image_512": "https://www.example.com/"
+            }
+          },
+          "reviews": [
+            {
+              "type": "",
+              "date_review": 12345,
+              "reviewing_team": {
+                "id": "T00000000",
+                "name": "",
+                "icon": {
+                  "image_default": false,
+                  "image_34": "https://www.example.com/",
+                  "image_44": "https://www.example.com/",
+                  "image_68": "https://www.example.com/",
+                  "image_88": "https://www.example.com/",
+                  "image_102": "https://www.example.com/",
+                  "image_230": "https://www.example.com/",
+                  "image_132": "https://www.example.com/"
+                },
+                "avatar_base_url": "https://www.example.com/",
+                "is_verified": false,
+                "domain": "",
+                "date_created": 12345,
+                "requires_sponsorship": false
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "id": "I00000000",
+      "date_created": 12345,
+      "date_invalid": 12345,
+      "inviting_team": {
+        "id": "E00000000",
+        "name": "",
+        "icon": {
+          "image_default": false,
+          "image_34": "https://www.example.com/",
+          "image_44": "https://www.example.com/",
+          "image_68": "https://www.example.com/",
+          "image_88": "https://www.example.com/",
+          "image_102": "https://www.example.com/",
+          "image_230": "https://www.example.com/",
+          "image_132": "https://www.example.com/"
+        },
+        "avatar_base_url": "https://www.example.com/",
+        "is_verified": false,
+        "domain": "",
+        "date_created": 12345,
+        "requires_sponsorship": false
+      },
+      "inviting_user": {
+        "id": "U00000000",
+        "team_id": "E00000000",
+        "name": "",
+        "updated": 12345,
+        "who_can_share_contact_card": "",
+        "profile": {
+          "real_name": "",
+          "display_name": "",
+          "real_name_normalized": "",
+          "display_name_normalized": "",
+          "team": "E00000000",
+          "avatar_hash": "",
+          "email": "",
+          "image_24": "https://www.example.com/",
+          "image_32": "https://www.example.com/",
+          "image_48": "https://www.example.com/",
+          "image_72": "https://www.example.com/",
+          "image_192": "https://www.example.com/",
+          "image_512": "https://www.example.com/"
+        }
+      },
+      "invite_payload": {
+        "invite_type": "",
+        "is_sponsored": false,
+        "is_external_limited": false,
+        "channel": {
+          "id": "C00000000",
+          "is_private": false,
+          "name": "",
+          "is_im": false
+        }
+      },
+      "sig": "",
+      "link": "https://www.example.com/",
+      "recipient_user_id": "U00000000"
     }
   ],
   "response_metadata": {
