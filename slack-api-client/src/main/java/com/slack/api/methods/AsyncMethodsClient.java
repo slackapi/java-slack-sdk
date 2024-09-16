@@ -43,6 +43,9 @@ import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.apps.manifest.*;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
@@ -160,6 +163,9 @@ import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.apps.manifest.*;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
@@ -802,6 +808,22 @@ public interface AsyncMethodsClient {
     CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(AppsManifestValidateRequest req);
 
     CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(RequestConfigurator<AppsManifestValidateRequest.AppsManifestValidateRequestBuilder> req);
+
+    // ------------------------------
+    // assistant.threads
+    // ------------------------------
+
+    CompletableFuture<AssistantThreadsSetStatusResponse> assistantThreadsSetStatus(AssistantThreadsSetStatusRequest req);
+
+    CompletableFuture<AssistantThreadsSetStatusResponse> assistantThreadsSetStatus(RequestConfigurator<AssistantThreadsSetStatusRequest.AssistantThreadsSetStatusRequestBuilder> req);
+
+    CompletableFuture<AssistantThreadsSetSuggestedPromptsResponse> assistantThreadsSetSuggestedPrompts(AssistantThreadsSetSuggestedPromptsRequest req);
+
+    CompletableFuture<AssistantThreadsSetSuggestedPromptsResponse> assistantThreadsSetSuggestedPrompts(RequestConfigurator<AssistantThreadsSetSuggestedPromptsRequest.AssistantThreadsSetSuggestedPromptsRequestBuilder> req);
+
+    CompletableFuture<AssistantThreadsSetTitleResponse> assistantThreadsSetTitle(AssistantThreadsSetTitleRequest req);
+
+    CompletableFuture<AssistantThreadsSetTitleResponse> assistantThreadsSetTitle(RequestConfigurator<AssistantThreadsSetTitleRequest.AssistantThreadsSetTitleRequestBuilder> req);
 
     // ------------------------------
     // auth

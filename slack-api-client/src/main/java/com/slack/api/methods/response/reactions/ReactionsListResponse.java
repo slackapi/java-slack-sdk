@@ -38,6 +38,7 @@ public class ReactionsListResponse implements SlackApiTextResponse {
             private List<Attachment> attachments;
             private List<LayoutBlock> blocks;
             private com.slack.api.model.Message.Metadata metadata;
+            private com.slack.api.model.Message.AssistantAppThread assistantAppThread;
             private String ts;
             private String team;
             private String user;

@@ -3,6 +3,7 @@ package com.slack.api.methods.response.reactions;
 import com.slack.api.methods.SlackApiTextResponse;
 import com.slack.api.model.Attachment;
 import com.slack.api.model.BotProfile;
+import com.slack.api.model.Message;
 import com.slack.api.model.Reaction;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
@@ -39,6 +40,7 @@ public class ReactionsGetResponse implements SlackApiTextResponse {
         private List<Attachment> attachments;
         private List<LayoutBlock> blocks;
         private com.slack.api.model.Message.Metadata metadata;
+        private com.slack.api.model.Message.AssistantAppThread assistantAppThread;
         private String permalink;
         private List<Reaction> reactions;
     }

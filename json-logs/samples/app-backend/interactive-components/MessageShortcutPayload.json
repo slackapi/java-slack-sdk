@@ -1548,7 +1548,11 @@
       "app_id": "",
       "call_family": ""
     },
-    "no_notifications": false
+    "no_notifications": false,
+    "assistant_app_thread": {
+      "title": "",
+      "first_user_thread_reply": ""
+    }
   },
   "enterprise": {
     "id": "",

@@ -49,6 +49,9 @@ import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsR
 import com.slack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
@@ -1121,6 +1124,31 @@ public class RequestFormBuilder {
             setIfNotNull("scopes", req.getScopes().stream().collect(joining(",")), form);
         }
         setIfNotNull("user", req.getUser(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AssistantThreadsSetStatusRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("status", req.getStatus(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AssistantThreadsSetSuggestedPromptsRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("title", req.getTitle(), form);
+        setIfNotNull("prompts", GSON.toJson(req.getPrompts()), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(AssistantThreadsSetTitleRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("channel_id", req.getChannelId(), form);
+        setIfNotNull("thread_ts", req.getThreadTs(), form);
+        setIfNotNull("title", req.getTitle(), form);
         return form;
     }
 

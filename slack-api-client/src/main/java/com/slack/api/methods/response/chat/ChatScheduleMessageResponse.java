@@ -1,10 +1,7 @@
 package com.slack.api.methods.response.chat;
 
 import com.slack.api.methods.SlackApiTextResponse;
-import com.slack.api.model.Attachment;
-import com.slack.api.model.BotProfile;
-import com.slack.api.model.ErrorResponseMetadata;
-import com.slack.api.model.Message;
+import com.slack.api.model.*;
 import com.slack.api.model.block.LayoutBlock;
 import lombok.Data;
 
@@ -42,5 +39,6 @@ public class ChatScheduleMessageResponse implements SlackApiTextResponse {
         private List<Attachment> attachments;
         private List<LayoutBlock> blocks;
         private Message.Metadata metadata;
+        private Message.AssistantAppThread assistantAppThread;
     }
 }

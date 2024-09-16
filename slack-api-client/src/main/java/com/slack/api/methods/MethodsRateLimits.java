@@ -227,6 +227,10 @@ public class MethodsRateLimits {
         setRateLimitTier(APPS_UNINSTALL, Tier1);
         setRateLimitTier(APPS_EVENT_AUTHORIZATIONS_LIST, Tier4);
 
+        setRateLimitTier(ASSISTANT_THREADS_SET_STATUS, Tier3);
+        setRateLimitTier(ASSISTANT_THREADS_SET_SUGGESTED_PROMPTS, Tier3);
+        setRateLimitTier(ASSISTANT_THREADS_SET_TITLE, Tier3);
+
         setRateLimitTier(AUTH_REVOKE, Tier3);
         setRateLimitTier(AUTH_TEST, SpecialTier_auth_test);
         setRateLimitTier(AUTH_TEAMS_LIST, Tier2);

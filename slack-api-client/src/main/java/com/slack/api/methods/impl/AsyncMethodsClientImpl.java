@@ -47,6 +47,9 @@ import com.slack.api.methods.request.apps.AppsUninstallRequest;
 import com.slack.api.methods.request.apps.connections.AppsConnectionsOpenRequest;
 import com.slack.api.methods.request.apps.event.authorizations.AppsEventAuthorizationsListRequest;
 import com.slack.api.methods.request.apps.manifest.*;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
@@ -164,6 +167,9 @@ import com.slack.api.methods.response.apps.AppsUninstallResponse;
 import com.slack.api.methods.response.apps.connections.AppsConnectionsOpenResponse;
 import com.slack.api.methods.response.apps.event.authorizations.AppsEventAuthorizationsListResponse;
 import com.slack.api.methods.response.apps.manifest.*;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
@@ -1351,6 +1357,36 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
     @Override
     public CompletableFuture<AppsManifestValidateResponse> appsManifestValidate(RequestConfigurator<AppsManifestValidateRequest.AppsManifestValidateRequestBuilder> req) {
         return appsManifestValidate(req.configure(AppsManifestValidateRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AssistantThreadsSetStatusResponse> assistantThreadsSetStatus(AssistantThreadsSetStatusRequest req) {
+        return executor.execute(ASSISTANT_THREADS_SET_STATUS, toMap(req), () -> methods.assistantThreadsSetStatus(req));
+    }
+
+    @Override
+    public CompletableFuture<AssistantThreadsSetStatusResponse> assistantThreadsSetStatus(RequestConfigurator<AssistantThreadsSetStatusRequest.AssistantThreadsSetStatusRequestBuilder> req) {
+        return assistantThreadsSetStatus(req.configure(AssistantThreadsSetStatusRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AssistantThreadsSetSuggestedPromptsResponse> assistantThreadsSetSuggestedPrompts(AssistantThreadsSetSuggestedPromptsRequest req) {
+        return executor.execute(ASSISTANT_THREADS_SET_SUGGESTED_PROMPTS, toMap(req), () -> methods.assistantThreadsSetSuggestedPrompts(req));
+    }
+
+    @Override
+    public CompletableFuture<AssistantThreadsSetSuggestedPromptsResponse> assistantThreadsSetSuggestedPrompts(RequestConfigurator<AssistantThreadsSetSuggestedPromptsRequest.AssistantThreadsSetSuggestedPromptsRequestBuilder> req) {
+        return assistantThreadsSetSuggestedPrompts(req.configure(AssistantThreadsSetSuggestedPromptsRequest.builder()).build());
+    }
+
+    @Override
+    public CompletableFuture<AssistantThreadsSetTitleResponse> assistantThreadsSetTitle(AssistantThreadsSetTitleRequest req) {
+        return executor.execute(ASSISTANT_THREADS_SET_TITLE, toMap(req), () -> methods.assistantThreadsSetTitle(req));
+    }
+
+    @Override
+    public CompletableFuture<AssistantThreadsSetTitleResponse> assistantThreadsSetTitle(RequestConfigurator<AssistantThreadsSetTitleRequest.AssistantThreadsSetTitleRequestBuilder> req) {
+        return assistantThreadsSetTitle(req.configure(AssistantThreadsSetTitleRequest.builder()).build());
     }
 
     @Override

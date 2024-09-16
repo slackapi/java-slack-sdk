@@ -1,6 +1,9 @@
 package test_locally.sample_json_generation;
 
 import com.slack.api.methods.response.admin.apps.*;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.migration.MigrationExchangeResponse;
 import com.slack.api.methods.response.users.UsersGetPresenceResponse;
@@ -164,5 +167,18 @@ public class MethodsResponseDumpTest {
             ObjectInitializer.initProperties(response);
             dumper.dump("admin.apps.uninstall", response);
         }
+    }
+
+    @Test
+    public void assistant_threads() throws Exception {
+        AssistantThreadsSetStatusResponse setStatus = new AssistantThreadsSetStatusResponse();
+        ObjectInitializer.initProperties(setStatus);
+        dumper.dump("assistant.threads.setStatus", setStatus);
+        AssistantThreadsSetSuggestedPromptsResponse setSuggestedPrompts = new AssistantThreadsSetSuggestedPromptsResponse();
+        ObjectInitializer.initProperties(setSuggestedPrompts);
+        dumper.dump("assistant.threads.setSuggestedPrompts", setSuggestedPrompts);
+        AssistantThreadsSetTitleResponse setTitle = new AssistantThreadsSetTitleResponse();
+        ObjectInitializer.initProperties(setTitle);
+        dumper.dump("assistant.threads.setTitle", setTitle);
     }
 }

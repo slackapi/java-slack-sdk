@@ -234,10 +234,6 @@ public class Message {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    /**
-     * Message metadata is in open beta as of May 2, 2022
-     * https://api.slack.com/metadata
-     */
     public static class Metadata {
         private String eventType;
         private Map<String, Object> eventPayload;
@@ -245,4 +241,16 @@ public class Message {
 
     private Room room; // Huddle
     private boolean noNotifications;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AssistantAppThread {
+        private String title;
+        private List<LayoutBlock> titleBlocks;
+        private String firstUserThreadReply;
+    }
+
+    private AssistantAppThread assistantAppThread;
 }
