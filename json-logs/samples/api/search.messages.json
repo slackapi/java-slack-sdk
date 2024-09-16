@@ -9431,7 +9431,12 @@
                       "app_id": "",
                       "call_family": ""
                     },
-                    "no_notifications": false
+                    "no_notifications": false,
+                    "assistant_app_thread": {
+                      "title": "",
+                      "title_blocks": [],
+                      "first_user_thread_reply": ""
+                    }
                   }
                 }
               ],
@@ -9919,7 +9924,12 @@
                           "app_id": "",
                           "call_family": ""
                         },
-                        "no_notifications": false
+                        "no_notifications": false,
+                        "assistant_app_thread": {
+                          "title": "",
+                          "title_blocks": [],
+                          "first_user_thread_reply": ""
+                        }
                       },
                       "number": [],
                       "select": [],
@@ -10452,7 +10462,12 @@
                           "app_id": "",
                           "call_family": ""
                         },
-                        "no_notifications": false
+                        "no_notifications": false,
+                        "assistant_app_thread": {
+                          "title": "",
+                          "title_blocks": [],
+                          "first_user_thread_reply": ""
+                        }
                       },
                       "number": [],
                       "select": [],
@@ -42037,7 +42052,12 @@
                       "app_id": "",
                       "call_family": ""
                     },
-                    "no_notifications": false
+                    "no_notifications": false,
+                    "assistant_app_thread": {
+                      "title": "",
+                      "title_blocks": [],
+                      "first_user_thread_reply": ""
+                    }
                   }
                 }
               ],
@@ -42525,7 +42545,12 @@
                           "app_id": "",
                           "call_family": ""
                         },
-                        "no_notifications": false
+                        "no_notifications": false,
+                        "assistant_app_thread": {
+                          "title": "",
+                          "title_blocks": [],
+                          "first_user_thread_reply": ""
+                        }
                       },
                       "number": [],
                       "select": [],
@@ -43058,7 +43083,12 @@
                           "app_id": "",
                           "call_family": ""
                         },
-                        "no_notifications": false
+                        "no_notifications": false,
+                        "assistant_app_thread": {
+                          "title": "",
+                          "title_blocks": [],
+                          "first_user_thread_reply": ""
+                        }
                       },
                       "number": [],
                       "select": [],
@@ -87348,7 +87378,12 @@
                     "app_id": "",
                     "call_family": ""
                   },
-                  "no_notifications": false
+                  "no_notifications": false,
+                  "assistant_app_thread": {
+                    "title": "",
+                    "title_blocks": [],
+                    "first_user_thread_reply": ""
+                  }
                 }
               }
             ],
@@ -87836,7 +87871,12 @@
                         "app_id": "",
                         "call_family": ""
                       },
-                      "no_notifications": false
+                      "no_notifications": false,
+                      "assistant_app_thread": {
+                        "title": "",
+                        "title_blocks": [],
+                        "first_user_thread_reply": ""
+                      }
                     },
                     "number": [],
                     "select": [],
@@ -88369,7 +88409,12 @@
                         "app_id": "",
                         "call_family": ""
                       },
-                      "no_notifications": false
+                      "no_notifications": false,
+                      "assistant_app_thread": {
+                        "title": "",
+                        "title_blocks": [],
+                        "first_user_thread_reply": ""
+                      }
                     },
                     "number": [],
                     "select": [],

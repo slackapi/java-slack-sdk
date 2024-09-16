@@ -51,6 +51,9 @@ import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsR
 import com.slack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
@@ -181,6 +184,9 @@ import com.slack.api.methods.response.apps.permissions.resources.AppsPermissions
 import com.slack.api.methods.response.apps.permissions.scopes.AppsPermissionsScopesListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersRequestResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
@@ -1432,6 +1438,36 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public AppsPermissionsUsersRequestResponse appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest req) throws IOException, SlackApiException {
         return postFormWithTokenAndParseResponse(toForm(req), Methods.APPS_PERMISSIONS_USERS_REQUEST, getToken(req), AppsPermissionsUsersRequestResponse.class);
+    }
+
+    @Override
+    public AssistantThreadsSetStatusResponse assistantThreadsSetStatus(AssistantThreadsSetStatusRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ASSISTANT_THREADS_SET_STATUS, getToken(req), AssistantThreadsSetStatusResponse.class);
+    }
+
+    @Override
+    public AssistantThreadsSetStatusResponse assistantThreadsSetStatus(RequestConfigurator<AssistantThreadsSetStatusRequest.AssistantThreadsSetStatusRequestBuilder> req) throws IOException, SlackApiException {
+        return assistantThreadsSetStatus(req.configure(AssistantThreadsSetStatusRequest.builder()).build());
+    }
+
+    @Override
+    public AssistantThreadsSetSuggestedPromptsResponse assistantThreadsSetSuggestedPrompts(AssistantThreadsSetSuggestedPromptsRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ASSISTANT_THREADS_SET_SUGGESTED_PROMPTS, getToken(req), AssistantThreadsSetSuggestedPromptsResponse.class);
+    }
+
+    @Override
+    public AssistantThreadsSetSuggestedPromptsResponse assistantThreadsSetSuggestedPrompts(RequestConfigurator<AssistantThreadsSetSuggestedPromptsRequest.AssistantThreadsSetSuggestedPromptsRequestBuilder> req) throws IOException, SlackApiException {
+        return assistantThreadsSetSuggestedPrompts(req.configure(AssistantThreadsSetSuggestedPromptsRequest.builder()).build());
+    }
+
+    @Override
+    public AssistantThreadsSetTitleResponse assistantThreadsSetTitle(AssistantThreadsSetTitleRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.ASSISTANT_THREADS_SET_TITLE, getToken(req), AssistantThreadsSetTitleResponse.class);
+    }
+
+    @Override
+    public AssistantThreadsSetTitleResponse assistantThreadsSetTitle(RequestConfigurator<AssistantThreadsSetTitleRequest.AssistantThreadsSetTitleRequestBuilder> req) throws IOException, SlackApiException {
+        return assistantThreadsSetTitle(req.configure(AssistantThreadsSetTitleRequest.builder()).build());
     }
 
     @Override

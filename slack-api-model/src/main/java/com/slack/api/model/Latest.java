@@ -35,6 +35,9 @@ public class Latest {
     private List<String> xFiles;
     private Edited edited;
 
+    private Message.Metadata metadata;
+    private Message.AssistantAppThread assistantAppThread;
+
     @Data
     public static class Edited {
         private String user;

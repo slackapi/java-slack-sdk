@@ -49,6 +49,9 @@ import com.slack.api.methods.request.apps.permissions.resources.AppsPermissionsR
 import com.slack.api.methods.request.apps.permissions.scopes.AppsPermissionsScopesListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersListRequest;
 import com.slack.api.methods.request.apps.permissions.users.AppsPermissionsUsersRequestRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
 import com.slack.api.methods.request.auth.AuthRevokeRequest;
 import com.slack.api.methods.request.auth.AuthTestRequest;
 import com.slack.api.methods.request.auth.teams.AuthTeamsListRequest;
@@ -179,6 +182,9 @@ import com.slack.api.methods.response.apps.permissions.resources.AppsPermissions
 import com.slack.api.methods.response.apps.permissions.scopes.AppsPermissionsScopesListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersListResponse;
 import com.slack.api.methods.response.apps.permissions.users.AppsPermissionsUsersRequestResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
 import com.slack.api.methods.response.auth.AuthRevokeResponse;
 import com.slack.api.methods.response.auth.AuthTestResponse;
 import com.slack.api.methods.response.auth.teams.AuthTeamsListResponse;
@@ -964,6 +970,22 @@ public interface MethodsClient {
     // and the Conversations API will become available to classic Slack apps over the coming months.
     @Deprecated
     AppsPermissionsUsersRequestResponse appsPermissionsUsersRequest(AppsPermissionsUsersRequestRequest req) throws IOException, SlackApiException;
+
+    // ------------------------------
+    // assistant.threads
+    // ------------------------------
+
+    AssistantThreadsSetStatusResponse assistantThreadsSetStatus(AssistantThreadsSetStatusRequest req) throws IOException, SlackApiException;
+
+    AssistantThreadsSetStatusResponse assistantThreadsSetStatus(RequestConfigurator<AssistantThreadsSetStatusRequest.AssistantThreadsSetStatusRequestBuilder> req) throws IOException, SlackApiException;
+
+    AssistantThreadsSetSuggestedPromptsResponse assistantThreadsSetSuggestedPrompts(AssistantThreadsSetSuggestedPromptsRequest req) throws IOException, SlackApiException;
+
+    AssistantThreadsSetSuggestedPromptsResponse assistantThreadsSetSuggestedPrompts(RequestConfigurator<AssistantThreadsSetSuggestedPromptsRequest.AssistantThreadsSetSuggestedPromptsRequestBuilder> req) throws IOException, SlackApiException;
+
+    AssistantThreadsSetTitleResponse assistantThreadsSetTitle(AssistantThreadsSetTitleRequest req) throws IOException, SlackApiException;
+
+    AssistantThreadsSetTitleResponse assistantThreadsSetTitle(RequestConfigurator<AssistantThreadsSetTitleRequest.AssistantThreadsSetTitleRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // auth

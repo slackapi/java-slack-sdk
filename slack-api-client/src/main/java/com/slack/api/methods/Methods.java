@@ -277,6 +277,14 @@ public class Methods {
     public static final String APPS_PERMISSIONS_USERS_REQUEST = "apps.permissions.users.request";
 
     // ------------------------------
+    // assistant.threads
+    // ------------------------------
+
+    public static final String ASSISTANT_THREADS_SET_STATUS = "assistant.threads.setStatus";
+    public static final String ASSISTANT_THREADS_SET_SUGGESTED_PROMPTS = "assistant.threads.setSuggestedPrompts";
+    public static final String ASSISTANT_THREADS_SET_TITLE = "assistant.threads.setTitle";
+
+    // ------------------------------
     // auth
     // ------------------------------
 
