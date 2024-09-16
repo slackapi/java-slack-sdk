@@ -179,6 +179,8 @@
   "conversations.open": "Tier3",
   "conversations.rename": "Tier2",
   "conversations.replies": "Tier3",
+  "conversations.requestSharedInvite.approve": "Tier2",
+  "conversations.requestSharedInvite.deny": "Tier2",
   "conversations.setPurpose": "Tier2",
   "conversations.setTopic": "Tier2",
   "conversations.unarchive": "Tier2",

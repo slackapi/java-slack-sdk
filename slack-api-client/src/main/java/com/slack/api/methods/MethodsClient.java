@@ -74,6 +74,8 @@ import com.slack.api.methods.request.chat.*;
 import com.slack.api.methods.request.chat.scheduled_messages.ChatScheduledMessagesListRequest;
 import com.slack.api.methods.request.conversations.*;
 import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
+import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteApproveRequest;
+import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteDenyRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -202,6 +204,8 @@ import com.slack.api.methods.response.chat.*;
 import com.slack.api.methods.response.chat.scheduled_messages.ChatScheduledMessagesListResponse;
 import com.slack.api.methods.response.conversations.*;
 import com.slack.api.methods.response.conversations.canvases.ConversationsCanvasesCreateResponse;
+import com.slack.api.methods.response.conversations.request_shared_invite.ConversationsRequestSharedInviteApproveResponse;
+import com.slack.api.methods.response.conversations.request_shared_invite.ConversationsRequestSharedInviteDenyResponse;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
@@ -1347,6 +1351,14 @@ public interface MethodsClient {
     ConversationsCanvasesCreateResponse conversationsCanvasesCreate(ConversationsCanvasesCreateRequest req) throws IOException, SlackApiException;
 
     ConversationsCanvasesCreateResponse conversationsCanvasesCreate(RequestConfigurator<ConversationsCanvasesCreateRequest.ConversationsCanvasesCreateRequestBuilder> req) throws IOException, SlackApiException;
+
+   ConversationsRequestSharedInviteApproveResponse conversationsRequestSharedInviteApprove(ConversationsRequestSharedInviteApproveRequest req) throws IOException, SlackApiException;
+
+    ConversationsRequestSharedInviteApproveResponse conversationsRequestSharedInviteApprove(RequestConfigurator<ConversationsRequestSharedInviteApproveRequest.ConversationsRequestSharedInviteApproveRequestBuilder> req) throws IOException, SlackApiException;
+
+    ConversationsRequestSharedInviteDenyResponse conversationsRequestSharedInviteDeny(ConversationsRequestSharedInviteDenyRequest req) throws IOException, SlackApiException;
+
+    ConversationsRequestSharedInviteDenyResponse conversationsRequestSharedInviteDeny(RequestConfigurator<ConversationsRequestSharedInviteDenyRequest.ConversationsRequestSharedInviteDenyRequestBuilder> req) throws IOException, SlackApiException;
 
     // ------------------------------
     // dialog
