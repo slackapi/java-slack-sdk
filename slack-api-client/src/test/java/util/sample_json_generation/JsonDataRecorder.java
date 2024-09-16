@@ -513,6 +513,14 @@ public class JsonDataRecorder {
                 }
             }
         } else if (element != null && element.isJsonObject()) {
+            if (name != null && name.equals("timestamp")
+                    && parent.getAsJsonObject().get("type") != null
+                    && parent.getAsJsonObject().get("type").getAsString().equals("date")) {
+                // to make rich text's date element consistent
+                parent.getAsJsonObject().remove(name);
+                parent.getAsJsonObject().addProperty(name, 123);
+                return;
+            }
             if (name != null && name.equals("file")) {
                 if (path.startsWith("/audit/v1/schemas") || path.startsWith("/audit/v1/actions")) {
                     return;

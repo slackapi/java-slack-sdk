@@ -95,7 +95,9 @@ public class SlackTestConfig {
         String baseDir = "../json-logs/raw/api/";
         String glob = "glob:" + baseDir + prefix;
         PathMatcher matcher = FileSystems.getDefault().getPathMatcher(glob);
-        Files.walkFileTree(Paths.get(baseDir), new SimpleFileVisitor<Path>() {
+        Path baseDirPath = Paths.get(baseDir);
+        Files.createDirectories(baseDirPath);
+        Files.walkFileTree(baseDirPath, new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                 if (matcher.matches(file)) {
