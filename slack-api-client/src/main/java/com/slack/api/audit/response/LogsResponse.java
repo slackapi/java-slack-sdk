@@ -14,10 +14,15 @@ import java.util.Map;
 public class LogsResponse implements AuditApiResponse {
     private transient String rawBody;
 
-    private boolean ok;
+    @Deprecated // when an error is returned, it will be an exception instead
+    private boolean ok = true;
+    @Deprecated // when an error is returned, it will be an exception instead
     private String warning;
+    @Deprecated // when an error is returned, it will be an exception instead
     private String error;
+    @Deprecated // when an error is returned, it will be an exception instead
     private String needed;
+    @Deprecated // when an error is returned, it will be an exception instead
     private String provided;
 
     private ResponseMetadata responseMetadata;

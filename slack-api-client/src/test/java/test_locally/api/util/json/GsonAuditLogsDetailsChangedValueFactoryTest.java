@@ -231,7 +231,7 @@ public class GsonAuditLogsDetailsChangedValueFactoryTest {
         List<LogsResponse.Entry> entries = Arrays.asList(entry);
         response.setEntries(entries);
         String json = gson.toJson(response);
-        assertThat(json, is("{\"ok\":false,\"entries\":[{\"details\":{" +
+        assertThat(json, is("{\"ok\":true,\"entries\":[{\"details\":{" +
                 "\"new_value\":[\"C111\",\"C222\"]," +
                 "\"previous_value\":[\"C111\",\"C222\"]" +
                 "}}]}"));
@@ -254,7 +254,7 @@ public class GsonAuditLogsDetailsChangedValueFactoryTest {
         List<LogsResponse.Entry> entries = Arrays.asList(entry);
         response.setEntries(entries);
         String json = gson.toJson(response);
-        assertThat(json, is("{\"ok\":false,\"entries\":[{\"details\":{" +
+        assertThat(json, is("{\"ok\":true,\"entries\":[{\"details\":{" +
                 "\"new_value\":{\"type\":[\"TOPLEVEL_ADMINS_AND_OWNERS_AND_SELECTED\"]}," +
                 "\"previous_value\":{\"type\":[\"TOPLEVEL_ADMINS_AND_OWNERS_AND_SELECTED\"]}" +
                 "}}]}"));

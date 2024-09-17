@@ -323,7 +323,9 @@
       "external_shared_channel_invite_request_approved",
       "external_shared_channel_invite_request_denied",
       "channel_tab_added",
-      "channel_tab_removed"
+      "channel_tab_removed",
+      "external_shared_channel_host_transferred",
+      "channel_template_provisioned"
     ],
     "app": [
       "app_installed",
@@ -502,6 +504,11 @@
       "native_dlp_rule_reactivated",
       "native_dlp_rule_edited",
       "native_dlp_rule_action_applied"
+    ],
+    "template": [
+      "template_created",
+      "template_deleted",
+      "template_provisioned"
     ]
   }
 }

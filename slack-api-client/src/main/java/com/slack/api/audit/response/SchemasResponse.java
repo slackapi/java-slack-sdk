@@ -11,10 +11,15 @@ import java.util.List;
 public class SchemasResponse implements AuditApiResponse {
     private transient String rawBody;
 
-    private boolean ok;
+    @Deprecated // when an error is returned, it will be an exception instead
+    private boolean ok = true;
+    @Deprecated // when an error is returned, it will be an exception instead
     private String warning;
+    @Deprecated // when an error is returned, it will be an exception instead
     private String error;
+    @Deprecated // when an error is returned, it will be an exception instead
     private String needed;
+    @Deprecated // when an error is returned, it will be an exception instead
     private String provided;
 
     private List<Schema> schemas;
@@ -36,6 +41,7 @@ public class SchemasResponse implements AuditApiResponse {
         private Barrier barrier;
         private Canvas canvas;
         private WorkflowV2 workflowV2;
+        private Template template;
     }
 
     @Data
@@ -147,5 +153,11 @@ public class SchemasResponse implements AuditApiResponse {
         private String updatedBy;
         private String stepConfiguration;
         private String templateId;
+    }
+
+    @Data
+    public static class Template {
+        private String id;
+        private String templateName;
     }
 }

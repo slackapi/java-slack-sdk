@@ -347,6 +347,8 @@ public class Actions {
         public static final String external_shared_channel_invite_request_denied = "external_shared_channel_invite_request_denied";
         public static final String channel_tab_added = "channel_tab_added";
         public static final String channel_tab_removed = "channel_tab_removed";
+        public static final String external_shared_channel_host_transferred = "external_shared_channel_host_transferred";
+        public static final String channel_template_provisioned = "channel_template_provisioned";
     }
 
     public static class App {
@@ -590,5 +592,14 @@ public class Actions {
         public static final String native_dlp_rule_reactivated = "native_dlp_rule_reactivated";
         public static final String native_dlp_rule_edited = "native_dlp_rule_edited";
         public static final String native_dlp_rule_action_applied = "native_dlp_rule_action_applied";
+    }
+
+    public static class Template {
+        private Template() {
+        }
+
+        public static final String template_created = "template_created";
+        public static final String template_deleted = "template_deleted";
+        public static final String template_provisioned = "template_provisioned";
     }
 }

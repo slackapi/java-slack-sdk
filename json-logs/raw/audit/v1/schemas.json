@@ -142,6 +142,13 @@
         "template_id": "string",
         "step_configuration": "vec\u003cdict\u003cstring, mixed\u003e\u003e"
       }
+    },
+    {
+      "type": "template",
+      "template": {
+        "id": "string",
+        "template_name": "string"
+      }
     }
   ]
 }
