@@ -281,6 +281,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> templateNames = getAllPublicStaticFieldValues(Actions.Template.class);
+        for (String action : actions.getTemplate()) {
+            if (!templateNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test
@@ -329,6 +335,7 @@ public class ApiTest {
             );
             assertThat(cursor, not(equalTo(response.getResponseMetadata().getNextCursor())));
             assertThat(response, is(notNullValue()));
+            assertThat(response.isOk(), is(true));
         }
     }
 
@@ -368,6 +375,7 @@ public class ApiTest {
             try {
                 LogsResponse response = slack.auditAsync(token).getLogs(req -> req.limit(500).action(action)).get();
                 assertThat(response.getError(), is(nullValue()));
+                assertThat(response.isOk(), is(true));
             } catch (ExecutionException e) {
                 if (e.getCause() != null && e.getCause() instanceof AuditApiCompletionException) {
                     AuditApiCompletionException apiEx = ((AuditApiCompletionException) e.getCause());
