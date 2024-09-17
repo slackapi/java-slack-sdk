@@ -31,6 +31,16 @@ public interface MethodsCustomRateLimitResolver {
      */
     Optional<Integer> getCustomAllowedRequestsForChatPostMessagePerMinute(String teamId, String channel);
 
+    /**
+     * Return a present value only when you want to override the allowed requests per minute.
+     * Otherwise, returning Optional.empty() will result in falling back to the built-in calculation.
+     *
+     * @param teamId  the workspace ID
+     * @param channel either a channel ID or channel name
+     * @return the number of allowed requests per minute
+     */
+    Optional<Integer> getCustomAllowedRequestsForAssistantThreadsSetStatusPerMinute(String teamId, String channel);
+
     class Default implements MethodsCustomRateLimitResolver {
         @Override
         public Optional<Integer> getCustomAllowedRequestsPerMinute(String teamId, String methodName) {
@@ -39,6 +49,11 @@ public interface MethodsCustomRateLimitResolver {
 
         @Override
         public Optional<Integer> getCustomAllowedRequestsForChatPostMessagePerMinute(String teamId, String channel) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<Integer> getCustomAllowedRequestsForAssistantThreadsSetStatusPerMinute(String teamId, String channel) {
             return Optional.empty();
         }
     }

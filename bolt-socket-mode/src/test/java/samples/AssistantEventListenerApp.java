@@ -34,7 +34,6 @@ public class AssistantEventListenerApp {
                     ctx.client().assistantThreadsSetSuggestedPrompts(r -> r
                             .channelId(channelId)
                             .threadTs(threadTs)
-                            .title("How are you?")
                             .prompts(Collections.singletonList(new SuggestedPrompt("What does SLACK stand for?")))
                     );
                 } catch (Exception e) {
@@ -71,7 +70,7 @@ public class AssistantEventListenerApp {
                                 .text("Here you are!")
                         );
                     } catch (Exception e) {
-                        ctx.logger.error("Failed to handle assistant thread started event: {e}", e);
+                        ctx.logger.error("Failed to handle assistant user message event: {e}", e);
                         try {
                             ctx.client().chatPostMessage(r -> r
                                     .channel(channelId)
@@ -112,7 +111,7 @@ public class AssistantEventListenerApp {
                                 .text("Your files do not have any issues!")
                         );
                     } catch (Exception e) {
-                        ctx.logger.error("Failed to handle assistant thread started event: {e}", e);
+                        ctx.logger.error("Failed to handle assistant user message event: {e}", e);
                         try {
                             ctx.client().chatPostMessage(r -> r
                                     .channel(channelId)

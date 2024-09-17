@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 
+import static com.slack.api.methods.MethodsRateLimitTier.SpecialTier_assistant_threads_setStatus;
 import static com.slack.api.methods.MethodsRateLimitTier.SpecialTier_chat_postMessage;
 
 @Slf4j
@@ -79,6 +80,31 @@ public class AsyncMethodsRateLimiter implements RateLimiter {
                 teamId,
                 channel,
                 getAllowedRequestsForChatPostMessagePerMinute(teamId, channel)
+        );
+    }
+
+    public int getAllowedRequestsForAssistantThreadsSetStatusPerMinute(String teamId, String channel) {
+        Optional<Integer> custom = customRateLimitResolver.getCustomAllowedRequestsForAssistantThreadsSetStatusPerMinute(teamId, channel);
+        if (custom.isPresent()) {
+            return custom.get();
+        }
+        return waitTimeCalculator.getAllowedRequestsPerMinute(SpecialTier_assistant_threads_setStatus);
+    }
+
+    @Override
+    public WaitTime acquireWaitTimeForAssistantThreadsSetStatus(String teamId, String channel) {
+        // See MethodsClientImpl#buildMethodNameAndSuffix() for the consistency of this logic
+        String methodName = Methods.ASSISTANT_THREADS_SET_STATUS + "_" + channel;
+        Optional<Long> rateLimitedEpochMillis = waitTimeCalculator
+                .getRateLimitedMethodRetryEpochMillis(executorName, teamId, methodName);
+        if (rateLimitedEpochMillis.isPresent()) {
+            long millisToWait = rateLimitedEpochMillis.get() - System.currentTimeMillis();
+            return new WaitTime(millisToWait, RequestPace.RateLimited);
+        }
+        return waitTimeCalculator.calculateWaitTimeForAssistantThreadsSetStatus(
+                teamId,
+                channel,
+                getAllowedRequestsForAssistantThreadsSetStatusPerMinute(teamId, channel)
         );
     }
 

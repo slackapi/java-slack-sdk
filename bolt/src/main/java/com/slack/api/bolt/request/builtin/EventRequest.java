@@ -7,8 +7,10 @@ import com.slack.api.bolt.context.builtin.EventContext;
 import com.slack.api.bolt.request.Request;
 import com.slack.api.bolt.request.RequestHeaders;
 import com.slack.api.bolt.request.RequestType;
-import com.slack.api.model.event.MessageEvent;
+import com.slack.api.bolt.util.EventsApiPayloadParser;
+import com.slack.api.model.assistant.AssistantThreadContext;
 import com.slack.api.model.event.FunctionExecutedEvent;
+import com.slack.api.model.event.MessageEvent;
 import com.slack.api.util.json.GsonFactory;
 import lombok.ToString;
 
@@ -108,6 +110,38 @@ public class EventRequest extends Request<EventContext> {
         } else if (event.get("channel_id") != null) {
             this.getContext().setChannelId(event.get("channel_id").getAsString());
         }
+        // assistant thread events
+        if (event.get("assistant_thread") != null) {
+            this.getContext().setAssistantThreadEvent(true);
+            // assistant_thread_started, assistant_thread_context_changed events
+            JsonObject thread = event.get("assistant_thread").getAsJsonObject();
+            String channelId = thread.get("channel_id").getAsString();
+            this.getContext().setChannelId(channelId);
+            String threadTs = thread.get("thread_ts").getAsString();
+            this.getContext().setThreadTs(threadTs);
+            JsonObject context = thread.get("context").getAsJsonObject();
+            if (context != null) {
+                AssistantThreadContext threadContext = AssistantThreadContext.builder()
+                        .enterpriseId(context.get("enterprise_id") != null ? context.get("enterprise_id").getAsString() : null)
+                        .teamId(context.get("team_id") != null ? context.get("team_id").getAsString() : null)
+                        .channelId(context.get("channel_id") != null ? context.get("channel_id").getAsString() : null)
+                        .build();
+                this.getContext().setThreadContext(threadContext);
+            }
+        } else if (this.eventType != null
+                && this.eventType.equals(MessageEvent.TYPE_NAME)
+                && EventsApiPayloadParser.isMessageEventInAssistantThread(event)) {
+            // message events (user replies)
+            this.getContext().setAssistantThreadEvent(true);
+            this.getContext().setChannelId(event.get("channel").getAsString());
+            if (event.get("thread_ts") != null) {
+                this.getContext().setThreadTs(event.get("thread_ts").getAsString());
+            } else if (event.get("message") != null && event.get("message").getAsJsonObject().get("thread_ts") != null) {
+                // message_changed
+                this.getContext().setThreadTs(event.get("message").getAsJsonObject().get("thread_ts").getAsString());
+            }
+            // Assistant middleware can set threadContext using AssistantThreadContextStore
+        }
 
         if (this.eventType != null && this.eventType.equals(FunctionExecutedEvent.TYPE_NAME)) {
             if (event.get("bot_access_token") != null) {
@@ -147,6 +181,26 @@ public class EventRequest extends Request<EventContext> {
             return extractRequestUserId(payload.get("previous_message").getAsJsonObject());
         }
         return null;
+    }
+
+    private boolean isMessageEventInAssistantThread(JsonObject event) {
+        if (event.get("channel_type") != null && event.get("channel_type").getAsString().equals("im")) {
+            if (event.get("thread_ts") != null) return true;
+            if (event.get("message") != null) {
+                // message_changed
+                return isAssistantThreadMessageSubEvent(event, "message");
+            } else if (event.get("previous_message") != null) {
+                // message_deleted
+                return isAssistantThreadMessageSubEvent(event, "previous_message");
+            }
+        }
+        return false;
+    }
+
+    private boolean isAssistantThreadMessageSubEvent(JsonObject event, String message) {
+        JsonElement subtype = event.get(message).getAsJsonObject().get("subtype");
+        return (subtype != null && subtype.getAsString().equals("assistant_app_thread"))
+                || event.get(message).getAsJsonObject().get("thread_ts") != null;
     }
 
     private final EventContext context = new EventContext();
