@@ -15,6 +15,7 @@ public class AppActivity {
     private String eventType; // "function_execution_started", "function_execution_output", "workflow_step_started" etc.
     private String source; // "slack" etc.
     private String componentType; // "functions", "workflows" etc.
+    private String parentExecutionId;
     private String componentId;
     private Payload payload;
     private Long created;

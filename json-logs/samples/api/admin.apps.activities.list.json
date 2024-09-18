@@ -56,7 +56,8 @@
         "bundle_size_kb": 12345
       },
       "created": 12345,
-      "trace_id": ""
+      "trace_id": "",
+      "parent_execution_id": ""
     }
   ],
   "response_metadata": {

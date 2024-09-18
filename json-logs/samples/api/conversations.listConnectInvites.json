@@ -140,7 +140,8 @@
                 "is_verified": false,
                 "domain": "",
                 "date_created": 12345,
-                "avatar_base_url": "https://www.example.com/"
+                "avatar_base_url": "https://www.example.com/",
+                "requires_sponsorship": false
               }
             },
             {
