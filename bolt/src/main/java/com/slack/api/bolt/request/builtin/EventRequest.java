@@ -83,6 +83,8 @@ public class EventRequest extends Request<EventContext> {
         }
         this.getContext().setEnterpriseId(enterpriseId);
         this.getContext().setTeamId(teamId);
+        this.getContext().setRequestUserId(extractRequestUserId(payload));
+
         // set retry related header values to the context
         if (this.headers != null && this.headers.getNames().size() > 0) {
             for (String name : this.headers.getNames()) {
@@ -119,7 +121,35 @@ public class EventRequest extends Request<EventContext> {
         }
     }
 
-    private EventContext context = new EventContext();
+    private static String extractRequestUserId(JsonObject payload) {
+        if (payload.get("user") != null) {
+            if (payload.get("user").isJsonPrimitive()) {
+                return payload.get("user").getAsString();
+            } else if (payload.get("user").isJsonObject()) {
+                JsonElement userId = payload.get("user").getAsJsonObject().get("id");
+                if (userId != null) {
+                    return userId.getAsString();
+                }
+            }
+        }
+        if (payload.get("user_id") != null) {
+            return payload.get("user_id").getAsString();
+        }
+        if (payload.get("event") != null) {
+            return extractRequestUserId(payload.get("event").getAsJsonObject());
+        }
+        if (payload.get("message") != null) {
+            // message_changed: body["event"]["message"]
+            return extractRequestUserId(payload.get("message").getAsJsonObject());
+        }
+        if (payload.get("previous_message") != null) {
+            // message_deleted: body["event"]["previous_message"]
+            return extractRequestUserId(payload.get("previous_message").getAsJsonObject());
+        }
+        return null;
+    }
+
+    private final EventContext context = new EventContext();
 
     @Override
     public EventContext getContext() {
