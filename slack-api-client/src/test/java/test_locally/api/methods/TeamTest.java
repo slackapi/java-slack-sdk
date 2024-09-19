@@ -2,10 +2,14 @@ package test_locally.api.methods;
 
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
+import com.slack.api.methods.MethodsConfig;
+import com.slack.api.methods.MethodsCustomRateLimitResolver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import util.MockSlackApiServer;
+
+import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,6 +25,19 @@ public class TeamTest {
     public void setup() throws Exception {
         server.start();
         config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
+        MethodsConfig methodsConfig = new MethodsConfig();
+        methodsConfig.setCustomRateLimitResolver(new MethodsCustomRateLimitResolver() {
+            @Override
+            public Optional<Integer> getCustomAllowedRequestsPerMinute(String teamId, String methodName) {
+                return Optional.of(20);
+            }
+
+            @Override
+            public Optional<Integer> getCustomAllowedRequestsForChatPostMessagePerMinute(String teamId, String channel) {
+                return Optional.empty();
+            }
+        });
+        config.setMethodsConfig(methodsConfig);
     }
 
     @After
