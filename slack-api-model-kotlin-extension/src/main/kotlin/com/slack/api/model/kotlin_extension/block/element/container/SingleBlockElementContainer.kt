@@ -9,7 +9,7 @@ import com.slack.api.model.kotlin_extension.block.element.dsl.BlockElementDsl
 /**
  * Supports a BlockElementContainer holding exactly one block element
  */
-class SingleBlockElementContainer : BlockElementDsl {
+class SingleBlockElementContainer() : BlockElementDsl {
     var underlying: BlockElement? = null
 
     override fun button(builder: ButtonElementBuilder.() -> Unit) {

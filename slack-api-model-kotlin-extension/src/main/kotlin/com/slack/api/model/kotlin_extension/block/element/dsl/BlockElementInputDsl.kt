@@ -1,5 +1,6 @@
 package com.slack.api.model.kotlin_extension.block.element.dsl
 
+import com.slack.api.model.block.element.FileInputElement
 import com.slack.api.model.kotlin_extension.block.BlockLayoutBuilder
 import com.slack.api.model.kotlin_extension.block.element.*
 
