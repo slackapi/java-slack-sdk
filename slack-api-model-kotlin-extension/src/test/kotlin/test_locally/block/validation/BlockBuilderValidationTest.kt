@@ -28,6 +28,11 @@ class BlockBuilderValidationTest {
     }
 
     @Test
+    fun testRichTextBlockBuilder() {
+        validateMethodNames(RichTextBlock::class.java, RichTextBlockBuilder::class.java)
+    }
+
+    @Test
     fun testSectionBlockBuilder() {
         validateMethodNames(SectionBlock::class.java, SectionBlockBuilder::class.java)
     }

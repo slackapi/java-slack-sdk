@@ -74,6 +74,16 @@ interface LayoutBlockDsl {
     fun input(builder: InputBlockBuilder.() -> Unit)
 
     /**
+     * Displays formatted, structured representation of text. It is also the output of the Slack client's WYSIWYG
+     * message composer, so all messages sent by end-users will have this format. Use this block to include user-defined
+     * formatted text in your Block Kit payload. While it is possible to format text with mrkdwn, rich_text is
+     * strongly preferred and allows greater flexibility.
+     *
+     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text">Rich text documentation</a>
+     */
+    fun richText(builder: RichTextBlockBuilder.() -> Unit)
+
+    /**
      * A video block is designed to embed videos in all app surfaces (e.g. link unfurls, messages, modals, App Home)
      * — anywhere you can put blocks! To use the video block within your app, you must have the links.embed:write scope.
      *
