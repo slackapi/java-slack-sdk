@@ -219,6 +219,7 @@ class RichTextBlockTest {
     fun richTextObjects() {
         val blocks = withBlocks {
             richText {
+                blockId("rich-text-block")
                 richTextList {
                     style(ListStyle.BULLET)
                     indent(0)
@@ -233,9 +234,7 @@ class RichTextBlockTest {
                         broadcast(BroadcastRange.EVERYONE)
                     }
                 }
-            }
 
-            richText {
                 richTextList {
                     style(ListStyle.BULLET)
                     indent(1)
@@ -244,9 +243,7 @@ class RichTextBlockTest {
                         color("#C0FFEE")
                     }
                 }
-            }
 
-            richText {
                 richTextList {
                     style(ListStyle.ORDERED)
                     indent(0)
@@ -259,15 +256,15 @@ class RichTextBlockTest {
                             LimitedTextStyle.builder().bold(true).italic(true).clientHighlight(true).build())
                     }
                 }
-            }
 
-            richText {
-                richTextSection {
-                    date(1720710212, "{date_num} at {time}", fallback = "timey")
+                richTextList {
+                    style(ListStyle.BULLET)
+                    offset(0)
+                    richTextSection {
+                        date(1720710212, "{date_num} at {time}", fallback = "timey")
+                    }
                 }
-            }
 
-            richText {
                 richTextSection {
                     emoji("basketball")
                     text(" ")
@@ -275,9 +272,7 @@ class RichTextBlockTest {
                     text(" ")
                     emoji("checkered_flag")
                 }
-            }
 
-            richText {
                 richTextQuote {
                     border(1)
                     link("https://api.slack.com")
@@ -289,17 +284,18 @@ class RichTextBlockTest {
                     link("https://api.slack.com", "Slack API",
                         style = TextStyle.builder().strike(true).code(true).clientHighlight(true).build())
                 }
-            }
 
-            richText {
                 richTextSection {
                     user("U12345678")
                 }
-            }
 
-            richText {
                 richTextSection {
                     usergroup("S0123456789")
+                }
+
+                richTextPreformatted {
+                    border(1)
+                    text("preformatted")
                 }
             }
         }
@@ -308,6 +304,7 @@ class RichTextBlockTest {
 	"blocks": [
 		{
 			"type": "rich_text",
+			"block_id": "rich-text-block",
 			"elements": [
 				{
 					"type": "rich_text_list",
@@ -343,12 +340,7 @@ class RichTextBlockTest {
 					"style": "bullet",
 					"indent": 0,
 					"border": 0
-				}
-			]
-		},
-		{
-			"type": "rich_text",
-			"elements": [
+				},
 				{
 					"type": "rich_text_list",
 					"elements": [
@@ -365,12 +357,7 @@ class RichTextBlockTest {
 					"style": "bullet",
 					"indent": 1,
 					"border": 0
-				}
-			]
-		},
-		{
-			"type": "rich_text",
-			"elements": [
+				},
 				{
 					"type": "rich_text_list",
 					"elements": [
@@ -404,28 +391,25 @@ class RichTextBlockTest {
 					"style": "ordered",
 					"indent": 0,
 					"border": 1
-				}
-			]
-		},
-		{
-			"type": "rich_text",
-			"elements": [
+				},
 				{
-					"type": "rich_text_section",
+					"type": "rich_text_list",
 					"elements": [
 						{
-							"type": "date",
-							"timestamp": 1720710212,
-							"format": "{date_num} at {time}",
-							"fallback": "timey"
+							"type": "rich_text_section",
+							"elements": [
+								{
+									"type": "date",
+									"timestamp": 1720710212,
+									"format": "{date_num} at {time}",
+									"fallback": "timey"
+								}
+							]
 						}
-					]
-				}
-			]
-		},
-		{
-			"type": "rich_text",
-			"elements": [
+					],
+					"style": "bullet",
+					"offset": 0
+				},
 				{
 					"type": "rich_text_section",
 					"elements": [
@@ -450,12 +434,7 @@ class RichTextBlockTest {
 							"name": "checkered_flag"
 						}
 					]
-				}
-			]
-		},
-		{
-			"type": "rich_text",
-			"elements": [
+				},
 				{
 					"type": "rich_text_quote",
 					"elements": [
@@ -501,12 +480,7 @@ class RichTextBlockTest {
 						}
 					],
 					"border": 1
-				}
-			]
-		},
-		{
-			"type": "rich_text",
-			"elements": [
+				},
 				{
 					"type": "rich_text_section",
 					"elements": [
@@ -515,12 +489,7 @@ class RichTextBlockTest {
 							"user_id": "U12345678"
 						}
 					]
-				}
-			]
-		},
-		{
-			"type": "rich_text",
-			"elements": [
+				},
 				{
 					"type": "rich_text_section",
 					"elements": [
@@ -529,6 +498,16 @@ class RichTextBlockTest {
 							"usergroup_id": "S0123456789"
 						}
 					]
+				},
+				{
+					"type": "rich_text_preformatted",
+					"elements": [
+						{
+							"type": "text",
+							"text": "preformatted"
+						}
+					],
+					"border": 1
 				}
 			]
 		}
@@ -538,6 +517,63 @@ class RichTextBlockTest {
         val json = gson.fromJson(original, JsonElement::class.java)
         val expected = json.asJsonObject["blocks"]
         val actual = gson.toJsonTree(blocks)
+        assertEquals(expected, actual, "\n" + expected.toString() + "\n" + actual.toString())
+    }
+
+    @Test
+    fun dslWithElements() {
+        val blocksWithElements = withBlocks {
+            richText {
+                elements {
+                    richTextSection {
+                        elements {
+                            text("section")
+                        }
+                    }
+                    richTextList {
+                        style(ListStyle.BULLET)
+                        elements {
+                            richTextSection {
+                                elements {
+                                    text("list")
+                                }
+                            }
+                        }
+                    }
+                    richTextPreformatted {
+                        elements {
+                            text("preformatted")
+                        }
+                    }
+                    richTextQuote {
+                        elements {
+                            text("quote")
+                        }
+                    }
+                }
+            }
+        }
+        val original = withBlocks {
+            richText {
+                richTextSection {
+                    text("section")
+                }
+                richTextList {
+                    style(ListStyle.BULLET)
+                    richTextSection {
+                        text("list")
+                    }
+                }
+                richTextPreformatted {
+                    text("preformatted")
+                }
+                richTextQuote {
+                    text("quote")
+                }
+            }
+        }
+        val expected = gson.toJsonTree(original)
+        val actual = gson.toJsonTree(blocksWithElements)
         assertEquals(expected, actual, "\n" + expected.toString() + "\n" + actual.toString())
     }
 
