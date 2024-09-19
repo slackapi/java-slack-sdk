@@ -3,7 +3,6 @@ package com.slack.api.model.kotlin_extension.block
 import com.slack.api.model.block.ContextBlock
 import com.slack.api.model.kotlin_extension.block.container.MultiContextBlockElementContainer
 import com.slack.api.model.kotlin_extension.block.dsl.ContextBlockElementDsl
-import com.slack.api.model.kotlin_extension.block.element.dsl.BlockElementDsl
 
 @BlockLayoutBuilder
 class ContextBlockBuilder private constructor(
@@ -27,7 +26,7 @@ class ContextBlockBuilder private constructor(
     /**
      * An array of image elements and text objects. Maximum number of items is 10.
      *
-     * @see BlockElementDsl for the set of supported interactive element objects
+     * @see ContextBlockElementDsl for the set of supported element objects
      * @see <a href="https://api.slack.com/reference/block-kit/blocks#context">Context block documentation</a>
      */
     fun elements(builder: ContextBlockElementDsl.() -> Unit) {

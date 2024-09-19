@@ -21,7 +21,7 @@ class RichTextInputElementBuilder : Builder<RichTextInputElement> {
      * view_submission payload to identify the value of the input element. Should be unique among all other action_ids
      * used elsewhere by your app. Maximum length for this field is 255 characters.*
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#input">Plain text input documentation</a>
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#rich_text_input">Rich text input documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -32,7 +32,7 @@ class RichTextInputElementBuilder : Builder<RichTextInputElement> {
      *
      * The placeholder text shown in the plain-text input. Maximum length for the text in this field is 150 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#input">Plain text input documentation</a>
+     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#rich_text_input">Rich text input documentation</a>
      */
     fun placeholder(text: String, emoji: Boolean? = null) {
         placeholder = PlainTextObject(text, emoji)

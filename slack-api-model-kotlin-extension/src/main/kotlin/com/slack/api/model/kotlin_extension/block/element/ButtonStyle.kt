@@ -6,7 +6,7 @@ enum class ButtonStyle {
      * only be used for one button within a set.
      */
     PRIMARY {
-        override val value: String? = "primary"
+        override val value = "primary"
     },
 
     /**
@@ -14,8 +14,8 @@ enum class ButtonStyle {
      * more sparingly than primary.
      */
     DANGER {
-        override val value: String? = "danger"
+        override val value = "danger"
     };
 
-    abstract val value: String?
+    abstract val value: String
 }
