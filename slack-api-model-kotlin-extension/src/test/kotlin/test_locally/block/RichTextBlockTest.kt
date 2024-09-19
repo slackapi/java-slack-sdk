@@ -263,7 +263,7 @@ class RichTextBlockTest {
 
             richText {
                 richTextSection {
-                    date(1720710212, "{date_num} at {time}", null, "timey")
+                    date(1720710212, "{date_num} at {time}", fallback = "timey")
                 }
             }
 

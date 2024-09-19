@@ -5,7 +5,7 @@ import com.slack.api.model.kotlin_extension.block.element.RichTextSectionElement
 import com.slack.api.model.kotlin_extension.block.element.dsl.RichTextListElementDsl
 
 /**
- * Supports a RichTextElementContainer that can hold one to many rich text elements
+ * Supports a RichTextSectionElementContainer that can hold one to many rich text section elements
  */
 class MultiRichTextSectionElementContainer : RichTextListElementDsl {
     val underlying = mutableListOf<RichTextElement>()

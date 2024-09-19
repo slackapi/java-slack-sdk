@@ -12,13 +12,13 @@ interface RichTextObjectDsl {
      * @param range The range of the broadcast.
      * @see <a href="https://api.slack.com/reference/block-kit/blocks#broadcast-element-type">Rich text object documentation</a>
      */
-    fun broadcast(range: BroadcastRange)
+    fun broadcast(range: BroadcastRange, style: LimitedTextStyle? = null)
 
     /**
      * @param value The hex value for the color.
      * @see <a href="https://api.slack.com/reference/block-kit/blocks#color-element-type">Rich text object documentation</a>
      */
-    fun color(value: String)
+    fun color(value: String, style: LimitedTextStyle? = null)
 
     /**
      * @param channelId The ID of the channel to be mentioned.
@@ -34,13 +34,13 @@ interface RichTextObjectDsl {
      * @param fallback Text to display in place of the date should parsing, formatting or displaying fail.
      * @see <a href="https://api.slack.com/reference/block-kit/blocks#date-element-type">Rich text object documentation</a>
      */
-    fun date(timestamp: Int, format: String, url: String? = null, fallback: String? = null)
+    fun date(timestamp: Int, format: String, style: TextStyle? = null, url: String? = null, fallback: String? = null)
 
     /**
      * @param name The name of the emoji; i.e. "wave" or "wave::skin-tone-2".
      * @see <a href="https://api.slack.com/reference/block-kit/blocks#emoji-element-type">Rich text object documentation</a>
      */
-    fun emoji(name: String)
+    fun emoji(name: String, skinTone: Int? = null, style: LimitedTextStyle? = null)
 
     /**
      * @param url The link's url.

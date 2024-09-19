@@ -10,15 +10,17 @@ import com.slack.api.model.kotlin_extension.block.element.BroadcastRange
 class MultiRichTextObjectContainer : RichTextObjectDsl {
     val underlying = mutableListOf<RichTextElement>()
 
-    override fun broadcast(range: BroadcastRange) {
+    override fun broadcast(range: BroadcastRange, style: LimitedTextStyle?) {
         underlying += RichTextSectionElement.Broadcast.builder()
             .range(range.value)
+            .style(style)
             .build()
     }
 
-    override fun color(value: String) {
+    override fun color(value: String, style: LimitedTextStyle?) {
         underlying += RichTextSectionElement.Color.builder()
             .value(value)
+            .style(style)
             .build()
     }
 
@@ -29,18 +31,21 @@ class MultiRichTextObjectContainer : RichTextObjectDsl {
             .build()
     }
 
-    override fun date(timestamp: Int, format: String, url: String?, fallback: String?) {
+    override fun date(timestamp: Int, format: String, style: TextStyle?, url: String?, fallback: String?) {
         underlying += RichTextSectionElement.Date.builder()
             .timestamp(timestamp)
             .format(format)
+            .style(style)
             .url(url)
             .fallback(fallback)
             .build()
     }
 
-    override fun emoji(name: String) {
+    override fun emoji(name: String, skinTone: Int?, style: LimitedTextStyle?) {
         underlying += RichTextSectionElement.Emoji.builder()
             .name(name)
+            .skinTone(skinTone)
+            .style(style)
             .build()
     }
 
