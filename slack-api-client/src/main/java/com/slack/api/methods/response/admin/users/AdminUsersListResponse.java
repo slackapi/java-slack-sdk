@@ -49,5 +49,6 @@ public class AdminUsersListResponse implements SlackApiTextResponse {
         private Integer dateCreated;
         private List<String> roles;
         private List<String> workspaces;
+        private Integer lastActiveTs;
     }
 }

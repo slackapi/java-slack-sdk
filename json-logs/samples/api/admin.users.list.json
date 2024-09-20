@@ -22,7 +22,8 @@
         "T00000000"
       ],
       "has_2fa": false,
-      "has_sso": false
+      "has_sso": false,
+      "last_active_ts": 12345
     }
   ],
   "response_metadata": {

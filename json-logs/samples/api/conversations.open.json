@@ -1281,7 +1281,8 @@
                       },
                       "unicode": ""
                     }
-                  ]
+                  ],
+                  "border": 123
                 },
                 {
                   "type": "rich_text_section",
@@ -1835,7 +1836,8 @@
                       },
                       "unicode": ""
                     }
-                  ]
+                  ],
+                  "border": 123
                 },
                 {
                   "type": "rich_text_section",
@@ -2386,7 +2388,8 @@
                       },
                       "unicode": ""
                     }
-                  ]
+                  ],
+                  "border": 123
                 },
                 {
                   "type": "rich_text_section",
@@ -2523,7 +2526,8 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "border": 123
             },
             {
               "type": "rich_text_section",
@@ -2936,7 +2940,8 @@
                       },
                       "unicode": ""
                     }
-                  ]
+                  ],
+                  "border": 123
                 },
                 {
                   "type": "rich_text_section",
@@ -4738,7 +4743,8 @@
                             },
                             "unicode": ""
                           }
-                        ]
+                        ],
+                        "border": 123
                       },
                       {
                         "type": "rich_text_section",
@@ -5292,7 +5298,8 @@
                             },
                             "unicode": ""
                           }
-                        ]
+                        ],
+                        "border": 123
                       },
                       {
                         "type": "rich_text_section",
@@ -5843,7 +5850,8 @@
                             },
                             "unicode": ""
                           }
-                        ]
+                        ],
+                        "border": 123
                       },
                       {
                         "type": "rich_text_section",
@@ -5980,7 +5988,8 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "border": 123
                   },
                   {
                     "type": "rich_text_section",
@@ -6393,7 +6402,8 @@
                             },
                             "unicode": ""
                           }
-                        ]
+                        ],
+                        "border": 123
                       },
                       {
                         "type": "rich_text_section",
@@ -9295,7 +9305,8 @@
                             },
                             "unicode": ""
                           }
-                        ]
+                        ],
+                        "border": 123
                       },
                       {
                         "type": "rich_text_section",
@@ -9849,7 +9860,8 @@
                             },
                             "unicode": ""
                           }
-                        ]
+                        ],
+                        "border": 123
                       },
                       {
                         "type": "rich_text_section",
@@ -10400,7 +10412,8 @@
                             },
                             "unicode": ""
                           }
-                        ]
+                        ],
+                        "border": 123
                       },
                       {
                         "type": "rich_text_section",
@@ -10537,7 +10550,8 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "border": 123
                   },
                   {
                     "type": "rich_text_section",
@@ -10950,7 +10964,8 @@
                             },
                             "unicode": ""
                           }
-                        ]
+                        ],
+                        "border": 123
                       },
                       {
                         "type": "rich_text_section",
@@ -13994,7 +14009,8 @@
                         },
                         "unicode": ""
                       }
-                    ]
+                    ],
+                    "border": 123
                   },
                   {
                     "type": "rich_text_section",
@@ -14548,7 +14564,8 @@
                         },
                         "unicode": ""
                       }
-                    ]
+                    ],
+                    "border": 123
                   },
                   {
                     "type": "rich_text_section",
@@ -15099,7 +15116,8 @@
                         },
                         "unicode": ""
                       }
-                    ]
+                    ],
+                    "border": 123
                   },
                   {
                     "type": "rich_text_section",
@@ -15236,7 +15254,8 @@
                       }
                     ]
                   }
-                ]
+                ],
+                "border": 123
               },
               {
                 "type": "rich_text_section",
@@ -15649,7 +15668,8 @@
                         },
                         "unicode": ""
                       }
-                    ]
+                    ],
+                    "border": 123
                   },
                   {
                     "type": "rich_text_section",
@@ -17451,7 +17471,8 @@
                               },
                               "unicode": ""
                             }
-                          ]
+                          ],
+                          "border": 123
                         },
                         {
                           "type": "rich_text_section",
@@ -18005,7 +18026,8 @@
                               },
                               "unicode": ""
                             }
-                          ]
+                          ],
+                          "border": 123
                         },
                         {
                           "type": "rich_text_section",
@@ -18556,7 +18578,8 @@
                               },
                               "unicode": ""
                             }
-                          ]
+                          ],
+                          "border": 123
                         },
                         {
                           "type": "rich_text_section",
@@ -18693,7 +18716,8 @@
                             }
                           ]
                         }
-                      ]
+                      ],
+                      "border": 123
                     },
                     {
                       "type": "rich_text_section",
@@ -19106,7 +19130,8 @@
                               },
                               "unicode": ""
                             }
-                          ]
+                          ],
+                          "border": 123
                         },
                         {
                           "type": "rich_text_section",
@@ -22008,7 +22033,8 @@
                               },
                               "unicode": ""
                             }
-                          ]
+                          ],
+                          "border": 123
                         },
                         {
                           "type": "rich_text_section",
@@ -22562,7 +22588,8 @@
                               },
                               "unicode": ""
                             }
-                          ]
+                          ],
+                          "border": 123
                         },
                         {
                           "type": "rich_text_section",
@@ -23113,7 +23140,8 @@
                               },
                               "unicode": ""
                             }
-                          ]
+                          ],
+                          "border": 123
                         },
                         {
                           "type": "rich_text_section",
@@ -23250,7 +23278,8 @@
                             }
                           ]
                         }
-                      ]
+                      ],
+                      "border": 123
                     },
                     {
                       "type": "rich_text_section",
@@ -23663,7 +23692,8 @@
                               },
                               "unicode": ""
                             }
-                          ]
+                          ],
+                          "border": 123
                         },
                         {
                           "type": "rich_text_section",
