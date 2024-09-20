@@ -83,6 +83,26 @@ class BlockElementBuilderValidationTest {
     }
 
     @Test
+    fun testRichTextListElementBuilder() {
+        validateMethodNames(RichTextListElement::class.java, RichTextListElementBuilder::class.java)
+    }
+
+    @Test
+    fun testRichTextPreformattedElementBuilder() {
+        validateMethodNames(RichTextPreformattedElement::class.java, RichTextPreformattedElementBuilder::class.java)
+    }
+
+    @Test
+    fun testRichTextQuoteElementBuilder() {
+        validateMethodNames(RichTextQuoteElement::class.java, RichTextQuoteElementBuilder::class.java)
+    }
+
+    @Test
+    fun testRichTextSectionElementBuilder() {
+        validateMethodNames(RichTextSectionElement::class.java, RichTextSectionElementBuilder::class.java)
+    }
+
+    @Test
     fun testStaticSelectElementBuilder() {
         validateMethodNames(StaticSelectElement::class.java, StaticSelectElementBuilder::class.java)
     }

@@ -56,6 +56,10 @@ class MultiLayoutBlockContainer : LayoutBlockDsl {
         underlying += InputBlockBuilder().apply(builder).build()
     }
 
+    override fun richText(builder: RichTextBlockBuilder.() -> Unit) {
+        underlying += RichTextBlockBuilder().apply(builder).build()
+    }
+
     override fun video(builder: VideoBlockBuilder.() -> Unit) {
         underlying += VideoBlockBuilder().apply(builder).build()
     }

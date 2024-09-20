@@ -19,5 +19,6 @@ public class RichTextQuoteElement extends BlockElement implements RichTextElemen
     private final String type = TYPE;
     @Builder.Default
     private List<RichTextElement> elements = new ArrayList<>();
+    private Integer border;
 
 }
