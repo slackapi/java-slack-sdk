@@ -404,6 +404,8 @@ public class Actions {
         public static final String message_flag_dismissed = "message_flag_dismissed";
         public static final String sales_home_notification_forwarded = "sales_home_notification_forwarded";
         public static final String record_shared = "record_shared";
+        public static final String message_flag_assignment = "message_flag_assignment";
+        public static final String message_flag_unassignment = "message_flag_unassignment";
     }
 
     public static class WorkflowBuilder {

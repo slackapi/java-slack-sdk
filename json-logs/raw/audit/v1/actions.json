@@ -380,7 +380,9 @@
       "message_activity_viewed",
       "message_flag_dismissed",
       "sales_home_notification_forwarded",
-      "record_shared"
+      "record_shared",
+      "message_flag_assignment",
+      "message_flag_unassignment"
     ],
     "barrier": [
       "barrier_created",

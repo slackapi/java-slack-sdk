@@ -3,6 +3,8 @@ package test_locally.api.methods_admin_api;
 import com.slack.api.Slack;
 import com.slack.api.SlackConfig;
 import com.slack.api.methods.AsyncMethodsClient;
+import com.slack.api.methods.MethodsConfig;
+import com.slack.api.methods.MethodsCustomRateLimitResolver;
 import com.slack.api.model.admin.AppConfig;
 import org.junit.After;
 import org.junit.Before;
@@ -11,6 +13,7 @@ import util.MockSlackApiServer;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,6 +29,19 @@ public class AdminApiAsyncTest {
     public void setup() throws Exception {
         server.start();
         config.setMethodsEndpointUrlPrefix(server.getMethodsEndpointPrefix());
+        MethodsConfig methodsConfig = new MethodsConfig();
+        methodsConfig.setCustomRateLimitResolver(new MethodsCustomRateLimitResolver() {
+            @Override
+            public Optional<Integer> getCustomAllowedRequestsPerMinute(String teamId, String methodName) {
+                return Optional.of(50);
+            }
+
+            @Override
+            public Optional<Integer> getCustomAllowedRequestsForChatPostMessagePerMinute(String teamId, String channel) {
+                return Optional.empty();
+            }
+        });
+        config.setMethodsConfig(methodsConfig);
     }
 
     @After
