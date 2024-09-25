@@ -227,11 +227,11 @@ public class conversations_Test {
             assertThat(membersResponse.getResponseMetadata(), is(notNullValue()));
 
             // Using async client to avoid an exception due to rate limited errors
-            UsersListResponse usersListResponse = slack.methodsAsync().usersList(r -> r
-                    .token(botToken)).get();
+            UsersListResponse usersListResponse = slack.methodsAsync().usersList(r -> r.token(botToken)).get();
             String invitee_ = null;
             for (User u : usersListResponse.getMembers()) {
                 if (!"USLACKBOT".equals(u.getId())
+                        && !u.isBot()
                         && !membersResponse.getMembers().contains(u.getId())
                         && !u.isRestricted()
                         && !u.isUltraRestricted()) {
