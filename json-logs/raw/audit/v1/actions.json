@@ -325,7 +325,8 @@
       "channel_tab_added",
       "channel_tab_removed",
       "external_shared_channel_host_transferred",
-      "channel_template_provisioned"
+      "channel_template_provisioned",
+      "record_channel_channel_type_conversion"
     ],
     "app": [
       "app_installed",
