@@ -19,6 +19,8 @@ public class AppFunction {
     private Long dateDeleted;
     private Long dateReleased;
     private Boolean formEnabled;
+    private String categoryId;
+    private String categoryLabel;
 
     @Data
     public static class InputParameter {
