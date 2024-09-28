@@ -273,6 +273,7 @@ import com.slack.api.methods.response.workflows.WorkflowsUpdateStepResponse;
 import com.slack.api.rate_limits.metrics.MetricsDatastore;
 import com.slack.api.util.http.SlackHttpClient;
 import com.slack.api.util.json.GsonFactory;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -295,6 +296,7 @@ public class MethodsClientImpl implements MethodsClient {
     // for org-level installed apps
     private final Optional<String> teamId;
     private final MetricsDatastore metricsDatastore;
+    @Getter
     private final TeamIdCache teamIdCache;
 
     public MethodsClientImpl(SlackHttpClient slackHttpClient) {

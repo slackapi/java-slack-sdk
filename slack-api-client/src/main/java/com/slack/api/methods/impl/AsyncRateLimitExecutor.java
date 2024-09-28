@@ -28,7 +28,7 @@ public class AsyncRateLimitExecutor {
     private AsyncRateLimitExecutor(MethodsClientImpl clientImpl, SlackConfig config) {
         this.config = config.getMethodsConfig();
         this.metricsDatastore = config.getMethodsConfig().getMetricsDatastore();
-        this.teamIdCache = new TeamIdCache(clientImpl);
+        this.teamIdCache = clientImpl.getTeamIdCache();
         this.messageIdGenerator = new MessageIdGeneratorUUIDImpl();
     }
 
