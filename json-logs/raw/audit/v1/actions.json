@@ -209,7 +209,9 @@
       "seamless_auth_team_token_revoked",
       "seamless_auth_user_token_created",
       "seamless_auth_user_token_revoked",
-      "migration_checklist_item_completed"
+      "migration_checklist_item_completed",
+      "seamless_auth_org_created",
+      "seamless_auth_org_updated"
     ],
     "user": [
       "custom_tos_accepted",
