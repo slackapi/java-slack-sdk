@@ -429,6 +429,7 @@ public class Methods {
 
     public static final String CONVERSATIONS_REQUEST_SHARED_INVITE_APPROVE = "conversations.requestSharedInvite.approve";
     public static final String CONVERSATIONS_REQUEST_SHARED_INVITE_DENY = "conversations.requestSharedInvite.deny";
+    public static final String CONVERSATIONS_REQUEST_SHARED_INVITE_LIST = "conversations.requestSharedInvite.list";
 
     // ------------------------------
     // dialog
