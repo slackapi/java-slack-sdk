@@ -1,0 +1,89 @@
+{
+    "ok": true,
+    "invite_requests": [
+        {
+            "id": "I07RERD64RE",
+            "date_created": 1728322966,
+            "expires_at": 1729532566,
+            "inviting_team": {
+                "id": "E1234",
+                "name": "Slack DevRel",
+                "icon": {
+                    "image_default": false,
+                    "image_34": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_34.png",
+                    "image_44": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_44.png",
+                    "image_68": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_68.png",
+                    "image_88": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_88.png",
+                    "image_102": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_102.png",
+                    "image_230": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_230.png",
+                    "image_132": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_132.png"
+                },
+                "avatar_base_url": "https://ca.slack-edge.com/",
+                "is_verified": false,
+                "domain": "devrel-slack",
+                "date_created": 1654616902,
+                "requires_sponsorship": false
+            },
+            "inviting_user": {
+                "id": "U1234",
+                "team_id": "1234",
+                "name": "fmaj_workspaceadmin",
+                "updated": 1728322901,
+                "who_can_share_contact_card": "EVERYONE",
+                "profile": {
+                    "real_name": "Fil Workspace Admin",
+                    "display_name": "",
+                    "real_name_normalized": "Fil Workspace Admin",
+                    "display_name_normalized": "",
+                    "team": "E1234",
+                    "avatar_hash": "g0636cadfc7c",
+                    "email": "fmaj@slack.com",
+                    "image_24": "https://secure.gravatar.com/avatar/0636cadfc7cf4d10b62851acd5aeab8d.jpg?s=24&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0000-24.png",
+                    "image_32": "https://secure.gravatar.com/avatar/0636cadfc7cf4d10b62851acd5aeab8d.jpg?s=32&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0000-32.png",
+                    "image_48": "https://secure.gravatar.com/avatar/0636cadfc7cf4d10b62851acd5aeab8d.jpg?s=48&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0000-48.png",
+                    "image_72": "https://secure.gravatar.com/avatar/0636cadfc7cf4d10b62851acd5aeab8d.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0000-72.png",
+                    "image_192": "https://secure.gravatar.com/avatar/0636cadfc7cf4d10b62851acd5aeab8d.jpg?s=192&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0000-192.png",
+                    "image_512": "https://secure.gravatar.com/avatar/0636cadfc7cf4d10b62851acd5aeab8d.jpg?s=512&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0000-512.png"
+                }
+            },
+            "channel": {
+                "id": "C067Z8QNG8L",
+                "is_im": false,
+                "is_private": false,
+                "date_created": 1701291142,
+                "name": "fil-create-chan-test-org-wide",
+                "connections": [
+                    {
+                        "team": {
+                            "id": "E1234",
+                            "name": "Slack DevRel",
+                            "icon": {
+                                "image_default": false,
+                                "image_34": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_34.png",
+                                "image_44": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_44.png",
+                                "image_68": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_68.png",
+                                "image_88": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_88.png",
+                                "image_102": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_102.png",
+                                "image_230": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_230.png",
+                                "image_132": "https://avatars.slack-edge.com/2023-11-30/6276741611460_3d1fdeba40cf1fde29c7_132.png"
+                            },
+                            "avatar_base_url": "https://ca.slack-edge.com/",
+                            "is_verified": false,
+                            "domain": "devrel-slack",
+                            "date_created": 1654616902,
+                            "requires_sponsorship": false
+                        },
+                        "is_private": false
+                    }
+                ],
+                "pending_connections": [],
+                "previous_connections": []
+            },
+            "is_external_limited": false,
+            "date_last_updated": 1728322966,
+            "target_user": {
+                "recipient_email": "test@email.com"
+            }
+        }
+    ]
+}
