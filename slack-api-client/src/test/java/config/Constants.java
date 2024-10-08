@@ -46,7 +46,64 @@ public class Constants {
     public static final String SLACK_SDK_TEST_INCOMING_WEBHOOK_CHANNEL_NAME = "SLACK_SDK_TEST_INCOMING_WEBHOOK_CHANNEL_NAME";
 
     // Slack Connect API tests
+    // both sender and receiver apps need to be installed into a workspace under Enterprise Grid org
+    // {
+    //    "display_information": {
+    //        "name": "slack-connect-sender-app"
+    //    },
+    //    "features": {
+    //        "bot_user": {
+    //            "display_name": "slack-connect-test-app",
+    //            "always_online": false
+    //        }
+    //    },
+    //    "oauth_config": {
+    //        "scopes": {
+    //            "bot": [
+    //                "conversations.connect:manage",
+    //                "conversations.connect:read",
+    //                "conversations.connect:write",
+    //                "channels:manage",
+    //                "groups:write",
+    //                "im:write",
+    //                "chat:write",
+    //                "mpim:write"
+    //            ]
+    //        }
+    //    },
+    //    "settings": {
+    //        "org_deploy_enabled": false,
+    //        "socket_mode_enabled": false,
+    //        "token_rotation_enabled": false
+    //    }
+    //}
     public static final String SLACK_SDK_TEST_CONNECT_INVITE_SENDER_BOT_TOKEN = "SLACK_SDK_TEST_CONNECT_INVITE_SENDER_BOT_TOKEN";
+    // {
+    //    "display_information": {
+    //        "name": "slack-connect-org-receiver-app"
+    //    },
+    //    "features": {
+    //        "bot_user": {
+    //            "display_name": "slack-connect-org-receiver-app",
+    //            "always_online": false
+    //        }
+    //    },
+    //    "oauth_config": {
+    //        "scopes": {
+    //            "bot": [
+    //                "conversations.connect:manage",
+    //                "conversations.connect:read",
+    //                "conversations.connect:write"
+    //            ]
+    //        }
+    //    },
+    //    "settings": {
+    //        "event_subscriptions": {},
+    //        "org_deploy_enabled": false,
+    //        "socket_mode_enabled": false,
+    //        "token_rotation_enabled": false
+    //    }
+    //}
     public static final String SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_TOKEN = "SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_TOKEN";
     public static final String SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_USER_ID = "SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_USER_ID";
 

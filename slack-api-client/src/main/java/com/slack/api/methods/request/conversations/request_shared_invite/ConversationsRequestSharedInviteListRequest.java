@@ -25,17 +25,17 @@ public class ConversationsRequestSharedInviteListRequest implements SlackApiRequ
     /**
      * When true approved invitation requests will be returned, otherwise they will be excluded
      */
-    private boolean includeApproved;
+    private Boolean includeApproved;
 
     /**
      * When true denied invitation requests will be returned, otherwise they will be excluded
      */
-    private boolean includeDenied;
+    private Boolean includeDenied;
 
     /**
      * When true expired invitation requests will be returned, otherwise they will be excluded
      */
-    private boolean includeExpired;
+    private Boolean includeExpired;
 
     /**
      * An optional list of invitation ids to look up.

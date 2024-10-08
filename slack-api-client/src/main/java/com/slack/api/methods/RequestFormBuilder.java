@@ -1916,7 +1916,9 @@ public class RequestFormBuilder {
         setIfNotNull("include_approved", req.getIncludeApproved(), form);
         setIfNotNull("include_denied", req.getIncludeDenied(), form);
         setIfNotNull("include_expired", req.getIncludeExpired(), form);
-        setIfNotNull("invite_ids", req.getInviteIds(), form);
+        if (req.getInviteIds() != null) {
+            setIfNotNull("invite_ids", String.join(",", req.getInviteIds()), form);
+        }
         setIfNotNull("limit", req.getLimit(), form);
         setIfNotNull("user_id", req.getUserId(), form);
         return form;
