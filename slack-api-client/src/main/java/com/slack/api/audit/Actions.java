@@ -223,6 +223,9 @@ public class Actions {
         public static final String seamless_auth_org_created = "seamless_auth_org_created";
         public static final String seamless_auth_org_updated = "seamless_auth_org_updated";
         public static final String migration_checklist_item_completed = "migration_checklist_item_completed";
+        public static final String salesforce_access_granted = "salesforce_access_granted";
+        public static final String salesforce_access_removed = "salesforce_access_removed";
+        public static final String salesforce_permissions_synced = "salesforce_permissions_synced";
     }
 
     public static class User {

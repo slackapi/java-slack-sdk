@@ -211,7 +211,10 @@
       "seamless_auth_user_token_revoked",
       "migration_checklist_item_completed",
       "seamless_auth_org_created",
-      "seamless_auth_org_updated"
+      "seamless_auth_org_updated",
+      "salesforce_access_granted",
+      "salesforce_access_removed",
+      "salesforce_permissions_synced"
     ],
     "user": [
       "custom_tos_accepted",
