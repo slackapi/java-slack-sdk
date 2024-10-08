@@ -79,6 +79,7 @@ import com.slack.api.methods.request.conversations.*;
 import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
 import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteApproveRequest;
 import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteDenyRequest;
+import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteListRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -1906,6 +1907,20 @@ public class RequestFormBuilder {
         FormBody.Builder form = new FormBody.Builder();
         setIfNotNull("invite_id", req.getInviteId(), form);
         setIfNotNull("message", req.getMessage(), form);
+        return form;
+    }
+
+    public static FormBody.Builder toForm(ConversationsRequestSharedInviteListRequest req) {
+        FormBody.Builder form = new FormBody.Builder();
+        setIfNotNull("cursor", req.getCursor(), form);
+        setIfNotNull("include_approved", req.getIncludeApproved(), form);
+        setIfNotNull("include_denied", req.getIncludeDenied(), form);
+        setIfNotNull("include_expired", req.getIncludeExpired(), form);
+        if (req.getInviteIds() != null) {
+            setIfNotNull("invite_ids", String.join(",", req.getInviteIds()), form);
+        }
+        setIfNotNull("limit", req.getLimit(), form);
+        setIfNotNull("user_id", req.getUserId(), form);
         return form;
     }
 

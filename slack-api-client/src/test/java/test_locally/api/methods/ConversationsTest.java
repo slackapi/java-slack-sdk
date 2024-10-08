@@ -100,6 +100,8 @@ public class ConversationsTest {
                 .isOk(), is(true));
         assertThat(slack.methods(ValidToken).conversationsRequestSharedInviteDeny(r -> r)
                 .isOk(), is(true));
+        assertThat(slack.methods(ValidToken).conversationsRequestSharedInviteList(r -> r)
+                .isOk(), is(true));
     }
 
     @Test
@@ -160,6 +162,8 @@ public class ConversationsTest {
         assertThat(slack.methodsAsync(ValidToken).conversationsRequestSharedInviteApprove(r -> r)
                 .get().isOk(), is(true));
         assertThat(slack.methodsAsync(ValidToken).conversationsRequestSharedInviteDeny(r -> r)
+                .get().isOk(), is(true));
+        assertThat(slack.methodsAsync(ValidToken).conversationsRequestSharedInviteList(r -> r)
                 .get().isOk(), is(true));
     }
 
