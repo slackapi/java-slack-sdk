@@ -2,6 +2,7 @@ package com.slack.api.bolt.util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.slack.api.app_backend.events.payload.Authorization;
 import com.slack.api.app_backend.events.payload.EventsApiPayload;
 import com.slack.api.bolt.request.builtin.EventRequest;
@@ -68,6 +69,26 @@ public class EventsApiPayloadParser {
             }
         }
         return null;
+    }
+
+    public static boolean isMessageEventInAssistantThread(JsonObject event) {
+        if (event.get("channel_type") != null && event.get("channel_type").getAsString().equals("im")) {
+            if (event.get("thread_ts") != null) return true;
+            if (event.get("message") != null) {
+                // message_changed
+                return isAssistantThreadMessageSubEvent(event, "message");
+            } else if (event.get("previous_message") != null) {
+                // message_deleted
+                return isAssistantThreadMessageSubEvent(event, "previous_message");
+            }
+        }
+        return false;
+    }
+
+    public static boolean isAssistantThreadMessageSubEvent(JsonObject event, String message) {
+        JsonElement subtype = event.get(message).getAsJsonObject().get("subtype");
+        return (subtype != null && subtype.getAsString().equals("assistant_app_thread"))
+                || event.get(message).getAsJsonObject().get("thread_ts") != null;
     }
 
     @Data

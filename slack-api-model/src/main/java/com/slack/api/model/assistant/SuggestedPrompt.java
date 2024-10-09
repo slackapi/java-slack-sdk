@@ -18,4 +18,8 @@ public class SuggestedPrompt {
         setTitle(message);
         setMessage(message);
     }
+
+    public static SuggestedPrompt create(String message) {
+        return new SuggestedPrompt(message);
+    }
 }

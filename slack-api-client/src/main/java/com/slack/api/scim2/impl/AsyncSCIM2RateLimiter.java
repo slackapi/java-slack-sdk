@@ -143,7 +143,12 @@ public class AsyncSCIM2RateLimiter implements RateLimiter {
 
     @Override
     public WaitTime acquireWaitTimeForChatPostMessage(String teamId, String channel) {
-        return waitTimeCalculator.calculateWaitTimeForChatPostMessage(teamId, channel);
+        throw new IllegalStateException("This rate limiter does not handle the pattern");
+    }
+
+    @Override
+    public WaitTime acquireWaitTimeForAssistantThreadsSetStatus(String teamId, String channel) {
+        throw new IllegalStateException("This rate limiter does not handle the pattern");
     }
 
 }

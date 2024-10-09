@@ -42,6 +42,11 @@ public enum MethodsRateLimitTier {
     SpecialTier_auth_test,
 
     /**
+     * assistant.threads.setStatus has the similar tier with chat.postMessage API.
+     */
+    SpecialTier_assistant_threads_setStatus,
+
+    /**
      * chat.postMessage has special rate limiting conditions.
      * It will generally allow an app to post 1 message per second to a specific channel.
      * There are limits governing your app's relationship with the entire workspace above that,
@@ -66,6 +71,7 @@ public enum MethodsRateLimitTier {
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_auth_test, 600);
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_chat_getPermalink, 600);
         allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_chat_postMessage, 60); // per channel
+        allowedRequestsPerMinute.put(MethodsRateLimitTier.SpecialTier_assistant_threads_setStatus, 60); // per DM
     }
 
     public static Integer getAllowedRequestsPerMinute(MethodsRateLimitTier tier) {

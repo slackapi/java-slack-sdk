@@ -112,6 +112,9 @@ public class AsyncRateLimitExecutor {
         if (methodName.equals(Methods.CHAT_POST_MESSAGE)) {
             methodNameWithSuffix = Methods.CHAT_POST_MESSAGE + "_" + params.get("channel");
         }
+        if (methodName.equals(Methods.ASSISTANT_THREADS_SET_STATUS)) {
+            methodNameWithSuffix = Methods.ASSISTANT_THREADS_SET_STATUS + "_" + params.get("channel_id");
+        }
         return methodNameWithSuffix;
     }
 

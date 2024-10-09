@@ -1363,7 +1363,10 @@ public class AsyncMethodsClientImpl implements AsyncMethodsClient {
 
     @Override
     public CompletableFuture<AssistantThreadsSetStatusResponse> assistantThreadsSetStatus(AssistantThreadsSetStatusRequest req) {
-        return executor.execute(ASSISTANT_THREADS_SET_STATUS, toMap(req), () -> methods.assistantThreadsSetStatus(req));
+        Map<String, String> params = new HashMap<>();
+        params.put("token", token(req));
+        params.put("channel_id", req.getChannelId()); // for rate limiting
+        return executor.execute(ASSISTANT_THREADS_SET_STATUS, params, () -> methods.assistantThreadsSetStatus(req));
     }
 
     @Override

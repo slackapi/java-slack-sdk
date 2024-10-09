@@ -404,4 +404,7 @@ public class AppConfig {
     @Builder.Default
     private boolean ignoringSelfEventsEnabled = true;
 
+    @Builder.Default
+    private boolean ignoringSelfAssistantMessageEventsEnabled = true;
+
 }

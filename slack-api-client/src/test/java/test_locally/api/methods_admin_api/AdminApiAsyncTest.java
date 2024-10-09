@@ -40,6 +40,11 @@ public class AdminApiAsyncTest {
             public Optional<Integer> getCustomAllowedRequestsForChatPostMessagePerMinute(String teamId, String channel) {
                 return Optional.empty();
             }
+
+            @Override
+            public Optional<Integer> getCustomAllowedRequestsForAssistantThreadsSetStatusPerMinute(String teamId, String channel) {
+                return Optional.empty();
+            }
         });
         config.setMethodsConfig(methodsConfig);
     }

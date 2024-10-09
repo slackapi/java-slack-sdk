@@ -60,6 +60,14 @@ public abstract class WaitTimeCalculator {
         );
     }
 
+    public WaitTime calculateWaitTimeForAssistantThreadsSetStatus(String teamId, String channel, int allowedRequests) {
+        return calculateWaitTime(
+                teamId,
+                Methods.ASSISTANT_THREADS_SET_STATUS + "_" + channel,
+                allowedRequests
+        );
+    }
+
     private boolean isBurst(LastMinuteRequests lastMinuteRequests, int allowedRequests) {
         if (lastMinuteRequests.size() > (allowedRequests / 10)) {
             long threeSecondsAgo = System.currentTimeMillis() - 3000L;
