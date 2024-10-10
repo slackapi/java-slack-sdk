@@ -31,6 +31,7 @@ const sidebars = {
       items: [
         'guides/bolt-basics',
         'guides/socket-mode',
+        'guides/assistants',
         'guides/shortcuts',
         'guides/interactive-components',
         'guides/modals',
