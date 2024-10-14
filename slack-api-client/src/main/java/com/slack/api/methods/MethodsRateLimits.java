@@ -356,6 +356,7 @@ public class MethodsRateLimits {
 
         setRateLimitTier(CONVERSATIONS_REQUEST_SHARED_INVITE_APPROVE, Tier2);
         setRateLimitTier(CONVERSATIONS_REQUEST_SHARED_INVITE_DENY, Tier2);
+        setRateLimitTier(CONVERSATIONS_REQUEST_SHARED_INVITE_LIST, Tier2);
 
         setRateLimitTier(DIALOG_OPEN, Tier4);
 

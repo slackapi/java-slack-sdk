@@ -1,0 +1,138 @@
+{
+  "ok": false,
+  "invite_requests": [
+    {
+      "id": "I00000000",
+      "date_created": 12345,
+      "expires_at": 12345,
+      "inviting_team": {
+        "id": "",
+        "name": "",
+        "icon": {
+          "image_default": false,
+          "image_34": "https://www.example.com/",
+          "image_44": "https://www.example.com/",
+          "image_68": "https://www.example.com/",
+          "image_88": "https://www.example.com/",
+          "image_102": "https://www.example.com/",
+          "image_230": "https://www.example.com/",
+          "image_132": "https://www.example.com/"
+        },
+        "avatar_base_url": "https://www.example.com/",
+        "is_verified": false,
+        "domain": "",
+        "date_created": 12345,
+        "requires_sponsorship": false
+      },
+      "inviting_user": {
+        "id": "",
+        "team_id": "12345",
+        "name": "",
+        "updated": 12345,
+        "who_can_share_contact_card": "",
+        "profile": {
+          "real_name": "",
+          "display_name": "",
+          "real_name_normalized": "",
+          "display_name_normalized": "",
+          "team": "",
+          "avatar_hash": "",
+          "email": "",
+          "image_24": "https://www.example.com/",
+          "image_32": "https://www.example.com/",
+          "image_48": "https://www.example.com/",
+          "image_72": "https://www.example.com/",
+          "image_192": "https://www.example.com/",
+          "image_512": "https://www.example.com/"
+        }
+      },
+      "channel": {
+        "id": "C00000000",
+        "is_im": false,
+        "is_private": false,
+        "date_created": 12345,
+        "name": "",
+        "connections": [
+          {
+            "team": {
+              "id": "",
+              "name": "",
+              "icon": {
+                "image_default": false,
+                "image_34": "https://www.example.com/",
+                "image_44": "https://www.example.com/",
+                "image_68": "https://www.example.com/",
+                "image_88": "https://www.example.com/",
+                "image_102": "https://www.example.com/",
+                "image_230": "https://www.example.com/",
+                "image_132": "https://www.example.com/"
+              },
+              "avatar_base_url": "https://www.example.com/",
+              "is_verified": false,
+              "domain": "",
+              "date_created": 12345,
+              "requires_sponsorship": false
+            },
+            "is_private": false
+          }
+        ],
+        "pending_connections": [
+          {
+            "team": {
+              "id": "",
+              "name": "",
+              "icon": {
+                "image_default": false,
+                "image_34": "https://www.example.com/",
+                "image_44": "https://www.example.com/",
+                "image_68": "https://www.example.com/",
+                "image_88": "https://www.example.com/",
+                "image_102": "https://www.example.com/",
+                "image_230": "https://www.example.com/",
+                "image_132": "https://www.example.com/"
+              },
+              "avatar_base_url": "https://www.example.com/",
+              "is_verified": false,
+              "domain": "",
+              "date_created": 12345,
+              "requires_sponsorship": false
+            },
+            "is_private": false
+          }
+        ],
+        "previous_connections": [
+          {
+            "team": {
+              "id": "",
+              "name": "",
+              "icon": {
+                "image_default": false,
+                "image_34": "https://www.example.com/",
+                "image_44": "https://www.example.com/",
+                "image_68": "https://www.example.com/",
+                "image_88": "https://www.example.com/",
+                "image_102": "https://www.example.com/",
+                "image_230": "https://www.example.com/",
+                "image_132": "https://www.example.com/"
+              },
+              "avatar_base_url": "https://www.example.com/",
+              "is_verified": false,
+              "domain": "",
+              "date_created": 12345,
+              "requires_sponsorship": false
+            },
+            "is_private": false
+          }
+        ]
+      },
+      "is_external_limited": false,
+      "date_last_updated": 12345,
+      "target_user": {
+        "recipient_email": ""
+      }
+    }
+  ],
+  "error": "",
+  "needed": "",
+  "provided": ""
+}

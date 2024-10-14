@@ -81,6 +81,7 @@ import com.slack.api.methods.request.conversations.*;
 import com.slack.api.methods.request.conversations.canvases.ConversationsCanvasesCreateRequest;
 import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteApproveRequest;
 import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteDenyRequest;
+import com.slack.api.methods.request.conversations.request_shared_invite.ConversationsRequestSharedInviteListRequest;
 import com.slack.api.methods.request.dialog.DialogOpenRequest;
 import com.slack.api.methods.request.dnd.*;
 import com.slack.api.methods.request.emoji.EmojiListRequest;
@@ -214,6 +215,7 @@ import com.slack.api.methods.response.conversations.*;
 import com.slack.api.methods.response.conversations.canvases.ConversationsCanvasesCreateResponse;
 import com.slack.api.methods.response.conversations.request_shared_invite.ConversationsRequestSharedInviteApproveResponse;
 import com.slack.api.methods.response.conversations.request_shared_invite.ConversationsRequestSharedInviteDenyResponse;
+import com.slack.api.methods.response.conversations.request_shared_invite.ConversationsRequestSharedInviteListResponse;
 import com.slack.api.methods.response.dialog.DialogOpenResponse;
 import com.slack.api.methods.response.dnd.*;
 import com.slack.api.methods.response.emoji.EmojiListResponse;
@@ -2223,6 +2225,16 @@ public class MethodsClientImpl implements MethodsClient {
     @Override
     public ConversationsRequestSharedInviteDenyResponse conversationsRequestSharedInviteDeny(RequestConfigurator<ConversationsRequestSharedInviteDenyRequest.ConversationsRequestSharedInviteDenyRequestBuilder> req) throws IOException, SlackApiException {
         return conversationsRequestSharedInviteDeny(req.configure(ConversationsRequestSharedInviteDenyRequest.builder()).build());
+    }
+
+    @Override
+    public ConversationsRequestSharedInviteListResponse conversationsRequestSharedInviteList(ConversationsRequestSharedInviteListRequest req) throws IOException, SlackApiException {
+        return postFormWithTokenAndParseResponse(toForm(req), Methods.CONVERSATIONS_REQUEST_SHARED_INVITE_LIST, getToken(req), ConversationsRequestSharedInviteListResponse.class);
+    }
+
+    @Override
+    public ConversationsRequestSharedInviteListResponse conversationsRequestSharedInviteList(RequestConfigurator<ConversationsRequestSharedInviteListRequest.ConversationsRequestSharedInviteListRequestBuilder> req) throws IOException, SlackApiException {
+        return conversationsRequestSharedInviteList(req.configure(ConversationsRequestSharedInviteListRequest.builder()).build());
     }
 
     @Override

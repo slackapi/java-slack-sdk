@@ -39,7 +39,9 @@
       "date_updated": 12345,
       "date_deleted": 12345,
       "form_enabled": false,
-      "date_released": 12345
+      "date_released": 12345,
+      "category_id": "A00000000",
+      "category_label": ""
     }
   ]
 }

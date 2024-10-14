@@ -209,7 +209,12 @@
       "seamless_auth_team_token_revoked",
       "seamless_auth_user_token_created",
       "seamless_auth_user_token_revoked",
-      "migration_checklist_item_completed"
+      "migration_checklist_item_completed",
+      "seamless_auth_org_created",
+      "seamless_auth_org_updated",
+      "salesforce_access_granted",
+      "salesforce_access_removed",
+      "salesforce_permissions_synced"
     ],
     "user": [
       "custom_tos_accepted",
@@ -325,7 +330,8 @@
       "channel_tab_added",
       "channel_tab_removed",
       "external_shared_channel_host_transferred",
-      "channel_template_provisioned"
+      "channel_template_provisioned",
+      "record_channel_channel_type_conversion"
     ],
     "app": [
       "app_installed",

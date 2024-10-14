@@ -3,6 +3,7 @@ package test_with_remote_apis.methods;
 import com.slack.api.Slack;
 import com.slack.api.methods.MethodsClient;
 import com.slack.api.methods.response.conversations.*;
+import com.slack.api.methods.response.conversations.request_shared_invite.ConversationsRequestSharedInviteListResponse;
 import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,7 @@ public class conversations_connect_Test {
     public void approval() throws Exception {
         MethodsClient sender = slack.methods(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_SENDER_BOT_TOKEN));
         MethodsClient receiver = slack.methods(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_TOKEN));
+        String receiverBotUserId = System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_USER_ID);
 
         String channelName = "slack-connect-test-" + System.currentTimeMillis();
 
@@ -48,7 +50,7 @@ public class conversations_connect_Test {
             ConversationsInviteSharedResponse invitation = sender.conversationsInviteShared(r -> r
                     .channel(channelId)
                     .externalLimited(false)
-                    .userIds(Arrays.asList(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_USER_ID)))
+                    .userIds(Arrays.asList(receiverBotUserId))
             );
             assertThat(invitation.getError(), is(nullValue()));
 
@@ -92,6 +94,21 @@ public class conversations_connect_Test {
             );
             assertThat(upgrade.getError(), is(nullValue()));
 
+            ConversationsRequestSharedInviteListResponse receivedRequests = sender.conversationsRequestSharedInviteList(r -> r
+                    .includeApproved(true)
+                    .includeDenied(true)
+                    .includeExpired(true)
+                    .limit(1000)
+            );
+            assertThat(receivedRequests.getError(), is(nullValue()));
+            receivedRequests = receiver.conversationsRequestSharedInviteList(r -> r
+                    .includeApproved(true)
+                    .includeDenied(true)
+                    .includeExpired(true)
+                    .limit(1000)
+            );
+            assertThat(receivedRequests.getError(), is(nullValue()));
+
         } finally {
             ConversationsArchiveResponse archive = sender.conversationsArchive(r -> r.channel(channelId));
             assertThat(archive.getError(), is(nullValue()));
@@ -102,6 +119,7 @@ public class conversations_connect_Test {
     public void decline() throws Exception {
         MethodsClient sender = slack.methods(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_SENDER_BOT_TOKEN));
         MethodsClient receiver = slack.methods(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_TOKEN));
+        String receiverBotUserId = System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_USER_ID);
 
         String channelName = "slack-connect-test-" + System.currentTimeMillis();
 
@@ -113,7 +131,7 @@ public class conversations_connect_Test {
             ConversationsInviteSharedResponse invitation = sender.conversationsInviteShared(r -> r
                     .channel(channelId)
                     .externalLimited(false)
-                    .userIds(Arrays.asList(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_RECEIVER_BOT_USER_ID)))
+                    .userIds(Arrays.asList(receiverBotUserId))
             );
             assertThat(invitation.getError(), is(nullValue()));
 
@@ -127,6 +145,21 @@ public class conversations_connect_Test {
                     .inviteId(invitation.getInviteId())
             );
             assertThat(decline.getError(), is(nullValue()));
+
+            ConversationsRequestSharedInviteListResponse receivedRequests = sender.conversationsRequestSharedInviteList(r -> r
+                    .includeApproved(true)
+                    .includeDenied(true)
+                    .includeExpired(true)
+                    .limit(1000)
+            );
+            assertThat(receivedRequests.getError(), is(nullValue()));
+            receivedRequests = receiver.conversationsRequestSharedInviteList(r -> r
+                    .includeApproved(true)
+                    .includeDenied(true)
+                    .includeExpired(true)
+                    .limit(1000)
+            );
+            assertThat(receivedRequests.getError(), is(nullValue()));
 
         } finally {
             ConversationsArchiveResponse archive = sender.conversationsArchive(r -> r.channel(channelId));

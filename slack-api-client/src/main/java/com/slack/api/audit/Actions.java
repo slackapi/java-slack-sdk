@@ -220,7 +220,12 @@ public class Actions {
         public static final String seamless_auth_team_token_revoked = "seamless_auth_team_token_revoked";
         public static final String seamless_auth_user_token_created = "seamless_auth_user_token_created";
         public static final String seamless_auth_user_token_revoked = "seamless_auth_user_token_revoked";
+        public static final String seamless_auth_org_created = "seamless_auth_org_created";
+        public static final String seamless_auth_org_updated = "seamless_auth_org_updated";
         public static final String migration_checklist_item_completed = "migration_checklist_item_completed";
+        public static final String salesforce_access_granted = "salesforce_access_granted";
+        public static final String salesforce_access_removed = "salesforce_access_removed";
+        public static final String salesforce_permissions_synced = "salesforce_permissions_synced";
     }
 
     public static class User {
@@ -349,6 +354,7 @@ public class Actions {
         public static final String channel_tab_removed = "channel_tab_removed";
         public static final String external_shared_channel_host_transferred = "external_shared_channel_host_transferred";
         public static final String channel_template_provisioned = "channel_template_provisioned";
+        public static final String record_channel_channel_type_conversion = "record_channel_channel_type_conversion";
     }
 
     public static class App {
