@@ -1,12 +1,12 @@
 package com.slack.api.app_backend.events.payload;
 
-import com.slack.api.model.event.SharedChannelInviteReceivedEvent;
+import com.slack.api.model.event.MessageChannelConvertToPublicEvent;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class SharedChannelInviteReceivedPayload implements EventsApiPayload<SharedChannelInviteReceivedEvent> {
+public class MessageChannelConvertToPublicPayload implements EventsApiPayload<MessageChannelConvertToPublicEvent> {
 
     private String token;
     private String enterpriseId;
@@ -21,5 +21,5 @@ public class SharedChannelInviteReceivedPayload implements EventsApiPayload<Shar
     private Integer eventTime;
     private String eventContext;
 
-    private SharedChannelInviteReceivedEvent event;
+    private MessageChannelConvertToPublicEvent event;
 }
