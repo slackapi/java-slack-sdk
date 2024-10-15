@@ -1,7 +1,6 @@
 package test_locally.api.model.event;
 
 import com.slack.api.model.event.MessageChangedEvent;
-import com.slack.api.model.event.MessageDeletedEvent;
 import org.junit.Test;
 import test_locally.unit.GsonFactory;
 
@@ -59,7 +58,78 @@ public class MessageChangedEventTest {
         assertThat(event.getType(), is("message"));
         assertThat(event.getSubtype(), is("message_changed"));
         assertThat(event.getMessage().getThreadTs(), is("1626342092.008500"));
+        assertThat(event.getPreviousMessage().getMessage().getText(), is("test"));
         assertThat(event.getPreviousMessage().getMessage().getThreadTs(), is("1626342092.008500"));
+    }
+
+    @Test
+    public void deserialize_issue_1384() {
+        // https://github.com/slackapi/java-slack-sdk/issues/1384
+        String json = "{\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"subtype\": \"message_changed\",\n" +
+                "  \"message\": {\n" +
+                "    \"subtype\": \"tombstone\",\n" +
+                "    \"text\": \"This message was deleted.\",\n" +
+                "    \"user\": \"USLACKBOT\",\n" +
+                "    \"hidden\": true,\n" +
+                "    \"type\": \"message\",\n" +
+                "    \"thread_ts\": \"1728639839.746989\",\n" +
+                "    \"reply_count\": 1,\n" +
+                "    \"reply_users_count\": 1,\n" +
+                "    \"latest_reply\": \"1728639845.335099\",\n" +
+                "    \"reply_users\": [\n" +
+                "      \"U06SSK\"\n" +
+                "    ],\n" +
+                "    \"is_locked\": false,\n" +
+                "    \"ts\": \"1728639839.746989\"\n" +
+                "  },\n" +
+                "  \"previous_message\": {\n" +
+                "    \"user\": \"U06TFGNC\",\n" +
+                "    \"type\": \"message\",\n" +
+                "    \"ts\": \"1728639839.746989\",\n" +
+                "    \"client_msg_id\": \"22b850d7_f2f3bd548f9e\",\n" +
+                "    \"text\": \"need help with VPN\",\n" +
+                "    \"team\": \"T06SCC\",\n" +
+                "    \"thread_ts\": \"1728639839.746989\",\n" +
+                "    \"reply_count\": 1,\n" +
+                "    \"reply_users_count\": 1,\n" +
+                "    \"latest_reply\": \"1728639845.335099\",\n" +
+                "    \"reply_users\": [\n" +
+                "      \"U0UK\"\n" +
+                "    ],\n" +
+                "    \"is_locked\": false,\n" +
+                "    \"subscribed\": true,\n" +
+                "    \"last_read\": \"1728639845.335099\",\n" +
+                "    \"blocks\": [\n" +
+                "      {\n" +
+                "        \"type\": \"rich_text\",\n" +
+                "        \"block_id\": \"x18EO\",\n" +
+                "        \"elements\": [\n" +
+                "          {\n" +
+                "            \"type\": \"rich_text_section\",\n" +
+                "            \"elements\": [\n" +
+                "              {\n" +
+                "                \"type\": \"text\",\n" +
+                "                \"text\": \"need help with VPN\"\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"channel\": \"D0697V\",\n" +
+                "  \"hidden\": true,\n" +
+                "  \"ts\": \"1728639909.003400\",\n" +
+                "  \"event_ts\": \"1728639909.003400\",\n" +
+                "  \"channel_type\": \"im\"\n" +
+                "}\n";
+        MessageChangedEvent event = GsonFactory.createSnakeCase().fromJson(json, MessageChangedEvent.class);
+        assertThat(event.getType(), is("message"));
+        assertThat(event.getSubtype(), is("message_changed"));
+        assertThat(event.getMessage().getUser(), is("USLACKBOT"));
+        assertThat(event.getPreviousMessage().getMessage().getUser(), is("U06TFGNC"));
     }
 
     @Test
