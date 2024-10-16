@@ -516,7 +516,10 @@
     "template": [
       "template_created",
       "template_deleted",
-      "template_provisioned"
+      "template_provisioned",
+      "template_collaborator_added",
+      "template_collaborator_removed",
+      "template_updated"
     ]
   }
 }

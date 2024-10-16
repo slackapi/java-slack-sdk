@@ -609,5 +609,8 @@ public class Actions {
         public static final String template_created = "template_created";
         public static final String template_deleted = "template_deleted";
         public static final String template_provisioned = "template_provisioned";
+        public static final String template_collaborator_added = "template_collaborator_added";
+        public static final String template_collaborator_removed = "template_collaborator_removed";
+        public static final String template_updated = "template_updated";
     }
 }
