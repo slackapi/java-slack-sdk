@@ -8,8 +8,7 @@ lang: en
 
 ## Slack App Configuration
 
-この機能を実装するためには、まず[アプリの設定画面](https://api.slack.com/apps)で **Agents & Assistants** 機能を有効にし.
-**OAuth & Permissions** のページで [assistant:write](https://api.slack.com/scopes/assistant:write)、[chat:write](https://api.slack.com/scopes/chat:write)、[im:history](https://api.slack.com/scopes/im:history) を**ボットの**スコープに追加し、**Event Subscriptions** のページで [assistant_thread_started](https://api.slack.com/events/assistant_thread_started)、[assistant_thread_context_changed](https://api.slack.com/events/assistant_thread_context_changed)、[message.im](https://api.slack.com/events/message.im) イベントを有効にしてください。
+この機能を実装するためには、まず[アプリの設定画面](https://api.slack.com/apps)で **Agents & Assistants** 機能を有効にし、**OAuth & Permissions** のページで [`assistant:write`](https://api.slack.com/scopes/assistant:write)、[`chat:write`](https://api.slack.com/scopes/chat:write)、[`im:history`](https://api.slack.com/scopes/im:history) を**ボットの**スコープに追加し、**Event Subscriptions** のページで [`assistant_thread_started`](https://api.slack.com/events/assistant_thread_started)、[`assistant_thread_context_changed`](https://api.slack.com/events/assistant_thread_context_changed)、[`message.im`](https://api.slack.com/events/message.im) イベントを有効にしてください。
 
 また、この機能は Slack の有料プランでのみ利用可能です。もし開発用の有料プランのワークスペースをお持ちでない場合は、[Developer Program](https://api.slack.com/developer-program) に参加し、全ての有料プラン向け機能を利用可能なサンドボックス環境をつくることができます。
 

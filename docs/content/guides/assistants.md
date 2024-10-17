@@ -4,11 +4,11 @@ lang: en
 
 # Agents & Assistants
 
-This guide page focuses on how to implement Agents & Assistants using Bolt framework. For general information about the feature, please refer to [this document page](https://api.slack.com/docs/apps/ai).
+This guide focuses on how to implement Agents & Assistants using Bolt. For general information about the feature, please refer to the [API documentation](https://api.slack.com/docs/apps/ai).
 
 ## Slack App Configuration
 
-To get started, you'll need to enable the **Agents & Assistants** feature on [the app configuration page](https://api.slack.com/apps). Then, add [assistant:write](https://api.slack.com/scopes/assistant:write), [chat:write](https://api.slack.com/scopes/chat:write), and [im:history](https://api.slack.com/scopes/im:history) to the **bot** scopes on the **OAuth & Permissions** page. Also, make sure to subscribe to [assistant_thread_started](https://api.slack.com/events/assistant_thread_started), [assistant_thread_context_changed](https://api.slack.com/events/assistant_thread_context_changed), and [message.im](https://api.slack.com/events/message.im) events on the **Event Subscriptions** page.
+To get started, you'll need to enable the **Agents & Assistants** feature on [the app configuration page](https://api.slack.com/apps). Then, add [`assistant:write`](https://api.slack.com/scopes/assistant:write), [`chat:write`](https://api.slack.com/scopes/chat:write), and [`im:history`](https://api.slack.com/scopes/im:history) to the **bot** scopes on the **OAuth & Permissions** page. Also, make sure to subscribe to [`assistant_thread_started`](https://api.slack.com/events/assistant_thread_started), [`assistant_thread_context_changed`](https://api.slack.com/events/assistant_thread_context_changed), and [`message.im`](https://api.slack.com/events/message.im) events on the **Event Subscriptions** page.
 
 Please note that this feature requires a paid plan. If you don't have a paid workspace for development, you can join the [Developer Program](https://api.slack.com/developer-program) and provision a sandbox with access to all Slack features for free.
 
@@ -54,9 +54,11 @@ assistant.userMessage((req, ctx) -> {
 app.assistant(assistant);
 ```
 
-When an end-user opens an assistant thread next to a channel, the channel information is stored as the thread's `AssistantThreadContext` data, and you can access this information by using `context.getThreadContextService().findCurrentContext(channelId, threadTs)` utility.
+When a user opens an Assistant thread while in a channel, the channel information is stored as the thread's `AssistantThreadContext` data. You can access this information by using the `get_thread_context` utility. The reason Bolt provides this utility is that the most recent thread context information is not included in the subsequent user message event payload data. Therefore, an app must store the context data when it is changed so that the app can refer to the data in message event listeners.
 
-When the user switches the channel, the `assistant_thread_context_changed` event will be sent to your app. If you use the built-in `Assistant` middleware without any custom configuration (like the above code snippet does), the updated context data is automatically saved as message metadata of the first reply from the assistant bot. This means that, as long as you go with this built-in approach, you don't need to store the context data within any datastore. The only downside of this default module is the runtime overhead of additional Slack API calls. More specifically, it calls `conversations.history` API to look up the stored message metadata when you execute `context.getThreadContextService().findCurrentContext(channelId, threadTs)`.
+When the user switches channels, the `assistant_thread_context_changed` event will be sent to your app. If you use the built-in `Assistant` middleware without any custom configuration (like the above code snippet does), the updated context data is automatically saved as message metadata of the first reply from the assistant bot.
+
+As long as you use the built-in approach, you don't need to store the context data within a datastore. The downside of this default behavior is the overhead of additional calls to the Slack API. These calls include those to `conversations.history` which are used to look up the stored message metadata that contains the thread context (via `context.getThreadContextService().findCurrentContext(channelId, threadTs)`).
 
 If you prefer storing this data elsewhere, you can pass your own `AssistantThreadContextService` implementation to the `Assistant` instance:
 
@@ -70,9 +72,9 @@ Assistant assistant = new Assistant(new YourOwnAssistantThreadContextService());
 Block Kit interactions in the assistant thread
 </summary>
 
-For advanced use cases, you might want to use Block Kit buttons instead of the suggested prompts. Additionally, consider sending a message with structured metadata to trigger subsequent interactions with the user.
+For advanced use cases, Block Kit buttons may be used instead of suggested prompts, as well as the sending of messages with structured [metadata](https://api.slack.com/metadata) to trigger subsequent interactions with the user.
 
-For example, your app can display a button like "Summarize the referring channel" in the initial reply. When an end-user clicks the button and submits detailed information (such as the number of messages, days to check, the purpose of the summary, etc.), your app can handle the received information and post a bot message describing the request with structured metadata.
+For example, an app can display a button like "Summarize the referring channel" in the initial reply. When the user clicks the button and submits detailed information (such as the number of messages, days to check, the purpose of the summary, etc.), the app can handle that information and post a message that describes the request with structured metadata.
 
 By default, your app can't respond to its own bot messages (Bolt prevents infinite loops by default). However, if you set `ignoringSelfAssistantMessageEventsEnabled` to false and add a `botMessage` listener to your `Assistant` middleware, your app can continue processing the request as shown below:
 
