@@ -815,6 +815,9 @@
         "is_file_attachment": false
       }
     ],
+    "metadata": {
+      "event_type": ""
+    },
     "ts": "",
     "parent_user_id": "",
     "thread_ts": "",
