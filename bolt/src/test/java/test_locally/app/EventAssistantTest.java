@@ -119,6 +119,28 @@ public class EventAssistantTest {
         response = app.run(new EventRequest(userMessage, new RequestHeaders(rawHeaders)));
         assertEquals(200L, response.getStatusCode().longValue());
 
+        String userMessageWithAssistantThread = buildPayload("{\n" +
+                "  \"user\": \"W222\",\n" +
+                "  \"type\": \"message\",\n" +
+                "  \"ts\": \"1726133700.887259\",\n" +
+                "  \"text\": \"When Slack was released?\",\n" +
+                "  \"team\": \"T111\",\n" +
+                "  \"user_team\": \"T111\",\n" +
+                "  \"source_team\": \"T222\",\n" +
+                "  \"user_profile\": {},\n" +
+                "  \"thread_ts\": \"1726133698.626339\",\n" +
+                "  \"parent_user_id\": \"W222\",\n" +
+                "  \"channel\": \"D111\",\n" +
+                "  \"event_ts\": \"1726133700.887259\",\n" +
+                "  \"assistant_thread\": {\"XXX\": \"YYY\"},\n" +
+                "  \"channel_type\": \"im\"\n" +
+                "}");
+        rawHeaders = new HashMap<>();
+        timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        setRequestHeaders(userMessageWithAssistantThread, rawHeaders, timestamp);
+        response = app.run(new EventRequest(userMessageWithAssistantThread, new RequestHeaders(rawHeaders)));
+        assertEquals(200L, response.getStatusCode().longValue());
+
         String assistantMessageChanged = buildPayload("{\n" +
                 "  \"type\": \"message\",\n" +
                 "  \"subtype\": \"message_changed\",\n" +

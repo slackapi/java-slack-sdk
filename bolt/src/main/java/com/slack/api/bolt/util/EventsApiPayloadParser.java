@@ -71,6 +71,12 @@ public class EventsApiPayloadParser {
         return null;
     }
 
+    public static boolean isAssistantThreadStartedOrContextChangedEvent(JsonObject event) {
+        return event.get("assistant_thread") != null
+                && event.get("assistant_thread").getAsJsonObject().get("channel_id") != null
+                && event.get("assistant_thread").getAsJsonObject().get("thread_ts") != null;
+    }
+
     public static boolean isMessageEventInAssistantThread(JsonObject event) {
         if (event.get("channel_type") != null && event.get("channel_type").getAsString().equals("im")) {
             if (event.get("thread_ts") != null) return true;

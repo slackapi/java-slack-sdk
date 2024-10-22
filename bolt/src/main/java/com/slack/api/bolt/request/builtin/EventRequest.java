@@ -111,7 +111,7 @@ public class EventRequest extends Request<EventContext> {
             this.getContext().setChannelId(event.get("channel_id").getAsString());
         }
         // assistant thread events
-        if (event.get("assistant_thread") != null) {
+        if (EventsApiPayloadParser.isAssistantThreadStartedOrContextChangedEvent(event)) {
             this.getContext().setAssistantThreadEvent(true);
             // assistant_thread_started, assistant_thread_context_changed events
             JsonObject thread = event.get("assistant_thread").getAsJsonObject();
