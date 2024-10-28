@@ -123,6 +123,19 @@ public class EventContext extends Context implements SayUtility, FunctionUtility
         }
     }
 
+    public AssistantThreadsSetSuggestedPromptsResponse setSuggestedPrompts(List<SuggestedPrompt> prompts, String title) throws IOException, SlackApiException {
+        if (isAssistantThreadEvent()) {
+            return this.client().assistantThreadsSetSuggestedPrompts(r -> r
+                    .channelId(this.getChannelId())
+                    .threadTs(this.getThreadTs())
+                    .prompts(prompts)
+                    .title(title)
+            );
+        } else {
+            throw new IllegalStateException("This utility is only available for Assistant feature enabled app!");
+        }
+    }
+
     // X-Slack-Retry-Num: 2 in HTTP Mode
     // "retry_attempt": 0, in Socket Mode
     private Integer retryNum;
