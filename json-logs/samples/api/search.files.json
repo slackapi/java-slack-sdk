@@ -84,7 +84,6 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
-                "access": "",
                 "share_user_id": "U00000000",
                 "source": ""
               }
@@ -107,7 +106,6 @@
                 "ts": "0000000000.000000",
                 "channel_name": "",
                 "team_id": "T00000000",
-                "access": "",
                 "share_user_id": "U00000000",
                 "source": ""
               }
@@ -180,8 +178,7 @@
         "sent_to_self": false,
         "bot_id": "B00000000",
         "editors": [
-          "",
-          "U00000000"
+          ""
         ],
         "url_static_preview": "https://www.example.com/",
         "quip_thread_id": "",
@@ -9203,7 +9200,11 @@
                     "subtype": "",
                     "transcription": {
                       "status": "",
-                      "locale": ""
+                      "locale": "",
+                      "preview": {
+                        "content": "",
+                        "has_more": false
+                      }
                     },
                     "mp4": "",
                     "mp4_low": "",
@@ -9311,7 +9312,8 @@
                     "media_progress": {
                       "offset_ms": 123,
                       "max_offset_ms": 123,
-                      "duration_ms": 123
+                      "duration_ms": 123,
+                      "media_watched": false
                     },
                     "saved": {
                       "is_archived": false,
@@ -9696,7 +9698,11 @@
                         "subtype": "",
                         "transcription": {
                           "status": "",
-                          "locale": ""
+                          "locale": "",
+                          "preview": {
+                            "content": "",
+                            "has_more": false
+                          }
                         },
                         "mp4": "",
                         "mp4_low": "",
@@ -9804,7 +9810,8 @@
                         "media_progress": {
                           "offset_ms": 123,
                           "max_offset_ms": 123,
-                          "duration_ms": 123
+                          "duration_ms": 123,
+                          "media_watched": false
                         },
                         "saved": {
                           "is_archived": false,
@@ -10234,7 +10241,11 @@
                         "subtype": "",
                         "transcription": {
                           "status": "",
-                          "locale": ""
+                          "locale": "",
+                          "preview": {
+                            "content": "",
+                            "has_more": false
+                          }
                         },
                         "mp4": "",
                         "mp4_low": "",
@@ -10342,7 +10353,8 @@
                         "media_progress": {
                           "offset_ms": 123,
                           "max_offset_ms": 123,
-                          "duration_ms": 123
+                          "duration_ms": 123,
+                          "media_watched": false
                         },
                         "saved": {
                           "is_archived": false,
@@ -10908,7 +10920,11 @@
                 "subtype": "",
                 "transcription": {
                   "status": "",
-                  "locale": ""
+                  "locale": "",
+                  "preview": {
+                    "content": "",
+                    "has_more": false
+                  }
                 },
                 "mp4": "",
                 "mp4_low": "",
@@ -11117,7 +11133,8 @@
                 "media_progress": {
                   "offset_ms": 123,
                   "max_offset_ms": 123,
-                  "duration_ms": 123
+                  "duration_ms": 123,
+                  "media_watched": false
                 },
                 "saved": {
                   "is_archived": false,
@@ -23263,7 +23280,11 @@
               "subtype": "",
               "transcription": {
                 "status": "",
-                "locale": ""
+                "locale": "",
+                "preview": {
+                  "content": "",
+                  "has_more": false
+                }
               },
               "mp4": "",
               "mp4_low": "",
@@ -23472,7 +23493,8 @@
               "media_progress": {
                 "offset_ms": 123,
                 "max_offset_ms": 123,
-                "duration_ms": 123
+                "duration_ms": 123,
+                "media_watched": false
               },
               "saved": {
                 "is_archived": false,

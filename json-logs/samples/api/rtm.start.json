@@ -10064,7 +10064,11 @@
                     "subtype": "",
                     "transcription": {
                       "status": "",
-                      "locale": ""
+                      "locale": "",
+                      "preview": {
+                        "content": "",
+                        "has_more": false
+                      }
                     },
                     "mp4": "",
                     "mp4_low": "",
@@ -10172,7 +10176,8 @@
                     "media_progress": {
                       "offset_ms": 123,
                       "max_offset_ms": 123,
-                      "duration_ms": 123
+                      "duration_ms": 123,
+                      "media_watched": false
                     },
                     "saved": {
                       "is_archived": false,
@@ -10557,7 +10562,11 @@
                         "subtype": "",
                         "transcription": {
                           "status": "",
-                          "locale": ""
+                          "locale": "",
+                          "preview": {
+                            "content": "",
+                            "has_more": false
+                          }
                         },
                         "mp4": "",
                         "mp4_low": "",
@@ -10665,7 +10674,8 @@
                         "media_progress": {
                           "offset_ms": 123,
                           "max_offset_ms": 123,
-                          "duration_ms": 123
+                          "duration_ms": 123,
+                          "media_watched": false
                         },
                         "saved": {
                           "is_archived": false,
@@ -11095,7 +11105,11 @@
                         "subtype": "",
                         "transcription": {
                           "status": "",
-                          "locale": ""
+                          "locale": "",
+                          "preview": {
+                            "content": "",
+                            "has_more": false
+                          }
                         },
                         "mp4": "",
                         "mp4_low": "",
@@ -11203,7 +11217,8 @@
                         "media_progress": {
                           "offset_ms": 123,
                           "max_offset_ms": 123,
-                          "duration_ms": 123
+                          "duration_ms": 123,
+                          "media_watched": false
                         },
                         "saved": {
                           "is_archived": false,
@@ -11769,7 +11784,11 @@
                 "subtype": "",
                 "transcription": {
                   "status": "",
-                  "locale": ""
+                  "locale": "",
+                  "preview": {
+                    "content": "",
+                    "has_more": false
+                  }
                 },
                 "mp4": "",
                 "mp4_low": "",
@@ -11978,7 +11997,8 @@
                 "media_progress": {
                   "offset_ms": 123,
                   "max_offset_ms": 123,
-                  "duration_ms": 123
+                  "duration_ms": 123,
+                  "media_watched": false
                 },
                 "saved": {
                   "is_archived": false,
@@ -24124,7 +24144,11 @@
               "subtype": "",
               "transcription": {
                 "status": "",
-                "locale": ""
+                "locale": "",
+                "preview": {
+                  "content": "",
+                  "has_more": false
+                }
               },
               "mp4": "",
               "mp4_low": "",
@@ -24333,7 +24357,8 @@
               "media_progress": {
                 "offset_ms": 123,
                 "max_offset_ms": 123,
-                "duration_ms": 123
+                "duration_ms": 123,
+                "media_watched": false
               },
               "saved": {
                 "is_archived": false,
@@ -33744,7 +33769,11 @@
             "subtype": "",
             "transcription": {
               "status": "",
-              "locale": ""
+              "locale": "",
+              "preview": {
+                "content": "",
+                "has_more": false
+              }
             },
             "mp4": "",
             "mp4_low": "",
@@ -33953,7 +33982,8 @@
             "media_progress": {
               "offset_ms": 123,
               "max_offset_ms": 123,
-              "duration_ms": 123
+              "duration_ms": 123,
+              "media_watched": false
             },
             "saved": {
               "is_archived": false,
@@ -47710,7 +47740,11 @@
                             "subtype": "",
                             "transcription": {
                               "status": "",
-                              "locale": ""
+                              "locale": "",
+                              "preview": {
+                                "content": "",
+                                "has_more": false
+                              }
                             },
                             "mp4": "",
                             "mp4_low": "",
@@ -47818,7 +47852,8 @@
                             "media_progress": {
                               "offset_ms": 123,
                               "max_offset_ms": 123,
-                              "duration_ms": 123
+                              "duration_ms": 123,
+                              "media_watched": false
                             },
                             "saved": {
                               "is_archived": false,
@@ -48203,7 +48238,11 @@
                                 "subtype": "",
                                 "transcription": {
                                   "status": "",
-                                  "locale": ""
+                                  "locale": "",
+                                  "preview": {
+                                    "content": "",
+                                    "has_more": false
+                                  }
                                 },
                                 "mp4": "",
                                 "mp4_low": "",
@@ -48311,7 +48350,8 @@
                                 "media_progress": {
                                   "offset_ms": 123,
                                   "max_offset_ms": 123,
-                                  "duration_ms": 123
+                                  "duration_ms": 123,
+                                  "media_watched": false
                                 },
                                 "saved": {
                                   "is_archived": false,
@@ -48741,7 +48781,11 @@
                                 "subtype": "",
                                 "transcription": {
                                   "status": "",
-                                  "locale": ""
+                                  "locale": "",
+                                  "preview": {
+                                    "content": "",
+                                    "has_more": false
+                                  }
                                 },
                                 "mp4": "",
                                 "mp4_low": "",
@@ -48849,7 +48893,8 @@
                                 "media_progress": {
                                   "offset_ms": 123,
                                   "max_offset_ms": 123,
-                                  "duration_ms": 123
+                                  "duration_ms": 123,
+                                  "media_watched": false
                                 },
                                 "saved": {
                                   "is_archived": false,
@@ -49415,7 +49460,11 @@
                         "subtype": "",
                         "transcription": {
                           "status": "",
-                          "locale": ""
+                          "locale": "",
+                          "preview": {
+                            "content": "",
+                            "has_more": false
+                          }
                         },
                         "mp4": "",
                         "mp4_low": "",
@@ -49624,7 +49673,8 @@
                         "media_progress": {
                           "offset_ms": 123,
                           "max_offset_ms": 123,
-                          "duration_ms": 123
+                          "duration_ms": 123,
+                          "media_watched": false
                         },
                         "saved": {
                           "is_archived": false,
@@ -61770,7 +61820,11 @@
                       "subtype": "",
                       "transcription": {
                         "status": "",
-                        "locale": ""
+                        "locale": "",
+                        "preview": {
+                          "content": "",
+                          "has_more": false
+                        }
                       },
                       "mp4": "",
                       "mp4_low": "",
@@ -61979,7 +62033,8 @@
                       "media_progress": {
                         "offset_ms": 123,
                         "max_offset_ms": 123,
-                        "duration_ms": 123
+                        "duration_ms": 123,
+                        "media_watched": false
                       },
                       "saved": {
                         "is_archived": false,
@@ -71390,7 +71445,11 @@
                     "subtype": "",
                     "transcription": {
                       "status": "",
-                      "locale": ""
+                      "locale": "",
+                      "preview": {
+                        "content": "",
+                        "has_more": false
+                      }
                     },
                     "mp4": "",
                     "mp4_low": "",
@@ -71599,7 +71658,8 @@
                     "media_progress": {
                       "offset_ms": 123,
                       "max_offset_ms": 123,
-                      "duration_ms": 123
+                      "duration_ms": 123,
+                      "media_watched": false
                     },
                     "saved": {
                       "is_archived": false,

@@ -53,9 +53,22 @@ public class File {
     private Integer thumbVideoH; // file URL when subtype is "slack_video"
 
     @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Transcription {
         private String status;
         private String locale;
+        private TranscriptionPreview preview;
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class TranscriptionPreview {
+        private String content;
+        private Boolean hasMore;
     }
 
     private Integer originalAttachmentCount;
@@ -301,6 +314,7 @@ public class File {
         private Integer offsetMs;
         private Integer maxOffsetMs;
         private Integer durationMs;
+        private Boolean mediaWatched;
     }
 
     private Saved saved;
