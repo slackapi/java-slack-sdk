@@ -7952,6 +7952,7 @@
               "view_count_limit": 123
             },
             "can_toggle_canvas_lock": false,
+            "is_restricted_sharing_enabled": false,
             "bot_id": "",
             "initial_comment": {
               "id": "",
@@ -21950,6 +21951,7 @@
                     "view_count_limit": 123
                   },
                   "can_toggle_canvas_lock": false,
+                  "is_restricted_sharing_enabled": false,
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -22448,6 +22450,7 @@
                         "view_count_limit": 123
                       },
                       "can_toggle_canvas_lock": false,
+                      "is_restricted_sharing_enabled": false,
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -22991,6 +22994,7 @@
                         "view_count_limit": 123
                       },
                       "can_toggle_canvas_lock": false,
+                      "is_restricted_sharing_enabled": false,
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -28264,6 +28268,7 @@
                 "view_count_limit": 123
               },
               "can_toggle_canvas_lock": false,
+              "is_restricted_sharing_enabled": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -37518,6 +37523,7 @@
             "view_count_limit": 123
           },
           "can_toggle_canvas_lock": false,
+          "is_restricted_sharing_enabled": false,
           "bot_id": "",
           "initial_comment": {
             "id": "",
@@ -45446,6 +45452,7 @@
                 "view_count_limit": 123
               },
               "can_toggle_canvas_lock": false,
+              "is_restricted_sharing_enabled": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",

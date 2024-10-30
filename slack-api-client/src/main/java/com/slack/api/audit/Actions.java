@@ -226,6 +226,10 @@ public class Actions {
         public static final String salesforce_access_granted = "salesforce_access_granted";
         public static final String salesforce_access_removed = "salesforce_access_removed";
         public static final String salesforce_permissions_synced = "salesforce_permissions_synced";
+        public static final String mc_user_created_slackbot_pref_request = "mc_user_created_slackbot_pref_request";
+        public static final String mc_user_canceled_slackbot_pref_request = "mc_user_canceled_slackbot_pref_request";
+        public static final String team_approved_slackbot_pref_request = "team_approved_slackbot_pref_request";
+        public static final String team_declined_slackbot_pref_request = "team_declined_slackbot_pref_request";
     }
 
     public static class User {

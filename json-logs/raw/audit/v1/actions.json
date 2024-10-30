@@ -214,7 +214,11 @@
       "seamless_auth_org_updated",
       "salesforce_access_granted",
       "salesforce_access_removed",
-      "salesforce_permissions_synced"
+      "salesforce_permissions_synced",
+      "mc_user_created_slackbot_pref_request",
+      "team_approved_slackbot_pref_request",
+      "team_declined_slackbot_pref_request",
+      "mc_user_canceled_slackbot_pref_request"
     ],
     "user": [
       "custom_tos_accepted",

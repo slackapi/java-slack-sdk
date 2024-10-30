@@ -377,6 +377,8 @@ public class File {
     private ListLimits listLimits;
 
     private boolean canToggleCanvasLock;
+    @SerializedName("is_restricted_sharing_enabled")
+    private boolean restrictedSharingEnabled;
 
     // ---------------------------------------
     // file comments
