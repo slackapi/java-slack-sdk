@@ -16,10 +16,7 @@ import org.junit.Test;
 import util.AuthTestMockServer;
 import util.MockSlackApiServer;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.junit.Assert.assertEquals;
@@ -55,6 +52,15 @@ public class EventAssistantTest {
         Assistant assistant = new Assistant(app.executorService());
 
         assistant.threadStarted((req, ctx) -> {
+            try {
+                ctx.setTitle("title");
+                ctx.setTitle(r -> r.title("title"));
+                ctx.setStatus("is typing...");
+                ctx.setStatus(r -> r.status("is typing..."));
+                ctx.setSuggestedPrompts(new ArrayList<>());
+                ctx.setSuggestedPrompts(r -> r.prompts(new ArrayList<>()));
+            } catch (Exception e) {
+            }
             threadStartedReceived.set(true);
         });
         assistant.threadContextChanged((req, ctx) -> {

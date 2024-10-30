@@ -22,10 +22,11 @@ public class AssistantSimpleApp {
 
         assistant.threadStarted((req, ctx) -> {
             try {
-                ctx.say(r -> r.text("Hi, how can I help you today?"));
-                ctx.setSuggestedPrompts(Collections.singletonList(
-                        SuggestedPrompt.create("What does SLACK stand for?")
-                ));
+                ctx.say("Hi, how can I help you today?");
+                ctx.setSuggestedPrompts(r -> r
+                        .title("Select one of the following:") // optional
+                        .prompts(Collections.singletonList(SuggestedPrompt.create("What does SLACK stand for?")))
+                );
             } catch (Exception e) {
                 ctx.logger.error("Failed to handle assistant thread started event: {e}", e);
             }
@@ -33,18 +34,19 @@ public class AssistantSimpleApp {
 
         assistant.userMessage((req, ctx) -> {
             try {
+                // ctx.setStatus(r -> r.status("is typing...")); works too
                 ctx.setStatus("is typing...");
                 Thread.sleep(500L);
                 if (ctx.getThreadContext() != null) {
                     String contextChannel = ctx.getThreadContext().getChannelId();
-                    ctx.say(r -> r.text("I am ware of the channel context: <#" + contextChannel + ">"));
+                    ctx.say("I am ware of the channel context: <#" + contextChannel + ">");
                 } else {
-                    ctx.say(r -> r.text("Here you are!"));
+                    ctx.say("Here you are!");
                 }
             } catch (Exception e) {
                 ctx.logger.error("Failed to handle assistant user message event: {e}", e);
                 try {
-                    ctx.say(r -> r.text(":warning: Sorry, something went wrong during processing your request!"));
+                    ctx.say(":warning: Sorry, something went wrong during processing your request!");
                 } catch (Exception ee) {
                     ctx.logger.error("Failed to inform the error to the end-user: {ee}", ee);
                 }
@@ -57,11 +59,11 @@ public class AssistantSimpleApp {
                 Thread.sleep(500L);
                 ctx.setStatus("is still checking the files...");
                 Thread.sleep(500L);
-                ctx.say(r -> r.text("Your files do not have any issues!"));
+                ctx.say("Your files do not have any issues!");
             } catch (Exception e) {
                 ctx.logger.error("Failed to handle assistant user message event: {e}", e);
                 try {
-                    ctx.say(r -> r.text(":warning: Sorry, something went wrong during processing your request!"));
+                    ctx.say(":warning: Sorry, something went wrong during processing your request!");
                 } catch (Exception ee) {
                     ctx.logger.error("Failed to inform the error to the end-user: {ee}", ee);
                 }

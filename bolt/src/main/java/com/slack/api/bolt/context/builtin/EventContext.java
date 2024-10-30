@@ -1,14 +1,19 @@
 package com.slack.api.bolt.context.builtin;
 
+import com.slack.api.RequestConfigurator;
 import com.slack.api.bolt.context.Context;
 import com.slack.api.bolt.context.FunctionUtility;
 import com.slack.api.bolt.context.SayUtility;
 import com.slack.api.bolt.service.AssistantThreadContextService;
 import com.slack.api.bolt.util.BuilderConfigurator;
 import com.slack.api.methods.SlackApiException;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetStatusRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetSuggestedPromptsRequest;
+import com.slack.api.methods.request.assistant.threads.AssistantThreadsSetTitleRequest;
 import com.slack.api.methods.request.chat.ChatPostMessageRequest;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetStatusResponse;
 import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetSuggestedPromptsResponse;
+import com.slack.api.methods.response.asssistant.threads.AssistantThreadsSetTitleResponse;
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.model.Message;
 import com.slack.api.model.assistant.AssistantThreadContext;
@@ -111,6 +116,40 @@ public class EventContext extends Context implements SayUtility, FunctionUtility
         }
     }
 
+    public AssistantThreadsSetStatusResponse setStatus(RequestConfigurator<AssistantThreadsSetStatusRequest.AssistantThreadsSetStatusRequestBuilder> req) throws IOException, SlackApiException {
+        if (isAssistantThreadEvent()) {
+            return this.client().assistantThreadsSetStatus(req.configure(AssistantThreadsSetStatusRequest.builder()
+                    .channelId(this.getChannelId())
+                    .threadTs(this.getThreadTs())
+            ).build());
+        } else {
+            throw new IllegalStateException("This utility is only available for Assistant feature enabled app!");
+        }
+    }
+
+    public AssistantThreadsSetTitleResponse setTitle(String title) throws IOException, SlackApiException {
+        if (isAssistantThreadEvent()) {
+            return this.client().assistantThreadsSetTitle(r -> r
+                    .channelId(this.getChannelId())
+                    .threadTs(this.getThreadTs())
+                    .title(title)
+            );
+        } else {
+            throw new IllegalStateException("This utility is only available for Assistant feature enabled app!");
+        }
+    }
+
+    public AssistantThreadsSetTitleResponse setTitle(RequestConfigurator<AssistantThreadsSetTitleRequest.AssistantThreadsSetTitleRequestBuilder> req) throws IOException, SlackApiException {
+        if (isAssistantThreadEvent()) {
+            return this.client().assistantThreadsSetTitle(req.configure(AssistantThreadsSetTitleRequest.builder()
+                    .channelId(this.getChannelId())
+                    .threadTs(this.getThreadTs())
+            ).build());
+        } else {
+            throw new IllegalStateException("This utility is only available for Assistant feature enabled app!");
+        }
+    }
+
     public AssistantThreadsSetSuggestedPromptsResponse setSuggestedPrompts(List<SuggestedPrompt> prompts) throws IOException, SlackApiException {
         if (isAssistantThreadEvent()) {
             return this.client().assistantThreadsSetSuggestedPrompts(r -> r
@@ -118,6 +157,17 @@ public class EventContext extends Context implements SayUtility, FunctionUtility
                     .threadTs(this.getThreadTs())
                     .prompts(prompts)
             );
+        } else {
+            throw new IllegalStateException("This utility is only available for Assistant feature enabled app!");
+        }
+    }
+
+    public AssistantThreadsSetSuggestedPromptsResponse setSuggestedPrompts(RequestConfigurator<AssistantThreadsSetSuggestedPromptsRequest.AssistantThreadsSetSuggestedPromptsRequestBuilder> req) throws IOException, SlackApiException {
+        if (isAssistantThreadEvent()) {
+            return this.client().assistantThreadsSetSuggestedPrompts(req.configure(AssistantThreadsSetSuggestedPromptsRequest.builder()
+                    .channelId(this.getChannelId())
+                    .threadTs(this.getThreadTs())
+            ).build());
         } else {
             throw new IllegalStateException("This utility is only available for Assistant feature enabled app!");
         }
