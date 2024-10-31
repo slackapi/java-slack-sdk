@@ -30,7 +30,9 @@ java-slack-sdk/
 │   ├── pages/ (stuff that isn't docs. This is empty for this repo!)
 │   └── theme/ (only contains the 404 page)
 ├── version-config.yml (Where version numbers are set)
-├── docusaurus.config.js (main config file. also where to set navbar/footer)
+├── docusaurus.config.js (main config file)
+├── footerConfig.js (footer. go to main repo to change)
+├── navbarConfig.js (navbar. go to main repo to change)
 └── sidebar.js (manually set where the docs are in the sidebar.)
 ```
 
