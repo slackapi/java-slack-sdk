@@ -19,6 +19,8 @@ public class AppsManifestCreateResponse implements SlackApiTextResponse {
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private String appId;
+    private String teamId;
+    private String teamDomain;
     private AppCredentials credentials;
     private String oauthAuthorizeUrl;
 

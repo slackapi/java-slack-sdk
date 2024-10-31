@@ -230,6 +230,8 @@ public class Actions {
         public static final String mc_user_canceled_slackbot_pref_request = "mc_user_canceled_slackbot_pref_request";
         public static final String team_approved_slackbot_pref_request = "team_approved_slackbot_pref_request";
         public static final String team_declined_slackbot_pref_request = "team_declined_slackbot_pref_request";
+        public static final String slack_support_created_slackbot_pref_request = "slack_support_created_slackbot_pref_request";
+        public static final String slack_support_canceled_slackbot_pref_request = "slack_support_canceled_slackbot_pref_request";
     }
 
     public static class User {

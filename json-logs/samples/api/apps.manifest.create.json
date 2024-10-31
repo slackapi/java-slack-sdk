@@ -23,5 +23,7 @@
     "verification_token": "",
     "signing_secret": ""
   },
-  "oauth_authorize_url": "https://www.example.com/"
+  "oauth_authorize_url": "https://www.example.com/",
+  "team_id": "T00000000",
+  "team_domain": ""
 }
