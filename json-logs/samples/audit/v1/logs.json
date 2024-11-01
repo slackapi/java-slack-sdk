@@ -118,6 +118,9 @@
           "name": "",
           "updated_by": "",
           "step_configuration": []
+        },
+        "list": {
+          "id": ""
         }
       },
       "context": {
@@ -387,7 +390,12 @@
         "rules_checked": [],
         "disconnecting_team": "",
         "is_channel_canvas": false,
-        "linked_channel_id": ""
+        "linked_channel_id": "",
+        "column_id": "",
+        "row_id": "",
+        "cell_date_updated": 123,
+        "view_id": "",
+        "user": ""
       }
     }
   ]

@@ -49,5 +49,6 @@ public class ActionsResponse implements AuditApiResponse {
         private List<String> salesElevate;
         private List<String> nativeDlp;
         private List<String> template;
+        private List<String> list;
     }
 }

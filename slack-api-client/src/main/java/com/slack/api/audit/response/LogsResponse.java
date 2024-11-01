@@ -71,6 +71,7 @@ public class LogsResponse implements AuditApiResponse {
         private Workflow workflow;
         private InformationBarrier barrier;
         private WorkflowV2 workflowV2;
+        private SlackList list;
     }
 
     @Data
@@ -224,6 +225,11 @@ public class LogsResponse implements AuditApiResponse {
     }
 
     @Data
+    public static class SlackList {
+        private String id;
+    }
+
+    @Data
     public static class Details {
         private String type;
         private String appOwnerId; // app_collaborator_added etc.
@@ -340,9 +346,9 @@ public class LogsResponse implements AuditApiResponse {
         private String datastoreName; // app_datastore_created
         private List<Attribute> attributes; // app_datastore_created
         private String channel; // canvas_access_added
-        private String entityType; // canvas_access_added
-        private String actor; // canvas_access_added
-        private String accessLevel; // canvas_access_added
+        private String entityType; // canvas_access_added, list_access_added
+        private String actor; // canvas_access_added, list_access_added
+        private String accessLevel; // canvas_access_added, list_access_added
         private List<String> functions; // app_manifest_created
         private List<String> workflows; // app_manifest_created
         private List<String> datastores; // app_manifest_created
@@ -353,6 +359,11 @@ public class LogsResponse implements AuditApiResponse {
         private String disconnectingTeam; // external_shared_channel_disconnected
         private Boolean isChannelCanvas; // canvas_opened
         private String linkedChannelId; // canvas_opened
+        private String columnId; // list_cell_updated
+        private String rowId; // list_cell_updated
+        private Integer cellDateUpdated; // list_cell_updated
+        private String viewId; // list_view_updated
+        private String user; // list_access_added
     }
 
     @Data

@@ -619,4 +619,48 @@ public class Actions {
         public static final String template_collaborator_removed = "template_collaborator_removed";
         public static final String template_updated = "template_updated";
     }
+
+    public static class List {
+        private List() {
+        }
+
+        public static final String list_cell_updated = "list_cell_updated";
+        public static final String list_column_created = "list_column_created";
+        public static final String list_column_updated = "list_column_updated";
+        public static final String list_column_deleted = "list_column_deleted";
+        public static final String list_column_reverted = "list_column_reverted";
+        public static final String list_converted_to_template = "list_converted_to_template";
+        public static final String list_created = "list_created";
+        public static final String list_deleted = "list_deleted";
+        public static final String list_undeleted = "list_undeleted";
+        public static final String list_downloaded = "list_downloaded";
+        public static final String list_description_updated = "list_description_updated";
+        public static final String list_icon_updated = "list_icon_updated";
+        public static final String list_opened = "list_opened";
+        public static final String list_row_created = "list_row_created";
+        public static final String list_row_updated = "list_row_updated";
+        public static final String list_row_deleted = "list_row_deleted";
+        public static final String list_rows_archived = "list_rows_archived";
+        public static final String list_rows_deleted = "list_rows_deleted";
+        public static final String list_template_reverted = "list_template_reverted";
+        public static final String list_template_status_updated = "list_template_status_updated";
+        public static final String list_template_type_updated = "list_template_type_updated";
+        public static final String list_title_updated = "list_title_updated";
+        public static final String list_todo_mode_updated = "list_todo_mode_updated";
+        public static final String list_tombstoned = "list_tombstoned";
+        public static final String list_restored = "list_restored";
+        public static final String list_view_created = "list_view_created";
+        public static final String list_view_updated = "list_view_updated";
+        public static final String list_view_deleted = "list_view_deleted";
+        public static final String list_access_revoked = "list_access_revoked";
+        public static final String list_access_downgraded = "list_access_downgraded";
+        public static final String list_access_upgraded = "list_access_upgraded";
+        public static final String list_access_added = "list_access_added";
+        public static final String list_linksharing_disabled = "list_linksharing_disabled";
+        public static final String list_linksharing_enabled = "list_linksharing_enabled";
+        public static final String list_ownership_transferred = "list_ownership_transferred";
+        public static final String list_shared = "list_shared";
+        public static final String list_restricted_sharing_enabled = "list_restricted_sharing_enabled";
+        public static final String list_restricted_sharing_disabled = "list_restricted_sharing_disabled";
+    }
 }

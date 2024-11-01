@@ -287,6 +287,12 @@ public class ApiTest {
                 fail("Unknown action detected - " + action);
             }
         }
+        List<String> listNames = getAllPublicStaticFieldValues(Actions.List.class);
+        for (String action : actions.getList()) {
+            if (!listNames.contains(action)) {
+                fail("Unknown action detected - " + action);
+            }
+        }
     }
 
     @Test
@@ -344,6 +350,9 @@ public class ApiTest {
         if (orgAdminUserToken != null) {
             verifyAllActions(orgAdminUserToken, Actions.WorkflowV2.class);
             verifyAllActions(orgAdminUserToken, Actions.Canvas.class);
+            verifyAllActions(orgAdminUserToken, Actions.Function.class);
+            verifyAllActions(orgAdminUserToken, Actions.Template.class);
+            verifyAllActions(orgAdminUserToken, Actions.List.class);
             verifyAllActions(orgAdminUserToken, Actions.SlackCLI.class);
             verifyAllActions(orgAdminUserToken, Actions.WorkspaceOrOrg.class);
             verifyAllActions(orgAdminUserToken, Actions.User.class);
@@ -359,6 +368,8 @@ public class ApiTest {
             verifyAllActions(orgAdminUserToken, Actions.Role.class);
             verifyAllActions(orgAdminUserToken, Actions.AccountTypeRole.class);
             verifyAllActions(orgAdminUserToken, Actions.AppApprovalAutomationRule.class);
+            verifyAllActions(orgAdminUserToken, Actions.SalesElevate.class);
+            verifyAllActions(orgAdminUserToken, Actions.NativeDlp.class);
 
             // As all the properties are available in LogsResponse class,
             // we'll re-generate the sample JSON file.
