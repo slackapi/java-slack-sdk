@@ -19,4 +19,5 @@ public class ListLimits {
     private Boolean overViewMaximum;
     private Integer viewCount;
     private Integer viewCountLimit;
+    private Integer maxAttachmentsPerCell;
 }

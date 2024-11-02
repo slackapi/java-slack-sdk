@@ -1,6 +1,7 @@
 package com.slack.api.model.list;
 
 import com.google.gson.annotations.SerializedName;
+import com.slack.api.model.block.LayoutBlock;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,4 +25,5 @@ public class ListMetadata {
     private List<ListColumn> schema;
     private List<ListView> views;
     private List<String> integrations;
+    private List<LayoutBlock> descriptionBlocks;
 }

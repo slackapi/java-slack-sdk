@@ -751,7 +751,8 @@
             "column_count_limit": 123,
             "over_view_maximum": false,
             "view_count": 123,
-            "view_count_limit": 123
+            "view_count_limit": 123,
+            "max_attachments_per_cell": 123
           },
           "url_private": "",
           "url_private_download": "",
@@ -776,7 +777,13 @@
           "date_created": 123,
           "created_by": "",
           "stick_column_left": false,
-          "is_all_items_view": false
+          "is_all_items_view": false,
+          "default_view_key": "",
+          "show_completed_items": false,
+          "grouping": {
+            "group_by": "",
+            "group_by_column_id": ""
+          }
         },
         "filename": "",
         "size": 123,
@@ -977,8 +984,10 @@
           "column_count_limit": 123,
           "over_view_maximum": false,
           "view_count": 123,
-          "view_count_limit": 123
+          "view_count_limit": 123,
+          "max_attachments_per_cell": 123
         },
+        "list_csv_download_url": "",
         "can_toggle_canvas_lock": false,
         "is_restricted_sharing_enabled": false,
         "bot_id": "",

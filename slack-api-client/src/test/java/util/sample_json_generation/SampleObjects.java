@@ -319,6 +319,8 @@ public class SampleObjects {
     public static ListView initListViewObject() {
         return initProperties(initProperties(ListView.builder()
                 .columns(Arrays.asList(initProperties(ListViewColumn.builder().build())))
+                .filters(Arrays.asList(initProperties(ListView.Filter.builder().values(Arrays.asList("")).build())))
+                .grouping(initProperties(new ListView.Grouping()))
                 .build()));
     }
 
@@ -426,6 +428,7 @@ public class SampleObjects {
                         .schema(initListSchemaObject())
                         .views(Arrays.asList(initListViewObject()))
                         .integrations(Arrays.asList(""))
+                        .descriptionBlocks(Blocks)
                         .build()))
                 .listLimits(initProperties(ListLimits.builder().build()))
                 .build());

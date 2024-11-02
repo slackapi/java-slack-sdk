@@ -375,6 +375,7 @@ public class File {
 
     private ListMetadata listMetadata;
     private ListLimits listLimits;
+    private String listCsvDownloadUrl;
 
     private boolean canToggleCanvasLock;
     @SerializedName("is_restricted_sharing_enabled")
