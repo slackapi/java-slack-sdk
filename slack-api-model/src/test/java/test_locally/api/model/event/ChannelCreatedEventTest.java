@@ -47,7 +47,7 @@ public class ChannelCreatedEventTest {
         ChannelCreatedEvent event = new ChannelCreatedEvent();
         event.setChannel(new ChannelCreatedEvent.Channel());
         String generatedJson = gson.toJson(event);
-        String expectedJson = "{\"type\":\"channel_created\",\"channel\":{\"is_channel\":false,\"is_shared\":false,\"is_org_shared\":false}}";
+        String expectedJson = "{\"type\":\"channel_created\",\"channel\":{\"is_channel\":false,\"is_shared\":false,\"is_org_shared\":false,\"is_read_only\":false,\"is_thread_only\":false,\"is_archived\":false,\"is_member\":false,\"is_general\":false,\"is_group\":false,\"is_im\":false,\"is_private\":false,\"is_mpim\":false,\"is_file\":false,\"is_global_shared\":false,\"is_org_default\":false,\"is_org_mandatory\":false,\"is_ext_shared\":false,\"is_pending_ext_shared\":false}}";
         assertThat(generatedJson, is(expectedJson));
     }
 

@@ -2,8 +2,6 @@
   "token": "",
   "team_id": "",
   "enterprise_id": "",
-  "context_team_id": "",
-  "context_enterprise_id": "",
   "api_app_id": "",
   "event": {
     "type": "member_joined_channel",
@@ -12,7 +10,8 @@
     "channel_type": "",
     "team": "",
     "event_ts": "0000000000.000000",
-    "inviter": ""
+    "inviter": "",
+    "enterprise": ""
   },
   "type": "event_callback",
   "event_id": "",

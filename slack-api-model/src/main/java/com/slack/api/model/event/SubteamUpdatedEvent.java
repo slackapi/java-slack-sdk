@@ -50,6 +50,7 @@ public class SubteamUpdatedEvent implements Event {
         private List<String> users;
         private Integer userCount;
         private Integer channelCount;
+        private boolean isSection;
     }
 
     @Data

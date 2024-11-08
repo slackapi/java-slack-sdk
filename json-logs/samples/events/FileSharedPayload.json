@@ -2,17 +2,15 @@
   "token": "",
   "team_id": "",
   "enterprise_id": "",
-  "context_team_id": "",
-  "context_enterprise_id": "",
   "api_app_id": "",
   "event": {
-    "type": "file_shared",
     "file_id": "",
     "user_id": "",
     "file": {
       "id": ""
     },
     "channel_id": "",
+    "type": "file_shared",
     "event_ts": "0000000000.000000"
   },
   "type": "event_callback",

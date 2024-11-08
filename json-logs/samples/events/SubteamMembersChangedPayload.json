@@ -6,6 +6,7 @@
   "event": {
     "type": "subteam_members_changed",
     "subteam_id": "",
+    "team_id": "",
     "date_previous_update": 12345,
     "date_update": 12345,
     "added_users": [
@@ -16,7 +17,6 @@
       ""
     ],
     "removed_users_count": 12345,
-    "team_id": "",
     "event_ts": "0000000000.000000"
   },
   "type": "event_callback",

@@ -2,18 +2,16 @@
   "token": "",
   "team_id": "",
   "enterprise_id": "",
-  "context_team_id": "",
-  "context_enterprise_id": "",
   "api_app_id": "",
   "event": {
     "type": "reaction_added",
     "user": "",
-    "reaction": "",
     "item": {
       "type": "message",
       "channel": "",
       "ts": "0000000000.000000"
     },
+    "reaction": "",
     "item_user": "",
     "event_ts": "0000000000.000000"
   },

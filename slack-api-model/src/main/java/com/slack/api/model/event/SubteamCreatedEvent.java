@@ -44,6 +44,7 @@ public class SubteamCreatedEvent implements Event {
         private Integer userCount;
         private Integer channelCount;
         private List<String> users;
+        private boolean isSection;
     }
 
     @Data
