@@ -107,7 +107,14 @@
           "call_family": "",
           "pending_invitees": {},
           "last_invite_status_by_user": {},
-          "knocks": {}
+          "knocks": {},
+          "recording": {
+            "transcript": false,
+            "summary": false,
+            "notetaking": false,
+            "summary_status": "",
+            "can_record_summary": ""
+          }
         },
         "no_notifications": false,
         "edited": {
@@ -35851,7 +35858,14 @@
                       "display_id": "",
                       "external_unique_id": "",
                       "app_id": "",
-                      "call_family": ""
+                      "call_family": "",
+                      "recording": {
+                        "transcript": false,
+                        "summary": false,
+                        "notetaking": false,
+                        "summary_status": "",
+                        "can_record_summary": ""
+                      }
                     },
                     "no_notifications": false
                   },
@@ -35924,7 +35938,14 @@
                     "display_id": "",
                     "external_unique_id": "",
                     "app_id": "",
-                    "call_family": ""
+                    "call_family": "",
+                    "recording": {
+                      "transcript": false,
+                      "summary": false,
+                      "notetaking": false,
+                      "summary_status": "",
+                      "can_record_summary": ""
+                    }
                   },
                   "no_notifications": false,
                   "assistant_app_thread": {
@@ -36353,7 +36374,14 @@
                           "display_id": "",
                           "external_unique_id": "",
                           "app_id": "",
-                          "call_family": ""
+                          "call_family": "",
+                          "recording": {
+                            "transcript": false,
+                            "summary": false,
+                            "notetaking": false,
+                            "summary_status": "",
+                            "can_record_summary": ""
+                          }
                         },
                         "no_notifications": false
                       },
@@ -36426,7 +36454,14 @@
                         "display_id": "",
                         "external_unique_id": "",
                         "app_id": "",
-                        "call_family": ""
+                        "call_family": "",
+                        "recording": {
+                          "transcript": false,
+                          "summary": false,
+                          "notetaking": false,
+                          "summary_status": "",
+                          "can_record_summary": ""
+                        }
                       },
                       "no_notifications": false,
                       "assistant_app_thread": {
@@ -36900,7 +36935,14 @@
                           "display_id": "",
                           "external_unique_id": "",
                           "app_id": "",
-                          "call_family": ""
+                          "call_family": "",
+                          "recording": {
+                            "transcript": false,
+                            "summary": false,
+                            "notetaking": false,
+                            "summary_status": "",
+                            "can_record_summary": ""
+                          }
                         },
                         "no_notifications": false
                       },
@@ -36973,7 +37015,14 @@
                         "display_id": "",
                         "external_unique_id": "",
                         "app_id": "",
-                        "call_family": ""
+                        "call_family": "",
+                        "recording": {
+                          "transcript": false,
+                          "summary": false,
+                          "notetaking": false,
+                          "summary_status": "",
+                          "can_record_summary": ""
+                        }
                       },
                       "no_notifications": false,
                       "assistant_app_thread": {

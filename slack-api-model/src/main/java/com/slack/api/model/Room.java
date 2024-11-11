@@ -47,6 +47,7 @@ public class Room {
     private Map<String, Object> lastInviteStatusByUser;
     private Map<String, Object> knocks;
     private Map<String, ParticipantsEvent> participantsEvents;
+    private Recording recording;
 
     @Data
     public static class ParticipantsEvent {
@@ -56,5 +57,14 @@ public class Room {
         private boolean cameraOff;
         private boolean screenshareOn;
         private boolean screenshareOff;
+    }
+
+    @Data
+    public static class Recording {
+        private Boolean transcript;
+        private Boolean summary;
+        private Boolean notetaking;
+        private String summaryStatus;
+        private String canRecordSummary;
     }
 }

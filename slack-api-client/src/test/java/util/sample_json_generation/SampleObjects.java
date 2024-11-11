@@ -496,6 +496,7 @@ public class SampleObjects {
             .lastInviteStatusByUser(EmptyHashMapObject)
             .knocks(EmptyHashMapObject)
             .attachedFileIds(Arrays.asList(""))
+            .recording(initProperties(new Room.Recording()))
             .build());
 
     static {

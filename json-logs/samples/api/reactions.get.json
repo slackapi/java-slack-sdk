@@ -82,7 +82,14 @@
       "call_family": "",
       "pending_invitees": {},
       "last_invite_status_by_user": {},
-      "knocks": {}
+      "knocks": {},
+      "recording": {
+        "transcript": false,
+        "summary": false,
+        "notetaking": false,
+        "summary_status": "",
+        "can_record_summary": ""
+      }
     },
     "blocks": [
       {
