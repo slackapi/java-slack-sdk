@@ -9313,6 +9313,7 @@
           "list_csv_download_url": "",
           "can_toggle_canvas_lock": false,
           "is_restricted_sharing_enabled": false,
+          "canvas_printing_enabled": false,
           "bot_id": "",
           "initial_comment": {
             "id": "",
@@ -21672,6 +21673,7 @@
             "list_csv_download_url": "",
             "can_toggle_canvas_lock": false,
             "is_restricted_sharing_enabled": false,
+            "canvas_printing_enabled": false,
             "bot_id": "",
             "initial_comment": {
               "id": "",
@@ -35674,6 +35676,7 @@
                   "list_csv_download_url": "",
                   "can_toggle_canvas_lock": false,
                   "is_restricted_sharing_enabled": false,
+                  "canvas_printing_enabled": false,
                   "bot_id": "",
                   "initial_comment": {
                     "id": "",
@@ -36190,6 +36193,7 @@
                       "list_csv_download_url": "",
                       "can_toggle_canvas_lock": false,
                       "is_restricted_sharing_enabled": false,
+                      "canvas_printing_enabled": false,
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -36751,6 +36755,7 @@
                       "list_csv_download_url": "",
                       "can_toggle_canvas_lock": false,
                       "is_restricted_sharing_enabled": false,
+                      "canvas_printing_enabled": false,
                       "bot_id": "",
                       "initial_comment": {
                         "id": "",
@@ -46507,6 +46512,7 @@
               "list_csv_download_url": "",
               "can_toggle_canvas_lock": false,
               "is_restricted_sharing_enabled": false,
+              "canvas_printing_enabled": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",
@@ -63302,6 +63308,7 @@
               "list_csv_download_url": "",
               "can_toggle_canvas_lock": false,
               "is_restricted_sharing_enabled": false,
+              "canvas_printing_enabled": false,
               "bot_id": "",
               "initial_comment": {
                 "id": "",

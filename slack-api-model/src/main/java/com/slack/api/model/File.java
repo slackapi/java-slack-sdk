@@ -380,6 +380,7 @@ public class File {
     private boolean canToggleCanvasLock;
     @SerializedName("is_restricted_sharing_enabled")
     private boolean restrictedSharingEnabled;
+    private boolean canvasPrintingEnabled;
 
     // ---------------------------------------
     // file comments
