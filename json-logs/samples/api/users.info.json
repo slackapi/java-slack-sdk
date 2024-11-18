@@ -72,7 +72,8 @@
       "is_owner": false,
       "teams": [
         ""
-      ]
+      ],
+      "is_primary_owner": false
     },
     "is_stranger": false,
     "who_can_share_contact_card": "",
