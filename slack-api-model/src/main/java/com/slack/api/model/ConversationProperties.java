@@ -20,6 +20,7 @@ public class ConversationProperties {
     private Boolean atHereRestricted;
     private Boolean atChannelRestricted;
     private List<Tab> tabs;
+    private List<Tabz> tabz;
 
     @Data
     @Builder
@@ -56,6 +57,39 @@ public class ConversationProperties {
     public static class Tab {
         private String id;
         private String label;
-        private Boolean type;
+        private String type;
+        private TabData data;
+        private Boolean isDisabled;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Tabz {
+        private String id;
+        private String label;
+        private String type;
+        private TabData data;
+        private Boolean isDisabled;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class TabData {
+        private String fileId;
+        private String viewId;
+        private String accessLevel;
+        private String sharedTs;
+        private String recordRelatedListId;
+        private String salesforceListViewId;
+        private String listsChannelTabDefaultRefineViewId;
+        private String objectType;
+        private String folderBookmarkId;
+        private String botUserId;
+        private String appId;
+        private Boolean muteEditUpdates;
     }
 }

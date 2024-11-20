@@ -62,8 +62,7 @@
             ""
           ],
           "user": [
-            "W00000000",
-            "U00000000"
+            "W00000000"
           ]
         },
         "threads_restricted_to": {
@@ -80,6 +79,13 @@
           "quip_thread_id": ""
         },
         "tabs": [
+          {
+            "id": "",
+            "label": "",
+            "type": ""
+          }
+        ],
+        "tabz": [
           {
             "id": "",
             "label": "",
