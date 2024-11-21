@@ -232,6 +232,8 @@ public class Actions {
         public static final String team_declined_slackbot_pref_request = "team_declined_slackbot_pref_request";
         public static final String slack_support_created_slackbot_pref_request = "slack_support_created_slackbot_pref_request";
         public static final String slack_support_canceled_slackbot_pref_request = "slack_support_canceled_slackbot_pref_request";
+        public static final String slack_ai_file_summary_generated = "slack_ai_file_summary_generated";
+        public static final String slack_ai_file_summary_deleted = "slack_ai_file_summary_deleted";
     }
 
     public static class User {

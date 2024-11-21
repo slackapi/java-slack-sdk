@@ -234,8 +234,10 @@ public class Attachment {
         private String source;
     }
 
-    private Integer videoHtmlWidth;
-    private Integer videoHtmlHeight;
+    // Starting in Nov 2024, this property returns either integer or double value.
+    private Double videoHtmlWidth;
+    // Starting in Nov 2024, this property returns either integer or double value.
+    private Double videoHtmlHeight;
 
     // Your message attachments may also contain a subtle footer,
     // which is especially useful when citing content in conjunction with author parameters.
