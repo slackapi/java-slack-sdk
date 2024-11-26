@@ -46,6 +46,7 @@ public class AdminApi_functions_Test {
             List<String> functionIds = response.getFunctions().stream().map(AppFunction::getId).collect(Collectors.toList());
             AdminFunctionsPermissionsLookupResponse permissions =
                     methodsAsync.adminFunctionsPermissionsLookup(r -> r.functionIds(functionIds)).get();
+            // TODO: starting in Nov 2024, this API call returns "internal_error"
             assertThat(permissions.getError(), is(nullValue()));
             String userId = methodsAsync.authTest(r -> r).get().getUserId();
             AdminFunctionsPermissionsSetResponse set = methodsAsync.adminFunctionsPermissionsSet(r -> r
