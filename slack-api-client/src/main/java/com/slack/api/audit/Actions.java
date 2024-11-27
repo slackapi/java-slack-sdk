@@ -363,6 +363,8 @@ public class Actions {
         public static final String external_shared_channel_host_transferred = "external_shared_channel_host_transferred";
         public static final String channel_template_provisioned = "channel_template_provisioned";
         public static final String record_channel_channel_type_conversion = "record_channel_channel_type_conversion";
+        public static final String featured_workflow_added = "featured_workflow_added";
+        public static final String featured_workflow_removed = "featured_workflow_removed";
     }
 
     public static class App {

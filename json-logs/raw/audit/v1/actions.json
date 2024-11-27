@@ -339,7 +339,9 @@
       "channel_tab_removed",
       "external_shared_channel_host_transferred",
       "channel_template_provisioned",
-      "record_channel_channel_type_conversion"
+      "record_channel_channel_type_conversion",
+      "featured_workflow_added",
+      "featured_workflow_removed"
     ],
     "app": [
       "app_installed",
