@@ -279,6 +279,7 @@ public class Actions {
         public static final String user_password_reset_slack_security = "user_password_reset_slack_security";
         public static final String quip_migration_user_mapping_removed = "quip_migration_user_mapping_removed";
         public static final String quip_migration_user_mapping_added = "quip_migration_user_mapping_added";
+        public static final String user_sessions_reset_by_circuit_breaker = "user_sessions_reset_by_circuit_breaker";
     }
 
     public static class File {

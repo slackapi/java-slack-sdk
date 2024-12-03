@@ -263,7 +263,8 @@
       "user_profile_deleted",
       "user_password_reset_slack_security",
       "quip_migration_user_mapping_removed",
-      "quip_migration_user_mapping_added"
+      "quip_migration_user_mapping_added",
+      "user_sessions_reset_by_circuit_breaker"
     ],
     "file": [
       "file_downloaded",

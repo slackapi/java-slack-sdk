@@ -19,6 +19,7 @@ public class AdminFunctionsPermissionsLookupResponse implements SlackApiTextResp
     private transient Map<String, List<String>> httpResponseHeaders;
 
     private Map<String, AppFunctionPermissions> permissions;
+    private Map<String, Object> metadata;
     private ResponseMetadata responseMetadata;
     private Object errors; // TODO: typing
 }

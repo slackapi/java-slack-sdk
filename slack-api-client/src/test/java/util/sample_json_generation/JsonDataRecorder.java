@@ -639,26 +639,43 @@ public class JsonDataRecorder {
                     message.add("room", GsonFactory.createSnakeCase().toJsonTree(SampleObjects.Room));
                 }
             }
-            if (name != null && name.equals("permissions") && path.equals("/api/admin.functions.permissions.lookup")) {
-                JsonObject permissions = element.getAsJsonObject();
-                try {
-                    // To avoid concurrent modification of the underlying objects
-                    List<String> oldKeys = new ArrayList<>();
-                    permissions.keySet().iterator().forEachRemaining(oldKeys::add);
-                    for (String key : oldKeys) {
-                        permissions.remove(key);
-                    }
+            if (name != null && path.equals("/api/admin.functions.permissions.lookup")) {
+                if (name.equals("permissions")) {
+                    JsonObject permissions = element.getAsJsonObject();
+                    try {
+                        // To avoid concurrent modification of the underlying objects
+                        List<String> oldKeys = new ArrayList<>();
+                        permissions.keySet().iterator().forEachRemaining(oldKeys::add);
+                        for (String key : oldKeys) {
+                            permissions.remove(key);
+                        }
 
-                } catch (Exception e) {
-                    log.error(e.getMessage(), e);
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+                    }
+                    AppFunctionPermissions appFunctionPermissions = new AppFunctionPermissions();
+                    appFunctionPermissions.setDistribution(initProperties(new AppFunctionPermissions.Distribution()));
+                    appFunctionPermissions.setAllowedEntities(initProperties(new AppFunctionPermissions.AllowedEntities()));
+                    appFunctionPermissions.setAllowedByAdmin(initProperties(new AppFunctionPermissions.AllowedByAdmin()));
+                    JsonObject p = GsonFactory.createSnakeCase().toJsonTree(appFunctionPermissions).getAsJsonObject();
+                    permissions.add("Fn0000000000", p);
+                    permissions.add("Fn0000000000_", p);
+                } else if (name.equals("metadata")) {
+                    JsonObject metadata = element.getAsJsonObject();
+                    try {
+                        // To avoid concurrent modification of the underlying objects
+                        List<String> oldKeys = new ArrayList<>();
+                        metadata.keySet().iterator().forEachRemaining(oldKeys::add);
+                        for (String key : oldKeys) {
+                            metadata.remove(key);
+                        }
+                    } catch (Exception e) {
+                        log.error(e.getMessage(), e);
+                    }
+                    JsonObject obj = GsonFactory.createSnakeCase().toJsonTree(new Object()).getAsJsonObject();
+                    metadata.add("Fn0000000000", obj);
+                    metadata.add("Fn0000000000_", obj);
                 }
-                AppFunctionPermissions appFunctionPermissions = new AppFunctionPermissions();
-                appFunctionPermissions.setDistribution(initProperties(new AppFunctionPermissions.Distribution()));
-                appFunctionPermissions.setAllowedEntities(initProperties(new AppFunctionPermissions.AllowedEntities()));
-                appFunctionPermissions.setAllowedByAdmin(initProperties(new AppFunctionPermissions.AllowedByAdmin()));
-                JsonObject p = GsonFactory.createSnakeCase().toJsonTree(appFunctionPermissions).getAsJsonObject();
-                permissions.add("Fn0000000000", p);
-                permissions.add("Fn0000000000_", p);
             }
             if (name != null && name.equals("prefs") && path.equals("/api/admin.conversations.getConversationPrefs")) {
                 JsonObject prefs = element.getAsJsonObject();
