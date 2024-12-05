@@ -420,7 +420,8 @@
       "huddle_transcription_started",
       "huddle_transcription_resumed",
       "huddle_transcription_cancelled",
-      "huddle_transcription_paused"
+      "huddle_transcription_paused",
+      "slack_ai_huddle_notes_generated"
     ],
     "anomaly": [
       "anomaly"

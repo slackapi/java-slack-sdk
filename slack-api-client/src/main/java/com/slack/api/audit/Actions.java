@@ -476,6 +476,7 @@ public class Actions {
         public static final String huddle_transcription_resumed = "huddle_transcription_resumed";
         public static final String huddle_transcription_cancelled = "huddle_transcription_cancelled";
         public static final String huddle_transcription_paused = "huddle_transcription_paused";
+        public static final String slack_ai_huddle_notes_generated = "slack_ai_huddle_notes_generated";
     }
 
     public static class Anomaly {
