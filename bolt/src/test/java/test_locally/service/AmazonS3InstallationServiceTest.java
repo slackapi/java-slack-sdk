@@ -1,47 +1,44 @@
 package test_locally.service;
 
-import com.amazonaws.SdkClientException;
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.services.s3.AmazonS3;
 import com.slack.api.bolt.model.builtin.DefaultBot;
 import com.slack.api.bolt.model.builtin.DefaultInstaller;
 import com.slack.api.bolt.service.builtin.AmazonS3InstallationService;
 import org.junit.Test;
+import software.amazon.awssdk.auth.credentials.AwsCredentials;
+import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
+import software.amazon.awssdk.core.ResponseBytes;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.core.sync.ResponseTransformer;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.*;
+
+import java.nio.charset.StandardCharsets;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
 public class AmazonS3InstallationServiceTest {
 
+    static S3Client setupMocks(S3Client s3) {
+        when(s3.headBucket((HeadBucketRequest) notNull())).thenReturn(HeadBucketResponse.builder().build());
+        when(s3.headObject((HeadObjectRequest) notNull())).thenReturn(HeadObjectResponse.builder().build());
+        when(s3.getObject((GetObjectRequest) notNull(), (ResponseTransformer<GetObjectResponse, ResponseBytes<GetObjectResponse>>) notNull()))
+                .thenReturn(ResponseBytes.fromByteArray(GetObjectResponse.builder().build(), "{}".getBytes(StandardCharsets.UTF_8)));
+        when(s3.putObject((PutObjectRequest) notNull(), (RequestBody) notNull())).thenReturn(PutObjectResponse.builder().build());
+        return s3;
+    }
+
     @Test(expected = IllegalStateException.class)
     public void initializer_no_credentials() {
-        AmazonS3 s3 = mock(AmazonS3.class);
+        S3Client s3 = setupMocks(mock(S3Client.class));
         AmazonS3InstallationService service = new AmazonS3InstallationService("test-bucket") {
             @Override
-            protected AWSCredentials getCredentials() {
+            protected AwsCredentials createCredentials(AwsCredentialsProvider provider) {
                 return null;
             }
 
             @Override
-            protected AmazonS3 createS3Client() {
-                return s3;
-            }
-        };
-        service.initializer().accept(null);
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void initializer_no_bucket() {
-        AWSCredentials credentials = mock(AWSCredentials.class);
-        AmazonS3 s3 = mock(AmazonS3.class);
-        AmazonS3InstallationService service = new AmazonS3InstallationService("test-bucket") {
-            @Override
-            protected AWSCredentials getCredentials() {
-                return credentials;
-            }
-
-            @Override
-            protected AmazonS3 createS3Client() {
+            protected S3Client createS3Client() {
                 return s3;
             }
         };
@@ -50,19 +47,18 @@ public class AmazonS3InstallationServiceTest {
 
     @Test
     public void initializer() {
-        AWSCredentials credentials = mock(AWSCredentials.class);
-        when(credentials.getAWSAccessKeyId()).thenReturn("valid key");
-        AmazonS3 s3 = mock(AmazonS3.class);
-        when(s3.doesBucketExistV2(anyString())).thenReturn(true);
+        AwsCredentials credentials = mock(AwsCredentials.class);
+        when(credentials.accessKeyId()).thenReturn("valid key");
+        S3Client s3 = setupMocks(mock(S3Client.class));
 
         AmazonS3InstallationService service = new AmazonS3InstallationService("test-bucket") {
             @Override
-            protected AWSCredentials getCredentials() {
+            protected AwsCredentials createCredentials(AwsCredentialsProvider provider) {
                 return credentials;
             }
 
             @Override
-            protected AmazonS3 createS3Client() {
+            protected S3Client createS3Client() {
                 return s3;
             }
         };
@@ -71,19 +67,18 @@ public class AmazonS3InstallationServiceTest {
 
     @Test
     public void operations() throws Exception {
-        AWSCredentials credentials = mock(AWSCredentials.class);
-        when(credentials.getAWSAccessKeyId()).thenReturn("valid key");
-        AmazonS3 s3 = mock(AmazonS3.class);
-        when(s3.doesBucketExistV2(anyString())).thenReturn(true);
+        AwsCredentials credentials = mock(AwsCredentials.class);
+        when(credentials.accessKeyId()).thenReturn("valid key");
+        S3Client s3 = setupMocks(mock(S3Client.class));
 
         AmazonS3InstallationService service = new AmazonS3InstallationService("test-bucket") {
             @Override
-            protected AWSCredentials getCredentials() {
+            protected AwsCredentials createCredentials(AwsCredentialsProvider provider) {
                 return credentials;
             }
 
             @Override
-            protected AmazonS3 createS3Client() {
+            protected S3Client createS3Client() {
                 return s3;
             }
         };
@@ -98,19 +93,18 @@ public class AmazonS3InstallationServiceTest {
 
     @Test
     public void operations_historical_data_enabled() throws Exception {
-        AWSCredentials credentials = mock(AWSCredentials.class);
-        when(credentials.getAWSAccessKeyId()).thenReturn("valid key");
-        AmazonS3 s3 = mock(AmazonS3.class);
-        when(s3.doesBucketExistV2(anyString())).thenReturn(true);
+        AwsCredentials credentials = mock(AwsCredentials.class);
+        when(credentials.accessKeyId()).thenReturn("valid key");
+        S3Client s3 = setupMocks(mock(S3Client.class));
 
         AmazonS3InstallationService service = new AmazonS3InstallationService("test-bucket") {
             @Override
-            protected AWSCredentials getCredentials() {
+            protected AwsCredentials createCredentials(AwsCredentialsProvider provider) {
                 return credentials;
             }
 
             @Override
-            protected AmazonS3 createS3Client() {
+            protected S3Client createS3Client() {
                 return s3;
             }
         };
@@ -129,22 +123,8 @@ public class AmazonS3InstallationServiceTest {
             super(bucketName);
         }
 
-        public AWSCredentials credentials() {
-            return getCredentials();
-        }
-
-        public AmazonS3 s3() {
+        public S3Client s3() {
             return createS3Client();
-        }
-    }
-
-    @Test
-    public void credentials() {
-        MyService service = new MyService("test-bucket");
-        try {
-            AWSCredentials credentials = service.credentials();
-            assertNotNull(credentials);
-        } catch (SdkClientException ignored) {
         }
     }
 
@@ -152,9 +132,9 @@ public class AmazonS3InstallationServiceTest {
     public void s3() {
         MyService service = new MyService("test-bucket");
         try {
-            AmazonS3 s3 = service.s3();
+            S3Client s3 = service.s3();
             assertNotNull(s3);
-        } catch (SdkClientException ignored) {
+        } catch (Exception ignored) {
         }
     }
 

@@ -9,6 +9,7 @@ public class AmazonS3OAuthStateServiceTest {
 
     @Test(expected = IllegalStateException.class)
     public void init() {
+        // To avoid accessing existing buckets
         String bucketName = "java-slack-sdk-test-dummy-bucket" + UUID.randomUUID();
         AmazonS3OAuthStateService service = new AmazonS3OAuthStateService(bucketName);
         service.initializer().accept(null);

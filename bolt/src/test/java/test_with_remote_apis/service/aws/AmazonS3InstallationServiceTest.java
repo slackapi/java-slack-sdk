@@ -9,6 +9,7 @@ public class AmazonS3InstallationServiceTest {
 
     @Test(expected = IllegalStateException.class)
     public void init() {
+        // To avoid accessing existing buckets
         String bucketName = "java-slack-sdk-test-dummy-bucket" + UUID.randomUUID();
         AmazonS3InstallationService service = new AmazonS3InstallationService(bucketName);
         service.initializer().accept(null);
