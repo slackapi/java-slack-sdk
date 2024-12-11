@@ -19,5 +19,6 @@ public class ConversationsCanvasesCreateResponse implements SlackApiTextResponse
 
     private String canvasId;
 
+    private String detail;
     private ResponseMetadata responseMetadata;
 }
