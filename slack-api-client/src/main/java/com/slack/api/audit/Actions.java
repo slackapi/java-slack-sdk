@@ -234,6 +234,10 @@ public class Actions {
         public static final String slack_support_canceled_slackbot_pref_request = "slack_support_canceled_slackbot_pref_request";
         public static final String slack_ai_file_summary_generated = "slack_ai_file_summary_generated";
         public static final String slack_ai_file_summary_deleted = "slack_ai_file_summary_deleted";
+        public static final String slack_ai_suggested_todo_generated = "slack_ai_suggested_todo_generated";
+        public static final String slack_ai_suggested_todo_regenerated = "slack_ai_suggested_todo_regenerated";
+        public static final String slack_ai_suggested_todo_dismissed = "slack_ai_suggested_todo_dismissed";
+        public static final String slack_ai_todo_title_generated = "slack_ai_todo_title_generated";
     }
 
     public static class User {
@@ -280,6 +284,8 @@ public class Actions {
         public static final String quip_migration_user_mapping_removed = "quip_migration_user_mapping_removed";
         public static final String quip_migration_user_mapping_added = "quip_migration_user_mapping_added";
         public static final String user_sessions_reset_by_circuit_breaker = "user_sessions_reset_by_circuit_breaker";
+        public static final String migration_user_conflict_resolved = "migration_user_conflict_resolved";
+        public static final String migration_user_conflict_resolution_deleted = "migration_user_conflict_resolution_deleted";
     }
 
     public static class File {

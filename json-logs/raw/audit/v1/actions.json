@@ -222,7 +222,11 @@
       "slack_support_created_slackbot_pref_request",
       "slack_support_canceled_slackbot_pref_request",
       "slack_ai_file_summary_generated",
-      "slack_ai_file_summary_deleted"
+      "slack_ai_file_summary_deleted",
+      "slack_ai_suggested_todo_generated",
+      "slack_ai_suggested_todo_regenerated",
+      "slack_ai_suggested_todo_dismissed",
+      "slack_ai_todo_title_generated"
     ],
     "user": [
       "custom_tos_accepted",
@@ -264,7 +268,9 @@
       "user_password_reset_slack_security",
       "quip_migration_user_mapping_removed",
       "quip_migration_user_mapping_added",
-      "user_sessions_reset_by_circuit_breaker"
+      "user_sessions_reset_by_circuit_breaker",
+      "migration_user_conflict_resolved",
+      "migration_user_conflict_resolution_deleted"
     ],
     "file": [
       "file_downloaded",
