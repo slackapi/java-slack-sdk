@@ -24,6 +24,8 @@ public class Usergroup {
     private boolean usergroup;
     @SerializedName("is_subteam")
     private boolean subteam;
+    @SerializedName("is_section")
+    private boolean section;
     private String name;
     private String description;
     private String handle;
