@@ -505,7 +505,8 @@
       "canvas_quip_document_cloned",
       "canvas_undeleted",
       "canvas_restricted_sharing_enabled",
-      "canvas_restricted_sharing_disabled"
+      "canvas_restricted_sharing_disabled",
+      "canvas_converted_to_standalone"
     ],
     "function": [
       "function_distribution_permission_added",

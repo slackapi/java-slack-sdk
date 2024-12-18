@@ -27,7 +27,8 @@
     "channel_count": 12345,
     "users": [
       ""
-    ]
+    ],
+    "is_section": false
   },
   "error": "",
   "needed": "",

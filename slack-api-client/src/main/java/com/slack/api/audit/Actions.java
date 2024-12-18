@@ -582,6 +582,7 @@ public class Actions {
         public static final String canvas_undeleted = "canvas_undeleted";
         public static final String canvas_restricted_sharing_enabled = "canvas_restricted_sharing_enabled";
         public static final String canvas_restricted_sharing_disabled = "canvas_restricted_sharing_disabled";
+        public static final String canvas_converted_to_standalone = "canvas_converted_to_standalone";
     }
 
     public static class Function {
