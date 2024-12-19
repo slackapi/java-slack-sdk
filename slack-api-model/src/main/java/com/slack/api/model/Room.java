@@ -48,6 +48,7 @@ public class Room {
     private Map<String, Object> knocks;
     private Map<String, ParticipantsEvent> participantsEvents;
     private Recording recording;
+    private String huddleLink;
 
     @Data
     public static class ParticipantsEvent {
