@@ -270,7 +270,8 @@
       "quip_migration_user_mapping_added",
       "user_sessions_reset_by_circuit_breaker",
       "migration_user_conflict_resolved",
-      "migration_user_conflict_resolution_deleted"
+      "migration_user_conflict_resolution_deleted",
+      "external_user_disconnected"
     ],
     "file": [
       "file_downloaded",

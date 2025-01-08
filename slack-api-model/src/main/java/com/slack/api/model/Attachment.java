@@ -92,6 +92,7 @@ public class Attachment {
 
     private String appId;
     private String botId;
+    private String botTeamId;
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
