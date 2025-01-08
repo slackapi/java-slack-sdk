@@ -2,6 +2,7 @@ package test_locally.sample_json_generation;
 
 import com.slack.api.app_backend.interactive_components.payload.MessageShortcutPayload;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.ObjectInitializer;
 import util.sample_json_generation.ObjectToJsonDumper;
@@ -15,6 +16,7 @@ public class MessageShortcutPayloadDumpTest {
 
     ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/app-backend/interactive-components");
 
+    @Ignore
     @Test
     public void dumpAll() throws Exception {
         List<Object> payloads = Arrays.asList(

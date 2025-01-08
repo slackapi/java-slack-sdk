@@ -5,6 +5,7 @@ import com.slack.api.app_backend.interactive_components.payload.BlockActionPaylo
 import com.slack.api.model.block.composition.ConfirmationDialogObject;
 import com.slack.api.model.block.composition.PlainTextObject;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.ObjectInitializer;
 import util.sample_json_generation.ObjectToJsonDumper;
@@ -18,6 +19,7 @@ public class InteractiveMessagesPayloadDumpTest {
 
     ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/app-backend/interactive-components");
 
+    @Ignore
     @Test
     public void dumpAll() throws Exception {
         List<Object> payloads = Arrays.asList(

@@ -4,6 +4,7 @@ import com.slack.api.app_backend.dialogs.payload.DialogCancellationPayload;
 import com.slack.api.app_backend.dialogs.payload.DialogSubmissionPayload;
 import com.slack.api.app_backend.dialogs.payload.DialogSuggestionPayload;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.ObjectInitializer;
 import util.sample_json_generation.ObjectToJsonDumper;
@@ -17,6 +18,7 @@ public class DialogsPayloadDumpTest {
 
     ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/app-backend/dialogs");
 
+    @Ignore
     @Test
     public void dumpAll() throws Exception {
         List<Object> payloads = Arrays.asList(

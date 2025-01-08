@@ -4,6 +4,7 @@ import com.slack.api.app_backend.events.payload.*;
 import com.slack.api.model.Message;
 import com.slack.api.model.event.*;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.sample_json_generation.ObjectToJsonDumper;
 import util.sample_json_generation.SampleObjects;
@@ -19,6 +20,7 @@ public class EventsApiPayloadDumpTest {
 
     ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/events");
 
+    @Ignore
     @Test
     public void dumpAll() throws Exception {
         // See also: test_with_remote_apis.EventsApiTest in bolt-servlet

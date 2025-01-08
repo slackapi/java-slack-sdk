@@ -2,6 +2,7 @@ package test_locally.sample_json_generation;
 
 import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.ObjectInitializer;
 import util.sample_json_generation.ObjectToJsonDumper;
@@ -14,6 +15,7 @@ public class SlashCommandPayloadDumpTest {
 
     ObjectToJsonDumper dumper = new ObjectToJsonDumper("../json-logs/samples/app-backend/slash-commands");
 
+    @Ignore
     @Test
     public void dumpAll() throws Exception {
         List<Object> payloads = Arrays.asList(
