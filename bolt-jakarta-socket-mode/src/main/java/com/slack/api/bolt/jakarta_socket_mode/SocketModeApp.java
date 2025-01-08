@@ -3,14 +3,15 @@ package com.slack.api.bolt.jakarta_socket_mode;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.slack.api.bolt.App;
-import com.slack.api.bolt.request.Request;
-import com.slack.api.bolt.response.Response;
 import com.slack.api.bolt.jakarta_socket_mode.request.SocketModeRequest;
 import com.slack.api.bolt.jakarta_socket_mode.request.SocketModeRequestParser;
+import com.slack.api.bolt.request.Request;
+import com.slack.api.bolt.response.Response;
 import com.slack.api.jakarta_socket_mode.JakartaSocketModeClientFactory;
 import com.slack.api.socket_mode.SocketModeClient;
 import com.slack.api.socket_mode.response.AckResponse;
 import com.slack.api.util.json.GsonFactory;
+import com.slack.api.util.thread.DaemonThreadExecutorServiceFactory;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -27,6 +29,7 @@ public class SocketModeApp {
     private final App app;
     private final Supplier<SocketModeClient> clientFactory;
     private SocketModeClient client;
+    private final ExecutorService executorService;
 
     private static final Function<ErrorContext, Response> DEFAULT_ERROR_HANDLER = (context) -> {
         Exception e = context.getException();
@@ -69,7 +72,8 @@ public class SocketModeApp {
     private static Supplier<SocketModeClient> buildSocketModeClientFactory(
             App app,
             String appToken,
-            Function<ErrorContext, Response> errorHandler
+            Function<ErrorContext, Response> errorHandler,
+            ExecutorService executorService
     ) {
         return () -> {
             try {
@@ -77,27 +81,13 @@ public class SocketModeApp {
                 final SocketModeRequestParser requestParser = new SocketModeRequestParser(app.config());
                 final Gson gson = GsonFactory.createSnakeCase(app.slack().getConfig());
                 client.addWebSocketMessageListener(message -> {
-                    long startMillis = System.currentTimeMillis();
-                    SocketModeRequest req = requestParser.parse(message);
-                    if (req != null) {
-                        try {
-                            Response boltResponse = app.run(req.getBoltRequest());
-                            if (boltResponse.getStatusCode() != 200) {
-                                log.warn("Unsuccessful Bolt app execution (status: {}, body: {})",
-                                        boltResponse.getStatusCode(), boltResponse.getBody());
-                                return;
-                            }
-                            sendSocketModeResponse(client, gson, req, boltResponse);
-                        } catch (Exception e) {
-                            ErrorContext context = ErrorContext.builder().request(req.getBoltRequest()).exception(e).build();
-                            Response errorResponse = errorHandler.apply(context);
-                            if (errorResponse != null) {
-                                sendSocketModeResponse(client, gson, req, errorResponse);
-                            }
-                        } finally {
-                            long spentMillis = System.currentTimeMillis() - startMillis;
-                            log.debug("Response time: {} milliseconds", spentMillis);
-                        }
+                    if (executorService != null) {
+                        // asynchronous
+                        executorService.execute(() -> runBoltApp(
+                                message, app, client, requestParser, errorHandler, gson));
+                    } else {
+                        // synchronous
+                        runBoltApp(message, app, client, requestParser, errorHandler, gson);
                     }
                 });
                 return client;
@@ -108,13 +98,59 @@ public class SocketModeApp {
         };
     }
 
+    private static void runBoltApp(
+            String message,
+            App app,
+            SocketModeClient client,
+            SocketModeRequestParser requestParser,
+            Function<ErrorContext, Response> errorHandler,
+            Gson gson
+    ) {
+        long startMillis = System.currentTimeMillis();
+        SocketModeRequest req = requestParser.parse(message);
+        if (req != null) {
+            try {
+                Response boltResponse = app.run(req.getBoltRequest());
+                if (boltResponse.getStatusCode() != 200) {
+                    log.warn("Unsuccessful Bolt app execution (status: {}, body: {})",
+                            boltResponse.getStatusCode(), boltResponse.getBody());
+                    return;
+                }
+                sendSocketModeResponse(client, gson, req, boltResponse);
+            } catch (Exception e) {
+                ErrorContext context = ErrorContext.builder().request(req.getBoltRequest()).exception(e).build();
+                Response errorResponse = errorHandler.apply(context);
+                if (errorResponse != null) {
+                    sendSocketModeResponse(client, gson, req, errorResponse);
+                }
+            } finally {
+                long spentMillis = System.currentTimeMillis() - startMillis;
+                log.debug("Response time: {} milliseconds", spentMillis);
+            }
+        }
+    }
+
+    private static ExecutorService buildExecutorService(int concurrency) {
+        return DaemonThreadExecutorServiceFactory.createDaemonThreadPoolExecutor(
+                "slack-bolt-socket-mode", concurrency);
+    }
+
+    // -------------------------------------------
+
     public SocketModeApp(App app) throws IOException {
         this(System.getenv("SLACK_APP_TOKEN"), app);
     }
 
+    public SocketModeApp(App app, int concurrency) throws IOException {
+        this(System.getenv("SLACK_APP_TOKEN"), app, concurrency);
+    }
 
     public SocketModeApp(String appToken, App app) throws IOException {
         this(appToken, DEFAULT_ERROR_HANDLER, app);
+    }
+
+    public SocketModeApp(String appToken, App app, int concurrency) throws IOException {
+        this(appToken, DEFAULT_ERROR_HANDLER, app, buildExecutorService(concurrency));
     }
 
     public SocketModeApp(
@@ -122,7 +158,7 @@ public class SocketModeApp {
             Function<ErrorContext, Response> errorHandler,
             App app
     ) throws IOException {
-        this(buildSocketModeClientFactory(app, appToken, errorHandler), app);
+        this(buildSocketModeClientFactory(app, appToken, errorHandler, null), app);
     }
 
     public SocketModeApp(
@@ -130,12 +166,33 @@ public class SocketModeApp {
             App app,
             Function<ErrorContext, Response> errorHandler
     ) throws IOException {
-        this(buildSocketModeClientFactory(app, appToken, errorHandler), app);
+        this(buildSocketModeClientFactory(app, appToken, errorHandler, null), app);
     }
 
     public SocketModeApp(Supplier<SocketModeClient> clientFactory, App app) {
+        this(clientFactory, app, null);
+    }
+
+
+    // intentionally private to avoid exposing the ExecutorService initialization
+    private SocketModeApp(
+            String appToken,
+            Function<ErrorContext, Response> errorHandler,
+            App app,
+            ExecutorService executorService
+    ) throws IOException {
+        this(buildSocketModeClientFactory(app, appToken, errorHandler, executorService), app, executorService);
+    }
+
+    // intentionally private to avoid exposing the ExecutorService initialization
+    private SocketModeApp(
+            Supplier<SocketModeClient> clientFactory,
+            App app,
+            ExecutorService executorService
+    ) {
         this.clientFactory = clientFactory;
         this.app = app;
+        this.executorService = executorService;
     }
 
     /**
@@ -152,9 +209,8 @@ public class SocketModeApp {
         this.client = socketModeClient;
         this.clientFactory = () -> socketModeClient;
         this.app = app;
+        this.executorService = null;
     }
-
-    // -------------------------------------------
 
     public void start() throws Exception {
         run(true);
@@ -192,6 +248,16 @@ public class SocketModeApp {
     public void close() throws Exception {
         this.stop();
         this.client = null;
+        if (executorService != null) {
+            for (Runnable runnable : executorService.shutdownNow()) {
+                try {
+                    runnable.run();
+                } catch (Exception e) {
+                    log.warn("Failed to run the remaining Runnable in SocketModeApp (error: {}, message: {})",
+                            e.getClass().getCanonicalName(), e.getMessage());
+                }
+            }
+        }
     }
 
     // -------------------------------------------
