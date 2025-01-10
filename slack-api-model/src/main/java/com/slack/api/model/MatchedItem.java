@@ -74,6 +74,10 @@ public class MatchedItem {
 
     private boolean publicUrlShared;
 
+    @SerializedName("is_restricted_sharing_enabled")
+    private boolean restrictedSharingEnabled;
+    private boolean canvasPrintingEnabled;
+
     private String urlPrivate;
     private boolean urlPrivateDownload;
     private String urlStaticPreview;

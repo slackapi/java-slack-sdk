@@ -285,7 +285,9 @@
       "file_upload_blocked_by_type",
       "file_share_blocked_by_type",
       "file_download_blocked",
-      "file_owner_reassigned_for_quip_migration"
+      "file_owner_reassigned_for_quip_migration",
+      "slack_ai_file_summary_generated",
+      "slack_ai_file_summary_deleted"
     ],
     "channel": [
       "user_channel_join",

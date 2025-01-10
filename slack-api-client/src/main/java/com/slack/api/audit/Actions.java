@@ -305,6 +305,8 @@ public class Actions {
         public static final String file_upload_blocked_by_type = "file_upload_blocked_by_type";
         public static final String file_share_blocked_by_type = "file_share_blocked_by_type";
         public static final String file_owner_reassigned_for_quip_migration = "file_owner_reassigned_for_quip_migration";
+        public static final String slack_ai_file_summary_generated = "slack_ai_file_summary_generated";
+        public static final String slack_ai_file_summary_deleted = "slack_ai_file_summary_deleted";
     }
 
     public static class Channel {
