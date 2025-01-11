@@ -122,9 +122,12 @@ public class EventRequest extends Request<EventContext> {
             JsonObject context = thread.get("context").getAsJsonObject();
             if (context != null) {
                 AssistantThreadContext threadContext = AssistantThreadContext.builder()
-                        .enterpriseId(context.get("enterprise_id") != null ? context.get("enterprise_id").getAsString() : null)
-                        .teamId(context.get("team_id") != null ? context.get("team_id").getAsString() : null)
-                        .channelId(context.get("channel_id") != null ? context.get("channel_id").getAsString() : null)
+                        // enterprise_id here can be a null value
+                        // others cannot be null as of Jan 2025, but added the same logic to all for future safety
+                        .enterpriseId(context.get("enterprise_id") != null && !context.get("enterprise_id").isJsonNull() ? context.get("enterprise_id").getAsString() : null)
+                        .teamId(context.get("team_id") != null && !context.get("team_id").isJsonNull() ? context.get("team_id").getAsString() : null)
+                        .channelId(context.get("channel_id") != null && !context.get("channel_id").isJsonNull() ? context.get("channel_id").getAsString() : null)
+                        .threadEntryPoint(context.get("thread_entry_point") != null && !context.get("thread_entry_point").isJsonNull() ? context.get("thread_entry_point").getAsString() : null)
                         .build();
                 this.getContext().setThreadContext(threadContext);
             }
@@ -134,9 +137,12 @@ public class EventRequest extends Request<EventContext> {
             // message events (user replies)
             this.getContext().setAssistantThreadEvent(true);
             this.getContext().setChannelId(event.get("channel").getAsString());
-            if (event.get("thread_ts") != null) {
+            if (event.get("thread_ts") != null
+                    && !event.get("thread_ts").isJsonNull()) {
                 this.getContext().setThreadTs(event.get("thread_ts").getAsString());
-            } else if (event.get("message") != null && event.get("message").getAsJsonObject().get("thread_ts") != null) {
+            } else if (event.get("message") != null
+                    && event.get("message").getAsJsonObject().get("thread_ts") != null
+                    && !event.get("message").getAsJsonObject().get("thread_ts").isJsonNull()) {
                 // message_changed
                 this.getContext().setThreadTs(event.get("message").getAsJsonObject().get("thread_ts").getAsString());
             }
