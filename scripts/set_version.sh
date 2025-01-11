@@ -9,6 +9,7 @@ fi
 
 # ------------------------------------------
 # TODO: run as a single command
+# On macOS, `brew install gnu-sed` is required to properly run this:
 find . -name pom.xml | xargs gsed -i "s/<version>[0-9]\+\.[0-9]\+\.[^S]\+<\/version>/<version>${new_version}<\/version>/g"
 find . -name pom.xml | xargs gsed -i "s/<version>[0-9]\+\.[0-9]\+\.[^S]\+-SNAPSHOT<\/version>/<version>${new_version}<\/version>/g"
 

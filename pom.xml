@@ -5,7 +5,7 @@
 
     <groupId>com.slack.api</groupId>
     <artifactId>slack-sdk-parent</artifactId>
-    <version>1.45.1-SNAPSHOT</version>
+    <version>1.45.1</version>
     <packaging>pom</packaging>
 
     <name>Java Slack SDK Project</name>
@@ -312,6 +312,13 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </dependency>
+                        </dependencies>
                     </plugin>
                     <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
