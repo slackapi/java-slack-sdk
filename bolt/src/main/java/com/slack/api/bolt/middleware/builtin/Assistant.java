@@ -26,6 +26,7 @@ import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 
 import static com.slack.api.bolt.util.EventsApiPayloadParser.buildEventPayload;
+import static com.slack.api.bolt.util.EventsApiPayloadParser.getEventTypeAndSubtype;
 
 public class Assistant implements Middleware {
 
@@ -50,6 +51,17 @@ public class Assistant implements Middleware {
     private AssistantEventHandler<MessageEvent> userMessage;
     private AssistantEventHandler<MessageFileShareEvent> userMessageWithFiles;
     private AssistantEventHandler<MessageEvent> botMessage;
+
+    static {
+        // *** Building event type cache data ***
+        // app.event / app.message handlers invoke getEventTypeAndSubtype method when their listeners are added.
+        // However, Assistant middleware does not, since it operates as a global middleware.
+        // This workaround ensures that the event type cache data is created before receiving requests.
+        getEventTypeAndSubtype(AssistantThreadStartedEvent.class);
+        getEventTypeAndSubtype(AssistantThreadContextChangedEvent.class);
+        getEventTypeAndSubtype(MessageEvent.class);
+        getEventTypeAndSubtype(MessageFileShareEvent.class);
+    }
 
     public Assistant() {
         this(null, buildDefaultExecutorService(), buildDefaultLogger());
