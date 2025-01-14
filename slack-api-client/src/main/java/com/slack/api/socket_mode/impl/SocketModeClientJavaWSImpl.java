@@ -130,15 +130,15 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
     public boolean verifyConnection() {
         if (this.currentSession != null && this.currentSession.isOpen()) {
             try {
-                if (getLogger().isDebugEnabled()) {
-                    getLogger().debug("Sending a ping message");
+                if (getLogger().isTraceEnabled()) {
+                    getLogger().trace("Sending a ping message");
                 }
                 this.currentSession.sendPing();
                 long waitMillis = 0L;
                 while (waitMillis <= 3_000L) {
                     if (this.currentSession.isPongReceived()) {
-                        if (getLogger().isDebugEnabled()) {
-                            getLogger().debug("Received a pong message");
+                        if (getLogger().isTraceEnabled()) {
+                            getLogger().trace("Received a pong message");
                         }
                         return true;
                     }
@@ -152,8 +152,8 @@ public class SocketModeClientJavaWSImpl implements SocketModeClient {
                         e.getMessage()
                 );
             }
-            if (getLogger().isDebugEnabled()) {
-                getLogger().debug("Failed to receive a pong message");
+            if (getLogger().isTraceEnabled()) {
+                getLogger().trace("Failed to receive a pong message");
             }
         }
         return false;

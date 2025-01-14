@@ -185,15 +185,15 @@ public interface SocketModeClient extends Closeable {
             final AtomicLong nextInvocationMillis = new AtomicLong(System.currentTimeMillis());
             executorService.scheduleWithFixedDelay(() -> {
                 long startMillis = System.currentTimeMillis();
-                if (getLogger().isDebugEnabled()) {
-                    getLogger().debug("Checking the current session...");
+                if (getLogger().isTraceEnabled()) {
+                    getLogger().trace("Checking the current session...");
                 }
                 if (isAutoReconnectEnabled() && nextInvocationMillis.get() <= System.currentTimeMillis()) {
                     nextInvocationMillis.set(maintainCurrentSession());
                 }
-                if (getLogger().isDebugEnabled()) {
+                if (getLogger().isTraceEnabled()) {
                     long spentMillis = System.currentTimeMillis() - startMillis;
-                    getLogger().debug("The session maintenance completed in {} milliseconds", spentMillis);
+                    getLogger().trace("The session maintenance completed in {} milliseconds", spentMillis);
                 }
             }, 5_000L, intervalMillis, TimeUnit.MILLISECONDS);
             if (getLogger().isDebugEnabled()) {

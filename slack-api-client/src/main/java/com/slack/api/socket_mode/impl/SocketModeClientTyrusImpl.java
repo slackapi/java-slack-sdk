@@ -187,8 +187,8 @@ public class SocketModeClientTyrusImpl implements SocketModeClient {
     public boolean verifyConnection() {
         if (this.currentSession != null && this.currentSession.isOpen()) {
             String ping = "ping-pong_" + currentSession.getId();
-            if (getLogger().isDebugEnabled()) {
-                getLogger().debug("Sending a ping message: {}", ping);
+            if (getLogger().isTraceEnabled()) {
+                getLogger().trace("Sending a ping message: {}", ping);
             }
             ByteBuffer pingBytes = ByteBuffer.wrap(ping.getBytes());
             try {
@@ -199,8 +199,8 @@ public class SocketModeClientTyrusImpl implements SocketModeClient {
                 while (waitMillis <= 3_000L) {
                     String pong = latestPong.getAndSet(null);
                     if (pong != null && pong.equals(ping)) {
-                        if (getLogger().isDebugEnabled()) {
-                            getLogger().debug("Received a pong message: {}", ping);
+                        if (getLogger().isTraceEnabled()) {
+                            getLogger().trace("Received a pong message: {}", ping);
                         }
                         return true;
                     }
@@ -213,8 +213,8 @@ public class SocketModeClientTyrusImpl implements SocketModeClient {
                         this.currentSession.getId(),
                         e.getMessage());
             }
-            if (getLogger().isDebugEnabled()) {
-                getLogger().debug("Failed to receive a pong message: {}", ping);
+            if (getLogger().isTraceEnabled()) {
+                getLogger().trace("Failed to receive a pong message: {}", ping);
             }
         }
         return false;
