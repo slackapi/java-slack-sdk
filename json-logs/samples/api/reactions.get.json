@@ -4372,7 +4372,8 @@
                   "id": "",
                   "url": ""
                 }
-              }
+              },
+              "expand": false
             },
             {
               "type": "video",
@@ -6688,7 +6689,8 @@
                   "style": ""
                 },
                 "accessibility_label": ""
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -6731,7 +6733,8 @@
                 },
                 "style": "",
                 "accessibility_label": ""
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -6812,7 +6815,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -6891,7 +6895,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -6947,7 +6952,8 @@
                 },
                 "response_url_enabled": false,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7005,7 +7011,8 @@
                 },
                 "max_selected_items": 123,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7067,7 +7074,8 @@
                   "exclude_bot_users": false
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7131,7 +7139,8 @@
                   "exclude_bot_users": false
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7186,7 +7195,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7242,7 +7252,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7292,7 +7303,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7361,7 +7373,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7433,7 +7446,8 @@
                 },
                 "max_selected_items": 123,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7467,7 +7481,8 @@
                   "id": "",
                   "url": ""
                 }
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7531,7 +7546,8 @@
                   },
                   "style": ""
                 }
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7640,7 +7656,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7752,7 +7769,8 @@
                 },
                 "max_selected_items": 123,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7807,7 +7825,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -7865,7 +7884,8 @@
                 },
                 "max_selected_items": 123,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             }
           ],
           "private_channels_with_file_access_count": 123,
@@ -8911,7 +8931,8 @@
                     "id": "",
                     "url": ""
                   }
-                }
+                },
+                "expand": false
               },
               {
                 "type": "video",
@@ -11227,7 +11248,8 @@
                     "style": ""
                   },
                   "accessibility_label": ""
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11270,7 +11292,8 @@
                   },
                   "style": "",
                   "accessibility_label": ""
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11351,7 +11374,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11430,7 +11454,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11486,7 +11511,8 @@
                   },
                   "response_url_enabled": false,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11544,7 +11570,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11606,7 +11633,8 @@
                     "exclude_bot_users": false
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11670,7 +11698,8 @@
                     "exclude_bot_users": false
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11725,7 +11754,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11781,7 +11811,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11831,7 +11862,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11900,7 +11932,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -11972,7 +12005,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -12006,7 +12040,8 @@
                     "id": "",
                     "url": ""
                   }
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -12070,7 +12105,8 @@
                     },
                     "style": ""
                   }
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -12179,7 +12215,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -12291,7 +12328,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -12346,7 +12384,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -12404,7 +12443,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               }
             ]
           },
@@ -13368,7 +13408,8 @@
                   "id": "",
                   "url": ""
                 }
-              }
+              },
+              "expand": false
             },
             {
               "type": "video",
@@ -15684,7 +15725,8 @@
                   "style": ""
                 },
                 "accessibility_label": ""
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -15727,7 +15769,8 @@
                 },
                 "style": "",
                 "accessibility_label": ""
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -15808,7 +15851,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -15887,7 +15931,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -15943,7 +15988,8 @@
                 },
                 "response_url_enabled": false,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16001,7 +16047,8 @@
                 },
                 "max_selected_items": 123,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16063,7 +16110,8 @@
                   "exclude_bot_users": false
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16127,7 +16175,8 @@
                   "exclude_bot_users": false
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16182,7 +16231,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16238,7 +16288,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16288,7 +16339,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16357,7 +16409,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16429,7 +16482,8 @@
                 },
                 "max_selected_items": 123,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16463,7 +16517,8 @@
                   "id": "",
                   "url": ""
                 }
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16527,7 +16582,8 @@
                   },
                   "style": ""
                 }
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16636,7 +16692,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16748,7 +16805,8 @@
                 },
                 "max_selected_items": 123,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16803,7 +16861,8 @@
                   "style": ""
                 },
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             },
             {
               "type": "section",
@@ -16861,7 +16920,8 @@
                 },
                 "max_selected_items": 123,
                 "focus_on_load": false
-              }
+              },
+              "expand": false
             }
           ]
         },
@@ -17084,6 +17144,7 @@
             ""
           ]
         },
+        "expand": false,
         "label": {
           "type": "plain_text",
           "text": "",
@@ -21539,7 +21600,8 @@
                     "id": "",
                     "url": ""
                   }
-                }
+                },
+                "expand": false
               },
               {
                 "type": "video",
@@ -23855,7 +23917,8 @@
                     "style": ""
                   },
                   "accessibility_label": ""
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -23898,7 +23961,8 @@
                   },
                   "style": "",
                   "accessibility_label": ""
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -23979,7 +24043,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24058,7 +24123,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24114,7 +24180,8 @@
                   },
                   "response_url_enabled": false,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24172,7 +24239,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24234,7 +24302,8 @@
                     "exclude_bot_users": false
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24298,7 +24367,8 @@
                     "exclude_bot_users": false
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24353,7 +24423,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24409,7 +24480,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24459,7 +24531,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24528,7 +24601,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24600,7 +24674,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24634,7 +24709,8 @@
                     "id": "",
                     "url": ""
                   }
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24698,7 +24774,8 @@
                     },
                     "style": ""
                   }
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24807,7 +24884,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24919,7 +24997,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -24974,7 +25053,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -25032,7 +25112,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               }
             ],
             "private_channels_with_file_access_count": 123,
@@ -26078,7 +26159,8 @@
                       "id": "",
                       "url": ""
                     }
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "video",
@@ -28394,7 +28476,8 @@
                       "style": ""
                     },
                     "accessibility_label": ""
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28437,7 +28520,8 @@
                     },
                     "style": "",
                     "accessibility_label": ""
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28518,7 +28602,8 @@
                       "style": ""
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28597,7 +28682,8 @@
                       "style": ""
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28653,7 +28739,8 @@
                     },
                     "response_url_enabled": false,
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28711,7 +28798,8 @@
                     },
                     "max_selected_items": 123,
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28773,7 +28861,8 @@
                       "exclude_bot_users": false
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28837,7 +28926,8 @@
                       "exclude_bot_users": false
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28892,7 +28982,8 @@
                       "style": ""
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28948,7 +29039,8 @@
                       "style": ""
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -28998,7 +29090,8 @@
                       "style": ""
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -29067,7 +29160,8 @@
                       "style": ""
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -29139,7 +29233,8 @@
                     },
                     "max_selected_items": 123,
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -29173,7 +29268,8 @@
                       "id": "",
                       "url": ""
                     }
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -29237,7 +29333,8 @@
                       },
                       "style": ""
                     }
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -29346,7 +29443,8 @@
                       "style": ""
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -29458,7 +29556,8 @@
                     },
                     "max_selected_items": 123,
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -29513,7 +29612,8 @@
                       "style": ""
                     },
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 },
                 {
                   "type": "section",
@@ -29571,7 +29671,8 @@
                     },
                     "max_selected_items": 123,
                     "focus_on_load": false
-                  }
+                  },
+                  "expand": false
                 }
               ]
             },
@@ -30535,7 +30636,8 @@
                     "id": "",
                     "url": ""
                   }
-                }
+                },
+                "expand": false
               },
               {
                 "type": "video",
@@ -32851,7 +32953,8 @@
                     "style": ""
                   },
                   "accessibility_label": ""
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -32894,7 +32997,8 @@
                   },
                   "style": "",
                   "accessibility_label": ""
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -32975,7 +33079,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33054,7 +33159,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33110,7 +33216,8 @@
                   },
                   "response_url_enabled": false,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33168,7 +33275,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33230,7 +33338,8 @@
                     "exclude_bot_users": false
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33294,7 +33403,8 @@
                     "exclude_bot_users": false
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33349,7 +33459,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33405,7 +33516,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33455,7 +33567,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33524,7 +33637,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33596,7 +33710,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33630,7 +33745,8 @@
                     "id": "",
                     "url": ""
                   }
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33694,7 +33810,8 @@
                     },
                     "style": ""
                   }
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33803,7 +33920,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33915,7 +34033,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -33970,7 +34089,8 @@
                     "style": ""
                   },
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               },
               {
                 "type": "section",
@@ -34028,7 +34148,8 @@
                   },
                   "max_selected_items": 123,
                   "focus_on_load": false
-                }
+                },
+                "expand": false
               }
             ]
           },
@@ -34251,6 +34372,7 @@
               ""
             ]
           },
+          "expand": false,
           "label": {
             "type": "plain_text",
             "text": "",
