@@ -15,6 +15,7 @@ class SectionBlockBuilder private constructor(
     private val accessoryContainer: SingleBlockElementContainer
 ) : Builder<SectionBlock>, TextObjectDsl by textContainer, BlockElementDsl by accessoryContainer {
     private var blockId: String? = null
+    private var expand: Boolean? = null
 
     // Need to separate "fields" and "fieldsContainer" because the delegate makes the list non-null by default
     private var fields: List<TextObject>? = null
@@ -45,7 +46,7 @@ class SectionBlockBuilder private constructor(
     }
 
     /**
-     * 	One of the available element objects.
+     * One of the available element objects.
      *
      * 	@see BlockElementDsl for the available accessories that can be constructed
      * 	@see <a href="https://api.slack.com/reference/block-kit/blocks#section">Section Block Documentation</a>
@@ -54,12 +55,23 @@ class SectionBlockBuilder private constructor(
         accessoryContainer.apply(builder)
     }
 
+    /**
+     * Whether or not this section block's text should always expand when rendered.
+     * If false or not provided, it may be rendered with a 'see more' option to expand and show the full text.
+     * For AI Assistant apps, this allows the app to post long messages
+     * without users needing to click 'see more' to expand the message.
+     */
+    fun expand(expand: Boolean) {
+        this.expand = expand
+    }
+
     override fun build(): SectionBlock {
         return SectionBlock.builder()
             .blockId(blockId)
             .fields(fields)
             .accessory(accessoryContainer.underlying)
             .text(textContainer.underlying)
+            .expand(expand)
             .build()
     }
 }

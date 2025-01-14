@@ -23,4 +23,5 @@ public class SectionBlock implements LayoutBlock {
     private String blockId;
     private List<TextObject> fields;
     private BlockElement accessory;
+    private Boolean expand;
 }
