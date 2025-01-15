@@ -9,9 +9,11 @@ import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.core.ResponseBytes;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.core.sync.ResponseTransformer;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.*;
 
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -23,18 +25,36 @@ import java.nio.charset.StandardCharsets;
 public class AmazonS3OAuthStateService implements OAuthStateService {
 
     private final String bucketName;
-    private AwsCredentialsProvider credentialsProvider;
+
+    private final AwsCredentialsProvider credentialsProvider;
+    private final Region region;
+    private final URI endpointOverride;
 
     public AmazonS3OAuthStateService(String bucketName) {
+        this(bucketName, DefaultCredentialsProvider.create());
+    }
+
+    public AmazonS3OAuthStateService(String bucketName, AwsCredentialsProvider credentialsProvider) {
+        this(bucketName, credentialsProvider, null, null);
+    }
+
+    public AmazonS3OAuthStateService(
+            String bucketName,
+            AwsCredentialsProvider credentialsProvider,
+            Region region,
+            String endpointOverride
+    ) {
         this.bucketName = bucketName;
+        this.credentialsProvider = credentialsProvider;
+        this.region = (region != null || System.getenv("AWS_REGION") == null) ? region : Region.of(System.getenv("AWS_REGION"));
+        this.endpointOverride = (endpointOverride != null && !endpointOverride.isEmpty()) ? URI.create(endpointOverride) : null;
     }
 
     @Override
     public Initializer initializer() {
         return (app) -> {
             // The first access to S3 tends to be slow on AWS Lambda.
-            this.credentialsProvider = DefaultCredentialsProvider.create();
-            AwsCredentials credentials = createCredentials(credentialsProvider);
+            AwsCredentials credentials = createCredentials(this.credentialsProvider);
             if (credentials == null || credentials.accessKeyId() == null) {
                 throw new IllegalStateException("AWS credentials not found");
             }
@@ -103,7 +123,11 @@ public class AmazonS3OAuthStateService implements OAuthStateService {
     }
 
     protected S3Client createS3Client() {
-        return S3Client.builder().credentialsProvider(this.credentialsProvider).build();
+        return S3Client.builder()
+                .credentialsProvider(this.credentialsProvider)
+                .region(this.region)
+                .endpointOverride(this.endpointOverride)
+                .build();
     }
 
     private String getKey(String state) {
