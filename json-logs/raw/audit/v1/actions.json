@@ -271,7 +271,8 @@
       "user_sessions_reset_by_circuit_breaker",
       "migration_user_conflict_resolved",
       "migration_user_conflict_resolution_deleted",
-      "external_user_disconnected"
+      "external_user_disconnected",
+      "user_sessions_reset_by_anomaly_event_response"
     ],
     "file": [
       "file_downloaded",

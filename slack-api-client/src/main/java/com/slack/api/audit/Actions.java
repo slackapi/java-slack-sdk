@@ -287,6 +287,7 @@ public class Actions {
         public static final String migration_user_conflict_resolved = "migration_user_conflict_resolved";
         public static final String migration_user_conflict_resolution_deleted = "migration_user_conflict_resolution_deleted";
         public static final String external_user_disconnected = "external_user_disconnected";
+        public static final String user_sessions_reset_by_anomaly_event_response = "user_sessions_reset_by_anomaly_event_response";
     }
 
     public static class File {
