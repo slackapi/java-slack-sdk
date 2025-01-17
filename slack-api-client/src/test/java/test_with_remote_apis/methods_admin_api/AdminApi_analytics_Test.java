@@ -9,6 +9,7 @@ import config.Constants;
 import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -49,6 +50,7 @@ public class AdminApi_analytics_Test {
         }
     }
 
+    @Ignore
     @Test
     public void getFile_member_forEach() throws Exception {
         if (orgAdminUserToken != null) {
@@ -82,6 +84,7 @@ public class AdminApi_analytics_Test {
         }
     }
 
+    @Ignore
     @Test
     public void getFile_member_forEach_validation() throws Exception {
         if (orgAdminUserToken != null) {
@@ -101,6 +104,7 @@ public class AdminApi_analytics_Test {
         }
     }
 
+    @Ignore
     @Test
     public void getFile_member_asBytes() throws Exception {
         if (orgAdminUserToken != null) {

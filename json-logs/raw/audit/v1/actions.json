@@ -226,7 +226,8 @@
       "slack_ai_suggested_todo_generated",
       "slack_ai_suggested_todo_regenerated",
       "slack_ai_suggested_todo_dismissed",
-      "slack_ai_todo_title_generated"
+      "slack_ai_todo_title_generated",
+      "pref.anomaly_event_response_changed"
     ],
     "user": [
       "custom_tos_accepted",

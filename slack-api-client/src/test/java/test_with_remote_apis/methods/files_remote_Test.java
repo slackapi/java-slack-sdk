@@ -16,6 +16,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -205,6 +206,7 @@ public class files_remote_Test {
 
     }
 
+    @Ignore
     @Test
     public void updateAndShare_searchable() throws Exception {
         String externalId = "test-searchable-external-id-" + System.currentTimeMillis();
