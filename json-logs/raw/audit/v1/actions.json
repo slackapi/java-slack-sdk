@@ -583,7 +583,8 @@
       "list_ownership_transferred",
       "list_shared",
       "list_restricted_sharing_enabled",
-      "list_restricted_sharing_disabled"
+      "list_restricted_sharing_disabled",
+      "list_rows_undeleted"
     ]
   }
 }

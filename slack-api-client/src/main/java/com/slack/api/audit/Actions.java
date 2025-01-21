@@ -680,5 +680,6 @@ public class Actions {
         public static final String list_shared = "list_shared";
         public static final String list_restricted_sharing_enabled = "list_restricted_sharing_enabled";
         public static final String list_restricted_sharing_disabled = "list_restricted_sharing_disabled";
+        public static final String list_rows_undeleted = "list_rows_undeleted";
     }
 }
