@@ -17,7 +17,7 @@ public class ListenerCodeSuggestion {
             "\n" +
             "app.step(step);\n";
 
-    public static final String viewSubmission(String callbackId) {
+    public static String viewSubmission(String callbackId) {
         return COMMON_PREFIX +
                 "app.viewSubmission(\"" + callbackId + "\", (req, ctx) -> {\n" +
                 "  // Sent inputs: req.getPayload().getView().getState().getValues()\n" +
@@ -25,7 +25,7 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String viewClosed(String callbackId) {
+    public static String viewClosed(String callbackId) {
         return COMMON_PREFIX +
                 "app.viewClosed(\"" + callbackId + "\", (req, ctx) -> {\n" +
                 "  // Do something where\n" +
@@ -33,7 +33,7 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String dialogSubmission(String callbackId) {
+    public static String dialogSubmission(String callbackId) {
         return COMMON_PREFIX +
                 "app.dialogSubmission(\"" + callbackId + "\", (req, ctx) -> {\n" +
                 "  // Do something where\n" +
@@ -41,7 +41,7 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String dialogSuggestion(String callbackId) {
+    public static String dialogSuggestion(String callbackId) {
         return COMMON_PREFIX +
                 "app.dialogSubmission(\"" + callbackId + "\", (req, ctx) -> {\n" +
                 "  List<Option> options = Arrays.asList(Option.builder().label(\"label\").value(\"value\").build());\n" +
@@ -57,14 +57,14 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String command(String command) {
+    public static String command(String command) {
         return COMMON_PREFIX +
                 "app.command(\"" + command + "\", (req, ctx) -> {\n" +
                 "  return ctx.ack();\n" +
                 "});\n";
     }
 
-    public static final String attachmentAction(String callbackId) {
+    public static String attachmentAction(String callbackId) {
         return COMMON_PREFIX +
                 "app.attachmentAction(\"" + callbackId + "\", (req, ctx) -> {\n" +
                 "  // Do something where\n" +
@@ -72,7 +72,7 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String blockAction(String actionId) {
+    public static String blockAction(String actionId) {
         return COMMON_PREFIX +
                 "app.blockAction(\"" + actionId + "\", (req, ctx) -> {\n" +
                 "  // Do something where\n" +
@@ -80,7 +80,7 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String blockSuggestion(String actionId) {
+    public static String blockSuggestion(String actionId) {
         return COMMON_PREFIX +
                 "app.blockSuggestion(\"" + actionId + "\", (req, ctx) -> {\n" +
                 "  List<Option> options = Arrays.asList(Option.builder().text(plainText(\"label\")).value(\"v\").build());\n" +
@@ -88,7 +88,7 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String event(String eventTypeAndSubtype) {
+    public static String event(String eventTypeAndSubtype) {
         String className = toEventClassName(eventTypeAndSubtype);
         return COMMON_PREFIX +
                 "app.event(" + className + ".class, (payload, ctx) -> {\n" +
@@ -96,7 +96,7 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String toEventClassName(String eventTypeAndSubtype) {
+    public static String toEventClassName(String eventTypeAndSubtype) {
         String eventType = eventTypeAndSubtype;
         String[] elements = eventTypeAndSubtype.split(":");
         if (elements.length == 2) {
@@ -104,9 +104,6 @@ public class ListenerCodeSuggestion {
             eventType = elements[0] + "_" + elements[1]
                     .replaceFirst("_message", "")
                     .replaceFirst("message_", "");
-        }
-        if (eventType == null) {
-            return "";
         }
         StringBuilder sb = new StringBuilder();
         char[] cs = eventType.toCharArray();
@@ -121,7 +118,7 @@ public class ListenerCodeSuggestion {
                 sb.append(c);
             }
         }
-        return sb.toString() + "Event";
+        return sb + "Event";
     }
 
     public static String globalShortcut(String callbackId) {

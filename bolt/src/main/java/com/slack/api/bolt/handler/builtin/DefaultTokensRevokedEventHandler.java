@@ -45,7 +45,7 @@ public class DefaultTokensRevokedEventHandler implements BoltEventHandler<Tokens
         this.executorService.submit(() -> {
             TokensRevokedEvent.Tokens tokens = payload.getEvent().getTokens();
             if (tokens.getOauth() != null) { // user tokens
-                for (String userId : tokens.    getOauth()) {
+                for (String userId : tokens.getOauth()) {
                     Installer installer = installationService.findInstaller(enterpriseId, teamId, userId);
                     if (installer != null) {
                         try {

@@ -26,7 +26,7 @@ public interface SayUtility {
     }
 
     /**
-     * Using `say(blocks, text)` instead is highly recommended for even better user experience.
+     * Using `say(text, blocks)` instead is highly recommended for even better user experience.
      */
     default ChatPostMessageResponse say(List<LayoutBlock> blocks) throws IOException, SlackApiException {
         return say(null, blocks);
