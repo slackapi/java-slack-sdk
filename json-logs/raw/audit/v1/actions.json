@@ -227,7 +227,9 @@
       "slack_ai_suggested_todo_regenerated",
       "slack_ai_suggested_todo_dismissed",
       "slack_ai_todo_title_generated",
-      "pref.anomaly_event_response_changed"
+      "pref.anomaly_event_response_changed",
+      "security_settings_export_started",
+      "security_settings_export_completed"
     ],
     "user": [
       "custom_tos_accepted",
