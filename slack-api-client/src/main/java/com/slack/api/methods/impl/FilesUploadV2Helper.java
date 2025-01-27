@@ -31,7 +31,7 @@ public class FilesUploadV2Helper implements AutoCloseable {
 
     public FilesUploadV2Helper(MethodsClient client) {
         this.client = client;
-        this.okHttpClient = SlackHttpClient.buildOkHttpClient(client.getSlackHttpClient().getConfig());
+        this.okHttpClient = client.getSlackHttpClient().getOkHttpClient();
     }
 
     public String uploadFile(
