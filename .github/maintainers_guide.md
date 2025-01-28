@@ -127,7 +127,6 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
   * `git push slackapi --tags`
   * Open https://github.com/slackapi/java-slack-sdk/releases/new?tag=v${version}
 * (Slack Internal) Communicate the release internally. Include a link to the GitHub Release(s).
-* Announce on Bot Developer Hangout (`dev4slack.slack.com`) in **#slack-api**.
 * (Slack Internal) Tweet? Not necessary for patch updates, might be needed for minor updates, definitely needed for
    major updates. Include a link to the GitHub Release(s).
 
