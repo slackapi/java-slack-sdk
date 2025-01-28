@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.slack.api.SlackConfig;
 import com.slack.api.audit.response.LogsResponse;
 import com.slack.api.model.Attachment;
+import com.slack.api.model.File;
 import com.slack.api.model.admin.AppWorkflow;
 import com.slack.api.model.block.ContextBlockElement;
 import com.slack.api.model.block.LayoutBlock;
@@ -31,6 +32,7 @@ public class GsonFactory {
         return new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(Instant.class, new JavaTimeInstantFactory())
+                .registerTypeAdapter(File.class, new GsonFileFactory())
                 .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory())
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory())
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory())
@@ -54,6 +56,7 @@ public class GsonFactory {
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(Instant.class, new JavaTimeInstantFactory(failOnUnknownProps))
+                .registerTypeAdapter(File.class, new GsonFileFactory(failOnUnknownProps))
                 .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProps))
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProps))
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
@@ -82,6 +85,7 @@ public class GsonFactory {
         boolean failOnUnknownProps = config.isFailOnUnknownProperties();
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .registerTypeAdapter(Instant.class, new JavaTimeInstantFactory(failOnUnknownProps))
+                .registerTypeAdapter(File.class, new GsonFileFactory(failOnUnknownProps))
                 .registerTypeAdapter(LayoutBlock.class, new GsonLayoutBlockFactory(failOnUnknownProps))
                 .registerTypeAdapter(TextObject.class, new GsonTextObjectFactory(failOnUnknownProps))
                 .registerTypeAdapter(ContextBlockElement.class, new GsonContextBlockElementFactory(failOnUnknownProps))
