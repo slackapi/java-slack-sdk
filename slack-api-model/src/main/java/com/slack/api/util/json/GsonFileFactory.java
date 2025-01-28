@@ -27,10 +27,19 @@ public class GsonFileFactory implements JsonDeserializer<File>, JsonSerializer<F
             throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         // Remove unusual data structure form Slack API server
+        // As the starting point in Jan 2025, we just ignore these non-array properties,
+        // but we may want to assign to a different field if it's necessary for some use cases
         // See https://github.com/slackapi/java-slack-sdk/issues/1426 for more details
+        if (jsonObject.has("favorites") && !jsonObject.get("favorites").isJsonArray()) {
+            jsonObject.remove("favorites");
+        }
+        if (jsonObject.has("channels") && !jsonObject.get("channels").isJsonArray()) {
+            jsonObject.remove("channels");
+        }
+        if (jsonObject.has("ims") && !jsonObject.get("ims").isJsonArray()) {
+            jsonObject.remove("ims");
+        }
         if (jsonObject.has("groups") && !jsonObject.get("groups").isJsonArray()) {
-            // As the starting point in Jan 2025, we just ignore this property,
-            // but we may want to assign to a different field if it's necessary for some use cases
             jsonObject.remove("groups");
         }
         if (jsonObject.has("shares")) {

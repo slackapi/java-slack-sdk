@@ -40,7 +40,7 @@ public class FileTest {
             "  \"lines\": 5,\n" +
             "  \"lines_more\": 0,\n" +
             "  \"preview_is_truncated\": false,\n" +
-            "  \"favorites\": [],\n" +
+            "  \"favorites\": {},\n" + // unusual data structure here
             "  \"is_starred\": false,\n" +
             "  \"shares\": {\n" +
             "    \"public\": {\n" +
@@ -70,12 +70,9 @@ public class FileTest {
             "      ]\n" +
             "    }\n" +
             "  },\n" +
-            "  \"channels\": [\n" +
-            "    \"C03E94MKU\",\n" +
-            "    \"C03E94MKS\"\n" +
-            "  ],\n" +
+            "  \"channels\": {},\n" + // unusual data structure here
             "  \"groups\": {},\n" + // unusual data structure here
-            "  \"ims\": [],\n" +
+            "  \"ims\": {},\n" + // unusual data structure here
             "  \"has_more_shares\": false,\n" +
             "  \"has_rich_preview\": false,\n" +
             "  \"file_access\": \"visible\",\n" +
@@ -85,7 +82,7 @@ public class FileTest {
     @Test
     public void issue1426_parse() {
         // com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 65 column 14 path $.groups
-        File message = GsonFactory.createSnakeCase().fromJson(ISSUE_1426_JSON, File.class);
-        assertThat(message.getShares(), is(notNullValue()));
+        File file = GsonFactory.createSnakeCase().fromJson(ISSUE_1426_JSON, File.class);
+        assertThat(file.getShares(), is(notNullValue()));
     }
 }
