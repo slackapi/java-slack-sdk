@@ -131,6 +131,11 @@ public class FilesUploadV2Request implements SlackApiRequest {
     private String channel;
 
     /**
+     * Comma-separated string of channel IDs where the file will be shared.
+     */
+    private List<String> channels;
+
+    /**
      * Provide another message's ts value to upload this file as a reply.
      * Never use a reply's ts value; use its parent instead.
      */

@@ -2086,7 +2086,11 @@ public class RequestFormBuilder {
         if (req.getFiles() != null) {
             setIfNotNull("files", GSON.toJson(req.getFiles()), form);
         }
-        setIfNotNull("channel_id", req.getChannelId(), form);
+        if (req.getChannels() != null) {
+            setIfNotNull("channels", req.getChannels().stream().collect(joining(",")), form);
+        } else {
+            setIfNotNull("channel_id", req.getChannelId(), form);
+        }
         setIfNotNull("initial_comment", req.getInitialComment(), form);
         setIfNotNull("thread_ts", req.getThreadTs(), form);
         return form;
