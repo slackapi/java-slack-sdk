@@ -123,6 +123,10 @@ public class SlackHttpClient implements AutoCloseable {
         this.config = config;
     }
 
+    public OkHttpClient getOkHttpClient() {
+        return this.okHttpClient;
+    }
+
     public Response get(String url, Map<String, String> query, String token) throws IOException {
         if (query != null) {
             HttpUrl.Builder u = HttpUrl.parse(url).newBuilder();
