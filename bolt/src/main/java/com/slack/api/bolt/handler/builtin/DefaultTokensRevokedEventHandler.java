@@ -58,7 +58,7 @@ public class DefaultTokensRevokedEventHandler implements BoltEventHandler<Tokens
                     }
                 }
             }
-            if (tokens.getBot() != null && tokens.getBot().size() > 0) { // bots
+            if (tokens.getBot() != null && !tokens.getBot().isEmpty()) { // bots
                 // actually only one bot per app in a workspace
                 Bot bot = installationService.findBot(enterpriseId, teamId);
                 if (bot != null) {
