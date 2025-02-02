@@ -20,13 +20,13 @@ public class AmazonS3OAuthStateServiceTest {
 
     static S3Client setupMocks(S3Client s3) {
         when(s3.headBucket((HeadBucketRequest) notNull()))
-            .thenReturn(HeadBucketResponse.builder().build());
+                .thenReturn(HeadBucketResponse.builder().build());
         when(s3.getObject((GetObjectRequest) notNull(), (ResponseTransformer<GetObjectResponse, ResponseBytes<GetObjectResponse>>) notNull()))
-            .thenReturn(ResponseBytes.fromByteArray(GetObjectResponse.builder().build(), "42".getBytes(StandardCharsets.UTF_8)));
+                .thenReturn(ResponseBytes.fromByteArray(GetObjectResponse.builder().build(), "42".getBytes(StandardCharsets.UTF_8)));
         when(s3.putObject((PutObjectRequest) notNull(), (RequestBody) notNull()))
-            .thenReturn(PutObjectResponse.builder().build());
+                .thenReturn(PutObjectResponse.builder().build());
         when(s3.deleteObject((DeleteObjectRequest) notNull()))
-            .thenReturn(DeleteObjectResponse.builder().build());
+                .thenReturn(DeleteObjectResponse.builder().build());
         return s3;
     }
 

@@ -128,8 +128,8 @@ public class RedisInstallationService implements InstallationService {
                 Installer installer = JsonOps.fromJson(json, DefaultInstaller.class);
                 installer.setEnterpriseId(enterpriseId);
                 save(getInstallerPath(enterpriseId, teamId, userId),
-                    installer.getInstalledAt(),
-                    JsonOps.toJsonString(installer));
+                        installer.getInstalledAt(),
+                        JsonOps.toJsonString(installer));
                 return installer;
             }
         }
@@ -142,8 +142,8 @@ public class RedisInstallationService implements InstallationService {
     @Override
     public void deleteAll(String enterpriseId, String teamId) {
         String keyPrefix = Optional.ofNullable(enterpriseId).orElse("none")
-            + "-"
-            + Optional.ofNullable(teamId).orElse("none");
+                + "-"
+                + Optional.ofNullable(teamId).orElse("none");
         try (Jedis jedis = jedis()) {
             jedis.keys(keyPrefix).forEach(jedis::del);
         }
