@@ -138,8 +138,8 @@ public class FileInstallationService implements InstallationService {
                     Installer installer = JsonOps.fromJson(json, DefaultInstaller.class);
                     installer.setEnterpriseId(enterpriseId);
                     save(getInstallerPath(enterpriseId, teamId, userId),
-                        installer.getInstalledAt(),
-                        JsonOps.toJsonString(installer));
+                            installer.getInstalledAt(),
+                            JsonOps.toJsonString(installer));
                     return installer;
                 }
             }
@@ -181,8 +181,8 @@ public class FileInstallationService implements InstallationService {
 
     private String getInstallerPath(Installer installer) throws IOException {
         return getInstallerPath(installer.getEnterpriseId(),
-            installer.getTeamId(),
-            installer.getInstallerUserId());
+                installer.getTeamId(),
+                installer.getInstallerUserId());
     }
 
     private String getInstallerPath(String enterpriseId, String teamId, String userId) throws IOException {
@@ -234,7 +234,7 @@ public class FileInstallationService implements InstallationService {
         String content = Files.readAllLines(Paths.get(filepath))
                 .stream()
                 .collect(joining());
-        if (content == null || content.trim().isEmpty() || content.trim().equals("null")) {
+        if (content.trim().isEmpty() || content.trim().equals("null")) {
             return null;
         }
         return content;
