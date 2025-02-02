@@ -10,18 +10,23 @@ import software.amazon.awssdk.core.sync.ResponseTransformer;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.*;
 
+import java.util.UUID;
 import java.nio.charset.StandardCharsets;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.mockito.Mockito.*;
 
 public class AmazonS3OAuthStateServiceTest {
 
     static S3Client setupMocks(S3Client s3) {
-        when(s3.headBucket((HeadBucketRequest) notNull())).thenReturn(HeadBucketResponse.builder().build());
-        when(s3.headObject((HeadObjectRequest) notNull())).thenReturn(HeadObjectResponse.builder().build());
+        when(s3.headBucket((HeadBucketRequest) notNull()))
+            .thenReturn(HeadBucketResponse.builder().build());
         when(s3.getObject((GetObjectRequest) notNull(), (ResponseTransformer<GetObjectResponse, ResponseBytes<GetObjectResponse>>) notNull()))
-                .thenReturn(ResponseBytes.fromByteArray(GetObjectResponse.builder().build(), "{}".getBytes(StandardCharsets.UTF_8)));
-        when(s3.putObject((PutObjectRequest) notNull(), (RequestBody) notNull())).thenReturn(PutObjectResponse.builder().build());
+            .thenReturn(ResponseBytes.fromByteArray(GetObjectResponse.builder().build(), "42".getBytes(StandardCharsets.UTF_8)));
+        when(s3.putObject((PutObjectRequest) notNull(), (RequestBody) notNull()))
+            .thenReturn(PutObjectResponse.builder().build());
+        when(s3.deleteObject((DeleteObjectRequest) notNull()))
+            .thenReturn(DeleteObjectResponse.builder().build());
         return s3;
     }
 
@@ -81,9 +86,10 @@ public class AmazonS3OAuthStateServiceTest {
         };
         service.initializer().accept(null);
 
-        service.isAvailableInDatabase("foo");
-        service.addNewStateToDatastore("foo");
-        service.deleteStateFromDatastore("foo");
+        String uuid = UUID.randomUUID().toString();
+        assertFalse(service.isAvailableInDatabase(uuid));
+        service.addNewStateToDatastore(uuid);
+        service.deleteStateFromDatastore(uuid);
     }
 
 }

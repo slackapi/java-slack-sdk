@@ -20,11 +20,14 @@ import static org.mockito.Mockito.*;
 public class AmazonS3InstallationServiceTest {
 
     static S3Client setupMocks(S3Client s3) {
-        when(s3.headBucket((HeadBucketRequest) notNull())).thenReturn(HeadBucketResponse.builder().build());
-        when(s3.headObject((HeadObjectRequest) notNull())).thenReturn(HeadObjectResponse.builder().build());
+        when(s3.headBucket((HeadBucketRequest) notNull()))
+            .thenReturn(HeadBucketResponse.builder().build());
+        when(s3.headObject((HeadObjectRequest) notNull()))
+            .thenReturn(HeadObjectResponse.builder().build());
         when(s3.getObject((GetObjectRequest) notNull(), (ResponseTransformer<GetObjectResponse, ResponseBytes<GetObjectResponse>>) notNull()))
-                .thenReturn(ResponseBytes.fromByteArray(GetObjectResponse.builder().build(), "{}".getBytes(StandardCharsets.UTF_8)));
-        when(s3.putObject((PutObjectRequest) notNull(), (RequestBody) notNull())).thenReturn(PutObjectResponse.builder().build());
+            .thenReturn(ResponseBytes.fromByteArray(GetObjectResponse.builder().build(), "{}".getBytes(StandardCharsets.UTF_8)));
+        when(s3.putObject((PutObjectRequest) notNull(), (RequestBody) notNull()))
+            .thenReturn(PutObjectResponse.builder().build());
         return s3;
     }
 

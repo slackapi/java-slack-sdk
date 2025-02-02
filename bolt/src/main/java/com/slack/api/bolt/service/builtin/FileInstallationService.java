@@ -18,6 +18,9 @@ import java.util.Optional;
 
 import static java.util.stream.Collectors.joining;
 
+/**
+ * InstallationService implementation using local file system.
+ */
 @Slf4j
 public class FileInstallationService implements InstallationService {
 
@@ -132,10 +135,12 @@ public class FileInstallationService implements InstallationService {
             if (json == null && enterpriseId != null) {
                 json = loadFileContent(getInstallerPath(null, teamId, userId));
                 if (json != null) {
-                    Installer i = JsonOps.fromJson(json, DefaultInstaller.class);
-                    i.setEnterpriseId(enterpriseId);
-                    save(getInstallerPath(enterpriseId, teamId, userId), i.getInstalledAt(), JsonOps.toJsonString(i));
-                    return i;
+                    Installer installer = JsonOps.fromJson(json, DefaultInstaller.class);
+                    installer.setEnterpriseId(enterpriseId);
+                    save(getInstallerPath(enterpriseId, teamId, userId),
+                        installer.getInstalledAt(),
+                        JsonOps.toJsonString(installer));
+                    return installer;
                 }
             }
             if (json != null) {
@@ -165,7 +170,7 @@ public class FileInstallationService implements InstallationService {
                     try {
                         Files.delete(path);
                     } catch (IOException e) {
-                        log.error("Failed to delete a file: {}", path.toString(), e);
+                        log.error("Failed to delete a file: {}", path, e);
                     }
                 }
             });
@@ -174,8 +179,10 @@ public class FileInstallationService implements InstallationService {
         }
     }
 
-    private String getInstallerPath(Installer i) throws IOException {
-        return getInstallerPath(i.getEnterpriseId(), i.getTeamId(), i.getInstallerUserId());
+    private String getInstallerPath(Installer installer) throws IOException {
+        return getInstallerPath(installer.getEnterpriseId(),
+            installer.getTeamId(),
+            installer.getInstallerUserId());
     }
 
     private String getInstallerPath(String enterpriseId, String teamId, String userId) throws IOException {

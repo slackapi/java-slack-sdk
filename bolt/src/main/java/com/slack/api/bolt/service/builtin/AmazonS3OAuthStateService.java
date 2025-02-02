@@ -113,8 +113,12 @@ public class AmazonS3OAuthStateService implements OAuthStateService {
 
     @Override
     public void deleteStateFromDatastore(String state) throws Exception {
+        DeleteObjectResponse deleteObjectResponse;
         try (S3Client s3 = this.createS3Client()) {
-            s3.deleteObject(DeleteObjectRequest.builder().bucket(bucketName).key(getKey(state)).build());
+            deleteObjectResponse = s3.deleteObject(DeleteObjectRequest.builder().bucket(bucketName).key(getKey(state)).build());
+        }
+        if (log.isDebugEnabled()) {
+            log.debug("AWS S3 deleteObject result of state data - {}", deleteObjectResponse.toString());
         }
     }
 

@@ -24,6 +24,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * InstallationService implementation using Amazon S3.
+ *
+ * @see <a href="https://aws.amazon.com/s3/">Amazon S3</a>
+ */
 @Slf4j
 public class AmazonS3InstallationService implements InstallationService {
 
@@ -92,16 +97,16 @@ public class AmazonS3InstallationService implements InstallationService {
     }
 
     @Override
-    public void saveInstallerAndBot(Installer i) throws Exception {
+    public void saveInstallerAndBot(Installer installer) throws Exception {
         try (S3Client s3 = this.createS3Client()) {
             if (isHistoricalDataEnabled()) {
-                save(s3, getInstallerKey(i) + "-latest", JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}, {}");
-                save(s3, getBotKey(i) + "-latest", JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}, {}");
-                save(s3, getInstallerKey(i) + "-" + i.getInstalledAt(), JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}, {}");
-                save(s3, getBotKey(i) + "-" + i.getInstalledAt(), JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}, {}");
+                save(s3, getInstallerKey(installer) + "-latest", JsonOps.toJsonString(installer), "AWS S3 putObject result of Installer data - {}, {}");
+                save(s3, getBotKey(installer) + "-latest", JsonOps.toJsonString(installer.toBot()), "AWS S3 putObject result of Bot data - {}, {}");
+                save(s3, getInstallerKey(installer) + "-" + installer.getInstalledAt(), JsonOps.toJsonString(installer), "AWS S3 putObject result of Installer data - {}, {}");
+                save(s3, getBotKey(installer) + "-" + installer.getInstalledAt(), JsonOps.toJsonString(installer.toBot()), "AWS S3 putObject result of Bot data - {}, {}");
             } else {
-                save(s3, getInstallerKey(i), JsonOps.toJsonString(i), "AWS S3 putObject result of Installer data - {}, {}");
-                save(s3, getBotKey(i), JsonOps.toJsonString(i.toBot()), "AWS S3 putObject result of Bot data - {}, {}");
+                save(s3, getInstallerKey(installer), JsonOps.toJsonString(installer), "AWS S3 putObject result of Installer data - {}, {}");
+                save(s3, getBotKey(installer), JsonOps.toJsonString(installer.toBot()), "AWS S3 putObject result of Bot data - {}, {}");
             }
         }
     }
@@ -332,8 +337,10 @@ public class AmazonS3InstallationService implements InstallationService {
                 .build();
     }
 
-    private String getInstallerKey(Installer i) {
-        return getInstallerKey(i.getEnterpriseId(), i.getTeamId(), i.getInstallerUserId());
+    private String getInstallerKey(Installer installer) {
+        return getInstallerKey(installer.getEnterpriseId(),
+            installer.getTeamId(),
+            installer.getInstallerUserId());
     }
 
     private String getInstallerKey(String enterpriseId, String teamId, String userId) {
@@ -345,8 +352,9 @@ public class AmazonS3InstallationService implements InstallationService {
                 + userId;
     }
 
-    private String getBotKey(Installer i) {
-        return getBotKey(i.getEnterpriseId(), i.getTeamId());
+    private String getBotKey(Installer installer) {
+        return getBotKey(installer.getEnterpriseId(),
+            installer.getTeamId());
     }
 
     private String getBotKey(String enterpriseId, String teamId) {

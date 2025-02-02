@@ -15,6 +15,7 @@
 
     <properties>
         <commons-text.version>1.13.0</commons-text.version>
+        <jedis.version>5.2.0</jedis.version>
     </properties>
 
     <dependencies>
@@ -43,6 +44,12 @@
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>s3</artifactId>
             <version>${aws.s3.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
             <scope>provided</scope>
         </dependency>
 

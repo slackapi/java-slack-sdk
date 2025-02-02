@@ -66,8 +66,6 @@ public class FileOAuthStateService implements OAuthStateService {
             return Long.valueOf(value);
         } catch (IOException e) {
             return null;
-        } catch (NumberFormatException e) {
-            return null;
         }
     }
 
