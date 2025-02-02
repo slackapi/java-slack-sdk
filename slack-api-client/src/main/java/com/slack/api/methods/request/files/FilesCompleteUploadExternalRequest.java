@@ -31,6 +31,11 @@ public class FilesCompleteUploadExternalRequest implements SlackApiRequest {
     private String channelId;
 
     /**
+     * Comma-separated string of channel IDs where the file will be shared.
+     */
+    private List<String> channels;
+
+    /**
      * The message text introducing the file in specified channels.
      */
     private String initialComment;

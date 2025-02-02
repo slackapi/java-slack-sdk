@@ -46,6 +46,7 @@ import static org.hamcrest.Matchers.greaterThan;
 @Slf4j
 public class files_Test {
 
+    private String generalChannelId = null;
     private String randomChannelId = null;
 
     void loadRandomChannelId() throws IOException, SlackApiException {
@@ -56,6 +57,20 @@ public class files_Test {
             for (Conversation channel : channelsListResponse.getChannels()) {
                 if (channel.getName().equals("random")) {
                     randomChannelId = channel.getId();
+                    break;
+                }
+            }
+        }
+    }
+
+    void loadGeneralChannelId() throws IOException, SlackApiException {
+        if (generalChannelId == null) {
+            ConversationsListResponse channelsListResponse =
+                    slack.methods().conversationsList(r -> r.token(botToken).excludeArchived(true).limit(100));
+            assertThat(channelsListResponse.getError(), is(nullValue()));
+            for (Conversation channel : channelsListResponse.getChannels()) {
+                if (channel.getName().equals("general")) {
+                    generalChannelId = channel.getId();
                     break;
                 }
             }
@@ -1254,4 +1269,52 @@ public class files_Test {
         // title defaults to filename, which is (as this is defaulted on the client side) "Uploaded file"
         assertThat(response.getFiles().get(0).getTitle(), is("Uploaded file"));
     }
+
+    @Test
+    public void filesUploadV2_channels() throws Exception {
+        loadRandomChannelId();
+        loadGeneralChannelId();
+        MethodsClient client = slack.methods(botToken);
+
+        File file1 = new File("src/test/resources/sample.txt");
+        FilesUploadV2Response response = client.filesUploadV2(r -> r
+                .file(file1)
+                .title("sample.txt")
+                .filename("sample.txt")
+                .snippetType("text")
+                .channels(Arrays.asList(generalChannelId, randomChannelId))
+                .initialComment("Here you are :wave:")
+        );
+        assertThat(response.getError(), is(nullValue()));
+
+        List<String> expectedFileIds = response.getFiles().stream()
+                .map(a -> a.getId()).collect(Collectors.toList());
+
+        int count = 0;
+        ConversationsHistoryResponse history = null;
+        List<String> actualFileIds = null;
+        while (count < 10) {
+            count++;
+            history = client.conversationsHistory(r -> r
+                    .channel(randomChannelId)
+                    .limit(1)
+            );
+            if (history.getMessages().get(0).getFiles() != null) {
+                actualFileIds = history.getMessages().get(0).getFiles().stream()
+                        .map(a -> a.getId()).sorted().collect(Collectors.toList());
+                if (actualFileIds.stream().collect(Collectors.joining(","))
+                        .equals(expectedFileIds.stream().collect(Collectors.joining(",")))) {
+                    break;
+                }
+            }
+            Thread.sleep(3000L);
+        }
+        assertThat(history.getError(), is(nullValue()));
+        assertThat(history.getMessages().get(0).getFiles(), is(notNullValue()));
+        assertThat(actualFileIds, is(expectedFileIds));
+
+        FilesInfoResponse file1info = client.filesInfo(r -> r.file(response.getFile().getId()));
+        assertThat(file1info.getFile().getShares().getPublicChannels().get(randomChannelId), is(notNullValue()));
+    }
+
 }
