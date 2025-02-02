@@ -339,8 +339,8 @@ public class AmazonS3InstallationService implements InstallationService {
 
     private String getInstallerKey(Installer installer) {
         return getInstallerKey(installer.getEnterpriseId(),
-            installer.getTeamId(),
-            installer.getInstallerUserId());
+                installer.getTeamId(),
+                installer.getInstallerUserId());
     }
 
     private String getInstallerKey(String enterpriseId, String teamId, String userId) {
@@ -354,7 +354,7 @@ public class AmazonS3InstallationService implements InstallationService {
 
     private String getBotKey(Installer installer) {
         return getBotKey(installer.getEnterpriseId(),
-            installer.getTeamId());
+               installer.getTeamId());
     }
 
     private String getBotKey(String enterpriseId, String teamId) {
