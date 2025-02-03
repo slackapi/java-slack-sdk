@@ -1,14 +1,13 @@
 package com.slack.api.bolt.model.builtin;
 
 import com.slack.api.bolt.model.Bot;
-import java.io.Serializable;
 import lombok.Data;
 
 /**
  * The default data class for the Bot interface.
  */
 @Data
-public class DefaultBot implements Bot, Serializable {
+public class DefaultBot implements Bot {
 
     private String appId;
     private String enterpriseId;

@@ -45,7 +45,7 @@ public class DefaultTokensRevokedEventHandler implements BoltEventHandler<Tokens
         this.executorService.submit(() -> {
             TokensRevokedEvent.Tokens tokens = payload.getEvent().getTokens();
             if (tokens.getOauth() != null) { // user tokens
-                for (String userId : tokens.getOauth()) {
+                for (String userId : tokens.    getOauth()) {
                     Installer installer = installationService.findInstaller(enterpriseId, teamId, userId);
                     if (installer != null) {
                         try {
@@ -58,7 +58,7 @@ public class DefaultTokensRevokedEventHandler implements BoltEventHandler<Tokens
                     }
                 }
             }
-            if (tokens.getBot() != null && !tokens.getBot().isEmpty()) { // bots
+            if (tokens.getBot() != null && tokens.getBot().size() > 0) { // bots
                 // actually only one bot per app in a workspace
                 Bot bot = installationService.findBot(enterpriseId, teamId);
                 if (bot != null) {

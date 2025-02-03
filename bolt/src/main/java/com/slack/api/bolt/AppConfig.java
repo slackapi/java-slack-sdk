@@ -79,7 +79,8 @@ public class AppConfig {
     private static SlackHttpClient buildSlackHttpClient() {
         Map<String, String> userAgentCustomInfo = new HashMap<>();
         userAgentCustomInfo.put("bolt", BoltLibraryVersion.get());
-        return new SlackHttpClient(SlackConfig.DEFAULT, userAgentCustomInfo);
+        SlackHttpClient client = new SlackHttpClient(SlackConfig.DEFAULT, userAgentCustomInfo);
+        return client;
     }
 
     @Builder.Default
@@ -285,7 +286,7 @@ public class AppConfig {
         String path = this.oauthInstallPath;
         String legacyPath = this.oauthStartPath;
         if (path != null
-                && !path.equals(DEFAULT_OAUTH_INSTALL_PATH)
+                && path.equals(DEFAULT_OAUTH_INSTALL_PATH) == false
                 && legacyPath.equals(DEFAULT_OAUTH_INSTALL_PATH)) {
             return path;
         } else {
@@ -329,7 +330,7 @@ public class AppConfig {
         String path = this.oauthRedirectUriPath;
         String legacyPath = this.oauthCallbackPath;
         if (path != null
-                && !path.equals(DEFAULT_OAUTH_REDIRECT_URI_PATH)
+                && path.equals(DEFAULT_OAUTH_REDIRECT_URI_PATH) == false
                 && legacyPath.equals(DEFAULT_OAUTH_REDIRECT_URI_PATH)) {
             return path;
         } else {
