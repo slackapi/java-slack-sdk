@@ -49,7 +49,7 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String dialogCancellation(String callbackId) {
+    public static String dialogCancellation(String callbackId) {
         return COMMON_PREFIX +
                 "app.dialogCancellation(\"" + callbackId + "\", (req, ctx) -> {\n" +
                 "  // Do something where\n" +
@@ -124,7 +124,7 @@ public class ListenerCodeSuggestion {
         return sb.toString() + "Event";
     }
 
-    public static final String globalShortcut(String callbackId) {
+    public static String globalShortcut(String callbackId) {
         return COMMON_PREFIX +
                 "app.globalShortcut(\"" + callbackId + "\", (req, ctx) -> {\n" +
                 "  // Do something where\n" +
@@ -132,7 +132,7 @@ public class ListenerCodeSuggestion {
                 "});\n";
     }
 
-    public static final String messageShortcut(String callbackId) {
+    public static String messageShortcut(String callbackId) {
         return COMMON_PREFIX +
                 "app.messageShortcut(\"" + callbackId + "\", (req, ctx) -> {\n" +
                 "  // Do something where\n" +
