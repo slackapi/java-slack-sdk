@@ -229,7 +229,8 @@
       "slack_ai_todo_title_generated",
       "pref.anomaly_event_response_changed",
       "security_settings_export_started",
-      "security_settings_export_completed"
+      "security_settings_export_completed",
+      "slack_ai_message_rewriter"
     ],
     "user": [
       "custom_tos_accepted",

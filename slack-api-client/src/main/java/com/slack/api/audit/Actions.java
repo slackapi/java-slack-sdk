@@ -239,6 +239,7 @@ public class Actions {
         public static final String slack_ai_suggested_todo_regenerated = "slack_ai_suggested_todo_regenerated";
         public static final String slack_ai_suggested_todo_dismissed = "slack_ai_suggested_todo_dismissed";
         public static final String slack_ai_todo_title_generated = "slack_ai_todo_title_generated";
+        public static final String slack_ai_message_rewriter = "slack_ai_message_rewriter";
         public static final String security_settings_export_started = "security_settings_export_started";
         public static final String security_settings_export_completed = "security_settings_export_completed";
     }

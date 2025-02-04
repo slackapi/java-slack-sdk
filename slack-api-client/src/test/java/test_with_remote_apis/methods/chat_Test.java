@@ -779,13 +779,14 @@ public class chat_Test {
                 DividerBlock.builder().build(),
                 SectionBlock.builder().text(PlainTextObject.builder().text("foo").build()).build()
         );
-        ChatScheduleMessageResponse message2 = slack.methods(botToken).chatScheduleMessage(r ->
-                r.channel(randomChannelId).postAt(postAt)
-                        // the `text` field is required since May 2021
-                        //.text("fallback")
-                        .blocks(blocks));
-        assertEquals("invalid_arguments", message2.getError());
-        assertEquals("[ERROR] missing required field: text", message2.getResponseMetadata().getMessages().get(0));
+        // This request no longer fails starting on Feb 3, 2025
+//        ChatScheduleMessageResponse message2 = slack.methods(botToken).chatScheduleMessage(r ->
+//                r.channel(randomChannelId).postAt(postAt)
+//                        // the `text` field is required since May 2021
+//                        //.text("fallback")
+//                        .blocks(blocks));
+//        assertEquals("invalid_arguments", message2.getError());
+//        assertEquals("[ERROR] missing required field: text", message2.getResponseMetadata().getMessages().get(0));
 
         ChatScheduleMessageResponse message3 = slack.methods(botToken).chatScheduleMessage(r ->
                 r.channel(randomChannelId).postAt(postAt)
