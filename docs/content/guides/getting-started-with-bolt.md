@@ -1,8 +1,9 @@
 ---
 lang: en
+title: Getting Started
 ---
 
-# Getting Started with Bolt for Java
+# Getting Started with Bolt for Java {#getting-started}
 
 **Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features.
 
@@ -11,13 +12,72 @@ This guide explains how to start your first-ever Bolt app.
 If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs](https://api.slack.com/docs).
 
 ---
-## Project Setup
+## Setting up your project {#project-setup}
 
 Let's start building a Slack app using Bolt! This guide includes instructions on how to set up a Bolt project with Maven and Gradle, so use whichever section you'd like.
 
-### Maven
+### Using Maven {#maven}
 
 After you [create your Maven project](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html), you need to add the `bolt` dependency to your `pom.xml` file. The `bolt` dependency is a framework-agnostic module. If you use Bolt along with [Spring Boot](https://spring.io/projects/spring-boot), [Quarkus (Undertow)](https://quarkus.io/), or any others on top of Servlet environment, the `bolt-servlet` library is required for your app. Adding only `bolt-servlet` also works for you.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="socket-or-http">
+<TabItem value="socket-mode" label="Socket Mode">
+
+To enable [Socket Mode](https://api.slack.com/apis/connections/socket), the `bolt-socket-mode` library and its provided-scope dependencies are also required for your app.
+
+```xml
+<dependency>
+  <groupId>com.slack.api</groupId>
+  <artifactId>bolt</artifactId>
+  <version>sdkLatestVersion</version>
+</dependency>
+<dependency>
+  <groupId>com.slack.api</groupId>
+  <artifactId>bolt-socket-mode</artifactId>
+  <version>sdkLatestVersion</version>
+</dependency>
+<dependency>
+  <groupId>javax.websocket</groupId>
+  <artifactId>javax.websocket-api</artifactId>
+  <version>javaxWebsocketApiVersion</version>
+</dependency>
+<dependency>
+  <groupId>org.glassfish.tyrus.bundles</groupId>
+  <artifactId>tyrus-standalone-client</artifactId>
+  <version>tyrusStandaloneClientVersion</version>
+</dependency>
+<dependency>
+  <groupId>org.slf4j</groupId>
+  <artifactId>slf4j-simple</artifactId>
+  <version>slf4jApiVersion</version>
+</dependency>
+```
+
+By default, the `tyrus-standalone-client` dependency is used as the implementation to manage socket connections in the `bolt-socket-mode` artifact.
+If instead you would prefer to use the `Java-WebSocket` implementation, swap its artifact in instead of `tyrus-standalone-client`, and then set `SocketModeClient.Backend.JavaWebSocket` when initializing the client instance:
+
+```xml
+<dependency>
+  <groupId>org.java-websocket</groupId>
+  <artifactId>Java-WebSocket</artifactId>
+  <version>1.5.1</version>
+</dependency>
+```
+
+You will also need to ensure you set the compiler source and target to at least 1.8:
+
+```xml
+<properties>
+  <maven.compiler.source>1.8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP">
 
 ```xml
 <dependency>
@@ -56,9 +116,27 @@ You will also need to ensure you set the compiler source and target to at least 
 </properties>
 ```
 
-### Gradle
+</TabItem>
+</Tabs>
+
+### Using Gradle {#gradle}
 
 After you [create your Gradle project](https://docs.gradle.org/current/samples/sample_building_java_applications.html), add the `bolt` dependencies to `build.gradle`.
+
+<Tabs groupId="socket-or-http">
+<TabItem value="socket-mode" label="Socket Mode">
+
+```groovy
+dependencies {
+  implementation("com.slack.api:bolt-socket-mode:sdkLatestVersion")
+  implementation("javax.websocket:javax.websocket-api:javaxWebsocketApiVersion")
+  implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:tyrusStandaloneClientVersion")
+  implementation("org.slf4j:slf4j-simple:slf4jApiVersion")
+}
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP">
 
 ```groovy
 dependencies {
@@ -69,16 +147,61 @@ dependencies {
 }
 ```
 
----
-## Run Your Bolt App in 3 Minutes
+</TabItem>
+</Tabs>
 
-### Use `bolt-jetty`
+---
+
+## Running your Bolt app {#running}
+
+<Tabs groupId="socket-or-http">
+<TabItem value="socket-mode" label="Socket Mode">
+
+**Using `bolt-socket-mode`**
+
+`bolt-socket-mode` is a handy way to start your [Socket Mode](https://api.slack.com/apis/connections/socket) app. It allows developers to build a Slack app backend service by writing only a main method initializes `App` and establishes a WebSocket connection to the Socket Mode servers.
+
+</TabItem>
+<TabItem value="http" label="HTTP">
+
+**Using `bolt-jetty`**
 
 `bolt-jetty` is a handy way to start your Slack app server. It allows developers to build a Slack app backend service by writing only a main method that initializes `App` and starts an HTTP server.
 
-#### `build.gradle`
+</TabItem>
+</Tabs>
+
+**Using `build.gradle`**
 
 The following build settings should be working as-is. Put it in the root directory of your project.
+
+<Tabs groupId="socket-or-http">
+<TabItem value="socket-mode" label="Socket Mode">
+
+```groovy
+plugins {
+  id("application")
+}
+repositories {
+  mavenCentral()
+}
+dependencies {
+  implementation("com.slack.api:bolt-socket-mode:sdkLatestVersion")
+  implementation("javax.websocket:javax.websocket-api:javaxWebsocketApiVersion")
+  implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:tyrusStandaloneClientVersion")
+  implementation("org.slf4j:slf4j-simple:slf4jApiVersion")
+}
+application {
+  mainClassName = "hello.MyApp"
+}
+run {
+  // gradle run -DslackLogLevel=debug
+  systemProperty "org.slf4j.simpleLogger.log.com.slack.api", System.getProperty("slackLogLevel")
+}
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP">
 
 ```groovy
 plugins {
@@ -100,9 +223,60 @@ run {
 }
 ```
 
-#### `src/main/java/hello/MyApp.java`
+</TabItem>
+</Tabs>
+
+**Using `src/main/java/hello/MyApp.java`**
 
 Coding with this framework is much simpler than you think.
+
+<Tabs groupId="socket-or-http">
+<TabItem value="socket-mode" label="Socket Mode">
+
+Only single source code is required to run your first-ever Bolt app. All you need to do is define the main method that starts `SocketModeApp`.
+
+```java
+package hello;
+
+import com.slack.api.bolt.App;
+import com.slack.api.bolt.socket_mode.SocketModeApp;
+
+public class MyApp {
+  public static void main(String[] args) throws Exception {
+    // App expects an env variable: SLACK_BOT_TOKEN
+    App app = new App();
+
+    app.command("/hello", (req, ctx) -> {
+      return ctx.ack(":wave: Hello!");
+    });
+
+    // SocketModeApp expects an env variable: SLACK_APP_TOKEN
+    new SocketModeApp(app).start();
+  }
+}
+```
+
+If you go with JDK 10+, thanks to [Local Variable Type Inference](https://developer.oracle.com/java/jdk-10-local-variable-type-inference.html), your code could be much more concise. To take advantage of it, install OpenJDK 11 and set the compatible Java versions in `build.gradle` as below. Also, configure the same on your IDE.
+
+```groovy
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+```
+
+Now, you don't need to repeat the same type in a single line.
+
+```java
+var app = new App();
+app.command("/hello", (req, ctx) -> {
+  return ctx.ack(":wave: Hello!");
+});
+new SocketModeApp(app).start();
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP">
 
 Only single source code is required to run your first-ever Bolt app. All you need to do is define the main method that starts `SlackAppServer`. Your server with the default configuration will listen to the 3000 port but it's configurable. Check other constructors of the class to customize the behavior.
 
@@ -148,7 +322,10 @@ var server = new SlackAppServer(app);
 server.start();
 ```
 
-### Start the App with Two Env Variables
+</TabItem>
+</Tabs>
+
+### Environment variables {#env-variables}
 
 The default constructor expects the following two env variables exist when starting the app.
 
@@ -180,20 +357,53 @@ mvn compile exec:java -Dexec.mainClass="hello.MyApp"
 
 You will see the message saying "**⚡️ Bolt app is running!**" in stdout.
 
-If you get stuck this setup, go through the following checklist:
+If you get stuck, go through the following checklist:
 
-- [X] JDK 8 or higher installed (if not, run `brew install openjdk@11` for macOS / visit [OpenJDK website](https://openjdk.java.net/install/) for others)
-- [X] Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
-- [X] `build.gradle` has `bolt-jetty` dependency and valid application plugin settings
-- [X] `src/main/java/hello/MyApp.java` with a class having its main method
-- [X] [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) bot scope, install the app to your development workspace
-- [X] Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
+<Tabs groupId="socket-or-http">
+<TabItem value="socket-mode" label="Socket Mode">
 
-### Enable `/hello` Command
+* ✅ JDK 8 or higher installed (if not, run `brew install openjdk@11` for macOS / visit [OpenJDK website](https://openjdk.java.net/install/) for others)
+* ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
+* ✅ `build.gradle` has `bolt-socket-mode` and `tyrus-standalone-client` in the dependencies and valid application plugin settings
+* ✅ `src/main/java/hello/MyApp.java` with a class having its main method
+* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`commands`](https://api.slack.com/scopes/commands) bot scope, add **an app-level token with `connections:write` scope**, and install the app to your development workspace
+* ✅ Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**App-Level Token**](https://api.slack.com/docs/token-types#app) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
+
+</TabItem>
+<TabItem value="http" label="HTTP">
+
+* ✅ JDK 8 or higher installed (if not, run `brew install openjdk@11` for macOS / visit [OpenJDK website](https://openjdk.java.net/install/) for others)
+* ✅ Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
+* ✅ `build.gradle` has `bolt-jetty` dependency and valid application plugin settings
+* ✅ `src/main/java/hello/MyApp.java` with a class having its main method
+* ✅ [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) bot scope, install the app to your development workspace
+* ✅ Copy [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
+
+</TabItem>
+</Tabs>
+
+### Enabling the `/hello` Command {#hello}
 
 Your app is up now! However, the slash command `/hello` in the code is still unavailable. To enable it, follow the steps below:
 
-* Set up some way to allow Slack API server to access your Bolt app
+<Tabs groupId="socket-or-http">
+<TabItem value="socket-mode" label="Socket Mode">
+
+* Visit [Slack App configuration pages](https://api.slack.com/apps)
+* Choose your app
+* Go to **Settings** > **Socket Mode** on the left pane
+  * Turn on **Enable Socket Mode**
+* Go to **Features** > **Slash Commands** on the left pane
+  * Click **Create New Command** button
+  * Input the command information on the dialog:
+    * **Command**: `/hello`
+    * **Short Description**: whatever you like
+  * Click **Save** Button
+
+</TabItem>
+<TabItem value="http" label="HTTP">
+
+* Configure a way to allow Slack API server to access your Bolt app
   * A well-known way is to use [ngrok](https://ngrok.com/) - install it and run `ngrok http 3000` on another terminal
 * Configure & Reinstall the Slack App
   * Visit [Slack App configuration pages](https://api.slack.com/apps)
@@ -206,9 +416,12 @@ Your app is up now! However, the slash command `/hello` in the code is still una
   * Click **Save** Button
   * Go to **Settings** > **Install App** and click **Reinstall App** button
 
+</TabItem>
+</Tabs>
+
 Now you can hit the `/hello` command in your development workspace. If your app is successfully running, the app should respond to the command by replying `👋 Hello!`.
 
-### OK, What about Spring Boot?
+### What about Spring Boot? {#spring-boot}
 
 As [Spring Boot](https://spring.io/projects/spring-boot) is one of the most popular web frameworks in the Java world, you may be curious about the possibility to let this Bolt live together with it.
 
@@ -238,11 +451,40 @@ public class SlackAppController extends SlackAppServlet {
 Check [the detailed guide here](/guides/supported-web-frameworks) for further information.
 
 ---
-## Getting Started in Kotlin {#getting-started-in-kotlin}
+## Getting started with Kotlin {#getting-started-in-kotlin}
 
 For code simplicity, [Kotlin](https://kotlinlang.org/) language would be a great option for writing Bolt apps. In this section, you'll learn how to set up a Kotlin project for Bolt apps.
 
-#### `build.gradle`
+**Using `build.gradle`**
+
+<Tabs groupId="socket-or-http">
+<TabItem value="socket-mode" label="Socket Mode">
+
+Most of the build settings are necessary for enabling Kotlin language. Adding `bolt-socket-mode` && `tyrus-standalone-client` to the dependencies is the only one that is specific to Bolt.
+
+```groovy
+plugins {
+  id("org.jetbrains.kotlin.jvm") version "kotlinVersion"
+  id("application")
+}
+repositories {
+  mavenCentral()
+}
+dependencies {
+  implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+  implementation("com.slack.api:bolt-socket-mode:sdkLatestVersion")
+  implementation("javax.websocket:javax.websocket-api:javaxWebsocketApiVersion")
+  implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:tyrusStandaloneClientVersion")
+  implementation("org.slf4j:slf4j-simple:slf4jApiVersion") // or logback-classic
+}
+application {
+  mainClassName = "MyAppKt" // add "Kt" suffix for main function source file
+}
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP">
 
 Most of the build settings are necessary for enabling Kotlin language. Adding `bolt-jetty` dependency is the only one that is specific to Bolt.
 
@@ -265,11 +507,34 @@ application {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 If you're already familiar with Kotlin and prefer the Gradle Kotlin DSL, of course, there is nothing stopping you.
 
-#### `src/main/kotlin/MyApp.kt`
+
+**Using `src/main/kotlin/MyApp.kt`**
 
 Here is a minimum source file that just starts a Bolt app on your local machine.
+
+<Tabs groupId="socket-or-http">
+<TabItem value="socket-mode" label="Socket Mode">
+
+```kotlin
+import com.slack.api.bolt.App
+import com.slack.api.bolt.socket_mode.SocketModeApp
+
+fun main() {
+  val app = App()
+
+  // Write some code here
+
+  SocketModeApp(app).start()
+}
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP">
 
 ```kotlin
 import com.slack.api.bolt.App
@@ -285,18 +550,12 @@ fun main() {
 }
 ```
 
-### Make Sure If It Works
+</TabItem>
+</Tabs>
 
-OK, you should be done. Just in case, here is the checklist:
+### Running your Kotlin app {#run-kotlin}
 
-- [X] JDK 8 or higher installed (if not, run `brew install openjdk@11` for macOS / visit [OpenJDK website](https://openjdk.java.net/install/) for others)
-- [X] Gradle installed (if not, run `brew install gradle` for macOS / visit [their website](https://gradle.org/) for others)
-- [X] `build.gradle` with valid Kotlin language settings and `bolt-jetty` dependency
-- [X] `src/main/kotlin/MyApp.kt` with a main method
-- [X] [Create a Slack App](https://api.slack.com/apps?new_app=1), add [`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) bot scope, install the app to your development workspace
-- [X] Copy the [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) and [**Signing Secret**](https://api.slack.com/docs/verifying-requests-from-slack) from [your Slack App admin pages](https://api.slack.com/apps) and set them to env variables
-
-If all are ✅, bootstrapping your first-ever Kotlin-flavored Bolt app will succeed.
+If all items from the checklist are ✅, bootstrapping your first-ever Kotlin-flavored Bolt app will succeed:
 
 ```bash
 # Visit https://api.slack.com/apps to know these
@@ -307,10 +566,6 @@ export SLACK_SIGNING_SECRET=123abc...your-own-valid-one
 gradle run
 ```
 
-... Did you see the message saying "**⚡️ Bolt app is running!**" in `stdout`?
-
-If yes, that's all settled! 🎉
-
 From here, all you need to do is write code and restart the app. Enjoy Bolt app development in Kotlin! 👋
 
 :::tip 
@@ -320,7 +575,7 @@ We strongly recommend using [IntelliJ IDEA](https://www.jetbrains.com/idea/) her
 :::
 
 ---
-## Next Steps
+## Next steps {#next-steps}
 
 Read the [Bolt Basics](/guides/bolt-basics) page for further information.
 
