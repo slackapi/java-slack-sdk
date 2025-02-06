@@ -2,7 +2,7 @@
 lang: en
 ---
 
-# Events API
+# Events
 
 The [Events API](https://api.slack.com/events-api) is a streamlined way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
 

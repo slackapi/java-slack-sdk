@@ -2,7 +2,7 @@
 lang: en
 ---
 
-# Getting Started with Bolt
+# Getting Started with Bolt for Java
 
 **Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features.
 
