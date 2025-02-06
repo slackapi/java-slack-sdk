@@ -240,6 +240,7 @@ public class Actions {
         public static final String slack_ai_suggested_todo_dismissed = "slack_ai_suggested_todo_dismissed";
         public static final String slack_ai_todo_title_generated = "slack_ai_todo_title_generated";
         public static final String slack_ai_message_rewriter = "slack_ai_message_rewriter";
+        public static final String slack_ai_message_translation_generated = "slack_ai_message_translation_generated";
         public static final String security_settings_export_started = "security_settings_export_started";
         public static final String security_settings_export_completed = "security_settings_export_completed";
     }
@@ -684,5 +685,6 @@ public class Actions {
         public static final String list_restricted_sharing_enabled = "list_restricted_sharing_enabled";
         public static final String list_restricted_sharing_disabled = "list_restricted_sharing_disabled";
         public static final String list_rows_undeleted = "list_rows_undeleted";
+        public static final String list_default_view_updated = "list_default_view_updated";
     }
 }

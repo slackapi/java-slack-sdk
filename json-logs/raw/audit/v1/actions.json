@@ -230,7 +230,8 @@
       "pref.anomaly_event_response_changed",
       "security_settings_export_started",
       "security_settings_export_completed",
-      "slack_ai_message_rewriter"
+      "slack_ai_message_rewriter",
+      "slack_ai_message_translation_generated"
     ],
     "user": [
       "custom_tos_accepted",
@@ -587,7 +588,8 @@
       "list_shared",
       "list_restricted_sharing_enabled",
       "list_restricted_sharing_disabled",
-      "list_rows_undeleted"
+      "list_rows_undeleted",
+      "list_default_view_updated"
     ]
   }
 }
