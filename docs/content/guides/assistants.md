@@ -71,9 +71,9 @@ assistant.userMessage((req, ctx) -> {
 app.assistant(assistant);
 ```
 
-While the `assistant_thread_started` and `assistant_thread_context_changed` events do provide Slack-client thread context information, the `message.im` event does not. Any subsequent user message events won't contain thread context data. For that reason, Bolt not only provides a way to store thread context — the `threadContextStore` property — but it also provides a `DefaultThreadContextStore` instance that is utilized by default. This implementation relies on storing and retrieving [message metadata](https://api.slack.com/metadata/using) as the user interacts with the assistant. 
+While the `assistant_thread_started` and `assistant_thread_context_changed` events do provide Slack-client thread context information, the `message.im` event does not. Any subsequent user message events won't contain thread context data. For that reason, Bolt not only provides a way to store thread context — the `threadContextService` property — but it also provides a `DefaultAssistantThreadContextService` instance that is utilized by default. This implementation relies on storing and retrieving [message metadata](https://api.slack.com/metadata/using) as the user interacts with the assistant.
 
-If you do provide your own `threadContextStore` property, it must feature `get` and `save` methods.
+If you do provide your own `threadContextService` property, it must feature `get` and `save` methods.
 
 :::tip
 Be sure to give the [assistants reference docs](/reference#agents--assistants) a look!

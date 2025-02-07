@@ -146,7 +146,7 @@ public class EventRequest extends Request<EventContext> {
                 // message_changed
                 this.getContext().setThreadTs(event.get("message").getAsJsonObject().get("thread_ts").getAsString());
             }
-            // Assistant middleware can set threadContext using AssistantThreadContextStore
+            // Assistant middleware can set threadContext using AssistantThreadContextService
         }
 
         if (this.eventType != null && this.eventType.equals(FunctionExecutedEvent.TYPE_NAME)) {
