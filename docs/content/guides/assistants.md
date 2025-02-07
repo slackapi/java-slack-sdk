@@ -84,7 +84,7 @@ Be sure to give the [assistants reference docs](/reference#agents--assistants) a
 When the user opens a new thread with your assistant, the [`assistant_thread_started`](https://api.slack.com/events/assistant_thread_started) event will be sent to your app.
 
 :::tip
-When a user opens an assistant thread while in a channel, the channel info is stored as the thread's `AssistantThreadContext` data. You can grab that info by using the `get_thread_context` utility, as subsequent user message event payloads won't include the channel info.
+When a user opens an assistant thread while in a channel, the channel info is stored as the thread's `AssistantThreadContext` data. You can grab that info by using the `context.getThreadContext()` utility, as subsequent user message event payloads won't include the channel info.
 :::
 
 ### Block Kit interactions in the assistant thread {#block-kit-interactions}
@@ -181,7 +181,7 @@ If you use the built-in `Assistant` middleware without any custom configuration,
 
 As long as you use the built-in approach, you don't need to store the context data within a datastore. The downside of this default behavior is the overhead of additional calls to the Slack API. These calls include those to `conversations.history`, which are used to look up the stored message metadata that contains the thread context (via `context.getThreadContextService().findCurrentContext(channelId, threadTs)`).
 
-If you prefer storing this data elsewhere, you can pass your own custom `AssistantThreadContextStore` implementation to the `Assistant` constructor. We provide `FileAssistantThreadContextStore`, which is a reference implementation that uses the local file system. Since this reference implementation relies on local files, it's not advised for use in production. For production apps, we recommend creating a class that inherits `AssistantThreadContextStore`.
+If you prefer storing this data elsewhere, you can pass your own custom `AssistantThreadContextService` implementation to the `Assistant` constructor. We provide `DefaultAssistantThreadContextService`, which is a reference implementation that uses the assistant thread message metadata. You can use this for production apps, but if you want to use a different datastore for it, you can implement your own class that inherits `AssistantThreadContextService` interface.
 
 ```java
 Assistant assistant = new Assistant(new YourOwnAssistantThreadContextService());
