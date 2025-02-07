@@ -2,7 +2,7 @@
 lang: en
 ---
 
-# API Client Basics
+# Using the Web API
 
 `slack-api-client` contains flexibly configurable HTTP clients for making requests to Slack APIs.
 

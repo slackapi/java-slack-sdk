@@ -1,20 +1,37 @@
 ---
+title: Agents & Assistants
 lang: en
 ---
 
-# Agents & Assistants
+:::info This feature requires a paid plan
 
-This guide focuses on how to implement Agents & Assistants using Bolt. For general information about the feature, please refer to the [API documentation](https://api.slack.com/docs/apps/ai).
+If you don't have a paid workspace for development, you can join the [Developer Program](https://api.slack.com/developer-program) and provision a sandbox with access to all Slack features for free.
 
-## Slack App Configuration
+:::
 
-To get started, you'll need to enable the **Agents & Assistants** feature on [the app configuration page](https://api.slack.com/apps). Then, add [`assistant:write`](https://api.slack.com/scopes/assistant:write), [`chat:write`](https://api.slack.com/scopes/chat:write), and [`im:history`](https://api.slack.com/scopes/im:history) to the **bot** scopes on the **OAuth & Permissions** page. Also, make sure to subscribe to [`assistant_thread_started`](https://api.slack.com/events/assistant_thread_started), [`assistant_thread_context_changed`](https://api.slack.com/events/assistant_thread_context_changed), and [`message.im`](https://api.slack.com/events/message.im) events on the **Event Subscriptions** page.
+Agents and assistants comprise a new messaging experience for Slack. If you're unfamiliar with using agents and assistants within Slack, you'll want to read the [API documentation on the subject](https://api.slack.com/docs/apps/ai). Then come back here to implement them with Bolt!
 
-Please note that this feature requires a paid plan. If you don't have a paid workspace for development, you can join the [Developer Program](https://api.slack.com/developer-program) and provision a sandbox with access to all Slack features for free.
+## Configuring your app to support assistants {#configuring-your-app}
 
-## Examples
+1. Within [App Settings](https://api.slack.com/apps), enable the **Agents & Assistants** feature.
 
-To handle assistant thread interactions with humans, although you can implement your agents using `app.event(...)` listeners for `assistant_thread_started`, `assistant_thread_context_changed`, and `message` events, Bolt offers a simpler approach. You just need to create an `Assistant` instance, attach the needed event handlers to it, and then add the assistant to your `App` instance.
+2. Within the App Settings **OAuth & Permissions** page, add the following scopes: 
+  * [`assistant:write`](https://api.slack.com/scopes/assistant:write)
+  * [`chat:write`](https://api.slack.com/scopes/chat:write)
+  * [`im:history`](https://api.slack.com/scopes/im:history)
+
+3. Within the App Settings **Event Subscriptions** page, subscribe to the following events: 
+  * [`assistant_thread_started`](https://api.slack.com/events/assistant_thread_started)
+  * [`assistant_thread_context_changed`](https://api.slack.com/events/assistant_thread_context_changed)
+  * [`message.im`](https://api.slack.com/events/message.im)
+
+## The `Assistant` class instance {#assistant-class}
+
+The [`Assistant`](/reference#the-assistantconfig-configuration-object) class can be used to handle the incoming events expected from a user interacting with an assistant in Slack. A typical flow would look like:
+
+1. [The user starts a thread](#handling-a-new-thread). The `Assistant` class handles the incoming [`assistant_thread_started`](https://api.slack.com/events/assistant_thread_started) event.
+2. [The thread context may change at any point](#handling-thread-context-changes). The `Assistant` class can handle any incoming [`assistant_thread_context_changed`](https://api.slack.com/events/assistant_thread_context_changed) events. The class also provides a default `context` store to keep track of thread context changes as the user moves through Slack.
+3. [The user responds](#handling-user-response). The `Assistant` class handles the incoming [`message.im`](https://api.slack.com/events/message.im) event. 
 
 ```java
 App app = new App();
@@ -54,29 +71,29 @@ assistant.userMessage((req, ctx) -> {
 app.assistant(assistant);
 ```
 
-When a user opens an Assistant thread while in a channel, the channel information is stored as the thread's `AssistantThreadContext` data. You can access this information by using the `get_thread_context` utility. The reason Bolt provides this utility is that the most recent thread context information is not included in the subsequent user message event payload data. Therefore, an app must store the context data when it is changed so that the app can refer to the data in message event listeners.
+While the `assistant_thread_started` and `assistant_thread_context_changed` events do provide Slack-client thread context information, the `message.im` event does not. Any subsequent user message events won't contain thread context data. For that reason, Bolt not only provides a way to store thread context — the `threadContextStore` property — but it also provides a `DefaultThreadContextStore` instance that is utilized by default. This implementation relies on storing and retrieving [message metadata](https://api.slack.com/metadata/using) as the user interacts with the assistant. 
 
-When the user switches channels, the `assistant_thread_context_changed` event will be sent to your app. If you use the built-in `Assistant` middleware without any custom configuration (like the above code snippet does), the updated context data is automatically saved as message metadata of the first reply from the assistant bot.
+If you do provide your own `threadContextStore` property, it must feature `get` and `save` methods.
 
-As long as you use the built-in approach, you don't need to store the context data within a datastore. The downside of this default behavior is the overhead of additional calls to the Slack API. These calls include those to `conversations.history` which are used to look up the stored message metadata that contains the thread context (via `context.getThreadContextService().findCurrentContext(channelId, threadTs)`).
+:::tip
+Be sure to give the [assistants reference docs](/reference#agents--assistants) a look!
+:::
 
-If you prefer storing this data elsewhere, you can pass your own `AssistantThreadContextService` implementation to the `Assistant` instance:
+## Handling a new thread {#handling-a-new-thread}
 
-```java
-Assistant assistant = new Assistant(new YourOwnAssistantThreadContextService());
-```
+When the user opens a new thread with your assistant, the [`assistant_thread_started`](https://api.slack.com/events/assistant_thread_started) event will be sent to your app.
 
-<details>
+:::tip
+When a user opens an assistant thread while in a channel, the channel info is stored as the thread's `AssistantThreadContext` data. You can grab that info by using the `context.getThreadContext()` utility, as subsequent user message event payloads won't include the channel info.
+:::
 
-<summary>
-Block Kit interactions in the assistant thread
-</summary>
+### Block Kit interactions in the assistant thread {#block-kit-interactions}
 
 For advanced use cases, Block Kit buttons may be used instead of suggested prompts, as well as the sending of messages with structured [metadata](https://api.slack.com/metadata) to trigger subsequent interactions with the user.
 
 For example, an app can display a button like "Summarize the referring channel" in the initial reply. When the user clicks the button and submits detailed information (such as the number of messages, days to check, the purpose of the summary, etc.), the app can handle that information and post a message that describes the request with structured metadata.
 
-By default, your app can't respond to its own bot messages (Bolt prevents infinite loops by default). However, if you set `ignoringSelfAssistantMessageEventsEnabled` to false and add a `botMessage` listener to your `Assistant` middleware, your app can continue processing the request as shown below:
+By default, apps can't respond to their own bot messages (Bolt prevents infinite loops by default). However, if you set `ignoringSelfAssistantMessageEventsEnabled` to false and add a `botMessage` listener to your `Assistant` middleware, your app can continue processing the request as shown below:
 
 ```java
 App app = new App(AppConfig.builder()
@@ -156,4 +173,120 @@ assistant.userMessage((req, ctx) -> {
 app.assistant(assistant);
 ```
 
-</details>
+## Handling thread context changes {#handling-thread-context-changes}
+
+When the user switches channels, the [`assistant_thread_context_changed`](https://api.slack.com/events/assistant_thread_context_changed) event will be sent to your app. 
+
+If you use the built-in `Assistant` middleware without any custom configuration, the updated context data is automatically saved as [message metadata](https://api.slack.com/metadata/using) of the first reply from the assistant bot. 
+
+As long as you use the built-in approach, you don't need to store the context data within a datastore. The downside of this default behavior is the overhead of additional calls to the Slack API. These calls include those to `conversations.history`, which are used to look up the stored message metadata that contains the thread context (via `context.getThreadContextService().findCurrentContext(channelId, threadTs)`).
+
+If you prefer storing this data elsewhere, you can pass your own custom `AssistantThreadContextService` implementation to the `Assistant` constructor. We provide `DefaultAssistantThreadContextService`, which is a reference implementation that uses the assistant thread message metadata. You can use this for production apps, but if you want to use a different datastore for it, you can implement your own class that inherits `AssistantThreadContextService` interface.
+
+```java
+Assistant assistant = new Assistant(new YourOwnAssistantThreadContextService());
+```
+
+## Handling the user response {#handling-user-response}
+
+When the user messages your assistant, the [`message.im`](https://api.slack.com/events/message.im) event will be sent to your app.
+
+Messages sent to the assistant do not contain a [subtype](https://api.slack.com/events/message#subtypes) and must be deduced based on their shape and any provided [message metadata](https://api.slack.com/metadata/using).
+
+There are three utilities that are particularly useful in curating the user experience:
+* [`say`](https://tools.slack.dev/bolt-python/api-docs/slack_bolt/#slack_bolt.Say)
+* [`setTitle`](https://tools.slack.dev/bolt-python/api-docs/slack_bolt/#slack_bolt.SetTitle)
+* [`setStatus`](https://tools.slack.dev/bolt-python/api-docs/slack_bolt/#slack_bolt.SetStatus)
+
+## Full example: Assistant Simple App {#full-example}
+
+Below is the `AssistantSimpleApp.java` file of the [Assistant Template repo](https://github.com/slackapi/java-slack-sdk/tree/d29a29afff9f2a518495d618502cb7b292e2eb14/bolt-socket-mode/src/test/java/samples) we've created for you to build off of.
+
+```java
+package samples;
+
+import com.slack.api.bolt.App;
+import com.slack.api.bolt.AppConfig;
+import com.slack.api.bolt.middleware.builtin.Assistant;
+import com.slack.api.bolt.socket_mode.SocketModeApp;
+import com.slack.api.model.assistant.SuggestedPrompt;
+import com.slack.api.model.event.AppMentionEvent;
+import com.slack.api.model.event.MessageEvent;
+
+import java.util.Collections;
+
+public class AssistantSimpleApp {
+
+    public static void main(String[] args) throws Exception {
+        String botToken = System.getenv("SLACK_BOT_TOKEN");
+        String appToken = System.getenv("SLACK_APP_TOKEN");
+
+        App app = new App(AppConfig.builder().singleTeamBotToken(botToken).build());
+
+        Assistant assistant = new Assistant(app.executorService());
+
+        assistant.threadStarted((req, ctx) -> {
+            try {
+                ctx.say("Hi, how can I help you today?");
+                ctx.setSuggestedPrompts(r -> r
+                        .title("Select one of the following:") // optional
+                        .prompts(Collections.singletonList(SuggestedPrompt.create("What does SLACK stand for?")))
+                );
+            } catch (Exception e) {
+                ctx.logger.error("Failed to handle assistant thread started event: {e}", e);
+            }
+        });
+
+        assistant.userMessage((req, ctx) -> {
+            try {
+                // ctx.setStatus(r -> r.status("is typing...")); works too
+                ctx.setStatus("is typing...");
+                Thread.sleep(500L);
+                if (ctx.getThreadContext() != null) {
+                    String contextChannel = ctx.getThreadContext().getChannelId();
+                    ctx.say("I am ware of the channel context: <#" + contextChannel + ">");
+                } else {
+                    ctx.say("Here you are!");
+                }
+            } catch (Exception e) {
+                ctx.logger.error("Failed to handle assistant user message event: {e}", e);
+                try {
+                    ctx.say(":warning: Sorry, something went wrong during processing your request!");
+                } catch (Exception ee) {
+                    ctx.logger.error("Failed to inform the error to the end-user: {ee}", ee);
+                }
+            }
+        });
+
+        assistant.userMessageWithFiles((req, ctx) -> {
+            try {
+                ctx.setStatus("is analyzing the files...");
+                Thread.sleep(500L);
+                ctx.setStatus("is still checking the files...");
+                Thread.sleep(500L);
+                ctx.say("Your files do not have any issues!");
+            } catch (Exception e) {
+                ctx.logger.error("Failed to handle assistant user message event: {e}", e);
+                try {
+                    ctx.say(":warning: Sorry, something went wrong during processing your request!");
+                } catch (Exception ee) {
+                    ctx.logger.error("Failed to inform the error to the end-user: {ee}", ee);
+                }
+            }
+        });
+
+        app.use(assistant);
+
+        app.event(MessageEvent.class, (req, ctx) -> {
+            return ctx.ack();
+        });
+
+        app.event(AppMentionEvent.class, (req, ctx) -> {
+            ctx.say("You can help you at our 1:1 DM!");
+            return ctx.ack();
+        });
+
+        new SocketModeApp(appToken, app).start();
+    }
+}
+```

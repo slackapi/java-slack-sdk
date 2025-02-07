@@ -2,27 +2,33 @@
 lang: en
 ---
 
-# Workflow Steps from Apps (Deprecated)
+# Steps from apps
 
 :::danger
 
-Steps from Apps for legacy workflows are now deprecated. Use [new custom steps](https://api.slack.com/automation/functions/custom-bolt).
+Steps from Apps is a deprecated feature.
+
+Steps from Apps are different than, and not interchangeable with, Slack automation workflows. We encourage those who are currently publishing steps from apps to consider the new [Slack automation features](https://api.slack.com/automation), such as [custom steps for Bolt](https://api.slack.com/automation/functions/custom-bolt).
+
+Please [read the Slack API changelog entry](https://api.slack.com/changelog/2023-08-workflow-steps-from-apps-step-back) for more information.
 
 :::
 
-Workflow Steps from apps allow your app to create and process custom workflow steps that users can add using [Workflow Builder](https://api.slack.com/workflows).
+Steps from apps allow your app to create and process steps that users can add using [Workflow Builder](https://api.slack.com/workflows).
 
-A workflow step is made up of three distinct user events:
+A step is made up of three distinct user events:
 
 * Adding or editing the step in a Workflow
 * Saving or updating the step's configuration
 * The end user's execution of the step
 
-All three events must be handled for a workflow step to function. Read more about workflow steps from apps in the [API documentation](https://api.slack.com/workflows/steps).
+All three events must be handled for a workflow step to function. 
+
+Read more about steps from apps in the [API documentation](https://api.slack.com/workflows/steps).
 
 ### Slack App Configuration
 
-To enable Workflow Steps, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Workflow Steps** on the left pane. There are three things to do on the page.
+To enable steps from apps, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Features** > **Workflow Steps** on the left pane. There are three things to do on the page.
 
 * Turn on the feature (**Turn on workflow steps**)
 * Click the **Add Step** button and set the name and Callback ID
@@ -30,9 +36,9 @@ To enable Workflow Steps, visit the [Slack App configuration page](http://api.sl
 Also, your app requires the **Interactivity**. Go to [Interactive Components](/guides/interactive-components) and set the Request URL to receive events from Slack.
 
 ---
-## Creating workflow steps
+## Creating steps from apps
 
-To create a workflow step, Bolt provides the `WorkflowStep` class.
+To create a step from app, Bolt provides the `WorkflowStep` class.
 
 When instantiating a new `WorkflowStep`, pass in the step's `callback_id` and a configuration object.
 
@@ -58,11 +64,11 @@ app.step(step);
 ```
 
 ---
-## Adding or editing workflow steps
+## Adding or editing steps from apps
 
 When a builder adds (or later edits) your step in their workflow, your app will receive a [`workflow_step_edit`](https://api.slack.com/reference/workflows/workflow_step_edit) event. The `edit` callback in your `WorkflowStep` configuration will be run when this event is received.
 
-Whether a builder is adding or editing a step, you need to send them a [workflow step configuration modal](https://api.slack.com/reference/workflows/configuration-view). This modal is where step-specific settings are chosen, and it has more restrictions than typical modals—most notably, it cannot include `title`, `submit`, or `close` properties. By default, the configuration modal's `callback_id` will be the same as the workflow step.
+Whether a builder is adding or editing a step, you need to send them a [step from app configuration modal](https://api.slack.com/reference/workflows/configuration-view). This modal is where step-specific settings are chosen, and it has more restrictions than typical modals—most notably, it cannot include `title`, `submit`, or `close` properties. By default, the configuration modal's `callback_id` will be the same as the workflow step.
 
 Within the `edit` callback, the `configure()` utility can be used to easily open your step's configuration modal by passing in an object with your view's `blocks`. To disable saving the configuration before certain conditions are met, pass in `submit_disabled` with a value of `true`.
 
@@ -150,11 +156,11 @@ app.step(step);
 ```
 
 ---
-## Executing workflow steps
+## Executing steps from apps
 
 When your workflow step is executed by an end user, your app will receive a [`workflow_step_execute`](https://api.slack.com/events/workflow_step_execute) event. The `execute` callback in your `WorkflowStep` configuration will be run when this event is received.
 
-Using the `inputs` from the `save` callback, this is where you can make third-party API calls, save information to a database, update the user's Home tab, or decide the outputs that will be available to subsequent workflow steps by mapping values to the `outputs` object.
+Using the `inputs` from the `save` callback, this is where you can make third-party API calls, save information to a database, update the user's Home tab, or decide the outputs that will be available to subsequent steps from apps by mapping values to the `outputs` object.
 
 Within the `execute` callback, your app must either call `complete()` to indicate that the step's execution was successful, or `fail()` to indicate that the step's execution failed.
 
