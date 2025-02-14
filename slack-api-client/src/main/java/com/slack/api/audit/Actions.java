@@ -243,6 +243,7 @@ public class Actions {
         public static final String slack_ai_message_translation_generated = "slack_ai_message_translation_generated";
         public static final String security_settings_export_started = "security_settings_export_started";
         public static final String security_settings_export_completed = "security_settings_export_completed";
+        public static final String audit_logs_records_searched_anomaly = "audit_logs_records_searched_anomaly";
     }
 
     public static class User {
