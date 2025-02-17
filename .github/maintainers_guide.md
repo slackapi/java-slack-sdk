@@ -110,11 +110,12 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
 
 #### Operations
 
+* From the upstream repository
 * Preparation
-  * `git pull --rebase slackapi master`
+  * `git switch main && git pull origin main`
   * Make sure there are no build failures at https://github.com/slackapi/java-slack-sdk/actions
 * Set a new version
-  * If you don't have `gnu-sed`, run `brew install gnu-sed` first
+  * If you don't have `gnu-sed`, run `brew install gnu-sed` & `brew install gnupg` first
   * Run `scripts/set_version.sh (the version)` (e.g., `scripts/set_version.sh 1.0.0`)
 * Ship the libraries
   * Switch to **JDK 17** to publish all modules (on macOS, you can run `export JAVA_HOME=$(/usr/libexec/java_home -v 17)` for it)
