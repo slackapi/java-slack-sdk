@@ -10,6 +10,7 @@
     </parent>
 
     <properties>
+        <!-- TODO: upgrade to 6.x -->
         <http4k.version>5.46.0.0</http4k.version>
         <!-- http4k 5.26+ no longer supports Java 1.8 -->
         <maven.compiler.source>11</maven.compiler.source>

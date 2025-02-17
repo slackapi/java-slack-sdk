@@ -15,6 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
+        <!-- TODO: upgrade to 3.x -->
         <ktor.version>2.3.12</ktor.version>
     </properties>
 
