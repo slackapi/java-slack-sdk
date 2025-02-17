@@ -147,6 +147,7 @@ public class Actions {
         public static final String pref_flag_message_author_outcome_notif = "pref.flag_message_author_outcome_notif";
         public static final String pref_allow_lists = "pref.allow_lists";
         public static final String pref_anomaly_event_response_changed = "pref.anomaly_event_response_changed";
+        public static final String pref_ml_opt_out = "pref.ml_opt_out";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";

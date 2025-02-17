@@ -232,7 +232,8 @@
       "security_settings_export_completed",
       "slack_ai_message_rewriter",
       "slack_ai_message_translation_generated",
-      "audit_logs_records_searched_anomaly"
+      "audit_logs_records_searched_anomaly",
+      "pref.ml_opt_out"
     ],
     "user": [
       "custom_tos_accepted",
