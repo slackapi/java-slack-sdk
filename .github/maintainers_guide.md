@@ -122,14 +122,19 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
   * Run `scripts/release.sh` (it takes a bit long)
   * (If you encounter an error, log in https://oss.sonatype.org/ to check detailed information)
 * Create GitHub Release(s) and add release notes
+  * Look at previous releases and follow their layouts; https://github.com/slackapi/java-slack-sdk/releases
   * Prepare a release note by `git log --pretty=format:'%h %s by %an' --abbrev-commit | grep -v "Merge pull request " | head -50`
   * `git add . -v && git commit -m'version (your version here)'`
   * `git tag v(your version here)`
-  * `git push slackapi --tags`
+  * `git push & git push --tags`
   * Open https://github.com/slackapi/java-slack-sdk/releases/new?tag=v${version}
 * (Slack Internal) Communicate the release internally. Include a link to the GitHub Release(s).
 * (Slack Internal) Tweet? Not necessary for patch updates, might be needed for minor updates, definitely needed for
    major updates. Include a link to the GitHub Release(s).
+* Anticipate the next version as a SNAPSHOT
+  * `scripts/set_version.sh (next patch version)-SNAPSHOT` (e.g., `scripts/set_version.sh 1.0.1-SNAPSHOT`)
+  * `git add . -v && git commit -m 'Start next version'`
+  * `git push`
 
 ## Workflow
 
