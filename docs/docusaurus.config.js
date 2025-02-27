@@ -48,16 +48,11 @@ const config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-        ],
-        createRedirects(existingPath) {
-          if (existingPath.includes('/guides')) {
-            // Redirect from /guides/ja/X to /guides/X
-            return [
-              existingPath.replace('/guides', '/guides/ja'),
-            ];
+          {
+            to: `/guides/ai-apps`, 
+            from: `/guides/assistants`
           }
-          return undefined; // Return a falsy value: no redirect created
-        }
+        ]
       }
     ]
   ],
