@@ -49,8 +49,8 @@ const config = {
       {
         redirects: [
           {
-            to: `/guides/ai-apps`, 
-            from: `/guides/assistants`
+            to: '/guides/ai-apps', 
+            from: '/guides/assistants'
           }
         ],
         createRedirects(existingPath) {
