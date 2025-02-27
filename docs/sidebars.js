@@ -35,7 +35,7 @@ const sidebars = {
 					label: "App UI & Interactivity",
 					items: ['guides/interactive-components', 'guides/modals', 'guides/app-home',],
 				},  
-        'guides/assistants',
+        'guides/ai-apps',
         'guides/shortcuts',
         'guides/slash-commands',
         {
