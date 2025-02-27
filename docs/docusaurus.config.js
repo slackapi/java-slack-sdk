@@ -52,7 +52,16 @@ const config = {
             to: `/guides/ai-apps`, 
             from: `/guides/assistants`
           }
-        ]
+        ],
+        createRedirects(existingPath) {
+          if (existingPath.includes('/guides')) {
+            // Redirect from /guides/ja/X to /guides/X
+            return [
+              existingPath.replace('/guides', '/guides/ja'),
+            ];
+          }
+          return undefined; // Return a falsy value: no redirect created
+        }
       }
     ]
   ],
