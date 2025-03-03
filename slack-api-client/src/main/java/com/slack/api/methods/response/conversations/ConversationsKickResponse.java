@@ -14,5 +14,6 @@ public class ConversationsKickResponse implements SlackApiTextResponse {
     private String error;
     private String needed;
     private String provided;
+    private Object errors; // TODO: typing
     private transient Map<String, List<String>> httpResponseHeaders;
 }

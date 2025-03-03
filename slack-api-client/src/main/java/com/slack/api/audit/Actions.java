@@ -148,6 +148,9 @@ public class Actions {
         public static final String pref_allow_lists = "pref.allow_lists";
         public static final String pref_anomaly_event_response_changed = "pref.anomaly_event_response_changed";
         public static final String pref_ml_opt_out = "pref.ml_opt_out";
+        public static final String pref_agentforce_workspaces_settings_changed = "pref.agentforce_workspaces_settings_changed";
+        public static final String pref_enterprise_search_connectors = "pref.enterprise_search_connectors";
+        public static final String pref_enterprise_search_enabled = "pref.enterprise_search_enabled";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -315,6 +318,7 @@ public class Actions {
         public static final String file_owner_reassigned_for_quip_migration = "file_owner_reassigned_for_quip_migration";
         public static final String slack_ai_file_summary_generated = "slack_ai_file_summary_generated";
         public static final String slack_ai_file_summary_deleted = "slack_ai_file_summary_deleted";
+        public static final String slack_ai_file_summary_translation_generated = "slack_ai_file_summary_translation_generated";
     }
 
     public static class Channel {

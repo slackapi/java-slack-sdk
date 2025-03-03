@@ -48,6 +48,10 @@ const config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
+          {
+            to: '/guides/ai-apps', 
+            from: '/guides/assistants'
+          }
         ],
         createRedirects(existingPath) {
           if (existingPath.includes('/guides')) {

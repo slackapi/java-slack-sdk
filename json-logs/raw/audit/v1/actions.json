@@ -233,7 +233,10 @@
       "slack_ai_message_rewriter",
       "slack_ai_message_translation_generated",
       "audit_logs_records_searched_anomaly",
-      "pref.ml_opt_out"
+      "pref.ml_opt_out",
+      "pref.agentforce_workspaces_settings_changed",
+      "pref.enterprise_search_connectors",
+      "pref.enterprise_search_enabled"
     ],
     "user": [
       "custom_tos_accepted",
@@ -295,7 +298,8 @@
       "file_download_blocked",
       "file_owner_reassigned_for_quip_migration",
       "slack_ai_file_summary_generated",
-      "slack_ai_file_summary_deleted"
+      "slack_ai_file_summary_deleted",
+      "slack_ai_file_summary_translation_generated"
     ],
     "channel": [
       "user_channel_join",
