@@ -151,6 +151,18 @@ public class Actions {
         public static final String pref_agentforce_workspaces_settings_changed = "pref.agentforce_workspaces_settings_changed";
         public static final String pref_enterprise_search_connectors = "pref.enterprise_search_connectors";
         public static final String pref_enterprise_search_enabled = "pref.enterprise_search_enabled";
+        public static final String pref_allow_huddles_transcriptions_changed = "pref.allow_huddles_transcriptions_changed";
+        public static final String pref_slack_ai_allowed_workspaces_changed = "pref.slack_ai_allowed_workspaces_changed";
+        public static final String pref_slack_ai_allow_recap_changed = "pref.slack_ai_allow_recap_changed";
+        public static final String pref_slack_ai_allow_detailed_feedback_changed = "pref.slack_ai_allow_detailed_feedback_changed";
+        public static final String pref_slack_ai_allow_feedback_changed = "pref.slack_ai_allow_feedback_changed";
+        public static final String pref_slack_ai_allow_file_summaries_changed = "pref.slack_ai_allow_file_summaries_changed";
+        public static final String pref_slack_ai_allowed_search_files_changed = "pref.slack_ai_allowed_search_files_changed";
+        public static final String pref_slack_ai_allow_huddle_notes_changed = "pref.slack_ai_allow_huddle_notes_changed";
+        public static final String pref_allow_slack_ai_changed = "pref.allow_slack_ai_changed";
+        public static final String pref_slack_ai_allow_workflow_builder_changed = "pref.slack_ai_allow_workflow_builder_changed";
+        public static final String pref_enterprise_search_connectors_changed = "pref.enterprise_search_connectors_changed";
+        public static final String pref_enterprise_search_enabled_changed = "pref.enterprise_search_enabled_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -298,6 +310,11 @@ public class Actions {
         public static final String migration_user_conflict_resolution_deleted = "migration_user_conflict_resolution_deleted";
         public static final String external_user_disconnected = "external_user_disconnected";
         public static final String user_sessions_reset_by_anomaly_event_response = "user_sessions_reset_by_anomaly_event_response";
+        public static final String user_profile_flagged = "user_profile_flagged";
+        public static final String user_profile_flag_dismissed = "user_profile_flag_dismissed";
+        public static final String user_profile_flag_moderated = "user_profile_flag_moderated";
+        public static final String user_profile_flag_assignment = "user_profile_flag_assignment";
+        public static final String user_profile_flag_unassignment = "user_profile_flag_unassignment";
     }
 
     public static class File {
