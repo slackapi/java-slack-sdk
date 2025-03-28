@@ -14,12 +14,12 @@ You can reference your custom step's inputs using the `getInputs()` method shown
 app.function("sample_function", (req, ctx) -> {
   app.executorService().submit(() -> {
     try {
-      var userId = req.getEvent().getInputs().get("user_id").asString();
-      var response = ctx.client().chatPostMessage(r -> r
+      String userId = req.getEvent().getInputs().get("user_id").asString();
+      ChatPostMessageResponse response = ctx.client().chatPostMessage(r -> r
         .channel(userId) // sending a DM
         .text("Hi! Thank you for submitting the request! We'll let you know once the processing completes.")
       );
-      var outputs = new HashMap<String, Object>();
+      Map<String, Object> outputs = new HashMap<String, Object>();
       outputs.put("channel_id", response.getChannel());
       outputs.put("ts", response.getTs());
       ctx.complete(outputs);
@@ -74,4 +74,4 @@ The corresponding function definition section of the app manifest for the preced
 }
 ```
 
-Once your custom step is defined in your app's manifest and implemented in code, it is discoverable in Workflow Builder when you **Add Step** and search for the name of your app.
+Once your custom step is defined in your app's manifest and implemented in code, it is discoverable in Workflow Builder when you **Add Step** and search for the title of your step or name of your app.
