@@ -248,7 +248,9 @@
       "pref.allow_slack_ai_changed",
       "pref.slack_ai_allow_workflow_builder_changed",
       "pref.enterprise_search_connectors_changed",
-      "pref.enterprise_search_enabled_changed"
+      "pref.enterprise_search_enabled_changed",
+      "export_app_configuration_upserted",
+      "export_app_configuration_deleted"
     ],
     "user": [
       "custom_tos_accepted",
