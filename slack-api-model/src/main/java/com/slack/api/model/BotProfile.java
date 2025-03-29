@@ -11,6 +11,7 @@ public class BotProfile {
     private String name;
     private Integer updated;
     private String appId; // A00000000
+    private String userId;
     private Icons icons;
     private String teamId;
 
