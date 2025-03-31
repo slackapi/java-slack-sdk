@@ -77,6 +77,8 @@ public class GsonRichTextElementFactory implements
                 return RichTextSectionElement.Broadcast.class;
             case RichTextSectionElement.Color.TYPE:
                 return RichTextSectionElement.Color.class;
+            case RichTextSectionElement.Canvas.TYPE:
+                return RichTextSectionElement.Canvas.class;
             default:
                 if (failOnUnknownProperties) {
                     throw new JsonParseException("Unknown RichTextSectionElement type: " + typeName);
