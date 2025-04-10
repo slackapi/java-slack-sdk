@@ -4,11 +4,11 @@ lang: en
 
 # エージェント・アシスタント
 
-このページは、Bolt を使ってエージェント・アシスタントを実装するための方法を紹介します。この機能に関する一般的な情報については、[こちらのドキュメントページ（英語）](https://api.slack.com/docs/apps/ai)を参照してください。
+このページは、Bolt を使ってエージェント・アシスタントを実装するための方法を紹介します。この機能に関する一般的な情報については、[こちらのドキュメントページ（英語）](https://docs.slack.dev/ai/)を参照してください。
 
 ## Slack App Configuration
 
-この機能を実装するためには、まず[アプリの設定画面](https://api.slack.com/apps)で **Agents & Assistants** 機能を有効にし、**OAuth & Permissions** のページで [`assistant:write`](https://api.slack.com/scopes/assistant:write)、[`chat:write`](https://api.slack.com/scopes/chat:write)、[`im:history`](https://api.slack.com/scopes/im:history) を**ボットの**スコープに追加し、**Event Subscriptions** のページで [`assistant_thread_started`](https://api.slack.com/events/assistant_thread_started)、[`assistant_thread_context_changed`](https://api.slack.com/events/assistant_thread_context_changed)、[`message.im`](https://api.slack.com/events/message.im) イベントを有効にしてください。
+この機能を実装するためには、まず[アプリの設定画面](https://api.slack.com/apps)で **Agents & Assistants** 機能を有効にし、**OAuth & Permissions** のページで [`assistant:write`](https://docs.slack.dev/reference/scopes/assistant.write)、[`chat:write`](https://docs.slack.dev/reference/scopes/chat.write)、[`im:history`](https://docs.slack.dev/reference/scopes/im.history) を**ボットの**スコープに追加し、**Event Subscriptions** のページで [`assistant_thread_started`](https://docs.slack.dev/reference/events/assistant_thread_started)、[`assistant_thread_context_changed`](https://docs.slack.dev/reference/events/assistant_thread_context_changed)、[`message.im`](https://docs.slack.dev/reference/events/message.im) イベントを有効にしてください。
 
 また、この機能は Slack の有料プランでのみ利用可能です。もし開発用の有料プランのワークスペースをお持ちでない場合は、[Developer Program](https://api.slack.com/developer-program) に参加し、全ての有料プラン向け機能を利用可能なサンドボックス環境をつくることができます。
 

@@ -25,26 +25,26 @@ Here is the list of the methods in a `Slack` object to create an API client.
 
 |Method|Return Type|Description|
 |-|-|-|
-|`Slack#methods(String)`|`com.slack.api.methods.MethodsClient`|Creates a HTTP client for [API Methods](https://api.slack.com/methods)|
-|`Slack#methodsAsync(String)`|`com.slack.api.methods.AsyncMethodsClient`|Creates an async HTTP client for [API Methods](https://api.slack.com/methods) with a great [Rate Limits](https://api.slack.com/docs/rate-limits) supports|
-|`Slack#socketMode(String)`|`com.slack.api.socket_mode.SocketModeClient`|Creates a WebSocket client for [Socket Mode](https://api.slack.com/apis/connections/socket)|
-|`Slack#rtm(String)`|`com.slack.api.rtm.RTMClient`|Creates a WebSocket client for [Real Time Messaging (RTM) API](https://api.slack.com/rtm)|
-|`Slack#scim(String)`|`com.slack.api.scim.SCIMClient`|Creates a HTTP client for [SCIM API](https://api.slack.com/scim)|
-|`Slack#audit(String)`|`com.slack.api.audit.AuditClient`|Creates a HTTP client for [Audit Logs API](https://api.slack.com/docs/audit-logs-api)|
-|`Slack#status()`|`com.slack.api.status.v2.StatusClient`|Creates a HTTP client for [Slack Status API](https://api.slack.com/docs/slack-status)|
+|`Slack#methods(String)`|`com.slack.api.methods.MethodsClient`|Creates a HTTP client for [API Methods](https://docs.slack.dev/reference/methods)|
+|`Slack#methodsAsync(String)`|`com.slack.api.methods.AsyncMethodsClient`|Creates an async HTTP client for [API Methods](https://docs.slack.dev/reference/methods) with a great [Rate Limits](https://docs.slack.dev/apis/web-api/rate-limits) supports|
+|`Slack#socketMode(String)`|`com.slack.api.socket_mode.SocketModeClient`|Creates a WebSocket client for [Socket Mode](https://docs.slack.dev/apis/events-api/using-socket-mode)|
+|`Slack#rtm(String)`|`com.slack.api.rtm.RTMClient`|Creates a WebSocket client for [Real Time Messaging (RTM) API](https://docs.slack.dev/legacy/legacy-rtm-api)|
+|`Slack#scim(String)`|`com.slack.api.scim.SCIMClient`|Creates a HTTP client for [SCIM API](https://docs.slack.dev/admins/scim-api)|
+|`Slack#audit(String)`|`com.slack.api.audit.AuditClient`|Creates a HTTP client for [Audit Logs API](https://docs.slack.dev/admins/audit-logs-api)|
+|`Slack#status()`|`com.slack.api.status.v2.StatusClient`|Creates a HTTP client for [Slack Status API](https://docs.slack.dev/reference/slack-status-api/)|
 
 :::tip
 
-Are you looking for the [Incoming Webhooks](https://api.slack.com/messaging/webhooks)? Of course, it's also supported! Check [this guide](/guides/incoming-webhooks) for it.
+Are you looking for the [Incoming Webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks)? Of course, it's also supported! Check [this guide](/guides/incoming-webhooks) for it.
 
 :::
 
 ---
 ## Call a Method
 
-The most popular Slack Web API method is called [`chat.postMessage`](https://api.slack.com/methods/chat.postMessage), and it's used to send a message to a conversation.
+The most popular Slack Web API method is called [`chat.postMessage`](https://docs.slack.dev/reference/methods/chat.postmessage), and it's used to send a message to a conversation.
 
-To call a Web API method such as [`chat.postMessage`](https://api.slack.com/methods/chat.postMessage), a `MethodsClient` instance needs to be initialized with a token. A token usually begins with `xoxb-` (bot token) or `xoxp-` (user token). You get them from each workspace that an app has been installed. [The Slack App configuration pages](https://api.slack.com/apps) help you get your first token for your development workspace.
+To call a Web API method such as [`chat.postMessage`](https://docs.slack.dev/reference/methods/chat.postmessage), a `MethodsClient` instance needs to be initialized with a token. A token usually begins with `xoxb-` (bot token) or `xoxp-` (user token). You get them from each workspace that an app has been installed. [The Slack App configuration pages](https://api.slack.com/apps) help you get your first token for your development workspace.
 
 :::warning 
 
@@ -138,7 +138,7 @@ In addition, you can check out the [Block Kit Kotlin DSL](/guides/composing-mess
 
 ### Handle Responses
 
-If you're not yet familiar with the Slack Web API response format, read the [Evaluating responses](https://api.slack.com/web#responses) guide to understand it. All Web API responses contain a JSON object, which always contains a top-level boolean property `"ok"`, indicating success or failure.
+If you're not yet familiar with the Slack Web API response format, read the [Evaluating responses](https://docs.slack.dev/apis/web-api/#responses) guide to understand it. All Web API responses contain a JSON object, which always contains a top-level boolean property `"ok"`, indicating success or failure.
 
 ```json
 {
@@ -171,11 +171,11 @@ if (response.isOk()) {
 
 When calling API methods, errors can occur for a variety of reasons:
 
-1. Received a successful response but in its body, `"ok"` is `false` and an `"error"` such as `channel_not_found` exists. These errors correspond to their definitions on their [method page](https://api.slack.com/methods).
+1. Received a successful response but in its body, `"ok"` is `false` and an `"error"` such as `channel_not_found` exists. These errors correspond to their definitions on their [method page](https://docs.slack.dev/reference/methods).
 2. Got a `java.io.IOException` thrown due to connectivity issues
 3. Got a `com.slack.api.methods.SlackApiException` thrown for an unsuccessful response
 
-To understand how to handle `1.` pattern, read [this API document](https://api.slack.com/web#evaluating_responses).
+To understand how to handle `1.` pattern, read [this API document](https://docs.slack.dev/apis/web-api/#responses).
 
 As for `2.` & `3.` patterns, the `MethodsClient` may throw two types of exceptions. Applications are responsible for catching and handling both of these exceptions.
 
@@ -209,7 +209,7 @@ try {
 ---
 ## There's More!
 
-Slack Web API offers [180+ methods](https://api.slack.com/methods). The way to use others is almost the same. Just calling methods in `MethodsClient` with a valid token and sufficient parameters works for you.
+Slack Web API offers [180+ methods](https://docs.slack.dev/reference/methods). The way to use others is almost the same. Just calling methods in `MethodsClient` with a valid token and sufficient parameters works for you.
 
 A good way to check the entire list of methods available in this SDK is to access [the Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/sdkLatestVersion/slack-api-client-sdkLatestVersion-javadoc.jar/!/com/slack/api/methods/MethodsClient.html).
 
@@ -245,7 +245,7 @@ AwesomeMethodResponse response = slack.methods().postFormWithTokenAndParseRespon
 ---
 ## Rate Limits
 
-Slack platform features and APIs rely on [rate limits](https://api.slack.com/docs/rate-limits) to help provide a predictably pleasant experience for users. The limits would be applied on a "per app per workspace" basis. There are several tiers to determine how frequently your apps can call Web APIs. `slack-api-client` has a complete support for those tiers and `AsyncMethodsClient`, the async client, has great consideration for Rate Limits.
+Slack platform features and APIs rely on [rate limits](https://docs.slack.dev/apis/web-api/rate-limits) to help provide a predictably pleasant experience for users. The limits would be applied on a "per app per workspace" basis. There are several tiers to determine how frequently your apps can call Web APIs. `slack-api-client` has a complete support for those tiers and `AsyncMethodsClient`, the async client, has great consideration for Rate Limits.
 
 The async client internally has its queue systems to avoid burst traffics as much as possible while `MethodsClient`, the synchronous client, always blindly sends requests. The good thing is that both sync and async clients maintain the metrics data in a `MetricsDatastore` together. This allows the async client to accurately know the current traffic they generated toward the Slack Platform and estimate the remaining amount to call.
 
