@@ -6,7 +6,7 @@ lang: ja
 
 **Bolt for Java** は、最新のプラットフォーム機能を使った Slack アプリの開発をスピーディに行うための抽象レイヤーを提供するフレームワークです。
 
-このガイドは、Bolt を使ったアプリ開発の基礎的な内容を全てカバーします。なお Slack アプリ開発全般についてまだ不慣れな方は、まず「[An introduction to Slack apps（英語）](https://api.slack.com/start/overview)」に軽く目を通した方がよいかもしれません。
+このガイドは、Bolt を使ったアプリ開発の基礎的な内容を全てカバーします。なお Slack アプリ開発全般についてまだ不慣れな方は、まず「[An introduction to Slack apps（英語）](https://docs.slack.dev/)」に軽く目を通した方がよいかもしれません。
 
 ---
 ## App クラス
@@ -77,7 +77,7 @@ app.command("/ping", (req, ctx) -> {
 });
 ```
 
-よりインタラクティブなメッセージを送るために [Block Kit](https://api.slack.com/block-kit) を使用することも可能です。
+よりインタラクティブなメッセージを送るために [Block Kit](https://docs.slack.dev/block-kit/) を使用することも可能です。
 
 ```java
 import static com.slack.api.model.block.Blocks.*;
@@ -107,7 +107,7 @@ app.command("/ping", (req, ctx) -> {
 ---
 ## ユーザーアクションに respond する
 
-`response_url` についてすでにご存知ですか？もしまだでしたら、まず「[Handling user interaction in your Slack apps > Message responses（英語）](https://api.slack.com/interactivity/handling#message_responses)」を読むことをおすすめします。
+`response_url` についてすでにご存知ですか？もしまだでしたら、まず「[Handling user interaction in your Slack apps > Message responses（英語）](https://docs.slack.dev/interactivity/handling-user-interaction)」を読むことをおすすめします。
 
 そのガイドページが説明しているように、一部のユーザーインタラクションによるペイロードは `response_url` というプロパティを持っています。この `response_url` は、各ペイロードに一意な URL で、そのインタラクションが発生した場所（チャンネル）にメッセージを送信するために使うことができます。
 
@@ -167,7 +167,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-ちなみにペイロードに含まれているチャンネル ID を用いた [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) API の呼び出しに限っては `say()` というユーティリティメソッドを使えば、より簡単になります。もし、あらゆる場所でこのスラッシュコマンドを使えるようにしたい場合は `ctx.respond` を使う方が安全でしょう。`say()` は、あなたのアプリのボットユーザーがメンバーではない会話（例：個人の DM）では使用することができないためです。
+ちなみにペイロードに含まれているチャンネル ID を用いた [**chat.postMessage**](https://docs.slack.dev/reference/methods/chat.postmessage) API の呼び出しに限っては `say()` というユーティリティメソッドを使えば、より簡単になります。もし、あらゆる場所でこのスラッシュコマンドを使えるようにしたい場合は `ctx.respond` を使う方が安全でしょう。`say()` は、あなたのアプリのボットユーザーがメンバーではない会話（例：個人の DM）では使用することができないためです。
 
 ```java
 app.command("/hello", (req, ctx) -> {

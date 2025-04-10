@@ -4,7 +4,7 @@ lang: ja
 
 # イベント API
 
-[イベント API](https://api.slack.com/events-api) は、Slack 内でのアクティビティに反応する Slack アプリを作るための洗練された、簡単な方法です。必要なものは Slack アプリの設定と、セキュアなイベントの送信先だけです。
+[イベント API](https://docs.slack.dev/apis/events-api/) は、Slack 内でのアクティビティに反応する Slack アプリを作るための洗練された、簡単な方法です。必要なものは Slack アプリの設定と、セキュアなイベントの送信先だけです。
 
 ### Slack アプリの設定
 
@@ -23,7 +23,7 @@ lang: ja
 
 Bolt アプリがイベントへの応答のためにやらなければならないことは以下の通りです。
 
-1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
+1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `event` の中の `type` が処理対象か確認
 1. イベントデータを使った任意の処理
 1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
@@ -37,11 +37,11 @@ Bolt アプリは Slack API サーバーからのリクエストに対して 3 �
 
 Bolt は Slack アプリに必要な共通処理の多くを巻き取ります。それを除いて、あなたのアプリがやらなければならない手順は以下の通りです。
 
-* 処理する `event.type` を[イベントデータの Java クラス](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/sdkLatestVersion/slack-api-model-sdkLatestVersion-javadoc.jar/!/com/slack/api/model/event/Event.html)で指定 ([必要に応じて](https://api.slack.com/events/message#message_subtypes)さらに `event.subtype` も考慮)
+* 処理する `event.type` を[イベントデータの Java クラス](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/sdkLatestVersion/slack-api-model-sdkLatestVersion-javadoc.jar/!/com/slack/api/model/event/Event.html)で指定 ([必要に応じて](https://docs.slack.dev/reference/events/message)さらに `event.subtype` も考慮)
 * イベントデータを使った任意の処理
 * 受け取ったことを伝えるために `ack()`
 
-このリクエストは、ユーザーインタラクションからの直接の呼び出しではないので、ペイロードには `response_url` は含まれていません。また、同じ理由から `ctx.ack()` を使ってチャンネルにメッセージを投稿することもできません。もし、対象のイベントがユーザーインタラクションによるもので、そのユーザーへの返信として投稿したい場合は、イベントのペイロードに含まれている `channel` を使って [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) API メソッドや類する API を実行してください。
+このリクエストは、ユーザーインタラクションからの直接の呼び出しではないので、ペイロードには `response_url` は含まれていません。また、同じ理由から `ctx.ack()` を使ってチャンネルにメッセージを投稿することもできません。もし、対象のイベントがユーザーインタラクションによるもので、そのユーザーへの返信として投稿したい場合は、イベントのペイロードに含まれている `channel` を使って [**chat.postMessage**](https://docs.slack.dev/reference/methods/chat.postmessage) API メソッドや類する API を実行してください。
 
 ```java
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -151,7 +151,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Slack からのリクエストを検証
-  // https://api.slack.com/docs/verifying-requests-from-slack
+  // https://docs.slack.dev/authentication/verifying-requests-from-slack
   // "X-Slack-Signature" header, "X-Slack-Request-Timestamp" ヘッダーとリクエストボディを検証
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

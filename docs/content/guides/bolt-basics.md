@@ -6,7 +6,7 @@ lang: en
 
 **Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features.
 
-If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs](https://api.slack.com/docs).
+If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs](https://docs.slack.dev).
 
 ---
 ## Start with the App class
@@ -78,7 +78,7 @@ app.command("/ping", (req, ctx) -> {
 });
 ```
 
-It's also possible to use [Block Kit](https://api.slack.com/block-kit) to make messages more interactive.
+It's also possible to use [Block Kit](https://docs.slack.dev/block-kit/) to make messages more interactive.
 
 ```java
 import static com.slack.api.model.block.Blocks.*;
@@ -132,7 +132,7 @@ If you want to take full control of the `ExecutorService` to use, you don't need
 ---
 ## Respond to User Actions
 
-Are you already familiar with `response_url`? If not, we recommend reading [this guide](https://api.slack.com/interactivity/handling#message_responses) first.
+Are you already familiar with `response_url`? If not, we recommend reading [this guide](https://docs.slack.dev/interactivity/handling-user-interaction) first.
 
 As the guide says, some of the user interaction payloads may contain a `response_url`. This `response_url` is unique to each payload, and can be used to publish messages back to the place where the interaction happened.
 
@@ -167,7 +167,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-For [chat.postMessage](https://api.slack.com/methods/chat.postMessage) API calls with the given channel ID, using `say()` utility is much simpler. If your slash command needs to be available anywhere, using `ctx.respond` would be more robust as `say()` method does not work for the conversations where the app's bot user is not a member of (e.g., a person's own DM).
+For [chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage) API calls with the given channel ID, using `say()` utility is much simpler. If your slash command needs to be available anywhere, using `ctx.respond` would be more robust as `say()` method does not work for the conversations where the app's bot user is not a member of (e.g., a person's own DM).
 
 ```java
 app.command("/hello", (req, ctx) -> {

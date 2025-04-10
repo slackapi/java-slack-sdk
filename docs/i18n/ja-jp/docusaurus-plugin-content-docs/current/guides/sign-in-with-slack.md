@@ -4,7 +4,7 @@ lang: ja
 
 # Slack でログインする (OpenID Connect)
 
-[Slack でログインする (Sign in with Slack)](https://api.slack.com/authentication/sign-in-with-slack)という機能は、ユーザーが Slack アカウントを使って他のサービスにログインすることに役立ちます。このプラットフォーム機能は、標準の [OpenID Connect](https://openid.net/connect/) の仕様と互換性を持つように最近アップグレードされました。Bolt for Java の 1.10 以上のバージョンであれば、この認証フローを非常に簡単に実装することができます。
+[Slack でログインする (Sign in with Slack)](https://docs.slack.dev/authentication/sign-in-with-slack/)という機能は、ユーザーが Slack アカウントを使って他のサービスにログインすることに役立ちます。このプラットフォーム機能は、標準の [OpenID Connect](https://openid.net/connect/) の仕様と互換性を持つように最近アップグレードされました。Bolt for Java の 1.10 以上のバージョンであれば、この認証フローを非常に簡単に実装することができます。
 
 ### Slack アプリの設定
 
@@ -94,7 +94,7 @@ SlackAppServer server = new SlackAppServer(apps);
 server.start();
 ```
 
-もし、[トークンローテーション（英語）](https://api.slack.com/authentication/rotation)の機能も同時に有効にする場合、コードは以下のようになるでしょう：
+もし、[トークンローテーション（英語）](https://docs.slack.dev/authentication/using-token-rotation)の機能も同時に有効にする場合、コードは以下のようになるでしょう：
 
 ```java
 // このコールバック関数で OpenID Connect の code authorization フローをハンドリングできる

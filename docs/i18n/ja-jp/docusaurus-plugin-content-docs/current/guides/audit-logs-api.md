@@ -4,11 +4,11 @@ lang: ja
 
 # Audit Logs API
 
-[Audit Logs API](https://api.slack.com/docs/audit-logs-api) は [Enterprise Grid](https://api.slack.com/enterprise/grid) の [OrG](https://slack.com/intl/ja-jp/help/articles/360004150931) 内で発生したイベントをモニタリングするための API 群です。
+[Audit Logs API](https://docs.slack.dev/admins/audit-logs-api) は [Enterprise Grid](https://docs.slack.dev/enterprise-grid/) の [OrG](https://slack.com/intl/ja-jp/help/articles/360004150931) 内で発生したイベントをモニタリングするための API 群です。
 
 Audit Logs API は、各種 SIEM (Security Information and Event Management) ツールによって Slack の OrG がどのようにアクセスされているかの分析結果を提供するために利用されることがあります。アプリケーションを開発して OrG のメンバーがどのように Slack を使っているかを確認する用途にも利用できます。
 
-Audit Logs API で利用できるトークンの取得は「[Monitoring workspace events with the Audit Logs API（英語）](https://api.slack.com/docs/audit-logs-api)」で解説されている手順に従ってください。Audit Logs API を利用する Slack アプリは、通常のアプリのように個々のワークスペース単位でインストールするのではなく OrG レベルでインストールする必要があります。
+Audit Logs API で利用できるトークンの取得は「[Monitoring workspace events with the Audit Logs API（英語）](https://docs.slack.dev/admins/audit-logs-api)」で解説されている手順に従ってください。Audit Logs API を利用する Slack アプリは、通常のアプリのように個々のワークスペース単位でインストールするのではなく OrG レベルでインストールする必要があります。
 
 ---
 ## Audit Logs API を Java で利用
@@ -75,7 +75,7 @@ ActionsResponse response = audit.getActions();
 ---
 ## Rate Limits
 
-Slack の Audit Logs API は、期待通りの快適なユーザー体験を提供するために、その [Rate Limits](https://api.slack.com/docs/rate-limits) に依拠しています。全ての API メソッドは Tier 3（毎分 50 回以内 / 瞬間的なバーストトラフィックは許容）の Rate Limit が適用されます。詳細は [API ドキュメント](https://api.slack.com/admins/audit-logs#how_to_call_the_audit_logs_api)を参考にしてください。
+Slack の Audit Logs API は、期待通りの快適なユーザー体験を提供するために、その [Rate Limits](https://docs.slack.dev/apis/web-api/rate-limits) に依拠しています。全ての API メソッドは Tier 3（毎分 50 回以内 / 瞬間的なバーストトラフィックは許容）の Rate Limit が適用されます。詳細は [API ドキュメント](https://docs.slack.dev/admins/audit-logs-api)を参考にしてください。
 
 **AsyncAuditClient** （非同期クライアント）はその実行において Rate Limits を考慮します。
 

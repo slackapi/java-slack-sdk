@@ -14,7 +14,7 @@ We recommend using the [Events API](/guides/events-api) and [Web API](/guides/we
 
 ## Prerequisites
 
-[The Real Time Messaging API](https://api.slack.com/rtm) is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users.
+[The Real Time Messaging API](https://docs.slack.dev/legacy/legacy-rtm-api) is a WebSocket-based API that allows you to receive events from Slack in real-time and send messages as users.
 
 To use the RTM Client, in addition to the `slack-api-client` library, `javax.websocket-api` and `tyrus-standalone-client (1.x)` are required. Here is a minimum Maven settings file.
 

@@ -4,7 +4,7 @@ lang: en
 
 # App Home
 
-An [App Home](https://api.slack.com/surfaces/tabs/events) is a private, one-to-one space in Slack shared by a user and an app. Each App Home contains a number of tabbed surfaces, including a Messages tab for app-user conversation, and a Home tab that can be fully customized by the app.
+An [App Home](https://docs.slack.dev/surfaces/app-home) is a private, one-to-one space in Slack shared by a user and an app. Each App Home contains a number of tabbed surfaces, including a Messages tab for app-user conversation, and a Home tab that can be fully customized by the app.
 
 ### Slack App Configuration
 
@@ -24,10 +24,10 @@ To enable Events API, go to **Features** > **Event Subscriptions** on the left p
 
 All your app needs to do to provide Home tabs to your app users are:
 
-1. Call the [**views.publish**](https://api.slack.com/methods/views.publish) method to update the Home tab on a per-user basis
+1. Call the [**views.publish**](https://docs.slack.dev/reference/methods/views.publish) method to update the Home tab on a per-user basis
 2. Handle any user interactions in Home tab (`"block_actions"`, `"block_suggestion"`)
 
-Most commonly, [`"app_home_opened"`](https://api.slack.com/events/app_home_opened) events would be used as the trigger to call the [**views.publish**](https://api.slack.com/methods/views.publish) method. Subscribing this event type is useful particularly for the initial Home tab creation. But it's also fine to publish Home tabs by any other means.
+Most commonly, [`"app_home_opened"`](https://docs.slack.dev/reference/events/app_home_opened) events would be used as the trigger to call the [**views.publish**](https://docs.slack.dev/reference/methods/views.publish) method. Subscribing this event type is useful particularly for the initial Home tab creation. But it's also fine to publish Home tabs by any other means.
 
 ---
 ## Examples
@@ -38,7 +38,7 @@ If you're a beginner to using Bolt for Slack App development, consult [Getting S
 
 :::
 
-The following code calls [**views.publish**](https://api.slack.com/methods/views.publish) method when receiving an [`"app_home_opened"` events](https://api.slack.com/events/app_home_opened) for the user that triggered the event. The user will see the updated Home tab immediately after the [**views.publish**](https://api.slack.com/methods/views.publish) call has been successfully completed.
+The following code calls [**views.publish**](https://docs.slack.dev/reference/methods/views.publish) method when receiving an [`"app_home_opened"` events](https://docs.slack.dev/reference/events/app_home_opened) for the user that triggered the event. The user will see the updated Home tab immediately after the [**views.publish**](https://docs.slack.dev/reference/methods/views.publish) call has been successfully completed.
 
 ```java
 import com.slack.api.methods.response.views.ViewsPublishResponse;
@@ -50,7 +50,7 @@ import static com.slack.api.model.block.Blocks.*;
 import static com.slack.api.model.block.composition.BlockCompositions.*;
 import static com.slack.api.model.view.Views.*;
 
-// https://api.slack.com/events/app_home_opened
+// https://docs.slack.dev/reference/events/app_home_opened
 app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
   // Build a Home tab view
   ZonedDateTime now = ZonedDateTime.now();
@@ -89,7 +89,7 @@ import com.slack.api.model.view.Views.*
 import com.slack.api.model.event.AppHomeOpenedEvent
 import java.time.ZonedDateTime
 
-// https://api.slack.com/events/app_home_opened
+// https://docs.slack.dev/reference/events/app_home_opened
 app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
   // Build a Home tab view
   val now = ZonedDateTime.now()

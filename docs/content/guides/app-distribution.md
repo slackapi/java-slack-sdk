@@ -4,10 +4,10 @@ lang: en
 
 # App Distribution (OAuth)
 
-A newly created Slack app can only be installed in its development workspace in the beginning. By setting an OAuth Redirect URL and enabling [App Distribution](https://api.slack.com/start/distributing), the app becomes to be ready for installation in any other workspaces.
+A newly created Slack app can only be installed in its development workspace in the beginning. By setting an OAuth Redirect URL and enabling [App Distribution](https://docs.slack.dev/distribution/), the app becomes to be ready for installation in any other workspaces.
 
-* [Installing with OAuth](https://api.slack.com/authentication/oauth-v2)
-* [Distributing Slack Apps](https://api.slack.com/start/distributing)
+* [Installing with OAuth](https://docs.slack.dev/authentication/installing-with-oauth)
+* [Distributing Slack Apps](https://docs.slack.dev/distribution/)
 
 ### Slack App Configuration
 
@@ -15,7 +15,7 @@ To enable App Distribution, visit the [Slack App configuration page](http://api.
 
 For **Redirect URL**, Bolt apps respond to `https://{your app's public URL domain}/slack/oauth/callback` if you go with recommended settings. To know how to configure such settings, consult the list of the available env variables below in this page.
 
-Bolt for Java automatically includes support for [org wide installations](https://api.slack.com/enterprise/apps) since version `1.4.0`. Org wide installations can be enabled in your app configuration settings under **Org Level Apps**.
+Bolt for Java automatically includes support for [org wide installations](https://docs.slack.dev/enterprise-grid/) since version `1.4.0`. Org wide installations can be enabled in your app configuration settings under **Org Level Apps**.
 
 ### What Your Bolt App Does
 
@@ -26,7 +26,7 @@ All your app needs to do to properly handle OAuth Flow are:
   * Append `client_id`, `scope`, `user_scope` (only for v2), and `state` to the URL
 * Provide an endpoint to handle user redirection from Slack
   * Make sure if the `state` parameter is valid
-  * Complete the installation by calling [oauth.v2.access](https://api.slack.com/methods/oauth.v2.access) (or [oauth.access](https://api.slack.com/methods/oauth.access) if you maintain legacy OAuth apps) method and store the acquired tokens
+  * Complete the installation by calling [oauth.v2.access](https://docs.slack.dev/reference/methods/oauth.v2.access) (or [oauth.access](https://docs.slack.dev/reference/methods/oauth.access) if you maintain legacy OAuth apps) method and store the acquired tokens
 * Provide the endpoints to navigate installers for the completion/cancellation of the installation flow
   * The URLs are usually somewhere else but Bolt has simple functionality to serve them
 
@@ -147,23 +147,23 @@ SlackAppServer server = new SlackAppServer(new HashMap<>(Map.ofEntries(
 server.start(); // http://localhost:3000
 ```
 
-If you want to turn [the token rotation feature](https://api.slack.com/authentication/rotation) on, your `InstallationService` should be compatible with it. Refer to the [v1.9.0 release notes](https://github.com/slackapi/java-slack-sdk/releases/tag/v1.9.0) for more details.
+If you want to turn [the token rotation feature](https://docs.slack.dev/authentication/using-token-rotation) on, your `InstallationService` should be compatible with it. Refer to the [v1.9.0 release notes](https://github.com/slackapi/java-slack-sdk/releases/tag/v1.9.0) for more details.
 
 ### Granular Permission Apps or Classic Apps
 
 Slack has two types of OAuth flows for Slack app installations. The V2 (this is a bit confusing but it's not the version of OAuth spec, but the version of the Slack OAuth flow) OAuth flow enables Slack apps to request more granular permissions than the classic ones, especially for bot users. The differences between the two types are having `v2` in the endpoint to issue access tokens and the OAuth Authorization URL, plus some changes to the response data structure returned by the `oauth(.v2).access` endpoint.
 
-#### [V2 OAuth 2.0 Flow](https://api.slack.com/authentication/oauth-v2) (default)
+#### [V2 OAuth 2.0 Flow](https://docs.slack.dev/authentication/installing-with-oauth) (default)
 
 |-|-|
 |Authorization URL|`https://slack.com/oauth/v2/authorize`|
-|Web API to issue access tokens|[`oauth.v2.access`](https://api.slack.com/methods/oauth.v2.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
+|Web API to issue access tokens|[`oauth.v2.access`](https://docs.slack.dev/reference/methods/oauth.v2.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthV2AccessResponse.java))|
 
-#### [Classic OAuth Flow](https://api.slack.com/docs/oauth)
+#### [Classic OAuth Flow](https://docs.slack.dev/authentication/installing-with-oauth)
 
 |-|-|
 |Authorization URL|`https://slack.com/oauth/authorize`|
-|Web API to issue access tokens|[`oauth.access`](https://api.slack.com/methods/oauth.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
+|Web API to issue access tokens|[`oauth.access`](https://docs.slack.dev/reference/methods/oauth.access) ([Response](https://github.com/slackapi/java-slack-sdk/blob/main/slack-api-client/src/main/java/com/slack/api/methods/response/oauth/OAuthAccessResponse.java))|
 
 By default, Bolt enables the V2 OAuth Flow over the classic one. It's configurable by **AppConfig**'s the setter method for `classicAppPermissionsEnabled`. The value is set to `false` by default. Change the flag to `true` to authorize your classic OAuth apps.
 
@@ -258,7 +258,7 @@ public class SlackApp {
 
 #### Use the Built-in tokens_revoked / app_uninstalled Event Handlers
 
-For secure data management for your customers and end-users, properly handling [tokens_revoked](https://api.slack.com/events/tokens_revoked) and [app_uninstalled](https://api.slack.com/events/app_uninstalled) events is crucial. Bolt for Java provides the built-in event handlers for these events, which seamlessly integrated with your `InstallationService`'s deletion methods.
+For secure data management for your customers and end-users, properly handling [tokens_revoked](https://docs.slack.dev/reference/events/tokens_revoked) and [app_uninstalled](https://docs.slack.dev/reference/events/app_uninstalled) events is crucial. Bolt for Java provides the built-in event handlers for these events, which seamlessly integrated with your `InstallationService`'s deletion methods.
 
 ```java
 App app = new App();

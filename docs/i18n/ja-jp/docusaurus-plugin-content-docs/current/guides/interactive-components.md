@@ -4,9 +4,9 @@ lang: ja
 
 # インタラクティブコンポーネント
 
-[インタラクティブコンポーネント](https://api.slack.com/reference/block-kit/interactive-components)は、様々な[サーフェスエリア](https://api.slack.com/surfaces)にインタラクティビティをもたらす [Block Kit](https://api.slack.com/block-kit) エレメントのサブセットです。blocks でのインタラクションはチャンネル内のメッセージ上だけではなく、[モーダル](/guides/modals) や [Home タブ](/guides/app-home) でも発生します。
+[インタラクティブコンポーネント](https://docs.slack.dev/block-kit/#making-things-interactive)は、様々な[サーフェスエリア](https://docs.slack.dev/surfaces/)にインタラクティビティをもたらす [Block Kit](https://docs.slack.dev/block-kit/) エレメントのサブセットです。blocks でのインタラクションはチャンネル内のメッセージ上だけではなく、[モーダル](/guides/modals) や [Home タブ](/guides/app-home) でも発生します。
 
-この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/guides/composing-messages)」を参考にしてください。
+この SDK で [Block Kit](https://docs.slack.dev/block-kit/) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/guides/composing-messages)」を参考にしてください。
 
 ### Slack アプリの設定
 
@@ -20,7 +20,7 @@ lang: ja
 
 Bolt アプリがユーザーインタラクションへの応答のためにやらなければならないことは以下の通りです。
 
-1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
+1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `action_id` が処理対象か確認
 1. ユーザとの次のインタラクションのためのメッセージやその他のインターフェースを構築
 1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
@@ -80,7 +80,7 @@ app.blockAction("button-action") { req, ctx ->
 }
 ```
 
-次は[外部データソース（external data source）を使ったセレクトメニュー](https://api.slack.com/reference/block-kit/block-elements#external_select)の例です。
+次は[外部データソース（external data source）を使ったセレクトメニュー](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select)の例です。
 
 ```javascript
 {
@@ -169,7 +169,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Slack からのリクエストを検証
-  // https://api.slack.com/docs/verifying-requests-from-slack
+  // https://docs.slack.dev/authentication/verifying-requests-from-slack
   // "X-Slack-Signature" header, "X-Slack-Request-Timestamp" ヘッダーとリクエストボディを検証
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

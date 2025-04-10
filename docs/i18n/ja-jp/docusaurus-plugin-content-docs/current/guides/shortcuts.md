@@ -4,7 +4,7 @@ lang: ja
 
 # ショートカット
 
-[ショートカット](https://api.slack.com/interactivity/shortcuts)は、クイックスイッチャーから呼び出すことのできるスラッシュコマンドの進化形です。ユーザーは Slack 内の直感的なサーフェスエリアであなたのアプリのワークフローを起動することができるようになります。
+[ショートカット](https://docs.slack.dev/interactivity/implementing-shortcuts)は、クイックスイッチャーから呼び出すことのできるスラッシュコマンドの進化形です。ユーザーは Slack 内の直感的なサーフェスエリアであなたのアプリのワークフローを起動することができるようになります。
 
 Slack アプリは 3 秒以内に `ack()` メソッドでショッートカット実行のリクエストに対して応答をする必要があります。
 
@@ -27,7 +27,7 @@ Slack アプリは 3 秒以内に `ack()` メソッドでショッートカッ�
 
 Bolt アプリがショートカットへの応答のためにやらなければならないことは以下の通りです。
 
-1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
+1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `callback_id` が処理対象か確認
 1. 返信メッセージを組み立てるなどメインの処理を実行
 1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
@@ -44,7 +44,7 @@ Bolt は Slack アプリに必要な共通処理の多くを巻き取ります�
 
 メッセージショートカットのペイロードは `response_url` を持っており、例えば `ack()` した後、しばらく経ってからでも返信することができます。URL は発行されてから 30 分間を期限に最大 5 回まで使用することができます。処理が終わったタイミングで `response_url` を使って返信する場合は `ctx.ack()` は引数なしで実行し `ctx.respond()` でメッセージを投稿する、というやり方になります。グローバルショートカットのペイロードには `response_url` は含まれません。
 
-グローバルショートカットのペイロードは、デフォルトでは `response_url` を持っていません。しかし、モーダルの中にユーザーにチャンネルを入力してもらうための `input` タイプのブロックがある場合は `response_urls` という項目で受け取ることができます。これを利用するためには [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) か [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) の input type の block element を用意し、かつ、その属性に `"response_url_enabled": true` を設定してください。
+グローバルショートカットのペイロードは、デフォルトでは `response_url` を持っていません。しかし、モーダルの中にユーザーにチャンネルを入力してもらうための `input` タイプのブロックがある場合は `response_urls` という項目で受け取ることができます。これを利用するためには [`channels_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select) か [`conversations_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#conversation_multi_select) の input type の block element を用意し、かつ、その属性に `"response_url_enabled": true` を設定してください。
 
 以下のサンプルは、ショートカットのリクエストに応答する Bolt アプリの実装の例です。
 
@@ -133,7 +133,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Slack からのリクエストを検証
-  // https://api.slack.com/docs/verifying-requests-from-slack
+  // https://docs.slack.dev/authentication/verifying-requests-from-slack
   // "X-Slack-Signature" header, "X-Slack-Request-Timestamp" ヘッダーとリクエストボディを検証
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

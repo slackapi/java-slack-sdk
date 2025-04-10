@@ -4,9 +4,9 @@ lang: en
 
 # Interactive Components
 
-[Interactive components](https://api.slack.com/reference/block-kit/interactive-components) are a subset of [Block Kit](https://api.slack.com/block-kit) elements that add interactivity to various [surfaces](https://api.slack.com/surfaces). Interactions on blocks may happen not only in messages but also on [Modals](/guides/modals), and [Home tabs](/guides/app-home).
+[Interactive components](https://docs.slack.dev/block-kit/#making-things-interactive) are a subset of [Block Kit](https://docs.slack.dev/block-kit/) elements that add interactivity to various [surfaces](https://docs.slack.dev/surfaces/). Interactions on blocks may happen not only in messages but also on [Modals](/guides/modals), and [Home tabs](/guides/app-home).
 
-Reading [Composing Messages](/guides/composing-messages) is helpful to learn how to build [Block Kit](https://api.slack.com/block-kit) messages with this SDK.
+Reading [Composing Messages](/guides/composing-messages) is helpful to learn how to build [Block Kit](https://docs.slack.dev/surfaces/) messages with this SDK.
 
 ### Slack App Configuration
 
@@ -20,7 +20,7 @@ To enable Interactive Components, visit the [Slack App configuration page](http:
 
 All your app needs to do to handle Slack requests by user interactions are:
 
-1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
+1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `action_id` in a block is the one you'd like to handle
 1. Build a reply message or surface to interact with the user further
 1. Respond to the Slack API server with 200 OK as an acknowledgment
@@ -84,7 +84,7 @@ app.blockAction("button-action") { req, ctx ->
 }
 ```
 
-Here is another example. This is a [select menu using external data source](https://api.slack.com/reference/block-kit/block-elements#external_select).
+Here is another example. This is a [select menu using external data source](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select).
 
 ```javascript
 {
@@ -173,7 +173,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Verify requests from Slack
-  // https://api.slack.com/docs/verifying-requests-from-slack
+  // https://docs.slack.dev/authentication/verifying-requests-from-slack
   // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

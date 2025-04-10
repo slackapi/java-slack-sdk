@@ -4,9 +4,9 @@ lang: en
 
 # Composing Messages
 
-This section shows how to build Slack messages using the `slack-api-client` library. If you're not familiar with [`chat.postMessage`](https://api.slack.com/methods/chat.postMessage) API yet, read [the web api basics page](/guides/web-api-basics) before trying the samples here.
+This section shows how to build Slack messages using the `slack-api-client` library. If you're not familiar with [`chat.postMessage`](https://docs.slack.dev/reference/methods/chat.postmessage) API yet, read [the web api basics page](/guides/web-api-basics) before trying the samples here.
 
-Also, before jumping into Java code, we recommend developing an understanding of composing Slack messages. [Read the API documentation](https://api.slack.com/messaging/composing) for more information.
+Also, before jumping into Java code, we recommend developing an understanding of composing Slack messages. [Read the API documentation](https://docs.slack.dev/messaging/) for more information.
 
 ---
 ## Text Formatting
@@ -29,12 +29,12 @@ ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> r
 );
 ```
 
-As you see, using `text` is fairly simple. The only thing to know is to give a string value with a valid format. Consult [Basic formatting with `mrkdwn`](https://api.slack.com/reference/surfaces/formatting#basics) for understanding the markup language.
+As you see, using `text` is fairly simple. The only thing to know is to give a string value with a valid format. Consult [Basic formatting with `mrkdwn`](https://docs.slack.dev/messaging/formatting-message-text) for understanding the markup language.
 
 ---
 ## Building Blocks for Rich Message Layouts
 
-[Block Kit](https://api.slack.com/block-kit) is a UI framework for Slack apps that offers a balance of control and flexibility when building experiences in messages and other [surfaces](https://api.slack.com/surfaces).
+[Block Kit](https://docs.slack.dev/block-kit/) is a UI framework for Slack apps that offers a balance of control and flexibility when building experiences in messages and other [surfaces](https://docs.slack.dev/surfaces/).
 
 It may not be so easy to compose a large JSON data structure in Java code. So, we offer setter methods like `blocksAsString(String)` that accept a whole `blocks` part as a single string value. Such method is supposed to be used with loaded external file data or outcomes by template engines.
 

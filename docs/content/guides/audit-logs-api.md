@@ -4,11 +4,11 @@ lang: en
 
 # Audit Logs API
 
-[Audit Logs API](https://api.slack.com/docs/audit-logs-api) is a set of APIs for monitoring what's happening in your [Enterprise Grid](https://api.slack.com/enterprise/grid) organization.
+[Audit Logs API](https://api.lack.com/docs/audit-logs-api) is a set of APIs for monitoring what's happening in your [Enterprise Grid](https://docs.slack.dev/enterprise-grid/) organization.
 
 The Audit Logs API can be used by security information and event management (SIEM) tools to provide an analysis of how your Slack organization is being accessed. You can also use this API to write your own applications to see how members of your organization are using Slack.
 
-Follow the instructions in [the API document](https://api.slack.com/docs/audit-logs-api) to get a valid token for using Audit Logs API. Your Slack app for Audit Logs API needs to be installed on the Enterprise Grid Organization, not an individual workspace within the organization.
+Follow the instructions in [the API document](https://docs.slack.dev/admins/audit-logs-api) to get a valid token for using Audit Logs API. Your Slack app for Audit Logs API needs to be installed on the Enterprise Grid Organization, not an individual workspace within the organization.
 
 ---
 ## Call Audit Logs API in Java
@@ -76,7 +76,7 @@ Refer to [Javadoc](https://oss.sonatype.org/service/local/repositories/releases/
 ---
 ## Rate Limits
 
-The Audit Logs API methods conform to Slack's [rate limits](https://api.slack.com/docs/rate-limits) and all methods are rated Tier 3. This allows for up to 50 calls per minute, with an allowance for sporadic bursts. Refer to [the API document](https://api.slack.com/admins/audit-logs#how_to_call_the_audit_logs_api) for more details.
+The Audit Logs API methods conform to Slack's [rate limits](https://docs.slack.dev/apis/web-api/rate-limits) and all methods are rated Tier 3. This allows for up to 50 calls per minute, with an allowance for sporadic bursts. Refer to [the API document](https://docs.slack.dev/admins/audit-logs-api) for more details.
 
 `AsyncAuditClient`, the async client, has great consideration for Rate Limits.
 

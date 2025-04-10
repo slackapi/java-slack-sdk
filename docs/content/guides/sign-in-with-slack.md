@@ -4,7 +4,7 @@ lang: en
 
 # Sign in with Slack (OpenID Connect)
 
-[Sign in with Slack](https://api.slack.com/authentication/sign-in-with-slack) helps users log into your service using their Slack profile. The platform feature was recently upgraded to be compatible with the standard [OpenID Connect](https://openid.net/connect/) specification. With Bolt for Java v1.10 or higher, implementing the auth flow is much easier.
+[Sign in with Slack](https://docs.slack.dev/authentication/sign-in-with-slack/) helps users log into your service using their Slack profile. The platform feature was recently upgraded to be compatible with the standard [OpenID Connect](https://openid.net/connect/) specification. With Bolt for Java v1.10 or higher, implementing the auth flow is much easier.
 
 ## Slack App Configuration
 
@@ -94,7 +94,7 @@ SlackAppServer server = new SlackAppServer(apps);
 server.start();
 ```
 
-If you enable [the token rotation](https://api.slack.com/authentication/rotation) along with the OpenID Connect, the code can be like this:
+If you enable [the token rotation](https://docs.slack.dev/authentication/using-token-rotation) along with the OpenID Connect, the code can be like this:
 
 ```java
 // You can handle the OpenID Connect code authorization flow with this callback function

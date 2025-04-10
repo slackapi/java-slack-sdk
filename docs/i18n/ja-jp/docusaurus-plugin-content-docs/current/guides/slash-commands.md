@@ -4,7 +4,7 @@ lang: ja
 
 # スラッシュコマンド
 
-[スラッシュコマンド](https://api.slack.com/interactivity/slash-commands) は、メッセージ投稿フォームからアプリの機能を呼び出すことができる機能です。
+[スラッシュコマンド](https://docs.slack.dev/interactivity/implementing-slash-commands) は、メッセージ投稿フォームからアプリの機能を呼び出すことができる機能です。
 
 スラッシュコマンドの実行への応答は、とてもよくあるユースケースです。Bolt アプリは Slack API サーバーからのリクエストに対して 3 秒以内に `ack()` メソッドで応答する必要があります。3 秒以内に応答しなかった場合、コマンドを実行したユーザーに対して Slack 上でタイムアウトした旨が通知されます。
 
@@ -23,7 +23,7 @@ lang: ja
 
 Bolt アプリがスラッシュコマンドの実行を処理するためにやらなければならないことは以下の通りです。
 
-1. Slack API からのリクエストを[検証](https://api.slack.com/docs/verifying-requests-from-slack)
+1. Slack API からのリクエストを[検証](https://docs.slack.dev/authentication/verifying-requests-from-slack)
 1. リクエストボディをパースして `command` が処理対象か確認
 1. 返信メッセージを組み立てるなどメインの処理を実行
 1. 受け取ったことを伝えるために Slack API へ 200 OK 応答
@@ -83,7 +83,7 @@ app.command("/echo") { req, ctx ->
 }
 ```
 
-この SDK で [Block Kit](https://api.slack.com/block-kit) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/guides/composing-messages)」を参考にしてください。
+この SDK で [Block Kit](https://docs.slack.dev/block-kit/) を使ったメッセージを組み立てる方法は「[メッセージの組み立て方](/guides/composing-messages)」を参考にしてください。
 
 ### Bolt がやっていること
 
@@ -98,7 +98,7 @@ import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Slack からのリクエストを検証
-  // https://api.slack.com/docs/verifying-requests-from-slack
+  // https://docs.slack.dev/authentication/verifying-requests-from-slack
   // "X-Slack-Signature" header, "X-Slack-Request-Timestamp" ヘッダーとリクエストボディを検証
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

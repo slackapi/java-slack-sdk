@@ -4,7 +4,7 @@ lang: en
 
 # Web API for Org Admins
 
-The method names of a portion of [API Methods](https://api.slack.com/methods) start with `admin.`. These APIs are not available for all developers. They are supposed to be used by [Enterprise Grid](https://api.slack.com/enterprise/grid) Organization administrators. 
+The method names of a portion of [API Methods](https://docs.slack.dev/reference/methods) start with `admin.`. These APIs are not available for all developers. They are supposed to be used by [Enterprise Grid](https://docs.slack.dev/enterprise-grid/) Organization administrators. 
 
 ---
 ## Call Web API for Org Admins
@@ -36,4 +36,4 @@ AdminAppsApprovedListResponse response = slack.methods(orgAdminToken).adminAppsA
 // There are more...!
 ```
 
-You can look up the comprehensive list of admin APIs [here](https://api.slack.com/admins). Also, checking [the Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/sdkLatestVersion/slack-api-client-sdkLatestVersion-javadoc.jar/!/com/slack/api/methods/MethodsClient.html) and search by a keyword starting with **`admin`** may be helpful to know methods to use.
+You can look up the comprehensive list of admin APIs [here](https://docs.slack.dev/admins/). Also, checking [the Javadoc](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-client/sdkLatestVersion/slack-api-client-sdkLatestVersion-javadoc.jar/!/com/slack/api/methods/MethodsClient.html) and search by a keyword starting with **`admin`** may be helpful to know methods to use.
