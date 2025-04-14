@@ -4,11 +4,11 @@ lang: en
 
 # SCIM API
 
-[SCIM API](https://api.slack.com/scim) is a set of APIs for provisioning and managing user accounts and groups. SCIM is used by Single Sign-On (SSO) services and identity providers to manage people across a variety of tools, including Slack.
+[SCIM API](https://docs.slack.dev/admins/scim-api) is a set of APIs for provisioning and managing user accounts and groups. SCIM is used by Single Sign-On (SSO) services and identity providers to manage people across a variety of tools, including Slack.
 
 [SCIM (System for Cross-domain Identity Management)](http://www.simplecloud.info/) is supported by myriad services. It behaves slightly differently than other Slack APIs.
 
-Refer to [the API document](https://api.slack.com/scim) for more details.
+Refer to [the API document](https://docs.slack.dev/admins/scim-api) for more details.
 
 ---
 ## Call SCIM API in Java
@@ -58,7 +58,7 @@ newUser.getName().setFamilyName("Sera");
 UsersCreateResponse creation = slack.scim(token).createUser(req -> req.user(newUser));
 
 // Run a filter query for user search
-// https://api.slack.com/scim#filter
+// https://docs.slack.dev/admins/scim-api
 UsersSearchResponse searchResp = slack.scim(token).searchUsers(req -> req
   .count(1)
   .filter("userName eq \"" + userName + "\"")
@@ -122,7 +122,7 @@ try {
 ---
 ## Rate Limits
 
-Slack uses rate limits for the SCIM API to help provide a predictably pleasant experience. Please note: unlike many of the other Slack API rate limits, the limits below apply to all SCIM apps in an org, not on a per-app basis. Refer to [the API document](https://api.slack.com/admins/scim#ratelimits) for more details.
+Slack uses rate limits for the SCIM API to help provide a predictably pleasant experience. Please note: unlike many of the other Slack API rate limits, the limits below apply to all SCIM apps in an org, not on a per-app basis. Refer to [the API document](https://docs.slack.dev/admins/scim-api#limitations) for more details.
 
 `AsyncSCIMClient`, the async client, has great consideration for Rate Limits.
 
