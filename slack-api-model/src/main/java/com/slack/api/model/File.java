@@ -239,6 +239,7 @@ public class File {
 
     private Shares shares;
     private Boolean hasMoreShares;
+    private Boolean skippedShares;
 
     @Data
     public static class Shares {
@@ -271,6 +272,8 @@ public class File {
         private String access; // "read"
         private String source; // "UNKNOWN"
         private Integer dateLastShared;
+        @SerializedName("is_silent_share")
+        private Boolean silentShare;
     }
 
     private List<Address> to;

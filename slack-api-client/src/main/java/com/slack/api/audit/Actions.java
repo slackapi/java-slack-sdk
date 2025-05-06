@@ -163,6 +163,7 @@ public class Actions {
         public static final String pref_slack_ai_allow_workflow_builder_changed = "pref.slack_ai_allow_workflow_builder_changed";
         public static final String pref_enterprise_search_connectors_changed = "pref.enterprise_search_connectors_changed";
         public static final String pref_enterprise_search_enabled_changed = "pref.enterprise_search_enabled_changed";
+        public static final String pref_slack_ai_allow_translations_changed = "pref.slack_ai_allow_translations_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -317,6 +318,9 @@ public class Actions {
         public static final String user_profile_flag_moderated = "user_profile_flag_moderated";
         public static final String user_profile_flag_assignment = "user_profile_flag_assignment";
         public static final String user_profile_flag_unassignment = "user_profile_flag_unassignment";
+        public static final String user_added_reminder = "user_added_reminder";
+        public static final String app_agentforce_shareable_prompt_created = "app_agentforce_shareable_prompt_created";
+        public static final String app_agentforce_session_created_from_prompt_link = "app_agentforce_session_created_from_prompt_link";
     }
 
     public static class File {
@@ -617,6 +621,7 @@ public class Actions {
         public static final String canvas_restricted_sharing_enabled = "canvas_restricted_sharing_enabled";
         public static final String canvas_restricted_sharing_disabled = "canvas_restricted_sharing_disabled";
         public static final String canvas_converted_to_standalone = "canvas_converted_to_standalone";
+        public static final String canvas_quip_migration_undone = "canvas_quip_migration_undone";
     }
 
     public static class Function {
