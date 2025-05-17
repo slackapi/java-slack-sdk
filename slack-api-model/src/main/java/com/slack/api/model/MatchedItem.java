@@ -279,5 +279,6 @@ public class MatchedItem {
     private Boolean teamPrefVersionHistoryEnabled;
     private Integer editorsCount;
     private List<LayoutBlock> titleBlocks;
+    private Double canvasReadtime;
 
 }

@@ -40,6 +40,7 @@ public class File {
     private List<String> editors;
     private Integer editTimestamp;
     private String altTxt;
+    private Double canvasReadtime;
 
     private String subtype; // "slack_video" = clip
     private Transcription transcription; // when subtype is "slack_video"

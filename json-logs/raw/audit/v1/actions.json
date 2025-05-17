@@ -305,7 +305,8 @@
       "user_profile_flag_unassignment",
       "user_added_reminder",
       "app_agentforce_shareable_prompt_created",
-      "app_agentforce_session_created_from_prompt_link"
+      "app_agentforce_session_created_from_prompt_link",
+      "app_agentforce_execute_slack_action"
     ],
     "file": [
       "file_downloaded",
@@ -418,7 +419,8 @@
       "app_variable_removed",
       "app_deployed",
       "app_manifest_created",
-      "app_manifest_updated"
+      "app_manifest_updated",
+      "admin_app_config_updated"
     ],
     "workflow_builder": [
       "workflow_created",
@@ -443,7 +445,8 @@
       "sales_home_notification_forwarded",
       "record_shared",
       "message_flag_assignment",
-      "message_flag_unassignment"
+      "message_flag_unassignment",
+      "thread_hidden"
     ],
     "barrier": [
       "barrier_created",
