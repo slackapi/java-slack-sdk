@@ -71,7 +71,8 @@
         "canvas": {
           "file_id": "F00000000",
           "is_empty": false,
-          "quip_thread_id": ""
+          "quip_thread_id": "",
+          "is_migrated": false
         },
         "threads_restricted_to": {
           "type": [
@@ -82,20 +83,29 @@
           {
             "id": "",
             "label": "",
-            "type": ""
+            "type": "",
+            "data": {
+              "file_id": "F00000000",
+              "shared_ts": "0000000000.000000"
+            },
+            "is_disabled": false
           }
         ],
         "tabz": [
           {
             "id": "",
             "label": "",
-            "type": ""
-          },
-          {
             "type": "",
-            "id": ""
+            "data": {
+              "file_id": "F00000000",
+              "shared_ts": "0000000000.000000"
+            },
+            "is_disabled": false
           }
-        ]
+        ],
+        "meeting_notes": {
+          "file_id": "F00000000"
+        }
       }
     }
   ],

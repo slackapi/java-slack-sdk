@@ -321,6 +321,7 @@ public class Actions {
         public static final String user_added_reminder = "user_added_reminder";
         public static final String app_agentforce_shareable_prompt_created = "app_agentforce_shareable_prompt_created";
         public static final String app_agentforce_session_created_from_prompt_link = "app_agentforce_session_created_from_prompt_link";
+        public static final String app_agentforce_execute_slack_action = "app_agentforce_execute_slack_action";
     }
 
     public static class File {
@@ -446,6 +447,7 @@ public class Actions {
         public static final String app_deployed = "app_deployed";
         public static final String app_manifest_created = "app_manifest_created";
         public static final String app_manifest_updated = "app_manifest_updated";
+        public static final String admin_app_config_updated = "admin_app_config_updated";
     }
 
     public static class Message {
@@ -467,6 +469,7 @@ public class Actions {
         public static final String record_shared = "record_shared";
         public static final String message_flag_assignment = "message_flag_assignment";
         public static final String message_flag_unassignment = "message_flag_unassignment";
+        public static final String thread_hidden = "thread_hidden";
     }
 
     public static class WorkflowBuilder {
