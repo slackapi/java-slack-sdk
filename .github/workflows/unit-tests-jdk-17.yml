@@ -2,7 +2,8 @@ name: JDK 17 Build & Tests
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
 
 jobs:
@@ -11,17 +12,20 @@ jobs:
     timeout-minutes: 12
     strategy:
       matrix:
-        java-version: ['17']
-
+        java-version: ["17"]
+    permissions:
+      contents: read
     steps:
-    - uses: actions/checkout@v4
-    - name: Install JDK
-      uses: actions/setup-java@v4
-      with:
-        java-version: ${{ matrix.java-version }}
-        distribution: 'adopt'
-    - name: Run all tests
-      run: |
-        ./scripts/run_no_prep_tests.sh -ci
-      env:
-        SKIP_UNSTABLE_TESTS: 1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install JDK
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: "adopt"
+      - name: Run all tests
+        run: |
+          ./scripts/run_no_prep_tests.sh -ci
+        env:
+          SKIP_UNSTABLE_TESTS: 1
