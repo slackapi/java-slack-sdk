@@ -21,6 +21,7 @@ public class ConversationProperties {
     private Boolean atChannelRestricted;
     private List<Tab> tabs;
     private List<Tabz> tabz;
+    private MeetingNotes meetingNotes;
 
     @Data
     @Builder
@@ -48,6 +49,7 @@ public class ConversationProperties {
         private String fileId;
         private String quipThreadId;
         private Boolean isEmpty;
+        private Boolean isMigrated;
     }
 
     @Data
@@ -72,6 +74,14 @@ public class ConversationProperties {
         private String type;
         private TabData data;
         private Boolean isDisabled;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MeetingNotes {
+        private String fileId;
     }
 
     @Data
