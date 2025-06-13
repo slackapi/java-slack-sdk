@@ -6,7 +6,7 @@ lang: en
 
 # Shortcuts
 
-**Shortcuts** are simple entry points for users to invoke your app. [**Global shortcuts**](https://api.slack.com/interactivity/shortcuts/using#global_shortcuts) are surfaced from within search in Slack, while [**message shortcuts**](https://api.slack.com/interactivity/shortcuts/using#message_shortcuts) are surfaced in the message context menu.
+**Shortcuts** are simple entry points for users to invoke your app. [**Global shortcuts**](https://docs.slack.dev/interactivity/implementing-shortcuts#global) are surfaced from within search in Slack, while [**message shortcuts**](https://docs.slack.dev/interactivity/implementing-shortcuts#messages) are surfaced in the message context menu.
 
 Your app has 3 seconds to call `ack()`, which acknowledges a shortcut request is received from Slack.
 
@@ -29,7 +29,7 @@ The specified **Callback ID** will be sent as `callback_id` in payloads from Sla
 
 All your app needs to do to handle shortcuts requests are:
 
-1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
+1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `callback_id` is the one you'd like to handle
 1. Build a reply message or do whatever you want to do
 1. Respond to the Slack API server with 200 OK as an acknowledgment
@@ -51,7 +51,7 @@ Bolt does many of the commonly required tasks for you. The steps you need to han
 
 Message shortcut request payloads have `response_url`, so that your app can reply to the shortcut (even asynchronously after the acknowledgment). The URL is usable up to 5 times within 30 minutes of the shortcut invocation. If you post a message using `response_url`, call `ctx.ack()` without arguments and use `ctx.respond()` to post a message.
 
-Global shortcut request payloads don't have `response_url` by default. If you have an `input` block asking users a channel to post a message, global shortcut request payloads may provide `response_urls`. To enable this, set the block element type as either [`channels_select`](https://api.slack.com/reference/block-kit/block-elements#channel_select) or [`conversations_select`](https://api.slack.com/reference/block-kit/block-elements#conversation_select) and add `"response_url_enabled": true`.
+Global shortcut request payloads don't have `response_url` by default. If you have an `input` block asking users a channel to post a message, global shortcut request payloads may provide `response_urls`. To enable this, set the block element type as either [`channels_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#channel_multi_select) or [`conversations_select`](https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#conversation_multi_select) and add `"response_url_enabled": true`.
 
 Here is a tiny example demonstrating how to handle shortcut requests in a Bolt app.
 
@@ -142,7 +142,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Verify requests from Slack
-  // https://api.slack.com/docs/verifying-requests-from-slack
+  // https://docs.slack.dev/authentication/verifying-requests-from-slack
   // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

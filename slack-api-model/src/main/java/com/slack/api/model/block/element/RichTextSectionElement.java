@@ -140,6 +140,16 @@ public class RichTextSectionElement extends BlockElement implements RichTextElem
         private LimitedTextStyle style;
     }
 
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Canvas implements RichTextElement {
+        public static final String TYPE = "canvas";
+        private final String type = TYPE;
+        private String fileId;
+    }
+
     // -------------------------------
 
     @Data

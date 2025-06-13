@@ -236,7 +236,22 @@
       "pref.ml_opt_out",
       "pref.agentforce_workspaces_settings_changed",
       "pref.enterprise_search_connectors",
-      "pref.enterprise_search_enabled"
+      "pref.enterprise_search_enabled",
+      "pref.allow_huddles_transcriptions_changed",
+      "pref.slack_ai_allowed_workspaces_changed",
+      "pref.slack_ai_allow_recap_changed",
+      "pref.slack_ai_allow_detailed_feedback_changed",
+      "pref.slack_ai_allow_feedback_changed",
+      "pref.slack_ai_allow_file_summaries_changed",
+      "pref.slack_ai_allowed_search_files_changed",
+      "pref.slack_ai_allow_huddle_notes_changed",
+      "pref.allow_slack_ai_changed",
+      "pref.slack_ai_allow_workflow_builder_changed",
+      "pref.enterprise_search_connectors_changed",
+      "pref.enterprise_search_enabled_changed",
+      "export_app_configuration_upserted",
+      "export_app_configuration_deleted",
+      "pref.slack_ai_allow_translations_changed"
     ],
     "user": [
       "custom_tos_accepted",
@@ -282,7 +297,16 @@
       "migration_user_conflict_resolved",
       "migration_user_conflict_resolution_deleted",
       "external_user_disconnected",
-      "user_sessions_reset_by_anomaly_event_response"
+      "user_sessions_reset_by_anomaly_event_response",
+      "user_profile_flagged",
+      "user_profile_flag_dismissed",
+      "user_profile_flag_moderated",
+      "user_profile_flag_assignment",
+      "user_profile_flag_unassignment",
+      "user_added_reminder",
+      "app_agentforce_shareable_prompt_created",
+      "app_agentforce_session_created_from_prompt_link",
+      "app_agentforce_execute_slack_action"
     ],
     "file": [
       "file_downloaded",
@@ -395,7 +419,8 @@
       "app_variable_removed",
       "app_deployed",
       "app_manifest_created",
-      "app_manifest_updated"
+      "app_manifest_updated",
+      "admin_app_config_updated"
     ],
     "workflow_builder": [
       "workflow_created",
@@ -420,7 +445,8 @@
       "sales_home_notification_forwarded",
       "record_shared",
       "message_flag_assignment",
-      "message_flag_unassignment"
+      "message_flag_unassignment",
+      "thread_hidden"
     ],
     "barrier": [
       "barrier_created",
@@ -521,7 +547,8 @@
       "canvas_undeleted",
       "canvas_restricted_sharing_enabled",
       "canvas_restricted_sharing_disabled",
-      "canvas_converted_to_standalone"
+      "canvas_converted_to_standalone",
+      "canvas_quip_migration_undone"
     ],
     "function": [
       "function_distribution_permission_added",

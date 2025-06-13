@@ -151,6 +151,19 @@ public class Actions {
         public static final String pref_agentforce_workspaces_settings_changed = "pref.agentforce_workspaces_settings_changed";
         public static final String pref_enterprise_search_connectors = "pref.enterprise_search_connectors";
         public static final String pref_enterprise_search_enabled = "pref.enterprise_search_enabled";
+        public static final String pref_allow_huddles_transcriptions_changed = "pref.allow_huddles_transcriptions_changed";
+        public static final String pref_slack_ai_allowed_workspaces_changed = "pref.slack_ai_allowed_workspaces_changed";
+        public static final String pref_slack_ai_allow_recap_changed = "pref.slack_ai_allow_recap_changed";
+        public static final String pref_slack_ai_allow_detailed_feedback_changed = "pref.slack_ai_allow_detailed_feedback_changed";
+        public static final String pref_slack_ai_allow_feedback_changed = "pref.slack_ai_allow_feedback_changed";
+        public static final String pref_slack_ai_allow_file_summaries_changed = "pref.slack_ai_allow_file_summaries_changed";
+        public static final String pref_slack_ai_allowed_search_files_changed = "pref.slack_ai_allowed_search_files_changed";
+        public static final String pref_slack_ai_allow_huddle_notes_changed = "pref.slack_ai_allow_huddle_notes_changed";
+        public static final String pref_allow_slack_ai_changed = "pref.allow_slack_ai_changed";
+        public static final String pref_slack_ai_allow_workflow_builder_changed = "pref.slack_ai_allow_workflow_builder_changed";
+        public static final String pref_enterprise_search_connectors_changed = "pref.enterprise_search_connectors_changed";
+        public static final String pref_enterprise_search_enabled_changed = "pref.enterprise_search_enabled_changed";
+        public static final String pref_slack_ai_allow_translations_changed = "pref.slack_ai_allow_translations_changed";
         public static final String manual_export_downloaded = "manual_export_downloaded";
         public static final String manual_export_deleted = "manual_export_deleted";
         public static final String scheduled_export_downloaded = "scheduled_export_downloaded";
@@ -248,6 +261,8 @@ public class Actions {
         public static final String security_settings_export_started = "security_settings_export_started";
         public static final String security_settings_export_completed = "security_settings_export_completed";
         public static final String audit_logs_records_searched_anomaly = "audit_logs_records_searched_anomaly";
+        public static final String export_app_configuration_upserted = "export_app_configuration_upserted";
+        public static final String export_app_configuration_deleted = "export_app_configuration_deleted";
     }
 
     public static class User {
@@ -298,6 +313,15 @@ public class Actions {
         public static final String migration_user_conflict_resolution_deleted = "migration_user_conflict_resolution_deleted";
         public static final String external_user_disconnected = "external_user_disconnected";
         public static final String user_sessions_reset_by_anomaly_event_response = "user_sessions_reset_by_anomaly_event_response";
+        public static final String user_profile_flagged = "user_profile_flagged";
+        public static final String user_profile_flag_dismissed = "user_profile_flag_dismissed";
+        public static final String user_profile_flag_moderated = "user_profile_flag_moderated";
+        public static final String user_profile_flag_assignment = "user_profile_flag_assignment";
+        public static final String user_profile_flag_unassignment = "user_profile_flag_unassignment";
+        public static final String user_added_reminder = "user_added_reminder";
+        public static final String app_agentforce_shareable_prompt_created = "app_agentforce_shareable_prompt_created";
+        public static final String app_agentforce_session_created_from_prompt_link = "app_agentforce_session_created_from_prompt_link";
+        public static final String app_agentforce_execute_slack_action = "app_agentforce_execute_slack_action";
     }
 
     public static class File {
@@ -423,6 +447,7 @@ public class Actions {
         public static final String app_deployed = "app_deployed";
         public static final String app_manifest_created = "app_manifest_created";
         public static final String app_manifest_updated = "app_manifest_updated";
+        public static final String admin_app_config_updated = "admin_app_config_updated";
     }
 
     public static class Message {
@@ -444,6 +469,7 @@ public class Actions {
         public static final String record_shared = "record_shared";
         public static final String message_flag_assignment = "message_flag_assignment";
         public static final String message_flag_unassignment = "message_flag_unassignment";
+        public static final String thread_hidden = "thread_hidden";
     }
 
     public static class WorkflowBuilder {
@@ -598,6 +624,7 @@ public class Actions {
         public static final String canvas_restricted_sharing_enabled = "canvas_restricted_sharing_enabled";
         public static final String canvas_restricted_sharing_disabled = "canvas_restricted_sharing_disabled";
         public static final String canvas_converted_to_standalone = "canvas_converted_to_standalone";
+        public static final String canvas_quip_migration_undone = "canvas_quip_migration_undone";
     }
 
     public static class Function {

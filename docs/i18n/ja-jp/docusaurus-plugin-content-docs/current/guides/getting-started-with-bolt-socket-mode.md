@@ -8,7 +8,7 @@ lang: ja
 
 このガイドでは、初めての Bolt アプリを開発する手順を紹介します。
 
-なお Slack アプリ開発全般についてまだ不慣れな方は、まず「[An introduction to Slack apps（英語）](https://api.slack.com/start/overview)」に軽く目を通した方がよいかもしれません。
+なお Slack アプリ開発全般についてまだ不慣れな方は、まず「[An introduction to Slack apps（英語）](https://docs.slack.dev/)」に軽く目を通した方がよいかもしれません。
 
 ---
 ## プロジェクトのセットアップ
@@ -17,7 +17,7 @@ lang: ja
 
 ### Maven
 
-[Maven プロジェクトを作成](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)した後、まずは **bolt** 依存ライブラリを `pom.xml` に追加します。このライブラリ自体は特定の環境に依存していません。[ソケットモード](https://api.slack.com/apis/connections/socket)を有効にするためには **bolt-socket-mode** というライブラリとその provided スコープの必要な依存ライブラリも合わせて追加してください。
+[Maven プロジェクトを作成](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)した後、まずは **bolt** 依存ライブラリを `pom.xml` に追加します。このライブラリ自体は特定の環境に依存していません。[ソケットモード](https://docs.slack.dev/apis/events-api/using-socket-mode)を有効にするためには **bolt-socket-mode** というライブラリとその provided スコープの必要な依存ライブラリも合わせて追加してください。
 
 ```xml
 <dependency>
@@ -86,7 +86,7 @@ dependencies {
 
 ### **bolt-socket-mode** の利用
 
-**bolt-socket-mode** は[ソケットモード](https://api.slack.com/apis/connections/socket)の Slack アプリを起動する手軽な手段です。このモジュールを使えば、開発者は **App** インスタンスを初期化して処理をスタートする main メソッドを書くだけで WebSocket コネクションを確立することができます。
+**bolt-socket-mode** は[ソケットモード](https://docs.slack.dev/apis/events-api/using-socket-mode)の Slack アプリを起動する手軽な手段です。このモジュールを使えば、開発者は **App** インスタンスを初期化して処理をスタートする main メソッドを書くだけで WebSocket コネクションを確立することができます。
 
 #### build.gradle
 
@@ -166,7 +166,7 @@ new SocketModeApp(app).start();
 
 |環境変数名|説明|
 |-|-|
-|**SLACK_BOT_TOKEN**|開発用ワークスペース（Development Workspace）での有効なボットトークン（形式は `xoxb-` から始まります）です。このボットトークンを発行するには Slack アプリを開発用ワークスペースにインストールする必要があります。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Install App** から実行します（「Please add at least one feature or permission scope to install your app.」というメッセージが表示されている場合は　[`app_mentions:read`](https://api.slack.com/scopes/app_mentions:read) bot scope を追加してください）。 <br/><br/>複数のワークスペースにインストール可能なアプリとして実行する場合はこの環境変数を設定する必要はありません。そのようなアプリの開発については「[アプリの配布 (OAuth)](/guides/app-distribution)」を参考にしてください。|
+|**SLACK_BOT_TOKEN**|開発用ワークスペース（Development Workspace）での有効なボットトークン（形式は `xoxb-` から始まります）です。このボットトークンを発行するには Slack アプリを開発用ワークスペースにインストールする必要があります。[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Install App** から実行します（「Please add at least one feature or permission scope to install your app.」というメッセージが表示されている場合は　[`app_mentions:read`](https://docs.slack.dev/reference/scopes/app_mentions.read) bot scope を追加してください）。 <br/><br/>複数のワークスペースにインストール可能なアプリとして実行する場合はこの環境変数を設定する必要はありません。そのようなアプリの開発については「[アプリの配布 (OAuth)](/guides/app-distribution)」を参考にしてください。|
 |**SLACK_APP_TOKEN**|この Slack アプリの有効なアプリレベルトークン（形式は `xapp-` から始まります）です。トークンを発行するには、[Slack アプリ管理画面](http://api.slack.com/apps)にアクセスして、開発中のアプリを選択、左ペインの **Settings** > **Basic Information** > **App-Level Tokens** へ移動し、`connections:write` というスコープにしたトークンを作成します。|
 
 なお、**App** を別の方法（例: 規定の環境変数名を使わない）で初期化したい場合は **AppConfig** を自前で初期化するコードを書いてください。
@@ -196,8 +196,8 @@ mvn compile exec:java -Dexec.mainClass="hello.MyApp"
 * ✅ Gradle をインストール（もしまだであれば macOS は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
 * ✅ `build.gradle` に **bolt-socket-mode** と **tyrus-standalone-client** の依存ライブラリを追加、適切な **application** プラグイン設定も追加
 * ✅ main メソッドを持つ `src/main/java/hello/MyApp.java` を作成
-* ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`commands`](https://api.slack.com/scopes/commands) という Bot Token Scope を追加、**`connections:write` スコープを設定したアプリレベルトークンを作成**、アプリを開発用ワークスペースにインストール
-* ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) と [**App-Level Token**](https://api.slack.com/docs/token-types#app) の値をコピーしてきて環境変数に設定
+* ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`commands`](https://docs.slack.dev/reference/scopes/commands) という Bot Token Scope を追加、**`connections:write` スコープを設定したアプリレベルトークンを作成**、アプリを開発用ワークスペースにインストール
+* ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://docs.slack.dev/authentication/tokens#bot) と [**App-Level Token**](https://docs.slack.dev/authentication/tokens#app-level) の値をコピーしてきて環境変数に設定
 
 ### `/hello` コマンドの有効化
 
@@ -273,8 +273,8 @@ fun main() {
 * ✅ Gradle をインストール（もしまだであれば macOS は `brew install gradle` を実行 / 他の OS 環境の場合は [公式サイト](https://gradle.org/) へアクセス）
 * ✅ `build.gradle` に適切な Kotlin の言語設定と **bolt-socket-mode** と **tyrus-standalone-client** を依存ライブラリを追加
 * ✅ main メソッドを持つ `src/main/kotlin/MyApp.kt` を作成
-* ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`commands`](https://api.slack.com/scopes/commands) という Bot Token Scope を追加、**`connections:write` スコープを設定したアプリレベルトークンを作成**、アプリを開発用ワークスペースにインストール
-* ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://api.slack.com/docs/token-types#bot) と [**App-Level Token**](https://api.slack.com/docs/token-types#app) の値をコピーしてきて環境変数に設定
+* ✅ [Slack アプリをつくり](https://api.slack.com/apps?new_app=1) [`commands`](https://docs.slack.dev/reference/scopes/commands) という Bot Token Scope を追加、**`connections:write` スコープを設定したアプリレベルトークンを作成**、アプリを開発用ワークスペースにインストール
+* ✅ [Slack アプリ管理画面](https://api.slack.com/apps) から [**Bot User OAuth Access Token**](https://docs.slack.dev/authentication/tokens#bot) と [**App-Level Token**](https://docs.slack.dev/authentication/tokens#app-level) の値をコピーしてきて環境変数に設定
 
 すべてが OK ✅であれば、あなたのはじめての Kotlin を使った Bolt アプリが正常に起動するはずです。
 

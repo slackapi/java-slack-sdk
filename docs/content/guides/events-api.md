@@ -4,7 +4,7 @@ lang: en
 
 # Events
 
-The [Events API](https://api.slack.com/events-api) is a streamlined way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
+The [Events API](https://docs.slack.dev/apis/events-api/) is a streamlined way to build apps and bots that respond to activities in Slack. All you need is a Slack app and a secure place for us to send your events.
 
 ### Slack App Configuration
 
@@ -22,7 +22,7 @@ To enable Events API, visit the [Slack App configuration page](http://api.slack.
 
 All you need to do to handle Events API requests are:
 
-1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
+1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `type` in `event` is the one you'd like to handle
 1. Whatever you want to do with the event data
 1. Respond to the Slack API server with 200 OK as an acknowledgment
@@ -40,11 +40,11 @@ If you're a beginner to using Bolt for Slack App development, consult [Getting S
 
 Bolt does many of the commonly required tasks for you. The steps you need to handle would be:
 
-* Specify [the Java class](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/sdkLatestVersion/slack-api-model-sdkLatestVersion-javadoc.jar/!/com/slack/api/model/event/Event.html) corresponding to `event.type` (and also `event.subtype` [when necessary](https://api.slack.com/events/message#message_subtypes)) to handle
+* Specify [the Java class](https://oss.sonatype.org/service/local/repositories/releases/archive/com/slack/api/slack-api-model/sdkLatestVersion/slack-api-model-sdkLatestVersion-javadoc.jar/!/com/slack/api/model/event/Event.html) corresponding to `event.type` (and also `event.subtype` [when necessary](https://docs.slack.dev/reference/events/message)) to handle
 * Whatever you want to do with the event data
 * Call `ack()` as an acknowledgment
 
-In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user at the conversation the event happened, call [**chat.postMessage**](https://api.slack.com/methods/chat.postMessage) method or other similar ones with `channel` in the event payload.
+In event payloads, `response_url` is not included as it's not a payload coming from direct user interactions. Also, it's not possible to post a message using `ctx.ack()` for the same reason. If an event you receive is a user interaction and you'd like to post a reply to the user at the conversation the event happened, call [**chat.postMessage**](https://docs.slack.dev/reference/methods/chat.postmessage) method or other similar ones with `channel` in the event payload.
 
 ```java
 import com.slack.api.methods.response.chat.ChatPostMessageResponse;
@@ -154,7 +154,7 @@ import com.slack.api.util.json.GsonFactory;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Verify requests from Slack
-  // https://api.slack.com/docs/verifying-requests-from-slack
+  // https://docs.slack.dev/authentication/verifying-requests-from-slack
   // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

@@ -4,14 +4,14 @@ lang: en
 
 # Socket Mode
 
-With [Socket Mode](https://api.slack.com/apis/connections/socket), instead of creating a server with endpoints that Slack sends payloads to, the app will instead connect to Slack via a WebSocket connection and receive data from Slack over the socket connection. In this SDK, `bolt-socket-mode`, a Bolt framework extension for building Socket Mode enabled apps, is available since version 1.5.
+With [Socket Mode](https://docs.slack.dev/apis/events-api/using-socket-mode), instead of creating a server with endpoints that Slack sends payloads to, the app will instead connect to Slack via a WebSocket connection and receive data from Slack over the socket connection. In this SDK, `bolt-socket-mode`, a Bolt framework extension for building Socket Mode enabled apps, is available since version 1.5.
 
 ## Slack App Configuration
 
 To enable Socket Mode, visit the [Slack App configuration page](http://api.slack.com/apps), choose the app you're working on, and go to **Settings** on the left pane. There are a few things to do on the page.
 
 * Go to **Settings** > **Basic Information**
-  * Add a new **App-Level Token** with the [`connections:write`](https://api.slack.com/scopes/connections:write) scope
+  * Add a new **App-Level Token** with the [`connections:write`](https://docs.slack.dev/reference/scopes/connections.write) scope
   * Get the generated token value that starts with `xapp-`
 * Go to **Settings** > **Socket Mode**
   * Turn on **Enable Socket Mode**

@@ -4,7 +4,7 @@ lang: en
 
 # Slash Commands
 
-[Slash Commands](https://api.slack.com/interactivity/slash-commands) allow users to invoke your app from the message composer box.
+[Slash Commands](https://docs.slack.dev/interactivity/implementing-slash-commands) allow users to invoke your app from the message composer box.
 
 Responding to slash command invocations is a common use case. Your app has to respond to the request within 3 seconds by `ack()` method. Otherwise, the user will see the timeout error on Slack.
 
@@ -23,7 +23,7 @@ To enable slash commands, visit the [Slack App configuration page](http://api.sl
 
 All your app needs to do to handle slash command requests are:
 
-1. [Verify requests](https://api.slack.com/docs/verifying-requests-from-slack) from Slack
+1. [Verify requests](https://docs.slack.dev/authentication/verifying-requests-from-slack) from Slack
 1. Parse the request body and check if the `command` is the one you'd like to handle
 1. Build a reply message or do whatever you want to do
 1. Respond to the Slack API server with 200 OK as an acknowledgment
@@ -87,7 +87,7 @@ app.command("/echo") { req, ctx ->
 }
 ```
 
-To learn how to build [Block Kit](https://api.slack.com/block-kit) messages with this SDK, consult [Composing Messages](/guides/composing-messages).
+To learn how to build [Block Kit](https://docs.slack.dev/block-kit/) messages with this SDK, consult [Composing Messages](/guides/composing-messages).
 
 ### Under the Hood
 
@@ -102,7 +102,7 @@ import com.slack.api.app_backend.slash_commands.payload.SlashCommandPayload;
 PseudoHttpResponse handle(PseudoHttpRequest request) {
 
   // 1. Verify requests from Slack
-  // https://api.slack.com/docs/verifying-requests-from-slack
+  // https://docs.slack.dev/authentication/verifying-requests-from-slack
   // This needs "X-Slack-Signature" header, "X-Slack-Request-Timestamp" header, and raw request body
   if (!PseudoSlackRequestVerifier.isValid(request)) {
     return PseudoHttpResponse.builder().status(401).build();

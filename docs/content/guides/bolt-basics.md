@@ -6,7 +6,7 @@ lang: en
 
 **Bolt for Java** is a framework on the JVM that offers an abstraction layer to build Slack apps quickly using modern platform features.
 
-If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs](https://api.slack.com/docs).
+If you're not yet familiar with Slack app development in general, we recommend reading the [Slack API docs](https://docs.slack.dev).
 
 ---
 ## Start with the App class
@@ -31,19 +31,20 @@ Here is the list of the available methods to dispatch events.
 
 |Method|Constraints (value: type)|Description|
 |-|-|-|
-|`app.event`|event type: `Class\<Event\>`|[Events API](/guides/events-api): Responds to any kinds of bot/user events you subscribe.|
-|`app.message`|keyword: `String` \| `Pattern`|[Events API](/guides/events-api): Responds to messages posted by a user only when the text in messages matches the given keyword or regular expressions.|
-|`app.command`|command name: `String` \| `Pattern`|[Slash Commands](/guides/slash-commands): Responds to slash command invocations in the workspace.|
+|`app.attachmentAction`|callback_id: `String` \| `Pattern`|Legacy Messaging: Responds to user actions in attachments. These events can be triggered in only messages.|
 |`app.blockAction`|action_id: `String` \| `Pattern`|[Interactive Components](/guides/interactive-components): Responds to user actions (e.g., click a button, choose an item from select menus, radio buttons, etc.) in `blocks`. These events can be triggered in all the surfaces (messages, modals, and Home tabs).|
 |`app.blockSuggestion`|action_id: `String` \| `Pattern`|[Interactive Components](/guides/interactive-components): Responds to user actions to input a keyword (the length needs to be the `min_query_length` or longer) in select menus (external data source).|
-|`app.viewSubmission`|callback_id: `String` \| `Pattern`|[Modals](/guides/modals): Responds to data submissions in modals.|
-|`app.viewClosed`|callback_id: `String` \| `Pattern`|[Modals](/guides/modals): Responds to the events where users close modals by clicking Cancel buttons. The `notify_on_close` has to be `true` when opening/pushing the modal.|
-|`app.globalShortcut`|callback_id: `String` \| `Pattern`|[Shortcuts](/guides/shortcuts): Responds to global shortcut invocations.|
-|`app.messageShortcut`|callback_id: `String` \| `Pattern`|[Shortcuts](/guides/shortcuts): Responds to shortcut invocations in message menus.|
+|`app.command`|command name: `String` \| `Pattern`|[Slash Commands](/guides/slash-commands): Responds to slash command invocations in the workspace.|
+|`app.dialogCancellation`|callback_id `String` \| `Pattern`|Dialogs: Responds to the events where users close dialogs by clicking Cancel buttons.|
 |`app.dialogSubmission`|callback_id: `String` \| `Pattern`|Dialogs: Responds to data submissions in dialogs.|
 |`app.dialogSuggestion`|callback_id: `String` \| `Pattern`|Dialogs: Responds to requests to load options for `"external"` typed select menus in dialogs.|
-|`app.dialogCancellation`|callback_id `String` \| `Pattern`|Dialogs: Responds to the events where users close dialogs by clicking Cancel buttons.|
-|`app.attachmentAction`|callback_id: `String` \| `Pattern`|Legacy Messaging: Responds to user actions in attachments. These events can be triggered in only messages.|
+|`app.event`|event type: `Class\<Event\>`|[Events API](/guides/events-api): Responds to any kinds of bot/user events you subscribe.|
+| `app.function` | callback_id: `String` \| `Pattern` | [Custom steps](/guides/custom-steps): Defines a function that can be used as a custom step in [Workflow Builder](https://slack.com/help/articles/360035692513-Guide-to-Slack-Workflow-Builder).
+|`app.globalShortcut`|callback_id: `String` \| `Pattern`|[Shortcuts](/guides/shortcuts): Responds to global shortcut invocations.|
+|`app.message`|keyword: `String` \| `Pattern`|[Events API](/guides/events-api): Responds to messages posted by a user only when the text in messages matches the given keyword or regular expressions.|
+|`app.messageShortcut`|callback_id: `String` \| `Pattern`|[Shortcuts](/guides/shortcuts): Responds to shortcut invocations in message menus.|
+|`app.viewClosed`|callback_id: `String` \| `Pattern`|[Modals](/guides/modals): Responds to the events where users close modals by clicking Cancel buttons. The `notify_on_close` has to be `true` when opening/pushing the modal.|
+|`app.viewSubmission`|callback_id: `String` \| `Pattern`|[Modals](/guides/modals): Responds to data submissions in modals.|
 
 ---
 ## Development Guides by Feature
@@ -77,7 +78,7 @@ app.command("/ping", (req, ctx) -> {
 });
 ```
 
-It's also possible to use [Block Kit](https://api.slack.com/block-kit) to make messages more interactive.
+It's also possible to use [Block Kit](https://docs.slack.dev/block-kit/) to make messages more interactive.
 
 ```java
 import static com.slack.api.model.block.Blocks.*;
@@ -131,7 +132,7 @@ If you want to take full control of the `ExecutorService` to use, you don't need
 ---
 ## Respond to User Actions
 
-Are you already familiar with `response_url`? If not, we recommend reading [this guide](https://api.slack.com/interactivity/handling#message_responses) first.
+Are you already familiar with `response_url`? If not, we recommend reading [this guide](https://docs.slack.dev/interactivity/handling-user-interaction) first.
 
 As the guide says, some of the user interaction payloads may contain a `response_url`. This `response_url` is unique to each payload, and can be used to publish messages back to the place where the interaction happened.
 
@@ -166,7 +167,7 @@ app.command("/hello", (req, ctx) -> {
 });
 ```
 
-For [chat.postMessage](https://api.slack.com/methods/chat.postMessage) API calls with the given channel ID, using `say()` utility is much simpler. If your slash command needs to be available anywhere, using `ctx.respond` would be more robust as `say()` method does not work for the conversations where the app's bot user is not a member of (e.g., a person's own DM).
+For [chat.postMessage](https://docs.slack.dev/reference/methods/chat.postmessage) API calls with the given channel ID, using `say()` utility is much simpler. If your slash command needs to be available anywhere, using `ctx.respond` would be more robust as `say()` method does not work for the conversations where the app's bot user is not a member of (e.g., a person's own DM).
 
 ```java
 app.command("/hello", (req, ctx) -> {

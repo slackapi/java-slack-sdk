@@ -36,6 +36,7 @@ const sidebars = {
 					items: ['guides/interactive-components', 'guides/modals', 'guides/app-home',],
 				},  
         'guides/ai-apps',
+        'guides/custom-steps',
         'guides/shortcuts',
         'guides/slash-commands',
         {
