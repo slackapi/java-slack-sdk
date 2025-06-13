@@ -84,7 +84,13 @@ Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/main/docs/
 
 #### Prerequisites
 
-Place `$HOME/.m2/settings.xml` with your Sonatype account information.
+* If you don't have `gnu-sed`, run `brew install gnu-sed` & `brew install gnupg`
+* Make sure you've set up your key https://central.sonatype.org/publish/requirements/gpg/
+* Make sure the account you are using has the permission to make releases [under com.slack groupId](https://central.sonatype.com/publishing/com.slack/users)
+
+Place `$HOME/.m2/settings.xml` with your Sonatype account information. 
+* Generate user token: https://central.sonatype.org/publish/generate-token/
+* Set the user token id/password: https://central.sonatype.org/publish/publish-manual/#signing-components
 
 ```xml
 <settings>
@@ -115,7 +121,7 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
   * `git switch main && git pull origin main`
   * Make sure there are no build failures at https://github.com/slackapi/java-slack-sdk/actions
 * Set a new version
-  * If you don't have `gnu-sed`, run `brew install gnu-sed` & `brew install gnupg` first
+  * If you don't have `gnu-sed`, check out [Prerequisites](#prerequisites)
   * Run `scripts/set_version.sh (the version)` (e.g., `scripts/set_version.sh 1.0.0`)
 * Ship the libraries
   * Switch to **JDK 17** to publish all modules (on macOS, you can run `export JAVA_HOME=$(/usr/libexec/java_home -v 17)` for it)
