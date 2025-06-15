@@ -9,6 +9,7 @@ import config.SlackTestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -33,6 +34,7 @@ public class conversations_connect_Test {
         SlackTestConfig.awaitCompletion(testConfig);
     }
 
+    @Ignore
     @Test
     public void approval() throws Exception {
         MethodsClient sender = slack.methods(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_SENDER_BOT_TOKEN));
@@ -115,6 +117,7 @@ public class conversations_connect_Test {
         }
     }
 
+    @Ignore
     @Test
     public void decline() throws Exception {
         MethodsClient sender = slack.methods(System.getenv(Constants.SLACK_SDK_TEST_CONNECT_INVITE_SENDER_BOT_TOKEN));

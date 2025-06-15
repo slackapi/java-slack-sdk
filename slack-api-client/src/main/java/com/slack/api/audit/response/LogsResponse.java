@@ -364,6 +364,7 @@ public class LogsResponse implements AuditApiResponse {
         private Integer cellDateUpdated; // list_cell_updated
         private String viewId; // list_view_updated
         private String user; // list_access_added
+        private String fileId;
     }
 
     @Data
