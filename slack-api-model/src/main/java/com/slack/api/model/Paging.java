@@ -2,6 +2,8 @@ package com.slack.api.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class Paging {
 
@@ -12,4 +14,5 @@ public class Paging {
     private Integer pages;
     private Integer perPage;
     private Integer spill;
+    private List<String> warnings;
 }

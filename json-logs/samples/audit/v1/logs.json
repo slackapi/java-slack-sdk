@@ -395,7 +395,8 @@
         "row_id": "",
         "cell_date_updated": 123,
         "view_id": "",
-        "user": ""
+        "user": "",
+        "file_id": ""
       }
     }
   ]

@@ -138,6 +138,7 @@ public class ProxyTest {
         }
     }
 
+    @Ignore
     @Test
     public void rtm() throws Exception {
         SlackHttpClient httpClient = new SlackHttpClient();

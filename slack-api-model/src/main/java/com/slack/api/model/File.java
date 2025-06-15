@@ -360,6 +360,7 @@ public class File {
     private String templateTitle;
     private String templateDescription;
     private String templateIcon;
+    private String canvasCreatorId;
 
     private Boolean teamPrefVersionHistoryEnabled;
 

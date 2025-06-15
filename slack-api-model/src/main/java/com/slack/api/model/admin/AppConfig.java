@@ -9,6 +9,7 @@ public class AppConfig {
     private String appId;
     private String workflowAuthStrategy; // "builder_choice"
     private DomainRestrictions domainRestrictions;
+    private String richLinkPreviewType;
 
     @Data
     public static class DomainRestrictions {

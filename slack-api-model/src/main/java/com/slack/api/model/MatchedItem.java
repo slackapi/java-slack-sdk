@@ -280,5 +280,6 @@ public class MatchedItem {
     private Integer editorsCount;
     private List<LayoutBlock> titleBlocks;
     private Double canvasReadtime;
+    private String canvasCreatorId;
 
 }
