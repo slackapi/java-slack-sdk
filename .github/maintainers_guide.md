@@ -128,7 +128,7 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
   * Run `scripts/release.sh` (it takes a bit long)
   * (If you encounter an error, log in https://oss.sonatype.org/ to check detailed information)
 * Create GitHub Release(s) and add release notes
-  * Look at previous releases and follow their layouts; https://github.com/slackapi/java-slack-sdk/releases
+  * [Look at previous releases](https://github.com/slackapi/java-slack-sdk/releases) and follow their layouts
   * Prepare a release note by `git log --pretty=format:'%h %s by %an' --abbrev-commit | grep -v "Merge pull request " | head -50`
   * `git add . -v && git commit -m'version (your version here)'`
   * `git tag v(your version here)`
