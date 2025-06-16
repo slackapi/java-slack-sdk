@@ -84,7 +84,13 @@ Refer to the [README](https://github.com/slackapi/java-slack-sdk/blob/main/docs/
 
 #### Prerequisites
 
-Place `$HOME/.m2/settings.xml` with your Sonatype account information.
+* If you don't have `gnu-sed`, run `brew install gnu-sed` & `brew install gnupg`
+* Make sure you've set up your key https://central.sonatype.org/publish/requirements/gpg/
+* Make sure the account you are using has the permission to make releases [under com.slack groupId](https://central.sonatype.com/publishing/com.slack/users)
+
+Place `$HOME/.m2/settings.xml` with your Sonatype account information. 
+* Generate user token: https://central.sonatype.org/publish/generate-token/
+* Set the user token id/password: https://central.sonatype.org/publish/publish-manual/#signing-components
 
 ```xml
 <settings>
@@ -110,25 +116,31 @@ Place `$HOME/.m2/settings.xml` with your Sonatype account information.
 
 #### Operations
 
+* From the upstream repository
 * Preparation
-  * `git pull --rebase slackapi master`
+  * `git switch main && git pull origin main`
   * Make sure there are no build failures at https://github.com/slackapi/java-slack-sdk/actions
 * Set a new version
-  * If you don't have `gnu-sed`, run `brew install gnu-sed` first
+  * If you don't have `gnu-sed`, check out [Prerequisites](#prerequisites)
   * Run `scripts/set_version.sh (the version)` (e.g., `scripts/set_version.sh 1.0.0`)
 * Ship the libraries
   * Switch to **JDK 17** to publish all modules (on macOS, you can run `export JAVA_HOME=$(/usr/libexec/java_home -v 17)` for it)
   * Run `scripts/release.sh` (it takes a bit long)
   * (If you encounter an error, log in https://oss.sonatype.org/ to check detailed information)
 * Create GitHub Release(s) and add release notes
+  * [Look at previous releases](https://github.com/slackapi/java-slack-sdk/releases) and follow their layouts
   * Prepare a release note by `git log --pretty=format:'%h %s by %an' --abbrev-commit | grep -v "Merge pull request " | head -50`
   * `git add . -v && git commit -m'version (your version here)'`
   * `git tag v(your version here)`
-  * `git push slackapi --tags`
+  * `git push & git push --tags`
   * Open https://github.com/slackapi/java-slack-sdk/releases/new?tag=v${version}
 * (Slack Internal) Communicate the release internally. Include a link to the GitHub Release(s).
 * (Slack Internal) Tweet? Not necessary for patch updates, might be needed for minor updates, definitely needed for
    major updates. Include a link to the GitHub Release(s).
+* Anticipate the next version as a SNAPSHOT
+  * `scripts/set_version.sh (next patch version)-SNAPSHOT` (e.g., `scripts/set_version.sh 1.0.1-SNAPSHOT`)
+  * `git add . -v && git commit -m 'Start next version'`
+  * `git push`
 
 ## Workflow
 
