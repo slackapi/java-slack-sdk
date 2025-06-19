@@ -251,7 +251,13 @@
       "pref.enterprise_search_enabled_changed",
       "export_app_configuration_upserted",
       "export_app_configuration_deleted",
-      "pref.slack_ai_allow_translations_changed"
+      "pref.slack_ai_allow_translations_changed",
+      "slack_ai_permissions_reset",
+      "search_query_audit_logs_export_started",
+      "search_query_audit_logs_export_completed",
+      "search_query_audit_logs_export_downloaded",
+      "search_query_audit_logs_export_deleted",
+      "audit_logs_ai_summary_generated"
     ],
     "user": [
       "custom_tos_accepted",
@@ -306,7 +312,8 @@
       "user_added_reminder",
       "app_agentforce_shareable_prompt_created",
       "app_agentforce_session_created_from_prompt_link",
-      "app_agentforce_execute_slack_action"
+      "app_agentforce_execute_slack_action",
+      "user_anomaly_event_reponse_allowlist_changed"
     ],
     "file": [
       "file_downloaded",
@@ -387,7 +394,8 @@
       "channel_template_provisioned",
       "record_channel_channel_type_conversion",
       "featured_workflow_added",
-      "featured_workflow_removed"
+      "featured_workflow_removed",
+      "channel_huddle_properties_updated"
     ],
     "app": [
       "app_installed",
@@ -446,7 +454,8 @@
       "record_shared",
       "message_flag_assignment",
       "message_flag_unassignment",
-      "thread_hidden"
+      "thread_hidden",
+      "message_flag_restored"
     ],
     "barrier": [
       "barrier_created",

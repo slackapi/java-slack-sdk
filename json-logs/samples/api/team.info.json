@@ -23,7 +23,8 @@
     "enterprise_domain": "",
     "discoverable": "",
     "avatar_base_url": "https://www.example.com/",
-    "lob_sales_home_enabled": false
+    "lob_sales_home_enabled": false,
+    "is_sfdc_auto_slack": false
   },
   "error": "",
   "needed": "",

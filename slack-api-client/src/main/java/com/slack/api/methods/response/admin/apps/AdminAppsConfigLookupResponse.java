@@ -20,5 +20,4 @@ public class AdminAppsConfigLookupResponse implements SlackApiTextResponse {
 
     private List<AppConfig> configs;
     private ResponseMetadata responseMetadata;
-
 }

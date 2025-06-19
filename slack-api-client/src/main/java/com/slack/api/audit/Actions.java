@@ -263,6 +263,12 @@ public class Actions {
         public static final String audit_logs_records_searched_anomaly = "audit_logs_records_searched_anomaly";
         public static final String export_app_configuration_upserted = "export_app_configuration_upserted";
         public static final String export_app_configuration_deleted = "export_app_configuration_deleted";
+        public static final String slack_ai_permissions_reset = "slack_ai_permissions_reset";
+        public static final String search_query_audit_logs_export_started = "search_query_audit_logs_export_started";
+        public static final String search_query_audit_logs_export_completed = "search_query_audit_logs_export_completed";
+        public static final String search_query_audit_logs_export_downloaded = "search_query_audit_logs_export_downloaded";
+        public static final String search_query_audit_logs_export_deleted = "search_query_audit_logs_export_deleted";
+        public static final String audit_logs_ai_summary_generated = "audit_logs_ai_summary_generated";
     }
 
     public static class User {
@@ -322,6 +328,7 @@ public class Actions {
         public static final String app_agentforce_shareable_prompt_created = "app_agentforce_shareable_prompt_created";
         public static final String app_agentforce_session_created_from_prompt_link = "app_agentforce_session_created_from_prompt_link";
         public static final String app_agentforce_execute_slack_action = "app_agentforce_execute_slack_action";
+        public static final String user_anomaly_event_reponse_allowlist_changed = "user_anomaly_event_reponse_allowlist_changed";
     }
 
     public static class File {
@@ -411,6 +418,7 @@ public class Actions {
         public static final String record_channel_channel_type_conversion = "record_channel_channel_type_conversion";
         public static final String featured_workflow_added = "featured_workflow_added";
         public static final String featured_workflow_removed = "featured_workflow_removed";
+        public static final String channel_huddle_properties_updated = "channel_huddle_properties_updated";
     }
 
     public static class App {
@@ -470,6 +478,7 @@ public class Actions {
         public static final String message_flag_assignment = "message_flag_assignment";
         public static final String message_flag_unassignment = "message_flag_unassignment";
         public static final String thread_hidden = "thread_hidden";
+        public static final String message_flag_restored = "message_flag_restored";
     }
 
     public static class WorkflowBuilder {

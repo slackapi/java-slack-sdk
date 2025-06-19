@@ -27,6 +27,7 @@ public class Team {
     private String discoverable; // "invite_only"
     private String avatarBaseUrl;
     private Boolean lobSalesHomeEnabled;
+    private Boolean isSfdcAutoSlack;
 
     @Data
     public static class Profile {
