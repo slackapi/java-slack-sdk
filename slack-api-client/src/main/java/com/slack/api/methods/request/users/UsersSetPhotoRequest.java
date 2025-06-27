@@ -7,7 +7,7 @@ import lombok.Data;
 import java.io.File;
 
 /**
- * https://api.slack.com/methods/users.setPhoto
+ * https://docs.slack.dev/reference/methods/users.setPhoto
  */
 @Data
 @Builder

@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/shared_channel_invite_requested
+ * https://docs.slack.dev/reference/events/shared_channel_invite_requested
  */
 @Data
 public class SharedChannelInviteRequestedEvent implements Event {

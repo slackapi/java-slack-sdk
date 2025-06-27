@@ -26,7 +26,7 @@ public class WebhookResponseTest {
                 .channelName("general")
                 .id(1)
                 .title("Slack API Documentation")
-                .titleLink("https://api.slack.com/")
+                .titleLink("https://docs.slack.dev/")
                 .text("This is an *attachment*.")
                 .footer("footer")
                 .build();
@@ -63,7 +63,7 @@ public class WebhookResponseTest {
         assertNull(attachmentResponse.isAppUnfurl());
         assertNull(attachmentResponse.getAppUnfurlUrl());
         assertThat(attachmentResponse.getTitle(), is("Slack API Documentation"));
-        assertThat(attachmentResponse.getTitleLink(), is("https://api.slack.com/"));
+        assertThat(attachmentResponse.getTitleLink(), is("https://docs.slack.dev/"));
         assertThat(attachmentResponse.getText(), is("This is an *attachment*."));
         assertThat(attachmentResponse.getFields(), is(nullValue()));
         assertNull(attachmentResponse.getImageUrl());

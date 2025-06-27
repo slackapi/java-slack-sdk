@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Slack request signature representation in Java.
  *
- * @see <a href="https://api.slack.com/docs/verifying-requests-from-slack">Slack Request Verification</a>
+ * @see <a href="https://docs.slack.dev/authentication/verifying-requests-from-slack">Slack Request Verification</a>
  */
 public class SlackSignature {
 

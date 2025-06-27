@@ -7,7 +7,7 @@ import com.slack.api.model.connect.ConnectInviteDetail;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/shared_channel_invite_received
+ * https://docs.slack.dev/reference/events/shared_channel_invite_received
  */
 @Data
 public class SharedChannelInviteReceivedEvent implements Event {

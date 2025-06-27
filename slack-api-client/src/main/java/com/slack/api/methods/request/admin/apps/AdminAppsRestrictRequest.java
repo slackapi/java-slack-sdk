@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.apps.restrict
+ * https://docs.slack.dev/reference/methods/admin.apps.restrict
  */
 @Data
 @Builder

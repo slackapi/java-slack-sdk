@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/types/group
+ * https://docs.slack.dev/reference/objects/group-object
  */
 @Data
 @Builder

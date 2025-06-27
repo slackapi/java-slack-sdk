@@ -14,7 +14,7 @@ import java.util.List;
  * <p>
  * The has_pins property indicates that there are other pinned items in that channel.
  * <p>
- * https://api.slack.com/events/pin_removed
+ * https://docs.slack.dev/reference/events/pin_removed
  */
 @Data
 public class PinRemovedEvent implements Event {

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/presence_query
+ * https://docs.slack.dev/reference/events/presence_query
  */
 @Data
 @Builder

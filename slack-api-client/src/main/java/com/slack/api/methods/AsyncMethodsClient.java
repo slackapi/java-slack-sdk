@@ -250,7 +250,7 @@ import java.util.concurrent.CompletableFuture;
  * Async Slack API Methods client.
  * <p>
  *
- * @see <a href="https://api.slack.com/methods">Slack API Methods</a>
+ * @see <a href="https://docs.slack.dev/reference/methods">Slack API Methods</a>
  */
 public interface AsyncMethodsClient {
 
@@ -1168,11 +1168,11 @@ public interface AsyncMethodsClient {
     CompletableFuture<FilesSharedPublicURLResponse> filesSharedPublicURL(RequestConfigurator<FilesSharedPublicURLRequest.FilesSharedPublicURLRequestBuilder> req);
 
     @Deprecated
-        // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
+        // https://docs.slack.dev/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
     CompletableFuture<FilesUploadResponse> filesUpload(FilesUploadRequest req);
 
     @Deprecated
-        // https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
+        // https://docs.slack.dev/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay
     CompletableFuture<FilesUploadResponse> filesUpload(RequestConfigurator<FilesUploadRequest.FilesUploadRequestBuilder> req);
 
     CompletableFuture<FilesGetUploadURLExternalResponse> filesGetUploadURLExternal(FilesGetUploadURLExternalRequest req);
@@ -1332,11 +1332,11 @@ public interface AsyncMethodsClient {
     // ------------------------------
 
     @Deprecated
-        // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
+        // https://docs.slack.dev/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
     CompletableFuture<RTMConnectResponse> rtmConnect(RTMConnectRequest req);
 
     @Deprecated
-        // https://api.slack.com/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
+        // https://docs.slack.dev/changelog/2024-04-discontinuing-new-creation-of-classic-slack-apps-and-custom-bots
     CompletableFuture<RTMConnectResponse> rtmConnect(RequestConfigurator<RTMConnectRequest.RTMConnectRequestBuilder> req);
 
     @Deprecated
@@ -1366,27 +1366,27 @@ public interface AsyncMethodsClient {
     // ------------------------------
 
     @Deprecated
-        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsAddResponse> starsAdd(StarsAddRequest req);
 
     @Deprecated
-        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsAddResponse> starsAdd(RequestConfigurator<StarsAddRequest.StarsAddRequestBuilder> req);
 
     @Deprecated
-        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsListResponse> starsList(StarsListRequest req);
 
     @Deprecated
-        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsListResponse> starsList(RequestConfigurator<StarsListRequest.StarsListRequestBuilder> req);
 
     @Deprecated
-        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsRemoveResponse> starsRemove(StarsRemoveRequest req);
 
     @Deprecated
-        // https://api.slack.com/changelog/2023-07-its-later-already-for-stars-and-reminders
+        // https://docs.slack.dev/changelog/2023-07-its-later-already-for-stars-and-reminders
     CompletableFuture<StarsRemoveResponse> starsRemove(RequestConfigurator<StarsRemoveRequest.StarsRemoveRequestBuilder> req);
 
     // ------------------------------

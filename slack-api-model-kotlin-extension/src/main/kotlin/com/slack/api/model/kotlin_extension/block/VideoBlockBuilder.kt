@@ -25,7 +25,7 @@ class VideoBlockBuilder : Builder<VideoBlock> {
      * 	this field is 255 characters. block_id should be unique for each message and each iteration of a message.
      * 	If a message is updated, use a new block_id.
      *
-     * 	@see <a href="https://api.slack.com/reference/block-kit/blocks#video">Section Block Documentation</a>
+     * 	@see <a href="https://docs.slack.dev/reference/block-kit/blocks/video-block">Section Block Documentation</a>
      */
     fun blockId(blockId: String) {
         _blockId = blockId

@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * The dnd_updated_user event is sent to all connections for a workspace when a user's Do Not Disturb settings have changed.
  * <p>
- * https://api.slack.com/events/dnd_updated_user
+ * https://docs.slack.dev/reference/events/dnd_updated_user
  */
 @Data
 public class DndUpdatedUserEvent implements Event {

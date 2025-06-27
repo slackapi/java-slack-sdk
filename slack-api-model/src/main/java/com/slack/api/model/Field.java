@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * https://api.slack.com/docs/message-attachments
+ * https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments
  */
 @Data
 @Builder
@@ -22,7 +22,7 @@ public class Field {
 
     /**
      * The text value of the field. It may contain standard message markup (see details below) and must be escaped as normal. May be multi-line.
-     * https://api.slack.com/docs/message-attachments#message_formatting
+     * https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments
      */
     private String value;
 

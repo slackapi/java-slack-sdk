@@ -271,7 +271,7 @@ public class rtm_Test {
         // rtm.connect();
 
         // if you hit the rate limit, you need to wait for 1 min here.
-        // https://api.slack.com/docs/rate-limits#rtm
+        // https://docs.slack.dev/apis/web-api/rate-limits#rtm
         // Rate limits also apply to the rtm.start and rtm.connect methods for obtaining the URL needed to connect to a websocket.
         // Limit requests to these methods to no more than 1 per minute, with some bursting behavior allowed.
         // If you enter rate limit conditions when trying to fetch websocket URLs, you won't be able to reconnect until the window passes.

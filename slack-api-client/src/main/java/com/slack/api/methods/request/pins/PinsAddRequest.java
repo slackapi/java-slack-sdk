@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/pins.add
+ * https://docs.slack.dev/reference/methods/pins.add
  */
 @Data
 @Builder

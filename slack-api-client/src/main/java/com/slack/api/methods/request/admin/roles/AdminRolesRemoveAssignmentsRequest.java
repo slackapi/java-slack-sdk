@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/admin.roles.removeAssignments
+ * https://docs.slack.dev/reference/methods/admin.roles.removeAssignments
  */
 @Data
 @Builder

@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/shared_channel_invite_declined
+ * https://docs.slack.dev/reference/events/shared_channel_invite_declined
  */
 @Data
 public class SharedChannelInviteDeclinedEvent implements Event {

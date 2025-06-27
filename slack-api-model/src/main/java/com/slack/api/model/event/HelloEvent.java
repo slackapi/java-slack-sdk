@@ -6,7 +6,7 @@ import lombok.Data;
  * The hello event is sent when a connection is opened to the message server.
  * This allows a client to confirm the connection has been correctly opened.
  * <p>
- * https://api.slack.com/events/hello
+ * https://docs.slack.dev/reference/events/hello
  */
 @Data
 public class HelloEvent implements Event {

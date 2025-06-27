@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * https://api.slack.com/apis/calls#users
+ * https://docs.slack.dev/apis/web-api/using-the-calls-api
  */
 @Data
 @Builder

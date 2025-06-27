@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/team.externalTeams.disconnect
+ * https://docs.slack.dev/reference/methods/team.externalTeams.disconnect
  */
 @Data
 @Builder

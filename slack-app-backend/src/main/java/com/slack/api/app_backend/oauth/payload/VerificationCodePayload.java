@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/docs/oauth
- * https://api.slack.com/authentication/sign-in-with-slack
+ * https://docs.slack.dev/authentication/installing-with-oauth
+ * https://docs.slack.dev/authentication/sign-in-with-slack
  */
 @Data
 public class VerificationCodePayload {

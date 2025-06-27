@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.conversations.unarchive
+ * https://docs.slack.dev/reference/methods/admin.conversations.unarchive
  */
 @Data
 @Builder

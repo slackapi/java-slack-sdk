@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/messaging/composition-objects#option-group
+ * https://docs.slack.dev/messaging/migrating-outmoded-message-compositions-to-blocks
  */
 @Data
 @Builder

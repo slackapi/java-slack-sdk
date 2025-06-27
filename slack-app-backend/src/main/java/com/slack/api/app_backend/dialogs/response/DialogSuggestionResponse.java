@@ -12,7 +12,7 @@ import java.util.List;
  * "type": "select" and "data_source": "external"
  * <p>
  *
- * @see <a href="https://api.slack.com/dialogs">Dialogs</a>
+ * @see <a href="https://docs.slack.dev/legacy/legacy-dialogs">Dialogs</a>
  */
 @Data
 @Builder

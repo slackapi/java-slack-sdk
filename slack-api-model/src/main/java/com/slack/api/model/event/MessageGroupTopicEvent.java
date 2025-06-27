@@ -3,7 +3,7 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/message/group_topic
+ * https://docs.slack.dev/reference/events/message/group_topic
  */
 @Data
 public class MessageGroupTopicEvent implements Event {

@@ -84,7 +84,7 @@ public class pins_Test {
         }
 
         {
-            // https://api.slack.com/methods/pins.add
+            // https://docs.slack.dev/reference/methods/pins.add
             PinsAddResponse response = slack.methods().pinsAdd(r -> r
                     .token(botToken)
                     .channel(channels.get(0))
@@ -98,7 +98,7 @@ public class pins_Test {
             assertThat(response.getError(), is("no_item_specified"));
         }
         {
-            // https://api.slack.com/methods/pins.add
+            // https://docs.slack.dev/reference/methods/pins.add
             PinsRemoveResponse response = slack.methods().pinsRemove(r -> r
                     .token(botToken)
                     .channel(channels.get(0))

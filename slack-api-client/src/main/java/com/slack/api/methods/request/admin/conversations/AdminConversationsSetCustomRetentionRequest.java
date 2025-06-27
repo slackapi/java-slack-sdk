@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.conversations.setCustomRetention
+ * https://docs.slack.dev/reference/methods/admin.conversations.setCustomRetention
  */
 @Data
 @Builder

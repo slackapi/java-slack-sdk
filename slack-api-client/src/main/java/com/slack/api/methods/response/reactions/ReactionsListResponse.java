@@ -59,7 +59,7 @@ public class ReactionsListResponse implements SlackApiTextResponse {
             private String parentUserId;
             private List<String> replyUsers;
 
-            // https://api.slack.com/messaging/retrieving#threading
+            // https://docs.slack.dev/messaging/retrieving-messages#threading
             // Parent messages in a thread will no longer explicitly list their replies.
             // Instead of a large replies array containing threaded message replies,
             // we'll provide a lighter-weight list of reply_users,

@@ -23,7 +23,7 @@ class CheckboxesElementBuilder : Builder<CheckboxesElement> {
      * an interaction payload to identify the source of the action. Should be unique among all other action_ids used
      * elsewhere by your app. Maximum length for this field is 255 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#checkboxes">Checkboxes element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/checkboxes-element">Checkboxes element documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -32,7 +32,7 @@ class CheckboxesElementBuilder : Builder<CheckboxesElement> {
     /**
      * An array of option objects.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#checkboxes">Checkboxes element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/checkboxes-element">Checkboxes element documentation</a>
      */
     fun options(builder: OptionObjectDsl.() -> Unit) {
         options = MultiOptionContainer().apply(builder).underlying
@@ -41,7 +41,7 @@ class CheckboxesElementBuilder : Builder<CheckboxesElement> {
     /**
      *An array of option objects that exactly matches one or more of the options within options. These options will be selected when the checkbox group initially loads.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#checkboxes">Checkboxes element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/checkboxes-element">Checkboxes element documentation</a>
      */
     fun initialOptions(builder: OptionObjectDsl.() -> Unit) {
         initialOptions = MultiOptionContainer().apply(builder).underlying
@@ -50,7 +50,7 @@ class CheckboxesElementBuilder : Builder<CheckboxesElement> {
     /**
      * A confirm object that defines an optional confirmation dialog that appears after clicking one of the checkboxes in this element.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#checkboxes">Checkboxes element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/checkboxes-element">Checkboxes element documentation</a>
      */
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
@@ -60,7 +60,7 @@ class CheckboxesElementBuilder : Builder<CheckboxesElement> {
      * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#checkboxes">Checkboxes element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/checkboxes-element">Checkboxes element documentation</a>
      */
     fun focusOnLoad(focusOnLoad: Boolean) {
         _focusOnLoad = focusOnLoad

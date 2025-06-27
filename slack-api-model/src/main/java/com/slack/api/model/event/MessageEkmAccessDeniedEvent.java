@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/message/ekm_access_denied
+ * https://docs.slack.dev/reference/events/message/ekm_access_denied
  */
 @Data
 public class MessageEkmAccessDeniedEvent implements Event {

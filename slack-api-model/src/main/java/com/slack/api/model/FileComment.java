@@ -6,9 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * https://api.slack.com/methods/files.comments.add
- */
 @Data
 @Builder
 @NoArgsConstructor

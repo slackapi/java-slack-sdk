@@ -23,7 +23,7 @@ class InputBlockBuilder private constructor(
      * field is 255 characters. block_id should be unique for each message and each iteration of a message. If a
      * message is updated, use a new block_id.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#input">Input block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/input-block">Input block documentation</a>
      */
     fun blockId(id: String) {
         blockId = id
@@ -33,7 +33,7 @@ class InputBlockBuilder private constructor(
      * A label that appears above an input element in the form of a text object. Maximum length for the text in this
      * field is 2000 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#input">Input block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/input-block">Input block documentation</a>
      */
     fun label(text: String, emoji: Boolean? = null) {
         label = PlainTextObject(text, emoji)
@@ -42,7 +42,7 @@ class InputBlockBuilder private constructor(
     /**
      * A plain-text input element, a select menu element, a multi-select menu element, or a datepicker.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#input">Input block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/input-block">Input block documentation</a>
      */
     fun element(builder: BlockElementInputDsl.() -> Unit) {
         elementContainer.apply(builder)
@@ -52,7 +52,7 @@ class InputBlockBuilder private constructor(
      * An optional hint that appears below an input element in a lighter grey. Maximum length for the text in this
      * field is 2000 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#input">Input block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/input-block">Input block documentation</a>
      */
     fun hint(text: String, emoji: Boolean? = null) {
         hint = PlainTextObject(text, emoji)
@@ -61,7 +61,7 @@ class InputBlockBuilder private constructor(
     /**
      * A boolean that indicates whether the input element may be empty when a user submits the modal. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#input">Input block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/input-block">Input block documentation</a>
      */
     fun optional(optional: Boolean) {
         this.optional = optional
@@ -70,7 +70,7 @@ class InputBlockBuilder private constructor(
     /**
      * A boolean that indicates whether the input element may be empty when a user submits the modal. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#input">Input block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/input-block">Input block documentation</a>
      */
     fun dispatchAction(dispatchAction: Boolean) {
         this.dispatchAction = dispatchAction

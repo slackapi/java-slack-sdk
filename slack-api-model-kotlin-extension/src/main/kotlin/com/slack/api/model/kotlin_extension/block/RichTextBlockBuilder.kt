@@ -18,7 +18,7 @@ class RichTextBlockBuilder private constructor(
      * field is 255 characters. `block_id` should be unique for each message and each iteration of a message. If a
      * message is updated, use a new `block_id`.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text">Rich text block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block">Rich text block documentation</a>
      */
     fun blockId(id: String) {
         blockId = id
@@ -28,7 +28,7 @@ class RichTextBlockBuilder private constructor(
      * An array of rich text objects - `rich_text_section`, `rich_text_list`, `rich_text_preformatted`,
      * and `rich_text_quote`.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text">Rich text block documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block">Rich text block documentation</a>
      */
     fun elements(builder: RichTextElementDsl.() -> Unit) {
         elementsContainer.apply(builder)

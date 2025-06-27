@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/methods/workflows.updateStep
+ * https://docs.slack.dev/legacy/legacy-steps-from-apps
  */
 @Data
 @Builder

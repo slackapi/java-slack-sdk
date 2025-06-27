@@ -9,17 +9,17 @@ import lombok.NoArgsConstructor;
  * The basic configuration for Slack apps.
  *
  * @see <a href="https://api.slack.com/apps">The list of your Slack apps</a>
- * @see <a href="https://api.slack.com/docs/oauth">Slack OAuth</a>
+ * @see <a href="https://docs.slack.dev/authentication/installing-with-oauth">Slack OAuth</a>
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SlackAppConfig {
-    // https://api.slack.com/docs/oauth
+    // https://docs.slack.dev/authentication/installing-with-oauth
     private String clientId;
-    // https://api.slack.com/docs/oauth
+    // https://docs.slack.dev/authentication/installing-with-oauth
     private String clientSecret;
-    // https://api.slack.com/docs/oauth
+    // https://docs.slack.dev/authentication/installing-with-oauth
     private String redirectUri;
 }

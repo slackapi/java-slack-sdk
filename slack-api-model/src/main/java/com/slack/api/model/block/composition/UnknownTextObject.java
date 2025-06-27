@@ -3,7 +3,7 @@ package com.slack.api.model.block.composition;
 import lombok.*;
 
 /**
- * https://api.slack.com/reference/messaging/composition-objects#text
+ * https://docs.slack.dev/messaging/migrating-outmoded-message-compositions-to-blocks
  */
 @Data
 @Builder(toBuilder = true)

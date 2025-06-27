@@ -5,7 +5,7 @@ import com.slack.api.model.event.Event;
 import java.util.List;
 
 /**
- * https://api.slack.com/types/event
+ * https://docs.slack.dev/reference/objects/event-object
  */
 public interface EventsApiPayload<E extends Event> {
 

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/usergroups.disable
+ * https://docs.slack.dev/reference/methods/usergroups.disable
  */
 @Data
 @Builder

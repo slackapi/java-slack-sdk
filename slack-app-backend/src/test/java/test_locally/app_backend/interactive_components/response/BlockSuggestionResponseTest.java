@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BlockSuggestionResponseTest {
 
-    // https://api.slack.com/reference/block-kit/composition-objects#option_group
+    // https://docs.slack.dev/reference/block-kit/composition-objects/option-group-object
     @Test
     public void optionGroups() {
         String json = "{\n" +

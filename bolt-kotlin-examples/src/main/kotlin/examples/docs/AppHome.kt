@@ -16,7 +16,7 @@ fun main() {
             .singleTeamBotToken("xoxb-xxx")
             .build())
 
-    // https://api.slack.com/events/app_home_opened
+    // https://docs.slack.dev/reference/events/app_home_opened
     app.event(AppHomeOpenedEvent::class.java) { event, ctx ->
         // Build a Home tab view
         val now = ZonedDateTime.now()

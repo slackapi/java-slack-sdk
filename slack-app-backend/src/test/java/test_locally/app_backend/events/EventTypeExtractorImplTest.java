@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class EventTypeExtractorImplTest {
 
-    // https://api.slack.com/events/app_home_opened
+    // https://docs.slack.dev/reference/events/app_home_opened
     String appHomeOpened = "{ \n" +
             "  \"type\": \"app_home_opened\",\n" +
             "  \"user\": \"U061F7AUR\",\n" +
@@ -33,7 +33,7 @@ public class EventTypeExtractorImplTest {
             "  }\n" +
             "}";
 
-    // https://api.slack.com/events/message/bot_message
+    // https://docs.slack.dev/reference/events/message/bot_message
     String botMessage = "{\n" +
             "  \"type\": \"message\",\n" +
             "  \"subtype\": \"bot_message\",\n" +

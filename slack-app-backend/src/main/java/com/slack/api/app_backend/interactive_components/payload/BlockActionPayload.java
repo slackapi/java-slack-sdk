@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/messaging/interactivity/enabling
+ * https://docs.slack.dev/messaging/creating-interactive-messages
  */
 @Data
 @Builder

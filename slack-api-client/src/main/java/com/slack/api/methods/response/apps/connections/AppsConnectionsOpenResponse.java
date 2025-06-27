@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/methods/apps.connections.open
+ * https://docs.slack.dev/reference/methods/apps.connections.open
  */
 @Data
 public class AppsConnectionsOpenResponse implements SlackApiTextResponse {

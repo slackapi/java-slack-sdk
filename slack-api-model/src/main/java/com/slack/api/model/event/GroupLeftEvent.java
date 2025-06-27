@@ -11,7 +11,7 @@ import lombok.Data;
  * <p>
  * In addition to this message, all existing members of the group will receive a group_leave message event.
  * <p>
- * https://api.slack.com/events/group_left
+ * https://docs.slack.dev/reference/events/group_left
  */
 @Data
 public class GroupLeftEvent implements Event {

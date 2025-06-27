@@ -8,7 +8,7 @@ import java.util.Arrays;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-// see https://api.slack.com/methods/admin.conversations.setConversationPrefs
+// see https://docs.slack.dev/reference/methods/admin.conversations.setConversationPrefs
 public class AdminConversationsSetConversationPrefsTest {
 
     @Test

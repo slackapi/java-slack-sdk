@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/conversations.inviteShared
+ * https://docs.slack.dev/reference/methods/conversations.inviteShared
  */
 @Data
 @Builder

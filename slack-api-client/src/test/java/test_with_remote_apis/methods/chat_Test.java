@@ -317,7 +317,7 @@ public class chat_Test {
 
     // It's also possible to post a message by giving the name of a channel.
     //
-    // https://api.slack.com/methods/chat.postMessage#channels
+    // https://docs.slack.dev/reference/methods/chat.postMessage#channels
     // You can either pass the channel's name (#general) or encoded ID (C024BE91L),
     // and the message will be posted to that channel.
     // The channel's ID can be retrieved through the channels.list API method.
@@ -538,7 +538,7 @@ public class chat_Test {
         String ts = postResponse.getTs();
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
 
-        // https://api.slack.com/docs/message-link-unfurling#slack_app_unfurling
+        // https://docs.slack.dev/messaging/unfurling-links-in-messages
         ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
         detail.setTitle("Let's pretend we're on a rocket ship to Neptune");
         detail.setText("The planet Neptune looms near. What do you want to do?");
@@ -589,7 +589,7 @@ public class chat_Test {
         String ts = postResponse.getTs();
         Map<String, ChatUnfurlRequest.UnfurlDetail> unfurls = new HashMap<>();
 
-        // https://api.slack.com/docs/message-link-unfurling#slack_app_unfurling
+        // https://docs.slack.dev/messaging/unfurling-links-in-messages
         ChatUnfurlRequest.UnfurlDetail detail = new ChatUnfurlRequest.UnfurlDetail();
         detail.setImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/San_Francisco_Chronicle_Building.jpg/640px-San_Francisco_Chronicle_Building.jpg?download");
         detail.setColor("#ff0084");
@@ -919,7 +919,7 @@ public class chat_Test {
     }
 
     // 2022-05-06 14:07:28,327 WARN [main] com.slack.api.methods.RequestFormBuilder The top-level `text` argument is missing in the request payload for a chat.postMessage call - It's a best practice to always provide a `text` argument when posting a message. The `text` is used in places where the content cannot be rendered such as: system push notifications, assistive technology such as screen readers, etc.
-    // 2022-05-06 14:07:28,327 WARN [main] com.slack.api.methods.RequestFormBuilder Additionally, the attachment-level `fallback` argument is missing in the request payload for a chat.postMessage call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://api.slack.com/reference/messaging/attachments#legacy_fields for more details).
+    // 2022-05-06 14:07:28,327 WARN [main] com.slack.api.methods.RequestFormBuilder Additionally, the attachment-level `fallback` argument is missing in the request payload for a chat.postMessage call - To avoid this warning, it is recommended to always provide a top-level `text` argument when posting a message. Alternatively, you can provide an attachment-level `fallback` argument, though this is now considered a legacy field (see https://docs.slack.dev/legacy/legacy-messaging/legacy-secondary-message-attachments#legacy_fields for more details).
     @Test
     public void textWarnings() throws Exception {
         loadRandomChannelId();

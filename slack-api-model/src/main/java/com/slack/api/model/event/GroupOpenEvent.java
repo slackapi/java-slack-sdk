@@ -7,7 +7,7 @@ import lombok.Data;
  * <p>
  * This event is not available to bot user subscriptions in the Events API.
  * <p>
- * https://api.slack.com/events/group_open
+ * https://docs.slack.dev/reference/events/group_open
  */
 @Data
 public class GroupOpenEvent implements Event {

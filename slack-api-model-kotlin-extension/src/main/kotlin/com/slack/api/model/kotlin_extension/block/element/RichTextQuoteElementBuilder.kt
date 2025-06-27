@@ -17,7 +17,7 @@ class RichTextQuoteElementBuilder private constructor(
     /**
      * An array of rich text elements.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text_quote">Rich text quote element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block#rich_text_quote">Rich text quote element documentation</a>
      */
     fun elements(builder: RichTextObjectDsl.() -> Unit) {
         elementsContainer.apply(builder)
@@ -26,7 +26,7 @@ class RichTextQuoteElementBuilder private constructor(
     /**
      * Number of pixels of border thickness.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text_quote">Rich text quote element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block#rich_text_quote">Rich text quote element documentation</a>
      */
     fun border(border: Int) {
         this.border = border

@@ -11,7 +11,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/message/message_deleted
+ * https://docs.slack.dev/reference/events/message/message_deleted
  */
 @Data
 public class MessageDeletedEvent implements Event {

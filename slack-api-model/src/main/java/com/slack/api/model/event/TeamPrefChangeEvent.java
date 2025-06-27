@@ -6,7 +6,7 @@ import lombok.Data;
  * The team_pref_change event is sent to all connections for a workspace when a preference is changed.
  * Where appropriate clients should update to reflect new changes immediately.
  * <p>
- * https://api.slack.com/events/team_pref_change
+ * https://docs.slack.dev/reference/events/team_pref_change
  */
 @Data
 public class TeamPrefChangeEvent implements Event {

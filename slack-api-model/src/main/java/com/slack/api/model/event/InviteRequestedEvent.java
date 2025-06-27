@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * User requested an invite
  * <p>
- * https://api.slack.com/events/invite_requested
+ * https://docs.slack.dev/reference/events/invite_requested
  */
 @Data
 public class InviteRequestedEvent implements Event {

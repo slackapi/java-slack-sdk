@@ -147,7 +147,7 @@ public class AsyncApiTest {
             assertThat(readResp.getUserName(), is(creation.getUserName()));
 
             try {
-                // https://api.slack.com/scim#filter
+                // https://docs.slack.dev/reference/scim-api#filter
                 // filter query matching the created data
                 String userName = creation.getUserName();
                 UsersSearchResponse searchResp = slack.scim2Async(orgAdminToken)
@@ -228,7 +228,7 @@ public class AsyncApiTest {
             assertThat(readResp.getSlackGuest().getExpiration(), is(notNullValue()));
 
             try {
-                // https://api.slack.com/scim#filter
+                // https://docs.slack.dev/reference/scim-api#filter
                 // filter query matching the created data
                 String userName = creation.getUserName();
                 UsersSearchResponse searchResp = slack.scim2Async(orgAdminToken)

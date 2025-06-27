@@ -23,7 +23,7 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
      *
      * The placeholder text shown on the menu. Maximum length for the text in this field is 150 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_select">External select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select">External select element documentation</a>
      */
     fun placeholder(text: String, emoji: Boolean? = null) {
         placeholder = PlainTextObject(text, emoji)
@@ -34,7 +34,7 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
      * interaction payload to identify the source of the action. Should be unique among all other action_ids used
      * elsewhere by your app. Maximum length for this field is 255 characters.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_select">External select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select">External select element documentation</a>
      */
     fun actionId(id: String) {
         actionId = id
@@ -44,7 +44,7 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
      * 	A single option that exactly matches one of the options within the options or option_groups loaded from the
      * 	external data source. This option will be selected when the menu initially loads.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_select">External select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select">External select element documentation</a>
      */
     fun initialOption(builder: OptionObjectBuilder.() -> Unit) {
         initialOption = OptionObjectBuilder().apply(builder).build()
@@ -55,7 +55,7 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
      * requests or more fully ideated queries, use the min_query_length attribute to tell Slack the fewest number of
      * typed characters required before dispatch. The default value is 3.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_select">External select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select">External select element documentation</a>
      */
     fun minQueryLength(length: Int) {
         minQueryLength = length
@@ -64,7 +64,7 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
     /**
      * A confirm object that defines an optional confirmation dialog that appears after a menu item is selected.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_select">External select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select">External select element documentation</a>
      */
     fun confirm(builder: ConfirmationDialogObjectBuilder.() -> Unit) {
         confirm = ConfirmationDialogObjectBuilder().apply(builder).build()
@@ -74,7 +74,7 @@ class ExternalSelectElementBuilder : Builder<ExternalSelectElement> {
      * Indicates whether the element will be set to autofocus within the view object.
      * Only one element can be set to true. Defaults to false.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/block-elements#external_select">External select element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/block-elements/multi-select-menu-element#external_multi_select">External select element documentation</a>
      */
     fun focusOnLoad(focusOnLoad: Boolean) {
         _focusOnLoad = focusOnLoad

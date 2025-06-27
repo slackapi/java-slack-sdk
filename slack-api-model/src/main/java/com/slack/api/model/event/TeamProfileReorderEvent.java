@@ -10,7 +10,7 @@ import java.util.List;
  * The payload includes only the id and the ordering for each field definition that is reordered.
  * Where appropriate, clients should update to reflect new changes immediately.
  * <p>
- * https://api.slack.com/events/team_profile_reorder
+ * https://docs.slack.dev/reference/events/team_profile_reorder
  */
 @Data
 public class TeamProfileReorderEvent implements Event {

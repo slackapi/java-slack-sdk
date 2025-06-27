@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/chat.getPermalink
+ * https://docs.slack.dev/reference/methods/chat.getPermalink
  */
 @Data
 @Builder

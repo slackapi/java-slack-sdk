@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * - https://api.slack.com/types/user
- * - https://api.slack.com/changelog/2017-09-the-one-about-usernames
+ * - https://docs.slack.dev/reference/objects/user-object
+ * - https://docs.slack.dev/changelog/2017-09-the-one-about-usernames
  */
 @Data
 public class User {

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Slack Status API V2 Client.
  *
- * @see <a href="https://api.slack.com/docs/slack-status">Slack Status API</a>
+ * @see <a href="https://docs.slack.dev/reference/slack-status-api">Slack Status API</a>
  */
 public interface StatusClient {
 

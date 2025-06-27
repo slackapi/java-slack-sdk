@@ -7,7 +7,7 @@ import lombok.Data;
  * <p>
  * The channel value is the string identifier for the private channel.
  * <p>
- * https://api.slack.com/events/group_joined
+ * https://docs.slack.dev/reference/events/group_joined
  */
 @Data
 public class GroupJoinedEvent implements Event {

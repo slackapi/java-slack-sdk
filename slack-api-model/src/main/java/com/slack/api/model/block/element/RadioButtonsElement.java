@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.List;
 
 /**
- * https://api.slack.com/reference/block-kit/block-elements#radio
+ * https://docs.slack.dev/reference/block-kit/block-elements/radio-button-group-element
  */
 @Data
 @Builder

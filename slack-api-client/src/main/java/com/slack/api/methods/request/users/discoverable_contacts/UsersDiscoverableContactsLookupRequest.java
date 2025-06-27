@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/users.discoverableContacts.lookups
+ * https://docs.slack.dev/reference/methods/users.discoverableContacts.lookup
  */
 @Data
 @Builder

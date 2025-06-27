@@ -40,7 +40,7 @@ import lombok.Data;
  * <p>
  * Even bot users receive this delightful event via Bot User subscription, when joining a channel.
  * <p>
- * https://api.slack.com/events/member_joined_channel
+ * https://docs.slack.dev/reference/events/member_joined_channel
  */
 @Data
 public class MemberJoinedChannelEvent implements Event {

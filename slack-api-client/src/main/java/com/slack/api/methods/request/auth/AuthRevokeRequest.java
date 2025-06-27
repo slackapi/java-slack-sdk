@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/auth.revoke
+ * https://docs.slack.dev/reference/methods/auth.revoke
  */
 @Data
 @Builder

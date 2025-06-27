@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/canvases.access.delete
+ * https://docs.slack.dev/reference/methods/canvases.access.delete
  */
 @Data
 @Builder

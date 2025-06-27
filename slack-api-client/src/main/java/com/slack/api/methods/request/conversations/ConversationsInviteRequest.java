@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 /**
- * https://api.slack.com/methods/conversations.invite
+ * https://docs.slack.dev/reference/methods/conversations.invite
  */
 @Builder
 public class ConversationsInviteRequest implements SlackApiRequest {

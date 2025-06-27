@@ -67,7 +67,7 @@ public class IncomingWebhooksTest {
                 .color("#36a64f")
                 .fallback("Required plain-text summary of the attachment.")
                 .title("Slack API Documentation")
-                .titleLink("https://api.slack.com/")
+                .titleLink("https://docs.slack.dev/")
                 .footer("footer")
                 .fields(new ArrayList<>())
                 .mrkdwnIn(new ArrayList<>())

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://api.slack.com/types/file
+ * https://docs.slack.dev/reference/objects/file-object
  */
 @Data
 @Builder
@@ -389,7 +389,7 @@ public class File {
 
     // ---------------------------------------
     // file comments
-    // https://api.slack.com/changelog/2018-05-file-threads-soon-tread
+    // https://docs.slack.dev/changelog/2018-05-file-threads-soon-tread
 
     @Deprecated
     private String botId;

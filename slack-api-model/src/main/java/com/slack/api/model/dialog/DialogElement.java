@@ -4,7 +4,7 @@ package com.slack.api.model.dialog;
  * A dialog Form DialogElement such as {@code text}, {@code textarea}, or {@code select}
  * or {@code select}.
  *
- * @see <a href="https://api.slack.com/dialogs">Slack Dialogs</a>
+ * @see <a href="https://docs.slack.dev/legacy/legacy-dialogs">Slack Dialogs</a>
  */
 public interface DialogElement {
 

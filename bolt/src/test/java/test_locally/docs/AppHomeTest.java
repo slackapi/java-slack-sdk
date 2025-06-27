@@ -19,7 +19,7 @@ public class AppHomeTest {
 
     @Test
     public void example() {
-        // https://api.slack.com/events/app_home_opened
+        // https://docs.slack.dev/reference/events/app_home_opened
         app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
             // Build a Home tab view
             ZonedDateTime now = ZonedDateTime.now();

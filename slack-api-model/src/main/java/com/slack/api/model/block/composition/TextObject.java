@@ -3,7 +3,7 @@ package com.slack.api.model.block.composition;
 import com.slack.api.model.block.ContextBlockElement;
 
 /**
- * https://api.slack.com/reference/messaging/composition-objects#text
+ * https://docs.slack.dev/messaging/migrating-outmoded-message-compositions-to-blocks
  */
 public abstract class TextObject implements ContextBlockElement {
 

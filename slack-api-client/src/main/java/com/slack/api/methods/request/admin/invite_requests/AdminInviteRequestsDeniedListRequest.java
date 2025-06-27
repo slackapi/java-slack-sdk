@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.inviteRequests.denied.list
+ * https://docs.slack.dev/reference/methods/admin.inviteRequests.denied.list
  */
 @Data
 @Builder

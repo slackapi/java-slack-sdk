@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/conversations.canvases.create
+ * https://docs.slack.dev/reference/methods/conversations.canvases.create
  */
 @Data
 @Builder

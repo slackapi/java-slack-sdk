@@ -9,7 +9,7 @@ import java.util.List;
  * from the profile. Only the ids of the deleted field definitions are included in the payload.
  * Where appropriate, clients should update to reflect new changes immediately.
  * <p>
- * https://api.slack.com/events/team_profile_delete
+ * https://docs.slack.dev/reference/events/team_profile_delete
  */
 @Data
 public class TeamProfileDeleteEvent implements Event {

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/assistant.threads.setStatus
+ * https://docs.slack.dev/reference/methods/assistant.threads.setStatus
  */
 @Data
 @Builder

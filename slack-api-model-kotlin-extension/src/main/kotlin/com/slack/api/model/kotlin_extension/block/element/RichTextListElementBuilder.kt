@@ -20,7 +20,7 @@ class RichTextListElementBuilder private constructor(
     /**
      * Either bullet or ordered, the latter meaning a numbered list.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text_list">Rich text list element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block">Rich text list element documentation</a>
      */
     fun style(style: ListStyle) {
         this.style = style.value
@@ -30,7 +30,7 @@ class RichTextListElementBuilder private constructor(
      * An array of rich_text_section objects containing two properties: type, which is "rich_text_section",
      * and elements, which is an array of rich text element objects.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text_list">Rich text list element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block">Rich text list element documentation</a>
      */
     fun elements(builder: RichTextListElementDsl.() -> Unit) {
         elementsContainer.apply(builder)
@@ -39,7 +39,7 @@ class RichTextListElementBuilder private constructor(
     /**
      * Number of pixels to indent the list.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text_list">Rich text list element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block">Rich text list element documentation</a>
      */
     fun indent(indent: Int) {
         this.indent = indent
@@ -48,7 +48,7 @@ class RichTextListElementBuilder private constructor(
     /**
      * Number of pixels to offset the list.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text_list">Rich text list element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block">Rich text list element documentation</a>
      */
     fun offset(offset: Int) {
         this.offset = offset
@@ -57,7 +57,7 @@ class RichTextListElementBuilder private constructor(
     /**
      * Number of pixels of border thickness.
      *
-     * @see <a href="https://api.slack.com/reference/block-kit/blocks#rich_text_list">Rich text list element documentation</a>
+     * @see <a href="https://docs.slack.dev/reference/block-kit/blocks/rich-text-block">Rich text list element documentation</a>
      */
     fun border(border: Int) {
         this.border = border

@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/canvases.access.set
+ * https://docs.slack.dev/reference/methods/canvases.access.set
  */
 @Data
 @Builder

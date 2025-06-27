@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/admin.auth.policy.getEntities
+ * https://docs.slack.dev/reference/methods/admin.auth.policy.getEntities
  */
 @Data
 @Builder

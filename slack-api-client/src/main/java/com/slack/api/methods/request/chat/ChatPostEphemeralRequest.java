@@ -8,7 +8,7 @@ import lombok.*;
 import java.util.List;
 
 /**
- * https://api.slack.com/methods/chat.postEphemeral
+ * https://docs.slack.dev/reference/methods/chat.postEphemeral
  */
 @Data
 @Builder
@@ -87,7 +87,7 @@ public class ChatPostEphemeralRequest implements SlackApiRequest {
      * Emoji to use as the icon for this message.
      * Overrides icon_url. Must be used in conjunction with as_user set to false, otherwise ignored.
      * See authorship below.
-     * https://api.slack.com/methods/chat.postEphemeral#authorship
+     * https://docs.slack.dev/reference/methods/chat.postEphemeral#authorship
      */
     private String iconEmoji;
 
@@ -95,7 +95,7 @@ public class ChatPostEphemeralRequest implements SlackApiRequest {
      * URL to an image to use as the icon for this message.
      * Must be used in conjunction with as_user set to false, otherwise ignored.
      * See authorship below.
-     * https://api.slack.com/methods/chat.postEphemeral#authorship
+     * https://docs.slack.dev/reference/methods/chat.postEphemeral#authorship
      */
     private String iconUrl;
 
@@ -103,7 +103,7 @@ public class ChatPostEphemeralRequest implements SlackApiRequest {
      * Set your bot's user name.
      * Must be used in conjunction with as_user set to false, otherwise ignored.
      * See authorship below.
-     * https://api.slack.com/methods/chat.postEphemeral#authorship
+     * https://docs.slack.dev/reference/methods/chat.postEphemeral#authorship
      */
     private String username;
 

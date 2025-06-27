@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/team_access_revoked
+ * https://docs.slack.dev/reference/events/team_access_revoked
  */
 @Data
 public class TeamAccessRevokedEvent implements Event {

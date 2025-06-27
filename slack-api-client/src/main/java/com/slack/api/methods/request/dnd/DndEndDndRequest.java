@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * https://api.slack.com/methods/dnd.endDnd
+ * https://docs.slack.dev/reference/methods/dnd.endDnd
  */
 @Data
 @Builder

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 /**
- * https://api.slack.com/types/im
+ * https://docs.slack.dev/reference/objects/im-object
  */
 @Data
 public class Im {

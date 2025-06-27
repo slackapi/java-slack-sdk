@@ -10,7 +10,7 @@ import com.slack.api.util.json.GsonFactory;
 import lombok.ToString;
 
 @ToString(callSuper = true)
-// Use new custom steps: https://api.slack.com/automation/functions/custom-bolt
+// Use new custom steps: https://docs.slack.dev/workflows/workflow-steps
 @Deprecated
 public class WorkflowStepExecuteRequest extends Request<WorkflowStepExecuteContext> {
 

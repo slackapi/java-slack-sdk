@@ -6,8 +6,8 @@ package com.slack.api.model.block;
  * message UI, you can customize the order and appearance of information
  * delivered by your app in Slack.
  *
- * @see <a href="https://api.slack.com/block-kit">Block Kit Guide</a>
- * @see <a href="https://api.slack.com/reference/messaging/blocks">Block Kit Reference</a>
+ * @see <a href="https://docs.slack.dev/block-kit">Block Kit Guide</a>
+ * @see <a href="https://docs.slack.dev/reference/block-kit/blocks">Block Kit Reference</a>
  */
 public interface LayoutBlock {
 

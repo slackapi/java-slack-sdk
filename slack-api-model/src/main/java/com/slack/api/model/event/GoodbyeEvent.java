@@ -13,7 +13,7 @@ import lombok.Data;
  * <li>reaching the maximum duration of a RTM web socket connection (8 hours)
  * <li>your workspace has been inactive for over two minutes
  * </ul>
- * https://api.slack.com/events/goodbye
+ * https://docs.slack.dev/reference/events/goodbye
  */
 @Data
 public class GoodbyeEvent implements Event {

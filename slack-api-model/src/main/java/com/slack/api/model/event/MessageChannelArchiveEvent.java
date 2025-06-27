@@ -3,7 +3,7 @@ package com.slack.api.model.event;
 import lombok.Data;
 
 /**
- * https://api.slack.com/events/message/channel_archive
+ * https://docs.slack.dev/reference/events/message/channel_archive
  */
 @Data
 public class MessageChannelArchiveEvent implements Event {

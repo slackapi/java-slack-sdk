@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * https://api.slack.com/events/message/thread_broadcast
+ * https://docs.slack.dev/reference/events/message/thread_broadcast
  */
 @Data
 public class MessageThreadBroadcastEvent implements Event {

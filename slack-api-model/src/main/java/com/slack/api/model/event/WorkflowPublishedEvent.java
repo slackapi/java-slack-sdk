@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * A workflow that contains a step supported by your app was published
  * <p>
- * https://api.slack.com/events/workflow_published
+ * https://docs.slack.dev/reference/events/workflow_published
  */
 @Data
 public class WorkflowPublishedEvent implements Event {
